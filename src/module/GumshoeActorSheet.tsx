@@ -6,9 +6,8 @@ import ReactDOM from "../../node_modules/react-dom";
  * @extends {ActorSheet}
  */
 export class GumshoeActorSheet extends ActorSheet {
-
   /** @override */
-  static get defaultOptions() {
+  static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
       classes: ["gumshoe", "sheet", "actor"],
       template: "systems/gumshoe/templates/actor/gumshoe-actor-sheet.handlebars",
@@ -23,7 +22,7 @@ export class GumshoeActorSheet extends ActorSheet {
     console.log("foo");
   }
 
-  render(force=false, options={}) {
+  render (force = false, options = {}) {
     super.render(force, options);
 
     const content = <App entity={this.entity}/>;
@@ -34,9 +33,7 @@ export class GumshoeActorSheet extends ActorSheet {
 
     return this;
   }
-
 }
-
 
 type AppProps = {
   entity: any,
@@ -49,5 +46,6 @@ const App = ({
     <div>
       React <b>App</b>!
     </div>
-  )
+  );
 }
+;

@@ -1,7 +1,8 @@
-export const preloadTemplates = async function() {
-	const templatePaths = [
-		// Add paths to "systems/gumshoe/templates"
-	];
+export const preloadTemplates = async function () {
+  const templatePaths = [
+    // Add paths to "systems/gumshoe/templates"
+  ];
 
-	return loadTemplates(templatePaths);
-}
+  // eslint-disable-next-line no-undef
+  return loadTemplates(templatePaths);
+};
