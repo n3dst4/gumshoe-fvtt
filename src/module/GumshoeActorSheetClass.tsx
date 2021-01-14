@@ -43,11 +43,11 @@ export class GumshoeActorSheetClass extends ActorSheet {
     super.activateListeners(html);
 
     const el: HTMLElement = (this.element as any).jquery
-      ? (this.element as JQuery<HTMLElement>).get(0)
+      ? (this.element as JQuery<HTMLElement>).find(".react-target").get(0)
       : this.element as HTMLElement;
 
     if (el) {
-      ReactDOM.render(<App entity={this.entity}/>, el);
+      ReactDOM.render(<GumshoeActorSheet entity={this.entity}/>, el);
     }
   }
 
