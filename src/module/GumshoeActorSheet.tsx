@@ -1,5 +1,19 @@
-import React from "../../node_modules/react";
 import ReactDOM from "../../node_modules/react-dom";
+import React from "../../node_modules/react";
+
+// type AppProps = {
+//   entity: any;
+// }
+
+const App = ({
+  entity,
+}: any) => {
+  return (
+    <div>
+      React <b>App</b>!
+    </div>
+  );
+};
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -13,7 +27,7 @@ export class GumshoeActorSheet extends ActorSheet {
       template: "systems/gumshoe/templates/actor/gumshoe-actor-sheet.handlebars",
       width: 600,
       height: 600,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
     });
   }
 
@@ -34,18 +48,3 @@ export class GumshoeActorSheet extends ActorSheet {
     return this;
   }
 }
-
-type AppProps = {
-  entity: any,
-}
-
-const App = ({
-  entity
-}: AppProps) => {
-  return (
-    <div>
-      React <b>App</b>!
-    </div>
-  );
-}
-;

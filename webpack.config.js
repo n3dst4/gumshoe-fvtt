@@ -9,7 +9,7 @@ module.exports = {
   mode: isProduction ? "production" : "development",
   entry: "./src/gumshoe.ts",
   output: {
-    path: __dirname + "/dist",
+    path: path.join(__dirname, "dist"),
     filename: "gumshoe.js",
   },
   devtool: isProduction ? "none" : "source-map",
@@ -53,15 +53,15 @@ module.exports = {
       {
         test: /\.(md|markdown)$/,
         use: [
-            {
-                loader: "html-loader",
+          {
+            loader: "html-loader",
+          },
+          {
+            loader: "markdown-loader",
+            options: {
+              /* your options here */
             },
-            {
-                loader: "markdown-loader",
-                options: {
-                    /* your options here */
-                },
-            },
+          },
         ],
       },
     ],
@@ -72,19 +72,19 @@ module.exports = {
       // aliasing react and react-dom helps when you're working with `npm link`
       // so that external components see the same react as your app rather than
       // the one that might have been installed in their local node_modules
-      "react": path.resolve("./node_modules/react"),
+      react: path.resolve("./node_modules/react"),
       "react-dom": path.resolve("./node_modules/react-dom"),
     },
   },
   plugins: [
     // new BundleAnalyzerPlugin(),
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
+      NODE_ENV: "development",
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
       eslint: {
-        files: './src/**/*.{ts,tsx,js,jsx}',
+        files: "./src/**/*.{ts,tsx,js,jsx}",
       },
     }),
   ],
