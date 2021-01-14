@@ -3,7 +3,7 @@ export class GumshoeActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
-  prepareData () {
+  prepareData (): void {
     super.prepareData();
 
     const actorData = this.data;
@@ -18,7 +18,7 @@ export class GumshoeActor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  _prepareCharacterData (actorData) {
+  _prepareCharacterData (actorData: any): any {
     // const data = actorData.data;
 
     // Make modifications to data here. For example:

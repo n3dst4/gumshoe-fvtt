@@ -4,8 +4,9 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    "plugin:react/recommended",
     "standard",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -25,9 +26,20 @@ module.exports = {
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "comma-dangle": ["error", "always-multiline"],
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/explicit-module-boundary-types": ["off"],
+    "@typescript-eslint/no-unused-vars": ["error", { args: "none", ignoreRestSiblings: true }],
   },
+  overrides: [
+    {
+      files: ["*.js"],
+      rules: {
+        "@typescript-eslint/no-var-requires": ["off"],
+      },
+    },
+  ],
   globals: {
-    Hooks: "readonly",
+    // Hooks: "readonly",
     CONFIG: "readonly",
     Actor: "readonly",
     ActorSheet: "readonly",
