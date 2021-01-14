@@ -24,11 +24,11 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
   return (
     <div
       style={{
-        width: "12em",
+        width: "8em",
         height: "auto",
         display: "grid",
-        gridAutoColumns: "1fr 1fr 1fr 1fr",
-        gridTemplateRows: "3em",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        // gridAutoRows: "2em",
       }}
     >
       {vals.map((v) => (

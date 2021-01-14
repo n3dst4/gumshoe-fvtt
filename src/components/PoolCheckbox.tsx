@@ -13,7 +13,7 @@ export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
     <div
       style={{
         width: "2em",
-        height: "2em",
+        height: "1.5em",
         background: selected ? "#d44" : "#fff",
       }}
     >
