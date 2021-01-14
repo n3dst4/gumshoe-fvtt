@@ -2,7 +2,7 @@ import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/preloadTemplates";
 import { GumshoeActor } from "./module/GumshoeActor";
 import { GumshoeItem } from "./module/GumshoeItem";
-import { GumshoeActorSheet } from "./module/GumshoeActorSheet";
+import { GumshoeActorSheetClass } from "./module/GumshoeActorSheetClass";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -20,7 +20,7 @@ Hooks.once("init", async function () {
 
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("gumshoe", GumshoeActorSheet, { makeDefault: true });
+  Actors.registerSheet("gumshoe", GumshoeActorSheetClass, { makeDefault: true });
 });
 
 // Setup system

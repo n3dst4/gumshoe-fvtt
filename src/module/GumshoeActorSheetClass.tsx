@@ -1,16 +1,23 @@
-import ReactDOM from "../../node_modules/react-dom";
-import React from "../../node_modules/react";
+import ReactDOM from "react-dom";
+import React from "react";
 
 type AppProps = {
-  entity: any;
+  entity: any,
 }
 
 const App = ({
   entity,
 }: AppProps) => {
+  // const updateName =
+
   return (
     <div>
-      React <b>App</b>!
+      <h1>
+        React <b>App</b> for {entity.data.name}!
+      </h1>
+      <p>
+        <input value={entity.data.name} onChange={(e) => entity.update({ name: e.currentTarget.value })} />
+      </p>
     </div>
   );
 };
@@ -19,7 +26,7 @@ const App = ({
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class GumshoeActorSheet extends ActorSheet {
+export class GumshoeActorSheetClass extends ActorSheet {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
@@ -32,20 +39,21 @@ export class GumshoeActorSheet extends ActorSheet {
   }
 
   activateListeners (html) {
+    console.log("activateListeners");
     super.activateListeners(html);
-    console.log("foo");
-    const content = <App entity={this.entity}/>;
 
-    const el: HTMLElement = (this.element as any).jquery ? (this.element as JQuery<HTMLElement>).get(0) : this.element as HTMLElement;
+    const el: HTMLElement = (this.element as any).jquery
+      ? (this.element as JQuery<HTMLElement>).get(0)
+      : this.element as HTMLElement;
 
     if (el) {
-      ReactDOM.render([content], el);
+      ReactDOM.render(<App entity={this.entity}/>, el);
     }
   }
 
   render (force = false, options = {}) {
     super.render(force, options);
-
+    console.log("render");
     return this;
   }
 }
