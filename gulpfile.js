@@ -119,10 +119,11 @@ function buildWatch () {
     aggregateTimeout: 300,
     poll: undefined,
   }, (err, stats) => {
+    console.log(stats.toString({
+      colors: true,
+    }));
     if (err) {
       console.err(err);
-    } else {
-      console.log("Webpack watcher built successfully");
     }
   });
   gulp.watch("src/**/*.less", { ignoreInitial: false }, buildLess);
