@@ -22,8 +22,6 @@ function getConfig () {
   if (fs.existsSync(configPath)) {
     config = fs.readJSONSync(configPath);
     return config;
-  } else {
-
   }
 }
 
@@ -58,37 +56,37 @@ function getManifest () {
  */
 function createTransformer () {
   /**
-	 * @param {typescript.Node} node
-	 */
+   * @param {typescript.Node} node
+   */
   function shouldMutateModuleSpecifier (node) {
     if (
       !typescript.isImportDeclaration(node) &&
-			!typescript.isExportDeclaration(node)
+      !typescript.isExportDeclaration(node)
     ) { return false; }
     if (node.moduleSpecifier === undefined) return false;
     if (!typescript.isStringLiteral(node.moduleSpecifier)) return false;
     if (
       !node.moduleSpecifier.text.startsWith("./") &&
-			!node.moduleSpecifier.text.startsWith("../")
+      !node.moduleSpecifier.text.startsWith("../")
     ) { return false; }
     if (path.extname(node.moduleSpecifier.text) !== "") return false;
     return true;
   }
 
   /**
-	 * Transforms import/export declarations to append `.js` extension
-	 * @param {typescript.TransformationContext} context
-	 */
+   * Transforms import/export declarations to append `.js` extension
+   * @param {typescript.TransformationContext} context
+   */
   function importTransformer (context) {
     return (node) => {
-      /**
-			 * @param {typescript.Node} node
-			 */
+    /**
+       * @param {typescript.Node} node
+       */
       function visitor (node) {
         if (shouldMutateModuleSpecifier(node)) {
           if (typescript.isImportDeclaration(node)) {
             const newModuleSpecifier = typescript.createLiteral(
-							`${node.moduleSpecifier.text}.js`,
+              `${node.moduleSpecifier.text}.js`,
             );
             return typescript.updateImportDeclaration(
               node,
@@ -99,7 +97,7 @@ function createTransformer () {
             );
           } else if (typescript.isExportDeclaration(node)) {
             const newModuleSpecifier = typescript.createLiteral(
-							`${node.moduleSpecifier.text}.js`,
+              `${node.moduleSpecifier.text}.js`,
             );
             return typescript.updateExportDeclaration(
               node,
@@ -127,7 +125,7 @@ const tsConfig = ts.createProject("tsconfig.json", {
 });
 
 /********************/
-/*		BUILD		*/
+/* BUILD */
 /********************/
 
 /**
@@ -194,7 +192,7 @@ function buildWatch () {
 }
 
 /********************/
-/*		CLEAN		*/
+/* CLEAN */
 /********************/
 
 /**
@@ -212,17 +210,17 @@ async function clean () {
       "templates",
       "assets",
       "module",
-			`${name}.js`,
-			"module.json",
-			"system.json",
-			"template.json",
+      `${name}.js`,
+      "module.json",
+      "system.json",
+      "template.json",
     );
   }
 
   // If the project uses Less or SASS
   if (
     fs.existsSync(path.join("src", `${name}.less`)) ||
-		fs.existsSync(path.join("src", `${name}.scss`))
+    fs.existsSync(path.join("src", `${name}.scss`))
   ) {
     files.push("fonts", `${name}.css`);
   }
@@ -242,7 +240,7 @@ async function clean () {
 }
 
 /********************/
-/*		LINK		*/
+/* LINK */
 /********************/
 
 /**
@@ -256,19 +254,19 @@ async function linkUserData () {
   try {
     if (
       fs.existsSync(path.resolve(".", "dist", "module.json")) ||
-			fs.existsSync(path.resolve(".", "src", "module.json"))
+      fs.existsSync(path.resolve(".", "src", "module.json"))
     ) {
       destDir = "modules";
     } else if (
       fs.existsSync(path.resolve(".", "dist", "system.json")) ||
-			fs.existsSync(path.resolve(".", "src", "system.json"))
+      fs.existsSync(path.resolve(".", "src", "system.json"))
     ) {
       destDir = "systems";
     } else {
       throw Error(
-				`Could not find ${chalk.blueBright(
-					"module.json",
-				)} or ${chalk.blueBright("system.json")}`,
+        `Could not find ${chalk.blueBright(
+          "module.json",
+        )} or ${chalk.blueBright("system.json")}`,
       );
     }
 
@@ -300,7 +298,7 @@ async function linkUserData () {
 }
 
 /*********************/
-/*		PACKAGE		 */
+/* PACKAGE */
 /*********************/
 
 /**
@@ -311,7 +309,7 @@ async function packageBuild () {
 
   return new Promise((resolve, reject) => {
     try {
-      // Remove the package dir without doing anything else
+    // Remove the package dir without doing anything else
       if (argv.clean || argv.c) {
         console.log(chalk.yellow("Removing all packaged files"));
         fs.removeSync("package");
@@ -351,7 +349,7 @@ async function packageBuild () {
 }
 
 /*********************/
-/*		PACKAGE		 */
+/* PACKAGE */
 /*********************/
 
 /**
@@ -475,11 +473,11 @@ function gitCommit () {
 function gitTag () {
   const manifest = getManifest();
   return git.tag(
-		`v${manifest.file.version}`,
-		`Updated to ${manifest.file.version}`,
-		(err) => {
-		  if (err) throw err;
-		},
+    `v${manifest.file.version}`,
+    `Updated to ${manifest.file.version}`,
+    (err) => {
+      if (err) throw err;
+    },
   );
 }
 
