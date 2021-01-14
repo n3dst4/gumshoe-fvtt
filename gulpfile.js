@@ -5,10 +5,8 @@ const chalk = require("chalk");
 const archiver = require("archiver");
 const stringify = require("json-stringify-pretty-compact");
 const less = require("gulp-less");
-const sass = require("gulp-sass");
 const git = require("gulp-git");
 const argv = require("yargs").argv;
-sass.compiler = require("sass");
 const webpack = require("webpack");
 const webpackConfig = require("./webpack.config");
 const rimraf = require("rimraf");
@@ -65,7 +63,6 @@ function buildTS () {
       }
     });
   });
-  // return gulp.src("src/**/*.ts").pipe(tsConfig()).pipe(gulp.dest("dist"));
 }
 
 /**
@@ -73,16 +70,6 @@ function buildTS () {
  */
 function buildLess () {
   return gulp.src("src/*.less").pipe(less()).pipe(gulp.dest("dist"));
-}
-
-/**
- * Build SASS
- */
-function buildSASS () {
-  return gulp
-    .src("src/*.scss")
-    .pipe(sass().on("error", sass.logError))
-    .pipe(gulp.dest("dist"));
 }
 
 /**
@@ -113,7 +100,7 @@ async function copyFiles () {
 /**
  * Watch for changes for each build step
  */
-function buildWatch () {
+function watch () {
   webpack(webpackConfig).watch({
     aggregateTimeout: 300,
     poll: undefined,
@@ -126,7 +113,6 @@ function buildWatch () {
     }
   });
   gulp.watch("src/**/*.less", { ignoreInitial: false }, buildLess);
-  gulp.watch("src/**/*.scss", { ignoreInitial: false }, buildSASS);
   gulp.watch(
     ["src/fonts", "src/lang", "src/templates", "src/*.json"],
     { ignoreInitial: false },
@@ -233,7 +219,7 @@ function link () {
 /**
  * Package build
  */
-async function packageBuild () {
+async function package () {
   const manifest = getManifest();
 
   return new Promise((resolve, reject) => {
@@ -412,19 +398,19 @@ function gitTag () {
 
 const execGit = gulp.series(gitAdd, gitCommit, gitTag);
 
-const execBuild = gulp.parallel(buildTS, buildLess, buildSASS, copyFiles);
+const buildAll = gulp.parallel(buildTS, buildLess, copyFiles);
 
-exports.build = gulp.series(clean, execBuild);
-exports.watch = buildWatch;
+exports.build = gulp.series(clean, buildAll);
+exports.watch = watch;
 exports.clean = clean;
 exports.link = link;
 exports.unlink = unlink;
-exports.package = packageBuild;
-exports.update = updateManifest;
+exports.package = package;
+exports.updateManifest = updateManifest;
 exports.publish = gulp.series(
   clean,
   updateManifest,
-  execBuild,
-  packageBuild,
+  buildAll,
+  package,
   execGit,
 );
