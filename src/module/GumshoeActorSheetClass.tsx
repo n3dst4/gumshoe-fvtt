@@ -1,26 +1,6 @@
 import ReactDOM from "react-dom";
 import React from "react";
-
-type AppProps = {
-  entity: any,
-}
-
-const App = ({
-  entity,
-}: AppProps) => {
-  // const updateName =
-
-  return (
-    <div>
-      <h1>
-        React <b>App</b> for {entity.data.name}!
-      </h1>
-      <p>
-        <input value={entity.data.name} onChange={(e) => entity.update({ name: e.currentTarget.value })} />
-      </p>
-    </div>
-  );
-};
+import { GumshoeActorSheet } from "../components/GumshoeActorSheet";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications

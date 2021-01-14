@@ -2,16 +2,14 @@
   "Actor": {
     "types": ["pc", "npc"],
     "templates": {
-      "pools": {
-        "health": 10,
-        "stability": 10,
-        "sanity:": 10,
-        "magic": 10
-      }
     },
     "pc": {
-      "templates": ["pools"]
-    }
+      "templates": [],
+      "health": 10,
+      "stability": 10,
+      "sanity:": 10,
+      "magic": 10
+  }
   },
   "Item": {
     "types": ["investigativeSkill", "generalSkill", "equipment"],
