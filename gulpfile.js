@@ -142,7 +142,7 @@ function buildWatch () {
  * Remove built files from `dist` folder
  * while ignoring source files
  */
-async function clean () {
+function clean () {
   const distPath = path.join(__dirname, "dist");
 
   return new Promise((resolve, reject) => {
@@ -154,44 +154,6 @@ async function clean () {
       }
     });
   });
-
-  // const name = path.basename(path.resolve("."));
-  // const files = [];
-
-  // // If the project uses TypeScript
-  // if (fs.existsSync(path.join("src", `${name}.ts`))) {
-  //   files.push(
-  //     "lang",
-  //     "templates",
-  //     "assets",
-  //     "module",
-  //     `${name}.js`,
-  //     "module.json",
-  //     "system.json",
-  //     "template.json",
-  //   );
-  // }
-
-  // // If the project uses Less or SASS
-  // if (
-  //   fs.existsSync(path.join("src", `${name}.less`)) ||
-  //   fs.existsSync(path.join("src", `${name}.scss`))
-  // ) {
-  //   files.push("fonts", `${name}.css`);
-  // }
-
-  // console.log(" ", chalk.yellow("Files to clean:"));
-  // console.log("   ", chalk.blueBright(files.join("\n    ")));
-
-  // // Attempt to remove the files
-  // try {
-  //   for (const filePath of files) {
-  //     await fs.remove(path.join("dist", filePath));
-  //   }
-  //   return Promise.resolve();
-  // } catch (err) {
-  //   Promise.reject(err);
-  // }
 }
 
 /********************/
