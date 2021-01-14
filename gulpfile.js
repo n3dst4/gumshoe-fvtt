@@ -12,6 +12,8 @@ sass.compiler = require("sass");
 const webpack = require("webpack");
 const webpackConfig = require("./webpack.config");
 
+const webpackCompiler = webpack(webpackConfig);
+
 function getConfig () {
   const configPath = path.resolve(process.cwd(), "foundryconfig.json");
   let config;
@@ -56,7 +58,7 @@ function getManifest () {
  */
 function buildTS () {
   return new Promise((resolve, reject) => {
-    webpack(webpackConfig, (err, stats) => {
+    webpackCompiler.run((err, stats) => {
       if (err || stats.hasErrors()) {
         reject(err);
       } else {
@@ -113,7 +115,16 @@ async function copyFiles () {
  * Watch for changes for each build step
  */
 function buildWatch () {
-  gulp.watch("src/**/*.ts", { ignoreInitial: false }, buildTS);
+  webpackCompiler.watch({
+    aggregateTimeout: 300,
+    poll: undefined,
+  }, (err, stats) => {
+    if (err) {
+      console.err(err);
+    } else {
+      console.log("Webpack watcher built successfully");
+    }
+  });
   gulp.watch("src/**/*.less", { ignoreInitial: false }, buildLess);
   gulp.watch("src/**/*.scss", { ignoreInitial: false }, buildSASS);
   gulp.watch(

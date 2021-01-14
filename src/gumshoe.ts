@@ -21,6 +21,8 @@ Hooks.once("init", async function () {
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("gumshoe", GumshoeActorSheet, { makeDefault: true });
+
+  // console.log("lol");
 });
 
 // Setup system
