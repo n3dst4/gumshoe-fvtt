@@ -12,8 +12,6 @@ sass.compiler = require("sass");
 const webpack = require("webpack");
 const webpackConfig = require("./webpack.config");
 
-const webpackCompiler = webpack(webpackConfig);
-
 function getConfig () {
   const configPath = path.resolve(process.cwd(), "foundryconfig.json");
   let config;
@@ -58,7 +56,7 @@ function getManifest () {
  */
 function buildTS () {
   return new Promise((resolve, reject) => {
-    webpackCompiler.run((err, stats) => {
+    webpack(webpackConfig, (err, stats) => {
       if (err || stats.hasErrors()) {
         reject(err);
       } else {
@@ -115,7 +113,7 @@ async function copyFiles () {
  * Watch for changes for each build step
  */
 function buildWatch () {
-  webpackCompiler.watch({
+  webpack(webpackConfig).watch({
     aggregateTimeout: 300,
     poll: undefined,
   }, (err, stats) => {
@@ -188,56 +186,68 @@ async function clean () {
 /********************/
 
 /**
- * Link build to User Data folder
+ * Get the path to link to `dist`
  */
-async function linkUserData () {
+function getLinkDir () {
   const name = path.basename(path.resolve("."));
   const config = fs.readJSONSync("foundryconfig.json");
-
   let destDir;
-  try {
-    if (
-      fs.existsSync(path.resolve(".", "dist", "module.json")) ||
-      fs.existsSync(path.resolve(".", "src", "module.json"))
-    ) {
-      destDir = "modules";
-    } else if (
-      fs.existsSync(path.resolve(".", "dist", "system.json")) ||
-      fs.existsSync(path.resolve(".", "src", "system.json"))
-    ) {
-      destDir = "systems";
-    } else {
-      throw Error(
-        `Could not find ${chalk.blueBright(
-          "module.json",
-        )} or ${chalk.blueBright("system.json")}`,
-      );
+
+  // work out if we're linking to systems or modules
+  if (
+    fs.existsSync(path.resolve(".", "dist", "module.json")) ||
+    fs.existsSync(path.resolve(".", "src", "module.json"))
+  ) {
+    destDir = "modules";
+  } else if (
+    fs.existsSync(path.resolve(".", "dist", "system.json")) ||
+    fs.existsSync(path.resolve(".", "src", "system.json"))
+  ) {
+    destDir = "systems";
+  } else {
+    throw Error(
+      `Could not find ${chalk.blueBright(
+        "module.json",
+      )} or ${chalk.blueBright("system.json")}`,
+    );
+  }
+
+  let linkDir;
+  if (config.dataPath) {
+    if (!fs.existsSync(path.join(config.dataPath, "Data"))) {
+      throw Error("User Data path invalid, no Data directory found");
     }
+    linkDir = path.join(config.dataPath, "Data", destDir, name);
+  } else {
+    throw Error("No User Data path defined in foundryconfig.json");
+  }
 
-    let linkDir;
-    if (config.dataPath) {
-      if (!fs.existsSync(path.join(config.dataPath, "Data"))) { throw Error("User Data path invalid, no Data directory found"); }
+  return linkDir;
+}
 
-      linkDir = path.join(config.dataPath, "Data", destDir, name);
-    } else {
-      throw Error("No User Data path defined in foundryconfig.json");
-    }
+/**
+ * Remove the link to foundrydata
+ */
+function unlink () {
+  const linkDir = getLinkDir();
+  console.log(
+    chalk.yellow(`Removing build link from ${chalk.blueBright(linkDir)}`),
+  );
+  return fs.remove(linkDir);
+}
 
-    if (argv.clean || argv.c) {
-      console.log(
-        chalk.yellow(`Removing build in ${chalk.blueBright(linkDir)}`),
-      );
-
-      await fs.remove(linkDir);
-    } else if (!fs.existsSync(linkDir)) {
-      console.log(
-        chalk.green(`Copying build to ${chalk.blueBright(linkDir)}`),
-      );
-      await fs.symlink(path.resolve("./dist"), linkDir);
-    }
-    return Promise.resolve();
-  } catch (err) {
-    Promise.reject(err);
+/**
+ * Link build to foundrydata
+ */
+function link () {
+  const linkDir = getLinkDir();
+  if (argv.clean || argv.c) {
+    return unlink();
+  } else if (!fs.existsSync(linkDir)) {
+    console.log(
+      chalk.green(`Linking dist to ${chalk.blueBright(linkDir)}`),
+    );
+    return fs.symlink(path.resolve("./dist"), linkDir);
   }
 }
 
@@ -432,7 +442,8 @@ const execBuild = gulp.parallel(buildTS, buildLess, buildSASS, copyFiles);
 exports.build = gulp.series(clean, execBuild);
 exports.watch = buildWatch;
 exports.clean = clean;
-exports.link = linkUserData;
+exports.link = link;
+exports.unlink = unlink;
 exports.package = packageBuild;
 exports.update = updateManifest;
 exports.publish = gulp.series(
