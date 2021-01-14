@@ -4,16 +4,13 @@ const path = require("path");
 const chalk = require("chalk");
 const archiver = require("archiver");
 const stringify = require("json-stringify-pretty-compact");
-const typescript = require("typescript");
-
-const ts = require("gulp-typescript");
 const less = require("gulp-less");
 const sass = require("gulp-sass");
 const git = require("gulp-git");
-
 const argv = require("yargs").argv;
-
 sass.compiler = require("sass");
+const webpack = require("webpack");
+const webpackConfig = require("./webpack.config");
 
 function getConfig () {
   const configPath = path.resolve(process.cwd(), "foundryconfig.json");
@@ -50,80 +47,6 @@ function getManifest () {
   return json;
 }
 
-/**
- * TypeScript transformers
- * @returns {typescript.TransformerFactory<typescript.SourceFile>}
- */
-function createTransformer () {
-  /**
-   * @param {typescript.Node} node
-   */
-  function shouldMutateModuleSpecifier (node) {
-    if (
-      !typescript.isImportDeclaration(node) &&
-      !typescript.isExportDeclaration(node)
-    ) { return false; }
-    if (node.moduleSpecifier === undefined) return false;
-    if (!typescript.isStringLiteral(node.moduleSpecifier)) return false;
-    if (
-      !node.moduleSpecifier.text.startsWith("./") &&
-      !node.moduleSpecifier.text.startsWith("../")
-    ) { return false; }
-    if (path.extname(node.moduleSpecifier.text) !== "") return false;
-    return true;
-  }
-
-  /**
-   * Transforms import/export declarations to append `.js` extension
-   * @param {typescript.TransformationContext} context
-   */
-  function importTransformer (context) {
-    return (node) => {
-    /**
-       * @param {typescript.Node} node
-       */
-      function visitor (node) {
-        if (shouldMutateModuleSpecifier(node)) {
-          if (typescript.isImportDeclaration(node)) {
-            const newModuleSpecifier = typescript.createLiteral(
-              `${node.moduleSpecifier.text}.js`,
-            );
-            return typescript.updateImportDeclaration(
-              node,
-              node.decorators,
-              node.modifiers,
-              node.importClause,
-              newModuleSpecifier,
-            );
-          } else if (typescript.isExportDeclaration(node)) {
-            const newModuleSpecifier = typescript.createLiteral(
-              `${node.moduleSpecifier.text}.js`,
-            );
-            return typescript.updateExportDeclaration(
-              node,
-              node.decorators,
-              node.modifiers,
-              node.exportClause,
-              newModuleSpecifier,
-            );
-          }
-        }
-        return typescript.visitEachChild(node, visitor, context);
-      }
-
-      return typescript.visitNode(node, visitor);
-    };
-  }
-
-  return importTransformer;
-}
-
-const tsConfig = ts.createProject("tsconfig.json", {
-  getCustomTransformers: (_program) => ({
-    after: [createTransformer()],
-  }),
-});
-
 /********************/
 /* BUILD */
 /********************/
@@ -132,7 +55,16 @@ const tsConfig = ts.createProject("tsconfig.json", {
  * Build TypeScript
  */
 function buildTS () {
-  return gulp.src("src/**/*.ts").pipe(tsConfig()).pipe(gulp.dest("dist"));
+  return new Promise((resolve, reject) => {
+    webpack(webpackConfig, (err, stats) => {
+      if (err || stats.hasErrors()) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+  // return gulp.src("src/**/*.ts").pipe(tsConfig()).pipe(gulp.dest("dist"));
 }
 
 /**
