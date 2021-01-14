@@ -1,13 +1,13 @@
 import ReactDOM from "../../node_modules/react-dom";
 import React from "../../node_modules/react";
 
-// type AppProps = {
-//   entity: any;
-// }
+type AppProps = {
+  entity: any;
+}
 
 const App = ({
   entity,
-}: any) => {
+}: AppProps) => {
   return (
     <div>
       React <b>App</b>!
