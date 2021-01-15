@@ -23,7 +23,7 @@ export class GumshoeActorSheetClass extends ActorSheet {
     super.activateListeners(html);
 
     const el: HTMLElement = (this.element as any).jquery
-      ? (this.element as JQuery<HTMLElement>).find(".react-target").get(0)
+      ? (this.element as JQuery<HTMLElement>).find("form").get(0)
       : this.element as HTMLElement;
 
     if (el) {
@@ -35,5 +35,20 @@ export class GumshoeActorSheetClass extends ActorSheet {
     super.render(force, options);
     console.log("render");
     return this;
+  }
+
+  /** @override */
+  _replaceHTML (element, html, options) {
+    // if (!element.length) return;
+
+    // if (this.popOut) {
+    //   // For pop-out windows update the inner content and the window title
+    //   element.find(".window-content").html(html);
+    //   element.find(".window-title").text(this.title);
+    // } else {
+    //   // For regular applications, replace the whole thing
+    //   element.replaceWith(html);
+    //   this._element = html;
+    // }
   }
 }
