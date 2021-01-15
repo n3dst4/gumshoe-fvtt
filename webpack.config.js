@@ -12,7 +12,7 @@ module.exports = {
     path: path.join(__dirname, "dist"),
     filename: "gumshoe.js",
   },
-  devtool: isProduction ? "none" : "source-map",
+  devtool: isProduction ? undefined : "source-map",
   module: {
     rules: [
       {
