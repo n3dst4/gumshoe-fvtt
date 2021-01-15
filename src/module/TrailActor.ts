@@ -1,5 +1,5 @@
 
-export class GumshoeActor extends Actor {
+export class TrailActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */

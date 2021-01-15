@@ -1,18 +1,18 @@
 /** @jsx jsx */
 import React, { useCallback } from "react";
-import { GumshoeActor } from "../module/GumshoeActor";
+import { TrailActor } from "../module/TrailActor";
 import { PoolTracker } from "./PoolTracker";
 import { css, jsx, Global } from "@emotion/react";
 
-type GumshoeActorSheetProps = {
-  entity: GumshoeActor,
+type TrailActorSheetProps = {
+  entity: TrailActor,
   foundryWindow: Application,
 }
 
-export const GumshoeActorSheet = ({
+export const TrailActorSheet = ({
   entity,
   foundryWindow,
-}: GumshoeActorSheetProps) => {
+}: TrailActorSheetProps) => {
   const onImageClick = useCallback(() => {
     console.log("onImageClick");
     const fp = new FilePicker({

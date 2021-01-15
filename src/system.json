@@ -1,7 +1,7 @@
 {
-  "name": "gumshoe",
-  "title": "GUMSHOE",
-  "description": "",
+  "name": "trail-of-cthulhu-unsanctioned",
+  "title": "Trail of Cthulhu (Unsanctioned)",
+  "description": "The Trail of Cthulhu (GUMSHOE) game from Pelgrane Press.",
   "version": "0.1.0",
   "author": "",
   "authors": [
@@ -12,19 +12,19 @@
     }
   ],
   "scripts": [],
-  "esmodules": ["gumshoe.js"],
-  "styles": ["gumshoe.css"],
+  "esmodules": ["trail.js"],
+  "styles": ["trail.css"],
   "packs": [],
   "languages": [],
   "gridDistance": 1,
   "gridUnits": "",
   "minimumCoreVersion": "0.7.9",
   "compatibleCoreVersion": "0.7.9",
-  "url": "https://github.com/n3dst4/gumshoe-fvtt",
-  "manifest": "https://raw.githubusercontent.com/n3dst4/gumshoe-fvtt/master/src/system.json?token=AACENDSLT25HD3BHDJMVPY3ABLY6A",
-  "download": "https://github.com/n3dst4/gumshoe-fvtt/blob/master/package/gumshoe-v0.1.0.zip?raw=true",
+  "url": "https://github.com/n3dst4/trail-of-cthulhu-unsanctioned",
+  "manifest": "https://raw.githubusercontent.com/n3dst4/trail-of-cthulhu-unsanctioned/master/src/system.json?token=AACENDW4I4FHJFIFYF47J3TABMHIM",
+  "download": "https://github.com/n3dst4/trail-of-cthulhu-unsanctioned/blob/master/package/trail-of-cthulhu-unsanctioned-v0.1.0.zip?raw=true",
   "license": "MIT",
-  "readme": "https://github.com/n3dst4/gumshoe-fvtt/blob/master/README.md",
-  "bugs": "https://github.com/n3dst4/gumshoe-fvtt/issues",
-  "changelog": "https://github.com/n3dst4/gumshoe-fvtt/blob/master/CHANGELOG.md"
+  "readme": "https://github.com/n3dst4/trail-of-cthulhu-unsanctioned/blob/master/README.md",
+  "bugs": "https://github.com/n3dst4/trail-of-cthulhu-unsanctioned/issues",
+  "changelog": "https://github.com/n3dst4/trail-of-cthulhu-unsanctioned/blob/master/CHANGELOG.md"
 }

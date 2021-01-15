@@ -7,10 +7,10 @@ const isProduction =
 
 module.exports = {
   mode: isProduction ? "production" : "development",
-  entry: "./src/gumshoe.ts",
+  entry: "./src/trail.ts",
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "gumshoe.js",
+    filename: "trail.js",
   },
   devtool: isProduction ? undefined : "source-map",
   module: {

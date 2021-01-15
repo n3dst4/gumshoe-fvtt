@@ -1,12 +1,12 @@
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/preloadTemplates";
-import { GumshoeActor } from "./module/GumshoeActor";
-import { GumshoeItem } from "./module/GumshoeItem";
-import { GumshoeActorSheetClass } from "./module/GumshoeActorSheetClass";
+import { TrailActor } from "./module/TrailActor";
+import { TrailItem } from "./module/TrailItem";
+import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
 
 // Initialize system
 Hooks.once("init", async function () {
-  console.log("gumshoe | Initializing gumshoe");
+  console.log("trail-of-cthulhu-unsanctioned | Initializing system");
   // Assign custom classes and constants here
 
   // Register custom system settings
@@ -15,12 +15,12 @@ Hooks.once("init", async function () {
   // Preload Handlebars templates
   await preloadTemplates();
 
-  CONFIG.Actor.entityClass = GumshoeActor;
-  CONFIG.Item.entityClass = GumshoeItem;
+  CONFIG.Actor.entityClass = TrailActor;
+  CONFIG.Item.entityClass = TrailItem;
 
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("gumshoe", GumshoeActorSheetClass, { makeDefault: true });
+  Actors.registerSheet("trail-of-cthulhu-unsanctioned", TrailActorSheetClass, { makeDefault: true });
 });
 
 // Setup system

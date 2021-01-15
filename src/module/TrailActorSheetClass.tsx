@@ -1,12 +1,12 @@
 import ReactDOM from "react-dom";
 import React from "react";
-import { GumshoeActorSheet } from "../components/GumshoeActorSheet";
+import { TrailActorSheet } from "../components/TrailActorSheet";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class GumshoeActorSheetClass extends ActorSheet {
+export class TrailActorSheetClass extends ActorSheet {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
@@ -34,7 +34,7 @@ export class GumshoeActorSheetClass extends ActorSheet {
       : this.element as HTMLElement;
 
     if (el) {
-      ReactDOM.render(<GumshoeActorSheet entity={this.entity} foundryWindow={this} />, el);
+      ReactDOM.render(<TrailActorSheet entity={this.entity} foundryWindow={this} />, el);
     }
   }
 
