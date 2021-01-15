@@ -18,13 +18,13 @@
   "languages": [],
   "gridDistance": 1,
   "gridUnits": "",
-  "minimumCoreVersion": "0.5.0",
-  "compatibleCoreVersion": "0.5.0",
-  "url": "",
-  "manifest": "",
-  "download": "",
-  "license": "",
-  "readme": "",
-  "bugs": "",
-  "changelog": ""
+  "minimumCoreVersion": "0.7.9",
+  "compatibleCoreVersion": "0.7.9",
+  "url": "https://github.com/n3dst4/gumshoe-fvtt",
+  "manifest": "https://raw.githubusercontent.com/n3dst4/gumshoe-fvtt/master/src/system.json?token=AACENDSLT25HD3BHDJMVPY3ABLY6A",
+  "download": "https://github.com/n3dst4/gumshoe-fvtt/blob/master/package/gumshoe-v0.1.0.zip?raw=true",
+  "license": "MIT",
+  "readme": "https://github.com/n3dst4/gumshoe-fvtt/blob/master/README.md",
+  "bugs": "https://github.com/n3dst4/gumshoe-fvtt/issues",
+  "changelog": "https://github.com/n3dst4/gumshoe-fvtt/blob/master/CHANGELOG.md"
 }
