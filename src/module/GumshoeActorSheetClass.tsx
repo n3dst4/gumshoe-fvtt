@@ -18,6 +18,13 @@ export class GumshoeActorSheetClass extends ActorSheet {
     });
   }
 
+  /**
+   * We need to pick somewhere to activate and render React. It would have nice
+   * to do this from `render` & friends but they happen before there's a DOM
+   * element. `activateListeners` at least happens *after* the DOM has been
+   * created.
+   * @override
+   */
   activateListeners (html) {
     console.log("activateListeners");
     super.activateListeners(html);
@@ -37,18 +44,13 @@ export class GumshoeActorSheetClass extends ActorSheet {
     return this;
   }
 
-  /** @override */
+  /**
+   * Override _replaceHTML to stop FVTT's standard template lifecycle coming in
+   * and knackering React on every update.
+   * @see {@link Application._replaceHTML}
+   * @override
+   */
   _replaceHTML (element, html, options) {
-    // if (!element.length) return;
-
-    // if (this.popOut) {
-    //   // For pop-out windows update the inner content and the window title
-    //   element.find(".window-content").html(html);
-    //   element.find(".window-title").text(this.title);
-    // } else {
-    //   // For regular applications, replace the whole thing
-    //   element.replaceWith(html);
-    //   this._element = html;
-    // }
+    // we are deliberately doing nothing here.
   }
 }
