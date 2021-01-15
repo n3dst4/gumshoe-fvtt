@@ -10,8 +10,8 @@ export class TrailActorSheetClass extends ActorSheet {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
-      classes: ["gumshoe", "sheet", "actor"],
-      template: "systems/gumshoe/templates/actor/gumshoe-actor-sheet.handlebars",
+      classes: ["trail-of-cthulhu-unsanctioned", "sheet", "actor"],
+      template: "systems/trail-of-cthulhu-unsanctioned/templates/actor/trail-actor-sheet.handlebars",
       width: 600,
       height: 600,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],

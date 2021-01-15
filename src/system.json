@@ -3,11 +3,10 @@
   "title": "Trail of Cthulhu (Unsanctioned)",
   "description": "The Trail of Cthulhu (GUMSHOE) game from Pelgrane Press.",
   "version": "0.1.0",
-  "author": "",
   "authors": [
     {
-      "name": "",
-      "email": "",
+      "name": "Neil de Carteret",
+      "email": "neil-fvtt@lumphammer.com",
       "url": ""
     }
   ],
