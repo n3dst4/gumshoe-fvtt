@@ -219,7 +219,7 @@ function link () {
 /**
  * Package build
  */
-async function package () {
+async function bundlePackage () {
   const manifest = getManifest();
 
   return new Promise((resolve, reject) => {
@@ -396,6 +396,11 @@ function gitTag () {
   );
 }
 
+function setProd () {
+  process.env.NODE_ENV = "production";
+  return Promise.resolve();
+}
+
 const execGit = gulp.series(gitAdd, gitCommit, gitTag);
 
 const buildAll = gulp.parallel(buildTS, buildLess, copyFiles);
@@ -405,12 +410,12 @@ exports.watch = watch;
 exports.clean = clean;
 exports.link = link;
 exports.unlink = unlink;
-exports.package = package;
+exports.package = gulp.series([setProd, clean, buildAll, bundlePackage]);
 exports.updateManifest = updateManifest;
 exports.publish = gulp.series(
   clean,
   updateManifest,
   buildAll,
-  package,
+  bundlePackage,
   execGit,
 );
