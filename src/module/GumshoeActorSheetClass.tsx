@@ -34,7 +34,7 @@ export class GumshoeActorSheetClass extends ActorSheet {
       : this.element as HTMLElement;
 
     if (el) {
-      ReactDOM.render(<GumshoeActorSheet entity={this.entity}/>, el);
+      ReactDOM.render(<GumshoeActorSheet entity={this.entity} foundryWindow={this} />, el);
     }
   }
 

@@ -1,18 +1,43 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { GumshoeActor } from "../module/GumshoeActor";
 import { PoolTracker } from "./PoolTracker";
 
 type GumshoeActorSheetProps = {
-  entity: any,
+  entity: GumshoeActor,
+  foundryWindow: Application,
 }
 
 export const GumshoeActorSheet = ({
   entity,
+  foundryWindow,
 }: GumshoeActorSheetProps) => {
-  // const updateName =
+  const onImageClick = useCallback(() => {
+    console.log("onImageClick");
+    const fp = new FilePicker({
+      type: "image",
+      current: entity.data.img,
+      callback: (path) => {
+        entity.update({
+          img: path,
+        });
+      },
+      top: foundryWindow.position.top + 40,
+      left: foundryWindow.position.left + 10,
+    });
+    // types aren't quite right for fp
+    return (fp as any).browse();
+  }, []);
 
   return (
     <div>
       <h1>
+        <img
+          style={{
+            width: "4em",
+          }}
+          src={entity.data.img}
+          onClick={onImageClick}
+        />
         React <b>App</b> for {entity.data.name}!
       </h1>
       <p>
