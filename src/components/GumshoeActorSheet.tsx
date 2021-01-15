@@ -1,6 +1,8 @@
+/** @jsx jsx */
 import React, { useCallback } from "react";
 import { GumshoeActor } from "../module/GumshoeActor";
 import { PoolTracker } from "./PoolTracker";
+import { css, jsx, Global } from "@emotion/react";
 
 type GumshoeActorSheetProps = {
   entity: GumshoeActor,
@@ -29,7 +31,17 @@ export const GumshoeActorSheet = ({
   }, []);
 
   return (
-    <div>
+    <div
+      css={css`
+        font-family: 'Imbue', serif;
+      `}
+
+    >
+      <Global
+        styles={css`
+        @import url('https://fonts.googleapis.com/css2?family=Imbue:wght@300&display=swap');
+        `}
+      />
       <h1>
         <img
           style={{
@@ -38,7 +50,7 @@ export const GumshoeActorSheet = ({
           src={entity.data.img}
           onClick={onImageClick}
         />
-        React <b>App</b> for {entity.data.name}!
+        {entity.data.name}
       </h1>
       <p>
         <input value={entity.data.name} onChange={(e) => entity.update({ name: e.currentTarget.value })} />
