@@ -38,6 +38,8 @@ export const TrailActorSheet = ({
   const updateOccupation = useUpdate(entity, occupation => ({ data: { occupation } }));
   const updateOccupationalBenefits = useUpdate(entity, occupationalBenefits => ({ data: { occupationalBenefits } }));
 
+  // const investigativeSkills: { [category: string]: Skill[] };
+
   return (
     <div
       css={{

@@ -13,10 +13,25 @@
       "occupation": "",
       "occupationalBenefits": "",
       "buildPoints": 28
-  }
+    }
   },
   "Item": {
     "types": ["investigativeSkill", "generalSkill", "equipment"],
-    "templates": []
+    "templates": {
+      "skill": {
+        "rating": 1,
+        "pool": 1,
+        "hasSpeciality": false,
+        "speciality": ""
+      }
+    },
+    "investigativeSkill": {
+      "templates": ["skill"],
+      "category": ""
+    },
+    "generalSkill": {
+      "templates": ["skill"],
+      "canBeInvestigative": false
+    }
   }
 }
