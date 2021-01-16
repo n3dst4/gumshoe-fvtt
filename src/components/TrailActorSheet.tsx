@@ -4,6 +4,7 @@ import { TrailActor } from "../module/TrailActor";
 import { PoolTracker } from "./PoolTracker";
 import { css, Global, jsx } from "@emotion/react";
 import { TrailLogo } from "./TrailLogo";
+import { FormField } from "./FormField";
 
 type TrailActorSheetProps = {
   entity: TrailActor,
@@ -44,6 +45,11 @@ export const TrailActorSheet = ({
           "\"title title image\" " +
           "\"pools stats image\" " +
           "\"pools body  body\" ",
+
+        // css-reset type stuff
+        "*": {
+          userSelect: "auto",
+        },
         h1: {
           border: "none",
           margin: 0,
@@ -84,12 +90,13 @@ export const TrailActorSheet = ({
         css={{
           gridArea: "stats",
         }}
-
       >
-        <input
+        <FormField
+          label="Investigator name"
           value={entity.data.name}
-          onChange={(e) => entity.update({ name: e.currentTarget.value })}
+          onChange={(newValue) => entity.update({ name: newValue })}
         />
+        {/* <input defaultValue="Parparella Q. Blotkins III (jr.)"/> */}
       </div>
 
       <div
