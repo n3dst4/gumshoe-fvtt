@@ -5,6 +5,7 @@ import { PoolTracker } from "./PoolTracker";
 import { css, Global, jsx } from "@emotion/react";
 import { TrailLogo } from "./TrailLogo";
 import { FormField } from "./FormField";
+import { useUpdate } from "../hooks/useUpdate";
 
 type TrailActorSheetProps = {
   entity: TrailActor,
@@ -30,7 +31,9 @@ export const TrailActorSheet = ({
     });
     // types aren't quite right for fp
     return (fp as any).browse();
-  }, []);
+  }, [entity, foundryWindow.position.left, foundryWindow.position.top]);
+
+  const updateName = useUpdate(entity, name => ({ name }));
 
   return (
     <div
@@ -94,7 +97,7 @@ export const TrailActorSheet = ({
         <FormField
           label="Investigator name"
           value={entity.data.name}
-          onChange={(newValue) => entity.update({ name: newValue })}
+          onChange={updateName}
         />
         {/* <input defaultValue="Parparella Q. Blotkins III (jr.)"/> */}
       </div>
