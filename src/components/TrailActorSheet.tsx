@@ -34,6 +34,9 @@ export const TrailActorSheet = ({
   }, [entity, foundryWindow.position.left, foundryWindow.position.top]);
 
   const updateName = useUpdate(entity, name => ({ name }));
+  const updateDrive = useUpdate(entity, drive => ({ data: { drive } }));
+  const updateOccupation = useUpdate(entity, occupation => ({ data: { occupation } }));
+  const updateOccupationalBenefits = useUpdate(entity, occupationalBenefits => ({ data: { occupationalBenefits } }));
 
   return (
     <div
@@ -98,6 +101,21 @@ export const TrailActorSheet = ({
           label="Investigator name"
           value={entity.data.name}
           onChange={updateName}
+        />
+        <FormField
+          label="Drive"
+          value={entity.data.data.drive}
+          onChange={updateDrive}
+        />
+        <FormField
+          label="Occupation"
+          value={entity.data.data.occupation}
+          onChange={updateOccupation}
+        />
+        <FormField
+          label="Occupational Benefits"
+          value={entity.data.data.occupationalBenefits}
+          onChange={updateOccupationalBenefits}
         />
         {/* <input defaultValue="Parparella Q. Blotkins III (jr.)"/> */}
       </div>

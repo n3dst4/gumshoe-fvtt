@@ -8,7 +8,11 @@
       "health": 10,
       "stability": 10,
       "sanity:": 10,
-      "magic": 10
+      "magic": 10,
+      "drive": "",
+      "occupation": "",
+      "occupationalBenefits": "",
+      "buildPoints": 28
   }
   },
   "Item": {
