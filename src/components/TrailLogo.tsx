@@ -35,7 +35,7 @@ export const TrailLogo: React.FC<TrailLogoProps> = ({
           display: "inline-block",
           fontFamily: "'Federo', sans-serif",
           textTransform: "uppercase",
-          fontSize: "2em",
+          fontSize: "1.6em",
           letterSpacing: "-0.04em",
           transform:
             "scaleX(1) scaleY(1.6) rotateY(-30deg) rotateZ(-1deg) translateX(-10%)",

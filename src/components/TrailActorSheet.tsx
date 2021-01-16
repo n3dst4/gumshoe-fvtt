@@ -36,8 +36,10 @@ export const TrailActorSheet = ({
       css={{
         fontFamily: "'Imbue', serif",
         display: "grid",
-        gridTemplateRows: "auto auto auto",
-        gridTemplateColumns: "auto auto auto",
+        // this ought to be min-content not 7em, but I'm struggling to get the
+        // grid to do exactly what I want.
+        gridTemplateRows: "7em max-content 1fr",
+        gridTemplateColumns: "max-content 1fr 12em",
         gridTemplateAreas:
           "\"title title image\" " +
           "\"pools stats image\" " +
@@ -71,7 +73,7 @@ export const TrailActorSheet = ({
       >
         <img
           style={{
-            width: "4em",
+            width: "100%",
           }}
           src={entity.data.img}
           onClick={onImageClick}
