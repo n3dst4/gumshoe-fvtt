@@ -6,6 +6,8 @@ import { css, Global, jsx } from "@emotion/react";
 import { TrailLogo } from "./TrailLogo";
 import { FormField } from "./FormField";
 import { useUpdate } from "../hooks/useUpdate";
+import { GeneralSkill, InvestigativeSkill } from "../types";
+import { SkillsArea } from "./SkillsArea";
 
 type TrailActorSheetProps = {
   entity: TrailActor,
@@ -38,7 +40,20 @@ export const TrailActorSheet = ({
   const updateOccupation = useUpdate(entity, occupation => ({ data: { occupation } }));
   const updateOccupationalBenefits = useUpdate(entity, occupationalBenefits => ({ data: { occupationalBenefits } }));
 
-  // const investigativeSkills: { [category: string]: Skill[] };
+  const investigativeSkills: { [category: string]: InvestigativeSkill[] } = {};
+  const generalSkills: GeneralSkill[] = [];
+
+  for (const item of entity.items.values()) {
+    if (item.type === "investigativeSkill") {
+      const skill = item as InvestigativeSkill;
+      if (investigativeSkills[skill.data.data.category] === undefined) {
+        investigativeSkills[skill.data.data.category] = [];
+      }
+      investigativeSkills[skill.data.data.category].push(skill);
+    } else if (item.type === "generalSkill") {
+      generalSkills.push(item);
+    }
+  }
 
   return (
     <div
@@ -139,6 +154,17 @@ export const TrailActorSheet = ({
         <PoolTracker value={entity.data.data.health || 0} min={-12} max={15}/>
         <h2>Magic</h2>
         <PoolTracker value={entity.data.data.magic || 0} min={0} max={15}/>
+      </div>
+
+      <div
+        css={{
+          gridArea: "body",
+        }}
+      >
+        <SkillsArea
+          investigativeSkills={investigativeSkills}
+          generalSkills={generalSkills}
+        />
       </div>
     </div>
   );

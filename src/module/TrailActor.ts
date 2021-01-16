@@ -1,5 +1,5 @@
 
-export class TrailActor extends Actor {
+export class TrailActor<Data=any> extends Actor<Data> {
   /**
    * Augment the basic actor data with additional dynamic data.
    */

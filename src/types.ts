@@ -1,3 +1,4 @@
+import { TrailActor } from "./module/TrailActor";
 
 type BaseSkillData = {
   "rating": number,
@@ -29,4 +30,4 @@ export type PCTrailActorData = {
   "occupationalBenefits": string,
 };
 
-export type PCTrailActor = Actor<PCTrailActorData>;
+export type PCTrailActor = TrailActor<PCTrailActorData>;
