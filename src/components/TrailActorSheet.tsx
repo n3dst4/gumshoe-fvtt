@@ -41,7 +41,8 @@ export const TrailActorSheet = ({
   return (
     <div
       css={{
-        fontFamily: "'Imbue', serif",
+        fontFamily: "'Playfair Display', serif",
+        fontWeight: 500,
         display: "grid",
         // this ought to be min-content not 7em, but I'm struggling to get the
         // grid to do exactly what I want.
@@ -56,17 +57,18 @@ export const TrailActorSheet = ({
         "*": {
           userSelect: "auto",
         },
-        h1: {
+        "h1, h2": {
           border: "none",
           margin: 0,
           padding: 0,
+          fontWeight: "inherit",
         },
       }}
     >
       <Global
         styles={css`
         @import url('https://fonts.googleapis.com/css2?family=Imbue:wght@300&display=swap');
-        `}
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');        `}
       />
 
       <div
@@ -95,12 +97,14 @@ export const TrailActorSheet = ({
       <div
         css={{
           gridArea: "stats",
+          padding: "1em",
         }}
       >
         <FormField
           label="Investigator name"
           value={entity.data.name}
           onChange={updateName}
+          css={{ fontSize: "1.2em" }}
         />
         <FormField
           label="Drive"

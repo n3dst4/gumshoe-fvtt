@@ -1,17 +1,19 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
+import { CSSObject, jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 type FormFieldProps = {
   label: string,
   value: undefined|string,
   onChange: (newValue: string) => void,
+  css?: CSSObject,
 };
 
 export const FormField: React.FC<FormFieldProps> = ({
   label,
   value,
   onChange,
+  css,
 }) => {
   // many shenanigans to handle slow updates
   // first up, state to handle the actual text we show so we can update it in a
@@ -57,13 +59,17 @@ export const FormField: React.FC<FormFieldProps> = ({
       css={{
         display: "flex",
         flexDirection: "row",
+        marginBottom: "0.5em",
+        ...css,
       }}
     >
     {label}
     <input
       css={{
         flex: 1,
+        marginLeft: "0.5em",
       }}
+      data-lpignore="true"
       value={display}
       onChange={(e) => setDisplay(e.currentTarget.value)}
       onFocus={onFocus}
