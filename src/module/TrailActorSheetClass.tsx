@@ -12,8 +12,8 @@ export class TrailActorSheetClass extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["trail-of-cthulhu-unsanctioned", "sheet", "actor"],
       template: "systems/trail-of-cthulhu-unsanctioned/templates/actor/trail-actor-sheet.handlebars",
-      width: 600,
-      height: 600,
+      width: 660,
+      height: 900,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
     });
   }

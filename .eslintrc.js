@@ -21,7 +21,7 @@ module.exports = {
     "@typescript-eslint",
   ],
   rules: {
-    quotes: ["error", "double"],
+    quotes: ["error", "double", { avoidEscape: true }],
     semi: ["error", "always"],
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
