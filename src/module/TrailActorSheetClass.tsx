@@ -1,7 +1,7 @@
 // import ReactDOM from "react-dom";
 import React from "react";
 import { TrailActorSheet } from "../components/TrailActorSheet";
-import { ReactApplication } from "./ReactSheet";
+import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -12,19 +12,31 @@ class TrailActorSheetClassBase extends ActorSheet {
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
       classes: ["trail-of-cthulhu-unsanctioned", "sheet", "actor"],
-      template: "systems/trail-of-cthulhu-unsanctioned/templates/actor/trail-actor-sheet.handlebars",
+      template:
+        "systems/trail-of-cthulhu-unsanctioned/templates/react-application.handlebars",
       width: 660,
       height: 900,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
+      tabs: [
+        {
+          navSelector: ".sheet-tabs",
+          contentSelector: ".sheet-body",
+          initial: "description",
+        },
+      ],
     });
   }
 }
 
 const render = (sheet: TrailActorSheetClassBase) => {
-  return <TrailActorSheet
-    entity={sheet.entity}
-    foundryWindow={sheet}//
-  />;
+  return (
+    <TrailActorSheet
+      entity={sheet.entity}
+      foundryWindow={sheet}
+    />
+  );
 };
 
-export const TrailActorSheetClass = ReactApplication(TrailActorSheetClassBase, render);
+export const TrailActorSheetClass = ReactApplicationMixin(
+  TrailActorSheetClassBase,
+  render,
+);
