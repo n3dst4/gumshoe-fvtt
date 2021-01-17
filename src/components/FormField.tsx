@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { CSSObject, jsx } from "@emotion/react";
+import { jsx } from "@emotion/react";
 import React from "react";
 import { AsyncTextInput } from "./AsyncTextInput";
 
@@ -7,16 +7,14 @@ type FormFieldProps = {
   label: string,
   value: undefined|string,
   onChange: (newValue: string) => void,
-  css?: CSSObject,
-  inputCss?: CSSObject,
+  className?: string,
 };
 
 export const FormField: React.FC<FormFieldProps> = ({
   label,
   value,
   onChange,
-  css,
-  inputCss,
+  className,
 }) => {
   return (
     <label
@@ -24,15 +22,14 @@ export const FormField: React.FC<FormFieldProps> = ({
         display: "flex",
         flexDirection: "row",
         marginBottom: "0.5em",
-        ...css,
       }}
+      className={className}
     >
     {label}
     <AsyncTextInput
       css={{
         flex: 1,
         marginLeft: "0.5em",
-        ...inputCss,
       }}
       value={value}
       onChange={onChange}

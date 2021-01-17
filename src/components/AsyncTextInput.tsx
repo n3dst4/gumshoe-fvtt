@@ -1,17 +1,17 @@
 /** @jsx jsx */
-import { CSSObject, jsx } from "@emotion/react";
+import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 type AsyncTextInputProps = {
   value: undefined|string,
   onChange: (newValue: string) => void,
-  css?: CSSObject,
+  className?: string,
 };
 
 export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
   value,
   onChange,
-  css,
+  className,
 }) => {
   // many shenanigans to handle slow updates
   // first up, state to handle the actual text we show so we can update it in a
@@ -57,8 +57,8 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
       css={{
         flex: 1,
         marginLeft: "0.5em",
-        ...css,
       }}
+      className={className}
       data-lpignore="true"
       value={display}
       onChange={(e) => setDisplay(e.currentTarget.value)}

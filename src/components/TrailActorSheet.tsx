@@ -2,12 +2,13 @@
 import React, { useCallback } from "react";
 import { TrailActor } from "../module/TrailActor";
 import { PoolTracker } from "./PoolTracker";
-import { css, Global, jsx } from "@emotion/react";
+import { jsx } from "@emotion/react";
 import { TrailLogo } from "./TrailLogo";
 import { FormField } from "./FormField";
 import { useUpdate } from "../hooks/useUpdate";
 import { GeneralSkill, InvestigativeSkill } from "../types";
 import { SkillsArea } from "./SkillsArea";
+import { CSSReset } from "./CSSReset";
 
 type TrailActorSheetProps = {
   entity: TrailActor,
@@ -56,10 +57,8 @@ export const TrailActorSheet = ({
   }
 
   return (
-    <div
+    <CSSReset
       css={{
-        fontFamily: "'Playfair Display', serif",
-        fontWeight: 500,
         display: "grid",
         // this ought to be min-content not 7em, but I'm struggling to get the
         // grid to do exactly what I want.
@@ -70,23 +69,8 @@ export const TrailActorSheet = ({
           "\"pools stats image\" " +
           "\"pools body  body\" ",
 
-        // css-reset type stuff
-        "*": {
-          userSelect: "auto",
-        },
-        "h1, h2": {
-          border: "none",
-          margin: 0,
-          padding: 0,
-          fontWeight: "inherit",
-        },
       }}
     >
-      <Global
-        styles={css`
-        @import url('https://fonts.googleapis.com/css2?family=Imbue:wght@300&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');        `}
-      />
 
       <div
         css={{
@@ -166,6 +150,6 @@ export const TrailActorSheet = ({
           generalSkills={generalSkills}
         />
       </div>
-    </div>
+    </CSSReset>
   );
 };
