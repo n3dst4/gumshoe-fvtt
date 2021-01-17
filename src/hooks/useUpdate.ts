@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
-type Transform = (val: string) => any;
-type Callback = (val: string) => void;
+type Transform<T> = (val: T) => any;
+type Callback<T> = (val: T) => void;
 
 /**
  * Hook to create a callback to update a given entity with a given value. The
@@ -12,8 +12,8 @@ type Callback = (val: string) => void;
  * const updateName = useUpdate(actor, (name) => ({name}))
  * const updateOccupation = useUpdate(entity, occupation => ({ data: { occupation } }));
  */
-export const useUpdate = (entity: Entity, transform: Transform): Callback => {
-  return useCallback((val: string) => {
+export const useUpdate = <T>(entity: Entity, transform: Transform<T>): Callback<T> => {
+  return useCallback((val: T) => {
     const update = transform(val);
     entity.update(update);
   }, [entity, transform]);

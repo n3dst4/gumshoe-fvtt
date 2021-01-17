@@ -2,13 +2,13 @@
 import { css, jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
-type AsyncTextInputProps = {
-  value: undefined|string,
-  onChange: (newValue: string) => void,
+type AsyncNumberInputProps = {
+  value: undefined|number,
+  onChange: (newValue: number) => void,
   className?: string,
 };
 
-export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
+export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
   value,
   onChange,
   className,
@@ -16,25 +16,17 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
   // many shenanigans to handle slow updates
   // first up, state to handle the actual text we show so we can update it in a
   // timely fashion
-  const [display, setDisplay] = useState(value || "");
+  const [display, setDisplay] = useState(value === undefined ? "0" : value.toString());
   // state to track focus
   const [focused, setFocused] = useState(false);
   // and a ref which will copy the `focused` state - see later
   const focusedRef = useRef(focused);
+  // track error state
+  const [error, setError] = useState(false);
 
   // callback for focus
   const onFocus = useCallback(() => {
     setFocused(true);
-  }, []);
-
-  // callback for blur
-  const onBlur = useCallback(() => {
-    setFocused(false);
-    onChange(display);
-  }, [display, onChange]);
-
-  const onChangeCb = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setDisplay(e.currentTarget.value);
   }, []);
 
   // we're going to track the focused state in a ref so we can get the most
@@ -44,6 +36,22 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
     focusedRef.current = focused;
   }, [focused]);
 
+  // callback for blur
+  const onBlur = useCallback(() => {
+    setFocused(false);
+    const numberValue = Number(display);
+    if (Number.isNaN(numberValue)) {
+      setError(true);
+    } else {
+      onChange(numberValue);
+    }
+  }, [display, onChange]);
+
+  const onChangeCb = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setError(false);
+    setDisplay(e.currentTarget.value);
+  }, []);
+
   // update the display text when the value changes, but only if we're not
   // focused. why do we use a ref for focused instead of depending directly on
   // focused? it's because otherwise we get a flash of wrongness on blur,
@@ -52,7 +60,7 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
   // state indirectly via the ref.
   useEffect(() => {
     if (!focusedRef.current) {
-      setDisplay(value);
+      setDisplay(value === undefined ? "0" : value.toString());
     }
   }, [value]);
 
@@ -62,6 +70,8 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
         flex: 1;
         margin-left: 0.5em;
         width: 100%;
+        color: ${error ? "red" : undefined};
+        user-select: "text";
       `}
       className={className}
       data-lpignore="true"
