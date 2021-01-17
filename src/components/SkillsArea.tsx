@@ -39,7 +39,16 @@ export const SkillsArea: React.FC<SkillsAreaProps> = ({
       }}
     >
       <div css={{ gridArea: "general" }}>
-        {generalSkills.map((skill) => <div key={skill.id}>{skill.name}</div>)}
+        {generalSkills.map((skill) => (
+          <div
+            key={skill.id}
+            onClick={() => {
+              skill.sheet.render(true);
+            }}
+          >
+            {skill.name}
+          </div>
+        ))}
       </div>
       <div css={{ gridArea: "inv1" }}>
         {i1Cats.map((cat) => (
