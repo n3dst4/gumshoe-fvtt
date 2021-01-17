@@ -1,7 +1,7 @@
 // import ReactDOM from "react-dom";
 import React from "react";
 import { TrailItemSheet } from "../components/TrailItemSheet";
-import { reactTemplate, systemName } from "../constants";
+import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 /**
@@ -13,7 +13,7 @@ class TrailItemSheetClassBase extends ItemSheet {
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "item"],
-      template: reactTemplate,
+      template: reactTemplatePath,
       width: 400,
       height: 300,
     });

@@ -1,14 +1,10 @@
-// import ReactDOM from "react-dom";
 import React from "react";
-import { TrailActorSheet } from "../components/TrailActorSheet";
+import { GeneralSkillRoll } from "../components/GeneralSkillRoll";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
+import { TrailItem } from "./TrailItem";
 
-/**
- * Extend the basic ActorSheet with some very simple modifications
- * @extends {ActorSheet}
- */
-class TrailActorSheetClassBase extends ActorSheet {
+class GeneralSkillRollClassBase extends BaseEntitySheet<TrailItem> {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
@@ -20,16 +16,16 @@ class TrailActorSheetClassBase extends ActorSheet {
   }
 }
 
-const render = (sheet: TrailActorSheetClassBase) => {
+const render = (sheet: GeneralSkillRollClassBase) => {
   return (
-    <TrailActorSheet
+    <GeneralSkillRoll
       entity={sheet.entity}
       foundryWindow={sheet}
     />
   );
 };
 
-export const TrailActorSheetClass = ReactApplicationMixin(
-  TrailActorSheetClassBase,
+export const GeneralSkillRollClass = ReactApplicationMixin(
+  GeneralSkillRollClassBase,
   render,
 );
