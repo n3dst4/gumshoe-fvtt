@@ -11,8 +11,8 @@ class TrailActorSheetClassBase extends ActorSheet {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
-      classes: ["trail-of-cthulhu-unsanctioned", "sheet", "actor"],
-      template:
+      classes: [systemName, "sheet", "actor"],
+      template: reactTemplate,
         "systems/trail-of-cthulhu-unsanctioned/templates/react-application.handlebars",
       width: 660,
       height: 900,
