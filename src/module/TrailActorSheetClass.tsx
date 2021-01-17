@@ -1,12 +1,13 @@
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import React from "react";
 import { TrailActorSheet } from "../components/TrailActorSheet";
+import { ReactSheet } from "./ReactSheet";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class TrailActorSheetClass extends ActorSheet {
+class TrailActorSheetClassBase extends ActorSheet {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
@@ -17,40 +18,13 @@ export class TrailActorSheetClass extends ActorSheet {
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
     });
   }
-
-  /**
-   * We need to pick somewhere to activate and render React. It would have nice
-   * to do this from `render` & friends but they happen before there's a DOM
-   * element. `activateListeners` at least happens *after* the DOM has been
-   * created.
-   * @override
-   */
-  activateListeners (html) {
-    console.log("activateListeners");
-    super.activateListeners(html);
-
-    const el: HTMLElement = (this.element as any).jquery
-      ? (this.element as JQuery<HTMLElement>).find("form").get(0)
-      : this.element as HTMLElement;
-
-    if (el) {
-      ReactDOM.render(<TrailActorSheet entity={this.entity} foundryWindow={this} />, el);
-    }
-  }
-
-  render (force = false, options = {}) {
-    super.render(force, options);
-    console.log("render");
-    return this;
-  }
-
-  /**
-   * Override _replaceHTML to stop FVTT's standard template lifecycle coming in
-   * and knackering React on every update.
-   * @see {@link Application._replaceHTML}
-   * @override
-   */
-  _replaceHTML (element, html, options) {
-    // we are deliberately doing nothing here.
-  }
 }
+
+const render = (sheet: TrailActorSheetClassBase) => {
+  return <TrailActorSheet
+    entity={sheet.entity}
+    foundryWindow={sheet}//
+  />;
+};
+
+export const TrailActorSheetClass = ReactSheet(TrailActorSheetClassBase, render as any);
