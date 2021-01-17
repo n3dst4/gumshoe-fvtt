@@ -84,15 +84,19 @@ export const TrailActorSheet = ({
       <div
         css={{
           gridArea: "image",
+          backgroundImage: `url(${entity.data.img})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
+        onClick={onImageClick}
       >
-        <img
+        {/* <img
           style={{
             width: "100%",
           }}
           src={entity.data.img}
           onClick={onImageClick}
-        />
+        /> */}
       </div>
 
       <div
