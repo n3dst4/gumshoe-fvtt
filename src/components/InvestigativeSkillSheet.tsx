@@ -5,6 +5,7 @@ import { useUpdate } from "../hooks/useUpdate";
 import { TrailItem } from "../module/TrailItem";
 import { AsyncNumberInput } from "./AsyncNumberInput";
 import { AsyncTextInput } from "./AsyncTextInput";
+import { CSSReset } from "./CSSReset";
 import { GridFormField } from "./GridFormField";
 import { InputGrid } from "./InputGrid";
 type InvestigativeSkillSheetProps = {
@@ -20,9 +21,11 @@ export const InvestigativeSkillSheet: React.FC<InvestigativeSkillSheetProps> = (
   const updateCategory = useUpdate(entity, (name) => ({ data: { name } }));
   const updateRating = useUpdate(entity, (rating) => ({ data: { rating } }));
   const updatePool = useUpdate(entity, (pool) => ({ data: { pool } }));
+  const updateHasSpeciality = useUpdate(entity, (hasSpeciality) => ({ data: { hasSpeciality } }));
+  const updateSpeciality = useUpdate(entity, (speciality) => ({ data: { speciality } }));
 
   return (
-    <div>
+    <CSSReset>
       <h1>
         Investigative skill
       </h1>
@@ -39,16 +42,22 @@ export const InvestigativeSkillSheet: React.FC<InvestigativeSkillSheetProps> = (
         <GridFormField label="Pool">
           <AsyncNumberInput value={entity.data.data.pool} onChange={updatePool} />
         </GridFormField>
-        <GridFormField label="Pool">
-          <AsyncNumberInput value={entity.data.data.pool} onChange={updatePool} />
+        <GridFormField label="Has speciality?">
+          <input
+            type="checkbox"
+            value={entity.data.data.hasSpeciality}
+            onChange={(e) => {
+              updateHasSpeciality(e.currentTarget.checked);
+            }}
+          />
         </GridFormField>
+        {
+          entity.data.data.hasSpeciality &&
+          <GridFormField label="Speciality">
+            <AsyncTextInput value={entity.data.data.speciality} onChange={updateSpeciality} />
+          </GridFormField>
+        }
       </InputGrid>
-
-      {/* "rating": 1,
-        "pool": 1,
-        "hasSpeciality": false,
-        "speciality": "" */}
-
-    </div>
+    </CSSReset>
   );
 };
