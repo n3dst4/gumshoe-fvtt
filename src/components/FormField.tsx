@@ -8,6 +8,7 @@ type FormFieldProps = {
   value: undefined|string,
   onChange: (newValue: string) => void,
   css?: CSSObject,
+  inputCss?: CSSObject,
 };
 
 export const FormField: React.FC<FormFieldProps> = ({
@@ -15,6 +16,7 @@ export const FormField: React.FC<FormFieldProps> = ({
   value,
   onChange,
   css,
+  inputCss,
 }) => {
   return (
     <label
@@ -30,6 +32,7 @@ export const FormField: React.FC<FormFieldProps> = ({
       css={{
         flex: 1,
         marginLeft: "0.5em",
+        ...inputCss,
       }}
       value={value}
       onChange={onChange}
