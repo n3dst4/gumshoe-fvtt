@@ -1,6 +1,7 @@
 // import ReactDOM from "react-dom";
 import React from "react";
 import { TrailActorSheet } from "../components/TrailActorSheet";
+import { reactTemplate, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 /**
@@ -13,16 +14,8 @@ class TrailActorSheetClassBase extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "actor"],
       template: reactTemplate,
-        "systems/trail-of-cthulhu-unsanctioned/templates/react-application.handlebars",
       width: 660,
       height: 900,
-      tabs: [
-        {
-          navSelector: ".sheet-tabs",
-          contentSelector: ".sheet-body",
-          initial: "description",
-        },
-      ],
     });
   }
 }
