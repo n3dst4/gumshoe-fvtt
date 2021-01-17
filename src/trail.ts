@@ -3,6 +3,7 @@ import { preloadTemplates } from "./module/preloadTemplates";
 import { TrailActor } from "./module/TrailActor";
 import { TrailItem } from "./module/TrailItem";
 import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
+import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -21,6 +22,7 @@ Hooks.once("init", async function () {
   // Register custom sheets (if any)
   // Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("trail-of-cthulhu-unsanctioned", TrailActorSheetClass, { makeDefault: true });
+  Items.registerSheet("trail-of-cthulhu-unsanctioned", TrailItemSheetClass, { makeDefault: true });
 });
 
 // Setup system
