@@ -1,7 +1,7 @@
 // import ReactDOM from "react-dom";
 import React from "react";
 import { TrailActorSheet } from "../components/TrailActorSheet";
-import { ReactSheet } from "./ReactSheet";
+import { ReactApplication } from "./ReactSheet";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -27,4 +27,4 @@ const render = (sheet: TrailActorSheetClassBase) => {
   />;
 };
 
-export const TrailActorSheetClass = ReactSheet(TrailActorSheetClassBase, render as any);
+export const TrailActorSheetClass = ReactApplication(TrailActorSheetClassBase, render);

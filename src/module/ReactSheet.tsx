@@ -1,15 +1,15 @@
 import ReactDOM from "react-dom";
 
-type Constructor<T> = new (...args: any[]) => T;
+export type Constructor<T> = new (...args: any[]) => T;
 
 type ApplicationConstuctor = Constructor<Application>
 
-type Render<T> = (t: T) => JSX.Element;
+type Render<T> = (t: T extends Constructor<infer T2> ? T2 : T) => JSX.Element;
 
 // This mixin adds a scale property, with getters and setters
 // for changing it with an encapsulated private property:
 
-export function ReactSheet<TBase extends ApplicationConstuctor> (Base: TBase, render: Render<TBase>) {
+export function ReactApplication<TBase extends ApplicationConstuctor> (Base: TBase, render: Render<TBase>) {
   return class Reactified extends Base {
   /**
    * Override _replaceHTML to stop FVTT's standard template lifecycle coming in
@@ -37,7 +37,7 @@ export function ReactSheet<TBase extends ApplicationConstuctor> (Base: TBase, re
         : this.element as HTMLElement;
 
       if (el) {
-        const content = render(this as any);
+        const content = render(this as TBase extends Constructor<infer T2> ? T2 : TBase);
         ReactDOM.render(
           content,
           el,
