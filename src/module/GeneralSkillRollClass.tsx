@@ -10,8 +10,8 @@ class GeneralSkillRollClassBase extends BaseEntitySheet<TrailItem> {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "actor"],
       template: reactTemplatePath,
-      width: 660,
-      height: 900,
+      width: 330,
+      height: 200,
     });
   }
 }
