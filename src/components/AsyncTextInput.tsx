@@ -19,18 +19,16 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
   // timely fashion
   const [display, setDisplay] = useState(value || "");
   // state to track focus
-  const [focused, setFocused] = useState(false);
-  // and a ref which will copy the `focused` state - see later
-  const focusedRef = useRef(focused);
+  const focusedRef = useRef(false);
 
   // callback for focus
   const onFocus = useCallback(() => {
-    setFocused(true);
+    focusedRef.current = true;
   }, []);
 
   // callback for blur
   const onBlur = useCallback(() => {
-    setFocused(false);
+    focusedRef.current = false;
   }, []);
 
   const onChangeDebounced = useMemo(() => {
@@ -41,13 +39,6 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
     setDisplay(e.currentTarget.value);
     onChangeDebounced(e.currentTarget.value);
   }, [onChangeDebounced]);
-
-  // we're going to track the focused state in a ref so we can get the most
-  // recent value in another effect, without it having to depend directly on
-  // `focused`.
-  useEffect(() => {
-    focusedRef.current = focused;
-  }, [focused]);
 
   // update the display text when the value changes, but only if we're not
   // focused. why do we use a ref for focused instead of depending directly on
