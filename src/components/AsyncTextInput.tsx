@@ -31,13 +31,10 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
   // callback for blur
   const onBlur = useCallback(() => {
     setFocused(false);
-    onChange(display);
-  }, [display, onChange]);
+  }, []);
 
   const onChangeDebounced = useMemo(() => {
-    console.log("memo");
-    return throttle(onChange, 1000, {
-    });
+    return throttle(onChange, 500);
   }, [onChange]);
 
   const onChangeCb = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
