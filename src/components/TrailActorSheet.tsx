@@ -62,7 +62,7 @@ export const TrailActorSheet = ({
         display: "grid",
         // this ought to be min-content not 7em, but I'm struggling to get the
         // grid to do exactly what I want.
-        gridTemplateRows: "7em max-content 1fr",
+        gridTemplateRows: "min-content max-content 1fr",
         gridTemplateColumns: "max-content 1fr 12em",
         gridTemplateAreas:
           "\"title title image\" " +
@@ -75,10 +75,17 @@ export const TrailActorSheet = ({
       <div
         css={{
           gridArea: "title",
+          textAlign: "center",
         }}
       >
         <h1>
-          <TrailLogo/>
+        <TrailLogo text={entity.data.name}/>
+        <TrailLogo
+          css={{
+            ".inner-block": { fontSize: "0.6em" },
+          }}
+          text="Investigator"
+        />
         </h1>
       </div>
       <div

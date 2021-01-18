@@ -4,6 +4,7 @@ import React from "react";
 
 type TrailLogoProps = {
   text?: string;
+  className?: string,
 };
 
 /**
@@ -11,11 +12,13 @@ type TrailLogoProps = {
  */
 export const TrailLogo: React.FC<TrailLogoProps> = ({
   text = "TRAIL OF CTHULHU",
+  className,
 }) => {
   return (
     <div
+      className={className}
       css={{
-        display: "inline-block",
+        display: "block",
         perspective: "1000px",
         perspectivOrigin: "50% 50%",
       }}
@@ -30,17 +33,18 @@ export const TrailLogo: React.FC<TrailLogoProps> = ({
       />
 
       <span
+        className="inner-block"
         css={{
           position: "relative",
           display: "inline-block",
           fontFamily: "'Federo', sans-serif",
           textTransform: "uppercase",
-          fontSize: "1.6em",
+          fontSize: "1.4em",
           letterSpacing: "-0.04em",
           transform:
-            "scaleX(1.2) scaleY(1.6) rotateY(-30deg) rotateZ(-1deg) translateX(-2%)",
+            "scaleX(1.2) scaleY(1.6) rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
           border: "none",
-          margin: "0.5em",
+          margin: "0.5em 0.5em 0 0.5em",
           padding: 0,
           lineHeight: 1,
           ":before": {
@@ -57,7 +61,7 @@ export const TrailLogo: React.FC<TrailLogoProps> = ({
             top: 0,
             left: 0,
             content: `'${text}'`,
-            background: "linear-gradient(to bottom right, #000, #BE9F00)",
+            background: "linear-gradient(to bottom right, #000, #EFB183)",
             backgroundClip: "text",
             color: "transparent",
           },
