@@ -1,11 +1,13 @@
 /** @jsx jsx */
 import { css, CSSObject, Global, jsx } from "@emotion/react";
-import React from "react";
+import React, { useRef } from "react";
+import { useAsyncUpdate } from "../hooks/useAsyncUpdate";
 
 type TrailLogoEditableProps = {
   text: string;
   subtext?: string;
   className?: string,
+  onChange: (newValue: string) => void,
 };
 
 const subtextSyle: CSSObject = {
@@ -29,10 +31,27 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
   text,
   subtext,
   className,
+  onChange,
 }) => {
   const textStyle: CSSObject = {
     fontSize: `${Math.min(1, fontFactor / text.length)}em`,
   };
+
+  const {
+    onInputCb,
+    // onFocus,
+    // onBlur,
+    display,
+  } = useAsyncUpdate(text, onChange);
+
+  const editorRef = useRef<HTMLDivElement|null>(null);
+
+  // const onInput = useCallback((e: React.FormEvent<HTMLDivElement>) => {
+  //   if (editorRef.current === null) {
+  //     return;
+  //   }
+  //   onChangeCb(e.currentTarget.innerText);
+  // }, [onChangeCb]);
 
   return (
     // outer - set the transform origin
@@ -110,9 +129,11 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
             css={{
               ...textStyle,
             }}
-          >
-            {text}
-          </div>
+            contentEditable
+            dangerouslySetInnerHTML={{ __html: display }}
+            ref={editorRef}
+            onInput={onInputCb}
+          />
           <div
             css={{
               ...subtextSyle,

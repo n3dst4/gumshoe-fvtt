@@ -33,6 +33,12 @@ export const useAsyncUpdate = (value: string, onChange: (newValue: string) => vo
     onChangeDebounced(e.currentTarget.value);
   }, [onChangeDebounced]);
 
+  const onInputCb = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+    const text = e.currentTarget.innerText;
+    setDisplay(text);
+    onChangeDebounced(text);
+  }, [onChangeDebounced]);
+
   // update the display text when the value changes, but only if we're not
   // focused. why do we use a ref for focused instead of depending directly on
   // focused? it's because otherwise we get a flash of wrongness on blur,
@@ -47,6 +53,7 @@ export const useAsyncUpdate = (value: string, onChange: (newValue: string) => vo
 
   return {
     onChangeCb,
+    onInputCb,
     onFocus,
     onBlur,
     display,
