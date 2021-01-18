@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import throttle from "lodash/throttle";
 
 type AsyncTextInputProps = {
   value: undefined|string,
@@ -33,9 +34,16 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
     onChange(display);
   }, [display, onChange]);
 
+  const onChangeDebounced = useMemo(() => {
+    console.log("memo");
+    return throttle(onChange, 1000, {
+    });
+  }, [onChange]);
+
   const onChangeCb = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setDisplay(e.currentTarget.value);
-  }, []);
+    onChangeDebounced(e.currentTarget.value);
+  }, [onChangeDebounced]);
 
   // we're going to track the focused state in a ref so we can get the most
   // recent value in another effect, without it having to depend directly on
