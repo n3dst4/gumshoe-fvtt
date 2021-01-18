@@ -13,7 +13,7 @@ export const GeneralSkillRoll: React.FC<GeneralSkillRollProps> = ({
   foundryWindow,
 }) => {
   const onRoll = useCallback(() => {
-    const roll = new Roll("4d12 + 6", {});
+    const roll = new Roll("1d6", {});
     const label = `Rolling ${entity.name}`;
     roll.roll().toMessage({
       speaker: ChatMessage.getSpeaker({ actor: entity.actor }),
