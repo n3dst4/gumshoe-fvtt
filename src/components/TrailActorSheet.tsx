@@ -94,6 +94,9 @@ export const TrailActorSheet = ({
           backgroundImage: `url(${entity.data.img})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          borderRadius: "0.2em",
+          boxShadow: "0em 0em 0.5em 0.1em rgba(0,0,0,0.5)",
+          transform: "rotateZ(2deg)",
         }}
         onClick={onImageClick}
       >
