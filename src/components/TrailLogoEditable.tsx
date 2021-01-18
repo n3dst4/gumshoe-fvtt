@@ -101,7 +101,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
         {/* gradient-bearer */}
         <div
           css={{
-            background: "linear-gradient(to bottom right, #000, #EFB183)",
+            background: "linear-gradient(to bottom right, #efb183 0%,#222 30%,#efb183 90%)",
             backgroundClip: "text",
             ...textBearerStyle,
           }}
