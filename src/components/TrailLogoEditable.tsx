@@ -37,21 +37,18 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
     fontSize: `${Math.min(1, fontFactor / text.length)}em`,
   };
 
-  const {
-    onInputCb,
-    // onFocus,
-    // onBlur,
-    display,
-  } = useAsyncUpdate(text, onChange);
-
   const editorRef = useRef<HTMLDivElement|null>(null);
 
-  // const onInput = useCallback((e: React.FormEvent<HTMLDivElement>) => {
-  //   if (editorRef.current === null) {
-  //     return;
-  //   }
-  //   onChangeCb(e.currentTarget.innerText);
-  // }, [onChangeCb]);
+  const {
+    onInputCb,
+    onFocus,
+    onBlur,
+    // display,
+  } = useAsyncUpdate(text, onChange, (newValue) => {
+    if (editorRef.current) {
+      editorRef.current.innerText = newValue;
+    }
+  });
 
   return (
     // outer - set the transform origin
@@ -130,9 +127,11 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
               ...textStyle,
             }}
             contentEditable
-            dangerouslySetInnerHTML={{ __html: display }}
+            // dangerouslySetInnerHTML={{ __html: display }}
             ref={editorRef}
             onInput={onInputCb}
+            onFocus={onFocus}
+            onBlur={onBlur}
           />
           <div
             css={{

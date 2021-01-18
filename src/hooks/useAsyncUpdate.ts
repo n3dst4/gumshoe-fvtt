@@ -6,7 +6,11 @@ import throttle from "lodash/throttle";
  * external onChange every so often but you can't be relying on it updating
  * fast enough to handle your react state.
  */
-export const useAsyncUpdate = (value: string, onChange: (newValue: string) => void) => {
+export const useAsyncUpdate = (
+  value: string,
+  onChange: (newValue: string) => void,
+  onValueUpdateUnfocused?: (newValue: string) => void,
+) => {
   // many shenanigans to handle slow updates
   // first up, state to handle the actual text we show so we can update it in a
   // timely fashion
@@ -48,8 +52,11 @@ export const useAsyncUpdate = (value: string, onChange: (newValue: string) => vo
   useEffect(() => {
     if (!focusedRef.current) {
       setDisplay(value);
+      if (onValueUpdateUnfocused) {
+        onValueUpdateUnfocused(value);
+      }
     }
-  }, [value]);
+  }, [onValueUpdateUnfocused, value]);
 
   return {
     onChangeCb,
