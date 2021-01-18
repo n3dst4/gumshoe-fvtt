@@ -17,7 +17,6 @@ const textBearerStyle: CSSObject = {
   position: "absolute",
   top: "50%",
   left: "50%",
-  // width: "100%",
   transform: "translate(-50%, -50%)",
 };
 
@@ -70,7 +69,6 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
           whiteSpace: "nowrap",
           transform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
           border: "none",
-          // margin: "0.5em",
           padding: 0,
           lineHeight: 1,
 
@@ -105,7 +103,6 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
           css={{
             background: "linear-gradient(to bottom right, #000, #EFB183)",
             backgroundClip: "text",
-            // outline: "1px solid red",
             ...textBearerStyle,
           }}
         >
@@ -124,9 +121,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
             {subtext}
           </div>
         </div>
-
       </div>
-
     </div>
   );
 };

@@ -84,16 +84,6 @@ export const TrailActorSheet = ({
           text={entity.data.name}
           subtext="Investigator"
         />
-
-        {/* <h1>
-        <TrailLogo text={entity.data.name}/>
-        <TrailLogo
-          css={{
-            ".inner-block": { fontSize: "0.6em" },
-          }}
-          text="Investigator"
-        />
-        </h1> */}
       </div>
       <div
         css={{
@@ -106,15 +96,7 @@ export const TrailActorSheet = ({
           transform: "rotateZ(2deg)",
         }}
         onClick={onImageClick}
-      >
-        {/* <img
-          style={{
-            width: "100%",
-          }}
-          src={entity.data.img}
-          onClick={onImageClick}
-        /> */}
-      </div>
+      />
 
       <div
         css={{
