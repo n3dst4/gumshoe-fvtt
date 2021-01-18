@@ -1,11 +1,13 @@
 /** @jsx jsx */
 import { css, CSSObject, Global, jsx } from "@emotion/react";
 import React from "react";
+import { useAsyncUpdate } from "../hooks/useAsyncUpdate";
 
 type TrailLogoEditableProps = {
   text: string;
   subtext?: string;
   className?: string,
+  onChange: (newValue: string) => void,
 };
 
 const subtextSyle: CSSObject = {
@@ -29,10 +31,18 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
   text,
   subtext,
   className,
+  onChange,
 }) => {
   const textStyle: CSSObject = {
     fontSize: `${Math.min(1, fontFactor / text.length)}em`,
   };
+
+  const {
+    onChangeCb,
+    onFocus,
+    onBlur,
+    display,
+  } = useAsyncUpdate(text, onChange);
 
   return (
     // outer - set the transform origin
@@ -87,7 +97,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
               ...textStyle,
             }}
           >
-            {text}
+            {display}
           </div>
           <div
             css={{
@@ -100,19 +110,48 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
 
         {/* gradient-bearer */}
         <div
+          data-content={display}
           css={{
             background: "linear-gradient(to bottom right, #efb183 0%,#222 30%,#efb183 90%)",
             backgroundClip: "text",
-            ...textBearerStyle,
+            ...textBearerStyle, //
+            ...textStyle,
+            "::after": {
+              content: "attr(data-content)",
+            },
           }}
         >
-          <div
+          <input
+            value={display}
+            onChange={onChangeCb}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            data-lpignore="true"
+            css={{
+              ...textStyle,
+              background: "inherit",
+              backgroundClip: "inherit",
+              fontFamily: "inherit",
+              textTransform: "inherit",
+              border: "none",
+              textAlign: "inherit",
+              letterSpacing: "inherit",
+              margin: 0,
+              padding: 0,
+              color: "inherit",
+              // color: "red",
+              lineHeight: "inherit",
+              width: "100%",
+              position: "absolute",
+            }}
+          />
+          {/* <div
             css={{
               ...textStyle,
             }}
           >
             {text}
-          </div>
+          </div> */}
           <div
             css={{
               ...subtextSyle,
