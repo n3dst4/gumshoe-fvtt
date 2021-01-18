@@ -3,12 +3,13 @@ import React, { useCallback } from "react";
 import { TrailActor } from "../module/TrailActor";
 import { PoolTracker } from "./PoolTracker";
 import { jsx } from "@emotion/react";
-import { TrailLogo } from "./TrailLogo";
+// import { TrailLogo } from "./TrailLogo";
 import { FormField } from "./FormField";
 import { useUpdate } from "../hooks/useUpdate";
 import { GeneralSkill, InvestigativeSkill } from "../types";
 import { SkillsArea } from "./SkillsArea";
 import { CSSReset } from "./CSSReset";
+import { TrailLogoEditable } from "./TrailLogoEditable";
 
 type TrailActorSheetProps = {
   entity: TrailActor,
@@ -76,9 +77,15 @@ export const TrailActorSheet = ({
         css={{
           gridArea: "title",
           textAlign: "center",
+          backgroundColor: "rgba(255,255,255, 0.3)",
         }}
       >
-        <h1>
+        <TrailLogoEditable
+          text={entity.data.name}
+          subtext="Investigator"
+        />
+
+        {/* <h1>
         <TrailLogo text={entity.data.name}/>
         <TrailLogo
           css={{
@@ -86,7 +93,7 @@ export const TrailActorSheet = ({
           }}
           text="Investigator"
         />
-        </h1>
+        </h1> */}
       </div>
       <div
         css={{
