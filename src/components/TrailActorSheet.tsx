@@ -6,7 +6,7 @@ import { jsx } from "@emotion/react";
 // import { TrailLogo } from "./TrailLogo";
 import { useUpdate } from "../hooks/useUpdate";
 import { GeneralSkill, InvestigativeSkill } from "../types";
-import { SkillsArea } from "./SkillsArea";
+import { SkillsArea } from "./skills/SkillsArea";
 import { CSSReset } from "./CSSReset";
 import { TrailLogoEditable } from "./TrailLogoEditable";
 import { InputGrid } from "./InputGrid";

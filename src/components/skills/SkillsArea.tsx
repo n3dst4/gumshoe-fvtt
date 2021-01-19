@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { GeneralSkillRollClass } from "../module/GeneralSkillRollClass";
-import { GeneralSkill, InvestigativeSkill } from "../types";
+import { GeneralSkill, InvestigativeSkill } from "../../types";
+import { GeneralSkillSlug } from "./GeneralSkillSlug";
 
 type SkillsAreaProps = {
   investigativeSkills: { [category: string]: InvestigativeSkill[] },
@@ -42,16 +42,7 @@ export const SkillsArea: React.FC<SkillsAreaProps> = ({
       <div css={{ gridArea: "general" }}>
         <h2>General Skills</h2>
         {generalSkills.map((skill) => (
-          <div
-            key={skill.id}
-            onClick={() => {
-              const rollApp = new GeneralSkillRollClass(skill, {});
-              rollApp.render(true);
-              // skill.sheet.render(true);
-            }}
-          >
-            {skill.name}
-          </div>
+          <GeneralSkillSlug key={skill.id} skill={skill} />
         ))}
       </div>
       <div css={{ gridArea: "inv1" }}>

@@ -42,7 +42,7 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
         <GridFormField label="Has speciality?">
           <input
             type="checkbox"
-            value={entity.data.data.hasSpeciality}
+            checked={entity.data.data.hasSpeciality}
             onChange={(e) => {
               updateHasSpeciality(e.currentTarget.checked);
             }}
@@ -63,6 +63,20 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
             }}
           />
         </GridFormField>
+        {
+          entity.actor &&
+          <GridFormField label="Delete skill">
+            <button
+              onClick={() => {
+                entity.delete();
+              }}
+            >
+              Delete
+            </button>
+
+          </GridFormField>
+
+        }
 
       </InputGrid>
     </CSSReset>

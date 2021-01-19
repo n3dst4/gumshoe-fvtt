@@ -21,12 +21,17 @@ export const GeneralSkillRoll: React.FC<GeneralSkillRollProps> = ({
     });
   }, [entity.actor, entity.name]);
 
+  const openSheet = useCallback(() => {
+    entity.sheet.render(true);
+    foundryWindow.close();
+  }, [entity.sheet, foundryWindow]);
+
   return (
     <CSSReset>
       <h1>
         General skill roll
       </h1>
-        {entity.name}
+        {entity.name} <button onClick={openSheet}>Edit skill</button>
         <button onClick={onRoll}>Roll!</button>
     </CSSReset>
   );
