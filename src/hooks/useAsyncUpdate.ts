@@ -37,7 +37,22 @@ export const useAsyncUpdate = (
     onChangeDebounced(e.currentTarget.value);
   }, [onChangeDebounced]);
 
+  // for posterity, i'm leaving this here - a mechanism to relay the text
+  // through a secondary div to avoid having the text affected by
+  // text-transform: uppercase on the element. We've fixed that differently by
+  // using font-variant: small-caps but it might be handy in future.
+
+  // const repeaterDivRef = useRef<HTMLDivElement|null>(null);
+  // useEffect(() => {
+  //   repeaterDivRef.current = document.createElement("div");
+  //   document.body.appendChild(repeaterDivRef.current);
+  // }, []);
+
   const onInputCb = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+    // if (repeaterDivRef.current === null) {
+    //   return;
+    // }
+    // repeaterDivRef.current.innerHTML = e.currentTarget.innerHTML;
     const text = e.currentTarget.innerText;
     setDisplay(text);
     onChangeDebounced(text);

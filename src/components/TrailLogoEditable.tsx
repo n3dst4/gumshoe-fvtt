@@ -79,7 +79,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
           bottom: 0,
           left: 0,
           fontFamily: "'Federo', sans-serif",
-          textTransform: "uppercase",
+          fontVariant: "small-caps",
           fontSize: "4em",
           letterSpacing: "-0.04em",
           whiteSpace: "nowrap",
