@@ -7,11 +7,14 @@ type TrailLogoEditableProps = {
   text: string;
   subtext?: string;
   className?: string,
-  onChange: (newValue: string) => void,
+  onChangeText: (newValue: string) => void,
+  onChangeSubtext: (newValue: string) => void,
 };
 
 const subtextSyle: CSSObject = {
   fontSize: "0.5em",
+  padding: "0 1em",
+  minHeight: "1em",
 };
 
 const textBearerStyle: CSSObject = {
@@ -29,22 +32,35 @@ const fontFactor = 16;
  */
 export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
   text,
-  subtext,
+  subtext: subtextOrig,
   className,
-  onChange,
+  onChangeText: onChangeTextOrig,
+  onChangeSubtext: onChangeSubtextOrig,
 }) => {
+  const subtext = subtextOrig.trim();
+
   const textStyle: CSSObject = {
     transition: "font-size 500ms",
     fontSize: `${Math.min(1, fontFactor / text.length)}em`,
+    padding: "0 1em",
   };
 
   // all the editing logic is done in the hook
   const {
-    onInput,
-    onFocus,
-    onBlur,
-    contentEditableRef,
-  } = useAsyncUpdate(text, onChange);
+    onInput: onInputText,
+    onFocus: onFocusText,
+    onBlur: onBlurText,
+    contentEditableRef: contentEditableRefText,
+    display: displayText,
+  } = useAsyncUpdate(text, onChangeTextOrig);
+
+  const {
+    onInput: onInputSubtext,
+    onFocus: onFocusSubtext,
+    onBlur: onBlurSubtext,
+    contentEditableRef: contentEditableRefSubtext,
+    display: displaySubtext,
+  } = useAsyncUpdate(subtext || "Investigator", onChangeSubtextOrig);
 
   return (
     // outer - set the transform origin
@@ -77,7 +93,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
           fontFamily: "'Federo', sans-serif",
           fontVariant: "small-caps",
           fontSize: "4em",
-          letterSpacing: "-0.04em",
+          // letterSpacing: "-0.04em",
           whiteSpace: "nowrap",
           transform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
           caretColor: "black",
@@ -100,14 +116,14 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
               ...textStyle,
             }}
           >
-            {text}
+            {displayText}
           </div>
           <div
             css={{
               ...subtextSyle,
             }}
           >
-            {subtext}
+            {displaySubtext}
           </div>
         </div>
 
@@ -125,18 +141,21 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
               ...textStyle,
             }}
             contentEditable
-            ref={contentEditableRef}
-            onInput={onInput}
-            onFocus={onFocus}
-            onBlur={onBlur}
+            ref={contentEditableRefText}
+            onInput={onInputText}
+            onFocus={onFocusText}
+            onBlur={onBlurText}
           />
           <div
             css={{
               ...subtextSyle,
             }}
-          >
-            {subtext}
-          </div>
+            contentEditable
+            ref={contentEditableRefSubtext}
+            onInput={onInputSubtext}
+            onFocus={onFocusSubtext}
+            onBlur={onBlurSubtext}
+          />
         </div>
       </div>
     </div>
