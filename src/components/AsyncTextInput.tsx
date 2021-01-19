@@ -25,7 +25,7 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
     <input
       css={css`
         flex: 1;
-        margin-left: 0.5em;
+        /* margin-left: 0.5em; */
         width: 100%;
       `}
       className={className}

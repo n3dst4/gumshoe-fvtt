@@ -4,12 +4,15 @@ import { TrailActor } from "../module/TrailActor";
 import { PoolTracker } from "./PoolTracker";
 import { jsx } from "@emotion/react";
 // import { TrailLogo } from "./TrailLogo";
-import { FormField } from "./FormField";
 import { useUpdate } from "../hooks/useUpdate";
 import { GeneralSkill, InvestigativeSkill } from "../types";
 import { SkillsArea } from "./SkillsArea";
 import { CSSReset } from "./CSSReset";
 import { TrailLogoEditable } from "./TrailLogoEditable";
+import { InputGrid } from "./InputGrid";
+import { GridFormField } from "./GridFormField";
+import { AsyncTextInput } from "./AsyncTextInput";
+import { StackedFormField } from "./StackedFormField";
 
 type TrailActorSheetProps = {
   entity: TrailActor,
@@ -107,28 +110,32 @@ export const TrailActorSheet = ({
           padding: "1em",
         }}
       >
-        <FormField
-          label="Investigator name"
-          value={entity.data.name}
-          onChange={updateName}
-          css={{ fontSize: "1.2em" }}
-        />
-        <FormField
-          label="Drive"
-          value={entity.data.data.drive}
-          onChange={updateDrive}
-        />
-        <FormField
-          label="Occupation"
-          value={entity.data.data.occupation}
-          onChange={updateOccupation}
-        />
-        <FormField
-          label="Occupational Benefits"
-          value={entity.data.data.occupationalBenefits}
-          onChange={updateOccupationalBenefits}
-        />
-        {/* <input defaultValue="Parparella Q. Blotkins III (jr.)"/> */}
+        <InputGrid>
+        <GridFormField label="Name">
+            <AsyncTextInput
+              value={entity.data.name}
+              onChange={updateName}
+            />
+          </GridFormField>
+          <GridFormField label="Drive">
+            <AsyncTextInput
+              value={entity.data.data.drive}
+              onChange={updateDrive}
+            />
+          </GridFormField>
+          <GridFormField label="Occupation">
+            <AsyncTextInput
+              value={entity.data.data.occupation}
+              onChange={updateOccupation}
+            />
+          </GridFormField>
+          <StackedFormField label="Occupational Benefits">
+            <AsyncTextInput
+              value={entity.data.data.occupationalBenefits}
+              onChange={updateOccupationalBenefits}
+            />
+          </StackedFormField>
+        </InputGrid>
       </div>
 
       <div

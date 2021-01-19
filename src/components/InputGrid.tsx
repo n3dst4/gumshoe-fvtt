@@ -15,8 +15,10 @@ export const InputGrid: React.FC<InputGridProps> = ({
       css={css`
         display: grid;
         grid-template-rows: auto;
-        grid-template-columns: [label] max-content [control] 1fr;
+        grid-template-columns: [label] max-content [control] 1fr [end];
         grid-auto-rows: auto;
+        column-gap: 0.5em;
+        row-gap: 0.2em;
       `}
       className={className}
     >

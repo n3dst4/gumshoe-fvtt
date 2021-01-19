@@ -68,7 +68,6 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
     <input
       css={css`
         flex: 1;
-        margin-left: 0.5em;
         width: 100%;
         color: ${error ? "red" : undefined};
         user-select: "text";

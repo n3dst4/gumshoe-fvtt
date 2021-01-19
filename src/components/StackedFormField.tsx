@@ -2,13 +2,13 @@
 import { css, jsx } from "@emotion/react";
 import React, { Fragment } from "react";
 
-type GridFormFieldProps = {
+type StackedFormFieldProps = {
   label: string;
   className?: string;
   children: any;
 };
 
-export const GridFormField: React.FC<GridFormFieldProps> = ({
+export const StackedFormField: React.FC<StackedFormFieldProps> = ({
   label,
   className,
   children,
@@ -17,17 +17,11 @@ export const GridFormField: React.FC<GridFormFieldProps> = ({
     <Fragment>
       <div
         css={css`
-          grid-column: label;
+          grid-column: label / end;
         `}
         className={className}
       >
         {label}
-      </div>
-      <div
-        css={css`
-          grid-column: control;
-        `}
-      >
         {children}
       </div>
     </Fragment>
