@@ -76,10 +76,11 @@ export const useAsyncUpdate = (
 
   return {
     onChange,
-    onInput,
     onFocus,
     onBlur,
     display,
+
     contentEditableRef,
+    onInput,
   };
 };

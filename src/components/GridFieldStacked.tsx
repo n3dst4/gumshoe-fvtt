@@ -2,13 +2,13 @@
 import { css, jsx } from "@emotion/react";
 import React, { Fragment } from "react";
 
-type StackedFormFieldProps = {
+type GridFieldStackedProps = {
   label: string;
   className?: string;
   children: any;
 };
 
-export const StackedFormField: React.FC<StackedFormFieldProps> = ({
+export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({
   label,
   className,
   children,

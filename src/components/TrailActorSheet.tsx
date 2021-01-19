@@ -10,9 +10,9 @@ import { SkillsArea } from "./skills/SkillsArea";
 import { CSSReset } from "./CSSReset";
 import { TrailLogoEditable } from "./TrailLogoEditable";
 import { InputGrid } from "./InputGrid";
-import { GridFormField } from "./GridFormField";
+import { GridField } from "./GridField";
 import { AsyncTextInput } from "./AsyncTextInput";
-import { StackedFormField } from "./StackedFormField";
+import { GridFieldStacked } from "./GridFieldStacked";
 
 type TrailActorSheetProps = {
   entity: TrailActor,
@@ -112,30 +112,30 @@ export const TrailActorSheet = ({
         }}
       >
         <InputGrid>
-        <GridFormField label="Name">
+        <GridField label="Name">
             <AsyncTextInput
               value={entity.data.name}
               onChange={updateName}
             />
-          </GridFormField>
-          <GridFormField label="Drive">
+          </GridField>
+          <GridField label="Drive">
             <AsyncTextInput
               value={entity.data.data.drive}
               onChange={updateDrive}
             />
-          </GridFormField>
-          <GridFormField label="Occupation">
+          </GridField>
+          <GridField label="Occupation">
             <AsyncTextInput
               value={entity.data.data.occupation}
               onChange={updateOccupation}
             />
-          </GridFormField>
-          <StackedFormField label="Occupational Benefits">
+          </GridField>
+          <GridFieldStacked label="Occupational Benefits">
             <AsyncTextInput
               value={entity.data.data.occupationalBenefits}
               onChange={updateOccupationalBenefits}
             />
-          </StackedFormField>
+          </GridFieldStacked>
         </InputGrid>
       </div>
 

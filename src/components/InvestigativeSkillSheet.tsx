@@ -6,7 +6,7 @@ import { TrailItem } from "../module/TrailItem";
 import { AsyncNumberInput } from "./AsyncNumberInput";
 import { AsyncTextInput } from "./AsyncTextInput";
 import { CSSReset } from "./CSSReset";
-import { GridFormField } from "./GridFormField";
+import { GridField } from "./GridField";
 import { InputGrid } from "./InputGrid";
 type InvestigativeSkillSheetProps = {
   entity: TrailItem,
@@ -30,19 +30,19 @@ export const InvestigativeSkillSheet: React.FC<InvestigativeSkillSheetProps> = (
         Investigative skill
       </h1>
       <InputGrid>
-        <GridFormField label="Name">
+        <GridField label="Name">
           <AsyncTextInput value={entity.name} onChange={updateName} />
-        </GridFormField>
-        <GridFormField label="Category">
+        </GridField>
+        <GridField label="Category">
           <AsyncTextInput value={entity.data.data.category} onChange={updateCategory} />
-        </GridFormField>
-        <GridFormField label="Rating">
+        </GridField>
+        <GridField label="Rating">
           <AsyncNumberInput value={entity.data.data.rating} onChange={updateRating} />
-        </GridFormField>
-        <GridFormField label="Pool">
+        </GridField>
+        <GridField label="Pool">
           <AsyncNumberInput value={entity.data.data.pool} onChange={updatePool} />
-        </GridFormField>
-        <GridFormField label="Has speciality?">
+        </GridField>
+        <GridField label="Has speciality?">
           <input
             type="checkbox"
             checked={entity.data.data.hasSpeciality}
@@ -50,12 +50,12 @@ export const InvestigativeSkillSheet: React.FC<InvestigativeSkillSheetProps> = (
               updateHasSpeciality(e.currentTarget.checked);
             }}
           />
-        </GridFormField>
+        </GridField>
         {
           entity.data.data.hasSpeciality &&
-          <GridFormField label="Speciality">
+          <GridField label="Speciality">
             <AsyncTextInput value={entity.data.data.speciality} onChange={updateSpeciality} />
-          </GridFormField>
+          </GridField>
         }
       </InputGrid>
     </CSSReset>

@@ -3,6 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { TrailItem } from "../module/TrailItem";
 import { CSSReset } from "./CSSReset";
+import { InputGrid } from "./InputGrid";
 type GeneralSkillRollProps = {
   entity: TrailItem,
   foundryWindow: Application,
@@ -29,10 +30,15 @@ export const GeneralSkillRoll: React.FC<GeneralSkillRollProps> = ({
   return (
     <CSSReset>
       <h1>
-        General skill roll
+        {entity.name}
+        <i
+          className="fa fa-edit"
+          onClick={openSheet}
+        />
       </h1>
-        {entity.name} <button onClick={openSheet}>Edit skill</button>
-        <button onClick={onRoll}>Roll!</button>
+      <InputGrid>
+      </InputGrid>
+      <button onClick={onRoll}>Roll!</button>
     </CSSReset>
   );
 };

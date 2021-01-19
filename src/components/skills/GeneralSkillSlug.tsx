@@ -20,7 +20,7 @@ export const GeneralSkillSlug: React.FC<GeneralSkillSlugProps> = ({
       // skill.sheet.render(true);
     }}
   >
-    {skill.name}
+    {skill.name} ({skill.data.data.pool}/{skill.data.data.rating})
   </div>
   );
 };

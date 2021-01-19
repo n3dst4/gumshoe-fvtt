@@ -5,7 +5,7 @@ import { useUpdate } from "../hooks/useUpdate";
 import { TrailItem } from "../module/TrailItem";
 import { AsyncTextInput } from "./AsyncTextInput";
 import { CSSReset } from "./CSSReset";
-import { GridFormField } from "./GridFormField";
+import { GridField } from "./GridField";
 import { InputGrid } from "./InputGrid";
 type EquipmentSheetProps = {
   entity: TrailItem,
@@ -24,9 +24,9 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
         Equipment
       </h1>
       <InputGrid>
-        <GridFormField label="Name">
+        <GridField label="Name">
           <AsyncTextInput value={entity.name} onChange={updateName} />
-        </GridFormField>
+        </GridField>
       </InputGrid>
     </CSSReset>
   );

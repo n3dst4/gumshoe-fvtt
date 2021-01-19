@@ -6,7 +6,7 @@ import { TrailItem } from "../module/TrailItem";
 import { AsyncNumberInput } from "./AsyncNumberInput";
 import { AsyncTextInput } from "./AsyncTextInput";
 import { CSSReset } from "./CSSReset";
-import { GridFormField } from "./GridFormField";
+import { GridField } from "./GridField";
 import { InputGrid } from "./InputGrid";
 type GeneralSkillSheetProps = {
   entity: TrailItem,
@@ -30,16 +30,16 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
         General skill
       </h1>
       <InputGrid>
-        <GridFormField label="Name">
+        <GridField label="Name">
           <AsyncTextInput value={entity.name} onChange={updateName} />
-        </GridFormField>
-        <GridFormField label="Rating">
+        </GridField>
+        <GridField label="Rating">
           <AsyncNumberInput value={entity.data.data.rating} onChange={updateRating} />
-        </GridFormField>
-        <GridFormField label="Pool">
+        </GridField>
+        <GridField label="Pool">
           <AsyncNumberInput value={entity.data.data.pool} onChange={updatePool} />
-        </GridFormField>
-        <GridFormField label="Has speciality?">
+        </GridField>
+        <GridField label="Has speciality?">
           <input
             type="checkbox"
             checked={entity.data.data.hasSpeciality}
@@ -47,14 +47,14 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
               updateHasSpeciality(e.currentTarget.checked);
             }}
           />
-        </GridFormField>
+        </GridField>
         {
           entity.data.data.hasSpeciality &&
-          <GridFormField label="Speciality">
+          <GridField label="Speciality">
             <AsyncTextInput value={entity.data.data.speciality} onChange={updateSpeciality} />
-          </GridFormField>
+          </GridField>
         }
-        <GridFormField label="Can be use investigatively?">
+        <GridField label="Can be use investigatively?">
           <input
             type="checkbox"
             value={entity.data.data.canBeInvestigative}
@@ -62,10 +62,10 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
               updateCanBeInvestigative(e.currentTarget.checked);
             }}
           />
-        </GridFormField>
+        </GridField>
         {
           entity.actor &&
-          <GridFormField label="Delete skill">
+          <GridField label="Delete skill">
             <button
               onClick={() => {
                 entity.delete();
@@ -74,7 +74,7 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
               Delete
             </button>
 
-          </GridFormField>
+          </GridField>
 
         }
 

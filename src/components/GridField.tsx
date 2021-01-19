@@ -2,13 +2,13 @@
 import { css, jsx } from "@emotion/react";
 import React, { Fragment } from "react";
 
-type GridFormFieldProps = {
+type GridFieldProps = {
   label: string;
   className?: string;
   children: any;
 };
 
-export const GridFormField: React.FC<GridFormFieldProps> = ({
+export const GridField: React.FC<GridFieldProps> = ({
   label,
   className,
   children,

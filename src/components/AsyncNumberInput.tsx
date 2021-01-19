@@ -1,81 +1,84 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback } from "react";
+import { useAsyncUpdate } from "../hooks/useAsyncUpdate";
 
 type AsyncNumberInputProps = {
   value: undefined|number,
   onChange: (newValue: number) => void,
   className?: string,
+  min?: number,
+  max?: number,
 };
+
+export type ValidationResult = {
+  validation: "failed",
+  reasons: string[],
+} | {
+  validation: "succeeded",
+  value: number,
+}
 
 export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
   value,
-  onChange,
+  onChange: onChangeOrig,
   className,
+  min,
+  max,
 }) => {
-  // many shenanigans to handle slow updates
-  // first up, state to handle the actual text we show so we can update it in a
-  // timely fashion
-  const [display, setDisplay] = useState(value === undefined ? "0" : value.toString());
-  // state to track focus
-  const [focused, setFocused] = useState(false);
-  // and a ref which will copy the `focused` state - see later
-  const focusedRef = useRef(focused);
-  // track error state
-  const [error, setError] = useState(false);
-
-  // callback for focus
-  const onFocus = useCallback(() => {
-    setFocused(true);
-  }, []);
-
-  // we're going to track the focused state in a ref so we can get the most
-  // recent value in another effect, without it having to depend directly on
-  // `focused`.
-  useEffect(() => {
-    focusedRef.current = focused;
-  }, [focused]);
-
-  // callback for blur
-  const onBlur = useCallback(() => {
-    setFocused(false);
-    const numberValue = Number(display);
-    if (Number.isNaN(numberValue)) {
-      setError(true);
+  const validate = useCallback((text: string): ValidationResult => {
+    const num = Number(text);
+    if (Number.isNaN(num)) {
+      return ({
+        validation: "failed",
+        reasons: ["Not a number"],
+      });
+    } else if (min !== undefined && num < min) {
+      return ({
+        validation: "failed",
+        reasons: ["Too low"],
+      });
+    } else if (max !== undefined && num > max) {
+      return ({
+        validation: "failed",
+        reasons: ["Too high"],
+      });
     } else {
-      onChange(numberValue);
+      return ({
+        validation: "succeeded",
+        value: num,
+      });
     }
-  }, [display, onChange]);
+  }, [max, min]);
 
-  const onChangeCb = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setError(false);
-    setDisplay(e.currentTarget.value);
-  }, []);
-
-  // update the display text when the value changes, but only if we're not
-  // focused. why do we use a ref for focused instead of depending directly on
-  // focused? it's because otherwise we get a flash of wrongness on blur,
-  // because this effect fires in response to `focused` but `value` hasn't
-  // changed yet. This way we only fire on `value` changing, and check the focus
-  // state indirectly via the ref.
-  useEffect(() => {
-    if (!focusedRef.current) {
-      setDisplay(value === undefined ? "0" : value.toString());
+  const onChangeString = useCallback((text: string) => {
+    const result = validate(text);
+    if (result.validation === "succeeded") {
+      onChangeOrig(result.value);
     }
-  }, [value]);
+  }, [onChangeOrig, validate]);
+
+  const {
+    display,
+    onBlur,
+    onChange,
+    onFocus,
+  } = useAsyncUpdate((value || 0).toString(), onChangeString);
+
+  const result = validate(display);
 
   return (
     <input
       css={css`
         flex: 1;
         width: 100%;
-        color: ${error ? "red" : undefined};
+        color: ${result.validation === "failed" ? "red" : undefined};
         user-select: "text";
       `}
       className={className}
       data-lpignore="true"
       value={display}
-      onChange={onChangeCb}
+      onChange={onChange}
       onFocus={onFocus}
       onBlur={onBlur}
     />
