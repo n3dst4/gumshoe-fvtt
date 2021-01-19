@@ -128,7 +128,6 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
               ...textStyle,
             }}
             contentEditable
-            // dangerouslySetInnerHTML={{ __html: display }}
             ref={editorRef}
             onInput={onInputCb}
             onFocus={onFocus}
