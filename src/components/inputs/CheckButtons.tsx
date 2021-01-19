@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback } from "react";
+import React, { Fragment, useCallback } from "react";
+import { nanoid } from "nanoid";
 
 type CheckButtonsProps = {
   options: Array<{label: string, value: string}>,
@@ -23,22 +24,33 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
       css={{
         display: "flex",
         flexDirection: "row",
+        "input[type=radio]": {
+          display: "none",
+          "+label": {
+            padding: "1em",
+          },
+          "&:checked+label": {
+            background: "red", //
+          },
+        },
       }}
     >
       {
         options.map(({ label, value }) => {
+          const id = nanoid();
           return (
-            <label
-              key={value}
-            >
+            <Fragment key={value}>
               <input
+                id={id}
                 type="radio"
                 value={value}
                 checked={value === selected}
                 onChange={onChange}
-              />
-              {label}
-            </label>
+                />
+              <label htmlFor={id}>
+                {label}
+              </label>
+            </Fragment>
           );
         })
       }
