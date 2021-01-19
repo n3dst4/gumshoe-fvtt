@@ -9,7 +9,6 @@ import throttle from "lodash/throttle";
 export const useAsyncUpdate = (
   value: string,
   onChange: (newValue: string) => void,
-  onValueUpdateUnfocused?: (newValue: string) => void,
 ) => {
   // many shenanigans to handle slow updates
   // first up, state to handle the actual text we show so we can update it in a
@@ -28,14 +27,16 @@ export const useAsyncUpdate = (
     focusedRef.current = false;
   }, []);
 
-  const onChangeDebounced = useMemo(() => {
+  // we only fire the update event every so often to avoid spamming the
+  // network
+  const onChangeThrottled = useMemo(() => {
     return throttle(onChange, 500);
   }, [onChange]);
 
   const onChangeCb = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setDisplay(e.currentTarget.value);
-    onChangeDebounced(e.currentTarget.value);
-  }, [onChangeDebounced]);
+    onChangeThrottled(e.currentTarget.value);
+  }, [onChangeThrottled]);
 
   // for posterity, i'm leaving this here - a mechanism to relay the text
   // through a secondary div to avoid having the text affected by
@@ -48,6 +49,10 @@ export const useAsyncUpdate = (
   //   document.body.appendChild(repeaterDivRef.current);
   // }, []);
 
+  // stuff for handling content-editable - first, a ref to attach to the element
+  const contentEditableRef = useRef<HTMLDivElement|null>(null);
+
+  // a callback for whe edits happen
   const onInputCb = useCallback((e: React.FormEvent<HTMLInputElement>) => {
     // if (repeaterDivRef.current === null) {
     //   return;
@@ -55,23 +60,19 @@ export const useAsyncUpdate = (
     // repeaterDivRef.current.innerHTML = e.currentTarget.innerHTML;
     const text = e.currentTarget.innerText;
     setDisplay(text);
-    onChangeDebounced(text);
-  }, [onChangeDebounced]);
+    onChangeThrottled(text);
+  }, [onChangeThrottled]);
 
   // update the display text when the value changes, but only if we're not
-  // focused. why do we use a ref for focused instead of depending directly on
-  // focused? it's because otherwise we get a flash of wrongness on blur,
-  // because this effect fires in response to `focused` but `value` hasn't
-  // changed yet. This way we only fire on `value` changing, and check the focus
-  // state indirectly via the ref.
+  // focused.
   useEffect(() => {
     if (!focusedRef.current) {
       setDisplay(value);
-      if (onValueUpdateUnfocused) {
-        onValueUpdateUnfocused(value);
+      if (contentEditableRef.current) {
+        contentEditableRef.current.innerText = value;
       }
     }
-  }, [onValueUpdateUnfocused, value]);
+  }, [value]);
 
   return {
     onChangeCb,
@@ -79,5 +80,6 @@ export const useAsyncUpdate = (
     onFocus,
     onBlur,
     display,
+    contentEditableRef,
   };
 };

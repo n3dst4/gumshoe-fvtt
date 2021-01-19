@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, CSSObject, Global, jsx } from "@emotion/react";
-import React, { useRef } from "react";
+import React from "react";
 import { useAsyncUpdate } from "../hooks/useAsyncUpdate";
 
 type TrailLogoEditableProps = {
@@ -37,18 +37,13 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
     fontSize: `${Math.min(1, fontFactor / text.length)}em`,
   };
 
-  const editorRef = useRef<HTMLDivElement|null>(null);
-
+  // all the editing logic is done in the hook
   const {
     onInputCb,
     onFocus,
     onBlur,
-    // display,
-  } = useAsyncUpdate(text, onChange, (newValue) => {
-    if (editorRef.current) {
-      editorRef.current.innerText = newValue;
-    }
-  });
+    contentEditableRef,
+  } = useAsyncUpdate(text, onChange);
 
   return (
     // outer - set the transform origin
@@ -128,7 +123,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
               ...textStyle,
             }}
             contentEditable
-            ref={editorRef}
+            ref={contentEditableRef}
             onInput={onInputCb}
             onFocus={onFocus}
             onBlur={onBlur}
