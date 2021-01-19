@@ -83,6 +83,7 @@ export const TrailActorSheet = ({
         <TrailLogoEditable
           text={entity.data.name}
           subtext={entity.data.data.occupation}
+          defaultSubtext="Investigator"
           onChangeText={updateName}
           onChangeSubtext={updateOccupation}
         />

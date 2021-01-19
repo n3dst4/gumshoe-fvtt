@@ -6,6 +6,7 @@ import { useAsyncUpdate } from "../hooks/useAsyncUpdate";
 type TrailLogoEditableProps = {
   text: string;
   subtext?: string;
+  defaultSubtext?: string,
   className?: string,
   onChangeText: (newValue: string) => void,
   onChangeSubtext: (newValue: string) => void,
@@ -33,6 +34,7 @@ const fontFactor = 16;
 export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
   text,
   subtext: subtextOrig,
+  defaultSubtext = "Investigator",
   className,
   onChangeText: onChangeTextOrig,
   onChangeSubtext: onChangeSubtextOrig,
@@ -60,7 +62,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
     onBlur: onBlurSubtext,
     contentEditableRef: contentEditableRefSubtext,
     display: displaySubtext,
-  } = useAsyncUpdate(subtext || "Investigator", onChangeSubtextOrig);
+  } = useAsyncUpdate(subtext || defaultSubtext, onChangeSubtextOrig);
 
   return (
     // outer - set the transform origin
@@ -118,13 +120,15 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
           >
             {displayText}
           </div>
-          <div
-            css={{
-              ...subtextSyle,
-            }}
-          >
-            {displaySubtext}
-          </div>
+          {subtext !== undefined &&
+            <div
+              css={{
+                ...subtextSyle,
+              }}
+            >
+              {displaySubtext}
+            </div>
+          }
         </div>
 
         {/* gradient-bearer */}
@@ -146,16 +150,18 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
             onFocus={onFocusText}
             onBlur={onBlurText}
           />
-          <div
-            css={{
-              ...subtextSyle,
-            }}
-            contentEditable
-            ref={contentEditableRefSubtext}
-            onInput={onInputSubtext}
-            onFocus={onFocusSubtext}
-            onBlur={onBlurSubtext}
-          />
+          {subtext !== undefined &&
+            <div
+              css={{
+                ...subtextSyle,
+              }}
+              contentEditable
+              ref={contentEditableRefSubtext}
+              onInput={onInputSubtext}
+              onFocus={onFocusSubtext}
+              onBlur={onBlurSubtext}
+            />
+          }
         </div>
       </div>
     </div>
