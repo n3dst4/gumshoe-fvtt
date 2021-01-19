@@ -3,10 +3,10 @@ import { jsx } from "@emotion/react";
 import React from "react";
 import { useUpdate } from "../hooks/useUpdate";
 import { TrailItem } from "../module/TrailItem";
-import { AsyncTextInput } from "./AsyncTextInput";
+import { AsyncTextInput } from "./inputs/AsyncTextInput";
 import { CSSReset } from "./CSSReset";
-import { GridField } from "./GridField";
-import { InputGrid } from "./InputGrid";
+import { GridField } from "./inputs/GridField";
+import { InputGrid } from "./inputs/InputGrid";
 type EquipmentSheetProps = {
   entity: TrailItem,
   foundryWindow: Application,

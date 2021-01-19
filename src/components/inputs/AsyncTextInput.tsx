@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
 import React from "react";
-import { useAsyncUpdate } from "../hooks/useAsyncUpdate";
+import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 
 type AsyncTextInputProps = {
   value: undefined|string,

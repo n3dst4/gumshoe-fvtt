@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
-import { TrailItem } from "../module/TrailItem";
-import { CSSReset } from "./CSSReset";
-import { InputGrid } from "./InputGrid";
+import { TrailItem } from "../../module/TrailItem";
+import { CSSReset } from "../CSSReset";
+import { InputGrid } from "../inputs/InputGrid";
 type GeneralSkillRollProps = {
   entity: TrailItem,
   foundryWindow: Application,

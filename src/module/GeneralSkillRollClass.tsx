@@ -1,5 +1,5 @@
 import React from "react";
-import { GeneralSkillRoll } from "../components/GeneralSkillRoll";
+import { GeneralSkillRoll } from "../components/skills/GeneralSkillRoll";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 import { TrailItem } from "./TrailItem";

@@ -9,10 +9,10 @@ import { GeneralSkill, InvestigativeSkill } from "../types";
 import { SkillsArea } from "./skills/SkillsArea";
 import { CSSReset } from "./CSSReset";
 import { TrailLogoEditable } from "./TrailLogoEditable";
-import { InputGrid } from "./InputGrid";
-import { GridField } from "./GridField";
-import { AsyncTextInput } from "./AsyncTextInput";
-import { GridFieldStacked } from "./GridFieldStacked";
+import { InputGrid } from "./inputs/InputGrid";
+import { GridField } from "./inputs/GridField";
+import { AsyncTextInput } from "./inputs/AsyncTextInput";
+import { GridFieldStacked } from "./inputs/GridFieldStacked";
 
 type TrailActorSheetProps = {
   entity: TrailActor,

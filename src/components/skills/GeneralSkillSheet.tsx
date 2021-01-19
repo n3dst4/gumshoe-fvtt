@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { useUpdate } from "../hooks/useUpdate";
-import { TrailItem } from "../module/TrailItem";
-import { AsyncNumberInput } from "./AsyncNumberInput";
-import { AsyncTextInput } from "./AsyncTextInput";
-import { CSSReset } from "./CSSReset";
-import { GridField } from "./GridField";
-import { InputGrid } from "./InputGrid";
+import { useUpdate } from "../../hooks/useUpdate";
+import { TrailItem } from "../../module/TrailItem";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { CSSReset } from "../CSSReset";
+import { GridField } from "../inputs/GridField";
+import { InputGrid } from "../inputs/InputGrid";
 type GeneralSkillSheetProps = {
   entity: TrailItem,
   foundryWindow: Application,

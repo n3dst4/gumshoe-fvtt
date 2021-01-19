@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
 import React, { useCallback } from "react";
-import { useAsyncUpdate } from "../hooks/useAsyncUpdate";
+import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 
 type AsyncNumberInputProps = {
   value: undefined|number,

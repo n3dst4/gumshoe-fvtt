@@ -4,8 +4,8 @@ import React from "react";
 import { equipment, generalSkill, investigativeSkill } from "../constants";
 import { TrailItem } from "../module/TrailItem";
 import { EquipmentSheet } from "./EquipmentSheet";
-import { GeneralSkillSheet } from "./GeneralSkillSheet";
-import { InvestigativeSkillSheet } from "./InvestigativeSkillSheet";
+import { GeneralSkillSheet } from "./skills/GeneralSkillSheet";
+import { InvestigativeSkillSheet } from "./skills/InvestigativeSkillSheet";
 
 type TrailItemSheetProps = {
   entity: TrailItem,
