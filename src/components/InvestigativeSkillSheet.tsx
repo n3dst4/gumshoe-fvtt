@@ -18,7 +18,7 @@ export const InvestigativeSkillSheet: React.FC<InvestigativeSkillSheetProps> = (
   foundryWindow,
 }) => {
   const updateName = useUpdate(entity, (name) => ({ name }));
-  const updateCategory = useUpdate(entity, (name) => ({ data: { name } }));
+  const updateCategory = useUpdate(entity, (category) => ({ data: { category } }));
   const updateRating = useUpdate(entity, (rating) => ({ data: { rating } }));
   const updatePool = useUpdate(entity, (pool) => ({ data: { pool } }));
   const updateHasSpeciality = useUpdate(entity, (hasSpeciality) => ({ data: { hasSpeciality } }));
@@ -45,7 +45,7 @@ export const InvestigativeSkillSheet: React.FC<InvestigativeSkillSheetProps> = (
         <GridFormField label="Has speciality?">
           <input
             type="checkbox"
-            value={entity.data.data.hasSpeciality}
+            checked={entity.data.data.hasSpeciality}
             onChange={(e) => {
               updateHasSpeciality(e.currentTarget.checked);
             }}

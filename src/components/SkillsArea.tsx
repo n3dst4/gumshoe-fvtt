@@ -57,14 +57,25 @@ export const SkillsArea: React.FC<SkillsAreaProps> = ({
       <div css={{ gridArea: "inv1" }}>
         {i1Cats.map((cat) => (
           <div key={cat}>
-            {cat}
+            <h2>{cat}</h2>
+            {
+              investigativeSkills[cat].map((skill) => (
+                <div key={skill.id}>{skill.data.name}</div>
+              ))
+            }
           </div>
         ))}
       </div>
       <div css={{ gridArea: "inv2" }}>
         {i2Cats.map((cat) => (
           <div key={cat}>
-            {cat}
+            <h2>{cat}</h2>
+            {
+              investigativeSkills[cat].map((skill) => (
+                <div key={skill.id}>{skill.data.name}</div>
+              ))
+            }
+
           </div>
         ))}
       </div>

@@ -51,10 +51,11 @@ export const TrailActorSheet = ({
   for (const item of entity.items.values()) {
     if (item.type === "investigativeSkill") {
       const skill = item as InvestigativeSkill;
-      if (investigativeSkills[skill.data.data.category] === undefined) {
-        investigativeSkills[skill.data.data.category] = [];
+      const cat = skill.data.data.category || "Uncategorised";
+      if (investigativeSkills[cat] === undefined) {
+        investigativeSkills[cat] = [];
       }
-      investigativeSkills[skill.data.data.category].push(skill);
+      investigativeSkills[cat].push(skill);
     } else if (item.type === "generalSkill") {
       generalSkills.push(item);
     }
