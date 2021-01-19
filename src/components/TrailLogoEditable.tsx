@@ -84,6 +84,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
           letterSpacing: "-0.04em",
           whiteSpace: "nowrap",
           transform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
+          caretColor: "black",
           border: "none",
           padding: 0,
           lineHeight: 1,
