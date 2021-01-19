@@ -11,15 +11,15 @@ type AsyncTextInputProps = {
 
 export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
   value,
-  onChange,
+  onChange: onChangeOrig,
   className,
 }) => {
   const {
-    onChangeCb,
+    onChange,
     onFocus,
     onBlur,
     display,
-  } = useAsyncUpdate(value, onChange);
+  } = useAsyncUpdate(value, onChangeOrig);
 
   return (
     <input
@@ -31,7 +31,7 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
       className={className}
       data-lpignore="true"
       value={display}
-      onChange={onChangeCb}
+      onChange={onChange}
       onFocus={onFocus}
       onBlur={onBlur}
     />

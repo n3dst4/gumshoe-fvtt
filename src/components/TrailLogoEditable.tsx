@@ -34,12 +34,13 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
   onChange,
 }) => {
   const textStyle: CSSObject = {
+    transition: "font-size 500ms",
     fontSize: `${Math.min(1, fontFactor / text.length)}em`,
   };
 
   // all the editing logic is done in the hook
   const {
-    onInputCb,
+    onInput,
     onFocus,
     onBlur,
     contentEditableRef,
@@ -113,7 +114,8 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
         {/* gradient-bearer */}
         <div
           css={{
-            background: "linear-gradient(to bottom right, #efb183 0%,#222 30%,#efb183 90%)",
+            background:
+              "linear-gradient(to bottom right, #efb183 0%,#222 30%,#efb183 90%)",
             backgroundClip: "text",
             ...textBearerStyle,
           }}
@@ -124,7 +126,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
             }}
             contentEditable
             ref={contentEditableRef}
-            onInput={onInputCb}
+            onInput={onInput}
             onFocus={onFocus}
             onBlur={onBlur}
           />

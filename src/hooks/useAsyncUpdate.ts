@@ -8,7 +8,7 @@ import throttle from "lodash/throttle";
  */
 export const useAsyncUpdate = (
   value: string,
-  onChange: (newValue: string) => void,
+  onChangeOrig: (newValue: string) => void,
 ) => {
   // many shenanigans to handle slow updates
   // first up, state to handle the actual text we show so we can update it in a
@@ -30,10 +30,10 @@ export const useAsyncUpdate = (
   // we only fire the update event every so often to avoid spamming the
   // network
   const onChangeThrottled = useMemo(() => {
-    return throttle(onChange, 500);
-  }, [onChange]);
+    return throttle(onChangeOrig, 500);
+  }, [onChangeOrig]);
 
-  const onChangeCb = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setDisplay(e.currentTarget.value);
     onChangeThrottled(e.currentTarget.value);
   }, [onChangeThrottled]);
@@ -53,7 +53,7 @@ export const useAsyncUpdate = (
   const contentEditableRef = useRef<HTMLDivElement|null>(null);
 
   // a callback for whe edits happen
-  const onInputCb = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+  const onInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
     // if (repeaterDivRef.current === null) {
     //   return;
     // }
@@ -75,8 +75,8 @@ export const useAsyncUpdate = (
   }, [value]);
 
   return {
-    onChangeCb,
-    onInputCb,
+    onChange,
+    onInput,
     onFocus,
     onBlur,
     display,
