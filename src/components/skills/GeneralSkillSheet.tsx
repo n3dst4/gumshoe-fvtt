@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { TrailItem } from "../../module/TrailItem";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -8,10 +8,18 @@ import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { CSSReset } from "../CSSReset";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
+import { CheckButtons } from "../inputs/CheckButtons";
+import { GridFieldStacked } from "../inputs/GridFieldStacked";
+
 type GeneralSkillSheetProps = {
   entity: TrailItem,
   foundryWindow: Application,
 };
+
+const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
+  const label = i.toString();
+  return { label, value: label, enabled: true };
+});
 
 export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
   entity,
@@ -52,11 +60,76 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
     d.render(true);
   }, [entity]);
 
+  const [spend, setSpend] = useState("0");
+
+  const onTest = useCallback(() => {
+    const roll = new Roll("1d6 + @spend", { spend });
+    const label = `Rolling ${entity.name}`;
+    roll.roll().toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: entity.actor }),
+      flavor: label,
+    });
+    entity.update({ data: { pool: entity.data.data.pool - Number(spend) || 0 } });
+    setSpend("0");
+  }, [entity, spend]);
+
+  const onSpend = useCallback(() => {
+    const roll = new Roll("@spend", { spend });
+    const label = `Ability pool spend for ${entity.name}`;
+    roll.roll().toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: entity.actor }),
+      flavor: label,
+    });
+    entity.update({ data: { pool: entity.data.data.pool - Number(spend) || 0 } });
+    setSpend("0");
+  }, [entity, spend]);
+
+  const spendOptions = defaultSpendOptions.map((option) => ({
+    ...option,
+    enabled: option.value <= entity.data.data.pool,
+  }));
+
   return (
     <CSSReset>
       <h1>
         General skill
       </h1>
+
+      {/* Spending/testing area */}
+      {entity.isOwned &&
+        <InputGrid
+          css={{
+            border: "2px groove white",
+            padding: "1em",
+            marginBottom: "1em",
+          }}
+        >
+          <GridField label="Spend">
+            <CheckButtons
+              onChange={setSpend}
+              selected={spend}
+              options={spendOptions}
+            />
+          </GridField>
+          <GridFieldStacked>
+            <div
+              css={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <button css={{ flex: 1 }} onClick={onSpend}>Simple Spend</button>
+              <button css={{ flex: 1 }} onClick={onTest}>
+                Test
+                {" "}
+                <i className="fa fa-dice"/>
+              </button>
+            </div>
+          </GridFieldStacked>
+        </InputGrid>
+      }
+
+      {/* regular editing stuiff */}
       <InputGrid>
         <GridField label="Name">
           <AsyncTextInput value={entity.data.name} onChange={updateName} />
@@ -76,12 +149,19 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
             }}
           />
         </GridField>
-        {
-          entity.data.data.hasSpeciality &&
-          <GridField label="Speciality">
-            <AsyncTextInput value={entity.data.data.speciality} onChange={updateSpeciality} />
-          </GridField>
-        }
+        <GridField
+          label="Speciality"
+          css={{
+            opacity: entity.data.data.hasSpeciality ? 1 : 0.3,
+            transition: "opacity 0.5s",
+          }}
+        >
+          <AsyncTextInput
+            value={entity.data.data.speciality}
+            onChange={updateSpeciality}
+            disabled={!entity.data.data.hasSpeciality}
+          />
+        </GridField>
         <GridField label="Can be use investigatively?">
           <input
             type="checkbox"
