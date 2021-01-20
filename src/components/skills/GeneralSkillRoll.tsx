@@ -24,9 +24,19 @@ export const GeneralSkillRoll: React.FC<GeneralSkillRollProps> = ({
 }) => {
   const [spend, setSpend] = useState("0");
 
-  const onRoll = useCallback(() => {
+  const onTest = useCallback(() => {
     const roll = new Roll("1d6 + @spend", { spend });
     const label = `Rolling ${entity.name}`;
+    roll.roll().toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: entity.actor }),
+      flavor: label,
+    });
+    entity.update({ data: { pool: entity.data.data.pool - Number(spend) || 0 } });
+  }, [entity, spend]);
+
+  const onSpend = useCallback(() => {
+    const roll = new Roll("@spend", { spend });
+    const label = `Ability pool spend for ${entity.name}`;
     roll.roll().toMessage({
       speaker: ChatMessage.getSpeaker({ actor: entity.actor }),
       flavor: label,
@@ -70,7 +80,15 @@ export const GeneralSkillRoll: React.FC<GeneralSkillRollProps> = ({
           />
         </GridField>
         <GridFieldStacked>
-          <button onClick={onRoll}>Roll!</button>
+          <div
+            css={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <button css={{ flex: 1 }} onClick={onSpend}>Spend</button>
+            <button css={{ flex: 1 }} onClick={onTest}>Test</button>
+          </div>
         </GridFieldStacked>
       </InputGrid>
     </CSSReset>
