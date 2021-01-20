@@ -5,11 +5,12 @@ import { TrailItem } from "../../module/TrailItem";
 import { CSSReset } from "../CSSReset";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
+import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 
-const spendOptions = new Array(8).fill(null).map((_, i) => {
+const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
   const label = i.toString();
-  return { label, value: label };
+  return { label, value: label, enabled: true };
 });
 
 type GeneralSkillRollProps = {
@@ -21,32 +22,46 @@ export const GeneralSkillRoll: React.FC<GeneralSkillRollProps> = ({
   entity,
   foundryWindow,
 }) => {
+  const [spend, setSpend] = useState("0");
+
   const onRoll = useCallback(() => {
-    const roll = new Roll("1d6", {});
+    const roll = new Roll("1d6 + @spend", { spend });
     const label = `Rolling ${entity.name}`;
     roll.roll().toMessage({
       speaker: ChatMessage.getSpeaker({ actor: entity.actor }),
       flavor: label,
     });
-  }, [entity.actor, entity.name]);
+    entity.update({ data: { pool: entity.data.data.pool - Number(spend) || 0 } });
+  }, [entity, spend]);
 
   const openSheet = useCallback(() => {
     entity.sheet.render(true);
     foundryWindow.close();
   }, [entity.sheet, foundryWindow]);
 
-  const [spend, setSpend] = useState("0");
+  const spendOptions = defaultSpendOptions.map((option) => ({
+    ...option,
+    enabled: option.value <= entity.data.data.pool,
+  }));
 
   return (
     <CSSReset>
       <h1>
         {entity.name}
-        <i
-          className="fa fa-edit"
+        <button
+          css={{
+            float: "right",
+            width: "auto",
+          }}
           onClick={openSheet}
-        />
+        >
+          Edit Skill
+        </button>
       </h1>
       <InputGrid>
+        <GridField label="Pool">
+          <span css={{ fontWeight: "bold", fontSize: "1.4em" }}>{entity.data.data.pool}</span>
+        </GridField>
         <GridField label="Spend">
           <CheckButtons
             onChange={setSpend}
@@ -54,8 +69,10 @@ export const GeneralSkillRoll: React.FC<GeneralSkillRollProps> = ({
             options={spendOptions}
           />
         </GridField>
+        <GridFieldStacked>
+          <button onClick={onRoll}>Roll!</button>
+        </GridFieldStacked>
       </InputGrid>
-      <button onClick={onRoll}>Roll!</button>
     </CSSReset>
   );
 };

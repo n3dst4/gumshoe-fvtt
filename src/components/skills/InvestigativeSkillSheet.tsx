@@ -21,8 +21,8 @@ export const InvestigativeSkillSheet: React.FC<InvestigativeSkillSheetProps> = (
   const updateCategory = useUpdate(entity, (category) => ({ data: { category } }));
   const updateRating = useUpdate(entity, (rating) => ({ data: { rating } }));
   const updatePool = useUpdate(entity, (pool) => ({ data: { pool } }));
-  const updateHasSpeciality = useUpdate(entity, (hasSpeciality) => ({ data: { hasSpeciality } }));
-  const updateSpeciality = useUpdate(entity, (speciality) => ({ data: { speciality } }));
+  const updateHasSpeciality = useUpdate(entity, (hasSpeciality) => ({ name: entity.data.name, data: { hasSpeciality } }));
+  const updateSpeciality = useUpdate(entity, (speciality) => ({ name: entity.data.name, data: { speciality } }));
 
   return (
     <CSSReset>
@@ -31,7 +31,7 @@ export const InvestigativeSkillSheet: React.FC<InvestigativeSkillSheetProps> = (
       </h1>
       <InputGrid>
         <GridField label="Name">
-          <AsyncTextInput value={entity.name} onChange={updateName} />
+          <AsyncTextInput value={entity.data.name} onChange={updateName} />
         </GridField>
         <GridField label="Category">
           <AsyncTextInput value={entity.data.data.category} onChange={updateCategory} />

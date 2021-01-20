@@ -3,7 +3,7 @@ import { css, jsx } from "@emotion/react";
 import React, { Fragment } from "react";
 
 type GridFieldStackedProps = {
-  label: string;
+  label?: string;
   className?: string;
   children: any;
 };

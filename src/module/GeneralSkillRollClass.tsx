@@ -12,6 +12,7 @@ class GeneralSkillRollClassBase extends BaseEntitySheet<TrailItem> {
       template: reactTemplatePath,
       width: 330,
       height: 200,
+      resizable: true,
     });
   }
 }

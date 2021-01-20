@@ -25,7 +25,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
       </h1>
       <InputGrid>
         <GridField label="Name">
-          <AsyncTextInput value={entity.name} onChange={updateName} />
+          <AsyncTextInput value={entity.data.name} onChange={updateName} />
         </GridField>
       </InputGrid>
     </CSSReset>
