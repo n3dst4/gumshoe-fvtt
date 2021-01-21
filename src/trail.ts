@@ -94,5 +94,15 @@ Hooks.on("createItem", (item, diff, options, actorId) => {
   }
 });
 
-CONFIG.debug.hooks = true;
-// Add any additional hooks if necessary
+// XXX revisit this hook when we want to think about creating abilities
+// directly
+// Hooks.on("createOwnedItem", (actor: Actor, itemData, options, actorId) => {
+//   if (isAbility(itemData.type)) {
+//     actor.updateOwnedItem({
+//       ...itemData,
+//       dat
+//     })
+//   }
+// });
+
+// CONFIG.debug.hooks = true;
