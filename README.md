@@ -14,5 +14,6 @@
 - [ ] Notes/background etc.
 - [ ] Attack rolls?
 - [ ] +/- controls
+- [ ] Update window title when entity name changes
 - [ ] README - setup, install, dev
 - [ ] Publish
