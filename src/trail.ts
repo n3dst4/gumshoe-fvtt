@@ -44,14 +44,36 @@ Hooks.once("ready", function () {
   // Do anything once the system is ready
 });
 
+function isAbility (type: string) {
+  return type === investigativeAbility || type === generalAbility;
+}
+
+function makeName (baseName: string, speciality: string, hasSpeciality: boolean) {
+  return hasSpeciality ? `${baseName} (${speciality})` : baseName;
+}
+
 function updateName (itemData: ItemData<any>, diff: Record<string, any>) {
   console.log("!!!preUpdateOwnedItem", diff);
-  const isAbility = itemData.type === investigativeAbility || itemData.type === generalAbility;
-  if (isAbility && diff.data && (diff.data.baseName !== undefined || diff.data.hasSpeciality !== undefined || diff.data.speciality !== undefined)) {
-    const hasSpeciality = diff.data.hasSpeciality === undefined ? itemData.data.hasSpeciality : diff.data.hasSpeciality;
-    const baseName = diff.data.baseName === undefined ? itemData.data.baseName : diff.data.baseName;
-    const speciality = diff.data.speciality === undefined ? itemData.data.speciality : diff.data.speciality;
-    diff.name = hasSpeciality ? `${baseName} (${speciality})` : baseName;
+  if (
+    isAbility(itemData.type) &&
+    diff.data &&
+    (diff.data.baseName !== undefined ||
+      diff.data.hasSpeciality !== undefined ||
+      diff.data.speciality !== undefined)
+  ) {
+    const hasSpeciality =
+      diff.data.hasSpeciality === undefined
+        ? itemData.data.hasSpeciality
+        : diff.data.hasSpeciality;
+    const baseName =
+      diff.data.baseName === undefined
+        ? itemData.data.baseName
+        : diff.data.baseName;
+    const speciality =
+      diff.data.speciality === undefined
+        ? itemData.data.speciality
+        : diff.data.speciality;
+    diff.name = makeName(baseName, speciality, hasSpeciality);
   }
 }
 
@@ -60,6 +82,16 @@ Hooks.on("preUpdateOwnedItem", (actor, itemData, diff, options, actorId) => {
 });
 Hooks.on("preUpdateItem", (item, diff, options, actorId) => {
   updateName(item.data, diff);
+});
+
+Hooks.on("createItem", (item, diff, options, actorId) => {
+  if (isAbility(item.data.type)) {
+    item.update({
+      data: {
+        baseName: item.data.name,
+      },
+    });
+  }
 });
 
 CONFIG.debug.hooks = true;
