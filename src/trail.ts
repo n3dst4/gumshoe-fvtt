@@ -55,10 +55,12 @@ function updateName (itemData: ItemData<any>, diff: Record<string, any>) {
   }
 }
 
-Hooks.on("preUpdateOwnedItem", (actor, item, diff, options, actorId) => {
-  updateName(item, diff);
+Hooks.on("preUpdateOwnedItem", (actor, itemData, diff, options, actorId) => {
+  updateName(itemData, diff);
 });
-Hooks.on("preUpdateItem", updateName);
+Hooks.on("preUpdateItem", (item, diff, options, actorId) => {
+  updateName(item.data, diff);
+});
 
 CONFIG.debug.hooks = true;
 // Add any additional hooks if necessary
