@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback, useState } from "react";
+import React, { Fragment, useCallback, useState } from "react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { TrailItem } from "../../module/TrailItem";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -12,6 +12,7 @@ import { CheckButtons } from "../inputs/CheckButtons";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { Checkbox } from "../inputs/Checkbox";
 import { generalAbility, investigativeAbility } from "../../constants";
+import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 
 type AbilitySheetProps = {
   ability: TrailItem,
@@ -90,6 +91,22 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     setSpend("0");
   }, [ability, spend]);
 
+  const {
+    // display,
+    contentEditableRef: contentEditableRefName,
+    onBlur: onBlurName,
+    onFocus: onFocusName,
+    onInput: onInputName,
+  } = useAsyncUpdate(ability.data.name, updateName);
+
+  const {
+    // display,
+    contentEditableRef: contentEditableRefSpeciality,
+    onBlur: onBlurSpeciality,
+    onFocus: onFocusSpeciality,
+    onInput: onInputSpeciality,
+  } = useAsyncUpdate(ability.data.data.speciality, updateSpeciality);
+
   const spendOptions = defaultSpendOptions.map((option) => ({
     ...option,
     enabled: option.value <= ability.data.data.pool,
@@ -97,8 +114,39 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
 
   return (
     <CSSReset>
-      <h1>
+      <div>
         {isGeneral ? "General" : "Investigative"} ability
+      </div>
+
+      <h1>
+        <span
+          contentEditable
+          css={{
+            minWidth: "1em",
+            display: "inline-block",
+          }}
+    ref={contentEditableRefName}
+          onInput={onInputName}
+          onBlur={onBlurName}
+          onFocus={onFocusName}
+        />
+        {ability.data.data.hasSpeciality &&
+          <Fragment>
+            {" "}(
+              <span
+                contentEditable
+                css={{
+                  minWidth: "1em",
+                  display: "inline-block",
+                }}
+                ref={contentEditableRefSpeciality}
+                onInput={onInputSpeciality}
+                onBlur={onBlurSpeciality}
+                onFocus={onFocusSpeciality}
+              />
+            )
+          </Fragment>
+        }
       </h1>
 
       {/* Spending/testing area */}
