@@ -44,4 +44,21 @@ Hooks.once("ready", function () {
   // Do anything once the system is ready
 });
 
+function updateName (itemData: ItemData<any>, diff: Record<string, any>) {
+  console.log("!!!preUpdateOwnedItem", diff);
+  const isAbility = itemData.type === investigativeAbility || itemData.type === generalAbility;
+  if (isAbility && diff.data && (diff.data.baseName !== undefined || diff.data.hasSpeciality !== undefined || diff.data.speciality !== undefined)) {
+    const hasSpeciality = diff.data.hasSpeciality === undefined ? itemData.data.hasSpeciality : diff.data.hasSpeciality;
+    const baseName = diff.data.baseName === undefined ? itemData.data.baseName : diff.data.baseName;
+    const speciality = diff.data.speciality === undefined ? itemData.data.speciality : diff.data.speciality;
+    diff.name = hasSpeciality ? `${baseName} (${speciality})` : baseName;
+  }
+}
+
+Hooks.on("preUpdateOwnedItem", (actor, item, diff, options, actorId) => {
+  updateName(item, diff);
+});
+Hooks.on("preUpdateItem", updateName);
+
+CONFIG.debug.hooks = true;
 // Add any additional hooks if necessary

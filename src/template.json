@@ -19,6 +19,7 @@
     "types": ["investigativeAbility", "generalAbility", "equipment"],
     "templates": {
       "ability": {
+        "baseName": "",
         "rating": 1,
         "pool": 1,
         "hasSpeciality": false,

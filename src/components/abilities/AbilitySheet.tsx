@@ -31,7 +31,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   const isInvestigative = ability.type === investigativeAbility;
   const isGeneral = ability.type === generalAbility;
 
-  const updateName = useUpdate(ability, (name) => ({ name }));
+  const updateBaseName = useUpdate(ability, (baseName) => ({ data: { baseName } }));
   const updateCategory = useUpdate(ability, (category) => ({ data: { category } }));
   const updateRating = useUpdate(ability, (rating) => ({ data: { rating } }));
   const updatePool = useUpdate(ability, (pool) => ({ data: { pool } }));
@@ -97,7 +97,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     onBlur: onBlurName,
     onFocus: onFocusName,
     onInput: onInputName,
-  } = useAsyncUpdate(ability.data.name, updateName);
+  } = useAsyncUpdate(ability.data.data.baseName, updateBaseName);
 
   const {
     // display,
@@ -125,7 +125,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
             minWidth: "1em",
             display: "inline-block",
           }}
-    ref={contentEditableRefName}
+          ref={contentEditableRefName}
           onInput={onInputName}
           onBlur={onBlurName}
           onFocus={onFocusName}
@@ -194,7 +194,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
       {/* regular editing stuiff */}
       <InputGrid>
         <GridField label="Name">
-          <AsyncTextInput value={ability.data.name} onChange={updateName} />
+          <AsyncTextInput value={ability.data.data.baseName} onChange={updateBaseName} />
         </GridField>
         {isInvestigative &&
           <GridField label="Category">
