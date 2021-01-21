@@ -119,7 +119,13 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
                 flexDirection: "row",
               }}
             >
-              <button css={{ flex: 1 }} onClick={onSpend}>Simple Spend</button>
+              <button
+                css={{ flex: 1 }}
+                disabled={spend === "0"}
+                onClick={onSpend}
+              >
+                Simple Spend
+              </button>
               <button css={{ flex: 1 }} onClick={onTest}>
                 Test
                 {" "}

@@ -27,6 +27,9 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           padding: 0,
           fontWeight: "inherit",
         },
+        "button[disabled]": {
+          opacity: 0.5,
+        },
       }}
       className={className}
     >
