@@ -16,21 +16,21 @@
     }
   },
   "Item": {
-    "types": ["investigativeSkill", "generalSkill", "equipment"],
+    "types": ["investigativeAbility", "generalAbility", "equipment"],
     "templates": {
-      "skill": {
+      "ability": {
         "rating": 1,
         "pool": 1,
         "hasSpeciality": false,
         "speciality": ""
       }
     },
-    "investigativeSkill": {
-      "templates": ["skill"],
+    "investigativeAbility": {
+      "templates": ["ability"],
       "category": ""
     },
-    "generalSkill": {
-      "templates": ["skill"],
+    "generalAbility": {
+      "templates": ["ability"],
       "canBeInvestigative": false
     }
   }

@@ -4,7 +4,7 @@ import { TrailActor } from "./module/TrailActor";
 import { TrailItem } from "./module/TrailItem";
 import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
 import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
-import { equipment, generalSkill, investigativeSkill } from "./constants";
+import { equipment, generalAbility, investigativeAbility } from "./constants";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -28,7 +28,7 @@ Hooks.once("init", async function () {
     TrailItemSheetClass,
     {
       makeDefault: true,
-      types: [investigativeSkill, generalSkill, equipment],
+      types: [investigativeAbility, generalAbility, equipment],
     },
   );
 });

@@ -1,23 +1,23 @@
 import { TrailActor } from "./module/TrailActor";
 
-type BaseSkillData = {
+type BaseAbilityData = {
   "rating": number,
   "pool": number,
   "hasSpeciality": boolean,
   "speciality": string
 }
 
-export type InvestigativeSkillData = BaseSkillData & {
+export type InvestigativeAbilityData = BaseAbilityData & {
   "category": string,
 }
 
-export type GeneralSkillData = BaseSkillData & {
+export type GeneralAbilityData = BaseAbilityData & {
   "canBeInvestigative": boolean,
 }
 
-export type InvestigativeSkill = Item<InvestigativeSkillData>;
+export type InvestigativeAbility = Item<InvestigativeAbilityData>;
 
-export type GeneralSkill = Item<GeneralSkillData>;
+export type GeneralAbility = Item<GeneralAbilityData>;
 
 export type PCTrailActorData = {
   "buildPoints": number,

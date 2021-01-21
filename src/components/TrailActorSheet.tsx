@@ -5,14 +5,15 @@ import { PoolTracker } from "./PoolTracker";
 import { jsx } from "@emotion/react";
 // import { TrailLogo } from "./TrailLogo";
 import { useUpdate } from "../hooks/useUpdate";
-import { GeneralSkill, InvestigativeSkill } from "../types";
-import { SkillsArea } from "./skills/SkillsArea";
+import { GeneralAbility, InvestigativeAbility } from "../types";
+import { AbilitiesArea } from "./abilities/AbilitiesArea";
 import { CSSReset } from "./CSSReset";
 import { TrailLogoEditable } from "./TrailLogoEditable";
 import { InputGrid } from "./inputs/InputGrid";
 import { GridField } from "./inputs/GridField";
 import { AsyncTextInput } from "./inputs/AsyncTextInput";
 import { GridFieldStacked } from "./inputs/GridFieldStacked";
+import { generalAbility, investigativeAbility } from "../constants";
 
 type TrailActorSheetProps = {
   entity: TrailActor,
@@ -45,19 +46,19 @@ export const TrailActorSheet = ({
   const updateOccupation = useUpdate(entity, occupation => ({ data: { occupation } }));
   const updateOccupationalBenefits = useUpdate(entity, occupationalBenefits => ({ data: { occupationalBenefits } }));
 
-  const investigativeSkills: { [category: string]: InvestigativeSkill[] } = {};
-  const generalSkills: GeneralSkill[] = [];
+  const investigativeAbilities: { [category: string]: InvestigativeAbility[] } = {};
+  const generalAbilities: GeneralAbility[] = [];
 
   for (const item of entity.items.values()) {
-    if (item.type === "investigativeSkill") {
-      const skill = item as InvestigativeSkill;
-      const cat = skill.data.data.category || "Uncategorised";
-      if (investigativeSkills[cat] === undefined) {
-        investigativeSkills[cat] = [];
+    if (item.type === investigativeAbility) {
+      const ability = item as InvestigativeAbility;
+      const cat = ability.data.data.category || "Uncategorised";
+      if (investigativeAbilities[cat] === undefined) {
+        investigativeAbilities[cat] = [];
       }
-      investigativeSkills[cat].push(skill);
-    } else if (item.type === "generalSkill") {
-      generalSkills.push(item);
+      investigativeAbilities[cat].push(ability);
+    } else if (item.type === generalAbility) {
+      generalAbilities.push(item);
     }
   }
 
@@ -159,9 +160,9 @@ export const TrailActorSheet = ({
           gridArea: "body",
         }}
       >
-        <SkillsArea
-          investigativeSkills={investigativeSkills}
-          generalSkills={generalSkills}
+        <AbilitiesArea
+          investigativeAbilities={investigativeAbilities}
+          generalAbilities={generalAbilities}
         />
       </div>
     </CSSReset>

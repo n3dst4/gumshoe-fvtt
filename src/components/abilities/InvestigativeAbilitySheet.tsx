@@ -8,12 +8,12 @@ import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { CSSReset } from "../CSSReset";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
-type InvestigativeSkillSheetProps = {
+type InvestigativeAbilitySheetProps = {
   entity: TrailItem,
   foundryWindow: Application,
 };
 
-export const InvestigativeSkillSheet: React.FC<InvestigativeSkillSheetProps> = ({
+export const InvestigativeAbilitySheet: React.FC<InvestigativeAbilitySheetProps> = ({
   entity,
   foundryWindow,
 }) => {
@@ -27,7 +27,7 @@ export const InvestigativeSkillSheet: React.FC<InvestigativeSkillSheetProps> = (
   return (
     <CSSReset>
       <h1>
-        Investigative skill
+        Investigative ability
       </h1>
       <InputGrid>
         <GridField label="Name">

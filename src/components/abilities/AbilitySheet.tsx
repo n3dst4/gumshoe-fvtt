@@ -93,7 +93,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   return (
     <CSSReset>
       <h1>
-        General skill
+        General ability
       </h1>
 
       {/* Spending/testing area */}
@@ -178,7 +178,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
         </GridField>
         {
           ability.actor &&
-          <GridField label="Delete skill">
+          <GridField label="Delete ability">
             <button
               onClick={onClickDelete}
             >

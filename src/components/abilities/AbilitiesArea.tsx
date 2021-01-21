@@ -1,17 +1,17 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { GeneralSkill, InvestigativeSkill } from "../../types";
-import { GeneralSkillSlug } from "./GeneralSkillSlug";
+import { GeneralAbility, InvestigativeAbility } from "../../types";
+import { GeneralAbilitySlug } from "./GeneralAbilitySlug";
 
-type SkillsAreaProps = {
-  investigativeSkills: { [category: string]: InvestigativeSkill[] },
-  generalSkills: GeneralSkill[],
+type AbilitiesAreaProps = {
+  investigativeAbilities: { [category: string]: InvestigativeAbility[] },
+  generalAbilities: GeneralAbility[],
 };
 
-export const SkillsArea: React.FC<SkillsAreaProps> = ({
-  investigativeSkills,
-  generalSkills,
+export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
+  investigativeAbilities,
+  generalAbilities,
 }) => {
   const i1Cats: string[] = [];
   const i2Cats: string[] = [];
@@ -19,14 +19,14 @@ export const SkillsArea: React.FC<SkillsAreaProps> = ({
   let i1Len = 0;
   let i2Len = 0;
 
-  for (const cat of Object.keys(investigativeSkills)) {
+  for (const cat of Object.keys(investigativeAbilities)) {
     const col = i2Len < i1Len ? 2 : 1;
 
     (col === 1 ? i1Cats : i2Cats).push(cat);
     if (col === 1) {
-      i1Len += investigativeSkills[cat].length;
+      i1Len += investigativeAbilities[cat].length;
     } else {
-      i2Len += investigativeSkills[cat].length;
+      i2Len += investigativeAbilities[cat].length;
     }
   }
 
@@ -40,9 +40,9 @@ export const SkillsArea: React.FC<SkillsAreaProps> = ({
       }}
     >
       <div css={{ gridArea: "general" }}>
-        <h2>General Skills</h2>
-        {generalSkills.map((skill) => (
-          <GeneralSkillSlug key={skill.id} skill={skill} />
+        <h2>General Abilities</h2>
+        {generalAbilities.map((ability) => (
+          <GeneralAbilitySlug key={ability.id} ability={ability} />
         ))}
       </div>
       <div css={{ gridArea: "inv1" }}>
@@ -50,8 +50,8 @@ export const SkillsArea: React.FC<SkillsAreaProps> = ({
           <div key={cat}>
             <h2>{cat}</h2>
             {
-              investigativeSkills[cat].map((skill) => (
-                <div key={skill.id}>{skill.data.name}</div>
+              investigativeAbilities[cat].map((ability) => (
+                <div key={ability.id}>{ability.data.name}</div>
               ))
             }
           </div>
@@ -62,8 +62,8 @@ export const SkillsArea: React.FC<SkillsAreaProps> = ({
           <div key={cat}>
             <h2>{cat}</h2>
             {
-              investigativeSkills[cat].map((skill) => (
-                <div key={skill.id}>{skill.data.name}</div>
+              investigativeAbilities[cat].map((ability) => (
+                <div key={ability.id}>{ability.data.name}</div>
               ))
             }
 

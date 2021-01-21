@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { equipment, generalSkill, investigativeSkill } from "../constants";
+import { equipment, generalAbility, investigativeAbility } from "../constants";
 import { TrailItem } from "../module/TrailItem";
 import { EquipmentSheet } from "./EquipmentSheet";
-import { AbilitySheet } from "./skills/AbilitySheet";
-import { InvestigativeSkillSheet } from "./skills/InvestigativeSkillSheet";
+import { AbilitySheet } from "./abilities/AbilitySheet";
+import { InvestigativeAbilitySheet } from "./abilities/InvestigativeAbilitySheet";
 
 type TrailItemSheetProps = {
   entity: TrailItem,
@@ -18,9 +18,9 @@ export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
 }) => {
   return (
     <div>
-      {entity.type === investigativeSkill
-        ? <InvestigativeSkillSheet entity={entity} foundryWindow={foundryWindow} />
-        : entity.type === generalSkill
+      {entity.type === investigativeAbility
+        ? <InvestigativeAbilitySheet entity={entity} foundryWindow={foundryWindow} />
+        : entity.type === generalAbility
           ? <AbilitySheet ability={entity} foundryWindow={foundryWindow} />
           : entity.type === equipment
             ? <EquipmentSheet entity={entity} foundryWindow={foundryWindow} />
