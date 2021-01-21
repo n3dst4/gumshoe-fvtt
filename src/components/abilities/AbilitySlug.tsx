@@ -11,13 +11,18 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({
   ability,
 }) => {
   return (
-    <div
-    key={ability.id}
-    onClick={() => {
-      ability.sheet.render(true);
-    }}
-  >
-    {ability.name} ({ability.data.data.pool}/{ability.data.data.rating})
-  </div>
+    <a
+      key={ability.id}
+      css={{
+        ":hover": {
+          textShadow: "0 0 0.5em #ec6f12",
+        },
+      }}
+      onClick={() => {
+        ability.sheet.render(true);
+      }}
+    >
+      {ability.name} ({ability.data.data.pool}/{ability.data.data.rating})
+    </a>
   );
 };
