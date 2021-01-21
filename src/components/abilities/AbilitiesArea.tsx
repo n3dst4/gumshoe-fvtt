@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React from "react";
 import { GeneralAbility, InvestigativeAbility } from "../../types";
-import { GeneralAbilitySlug } from "./GeneralAbilitySlug";
+import { AbilitySlug } from "./AbilitySlug";
 
 type AbilitiesAreaProps = {
   investigativeAbilities: { [category: string]: InvestigativeAbility[] },
@@ -42,7 +42,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
       <div css={{ gridArea: "general" }}>
         <h2>General Abilities</h2>
         {generalAbilities.map((ability) => (
-          <GeneralAbilitySlug key={ability.id} ability={ability} />
+          <AbilitySlug key={ability.id} ability={ability} />
         ))}
       </div>
       <div css={{ gridArea: "inv1" }}>
@@ -51,7 +51,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
             <h2>{cat}</h2>
             {
               investigativeAbilities[cat].map((ability) => (
-                <div key={ability.id}>{ability.data.name}</div>
+                <AbilitySlug key={ability.id} ability={ability}/>
               ))
             }
           </div>
@@ -63,7 +63,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
             <h2>{cat}</h2>
             {
               investigativeAbilities[cat].map((ability) => (
-                <div key={ability.id}>{ability.data.name}</div>
+                <AbilitySlug key={ability.id} ability={ability}/>
               ))
             }
 

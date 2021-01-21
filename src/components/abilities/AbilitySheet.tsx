@@ -11,6 +11,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { Checkbox } from "../inputs/Checkbox";
+import { generalAbility, investigativeAbility } from "../../constants";
 
 type AbilitySheetProps = {
   ability: TrailItem,
@@ -26,7 +27,11 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   ability,
   foundryWindow,
 }) => {
+  const isInvestigative = ability.type === investigativeAbility;
+  const isGeneral = ability.type === generalAbility;
+
   const updateName = useUpdate(ability, (name) => ({ name }));
+  const updateCategory = useUpdate(ability, (category) => ({ data: { category } }));
   const updateRating = useUpdate(ability, (rating) => ({ data: { rating } }));
   const updatePool = useUpdate(ability, (pool) => ({ data: { pool } }));
   const updateHasSpeciality = useUpdate(ability, (hasSpeciality) => ({ data: { hasSpeciality } }));
@@ -93,7 +98,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   return (
     <CSSReset>
       <h1>
-        General ability
+        {isGeneral ? "General" : "Investigative"} ability
       </h1>
 
       {/* Spending/testing area */}
@@ -124,13 +129,15 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
                 disabled={spend === "0"}
                 onClick={onSpend}
               >
-                Simple Spend
+                {isGeneral ? "Simple Spend" : "Spend"}
               </button>
-              <button css={{ flex: 1 }} onClick={onTest}>
-                Test
-                {" "}
-                <i className="fa fa-dice"/>
-              </button>
+              {isGeneral &&
+                <button css={{ flex: 1 }} onClick={onTest}>
+                  Test
+                  {" "}
+                  <i className="fa fa-dice"/>
+                </button>
+              }
             </div>
           </GridFieldStacked>
         </InputGrid>
@@ -141,6 +148,11 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
         <GridField label="Name">
           <AsyncTextInput value={ability.data.name} onChange={updateName} />
         </GridField>
+        {isInvestigative &&
+          <GridField label="Category">
+            <AsyncTextInput value={ability.data.data.category} onChange={updateCategory} />
+          </GridField>
+        }
         <GridField label="Rating">
           <AsyncNumberInput value={ability.data.data.rating} onChange={updateRating} />
         </GridField>
@@ -168,14 +180,16 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
             disabled={!ability.data.data.hasSpeciality}
           />
         </GridField>
-        <GridField label="Can be use investigatively?">
-          <Checkbox
-            checked={ability.data.data.canBeInvestigative}
-            onChange={(t) => {
-              updateCanBeInvestigative(t);
-            }}
-          />
-        </GridField>
+        {isGeneral &&
+          <GridField label="Can be use investigatively?">
+            <Checkbox
+              checked={ability.data.data.canBeInvestigative}
+              onChange={(t) => {
+                updateCanBeInvestigative(t);
+              }}
+            />
+          </GridField>
+        }
         {
           ability.actor &&
           <GridField label="Delete ability">

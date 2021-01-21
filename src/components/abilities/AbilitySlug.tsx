@@ -3,11 +3,11 @@ import React from "react";
 import { jsx } from "@emotion/react";
 import { TrailItem } from "../../module/TrailItem";
 
-type GeneralAbilitySlugProps = {
+type AbilitySlugProps = {
   ability: TrailItem,
 };
 
-export const GeneralAbilitySlug: React.FC<GeneralAbilitySlugProps> = ({
+export const AbilitySlug: React.FC<AbilitySlugProps> = ({
   ability,
 }) => {
   return (
