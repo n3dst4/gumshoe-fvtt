@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
-import React from "react";
+import React, { useContext } from "react";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
+import { IdContext } from "../IdContext";
 
 type AsyncTextInputProps = {
   value: undefined|string,
@@ -23,8 +24,11 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
     display,
   } = useAsyncUpdate(value, onChangeOrig);
 
+  const id = useContext(IdContext);
+
   return (
     <input
+      id={id}
       css={css`
         flex: 1;
         /* margin-left: 0.5em; */

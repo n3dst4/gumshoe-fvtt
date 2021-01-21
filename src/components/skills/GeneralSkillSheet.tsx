@@ -10,6 +10,7 @@ import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
+import { Checkbox } from "../inputs/Checkbox";
 
 type GeneralSkillSheetProps = {
   entity: TrailItem,
@@ -141,11 +142,10 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
           <AsyncNumberInput value={entity.data.data.pool} onChange={updatePool} />
         </GridField>
         <GridField label="Has speciality?">
-          <input
-            type="checkbox"
+          <Checkbox
             checked={entity.data.data.hasSpeciality}
-            onChange={(e) => {
-              updateHasSpeciality(e.currentTarget.checked);//
+            onChange={(t) => {
+              updateHasSpeciality(t);
             }}
           />
         </GridField>
@@ -163,11 +163,10 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
           />
         </GridField>
         <GridField label="Can be use investigatively?">
-          <input
-            type="checkbox"
-            value={entity.data.data.canBeInvestigative}
-            onChange={(e) => {
-              updateCanBeInvestigative(e.currentTarget.checked);
+          <Checkbox
+            checked={entity.data.data.canBeInvestigative}
+            onChange={(t) => {
+              updateCanBeInvestigative(t);
             }}
           />
         </GridField>

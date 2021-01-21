@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
+import { IdContext } from "../IdContext";
 
 type AsyncNumberInputProps = {
   value: undefined|number,
@@ -67,8 +68,11 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
 
   const result = validate(display);
 
+  const id = useContext(IdContext);
+
   return (
     <input
+      id={id}
       css={css`
         flex: 1;
         width: 100%;

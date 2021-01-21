@@ -1,11 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
-import React, { Fragment } from "react";
+import React, { useMemo } from "react";
+import { nanoid } from "nanoid";
+import { IdContext } from "../IdContext";
 
 type GridFieldProps = {
   label: string;
   className?: string;
-  children: any;
+  children: JSX.Element;
 };
 
 export const GridField: React.FC<GridFieldProps> = ({
@@ -13,16 +15,18 @@ export const GridField: React.FC<GridFieldProps> = ({
   className,
   children,
 }) => {
+  const id = useMemo(() => nanoid(), []);
   return (
-    <Fragment>
-      <div
+    <IdContext.Provider value={id}>
+      <label
+        htmlFor={id}
         css={css`
           grid-column: label;
         `}
         className={className}
       >
         {label}
-      </div>
+      </label>
       <div
         css={css`
           grid-column: control;
@@ -30,6 +34,6 @@ export const GridField: React.FC<GridFieldProps> = ({
       >
         {children}
       </div>
-    </Fragment>
+    </IdContext.Provider>
   );
 };
