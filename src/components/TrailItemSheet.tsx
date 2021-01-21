@@ -4,7 +4,7 @@ import React from "react";
 import { equipment, generalSkill, investigativeSkill } from "../constants";
 import { TrailItem } from "../module/TrailItem";
 import { EquipmentSheet } from "./EquipmentSheet";
-import { GeneralSkillSheet } from "./skills/GeneralSkillSheet";
+import { AbilitySheet } from "./skills/AbilitySheet";
 import { InvestigativeSkillSheet } from "./skills/InvestigativeSkillSheet";
 
 type TrailItemSheetProps = {
@@ -21,7 +21,7 @@ export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
       {entity.type === investigativeSkill
         ? <InvestigativeSkillSheet entity={entity} foundryWindow={foundryWindow} />
         : entity.type === generalSkill
-          ? <GeneralSkillSheet entity={entity} foundryWindow={foundryWindow} />
+          ? <AbilitySheet ability={entity} foundryWindow={foundryWindow} />
           : entity.type === equipment
             ? <EquipmentSheet entity={entity} foundryWindow={foundryWindow} />
             : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>

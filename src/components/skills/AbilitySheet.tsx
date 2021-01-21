@@ -12,8 +12,8 @@ import { CheckButtons } from "../inputs/CheckButtons";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { Checkbox } from "../inputs/Checkbox";
 
-type GeneralSkillSheetProps = {
-  entity: TrailItem,
+type AbilitySheetProps = {
+  ability: TrailItem,
   foundryWindow: Application,
 };
 
@@ -22,21 +22,21 @@ const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
   return { label, value: label, enabled: true };
 });
 
-export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
-  entity,
+export const AbilitySheet: React.FC<AbilitySheetProps> = ({
+  ability,
   foundryWindow,
 }) => {
-  const updateName = useUpdate(entity, (name) => ({ name }));
-  const updateRating = useUpdate(entity, (rating) => ({ data: { rating } }));
-  const updatePool = useUpdate(entity, (pool) => ({ data: { pool } }));
-  const updateHasSpeciality = useUpdate(entity, (hasSpeciality) => ({ data: { hasSpeciality } }));
-  const updateSpeciality = useUpdate(entity, (speciality) => ({ data: { speciality } }));
-  const updateCanBeInvestigative = useUpdate(entity, (canBeInvestigative) => ({ data: { canBeInvestigative } }));
+  const updateName = useUpdate(ability, (name) => ({ name }));
+  const updateRating = useUpdate(ability, (rating) => ({ data: { rating } }));
+  const updatePool = useUpdate(ability, (pool) => ({ data: { pool } }));
+  const updateHasSpeciality = useUpdate(ability, (hasSpeciality) => ({ data: { hasSpeciality } }));
+  const updateSpeciality = useUpdate(ability, (speciality) => ({ data: { speciality } }));
+  const updateCanBeInvestigative = useUpdate(ability, (canBeInvestigative) => ({ data: { canBeInvestigative } }));
 
   const onClickDelete = useCallback(() => {
-    const message = entity.actor
-      ? `Delete ${entity.actor.data.name}'s "${entity.data.name}" ability?`
-      : `Delete the "${entity.data.name}" ability?`;
+    const message = ability.actor
+      ? `Delete ${ability.actor.data.name}'s "${ability.data.name}" ability?`
+      : `Delete the "${ability.data.name}" ability?`;
 
     const d = new Dialog({
       title: "Confirm",
@@ -50,7 +50,7 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
           icon: '<i class="fas fa-trash"></i>',
           label: "Delete",
           callback: () => {
-            entity.delete();
+            ability.delete();
           },
         },
       },
@@ -59,35 +59,35 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
       // close: html => console.log("This always is logged no matter which option is chosen"),
     });
     d.render(true);
-  }, [entity]);
+  }, [ability]);
 
   const [spend, setSpend] = useState("0");
 
   const onTest = useCallback(() => {
     const roll = new Roll("1d6 + @spend", { spend });
-    const label = `Rolling ${entity.name}`;
+    const label = `Rolling ${ability.name}`;
     roll.roll().toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: entity.actor }),
+      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
       flavor: label,
     });
-    entity.update({ data: { pool: entity.data.data.pool - Number(spend) || 0 } });
+    ability.update({ data: { pool: ability.data.data.pool - Number(spend) || 0 } });
     setSpend("0");
-  }, [entity, spend]);
+  }, [ability, spend]);
 
   const onSpend = useCallback(() => {
     const roll = new Roll("@spend", { spend });
-    const label = `Ability pool spend for ${entity.name}`;
+    const label = `Ability pool spend for ${ability.name}`;
     roll.roll().toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: entity.actor }),
+      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
       flavor: label,
     });
-    entity.update({ data: { pool: entity.data.data.pool - Number(spend) || 0 } });
+    ability.update({ data: { pool: ability.data.data.pool - Number(spend) || 0 } });
     setSpend("0");
-  }, [entity, spend]);
+  }, [ability, spend]);
 
   const spendOptions = defaultSpendOptions.map((option) => ({
     ...option,
-    enabled: option.value <= entity.data.data.pool,
+    enabled: option.value <= ability.data.data.pool,
   }));
 
   return (
@@ -97,7 +97,7 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
       </h1>
 
       {/* Spending/testing area */}
-      {entity.isOwned &&
+      {ability.isOwned &&
         <InputGrid
           css={{
             border: "2px groove white",
@@ -139,17 +139,17 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
       {/* regular editing stuiff */}
       <InputGrid>
         <GridField label="Name">
-          <AsyncTextInput value={entity.data.name} onChange={updateName} />
+          <AsyncTextInput value={ability.data.name} onChange={updateName} />
         </GridField>
         <GridField label="Rating">
-          <AsyncNumberInput value={entity.data.data.rating} onChange={updateRating} />
+          <AsyncNumberInput value={ability.data.data.rating} onChange={updateRating} />
         </GridField>
         <GridField label="Pool">
-          <AsyncNumberInput value={entity.data.data.pool} onChange={updatePool} />
+          <AsyncNumberInput value={ability.data.data.pool} onChange={updatePool} />
         </GridField>
         <GridField label="Has speciality?">
           <Checkbox
-            checked={entity.data.data.hasSpeciality}
+            checked={ability.data.data.hasSpeciality}
             onChange={(t) => {
               updateHasSpeciality(t);
             }}
@@ -158,26 +158,26 @@ export const GeneralSkillSheet: React.FC<GeneralSkillSheetProps> = ({
         <GridField
           label="Speciality"
           css={{
-            opacity: entity.data.data.hasSpeciality ? 1 : 0.3,
+            opacity: ability.data.data.hasSpeciality ? 1 : 0.3,
             transition: "opacity 0.5s",
           }}
         >
           <AsyncTextInput
-            value={entity.data.data.speciality}
+            value={ability.data.data.speciality}
             onChange={updateSpeciality}
-            disabled={!entity.data.data.hasSpeciality}
+            disabled={!ability.data.data.hasSpeciality}
           />
         </GridField>
         <GridField label="Can be use investigatively?">
           <Checkbox
-            checked={entity.data.data.canBeInvestigative}
+            checked={ability.data.data.canBeInvestigative}
             onChange={(t) => {
               updateCanBeInvestigative(t);
             }}
           />
         </GridField>
         {
-          entity.actor &&
+          ability.actor &&
           <GridField label="Delete skill">
             <button
               onClick={onClickDelete}
