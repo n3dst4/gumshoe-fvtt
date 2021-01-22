@@ -14,6 +14,7 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({
     <a
       key={ability.id}
       css={{
+        display: "block",
         ":hover": {
           textShadow: "0 0 0.5em #ec6f12",
         },
