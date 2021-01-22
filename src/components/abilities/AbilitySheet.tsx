@@ -210,29 +210,37 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
         <GridField label="Pool">
           <AsyncNumberInput value={ability.data.data.pool} onChange={updatePool} />
         </GridField>
-        <GridField label="Has speciality?">
-          <Checkbox
-            checked={ability.data.data.hasSpeciality}
-            onChange={(t) => {
-              updateHasSpeciality(t);
+        <GridField label="Speciality?">
+          <div
+            css={{
+              display: "flex",
+              flexDirection: "row",
             }}
-          />
+          >
+            <Checkbox
+              checked={ability.data.data.hasSpeciality}
+              onChange={(t) => {
+                updateHasSpeciality(t);
+              }}
+            />
+            <AsyncTextInput
+              value={ability.data.data.speciality}
+              onChange={updateSpeciality}
+              disabled={!ability.data.data.hasSpeciality}
+              css={{
+                opacity: ability.data.data.hasSpeciality ? 1 : 0.3,
+                transition: "opacity 0.5s",
+              }}
+            />
+
+          </div>
         </GridField>
-        <GridField
+        {/* <GridField
           label="Speciality"
-          css={{
-            opacity: ability.data.data.hasSpeciality ? 1 : 0.3,
-            transition: "opacity 0.5s",
-          }}
         >
-          <AsyncTextInput
-            value={ability.data.data.speciality}
-            onChange={updateSpeciality}
-            disabled={!ability.data.data.hasSpeciality}
-          />
-        </GridField>
+        </GridField> */}
         {isGeneral &&
-          <GridField label="Can be use investigatively?">
+          <GridField label="Can be investigative?">
             <Checkbox
               checked={ability.data.data.canBeInvestigative}
               onChange={(t) => {
