@@ -64,27 +64,64 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
     onBlur,
     onChange,
     onFocus,
+    setValue,
   } = useAsyncUpdate((value || 0).toString(), onChangeString);
+
+  const onClickInc = useCallback(() => {
+    setValue((Number(display) + 1).toString());
+  }, [display, setValue]);
+
+  const onClickDec = useCallback(() => {
+    setValue((Number(display) - 1).toString());
+  }, [display, setValue]);
 
   const result = validate(display);
 
   const id = useContext(IdContext);
 
   return (
-    <input
-      id={id}
-      css={css`
-        flex: 1;
-        width: 100%;
-        color: ${result.validation === "failed" ? "red" : undefined};
-        user-select: "text";
-      `}
-      className={className}
-      data-lpignore="true"
-      value={display}
-      onChange={onChange}
-      onFocus={onFocus}
-      onBlur={onBlur}
-    />
+    <div
+      css={{
+        display: "flex",
+        flexDirection: "row",
+      }}
+    >
+      <button
+        css={{
+          lineHeight: "inherit",
+          flexBasis: "min-content",
+          flex: 0,
+        }}
+        onClick={onClickInc}
+      >
+        <i className="fa fa-plus" />
+      </button>
+      <button
+        css={{
+          lineHeight: "inherit",
+          flexBasis: "min-content",
+          flex: 0,
+        }}
+        onClick={onClickDec}
+      >
+        <i className="fa fa-minus" />
+      </button>
+      <input
+        id={id}
+        css={css`
+          flex: 1;
+          width: 100%;
+          color: ${result.validation === "failed" ? "red" : undefined};
+          user-select: "text";
+        `}
+        className={className}
+        data-lpignore="true"
+        value={display}
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      />
+
+    </div>
   );
 };

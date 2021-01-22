@@ -52,6 +52,11 @@ export const useAsyncUpdate = (
   // stuff for handling content-editable - first, a ref to attach to the element
   const contentEditableRef = useRef<HTMLDivElement|null>(null);
 
+  const setValue = useCallback((val: string) => {
+    setDisplay(val);
+    onChangeThrottled(val);
+  }, [onChangeThrottled]);
+
   // a callback for whe edits happen
   const onInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
     // if (repeaterDivRef.current === null) {
@@ -59,9 +64,8 @@ export const useAsyncUpdate = (
     // }
     // repeaterDivRef.current.innerHTML = e.currentTarget.innerHTML;
     const text = e.currentTarget.innerText;
-    setDisplay(text);
-    onChangeThrottled(text);
-  }, [onChangeThrottled]);
+    setValue(text);
+  }, [setValue]);
 
   // update the display text when the value changes, but only if we're not
   // focused.
@@ -82,5 +86,6 @@ export const useAsyncUpdate = (
 
     contentEditableRef,
     onInput,
+    setValue,
   };
 };
