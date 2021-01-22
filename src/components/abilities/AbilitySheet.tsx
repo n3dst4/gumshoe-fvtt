@@ -33,7 +33,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   const isInvestigative = isInvestigativeAbility(ability);
   const isGeneral = isGeneralAbility(ability);
 
-  const updateBaseName = useUpdate(ability, (baseName) => ({ data: { baseName } }));
+  const updateName = useUpdate(ability, (name) => ({ name }));
   const updateCategory = useUpdate(ability, (category) => ({ data: { category } }));
   const updateRating = useUpdate(ability, (rating) => ({ data: { rating } }));
   const updatePool = useUpdate(ability, (pool) => ({ data: { pool } }));
@@ -99,15 +99,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     onBlur: onBlurName,
     onFocus: onFocusName,
     onInput: onInputName,
-  } = useAsyncUpdate(ability.data.data.baseName, updateBaseName);
-
-  const {
-    // display,
-    contentEditableRef: contentEditableRefSpeciality,
-    onBlur: onBlurSpeciality,
-    onFocus: onFocusSpeciality,
-    onInput: onInputSpeciality,
-  } = useAsyncUpdate(ability.data.data.speciality, updateSpeciality);
+  } = useAsyncUpdate(ability.data.name, updateName);
 
   const spendOptions = defaultSpendOptions.map((option) => ({
     ...option,
@@ -142,26 +134,6 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
           onBlur={onBlurName}
           onFocus={onFocusName}
         />
-        {" "}
-        <span
-          css={{
-            display: ability.data.data.hasSpeciality ? "inline-block" : "none",
-          }}
-        >
-          (
-          <span
-            contentEditable
-            css={{
-              minWidth: "1em",
-              display: "inline-block",
-            }}
-            ref={contentEditableRefSpeciality}
-            onInput={onInputSpeciality}
-            onBlur={onBlurSpeciality}
-            onFocus={onFocusSpeciality}
-          />
-          )
-        </span>
       </h1>
 
       {/* Spending/testing area */}
@@ -209,7 +181,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
       {/* regular editing stuiff */}
       <InputGrid>
         <GridField label="Name">
-          <AsyncTextInput value={ability.data.data.baseName} onChange={updateBaseName} />
+          <AsyncTextInput value={ability.data.name} onChange={updateName} />
         </GridField>
         {isInvestigative &&
           <GridField label="Category">

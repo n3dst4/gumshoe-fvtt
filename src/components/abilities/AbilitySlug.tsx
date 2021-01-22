@@ -4,12 +4,10 @@ import { jsx } from "@emotion/react";
 import { TrailItem } from "../../module/TrailItem";
 
 type AbilitySlugProps = {
-  ability: TrailItem,
+  ability: TrailItem;
 };
 
-export const AbilitySlug: React.FC<AbilitySlugProps> = ({
-  ability,
-}) => {
+export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
   return (
     <a
       key={ability.id}
@@ -23,7 +21,16 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({
         ability.sheet.render(true);
       }}
     >
-      {ability.name} ({ability.data.data.pool}/{ability.data.data.rating})
+      <div>
+        {ability.name} ({ability.data.data.pool}/{ability.data.data.rating})
+      </div>
+      {ability.data.data.hasSpeciality && (
+        <div css={{ paddingLeft: "1em" }}>
+          {ability.data.data.speciality.split(",").map((x, i) => (
+            <div key={i}>{x.trim()}</div>
+          ))}
+        </div>
+      )}
     </a>
   );
 };
