@@ -20,6 +20,20 @@ export type ValidationResult = {
   value: number,
 }
 
+const adjust = (display: string, by: number, min: number, max: number) => {
+  let result = Number(display) + by;
+  if (Number.isNaN(result)) {
+    result = 0;
+  }
+  if (max !== undefined) {
+    result = Math.min(max, result);
+  }
+  if (min !== undefined) {
+    result = Math.max(min, result);
+  }
+  return result.toString();
+};
+
 export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
   value,
   onChange: onChangeOrig,
@@ -68,12 +82,12 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
   } = useAsyncUpdate((value || 0).toString(), onChangeString);
 
   const onClickInc = useCallback(() => {
-    setValue((Number(display) + 1).toString());
-  }, [display, setValue]);
+    setValue(adjust(display, +1, min, max));
+  }, [display, max, min, setValue]);
 
   const onClickDec = useCallback(() => {
-    setValue((Number(display) - 1).toString());
-  }, [display, setValue]);
+    setValue(adjust(display, -1, min, max));
+  }, [display, max, min, setValue]);
 
   const result = validate(display);
 

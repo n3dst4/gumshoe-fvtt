@@ -205,10 +205,19 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
           </GridField>
         }
         <GridField label="Rating">
-          <AsyncNumberInput value={ability.data.data.rating} onChange={updateRating} />
+          <AsyncNumberInput
+            min={0}
+            value={ability.data.data.rating}
+            onChange={updateRating}
+          />
         </GridField>
         <GridField label="Pool">
-          <AsyncNumberInput value={ability.data.data.pool} onChange={updatePool} />
+          <AsyncNumberInput
+            min={0}
+            max={ability.data.data.rating}
+            value={ability.data.data.pool}
+            onChange={updatePool}
+          />
         </GridField>
         <GridField label="Speciality?">
           <div
@@ -235,10 +244,6 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
 
           </div>
         </GridField>
-        {/* <GridField
-          label="Speciality"
-        >
-        </GridField> */}
         {isGeneral &&
           <GridField label="Can be investigative?">
             <Checkbox
