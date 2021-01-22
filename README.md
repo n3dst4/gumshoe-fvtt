@@ -5,8 +5,8 @@
 
 - [x] Editable speciality
 - [x] dynamic name stuff with Foundry hooks
-- [ ] createItem hook should check for existing basename
-- [ ] bug when you tick on hasSpeciality but there's already a speciality
+- [x] createItem hook should check for existing basename
+- [x] bug when you tick on hasSpeciality but there's already a speciality
 - [ ] Refresh
 - [ ] Pools
 - [ ] Equipment

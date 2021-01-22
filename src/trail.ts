@@ -85,7 +85,7 @@ Hooks.on("preUpdateItem", (item, diff, options, actorId) => {
 });
 
 Hooks.on("createItem", (item, diff, options, actorId) => {
-  if (isAbility(item.data.type)) {
+  if (isAbility(item.data.type) && !item.data.data.baseName) {
     item.update({
       data: {
         baseName: item.data.name,
