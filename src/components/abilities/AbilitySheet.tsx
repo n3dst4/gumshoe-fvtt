@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { TrailItem } from "../../module/TrailItem";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -130,23 +130,26 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
           onBlur={onBlurName}
           onFocus={onFocusName}
         />
-        {ability.data.data.hasSpeciality &&
-          <Fragment>
-            {" "}(
-              <span
-                contentEditable
-                css={{
-                  minWidth: "1em",
-                  display: "inline-block",
-                }}
-                ref={contentEditableRefSpeciality}
-                onInput={onInputSpeciality}
-                onBlur={onBlurSpeciality}
-                onFocus={onFocusSpeciality}
-              />
-            )
-          </Fragment>
-        }
+        {" "}
+        <span
+          css={{
+            display: ability.data.data.hasSpeciality ? "inline-block" : "none",
+          }}
+        >
+          (
+          <span
+            contentEditable
+            css={{
+              minWidth: "1em",
+              display: "inline-block",
+            }}
+            ref={contentEditableRefSpeciality}
+            onInput={onInputSpeciality}
+            onBlur={onBlurSpeciality}
+            onFocus={onFocusSpeciality}
+          />
+          )
+        </span>
       </h1>
 
       {/* Spending/testing area */}
