@@ -59,10 +59,6 @@ export const useAsyncUpdate = (
 
   // a callback for whe edits happen
   const onInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
-    // if (repeaterDivRef.current === null) {
-    //   return;
-    // }
-    // repeaterDivRef.current.innerHTML = e.currentTarget.innerHTML;
     const text = e.currentTarget.innerText;
     setValue(text);
   }, [setValue]);

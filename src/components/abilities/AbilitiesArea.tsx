@@ -2,7 +2,6 @@
 import { jsx } from "@emotion/react";
 import React from "react";
 import { TrailItem } from "../../module/TrailItem";
-// import { GeneralAbility, InvestigativeAbility } from "../../types";
 import { AbilitySlug } from "./AbilitySlug";
 
 type AbilitiesAreaProps = {
