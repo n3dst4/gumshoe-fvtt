@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback, useState } from "react";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { TrailItem } from "../../module/TrailItem";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -13,6 +13,8 @@ import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { Checkbox } from "../inputs/Checkbox";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { isGeneralAbility, isInvestigativeAbility } from "../../functions";
+import { abilityCategories } from "../../constants";
+import system from "../../system.json";
 
 type AbilitySheetProps = {
   ability: TrailItem,
@@ -116,6 +118,12 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     ability.refreshPool();
   }, [ability]);
 
+  const categories = game.settings.get(system.name, abilityCategories).split(",").map(x => x.trim());
+
+  const onChangeCategory = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
+    updateCategory(e.currentTarget.value);
+  }, [updateCategory]);
+
   return (
     <CSSReset>
       <div>
@@ -205,7 +213,19 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
         </GridField>
         {isInvestigative &&
           <GridField label="Category">
-            <AsyncTextInput value={ability.data.data.category} onChange={updateCategory} />
+            <select
+              value={ability.data.data.category}
+              onChange={onChangeCategory}
+              css={{
+                lineHeight: "inherit",
+                height: "inherit",
+              }}
+            >
+              {categories.map((cat) => (
+                <option key={cat}>{cat}</option>
+              ))}
+            </select>
+            {/* <AsyncTextInput value={ability.data.data.category} onChange={updateCategory} /> */}
           </GridField>
         }
         <GridField label="Rating">

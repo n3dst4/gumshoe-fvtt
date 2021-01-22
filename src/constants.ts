@@ -9,3 +9,4 @@ export const generalAbility = "generalAbility";
 export const equipment = "equipment";
 export const pc = "pc";
 export const npc = "npc";
+export const abilityCategories = "abilityCategories";
