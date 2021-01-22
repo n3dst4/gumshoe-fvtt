@@ -123,9 +123,10 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
       </button>
       <input
         id={id}
+        size={1}
         css={css`
           flex: 1;
-          width: 100%;
+          flex-basis: min-content;
           color: ${result.validation === "failed" ? "red" : undefined};
           user-select: "text";
         `}
