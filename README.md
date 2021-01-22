@@ -8,7 +8,7 @@
 - [x] createItem hook should check for existing basename
 - [x] bug when you tick on hasSpeciality but there's already a speciality
 - [ ] Refresh
-- [ ] tweak the logo gradient so the top row gets more shone when it's longer 
+- [x] tweak the logo gradient so the top row gets more shone when it's longer 
 - [ ] Pools
 - [ ] Equipment
 - [ ] Weapons
