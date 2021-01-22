@@ -1,12 +1,13 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { GeneralAbility, InvestigativeAbility } from "../../types";
+import { TrailItem } from "../../module/TrailItem";
+// import { GeneralAbility, InvestigativeAbility } from "../../types";
 import { AbilitySlug } from "./AbilitySlug";
 
 type AbilitiesAreaProps = {
-  investigativeAbilities: { [category: string]: InvestigativeAbility[] },
-  generalAbilities: GeneralAbility[],
+  investigativeAbilities: { [category: string]: TrailItem[] },
+  generalAbilities: TrailItem[],
 };
 
 export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({

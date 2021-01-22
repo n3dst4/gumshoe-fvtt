@@ -11,8 +11,8 @@ import { InputGrid } from "../inputs/InputGrid";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { Checkbox } from "../inputs/Checkbox";
-import { generalAbility, investigativeAbility } from "../../constants";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
+import { isGeneralAbility, isInvestigativeAbility } from "../../functions";
 
 type AbilitySheetProps = {
   ability: TrailItem,
@@ -28,8 +28,8 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   ability,
   foundryWindow,
 }) => {
-  const isInvestigative = ability.type === investigativeAbility;
-  const isGeneral = ability.type === generalAbility;
+  const isInvestigative = isInvestigativeAbility(ability);
+  const isGeneral = isGeneralAbility(ability);
 
   const updateBaseName = useUpdate(ability, (baseName) => ({ data: { baseName } }));
   const updateCategory = useUpdate(ability, (category) => ({ data: { category } }));
@@ -111,6 +111,10 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     ...option,
     enabled: option.value <= ability.data.data.pool,
   }));
+
+  const onClickRefresh = useCallback(() => {
+    ability.refreshPool();
+  }, [ability]);
 
   return (
     <CSSReset>
@@ -212,12 +216,32 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
           />
         </GridField>
         <GridField label="Pool">
-          <AsyncNumberInput
-            min={0}
-            max={ability.data.data.rating}
-            value={ability.data.data.pool}
-            onChange={updatePool}
-          />
+          <div
+            css={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <AsyncNumberInput
+              min={0}
+              max={ability.data.data.rating}
+              value={ability.data.data.pool}
+              onChange={updatePool}
+              css={{
+                flex: 1,
+              }}
+            />
+            <button
+              css={{
+                flexBasis: "min-content",
+                flex: 0,
+                lineHeight: "inherit",
+              }}
+              onClick={onClickRefresh}
+            >
+              Refresh
+            </button>
+          </div>
         </GridField>
         <GridField label="Speciality?">
           <div

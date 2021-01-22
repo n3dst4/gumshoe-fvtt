@@ -5,7 +5,7 @@ import { PoolTracker } from "./PoolTracker";
 import { jsx } from "@emotion/react";
 // import { TrailLogo } from "./TrailLogo";
 import { useUpdate } from "../hooks/useUpdate";
-import { GeneralAbility, InvestigativeAbility } from "../types";
+// import { GeneralAbility, InvestigativeAbility } from "../types";
 import { AbilitiesArea } from "./abilities/AbilitiesArea";
 import { CSSReset } from "./CSSReset";
 import { TrailLogoEditable } from "./TrailLogoEditable";
@@ -14,6 +14,7 @@ import { GridField } from "./inputs/GridField";
 import { AsyncTextInput } from "./inputs/AsyncTextInput";
 import { GridFieldStacked } from "./inputs/GridFieldStacked";
 import { generalAbility, investigativeAbility } from "../constants";
+import { TrailItem } from "../module/TrailItem";
 
 type TrailActorSheetProps = {
   entity: TrailActor,
@@ -46,19 +47,19 @@ export const TrailActorSheet = ({
   const updateOccupation = useUpdate(entity, occupation => ({ data: { occupation } }));
   const updateOccupationalBenefits = useUpdate(entity, occupationalBenefits => ({ data: { occupationalBenefits } }));
 
-  const investigativeAbilities: { [category: string]: InvestigativeAbility[] } = {};
-  const generalAbilities: GeneralAbility[] = [];
+  const investigativeAbilities: { [category: string]: TrailItem[] } = {};
+  const generalAbilities: TrailItem[] = [];
 
   for (const item of entity.items.values()) {
     if (item.type === investigativeAbility) {
-      const ability = item as InvestigativeAbility;
+      const ability = item as TrailItem;
       const cat = ability.data.data.category || "Uncategorised";
       if (investigativeAbilities[cat] === undefined) {
         investigativeAbilities[cat] = [];
       }
       investigativeAbilities[cat].push(ability);
     } else if (item.type === generalAbility) {
-      generalAbilities.push(item);
+      generalAbilities.push(item as TrailItem);
     }
   }
 

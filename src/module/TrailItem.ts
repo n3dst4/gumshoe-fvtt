@@ -1,3 +1,4 @@
+import { isAbility } from "../functions";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -14,5 +15,15 @@ export class TrailItem extends Item {
     // const itemData = this.data;
     // const actorData = this.actor ? this.actor.data : {};
     // const data = itemData.data;
+  }
+
+  refreshPool () {
+    if (isAbility(this)) {
+      this.update({
+        data: {
+          pool: this.data.data.rating,
+        },
+      });
+    }
   }
 }

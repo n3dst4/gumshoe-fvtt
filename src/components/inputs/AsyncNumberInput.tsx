@@ -99,6 +99,7 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
         display: "flex",
         flexDirection: "row",
       }}
+      className={className}
     >
       <button
         css={{
@@ -128,7 +129,6 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
           color: ${result.validation === "failed" ? "red" : undefined};
           user-select: "text";
         `}
-        className={className}
         data-lpignore="true"
         value={display}
         onChange={onChange}

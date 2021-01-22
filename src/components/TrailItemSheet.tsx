@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { equipment, generalAbility, investigativeAbility } from "../constants";
+import { equipment } from "../constants";
 import { TrailItem } from "../module/TrailItem";
 import { EquipmentSheet } from "./EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
+import { isAbility } from "../functions";
 
 type TrailItemSheetProps = {
   entity: TrailItem,
@@ -17,7 +18,7 @@ export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
 }) => {
   return (
     <div>
-      {entity.type === investigativeAbility || entity.type === generalAbility
+      {isAbility(entity)
         ? <AbilitySheet ability={entity} foundryWindow={foundryWindow} />
         : entity.type === equipment
           ? <EquipmentSheet entity={entity} foundryWindow={foundryWindow} />

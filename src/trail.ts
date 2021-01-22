@@ -5,6 +5,7 @@ import { TrailItem } from "./module/TrailItem";
 import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
 import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
 import { equipment, generalAbility, investigativeAbility } from "./constants";
+import { isAbility } from "./functions";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -43,10 +44,6 @@ Hooks.once("setup", function () {
 Hooks.once("ready", function () {
   // Do anything once the system is ready
 });
-
-function isAbility (type: string) {
-  return type === investigativeAbility || type === generalAbility;
-}
 
 function makeName (baseName: string, speciality: string, hasSpeciality: boolean) {
   return hasSpeciality ? `${baseName} (${speciality})` : baseName;
