@@ -252,8 +252,9 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
               value={ability.data.data.speciality}
               onChange={updateSpeciality}
               disabled={!ability.data.data.hasSpeciality}
+              placeholder="Enter a comma-separated list of specialities"
               css={{
-                opacity: ability.data.data.hasSpeciality ? 1 : 0.3,
+                opacity: ability.data.data.hasSpeciality ? 1 : 0,
                 transition: "opacity 0.5s",
               }}
             />
