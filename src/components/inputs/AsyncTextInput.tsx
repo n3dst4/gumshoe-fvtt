@@ -9,6 +9,7 @@ type AsyncTextInputProps = {
   onChange: (newValue: string) => void,
   className?: string,
   disabled?: boolean,
+  placeholder?: string,
 };
 
 export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
@@ -16,6 +17,7 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
   onChange: onChangeOrig,
   className,
   disabled,
+  placeholder,
 }) => {
   const {
     onChange,
@@ -41,6 +43,7 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
       onFocus={onFocus}
       onBlur={onBlur}
       disabled={disabled}
+      placeholder={placeholder}
     />
   );
 };

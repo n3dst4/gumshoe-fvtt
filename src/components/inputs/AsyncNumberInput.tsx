@@ -107,9 +107,9 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
           flexBasis: "min-content",
           flex: 0,
         }}
-        onClick={onClickInc}
+        onClick={onClickDec}
       >
-        <i className="fa fa-plus" />
+        <i className="fa fa-minus" />
       </button>
       <button
         css={{
@@ -117,9 +117,9 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
           flexBasis: "min-content",
           flex: 0,
         }}
-        onClick={onClickDec}
+        onClick={onClickInc}
       >
-        <i className="fa fa-minus" />
+        <i className="fa fa-plus" />
       </button>
       <input
         id={id}

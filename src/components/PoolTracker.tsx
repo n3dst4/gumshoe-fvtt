@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
+import { TrailActor } from "../module/TrailActor";
 import { PoolCheckbox } from "./PoolCheckbox";
 
 const range = (from: number, to: number): number[] => {
@@ -10,17 +11,32 @@ const range = (from: number, to: number): number[] => {
 };
 
 type PoolTrackerProps = {
-  value: number,
+  abilityName: string,
+  actor: TrailActor,
   min: number,
   max: number,
 };
 
 export const PoolTracker: React.FC<PoolTrackerProps> = ({
-  value,
+  abilityName,
+  actor,
   min,
   max,
 }) => {
   const vals = range(min, max);
+
+  const ability = useMemo(() => {
+    return actor.items.find((item) => item.name === abilityName);
+  }, [abilityName, actor.items]);
+
+  const setPool = useCallback((pool: number) => {
+    ability.update({
+      data: {
+        pool,
+      },
+    });
+  }, [ability]);
+
   return (
     <div
       style={{
@@ -32,7 +48,13 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
       }}
     >
       {vals.map((v) => (
-        <PoolCheckbox key={v} value={v} selected={v === value} />
+        <PoolCheckbox
+          key={v}
+          value={v}
+          onClick={setPool}
+          selected={ability ? v === ability.data.data.pool : false}
+          disabled={ability ? v > ability.data.data.rating : false}
+        />
       ))}
     </div>
   );

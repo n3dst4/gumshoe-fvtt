@@ -1,24 +1,52 @@
-import React from "react";
+/** @jsx jsx */
+import { jsx } from "@emotion/react";
+import React, { useCallback } from "react";
 
 type PoolCheckboxProps = {
   value: number,
   selected: boolean,
+  disabled: boolean,
+  onClick: (value: number) => void,
 };
 
 export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
   value,
   selected,
+  disabled,
+  onClick: onClickProp,
 }) => {
+  const onClick = useCallback(() => {
+    if (!disabled) {
+      onClickProp(value);
+    }
+  }, [disabled, onClickProp, value]);
+
   return (
-    <div
-      style={{
+    <a
+      onClick={onClick}
+      css={{
         width: "2em",
         height: "1.5em",
         background: selected ? "#d44" : "#fff",
+        textAlign: "center",
+        display: "inline-block",
+        position: "relative",
+        opacity: disabled ? 0.5 : 1,
       }}
     >
       {value}
-    </div>
+      {disabled &&
+        <i
+          className="fa fa-times"
+          css={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+      }
+    </a>
   );
 }
 ;

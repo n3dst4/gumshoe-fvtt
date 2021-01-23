@@ -69,6 +69,7 @@ export const TrailActorSheet = ({
         display: "grid",
         gridTemplateRows: "min-content max-content 1fr",
         gridTemplateColumns: "max-content 1fr 12em",
+        gap: "0.5em",
         gridTemplateAreas:
           "\"title title image\" " +
           "\"pools stats image\" " +
@@ -145,13 +146,13 @@ export const TrailActorSheet = ({
         }}
       >
         <h2>Sanity</h2>
-        <PoolTracker value={entity.data.data.sanity || 0} min={0} max={15}/>
+        <PoolTracker abilityName="Sanity" actor={entity} min={0} max={15}/>
         <h2>Stability</h2>
-        <PoolTracker value={entity.data.data.stability || 0} min={-12} max={15}/>
+        <PoolTracker abilityName="Stability" actor={entity} min={-12} max={15}/>
         <h2>Health</h2>
-        <PoolTracker value={entity.data.data.health || 0} min={-12} max={15}/>
+        <PoolTracker abilityName="Health" actor={entity} min={-12} max={15}/>
         <h2>Magic</h2>
-        <PoolTracker value={entity.data.data.magic || 0} min={0} max={15}/>
+        <PoolTracker abilityName="Magic" actor={entity} min={0} max={15}/>
         <hr/>
         <button
           onClick={async (e) => {
