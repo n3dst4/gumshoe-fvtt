@@ -40,26 +40,29 @@ As GM:
 
 ## TODO
 
-- [x] Editable speciality
+- [x] editable speciality
 - [x] dynamic name stuff with Foundry hooks
 - [x] createItem hook should check for existing basename
 - [x] bug when you tick on hasSpeciality but there's already a speciality
-- [x] Ability refresh
+- [x] ability refresh
 - [x] tweak the logo gradient so the top row gets more shone when it's longer 
 - [x] +/- controls
 - [x] README - setup, install, dev
-- [x] Sort abilities alphabetically
-- [x] Change phrasing on speciality?
-- [x] Placeholder on speciality field
-- [x] Confirm on nuke
-- [ ] Pools
-- [ ] General refresh
-- [ ] Equipment
-- [ ] Weapons
-- [ ] Notes/background etc.
-- [ ] Attack rolls?
-- [ ] Update window title when entity name changes
-- [ ] Publish
+- [x] sort abilities alphabetically
+- [x] change phrasing on speciality?
+- [x] placeholder on speciality field
+- [x] confirm on nuke
+- [x] pools
+- [ ] Show message when pool ability is missing
+- [ ] break up ability sheet
+- [ ] ability "config area" for rarer options & delete button
+- [ ] general refresh
+- [ ] equipment
+- [ ] weapons
+- [ ] notes/background etc.
+- [ ] attack rolls?
+- [ ] update window title when entity name changes
+- [ ] publish
 
 ## Generating Compendia
 
