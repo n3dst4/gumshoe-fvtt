@@ -5,6 +5,7 @@ import { TrailItem } from "./module/TrailItem";
 import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
 import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
 import { equipment, generalAbility, investigativeAbility } from "./constants";
+import { generateTrailAbilitiesData } from "./generateTrailAbilitiesData";
 // import { isAbility } from "./functions";
 
 // Initialize system
@@ -103,3 +104,5 @@ Hooks.once("ready", function () {
 // });
 
 // CONFIG.debug.hooks = true;
+
+(window as any).generateTrailAbilitiesData = generateTrailAbilitiesData;//

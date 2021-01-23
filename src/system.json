@@ -13,7 +13,15 @@
   "scripts": [],
   "esmodules": ["trail.js"],
   "styles": ["trail.css"],
-  "packs": [],
+  "packs": [
+    {
+      "name": "abilities",
+      "label": "Abilities",
+      "system": "trail-of-cthulhu-unsanctioned",
+      "path": "./packs/abilities.db",
+      "entity": "Item"
+    }
+  ],
   "languages": [],
   "gridDistance": 1,
   "gridUnits": "",

@@ -84,6 +84,7 @@ async function copyFiles () {
     "module.json",
     "system.json",
     "template.json",
+    "packs",
   ];
   try {
     for (const file of statics) {

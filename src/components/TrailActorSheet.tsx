@@ -152,6 +152,16 @@ export const TrailActorSheet = ({
         <PoolTracker value={entity.data.data.health || 0} min={-12} max={15}/>
         <h2>Magic</h2>
         <PoolTracker value={entity.data.data.magic || 0} min={0} max={15}/>
+        <hr/>
+        <button
+          onClick={e => {
+            entity.items.forEach(i => {
+              i.delete();
+            });
+          }}
+        >
+          Nuke
+        </button>
       </div>
 
       <div
