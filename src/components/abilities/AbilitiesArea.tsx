@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
+import { sortEntitiesByName } from "../../functions";
 import { TrailItem } from "../../module/TrailItem";
 import { AbilitySlug } from "./AbilitySlug";
 
@@ -41,7 +42,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
     >
       <div css={{ gridArea: "general" }}>
         <h2>General Abilities</h2>
-        {generalAbilities.map((ability) => (
+        {sortEntitiesByName(generalAbilities).map((ability) => (
           <AbilitySlug key={ability.id} ability={ability} />
         ))}
       </div>
@@ -50,7 +51,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
           <div key={cat}>
             <h2>{cat}</h2>
             {
-              investigativeAbilities[cat].map((ability) => (
+              sortEntitiesByName(investigativeAbilities[cat]).map((ability) => (
                 <AbilitySlug key={ability.id} ability={ability}/>
               ))
             }
@@ -62,7 +63,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
           <div key={cat}>
             <h2>{cat}</h2>
             {
-              investigativeAbilities[cat].map((ability) => (
+              sortEntitiesByName(investigativeAbilities[cat]).map((ability) => (
                 <AbilitySlug key={ability.id} ability={ability}/>
               ))
             }
