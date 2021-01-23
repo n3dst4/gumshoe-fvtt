@@ -154,10 +154,12 @@ export const TrailActorSheet = ({
         <PoolTracker value={entity.data.data.magic || 0} min={0} max={15}/>
         <hr/>
         <button
-          onClick={e => {
-            entity.items.forEach(i => {
-              i.delete();
-            });
+          onClick={async (e) => {
+            await entity.deleteEmbeddedEntity(
+              "OwnedItem",
+              entity.items.map(i => i.id),
+            );
+            window.alert("Nuked");
           }}
         >
           Nuke
