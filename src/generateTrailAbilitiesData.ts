@@ -1,7 +1,8 @@
+import { generalAbility, investigativeAbility } from "./constants";
 import system from "./system.json";
 
 const investigativeTemplate = {
-  type: "investigativeAbility",
+  type: investigativeAbility,
   category: "Academic",
   hasSpeciality: false,
   speciality: "",
@@ -9,14 +10,14 @@ const investigativeTemplate = {
   pool: 0,
 };
 
-// const generalTemplate = {
-//   type: "investigativeAbility",
-//   canBeUsedInvestigatively: false,
-//   hasSpeciality: false,
-//   speciality: "",
-//   rating: 0,
-//   pool: 0,
-// };
+const generalTemplate = {
+  type: generalAbility,
+  canBeUsedInvestigatively: false,
+  hasSpeciality: false,
+  speciality: "",
+  rating: 0,
+  pool: 0,
+};
 
 const investigativeAbilities = {
   Academic: [
@@ -65,48 +66,47 @@ const investigativeAbilities = {
   ],
 };
 
-// const generalAbilities = [
-//   { name: "Athletics" },
-//   { name: "Conceal" },
-//   { name: "Disguise", canBeUsedInvestigatively: true },
-//   { name: "Driving" },
-//   { name: "Electrical Repair", canBeUsedInvestigatively: true },
-//   { name: "Explosives", canBeUsedInvestigatively: true },
-//   { name: "Filch" },
-//   { name: "Firearms" },
-//   { name: "First Aid" },
-//   { name: "Fleeing" },
-//   { name: "Health" },
-//   { name: "Hypnosis" },
-//   { name: "Magic" },
-//   { name: "Mechanical Repair", canBeUsedInvestigatively: true },
-//   { name: "Piloting" },
-//   { name: "Preparedness" },
-//   { name: "Psychoanalysis" },
-//   { name: "Riding" },
-//   { name: "Sanity" },
-//   { name: "Scuffling" },
-//   { name: "Sense Trouble" },
-//   { name: "Shadowing" },
-//   { name: "Stability" },
-//   { name: "Stealth" },
-//   { name: "Technical" },
-//   { name: "Weapons" },
-// ];
+const generalAbilities = [
+  { name: "Athletics" },
+  { name: "Conceal" },
+  { name: "Disguise", canBeUsedInvestigatively: true },
+  { name: "Driving" },
+  { name: "Electrical Repair", canBeUsedInvestigatively: true },
+  { name: "Explosives", canBeUsedInvestigatively: true },
+  { name: "Filch" },
+  { name: "Firearms" },
+  { name: "First Aid" },
+  { name: "Fleeing" },
+  { name: "Health" },
+  { name: "Hypnosis" },
+  { name: "Magic" },
+  { name: "Mechanical Repair", canBeUsedInvestigatively: true },
+  { name: "Piloting" },
+  { name: "Preparedness" },
+  { name: "Psychoanalysis" },
+  { name: "Riding" },
+  { name: "Sanity" },
+  { name: "Scuffling" },
+  { name: "Sense Trouble" },
+  { name: "Shadowing" },
+  { name: "Stability" },
+  { name: "Stealth" },
+  { name: "Technical" },
+  { name: "Weapons" },
+];
 
-export const generateTrailAbilitiesData = async () => {
-  // console.log(investigativeTemplate, generalTemplate, investigativeAbilities, generalAbilities);
-
-  // Reference a Compendium pack by it's collection ID
-  const pack = game.packs.find(p => p.collection === `${system.name}.abilities`);
-
+const emptyPack = async (pack: any) => {
   const content = await pack.getContent();
-
-  console.log(content);
-
   content.forEach(item => {
     item.delete();
   });
+};
+
+export const generateTrailAbilitiesData = async () => {
+  const investigativePack = game.packs.find(p => p.collection === `${system.name}.investigativeAbilities`);
+  const generalPack = game.packs.find(p => p.collection === `${system.name}.generalAbilities`);
+  emptyPack(investigativePack);
+  emptyPack(generalPack);
 
   Object.keys(investigativeAbilities).forEach(async (category) => {
     const abilityDatas = investigativeAbilities[category].map((data) => ({
@@ -120,10 +120,24 @@ export const generateTrailAbilitiesData = async () => {
     }));
     for (const ad of abilityDatas) {
       const a = await Item.create(ad, { temporary: true });
-      await pack.importEntity(a);
-      console.log(`Imported Item ${a.name} into Compendium pack ${pack.collection}`);
+      await investigativePack.importEntity(a);
+      console.log(`Imported Item ${a.name} into Compendium pack ${investigativePack.collection}`);
     }
   });
+
+  const abilityDatas = generalAbilities.map((data) => ({
+    type: generalTemplate.type,
+    name: data.name,
+    data: {
+      ...generalTemplate,
+      ...data,
+    },
+  }));
+  for (const ad of abilityDatas) {
+    const a = await Item.create(ad, { temporary: true });
+    await generalPack.importEntity(a);
+    console.log(`Imported Item ${a.name} into Compendium pack ${generalPack.collection}`);
+  }
 
   // // Create temporary Actor entities which impose structure on the imported data
   // const items = Item.createMany(content, { temporary: true });
