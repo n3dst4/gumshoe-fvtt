@@ -63,6 +63,36 @@ export const TrailActorSheet = ({
     }
   }
 
+  const onClickNuke = useCallback(() => {
+    const message = `Nuke all of ${entity.data.name}'s abilities and equipemt?`;
+
+    const d = new Dialog({
+      title: "Confirm",
+      content: `<p>${message}</p>`,
+      buttons: {
+        cancel: {
+          icon: '<i class="fas fa-ban"></i>',
+          label: "Whoops no!",
+        },
+        delete: {
+          icon: '<i class="fas fa-radiation"></i>',
+          label: "Nuke it from orbit",
+          callback: async () => {
+            await entity.deleteEmbeddedEntity(
+              "OwnedItem",
+              entity.items.map(i => i.id),
+            );
+            window.alert("Nuked");
+          },
+        },
+      },
+      default: "two",
+      // render: html => console.log("Register interactivity in the rendered dialog"),
+      // close: html => console.log("This always is logged no matter which option is chosen"),
+    });
+    d.render(true);
+  }, [entity]);
+
   return (
     <CSSReset
       css={{
@@ -154,15 +184,7 @@ export const TrailActorSheet = ({
         <h2>Magic</h2>
         <PoolTracker abilityName="Magic" actor={entity} min={0} max={15}/>
         <hr/>
-        <button
-          onClick={async (e) => {
-            await entity.deleteEmbeddedEntity(
-              "OwnedItem",
-              entity.items.map(i => i.id),
-            );
-            window.alert("Nuked");
-          }}
-        >
+        <button onClick={onClickNuke}>
           Nuke
         </button>
       </div>

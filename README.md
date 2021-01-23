@@ -49,9 +49,9 @@ As GM:
 - [x] +/- controls
 - [x] README - setup, install, dev
 - [x] Sort abilities alphabetically
-- [ ] Placeholder on speciality field
-- [ ] Change phrasing on speciality?
-- [ ] Confirm on nuke
+- [x] Change phrasing on speciality?
+- [x] Placeholder on speciality field
+- [x] Confirm on nuke
 - [ ] Pools
 - [ ] General refresh
 - [ ] Equipment
