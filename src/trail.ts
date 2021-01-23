@@ -22,7 +22,7 @@ Hooks.once("init", async function () {
   CONFIG.Item.entityClass = TrailItem;
 
   // Register custom sheets (if any)
-  // Actors.unregisterSheet("core", ActorSheet);
+  Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("trail-of-cthulhu-unsanctioned", TrailActorSheetClass, { makeDefault: true });
   Items.registerSheet(
     "trail-of-cthulhu-unsanctioned",
