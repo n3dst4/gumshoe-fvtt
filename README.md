@@ -53,8 +53,8 @@ As GM:
 - [x] placeholder on speciality field
 - [x] confirm on nuke
 - [x] pools
-- [ ] weird data submit thing
-- [ ] Show message when pool ability is missing
+- [x] weird data submit thing
+- [x] Show message when pool ability is missing
 - [ ] break up ability sheet
 - [ ] ability "config area" for rarer options & delete button
 - [ ] min/max on abilities

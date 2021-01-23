@@ -31,7 +31,7 @@ export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
         textAlign: "center",
         display: "inline-block",
         position: "relative",
-        opacity: disabled ? 0.5 : 1,
+        opacity: disabled ? 0.3 : 1,
       }}
     >
       {value}

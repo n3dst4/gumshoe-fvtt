@@ -1,3 +1,6 @@
+/** @jsx jsx */
+import { jsx } from "@emotion/react";
+
 import React, { useCallback, useMemo } from "react";
 import { TrailActor } from "../module/TrailActor";
 import { PoolCheckbox } from "./PoolCheckbox";
@@ -43,6 +46,7 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
         width: "8em",
         height: "auto",
         display: "grid",
+        position: "relative",
         gridTemplateColumns: "1fr 1fr 1fr 1fr",
         // gridAutoRows: "2em",
       }}
@@ -53,9 +57,24 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
           value={v}
           onClick={setPool}
           selected={ability ? v === ability.data.data.pool : false}
-          disabled={ability ? v > ability.data.data.rating : false}
+          disabled={ability ? v > ability.data.data.rating : true}
         />
       ))}
+      {ability === null &&
+        <div
+          css={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "100%",
+            backgroundColor: "white",
+            borderRadius: "0.5em",
+          }}
+        >
+          No {abilityName} ability - add it from the sidebar!
+        </div>
+      }
     </div>
   );
 };
