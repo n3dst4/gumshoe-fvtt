@@ -39,6 +39,10 @@ As GM:
 - [x] tweak the logo gradient so the top row gets more shone when it's longer 
 - [x] +/- controls
 - [x] README - setup, install, dev
+- [x] Sort abilities alphabetically
+- [ ] Placeholder on speciality field
+- [ ] Change phrasing on speciality?
+- [ ] Confirm on nuke
 - [ ] Pools
 - [ ] General refresh
 - [ ] Equipment
