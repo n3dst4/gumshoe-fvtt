@@ -55,8 +55,8 @@ As GM:
 - [x] pools
 - [x] weird data submit thing
 - [x] Show message when pool ability is missing
-- [ ] break up ability sheet
-- [ ] ability "config area" for rarer options & delete button
+- [x] break up ability sheet
+- [x] ability "config area" for rarer options & delete button
 - [ ] min/max on abilities
 - [ ] general refresh
 - [ ] equipment
