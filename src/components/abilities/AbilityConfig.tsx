@@ -10,6 +10,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import system from "../../system.json";
 import { abilityCategories } from "../../constants";
 import { Checkbox } from "../inputs/Checkbox";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 type AbilityConfigProps = {
   ability: TrailItem,
@@ -25,6 +26,8 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
   const updateCategory = useUpdate(ability, (category) => ({ data: { category } }));
   const updateHasSpecialities = useUpdate(ability, (hasSpecialities) => ({ data: { hasSpecialities } }));
   const updateCanBeInvestigative = useUpdate(ability, (canBeInvestigative) => ({ data: { canBeInvestigative } }));
+  const updateMax = useUpdate(ability, (max) => ({ data: { max } }));
+  const updateMin = useUpdate(ability, (min) => ({ data: { min } }));
 
   const onClickDelete = useCallback(() => {
     const message = ability.actor
@@ -82,7 +85,21 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
           {/* <AsyncTextInput value={ability.data.data.category} onChange={updateCategory} /> */}
         </GridField>
       )}
-      <GridField label="Speciality?">
+      <GridField label="Min">
+        <AsyncNumberInput
+          max={ability.data.data.max}
+          value={ability.data.data.min}
+          onChange={updateMin}
+        />
+      </GridField>
+      <GridField label="Max">
+        <AsyncNumberInput
+          min={ability.data.data.min}
+          value={ability.data.data.max}
+          onChange={updateMax}
+        />
+      </GridField>
+      <GridField label="Has Specialities?">
         <Checkbox
           checked={ability.data.data.hasSpecialities}
           onChange={(t) => {
