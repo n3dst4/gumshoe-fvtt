@@ -62,7 +62,7 @@ As GM:
 - [x] starting pools
 - [x] occupational abilities
 - [x] show (I) in investigable skills
-- [ ] general refresh
+- [x] general refresh
 - [ ] equipment
 - [ ] weapons
 - [ ] notes/background etc.

@@ -93,6 +93,10 @@ export const TrailActorSheet = ({
     d.render(true);
   }, [entity]);
 
+  const onClickRefresh = useCallback(() => {
+    entity.refresh();
+  }, [entity]);
+
   return (
     <CSSReset
       css={{
@@ -182,6 +186,9 @@ export const TrailActorSheet = ({
         <hr/>
         <button onClick={onClickNuke}>
           Nuke
+        </button>
+        <button onClick={onClickRefresh}>
+          Refresh
         </button>
       </div>
 

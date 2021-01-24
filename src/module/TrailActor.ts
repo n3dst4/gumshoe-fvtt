@@ -29,4 +29,16 @@ export class TrailActor<Data=any> extends Actor<Data> {
     //   ability.mod = Math.floor((ability.value - 10) / 2);
     // }
   }
+
+  refresh () {
+    this.items.forEach((item) => {
+      if (item.data.data.rating !== item.data.data.pool) {
+        item.update({
+          data: {
+            pool: item.data.data.rating,
+          },
+        });
+      }
+    });
+  }
 }
