@@ -32,7 +32,11 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   } = useAsyncUpdate(ability.data.name, updateName);
 
   return (
-    <CSSReset>
+    <CSSReset
+      css={{
+        paddingBottom: "1em",
+      }}
+    >
       <div>
         {isGeneral ? "General" : "Investigative"} ability
         <a

@@ -25,6 +25,9 @@ export const SpecListItem: React.FC<SpecListItemProps> = ({
       value={value}
       onChange={onChange}
       disabled={disabled}
+      // css={{
+
+      // }}
     />
   );
 };

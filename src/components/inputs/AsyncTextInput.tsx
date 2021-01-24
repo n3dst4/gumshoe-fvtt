@@ -35,7 +35,7 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
       css={{
         flex: 1,
         width: "100%",
-        minWidth: "8em",
+        // minWidth: "8em",
       }}
       className={className}
       data-lpignore="true"
