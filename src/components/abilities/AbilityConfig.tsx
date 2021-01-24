@@ -23,7 +23,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
 
   const updateName = useUpdate(ability, (name) => ({ name }));
   const updateCategory = useUpdate(ability, (category) => ({ data: { category } }));
-  const updateHasSpeciality = useUpdate(ability, (hasSpeciality) => ({ data: { hasSpeciality } }));
+  const updateHasSpecialities = useUpdate(ability, (hasSpecialities) => ({ data: { hasSpecialities } }));
   const updateCanBeInvestigative = useUpdate(ability, (canBeInvestigative) => ({ data: { canBeInvestigative } }));
 
   const onClickDelete = useCallback(() => {
@@ -84,9 +84,9 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
       )}
       <GridField label="Speciality?">
         <Checkbox
-          checked={ability.data.data.hasSpeciality}
+          checked={ability.data.data.hasSpecialities}
           onChange={(t) => {
-            updateHasSpeciality(t);
+            updateHasSpecialities(t);
           }}
         />
       </GridField>

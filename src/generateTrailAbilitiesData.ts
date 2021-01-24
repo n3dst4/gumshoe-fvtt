@@ -4,7 +4,7 @@ import system from "./system.json";
 const investigativeTemplate = {
   type: investigativeAbility,
   category: "Academic",
-  hasSpeciality: false,
+  hasSpecialities: false,
   specialities: [],
   rating: 0,
   pool: 0,
@@ -15,7 +15,7 @@ const investigativeTemplate = {
 const generalTemplate = {
   type: generalAbility,
   canBeUsedInvestigatively: false,
-  hasSpeciality: false,
+  hasSpecialities: false,
   speciality: "",
   rating: 0,
   pool: 0,

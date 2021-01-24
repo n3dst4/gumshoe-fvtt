@@ -64,16 +64,16 @@ export class TrailItem extends Item {
     });
   }
 
-  getHasSpeciality = () => {
+  getHasSpecialities = () => {
     this.assertAbility();
-    return this.data.data.hasSpeciality ?? false;
+    return this.data.data.hasSpecialities ?? false;
   }
 
-  setHasSpeciality = (hasSpeciality: boolean) => {
+  setHasSpecialities = (hasSpecialities: boolean) => {
     this.assertAbility();
     this.update({
       data: {
-        hasSpeciality,
+        hasSpecialities,
       },
     });
   }

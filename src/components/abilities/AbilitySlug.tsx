@@ -24,7 +24,7 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
       <div>
         {ability.name} ({ability.data.data.pool}/{ability.data.data.rating})
       </div>
-      {ability.data.data.hasSpeciality && (
+      {ability.data.data.hasSpecialities && (
         <div css={{ paddingLeft: "1em" }}>
           {(ability.data.data.specialities || []).map((x, i) => (
             <div key={i}>{x.trim()}</div>

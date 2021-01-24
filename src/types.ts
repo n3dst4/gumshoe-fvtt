@@ -2,7 +2,7 @@ import { TrailActor } from "./module/TrailActor";
 // type BaseAbilityData = {
 //   "rating": number,
 //   "pool": number,
-//   "hasSpeciality": boolean,
+//   "hasSpecialities": boolean,
 //   "speciality": string
 // }
 

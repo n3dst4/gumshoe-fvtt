@@ -62,7 +62,7 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
           onChange={updateRating}
         />
       </GridField>
-      {ability.getHasSpeciality() &&
+      {ability.getHasSpecialities() &&
         <GridFieldStacked label={ability.getSpecialities().length === 1 ? "Speciality" : "Specialities"}>
           <div
             css={{

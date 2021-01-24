@@ -36,7 +36,7 @@ export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
           value={spec}
           onChange={updateSpecialities}
           index={i}
-          disabled={!ability.data.data.hasSpeciality}
+          disabled={!ability.getHasSpecialities()}
         />
       ))}
       {ability.getRating() === 0 &&
