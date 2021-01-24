@@ -10,6 +10,7 @@ const investigativeTemplate = {
   pool: 0,
   min: 0,
   max: 8,
+  occupational: false,
 };
 
 const generalTemplate = {
@@ -21,6 +22,7 @@ const generalTemplate = {
   pool: 0,
   min: 0,
   max: 8,
+  occupational: false,
 };
 
 const investigativeAbilities = {

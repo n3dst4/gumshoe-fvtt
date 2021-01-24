@@ -24,7 +24,8 @@
         "hasSpecialities": false,
         "specialities": [],
         "min": 0,
-        "max": 8
+        "max": 8,
+        "occupational": false
       }
     },
     "investigativeAbility": {

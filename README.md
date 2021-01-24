@@ -58,7 +58,10 @@ As GM:
 - [x] break up ability sheet
 - [x] ability "config area" for rarer options & delete button
 - [x] totally rework specialities
-- [ ] min/max on abilities
+- [x] min/max on abilities
+- [x] starting pools
+- [x] occupational abilities
+- [ ] show (I) in investigable skills
 - [ ] general refresh
 - [ ] equipment
 - [ ] weapons

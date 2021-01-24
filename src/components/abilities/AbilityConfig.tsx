@@ -25,6 +25,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
   const updateName = useUpdate(ability, (name) => ({ name }));
   const updateCategory = useUpdate(ability, (category) => ({ data: { category } }));
   const updateHasSpecialities = useUpdate(ability, (hasSpecialities) => ({ data: { hasSpecialities } }));
+  const updateOccupational = useUpdate(ability, (occupational) => ({ data: { occupational } }));
   const updateCanBeInvestigative = useUpdate(ability, (canBeInvestigative) => ({ data: { canBeInvestigative } }));
   const updateMax = useUpdate(ability, (max) => ({ data: { max } }));
   const updateMin = useUpdate(ability, (min) => ({ data: { min } }));
@@ -104,6 +105,14 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
           checked={ability.data.data.hasSpecialities}
           onChange={(t) => {
             updateHasSpecialities(t);
+          }}
+        />
+      </GridField>
+      <GridField label="Occupational?">
+        <Checkbox
+          checked={ability.data.data.occupational}
+          onChange={(t) => {
+            updateOccupational(t);
           }}
         />
       </GridField>
