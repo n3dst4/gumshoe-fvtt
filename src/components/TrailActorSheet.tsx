@@ -64,7 +64,7 @@ export const TrailActorSheet = ({
   }
 
   const onClickNuke = useCallback(() => {
-    const message = `Nuke all of ${entity.data.name}'s abilities and equipemt?`;
+    const message = `Nuke all of ${entity.data.name}'s abilities and equipment?`;
 
     const d = new Dialog({
       title: "Confirm",
@@ -94,7 +94,29 @@ export const TrailActorSheet = ({
   }, [entity]);
 
   const onClickRefresh = useCallback(() => {
-    entity.refresh();
+    const message = `Refresh all of ${entity.data.name}'s abilities? This will reset every pool back to match the rating of the ability.`;
+
+    const d = new Dialog({
+      title: "Confirm",
+      content: `<p>${message}</p>`,
+      buttons: {
+        cancel: {
+          icon: '<i class="fas fa-ban"></i>',
+          label: "Cancel",
+        },
+        delete: {
+          icon: '<i class="fas fa-sync"></i>',
+          label: "Refresh",
+          callback: async () => {
+            entity.refresh();
+          },
+        },
+      },
+      default: "two",
+      // render: html => console.log("Register interactivity in the rendered dialog"),
+      // close: html => console.log("This always is logged no matter which option is chosen"),
+    });
+    d.render(true);
   }, [entity]);
 
   return (
