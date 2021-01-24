@@ -61,7 +61,7 @@ As GM:
 - [x] min/max on abilities
 - [x] starting pools
 - [x] occupational abilities
-- [ ] show (I) in investigable skills
+- [x] show (I) in investigable skills
 - [ ] general refresh
 - [ ] equipment
 - [ ] weapons
