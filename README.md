@@ -57,6 +57,7 @@ As GM:
 - [x] Show message when pool ability is missing
 - [x] break up ability sheet
 - [x] ability "config area" for rarer options & delete button
+- [x] totally rework specialities
 - [ ] min/max on abilities
 - [ ] general refresh
 - [ ] equipment
