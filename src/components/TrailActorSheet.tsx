@@ -175,14 +175,10 @@ export const TrailActorSheet = ({
           gridArea: "pools",
         }}
       >
-        <h2>Sanity</h2>
-        <PoolTracker abilityName="Sanity" actor={entity} min={0} max={15}/>
-        <h2>Stability</h2>
-        <PoolTracker abilityName="Stability" actor={entity} min={-12} max={15}/>
-        <h2>Health</h2>
-        <PoolTracker abilityName="Health" actor={entity} min={-12} max={15}/>
-        <h2>Magic</h2>
-        <PoolTracker abilityName="Magic" actor={entity} min={0} max={15}/>
+        <PoolTracker abilityName="Sanity" actor={entity} />
+        <PoolTracker abilityName="Stability" actor={entity} />
+        <PoolTracker abilityName="Health" actor={entity} />
+        <PoolTracker abilityName="Magic" actor={entity} />
         <hr/>
         <button onClick={onClickNuke}>
           Nuke

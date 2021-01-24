@@ -16,21 +16,18 @@ const range = (from: number, to: number): number[] => {
 type PoolTrackerProps = {
   abilityName: string,
   actor: TrailActor,
-  min: number,
-  max: number,
 };
 
 export const PoolTracker: React.FC<PoolTrackerProps> = ({
   abilityName,
   actor,
-  min,
-  max,
 }) => {
-  const vals = range(min, max);
-
   const ability = useMemo(() => {
     return actor.items.find((item) => item.name === abilityName);
   }, [abilityName, actor.items]);
+  const min = ability.data.data.min ?? 0;
+  const max = ability.data.data.max ?? 12;
+  const vals = range(min, max);
 
   const setPool = useCallback((pool: number) => {
     ability.update({
@@ -47,10 +44,12 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
         height: "auto",
         display: "grid",
         position: "relative",
-        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        gridTemplateColumns: "[start] 1fr 1fr 1fr 1fr [end]",
         // gridAutoRows: "2em",
       }}
     >
+      <h2 css={{ gridColumn: "start / end" }}>{ability.name}</h2>
+
       {vals.map((v) => (
         <PoolCheckbox
           key={v}
