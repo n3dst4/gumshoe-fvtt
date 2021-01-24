@@ -5,7 +5,7 @@ const investigativeTemplate = {
   type: investigativeAbility,
   category: "Academic",
   hasSpeciality: false,
-  speciality: "",
+  specialities: [],
   rating: 0,
   pool: 0,
 };

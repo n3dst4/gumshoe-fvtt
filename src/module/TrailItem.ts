@@ -1,4 +1,4 @@
-import { isAbility } from "../functions";
+import { fixLength, isAbility } from "../functions";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -25,5 +25,17 @@ export class TrailItem extends Item {
         },
       });
     }
+  }
+
+  getSpecialities = () => {
+    return fixLength(this.data.data.specialities, this.data.data.rating, "");
+  }
+
+  setSpecialities = (newSpecs: string[]) => {
+    this.update({
+      data: {
+        specialities: fixLength(newSpecs, this.data.data.rating, ""),
+      },
+    });
   }
 }

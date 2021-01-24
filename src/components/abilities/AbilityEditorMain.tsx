@@ -3,11 +3,11 @@ import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { TrailItem } from "../../module/TrailItem";
-import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
+import { SpecialityList } from "./SpecialityList";
 
 type AbilityEditorMainProps = {
   ability: TrailItem,
@@ -18,7 +18,6 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
 }) => {
   const updateRating = useUpdate(ability, (rating) => ({ data: { rating } }));
   const updatePool = useUpdate(ability, (pool) => ({ data: { pool } }));
-  const updateSpeciality = useUpdate(ability, (speciality) => ({ data: { speciality } }));
 
   const onClickRefresh = useCallback(() => {
     ability.refreshPool();
@@ -68,16 +67,7 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
             flexDirection: "row",
           }}
         >
-          <AsyncTextInput
-            value={ability.data.data.speciality}
-            onChange={updateSpeciality}
-            disabled={!ability.data.data.hasSpeciality}
-            placeholder="Enter a comma-separated list of specialities"
-            css={{
-              opacity: ability.data.data.hasSpeciality ? 1 : 0,
-              transition: "opacity 0.5s",
-            }}
-          />
+          <SpecialityList ability={ability} />
         </div>
       </GridFieldStacked>
     </InputGrid>

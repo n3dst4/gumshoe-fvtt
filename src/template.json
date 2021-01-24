@@ -21,13 +21,13 @@
       "ability": {
         "rating": 1,
         "pool": 1,
-        "hasSpeciality": false,
-        "speciality": ""
+        "hasSpecialities": false,
+        "specialities": []
       }
     },
     "investigativeAbility": {
       "templates": ["ability"],
-      "category": ""
+      "category": "Academic"
     },
     "generalAbility": {
       "templates": ["ability"],

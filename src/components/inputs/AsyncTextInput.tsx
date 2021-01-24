@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { css, jsx } from "@emotion/react";
+import { jsx } from "@emotion/react";
 import React, { useContext } from "react";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { IdContext } from "../IdContext";
@@ -30,12 +30,13 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
 
   return (
     <input
+      size={3}
       id={id}
-      css={css`
-        flex: 1;
-        /* margin-left: 0.5em; */
-        width: 100%;
-      `}
+      css={{
+        flex: 1,
+        width: "100%",
+        minWidth: "8em",
+      }}
       className={className}
       data-lpignore="true"
       value={display}

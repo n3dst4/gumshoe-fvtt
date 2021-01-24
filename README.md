@@ -65,6 +65,7 @@ As GM:
 - [ ] attack rolls?
 - [ ] update window title when entity name changes
 - [ ] publish
+- [ ] i18n
 
 ## Generating Compendia
 
