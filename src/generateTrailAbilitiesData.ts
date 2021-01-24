@@ -35,7 +35,7 @@ const investigativeAbilities = {
     { name: "Cryptography" },
     { name: "Geology" },
     { name: "History" },
-    { name: "Language", hasSpeciality: true },
+    { name: "Language", hasSpecialities: true },
     { name: "Law" },
     { name: "Library Use" },
     { name: "Medicine" },
@@ -73,10 +73,10 @@ const investigativeAbilities = {
 const generalAbilities = [
   { name: "Athletics" },
   { name: "Conceal" },
-  { name: "Disguise", canBeUsedInvestigatively: true },
+  { name: "Disguise", canBeInvestigative: true },
   { name: "Driving" },
-  { name: "Electrical Repair", canBeUsedInvestigatively: true },
-  { name: "Explosives", canBeUsedInvestigatively: true },
+  { name: "Electrical Repair", canBeInvestigative: true },
+  { name: "Explosives", canBeInvestigative: true },
   { name: "Filch" },
   { name: "Firearms" },
   { name: "First Aid" },
@@ -84,7 +84,7 @@ const generalAbilities = [
   { name: "Health", max: 15, min: -12 },
   { name: "Hypnosis" },
   { name: "Magic", max: 15, min: -12 },
-  { name: "Mechanical Repair", canBeUsedInvestigatively: true },
+  { name: "Mechanical Repair", canBeInvestigative: true },
   { name: "Piloting" },
   { name: "Preparedness" },
   { name: "Psychoanalysis" },
@@ -113,15 +113,18 @@ export const generateTrailAbilitiesData = async () => {
   emptyPack(generalPack);
 
   Object.keys(investigativeAbilities).forEach(async (category) => {
-    const abilityDatas = investigativeAbilities[category].map((data) => ({
-      type: investigativeTemplate.type,
-      name: data.name,
-      data: {
-        ...investigativeTemplate,
-        category,
-        ...data,
-      },
-    }));
+    const abilityDatas = investigativeAbilities[category].map((data) => {
+      const { name, type, ...rest } = data;
+      return {
+        type: investigativeTemplate.type,
+        name,
+        data: {
+          ...investigativeTemplate,
+          category,
+          ...rest,
+        },
+      };
+    });
     for (const ad of abilityDatas) {
       const a = await Item.create(ad, { temporary: true });
       await investigativePack.importEntity(a);
@@ -139,6 +142,7 @@ export const generateTrailAbilitiesData = async () => {
   }));
   for (const ad of abilityDatas) {
     const a = await Item.create(ad, { temporary: true });
+    console.log(a);
     await generalPack.importEntity(a);
     console.log(`Imported Item ${a.name} into Compendium pack ${generalPack.collection}`);
   }
