@@ -8,6 +8,8 @@ const investigativeTemplate = {
   specialities: [],
   rating: 0,
   pool: 0,
+  min: 0,
+  max: 8,
 };
 
 const generalTemplate = {
@@ -17,6 +19,8 @@ const generalTemplate = {
   speciality: "",
   rating: 0,
   pool: 0,
+  min: 0,
+  max: 8,
 };
 
 const investigativeAbilities = {
@@ -77,19 +81,19 @@ const generalAbilities = [
   { name: "Firearms" },
   { name: "First Aid" },
   { name: "Fleeing" },
-  { name: "Health" },
+  { name: "Health", max: 15, min: -12 },
   { name: "Hypnosis" },
-  { name: "Magic" },
+  { name: "Magic", max: 15, min: -12 },
   { name: "Mechanical Repair", canBeUsedInvestigatively: true },
   { name: "Piloting" },
   { name: "Preparedness" },
   { name: "Psychoanalysis" },
   { name: "Riding" },
-  { name: "Sanity" },
+  { name: "Sanity", max: 15 },
   { name: "Scuffling" },
   { name: "Sense Trouble" },
   { name: "Shadowing" },
-  { name: "Stability" },
+  { name: "Stability", max: 15 },
   { name: "Stealth" },
   { name: "Technical" },
   { name: "Weapons" },

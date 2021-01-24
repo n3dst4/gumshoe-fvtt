@@ -22,7 +22,9 @@
         "rating": 1,
         "pool": 1,
         "hasSpecialities": false,
-        "specialities": []
+        "specialities": [],
+        "min": 0,
+        "max": 8
       }
     },
     "investigativeAbility": {
