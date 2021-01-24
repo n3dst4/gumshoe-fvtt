@@ -17,24 +17,63 @@ export class TrailItem extends Item {
     // const data = itemData.data;
   }
 
-  refreshPool () {
-    if (isAbility(this)) {
-      this.update({
-        data: {
-          pool: this.data.data.rating,
-        },
-      });
+  assertAbility () {
+    if (!isAbility(this)) {
+      throw new Error(`${this.type} is not an ability`);
     }
   }
 
+  refreshPool () {
+    this.assertAbility();
+    this.update({
+      data: {
+        pool: this.data.data.rating ?? 0,
+      },
+    });
+  }
+
   getSpecialities = () => {
+    this.assertAbility();
     return fixLength(this.data.data.specialities, this.data.data.rating, "");
   }
 
   setSpecialities = (newSpecs: string[]) => {
+    this.assertAbility();
     this.update({
       data: {
         specialities: fixLength(newSpecs, this.data.data.rating, ""),
+      },
+    });
+  }
+
+  getRating = (): number => {
+    this.assertAbility();
+    if (!isAbility(this)) {
+      throw new Error(`${this.type} does not have a rating`);
+    }
+    return this.data.data.rating ?? 0;
+  }
+
+  setRating = (newRating: number) => {
+    this.assertAbility();
+    this.update({
+      data: {
+        rating: newRating,
+        specialities: fixLength(this.data.data.specialities, newRating, ""),
+      },
+    });
+  }
+
+  getHasSpeciality = () => {
+    this.assertAbility();
+    return this.data.data.hasSpeciality ?? false;
+  }
+
+  setHasSpeciality = (hasSpeciality: boolean) => {
+    this.assertAbility();
+    this.update({
+      data: {
+        hasSpeciality,
       },
     });
   }

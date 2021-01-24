@@ -16,7 +16,9 @@ type AbilityEditorMainProps = {
 export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
   ability,
 }) => {
-  const updateRating = useUpdate(ability, (rating) => ({ data: { rating } }));
+  const updateRating = useCallback((rating) => {
+    ability.setRating(rating);
+  }, [ability]);
   const updatePool = useUpdate(ability, (pool) => ({ data: { pool } }));
 
   const onClickRefresh = useCallback(() => {
@@ -25,13 +27,6 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
 
   return (
     <InputGrid>
-      <GridField label="Rating">
-        <AsyncNumberInput
-          min={0}
-          value={ability.data.data.rating}
-          onChange={updateRating}
-        />
-      </GridField>
       <GridField label="Pool">
         <div
           css={{
@@ -60,16 +55,25 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
           </button>
         </div>
       </GridField>
-      <GridFieldStacked label="Specialities">
-        <div
-          css={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <SpecialityList ability={ability} />
-        </div>
-      </GridFieldStacked>
+      <GridField label="Rating">
+        <AsyncNumberInput
+          min={0}
+          value={ability.data.data.rating}
+          onChange={updateRating}
+        />
+      </GridField>
+      {ability.getHasSpeciality() &&
+        <GridFieldStacked label="Specialities">
+          <div
+            css={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <SpecialityList ability={ability} />
+          </div>
+        </GridFieldStacked>
+      }
     </InputGrid>
   );
 };

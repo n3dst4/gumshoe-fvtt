@@ -5,17 +5,18 @@ import { TrailItem } from "../../module/TrailItem";
 import { SpecListItem } from "./SpecListItem";
 
 type SpecialityListProps = {
-  ability: TrailItem,
+  ability: TrailItem;
 };
 
-export const SpecialityList: React.FC<SpecialityListProps> = ({
-  ability,
-}) => {
-  const updateSpecialities = useCallback((newVal: string, index: number) => {
-    const newSpecs = [...ability.getSpecialities()];
-    newSpecs[index] = newVal;
-    ability.setSpecialities(newSpecs);
-  }, [ability]);
+export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
+  const updateSpecialities = useCallback(
+    (newVal: string, index: number) => {
+      const newSpecs = [...ability.getSpecialities()];
+      newSpecs[index] = newVal;
+      ability.setSpecialities(newSpecs);
+    },
+    [ability],
+  );
 
   return (
     <div
@@ -34,9 +35,9 @@ export const SpecialityList: React.FC<SpecialityListProps> = ({
           index={i}
           disabled={!ability.data.data.hasSpeciality}
         />
-      ))
-
-      }
+      ))}
+      {ability.getRating() === 0 &&
+        <i>Rating must be at least 1 to add specialities</i>}
     </div>
   );
 };
