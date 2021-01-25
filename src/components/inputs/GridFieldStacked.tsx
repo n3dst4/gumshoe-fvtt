@@ -1,6 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
-import React, { Fragment } from "react";
+import { nanoid } from "nanoid";
+import React, { useMemo } from "react";
+import { IdContext } from "../IdContext";
 
 type GridFieldStackedProps = {
   label?: string;
@@ -13,17 +15,18 @@ export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({
   className,
   children,
 }) => {
+  const htmlId = useMemo(() => nanoid(), []);
   return (
-    <Fragment>
+    <IdContext.Provider value={htmlId}>
       <div
         css={css`
           grid-column: label / end;
         `}
         className={className}
       >
-        {label}
+        <label htmlFor={htmlId}>{label}</label>
         {children}
       </div>
-    </Fragment>
+    </IdContext.Provider>
   );
 };

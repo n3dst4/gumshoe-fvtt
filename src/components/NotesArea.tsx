@@ -11,23 +11,25 @@ type NotesAreaProps = {
 export const NotesArea: React.FC<NotesAreaProps> = ({
   actor,
 }) => {
+  const notesGetter = actor.getter("notes");
+  const notesSetter = actor.setter("notes");
+
   const {
     display,
     onBlur,
     onFocus,
     onChange,
-  } = useAsyncUpdate(actor.getNotes(), actor.setNotes);
+  } = useAsyncUpdate(notesGetter(), notesSetter);
 
   return (
     <div>
-      <h1>Notes, contacts etc.</h1>
+      <h2>Notes, contacts etc.</h2>
       <textarea
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
-      >
-        {display}
-      </textarea>
+        value={display}
+      />
     </div>
   );
 };

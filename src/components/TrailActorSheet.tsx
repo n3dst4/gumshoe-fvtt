@@ -48,6 +48,7 @@ export const TrailActorSheet = ({
   const updateName = useUpdate(entity, name => ({ name }));
   const updateDrive = useUpdate(entity, drive => ({ data: { drive } }));
   const updateOccupation = useUpdate(entity, occupation => ({ data: { occupation } }));
+  const updatePillarsOfSanity = useUpdate(entity, pillarsOfSanity => ({ data: { pillarsOfSanity } }));
   const updateOccupationalBenefits = useUpdate(entity, occupationalBenefits => ({ data: { occupationalBenefits } }));
 
   const investigativeAbilities: { [category: string]: TrailItem[] } = {};
@@ -127,7 +128,7 @@ export const TrailActorSheet = ({
       css={{
         display: "grid",
         gridTemplateRows: "min-content max-content 1fr",
-        gridTemplateColumns: "max-content 1fr 12em",
+        gridTemplateColumns: "max-content 1fr 14em",
         gap: "0.5em",
         gridTemplateAreas:
           "\"title title image\" " +
@@ -194,6 +195,12 @@ export const TrailActorSheet = ({
             <AsyncTextInput
               value={entity.data.data.occupationalBenefits}
               onChange={updateOccupationalBenefits}
+            />
+          </GridFieldStacked>
+          <GridFieldStacked label="Pillars of Sanity">
+            <AsyncTextInput
+              value={entity.data.data.pillarsOfSanity}
+              onChange={updatePillarsOfSanity}
             />
           </GridFieldStacked>
         </InputGrid>

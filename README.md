@@ -63,7 +63,7 @@ As GM:
 - [x] occupational abilities
 - [x] show (I) in investigable skills
 - [x] general refresh
-- [ ] tabbable main area
+- [x] tabbable main area
 - [ ] equipment
 - [ ] weapons
 - [ ] pillars of sanity

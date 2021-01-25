@@ -27,6 +27,11 @@ export type PCTrailActorData = {
   "drive": string,
   "occupation": string,
   "occupationalBenefits": string,
+  "pillarsOfSanity": string,
+  "sourcesOfStability": string,
+  "notes": string,
+  "background": string,
+
 };
 
 // export type PCTrailActor = TrailActor<PCTrailActorData>;
