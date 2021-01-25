@@ -1,3 +1,4 @@
+import { isAbility } from "../functions";
 
 export class TrailActor<Data=any> extends Actor<Data> {
   /**
@@ -40,5 +41,9 @@ export class TrailActor<Data=any> extends Actor<Data> {
         });
       }
     });
+  }
+
+  getAbilityByName (name: string) {
+    return this.items.find((item) => isAbility(item) && item.name === name);
   }
 }

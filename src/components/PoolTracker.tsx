@@ -23,8 +23,8 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
   actor,
 }) => {
   const ability = useMemo(() => {
-    return actor.items.find((item) => item.name === abilityName);
-  }, [abilityName, actor.items]);
+    return actor.getAbilityByName(abilityName);
+  }, [abilityName, actor]);
   const min = ability?.data.data.min ?? 0;
   const max = ability?.data.data.max ?? 12;
   const vals = range(min, max);
