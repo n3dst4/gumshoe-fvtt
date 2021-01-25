@@ -71,6 +71,7 @@ As GM:
 - [ ] equipment
 - [ ] weapons
 - [ ] attack rolls?
+- [ ] initiative?
 - [ ] beautifying pass
 - [ ] scroll main area not whole sheet
 - [ ] update window title when entity name changes
