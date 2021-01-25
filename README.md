@@ -80,6 +80,8 @@ As GM:
 
 ## The future
 
+- [ ] expandy-collapsy bits on the notes area
+- [ ] rich text editing
 - [ ] Character gen mode? (track free values, point spends, I<->G trades, synergies)
 - [ ] GM player skill matrix (pickable actors, show a big ol' matrix)
 
