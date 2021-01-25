@@ -201,6 +201,11 @@ export const TrailActorSheet = ({
           gridArea: "pools",
         }}
       >
+        <button onClick={onClickRefresh}>
+          Refresh
+        </button>
+        <hr/>
+
         <PoolTracker abilityName="Sanity" actor={entity} />
         <PoolTracker abilityName="Stability" actor={entity} />
         <PoolTracker abilityName="Health" actor={entity} />
@@ -208,9 +213,6 @@ export const TrailActorSheet = ({
         <hr/>
         <button onClick={onClickNuke}>
           Nuke
-        </button>
-        <button onClick={onClickRefresh}>
-          Refresh
         </button>
       </div>
 

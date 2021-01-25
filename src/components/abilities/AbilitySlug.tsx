@@ -10,6 +10,7 @@ type AbilitySlugProps = {
 export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
   return (
     <a
+      tabIndex={0}
       key={ability.id}
       css={{
         display: "block",
@@ -26,10 +27,10 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
 
         {ability.name} ({ability.data.data.pool}/{ability.data.data.rating})
         {ability.data.data.occupational &&
-          <i css={{ marginLeft: "0.5em" }} className="fa fa-star-of-life" />
+          <i css={{ marginLeft: "0.5em" }} className="fa fa-star-of-life" title="This is an occupational ability"/>
         }
         {ability.data.data.canBeInvestigative &&
-          <i css={{ marginLeft: "0.5em" }} className="fa fa-search" />
+          <i css={{ marginLeft: "0.5em" }} className="fa fa-search" title="Can be used investigatively"/>
         }
 
       </div>

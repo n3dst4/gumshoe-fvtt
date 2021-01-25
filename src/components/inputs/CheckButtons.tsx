@@ -38,7 +38,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
             backgroundColor: "rgba(0,0,0,0.1)",
             paddingBottom: "0.3em",
             borderRadius: "0.2em",
-            ":hover": {
+            ":hover, :focus": {
               textShadow: "0 0 0.3em rgba(255,111,18,1)",
             },
           },
@@ -65,6 +65,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
           return (
             <Fragment key={value}>
               <input
+
                 id={id}
                 type="radio"
                 value={value}
@@ -72,7 +73,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
                 onChange={onChange}
                 disabled={!enabled}//
               />
-              <label htmlFor={id}>
+              <label htmlFor={id} tabIndex={0}>
                 {label}
               </label>
             </Fragment>

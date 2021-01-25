@@ -23,6 +23,7 @@ export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
 
   return (
     <a
+      tabIndex={disabled ? undefined : 0}
       onClick={onClick}
       css={{
         width: "2em",
