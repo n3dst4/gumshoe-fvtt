@@ -71,9 +71,18 @@ As GM:
 - [ ] equipment
 - [ ] weapons
 - [ ] attack rolls?
+- [ ] beautifying pass
+- [ ] scroll main area not whole sheet
 - [ ] update window title when entity name changes
 - [ ] publish
 - [ ] i18n
+
+
+## The future
+
+- [ ] Character gen mode? (track free values, point spends, I<->G trades, synergies)
+- [ ] GM player skill matrix (pickable actors, show a big ol' matrix)
+
 
 ## Generating Compendia
 
