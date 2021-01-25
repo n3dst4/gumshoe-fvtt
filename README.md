@@ -63,8 +63,12 @@ As GM:
 - [x] occupational abilities
 - [x] show (I) in investigable skills
 - [x] general refresh
+- [ ] tabbable main area
 - [ ] equipment
 - [ ] weapons
+- [ ] pillars of sanity
+- [ ] sources of stability
+- [ ] contacts & notes
 - [ ] attack rolls?
 - [ ] notes/background etc.
 - [ ] update window title when entity name changes

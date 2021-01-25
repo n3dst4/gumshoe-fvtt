@@ -1,4 +1,4 @@
-import { TrailActor } from "./module/TrailActor";
+// import { TrailActor } from "./module/TrailActor";
 // type BaseAbilityData = {
 //   "rating": number,
 //   "pool": number,
@@ -29,4 +29,4 @@ export type PCTrailActorData = {
   "occupationalBenefits": string,
 };
 
-export type PCTrailActor = TrailActor<PCTrailActorData>;
+// export type PCTrailActor = TrailActor<PCTrailActorData>;

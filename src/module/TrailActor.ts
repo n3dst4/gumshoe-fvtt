@@ -1,6 +1,7 @@
+import { equipment, weapon } from "../constants";
 import { isAbility } from "../functions";
 
-export class TrailActor<Data=any> extends Actor<Data> {
+export class TrailActor extends Actor<any> {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
@@ -45,5 +46,25 @@ export class TrailActor<Data=any> extends Actor<Data> {
 
   getAbilityByName (name: string) {
     return this.items.find((item) => isAbility(item) && item.name === name);
+  }
+
+  getEquipment () {
+    return this.items.filter((item) => item.type === equipment);
+  }
+
+  getWeapons () {
+    return this.items.filter((item) => item.type === weapon);
+  }
+
+  getNotes () {
+    return this.data.data.notes || "";
+  }
+
+  setNotes = (notes: string) => {
+    this.update({
+      data: {
+        notes,
+      },
+    });
   }
 }

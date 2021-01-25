@@ -15,6 +15,9 @@ import { AsyncTextInput } from "./inputs/AsyncTextInput";
 import { GridFieldStacked } from "./inputs/GridFieldStacked";
 import { generalAbility, investigativeAbility } from "../constants";
 import { TrailItem } from "../module/TrailItem";
+import { TabContainer } from "./TabContainer";
+import { EquipmentArea } from "./EquipmentArea";
+import { NotesArea } from "./NotesArea";
 
 type TrailActorSheetProps = {
   entity: TrailActor,
@@ -221,9 +224,38 @@ export const TrailActorSheet = ({
           gridArea: "body",
         }}
       >
-        <AbilitiesArea
-          investigativeAbilities={investigativeAbilities}
-          generalAbilities={generalAbilities}
+        <TabContainer
+          defaultTab="abilities"
+          tabs={[
+            {
+              id: "abilities",
+              label: "Abilities",
+              content: (
+                <AbilitiesArea
+                  investigativeAbilities={investigativeAbilities}
+                  generalAbilities={generalAbilities}
+                />
+              ),
+            },
+            {
+              id: "equipment",
+              label: "Equipment",
+              content: (
+                <EquipmentArea
+                  actor={entity}
+                />
+              ),
+            },
+            {
+              id: "notes",
+              label: "Notes",
+              content: (
+                <NotesArea
+                  actor={entity}
+                />
+              ),
+            },
+          ]}
         />
       </div>
     </CSSReset>

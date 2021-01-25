@@ -12,11 +12,15 @@
       "drive": "",
       "occupation": "",
       "occupationalBenefits": "",
-      "buildPoints": 28
+      "buildPoints": 28,
+      "pillarsOFSanity": "",
+      "sourcesOfStability": "",
+      "notes": "",
+      "background": ""
     }
   },
   "Item": {
-    "types": ["investigativeAbility", "generalAbility", "equipment"],
+    "types": ["investigativeAbility", "generalAbility", "equipment", "weapon"],
     "templates": {
       "ability": {
         "rating": 1,
@@ -35,6 +39,17 @@
     "generalAbility": {
       "templates": ["ability"],
       "canBeInvestigative": false
+    },
+    "equipment": {
+
+    },
+    "weapon": {
+      "damage": "1d6",
+      "pointBlankRange": 0,
+      "closeRange": 0,
+      "nearRange": 0,
+      "longRange": 0,
+      "notes": ""
     }
   }
 }

@@ -33,7 +33,7 @@ export const useAsyncUpdate = (
     return throttle(onChangeOrig, 500);
   }, [onChangeOrig]);
 
-  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
     setDisplay(e.currentTarget.value);
     onChangeThrottled(e.currentTarget.value);
   }, [onChangeThrottled]);
