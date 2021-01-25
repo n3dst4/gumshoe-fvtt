@@ -25,8 +25,8 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
   const ability = useMemo(() => {
     return actor.items.find((item) => item.name === abilityName);
   }, [abilityName, actor.items]);
-  const min = ability.data.data.min ?? 0;
-  const max = ability.data.data.max ?? 12;
+  const min = ability?.data.data.min ?? 0;
+  const max = ability?.data.data.max ?? 12;
   const vals = range(min, max);
 
   const setPool = useCallback((pool: number) => {
@@ -48,7 +48,7 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
         // gridAutoRows: "2em",
       }}
     >
-      <h2 css={{ gridColumn: "start / end" }}>{ability.name}</h2>
+      <h2 css={{ gridColumn: "start / end" }}>{abilityName}</h2>
 
       {vals.map((v) => (
         <PoolCheckbox
