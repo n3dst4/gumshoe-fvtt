@@ -65,8 +65,8 @@ As GM:
 - [x] general refresh
 - [ ] equipment
 - [ ] weapons
-- [ ] notes/background etc.
 - [ ] attack rolls?
+- [ ] notes/background etc.
 - [ ] update window title when entity name changes
 - [ ] publish
 - [ ] i18n
