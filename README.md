@@ -64,13 +64,13 @@ As GM:
 - [x] show (I) in investigable skills
 - [x] general refresh
 - [x] tabbable main area
+- [x] pillars of sanity
+- [x] sources of stability
+- [x] contacts & notes
+- [x] background etc.
 - [ ] equipment
 - [ ] weapons
-- [ ] pillars of sanity
-- [ ] sources of stability
-- [ ] contacts & notes
 - [ ] attack rolls?
-- [ ] notes/background etc.
 - [ ] update window title when entity name changes
 - [ ] publish
 - [ ] i18n
