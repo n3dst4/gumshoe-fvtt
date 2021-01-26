@@ -68,7 +68,7 @@ As GM:
 - [x] sources of stability
 - [x] contacts & notes
 - [x] background etc.
-- [ ] equipment
+- [x] equipment
 - [ ] weapons
 - [ ] attack rolls?
 - [ ] initiative?
