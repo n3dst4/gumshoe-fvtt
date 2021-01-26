@@ -41,6 +41,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
           gridTemplateColumns: "1fr max-content max-content max-content max-content max-content 1fr",
           gridAutoRows: "min-content",
           columnGap: "0.5em",
+          whiteSpace: "nowrap",
           ".header": {
             fontWeight: "bold",
           },
@@ -72,14 +73,13 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
         {
           sortEntitiesByName(items).map((item) => (
             <Fragment key={item.id}>
-              <div css={{ gridColumn: 1 }}>
-                <a
-                  key={item.id}
-                  onClick={() => item.sheet.render(true)}
-                >
-                  {item.name}
-                </a>
-              </div>
+              <a
+                key={item.id}
+                onClick={() => item.sheet.render(true)}
+                css={{ gridColumn: 1 }}
+              >
+                {item.name}
+              </a>
               <div css={{ gridColumn: 2 }}>
                 {item.getter("damage")()}
               </div>
@@ -95,7 +95,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
               <div css={{ gridColumn: 6 }}>
                 {item.getter("longRange")()}
               </div>
-              <div css={{ gridColumn: 7 }}>
+              <div css={{ gridColumn: 7, overflow: "hidden", textOverflow: "ellipsis" }}>
                 {item.getter("notes")()}
               </div>
             </Fragment>
