@@ -94,3 +94,7 @@ As GM:
 3. Open the browser console (F12) and type `generateTrailAbilitiesData()`
 4. Check the compenium packs if you like
 5. Copy the `packs/*.db` files back from `dist/` into `src/`
+
+
+
+    "foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types",

@@ -57,7 +57,7 @@ function buildTS () {
   return new Promise((resolve, reject) => {
     webpack(webpackConfig, (err, stats) => {
       if (err || stats.hasErrors()) {
-        reject(err);
+        reject(err || stats.toString());
       } else {
         resolve();
       }
