@@ -1,14 +1,6 @@
 import { equipment, weapon } from "../constants";
 import { isAbility } from "../functions";
-import { PCTrailActorData } from "../types";
-
-type GetterDict<T> = {
-  [P in keyof T]?: () => T[P];
-}
-
-type SetterDict<T> = {
-  [P in keyof T]?: (val: T[P]) => void;
-}
+import { GetterDict, PCTrailActorData, SetterDict } from "../types";
 
 export class TrailActor extends Actor<any> {
   constructor (data, options) {

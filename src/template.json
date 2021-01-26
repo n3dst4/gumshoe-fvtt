@@ -41,7 +41,7 @@
       "canBeInvestigative": false
     },
     "equipment": {
-
+      "notes": ""
     },
     "weapon": {
       "damage": "1d6",

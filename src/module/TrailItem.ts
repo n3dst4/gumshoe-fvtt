@@ -1,10 +1,36 @@
 import { fixLength, isAbility } from "../functions";
+import { GetterDict, SetterDict, TrailItemData } from "../types";
 
 /**
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
  */
-export class TrailItem extends Item {
+export class TrailItem extends Item<any> {
+  constructor (data, options) {
+    super(data, options);
+    this._getters = {};
+    this._setters = {};
+  }
+
+  _getters: GetterDict<TrailItemData>
+  _setters: SetterDict<TrailItemData>
+
+  getter = <T extends keyof TrailItemData>(field: T) => {
+    if (this._getters[field] === undefined) {
+      this._getters[field] = () => this.data.data[field];
+    }
+    return this._getters[field];
+  }
+
+  setter = <T extends keyof TrailItemData>(field: T) => {
+    if (this._setters[field] === undefined) {
+      this._setters[field] = (val: any) => {
+        this.update({ data: { [field]: val } });
+      };
+    }
+    return this._setters[field];
+  }
+
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
