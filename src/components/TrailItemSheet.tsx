@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { equipment } from "../constants";
+import { equipment, weapon } from "../constants";
 import { TrailItem } from "../module/TrailItem";
 import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
 import { isAbility } from "../functions";
+import { WeaponSheet } from "./equipment/WeaponSheet";
 
 type TrailItemSheetProps = {
   entity: TrailItem,
@@ -26,7 +27,9 @@ export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
         ? <AbilitySheet ability={entity} foundryWindow={foundryWindow} />
         : entity.type === equipment
           ? <EquipmentSheet entity={entity} foundryWindow={foundryWindow} />
-          : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
+          : entity.type === weapon
+            ? <WeaponSheet entity={entity} foundryWindow={foundryWindow} />
+            : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
       }
     </div>
   );

@@ -44,6 +44,7 @@
       "notes": ""
     },
     "weapon": {
+      "ability": "Scuffling",
       "damage": "1d6",
       "pointBlankRange": 0,
       "closeRange": 0,

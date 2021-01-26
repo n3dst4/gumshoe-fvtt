@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useCallback } from "react";
+import React, { Fragment, useCallback } from "react";
 import { TrailActor } from "../module/TrailActor";
 import { PoolTracker } from "./abilities/PoolTracker";
 import { jsx } from "@emotion/react";
@@ -15,6 +15,7 @@ import { TrailItem } from "../module/TrailItem";
 import { TabContainer } from "./TabContainer";
 import { EquipmentArea } from "./equipment/EquipmentArea";
 import { NotesArea } from "./NotesArea";
+import { WeaponsArea } from "./equipment/WeaponsArea";
 
 type TrailActorSheetProps = {
   entity: TrailActor,
@@ -243,18 +244,17 @@ export const TrailActorSheet = ({
               id: "equipment",
               label: "Equipment",
               content: (
-                <EquipmentArea
-                  actor={entity}
-                />
+                <Fragment>
+                  <WeaponsArea actor={entity} />
+                  <EquipmentArea actor={entity} />
+                </Fragment>
               ),
             },
             {
               id: "notes",
               label: "Notes",
               content: (
-                <NotesArea
-                  actor={entity}
-                />
+                <NotesArea actor={entity} />
               ),
             },
           ]}

@@ -4,7 +4,7 @@ import { TrailActor } from "./module/TrailActor";
 import { TrailItem } from "./module/TrailItem";
 import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
 import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
-import { equipment, generalAbility, investigativeAbility } from "./constants";
+import { equipment, generalAbility, investigativeAbility, weapon } from "./constants";
 import { generateTrailAbilitiesData } from "./generateTrailAbilitiesData";
 
 // Initialize system
@@ -24,12 +24,13 @@ Hooks.once("init", async function () {
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("trail-of-cthulhu-unsanctioned", TrailActorSheetClass, { makeDefault: true });
+  Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(
     "trail-of-cthulhu-unsanctioned",
     TrailItemSheetClass,
     {
       makeDefault: true,
-      types: [investigativeAbility, generalAbility, equipment],
+      types: [weapon, investigativeAbility, generalAbility, equipment],
     },
   );
 });
@@ -45,6 +46,6 @@ Hooks.once("ready", function () {
   // Do anything once the system is ready
 });
 
-// CONFIG.debug.hooks = true;
+CONFIG.debug.hooks = true;
 
 (window as any).generateTrailAbilitiesData = generateTrailAbilitiesData;//

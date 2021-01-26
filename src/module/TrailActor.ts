@@ -1,6 +1,7 @@
 import { equipment, weapon } from "../constants";
 import { isAbility } from "../functions";
 import { GetterDict, PCTrailActorData, SetterDict } from "../types";
+import { TrailItem } from "./TrailItem";
 
 export class TrailActor extends Actor<any> {
   constructor (data, options) {
@@ -42,7 +43,7 @@ export class TrailActor extends Actor<any> {
     return this.items.filter((item) => item.type === equipment);
   }
 
-  getWeapons () {
+  getWeapons (): TrailItem[] {
     return this.items.filter((item) => item.type === weapon);
   }
 
