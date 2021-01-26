@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { useUpdate } from "../hooks/useUpdate";
-import { TrailItem } from "../module/TrailItem";
-import { AsyncTextInput } from "./inputs/AsyncTextInput";
-import { CSSReset } from "./CSSReset";
-import { GridField } from "./inputs/GridField";
-import { InputGrid } from "./inputs/InputGrid";
+import { useUpdate } from "../../hooks/useUpdate";
+import { TrailItem } from "../../module/TrailItem";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { CSSReset } from "../CSSReset";
+import { GridField } from "../inputs/GridField";
+import { InputGrid } from "../inputs/InputGrid";
 type EquipmentSheetProps = {
   entity: TrailItem,
   foundryWindow: Application,

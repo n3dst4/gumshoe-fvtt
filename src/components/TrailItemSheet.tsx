@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React from "react";
 import { equipment } from "../constants";
 import { TrailItem } from "../module/TrailItem";
-import { EquipmentSheet } from "./EquipmentSheet";
+import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
 import { isAbility } from "../functions";
 
@@ -12,6 +12,10 @@ type TrailItemSheetProps = {
   foundryWindow: Application,
 };
 
+/**
+ * We only register one "Item" sheet with foundry and then dispatch based on
+ * type here.
+ */
 export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
   entity,
   foundryWindow,

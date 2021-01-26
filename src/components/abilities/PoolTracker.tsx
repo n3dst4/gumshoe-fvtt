@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 
 import React, { useCallback, useMemo } from "react";
-import { TrailActor } from "../module/TrailActor";
+import { TrailActor } from "../../module/TrailActor";
 import { PoolCheckbox } from "./PoolCheckbox";
 
 const range = (from: number, to: number): number[] => {

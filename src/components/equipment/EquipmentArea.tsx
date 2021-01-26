@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { TrailActor } from "../module/TrailActor";
+import { TrailActor } from "../../module/TrailActor";
 
 type EquipmentAreaProps = {
   actor: TrailActor,

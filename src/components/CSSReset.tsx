@@ -34,7 +34,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           display: "",
         },
         a: {
-          ":hover, :focus": {
+          ":hover": {
             textShadow: "0 0 0.5em red",
           },
         },

@@ -15,9 +15,9 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
       css={{
         display: "block",
         position: "relative",
-        ":hover": {
-          textShadow: "0 0 0.5em #ec6f12",
-        },
+        // ":hover": {
+        //   textShadow: "0 0 0.5em #ec6f12",
+        // },
       }}
       onClick={() => {
         ability.sheet.render(true);

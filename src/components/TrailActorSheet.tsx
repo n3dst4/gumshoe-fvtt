@@ -1,11 +1,9 @@
 /** @jsx jsx */
 import React, { useCallback } from "react";
 import { TrailActor } from "../module/TrailActor";
-import { PoolTracker } from "./PoolTracker";
+import { PoolTracker } from "./abilities/PoolTracker";
 import { jsx } from "@emotion/react";
-// import { TrailLogo } from "./TrailLogo";
 import { useUpdate } from "../hooks/useUpdate";
-// import { GeneralAbility, InvestigativeAbility } from "../types";
 import { AbilitiesArea } from "./abilities/AbilitiesArea";
 import { CSSReset } from "./CSSReset";
 import { TrailLogoEditable } from "./TrailLogoEditable";
@@ -15,7 +13,7 @@ import { AsyncTextInput } from "./inputs/AsyncTextInput";
 import { generalAbility, investigativeAbility } from "../constants";
 import { TrailItem } from "../module/TrailItem";
 import { TabContainer } from "./TabContainer";
-import { EquipmentArea } from "./EquipmentArea";
+import { EquipmentArea } from "./equipment/EquipmentArea";
 import { NotesArea } from "./NotesArea";
 
 type TrailActorSheetProps = {
