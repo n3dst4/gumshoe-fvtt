@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
-import React, { useCallback, useContext } from "react";
+import React, { useCallback } from "react";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { IdContext } from "../IdContext";
+import { TextInput } from "./TextInput";
 
 type AsyncNumberInputProps = {
   value: undefined|number,
@@ -91,8 +91,6 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
 
   const result = validate(display);
 
-  const id = useContext(IdContext);
-
   return (
     <div
       css={{
@@ -121,16 +119,13 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
       >
         <i className="fa fa-plus" />
       </button>
-      <input
-        id={id}
-        size={1}
+      <TextInput
         css={css`
           flex: 1;
           flex-basis: min-content;
           color: ${result.validation === "failed" ? "red" : undefined};
           user-select: "text";
         `}
-        data-lpignore="true"
         value={display}
         onChange={onChange}
         onFocus={onFocus}

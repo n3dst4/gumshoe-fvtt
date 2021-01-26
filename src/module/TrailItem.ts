@@ -77,4 +77,10 @@ export class TrailItem extends Item {
       },
     });
   }
+
+  setName = (name: string) => {
+    this.update({
+      name,
+    });
+  }
 }

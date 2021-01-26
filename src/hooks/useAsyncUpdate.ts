@@ -33,9 +33,9 @@ export const useAsyncUpdate = (
     return throttle(onChangeOrig, 500);
   }, [onChangeOrig]);
 
-  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
-    setDisplay(e.currentTarget.value);
-    onChangeThrottled(e.currentTarget.value);
+  const onChange = useCallback((value: string) => {
+    setDisplay(value);
+    onChangeThrottled(value);
   }, [onChangeThrottled]);
 
   // for posterity, i'm leaving this here - a mechanism to relay the text
