@@ -66,7 +66,10 @@ export type GeneralAbilityData = CoreAbilityData & {
 
 export type AbilityData = InvestAbilityData | GeneralAbilityData;
 
+// the most correct "type" for this is a Partial-wrapped splodge of all the
+// possibilities. I don't like it.
 export type TrailItemData = Partial<EquipmentData & WeaponData & AbilityData>;
+// export type TrailItemData = EquipmentData | WeaponData | AbilityData;
 
 // export type PCTrailActor = TrailActor<PCTrailActorData>;
 
