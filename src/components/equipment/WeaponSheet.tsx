@@ -8,6 +8,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "../inputs/TextInput";
 import { TextArea } from "../inputs/TextArea";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 type WeaponSheetProps = {
   entity: TrailItem,
@@ -74,8 +75,23 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
         ref={name.contentEditableRef}
       />
       <InputGrid>
-      <GridField label="Name">
+        <GridField label="Name">
           <TextInput value={name.display} onChange={name.onChange} />
+        </GridField>
+        <GridField label="Damage">
+          <AsyncNumberInput value={entity.getter("damage")()} onChange={entity.setter("damage")} />
+        </GridField>
+        <GridField label="Point Blank">
+          <AsyncNumberInput value={entity.getter("pointBlankRange")()} onChange={entity.setter("pointBlankRange")} />
+        </GridField>
+        <GridField label="Close">
+          <AsyncNumberInput value={entity.getter("closeRange")()} onChange={entity.setter("closeRange")} />
+        </GridField>
+        <GridField label="Near">
+          <AsyncNumberInput value={entity.getter("nearRange")()} onChange={entity.setter("nearRange")} />
+        </GridField>
+        <GridField label="Long">
+          <AsyncNumberInput value={entity.getter("longRange")()} onChange={entity.setter("longRange")} />
         </GridField>
         <GridField label="Notes">
           <TextArea value={notes.display} onChange={notes.onChange} />

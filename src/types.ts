@@ -38,7 +38,7 @@ export type EquipmentData = {
 }
 
 export type WeaponData = {
-  damage: string,
+  damage: number,
   pointBlankRange: number,
   closeRange: number,
   nearRange: number,
