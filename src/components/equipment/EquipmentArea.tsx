@@ -32,7 +32,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
             // newItem.sheet.render(true);
           }}
         >
-          <i className="fa fa-plus"/>Add
+          <i className="fa fa-plus"/>Add Equipment
         </button>
       </h1>
       <div

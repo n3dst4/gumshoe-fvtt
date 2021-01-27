@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment } from "react";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { equipment, weapon } from "../../constants";
+import React from "react";
+import { weapon } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { TrailActor } from "../../module/TrailActor";
+import { WeaponRow } from "./WeaponRow";
 
 type WeaponsAreaProps = {
   actor: TrailActor,
@@ -32,7 +32,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
             });
           }}
         >
-          <i className="fa fa-plus"/>Add
+          <i className="fa fa-plus"/>Add Weapon
         </button>
       </h1>
       <div
@@ -72,33 +72,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
 
         {
           sortEntitiesByName(items).map((item) => (
-            <Fragment key={item.id}>
-              <a
-                key={item.id}
-                onClick={() => item.sheet.render(true)}
-                css={{ gridColumn: 1 }}
-              >
-                {item.name}
-              </a>
-              <div css={{ gridColumn: 2 }}>
-                {item.getter("damage")()}
-              </div>
-              <div css={{ gridColumn: 3 }}>
-                {item.getter("pointBlankRange")()}
-              </div>
-              <div css={{ gridColumn: 4 }}>
-                {item.getter("closeRange")()}
-              </div>
-              <div css={{ gridColumn: 5 }}>
-                {item.getter("nearRange")()}
-              </div>
-              <div css={{ gridColumn: 6 }}>
-                {item.getter("longRange")()}
-              </div>
-              <div css={{ gridColumn: 7, overflow: "hidden", textOverflow: "ellipsis" }}>
-                {item.getter("notes")()}
-              </div>
-            </Fragment>
+            <WeaponRow key={item.id} weapon={item}/>
           ))
         }
       </div>

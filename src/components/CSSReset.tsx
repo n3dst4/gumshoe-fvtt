@@ -33,10 +33,8 @@ export const CSSReset: React.FC<CSSResetProps> = ({
         ".window-upload-handle": {
           display: "",
         },
-        a: {
-          ":hover": {
-            textShadow: "0 0 0.5em red",
-          },
+        "a:hover, a.hover, .hover a": {
+          textShadow: "0 0 0.5em red",
         },
       }}
       className={className}
