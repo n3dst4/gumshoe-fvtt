@@ -34,11 +34,26 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({
   }));
 
   const onPointBlank = useCallback(() => {
-    const roll = new Roll("1d6 + @spend", { spend });
-    const label = `Rolling ${ability.name} at point blank range`;
-    roll.roll().toMessage({
+    const hitRoll = new Roll("1d6 + @spend", { spend });
+    const hitLabel = `Rolling ${ability.name} at point blank range`;
+    hitRoll.roll();
+    hitRoll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-      flavor: label,
+      flavor: hitLabel,
+    });
+    const damageRoll = new Roll(
+      "1d6 + @damage + @rangeDamage",
+      {
+        spend,
+        damage: weapon.data.data.damage,
+        rangeDamage: weapon.data.data.pointBlankDamage,
+      },
+    );
+    const damageLabel = "Damage at point blank range";
+    damageRoll.roll();
+    damageRoll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
+      flavor: damageLabel,
     });
     const currentPool = ability.getter("pool")();
     const poolHit = Math.max(0, Number(spend) - bonusPool);
@@ -47,7 +62,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({
     ability.setter("pool")(newPool);
     setBonusPool(newBonusPool);
     setSpend("0");
-  }, [ability, bonusPool, spend]);
+  }, [ability, bonusPool, spend, weapon.data.data.damage, weapon.data.data.pointBlankDamage]);
 
   return (
     <Fragment>
