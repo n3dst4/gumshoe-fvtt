@@ -8,6 +8,7 @@ import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "../inputs/TextInput";
 import { TextArea } from "../inputs/TextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { WeaponRange } from "./WeaponRangeConfig";
 
 type WeaponConfigProps = {
   weapon: TrailItem,
@@ -53,21 +54,33 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
         <GridField label="Name">
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
-        <GridField label="Damage">
+        <GridField label="Base Damage">
           <AsyncNumberInput value={weapon.getter("damage")()} onChange={weapon.setter("damage")} />
         </GridField>
-        <GridField label="Point Blank">
-          <AsyncNumberInput value={weapon.getter("pointBlankRange")()} onChange={weapon.setter("pointBlankRange")} />
-        </GridField>
-        <GridField label="Close">
-          <AsyncNumberInput value={weapon.getter("closeRange")()} onChange={weapon.setter("closeRange")} />
-        </GridField>
-        <GridField label="Near">
-          <AsyncNumberInput value={weapon.getter("nearRange")()} onChange={weapon.setter("nearRange")} />
-        </GridField>
-        <GridField label="Long">
-          <AsyncNumberInput value={weapon.getter("longRange")()} onChange={weapon.setter("longRange")} />
-        </GridField>
+        <WeaponRange
+          label="Point Blank"
+          weapon={weapon}
+          valueField="pointBlankDamage"
+          enabledField="isPointBlank"
+        />
+        <WeaponRange
+          label="Close range"
+          weapon={weapon}
+          valueField="closeRangeDamage"
+          enabledField="isCloseRange"
+        />
+        <WeaponRange
+          label="Near range"
+          weapon={weapon}
+          valueField="nearRangeDamage"
+          enabledField="isNearRange"
+        />
+        <WeaponRange
+          label="Long range"
+          weapon={weapon}
+          valueField="longRangeDamage"
+          enabledField="isLongRange"
+        />
         <GridField label="Notes">
           <TextArea value={notes.display} onChange={notes.onChange} />
         </GridField>

@@ -38,12 +38,16 @@ export type EquipmentData = {
 }
 
 export type WeaponData = {
-  damage: number,
-  pointBlankRange: number,
-  closeRange: number,
-  nearRange: number,
-  longRange: number,
   notes: string,
+  damage: number,
+  pointBlankDamage: number,
+  closeRangeDamage: number,
+  nearRangeDamage: number,
+  longRangeDamage: number,
+  isPointBlank: boolean,
+  isCloseRange: boolean,
+  isNearRange: boolean,
+  isLongRange: boolean,
 }
 
 export type CoreAbilityData = {
@@ -68,7 +72,7 @@ export type AbilityData = InvestAbilityData | GeneralAbilityData;
 
 // the most correct "type" for this is a Partial-wrapped splodge of all the
 // possibilities. I don't like it.
-export type TrailItemData = Partial<EquipmentData & WeaponData & AbilityData>;
+export type TrailItemData = Partial<EquipmentData & WeaponData & InvestAbilityData & GeneralAbilityData>;
 // export type TrailItemData = EquipmentData | WeaponData | AbilityData;
 
 // export type PCTrailActor = TrailActor<PCTrailActorData>;
@@ -80,3 +84,8 @@ export type GetterDict<T> = {
 export type SetterDict<T> = {
   [P in keyof T]?: (val: T[P]) => void;
 }
+
+export type OnlyProps<T, P> = Omit<
+  T,
+  { [K in keyof T]: T[K] extends P ? never : K }[keyof T]
+>;

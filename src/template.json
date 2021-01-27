@@ -46,10 +46,14 @@
     "weapon": {
       "ability": "Scuffling",
       "damage": 0,
-      "pointBlankRange": 0,
-      "closeRange": 0,
-      "nearRange": 0,
-      "longRange": 0,
+      "pointBlankDamage": 0,
+      "closeRangeDamage": 0,
+      "nearRangeDamage": 0,
+      "longRangeDamage": 0,
+      "isPointBlank": true,
+      "isCloseRange": true,
+      "isNearRange": true,
+      "isLongRange": false,
       "notes": ""
     }
   }

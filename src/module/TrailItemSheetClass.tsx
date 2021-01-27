@@ -16,7 +16,7 @@ class TrailItemSheetClassBase extends ItemSheet {
       template: reactTemplatePath,
       width: 400,
       // height: 350,
-      resizable: false,
+      resizable: true,
     });
   }
 }

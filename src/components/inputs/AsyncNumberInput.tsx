@@ -10,6 +10,7 @@ type AsyncNumberInputProps = {
   className?: string,
   min?: number,
   max?: number,
+  disabled?: boolean,
 };
 
 export type ValidationResult = {
@@ -40,6 +41,7 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
   className,
   min,
   max,
+  disabled,
 }) => {
   const validate = useCallback((text: string): ValidationResult => {
     const num = Number(text);
@@ -106,6 +108,7 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
           flex: 0,
         }}
         onClick={onClickDec}
+        disabled={disabled}
       >
         <i className="fa fa-minus" />
       </button>
@@ -116,6 +119,7 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
           flex: 0,
         }}
         onClick={onClickInc}
+        disabled={disabled}
       >
         <i className="fa fa-plus" />
       </button>
@@ -130,6 +134,7 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
+        disabled={disabled}
       />
 
     </div>

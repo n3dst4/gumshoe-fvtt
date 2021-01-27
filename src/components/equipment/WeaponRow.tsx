@@ -40,7 +40,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >
-      {weapon.getter("pointBlankRange")()}
+      {weapon.getter("pointBlankDamage")()}
     </a>
     <a
       css={{ gridColumn: 4 }}
@@ -49,7 +49,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >
-      {weapon.getter("closeRange")()}
+      {weapon.getter("closeRangeDamage")()}
     </a>
     <a
       css={{ gridColumn: 5 }}
@@ -58,7 +58,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >
-      {weapon.getter("nearRange")()}
+      {weapon.getter("nearRangeDamage")()}
     </a>
     <a
       css={{ gridColumn: 6 }}
@@ -67,7 +67,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >
-      {weapon.getter("longRange")()}
+      {weapon.getter("longRangeDamage")()}
     </a>
     <a
       css={{ gridColumn: 7, overflow: "hidden", textOverflow: "ellipsis" }}

@@ -19,6 +19,14 @@ export const Checkbox: React.FC<CheckboxProps> = ({
       id={id}
       type="checkbox"
       checked={checked}
+      css={{
+        lineHeight: "inherit",
+        height: "inherit",
+        background: "red",
+        "&[type=checkbox]": {
+          height: "inherit",
+        },
+      }}
       onChange={(e) => {
         onChange(e.currentTarget.checked);
       }}
