@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import { IdContext } from "../IdContext";
 
 type GridFieldProps = {
-  label: string;
+  label?: string;
   className?: string;
   children: JSX.Element;
 };
