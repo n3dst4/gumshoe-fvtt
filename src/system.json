@@ -34,6 +34,7 @@
   "gridUnits": "",
   "minimumCoreVersion": "0.7.9",
   "compatibleCoreVersion": "0.7.9",
+  "initiative": "1d6",
   "url": "https://github.com/n3dst4/trail-of-cthulhu-unsanctioned",
   "manifest": "https://raw.githubusercontent.com/n3dst4/trail-of-cthulhu-unsanctioned/master/src/system.json?token=AACENDW4I4FHJFIFYF47J3TABMHIM",
   "download": "https://github.com/n3dst4/trail-of-cthulhu-unsanctioned/blob/master/package/trail-of-cthulhu-unsanctioned-v0.1.0.zip?raw=true",

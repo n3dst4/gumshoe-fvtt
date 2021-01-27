@@ -6,6 +6,7 @@ import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
 import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
 import { equipment, generalAbility, investigativeAbility, weapon } from "./constants";
 import { generateTrailAbilitiesData } from "./generateTrailAbilitiesData";
+import { TrailCombat } from "./module/TrailCombat";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -20,6 +21,7 @@ Hooks.once("init", async function () {
 
   CONFIG.Actor.entityClass = TrailActor;
   CONFIG.Item.entityClass = TrailItem;
+  CONFIG.Combat.entityClass = TrailCombat;
 
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
