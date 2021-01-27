@@ -27,6 +27,8 @@ export const TabContainer: React.FC<TabContainerProps> = ({
     setSelected(e.currentTarget.value);
   }, []);
 
+  const radioGroup = useMemo(() => nanoid(), []);
+
   return (
     <div
       css={{
@@ -71,6 +73,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
           const htmlId = nanoid();
           return (<Fragment key={id}>
             <input
+              name={radioGroup}
               id={htmlId}
               type="radio"
               value={id}

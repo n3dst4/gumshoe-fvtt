@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback } from "react";
+import React, { Fragment, useCallback, useMemo } from "react";
 import { nanoid } from "nanoid";
 
 type CheckButtonsProps = {
@@ -18,6 +18,8 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
     const newValue = e.currentTarget.value;
     onChangeOrig(newValue);
   }, [onChangeOrig]);
+
+  const radioGroup = useMemo(() => nanoid(), []);
 
   return (
     <div
@@ -65,7 +67,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
           return (
             <Fragment key={value}>
               <input
-
+                name={radioGroup}
                 id={id}
                 type="radio"
                 value={value}
