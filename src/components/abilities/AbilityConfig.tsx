@@ -83,7 +83,6 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
               <option key={cat}>{cat}</option>
             ))}
           </select>
-          {/* <AsyncTextInput value={ability.data.data.category} onChange={updateCategory} /> */}
         </GridField>
       )}
       <GridField label="Min">
