@@ -70,7 +70,7 @@ As GM:
 - [x] background etc.
 - [x] equipment
 - [x] weapons
-- [ ] attack rolls?
+- [x] attack rolls?
 - [ ] initiative?
 - [ ] beautifying pass
 - [ ] scroll main area not whole sheet

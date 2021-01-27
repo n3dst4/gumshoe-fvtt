@@ -17,9 +17,7 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
   foundryWindow,
 }) => {
   const name = useAsyncUpdate(weapon.name, weapon.setName);
-
   const [configMode, setConfigMode] = useState(false);
-
   useEffect(() => {
     foundryWindow.render();
   }, [foundryWindow, configMode]);
@@ -28,16 +26,18 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
     <CSSReset>
       <div>
         Weapon
-        <a
-          css={{
-            float: "right",
-          }}
-          onClick={() => {
-            setConfigMode((mode) => !mode);
-          }}
-        >
-          <i className={`fa fa-${configMode ? "check" : "cog"}`}/>
-        </a>
+        {weapon.isOwned &&
+          <a
+            css={{
+              float: "right",
+            }}
+            onClick={() => {
+              setConfigMode((mode) => !mode);
+            }}
+          >
+            <i className={`fa fa-${configMode ? "check" : "cog"}`}/>
+          </a>
+        }
       </div>
 
       <h1
@@ -48,7 +48,7 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
         ref={name.contentEditableRef}
       />
 
-          {configMode ? <WeaponConfig weapon={weapon} /> : <WeaponAttack weapon={weapon} />}
+          {configMode || (!weapon.isOwned) ? <WeaponConfig weapon={weapon} /> : <WeaponAttack weapon={weapon} />}
 
     </CSSReset>
   );
