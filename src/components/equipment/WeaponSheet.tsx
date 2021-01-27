@@ -36,7 +36,7 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
             setConfigMode((mode) => !mode);
           }}
         >
-          <a className={`fa fa-${configMode ? "check" : "cog"}`}/>
+          <i className={`fa fa-${configMode ? "check" : "cog"}`}/>
         </a>
       </div>
 

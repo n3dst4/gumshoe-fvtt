@@ -51,7 +51,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
             setConfigMode((mode) => !mode);
           }}
         >
-          <a className={`fa fa-${configMode ? "check" : "cog"}`}/>
+          <i className={`fa fa-${configMode ? "check" : "cog"}`}/>
         </a>
       </div>
 
