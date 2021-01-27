@@ -9,6 +9,8 @@ import { TextInput } from "../inputs/TextInput";
 import { TextArea } from "../inputs/TextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { WeaponRange } from "./WeaponRangeConfig";
+import { combatAbilities } from "../../constants";
+import system from "../../system.json";
 
 type WeaponConfigProps = {
   weapon: TrailItem,
@@ -48,11 +50,27 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
     d.render(true);
   }, [weapon]);
 
+  const abilities = game.settings.get(system.name, combatAbilities).split(",").map(x => x.trim());
+
   return (
     <Fragment>
       <InputGrid>
         <GridField label="Name">
           <TextInput value={name.display} onChange={name.onChange} />
+        </GridField>
+        <GridField label="Ability">
+          <select
+            value={weapon.data.data.ability}
+            onChange={(e) => weapon.setter("ability")(e.currentTarget.value)}
+            css={{
+              lineHeight: "inherit",
+              height: "inherit",
+            }}
+          >
+            {abilities.map((cat) => (
+              <option key={cat}>{cat}</option>
+            ))}
+          </select>
         </GridField>
         <GridField label="Base Damage">
           <AsyncNumberInput value={weapon.getter("damage")()} onChange={weapon.setter("damage")} />

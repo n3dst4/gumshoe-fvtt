@@ -69,7 +69,7 @@ As GM:
 - [x] contacts & notes
 - [x] background etc.
 - [x] equipment
-- [ ] weapons
+- [x] weapons
 - [ ] attack rolls?
 - [ ] initiative?
 - [ ] beautifying pass

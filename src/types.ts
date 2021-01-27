@@ -39,6 +39,7 @@ export type EquipmentData = {
 
 export type WeaponData = {
   notes: string,
+  ability: string,
   damage: number,
   pointBlankDamage: number,
   closeRangeDamage: number,
