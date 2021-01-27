@@ -28,7 +28,7 @@ export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
         : entity.type === equipment
           ? <EquipmentSheet entity={entity} foundryWindow={foundryWindow} />
           : entity.type === weapon
-            ? <WeaponSheet entity={entity} foundryWindow={foundryWindow} />
+            ? <WeaponSheet weapon={entity} foundryWindow={foundryWindow} />
             : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
       }
     </div>
