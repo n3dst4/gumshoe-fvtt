@@ -2,13 +2,13 @@
 import { jsx } from "@emotion/react";
 import React from "react";
 import { TrailItem } from "../../module/TrailItem";
-import { OnlyProps, WeaponData } from "../../types";
+import { PickByType, WeaponData } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Checkbox } from "../inputs/Checkbox";
 import { GridField } from "../inputs/GridField";
 
-type WeaponNumbers = OnlyProps<WeaponData, number>;
-type WeaponBools = OnlyProps<WeaponData, boolean>;
+type WeaponNumbers = PickByType<WeaponData, number>;
+type WeaponBools = PickByType<WeaponData, boolean>;
 
 type WeaponRangeProps = {
   label: string;

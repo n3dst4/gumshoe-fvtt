@@ -85,7 +85,11 @@ export type SetterDict<T> = {
   [P in keyof T]?: (val: T[P]) => void;
 }
 
-export type OnlyProps<T, P> = Omit<
+/**
+ * this is wild - extract a subset of prperties from a type based on a test
+ * see https://stackoverflow.com/a/57386444/212676
+ */
+export type PickByType<T, P> = Omit<
   T,
-  { [K in keyof T]: T[K] extends P ? never : K }[keyof T]
+  { [K in keyof T]-?: T[K] extends P ? never : K }[keyof T]
 >;
