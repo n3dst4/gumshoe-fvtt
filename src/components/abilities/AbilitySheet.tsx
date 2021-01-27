@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { TrailItem } from "../../module/TrailItem";
 import { CSSReset } from "../CSSReset";
@@ -22,6 +22,10 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   const isGeneral = isGeneralAbility(ability);
   const updateName = useUpdate(ability, (name) => ({ name }));
   const [configMode, setConfigMode] = useState(false);
+
+  useEffect(() => {
+    foundryWindow.render();
+  }, [foundryWindow, configMode]);
 
   const {
     // display,
