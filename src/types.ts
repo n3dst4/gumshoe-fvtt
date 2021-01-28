@@ -92,5 +92,16 @@ export type SetterDict<T> = {
  */
 export type PickByType<T, P> = Omit<
   T,
-  { [K in keyof T]-?: T[K] extends P ? never : K }[keyof T]
+  { [K in keyof T]: T[K] extends P ? never : K }[keyof T]
 >;
+
+/**
+ * Like Partial<T>, but recursive.
+ */
+export type RecursivePartial<T> = {
+  [P in keyof T]?: T[P] extends (infer U)[]
+  ? RecursivePartial<U>[]
+  : T[P] extends Record<string, unknown>
+  ? RecursivePartial<T[P]>
+  : T[P];
+};

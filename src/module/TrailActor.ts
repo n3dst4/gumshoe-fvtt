@@ -1,6 +1,6 @@
-import { equipment, weapon } from "../constants";
+import { equipment, generalAbility, weapon } from "../constants";
 import { isAbility } from "../functions";
-import { GetterDict, PCTrailActorData, SetterDict } from "../types";
+import { GetterDict, PCTrailActorData, RecursivePartial, SetterDict, TrailItemData } from "../types";
 import { TrailItem } from "./TrailItem";
 
 export class TrailActor extends Actor<any> {
@@ -66,3 +66,28 @@ export class TrailActor extends Actor<any> {
     return this._setters[field];
   }
 }
+
+Hooks.on("updateOwnedItem", (
+  actor: TrailActor,
+  itemData: ItemData<TrailItemData>,
+  diff: RecursivePartial<ItemData<TrailItemData>>,
+  options: Record<string, unknown>,
+  userId: string,
+) => {
+  if (itemData.type === generalAbility) {
+    if (["Sanity", "Stability", "Health", "Magic"].includes(itemData.name)) {
+      if (diff.data.pool !== undefined || diff.data.rating !== undefined) {
+        actor.update({
+          data: {
+            resources: {
+              [itemData.name.toLowerCase()]: {
+                value: itemData.data.pool,
+                max: itemData.data.rating,
+              },
+            },
+          },
+        });
+      }
+    }
+  }
+});
