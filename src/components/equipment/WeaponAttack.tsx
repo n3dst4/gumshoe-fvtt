@@ -67,6 +67,19 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     weapon.data.data.pointBlankDamage,
   ]);
 
+  const actorInitiativeAbility = weapon.actor.data.data.initiativeAbility;
+  const isAbilityUsed = actorInitiativeAbility === ability.name;
+  const onClickUseForInitiative = useCallback(
+    (e: React.MouseEvent) => {
+      weapon.actor.update({
+        data: {
+          initiativeAbility: ability.name,
+        },
+      });
+    },
+    [ability.name, weapon.actor],
+  );
+
   return (
     <Fragment>
       <InputGrid
@@ -104,10 +117,26 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
         <GridField label="Bonus pool">
           <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />
         </GridField>
-        <GridField>
+        <GridField label={ability.name}>
           <a onClick={() => ability.sheet.render(true)}>
             Open {ability.name} ability
           </a>
+        </GridField>
+        <GridField label="Initiative">
+          {isAbilityUsed
+            ? (
+            <span>
+              This ability is currently being used for combat ordering
+            </span>
+              )
+            : (
+            <span>
+              <a onClick={onClickUseForInitiative}>
+                Use {ability.name} for combat ordering
+              </a>{" "}
+              (Currently using {actorInitiativeAbility || "nothing"})
+            </span>
+              )}
         </GridField>
       </InputGrid>
     </Fragment>

@@ -18,6 +18,12 @@
 
 // export type GeneralAbility = Item<GeneralAbilityData>;
 
+export type Resource = {
+  min?: number,
+  max: number,
+  value: number,
+}
+
 export type PCTrailActorData = {
   buildPoints: number,
   health: number,
@@ -31,6 +37,13 @@ export type PCTrailActorData = {
   sourcesOfStability: string,
   notes: string,
   background: string,
+  initiativeAbility: string,
+  resources: {
+    health: Resource,
+    sanity: Resource,
+    stability: Resource,
+    magic: Resource,
+  },
 };
 
 export type EquipmentData = {
