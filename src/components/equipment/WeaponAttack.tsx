@@ -10,7 +10,7 @@ import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 
 type WeaponAttackProps = {
-  weapon: TrailItem,
+  weapon: TrailItem;
 };
 
 const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
@@ -18,14 +18,14 @@ const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
   return { label, value: label, enabled: true };
 });
 
-export const WeaponAttack: React.FC<WeaponAttackProps> = ({
-  weapon,
-}) => {
+export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const [spend, setSpend] = useState("0");
   const [bonusPool, setBonusPool] = useState(0);
 
   const ability = weapon.actor.items.find((item) => {
-    return item.type === generalAbility && item.name === weapon.data.data.ability;
+    return (
+      item.type === generalAbility && item.name === weapon.data.data.ability
+    );
   });
 
   const spendOptions = defaultSpendOptions.map((option) => ({
@@ -41,14 +41,11 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({
       speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
       flavor: hitLabel,
     });
-    const damageRoll = new Roll(
-      "1d6 + @damage + @rangeDamage",
-      {
-        spend,
-        damage: weapon.data.data.damage,
-        rangeDamage: weapon.data.data.pointBlankDamage,
-      },
-    );
+    const damageRoll = new Roll("1d6 + @damage + @rangeDamage", {
+      spend,
+      damage: weapon.data.data.damage,
+      rangeDamage: weapon.data.data.pointBlankDamage,
+    });
     const damageLabel = "Damage at point blank range";
     damageRoll.roll();
     damageRoll.toMessage({
@@ -62,7 +59,13 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({
     ability.setter("pool")(newPool);
     setBonusPool(newBonusPool);
     setSpend("0");
-  }, [ability, bonusPool, spend, weapon.data.data.damage, weapon.data.data.pointBlankDamage]);
+  }, [
+    ability,
+    bonusPool,
+    spend,
+    weapon.data.data.damage,
+    weapon.data.data.pointBlankDamage,
+  ]);
 
   return (
     <Fragment>
@@ -87,22 +90,25 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({
               flexDirection: "row",
             }}
           >
-            <button css={{ flex: 1 }} disabled={!weapon.data.data.isPointBlank} onClick={onPointBlank}>
+            <button
+              css={{ flex: 1 }}
+              disabled={!weapon.data.data.isPointBlank}
+              onClick={onPointBlank}
+            >
               Point Blank
             </button>
           </div>
         </GridFieldStacked>
       </InputGrid>
       <InputGrid>
-      <GridField label="Bonus pool">
-            <AsyncNumberInput
-              onChange={setBonusPool}
-              value={bonusPool}
-            />
-          </GridField>
-          <GridField>
-            <a onClick={() => ability.sheet.render(true)}>Open {ability.name} ability</a>
-          </GridField>
+        <GridField label="Bonus pool">
+          <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />
+        </GridField>
+        <GridField>
+          <a onClick={() => ability.sheet.render(true)}>
+            Open {ability.name} ability
+          </a>
+        </GridField>
       </InputGrid>
     </Fragment>
   );
