@@ -125,9 +125,9 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
         <GridField label="">
           {isAbilityUsed
             ? (
-            <span>
+            <i>
               This ability is currently being used for combat ordering
-            </span>
+            </i>
               )
             : (
             <span>

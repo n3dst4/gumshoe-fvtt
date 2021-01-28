@@ -8,6 +8,8 @@ import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
+import system from "../../system.json";
+import { combatAbilities } from "../../constants";
 
 type AbilityEditorMainProps = {
   ability: TrailItem,
@@ -24,6 +26,21 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
   const onClickRefresh = useCallback(() => {
     ability.refreshPool();
   }, [ability]);
+
+  const isCombatAbility = game.settings.get(system.name, combatAbilities)
+    .split(",").map(x => x.trim()).includes(ability.name);
+  const actorInitiativeAbility = ability.actor.data.data.initiativeAbility;
+  const isAbilityUsed = actorInitiativeAbility === ability.name;
+  const onClickUseForInitiative = useCallback(
+    (e: React.MouseEvent) => {
+      ability.actor.update({
+        data: {
+          initiativeAbility: ability.name,
+        },
+      });
+    },
+    [ability.actor, ability.name],
+  );
 
   return (
     <InputGrid>
@@ -73,6 +90,24 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
             <SpecialityList ability={ability} />
           </div>
         </GridFieldStacked>
+      }
+      {isCombatAbility &&
+        <GridField label="Combat order">
+          {isAbilityUsed
+            ? (
+            <i>
+              This ability is currently being used for combat ordering
+            </i>
+              )
+            : (
+            <span>
+              <a onClick={onClickUseForInitiative}>
+                Use {ability.name} for combat ordering
+              </a>{" "}
+              (Currently using {actorInitiativeAbility || "nothing"})
+            </span>
+              )}
+        </GridField>
       }
     </InputGrid>
   );
