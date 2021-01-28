@@ -72,7 +72,7 @@ As GM:
 - [x] weapons
 - [x] attack rolls
 - [x] resources to track key abilities
-- [ ] initiative
+- [x] initiative
 - [ ] remaining attack rolls
 - [ ] beautifying pass
 - [ ] scroll main area not whole sheet
