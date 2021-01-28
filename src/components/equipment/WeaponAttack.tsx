@@ -122,7 +122,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
             Open {ability.name} ability
           </a>
         </GridField>
-        <GridField label="Initiative">
+        <GridField label="">
           {isAbilityUsed
             ? (
             <span>

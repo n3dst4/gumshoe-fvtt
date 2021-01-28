@@ -70,9 +70,10 @@ As GM:
 - [x] background etc.
 - [x] equipment
 - [x] weapons
-- [x] attack rolls?
+- [x] attack rolls
 - [x] resources to track key abilities
-- [ ] initiative?
+- [ ] initiative
+- [ ] remaining attack rolls
 - [ ] beautifying pass
 - [ ] scroll main area not whole sheet
 - [ ] update window title when entity name changes

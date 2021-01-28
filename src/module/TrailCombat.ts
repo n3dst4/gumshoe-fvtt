@@ -11,9 +11,9 @@ export class TrailCombat extends Combat {
       (item) => item.type === generalAbility && item.name === abilityName,
     );
     if (ability) {
-      return ability.data.data.rating;
+      return ability.data.data.rating.toString();
     } else {
-      return 0;
+      return "0";
     }
   }
 }

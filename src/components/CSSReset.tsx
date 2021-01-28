@@ -33,7 +33,11 @@ export const CSSReset: React.FC<CSSResetProps> = ({
         ".window-upload-handle": {
           display: "",
         },
+        a: {
+          color: "#700",
+        },
         "a:hover, a.hover, .hover a": {
+          textDecoration: "underline",
           textShadow: "0 0 0.5em red",
         },
       }}
