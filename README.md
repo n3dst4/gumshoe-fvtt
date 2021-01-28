@@ -71,6 +71,7 @@ As GM:
 - [x] equipment
 - [x] weapons
 - [x] attack rolls?
+- [x] resources to track key abilities
 - [ ] initiative?
 - [ ] beautifying pass
 - [ ] scroll main area not whole sheet
