@@ -20,6 +20,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
         // css-reset type stuff
         "*": {
           userSelect: "auto",
+          scrollbarWidth: "thin",
         },
         "h1, h2": {
           border: "none",
@@ -39,6 +40,9 @@ export const CSSReset: React.FC<CSSResetProps> = ({
         "a:hover, a.hover, .hover a": {
           textDecoration: "underline",
           textShadow: "0 0 0.5em red",
+        },
+        button: {
+          margin: 0,
         },
       }}
       className={className}

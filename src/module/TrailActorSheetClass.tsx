@@ -15,7 +15,7 @@ class TrailActorSheetClassBase extends ActorSheet {
       classes: [systemName, "sheet", "actor"],
       template: reactTemplatePath,
       width: 660,
-      height: 900,
+      height: 500,
     });
   }
 }

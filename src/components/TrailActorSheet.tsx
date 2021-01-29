@@ -63,35 +63,35 @@ export const TrailActorSheet = ({
     }
   }
 
-  const onClickNuke = useCallback(() => {
-    const message = `Nuke all of ${entity.data.name}'s abilities and equipment?`;
+  // const onClickNuke = useCallback(() => {
+  //   const message = `Nuke all of ${entity.data.name}'s abilities and equipment?`;
 
-    const d = new Dialog({
-      title: "Confirm",
-      content: `<p>${message}</p>`,
-      buttons: {
-        cancel: {
-          icon: '<i class="fas fa-ban"></i>',
-          label: "Whoops no!",
-        },
-        delete: {
-          icon: '<i class="fas fa-radiation"></i>',
-          label: "Nuke it from orbit",
-          callback: async () => {
-            await entity.deleteEmbeddedEntity(
-              "OwnedItem",
-              entity.items.map(i => i.id),
-            );
-            window.alert("Nuked");
-          },
-        },
-      },
-      default: "two",
-      // render: html => console.log("Register interactivity in the rendered dialog"),
-      // close: html => console.log("This always is logged no matter which option is chosen"),
-    });
-    d.render(true);
-  }, [entity]);
+  //   const d = new Dialog({
+  //     title: "Confirm",
+  //     content: `<p>${message}</p>`,
+  //     buttons: {
+  //       cancel: {
+  //         icon: '<i class="fas fa-ban"></i>',
+  //         label: "Whoops no!",
+  //       },
+  //       delete: {
+  //         icon: '<i class="fas fa-radiation"></i>',
+  //         label: "Nuke it from orbit",
+  //         callback: async () => {
+  //           await entity.deleteEmbeddedEntity(
+  //             "OwnedItem",
+  //             entity.items.map(i => i.id),
+  //           );
+  //           window.alert("Nuked");
+  //         },
+  //       },
+  //     },
+  //     default: "two",
+  //     // render: html => console.log("Register interactivity in the rendered dialog"),
+  //     // close: html => console.log("This always is logged no matter which option is chosen"),
+  //   });
+  //   d.render(true);
+  // }, [entity]);
 
   const onClickRefresh = useCallback(() => {
     const message = `Refresh all of ${entity.data.name}'s abilities? This will reset every pool back to match the rating of the ability.`;
@@ -122,15 +122,19 @@ export const TrailActorSheet = ({
   return (
     <CSSReset
       css={{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
         display: "grid",
         gridTemplateRows: "min-content max-content 1fr",
-        gridTemplateColumns: "max-content 1fr 10em",
+        gridTemplateColumns: "12em 1fr 10em",
         gap: "0.5em",
         gridTemplateAreas:
           "\"title title image\" " +
           "\"pools stats image\" " +
           "\"pools body  body\" ",
-
       }}
     >
 
@@ -205,26 +209,32 @@ export const TrailActorSheet = ({
       <div
         css={{
           gridArea: "pools",
+          position: "relative",
+          overflow: "auto",
+          background: "pink",
         }}
-      >
-        <button onClick={onClickRefresh}>
-          Refresh
-        </button>
-        <hr/>
+        >
 
-        <PoolTracker abilityName="Sanity" actor={entity} />
-        <PoolTracker abilityName="Stability" actor={entity} />
-        <PoolTracker abilityName="Health" actor={entity} />
-        <PoolTracker abilityName="Magic" actor={entity} />
-        <hr/>
-        <button onClick={onClickNuke}>
-          Nuke
-        </button>
+          <button onClick={onClickRefresh}>
+            Refresh
+          </button>
+          <hr/>
+
+          <PoolTracker abilityName="Sanity" actor={entity} />
+          <PoolTracker abilityName="Stability" actor={entity} />
+          <PoolTracker abilityName="Health" actor={entity} />
+          <PoolTracker abilityName="Magic" actor={entity} />
+          <hr/>
+          {/* <button onClick={onClickNuke}>
+            Nuke
+          </button> */}
       </div>
 
       <div
         css={{
           gridArea: "body",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
         <TabContainer

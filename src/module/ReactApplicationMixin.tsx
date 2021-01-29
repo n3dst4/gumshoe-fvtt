@@ -49,9 +49,22 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
       console.log("activateListeners");
       super.activateListeners(html);
 
-      const el: HTMLElement = (this.element as any).jquery
-        ? (this.element as JQuery<HTMLElement>).find(".react-target").get(0)
-        : (this.element as HTMLElement);
+      const target = $(this.element).find(".react-target");
+      if (this.options.resizable) {
+        target.closest(".window-content").css({
+          position: "relative",
+          overflow: "hidden",
+        });
+        target.css({
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          backgroundColor: "rebeccapurple",
+        });
+      }
+      const el = target.get(0);
 
       if (el) {
         const content = render(
