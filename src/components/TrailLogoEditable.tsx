@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { css, CSSObject, Global, jsx } from "@emotion/react";
+import { CSSObject, jsx } from "@emotion/react";
 import React from "react";
 import { useAsyncUpdate } from "../hooks/useAsyncUpdate";
 
@@ -77,12 +77,6 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
         width: "auto",
       }}
     >
-      <Global
-        styles={css`
-        @import url('https://fonts.googleapis.com/css2?family=Federo&display=swap');
-        `}
-      />
-
       {/* inner - apply the transform */}
       <div
         className="inner-block"
