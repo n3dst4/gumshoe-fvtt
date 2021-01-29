@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useState } from "react";
+import React, { Fragment, useCallback, useMemo, useState } from "react";
 import { generalAbility } from "../../constants";
 import { TrailItem } from "../../module/TrailItem";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -8,6 +8,7 @@ import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
+import { performAttack } from "./performAttack";
 
 type WeaponAttackProps = {
   weapon: TrailItem;
@@ -33,39 +34,42 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     enabled: option.value <= ability.data.data.pool,
   }));
 
+  const basePerformAttack = useMemo(() => performAttack({
+    spend,
+    bonusPool,
+    setSpend,
+    setBonusPool,
+    ability,
+    damage: weapon.data.data.damage,
+  }), [ability, bonusPool, spend, weapon.data.data.damage]);
+
   const onPointBlank = useCallback(() => {
-    const hitRoll = new Roll("1d6 + @spend", { spend });
-    const hitLabel = `Rolling ${ability.name} at point blank range`;
-    hitRoll.roll();
-    hitRoll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-      flavor: hitLabel,
-    });
-    const damageRoll = new Roll("1d6 + @damage + @rangeDamage", {
-      spend,
-      damage: weapon.data.data.damage,
+    basePerformAttack({
+      description: "point blank",
       rangeDamage: weapon.data.data.pointBlankDamage,
     });
-    const damageLabel = "Damage at point blank range";
-    damageRoll.roll();
-    damageRoll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-      flavor: damageLabel,
+  }, [basePerformAttack, weapon.data.data.pointBlankDamage]);
+
+  const onCloseRange = useCallback(() => {
+    basePerformAttack({
+      description: "close range",
+      rangeDamage: weapon.data.data.closeRangeDamage,
     });
-    const currentPool = ability.getter("pool")();
-    const poolHit = Math.max(0, Number(spend) - bonusPool);
-    const newPool = Math.max(0, currentPool - poolHit);
-    const newBonusPool = Math.max(0, bonusPool - Number(spend));
-    ability.setter("pool")(newPool);
-    setBonusPool(newBonusPool);
-    setSpend("0");
-  }, [
-    ability,
-    bonusPool,
-    spend,
-    weapon.data.data.damage,
-    weapon.data.data.pointBlankDamage,
-  ]);
+  }, [basePerformAttack, weapon.data.data.closeRangeDamage]);
+
+  const onNearRange = useCallback(() => {
+    basePerformAttack({
+      description: "close range",
+      rangeDamage: weapon.data.data.nearRangeDamage,
+    });
+  }, [basePerformAttack, weapon.data.data.nearRangeDamage]);
+
+  const onLongRange = useCallback(() => {
+    basePerformAttack({
+      description: "long range",
+      rangeDamage: weapon.data.data.longRangeDamage,
+    });
+  }, [basePerformAttack, weapon.data.data.longRangeDamage]);
 
   const actorInitiativeAbility = weapon.actor.data.data.initiativeAbility;
   const isAbilityUsed = actorInitiativeAbility === ability.name;
@@ -104,11 +108,32 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
             }}
           >
             <button
-              css={{ flex: 1 }}
+              css={{ lineHeight: 1, flex: 1 }}
               disabled={!weapon.data.data.isPointBlank}
               onClick={onPointBlank}
             >
               Point Blank
+            </button>
+            <button
+              css={{ lineHeight: 1, flex: 1 }}
+              disabled={!weapon.data.data.isCloseRange}
+              onClick={onCloseRange}
+            >
+              Close Range
+            </button>
+            <button
+              css={{ lineHeight: 1, flex: 1 }}
+              disabled={!weapon.data.data.isNearRange}
+              onClick={onNearRange}
+            >
+              Near Range
+            </button>
+            <button
+              css={{ lineHeight: 1, flex: 1 }}
+              disabled={!weapon.data.data.isLongRange}
+              onClick={onLongRange}
+            >
+              Long Range
             </button>
           </div>
         </GridFieldStacked>
