@@ -38,6 +38,8 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
       // we are deliberately doing nothing here.
     }
 
+    layoutInitialized = false;
+
     /**
      * We need to pick somewhere to activate and render React. It would have
      * been nice to do this from `render` & friends but they happen before
@@ -50,19 +52,9 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
       super.activateListeners(html);
 
       const target = $(this.element).find(".react-target");
+      const parent = target.closest(".window-content");
       if (this.options.resizable) {
-        target.closest(".window-content").css({
-          position: "relative",
-          overflow: "hidden",
-        });
-        target.css({
-          position: "absolute",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          backgroundColor: "rebeccapurple",
-        });
+        parent.addClass("resizable");
       }
       const el = target.get(0);
 

@@ -32,6 +32,11 @@ export const TabContainer: React.FC<TabContainerProps> = ({
   return (
     <div
       css={{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
         display: "flex",
         flexDirection: "column",
         "input[type=radio]": {
@@ -90,6 +95,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
         css={{
           flex: 1,
           position: "relative",
+          overflow: "auto",
         }}
       >
         {activeTabDef.content}

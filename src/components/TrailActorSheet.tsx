@@ -211,7 +211,6 @@ export const TrailActorSheet = ({
           gridArea: "pools",
           position: "relative",
           overflow: "auto",
-          background: "pink",
         }}
         >
 
