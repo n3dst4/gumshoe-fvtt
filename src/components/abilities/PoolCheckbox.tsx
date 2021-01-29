@@ -26,7 +26,7 @@ export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
       tabIndex={disabled ? undefined : 0}
       onClick={onClick}
       css={{
-        width: "2em",
+        width: "auto",
         height: "1.5em",
         background: selected ? "#d44" : "#fff",
         textAlign: "center",

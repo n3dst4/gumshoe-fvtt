@@ -40,7 +40,7 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
   return (
     <div
       style={{
-        width: "8em",
+        width: "100%",
         height: "auto",
         display: "grid",
         position: "relative",

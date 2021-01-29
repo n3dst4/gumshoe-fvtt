@@ -129,7 +129,7 @@ export const TrailActorSheet = ({
         left: 0,
         display: "grid",
         gridTemplateRows: "min-content max-content 1fr",
-        gridTemplateColumns: "12em 1fr 10em",
+        gridTemplateColumns: "8em 1fr 10em",
         gap: "0.5em",
         gridTemplateAreas:
           "\"title title image\" " +
