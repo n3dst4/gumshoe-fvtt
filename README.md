@@ -76,7 +76,7 @@ As GM:
 - [x] remaining attack rolls
 - [x] scroll main area not whole sheet
 - [x] update window title when entity name changes
-- [ ] check deployability
+- [x] check deployability
 - [ ] beautifying pass
 - [ ] publish
 - [ ] i18n
