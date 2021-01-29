@@ -36,6 +36,7 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
      */
     _replaceHTML (element, html, options) {
       // we are deliberately doing nothing here.
+      element.find(".window-title").text(this.title);
     }
 
     layoutInitialized = false;

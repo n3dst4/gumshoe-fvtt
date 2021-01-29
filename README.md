@@ -74,9 +74,10 @@ As GM:
 - [x] resources to track key abilities
 - [x] initiative
 - [x] remaining attack rolls
-- [ ] scroll main area not whole sheet
+- [x] scroll main area not whole sheet
+- [x] update window title when entity name changes
+- [ ] check deployability
 - [ ] beautifying pass
-- [ ] update window title when entity name changes
 - [ ] publish
 - [ ] i18n
 
