@@ -11,7 +11,7 @@
     "start": "gulp watch",
     "watch": "gulp watch",
     "clean": "gulp clean && gulp link --clean",
-    "update": "npm install --save-dev gitlab:foundry-projects/foundry-pc/foundry-pc-types"
+    "update": "npm install --save-dev gitlab:n3dst4/foundry-pc-types#safe"
   },
   "author": "",
   "license": "",
@@ -42,7 +42,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "fork-ts-checker-webpack-plugin": "^6.1.0",
-    "foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types",
+    "foundry-pc-types": "gitlab:n3dst4/foundry-pc-types#safe",
     "fs-extra": "^9.0.1",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
