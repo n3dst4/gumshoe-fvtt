@@ -73,9 +73,9 @@ As GM:
 - [x] attack rolls
 - [x] resources to track key abilities
 - [x] initiative
-- [ ] remaining attack rolls
-- [ ] beautifying pass
+- [x] remaining attack rolls
 - [ ] scroll main area not whole sheet
+- [ ] beautifying pass
 - [ ] update window title when entity name changes
 - [ ] publish
 - [ ] i18n
