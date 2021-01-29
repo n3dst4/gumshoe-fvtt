@@ -115,7 +115,7 @@ function watch () {
   });
   gulp.watch("src/**/*.less", { ignoreInitial: false }, buildLess);
   gulp.watch(
-    ["src/fonts", "src/lang", "src/templates", "src/*.json"],
+    ["src/assets", "src/fonts", "src/lang", "src/templates", "src/*.json"],
     { ignoreInitial: false },
     copyFiles,
   );

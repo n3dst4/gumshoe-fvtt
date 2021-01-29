@@ -35,7 +35,8 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
      * @override
      */
     _replaceHTML (element, html, options) {
-      // we are deliberately doing nothing here.
+      // this is the only thing we need to do here - react deals with updating
+      // the rest of the window.
       element.find(".window-title").text(this.title);
     }
 
@@ -56,6 +57,8 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
       const parent = target.closest(".window-content");
       if (this.options.resizable) {
         parent.addClass("resizable");
+      } else {
+        parent.addClass("non-resizable");
       }
       const el = target.get(0);
 

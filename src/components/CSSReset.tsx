@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, Global, jsx } from "@emotion/react";
 import React from "react";
+import system from "../system.json";
 
 type CSSResetProps = {
   children: any,
@@ -16,7 +17,9 @@ export const CSSReset: React.FC<CSSResetProps> = ({
       css={{
         fontFamily: "'Playfair Display', serif",
         fontWeight: 500,
-
+        background: `url(systems/${system.name}/assets/marjanblan-5Ft4NWTmeJE-unsplash.jpg)`,
+        backgroundSize: "cover",
+        padding: "0.5em",
         // css-reset type stuff
         "*": {
           userSelect: "auto",
