@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TrailItem } from "../../module/TrailItem";
 import { CSSReset } from "../CSSReset";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
@@ -18,9 +18,9 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
 }) => {
   const name = useAsyncUpdate(weapon.name, weapon.setName);
   const [configMode, setConfigMode] = useState(false);
-  // useEffect(() => {
-  //   foundryWindow.render();
-  // }, [foundryWindow, configMode]);
+  useEffect(() => {
+    foundryWindow.render();
+  }, [foundryWindow, configMode]);
 
   return (
     <CSSReset>
