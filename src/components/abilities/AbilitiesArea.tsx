@@ -14,40 +14,23 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
   investigativeAbilities,
   generalAbilities,
 }) => {
-  const i1Cats: string[] = [];
-  const i2Cats: string[] = [];
-
-  let i1Len = 0;
-  let i2Len = 0;
-
-  for (const cat of Object.keys(investigativeAbilities)) {
-    const col = i2Len < i1Len ? 2 : 1;
-
-    (col === 1 ? i1Cats : i2Cats).push(cat);
-    if (col === 1) {
-      i1Len += investigativeAbilities[cat].length;
-    } else {
-      i2Len += investigativeAbilities[cat].length;
-    }
-  }
-
   return (
     <div
       css={{
         display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gridTemplateAreas: "'inv1 inv2 general'",
+        gridTemplateColumns: "1fr 1fr",
+        gridTemplateAreas: "'inv general'",
         gridTemplateRows: "auto",
       }}
     >
       <div css={{ gridArea: "general" }}>
-        <h2>General Abilities</h2>
+        <h2>General</h2>
         {sortEntitiesByName(generalAbilities).map((ability) => (
           <AbilitySlug key={ability.id} ability={ability} />
         ))}
       </div>
-      <div css={{ gridArea: "inv1" }}>
-        {i1Cats.map((cat) => (
+      <div css={{ gridArea: "inv" }}>
+        {Object.keys(investigativeAbilities).sort().map((cat) => (
           <div key={cat}>
             <h2>{cat}</h2>
             {
@@ -55,19 +38,6 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
                 <AbilitySlug key={ability.id} ability={ability}/>
               ))
             }
-          </div>
-        ))}
-      </div>
-      <div css={{ gridArea: "inv2" }}>
-        {i2Cats.map((cat) => (
-          <div key={cat}>
-            <h2>{cat}</h2>
-            {
-              sortEntitiesByName(investigativeAbilities[cat]).map((ability) => (
-                <AbilitySlug key={ability.id} ability={ability}/>
-              ))
-            }
-
           </div>
         ))}
       </div>
