@@ -34,6 +34,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             scrollbarWidth: "thin",
             userSelect: "auto",
             boxSizing: "border-box",
+            scrollbarColor: `${theme.colors.accent} ${theme.colors.darken}`,
           },
           font: theme.bodyFont,
           background: `${theme.colors.wallpaper} ${theme.wallpaper}`,
