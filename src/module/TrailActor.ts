@@ -1,6 +1,7 @@
 import { equipment, generalAbility, weapon } from "../constants";
 import { isAbility } from "../functions";
 import { GetterDict, PCTrailActorData, RecursivePartial, SetterDict, TrailItemData } from "../types";
+import { confirmADoodleDo } from "./confirm";
 import { TrailItem } from "./TrailItem";
 
 export class TrailActor extends Actor<any> {
@@ -20,7 +21,17 @@ export class TrailActor extends Actor<any> {
   _getters: GetterDict<PCTrailActorData>
   _setters: SetterDict<PCTrailActorData>
 
-  refresh () {
+  confirmRefresh = () => {
+    confirmADoodleDo(
+      `Refresh all of ${this.data.name}'s abilities? This will reset every pool back to match the rating of the ability.`,
+      "Refresh",
+      "Cancel",
+      "fa-sync",
+      this.refresh,
+    );
+  }
+
+  refresh = () => {
     this.items.forEach((item) => {
       if (item.data.data.rating !== item.data.data.pool) {
         item.update({
@@ -30,6 +41,24 @@ export class TrailActor extends Actor<any> {
         });
       }
     });
+  }
+
+  confirmNuke = () => {
+    confirmADoodleDo(
+      `Nuke all of ${this.data.name}'s abilities and equipment?`,
+      "Nuke it from orbit",
+      "Whoops no!",
+      "fa-radiation",
+      () => this.nuke(),
+    );
+  }
+
+  nuke = async () => {
+    await this.deleteEmbeddedEntity(
+      "OwnedItem",
+      this.items.map(i => i.id),
+    );
+    window.alert("Nuked");
   }
 
   /// ///////////////////////////////////////////////////////////////////////////
@@ -67,6 +96,9 @@ export class TrailActor extends Actor<any> {
   }
 }
 
+/**
+ * Keep "special" general abilities in sync with their corresponding resources
+ */
 Hooks.on("updateOwnedItem", (
   actor: TrailActor,
   itemData: ItemData<TrailItemData>,
@@ -74,6 +106,7 @@ Hooks.on("updateOwnedItem", (
   options: Record<string, unknown>,
   userId: string,
 ) => {
+  // love 2 sink into a pit of imperative code
   if (itemData.type === generalAbility) {
     if (["Sanity", "Stability", "Health", "Magic"].includes(itemData.name)) {
       if (diff.data.pool !== undefined || diff.data.rating !== undefined) {

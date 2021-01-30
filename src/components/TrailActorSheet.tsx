@@ -63,62 +63,6 @@ export const TrailActorSheet = ({
     }
   }
 
-  const onClickNuke = useCallback(() => {
-    const message = `Nuke all of ${entity.data.name}'s abilities and equipment?`;
-
-    const d = new Dialog({
-      title: "Confirm",
-      content: `<p>${message}</p>`,
-      buttons: {
-        cancel: {
-          icon: '<i class="fas fa-ban"></i>',
-          label: "Whoops no!",
-        },
-        delete: {
-          icon: '<i class="fas fa-radiation"></i>',
-          label: "Nuke it from orbit",
-          callback: async () => {
-            await entity.deleteEmbeddedEntity(
-              "OwnedItem",
-              entity.items.map(i => i.id),
-            );
-            window.alert("Nuked");
-          },
-        },
-      },
-      default: "two",
-      // render: html => console.log("Register interactivity in the rendered dialog"),
-      // close: html => console.log("This always is logged no matter which option is chosen"),
-    });
-    d.render(true);
-  }, [entity]);
-
-  const onClickRefresh = useCallback(() => {
-    const message = `Refresh all of ${entity.data.name}'s abilities? This will reset every pool back to match the rating of the ability.`;
-
-    const d = new Dialog({
-      title: "Confirm",
-      content: `<p>${message}</p>`,
-      buttons: {
-        cancel: {
-          icon: '<i class="fas fa-ban"></i>',
-          label: "Cancel",
-        },
-        delete: {
-          icon: '<i class="fas fa-sync"></i>',
-          label: "Refresh",
-          callback: async () => {
-            entity.refresh();
-          },
-        },
-      },
-      default: "two",
-      // render: html => console.log("Register interactivity in the rendered dialog"),
-      // close: html => console.log("This always is logged no matter which option is chosen"),
-    });
-    d.render(true);
-  }, [entity]);
-
   return (
     <CSSReset
       css={{
@@ -216,7 +160,7 @@ export const TrailActorSheet = ({
         }}
         >
 
-          <button onClick={onClickRefresh}>
+          <button onClick={entity.confirmRefresh}>
             Refresh
           </button>
           <hr/>
@@ -226,7 +170,7 @@ export const TrailActorSheet = ({
           <PoolTracker abilityName="Health" actor={entity} />
           <PoolTracker abilityName="Magic" actor={entity} />
           <hr/>
-          <button onClick={onClickNuke}>
+          <button onClick={entity.confirmNuke}>
             Nuke
           </button>
       </div>
