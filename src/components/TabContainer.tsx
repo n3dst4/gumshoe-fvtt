@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
-import React, { ChangeEvent, Fragment, useCallback, useMemo, useState } from "react";
+import React, { ChangeEvent, Fragment, useCallback, useContext, useMemo, useState } from "react";
+import { ThemeContext } from "../theme";
 // import React, { useMemo, useState } from "react";
 
 type TabDefinition = {
@@ -27,6 +28,8 @@ export const TabContainer: React.FC<TabContainerProps> = ({
     setSelected(e.currentTarget.value);
   }, []);
 
+  const [theme] = useContext(ThemeContext);
+
   const radioGroup = useMemo(() => nanoid(), []);
 
   return (
@@ -39,32 +42,37 @@ export const TabContainer: React.FC<TabContainerProps> = ({
         left: 0,
         display: "flex",
         flexDirection: "column",
+        ".tab-strip": {
+          display: "flex",
+          flexDirection: "row",
+          gap: "0.5em",
+        },
         "input[type=radio]": {
           display: "none",
           "+label": {
-            padding: "0",
             flex: 1,
+            padding: "0.3em",
+            display: "inline-block",
             textAlign: "center",
             fontSize: "1.4em",
-            fontWeight: "bold",
-            border: "2px groove white",
-            backgroundColor: "rgba(0,0,0,0.1)",
-            paddingBottom: "0.3em",
-            borderRadius: "0.2em",
-            ":hover, :focus": {
-              textShadow: "0 0 0.3em rgba(255,111,18,1)",
+            background: theme.colors.thin,
+            borderRadius: "0.2em 0.2em 0 0",
+
+            ":hover": {
+              textShadow: `0 0 0.3em ${theme.colors.glow}`,
             },
           },
           "&:checked+label": {
-            background: "grey",
-            border: "2px inset white",
-            backgroundColor: "rgba(255,111,18,0.2)",
+            // background: "grey",
+            // border: "2px inset white",
+            // backgroundColor: "rgba(255,111,18,0.2)",
+            background: theme.colors.medium,
             ":hover": {
               textShadow: "none",
             },
           },
           "&[disabled]+label": {
-            opacity: 0.3, //
+            opacity: 0.3,
             ":hover": {
               textShadow: "none",
             },
@@ -73,7 +81,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
 
       }}
     >
-      <div>
+      <div className="tab-strip">
         {tabs.map(({ id, label }) => {
           const htmlId = nanoid();
           return (<Fragment key={id}>
@@ -96,6 +104,8 @@ export const TabContainer: React.FC<TabContainerProps> = ({
           flex: 1,
           position: "relative",
           overflow: "auto",
+          background: theme.colors.medium,
+          padding: "0.5em",
         }}
       >
         {activeTabDef.content}

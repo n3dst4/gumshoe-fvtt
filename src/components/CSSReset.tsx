@@ -1,8 +1,7 @@
 /** @jsx jsx */
-import { css, Global, jsx, ThemeContext } from "@emotion/react";
+import { css, Global, jsx } from "@emotion/react";
 import React, { useState } from "react";
-import system from "../system.json";
-import { trailTheme } from "../theme";
+import { ThemeContext, trailTheme } from "../theme";
 
 type CSSResetProps = {
   children: any;
@@ -34,10 +33,10 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             // all: "initial",
             scrollbarWidth: "thin",
             userSelect: "auto",
+            boxSizing: "border-box",
           },
-          fontFamily: "'Patrick Hand SC', sans-serif",
-
-          background: `#ddd url(systems/${system.name}/assets/marjanblan-5Ft4NWTmeJE-unsplash.jpg)`,
+          fontFamily: theme.bodyFont,
+          background: `${theme.colors.wallpaper} ${theme.wallpaper}`,
           backgroundSize: "cover",
           padding: "0.5em",
 
@@ -46,8 +45,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             margin: 0,
             padding: 0,
             fontWeight: "inherit",
-            fontFamily: "'Federo', serif",
-            fontVariant: "small-caps",
+            font: theme.displayFont,
           },
           h1: {
             fontSize: "2em",
@@ -63,20 +61,20 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
           },
           button: {
             // margin: 0,
-            fontFamily: "'Federo', serif",
+            font: theme.displayFont,
             "&[disabled]": {
               opacity: 0.5,
             },
           },
           label: {
-            fontFamily: "'Federo', serif",
+            font: theme.displayFont,
           },
           a: {
-            color: "#700",
+            color: theme.colors.accent,
           },
           "a:hover, a.hover, .hover a": {
             textDecoration: "underline",
-            textShadow: "0 0 0.5em red",
+            textShadow: `0 0 0.5em ${theme.colors.glow}`,
           },
         }}
       >

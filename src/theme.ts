@@ -1,11 +1,33 @@
 import React from "react";
+import system from "./system.json";
 
 type Theme = {
-  accentColor: string,
+  wallpaper: string,
+  bodyFont: string,
+  displayFont: string,
+  colors: {
+    accent: string,
+    glow: string,
+    wallpaper: string,
+    thick: string,
+    thin: string,
+    medium: string,
+  }
 }
 
 export const trailTheme: Theme = {
-  accentColor: "#1d5d5d",
+  wallpaper: `url(systems/${system.name}/assets/wallpapermarjanblan-5Ft4NWTmeJE-unsplash.jpg)`,
+  bodyFont: "'Patrick Hand SC', sans-serif",
+  // italic small-caps bold 16px/2 cursive
+  displayFont: "normal small-caps normal 1em 'Federo', serif",
+  colors: {
+    accent: "#1d5d5d",
+    glow: "#5effff",
+    wallpaper: "#ddd",
+    medium: "rgba(255,255,255,0.5)",
+    thick: "rgba(255,255,255,0.7)",
+    thin: "rgba(255,255,255,0.2)",
+  },
 };
 
 export type ThemeSetter = (theme: Theme) => void;
