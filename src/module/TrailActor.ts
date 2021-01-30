@@ -1,10 +1,10 @@
 import { equipment, generalAbility, weapon } from "../constants";
 import { isAbility } from "../functions";
-import { GetterDict, PCTrailActorData, RecursivePartial, SetterDict, TrailItemData } from "../types";
+import { GetterDict, TrailActorData, RecursivePartial, SetterDict, TrailItemData } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { TrailItem } from "./TrailItem";
 
-export class TrailActor extends Actor<any> {
+export class TrailActor<T=TrailActorData> extends Actor<T> {
   constructor (data, options) {
     super(data, options);
     this._getters = {};
@@ -18,8 +18,27 @@ export class TrailActor extends Actor<any> {
     super.prepareData();
   }
 
-  _getters: GetterDict<PCTrailActorData>
-  _setters: SetterDict<PCTrailActorData>
+  _getters: GetterDict<TrailActorData>
+  _setters: SetterDict<TrailActorData>
+
+  /// ///////////////////////////////////////////////////////////////////////////
+  // General data setters and getters
+
+  getter = <T extends keyof TrailActorData>(field: T) => {
+    if (this._getters[field] === undefined) {
+      this._getters[field] = (() => (this.data.data as any)[field]) as any;
+    }
+    return this._getters[field];
+  }
+
+  setter = <T extends keyof TrailActorData>(field: T) => {
+    if (this._setters[field] === undefined) {
+      this._setters[field] = (val: any) => {
+        this.update({ data: { [field]: val } });
+      };
+    }
+    return this._setters[field];
+  }
 
   confirmRefresh = () => {
     confirmADoodleDo(
@@ -74,25 +93,6 @@ export class TrailActor extends Actor<any> {
 
   getWeapons (): TrailItem[] {
     return this.items.filter((item) => item.type === weapon);
-  }
-
-  /// ///////////////////////////////////////////////////////////////////////////
-  // General data setters and getters
-
-  getter = <T extends keyof PCTrailActorData>(field: T) => {
-    if (this._getters[field] === undefined) {
-      this._getters[field] = () => this.data.data[field];
-    }
-    return this._getters[field];
-  }
-
-  setter = <T extends keyof PCTrailActorData>(field: T) => {
-    if (this._setters[field] === undefined) {
-      this._setters[field] = (val: any) => {
-        this.update({ data: { [field]: val } });
-      };
-    }
-    return this._setters[field];
   }
 }
 

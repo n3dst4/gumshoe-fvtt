@@ -24,7 +24,7 @@ export type Resource = {
   value: number,
 }
 
-export type PCTrailActorData = {
+export type TrailActorData = {
   buildPoints: number,
   health: number,
   stability: number,
