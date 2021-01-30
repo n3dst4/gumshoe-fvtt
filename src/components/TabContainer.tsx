@@ -57,6 +57,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
             fontSize: "1.4em",
             background: theme.colors.thin,
             borderRadius: "0.2em 0.2em 0 0",
+            color: theme.colors.accent,
 
             ":hover": {
               textShadow: `0 0 0.3em ${theme.colors.glow}`,

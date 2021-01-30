@@ -64,8 +64,14 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
           button: {
             // margin: 0,
             font: theme.displayFont,
+            color: theme.colors.accent,
             "&[disabled]": {
               opacity: 0.5,
+            },
+            ":hover": {
+              // borderStyle: "outset",
+              boxShadow: `0 0 0.5em ${theme.colors.glow}`,
+              textShadow: `0 0 0.5em ${theme.colors.glow}`,
             },
           },
           label: {
