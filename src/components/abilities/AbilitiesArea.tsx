@@ -1,19 +1,35 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
+import { generalAbility, investigativeAbility } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
+import { TrailActor } from "../../module/TrailActor";
 import { TrailItem } from "../../module/TrailItem";
 import { AbilitySlug } from "./AbilitySlug";
 
 type AbilitiesAreaProps = {
-  investigativeAbilities: { [category: string]: TrailItem[] },
-  generalAbilities: TrailItem[],
+  actor: TrailActor,
 };
 
 export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
-  investigativeAbilities,
-  generalAbilities,
+  actor,
 }) => {
+  const investigativeAbilities: { [category: string]: TrailItem[] } = {};
+  const generalAbilities: TrailItem[] = [];
+
+  for (const item of actor.items.values()) {
+    if (item.type === investigativeAbility) {
+      const ability = item as TrailItem;
+      const cat = ability.data.data.category || "Uncategorised";
+      if (investigativeAbilities[cat] === undefined) {
+        investigativeAbilities[cat] = [];
+      }
+      investigativeAbilities[cat].push(ability);
+    } else if (item.type === generalAbility) {
+      generalAbilities.push(item as TrailItem);
+    }
+  }
+
   return (
     <div
       css={{

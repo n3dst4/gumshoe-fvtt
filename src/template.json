@@ -14,6 +14,7 @@
       "notes": "",
       "background": "",
       "initiativeAbility": "",
+      "hideZeroRated": false,
       "resources": {
         "health": {
           "min": 0,

@@ -38,6 +38,7 @@ export type TrailActorData = {
   notes: string,
   background: string,
   initiativeAbility: string,
+  hideZeroRated: boolean,
   resources: {
     health: Resource,
     sanity: Resource,

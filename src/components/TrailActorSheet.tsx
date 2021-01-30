@@ -10,8 +10,6 @@ import { TrailLogoEditable } from "./TrailLogoEditable";
 import { InputGrid } from "./inputs/InputGrid";
 import { GridField } from "./inputs/GridField";
 import { AsyncTextInput } from "./inputs/AsyncTextInput";
-import { generalAbility, investigativeAbility } from "../constants";
-import { TrailItem } from "../module/TrailItem";
 import { TabContainer } from "./TabContainer";
 import { EquipmentArea } from "./equipment/EquipmentArea";
 import { NotesArea } from "./NotesArea";
@@ -47,22 +45,6 @@ export const TrailActorSheet = ({
   const updateName = useUpdate(entity, name => ({ name }));
   const updateDrive = useUpdate(entity, drive => ({ data: { drive } }));
   const updateOccupation = useUpdate(entity, occupation => ({ data: { occupation } }));
-
-  const investigativeAbilities: { [category: string]: TrailItem[] } = {};
-  const generalAbilities: TrailItem[] = [];
-
-  for (const item of entity.items.values()) {
-    if (item.type === investigativeAbility) {
-      const ability = item as TrailItem;
-      const cat = ability.data.data.category || "Uncategorised";
-      if (investigativeAbilities[cat] === undefined) {
-        investigativeAbilities[cat] = [];
-      }
-      investigativeAbilities[cat].push(ability);
-    } else if (item.type === generalAbility) {
-      generalAbilities.push(item as TrailItem);
-    }
-  }
 
   const [theme] = useContext(ThemeContext);
 
@@ -181,12 +163,7 @@ export const TrailActorSheet = ({
             {
               id: "abilities",
               label: "Abilities",
-              content: (
-                <AbilitiesArea
-                  investigativeAbilities={investigativeAbilities}
-                  generalAbilities={generalAbilities}
-                />
-              ),
+              content: <AbilitiesArea actor={entity}/>,
             },
             {
               id: "equipment",
