@@ -71,8 +71,8 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
       css={{
         display: "block",
         position: "relative",
-        perspective: "1000px",
-        perspectivOrigin: "50% 50%",
+        perspective: "500px",
+        perspectiveOrigin: "50% 50%",
         height: "6em",
         width: "auto",
       }}
@@ -102,7 +102,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
         {/* shadow-bearer */}
         <div
           css={{
-            textShadow: "2px 0px 1px black, 6px 3px 4px rgba(0,0,0,0.5), -1px -1px 0px rgba(255,255,255,0.5)",
+            textShadow: "2px 0px 1px black, 6px 0px 4px rgba(0,0,0,0.5), -1px 0px 0px rgba(255,255,255,0.5)",
             zIndex: -1,
             ...textBearerStyle,
           }}

@@ -90,6 +90,7 @@ export const TrailActorSheet = ({
           gridArea: "title",
           textAlign: "center",
           // backgroundColor: "rgba(255,255,255, 0.3)",
+          backgroundImage: `radial-gradient(closest-side, ${theme.colors.thick} 0%, rgba(255,255,255,0) 100%)`,
         }}
       >
         <TrailLogoEditable
@@ -138,18 +139,6 @@ export const TrailActorSheet = ({
               onChange={updateOccupation}
             />
           </GridField>
-          {/* <GridFieldStacked label="Occupational Benefits">
-            <AsyncTextInput
-              value={entity.data.data.occupationalBenefits}
-              onChange={updateOccupationalBenefits}
-            />
-          </GridFieldStacked>
-          <GridFieldStacked label="Pillars of Sanity">
-            <AsyncTextInput
-              value={entity.data.data.pillarsOfSanity}
-              onChange={updatePillarsOfSanity}
-            />
-          </GridFieldStacked> */}
         </InputGrid>
       </div>
 
