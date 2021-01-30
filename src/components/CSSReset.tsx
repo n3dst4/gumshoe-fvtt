@@ -67,9 +67,13 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             color: theme.colors.accent,
             "&[disabled]": {
               opacity: 0.5,
+              color: theme.colors.text,
+              "&:hover": {
+                boxShadow: "none",
+                textShadow: "none",
+              },
             },
-            ":hover": {
-              // borderStyle: "outset",
+            "&:hover": {
               boxShadow: `0 0 0.5em ${theme.colors.glow}`,
               textShadow: `0 0 0.5em ${theme.colors.glow}`,
             },
