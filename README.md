@@ -77,7 +77,9 @@ As GM:
 - [x] scroll main area not whole sheet
 - [x] update window title when entity name changes
 - [x] check deployability
+- [ ] hide zero-rated abilities
 - [ ] beautifying pass
+- [ ] auto-populate abilities
 - [ ] publish
 - [ ] i18n
 

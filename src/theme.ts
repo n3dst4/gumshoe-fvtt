@@ -18,7 +18,7 @@ type Theme = {
 
 export const trailTheme: Theme = {
   wallpaper: `url(systems/${system.name}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.jpg)`,
-  bodyFont: "'Patrick Hand SC', sans-serif",
+  bodyFont: "16px 'Patrick Hand SC', sans-serif",
   // italic small-caps bold 16px/2 cursive
   displayFont: "normal small-caps normal 1em 'Federo', serif",
   colors: {

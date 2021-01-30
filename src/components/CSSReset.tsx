@@ -35,7 +35,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             userSelect: "auto",
             boxSizing: "border-box",
           },
-          fontFamily: theme.bodyFont,
+          font: theme.bodyFont,
           background: `${theme.colors.wallpaper} ${theme.wallpaper}`,
           backgroundSize: "cover",
           padding: "0.5em",
@@ -43,19 +43,19 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
 
           "h1, h2, h3, h4": {
             border: "none",
-            margin: 0,
+            margin: "0.3em 0 0 0",
             padding: 0,
             fontWeight: "inherit",
             font: theme.displayFont,
           },
           h1: {
-            fontSize: "2em",
-          },
-          h2: {
             fontSize: "1.5em",
           },
+          h2: {
+            fontSize: "1.3em",
+          },
           h3: {
-            fontSize: "1.2em",
+            fontSize: "1.1em",
           },
           h4: {
             fontSize: "1em",

@@ -16,8 +16,14 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
   const items = actor.getWeapons();
   return (
     <div>
-      <h1>
-        Weapons
+      <div>
+        <h1
+          css={{
+            display: "inline",
+          }}
+        >
+          Weapons
+        </h1>
         <button
           css={{
             float: "right",
@@ -34,7 +40,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
         >
           <i className="fa fa-plus"/>Add Weapon
         </button>
-      </h1>
+      </div>
       <div
         css={{
           display: "grid",
@@ -75,6 +81,17 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
             <WeaponRow key={item.id} weapon={item}/>
           ))
         }
+        {items.length === 0 &&
+          <i
+            css={{
+              display: "block",
+              gridColumn: "1/6",
+            }}
+          >
+            No weapons yet! Good luck against the cultists.
+          </i>
+        }
+
       </div>
     </div>
   );

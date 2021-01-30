@@ -15,8 +15,14 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
   const items = actor.getEquipment();
   return (
     <div>
-      <h1>
-        Equipment
+      <div>
+        <h1
+          css={{
+            display: "inline",
+          }}
+        >
+          Equipment
+        </h1>
         <button
           css={{
             float: "right",
@@ -34,7 +40,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
         >
           <i className="fa fa-plus"/>Add Equipment
         </button>
-      </h1>
+      </div>
       <div
         css={{
           columns: "auto 12em",

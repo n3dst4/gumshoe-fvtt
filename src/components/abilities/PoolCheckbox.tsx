@@ -30,7 +30,7 @@ export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
       onClick={onClick}
       css={{
         width: "auto",
-        height: "1.5em",
+        height: "1.2em",
         background: selected ? theme.colors.accent : theme.colors.thick,
         color: `${selected ? theme.colors.glow : undefined} !important`,
         textAlign: "center",
