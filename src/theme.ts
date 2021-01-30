@@ -12,11 +12,12 @@ type Theme = {
     thick: string,
     thin: string,
     medium: string,
+    text: string,
   }
 }
 
 export const trailTheme: Theme = {
-  wallpaper: `url(systems/${system.name}/assets/wallpapermarjanblan-5Ft4NWTmeJE-unsplash.jpg)`,
+  wallpaper: `url(systems/${system.name}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.jpg)`,
   bodyFont: "'Patrick Hand SC', sans-serif",
   // italic small-caps bold 16px/2 cursive
   displayFont: "normal small-caps normal 1em 'Federo', serif",
@@ -27,6 +28,7 @@ export const trailTheme: Theme = {
     medium: "rgba(255,255,255,0.5)",
     thick: "rgba(255,255,255,0.7)",
     thin: "rgba(255,255,255,0.2)",
+    text: "#433",
   },
 };
 

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
+import { ThemeContext } from "../../theme";
 
 type PoolCheckboxProps = {
   value: number,
@@ -21,6 +22,8 @@ export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
     }
   }, [disabled, onClickProp, value]);
 
+  const [theme] = useContext(ThemeContext);
+
   return (
     <a
       tabIndex={disabled ? undefined : 0}
@@ -28,7 +31,8 @@ export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
       css={{
         width: "auto",
         height: "1.5em",
-        background: selected ? "#d44" : "#fff",
+        background: selected ? theme.colors.accent : theme.colors.thick,
+        color: `${selected ? theme.colors.glow : undefined} !important`,
         textAlign: "center",
         display: "inline-block",
         position: "relative",

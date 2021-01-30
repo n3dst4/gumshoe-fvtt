@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { Fragment, useCallback } from "react";
+import React, { Fragment, useCallback, useContext } from "react";
 import { TrailActor } from "../module/TrailActor";
 import { PoolTracker } from "./abilities/PoolTracker";
 import { jsx } from "@emotion/react";
@@ -16,6 +16,7 @@ import { TabContainer } from "./TabContainer";
 import { EquipmentArea } from "./equipment/EquipmentArea";
 import { NotesArea } from "./NotesArea";
 import { WeaponsArea } from "./equipment/WeaponsArea";
+import { ThemeContext } from "../theme";
 
 type TrailActorSheetProps = {
   entity: TrailActor,
@@ -62,6 +63,8 @@ export const TrailActorSheet = ({
       generalAbilities.push(item as TrailItem);
     }
   }
+
+  const [theme] = useContext(ThemeContext);
 
   return (
     <CSSReset
@@ -157,6 +160,7 @@ export const TrailActorSheet = ({
           overflowX: "visible",
           overflowY: "auto",
           padding: "1em",
+          background: theme.colors.medium,
         }}
         >
 

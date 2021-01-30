@@ -39,6 +39,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
           background: `${theme.colors.wallpaper} ${theme.wallpaper}`,
           backgroundSize: "cover",
           padding: "0.5em",
+          color: theme.colors.text,
 
           "h1, h2, h3, h4": {
             border: "none",
