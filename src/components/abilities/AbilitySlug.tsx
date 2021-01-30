@@ -24,15 +24,21 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
       }}
     >
       <div>
-
+        {ability.data.data.occupational && (
+          <i
+            css={{ fontSize: "0.8em", marginRight: "0.5em" }}
+            className="fa fa-star-of-life"
+            title="This is an occupational ability"
+          />
+        )}
         {ability.name} ({ability.data.data.pool}/{ability.data.data.rating})
-        {ability.data.data.occupational &&
-          <i css={{ marginLeft: "0.5em" }} className="fa fa-star-of-life" title="This is an occupational ability"/>
-        }
-        {ability.data.data.canBeInvestigative &&
-          <i css={{ marginLeft: "0.5em" }} className="fa fa-search" title="Can be used investigatively"/>
-        }
-
+        {ability.data.data.canBeInvestigative && (
+          <i
+            css={{ fontSize: "0.8em", marginLeft: "0.5em" }}
+            className="fa fa-search"
+            title="Can be used investigatively"
+          />
+        )}
       </div>
       {ability.data.data.hasSpecialities && (
         <div css={{ paddingLeft: "1em" }}>
