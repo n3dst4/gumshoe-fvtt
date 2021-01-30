@@ -1,71 +1,87 @@
 /** @jsx jsx */
-import { css, Global, jsx } from "@emotion/react";
-import React from "react";
+import { css, Global, jsx, ThemeContext } from "@emotion/react";
+import React, { useState } from "react";
 import system from "../system.json";
+import { trailTheme } from "../theme";
 
 type CSSResetProps = {
-  children: any,
-  className?: string,
+  children: any;
+  className?: string;
 };
 
-export const CSSReset: React.FC<CSSResetProps> = ({
-  className,
-  children,
-}) => {
+export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
+  const [theme, setTheme] = useState(trailTheme);
+
   return (
-    <div
-      css={{
-        // fontWeight: 500,
-        background: `url(systems/${system.name}/assets/marjanblan-5Ft4NWTmeJE-unsplash.jpg)`,
-        backgroundSize: "cover",
-        padding: "0.5em",
-        // css-reset type stuff
-        "*": {
-          userSelect: "auto",
-          scrollbarWidth: "thin",
-        },
-        "h1, h2, h3, h4": {
-          border: "none",
-          margin: 0,
-          padding: 0,
-          fontWeight: "inherit",
-          fontFamily: "'Federo', serif",
-        },
-        button: {
-          // margin: 0,
-          fontFamily: "'Federo', serif",
-          "&[disabled]": {
-            opacity: 0.5,
-          },
-        },
-        label: {
-          fontFamily: "'Federo', serif",
-        },
-        ".window-upload-handle": {
-          display: "",
-        },
-        a: {
-          color: "#700",
-        },
-        "a:hover, a.hover, .hover a": {
-          textDecoration: "underline",
-          textShadow: "0 0 0.5em red",
-        },
-      }}
-      className={className}
-    >
+    <ThemeContext.Provider value={[theme, setTheme]}>
       <Global
         styles={css`
-          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-          @import url('https://fonts.googleapis.com/css2?family=Federo&display=swap');
+          @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+          @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
+          @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');    
+          @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
           /* pure hackage to hide these weird buttons until I can work out why they're there */
           .window-upload-handle {
             display: none;
           }
         `}
       />
+      <div
+        className={className}
+        css={{
+          "*": {
+            // all: "initial",
+            scrollbarWidth: "thin",
+            userSelect: "auto",
+          },
+          fontFamily: "'Patrick Hand SC', sans-serif",
 
-      {children}
-    </div>
+          background: `#ddd url(systems/${system.name}/assets/marjanblan-5Ft4NWTmeJE-unsplash.jpg)`,
+          backgroundSize: "cover",
+          padding: "0.5em",
+
+          "h1, h2, h3, h4": {
+            border: "none",
+            margin: 0,
+            padding: 0,
+            fontWeight: "inherit",
+            fontFamily: "'Federo', serif",
+            fontVariant: "small-caps",
+          },
+          h1: {
+            fontSize: "2em",
+          },
+          h2: {
+            fontSize: "1.5em",
+          },
+          h3: {
+            fontSize: "1.2em",
+          },
+          h4: {
+            fontSize: "1em",
+          },
+          button: {
+            // margin: 0,
+            fontFamily: "'Federo', serif",
+            "&[disabled]": {
+              opacity: 0.5,
+            },
+          },
+          label: {
+            fontFamily: "'Federo', serif",
+          },
+          a: {
+            color: "#700",
+          },
+          "a:hover, a.hover, .hover a": {
+            textDecoration: "underline",
+            textShadow: "0 0 0.5em red",
+          },
+        }}
+      >
+        {children}
+      </div>
+    </ThemeContext.Provider>
   );
 };
