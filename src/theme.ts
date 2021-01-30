@@ -29,7 +29,7 @@ export const trailTheme: Theme = {
     medium: "rgba(255,255,255,0.5)",
     thick: "rgba(255,255,255,0.7)",
     thin: "rgba(255,255,255,0.2)",
-    darken: "rgba(0,0,0,0.3)",
+    darken: "rgba(0,0,0,0.1)",
     text: "#433",
   },
 };
