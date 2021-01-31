@@ -5,8 +5,8 @@ type PerformAttackArgs1 = {
   bonusPool: number,
   setSpend: (value: string) => void,
   setBonusPool: (value: number) => void,
+  weapon: TrailItem,
   ability: TrailItem,
-  damage: number,
 }
 
 type PerformAttackArgs2 = {
@@ -17,7 +17,7 @@ type PerformAttackArgs2 = {
 export const performAttack = ({
   spend,
   ability,
-  damage,
+  weapon,
   bonusPool,
   setSpend,
   setBonusPool,
@@ -25,6 +25,7 @@ export const performAttack = ({
   description,
   rangeDamage,
 }: PerformAttackArgs2) => {
+  const damage = weapon.getDamage();
   const hitRoll = new Roll("1d6 + @spend", { spend });
   const hitLabel = `Rolling ${ability.name} at ${description}`;
   hitRoll.roll();
@@ -50,5 +51,6 @@ export const performAttack = ({
   ability.setter("pool")(newPool);
   setBonusPool(newBonusPool);
   setSpend("0");
+  weapon.setAmmo(Math.max(0, weapon.getAmmo() - weapon.getAmmoPerShot()));
 }
 ;

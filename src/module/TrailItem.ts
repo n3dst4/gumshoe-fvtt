@@ -109,4 +109,56 @@ export class TrailItem extends Item<any> {
       name,
     });
   }
+
+  setAmmoMax = (max: number) => {
+    this.update({
+      data: {
+        ammo: {
+          max,
+        },
+      },
+    });
+  }
+
+  getAmmoMax = () => {
+    return this.data.data.ammo?.max || 0;
+  }
+
+  setAmmo = (value: number) => {
+    this.update({
+      data: {
+        ammo: {
+          value,
+        },
+      },
+    });
+  }
+
+  getAmmo = () => {
+    return this.data.data.ammo?.value || 0;
+  }
+
+  reload = () => {
+    this.update({
+      data: {
+        ammo: {
+          value: this.getAmmoMax(),
+        },
+      },
+    });
+  }
+
+  getDamage = () => this.data.data.damage ?? 0
+
+  setAmmoPerShot = (ammoPerShot: number) => this.update({
+    data: { ammoPerShot },
+  })
+
+  getAmmoPerShot = () => this.data.data.ammoPerShot ?? 1
+
+  getUsesAmmo = () => this.data.data.usesAmmo ?? false
+
+  setUsesAmmo = (usesAmmo: boolean) => this.update({
+    data: { usesAmmo },
+  })
 }

@@ -44,8 +44,8 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     setSpend,
     setBonusPool,
     ability,
-    damage: weapon.data.data.damage,
-  }), [ability, bonusPool, spend, weapon.data.data.damage]);
+    weapon,
+  }), [ability, bonusPool, spend, weapon]);
 
   const notes = useAsyncUpdate(weapon.getter("notes")(), weapon.setter("notes"));
 
@@ -90,6 +90,8 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     [ability.name, weapon.actor],
   );
 
+  const ammoFail = weapon.getUsesAmmo() && weapon.getAmmo() <= 0;
+
   return (
     <Fragment>
       <InputGrid
@@ -112,32 +114,50 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
             css={{
               display: "flex",
               flexDirection: "row",
+              position: "relative",
             }}
           >
+            {
+              ammoFail &&
+                <div
+                  css={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    fontSize: "1.2em",
+                    backgroundColor: theme.colors.reverseThick,
+                    color: theme.colors.thick,
+                    padding: "0 1em",
+                  }}
+                >
+                  Out of ammo
+                </div>
+            }
             <button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={!weapon.data.data.isPointBlank}
+              disabled={ammoFail || !weapon.data.data.isPointBlank}
               onClick={onPointBlank}
             >
               Point Blank
             </button>
             <button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={!weapon.data.data.isCloseRange}
+              disabled={ammoFail || !weapon.data.data.isCloseRange}
               onClick={onCloseRange}
             >
               Close Range
             </button>
             <button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={!weapon.data.data.isNearRange}
+              disabled={ammoFail || !weapon.data.data.isNearRange}
               onClick={onNearRange}
             >
               Near Range
             </button>
             <button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={!weapon.data.data.isLongRange}
+              disabled={ammoFail || !weapon.data.data.isLongRange}
               onClick={onLongRange}
             >
               Long Range
@@ -146,6 +166,35 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
         </GridFieldStacked>
       </InputGrid>
       <InputGrid>
+        {weapon.data.data.usesAmmo &&
+            <GridField label="Ammo">
+              <div
+                css={{
+                  display: "flex",
+                  flexDirection: "row",
+                }}
+              >
+                <button
+                  css={{
+                    flexBasis: "min-content",
+                    flex: 0,
+                    lineHeight: "inherit",
+                  }}
+                  onClick={weapon.reload}
+                >
+                  Reload
+                </button>
+                <AsyncNumberInput
+                  css={{ flex: 1 }}
+                  min={0}
+                  max={weapon.getAmmoMax()}
+                  value={weapon.getAmmo()}
+                  onChange={weapon.setAmmo}
+                />
+              </div>
+            </GridField>
+        }
+
         <GridField label="Notes">
           <TextArea value={notes.display} onChange={notes.onChange} />
         </GridField>

@@ -11,6 +11,7 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { WeaponRange } from "./WeaponRangeConfig";
 import { combatAbilities } from "../../constants";
 import system from "../../system.json";
+import { Checkbox } from "../inputs/Checkbox";
 
 type WeaponConfigProps = {
   weapon: TrailItem,
@@ -102,6 +103,30 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
         <GridField label="Notes">
           <TextArea value={notes.display} onChange={notes.onChange} />
         </GridField>
+        <GridField label="Uses ammo?">
+          <Checkbox
+            checked={weapon.getUsesAmmo()}
+            onChange={weapon.setUsesAmmo}
+          />
+        </GridField>
+        {weapon.data.data.usesAmmo &&
+          <Fragment>
+            <GridField label="Ammo capacity">
+              <AsyncNumberInput
+                min={0}
+                value={weapon.getAmmoMax()}
+                onChange={weapon.setAmmoMax}
+              />
+            </GridField>
+            <GridField label="Ammo per attack">
+              <AsyncNumberInput
+                min={0}
+                value={weapon.getAmmoPerShot()}
+                onChange={weapon.setAmmoPerShot}
+              />
+            </GridField>
+          </Fragment>
+        }
         <GridField label="Delete">
           <button onClick={onClickDelete}>Delete</button>
         </GridField>

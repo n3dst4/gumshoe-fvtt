@@ -84,7 +84,8 @@ As GM:
 - [x] shade attack area
 - [x] show notes on weapons main page
 - [x] column widths on weapons table
-- [ ] ammo!
+- [x] ammo!
+- [ ] weird red glow on focused buttons
 - [ ] add weapon name to attack rolls
 - [ ] beautifying pass
 - [ ] auto-populate abilities

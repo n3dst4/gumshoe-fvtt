@@ -63,6 +63,14 @@ export type WeaponData = {
   isCloseRange: boolean,
   isNearRange: boolean,
   isLongRange: boolean,
+  usesAmmo: boolean,
+  ammoPerShot: number,
+  ammo: {
+    min: number,
+    max: number,
+    value: number
+  }
+
 }
 
 export type CoreAbilityData = {

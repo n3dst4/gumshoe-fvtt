@@ -74,7 +74,14 @@
       "isCloseRange": true,
       "isNearRange": true,
       "isLongRange": false,
-      "notes": ""
+      "notes": "",
+      "usesAmmo": true,
+      "ammoPerShot": 1,
+      "ammo": {
+        "min": 0,
+        "max": 10,
+        "value": 10
+      }
     }
   }
 }

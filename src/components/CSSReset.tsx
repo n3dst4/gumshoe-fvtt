@@ -102,6 +102,9 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
               boxShadow: `0 0 0.5em ${theme.colors.glow}`,
             },
           },
+          textarea: {
+            lineHeight: 1,
+          },
         }}
       >
         {children}
