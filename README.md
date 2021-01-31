@@ -21,6 +21,12 @@ This sytem isn't registered so to install it into your Foundry instance:
 
 All the character abilities are represented as Items. They should all auto-populate wyhen you create a character, but there are compendium packs containing all the standard abilities from Trail of Cthulhu if you'd like to import them.
 
+## Bug reports and contact
+
+If you have a GitLab account, then by all means log an issue over at [the project site][project-site]. Merge requests are also welcome!
+
+Otherwise you can email me at `neil at lumphammer.com`, or hit me up on Discord (search for `n3dst4#8227`.)
+
 
 ## Development & general hacking
 
@@ -35,6 +41,8 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 7. Open your local foundry server and create a world with "Trail of Cthulhu (Unsanctioned)" as the system.
 
 ## TODO
+
+Sorry, this is purely for my benefit. See how many things I've ticked off!
 
 - [x] editable speciality
 - [x] dynamic name stuff with Foundry hooks
@@ -117,3 +125,6 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 This System for Foundry VTT uses trademarks and/or copyrights owned by Pelgrane Press Ltd, which are used under the Pelgrane Press Ltd, Community Use Policy. We are expressly prohibited from charging you to use or access this content. This System for Foundry VTT is not published, endorsed, or specifically approved by Pelgrane Press Ltd. For more information about Pelgrane Press Ltd’s Community Use Policy, please visit [this page](https://wp.me/p7Ic36-5FU). For more information about Pelgrane Press Ltd visit [pelgranepress.com](http://pelgranepress.com/).”
 
 Huge thanks to Nick van Oosten/NickEast for [Foundry Project Creator](https://gitlab.com/foundry-projects/foundry-pc/create-foundry-project) and [the Typescript types to go with it](https://gitlab.com/foundry-projects/foundry-pc/foundry-pc-types).
+
+
+[project-site]: https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/issues
