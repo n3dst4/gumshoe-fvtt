@@ -8,8 +8,8 @@ import { WeaponConfig } from "./WeaponConfig";
 import { WeaponAttack } from "./WeaponAttack";
 
 type WeaponSheetProps = {
-  weapon: TrailItem,
-  foundryWindow: Application,
+  weapon: TrailItem;
+  foundryWindow: Application;
 };
 
 export const WeaponSheet: React.FC<WeaponSheetProps> = ({
@@ -21,12 +21,11 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
   useEffect(() => {
     foundryWindow.render();
   }, [foundryWindow, configMode]);
-
   return (
     <CSSReset>
       <div>
         Weapon
-        {weapon.isOwned &&
+        {weapon.isOwned && (
           <a
             css={{
               float: "right",
@@ -35,9 +34,9 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
               setConfigMode((mode) => !mode);
             }}
           >
-            <i className={`fa fa-${configMode ? "check" : "cog"}`}/>
+            <i className={`fa fa-${configMode ? "check" : "cog"}`} />
           </a>
-        }
+        )}
       </div>
 
       <h1
@@ -47,9 +46,13 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
         onBlur={name.onBlur}
         ref={name.contentEditableRef}
       />
-
-          {configMode || (!weapon.isOwned) ? <WeaponConfig weapon={weapon} /> : <WeaponAttack weapon={weapon} />}
-
+      {configMode || !weapon.isOwned
+        ? (
+        <WeaponConfig weapon={weapon} />
+          )
+        : (
+        <WeaponAttack weapon={weapon} />
+          )}
     </CSSReset>
   );
 };
