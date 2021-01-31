@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["pc", "npc"],
+    "types": ["pc"],
     "templates": {
     },
     "pc": {
