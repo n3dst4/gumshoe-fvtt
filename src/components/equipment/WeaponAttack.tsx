@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useMemo, useState } from "react";
+import React, { Fragment, useCallback, useContext, useMemo, useState } from "react";
 import { generalAbility } from "../../constants";
 import { TrailItem } from "../../module/TrailItem";
+import { ThemeContext } from "../../theme";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
@@ -22,6 +23,7 @@ const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
 export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const [spend, setSpend] = useState("0");
   const [bonusPool, setBonusPool] = useState(0);
+  const [theme] = useContext(ThemeContext);
 
   const ability = weapon.actor.items.find((item) => {
     return (
@@ -88,9 +90,10 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     <Fragment>
       <InputGrid
         css={{
-          border: "2px groove white",
+          border: `1px solid ${theme.colors.reverseMedium}`,
           padding: "1em",
           marginBottom: "1em",
+          background: theme.colors.thin,
         }}
       >
         <GridField label="Spend">

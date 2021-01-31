@@ -79,9 +79,11 @@ As GM:
 - [x] check deployability
 - [x] hide zero-rated abilities
 - [x] theme textareas
-- [ ] empty equipment message
-- [ ] empty weapons message - hide headers
+- [x] empty equipment message
+- [x] empty weapons message - hide headers
+- [x] shade attack area
 - [ ] show notes on weapons main page
+- [ ] add weapon name to attack rolls
 - [ ] beautifying pass
 - [ ] auto-populate abilities
 - [ ] weapon bonus pool should affect spend options
