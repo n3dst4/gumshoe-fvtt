@@ -2,33 +2,27 @@
 
 A Foundry VTT system for running games of Trail of Cthulhu.
 
-
-
-## Made available under Pelgrane Press Ltd's Community Use Policy
-
-This System for Foundry VTT uses trademarks and/or copyrights owned by Pelgrane Press Ltd, which are used under the Pelgrane Press Ltd, Community Use Policy. We are expressly prohibited from charging you to use or access this content. This System for Foundry VTT is not published, endorsed, or specifically approved by Pelgrane Press Ltd. For more information about Pelgrane Press Ltd’s Community Use Policy, please visit [this page](https://wp.me/p7Ic36-5FU). For more information about Pelgrane Press Ltd visit [pelgranepress.com](http://pelgranepress.com/).”
-
-
 ## How to install
 
-You can't! (Yet.)
+This sytem isn't registered so to install it into your Foundry instance:
+
+1. On the admin screen, got to **Game Systems**
+2. Click **Install System**
+3. Where it says **Manfest URL**, paste in
+    ```
+    https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/raw/master/src/system.json
+    ```
+4. Click **Install**
 
 
 ## Making PCs
 
-All the character abilities are represented as Items. There are compendium packs containing all the standard abilities from Trail of Cthulhu.
-
-As GM:
-
-1. Open the Compendium Packs tab in the sidebar.
-2. Right click "Trail of Cthulhu General Abilies" and then "Import all content"
-3. Do the same for "Trail of Cthulhu Investigative Abilies".
-4. In the Items tab of the sidebar, right click and "Configure permissions" for both folders, and set "All Players: Observer".
-5. Create a player character in the normal way.
-6. You should now be abnle to drag a whole folder full of abilities (or just the ones you want individually) onto a character sheet.
+All the character abilities are represented as Items. They should all auto-populate wyhen you create a character, but there are compendium packs containing all the standard abilities from Trail of Cthulhu if you'd like to import them.
 
 
-## Development
+## Development & general hacking
+
+If you're a developer and you'd like to hack on this code, please be aware it uses Webpack and React so some of it will not look like normal Handlebars + JQuery Foundry stuff.
 
 1. Clone the repo.
 2. Copy `foundryconfig_template.json` to `foundryconfig.json` and edit it to fill in the `dataPath`, e.g.  `"dataPath" "/home/ndc/foundrydata",`.
@@ -90,12 +84,13 @@ As GM:
 - [x] add weapon name to attack rolls
 - [x] weapon bonus pool should affect spend options
 - [x] auto-populate abilities
-- [ ] publish
-- [ ] i18n
+- [x] publish
+- [x] README for installing
 
 
 ## The future
 
+- [ ] i18n
 - [ ] expandy-collapsy bits on the notes area
 - [ ] rich text editing
 - [ ] Character gen mode? (track free values, point spends, I<->G trades, synergies)
@@ -114,4 +109,9 @@ As GM:
 ## Credits
 
 <span>Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Annie Spratt</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
 <span>Photo by <a href="https://unsplash.com/@marjan_blan?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Марьян Блан | @marjanblan</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+This System for Foundry VTT uses trademarks and/or copyrights owned by Pelgrane Press Ltd, which are used under the Pelgrane Press Ltd, Community Use Policy. We are expressly prohibited from charging you to use or access this content. This System for Foundry VTT is not published, endorsed, or specifically approved by Pelgrane Press Ltd. For more information about Pelgrane Press Ltd’s Community Use Policy, please visit [this page](https://wp.me/p7Ic36-5FU). For more information about Pelgrane Press Ltd visit [pelgranepress.com](http://pelgranepress.com/).”
+
+Huge thanks to Nick van Oosten/NickEast for [Foundry Project Creator](https://gitlab.com/foundry-projects/foundry-pc/create-foundry-project) and [the Typescript types to go with it](https://gitlab.com/foundry-projects/foundry-pc/foundry-pc-types).
