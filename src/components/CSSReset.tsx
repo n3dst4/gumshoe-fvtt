@@ -87,7 +87,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             textDecoration: "underline",
             textShadow: `0 0 0.5em ${theme.colors.glow}`,
           },
-          "input, input[type=text]": {
+          "input, input[type=text], textarea": {
             font: theme.bodyFont,
             color: theme.colors.accent,
             padding: "0.1em 0.3em",
@@ -97,6 +97,8 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             background: theme.colors.medium,
             ":focus": {
               borderColor: theme.colors.accent,
+              outline: "none",
+              boxShadow: `0 0 0.5em ${theme.colors.glow}`,
             },
           },
         }}
