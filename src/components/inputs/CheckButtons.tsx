@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useMemo } from "react";
+import React, { Fragment, useCallback, useContext, useMemo } from "react";
 import { nanoid } from "nanoid";
+import { ThemeContext } from "../../theme";
 
 type CheckButtonsProps = {
   options: Array<{label: string, value: string, enabled: boolean}>,
@@ -14,6 +15,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
   selected,
   onChange: onChangeOrig,
 }) => {
+  const [theme] = useContext(ThemeContext);
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
     onChangeOrig(newValue);
@@ -40,17 +42,16 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
             backgroundColor: "rgba(0,0,0,0.1)",
             paddingBottom: "0.3em",
             borderRadius: "0.2em",
-            ":hover, :focus": {
-              textShadow: "0 0 0.3em rgba(255,111,18,1)",
+            ":hover": {
+              textShadow: `0 0 0.3em ${theme.colors.glow}`,
             },
           },
           "&:checked+label": {
             background: "grey",
             border: "2px inset white",
-            backgroundColor: "rgba(255,111,18,0.2)",
-            ":hover": {
-              textShadow: "none",
-            },
+            backgroundColor: theme.colors.accent,
+            color: theme.colors.glow,
+            textShadow: `0 0 0.3em ${theme.colors.glow}`,
           },
           "&[disabled]+label": {
             opacity: 0.3, //

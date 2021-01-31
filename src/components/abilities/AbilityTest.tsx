@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { isGeneralAbility } from "../../functions";
 import { TrailItem } from "../../module/TrailItem";
+import { ThemeContext } from "../../theme";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
@@ -21,6 +22,7 @@ const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
 export const AbilityTest: React.FC<AbilityTestProps> = ({
   ability,
 }) => {
+  const [theme] = useContext(ThemeContext);
   const [spend, setSpend] = useState("0");
 
   const onTest = useCallback(() => {
@@ -58,6 +60,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
         border: "2px groove white",
         padding: "1em",
         marginBottom: "1em",
+        background: theme.colors.thin,
       }}
     >
       <GridField label="Spend">
