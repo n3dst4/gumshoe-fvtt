@@ -88,6 +88,16 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             textDecoration: "underline",
             textShadow: `0 0 0.5em ${theme.colors.glow}`,
           },
+          "input, input[type=text]": {
+            font: theme.bodyFont,
+            color: theme.colors.accent,
+            padding: "0.1em 0.3em",
+            border: "1px solid transparent",
+            background: theme.colors.medium,
+            ":focus": {
+              border: `1px solid ${theme.colors.accent}`,
+            },
+          },
         }}
       >
         {children}

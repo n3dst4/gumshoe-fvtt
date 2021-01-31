@@ -20,9 +20,10 @@ export const GridField: React.FC<GridFieldProps> = ({
     <IdContext.Provider value={id}>
       <label
         htmlFor={id}
-        css={css`
-          grid-column: label;
-        `}
+        css={{
+          gridColumn: "label",
+          paddingTop: "0.3em",
+        }}
         className={className}
       >
         {label}
