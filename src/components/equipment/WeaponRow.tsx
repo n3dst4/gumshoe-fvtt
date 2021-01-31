@@ -16,7 +16,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
   return (
     <Fragment>
     <a
-      css={{ gridColumn: 1 }}
+      css={{ gridColumn: 1, overflow: "hidden", textOverflow: "ellipsis" }}
       className={hover ? "hover" : ""}
       onClick={() => weapon.sheet.render(true)}
       onMouseOver={onMouseOver}
@@ -34,43 +34,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
       {weapon.getter("damage")()}
     </a>
     <a
-      css={{ gridColumn: 3 }}
-      className={hover ? "hover" : ""}
-      onClick={() => weapon.sheet.render(true)}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-    >
-      {weapon.getter("isPointBlank")() ? weapon.getter("pointBlankDamage")() : "—" }
-    </a>
-    <a
-      css={{ gridColumn: 4 }}
-      className={hover ? "hover" : ""}
-      onClick={() => weapon.sheet.render(true)}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-    >
-      {weapon.getter("isCloseRange")() ? weapon.getter("closeRangeDamage")() : "—" }
-    </a>
-    <a
-      css={{ gridColumn: 5 }}
-      className={hover ? "hover" : ""}
-      onClick={() => weapon.sheet.render(true)}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-    >
-      {weapon.getter("isNearRange")() ? weapon.getter("nearRangeDamage")() : "—" }
-    </a>
-    <a
-      css={{ gridColumn: 6 }}
-      className={hover ? "hover" : ""}
-      onClick={() => weapon.sheet.render(true)}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-    >
-      {weapon.getter("isLongRange")() ? weapon.getter("longRangeDamage")() : "—" }
-    </a>
-    <a
-      css={{ gridColumn: 7, overflow: "hidden", textOverflow: "ellipsis" }}
+      css={{ gridColumn: 3, overflow: "hidden", textOverflow: "ellipsis" }}
       className={hover ? "hover" : ""}
       onClick={() => weapon.sheet.render(true)}
       onMouseOver={onMouseOver}

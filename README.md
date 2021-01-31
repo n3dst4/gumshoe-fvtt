@@ -82,7 +82,9 @@ As GM:
 - [x] empty equipment message
 - [x] empty weapons message - hide headers
 - [x] shade attack area
-- [ ] show notes on weapons main page
+- [x] show notes on weapons main page
+- [ ] column widths on weapons table
+- [ ] ammo!
 - [ ] add weapon name to attack rolls
 - [ ] beautifying pass
 - [ ] auto-populate abilities

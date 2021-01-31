@@ -2,6 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useMemo, useState } from "react";
 import { generalAbility } from "../../constants";
+import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TrailItem } from "../../module/TrailItem";
 import { ThemeContext } from "../../theme";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -9,6 +10,7 @@ import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
+import { TextArea } from "../inputs/TextArea";
 import { performAttack } from "./performAttack";
 
 type WeaponAttackProps = {
@@ -44,6 +46,8 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     ability,
     damage: weapon.data.data.damage,
   }), [ability, bonusPool, spend, weapon.data.data.damage]);
+
+  const notes = useAsyncUpdate(weapon.getter("notes")(), weapon.setter("notes"));
 
   const onPointBlank = useCallback(() => {
     basePerformAttack({
@@ -142,6 +146,9 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
         </GridFieldStacked>
       </InputGrid>
       <InputGrid>
+        <GridField label="Notes">
+          <TextArea value={notes.display} onChange={notes.onChange} />
+        </GridField>
         <GridField label="Bonus pool">
           <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />
         </GridField>

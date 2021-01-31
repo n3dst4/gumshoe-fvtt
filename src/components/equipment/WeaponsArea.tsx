@@ -55,7 +55,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
         <div
           css={{
             display: "grid",
-            gridTemplateColumns: "1fr max-content max-content max-content max-content max-content 1fr",
+            gridTemplateColumns: "1fr max-content 1fr",
             gridAutoRows: "min-content",
             columnGap: "0.5em",
             whiteSpace: "nowrap",
@@ -69,21 +69,9 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
             Weapon
           </div>
           <div className="header" css={{ gridColumn: 2 }}>
-            Damage
+            Ammo
           </div>
           <div className="header" css={{ gridColumn: 3 }}>
-            Point Blank
-          </div>
-          <div className="header" css={{ gridColumn: 4 }}>
-            Close
-          </div>
-          <div className="header" css={{ gridColumn: 5 }}>
-            Near
-          </div>
-          <div className="header" css={{ gridColumn: 6 }}>
-            Long
-          </div>
-          <div className="header" css={{ gridColumn: 7 }}>
             Notes
           </div>
           {
