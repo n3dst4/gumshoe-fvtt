@@ -85,9 +85,9 @@ As GM:
 - [x] show notes on weapons main page
 - [x] column widths on weapons table
 - [x] ammo!
-- [ ] weird red glow on focused buttons
+- [x] weird red glow on focused buttons
+- [x] beautifying pass
 - [ ] add weapon name to attack rolls
-- [ ] beautifying pass
 - [ ] auto-populate abilities
 - [ ] weapon bonus pool should affect spend options
 - [ ] publish

@@ -35,6 +35,10 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             userSelect: "auto",
             boxSizing: "border-box",
             scrollbarColor: `${theme.colors.accent} ${theme.colors.reverseThin}`,
+            "&:focus": {
+              textDecoration: "underline",
+              // textDecorationStyle: "dashed",
+            },
           },
           font: theme.bodyFont,
           background: `${theme.colors.wallpaper} ${theme.wallpaper}`,
@@ -75,6 +79,9 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             "&:hover": {
               boxShadow: `0 0 0.5em ${theme.colors.glow}`,
               textShadow: `0 0 0.5em ${theme.colors.glow}`,
+            },
+            "&:focus": {
+              boxShadow: "none",
             },
           },
           label: {

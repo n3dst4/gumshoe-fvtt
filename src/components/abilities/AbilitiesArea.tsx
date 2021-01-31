@@ -67,12 +67,6 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
           gridTemplateRows: "auto",
         }}
       >
-        <div css={{ gridArea: "general" }}>
-          <h2>General</h2>
-          {sortEntitiesByName(generalAbilities).map((ability) => (
-            <AbilitySlug key={ability.id} ability={ability} />
-          ))}
-        </div>
         <div css={{ gridArea: "inv" }}>
           {Object.keys(investigativeAbilities).sort().map((cat) => (
             <div key={cat}>
@@ -83,6 +77,12 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
                 ))
               }
             </div>
+          ))}
+        </div>
+        <div css={{ gridArea: "general" }}>
+          <h2>General</h2>
+          {sortEntitiesByName(generalAbilities).map((ability) => (
+            <AbilitySlug key={ability.id} ability={ability} />
           ))}
         </div>
       </div>
