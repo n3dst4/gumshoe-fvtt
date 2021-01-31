@@ -41,58 +41,68 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
           <i className="fa fa-plus"/>Add Weapon
         </button>
       </div>
-      <div
-        css={{
-          display: "grid",
-          gridTemplateColumns: "1fr max-content max-content max-content max-content max-content 1fr",
-          gridAutoRows: "min-content",
-          columnGap: "0.5em",
-          whiteSpace: "nowrap",
-          ".header": {
-            fontWeight: "bold",
-          },
-          // rowGap: "0.5em",
-        }}
-      >
-        <div className="header" css={{ gridColumn: 1 }}>
-          Weapon
+      {items.length === 0 &&
+        <i
+          css={{
+            display: "block",
+            fontSize: "1.2em",
+          }}
+        >
+          No weapons yet! Good luck against the cultists.
+        </i>
+      }
+      {items.length > 0 &&
+        <div
+          css={{
+            display: "grid",
+            gridTemplateColumns: "1fr max-content max-content max-content max-content max-content 1fr",
+            gridAutoRows: "min-content",
+            columnGap: "0.5em",
+            whiteSpace: "nowrap",
+            ".header": {
+              fontWeight: "bold",
+            },
+            // rowGap: "0.5em",
+          }}
+        >
+          <div className="header" css={{ gridColumn: 1 }}>
+            Weapon
+          </div>
+          <div className="header" css={{ gridColumn: 2 }}>
+            Damage
+          </div>
+          <div className="header" css={{ gridColumn: 3 }}>
+            Point Blank
+          </div>
+          <div className="header" css={{ gridColumn: 4 }}>
+            Close
+          </div>
+          <div className="header" css={{ gridColumn: 5 }}>
+            Near
+          </div>
+          <div className="header" css={{ gridColumn: 6 }}>
+            Long
+          </div>
+          <div className="header" css={{ gridColumn: 7 }}>
+            Notes
+          </div>
+          {
+            sortEntitiesByName(items).map((item) => (
+              <WeaponRow key={item.id} weapon={item}/>
+            ))
+          }
+          {items.length === 0 &&
+            <i
+              css={{
+                display: "block",
+                gridColumn: "1/6",
+              }}
+            >
+              No weapons yet! Good luck against the cultists.
+            </i>
+          }
         </div>
-        <div className="header" css={{ gridColumn: 2 }}>
-          Damage
-        </div>
-        <div className="header" css={{ gridColumn: 3 }}>
-          Point Blank
-        </div>
-        <div className="header" css={{ gridColumn: 4 }}>
-          Close
-        </div>
-        <div className="header" css={{ gridColumn: 5 }}>
-          Near
-        </div>
-        <div className="header" css={{ gridColumn: 6 }}>
-          Long
-        </div>
-        <div className="header" css={{ gridColumn: 7 }}>
-          Notes
-        </div>
-
-        {
-          sortEntitiesByName(items).map((item) => (
-            <WeaponRow key={item.id} weapon={item}/>
-          ))
-        }
-        {items.length === 0 &&
-          <i
-            css={{
-              display: "block",
-              gridColumn: "1/6",
-            }}
-          >
-            No weapons yet! Good luck against the cultists.
-          </i>
-        }
-
-      </div>
+      }
     </div>
   );
 };

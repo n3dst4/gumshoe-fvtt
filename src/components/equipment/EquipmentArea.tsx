@@ -41,6 +41,17 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
           <i className="fa fa-plus"/>Add Equipment
         </button>
       </div>
+      {items.length === 0 &&
+        <i
+          css={{
+            display: "block",
+            fontSize: "1.2em",
+          }}
+        >
+          No equipment yet.
+        </i>
+      }
+
       <div
         css={{
           columns: "auto 12em",

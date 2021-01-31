@@ -95,6 +95,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             borderWidth: "1px",
             borderColor: theme.colors.reverseMedium,
             background: theme.colors.medium,
+            resize: "vertical",
             ":focus": {
               borderColor: theme.colors.accent,
               outline: "none",
