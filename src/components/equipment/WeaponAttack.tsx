@@ -35,7 +35,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
 
   const spendOptions = defaultSpendOptions.map((option) => ({
     ...option,
-    enabled: option.value <= ability.data.data.pool,
+    enabled: option.value <= ability.data.data.pool + bonusPool,
   }));
 
   const basePerformAttack = useMemo(() => performAttack({

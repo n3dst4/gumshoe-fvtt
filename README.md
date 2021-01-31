@@ -87,9 +87,9 @@ As GM:
 - [x] ammo!
 - [x] weird red glow on focused buttons
 - [x] beautifying pass
-- [ ] add weapon name to attack rolls
+- [x] add weapon name to attack rolls
+- [x] weapon bonus pool should affect spend options
 - [ ] auto-populate abilities
-- [ ] weapon bonus pool should affect spend options
 - [ ] publish
 - [ ] i18n
 
