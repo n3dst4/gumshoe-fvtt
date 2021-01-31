@@ -89,7 +89,7 @@ As GM:
 - [x] beautifying pass
 - [x] add weapon name to attack rolls
 - [x] weapon bonus pool should affect spend options
-- [ ] auto-populate abilities
+- [x] auto-populate abilities
 - [ ] publish
 - [ ] i18n
 

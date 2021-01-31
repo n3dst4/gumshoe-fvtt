@@ -23,7 +23,7 @@ class TrailActorSheetClassBase extends ActorSheet {
 const render = (sheet: TrailActorSheetClassBase) => {
   return (
     <TrailActorSheet
-      entity={sheet.entity}
+      actor={sheet.entity}
       foundryWindow={sheet}
     />
   );

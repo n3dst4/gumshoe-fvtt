@@ -3,6 +3,7 @@ import { isAbility } from "../functions";
 import { GetterDict, TrailActorData, RecursivePartial, SetterDict, TrailItemData } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { TrailItem } from "./TrailItem";
+import system from "../system.json";
 
 export class TrailActor<T=TrailActorData> extends Actor<T> {
   constructor (data, options) {
@@ -124,3 +125,28 @@ Hooks.on("updateOwnedItem", (
     }
   }
 });
+
+Hooks.on(
+  "createActor",
+  async (
+    actor: TrailActor,
+    options: Record<string, unknown>,
+    userId: string,
+  ) => {
+    if (actor.items.size > 0) {
+      return;
+    }
+    const investigative = (
+      await game.packs
+        .find((p) => p.collection === `${system.name}.investigativeAbilities`)
+        .getContent()
+    ).map((i) => i.data);
+    const general = (
+      await game.packs
+        .find((p) => p.collection === `${system.name}.generalAbilities`)
+        .getContent()
+    ).map((i) => i.data);
+    await actor.createOwnedItem(investigative);
+    await actor.createOwnedItem(general);
+  },
+);

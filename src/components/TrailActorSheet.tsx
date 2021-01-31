@@ -17,21 +17,21 @@ import { WeaponsArea } from "./equipment/WeaponsArea";
 import { ThemeContext } from "../theme";
 
 type TrailActorSheetProps = {
-  entity: TrailActor,
+  actor: TrailActor,
   foundryWindow: Application,
 }
 
 export const TrailActorSheet = ({
-  entity,
+  actor,
   foundryWindow,
 }: TrailActorSheetProps) => {
   const onImageClick = useCallback(() => {
     console.log("onImageClick");
     const fp = new FilePicker({
       type: "image",
-      current: entity.data.img,
+      current: actor.data.img,
       callback: (path) => {
-        entity.update({
+        actor.update({
           img: path,
         });
       },
@@ -40,11 +40,11 @@ export const TrailActorSheet = ({
     });
     // types aren't quite right for fp
     return (fp as any).browse();
-  }, [entity, foundryWindow.position.left, foundryWindow.position.top]);
+  }, [actor, foundryWindow.position.left, foundryWindow.position.top]);
 
-  const updateName = useUpdate(entity, name => ({ name }));
-  const updateDrive = useUpdate(entity, drive => ({ data: { drive } }));
-  const updateOccupation = useUpdate(entity, occupation => ({ data: { occupation } }));
+  const updateName = useUpdate(actor, name => ({ name }));
+  const updateDrive = useUpdate(actor, drive => ({ data: { drive } }));
+  const updateOccupation = useUpdate(actor, occupation => ({ data: { occupation } }));
 
   const [theme] = useContext(ThemeContext);
 
@@ -66,18 +66,16 @@ export const TrailActorSheet = ({
           "\"pools body  body\" ",
       }}
     >
-
       <div
         css={{
           gridArea: "title",
           textAlign: "center",
-          // backgroundColor: "rgba(255,255,255, 0.3)",
           backgroundImage: `radial-gradient(closest-side, ${theme.colors.thick} 0%, rgba(255,255,255,0) 100%)`,
         }}
       >
         <TrailLogoEditable
-          text={entity.data.name}
-          subtext={entity.data.data.occupation}
+          text={actor.data.name}
+          subtext={actor.data.data.occupation}
           defaultSubtext="Investigator"
           onChangeText={updateName}
           onChangeSubtext={updateOccupation}
@@ -86,7 +84,7 @@ export const TrailActorSheet = ({
       <div
         css={{
           gridArea: "image",
-          backgroundImage: `url(${entity.data.img})`,
+          backgroundImage: `url(${actor.data.img})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           borderRadius: "0.2em",
@@ -105,19 +103,19 @@ export const TrailActorSheet = ({
         <InputGrid>
         <GridField label="Name">
             <AsyncTextInput
-              value={entity.data.name}
+              value={actor.data.name}
               onChange={updateName}
             />
           </GridField>
           <GridField label="Occupation">
             <AsyncTextInput
-              value={entity.data.data.occupation}
+              value={actor.data.data.occupation}
               onChange={updateOccupation}
             />
           </GridField>
           <GridField label="Drive">
             <AsyncTextInput
-              value={entity.data.data.drive}
+              value={actor.data.data.drive}
               onChange={updateDrive}
             />
           </GridField>
@@ -135,17 +133,17 @@ export const TrailActorSheet = ({
         }}
         >
 
-          <button onClick={entity.confirmRefresh}>
+          <button onClick={actor.confirmRefresh}>
             Refresh
           </button>
           <hr/>
 
-          <PoolTracker abilityName="Sanity" actor={entity} />
-          <PoolTracker abilityName="Stability" actor={entity} />
-          <PoolTracker abilityName="Health" actor={entity} />
-          <PoolTracker abilityName="Magic" actor={entity} />
+          <PoolTracker abilityName="Sanity" actor={actor} />
+          <PoolTracker abilityName="Stability" actor={actor} />
+          <PoolTracker abilityName="Health" actor={actor} />
+          <PoolTracker abilityName="Magic" actor={actor} />
           <hr/>
-          <button onClick={entity.confirmNuke}>
+          <button onClick={actor.confirmNuke}>
             Nuke
           </button>
       </div>
@@ -163,16 +161,16 @@ export const TrailActorSheet = ({
             {
               id: "abilities",
               label: "Abilities",
-              content: <AbilitiesArea actor={entity}/>,
+              content: <AbilitiesArea actor={actor}/>,
             },
             {
               id: "equipment",
               label: "Equipment",
               content: (
                 <Fragment>
-                  <WeaponsArea actor={entity} />
+                  <WeaponsArea actor={actor} />
                   <div css={{ height: "1em" }}/>
-                  <EquipmentArea actor={entity} />
+                  <EquipmentArea actor={actor} />
                 </Fragment>
               ),
             },
@@ -180,7 +178,7 @@ export const TrailActorSheet = ({
               id: "notes",
               label: "Notes",
               content: (
-                <NotesArea actor={entity} />
+                <NotesArea actor={actor} />
               ),
             },
           ]}

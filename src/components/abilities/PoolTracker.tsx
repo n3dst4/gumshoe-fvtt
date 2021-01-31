@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import { TrailActor } from "../../module/TrailActor";
 import { PoolCheckbox } from "./PoolCheckbox";
 
@@ -22,9 +22,7 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
   abilityName,
   actor,
 }) => {
-  const ability = useMemo(() => {
-    return actor.getAbilityByName(abilityName);
-  }, [abilityName, actor]);
+  const ability = actor.getAbilityByName(abilityName);
   const min = ability?.data.data.min ?? 0;
   const max = ability?.data.data.max ?? 12;
   const vals = range(min, max);
@@ -40,7 +38,7 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
   return (
     <div
       style={{
-        width: "100%",
+        width: "8em",
         height: "auto",
         display: "grid",
         position: "relative",
