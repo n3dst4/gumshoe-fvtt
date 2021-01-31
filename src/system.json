@@ -2,7 +2,7 @@
   "name": "trail-of-cthulhu-unsanctioned",
   "title": "Trail of Cthulhu (Unsanctioned)",
   "description": "The Trail of Cthulhu (GUMSHOE) game from Pelgrane Press.",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "authors": [
     {
       "name": "Neil de Carteret",
@@ -36,7 +36,7 @@
   "compatibleCoreVersion": "0.7.9",
   "initiative": "1d6",
   "url": "https://github.com/n3dst4/trail-of-cthulhu-unsanctioned",
-  "manifest": "https://raw.githubusercontent.com/n3dst4/trail-of-cthulhu-unsanctioned/master/src/system.json",
+  "manifest": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/raw/master/src/system.json",
   "download": "https://github.com/n3dst4/trail-of-cthulhu-unsanctioned/releases/download/1.0.0-alpha.1/trail-of-cthulhu-unsanctioned-v1.0.0-alpha.1.zip",
   "license": "MIT",
   "readme": "https://github.com/n3dst4/trail-of-cthulhu-unsanctioned/blob/master/README.md",
