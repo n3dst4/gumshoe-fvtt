@@ -83,7 +83,7 @@ As GM:
 - [x] empty weapons message - hide headers
 - [x] shade attack area
 - [x] show notes on weapons main page
-- [ ] column widths on weapons table
+- [x] column widths on weapons table
 - [ ] ammo!
 - [ ] add weapon name to attack rolls
 - [ ] beautifying pass

@@ -96,7 +96,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
         css={{
           border: `1px solid ${theme.colors.reverseMedium}`,
           padding: "1em",
-          marginBottom: "1em",
+          marginBottom: "0.5em",
           background: theme.colors.thin,
         }}
       >

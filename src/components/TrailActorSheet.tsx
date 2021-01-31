@@ -171,6 +171,7 @@ export const TrailActorSheet = ({
               content: (
                 <Fragment>
                   <WeaponsArea actor={entity} />
+                  <div css={{ height: "1em" }}/>
                   <EquipmentArea actor={entity} />
                 </Fragment>
               ),
