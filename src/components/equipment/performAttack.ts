@@ -27,7 +27,7 @@ export const performAttack = ({
 }: PerformAttackArgs2) => {
   const damage = weapon.getDamage();
   const hitRoll = new Roll("1d6 + @spend", { spend });
-  const hitLabel = `Rolling ${ability.name} at ${description}`;
+  const hitLabel = `Attacks with <b>${weapon.name}</b>, rolling <b>${ability.name}</b> at ${description}`;
   hitRoll.roll();
   hitRoll.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
@@ -38,7 +38,7 @@ export const performAttack = ({
     damage,
     rangeDamage,
   });
-  const damageLabel = `Damage at ${description}`;
+  const damageLabel = `Damage at ${description} with <b>${weapon.name}</b>`;
   damageRoll.roll();
   damageRoll.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
