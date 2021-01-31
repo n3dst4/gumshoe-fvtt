@@ -2,7 +2,7 @@
 
 A Foundry VTT system for running games of Trail of Cthulhu.
 
-<a target="_new" href="screenshot.jpg"><img src="screenshot.jpg" style="width: 50%"></a>
+<a target="_new" href="screenshot.jpg"><img src="screenshot-thumb.jpg" style="width: 50%"></a>
 
 ## How to install
 
