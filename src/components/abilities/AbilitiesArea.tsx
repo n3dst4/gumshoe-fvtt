@@ -48,7 +48,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
       <label
         css={{
           display: "block",
-          background: theme.colors.darken,
+          background: theme.colors.reverseThin,
           padding: "0.3em",
           borderRadius: "0.3em",
         }}

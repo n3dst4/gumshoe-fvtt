@@ -78,6 +78,10 @@ As GM:
 - [x] update window title when entity name changes
 - [x] check deployability
 - [x] hide zero-rated abilities
+- [ ] theme textareas
+- [ ] empty eqipment message
+- [ ] empty weapons message - hide headers
+- [ ] show notes on weapons main page
 - [ ] beautifying pass
 - [ ] auto-populate abilities
 - [ ] weapon bonus pool should affect spend options

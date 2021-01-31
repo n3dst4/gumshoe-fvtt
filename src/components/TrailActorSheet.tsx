@@ -109,16 +109,16 @@ export const TrailActorSheet = ({
               onChange={updateName}
             />
           </GridField>
-          <GridField label="Drive">
-            <AsyncTextInput
-              value={entity.data.data.drive}
-              onChange={updateDrive}
-            />
-          </GridField>
           <GridField label="Occupation">
             <AsyncTextInput
               value={entity.data.data.occupation}
               onChange={updateOccupation}
+            />
+          </GridField>
+          <GridField label="Drive">
+            <AsyncTextInput
+              value={entity.data.data.drive}
+              onChange={updateDrive}
             />
           </GridField>
         </InputGrid>

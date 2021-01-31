@@ -12,7 +12,9 @@ type Theme = {
     thick: string,
     thin: string,
     medium: string,
-    darken: string,
+    reverseThin: string,
+    reverseMedium: string,
+    reverseThick: string,
     text: string,
   }
 }
@@ -29,7 +31,9 @@ export const trailTheme: Theme = {
     medium: "rgba(255,255,255,0.5)",
     thick: "rgba(255,255,255,0.7)",
     thin: "rgba(255,255,255,0.2)",
-    darken: "rgba(0,0,0,0.1)",
+    reverseThin: "rgba(0,0,0,0.1)",
+    reverseMedium: "rgba(0,0,0,0.3)",
+    reverseThick: "rgba(0,0,0,0.5)",
     text: "#433",
   },
 };

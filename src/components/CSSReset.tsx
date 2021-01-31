@@ -34,7 +34,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             scrollbarWidth: "thin",
             userSelect: "auto",
             boxSizing: "border-box",
-            scrollbarColor: `${theme.colors.accent} ${theme.colors.darken}`,
+            scrollbarColor: `${theme.colors.accent} ${theme.colors.reverseThin}`,
           },
           font: theme.bodyFont,
           background: `${theme.colors.wallpaper} ${theme.wallpaper}`,
@@ -62,7 +62,6 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             fontSize: "1em",
           },
           button: {
-            // margin: 0,
             font: theme.displayFont,
             color: theme.colors.accent,
             "&[disabled]": {
@@ -92,10 +91,12 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
             font: theme.bodyFont,
             color: theme.colors.accent,
             padding: "0.1em 0.3em",
-            border: "1px solid transparent",
+            borderStyle: "solid",
+            borderWidth: "1px",
+            borderColor: theme.colors.reverseMedium,
             background: theme.colors.medium,
             ":focus": {
-              border: `1px solid ${theme.colors.accent}`,
+              borderColor: theme.colors.accent,
             },
           },
         }}
