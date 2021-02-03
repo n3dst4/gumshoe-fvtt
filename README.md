@@ -11,9 +11,11 @@ This sytem isn't registered so to install it into your Foundry instance:
 1. On the admin screen, got to **Game Systems**
 2. Click **Install System**
 3. Where it says **Manfest URL**, paste in
+
     ```
     https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/raw/master/src/system.json
     ```
+    
 4. Click **Install**
 
 
