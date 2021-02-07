@@ -80,14 +80,15 @@ We have "release" branch. Its job is to hold a manifest version that points to t
 To perform a release from `master`: 
 
 1. Update the version in `package.json` and `system.json`.
-2. Commit and push.
-3. Run `npm run package`.
-4. On GitLab, create a tag matching the new version.
-5. Upload the release package to that tag as an asset.
-6. Get the download URL for the asset.
-7. Paste it into the `download` field of `system.json`.
-8. Commit and push.
-9. FF the `release` branch to to `master`.
+2. Update the CHANGELOG.
+3. Commit and push.
+4. Run `npm run package`.
+5. On GitLab, create a tag matching the new version.
+6. Upload the release package to that tag as an asset.
+7. Get the download URL for the asset.
+8. Paste it into the `download` field of `system.json`.
+9. Commit and push.
+10. FF the `release` branch to to `master`.
 
 Now, anyone who installs or upgrades, will see the new manifest, and the new download.
 
