@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { TrailItem } from "../../module/TrailItem";
-import { CSSReset } from "../CSSReset";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { WeaponConfig } from "./WeaponConfig";
 import { WeaponAttack } from "./WeaponAttack";
@@ -22,7 +21,7 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
     foundryWindow.render();
   }, [foundryWindow, configMode]);
   return (
-    <CSSReset>
+    <Fragment>
       <div>
         Weapon
         {weapon.isOwned && (
@@ -53,6 +52,6 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
         : (
         <WeaponAttack weapon={weapon} />
           )}
-    </CSSReset>
+    </Fragment>
   );
 };

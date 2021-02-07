@@ -12,3 +12,4 @@ export const pc = "pc";
 export const npc = "npc";
 export const abilityCategories = "abilityCategories";
 export const combatAbilities = "combatAbilities";
+export const defaultTheme = "defaultTheme";

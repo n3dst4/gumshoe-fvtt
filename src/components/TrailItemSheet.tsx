@@ -7,6 +7,8 @@ import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
 import { isAbility } from "../functions";
 import { WeaponSheet } from "./equipment/WeaponSheet";
+import { nightsTheme } from "../theme";
+import { CSSReset } from "./CSSReset";
 
 type TrailItemSheetProps = {
   entity: TrailItem,
@@ -22,7 +24,7 @@ export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
   foundryWindow,
 }) => {
   return (
-    <div>
+    <CSSReset theme={nightsTheme}>
       {isAbility(entity)
         ? <AbilitySheet ability={entity} foundryWindow={foundryWindow} />
         : entity.type === equipment
@@ -31,6 +33,6 @@ export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
             ? <WeaponSheet weapon={entity} foundryWindow={foundryWindow} />
             : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
       }
-    </div>
+    </CSSReset>
   );
 };

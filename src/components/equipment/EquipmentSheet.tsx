@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback } from "react";
+import React, { Fragment, useCallback } from "react";
 import { TrailItem } from "../../module/TrailItem";
-import { CSSReset } from "../CSSReset";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
@@ -50,7 +49,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   }, [entity]);
 
   return (
-    <CSSReset>
+    <Fragment>
       <div>
         Equipment
         <a
@@ -81,6 +80,6 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
           <TextArea value={notes.display} onChange={notes.onChange} />
         </GridField>
       </InputGrid>
-    </CSSReset>
+    </Fragment>
   );
 };

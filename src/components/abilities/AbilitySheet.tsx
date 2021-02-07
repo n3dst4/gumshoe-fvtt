@@ -3,7 +3,6 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useEffect, useState } from "react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { TrailItem } from "../../module/TrailItem";
-import { CSSReset } from "../CSSReset";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { isGeneralAbility } from "../../functions";
 import { AbilityTest } from "./AbilityTest";
@@ -36,7 +35,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   } = useAsyncUpdate(ability.data.name, updateName);
 
   return (
-    <CSSReset
+    <div
       css={{
         paddingBottom: "1em",
       }}
@@ -78,6 +77,6 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
             <AbilityEditorMain ability={ability} />
           </Fragment>
       }
-    </CSSReset>
+    </div>
   );
 };

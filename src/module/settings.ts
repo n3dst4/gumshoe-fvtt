@@ -1,4 +1,4 @@
-import { abilityCategories, combatAbilities } from "../constants";
+import { abilityCategories, combatAbilities, defaultTheme } from "../constants";
 import system from "../system.json";
 
 export const registerSettings = function () {
@@ -17,6 +17,18 @@ export const registerSettings = function () {
     scope: "world",
     config: true,
     default: "Scuffling,Weapons,Firearms,Athletics",
+    type: String,
+    // onChange: enable => _setArchmageInitiative(enable)
+  });
+  game.settings.register(system.name, defaultTheme, {
+    name: "Default actor sheet theme",
+    scope: "world",
+    config: true,
+    choices: {
+      trailTheme: "Trail of Cthulhu",
+      nightsTheme: "Night Black Agents",
+    },
+    default: "trailTheme",
     type: String,
     // onChange: enable => _setArchmageInitiative(enable)
   });

@@ -15,7 +15,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
   selected,
   onChange: onChangeOrig,
 }) => {
-  const [theme] = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
     onChangeOrig(newValue);

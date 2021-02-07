@@ -50,4 +50,4 @@ Hooks.once("ready", function () {
 
 // CONFIG.debug.hooks = true;
 
-(window as any).generateTrailAbilitiesData = generateTrailAbilitiesData;//
+(window as any).generateTrailAbilitiesData = generateTrailAbilitiesData;

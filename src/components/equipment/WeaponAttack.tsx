@@ -25,7 +25,7 @@ const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
 export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const [spend, setSpend] = useState("0");
   const [bonusPool, setBonusPool] = useState(0);
-  const [theme] = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   const ability = weapon.actor.items.find((item) => {
     return (

@@ -28,7 +28,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
     setSelected(e.currentTarget.value);
   }, []);
 
-  const [theme] = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   const radioGroup = useMemo(() => nanoid(), []);
 

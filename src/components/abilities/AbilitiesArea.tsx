@@ -16,7 +16,7 @@ type AbilitiesAreaProps = {
 export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
   actor,
 }) => {
-  const [theme] = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   const investigativeAbilities: { [category: string]: TrailItem[] } = {};
   const generalAbilities: TrailItem[] = [];

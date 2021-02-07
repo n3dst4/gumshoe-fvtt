@@ -1,31 +1,26 @@
 /** @jsx jsx */
 import { css, Global, jsx } from "@emotion/react";
-import React, { useState } from "react";
-import { ThemeContext, trailTheme } from "../theme";
+import React from "react";
+import { ThemeContext, Theme } from "../theme";
 
 type CSSResetProps = {
   children: any;
   className?: string;
+  theme: Theme;
 };
 
-export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
-  const [theme, setTheme] = useState(trailTheme);
-
+export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }) => {
   return (
-    <ThemeContext.Provider value={[theme, setTheme]}>
+    <ThemeContext.Provider value={theme}>
       <Global
         styles={css`
-          @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-          @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
-          @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
-          @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');    
-          @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
           /* pure hackage to hide these weird buttons until I can work out why they're there */
           .window-upload-handle {
             display: none;
           }
         `}
       />
+      <Global styles={theme.global} />
       <div
         className={className}
         css={{
@@ -43,6 +38,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children }) => {
           font: theme.bodyFont,
           background: `${theme.colors.wallpaper} ${theme.wallpaper}`,
           backgroundSize: "cover",
+          backgroundPosition: "center",
           padding: "0.5em",
           color: theme.colors.text,
 

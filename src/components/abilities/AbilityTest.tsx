@@ -22,7 +22,7 @@ const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
 export const AbilityTest: React.FC<AbilityTestProps> = ({
   ability,
 }) => {
-  const [theme] = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   const [spend, setSpend] = useState("0");
 
   const onTest = useCallback(() => {

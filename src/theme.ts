@@ -1,7 +1,9 @@
+import { css, SerializedStyles } from "@emotion/react";
 import React from "react";
 import system from "./system.json";
 
-type Theme = {
+export type Theme = {
+  global?: SerializedStyles,
   wallpaper: string,
   bodyFont: string,
   displayFont: string,
@@ -20,9 +22,12 @@ type Theme = {
 }
 
 export const trailTheme: Theme = {
-  wallpaper: `url(systems/${system.name}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.jpg)`,
+  global: css`
+    @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+  `,
+  wallpaper: `url(systems/${system.name}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
-  // italic small-caps bold 16px/2 cursive
   displayFont: "normal small-caps normal 1em 'Federo', serif",
   colors: {
     accent: "#1d5d5d",
@@ -38,8 +43,27 @@ export const trailTheme: Theme = {
   },
 };
 
-export type ThemeSetter = (theme: Theme) => void;
-export type ThemeTuple = [Theme, ThemeSetter];
+export const nightsTheme: Theme = {
+  global: css`
+    @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+  `,
+  wallpaper: `url(systems/${system.name}/assets/wallpaper/elti-meshau-2S2F2exmbhw-unsplash.webp)`,
+  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  displayFont: "normal small-caps normal 1em 'Federo', serif",
+  colors: {
+    accent: "#900",
+    glow: "#f40",
+    wallpaper: "#ddd",
+    medium: "rgba(0,0,0,0.5)",
+    thick: "rgba(0,0,0,0.7)",
+    thin: "rgba(0,0,0,0.2)",
+    reverseThin: "rgba(255,255,255,0.1)",
+    reverseMedium: "rgba(255,255,255,0.3)",
+    reverseThick: "rgba(255,255,255,0.5)",
+    text: "#433",
+  },
+};
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export const ThemeContext = React.createContext<ThemeTuple>([trailTheme, (theme) => {}]);
+export const ThemeContext = React.createContext<Theme>(trailTheme);

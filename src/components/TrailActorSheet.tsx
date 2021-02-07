@@ -14,7 +14,7 @@ import { TabContainer } from "./TabContainer";
 import { EquipmentArea } from "./equipment/EquipmentArea";
 import { NotesArea } from "./NotesArea";
 import { WeaponsArea } from "./equipment/WeaponsArea";
-import { ThemeContext } from "../theme";
+import { nightsTheme, ThemeContext } from "../theme";
 import { SettingArea } from "./SettingsArea";
 
 type TrailActorSheetProps = {
@@ -47,10 +47,11 @@ export const TrailActorSheet = ({
   const updateDrive = useUpdate(actor, drive => ({ data: { drive } }));
   const updateOccupation = useUpdate(actor, occupation => ({ data: { occupation } }));
 
-  const [theme] = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   return (
     <CSSReset
+      theme={nightsTheme}
       css={{
         position: "absolute",
         top: 0,

@@ -22,7 +22,7 @@ export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
     }
   }, [disabled, onClickProp, value]);
 
-  const [theme] = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   return (
     <a
