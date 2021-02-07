@@ -15,6 +15,7 @@ import { EquipmentArea } from "./equipment/EquipmentArea";
 import { NotesArea } from "./NotesArea";
 import { WeaponsArea } from "./equipment/WeaponsArea";
 import { ThemeContext } from "../theme";
+import { SettingArea } from "./SettingsArea";
 
 type TrailActorSheetProps = {
   actor: TrailActor,
@@ -132,20 +133,14 @@ export const TrailActorSheet = ({
           background: theme.colors.medium,
         }}
         >
-
           <button onClick={actor.confirmRefresh}>
             Refresh
           </button>
           <hr/>
-
           <PoolTracker abilityName="Sanity" actor={actor} />
           <PoolTracker abilityName="Stability" actor={actor} />
           <PoolTracker abilityName="Health" actor={actor} />
           <PoolTracker abilityName="Magic" actor={actor} />
-          <hr/>
-          <button onClick={actor.confirmNuke}>
-            Nuke
-          </button>
       </div>
 
       <div
@@ -179,6 +174,13 @@ export const TrailActorSheet = ({
               label: "Notes",
               content: (
                 <NotesArea actor={actor} />
+              ),
+            },
+            {
+              id: "settings",
+              label: <i className="fa fa-cog" />,
+              content: (
+                <SettingArea actor={actor} />
               ),
             },
           ]}
