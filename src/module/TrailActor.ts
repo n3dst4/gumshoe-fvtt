@@ -108,7 +108,7 @@ Hooks.on("updateOwnedItem", (
   userId: string,
 ) => {
   // love 2 sink into a pit of imperative code
-  if (itemData.type === generalAbility) {
+  if (itemData.type === generalAbility && userId === game.data.userId) {
     if (["Sanity", "Stability", "Health", "Magic"].includes(itemData.name)) {
       if (diff.data.pool !== undefined || diff.data.rating !== undefined) {
         actor.update({
