@@ -15,17 +15,10 @@
   "styles": ["trail.css"],
   "packs": [
     {
-      "name": "investigativeAbilities",
-      "label": "Trail of Cthulhu Investigative Abilities",
+      "name": "trailOfCthulhuAbilities",
+      "label": "Trail of Cthulhu Abilities",
       "system": "trail-of-cthulhu-unsanctioned",
-      "path": "./packs/investigativeAbilities.db",
-      "entity": "Item"
-    },
-    {
-      "name": "generalAbilities",
-      "label": "Trail of Cthulhu General Abilities",
-      "system": "trail-of-cthulhu-unsanctioned",
-      "path": "./packs/generalAbilities.db",
+      "path": "./packs/trailOfCthulhuAbilities.db",
       "entity": "Item"
     }
   ],
