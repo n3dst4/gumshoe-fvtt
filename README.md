@@ -66,8 +66,8 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 
 ## Generating Compendia
 
-1. In your **Items** tab, delete the "Trail of Cthulhu General Abilies" and "Trail of Cthulhu Investigative Abilies" folders
-2. In the **Compendium Packs** tab, make sure the edit lock is toggled off for both packs (right click and `Toggle edit lock` if you see a padlock.) 
+1. In your **Items** tab, delete the "Trail of Cthulhu Abilies" folder
+2. In the **Compendium Packs** tab, make sure the edit lock is toggled off for the pack (right click and `Toggle edit lock` if you see a padlock.) 
 3. Open the browser console (F12) and type `generateTrailAbilitiesData()`
 4. Check the compenium packs if you like
 5. Copy the `packs/*.db` files back from `dist/` into `src/`

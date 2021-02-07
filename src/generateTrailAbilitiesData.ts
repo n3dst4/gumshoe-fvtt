@@ -110,6 +110,7 @@ const emptyPack = async (pack: any) => {
 
 export const generateTrailAbilitiesData = async () => {
   const pack = game.packs.find(p => p.collection === `${system.name}.trailOfCthulhuAbilities`);
+  // const invFolder;
   emptyPack(pack);
 
   Object.keys(investigativeAbilities).forEach(async (category) => {
@@ -125,10 +126,10 @@ export const generateTrailAbilitiesData = async () => {
         },
       };
     });
-    for (const ad of abilityDatas) {
-      const a = await Item.create(ad, { temporary: true });
-      await pack.importEntity(a);
-      console.log(`Imported Item ${a.name} into Compendium pack ${pack.collection}`);
+    const items = await Item.create(abilityDatas, { temporary: true });
+    for (const item of items as unknown as Entity<any>[]) {
+      await pack.importEntity(item);
+      console.log(`Imported Item ${item.name} into Compendium pack ${pack.collection}`);
     }
   });
 
@@ -140,10 +141,9 @@ export const generateTrailAbilitiesData = async () => {
       ...data,
     },
   }));
-  for (const ad of abilityDatas) {
-    const a = await Item.create(ad, { temporary: true });
-    console.log(a);
-    await pack.importEntity(a);
-    console.log(`Imported Item ${a.name} into Compendium pack ${pack.collection}`);
-  }
+  const items = await Item.create(abilityDatas, { temporary: true });
+  for (const item of items as unknown as Entity<any>[]) {
+    await pack.importEntity(item);
+    console.log(`Imported Item ${item.name} into Compendium pack ${pack.collection}`);
+  }//
 };

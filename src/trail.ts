@@ -48,6 +48,6 @@ Hooks.once("ready", function () {
   // Do anything once the system is ready
 });
 
-CONFIG.debug.hooks = true;
+// CONFIG.debug.hooks = true;
 
 (window as any).generateTrailAbilitiesData = generateTrailAbilitiesData;//
