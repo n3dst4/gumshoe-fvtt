@@ -36,10 +36,10 @@
   "compatibleCoreVersion": "0.7.9",
   "initiative": "1d6",
   "url": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned",
-  "manifest": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/raw/master/src/system.json",
+  "manifest": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/raw/release/src/system.json",
   "download": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/uploads/ff4fb4a2150c5ef0ffa48beb521ded44/trail-of-cthulhu-unsanctioned-v1.0.0-alpha.2.zip",
   "license": "MIT",
-  "readme": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/blob/master/README.md",
+  "readme": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/blob/release/README.md",
   "bugs": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/issues",
-  "changelog": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/blob/master/CHANGELOG.md"
+  "changelog": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/blob/release/CHANGELOG.md"
 }
