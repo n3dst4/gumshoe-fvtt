@@ -114,11 +114,13 @@ export const generateTrailAbilitiesData = async () => {
   emptyPack(pack);
 
   Object.keys(investigativeAbilities).forEach(async (category) => {
+    // const folder = await Folder.create({ name: category, type: "Item" }, { temporary: true });
     const abilityDatas = investigativeAbilities[category].map((data) => {
       const { name, type, ...rest } = data;
       return {
         type: investigativeTemplate.type,
         name,
+        // folder: folder.id,
         data: {
           ...investigativeTemplate,
           category,
@@ -127,6 +129,7 @@ export const generateTrailAbilitiesData = async () => {
       };
     });
     const items = await Item.create(abilityDatas, { temporary: true });
+    // await pack.importEntity(folder);//
     for (const item of items as unknown as Entity<any>[]) {
       await pack.importEntity(item);
       console.log(`Imported Item ${item.name} into Compendium pack ${pack.collection}`);
