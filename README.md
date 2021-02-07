@@ -42,67 +42,22 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 6. `npm start` to start a live incremental build (so you don't need to keep running `npm run build` after every change).
 7. Open your local foundry server and create a world with "Trail of Cthulhu (Unsanctioned)" as the system.
 
+
 ## TODO
 
-Sorry, this is purely for my benefit. See how many things I've ticked off!
-
-- [x] editable speciality
-- [x] dynamic name stuff with Foundry hooks
-- [x] createItem hook should check for existing basename
-- [x] bug when you tick on hasSpeciality but there's already a speciality
-- [x] ability refresh
-- [x] tweak the logo gradient so the top row gets more shone when it's longer 
-- [x] +/- controls
-- [x] README - setup, install, dev
-- [x] sort abilities alphabetically
-- [x] change phrasing on speciality?
-- [x] placeholder on speciality field
-- [x] confirm on nuke
-- [x] pools
-- [x] weird data submit thing
-- [x] Show message when pool ability is missing
-- [x] break up ability sheet
-- [x] ability "config area" for rarer options & delete button
-- [x] totally rework specialities
-- [x] min/max on abilities
-- [x] starting pools
-- [x] occupational abilities
-- [x] show (I) in investigable skills
-- [x] general refresh
-- [x] tabbable main area
-- [x] pillars of sanity
-- [x] sources of stability
-- [x] contacts & notes
-- [x] background etc.
-- [x] equipment
-- [x] weapons
-- [x] attack rolls
-- [x] resources to track key abilities
-- [x] initiative
-- [x] remaining attack rolls
-- [x] scroll main area not whole sheet
-- [x] update window title when entity name changes
-- [x] check deployability
-- [x] hide zero-rated abilities
-- [x] theme textareas
-- [x] empty equipment message
-- [x] empty weapons message - hide headers
-- [x] shade attack area
-- [x] show notes on weapons main page
-- [x] column widths on weapons table
-- [x] ammo!
-- [x] weird red glow on focused buttons
-- [x] beautifying pass
-- [x] add weapon name to attack rolls
-- [x] weapon bonus pool should affect spend options
-- [x] auto-populate abilities
-- [x] publish
-- [x] README for installing
+- [ ] Item images for investigative & general abilities
+- [ ] Combine ability compendia
+- [ ] Options tab
 
 
 ## The future
 
 - [ ] i18n
+- [ ] multi-system support
+  - [ ] compendia of abilities
+  - [ ] choose which sidebar pools are visible
+  - [ ] character sheet skin
+  - [ ] extra features?
 - [ ] expandy-collapsy bits on the notes area
 - [ ] rich text editing
 - [ ] Character gen mode? (track free values, point spends, I<->G trades, synergies)

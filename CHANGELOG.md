@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v1.0.0-alpha.2 ()
+## v1.0.0-alpha.2 (2021-01-31)
 
 * First public release
 * Character sheet for Trail of Cthulhu
