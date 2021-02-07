@@ -73,6 +73,27 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 5. Copy the `packs/*.db` files back from `dist/` into `src/`
 
 
+## Release process
+
+We have "release" branch. Its job is to hold a manifest version that points to the right release download.
+
+To perform a release from `master`: 
+
+1. Update the version in `package.json` and `system.json`.
+2. Commit and push.
+3. Run `npm run package`.
+4. On GitLab, create a tag matching the new version.
+5. Upload the release package to that tag as an asset.
+6. Get the download URL for the asset.
+7. Paste it into the `download` field of `system.json`.
+8. Commit and push.
+9. FF the `release` branch to to `master`.
+
+Now, anyone who installs or upgrades, will see the new manifest, and the new download.
+
+Why do we have a separate `release` branch? To keep control. The manifest on `master` can be unstable, broken, experimental, whatever and we know that users will be safely looking at the `release` version.
+
+
 ## Credits
 
 <span>Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Annie Spratt</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
