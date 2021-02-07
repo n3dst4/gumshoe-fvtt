@@ -1,5 +1,9 @@
 import { fixLength, isAbility } from "../functions";
-import { GetterDict, SetterDict, TrailItemData } from "../types";
+import { Theme, themes } from "../theme";
+import { GetterDict, SetterDict, ThemeName, TrailItemData } from "../types";
+import { TrailActor } from "./TrailActor";
+import system from "../system.json";
+import { defaultTheme } from "../constants";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -161,4 +165,19 @@ export class TrailItem extends Item<any> {
   setUsesAmmo = (usesAmmo: boolean) => this.update({
     data: { usesAmmo },
   })
+
+  // ---------------------------------------------------------------------------
+  // THEME
+
+  getTheme (): Theme {
+    return themes[this.getThemeName()];
+  }
+
+  getThemeName (): ThemeName {
+    if (this.isOwned) {
+      return (this.actor as TrailActor).getThemeName();
+    } else {
+      game.settings.get(system.name, defaultTheme);
+    }
+  }
 }

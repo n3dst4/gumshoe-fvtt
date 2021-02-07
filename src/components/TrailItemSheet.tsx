@@ -7,11 +7,10 @@ import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
 import { isAbility } from "../functions";
 import { WeaponSheet } from "./equipment/WeaponSheet";
-import { nightsTheme } from "../theme";
 import { CSSReset } from "./CSSReset";
 
 type TrailItemSheetProps = {
-  entity: TrailItem,
+  item: TrailItem,
   foundryWindow: Application,
 };
 
@@ -20,17 +19,19 @@ type TrailItemSheetProps = {
  * type here.
  */
 export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
-  entity,
+  item,
   foundryWindow,
 }) => {
+  const theme = item.getTheme();
+
   return (
-    <CSSReset theme={nightsTheme}>
-      {isAbility(entity)
-        ? <AbilitySheet ability={entity} foundryWindow={foundryWindow} />
-        : entity.type === equipment
-          ? <EquipmentSheet entity={entity} foundryWindow={foundryWindow} />
-          : entity.type === weapon
-            ? <WeaponSheet weapon={entity} foundryWindow={foundryWindow} />
+    <CSSReset theme={theme}>
+      {isAbility(item)
+        ? <AbilitySheet ability={item} foundryWindow={foundryWindow} />
+        : item.type === equipment
+          ? <EquipmentSheet entity={item} foundryWindow={foundryWindow} />
+          : item.type === weapon
+            ? <WeaponSheet weapon={item} foundryWindow={foundryWindow} />
             : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
       }
     </CSSReset>

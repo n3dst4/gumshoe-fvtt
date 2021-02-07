@@ -24,7 +24,7 @@ class TrailItemSheetClassBase extends ItemSheet {
 const render = (sheet: TrailItemSheetClassBase) => {
   return (
     <TrailItemSheet
-      entity={sheet.entity}
+      item={sheet.entity}
       foundryWindow={sheet}
     />
   );
