@@ -18,6 +18,8 @@
 
 // export type GeneralAbility = Item<GeneralAbilityData>;
 
+export type ThemeName = "trailTheme" | "nightsTheme";
+
 export type Resource = {
   min?: number,
   max: number,
@@ -39,6 +41,7 @@ export type TrailActorData = {
   background: string,
   initiativeAbility: string,
   hideZeroRated: boolean,
+  sheetTheme: string|null,
   resources: {
     health: Resource,
     sanity: Resource,

@@ -1,6 +1,7 @@
 import { css, SerializedStyles } from "@emotion/react";
 import React from "react";
 import system from "./system.json";
+import { ThemeName } from "./types";
 
 export type Theme = {
   global?: SerializedStyles,
@@ -63,6 +64,16 @@ export const nightsTheme: Theme = {
     reverseThick: "rgba(255,255,255,0.5)",
     text: "#433",
   },
+};
+
+export const themeDescriptions: {[themeName in ThemeName]: string} = {
+  trailTheme: "Trail of Cthulhu",
+  nightsTheme: "Night Black Agents",
+};
+
+export const themes: {[themeName in ThemeName]: Theme} = {
+  trailTheme,
+  nightsTheme,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function

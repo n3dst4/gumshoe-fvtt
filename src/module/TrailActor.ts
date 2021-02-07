@@ -1,11 +1,12 @@
-import { equipment, generalAbility, weapon } from "../constants";
+import { defaultTheme, equipment, generalAbility, weapon } from "../constants";
 import { isAbility } from "../functions";
-import { GetterDict, TrailActorData, RecursivePartial, SetterDict, TrailItemData } from "../types";
+import { GetterDict, TrailActorData, RecursivePartial, SetterDict, TrailItemData, ThemeName } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { TrailItem } from "./TrailItem";
 import system from "../system.json";
+import { Theme, themes } from "../theme";
 
-export class TrailActor<T=TrailActorData> extends Actor<T> {
+export class TrailActor<T = TrailActorData> extends Actor<T> {
   constructor (data, options) {
     super(data, options);
     this._getters = {};
@@ -94,6 +95,21 @@ export class TrailActor<T=TrailActorData> extends Actor<T> {
 
   getWeapons (): TrailItem[] {
     return this.items.filter((item) => item.type === weapon);
+  }
+
+  // ---------------------------------------------------------------------------
+  // THEME
+
+  getTheme (): Theme {
+    return themes[this.getThemeName()];
+  }
+
+  getThemeName (): ThemeName {
+    return this.getter("sheetTheme")() || game.settings.get(system.name, defaultTheme);
+  }
+
+  setTheme (newTheme: ThemeName|null) {
+    this.setter("sheetTheme")(newTheme);
   }
 }
 

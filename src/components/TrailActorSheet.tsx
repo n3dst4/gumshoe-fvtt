@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { Fragment, useCallback, useContext } from "react";
+import React, { Fragment, useCallback } from "react";
 import { TrailActor } from "../module/TrailActor";
 import { PoolTracker } from "./abilities/PoolTracker";
 import { jsx } from "@emotion/react";
@@ -14,7 +14,6 @@ import { TabContainer } from "./TabContainer";
 import { EquipmentArea } from "./equipment/EquipmentArea";
 import { NotesArea } from "./NotesArea";
 import { WeaponsArea } from "./equipment/WeaponsArea";
-import { nightsTheme, ThemeContext } from "../theme";
 import { SettingArea } from "./SettingsArea";
 
 type TrailActorSheetProps = {
@@ -47,11 +46,11 @@ export const TrailActorSheet = ({
   const updateDrive = useUpdate(actor, drive => ({ data: { drive } }));
   const updateOccupation = useUpdate(actor, occupation => ({ data: { occupation } }));
 
-  const theme = useContext(ThemeContext);
+  const theme = actor.getTheme();
 
   return (
     <CSSReset
-      theme={nightsTheme}
+      theme={theme}
       css={{
         position: "absolute",
         top: 0,
