@@ -8,6 +8,10 @@ export type Theme = {
   wallpaper: string,
   bodyFont: string,
   displayFont: string,
+  logoGradient: string,
+  logoShadows: string,
+  logoTransform: string,
+  // logo: CSSObject,
   colors: {
     accent: string,
     glow: string,
@@ -30,6 +34,10 @@ export const trailTheme: Theme = {
   wallpaper: `url(systems/${system.name}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal small-caps normal 1em 'Federo', serif",
+  // logo:
+  logoGradient: "linear-gradient(135deg, #efb183 0%,#222 30%,#efb183 90%)",
+  logoShadows: "2px 0px 1px black, 6px 0px 4px rgba(0,0,0,0.5), -1px 0px 0px rgba(255,255,255,0.5)",
+  logoTransform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
   colors: {
     accent: "#1d5d5d",
     glow: "#5effff",
@@ -52,6 +60,9 @@ export const nightsTheme: Theme = {
   wallpaper: `url(systems/${system.name}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1em 'Unica One', serif",
+  logoGradient: "linear-gradient(135deg, #f00 0%,#222 30%,#f00 90%)",
+  logoShadows: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
+  logoTransform: "scale(90%)",
   colors: {
     accent: "#900",
     glow: "#f00",

@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { CSSObject, jsx } from "@emotion/react";
-import React from "react";
+import React, { useContext } from "react";
 import { useAsyncUpdate } from "../hooks/useAsyncUpdate";
+import { ThemeContext } from "../theme";
 
 type TrailLogoEditableProps = {
   text: string;
@@ -64,6 +65,8 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
     display: displaySubtext,
   } = useAsyncUpdate(subtext || defaultSubtext, onChangeSubtextOrig);
 
+  const theme = useContext(ThemeContext);
+
   return (
     // outer - set the transform origin
     <div
@@ -75,6 +78,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
         perspectiveOrigin: "50% 50%",
         height: "6em",
         width: "auto",
+        backgroundImage: `radial-gradient(closest-side, ${theme.colors.thick} 0%, rgba(255,255,255,0) 100%)`,
       }}
     >
       {/* inner - apply the transform */}
@@ -86,23 +90,20 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
           right: 0,
           bottom: 0,
           left: 0,
-          fontFamily: "'Federo', sans-serif",
-          fontVariant: "small-caps",
+          font: theme.displayFont,
           fontSize: "4em",
-          // letterSpacing: "-0.04em",
           whiteSpace: "nowrap",
-          transform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
+          transform: theme.logoTransform,
           caretColor: "black",
           border: "none",
           padding: 0,
           lineHeight: 1,
-
         }}
       >
         {/* shadow-bearer */}
         <div
           css={{
-            textShadow: "2px 0px 1px black, 6px 0px 4px rgba(0,0,0,0.5), -1px 0px 0px rgba(255,255,255,0.5)",
+            textShadow: theme.logoShadows,
             zIndex: -1,
             ...textBearerStyle,
           }}
@@ -128,8 +129,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
         {/* gradient-bearer */}
         <div
           css={{
-            background:
-              "linear-gradient(135deg, #efb183 0%,#222 30%,#efb183 90%)",
+            background: theme.logoGradient,
             backgroundClip: "text",
             ...textBearerStyle,
           }}

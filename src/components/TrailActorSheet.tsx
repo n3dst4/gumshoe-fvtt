@@ -71,7 +71,6 @@ export const TrailActorSheet = ({
         css={{
           gridArea: "title",
           textAlign: "center",
-          backgroundImage: `radial-gradient(closest-side, ${theme.colors.thick} 0%, rgba(255,255,255,0) 100%)`,
         }}
       >
         <TrailLogoEditable
@@ -85,7 +84,7 @@ export const TrailActorSheet = ({
       <div
         css={{
           gridArea: "image",
-          backgroundImage: `url(${actor.data.img})`,
+          backgroundImage: `url("${actor.data.img}")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           borderRadius: "0.2em",
