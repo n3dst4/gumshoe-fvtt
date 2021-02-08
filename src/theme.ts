@@ -46,22 +46,22 @@ export const trailTheme: Theme = {
 
 export const nightsTheme: Theme = {
   global: css`
-    @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
-  wallpaper: `url(systems/${system.name}/assets/wallpaper/elti-meshau-2S2F2exmbhw-unsplash.webp)`,
+  wallpaper: `url(systems/${system.name}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
-  displayFont: "normal small-caps normal 1em 'Federo', serif",
+  displayFont: "normal normal normal 1em 'Unica One', serif",
   colors: {
     accent: "#900",
-    glow: "#f40",
+    glow: "#f00",
     wallpaper: "#ddd",
-    medium: "rgba(0,0,0,0.5)",
-    thick: "rgba(0,0,0,0.7)",
-    thin: "rgba(0,0,0,0.2)",
-    reverseThin: "rgba(255,255,255,0.1)",
-    reverseMedium: "rgba(255,255,255,0.3)",
-    reverseThick: "rgba(255,255,255,0.5)",
+    medium: "rgba(255,255,255,0.5)",
+    thick: "rgba(255,255,255,0.7)",
+    thin: "rgba(255,255,255,0.2)",
+    reverseThin: "rgba(0,0,0,0.1)",
+    reverseMedium: "rgba(0,0,0,0.3)",
+    reverseThick: "rgba(0,0,0,0.5)",
     text: "#433",
   },
 };
