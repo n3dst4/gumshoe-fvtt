@@ -45,8 +45,10 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 
 ## TODO
 
+- [x] Combine ability compendia
+- [ ] choosable theme support
+- [ ] NBA theme
 - [ ] Item images for investigative & general abilities
-- [ ] Combine ability compendia
 - [ ] Options tab
 
 
@@ -81,14 +83,13 @@ To perform a release from `master`:
 
 1. Update the version in `package.json` and `system.json`.
 2. Update the CHANGELOG.
-3. Commit and push.
-4. Run `npm run package`.
-5. On GitLab, create a tag matching the new version.
-6. Upload the release package to that tag as an asset.
-7. Get the download URL for the asset.
-8. Paste it into the `download` field of `system.json`.
-9. Commit and push.
-10. FF the `release` branch to to `master`.
+3. Run `npm run package`.
+4. Add the downloadable package .zip to the *previous* tag
+5. Get the download URL for the asset.
+6. Paste it into the `download` field of `system.json`.
+7. Commit and push.
+8. On GitLab, create a tag matching the new version.
+9. FF the `release` branch to to `master`.
 
 Now, anyone who installs or upgrades, will see the new manifest, and the new download.
 
