@@ -74,13 +74,23 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
       css={{
         display: "block",
         position: "relative",
-        perspective: "500px",
-        perspectiveOrigin: "50% 50%",
         height: "6em",
         width: "auto",
-        backgroundImage: `radial-gradient(closest-side, ${theme.colors.thick} 0%, rgba(255,255,255,0) 100%)`,
+        perspective: "500px",
+        perspectiveOrigin: "50% 50%",
       }}
     >
+      {/* Backdrop */}
+      <div
+        css={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          ...theme.backdropStyle,
+        }}
+      />
       {/* inner - apply the transform */}
       <div
         className="inner-block"
