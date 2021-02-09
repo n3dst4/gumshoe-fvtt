@@ -25,15 +25,31 @@ export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
   const theme = item.getTheme();
 
   return (
-    <CSSReset theme={theme}>
-      {isAbility(item)
-        ? <AbilitySheet ability={item} foundryWindow={foundryWindow} />
-        : item.type === equipment
-          ? <EquipmentSheet entity={item} foundryWindow={foundryWindow} />
-          : item.type === weapon
-            ? <WeaponSheet weapon={item} foundryWindow={foundryWindow} />
-            : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
-      }
+    <CSSReset
+      theme={theme}
+      css={{
+        position: "relative",
+        ":before": {
+          content: '" "',
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          backgroundColor: theme.colors.thin,
+        },
+      }}
+    >
+      <div css={{ position: "relative" }}>
+        {isAbility(item)
+          ? <AbilitySheet ability={item} foundryWindow={foundryWindow} />
+          : item.type === equipment
+            ? <EquipmentSheet entity={item} foundryWindow={foundryWindow} />
+            : item.type === weapon
+              ? <WeaponSheet weapon={item} foundryWindow={foundryWindow} />
+              : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
+        }
+      </div>
     </CSSReset>
   );
 };

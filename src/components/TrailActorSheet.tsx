@@ -98,6 +98,7 @@ export const TrailActorSheet = ({
         css={{
           gridArea: "stats",
           padding: "1em",
+          backgroundColor: theme.colors.thin,
         }}
       >
         <InputGrid>

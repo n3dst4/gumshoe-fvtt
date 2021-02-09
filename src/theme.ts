@@ -42,9 +42,9 @@ export const trailTheme: Theme = {
     accent: "#1d5d5d",
     glow: "#5effff",
     wallpaper: "#ddd",
+    thin: "rgba(255,255,255,0.2)",
     medium: "rgba(255,255,255,0.5)",
     thick: "rgba(255,255,255,0.7)",
-    thin: "rgba(255,255,255,0.2)",
     reverseThin: "rgba(0,0,0,0.1)",
     reverseMedium: "rgba(0,0,0,0.3)",
     reverseThick: "rgba(0,0,0,0.5)",
@@ -57,7 +57,7 @@ export const nightsTheme: Theme = {
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
-  wallpaper: `url(systems/${system.name}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+  wallpaper: "linear-gradient(to bottom, #333 0%, #999 100%)",
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1em 'Unica One', serif",
   logoGradient: "linear-gradient(135deg, #f00 0%,#222 30%,#f00 90%)",
@@ -66,10 +66,10 @@ export const nightsTheme: Theme = {
   colors: {
     accent: "#900",
     glow: "#f00",
-    wallpaper: "#ddd",
+    wallpaper: "#333",
+    thin: "rgba(255,255,255,0.3)",
     medium: "rgba(255,255,255,0.5)",
     thick: "rgba(255,255,255,0.7)",
-    thin: "rgba(255,255,255,0.2)",
     reverseThin: "rgba(0,0,0,0.1)",
     reverseMedium: "rgba(0,0,0,0.3)",
     reverseThick: "rgba(0,0,0,0.5)",
