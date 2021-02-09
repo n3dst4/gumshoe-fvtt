@@ -63,7 +63,7 @@ export const nightsTheme: Theme = {
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
-  wallpaper: "linear-gradient(to bottom, #333 0%, #999 100%)",
+  wallpaper: "linear-gradient(to bottom, #777 0%, #aaa 100%)",
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1em 'Unica One', serif",
   logoGradient: "linear-gradient(135deg, #fff 0%, #fff 90%)",
