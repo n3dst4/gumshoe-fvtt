@@ -1,13 +1,21 @@
 /** @jsx jsx */
-import React from "react";
+import React, { useCallback, useContext } from "react";
 import { jsx } from "@emotion/react";
 import { TrailItem } from "../../module/TrailItem";
+import { ActorSheetAppContext } from "../FoundryAppContext";
 
 type AbilitySlugProps = {
   ability: TrailItem;
 };
 
 export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
+  const app = useContext(ActorSheetAppContext);
+  const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
+    if (app !== null) {
+      (app as any)._onDragStart(e);
+    }
+  }, [app]);
+
   return (
     <a
       tabIndex={0}
@@ -22,6 +30,9 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
       onClick={() => {
         ability.sheet.render(true);
       }}
+      data-item-id={ability.id}
+      onDragStart={onDragStart}
+      draggable="true"
     >
       <div>
         {ability.data.data.occupational && (

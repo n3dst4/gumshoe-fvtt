@@ -24,7 +24,7 @@ const render = (sheet: TrailActorSheetClassBase) => {
   return (
     <TrailActorSheet
       actor={sheet.entity}
-      foundryWindow={sheet}
+      foundryApplication={sheet}
     />
   );
 };
