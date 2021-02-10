@@ -25,7 +25,7 @@ const render = (sheet: TrailItemSheetClassBase) => {
   return (
     <TrailItemSheet
       item={sheet.entity}
-      foundryWindow={sheet}
+      foundryApplication={sheet}
     />
   );
 };

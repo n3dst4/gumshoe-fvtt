@@ -8,10 +8,11 @@ import { AbilitySheet } from "./abilities/AbilitySheet";
 import { isAbility } from "../functions";
 import { WeaponSheet } from "./equipment/WeaponSheet";
 import { CSSReset } from "./CSSReset";
+import { ItemSheetAppContext } from "./FoundryAppContext";
 
 type TrailItemSheetProps = {
   item: TrailItem,
-  foundryWindow: Application,
+  foundryApplication: ItemSheet,
 };
 
 /**
@@ -20,36 +21,38 @@ type TrailItemSheetProps = {
  */
 export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
   item,
-  foundryWindow,
+  foundryApplication,
 }) => {
   const theme = item.getTheme();
 
   return (
-    <CSSReset
-      theme={theme}
-      css={{
-        position: "relative",
-        ":before": {
-          content: '" "',
-          position: "absolute",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          backgroundColor: theme.colors.medium,
-        },
-      }}
-    >
-      <div css={{ position: "relative" }}>
-        {isAbility(item)
-          ? <AbilitySheet ability={item} foundryWindow={foundryWindow} />
-          : item.type === equipment
-            ? <EquipmentSheet entity={item} foundryWindow={foundryWindow} />
-            : item.type === weapon
-              ? <WeaponSheet weapon={item} foundryWindow={foundryWindow} />
-              : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
-        }
-      </div>
-    </CSSReset>
+    <ItemSheetAppContext.Provider value={foundryApplication}>
+      <CSSReset
+        theme={theme}
+        css={{
+          position: "relative",
+          ":before": {
+            content: '" "',
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            backgroundColor: theme.colors.medium,
+          },
+        }}
+      >
+        <div css={{ position: "relative" }}>
+          {isAbility(item)
+            ? <AbilitySheet ability={item} foundryWindow={foundryApplication} />
+            : item.type === equipment
+              ? <EquipmentSheet entity={item} foundryWindow={foundryApplication} />
+              : item.type === weapon
+                ? <WeaponSheet weapon={item} foundryWindow={foundryApplication} />
+                : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
+          }
+        </div>
+      </CSSReset>
+    </ItemSheetAppContext.Provider>
   );
 };
