@@ -177,7 +177,7 @@ export class TrailItem extends Item<any> {
     if (this.isOwned) {
       return (this.actor as TrailActor).getThemeName();
     } else {
-      game.settings.get(system.name, defaultTheme);
+      return game.settings.get(system.name, defaultTheme);
     }
   }
 }
