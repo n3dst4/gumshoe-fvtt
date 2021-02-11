@@ -10,7 +10,7 @@ import { defaultTheme } from "../constants";
  * @extends {Item}
  */
 export class TrailItem extends Item<any> {
-  constructor (data, options) {
+  constructor (data: any, options: any) {
     super(data, options);
     this._getters = {};
     this._setters = {};
@@ -20,10 +20,14 @@ export class TrailItem extends Item<any> {
   _setters: SetterDict<TrailItemData>
 
   getter = <T extends keyof TrailItemData>(field: T) => {
-    if (this._getters[field] === undefined) {
-      this._getters[field] = () => this.data.data[field];
+    let getterFn = this._getters[field];
+    if (getterFn !== undefined) {
+      return getterFn;
+    } else {
+      getterFn = () => this.data.data[field];
+      this._getters[field] = getterFn;
+      return getterFn;
     }
-    return this._getters[field];
   }
 
   setter = <T extends keyof TrailItemData>(field: T) => {

@@ -25,6 +25,7 @@ export const performAttack = ({
   description,
   rangeDamage,
 }: PerformAttackArgs2) => {
+  if (ability.actor === null) { return; }
   const damage = weapon.getDamage();
   const hitRoll = new Roll("1d6 + @spend", { spend });
   const hitLabel = `Attacks with <b>${weapon.name}</b>, rolling <b>${ability.name}</b> at ${description}`;
@@ -44,6 +45,7 @@ export const performAttack = ({
     speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
     flavor: damageLabel,
   });
+  const poolGetter = ability.getter("pool");
   const currentPool = ability.getter("pool")();
   const poolHit = Math.max(0, Number(spend) - bonusPool);
   const newPool = Math.max(0, currentPool - poolHit);

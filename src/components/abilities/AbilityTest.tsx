@@ -26,6 +26,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
   const [spend, setSpend] = useState("0");
 
   const onTest = useCallback(() => {
+    if (ability.actor === null) { return; }
     const roll = new Roll("1d6 + @spend", { spend });
     const label = `Rolling ${ability.name}`;
     roll.roll().toMessage({
@@ -37,6 +38,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
   }, [ability, spend]);
 
   const onSpend = useCallback(() => {
+    if (ability.actor === null) { return; }
     const roll = new Roll("@spend", { spend });
     const label = `Ability pool spend for ${ability.name}`;
     roll.roll().toMessage({

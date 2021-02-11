@@ -34,7 +34,7 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
      * @see {@link Application._replaceHTML}
      * @override
      */
-    _replaceHTML (element, html, options) {
+    _replaceHTML (element: JQuery, html: JQuery, options: Record<string, unknown>) {
       // this is the only thing we need to do here - react deals with updating
       // the rest of the window.
       element.find(".window-title").text(this.title);
@@ -49,7 +49,7 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
      * DOM has been created.
      * @override
      */
-    activateListeners (html) {
+    activateListeners (html: JQuery) {
       console.log("activateListeners");
       super.activateListeners(html);
 
