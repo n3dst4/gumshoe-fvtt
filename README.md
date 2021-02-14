@@ -46,11 +46,11 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 ## TODO
 
 - [x] Combine ability compendia
-- [ ] choosable theme support
-- [ ] NBA theme
+- [x] choosable theme support
+- [x] NBA theme
+- [x] Options tab
+- [x] Items directory - bug when opening items (the window doesn't open)
 - [ ] Item images for investigative & general abilities
-- [ ] Options tab
-- [ ] Items directory - bug when opening items (the window doesn't open)
 
 
 ## The future
