@@ -1,21 +1,21 @@
 /** @jsx jsx */
 import React, { Fragment, useCallback } from "react";
-import { TrailActor } from "../module/TrailActor";
-import { PoolTracker } from "./abilities/PoolTracker";
+import { TrailActor } from "../../module/TrailActor";
+import { PoolTracker } from "../abilities/PoolTracker";
 import { jsx } from "@emotion/react";
-import { useUpdate } from "../hooks/useUpdate";
-import { AbilitiesArea } from "./abilities/AbilitiesArea";
-import { CSSReset } from "./CSSReset";
+import { useUpdate } from "../../hooks/useUpdate";
+import { AbilitiesArea } from "./AbilitiesArea";
+import { CSSReset } from "../CSSReset";
 import { TrailLogoEditable } from "./TrailLogoEditable";
-import { InputGrid } from "./inputs/InputGrid";
-import { GridField } from "./inputs/GridField";
-import { AsyncTextInput } from "./inputs/AsyncTextInput";
-import { TabContainer } from "./TabContainer";
-import { EquipmentArea } from "./equipment/EquipmentArea";
+import { InputGrid } from "../inputs/InputGrid";
+import { GridField } from "../inputs/GridField";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { TabContainer } from "../TabContainer";
+import { EquipmentArea } from "./EquipmentArea";
 import { NotesArea } from "./NotesArea";
-import { WeaponsArea } from "./equipment/WeaponsArea";
+import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
-import { ActorSheetAppContext } from "./FoundryAppContext";
+import { ActorSheetAppContext } from "../FoundryAppContext";
 
 type TrailActorSheetProps = {
   actor: TrailActor,

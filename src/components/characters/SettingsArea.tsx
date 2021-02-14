@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
-import { TrailActor } from "../module/TrailActor";
-import { themes } from "../theme";
-import { GridField } from "./inputs/GridField";
-import { InputGrid } from "./inputs/InputGrid";
+import { TrailActor } from "../../module/TrailActor";
+import { themes } from "../../theme";
+import { GridField } from "../inputs/GridField";
+import { InputGrid } from "../inputs/InputGrid";
 
 type SettingAreaProps = {
   actor: TrailActor,

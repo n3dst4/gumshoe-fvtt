@@ -1,6 +1,6 @@
 // import ReactDOM from "react-dom";
 import React from "react";
-import { TrailActorSheet } from "../components/TrailActorSheet";
+import { TrailActorSheet } from "../components/characters/TrailActorSheet";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 

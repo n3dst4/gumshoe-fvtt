@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { CSSObject, jsx } from "@emotion/react";
 import React, { useContext } from "react";
-import { useAsyncUpdate } from "../hooks/useAsyncUpdate";
-import { ThemeContext } from "../theme";
+import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
+import { ThemeContext } from "../../theme";
 
 type TrailLogoEditableProps = {
   text: string;

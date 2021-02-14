@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { useAsyncUpdate } from "../hooks/useAsyncUpdate";
-import { TrailActor } from "../module/TrailActor";
-import { TextArea } from "./inputs/TextArea";
+import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
+import { TrailActor } from "../../module/TrailActor";
+import { TextArea } from "../inputs/TextArea";
 
 type NotesAreaProps = {
   actor: TrailActor,
