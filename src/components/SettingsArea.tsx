@@ -24,7 +24,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
         <GridField label="Theme">
           <select onChange={onSetTheme} value={actor.getSheetThemeName() || "default"}>
             {Object.keys(themes).map((themeName) => (
-              <option key={themeName} value={themeName}>{themes[themeName]}</option>
+              <option key={themeName} value={themeName}>{themes[themeName].displayName}</option>
             ))}
             <option value="default">Default</option>
           </select>

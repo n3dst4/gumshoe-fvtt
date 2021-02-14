@@ -74,16 +74,15 @@ export class TrailActor<T=any> extends Actor<TrailActorData> {
   // THEME
 
   getSheetTheme (): Theme {
-    return themes[this.getSheetThemeName()];
+    const themeName = this.getSheetThemeName() || game.settings.get(system.name, defaultTheme);
+    return themes[themeName];
   }
 
-  getSheetThemeName (): string {
-    return this.data.data.sheetTheme || game.settings.get(system.name, defaultTheme);
+  getSheetThemeName (): string|null {
+    return this.data.data.sheetTheme;
   }
 
-  setSheetTheme (newTheme: string|null) {
-    this.setSheetTheme(newTheme);
-  }
+  setSheetTheme = (sheetTheme: string|null) => this.update({ data: { sheetTheme } });
 
   getNotes = () => this.data.data.notes ?? ""
   setNotes = (notes: string) => this.update({ data: { notes } })
