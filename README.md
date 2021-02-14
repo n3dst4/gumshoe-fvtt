@@ -53,6 +53,7 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [ ] Go through FI2, AS, & NBA and work out what they need.
 - [ ] Collapse or refactor ability types to support powers and maybe General categories.
 - [ ] Item images for investigative & general abilities
+- [ ] High-contrast theme
 
 
 ## The future
