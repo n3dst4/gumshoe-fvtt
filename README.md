@@ -50,6 +50,8 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] NBA theme
 - [x] Options tab
 - [x] Items directory - bug when opening items (the window doesn't open)
+- [ ] Go through FI2, AS, & NBA and work out what they need.
+- [ ] Collapse or refactor ability types to support powers and maybe General categories.
 - [ ] Item images for investigative & general abilities
 
 
@@ -65,6 +67,44 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [ ] rich text editing
 - [ ] Character gen mode? (track free values, point spends, I<->G trades, synergies)
 - [ ] GM player skill matrix (pickable actors, show a big ol' matrix)
+
+
+## GUMSHOE Games
+
+### Games that I have, and want to support:
+
+* [x] Trail of Cthulhu
+  * [x] Categorized investigating abilities
+  * [x] General Abilities
+  * [x] Health, Sanity, Stability, Magic
+* [ ] Fear Itself 2nd ed.
+  * [x] Categorized investigating abilities
+  * [x] General Abilities
+  * [ ] *Psychic Powers*
+  * [ ] *No trackers*
+* [ ] Night's Black Agents
+  * [ ] 
+* [ ] Ashen Stars
+  * [ ] 
+
+### Games that I don't have yet, but would like to support:
+
+* [ ] The Yellow King
+* [ ] Mutant City Blues (2nd ed.)
+* [ ] The Fall of Delta Green
+
+### Other games (I am open to bribery):
+
+* [ ] Cthulhu Confidential (is 1-to-1)
+* [ ] Esoterrorists
+* [ ] Casting The Runes (aka "The M.R. James one")
+* [ ] Timewatch
+* [ ] Bubblegumshoe
+
+
+
+
+ 
 
 
 ## Generating Compendia
