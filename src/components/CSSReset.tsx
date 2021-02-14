@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { css, Global, jsx } from "@emotion/react";
+import { Global, jsx } from "@emotion/react";
 import React from "react";
 import { ThemeContext, Theme } from "../theme";
 
