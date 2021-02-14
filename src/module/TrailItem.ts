@@ -144,10 +144,11 @@ export class TrailItem extends Item<any> {
   }
 
   getThemeName (): string {
+    const systemTheme = game.settings.get(system.name, defaultTheme);
     if (this.isOwned) {
-      return (this.actor as TrailActor).getSheetThemeName();
+      return (this.actor as TrailActor).getSheetThemeName() || systemTheme;
     } else {
-      return game.settings.get(system.name, defaultTheme);
+      return systemTheme;
     }
   }
 
