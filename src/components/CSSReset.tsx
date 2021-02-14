@@ -12,14 +12,6 @@ type CSSResetProps = {
 export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }) => {
   return (
     <ThemeContext.Provider value={theme}>
-      <Global
-        styles={css`
-          /* pure hackage to hide these weird buttons until I can work out why they're there */
-          .window-upload-handle {
-            display: none;
-          }
-        `}
-      />
       <Global styles={theme.global} />
       <div
         className={className}
