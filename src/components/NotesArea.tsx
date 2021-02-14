@@ -12,19 +12,19 @@ type NotesAreaProps = {
 export const NotesArea: React.FC<NotesAreaProps> = ({
   actor,
 }) => {
-  const notes = useAsyncUpdate(actor.getter("notes")(), actor.setter("notes"));
+  const notes = useAsyncUpdate(actor.getNotes(), actor.setNotes);
   const occupationalBenefits = useAsyncUpdate(
-    actor.getter("occupationalBenefits")(),
-    actor.setter("occupationalBenefits"));
+    actor.getOccupationalBenefits(),
+    actor.setOccupationalBenefits);
   const pillarsOfSanity = useAsyncUpdate(
-    actor.getter("pillarsOfSanity")(),
-    actor.setter("pillarsOfSanity"));
+    actor.getPillarsOfSanity(),
+    actor.setPillarsOfSanity);
   const sourcesOfStability = useAsyncUpdate(
-    actor.getter("sourcesOfStability")(),
-    actor.setter("sourcesOfStability"));
+    actor.getSourcesOfStability(),
+    actor.setSourcesOfStability);
   const background = useAsyncUpdate(
-    actor.getter("background")(),
-    actor.setter("background"));
+    actor.getBackground(),
+    actor.setBackground);
 
   return (
     <div

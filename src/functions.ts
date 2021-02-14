@@ -37,3 +37,14 @@ export const fixLength = <T>(
   ].slice(0, desiredlength);
   return result;
 };
+
+export const mapValues = <V1, V2>(
+  mapper: (v: V1) => V2,
+  subject: {[k: string]: V1},
+): {[k: string]: V2} => {
+  const result: {[k: string]: V2} = {};
+  for (const k in subject) {
+    result[k] = mapper(subject[k]);
+  }
+  return result;
+};

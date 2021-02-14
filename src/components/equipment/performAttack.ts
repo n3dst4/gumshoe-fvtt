@@ -45,12 +45,11 @@ export const performAttack = ({
     speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
     flavor: damageLabel,
   });
-  const poolGetter = ability.getter("pool");
-  const currentPool = ability.getter("pool")();
+  const currentPool = ability.getPool();
   const poolHit = Math.max(0, Number(spend) - bonusPool);
   const newPool = Math.max(0, currentPool - poolHit);
   const newBonusPool = Math.max(0, bonusPool - Number(spend));
-  ability.setter("pool")(newPool);
+  ability.setPool(newPool);
   setBonusPool(newBonusPool);
   setSpend("0");
   weapon.setAmmo(Math.max(0, weapon.getAmmo() - weapon.getAmmoPerShot()));

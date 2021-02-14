@@ -58,7 +58,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
     d.render(true);
   }, [ability]);
 
-  const categories = game.settings.get(system.name, abilityCategories).split(",").map(x => x.trim());
+  const categories = game.settings.get(system.name, abilityCategories).split(",").map((x: string) => x.trim());
 
   const onChangeCategory = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
     updateCategory(e.currentTarget.value);
@@ -79,7 +79,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
               height: "inherit",
             }}
           >
-            {categories.map((cat) => (
+            {categories.map((cat: string) => (
               <option key={cat}>{cat}</option>
             ))}
           </select>

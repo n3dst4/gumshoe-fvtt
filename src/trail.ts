@@ -19,7 +19,8 @@ Hooks.once("init", async function () {
   // Preload Handlebars templates
   await preloadTemplates();
 
-  CONFIG.Actor.entityClass = TrailActor;
+  // XXX TS needs going over here
+  CONFIG.Actor.entityClass = (TrailActor as any);
   CONFIG.Item.entityClass = TrailItem;
   CONFIG.Combat.entityClass = TrailCombat;
 

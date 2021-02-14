@@ -40,7 +40,7 @@ export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
   onChangeText: onChangeTextOrig,
   onChangeSubtext: onChangeSubtextOrig,
 }) => {
-  const subtext = subtextOrig.trim();
+  const subtext = (subtextOrig ?? "").trim();
 
   const textStyle: CSSObject = {
     transition: "font-size 500ms",

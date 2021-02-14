@@ -28,7 +28,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   const id = useContext(IdContext);
 
   const onChangeCb = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    onChange(e.currentTarget.value);
+    onChange?.(e.currentTarget.value);
   }, [onChange]);
 
   return (

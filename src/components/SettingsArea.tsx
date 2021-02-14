@@ -2,8 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { TrailActor } from "../module/TrailActor";
-import { themeDescriptions } from "../theme";
-import { ThemeName } from "../types";
+import { themes } from "../theme";
 import { GridField } from "./inputs/GridField";
 import { InputGrid } from "./inputs/InputGrid";
 
@@ -16,16 +15,16 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
 }) => {
   const onSetTheme = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
-    const themeName = (value === "default" ? null : value) as ThemeName|null;
-    actor.setTheme(themeName);
+    const themeName = (value === "default" ? null : value);
+    actor.setSheetTheme(themeName);
   }, [actor]);
 
   return (
     <InputGrid>
         <GridField label="Theme">
-          <select onChange={onSetTheme} value={actor.getThemeName() || "default"}>
-            {Object.keys(themeDescriptions).map((themeName) => (
-              <option key={themeName} value={themeName}>{themeDescriptions[themeName]}</option>
+          <select onChange={onSetTheme} value={actor.getSheetThemeName() || "default"}>
+            {Object.keys(themes).map((themeName) => (
+              <option key={themeName} value={themeName}>{themes[themeName]}</option>
             ))}
             <option value="default">Default</option>
           </select>

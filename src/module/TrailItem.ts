@@ -1,6 +1,5 @@
 import { fixLength, isAbility } from "../functions";
 import { Theme, themes } from "../theme";
-import { GetterDict, SetterDict, ThemeName, TrailItemData } from "../types";
 import { TrailActor } from "./TrailActor";
 import system from "../system.json";
 import { defaultTheme } from "../constants";
@@ -10,35 +9,6 @@ import { defaultTheme } from "../constants";
  * @extends {Item}
  */
 export class TrailItem extends Item<any> {
-  constructor (data: any, options: any) {
-    super(data, options);
-    this._getters = {};
-    this._setters = {};
-  }
-
-  _getters: GetterDict<TrailItemData>
-  _setters: SetterDict<TrailItemData>
-
-  getter = <T extends keyof TrailItemData>(field: T) => {
-    let getterFn = this._getters[field];
-    if (getterFn !== undefined) {
-      return getterFn;
-    } else {
-      getterFn = () => this.data.data[field];
-      this._getters[field] = getterFn;
-      return getterFn;
-    }
-  }
-
-  setter = <T extends keyof TrailItemData>(field: T) => {
-    if (this._setters[field] === undefined) {
-      this._setters[field] = (val: any) => {
-        this.update({ data: { [field]: val } });
-      };
-    }
-    return this._setters[field];
-  }
-
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
@@ -156,16 +126,12 @@ export class TrailItem extends Item<any> {
     });
   }
 
-  getDamage = () => this.data.data.damage ?? 0
-
+  getAmmoPerShot = () => this.data.data.ammoPerShot ?? 1
   setAmmoPerShot = (ammoPerShot: number) => this.update({
     data: { ammoPerShot },
   })
 
-  getAmmoPerShot = () => this.data.data.ammoPerShot ?? 1
-
   getUsesAmmo = () => this.data.data.usesAmmo ?? false
-
   setUsesAmmo = (usesAmmo: boolean) => this.update({
     data: { usesAmmo },
   })
@@ -177,11 +143,47 @@ export class TrailItem extends Item<any> {
     return themes[this.getThemeName()];
   }
 
-  getThemeName (): ThemeName {
+  getThemeName (): string {
     if (this.isOwned) {
-      return (this.actor as TrailActor).getThemeName();
+      return (this.actor as TrailActor).getSheetThemeName();
     } else {
       return game.settings.get(system.name, defaultTheme);
     }
   }
+
+  getNotes = () => this.data.data.notes ?? ""
+  setNotes = (notes: string) => this.update({ data: { notes } })
+
+  getAbility = () => this.data.data.ability ?? ""
+  setAbility = (ability: string) => this.update({ data: { ability } })
+
+  getPool = () => this.data.data.pool ?? 0
+  setPool = (pool: number) => this.update({ data: { pool } })
+
+  getDamage = () => this.data.data.damage ?? 0
+  setDamage = (damage: number) => this.update({ data: { damage } })
+
+  getPointBlankDamage = () => this.data.data.pointBlankDamage ?? 0
+  setPointBlankDamage = (pointBlankDamage: number) => this.update({ data: { pointBlankDamage } })
+
+  getCloseRangeDamage = () => this.data.data.closeRangeDamage ?? 0
+  setCloseRangeDamage = (closeRangeDamage: number) => this.update({ data: { closeRangeDamage } })
+
+  getNearRangeDamage = () => this.data.data.nearRangeDamage ?? 0
+  setNearRangeDamage = (nearRangeDamage: number) => this.update({ data: { nearRangeDamage } })
+
+  getLongRangeDamage = () => this.data.data.longRangeDamage ?? 0
+  setLongRangeDamage = (longRangeDamage: number) => this.update({ data: { longRangeDamage } })
+
+  getIsPointBlank = () => this.data.data.isPointBlank
+  setIsPointBlank = (isPointBlank: boolean) => this.update({ data: { isPointBlank } })
+
+  getIsCloseRange = () => this.data.data.isCloseRange
+  setIsCloseRange = (isCloseRange: boolean) => this.update({ data: { isCloseRange } })
+
+  getIsNearRange = () => this.data.data.isNearRange
+  setIsNearRange = (isNearRange: boolean) => this.update({ data: { isNearRange } })
+
+  getIsLongRange = () => this.data.data.isLongRange
+  setIsLongRange = (isLongRange: boolean) => this.update({ data: { isLongRange } })
 }

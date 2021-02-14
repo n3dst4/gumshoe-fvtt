@@ -31,13 +31,13 @@ export const TrailActorSheet = ({
     const fp = new FilePicker({
       type: "image",
       current: actor.data.img,
-      callback: (path) => {
+      callback: (path: string) => {
         actor.update({
           img: path,
         });
       },
-      top: foundryApplication.position.top + 40,
-      left: foundryApplication.position.left + 10,
+      top: (foundryApplication.position.top ?? 0) + 40,
+      left: (foundryApplication.position.left ?? 0) + 10,
     });
     // types aren't quite right for fp
     return (fp as any).browse();
@@ -47,7 +47,7 @@ export const TrailActorSheet = ({
   const updateDrive = useUpdate(actor, drive => ({ data: { drive } }));
   const updateOccupation = useUpdate(actor, occupation => ({ data: { occupation } }));
 
-  const theme = actor.getTheme();
+  const theme = actor.getSheetTheme();
 
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>

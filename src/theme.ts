@@ -1,9 +1,9 @@
 import { css, CSSObject, SerializedStyles } from "@emotion/react";
 import React from "react";
 import system from "./system.json";
-import { ThemeName } from "./types";
 
 export type Theme = {
+  displayName: string,
   global?: SerializedStyles,
   wallpaper: string,
   bodyFont: string,
@@ -28,6 +28,7 @@ export type Theme = {
 }
 
 export const trailTheme: Theme = {
+  displayName: "Trail of Cthulhu",
   global: css`
     @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
@@ -59,6 +60,7 @@ export const trailTheme: Theme = {
 };
 
 export const nightsTheme: Theme = {
+  displayName: "Night's Black Agents",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
@@ -91,12 +93,7 @@ export const nightsTheme: Theme = {
   },
 };
 
-export const themeDescriptions: {[themeName in ThemeName]: string} = {
-  trailTheme: "Trail of Cthulhu",
-  nightsTheme: "Night Black Agents",
-};
-
-export const themes: {[themeName in ThemeName]: Theme} = {
+export const themes: {[themeName: string]: Theme} = {
   trailTheme,
   nightsTheme,
 };

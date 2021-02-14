@@ -18,7 +18,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   foundryWindow,
 }) => {
   const name = useAsyncUpdate(entity.name, entity.setName);
-  const notes = useAsyncUpdate(entity.getter("notes")(), entity.setter("notes"));
+  const notes = useAsyncUpdate(entity.getNotes(), entity.setNotes);
 
   const onClickDelete = useCallback(() => {
     const message = entity.actor

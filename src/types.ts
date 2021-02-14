@@ -18,8 +18,6 @@
 
 // export type GeneralAbility = Item<GeneralAbilityData>;
 
-export type ThemeName = "trailTheme" | "nightsTheme";
-
 export type Resource = {
   min?: number,
   max: number,
@@ -101,19 +99,11 @@ export type AbilityData = InvestAbilityData | GeneralAbilityData;
 export type TrailItemData = Partial<EquipmentData & WeaponData & InvestAbilityData & GeneralAbilityData>;
 // export type TrailItemData = EquipmentData | WeaponData | AbilityData;
 
-// export type PCTrailActor = TrailActor<PCTrailActorData>;
-
-export type GetterDict<T> = {
-  [P in keyof T]?: () => T[P];
-}
-
-export type SetterDict<T> = {
-  [P in keyof T]?: (val: T[P]) => void;
-}
-
 /**
  * this is wild - extract a subset of prperties from a type based on a test
  * see https://stackoverflow.com/a/57386444/212676
+ *
+ * this was a dumb experiment but i'm leaving it here because TS is cool.
  */
 export type PickByType<T, P> = Omit<
   T,

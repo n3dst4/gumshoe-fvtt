@@ -109,7 +109,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
           padding: "0.5em",
         }}
       >
-        {activeTabDef.content}
+        {activeTabDef?.content}
       </div>
     </div>
   );

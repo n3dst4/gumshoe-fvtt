@@ -27,27 +27,35 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const [bonusPool, setBonusPool] = useState(0);
   const theme = useContext(ThemeContext);
 
-  const ability = weapon.actor.items.find((item) => {
+  const abilityName = weapon.data.data.ability;
+
+  const ability: TrailItem|undefined = weapon?.actor?.items.find((item: TrailItem) => {
     return (
-      item.type === generalAbility && item.name === weapon.data.data.ability
+      item.type === generalAbility && item.name === abilityName
     );
   });
 
   const spendOptions = defaultSpendOptions.map((option) => ({
     ...option,
-    enabled: option.value <= ability.data.data.pool + bonusPool,
+    enabled: option.value <= ability?.data.data.pool + bonusPool,
   }));
 
-  const basePerformAttack = useMemo(() => performAttack({
-    spend,
-    bonusPool,
-    setSpend,
-    setBonusPool,
-    ability,
-    weapon,
-  }), [ability, bonusPool, spend, weapon]);
+  const basePerformAttack = useMemo(() => {
+    if (ability) {
+      return performAttack({
+        spend,
+        bonusPool,
+        setSpend,
+        setBonusPool,
+        ability,
+        weapon,
+      });
+    } else {
+      return () => {};
+    }
+  }, [ability, bonusPool, spend, weapon]);
 
-  const notes = useAsyncUpdate(weapon.getter("notes")(), weapon.setter("notes"));
+  const notes = useAsyncUpdate(weapon.getNotes(), weapon.setNotes);
 
   const onPointBlank = useCallback(() => {
     basePerformAttack({
@@ -77,17 +85,19 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     });
   }, [basePerformAttack, weapon.data.data.longRangeDamage]);
 
-  const actorInitiativeAbility = weapon.actor.data.data.initiativeAbility;
-  const isAbilityUsed = actorInitiativeAbility === ability.name;
+  const actorInitiativeAbility = weapon.actor?.data.data.initiativeAbility;
+  const isAbilityUsed = actorInitiativeAbility === ability?.name;
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
-      weapon.actor.update({
-        data: {
-          initiativeAbility: ability.name,
-        },
-      });
+      if (ability) {
+        weapon.actor?.update({
+          data: {
+            initiativeAbility: ability.name,
+          },
+        });
+      }
     },
-    [ability.name, weapon.actor],
+    [ability, weapon.actor],
   );
 
   const ammoFail = weapon.getUsesAmmo() && weapon.getAmmo() <= 0;
@@ -201,9 +211,9 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
         <GridField label="Bonus pool">
           <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />
         </GridField>
-        <GridField label={ability.name}>
-          <a onClick={() => ability.sheet.render(true)}>
-            Open {ability.name} ability
+        <GridField label={abilityName}>
+          <a onClick={() => ability?.sheet.render(true)}>
+            Open {ability?.name} ability
           </a>
         </GridField>
         <GridField label="">
@@ -216,7 +226,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
             : (
             <span>
               <a onClick={onClickUseForInitiative}>
-                Use {ability.name} for combat ordering
+                Use {ability?.name} for combat ordering
               </a>{" "}
               (Currently using {actorInitiativeAbility || "nothing"})
             </span>

@@ -25,7 +25,7 @@ const generalTemplate = {
   occupational: false,
 };
 
-const investigativeAbilities = {
+const investigativeAbilities: any = {
   Academic: [
     { name: "Accounting" },
     { name: "Anthropology" },
@@ -103,19 +103,19 @@ const generalAbilities = [
 
 const emptyPack = async (pack: any) => {
   const content = await pack.getContent();
-  content.forEach(item => {
+  content.forEach((item: Entity) => {
     item.delete();
   });
 };
 
 export const generateTrailAbilitiesData = async () => {
-  const pack = game.packs.find(p => p.collection === `${system.name}.trailOfCthulhuAbilities`);
+  const pack = game.packs.find((p: any) => p.collection === `${system.name}.trailOfCthulhuAbilities`);
   // const invFolder;
   emptyPack(pack);
 
   Object.keys(investigativeAbilities).forEach(async (category) => {
     // const folder = await Folder.create({ name: category, type: "Item" }, { temporary: true });
-    const abilityDatas = investigativeAbilities[category].map((data) => {
+    const abilityDatas = investigativeAbilities[category].map((data: any) => {
       const { name, type, ...rest } = data;
       return {
         type: investigativeTemplate.type,

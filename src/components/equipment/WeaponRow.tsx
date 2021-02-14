@@ -31,7 +31,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >
-      {weapon.getter("damage")()}
+      {weapon.getDamage()}
     </a>
     <a
       css={{ gridColumn: 3, overflow: "hidden", textOverflow: "ellipsis" }}
@@ -40,7 +40,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >
-      {weapon.getter("notes")()}
+      {weapon.getNotes()}
     </a>
   </Fragment>
   );

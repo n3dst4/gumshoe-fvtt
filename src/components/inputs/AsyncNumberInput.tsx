@@ -21,7 +21,7 @@ export type ValidationResult = {
   value: number,
 }
 
-const adjust = (display: string, by: number, min: number, max: number) => {
+const adjust = (display: string, by: number, min?: number, max?: number) => {
   let result = Number(display) + by;
   if (Number.isNaN(result)) {
     result = 0;

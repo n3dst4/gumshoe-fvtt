@@ -31,6 +31,7 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": ["off"],
     "@typescript-eslint/no-unused-vars": ["error", { args: "none", ignoreRestSiblings: true }],
     "react/prop-types": ["off"],
+    "@typescript-eslint/no-empty-function": "off",
   },
   overrides: [
     {

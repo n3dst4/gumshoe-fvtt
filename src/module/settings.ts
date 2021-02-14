@@ -1,6 +1,7 @@
 import { abilityCategories, combatAbilities, defaultTheme } from "../constants";
+import { mapValues } from "../functions";
 import system from "../system.json";
-import { themeDescriptions } from "../theme";
+import { Theme, themes } from "../theme";
 
 export const registerSettings = function () {
   game.settings.register(system.name, abilityCategories, {
@@ -25,7 +26,7 @@ export const registerSettings = function () {
     name: "Default actor sheet theme",
     scope: "world",
     config: true,
-    choices: themeDescriptions,
+    choices: mapValues((theme: Theme) => (theme.displayName), themes),
     default: "trailTheme",
     type: String,
     // onChange: enable => _setArchmageInitiative(enable)

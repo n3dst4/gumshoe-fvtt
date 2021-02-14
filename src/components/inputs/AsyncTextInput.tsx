@@ -13,7 +13,7 @@ type AsyncTextInputProps = {
 };
 
 export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
-  value,
+  value = "",
   onChange: onChangeOrig,
   className,
   disabled,

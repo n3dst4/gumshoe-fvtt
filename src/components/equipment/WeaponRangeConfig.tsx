@@ -1,27 +1,24 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { TrailItem } from "../../module/TrailItem";
-import { PickByType, WeaponData } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Checkbox } from "../inputs/Checkbox";
 import { GridField } from "../inputs/GridField";
 
-type WeaponNumbers = PickByType<WeaponData, number>;
-type WeaponBools = PickByType<WeaponData, boolean>;
-
 type WeaponRangeProps = {
   label: string;
-  weapon: TrailItem;
-  valueField: keyof WeaponNumbers;
-  enabledField: keyof WeaponBools;
+  damage: number;
+  enabled: boolean;
+  setDamage: (value: number) => void,
+  setEnabled: (enabled: boolean) => void,
 };
 
 export const WeaponRange: React.FC<WeaponRangeProps> = ({
   label,
-  weapon,
-  valueField,
-  enabledField,
+  damage,
+  enabled,
+  setDamage,
+  setEnabled,
 }) => {
   return (
     <GridField label={label}>
@@ -32,14 +29,14 @@ export const WeaponRange: React.FC<WeaponRangeProps> = ({
         }}
       >
         <Checkbox
-          checked={weapon.getter(enabledField)()}
-          onChange={weapon.setter(enabledField)}
+          checked={enabled}
+          onChange={setEnabled}
         />
         <AsyncNumberInput
           css={{ flex: 1 }}
-          disabled={!weapon.getter(enabledField)()}
-          value={weapon.getter(valueField)()}
-          onChange={weapon.setter(valueField)}
+          disabled={!enabled}
+          value={damage}
+          onChange={setDamage}
         />
       </div>
     </GridField>

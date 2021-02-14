@@ -1,5 +1,5 @@
 export const preloadTemplates = async function () {
-  const templatePaths = [
+  const templatePaths: string[] = [
     // Add paths to "systems/trail-of-cthulhu-unsanctioned/templates"
   ];
 

@@ -21,7 +21,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
   weapon,
 }) => {
   const name = useAsyncUpdate(weapon.name, weapon.setName);
-  const notes = useAsyncUpdate(weapon.getter("notes")(), weapon.setter("notes"));
+  const notes = useAsyncUpdate(weapon.getNotes(), weapon.setNotes);
 
   const onClickDelete = useCallback(() => {
     const message = weapon.actor
@@ -51,7 +51,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
     d.render(true);
   }, [weapon]);
 
-  const abilities = game.settings.get(system.name, combatAbilities).split(",").map(x => x.trim());
+  const abilities = game.settings.get(system.name, combatAbilities).split(",").map((x: string) => x.trim());
 
   return (
     <Fragment>
@@ -62,43 +62,47 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
         <GridField label="Ability">
           <select
             value={weapon.data.data.ability}
-            onChange={(e) => weapon.setter("ability")(e.currentTarget.value)}
+            onChange={(e) => weapon.setAbility(e.currentTarget.value)}
             css={{
               lineHeight: "inherit",
               height: "inherit",
             }}
           >
-            {abilities.map((cat) => (
+            {abilities.map((cat: string) => (
               <option key={cat}>{cat}</option>
             ))}
           </select>
         </GridField>
         <GridField label="Base Damage">
-          <AsyncNumberInput value={weapon.getter("damage")()} onChange={weapon.setter("damage")} />
+          <AsyncNumberInput value={weapon.getDamage()} onChange={weapon.setDamage} />
         </GridField>
         <WeaponRange
           label="Point Blank"
-          weapon={weapon}
-          valueField="pointBlankDamage"
-          enabledField="isPointBlank"
+          damage={weapon.getPointBlankDamage()}
+          enabled={weapon.getIsPointBlank()}
+          setDamage={weapon.setPointBlankDamage}
+          setEnabled={weapon.setIsPointBlank}
         />
         <WeaponRange
           label="Close range"
-          weapon={weapon}
-          valueField="closeRangeDamage"
-          enabledField="isCloseRange"
+          damage={weapon.getCloseRangeDamage()}
+          enabled={weapon.getIsCloseRange()}
+          setDamage={weapon.setCloseRangeDamage}
+          setEnabled={weapon.setIsCloseRange}
         />
         <WeaponRange
           label="Near range"
-          weapon={weapon}
-          valueField="nearRangeDamage"
-          enabledField="isNearRange"
+          damage={weapon.getNearRangeDamage()}
+          enabled={weapon.getIsNearRange()}
+          setDamage={weapon.setNearRangeDamage}
+          setEnabled={weapon.setIsNearRange}
         />
         <WeaponRange
           label="Long range"
-          weapon={weapon}
-          valueField="longRangeDamage"
-          enabledField="isLongRange"
+          damage={weapon.getLongRangeDamage()}
+          enabled={weapon.getIsLongRange()}
+          setDamage={weapon.setLongRangeDamage}
+          setEnabled={weapon.setIsLongRange}
         />
         <GridField label="Notes">
           <TextArea value={notes.display} onChange={notes.onChange} />

@@ -1,45 +1,18 @@
 import { defaultTheme, equipment, generalAbility, weapon } from "../constants";
 import { isAbility } from "../functions";
-import { GetterDict, TrailActorData, RecursivePartial, SetterDict, TrailItemData, ThemeName } from "../types";
+import { TrailActorData, RecursivePartial, TrailItemData } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { TrailItem } from "./TrailItem";
 import system from "../system.json";
 import { Theme, themes } from "../theme";
 
-export class TrailActor<T = TrailActorData> extends Actor<T> {
-  constructor (data, options) {
-    super(data, options);
-    this._getters = {};
-    this._setters = {};
-  }
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export class TrailActor<T=any> extends Actor<TrailActorData> {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
   prepareData (): void {
     super.prepareData();
-  }
-
-  _getters: GetterDict<TrailActorData>
-  _setters: SetterDict<TrailActorData>
-
-  /// ///////////////////////////////////////////////////////////////////////////
-  // General data setters and getters
-
-  getter = <T extends keyof TrailActorData>(field: T) => {
-    if (this._getters[field] === undefined) {
-      this._getters[field] = (() => (this.data.data as any)[field]) as any;
-    }
-    return this._getters[field];
-  }
-
-  setter = <T extends keyof TrailActorData>(field: T) => {
-    if (this._setters[field] === undefined) {
-      this._setters[field] = (val: any) => {
-        this.update({ data: { [field]: val } });
-      };
-    }
-    return this._setters[field];
   }
 
   confirmRefresh = () => {
@@ -77,7 +50,7 @@ export class TrailActor<T = TrailActorData> extends Actor<T> {
   nuke = async () => {
     await this.deleteEmbeddedEntity(
       "OwnedItem",
-      this.items.map(i => i.id),
+      this.items.map((i: TrailItem) => i.id),
     );
     window.alert("Nuked");
   }
@@ -86,31 +59,46 @@ export class TrailActor<T = TrailActorData> extends Actor<T> {
   // ITEMS
 
   getAbilityByName (name: string) {
-    return this.items.find((item) => isAbility(item) && item.name === name);
+    return this.items.find((item: TrailItem) => isAbility(item) && item.name === name);
   }
 
   getEquipment () {
-    return this.items.filter((item) => item.type === equipment);
+    return this.items.filter((item: TrailItem) => item.type === equipment);
   }
 
   getWeapons (): TrailItem[] {
-    return this.items.filter((item) => item.type === weapon);
+    return this.items.filter((item: TrailItem) => item.type === weapon);
   }
 
   // ---------------------------------------------------------------------------
   // THEME
 
-  getTheme (): Theme {
-    return themes[this.getThemeName()];
+  getSheetTheme (): Theme {
+    return themes[this.getSheetThemeName()];
   }
 
-  getThemeName (): ThemeName {
-    return this.getter("sheetTheme")() || game.settings.get(system.name, defaultTheme);
+  getSheetThemeName (): string {
+    return this.data.data.sheetTheme || game.settings.get(system.name, defaultTheme);
   }
 
-  setTheme (newTheme: ThemeName|null) {
-    this.setter("sheetTheme")(newTheme);
+  setSheetTheme (newTheme: string|null) {
+    this.setSheetTheme(newTheme);
   }
+
+  getNotes = () => this.data.data.notes ?? ""
+  setNotes = (notes: string) => this.update({ data: { notes } })
+
+  getOccupationalBenefits = () => this.data.data.occupationalBenefits ?? ""
+  setOccupationalBenefits = (occupationalBenefits: string) => this.update({ data: { occupationalBenefits } })
+
+  getPillarsOfSanity = () => this.data.data.pillarsOfSanity ?? ""
+  setPillarsOfSanity = (pillarsOfSanity: string) => this.update({ data: { pillarsOfSanity } })
+
+  getSourcesOfStability = () => this.data.data.sourcesOfStability ?? ""
+  setSourcesOfStability = (sourcesOfStability: string) => this.update({ data: { sourcesOfStability } })
+
+  getBackground = () => this.data.data.background ?? ""
+  setBackground = (background: string) => this.update({ data: { background } })
 }
 
 /**
@@ -126,7 +114,7 @@ Hooks.on("updateOwnedItem", (
   // love 2 sink into a pit of imperative code
   if (itemData.type === generalAbility && userId === game.data.userId) {
     if (["Sanity", "Stability", "Health", "Magic"].includes(itemData.name)) {
-      if (diff.data.pool !== undefined || diff.data.rating !== undefined) {
+      if (diff.data?.pool !== undefined || diff.data?.rating !== undefined) {
         actor.update({
           data: {
             resources: {
@@ -154,14 +142,14 @@ Hooks.on(
     }
     const investigative = (
       await game.packs
-        .find((p) => p.collection === `${system.name}.investigativeAbilities`)
+        .find((p: any) => p.collection === `${system.name}.investigativeAbilities`)
         .getContent()
-    ).map((i) => i.data);
+    ).map((i: any) => i.data);
     const general = (
       await game.packs
-        .find((p) => p.collection === `${system.name}.generalAbilities`)
+        .find((p: any) => p.collection === `${system.name}.generalAbilities`)
         .getContent()
-    ).map((i) => i.data);
+    ).map((i: any) => i.data);
     await actor.createOwnedItem(investigative);
     await actor.createOwnedItem(general);
   },

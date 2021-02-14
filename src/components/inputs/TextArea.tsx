@@ -28,7 +28,7 @@ export const TextArea: React.FC<TextAreaProps> = ({
   const id = useContext(IdContext);
 
   const onChangeCb = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-    onChange(e.currentTarget.value);
+    onChange?.(e.currentTarget.value);
   }, [onChange]);
 
   return (
