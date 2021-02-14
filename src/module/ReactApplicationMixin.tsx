@@ -50,7 +50,6 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
      * @override
      */
     activateListeners (html: JQuery) {
-      console.log("activateListeners");
       super.activateListeners(html);
 
       const target = $(this.element).find(".react-target");
