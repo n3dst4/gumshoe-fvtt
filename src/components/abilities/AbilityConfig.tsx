@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ChangeEvent, useCallback } from "react";
-import { isGeneralAbility, isInvestigativeAbility } from "../../functions";
+import { isGeneralAbility } from "../../functions";
 import { useUpdate } from "../../hooks/useUpdate";
 import { TrailItem } from "../../module/TrailItem";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import system from "../../system.json";
-import { abilityCategories } from "../../constants";
+import { investigativeAbilityCategories, generalAbilityCategories } from "../../constants";
 import { Checkbox } from "../inputs/Checkbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
@@ -19,7 +19,6 @@ type AbilityConfigProps = {
 export const AbilityConfig: React.FC<AbilityConfigProps> = ({
   ability,
 }) => {
-  const isInvestigative = isInvestigativeAbility(ability);
   const isGeneral = isGeneralAbility(ability);
 
   const updateName = useUpdate(ability, (name) => ({ name }));
@@ -58,7 +57,10 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
     d.render(true);
   }, [ability]);
 
-  const categories = game.settings.get(system.name, abilityCategories).split(",").map((x: string) => x.trim());
+  const categories = game.settings.get(
+    system.name,
+    isGeneral ? generalAbilityCategories : investigativeAbilityCategories,
+  ).split(",").map((x: string) => x.trim());
 
   const onChangeCategory = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
     updateCategory(e.currentTarget.value);
@@ -69,22 +71,20 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
       <GridField label="Name">
         <AsyncTextInput value={ability.data.name} onChange={updateName} />
       </GridField>
-      {isInvestigative && (
-        <GridField label="Category">
-          <select
-            value={ability.data.data.category}
-            onChange={onChangeCategory}
-            css={{
-              lineHeight: "inherit",
-              height: "inherit",
-            }}
-          >
-            {categories.map((cat: string) => (
-              <option key={cat}>{cat}</option>
-            ))}
-          </select>
-        </GridField>
-      )}
+      <GridField label="Category">
+        <select
+          value={ability.data.data.category}
+          onChange={onChangeCategory}
+          css={{
+            lineHeight: "inherit",
+            height: "inherit",
+          }}
+        >
+          {categories.map((cat: string) => (
+            <option key={cat}>{cat}</option>
+          ))}
+        </select>
+      </GridField>
       <GridField label="Min">
         <AsyncNumberInput
           max={ability.data.data.max}

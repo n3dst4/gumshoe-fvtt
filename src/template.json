@@ -50,12 +50,12 @@
         "specialities": [],
         "min": 0,
         "max": 8,
-        "occupational": false
+        "occupational": false,
+        "category": "Academic"
       }
     },
     "investigativeAbility": {
-      "templates": ["ability"],
-      "category": "Academic"
+      "templates": ["ability"]
     },
     "generalAbility": {
       "templates": ["ability"],

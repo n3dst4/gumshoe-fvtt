@@ -1,4 +1,4 @@
-import { abilityCategories, combatAbilities, defaultTheme } from "../constants";
+import { abilityCategories, combatAbilities, defaultTheme, generalAbilityCategories, investigativeAbilityCategories } from "../constants";
 import { mapValues } from "../functions";
 import system from "../system.json";
 import { Theme, themes } from "../theme";
@@ -6,10 +6,28 @@ import { Theme, themes } from "../theme";
 export const registerSettings = function () {
   game.settings.register(system.name, abilityCategories, {
     name: "Ability categories",
+    hint: "Comma-separated (DNU)",
+    scope: "world",
+    config: false,
+    default: "Academic,Interpersonal,Technical",
+    type: String,
+    // onChange: enable => _setArchmageInitiative(enable)
+  });
+  game.settings.register(system.name, investigativeAbilityCategories, {
+    name: "Investigative ability categories",
     hint: "Comma-separated",
     scope: "world",
     config: true,
     default: "Academic,Interpersonal,Technical",
+    type: String,
+    // onChange: enable => _setArchmageInitiative(enable)
+  });
+  game.settings.register(system.name, generalAbilityCategories, {
+    name: "General ability categories",
+    hint: "Comma-separated",
+    scope: "world",
+    config: true,
+    default: "General",
     type: String,
     // onChange: enable => _setArchmageInitiative(enable)
   });

@@ -10,6 +10,12 @@ export const equipment = "equipment";
 export const weapon = "weapon";
 export const pc = "pc";
 export const npc = "npc";
+
+/**
+ * @deprecated use investigativeAbilityCategories and generalAbilityCategories instead
+ */
 export const abilityCategories = "abilityCategories";
+export const investigativeAbilityCategories = "investigativeAbilityCategories";
+export const generalAbilityCategories = "generalAbilityCategories";
 export const combatAbilities = "combatAbilities";
 export const defaultTheme = "defaultTheme";

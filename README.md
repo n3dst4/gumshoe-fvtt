@@ -50,8 +50,10 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] NBA theme
 - [x] Options tab
 - [x] Items directory - bug when opening items (the window doesn't open)
-- [ ] Go through FI2, AS, & NBA and work out what they need.
-- [ ] Collapse or refactor ability types to support powers and maybe General categories.
+- [x] Go through FI2, AS, & NBA and work out what they need.
+- [x] Collapse or refactor ability types to support powers and maybe General categories.
+- [ ] General categories
+- [ ] "Short notes" and "Long Notes"
 - [ ] Item images for investigative & general abilities
 - [ ] High-contrast theme
 
@@ -84,9 +86,15 @@ If you're a developer and you'd like to hack on this code, please be aware it us
   * [ ] *Psychic Powers*
   * [ ] *No trackers*
 * [ ] Night's Black Agents
-  * [ ] 
+  * [x] Categorized investigating abilities
+  * [x] General Abilities
+  * [ ] Health & Stability
 * [ ] Ashen Stars
-  * [ ] 
+  * [x] Categorized investigating abilities
+  * [x] General Abilities
+  * [ ] *"Boost"*
+  * [ ] *Special (Vas Mal)*
+  * [ ] Spaceships?
 
 ### Games that I don't have yet, but would like to support:
 

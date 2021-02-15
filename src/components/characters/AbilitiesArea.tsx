@@ -19,7 +19,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
   const theme = useContext(ThemeContext);
 
   const investigativeAbilities: { [category: string]: TrailItem[] } = {};
-  const generalAbilities: TrailItem[] = [];
+  const generalAbilities: { [category: string]: TrailItem[] } = {};
 
   const hideZeroRated = actor.data.data.hideZeroRated;
 
@@ -35,7 +35,12 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
       }
       investigativeAbilities[cat].push(ability);
     } else if (item.type === generalAbility) {
-      generalAbilities.push(item as TrailItem);
+      const ability = item as TrailItem;
+      const cat = ability.data.data.category || "Uncategorised";
+      if (generalAbilities[cat] === undefined) {
+        generalAbilities[cat] = [];
+      }
+      generalAbilities[cat].push(ability);
     }
   }
 
@@ -63,11 +68,11 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
         css={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gridTemplateAreas: "'inv general'",
+          gridTemplateAreas: "'investigative general'",
           gridTemplateRows: "auto",
         }}
       >
-        <div css={{ gridArea: "inv" }}>
+        <div css={{ gridArea: "investigative" }}>
           {Object.keys(investigativeAbilities).sort().map((cat) => (
             <div key={cat}>
               <h2>{cat}</h2>
@@ -80,9 +85,15 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
           ))}
         </div>
         <div css={{ gridArea: "general" }}>
-          <h2>General</h2>
-          {sortEntitiesByName(generalAbilities).map((ability) => (
-            <AbilitySlug key={ability.id} ability={ability} />
+          {Object.keys(generalAbilities).sort().map((cat) => (
+            <div key={cat}>
+              <h2>{cat}!</h2>
+              {
+                sortEntitiesByName(generalAbilities[cat]).map((ability) => (
+                  <AbilitySlug key={ability.id} ability={ability}/>
+                ))
+              }
+            </div>
           ))}
         </div>
       </div>

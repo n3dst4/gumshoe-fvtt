@@ -7,6 +7,7 @@ import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
 import { equipment, generalAbility, investigativeAbility, weapon } from "./constants";
 import { generateTrailAbilitiesData } from "./generateTrailAbilitiesData";
 import { TrailCombat } from "./module/TrailCombat";
+import { migrateAbilityCategories } from "./migrations/migrateAbilityCategories";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -45,8 +46,10 @@ Hooks.once("setup", function () {
 });
 
 // When ready
-Hooks.once("ready", function () {
-  // Do anything once the system is ready
+Hooks.on("ready", async () => {
+  if (game.user.isGM) {
+    migrateAbilityCategories();
+  }
 });
 
 // CONFIG.debug.hooks = true;
