@@ -53,6 +53,7 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] Go through FI2, AS, & NBA and work out what they need.
 - [x] Collapse or refactor ability types to support powers and maybe General categories.
 - [ ] General categories
+- [ ] Migration strategery
 - [ ] "Short notes" and "Long Notes"
 - [ ] Item images for investigative & general abilities
 - [ ] High-contrast theme

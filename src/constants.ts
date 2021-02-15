@@ -19,3 +19,4 @@ export const investigativeAbilityCategories = "investigativeAbilityCategories";
 export const generalAbilityCategories = "generalAbilityCategories";
 export const combatAbilities = "combatAbilities";
 export const defaultTheme = "defaultTheme";
+export const systemMigrationVersion = "systemMigrationVersion";

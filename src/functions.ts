@@ -48,3 +48,7 @@ export const mapValues = <V1, V2>(
   }
   return result;
 };
+
+export const isNullOrEmptyString = (x: any) => {
+  return x === null || x === undefined || x === "";
+};

@@ -1,9 +1,25 @@
-import { abilityCategories, combatAbilities, defaultTheme, generalAbilityCategories, investigativeAbilityCategories } from "../constants";
+import {
+  abilityCategories,
+  combatAbilities,
+  defaultTheme,
+  generalAbilityCategories,
+  investigativeAbilityCategories,
+  systemMigrationVersion,
+} from "../constants";
 import { mapValues } from "../functions";
 import system from "../system.json";
 import { Theme, themes } from "../theme";
 
 export const registerSettings = function () {
+  game.settings.register(system.name, systemMigrationVersion, {
+    name: "System migration version",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: "0.0.0",
+    type: String,
+    // onChange: enable => _setArchmageInitiative(enable)
+  });
   game.settings.register(system.name, abilityCategories, {
     name: "Ability categories",
     hint: "Comma-separated (DNU)",
