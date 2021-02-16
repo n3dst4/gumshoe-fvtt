@@ -11,7 +11,7 @@ import { migrateWorld } from "./migrations/migrateWorld";
 import { RecursivePartial, TrailItemData } from "./types";
 import { isNullOrEmptyString } from "./functions";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory } from "./helpers";
-import { initializePackGenerators } from "./compendiumFactory/generateTrailAbilitiesData";
+import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 
 // Initialize system
 Hooks.once("init", async function () {

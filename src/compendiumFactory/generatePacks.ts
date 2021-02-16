@@ -13,15 +13,20 @@ export const emptyPack = async (pack: any) => {
   });
 };
 
-export const generateCompendiousAbilities = async <
+export const findPack = (packName: string) => {
+  const pack = game.packs.find(
+    (p: any) => p.collection === `${system.name}.${packName}`,
+  );
+  return pack;
+};
+
+export const generatePacks = async <
   T extends InvestigativeAbilityTemplate | GeneralAbilityTemplate
 >(
   abilityData: BaseAbilityDump<T>,
   template: T,
+  pack: any,
 ) => {
-  const pack = game.packs.find(
-    (p: any) => p.collection === `${system.name}.trailOfCthulhuAbilities`,
-  );
   // const invFolder;
 
   Object.keys(abilityData).forEach(
@@ -54,7 +59,9 @@ export const generateCompendiousAbilities = async <
 
 export const initializePackGenerators = () => {
   (window as any).generateTrailAbilities = async () => {
-    await generateCompendiousAbilities(trailData.investigativeAbilities, trailData.investigativeTemplate);
-    await generateCompendiousAbilities(trailData.generalAbilities, trailData.generalTemplate);
+    const pack = findPack("trailOfCthulhuAbilities");
+    emptyPack(pack);
+    await generatePacks(trailData.investigativeAbilities, trailData.investigativeTemplate, pack);
+    await generatePacks(trailData.generalAbilities, trailData.generalTemplate, pack);
   };
 };
