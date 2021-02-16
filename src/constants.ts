@@ -20,3 +20,5 @@ export const generalAbilityCategories = "generalAbilityCategories";
 export const combatAbilities = "combatAbilities";
 export const defaultTheme = "defaultTheme";
 export const systemMigrationVersion = "systemMigrationVersion";
+export const shortNotes = "shortNotes";
+export const longNotes = "longNotes";

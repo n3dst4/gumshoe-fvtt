@@ -56,6 +56,15 @@ export const registerSettings = function () {
     type: String,
     // onChange: enable => _setArchmageInitiative(enable)
   });
+  game.settings.register(system.name, combatAbilities, {
+    name: "Combat abilities",
+    hint: "Comma-separated",
+    scope: "world",
+    config: true,
+    default: "Scuffling,Weapons,Firearms,Athletics",
+    type: String,
+    // onChange: enable => _setArchmageInitiative(enable)
+  });
   game.settings.register(system.name, defaultTheme, {
     name: "Default actor sheet theme",
     scope: "world",

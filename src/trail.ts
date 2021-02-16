@@ -5,13 +5,13 @@ import { TrailItem } from "./module/TrailItem";
 import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
 import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
 import { equipment, generalAbility, investigativeAbility, systemMigrationVersion, weapon } from "./constants";
-import { generateTrailAbilitiesData } from "./generateTrailAbilitiesData";
 import { TrailCombat } from "./module/TrailCombat";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
 import { RecursivePartial, TrailItemData } from "./types";
 import { isNullOrEmptyString } from "./functions";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory } from "./helpers";
+import { initializePackGenerators } from "./compendiumFactory/generateTrailAbilitiesData";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -95,4 +95,4 @@ Hooks.on(
 
 CONFIG.debug.hooks = true;
 
-(window as any).generateTrailAbilitiesData = generateTrailAbilitiesData;
+initializePackGenerators();

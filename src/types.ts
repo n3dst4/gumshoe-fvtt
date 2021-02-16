@@ -6,6 +6,8 @@
 //   "speciality": string
 // }
 
+import { generalAbility, investigativeAbility } from "./constants";
+
 // export type InvestigativeAbilityData = BaseAbilityData & {
 //   "category": string,
 // }
