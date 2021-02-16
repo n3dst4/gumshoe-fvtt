@@ -5,6 +5,7 @@ import {
   InvestigativeAbilityTemplate,
 } from "./types";
 import * as trailData from "./trailData";
+import * as nbaData from "./nbaData";
 
 export const emptyPack = async (pack: any) => {
   const content = await pack.getContent();
@@ -63,5 +64,11 @@ export const initializePackGenerators = () => {
     emptyPack(pack);
     await generatePacks(trailData.investigativeAbilities, trailData.investigativeTemplate, pack);
     await generatePacks(trailData.generalAbilities, trailData.generalTemplate, pack);
+  };
+  (window as any).generateNBAAbilities = async () => {
+    const pack = findPack("nightsBlackAgentsAbilities");
+    emptyPack(pack);
+    await generatePacks(nbaData.investigativeAbilities, nbaData.investigativeTemplate, pack);
+    await generatePacks(nbaData.generalAbilities, nbaData.generalTemplate, pack);
   };
 };

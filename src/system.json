@@ -20,6 +20,13 @@
       "system": "trail-of-cthulhu-unsanctioned",
       "path": "./packs/trailOfCthulhuAbilities.db",
       "entity": "Item"
+    },
+    {
+      "name": "nightsBlackAgentsAbilities",
+      "label": "Night's Black Agents Abilities",
+      "system": "trail-of-cthulhu-unsanctioned",
+      "path": "./packs/nightsBlackAgentsAbilities.db",
+      "entity": "Item"
     }
   ],
   "languages": [],
