@@ -9,6 +9,9 @@ import { generateTrailAbilitiesData } from "./generateTrailAbilitiesData";
 import { TrailCombat } from "./module/TrailCombat";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
+import { RecursivePartial, TrailItemData } from "./types";
+import { isNullOrEmptyString } from "./functions";
+import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory } from "./helpers";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -66,6 +69,30 @@ Hooks.on("ready", async () => {
   migrateWorld();
 });
 
-// CONFIG.debug.hooks = true;
+Hooks.on(
+  "preCreateItem",
+  (
+    data: RecursivePartial<ItemData<TrailItemData>>,
+    options: any,
+    userId: string,
+  ) => {
+    if (game.userId !== userId) return;
+    if (
+      (data.type === generalAbility || data.type === investigativeAbility) &&
+      isNullOrEmptyString(data.data?.category)
+    ) {
+      console.log(
+        `found ability with no category, updating to ${getDefaultGeneralAbilityCategory()}`,
+      );
+      data.data = data.data || {};
+      data.data.category =
+        data.type === generalAbility
+          ? getDefaultGeneralAbilityCategory()
+          : getDefaultInvestigativeAbilityCategory();
+    }
+  },
+);
+
+CONFIG.debug.hooks = true;
 
 (window as any).generateTrailAbilitiesData = generateTrailAbilitiesData;

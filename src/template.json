@@ -51,7 +51,7 @@
         "min": 0,
         "max": 8,
         "occupational": false,
-        "category": "Academic"
+        "category": ""
       }
     },
     "investigativeAbility": {

@@ -72,18 +72,39 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
         <AsyncTextInput value={ability.data.name} onChange={updateName} />
       </GridField>
       <GridField label="Category">
-        <select
-          value={ability.data.data.category}
-          onChange={onChangeCategory}
+        <div
           css={{
-            lineHeight: "inherit",
-            height: "inherit",
+            display: "flex",
+            flexDirection: "row",
           }}
         >
-          {categories.map((cat: string) => (
-            <option key={cat}>{cat}</option>
-          ))}
-        </select>
+          <div
+            css={{
+              // flex: 1,
+            }}
+          >
+            <select
+              value={ability.data.data.category}
+              onChange={onChangeCategory}
+              css={{
+                lineHeight: "inherit",
+                height: "inherit",
+              }}
+            >
+              {categories.map((cat: string) => (
+                <option key={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
+          <div
+            css={{
+              flex: 1,
+            }}
+          >
+            <AsyncTextInput value={ability.data.data.category} onChange={updateCategory}/>
+          </div>
+
+        </div>
       </GridField>
       <GridField label="Min">
         <AsyncNumberInput
