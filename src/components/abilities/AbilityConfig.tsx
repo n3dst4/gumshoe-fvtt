@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { ChangeEvent, useCallback } from "react";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import { isGeneralAbility } from "../../functions";
 import { useUpdate } from "../../hooks/useUpdate";
 import { TrailItem } from "../../module/TrailItem";
@@ -62,9 +62,28 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
     isGeneral ? generalAbilityCategories : investigativeAbilityCategories,
   ).split(",").map((x: string) => x.trim());
 
+  const isRealCategory = categories.includes(ability.data.data.category);
+  const [showCustomField, setShowCustomField] = useState(!isRealCategory);
+  const [selectCustomOption, setSelectCustomOption] = useState(!isRealCategory);
+
   const onChangeCategory = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-    updateCategory(e.currentTarget.value);
+    const value = e.currentTarget.value;
+    if (value === "") {
+      setShowCustomField(true);
+      setSelectCustomOption(true);
+    } else {
+      setSelectCustomOption(false);
+      updateCategory(e.currentTarget.value);
+    }
   }, [updateCategory]);
+
+  const selectedCat = selectCustomOption ? "" : ability.data.data.category;
+
+  // useEffect(() => {
+  //   if (selectedCat === "") {
+  //     setShowCustomField(true);
+  //   }
+  // }, [selectedCat]);
 
   return (
     <InputGrid>
@@ -84,7 +103,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
             }}
           >
             <select
-              value={ability.data.data.category}
+              value={selectedCat}
               onChange={onChangeCategory}
               css={{
                 lineHeight: "inherit",
@@ -94,6 +113,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
               {categories.map((cat: string) => (
                 <option key={cat}>{cat}</option>
               ))}
+              <option value="">Custom</option>
             </select>
           </div>
           <div
@@ -101,7 +121,12 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
               flex: 1,
             }}
           >
-            <AsyncTextInput value={ability.data.data.category} onChange={updateCategory}/>
+            {showCustomField &&
+              <AsyncTextInput
+                value={ability.data.data.category}
+                onChange={updateCategory}
+              />
+            }
           </div>
 
         </div>
