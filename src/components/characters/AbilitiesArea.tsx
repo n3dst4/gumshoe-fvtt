@@ -87,7 +87,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
         <div css={{ gridArea: "general" }}>
           {Object.keys(generalAbilities).sort().map((cat) => (
             <div key={cat}>
-              <h2>{cat}!</h2>
+              <h2>{cat}</h2>
               {
                 sortEntitiesByName(generalAbilities[cat]).map((ability) => (
                   <AbilitySlug key={ability.id} ability={ability}/>
