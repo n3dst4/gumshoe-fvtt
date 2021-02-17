@@ -1,35 +1,36 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ChangeEvent, useCallback, useContext } from "react";
+import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { IdContext } from "../IdContext";
 
-type TextAreaProps = {
+type AsyncTextAreaProps = {
   className?: string,
-  value?: string,
-  defaultValue?: string,
-  onChange?: (value: string, index?: number) => void,
-  onFocus?: () => void,
-  onBlur?: () => void,
+  value: string,
+  onChange: (value: string, index?: number) => void,
   disabled?: boolean,
-  placeholder?: string,
   index?: number,
 };
 
-export const TextArea: React.FC<TextAreaProps> = ({
+export const AsyncTextArea: React.FC<AsyncTextAreaProps> = ({
   className,
   value,
-  defaultValue,
-  onChange,
-  onFocus,
-  onBlur,
+  onChange: onChangeOrig,
   disabled,
-  placeholder,
   index,
 }) => {
   const id = useContext(IdContext);
 
+  const {
+    onChange,
+    onFocus,
+    onBlur,
+    display,
+  } = useAsyncUpdate(value, onChangeOrig, index);
+
   const onChangeCb = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-    onChange?.(e.currentTarget.value, index);
+    onChange(e.currentTarget.value);
   }, [index, onChange]);
 
   return (
@@ -41,13 +42,11 @@ export const TextArea: React.FC<TextAreaProps> = ({
       }}
       className={className}
       data-lpignore="true"
-      value={value}
-      defaultValue={defaultValue}
+      value={display || ""}
       onChange={onChangeCb}
       onFocus={onFocus}
       onBlur={onBlur}
       disabled={disabled}
-      placeholder={placeholder}
     />
   );
 };

@@ -18,6 +18,7 @@ import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import system from "../../system.json";
 import { shortNotes } from "../../constants";
+import { crappySplit } from "../../functions";
 
 type TrailActorSheetProps = {
   actor: TrailActor,
@@ -62,15 +63,7 @@ export const TrailActorSheet = ({
 
   const shortNotesAsString = game.settings.get(system.name, shortNotes);
   const shortNotesNames = useMemo(() => {
-    return shortNotesAsString
-      .replace("\\\\", "__BACKSLASH__")
-      .replace("\\,", "__COMMA__")
-      .split(",")
-      .map((s: string) => (
-        s.trim()
-          .replace("__BACKSLASH__", "\\")
-          .replace("__COMMA__", ",")
-      ));
+    return crappySplit(shortNotesAsString);
   }, [shortNotesAsString]);
 
   return (
