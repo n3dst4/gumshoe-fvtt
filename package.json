@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "trail-of-cthulhu-unsanctioned",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "The Trail of Cthulhu (GUMSHOE) game from Pelgrane Press.",
   "scripts": {
     "package": "gulp package",
@@ -61,7 +61,6 @@
   },
   "dependencies": {
     "@types/dompurify": "^2.2.1",
-    "csv": "^5.3.2",
     "dompurify": "^2.2.6",
     "lodash": "^4.17.20",
     "nanoid": "^3.1.20",

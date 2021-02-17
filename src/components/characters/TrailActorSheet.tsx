@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { Fragment, useCallback } from "react";
+import React, { Fragment, useCallback, useMemo } from "react";
 import { TrailActor } from "../../module/TrailActor";
 import { PoolTracker } from "../abilities/PoolTracker";
 import { jsx } from "@emotion/react";
@@ -16,6 +16,8 @@ import { NotesArea } from "./NotesArea";
 import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
+import system from "../../system.json";
+import { shortNotes } from "../../constants";
 
 type TrailActorSheetProps = {
   actor: TrailActor,
@@ -44,10 +46,32 @@ export const TrailActorSheet = ({
   }, [actor, foundryApplication.position.left, foundryApplication.position.top]);
 
   const updateName = useUpdate(actor, name => ({ name }));
-  const updateDrive = useUpdate(actor, drive => ({ data: { drive } }));
   const updateOccupation = useUpdate(actor, occupation => ({ data: { occupation } }));
 
+  const updateShortNote = useCallback((value, index) => {
+    const newNotes = [...actor.data.data.shortNotes || []];
+    newNotes[index] = value;
+    actor.update({
+      data: {
+        shortNotes: newNotes,
+      },
+    });
+  }, [actor]);
+
   const theme = actor.getSheetTheme();
+
+  const shortNotesAsString = game.settings.get(system.name, shortNotes);
+  const shortNotesNames = useMemo(() => {
+    return shortNotesAsString
+      .replace("\\\\", "__BACKSLASH__")
+      .replace("\\,", "__COMMA__")
+      .split(",")
+      .map((s: string) => (
+        s.trim()
+          .replace("__BACKSLASH__", "\\")
+          .replace("__COMMA__", ",")
+      ));
+  }, [shortNotesAsString]);
 
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
@@ -116,12 +140,17 @@ export const TrailActorSheet = ({
                 onChange={updateOccupation}
               />
             </GridField>
-            <GridField label="Drive">
-              <AsyncTextInput
-                value={actor.data.data.drive}
-                onChange={updateDrive}
-              />
-            </GridField>
+            {
+              shortNotesNames.map((name: string, i: number) => (
+                <GridField key={`${name}--${i}`} label={name}>
+                  <AsyncTextInput
+                    value={actor.data.data.shortNotes[i]}
+                    onChange={updateShortNote}
+                    index={i}
+                  />
+                </GridField>
+              ))
+            }
           </InputGrid>
         </div>
 

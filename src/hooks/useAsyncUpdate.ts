@@ -8,7 +8,8 @@ import throttle from "lodash/throttle";
  */
 export const useAsyncUpdate = (
   value: string,
-  onChangeOrig: (newValue: string) => void,
+  onChangeOrig: (newValue: string, index?: number) => void,
+  index?: number,
 ) => {
   // many shenanigans to handle slow updates
   // first up, state to handle the actual text we show so we can update it in a
@@ -37,8 +38,8 @@ export const useAsyncUpdate = (
 
   const onChange = useCallback((value: string) => {
     setDisplay(value);
-    onChangeThrottled(value);
-  }, [onChangeThrottled]);
+    onChangeThrottled(value, index);
+  }, [index, onChangeThrottled]);
 
   // for posterity, i'm leaving this here - a mechanism to relay the text
   // through a secondary div to avoid having the text affected by

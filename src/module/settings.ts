@@ -88,7 +88,7 @@ export const registerSettings = function () {
     hint: "Comma-separated",
     scope: "world",
     config: true,
-    default: "Drive, Occupation",
+    default: "Drive",
     type: String,
     // onChange: enable => _setArchmageInitiative(enable)
   });

@@ -30,13 +30,25 @@ export type TrailActorData = {
   stability: number,
   sanity: number,
   magic: number,
-  drive: string,
+
   occupation: string,
+
+  /** @deprecated */
+  drive: string,
+  /** @deprecated */
   occupationalBenefits: string,
+  /** @deprecated */
   pillarsOfSanity: string,
+  /** @deprecated */
   sourcesOfStability: string,
+  /** @deprecated */
   notes: string,
+  /** @deprecated */
   background: string,
+
+  longNotes: string[],
+  shortNotes: string[],
+
   initiativeAbility: string,
   hideZeroRated: boolean,
   sheetTheme: string|null,
