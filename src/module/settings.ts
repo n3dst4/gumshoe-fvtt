@@ -74,4 +74,31 @@ export const registerSettings = function () {
     type: String,
     // onChange: enable => _setArchmageInitiative(enable)
   });
+  game.settings.register(system.name, combatAbilities, {
+    name: "Combat abilities",
+    hint: "Comma-separated",
+    scope: "world",
+    config: true,
+    default: "Scuffling,Weapons,Firearms,Athletics",
+    type: String,
+    // onChange: enable => _setArchmageInitiative(enable)
+  });
+  game.settings.register(system.name, "shortNotes", {
+    name: "Short Notes",
+    hint: "Comma-separated",
+    scope: "world",
+    config: true,
+    default: "Drive, Occupation",
+    type: String,
+    // onChange: enable => _setArchmageInitiative(enable)
+  });
+  game.settings.register(system.name, "longNotes", {
+    name: "Short Notes",
+    hint: "Comma-separated (backslash to include a comma)",
+    scope: "world",
+    config: true,
+    default: "Notes\\, Contacts etc., Occupational Benefits, Pillars of Sanity, Sources of Stability, Background",
+    type: String,
+    // onChange: enable => _setArchmageInitiative(enable)
+  });
 };

@@ -5,15 +5,21 @@
     },
     "pc": {
       "templates": [],
+
       "drive": "",
       "occupation": "",
+
       "occupationalBenefits": "",
-      "buildPoints": 28,
       "pillarsOfSanity": "",
       "sourcesOfStability": "",
       "notes": "",
       "background": "",
+
+      "shortNotes": [],
+      "longNotes": [],
+      
       "initiativeAbility": "",
+      "buildPoints": 28,
       "hideZeroRated": false,
       "sheetTheme": null,
       "resources": {
