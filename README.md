@@ -54,8 +54,8 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] Collapse or refactor ability types to support powers and maybe General categories.
 - [x] General categories
 - [x] Migration strategery
+- [x] "Short notes" and "Long Notes"
 - [ ] Configurable trackers (we can do this by adding "showTracker" to the ability definition)
-- [ ] "Short notes" and "Long Notes"
 - [ ] Item images for investigative & general abilities
 - [ ] High-contrast theme
 
