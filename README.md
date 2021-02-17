@@ -55,6 +55,7 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] General categories
 - [x] Migration strategery
 - [x] "Short notes" and "Long Notes"
+- [ ] Move notes getters/setters into actor class
 - [ ] Configurable trackers (we can do this by adding "showTracker" to the ability definition)
 - [ ] Item images for investigative & general abilities
 - [ ] High-contrast theme

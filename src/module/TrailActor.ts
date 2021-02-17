@@ -70,6 +70,14 @@ export class TrailActor<T=any> extends Actor<TrailActorData> {
     return this.items.filter((item: TrailItem) => item.type === weapon);
   }
 
+  getAbilities (): TrailItem[] {
+    return this.items.filter((item: TrailItem) => isAbility(item));
+  }
+
+  getTrackerAbilities (): TrailItem[] {
+    return this.getAbilities().filter((item: TrailItem) => item.data.data.showTracker);
+  }
+
   // ---------------------------------------------------------------------------
   // THEME
 

@@ -57,7 +57,8 @@
         "min": 0,
         "max": 8,
         "occupational": false,
-        "category": ""
+        "category": "",
+        "showTracker": false
       }
     },
     "investigativeAbility": {

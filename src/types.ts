@@ -94,6 +94,7 @@ export type CoreAbilityData = {
   occupational: boolean,
   hasSpecialities: boolean,
   specialities: string[],
+  showTracker: boolean,
 }
 
 export type InvestAbilityData = CoreAbilityData & {

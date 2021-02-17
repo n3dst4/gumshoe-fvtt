@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import React, { Fragment, useCallback, useMemo } from "react";
 import { TrailActor } from "../../module/TrailActor";
-import { PoolTracker } from "../abilities/PoolTracker";
 import { jsx } from "@emotion/react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { AbilitiesArea } from "./AbilitiesArea";
@@ -19,6 +18,7 @@ import { ActorSheetAppContext } from "../FoundryAppContext";
 import system from "../../system.json";
 import { shortNotes } from "../../constants";
 import { crappySplit } from "../../functions";
+import { TrackersArea } from "./TrackersArea";
 
 type TrailActorSheetProps = {
   actor: TrailActor,
@@ -161,10 +161,7 @@ export const TrailActorSheet = ({
               Refresh
             </button>
             <hr/>
-            <PoolTracker abilityName="Sanity" actor={actor} />
-            <PoolTracker abilityName="Stability" actor={actor} />
-            <PoolTracker abilityName="Health" actor={actor} />
-            <PoolTracker abilityName="Magic" actor={actor} />
+            <TrackersArea actor={actor} />
         </div>
 
         <div
