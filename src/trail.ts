@@ -4,12 +4,12 @@ import { TrailActor } from "./module/TrailActor";
 import { TrailItem } from "./module/TrailItem";
 import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
 import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
-import { equipment, generalAbility, investigativeAbility, systemMigrationVersion, weapon } from "./constants";
+import { equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, systemMigrationVersion, weapon } from "./constants";
 import { TrailCombat } from "./module/TrailCombat";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
 import { RecursivePartial, TrailItemData } from "./types";
-import { isNullOrEmptyString } from "./functions";
+import { isAbility, isGeneralAbility, isNullOrEmptyString } from "./functions";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory } from "./helpers";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 
@@ -80,18 +80,25 @@ Hooks.on(
     userId: string,
   ) => {
     if (game.userId !== userId) return;
-    if (
-      (data.type === generalAbility || data.type === investigativeAbility) &&
-      isNullOrEmptyString(data.data?.category)
-    ) {
-      console.log(
-        `found ability with no category, updating to ${getDefaultGeneralAbilityCategory()}`,
-      );
-      data.data = data.data || {};
-      data.data.category =
-        data.type === generalAbility
+
+    // ABILITIES
+    if (isAbility(data.type ?? "")) {
+      // set category
+      if (isNullOrEmptyString(data.data?.category)) {
+        const category = generalAbility
           ? getDefaultGeneralAbilityCategory()
           : getDefaultInvestigativeAbilityCategory();
+        console.log(
+          `found ability "${data.name}" with no category, updating to "${category}"`,
+        );
+        data.data = data.data || {};
+        data.data.category = category;
+      }
+
+      // set image
+      if (isNullOrEmptyString(data.img)) {
+        data.img = isGeneralAbility(data.type ?? "") ? investigativeAbilityIcon : generalAbilityIcon;
+      }
     }
   },
 );

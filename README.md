@@ -59,8 +59,8 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] Move notes getters/setters into actor class
 - [x] make tracker headers clickable
 - [x] migrate old trackers to new trackers
-- [ ] attributes based on dynamic trackers
-- [ ] Item images for investigative & general abilities
+- [x] attributes based on dynamic trackers
+- [x] Item images for investigative & general abilities
 - [ ] Custom system config flyout (the stock one is 🩲)
 - [ ] High-contrast theme
 

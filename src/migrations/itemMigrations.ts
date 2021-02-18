@@ -1,5 +1,5 @@
-import { generalAbility, systemMigrationVersion } from "../constants";
-import { isNullOrEmptyString } from "../functions";
+import { generalAbility, generalAbilityIcon, investigativeAbilityIcon, systemMigrationVersion } from "../constants";
+import { isAbility, isGeneralAbility, isNullOrEmptyString } from "../functions";
 import { getDefaultGeneralAbilityCategory } from "../helpers";
 import system from "../system.json";
 
@@ -26,5 +26,14 @@ export const _setTrackersForPreAlpha4Updates = (data: any, updateData: any) => {
     updateData.data.showTracker = true;
   }
   return updateData;
-}
-;
+};
+
+export const _setIconForAbilities = (data: any, updateData: any) => {
+  if (isAbility(data.type) && (isNullOrEmptyString(data.img) || data.img === "icons/svg/mystery-man.svg")) {
+    if (!updateData.data) {
+      updateData.data = {};
+    }
+    updateData.img = isGeneralAbility(data.type ?? "") ? generalAbilityIcon : investigativeAbilityIcon;
+  }
+  return updateData;
+};
