@@ -43,7 +43,13 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
         // gridAutoRows: "2em",
       }}
     >
-      <h2 css={{ gridColumn: "start / end" }}>{ability.name}</h2>
+      <h2 css={{ gridColumn: "start / end" }}>
+        <a
+          onClick={() => ability.sheet.render(true)}
+        >
+          {ability.name}
+        </a>
+      </h2>
 
       {vals.map((v) => (
         <PoolCheckbox

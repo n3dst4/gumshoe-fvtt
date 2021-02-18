@@ -56,10 +56,12 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] Migration strategery
 - [x] "Short notes" and "Long Notes"
 - [x] Configurable trackers (we can do this by adding "showTracker" to the ability definition)
-- [ ] Move notes getters/setters into actor class
-- [ ] migrate old trackers to new trackers
+- [x] Move notes getters/setters into actor class
+- [x] make tracker headers clickable
+- [x] migrate old trackers to new trackers
 - [ ] attributes based on dynamic trackers
 - [ ] Item images for investigative & general abilities
+- [ ] Custom system config flyout (the stock one is 🩲)
 - [ ] High-contrast theme
 
 

@@ -15,7 +15,7 @@ export const registerSettings = function () {
     name: "System migration version",
     hint: "",
     scope: "world",
-    config: false,
+    config: true,
     default: "0.0.0",
     type: String,
     // onChange: enable => _setArchmageInitiative(enable)
