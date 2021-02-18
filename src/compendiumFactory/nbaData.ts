@@ -1,8 +1,9 @@
-import { generalAbility, investigativeAbility } from "../constants";
+import { generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon } from "../constants";
 import { GeneralAbilitiesData, GeneralAbilityTemplate, InvestigativeAbilitiesData, InvestigativeAbilityTemplate } from "./types";
 
 export const investigativeTemplate: InvestigativeAbilityTemplate = {
   type: investigativeAbility,
+  img: investigativeAbilityIcon,
   category: "Academic",
   hasSpecialities: false,
   specialities: [],
@@ -11,10 +12,12 @@ export const investigativeTemplate: InvestigativeAbilityTemplate = {
   min: 0,
   max: 8,
   occupational: false,
+  showTracker: false,
 };
 
 export const generalTemplate: GeneralAbilityTemplate = {
   type: generalAbility,
+  img: generalAbilityIcon,
   canBeInvestigative: false,
   hasSpecialities: false,
   specialities: [],
@@ -24,6 +27,7 @@ export const generalTemplate: GeneralAbilityTemplate = {
   max: 8,
   occupational: false,
   category: "General",
+  showTracker: false,
 };
 
 export const investigativeAbilities: InvestigativeAbilitiesData = {
@@ -86,7 +90,7 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Filch" },
     { name: "Gambling" },
     { name: "Hand-to-Hand" },
-    { name: "Health", max: 15, min: -12, rating: 4, pool: 4 },
+    { name: "Health", max: 15, min: -12, rating: 4, pool: 4, showTracker: true },
     { name: "Infiltration" },
     { name: "Mechanics" },
     { name: "Medic" },
@@ -96,7 +100,7 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Sense Trouble" },
     { name: "Shooting" },
     { name: "Shrink" },
-    { name: "Stability", max: 15, min: -12, rating: 4, pool: 4 },
+    { name: "Stability", max: 15, min: -12, rating: 4, pool: 4, showTracker: true },
     { name: "Surveillance" },
     { name: "Weapons" },
   ],

@@ -34,10 +34,11 @@ export const generatePacks = async <
     async (category: keyof typeof abilityData) => {
       // const folder = await Folder.create({ name: category, type: "Item" }, { temporary: true });
       const abilityDatas = abilityData[category].map((data: any) => {
-        const { name, type, ...rest } = data;
+        const { name, type, img, ...rest } = data;
         return {
           type: template.type,
           name,
+          img: img ?? template.img,
           // folder: folder.id,
           data: {
             ...template,

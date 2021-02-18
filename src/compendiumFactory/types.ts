@@ -9,6 +9,8 @@ type BaseAbilityTemplate = {
   min: number,
   max: number,
   occupational: boolean,
+  showTracker: boolean,
+  img: string,
 }
 
 export type InvestigativeAbilityTemplate = {

@@ -1,8 +1,9 @@
-import { generalAbility, investigativeAbility } from "../constants";
+import { generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon } from "../constants";
 import { GeneralAbilitiesData, GeneralAbilityTemplate, InvestigativeAbilitiesData, InvestigativeAbilityTemplate } from "./types";
 
 export const investigativeTemplate: InvestigativeAbilityTemplate = {
   type: investigativeAbility,
+  img: investigativeAbilityIcon,
   category: "Academic",
   hasSpecialities: false,
   specialities: [],
@@ -11,10 +12,12 @@ export const investigativeTemplate: InvestigativeAbilityTemplate = {
   min: 0,
   max: 8,
   occupational: false,
+  showTracker: false,
 };
 
 export const generalTemplate: GeneralAbilityTemplate = {
   type: generalAbility,
+  img: generalAbilityIcon,
   canBeInvestigative: false,
   hasSpecialities: false,
   specialities: [],
@@ -24,6 +27,7 @@ export const generalTemplate: GeneralAbilityTemplate = {
   max: 8,
   occupational: false,
   category: "General",
+  showTracker: false,
 };
 
 export const investigativeAbilities: InvestigativeAbilitiesData = {
@@ -85,19 +89,19 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Firearms" },
     { name: "First Aid" },
     { name: "Fleeing" },
-    { name: "Health", max: 15, min: -12, rating: 1, pool: 1 },
+    { name: "Health", max: 15, min: -12, rating: 1, pool: 1, showTracker: true },
     { name: "Hypnosis" },
-    { name: "Magic", max: 15 },
+    { name: "Magic", max: 15, showTracker: true },
     { name: "Mechanical Repair", canBeInvestigative: true },
     { name: "Piloting" },
     { name: "Preparedness" },
     { name: "Psychoanalysis" },
     { name: "Riding" },
-    { name: "Sanity", max: 15, rating: 4, pool: 4 },
+    { name: "Sanity", max: 15, rating: 4, pool: 4, showTracker: true },
     { name: "Scuffling" },
     { name: "Sense Trouble" },
     { name: "Shadowing" },
-    { name: "Stability", max: 15, min: -12, rating: 1, pool: 1 },
+    { name: "Stability", max: 15, min: -12, rating: 1, pool: 1, showTracker: true },
     { name: "Stealth" },
     { name: "Technical" },
     { name: "Weapons" },
