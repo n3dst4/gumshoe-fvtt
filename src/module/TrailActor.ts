@@ -106,6 +106,30 @@ export class TrailActor<T=any> extends Actor<TrailActorData> {
 
   getBackground = () => this.data.data.background ?? ""
   setBackground = (background: string) => this.update({ data: { background } })
+
+  getLongNote = (i: number) => this.data.data.longNotes?.[i] ?? ""
+  getLongNotes = () => this.data.data.longNotes ?? []
+  setLongNote = (i: number, text: string) => {
+    const newNotes = [...this.data.data.longNotes || []];
+    newNotes[i] = text;
+    this.update({
+      data: {
+        longNotes: newNotes,
+      },
+    });
+  }
+
+  getShortNote = (i: number) => this.data.data.shortNotes?.[i] ?? ""
+  getShortNotes = () => this.data.data.shortNotes ?? []
+  setShortNote = (i: number, text: string) => {
+    const newNotes = [...this.data.data.shortNotes || []];
+    newNotes[i] = text;
+    this.update({
+      data: {
+        shortNotes: newNotes,
+      },
+    });
+  }
 }
 
 /**

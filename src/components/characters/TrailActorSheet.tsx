@@ -50,13 +50,7 @@ export const TrailActorSheet = ({
   const updateOccupation = useUpdate(actor, occupation => ({ data: { occupation } }));
 
   const updateShortNote = useCallback((value, index) => {
-    const newNotes = [...actor.data.data.shortNotes || []];
-    newNotes[index] = value;
-    actor.update({
-      data: {
-        shortNotes: newNotes,
-      },
-    });
+    actor.setLongNote(index, value);
   }, [actor]);
 
   const theme = actor.getSheetTheme();
