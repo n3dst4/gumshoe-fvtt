@@ -13,7 +13,7 @@ This sytem isn't registered so to install it into your Foundry instance:
 3. Where it says **Manfest URL**, paste in
 
     ```
-    https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/raw/master/src/system.json
+    https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/raw/release/src/system.json
     ```
     
 4. Click **Install**
