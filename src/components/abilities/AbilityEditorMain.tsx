@@ -29,7 +29,7 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
 
   const isCombatAbility = game.settings.get(system.name, combatAbilities)
     .split(",").map(x => x.trim()).includes(ability.name);
-  const actorInitiativeAbility = ability.actor.data.data.initiativeAbility;
+  const actorInitiativeAbility = ability.actor?.data.data.initiativeAbility;
   const isAbilityUsed = actorInitiativeAbility === ability.name;
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
