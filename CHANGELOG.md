@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-alpha.4 (2021-02-19)
+
+* FIX not being able to edit sidebar abilities.
+* There is loads more on the way but we're past due for a bugfix on this.
+
+
 ## 1.0.0-alpha.3 (2021-02-07)
 
 * FIX: #3 (users getting "user  lacks permission to update character" when someone else updates their own pools).
