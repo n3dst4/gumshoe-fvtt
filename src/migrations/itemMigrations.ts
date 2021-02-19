@@ -16,7 +16,7 @@ export const _addCategoryToGeneralAbilities = (data: any, updateData: any) => {
 
 export const _setTrackersForPreAlpha4Updates = (data: any, updateData: any) => {
   const currentVersion = game.settings.get(system.name, systemMigrationVersion);
-  const needsMigration = isNewerVersion("1.0.0-alpha.4", currentVersion);
+  const needsMigration = isNewerVersion("1.0.0-alpha.5", currentVersion);
   const isRelevant = ["Health", "Sanity", "Stability", "Magic"].includes(data.name);
 
   if (data.type === generalAbility && needsMigration && isRelevant) {
