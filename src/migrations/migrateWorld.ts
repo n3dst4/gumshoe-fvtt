@@ -1,6 +1,6 @@
 import { systemMigrationVersion } from "../constants";
 import system from "../system.json";
-import { migrateAbilityCategories } from "./migrateAbilityCategories";
+import { migrateAbilityCategories, migrateToJSON } from "./worldMigrations";
 import { migrateActorData } from "./migrateActorData";
 import { migrateCompendium } from "./migrateCompendium";
 import { migrateItemData } from "./migrateItemData";
@@ -20,6 +20,7 @@ export const migrateWorld = async function () {
   );
 
   await migrateAbilityCategories();
+  await migrateToJSON();
 
   // Migrate World Actors
   for (const a of game.actors.entities) {

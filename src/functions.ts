@@ -52,18 +52,3 @@ export const mapValues = <V1, V2>(
 export const isNullOrEmptyString = (x: any) => {
   return x === null || x === undefined || x === "";
 };
-
-const backslash = "__BACKSLASH__";
-const comma = "__COMMA__";
-
-export const crappySplit = (orig: string|null|undefined): string[] => {
-  return (orig || "")
-    .replace("\\\\", backslash)
-    .replace("\\,", comma)
-    .split(",")
-    .map((s: string) => (
-      s.trim()
-        .replace(backslash, "\\")
-        .replace(comma, ",")
-    )).filter((s) => s.length > 0);
-};

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { Fragment, useCallback, useMemo } from "react";
+import { Fragment, useCallback } from "react";
 import { TrailActor } from "../../module/TrailActor";
 import { jsx } from "@emotion/react";
 import { useUpdate } from "../../hooks/useUpdate";
@@ -15,10 +15,8 @@ import { NotesArea } from "./NotesArea";
 import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
-import system from "../../system.json";
-import { shortNotes } from "../../constants";
-import { crappySplit } from "../../functions";
 import { TrackersArea } from "./TrackersArea";
+import { getShortNotes } from "../../module/settingsHelpers";
 
 type TrailActorSheetProps = {
   actor: TrailActor,
@@ -55,10 +53,7 @@ export const TrailActorSheet = ({
 
   const theme = actor.getSheetTheme();
 
-  const shortNotesAsString = game.settings.get(system.name, shortNotes);
-  const shortNotesNames = useMemo(() => {
-    return crappySplit(shortNotesAsString);
-  }, [shortNotesAsString]);
+  const shortNotesNames = getShortNotes();
 
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>

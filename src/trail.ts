@@ -4,7 +4,7 @@ import { TrailActor } from "./module/TrailActor";
 import { TrailItem } from "./module/TrailItem";
 import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
 import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
-import { equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, systemMigrationVersion, weapon } from "./constants";
+import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, systemMigrationVersion, weapon } from "./constants";
 import { TrailCombat } from "./module/TrailCombat";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
@@ -64,7 +64,11 @@ Hooks.on("ready", async () => {
   if (!needsMigration) return;
 
   // warn users on old versions
-  if (currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)) {
+  if (
+    currentVersion &&
+    currentVersion !== defaultMigratedSystemVersion &&
+    isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)
+  ) {
     const warning = `Your ${system.title} system data is from too old a version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
     ui.notifications.error(warning, { permanent: true });
   }
@@ -114,6 +118,6 @@ Hooks.on("renderSettings", (app: Application, html: JQuery) => {
   });
 });
 
-CONFIG.debug.hooks = false;
+CONFIG.debug.hooks = true;
 
 initializePackGenerators();

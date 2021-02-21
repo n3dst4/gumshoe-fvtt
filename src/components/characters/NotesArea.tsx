@@ -1,11 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useMemo } from "react";
+import React, { Fragment, useCallback } from "react";
 import { TrailActor } from "../../module/TrailActor";
-import system from "../../system.json";
-import { longNotes } from "../../constants";
-import { crappySplit } from "../../functions";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
+import { getLongNotes } from "../../module/settingsHelpers";
 
 type NotesAreaProps = {
   actor: TrailActor,
@@ -14,10 +12,7 @@ type NotesAreaProps = {
 export const NotesArea: React.FC<NotesAreaProps> = ({
   actor,
 }) => {
-  const longNotesAsString = game.settings.get(system.name, longNotes);
-  const longNotesNames = useMemo(() => {
-    return crappySplit(longNotesAsString);
-  }, [longNotesAsString]);
+  const longNotesNames = getLongNotes();
 
   const updateLongNote = useCallback((value, index) => {
     actor.setLongNote(index, value);
