@@ -63,6 +63,7 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] Item images for investigative & general abilities
 - [ ] Custom system config flyout (the stock one is 🩲)
 - [ ] High-contrast theme
+- [ ] Look for uses of system.name and switch to systemName from constants
 
 
 ## The future

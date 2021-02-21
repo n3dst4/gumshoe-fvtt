@@ -12,6 +12,7 @@ import { RecursivePartial, TrailItemData } from "./types";
 import { isAbility, isGeneralAbility, isNullOrEmptyString } from "./functions";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory } from "./helpers";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
+import { GumshoeSettingsClass } from "./module/GumshoeSettingsClass";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -102,6 +103,16 @@ Hooks.on(
     }
   },
 );
+
+Hooks.on("renderSettings", (app: Application, html: JQuery) => {
+  const button = $("<button><i class=\"fas fa-cogs\"> </i><i class=\"fas fa-search\"></i>GUMSHOE System Settings</button>");
+  html.find('button[data-action="configure"]').after(button);
+
+  button.on("click", ev => {
+    ev.preventDefault();
+    new GumshoeSettingsClass().render(true);
+  });
+});
 
 CONFIG.debug.hooks = false;
 

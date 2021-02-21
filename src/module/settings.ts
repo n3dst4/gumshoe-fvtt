@@ -16,6 +16,7 @@ export const registerSettings = function () {
     hint: "",
     scope: "world",
     config: true,
+    readonly: true,
     default: "0.0.0",
     type: String,
     // onChange: enable => _setArchmageInitiative(enable)
