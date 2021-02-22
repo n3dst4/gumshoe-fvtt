@@ -8,6 +8,7 @@ import { themes, trailTheme } from "../theme";
 import { CSSReset } from "./CSSReset";
 import { GridField } from "./inputs/GridField";
 import { InputGrid } from "./inputs/InputGrid";
+import { ListEdit } from "./inputs/ListEdit";
 
 type GumshoeSettingsProps = {
   foundryApplication: Application;
@@ -98,8 +99,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
         flexDirection: "column",
       }}
     >
-      <h1>
-        GUMSHOE Settings
+      <div>
         <a
           css={{
             float: "right",
@@ -110,7 +110,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
         >
           <i className={`fa fa-${showJSON ? "times" : "database"}`} />
         </a>
-      </h1>
+      </div>
       {showJSON && (
         <InputGrid css={{ flex: 1, overflow: "auto" }}>
           <GridField label="systemMigrationVersion">
@@ -152,7 +152,12 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
               ))}
             </select>
           </GridField>
-          <GridField label="investigativeAbilityCategories"></GridField>
+          <GridField label="investigativeAbilityCategories">
+            <ListEdit
+              value={investigativeAbilityCategories}
+              onChange={setInvestigativeAbilityCategories}
+            />
+          </GridField>
           <GridField label="generalAbilityCategories"></GridField>
           <GridField label="combatAbilities"></GridField>
           <GridField label="shortNotes"></GridField>

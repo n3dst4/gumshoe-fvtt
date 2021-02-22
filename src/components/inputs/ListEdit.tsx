@@ -1,31 +1,33 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 type ListEditProps = {
-  list: string[],
+  value: string[];
+  onChange: (value: string[]) => void;
 };
 
 export const ListEdit: React.FC<ListEditProps> = ({
-  list,
+  value,
+  onChange,
 }) => {
+  const onInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.currentTarget.dataset.index) { return; }
+    const newList = [...value];
+    newList[Number(e.currentTarget.dataset.index)] = e.currentTarget.value;
+    onChange(newList);
+  }, [onChange, value]);
+
   return (
     <div>
-      {
-        list.map((s, i) => (<span key={i}>{s}! </span>))
-      }
+      {value.map((s, i) => (
+        <div key={i}>
+          <input
+            data-index={i}
+            type="text"
+            value={s}
+            onChange={onInputChange}
+          />
+        </div>
+      ))}
     </div>
-  );
-};
-
-type ListEditAppProps = {
-  list: string[],
-  foundryApplication: FormApplication,
-};
-
-export const ListEditApp: React.FC<ListEditAppProps> = ({
-  list,
-  foundryApplication,
-}) => {
-  return (
-    <ListEdit list={list} />
   );
 };
