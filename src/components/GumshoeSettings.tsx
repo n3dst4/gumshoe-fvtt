@@ -4,6 +4,10 @@ import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useState } from "react";
 import * as constants from "../constants";
 import { getCombatAbilities, getDefaultThemeName, getGeneralAbilityCategories, getInvestigativeAbilityCategories, getLongNotes, getShortNotes, getSystemMigrationVersion } from "../module/settingsHelpers";
+import { themes, trailTheme } from "../theme";
+import { CSSReset } from "./CSSReset";
+import { GridField } from "./inputs/GridField";
+import { InputGrid } from "./inputs/InputGrid";
 
 type GumshoeSettingsProps = {
   foundryApplication: Application;
@@ -21,7 +25,68 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
   const shortNotes = getShortNotes();
   const longNotes = getLongNotes();
 
-  return <div>Gumshoe settings go here</div>;
+  const theme = themes[getDefaultThemeName()] || trailTheme;
+
+  const [showJSON, setShowJSON] = useState(false);
+
+  return (
+    <CSSReset theme={theme}>
+      <h1>
+        GUMSHOE Settings
+        <a
+          css={{
+            float: "right",
+          }}
+          onClick={() => {
+            setShowJSON(!showJSON);
+          }}
+        >
+          <i className={`fa fa-${showJSON ? "times" : "database"}`}/>
+        </a>
+      </h1>
+      {
+        showJSON &&
+          <InputGrid>
+            <GridField label="systemMigrationVersion">
+              <pre>
+                {JSON.stringify(systemMigrationVersion, null, 2)}
+              </pre>
+            </GridField>
+            <GridField label="defaultTheme">
+              <pre>
+                {JSON.stringify(defaultTheme, null, 2)}
+              </pre>
+            </GridField>
+            <GridField label="investigativeAbilityCategories">
+              <pre>
+                {JSON.stringify(investigativeAbilityCategories, null, 2)}
+              </pre>
+            </GridField>
+            <GridField label="generalAbilityCategories">
+              <pre>
+                {JSON.stringify(generalAbilityCategories, null, 2)}
+              </pre>
+            </GridField>
+            <GridField label="combatAbilities">
+              <pre>
+                {JSON.stringify(combatAbilities, null, 2)}
+              </pre>
+            </GridField>
+            <GridField label="shortNotes">
+              <pre>
+                {JSON.stringify(shortNotes, null, 2)}
+              </pre>
+            </GridField>
+            <GridField label="longNotes">
+              <pre>
+                {JSON.stringify(longNotes, null, 2)}
+              </pre>
+            </GridField>
+          </InputGrid>
+      }
+    </CSSReset>
+
+  );
 };
 
 /*

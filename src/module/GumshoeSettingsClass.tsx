@@ -10,9 +10,9 @@ class GumshoeSettingsClassBase extends Application {
     return mergeObject(super.defaultOptions, {
       classes: [system.name, "sheet", "item"],
       template: reactTemplatePath,
-      width: 400,
-      height: "auto",
-      resizable: false,
+      width: 800,
+      height: 800,
+      resizable: true,
     });
   }
 }

@@ -50,8 +50,8 @@ export const registerSettings = function () {
     hint: "Comma-separated",
     scope: "world",
     config: true,
-    default: "Academic,Interpersonal,Technical",
-    type: String,
+    default: ["Academic", "Interpersonal", "Technical"],
+    type: Object,
     // onChange: enable => {}
   });
   game.settings.register(system.name, generalAbilityCategories, {
@@ -59,8 +59,8 @@ export const registerSettings = function () {
     hint: "Comma-separated",
     scope: "world",
     config: true,
-    default: "General",
-    type: String,
+    default: ["General"],
+    type: Object,
     // onChange: enable => {}
   });
   game.settings.register(system.name, combatAbilities, {
@@ -68,8 +68,8 @@ export const registerSettings = function () {
     hint: "Comma-separated",
     scope: "world",
     config: true,
-    default: "Scuffling,Weapons,Firearms,Athletics",
-    type: String,
+    default: ["Scuffling", "Weapons", "Firearms", "Athletics"],
+    type: Object,
     // onChange: enable => {}
   });
   game.settings.register(system.name, shortNotes, {
@@ -77,8 +77,8 @@ export const registerSettings = function () {
     hint: "Comma-separated",
     scope: "world",
     config: true,
-    default: "Drive",
-    type: String,
+    default: ["Drive"],
+    type: Object,
     // onChange: enable => {}
   });
   game.settings.register(system.name, longNotes, {
@@ -86,8 +86,8 @@ export const registerSettings = function () {
     hint: "Comma-separated (backslash to include a comma)",
     scope: "world",
     config: true,
-    default: "Notes\\, Contacts etc., Occupational Benefits, Pillars of Sanity, Sources of Stability, Background",
-    type: String,
+    default: ["Notes, Contacts etc.", "Occupational Benefits", "Pillars of Sanity", "Sources of Stability", "Background"],
+    type: Object,
     // onChange: enable => {}
   });
 };

@@ -22,7 +22,7 @@ export const crappySplit = (orig: string|null|undefined): string[] => {
     .filter((s) => s.length > 0);
 };
 
-export const migrateToJSON = async () => {
+export const migrateToArrays = async () => {
   const toUpdate = [constants.investigativeAbilityCategories,
     constants.generalAbilityCategories,
     constants.combatAbilities,
@@ -31,10 +31,10 @@ export const migrateToJSON = async () => {
 
   for (const key of toUpdate) {
     const setting = game.settings.get(constants.systemName, key);
-    if (!/^\[/.test(setting)) {
-      ui.notifications.info(`Upgrading world setting ${key} to JSON`);
+    if (!Array.isArray(setting)) {
+      ui.notifications.info(`Upgrading world setting ${key} to natural array`);
       const parts = crappySplit(setting);
-      game.settings.set(constants.systemName, key, JSON.stringify(parts));
+      game.settings.set(constants.systemName, key, parts);
     }
   }
 };
