@@ -2,7 +2,7 @@ import {
   abilityCategories,
   combatAbilities,
   defaultMigratedSystemVersion,
-  defaultTheme,
+  defaultThemeName,
   generalAbilityCategories,
   investigativeAbilityCategories,
   longNotes,
@@ -35,8 +35,8 @@ export const registerSettings = function () {
     type: String,
     // onChange: enable => {}
   });
-  game.settings.register(system.name, defaultTheme, {
-    name: "Default actor sheet theme",
+  game.settings.register(system.name, defaultThemeName, {
+    name: "Default sheet theme",
     scope: "world",
     config: true,
     choices: mapValues((theme: Theme) => (theme.displayName), themes),

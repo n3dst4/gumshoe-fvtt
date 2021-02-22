@@ -1,8 +1,7 @@
 import { fixLength, isAbility } from "../functions";
 import { Theme, themes } from "../theme";
 import { TrailActor } from "./TrailActor";
-import system from "../system.json";
-import { defaultTheme } from "../constants";
+import { getDefaultThemeName } from "./settingsHelpers";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -144,11 +143,11 @@ export class TrailItem extends Item<any> {
   }
 
   getThemeName (): string {
-    const systemTheme = game.settings.get(system.name, defaultTheme);
+    const systemThemeName = getDefaultThemeName();
     if (this.isOwned) {
-      return (this.actor as TrailActor).getSheetThemeName() || systemTheme;
+      return (this.actor as TrailActor).getSheetThemeName() || systemThemeName;
     } else {
-      return systemTheme;
+      return systemThemeName;
     }
   }
 

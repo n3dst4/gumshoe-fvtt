@@ -1,10 +1,11 @@
-import { defaultTheme, equipment, generalAbility, weapon } from "../constants";
+import { equipment, generalAbility, weapon } from "../constants";
 import { isAbility } from "../functions";
 import { TrailActorData, RecursivePartial, TrailItemData } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { TrailItem } from "./TrailItem";
 import system from "../system.json";
 import { Theme, themes } from "../theme";
+import { getDefaultThemeName } from "./settingsHelpers";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export class TrailActor<T=any> extends Actor<TrailActorData> {
@@ -82,7 +83,7 @@ export class TrailActor<T=any> extends Actor<TrailActorData> {
   // THEME
 
   getSheetTheme (): Theme {
-    const themeName = this.getSheetThemeName() || game.settings.get(system.name, defaultTheme);
+    const themeName = this.getSheetThemeName() || getDefaultThemeName();
     return themes[themeName];
   }
 

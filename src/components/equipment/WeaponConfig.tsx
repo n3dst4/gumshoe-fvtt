@@ -9,9 +9,8 @@ import { TextInput } from "../inputs/TextInput";
 import { TextArea } from "../inputs/TextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { WeaponRange } from "./WeaponRangeConfig";
-import { combatAbilities } from "../../constants";
-import system from "../../system.json";
 import { Checkbox } from "../inputs/Checkbox";
+import { getCombatAbilities } from "../../module/settingsHelpers";
 
 type WeaponConfigProps = {
   weapon: TrailItem,
@@ -51,7 +50,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
     d.render(true);
   }, [weapon]);
 
-  const abilities = game.settings.get(system.name, combatAbilities).split(",").map((x: string) => x.trim());
+  const abilities = getCombatAbilities();
 
   return (
     <Fragment>

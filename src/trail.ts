@@ -4,7 +4,7 @@ import { TrailActor } from "./module/TrailActor";
 import { TrailItem } from "./module/TrailItem";
 import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
 import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
-import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, systemMigrationVersion, weapon } from "./constants";
+import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, weapon } from "./constants";
 import { TrailCombat } from "./module/TrailCombat";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
@@ -13,6 +13,7 @@ import { isAbility, isGeneralAbility, isNullOrEmptyString } from "./functions";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory } from "./helpers";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { GumshoeSettingsClass } from "./module/GumshoeSettingsClass";
+import { getSystemMigrationVersion } from "./module/settingsHelpers";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -54,7 +55,7 @@ Hooks.once("setup", function () {
 Hooks.on("ready", async () => {
   if (!game.user.isGM) { return; }
 
-  const currentVersion = game.settings.get(system.name, systemMigrationVersion);
+  const currentVersion = getSystemMigrationVersion();
   // newest version that needs a migration (make this the current version when
   // you introduce a new migration)
   const NEEDS_MIGRATION_VERSION = "1.0.0-alpha.5";

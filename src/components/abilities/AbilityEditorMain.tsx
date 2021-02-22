@@ -8,8 +8,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
-import system from "../../system.json";
-import { combatAbilities } from "../../constants";
+import { getCombatAbilities } from "../../module/settingsHelpers";
 
 type AbilityEditorMainProps = {
   ability: TrailItem,
@@ -27,8 +26,7 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
     ability.refreshPool();
   }, [ability]);
 
-  const isCombatAbility = game.settings.get(system.name, combatAbilities)
-    .split(",").map((x: string) => x.trim()).includes(ability.name);
+  const isCombatAbility = getCombatAbilities().includes(ability.name);
   const actorInitiativeAbility = ability?.actor?.data.data.initiativeAbility;
   const isAbilityUsed = actorInitiativeAbility === ability.name;
   const onClickUseForInitiative = useCallback(

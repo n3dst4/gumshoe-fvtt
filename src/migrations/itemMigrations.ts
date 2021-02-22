@@ -1,7 +1,7 @@
-import { generalAbility, generalAbilityIcon, investigativeAbilityIcon, systemMigrationVersion } from "../constants";
+import { generalAbility, generalAbilityIcon, investigativeAbilityIcon } from "../constants";
 import { isAbility, isGeneralAbility, isNullOrEmptyString } from "../functions";
 import { getDefaultGeneralAbilityCategory } from "../helpers";
-import system from "../system.json";
+import { getSystemMigrationVersion } from "../module/settingsHelpers";
 
 export const _addCategoryToGeneralAbilities = (data: any, updateData: any) => {
   if (data.type === generalAbility && isNullOrEmptyString(data.data?.category)) {
@@ -15,8 +15,9 @@ export const _addCategoryToGeneralAbilities = (data: any, updateData: any) => {
 };
 
 export const _setTrackersForPreAlpha4Updates = (data: any, updateData: any) => {
-  const currentVersion = game.settings.get(system.name, systemMigrationVersion);
-  const needsMigration = isNewerVersion("1.0.0-alpha.5", currentVersion);
+  const currentlyMigratedVersion = getSystemMigrationVersion();
+  const needsMigrationVersion = "1.0.0-alpha.5";
+  const needsMigration = isNewerVersion(needsMigrationVersion, currentlyMigratedVersion);
   const isRelevant = ["Health", "Sanity", "Stability", "Magic"].includes(data.name);
 
   if (data.type === generalAbility && needsMigration && isRelevant) {

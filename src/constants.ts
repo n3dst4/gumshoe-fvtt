@@ -14,7 +14,7 @@ export const pc = "pc";
 export const npc = "npc";
 
 // settings keys
-export const defaultTheme = "defaultTheme";
+export const defaultThemeName = "defaultThemeName";
 export const systemMigrationVersion = "systemMigrationVersion";
 export const investigativeAbilityCategories = "investigativeAbilityCategories";
 export const generalAbilityCategories = "generalAbilityCategories";

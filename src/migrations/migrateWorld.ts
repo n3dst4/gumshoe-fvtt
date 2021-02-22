@@ -1,10 +1,10 @@
-import { systemMigrationVersion } from "../constants";
 import system from "../system.json";
 import { migrateAbilityCategories, migrateToJSON } from "./worldMigrations";
 import { migrateActorData } from "./migrateActorData";
 import { migrateCompendium } from "./migrateCompendium";
 import { migrateItemData } from "./migrateItemData";
 import { migrateSceneData } from "./migrateSceneData";
+import { setSystemMigrationVersion } from "../module/settingsHelpers";
 
 const title = system.title;
 
@@ -73,6 +73,6 @@ export const migrateWorld = async function () {
   }
 
   // Set the migration as complete
-  game.settings.set(system.name, systemMigrationVersion, system.version);
+  setSystemMigrationVersion(system.version);
   ui.notifications.info(`${system.title} system migration to version ${system.version} completed!`, { permanent: true });
 };

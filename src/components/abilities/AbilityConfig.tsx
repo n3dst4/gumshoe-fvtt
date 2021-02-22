@@ -7,10 +7,9 @@ import { TrailItem } from "../../module/TrailItem";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
-import system from "../../system.json";
-import { investigativeAbilityCategories, generalAbilityCategories } from "../../constants";
 import { Checkbox } from "../inputs/Checkbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../module/settingsHelpers";
 
 type AbilityConfigProps = {
   ability: TrailItem,
@@ -58,10 +57,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
     d.render(true);
   }, [ability]);
 
-  const categories = game.settings.get(
-    system.name,
-    isGeneral ? generalAbilityCategories : investigativeAbilityCategories,
-  ).split(",").map((x: string) => x.trim());
+  const categories = isGeneral ? getGeneralAbilityCategories() : getInvestigativeAbilityCategories();
 
   const isRealCategory = categories.includes(ability.data.data.category);
   const [showCustomField, setShowCustomField] = useState(!isRealCategory);
