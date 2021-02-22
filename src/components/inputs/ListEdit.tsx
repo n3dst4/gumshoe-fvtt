@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 
 type ListEditProps = {
@@ -16,18 +18,76 @@ export const ListEdit: React.FC<ListEditProps> = ({
     onChange(newList);
   }, [onChange, value]);
 
+  const onClickDelete = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (!e.currentTarget.dataset.index) { return; }
+    const newList = [...value];
+    newList.splice(Number(e.currentTarget.dataset.index), 1);
+    onChange(newList);
+  }, [onChange, value]);
+
+  const onClickAdd = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const newList = [...value, ""];
+    onChange(newList);
+  }, [onChange, value]);
+
   return (
     <div>
       {value.map((s, i) => (
-        <div key={i}>
-          <input
-            data-index={i}
-            type="text"
-            value={s}
-            onChange={onInputChange}
-          />
+        <div
+          key={i}
+          css={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <div
+            css={{
+              width: "12em",
+              position: "relative",
+            }}
+          >
+            <input
+              css={{
+                width: "12em",
+              }}
+              data-index={i}
+              type="text"
+              value={s}
+              onChange={onInputChange}
+            />
+          </div>
+          <div
+            css={{
+              width: "6em",
+              position: "relative",
+            }}
+          >
+            <button
+              data-index={i}
+              onClick={onClickDelete}
+              disabled={value.length < 2}
+            >
+              <i className="fas fa-trash"/>
+            </button>
+          </div>
         </div>
       ))}
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        <button
+          onClick={onClickAdd}
+        >
+          <i className="fas fa-plus"/> Add item
+        </button>
+
+      </div>
+
     </div>
   );
 };

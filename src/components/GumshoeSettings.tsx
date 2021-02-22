@@ -158,10 +158,21 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
               onChange={setInvestigativeAbilityCategories}
             />
           </GridField>
-          <GridField label="generalAbilityCategories"></GridField>
-          <GridField label="combatAbilities"></GridField>
-          <GridField label="shortNotes"></GridField>
-          <GridField label="longNotes"></GridField>
+          <GridField label="generalAbilityCategories">
+            <ListEdit
+              value={generalAbilityCategories}
+              onChange={setGeneralAbilityCategories}
+            />
+          </GridField>
+          <GridField label="combatAbilities">
+            <ListEdit value={combatAbilities} onChange={setCombatAbilities} />
+          </GridField>
+          <GridField label="shortNotes">
+            <ListEdit value={shortNotes} onChange={setShortNotes} />
+          </GridField>
+          <GridField label="longNotes">
+            <ListEdit value={longNotes} onChange={setLongNotes} />
+          </GridField>
         </InputGrid>
       )}
       <div
