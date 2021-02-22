@@ -8,16 +8,18 @@ class GumshoeSettingsClassBase extends Application {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
-      classes: [system.name, "sheet", "item"],
+      classes: [system.name, "sheet", "item", "dialog"],
       template: reactTemplatePath,
       width: 800,
       height: 800,
       resizable: true,
+      title: "GUMSHOE Settings",
     });
   }
 }
 
 const render = (sheet: GumshoeSettingsClassBase) => {
+  $(sheet.element).find(".header-button.close").hide();
   return (
     <GumshoeSettings
       foundryApplication={sheet}

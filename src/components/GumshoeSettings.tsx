@@ -3,7 +3,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useState } from "react";
 import * as constants from "../constants";
-import { getCombatAbilities, getDefaultThemeName, getGeneralAbilityCategories, getInvestigativeAbilityCategories, getLongNotes, getShortNotes, getSystemMigrationVersion } from "../module/settingsHelpers";
+import * as settings from "../module/settingsHelpers";
 import { themes, trailTheme } from "../theme";
 import { CSSReset } from "./CSSReset";
 import { GridField } from "./inputs/GridField";
@@ -13,24 +13,91 @@ type GumshoeSettingsProps = {
   foundryApplication: Application;
 };
 
+const useSetting = <T extends any = string[]>(
+  getter: () => T,
+  setter: (value: T) => Promise<any>,
+): [T, typeof setter] => {
+  const [state, setState] = useState(getter());
+  const setBoth = (value: T) => {
+    setState(value);
+    return setter(value);
+  };
+  return [state, setBoth];
+};
+
 export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
   foundryApplication,
 }) => {
   // there is also abilityCategories which is legacy and may be lying around for compat purposes
-  const systemMigrationVersion = getSystemMigrationVersion();
-  const defaultTheme = getDefaultThemeName();
-  const investigativeAbilityCategories = getInvestigativeAbilityCategories();
-  const generalAbilityCategories = getGeneralAbilityCategories();
-  const combatAbilities = getCombatAbilities();
-  const shortNotes = getShortNotes();
-  const longNotes = getLongNotes();
+  const systemMigrationVersion = settings.getSystemMigrationVersion();
+  const [defaultTheme, setDefaultTheme] = useState(
+    settings.getDefaultThemeName(),
+  );
+  const [
+    investigativeAbilityCategories,
+    setInvestigativeAbilityCategories,
+  ] = useState(settings.getInvestigativeAbilityCategories());
+  const [generalAbilityCategories, setGeneralAbilityCategories] = useState(
+    settings.getGeneralAbilityCategories(),
+  );
+  const [combatAbilities, setCombatAbilities] = useState(
+    settings.getCombatAbilities(),
+  );
+  const [shortNotes, setShortNotes] = useState(settings.getShortNotes());
+  const [longNotes, setLongNotes] = useState(settings.getLongNotes());
 
-  const theme = themes[getDefaultThemeName()] || trailTheme;
+  const theme = themes[defaultTheme] || trailTheme;
 
   const [showJSON, setShowJSON] = useState(false);
 
+  const onClickClose = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      foundryApplication.close();
+    },
+    [foundryApplication],
+  );
+
+  const onClickSave = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      await Promise.all([
+        settings.setDefaultThemeName(defaultTheme),
+        settings.setInvestigativeAbilityCategories(
+          investigativeAbilityCategories,
+        ),
+        settings.setGeneralAbilityCategories(generalAbilityCategories),
+        settings.setCombatAbilities(combatAbilities),
+        settings.setShortNotes(shortNotes),
+        settings.setLongNotes(longNotes),
+      ]);
+      foundryApplication.close();
+    },
+    [
+      combatAbilities,
+      defaultTheme,
+      foundryApplication,
+      generalAbilityCategories,
+      investigativeAbilityCategories,
+      longNotes,
+      shortNotes,
+    ],
+  );
+
   return (
-    <CSSReset theme={theme}>
+    <CSSReset
+      theme={theme}
+      css={{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        // overflow: "auto",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <h1>
         GUMSHOE Settings
         <a
@@ -41,51 +108,72 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
             setShowJSON(!showJSON);
           }}
         >
-          <i className={`fa fa-${showJSON ? "times" : "database"}`}/>
+          <i className={`fa fa-${showJSON ? "times" : "database"}`} />
         </a>
       </h1>
-      {
-        showJSON &&
-          <InputGrid>
-            <GridField label="systemMigrationVersion">
-              <pre>
-                {JSON.stringify(systemMigrationVersion, null, 2)}
-              </pre>
-            </GridField>
-            <GridField label="defaultTheme">
-              <pre>
-                {JSON.stringify(defaultTheme, null, 2)}
-              </pre>
-            </GridField>
-            <GridField label="investigativeAbilityCategories">
-              <pre>
-                {JSON.stringify(investigativeAbilityCategories, null, 2)}
-              </pre>
-            </GridField>
-            <GridField label="generalAbilityCategories">
-              <pre>
-                {JSON.stringify(generalAbilityCategories, null, 2)}
-              </pre>
-            </GridField>
-            <GridField label="combatAbilities">
-              <pre>
-                {JSON.stringify(combatAbilities, null, 2)}
-              </pre>
-            </GridField>
-            <GridField label="shortNotes">
-              <pre>
-                {JSON.stringify(shortNotes, null, 2)}
-              </pre>
-            </GridField>
-            <GridField label="longNotes">
-              <pre>
-                {JSON.stringify(longNotes, null, 2)}
-              </pre>
-            </GridField>
-          </InputGrid>
-      }
+      {showJSON && (
+        <InputGrid css={{ flex: 1, overflow: "auto" }}>
+          <GridField label="systemMigrationVersion">
+            <pre>{JSON.stringify(systemMigrationVersion, null, 2)}</pre>
+          </GridField>
+          <GridField label="defaultTheme">
+            <pre>{JSON.stringify(defaultTheme, null, 2)}</pre>
+          </GridField>
+          <GridField label="investigativeAbilityCategories">
+            <pre>{JSON.stringify(investigativeAbilityCategories, null, 2)}</pre>
+          </GridField>
+          <GridField label="generalAbilityCategories">
+            <pre>{JSON.stringify(generalAbilityCategories, null, 2)}</pre>
+          </GridField>
+          <GridField label="combatAbilities">
+            <pre>{JSON.stringify(combatAbilities, null, 2)}</pre>
+          </GridField>
+          <GridField label="shortNotes">
+            <pre>{JSON.stringify(shortNotes, null, 2)}</pre>
+          </GridField>
+          <GridField label="longNotes">
+            <pre>{JSON.stringify(longNotes, null, 2)}</pre>
+          </GridField>
+        </InputGrid>
+      )}
+      {showJSON || (
+        <InputGrid css={{ flex: 1, overflow: "auto" }}>
+          <GridField label="defaultTheme">
+            <select
+              value={defaultTheme}
+              onChange={(e) => {
+                setDefaultTheme(e.currentTarget.value);
+              }}
+            >
+              {Object.keys(themes).map((themeName: string) => (
+                <option key={themeName} value={themeName}>
+                  {themes[themeName].displayName}
+                </option>
+              ))}
+            </select>
+          </GridField>
+          <GridField label="investigativeAbilityCategories"></GridField>
+          <GridField label="generalAbilityCategories"></GridField>
+          <GridField label="combatAbilities"></GridField>
+          <GridField label="shortNotes"></GridField>
+          <GridField label="longNotes"></GridField>
+        </InputGrid>
+      )}
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "row",
+          padding: "0.5em",
+        }}
+      >
+        <button css={{ flex: 1 }} onClick={onClickClose}>
+          <i className="fas fa-times" /> Cancel
+        </button>
+        <button css={{ flex: 1 }} onClick={onClickSave}>
+          <i className="fas fa-save" /> Save Changes
+        </button>
+      </div>
     </CSSReset>
-
   );
 };
 

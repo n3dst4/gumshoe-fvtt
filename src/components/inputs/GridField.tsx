@@ -7,7 +7,7 @@ import { IdContext } from "../IdContext";
 type GridFieldProps = {
   label?: string;
   className?: string;
-  children: JSX.Element;
+  children?: any;
 };
 
 export const GridField: React.FC<GridFieldProps> = ({
