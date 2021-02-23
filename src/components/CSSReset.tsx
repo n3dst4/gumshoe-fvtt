@@ -85,6 +85,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }
           },
           "input, input[type=text], textarea": {
             font: theme.bodyFont,
+            fontVariantLigatures: "none",
             color: theme.colors.accent,
             padding: "0.1em 0.3em",
             borderStyle: "solid",
