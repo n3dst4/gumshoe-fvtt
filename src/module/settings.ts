@@ -8,6 +8,7 @@ import {
   longNotes,
   shortNotes,
   systemMigrationVersion,
+  systemPreset,
 } from "../constants";
 import { mapValues } from "../functions";
 import system from "../system.json";
@@ -31,7 +32,6 @@ export const registerSettings = function () {
     hint: "",
     scope: "world",
     config: false,
-    readonly: true,
     default: defaultMigratedSystemVersion,
     type: String,
     // onChange: enable => {}
@@ -91,8 +91,19 @@ export const registerSettings = function () {
     type: Object,
     // onChange: enable => {}
   });
+
+  game.settings.register(system.name, systemPreset, {
+    name: "System preset",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: defaultMigratedSystemVersion,
+    type: String,
+    // onChange: enable => {}
+  });
+
   // Define a settings submenu which handles advanced configuration needs
-  game.settings.registerMenu(system.name, "mySettingsMenu", {
+  game.settings.registerMenu(system.name, "gumshoeSettingsMenu", {
     name: "GUMSHOE Settings",
     label: "Open GUMSHOE System Settings", // The text label used in the button
     // hint: "A description of what will occur in the submenu dialog.",

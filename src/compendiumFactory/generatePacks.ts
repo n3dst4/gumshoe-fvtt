@@ -1,4 +1,3 @@
-import system from "../system.json";
 import {
   BaseAbilityDump,
   GeneralAbilityTemplate,
@@ -6,6 +5,7 @@ import {
 } from "./types";
 import * as trailData from "./trailData";
 import * as nbaData from "./nbaData";
+import { packNames, systemName } from "../constants";
 
 export const emptyPack = async (pack: any) => {
   const content = await pack.getContent();
@@ -16,7 +16,7 @@ export const emptyPack = async (pack: any) => {
 
 export const findPack = (packName: string) => {
   const pack = game.packs.find(
-    (p: any) => p.collection === `${system.name}.${packName}`,
+    (p: any) => p.collection === `${systemName}.${packName}`,
   );
   return pack;
 };
@@ -61,13 +61,13 @@ export const generatePacks = async <
 
 export const initializePackGenerators = () => {
   (window as any).generateTrailAbilities = async () => {
-    const pack = findPack("trailOfCthulhuAbilities");
+    const pack = findPack(packNames.trailOfCthulhuAbilities);
     emptyPack(pack);
     await generatePacks(trailData.investigativeAbilities, trailData.investigativeTemplate, pack);
     await generatePacks(trailData.generalAbilities, trailData.generalTemplate, pack);
   };
   (window as any).generateNBAAbilities = async () => {
-    const pack = findPack("nightsBlackAgentsAbilities");
+    const pack = findPack(packNames.nightsBlackAgentsAbilities);
     emptyPack(pack);
     await generatePacks(nbaData.investigativeAbilities, nbaData.investigativeTemplate, pack);
     await generatePacks(nbaData.generalAbilities, nbaData.generalTemplate, pack);

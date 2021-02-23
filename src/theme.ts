@@ -59,7 +59,7 @@ export const trailTheme: Theme = {
   },
 };
 
-export const nightsTheme: Theme = {
+export const nbaTheme: Theme = {
   displayName: "Night's Black Agents",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
@@ -95,7 +95,7 @@ export const nightsTheme: Theme = {
 
 export const themes: {[themeName: string]: Theme} = {
   trailTheme,
-  nightsTheme,
+  nbaTheme: nbaTheme,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
