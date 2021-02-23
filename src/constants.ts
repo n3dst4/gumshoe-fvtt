@@ -27,6 +27,7 @@ export const generalAbilityCategories = "generalAbilityCategories" as const;
 export const combatAbilities = "combatAbilities" as const;
 export const shortNotes = "shortNotes" as const;
 export const longNotes = "longNotes" as const;
+export const newPCPacks = "newPCPacks" as const;
 /**
  * @deprecated use investigativeAbilityCategories and generalAbilityCategories instead
  */

@@ -10,6 +10,8 @@ export const getGeneralAbilityCategories = getSetting<string[]>(constants.genera
 export const getCombatAbilities = getSetting<string[]>(constants.combatAbilities);
 export const getShortNotes = getSetting<string[]>(constants.shortNotes);
 export const getLongNotes = getSetting<string[]>(constants.longNotes);
+export const getNewPCPacks = getSetting<string[]>(constants.newPCPacks);
+export const getSystemPreset = getSetting<string[]>(constants.systemPreset);
 
 export const setSystemMigrationVersion = setSetting(constants.systemMigrationVersion);
 export const setDefaultThemeName = setSetting(constants.defaultThemeName);
@@ -18,3 +20,5 @@ export const setGeneralAbilityCategories = setSetting<string[]>(constants.genera
 export const setCombatAbilities = setSetting<string[]>(constants.combatAbilities);
 export const setShortNotes = setSetting<string[]>(constants.shortNotes);
 export const setLongNotes = setSetting<string[]>(constants.longNotes);
+export const setNewPCPacks = setSetting<string[]>(constants.newPCPacks);
+export const setSystemPreset = setSetting<string[]>(constants.systemPreset);

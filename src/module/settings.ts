@@ -6,14 +6,19 @@ import {
   generalAbilityCategories,
   investigativeAbilityCategories,
   longNotes,
+  newPCPacks,
+  packNames,
   shortNotes,
   systemMigrationVersion,
+  systemName,
   systemPreset,
 } from "../constants";
 import { mapValues } from "../functions";
 import system from "../system.json";
 import { Theme, themes } from "../theme";
 import { GumshoeSettingsClass } from "./GumshoeSettingsClass";
+
+// any of these could have an `onChange` added if we wanted to
 
 export const registerSettings = function () {
   // this is legacy
@@ -24,7 +29,6 @@ export const registerSettings = function () {
     config: false,
     default: "Academic,Interpersonal,Technical",
     type: String,
-    // onChange: enable => {}
   });
 
   game.settings.register(system.name, systemMigrationVersion, {
@@ -34,7 +38,6 @@ export const registerSettings = function () {
     config: false,
     default: defaultMigratedSystemVersion,
     type: String,
-    // onChange: enable => {}
   });
   game.settings.register(system.name, defaultThemeName, {
     name: "Default sheet theme",
@@ -43,53 +46,50 @@ export const registerSettings = function () {
     choices: mapValues((theme: Theme) => (theme.displayName), themes),
     default: "trailTheme",
     type: String,
-    // onChange: enable => {}
   });
 
   game.settings.register(system.name, investigativeAbilityCategories, {
     name: "Investigative ability categories",
-    hint: "Comma-separated",
     scope: "world",
     config: false,
     default: ["Academic", "Interpersonal", "Technical"],
     type: Object,
-    // onChange: enable => {}
   });
   game.settings.register(system.name, generalAbilityCategories, {
     name: "General ability categories",
-    hint: "Comma-separated",
     scope: "world",
     config: false,
     default: ["General"],
     type: Object,
-    // onChange: enable => {}
   });
   game.settings.register(system.name, combatAbilities, {
     name: "Combat abilities",
-    hint: "Comma-separated",
     scope: "world",
     config: false,
     default: ["Scuffling", "Weapons", "Firearms", "Athletics"],
     type: Object,
-    // onChange: enable => {}
   });
   game.settings.register(system.name, shortNotes, {
     name: "Short Notes",
-    hint: "Comma-separated",
     scope: "world",
     config: false,
     default: ["Drive"],
     type: Object,
-    // onChange: enable => {}
   });
   game.settings.register(system.name, longNotes, {
     name: "Long Notes",
-    hint: "Comma-separated (backslash to include a comma)",
     scope: "world",
     config: false,
     default: ["Notes, Contacts etc.", "Occupational Benefits", "Pillars of Sanity", "Sources of Stability", "Background"],
     type: Object,
-    // onChange: enable => {}
+  });
+
+  game.settings.register(system.name, newPCPacks, {
+    name: "Compendium packs for new PCs",
+    scope: "world",
+    config: false,
+    default: [`${systemName}.${packNames.trailOfCthulhuAbilities}`],
+    type: Object,
   });
 
   game.settings.register(system.name, systemPreset, {
@@ -97,9 +97,8 @@ export const registerSettings = function () {
     hint: "",
     scope: "world",
     config: false,
-    default: defaultMigratedSystemVersion,
+    default: "trailPreset",
     type: String,
-    // onChange: enable => {}
   });
 
   // Define a settings submenu which handles advanced configuration needs

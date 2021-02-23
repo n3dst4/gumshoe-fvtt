@@ -6,6 +6,7 @@ import * as constants from "../constants";
 import * as settings from "../module/settingsHelpers";
 import { themes, trailTheme } from "../theme";
 import { CSSReset } from "./CSSReset";
+import { Checkbox } from "./inputs/Checkbox";
 import { GridField } from "./inputs/GridField";
 import { InputGrid } from "./inputs/InputGrid";
 import { ListEdit } from "./inputs/ListEdit";
@@ -46,6 +47,8 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
   );
   const [shortNotes, setShortNotes] = useState(settings.getShortNotes());
   const [longNotes, setLongNotes] = useState(settings.getLongNotes());
+  const [newPCPacks, setNewPCPacks] = useState(settings.getNewPCPacks());
+  const [systemPreset, setSystemPreset] = useState(settings.getSystemPreset());
 
   const theme = themes[defaultTheme] || trailTheme;
 
@@ -71,6 +74,8 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
         settings.setCombatAbilities(combatAbilities),
         settings.setShortNotes(shortNotes),
         settings.setLongNotes(longNotes),
+        settings.setNewPCPacks(newPCPacks),
+        settings.setSystemPreset(systemPreset),
       ]);
       foundryApplication.close();
     },
@@ -81,7 +86,9 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       generalAbilityCategories,
       investigativeAbilityCategories,
       longNotes,
+      newPCPacks,
       shortNotes,
+      systemPreset,
     ],
   );
 
@@ -134,6 +141,12 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           <GridField label="longNotes">
             <pre>{JSON.stringify(longNotes, null, 2)}</pre>
           </GridField>
+          <GridField label="systemPreset">
+            <pre>{JSON.stringify(systemPreset, null, 2)}</pre>
+          </GridField>
+          <GridField label="newPCPacks">
+            <pre>{JSON.stringify(newPCPacks, null, 2)}</pre>
+          </GridField>
         </InputGrid>
       )}
       {showJSON || (
@@ -152,26 +165,51 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
               ))}
             </select>
           </GridField>
-          <GridField label="investigativeAbilityCategories">
+          <GridField label="Investigative Ability Categories">
             <ListEdit
               value={investigativeAbilityCategories}
               onChange={setInvestigativeAbilityCategories}
             />
           </GridField>
-          <GridField label="generalAbilityCategories">
+          <GridField label="General Ability Categories">
             <ListEdit
               value={generalAbilityCategories}
               onChange={setGeneralAbilityCategories}
             />
           </GridField>
-          <GridField label="combatAbilities">
+          <GridField label="Combat Abilities">
             <ListEdit value={combatAbilities} onChange={setCombatAbilities} />
           </GridField>
-          <GridField label="shortNotes">
+          <GridField label="Short Notes Fields">
             <ListEdit value={shortNotes} onChange={setShortNotes} />
           </GridField>
-          <GridField label="longNotes">
+          <GridField label="Long Notes Fields">
             <ListEdit value={longNotes} onChange={setLongNotes} />
+          </GridField>
+          <GridField label="Compendium packs for new PCs">
+            <ul>
+              {game.packs
+                .filter((pack: Compendium) => pack.metadata.entity === "Item")
+                .map((pack: Compendium) => (
+                  <li key={pack.collection} title={pack.collection}>
+                    <label>
+                      <Checkbox
+                        checked={newPCPacks.includes(pack.collection)}
+                        onChange={(checked) => {
+                          if (checked) {
+                            setNewPCPacks([...newPCPacks, pack.collection]);
+                          } else {
+                            setNewPCPacks(
+                              newPCPacks.filter((x) => x !== pack.collection),
+                            );
+                          }
+                        }}
+                      />
+                      {pack.metadata.label}
+                    </label>
+                  </li>
+                ))}
+            </ul>
           </GridField>
         </InputGrid>
       )}

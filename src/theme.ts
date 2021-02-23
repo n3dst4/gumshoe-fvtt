@@ -95,7 +95,7 @@ export const nbaTheme: Theme = {
 
 export const themes: {[themeName: string]: Theme} = {
   trailTheme,
-  nbaTheme: nbaTheme,
+  nbaTheme,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
