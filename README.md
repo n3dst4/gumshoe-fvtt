@@ -65,8 +65,11 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] Try embedding custom config as a "menu"?
 - [x] Choose default compendia for new characters
 - [x] Presets for ToC and NBA
-- [ ] High-contrast theme
-- [ ] Look for uses of system.name and switch to systemName from constants
+- [x] Look for uses of system.name and switch to systemName from constants
+- [ ] bug - can't edit items (again)
+- [ ] make settings a singleton
+- [ ] only show custom config option when it’s in use
+- [ ] high-contrast theme
 
 
 ## The future

@@ -13,7 +13,7 @@ export type SystemPreset = {
 
 export const trailPreset: SystemPreset = {
   displayName: "Trail of Cthulhu",
-  defaultTheme: "trailtheme",
+  defaultTheme: "trailTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Weapons", "Firearms", "Athletics"],

@@ -139,7 +139,9 @@ export class TrailItem extends Item<any> {
   // THEME
 
   getTheme (): Theme {
-    return themes[this.getThemeName()];
+    const themeName = this.getThemeName();
+    const theme = themes[themeName];
+    return theme;
   }
 
   getThemeName (): string {
