@@ -1,7 +1,7 @@
 import { fixLength, isAbility } from "../functions";
 import { Theme, themes } from "../theme";
 import { TrailActor } from "./TrailActor";
-import { getDefaultThemeName } from "./settingsHelpers";
+import { getDefaultThemeName } from "../settingsHelpers";
 
 /**
  * Extend the basic Item with some very simple modifications.

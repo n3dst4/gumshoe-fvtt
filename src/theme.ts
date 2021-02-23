@@ -1,6 +1,6 @@
 import { css, CSSObject, SerializedStyles } from "@emotion/react";
 import React from "react";
-import system from "./system.json";
+import { systemName } from "./constants";
 
 export type Theme = {
   displayName: string,
@@ -33,7 +33,7 @@ export const trailTheme: Theme = {
     @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
-  wallpaper: `url(systems/${system.name}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+  wallpaper: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal small-caps normal 1em 'Federo', serif",
   // logo:

@@ -4,7 +4,7 @@ import { TrailActorData, RecursivePartial, TrailItemData } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { TrailItem } from "./TrailItem";
 import { Theme, themes } from "../theme";
-import { getDefaultThemeName, getNewPCPacks } from "./settingsHelpers";
+import { getDefaultThemeName, getNewPCPacks } from "../settingsHelpers";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export class TrailActor<T=any> extends Actor<TrailActorData> {

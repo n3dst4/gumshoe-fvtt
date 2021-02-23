@@ -10,10 +10,9 @@ import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
 import { RecursivePartial, TrailItemData } from "./types";
 import { isAbility, isGeneralAbility, isNullOrEmptyString } from "./functions";
-import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory } from "./helpers";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { GumshoeSettingsClass } from "./module/GumshoeSettingsClass";
-import { getSystemMigrationVersion } from "./module/settingsHelpers";
+import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
 
 // Initialize system
 Hooks.once("init", async function () {

@@ -72,11 +72,11 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 ## The future
 
 - [ ] i18n
-- [ ] multi-system support
-  - [ ] compendia of abilities
-  - [ ] choose which sidebar pools are visible
-  - [ ] character sheet skin
-  - [ ] extra features?
+- [x] multi-system support
+  - [x] compendia of abilities
+  - [x] choose which sidebar pools are visible
+  - [x] character sheet skin
+  - [x] extra features?
 - [ ] expandy-collapsy bits on the notes area
 - [ ] rich text editing
 - [ ] Character gen mode? (track free values, point spends, I<->G trades, synergies)
@@ -91,15 +91,15 @@ If you're a developer and you'd like to hack on this code, please be aware it us
   * [x] Categorized investigating abilities
   * [x] General Abilities
   * [x] Health, Sanity, Stability, Magic
+* [x] Night's Black Agents
+  * [x] Categorized investigating abilities
+  * [x] General Abilities
+  * [x] Health & Stability
 * [ ] Fear Itself 2nd ed.
   * [x] Categorized investigating abilities
   * [x] General Abilities
   * [ ] *Psychic Powers*
   * [ ] *No trackers*
-* [ ] Night's Black Agents
-  * [x] Categorized investigating abilities
-  * [x] General Abilities
-  * [ ] Health & Stability
 * [ ] Ashen Stars
   * [x] Categorized investigating abilities
   * [x] General Abilities

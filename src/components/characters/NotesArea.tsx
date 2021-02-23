@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback } from "react";
 import { TrailActor } from "../../module/TrailActor";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
-import { getLongNotes } from "../../module/settingsHelpers";
+import { getLongNotes } from "../../settingsHelpers";
 
 type NotesAreaProps = {
   actor: TrailActor,

@@ -1,7 +1,6 @@
 import { generalAbility, generalAbilityIcon, investigativeAbilityIcon } from "../constants";
 import { isAbility, isGeneralAbility, isNullOrEmptyString } from "../functions";
-import { getDefaultGeneralAbilityCategory } from "../helpers";
-import { getSystemMigrationVersion } from "../module/settingsHelpers";
+import { getSystemMigrationVersion, getDefaultGeneralAbilityCategory } from "../settingsHelpers";
 
 export const _addCategoryToGeneralAbilities = (data: any, updateData: any) => {
   if (data.type === generalAbility && isNullOrEmptyString(data.data?.category)) {

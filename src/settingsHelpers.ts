@@ -1,4 +1,4 @@
-import * as constants from "../constants";
+import * as constants from "./constants";
 
 const getSetting = <T = string>(key: string) => (): T => game.settings.get(constants.systemName, key);
 const setSetting = <T = string>(key: string) => (value: T) => game.settings.set(constants.systemName, key, value);
@@ -22,3 +22,19 @@ export const setShortNotes = setSetting<string[]>(constants.shortNotes);
 export const setLongNotes = setSetting<string[]>(constants.longNotes);
 export const setNewPCPacks = setSetting<string[]>(constants.newPCPacks);
 export const setSystemPreset = setSetting<string>(constants.systemPreset);
+
+export const getDefaultGeneralAbilityCategory = () => {
+  const cat = getGeneralAbilityCategories()[0];
+  if (!cat) {
+    throw new Error("No general ability categories found in system settings");
+  }
+  return cat;
+};
+
+export const getDefaultInvestigativeAbilityCategory = () => {
+  const cat = getInvestigativeAbilityCategories()[0];
+  if (!cat) {
+    throw new Error("No investigative ability categories found in system settings");
+  }
+  return cat;
+};

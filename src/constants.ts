@@ -31,8 +31,8 @@ export const newPCPacks = "newPCPacks" as const;
 export const abilityCategories = "abilityCategories" as const;
 
 // assets
-export const investigativeAbilityIcon = `/systems/${system.name}/assets/icons/magnifying-glass.webp` as const;
-export const generalAbilityIcon = `/systems/${system.name}/assets/icons/fist.webp` as const;
+export const investigativeAbilityIcon = `/systems/${systemName}/assets/icons/magnifying-glass.webp` as const;
+export const generalAbilityIcon = `/systems/${systemName}/assets/icons/fist.webp` as const;
 
 // packs
 

@@ -4,7 +4,7 @@ import { migrateActorData } from "./migrateActorData";
 import { migrateCompendium } from "./migrateCompendium";
 import { migrateItemData } from "./migrateItemData";
 import { migrateSceneData } from "./migrateSceneData";
-import { setSystemMigrationVersion } from "../module/settingsHelpers";
+import { setSystemMigrationVersion } from "../settingsHelpers";
 
 const title = system.title;
 

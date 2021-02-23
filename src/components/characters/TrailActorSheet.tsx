@@ -16,7 +16,7 @@ import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
-import { getShortNotes } from "../../module/settingsHelpers";
+import { getShortNotes } from "../../settingsHelpers";
 
 type TrailActorSheetProps = {
   actor: TrailActor,

@@ -3,7 +3,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { customSystem } from "../constants";
-import * as settings from "../module/settingsHelpers";
+import * as settings from "../settingsHelpers";
 import { systemPresets } from "../systemPresets";
 import { themes, trailTheme } from "../theme";
 import { CSSReset } from "./CSSReset";

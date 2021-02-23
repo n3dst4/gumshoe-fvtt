@@ -9,7 +9,7 @@ import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { Checkbox } from "../inputs/Checkbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../module/settingsHelpers";
+import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../settingsHelpers";
 
 type AbilityConfigProps = {
   ability: TrailItem,

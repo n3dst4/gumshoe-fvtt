@@ -1,8 +1,7 @@
 import React from "react";
 import { GumshoeSettings } from "../components/GumshoeSettings";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
-import system from "../system.json";
-import { reactTemplatePath } from "../constants";
+import { reactTemplatePath, systemName } from "../constants";
 
 class GumshoeSettingsClassBase extends FormApplication {
   constructor (object: any, options: any) {
@@ -13,7 +12,7 @@ class GumshoeSettingsClassBase extends FormApplication {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
-      classes: [system.name, "sheet", "item", "dialog"],
+      classes: [systemName, "sheet", "item", "dialog"],
       template: reactTemplatePath,
       width: 600,
       height: 800,

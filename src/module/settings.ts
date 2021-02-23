@@ -14,7 +14,6 @@ import {
   systemPreset,
 } from "../constants";
 import { mapValues } from "../functions";
-import system from "../system.json";
 import { Theme, themes } from "../theme";
 import { GumshoeSettingsClass } from "./GumshoeSettingsClass";
 
@@ -22,7 +21,7 @@ import { GumshoeSettingsClass } from "./GumshoeSettingsClass";
 
 export const registerSettings = function () {
   // this is legacy
-  game.settings.register(system.name, abilityCategories, {
+  game.settings.register(systemName, abilityCategories, {
     name: "Ability categories",
     hint: "Comma-separated (DNU)",
     scope: "world",
@@ -31,7 +30,7 @@ export const registerSettings = function () {
     type: String,
   });
 
-  game.settings.register(system.name, systemMigrationVersion, {
+  game.settings.register(systemName, systemMigrationVersion, {
     name: "System migration version",
     hint: "",
     scope: "world",
@@ -39,7 +38,7 @@ export const registerSettings = function () {
     default: defaultMigratedSystemVersion,
     type: String,
   });
-  game.settings.register(system.name, defaultThemeName, {
+  game.settings.register(systemName, defaultThemeName, {
     name: "Default sheet theme",
     scope: "world",
     config: false,
@@ -48,35 +47,35 @@ export const registerSettings = function () {
     type: String,
   });
 
-  game.settings.register(system.name, investigativeAbilityCategories, {
+  game.settings.register(systemName, investigativeAbilityCategories, {
     name: "Investigative ability categories",
     scope: "world",
     config: false,
     default: ["Academic", "Interpersonal", "Technical"],
     type: Object,
   });
-  game.settings.register(system.name, generalAbilityCategories, {
+  game.settings.register(systemName, generalAbilityCategories, {
     name: "General ability categories",
     scope: "world",
     config: false,
     default: ["General"],
     type: Object,
   });
-  game.settings.register(system.name, combatAbilities, {
+  game.settings.register(systemName, combatAbilities, {
     name: "Combat abilities",
     scope: "world",
     config: false,
     default: ["Scuffling", "Weapons", "Firearms", "Athletics"],
     type: Object,
   });
-  game.settings.register(system.name, shortNotes, {
+  game.settings.register(systemName, shortNotes, {
     name: "Short Notes",
     scope: "world",
     config: false,
     default: ["Drive"],
     type: Object,
   });
-  game.settings.register(system.name, longNotes, {
+  game.settings.register(systemName, longNotes, {
     name: "Long Notes",
     scope: "world",
     config: false,
@@ -84,7 +83,7 @@ export const registerSettings = function () {
     type: Object,
   });
 
-  game.settings.register(system.name, newPCPacks, {
+  game.settings.register(systemName, newPCPacks, {
     name: "Compendium packs for new PCs",
     scope: "world",
     config: false,
@@ -92,7 +91,7 @@ export const registerSettings = function () {
     type: Object,
   });
 
-  game.settings.register(system.name, systemPreset, {
+  game.settings.register(systemName, systemPreset, {
     name: "System preset",
     hint: "",
     scope: "world",
@@ -102,7 +101,7 @@ export const registerSettings = function () {
   });
 
   // Define a settings submenu which handles advanced configuration needs
-  game.settings.registerMenu(system.name, "gumshoeSettingsMenu", {
+  game.settings.registerMenu(systemName, "gumshoeSettingsMenu", {
     name: "GUMSHOE Settings",
     label: "Open GUMSHOE System Settings", // The text label used in the button
     // hint: "A description of what will occur in the submenu dialog.",

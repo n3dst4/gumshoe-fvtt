@@ -10,7 +10,7 @@ import { TextArea } from "../inputs/TextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { WeaponRange } from "./WeaponRangeConfig";
 import { Checkbox } from "../inputs/Checkbox";
-import { getCombatAbilities } from "../../module/settingsHelpers";
+import { getCombatAbilities } from "../../settingsHelpers";
 
 type WeaponConfigProps = {
   weapon: TrailItem,

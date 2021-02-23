@@ -8,7 +8,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
-import { getCombatAbilities } from "../../module/settingsHelpers";
+import { getCombatAbilities } from "../../settingsHelpers";
 
 type AbilityEditorMainProps = {
   ability: TrailItem,
