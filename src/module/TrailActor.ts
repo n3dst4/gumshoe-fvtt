@@ -3,9 +3,8 @@ import { isAbility } from "../functions";
 import { TrailActorData, RecursivePartial, TrailItemData } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { TrailItem } from "./TrailItem";
-import system from "../system.json";
 import { Theme, themes } from "../theme";
-import { getDefaultThemeName } from "./settingsHelpers";
+import { getDefaultThemeName, getNewPCPacks } from "./settingsHelpers";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export class TrailActor<T=any> extends Actor<TrailActorData> {
@@ -172,17 +171,13 @@ Hooks.on(
     if (actor.items.size > 0) {
       return;
     }
-    const investigative = (
-      await game.packs
-        .find((p: any) => p.collection === `${system.name}.investigativeAbilities`)
-        .getContent()
-    ).map((i: any) => i.data);
-    const general = (
-      await game.packs
-        .find((p: any) => p.collection === `${system.name}.generalAbilities`)
-        .getContent()
-    ).map((i: any) => i.data);
-    await actor.createOwnedItem(investigative);
-    await actor.createOwnedItem(general);
+    const proms = getNewPCPacks().map(async (packId) => {
+      const content = await (game.packs
+        .find((p: any) => p.collection === packId)
+        .getContent());
+      const datas = content.map((i: any) => i.data);
+      await actor.createOwnedItem(datas);
+    });
+    await Promise.all(proms);
   },
 );
