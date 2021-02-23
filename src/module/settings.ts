@@ -12,6 +12,7 @@ import {
 import { mapValues } from "../functions";
 import system from "../system.json";
 import { Theme, themes } from "../theme";
+import { GumshoeSettingsClass } from "./GumshoeSettingsClass";
 
 export const registerSettings = function () {
   // this is legacy
@@ -29,7 +30,7 @@ export const registerSettings = function () {
     name: "System migration version",
     hint: "",
     scope: "world",
-    config: true,
+    config: false,
     readonly: true,
     default: defaultMigratedSystemVersion,
     type: String,
@@ -38,7 +39,7 @@ export const registerSettings = function () {
   game.settings.register(system.name, defaultThemeName, {
     name: "Default sheet theme",
     scope: "world",
-    config: true,
+    config: false,
     choices: mapValues((theme: Theme) => (theme.displayName), themes),
     default: "trailTheme",
     type: String,
@@ -49,7 +50,7 @@ export const registerSettings = function () {
     name: "Investigative ability categories",
     hint: "Comma-separated",
     scope: "world",
-    config: true,
+    config: false,
     default: ["Academic", "Interpersonal", "Technical"],
     type: Object,
     // onChange: enable => {}
@@ -58,7 +59,7 @@ export const registerSettings = function () {
     name: "General ability categories",
     hint: "Comma-separated",
     scope: "world",
-    config: true,
+    config: false,
     default: ["General"],
     type: Object,
     // onChange: enable => {}
@@ -67,7 +68,7 @@ export const registerSettings = function () {
     name: "Combat abilities",
     hint: "Comma-separated",
     scope: "world",
-    config: true,
+    config: false,
     default: ["Scuffling", "Weapons", "Firearms", "Athletics"],
     type: Object,
     // onChange: enable => {}
@@ -76,7 +77,7 @@ export const registerSettings = function () {
     name: "Short Notes",
     hint: "Comma-separated",
     scope: "world",
-    config: true,
+    config: false,
     default: ["Drive"],
     type: Object,
     // onChange: enable => {}
@@ -85,9 +86,18 @@ export const registerSettings = function () {
     name: "Long Notes",
     hint: "Comma-separated (backslash to include a comma)",
     scope: "world",
-    config: true,
+    config: false,
     default: ["Notes, Contacts etc.", "Occupational Benefits", "Pillars of Sanity", "Sources of Stability", "Background"],
     type: Object,
     // onChange: enable => {}
+  });
+  // Define a settings submenu which handles advanced configuration needs
+  game.settings.registerMenu(system.name, "mySettingsMenu", {
+    name: "GUMSHOE Settings",
+    label: "Open GUMSHOE System Settings", // The text label used in the button
+    // hint: "A description of what will occur in the submenu dialog.",
+    icon: "fas fa-search", // A Font Awesome icon used in the submenu button
+    type: GumshoeSettingsClass, // A FormApplication subclass which should be created
+    restricted: true, // Restrict this submenu to gamemaster only?
   });
 };

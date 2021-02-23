@@ -115,7 +115,7 @@ Hooks.on("renderSettings", (app: Application, html: JQuery) => {
 
   button.on("click", ev => {
     ev.preventDefault();
-    new GumshoeSettingsClass().render(true);
+    new GumshoeSettingsClass({}, {}).render(true);
   });
 });
 
