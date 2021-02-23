@@ -76,10 +76,10 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }
           label: {
             font: theme.displayFont,
           },
-          a: {
+          "a, label": {
             color: theme.colors.accent,
           },
-          "a:hover, a.hover, .hover a": {
+          "a:hover, a.hover, .hover a, label:hover, label.hover, .hover label": {
             textDecoration: "underline",
             textShadow: `0 0 0.5em ${theme.colors.glow}`,
           },
@@ -93,6 +93,13 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }
             borderColor: theme.colors.reverseMedium,
             background: theme.colors.medium,
             resize: "vertical",
+            ":focus": {
+              borderColor: theme.colors.accent,
+              outline: "none",
+              boxShadow: `0 0 0.5em ${theme.colors.glow}`,
+            },
+          },
+          select: {
             ":focus": {
               borderColor: theme.colors.accent,
               outline: "none",

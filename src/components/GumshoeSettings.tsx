@@ -150,7 +150,14 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
         </InputGrid>
       )}
       {showJSON || (
-        <InputGrid css={{ flex: 1, overflow: "auto" }}>
+        <InputGrid
+          css={{
+            flex: 1,
+            overflow: "auto",
+            background: theme.colors.medium,
+            padding: "0.5em",
+          }}
+        >
           <GridField label="defaultTheme">
             <select
               value={defaultTheme}
@@ -164,6 +171,41 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                 </option>
               ))}
             </select>
+          </GridField>
+          <GridField label="Compendium packs for new PCs">
+            {game.packs
+              .filter((pack: Compendium) => pack.metadata.entity === "Item")
+              .map((pack: Compendium) => {
+                const isSelected = newPCPacks.includes(pack.collection);
+                return (
+                  <label
+                    key={pack.collection}
+                    title={pack.collection}
+                    css={{
+                      display: "block",
+                      background: isSelected ? theme.colors.reverseThin : "none",
+                      marginBottom: "0.3em",
+                      ":hover": {
+                        textShadow: theme.colors.reverseThin,
+                      },
+                    }}
+                  >
+                    <Checkbox
+                      checked={isSelected}
+                      onChange={(checked) => {
+                        if (checked) {
+                          setNewPCPacks([...newPCPacks, pack.collection]);
+                        } else {
+                          setNewPCPacks(
+                            newPCPacks.filter((x) => x !== pack.collection),
+                          );
+                        }
+                      }}
+                      />
+                    {pack.metadata.label}
+                  </label>
+                );
+              })}
           </GridField>
           <GridField label="Investigative Ability Categories">
             <ListEdit
@@ -186,31 +228,6 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           <GridField label="Long Notes Fields">
             <ListEdit value={longNotes} onChange={setLongNotes} />
           </GridField>
-          <GridField label="Compendium packs for new PCs">
-            <ul>
-              {game.packs
-                .filter((pack: Compendium) => pack.metadata.entity === "Item")
-                .map((pack: Compendium) => (
-                  <li key={pack.collection} title={pack.collection}>
-                    <label>
-                      <Checkbox
-                        checked={newPCPacks.includes(pack.collection)}
-                        onChange={(checked) => {
-                          if (checked) {
-                            setNewPCPacks([...newPCPacks, pack.collection]);
-                          } else {
-                            setNewPCPacks(
-                              newPCPacks.filter((x) => x !== pack.collection),
-                            );
-                          }
-                        }}
-                      />
-                      {pack.metadata.label}
-                    </label>
-                  </li>
-                ))}
-            </ul>
-          </GridField>
         </InputGrid>
       )}
       <div
@@ -218,6 +235,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           display: "flex",
           flexDirection: "row",
           padding: "0.5em",
+          background: theme.colors.thin,
         }}
       >
         <button css={{ flex: 1 }} onClick={onClickClose}>
@@ -230,21 +248,3 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
     </CSSReset>
   );
 };
-
-/*
-{
-  "trail-of-cthulhu-unsanctioned.investigativeAbilityCategories": "\"Academic,Interpersonal,Technical,Parp\"",
-  "trail-of-cthulhu-unsanctioned.defaultTheme": "\"trailTheme\"",
-  "trail-of-cthulhu-unsanctioned.shortNotes": "\"Drive,3\""
-  "trail-of-cthulhu-unsanctioned.combatAbilities": "\"Scuffling,Weapons,Firearms,Athletics\"",
-  "trail-of-cthulhu-unsanctioned.systemMigrationVersion": "\"1.0.0-alpha.5\"",
-  "trail-of-cthulhu-unsanctioned.abilityCategories": "\"\"",
-
-  "core.time": "0",
-  "core.moduleConfiguration": "{\"atropos-maps\":true,\"better-indents\":true,\"clocks\":false,\"data-toolbox\":false,\"dice-so-nice\":true,\"dice-calculator\":false,\"fogmanager\":false,\"game-icons-net\":false,\"LetterTokens\":false,\"miskasmaps\":true,\"popout\":false,\"Haste\":false,\"Popcorn\":false}",
-  "core.combatTrackerConfig": "{\"resource\":\"resources.health.value\",\"skipDefeated\":false}",
-  "core.sheetClasses": "{\"Item\":{\"weapon\":\"core.ItemSheet\"}}",
-  "core.permissions": "{\"BROADCAST_AUDIO\":[2,3,4],\"BROADCAST_VIDEO\":[2,3,4],\"FILES_BROWSE\":[2,3,4],\"TOKEN_CONFIGURE\":[2,3,4],\"JOURNAL_CREATE\":[2,3,4],\"TEMPLATE_CREATE\":[1,2,3,4],\"ACTOR_CREATE\":[3,4],\"ITEM_CREATE\":[3,4],\"TOKEN_CREATE\":[3,4],\"SHOW_CURSOR\":[],\"SHOW_RULER\":[1,2,3,4],\"SETTINGS_MODIFY\":[3,4],\"WALL_DOORS\":[1,2,3,4],\"FILES_UPLOAD\":[3,4],\"DRAWING_CREATE\":[2,3,4],\"MACRO_SCRIPT\":[1,2,3,4],\"MESSAGE_WHISPER\":[1,2,3,4]}",
-  "core.compendiumConfiguration": "{\"trail-of-cthulhu-unsanctioned.generalAbilities\":{\"private\":false,\"locked\":false},\"trail-of-cthulhu-unsanctioned.investigativeAbilities\":{\"private\":false,\"locked\":false},\"trail-of-cthulhu-unsanctioned.trailOfCthulhuAbilities\":{\"private\":false,\"locked\":false},\"world.my-items\":{\"private\":false,\"locked\":false},\"trail-of-cthulhu-unsanctioned.nightsBlackAgentsAbilities\":{\"private\":false,\"locked\":false}}",
-}
-*/
