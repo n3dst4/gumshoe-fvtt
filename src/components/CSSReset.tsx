@@ -76,10 +76,10 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }
           label: {
             font: theme.displayFont,
           },
-          "a, label": {
+          "a, label.parp": {
             color: theme.colors.accent,
           },
-          "a:hover, a.hover, .hover a, label:hover, label.hover, .hover label": {
+          "a:hover, a.hover, .hover a, label.parp:hover, label.parp.hover, .hover label.parp": {
             textDecoration: "underline",
             textShadow: `0 0 0.5em ${theme.colors.glow}`,
           },

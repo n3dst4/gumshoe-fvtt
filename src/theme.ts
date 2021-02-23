@@ -67,7 +67,7 @@ export const nbaTheme: Theme = {
   `,
   wallpaper: "linear-gradient(to bottom, #777 0%, #aaa 100%)",
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
-  displayFont: "normal normal normal 1em 'Unica One', serif",
+  displayFont: "normal normal normal 1.1em 'Unica One', serif",
   logoGradient: "linear-gradient(135deg, #fff 0%, #fff 90%)",
   logoShadows: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
   logoTransform: "scale(0.8)",

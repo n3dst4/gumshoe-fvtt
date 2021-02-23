@@ -64,7 +64,7 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] Custom system config flyout (the stock one is 🩲)
 - [x] Try embedding custom config as a "menu"?
 - [x] Choose default compendia for new characters
-- [ ] Presets for ToC and NBA
+- [x] Presets for ToC and NBA
 - [ ] High-contrast theme
 - [ ] Look for uses of system.name and switch to systemName from constants
 

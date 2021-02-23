@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { customSystem } from "../constants";
 import * as settings from "../module/settingsHelpers";
 import { systemPresets } from "../systemPresets";
@@ -110,6 +110,13 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
 
   const [showJSON, setShowJSON] = useState(false);
 
+  useEffect(() => {
+    (window as any).debugGumshoeSettings = setShowJSON;
+    return () => {
+      delete (window as any).debugGumshoeSettings;
+    };
+  }, []);
+
   const onClickClose = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
@@ -160,20 +167,9 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
         // overflow: "auto",
         display: "flex",
         flexDirection: "column",
+        padding: 0,
       }}
     >
-      <div>
-        <a
-          css={{
-            float: "right",
-          }}
-          onClick={() => {
-            setShowJSON(!showJSON);
-          }}
-        >
-          <i className={`fa fa-${showJSON ? "times" : "database"}`} />
-        </a>
-      </div>
       {showJSON && (
         <InputGrid css={{ flex: 1, overflow: "auto" }}>
           <GridField label="systemMigrationVersion">
@@ -214,12 +210,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
             padding: "0.5em",
           }}
         >
-          <GridField
-            label="System Preset"
-            css={{
-              background: theme.colors.thin,
-            }}
-          >
+          <GridField label="System Preset">
             <select value={systemPreset} onChange={onSelectPreset}>
               {Object.keys(systemPresets).map((presetId: string) => (
                 <option key={presetId} value={presetId}>
@@ -237,7 +228,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
             <hr />
           </GridFieldStacked>
 
-          <GridField label="Default Theme">
+          <GridField label="Visual Theme">
             <select
               value={defaultTheme}
               onChange={(e) => {
@@ -258,6 +249,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                 const isSelected = newPCPacks.includes(pack.collection);
                 return (
                   <label
+                    className="parp"
                     key={pack.collection}
                     title={pack.collection}
                     css={{
@@ -319,10 +311,10 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           background: theme.colors.thin,
         }}
       >
-        <button css={{ flex: 1 }} onClick={onClickClose}>
+        <button css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }} onClick={onClickClose}>
           <i className="fas fa-times" /> Cancel
         </button>
-        <button css={{ flex: 1 }} onClick={onClickSave}>
+        <button css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }} onClick={onClickSave}>
           <i className="fas fa-save" /> Save Changes
         </button>
       </div>

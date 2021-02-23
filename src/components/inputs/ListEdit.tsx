@@ -78,6 +78,7 @@ export const ListEdit: React.FC<ListEditProps> = ({
         css={{
           display: "flex",
           flexDirection: "row",
+          width: "18em",
         }}
       >
         <button

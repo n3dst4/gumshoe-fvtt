@@ -15,7 +15,7 @@ class GumshoeSettingsClassBase extends FormApplication {
     return mergeObject(super.defaultOptions, {
       classes: [system.name, "sheet", "item", "dialog"],
       template: reactTemplatePath,
-      width: 800,
+      width: 600,
       height: 800,
       resizable: true,
       title: "GUMSHOE Settings",
