@@ -119,6 +119,6 @@ Hooks.on("renderSettings", (app: Application, html: JQuery) => {
   });
 });
 
-CONFIG.debug.hooks = true;
+CONFIG.debug.hooks = false;
 
 initializePackGenerators();

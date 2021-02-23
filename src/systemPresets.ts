@@ -1,33 +1,36 @@
 import { packNames, systemName } from "./constants";
 
 export type SystemPreset = {
+  displayName: string,
   defaultTheme: string,
   investigativeAbilityCategories: string[],
   generalAbilityCategories: string[],
   combatAbilities: string[],
   shortNotes: string[],
   longNotes: string[],
-  defaultCompendiumPacks: string[],
+  newPCPacks: string[],
 }
 
 export const trailPreset: SystemPreset = {
+  displayName: "Trail of Cthulhu",
   defaultTheme: "trailtheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Weapons", "Firearms", "Athletics"],
   shortNotes: ["Drive"],
   longNotes: ["Notes, Contacts etc.", "Occupational Benefits", "Pillars of Sanity", "Sources of Stability"],
-  defaultCompendiumPacks: [`${systemName}.${packNames.trailOfCthulhuAbilities}`],
+  newPCPacks: [`${systemName}.${packNames.trailOfCthulhuAbilities}`],
 };
 
 export const nbaPreset: SystemPreset = {
+  displayName: "Night's Black Agents",
   defaultTheme: "nbaTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Weapons", "Firearms", "Athletics"],
   shortNotes: ["Drive", "Previous Patron"],
   longNotes: ["Covers", "Network Contacts", "Trust"],
-  defaultCompendiumPacks: [`${systemName}.${packNames.nightsBlackAgentsAbilities}`],
+  newPCPacks: [`${systemName}.${packNames.nightsBlackAgentsAbilities}`],
 };
 
 export const systemPresets = {

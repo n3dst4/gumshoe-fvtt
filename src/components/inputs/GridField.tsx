@@ -29,6 +29,7 @@ export const GridField: React.FC<GridFieldProps> = ({
         {label}
       </label>
       <div
+        className={className}
         css={css`
           grid-column: control;
         `}

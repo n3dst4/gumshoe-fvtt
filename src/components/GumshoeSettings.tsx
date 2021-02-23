@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback, useEffect, useState } from "react";
-import * as constants from "../constants";
+import React, { useCallback, useState } from "react";
+import { customSystem } from "../constants";
 import * as settings from "../module/settingsHelpers";
+import { systemPresets } from "../systemPresets";
 import { themes, trailTheme } from "../theme";
 import { CSSReset } from "./CSSReset";
 import { Checkbox } from "./inputs/Checkbox";
 import { GridField } from "./inputs/GridField";
+import { GridFieldStacked } from "./inputs/GridFieldStacked";
 import { InputGrid } from "./inputs/InputGrid";
 import { ListEdit } from "./inputs/ListEdit";
 
@@ -15,16 +17,17 @@ type GumshoeSettingsProps = {
   foundryApplication: Application;
 };
 
-const useSetting = <T extends any = string[]>(
-  getter: () => T,
-  setter: (value: T) => Promise<any>,
-): [T, typeof setter] => {
-  const [state, setState] = useState(getter());
-  const setBoth = (value: T) => {
-    setState(value);
-    return setter(value);
-  };
-  return [state, setBoth];
+const useStateWithPreset = <T extends any>(initial: T, also: () => void) => {
+  const [state, setState] = useState(initial);
+  const setter = useCallback(
+    (value: T) => {
+      setState(value);
+      also();
+    },
+    [also],
+  );
+  const retVal: [T, (value: T) => void] = [state, setter];
+  return retVal;
 };
 
 export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
@@ -32,23 +35,76 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
 }) => {
   // there is also abilityCategories which is legacy and may be lying around for compat purposes
   const systemMigrationVersion = settings.getSystemMigrationVersion();
-  const [defaultTheme, setDefaultTheme] = useState(
+  const [systemPreset, setSystemPreset] = useState(settings.getSystemPreset());
+
+  const resetPreset = useCallback(() => {
+    setSystemPreset(customSystem);
+  }, []);
+
+  const [defaultTheme, setDefaultTheme] = useStateWithPreset(
     settings.getDefaultThemeName(),
+    resetPreset,
   );
   const [
     investigativeAbilityCategories,
     setInvestigativeAbilityCategories,
-  ] = useState(settings.getInvestigativeAbilityCategories());
-  const [generalAbilityCategories, setGeneralAbilityCategories] = useState(
-    settings.getGeneralAbilityCategories(),
+  ] = useStateWithPreset(
+    settings.getInvestigativeAbilityCategories(),
+    resetPreset,
   );
-  const [combatAbilities, setCombatAbilities] = useState(
+  const [
+    generalAbilityCategories,
+    setGeneralAbilityCategories,
+  ] = useStateWithPreset(settings.getGeneralAbilityCategories(), resetPreset);
+  const [combatAbilities, setCombatAbilities] = useStateWithPreset(
     settings.getCombatAbilities(),
+    resetPreset,
   );
-  const [shortNotes, setShortNotes] = useState(settings.getShortNotes());
-  const [longNotes, setLongNotes] = useState(settings.getLongNotes());
-  const [newPCPacks, setNewPCPacks] = useState(settings.getNewPCPacks());
-  const [systemPreset, setSystemPreset] = useState(settings.getSystemPreset());
+  const [shortNotes, setShortNotes] = useStateWithPreset(
+    settings.getShortNotes(),
+    resetPreset,
+  );
+  const [longNotes, setLongNotes] = useStateWithPreset(
+    settings.getLongNotes(),
+    resetPreset,
+  );
+  const [newPCPacks, setNewPCPacks] = useStateWithPreset(
+    settings.getNewPCPacks(),
+    resetPreset,
+  );
+
+  const onSelectPreset = useCallback(
+    async (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const presetId = e.currentTarget.value as (keyof typeof systemPresets)|typeof customSystem;
+      if (presetId === customSystem) {
+        setSystemPreset(presetId);
+        return;
+      }
+      const preset = systemPresets[presetId];
+      if (!preset) {
+        throw new Error(
+          "Somehow ended up picking a preset which doesnae exist",
+        );
+      }
+      setDefaultTheme(preset.defaultTheme);
+      setInvestigativeAbilityCategories(preset.investigativeAbilityCategories);
+      setGeneralAbilityCategories(preset.generalAbilityCategories);
+      setCombatAbilities(preset.combatAbilities);
+      setShortNotes(preset.shortNotes);
+      setLongNotes(preset.longNotes);
+      setNewPCPacks(preset.newPCPacks);
+      setSystemPreset(presetId);
+    },
+    [
+      setCombatAbilities,
+      setDefaultTheme,
+      setGeneralAbilityCategories,
+      setInvestigativeAbilityCategories,
+      setLongNotes,
+      setNewPCPacks,
+      setShortNotes,
+    ],
+  );
 
   const theme = themes[defaultTheme] || trailTheme;
 
@@ -154,11 +210,34 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           css={{
             flex: 1,
             overflow: "auto",
-            background: theme.colors.medium,
+            background: theme.colors.thin,
             padding: "0.5em",
           }}
         >
-          <GridField label="defaultTheme">
+          <GridField
+            label="System Preset"
+            css={{
+              background: theme.colors.thin,
+            }}
+          >
+            <select value={systemPreset} onChange={onSelectPreset}>
+              {Object.keys(systemPresets).map((presetId: string) => (
+                <option key={presetId} value={presetId}>
+                  {
+                    systemPresets[presetId as keyof typeof systemPresets]
+                      .displayName
+                  }
+                </option>
+              ))}
+              <option value={customSystem}>Custom</option>
+            </select>
+          </GridField>
+
+          <GridFieldStacked>
+            <hr />
+          </GridFieldStacked>
+
+          <GridField label="Default Theme">
             <select
               value={defaultTheme}
               onChange={(e) => {
@@ -183,7 +262,9 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                     title={pack.collection}
                     css={{
                       display: "block",
-                      background: isSelected ? theme.colors.reverseThin : "none",
+                      background: isSelected
+                        ? theme.colors.reverseThin
+                        : "none",
                       marginBottom: "0.3em",
                       ":hover": {
                         textShadow: theme.colors.reverseThin,
@@ -201,7 +282,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                           );
                         }
                       }}
-                      />
+                    />
                     {pack.metadata.label}
                   </label>
                 );
