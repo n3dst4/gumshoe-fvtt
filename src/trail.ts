@@ -110,7 +110,7 @@ Hooks.on(
 );
 
 Hooks.on("renderSettings", (app: Application, html: JQuery) => {
-  const button = $("<button><i class=\"fas fa-cogs\"> </i><i class=\"fas fa-search\"></i>GUMSHOE System Settings</button>");
+  const button = $("<button><i class=\"fas fa-search\"></i>GUMSHOE System Settings</button>");
   html.find('button[data-action="configure"]').after(button);
 
   button.on("click", ev => {
