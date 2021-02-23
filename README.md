@@ -62,7 +62,7 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] attributes based on dynamic trackers
 - [x] Item images for investigative & general abilities
 - [x] Custom system config flyout (the stock one is 🩲)
-- [ ] Try embedding custom config as a "menu"?
+- [x] Try embedding custom config as a "menu"?
 - [ ] Choose default compendia for new characters
 - [ ] Presets for ToC and NBA
 - [ ] High-contrast theme
