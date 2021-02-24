@@ -1,8 +1,8 @@
-# Trail of Cthulhu (Unsanctioned) Foundry VTT System
+# GUMSHOE System for Foundry VTT
 
-A Foundry VTT system for running games of Trail of Cthulhu.
+A Foundry VTT system for running any GUMSHOE-based game. This was formerly launched under the name "Trail of Cthulhu (Unsanctioned)" but now we have multi-system support!
 
-<a target="_new" href="screenshot.jpg"><img src="screenshot-thumb.jpg" style="width: 50%"></a>
+<a target="_new" href="screenshot.webp"><img src="screenshot-thumb.webp" style="width: 50%"></a>
 
 ## How to install
 
