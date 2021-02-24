@@ -99,6 +99,44 @@ export const nbaTheme: Theme = {
   },
 };
 
+export const nbaLightTheme: Theme = {
+  displayName: "Nice Light Agents",
+  global: css`
+    @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+  `,
+  wallpaper: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  displayFont: "normal normal normal 1.1em 'Unica One', serif",
+  // logo:
+  logoGradient: "linear-gradient(135deg, #fff 0%, #fff 90%)",
+  logoShadows: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
+  logoTransform: "scale(0.8)",
+  backdropStyle: {
+    // background: "linear-gradient(to right, #700 0%, #300 100%)",
+    background: `#4a0d00 url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
+    backgroundSize: "cover",
+
+    transform: "scaleY(0.9) scaleX(1.2) translateY(0.1em)",
+    zIndex: -1,
+    borderStyle: "solid",
+    borderThickness: "2px 0",
+    borderColor: "#433",
+  },
+  colors: {
+    accent: "#962121",
+    glow: "#ff0000",
+    wallpaper: "#ddd",
+    thin: "rgba(255,255,255,0.2)",
+    medium: "rgba(255,255,255,0.5)",
+    thick: "rgba(255,255,255,0.7)",
+    reverseThin: "rgba(0,0,0,0.1)",
+    reverseMedium: "rgba(0,0,0,0.3)",
+    reverseThick: "rgba(0,0,0,0.5)",
+    text: "#433",
+  },
+};
+
 export const highContrastTheme: Theme = {
   displayName: "High Contrast",
   global: css`
@@ -128,6 +166,7 @@ export const highContrastTheme: Theme = {
 export const themes: {[themeName: string]: Theme} = {
   trailTheme,
   nbaTheme,
+  nbaLightTheme,
   highContrastTheme,
 };
 

@@ -71,6 +71,7 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] only show custom config option when it’s in use
 - [x] high-contrast theme
 - [x] re-do nba theme
+- [ ] "nba light" theme
 
 
 ## The future
