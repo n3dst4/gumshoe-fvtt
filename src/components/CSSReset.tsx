@@ -100,6 +100,8 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }
             },
           },
           select: {
+            color: theme.colors.text,
+            background: theme.colors.thick,
             ":focus": {
               borderColor: theme.colors.accent,
               outline: "none",
@@ -108,6 +110,10 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }
           },
           textarea: {
             lineHeight: 1,
+          },
+          "button, input[type=button]": {
+            border: `2px groove ${theme.colors.reverseThick}`,
+            background: theme.colors.reverseThin,
           },
         }}
       >

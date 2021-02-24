@@ -38,7 +38,7 @@ export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
             right: 0,
             bottom: 0,
             left: 0,
-            backgroundColor: theme.colors.medium,
+            // backgroundColor: theme.colors.medium,
           },
         }}
       >

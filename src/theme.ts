@@ -68,32 +68,34 @@ export const nbaTheme: Theme = {
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
-  `,
-  wallpaper: "linear-gradient(to bottom, #777 0%, #aaa 100%)",
+    `,
+  //    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  wallpaper: `url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
   logoGradient: "linear-gradient(135deg, #fff 0%, #fff 90%)",
   logoShadows: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
   logoTransform: "scale(0.8)",
   backdropStyle: {
-    background: "linear-gradient(to right, #700 0%, #300 100%)",
+    // background: "linear-gradient(to right, #700 0%, #300 100%)",
+    backgroundColor: "black",
     transform: "scaleY(0.9) scaleX(1.2) translateY(0.1em)",
     zIndex: -1,
     borderStyle: "solid",
     borderThickness: "2px 0",
-    borderColor: "white",
+    borderColor: "#433",
   },
   colors: {
-    accent: "#900",
-    glow: "#f00",
-    wallpaper: "#333",
-    thin: "rgba(255,255,255,0.3)",
-    medium: "rgba(255,255,255,0.5)",
-    thick: "rgba(255,255,255,0.7)",
-    reverseThin: "rgba(0,0,0,0.1)",
-    reverseMedium: "rgba(0,0,0,0.3)",
-    reverseThick: "rgba(0,0,0,0.5)",
-    text: "#222",
+    accent: "#fff",
+    glow: "#f33",
+    wallpaper: "#350900",
+    thin: "rgba(0,0,0,0.2)",
+    medium: "rgba(0,0,0,0.4)",
+    thick: "rgba(0,0,0,0.6)",
+    reverseThin: "rgba(255,255,255,0.1)",
+    reverseMedium: "rgba(255,255,255,0.3)",
+    reverseThick: "rgba(255,255,255,0.5)",
+    text: "#ccc",
   },
 };
 
