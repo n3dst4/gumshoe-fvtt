@@ -35,3 +35,5 @@ export const GumshoeSettingsClass = ReactApplicationMixin(
   GumshoeSettingsClassBase,
   render,
 );
+
+export const gumshoeSettingsClassInstance = new GumshoeSettingsClass({}, {});

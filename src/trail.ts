@@ -11,7 +11,7 @@ import { migrateWorld } from "./migrations/migrateWorld";
 import { RecursivePartial, TrailItemData } from "./types";
 import { isAbility, isGeneralAbility, isNullOrEmptyString } from "./functions";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
-import { GumshoeSettingsClass } from "./module/GumshoeSettingsClass";
+import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
 
 // Initialize system
@@ -114,7 +114,7 @@ Hooks.on("renderSettings", (app: Application, html: JQuery) => {
 
   button.on("click", ev => {
     ev.preventDefault();
-    new GumshoeSettingsClass({}, {}).render(true);
+    gumshoeSettingsClassInstance.render(true);
   });
 });
 
