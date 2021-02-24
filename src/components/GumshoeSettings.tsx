@@ -220,7 +220,9 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                   }
                 </option>
               ))}
-              <option value={customSystem}>Custom</option>
+              {systemPreset === customSystem &&
+                <option value={customSystem}>Custom</option>
+              }
             </select>
           </GridField>
 
