@@ -69,7 +69,7 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 - [x] bug - can't edit items (again)
 - [x] make settings a singleton
 - [x] only show custom config option when it’s in use
-- [ ] high-contrast theme
+- [x] high-contrast theme
 - [ ] re-do nba theme
 
 

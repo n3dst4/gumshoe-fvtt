@@ -1,13 +1,17 @@
 import { css, CSSObject, SerializedStyles } from "@emotion/react";
 import React from "react";
 import { systemName } from "./constants";
+import Irid from "irid";
+
+const white = Irid("white");
+const black = Irid("black");
 
 export type Theme = {
   displayName: string,
   global?: SerializedStyles,
   wallpaper: string,
-  bodyFont: string,
-  displayFont: string,
+  bodyFont?: string,
+  displayFont?: string,
   logoGradient: string,
   logoShadows: string,
   logoTransform: string,
@@ -93,9 +97,36 @@ export const nbaTheme: Theme = {
   },
 };
 
+export const highContrastTheme: Theme = {
+  displayName: "High Contrast",
+  global: css`
+  `,
+  wallpaper: "",
+  bodyFont: "1.2em sans-serif",
+  displayFont: "1.2em sans-serif",
+  logoGradient: "linear-gradient(135deg, #000 0%, #000 90%)",
+  logoShadows: "",
+  logoTransform: "none",
+  backdropStyle: {
+  },
+  colors: {
+    accent: "#005",
+    glow: "#bbf",
+    wallpaper: "#ddd",
+    thin: white.opacity(0.2).toString(),
+    medium: white.opacity(0.4).toString(),
+    thick: white.opacity(0.6).toString(),
+    reverseThin: black.opacity(0.1).toString(),
+    reverseMedium: black.opacity(0.2).toString(),
+    reverseThick: black.opacity(0.3).toString(),
+    text: "#000",
+  },
+};
+
 export const themes: {[themeName: string]: Theme} = {
   trailTheme,
   nbaTheme,
+  highContrastTheme,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
