@@ -63,8 +63,8 @@ export const trailTheme: Theme = {
   },
 };
 
-export const nbaTheme: Theme = {
-  displayName: "Night's Black Agents",
+export const nbaThemeDark: Theme = {
+  displayName: "Night's Dark Red Agents",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
@@ -99,7 +99,7 @@ export const nbaTheme: Theme = {
   },
 };
 
-export const nbaLightTheme: Theme = {
+export const nbaTheme: Theme = {
   displayName: "Nice Light Agents",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
@@ -166,7 +166,7 @@ export const highContrastTheme: Theme = {
 export const themes: {[themeName: string]: Theme} = {
   trailTheme,
   nbaTheme,
-  nbaLightTheme,
+  nbaThemeDark,
   highContrastTheme,
 };
 
