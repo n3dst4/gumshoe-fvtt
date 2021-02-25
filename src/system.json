@@ -3,13 +3,7 @@
   "title": "GUMSHOE System",
   "description": "Support for GUMSHOE System games. Comes with configurations for Trail of Cthulhu and Night's Blacks Agents, and can be customized to support any other GUMSHOE-based game.",
   "version": "2.0.0",
-  "authors": [
-    {
-      "name": "Neil de Carteret",
-      "email": "neil-fvtt@lumphammer.com",
-      "url": ""
-    }
-  ],
+  "author": "Neil de Carteret",
   "scripts": [],
   "esmodules": ["gumshoe.js"],
   "styles": ["gumshoe.css"],
