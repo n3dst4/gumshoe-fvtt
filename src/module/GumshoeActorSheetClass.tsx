@@ -1,6 +1,6 @@
 // import ReactDOM from "react-dom";
 import React from "react";
-import { TrailItemSheet } from "../components/TrailItemSheet";
+import { GumshoeActorSheet } from "../components/characters/GumshoeActorSheet";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
@@ -8,29 +8,28 @@ import { ReactApplicationMixin } from "./ReactApplicationMixin";
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-class TrailItemSheetClassBase extends ItemSheet {
+class GumshoeActorSheetClassBase extends ActorSheet {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
-      classes: [systemName, "sheet", "item"],
+      classes: [systemName, "sheet", "actor"],
       template: reactTemplatePath,
-      width: 400,
-      height: "auto",
-      resizable: false,
+      width: 660,
+      height: 900,
     });
   }
 }
 
-const render = (sheet: TrailItemSheetClassBase) => {
+const render = (sheet: GumshoeActorSheetClassBase) => {
   return (
-    <TrailItemSheet
-      item={sheet.entity}
+    <GumshoeActorSheet
+      actor={sheet.entity}
       foundryApplication={sheet}
     />
   );
 };
 
-export const TrailItemSheetClass = ReactApplicationMixin(
-  TrailItemSheetClassBase,
+export const GumshoeActorSheetClass = ReactApplicationMixin(
+  GumshoeActorSheetClassBase,
   render,
 );

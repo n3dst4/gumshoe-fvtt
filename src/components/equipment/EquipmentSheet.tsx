@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback } from "react";
-import { TrailItem } from "../../module/TrailItem";
+import { GumshoeItem } from "../../module/GumshoeItem";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
@@ -9,7 +9,7 @@ import { TextInput } from "../inputs/TextInput";
 import { TextArea } from "../inputs/TextArea";
 
 type EquipmentSheetProps = {
-  entity: TrailItem,
+  entity: GumshoeItem,
   foundryWindow: Application,
 };
 

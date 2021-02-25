@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 
 import React, { useCallback } from "react";
-import { TrailItem } from "../../module/TrailItem";
+import { GumshoeItem } from "../../module/GumshoeItem";
 import { PoolCheckbox } from "./PoolCheckbox";
 
 const range = (from: number, to: number): number[] => {
@@ -14,7 +14,7 @@ const range = (from: number, to: number): number[] => {
 };
 
 type PoolTrackerProps = {
-  ability: TrailItem,
+  ability: GumshoeItem,
 };
 
 export const PoolTracker: React.FC<PoolTrackerProps> = ({

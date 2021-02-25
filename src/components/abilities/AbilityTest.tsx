@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useContext, useState } from "react";
 import { isGeneralAbility } from "../../functions";
-import { TrailItem } from "../../module/TrailItem";
+import { GumshoeItem } from "../../module/GumshoeItem";
 import { ThemeContext } from "../../theme";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
@@ -10,7 +10,7 @@ import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 
 type AbilityTestProps = {
-  ability: TrailItem,
+  ability: GumshoeItem,
 
 };
 

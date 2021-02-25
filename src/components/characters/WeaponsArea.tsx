@@ -3,11 +3,11 @@ import { jsx } from "@emotion/react";
 import React from "react";
 import { weapon } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
-import { TrailActor } from "../../module/TrailActor";
+import { GumshoeActor } from "../../module/GumshoeActor";
 import { WeaponRow } from "./WeaponRow";
 
 type WeaponsAreaProps = {
-  actor: TrailActor,
+  actor: GumshoeActor,
 };
 
 export const WeaponsArea: React.FC<WeaponsAreaProps> = ({

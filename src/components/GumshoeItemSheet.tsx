@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React from "react";
 import { equipment, weapon } from "../constants";
-import { TrailItem } from "../module/TrailItem";
+import { GumshoeItem } from "../module/GumshoeItem";
 import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
 import { isAbility } from "../functions";
@@ -10,8 +10,8 @@ import { WeaponSheet } from "./equipment/WeaponSheet";
 import { CSSReset } from "./CSSReset";
 import { ItemSheetAppContext } from "./FoundryAppContext";
 
-type TrailItemSheetProps = {
-  item: TrailItem,
+type GumshoeItemSheetProps = {
+  item: GumshoeItem,
   foundryApplication: ItemSheet,
 };
 
@@ -19,7 +19,7 @@ type TrailItemSheetProps = {
  * We only register one "Item" sheet with foundry and then dispatch based on
  * type here.
  */
-export const TrailItemSheet: React.FC<TrailItemSheetProps> = ({
+export const GumshoeItemSheet: React.FC<GumshoeItemSheetProps> = ({
   item,
   foundryApplication,
 }) => {

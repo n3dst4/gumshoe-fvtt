@@ -1,13 +1,13 @@
 import { fixLength, isAbility } from "../functions";
 import { Theme, themes } from "../theme";
-import { TrailActor } from "./TrailActor";
+import { GumshoeActor } from "./GumshoeActor";
 import { getDefaultThemeName } from "../settingsHelpers";
 
 /**
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
  */
-export class TrailItem extends Item<any> {
+export class GumshoeItem extends Item<any> {
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
@@ -147,7 +147,7 @@ export class TrailItem extends Item<any> {
   getThemeName (): string {
     const systemThemeName = getDefaultThemeName();
     if (this.isOwned) {
-      return (this.actor as TrailActor).getSheetThemeName() || systemThemeName;
+      return (this.actor as GumshoeActor).getSheetThemeName() || systemThemeName;
     } else {
       return systemThemeName;
     }

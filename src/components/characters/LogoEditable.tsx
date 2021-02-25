@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { ThemeContext } from "../../theme";
 
-type TrailLogoEditableProps = {
+type LogoEditableProps = {
   text: string;
   subtext?: string;
   defaultSubtext?: string,
@@ -32,7 +32,7 @@ const fontFactor = 16;
 /**
  * Outrageous Trail of Cthulhu logo
  */
-export const TrailLogoEditable: React.FC<TrailLogoEditableProps> = ({
+export const LogoEditable: React.FC<LogoEditableProps> = ({
   text,
   subtext: subtextOrig,
   defaultSubtext = "Investigator",

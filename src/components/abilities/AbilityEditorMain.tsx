@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { useUpdate } from "../../hooks/useUpdate";
-import { TrailItem } from "../../module/TrailItem";
+import { GumshoeItem } from "../../module/GumshoeItem";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -11,7 +11,7 @@ import { SpecialityList } from "./SpecialityList";
 import { getCombatAbilities } from "../../settingsHelpers";
 
 type AbilityEditorMainProps = {
-  ability: TrailItem,
+  ability: GumshoeItem,
 };
 
 export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({

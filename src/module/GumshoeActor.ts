@@ -2,12 +2,12 @@ import { equipment, generalAbility, weapon } from "../constants";
 import { isAbility } from "../functions";
 import { TrailActorData, RecursivePartial, TrailItemData } from "../types";
 import { confirmADoodleDo } from "./confirm";
-import { TrailItem } from "./TrailItem";
+import { GumshoeItem } from "./GumshoeItem";
 import { Theme, themes } from "../theme";
 import { getDefaultThemeName, getNewPCPacks } from "../settingsHelpers";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export class TrailActor<T=any> extends Actor<TrailActorData> {
+export class GumshoeActor<T=any> extends Actor<TrailActorData> {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
@@ -50,7 +50,7 @@ export class TrailActor<T=any> extends Actor<TrailActorData> {
   nuke = async () => {
     await this.deleteEmbeddedEntity(
       "OwnedItem",
-      this.items.map((i: TrailItem) => i.id),
+      this.items.map((i: GumshoeItem) => i.id),
     );
     window.alert("Nuked");
   }
@@ -59,23 +59,23 @@ export class TrailActor<T=any> extends Actor<TrailActorData> {
   // ITEMS
 
   getAbilityByName (name: string) {
-    return this.items.find((item: TrailItem) => isAbility(item) && item.name === name);
+    return this.items.find((item: GumshoeItem) => isAbility(item) && item.name === name);
   }
 
   getEquipment () {
-    return this.items.filter((item: TrailItem) => item.type === equipment);
+    return this.items.filter((item: GumshoeItem) => item.type === equipment);
   }
 
-  getWeapons (): TrailItem[] {
-    return this.items.filter((item: TrailItem) => item.type === weapon);
+  getWeapons (): GumshoeItem[] {
+    return this.items.filter((item: GumshoeItem) => item.type === weapon);
   }
 
-  getAbilities (): TrailItem[] {
-    return this.items.filter((item: TrailItem) => isAbility(item));
+  getAbilities (): GumshoeItem[] {
+    return this.items.filter((item: GumshoeItem) => isAbility(item));
   }
 
-  getTrackerAbilities (): TrailItem[] {
-    return this.getAbilities().filter((item: TrailItem) => item.data.data.showTracker);
+  getTrackerAbilities (): GumshoeItem[] {
+    return this.getAbilities().filter((item: GumshoeItem) => item.data.data.showTracker);
   }
 
   // ---------------------------------------------------------------------------
@@ -136,7 +136,7 @@ export class TrailActor<T=any> extends Actor<TrailActorData> {
  * Keep "special" general abilities in sync with their corresponding resources
  */
 Hooks.on("updateOwnedItem", (
-  actor: TrailActor,
+  actor: GumshoeActor,
   itemData: ItemData<TrailItemData>,
   diff: RecursivePartial<ItemData<TrailItemData>>,
   options: Record<string, unknown>,
@@ -164,7 +164,7 @@ Hooks.on("updateOwnedItem", (
 Hooks.on(
   "createActor",
   async (
-    actor: TrailActor,
+    actor: GumshoeActor,
     options: Record<string, unknown>,
     userId: string,
   ) => {

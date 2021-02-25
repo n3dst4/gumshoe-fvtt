@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
-import { TrailActor } from "../../module/TrailActor";
+import { GumshoeActor } from "../../module/GumshoeActor";
 import { themes } from "../../theme";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 
 type SettingAreaProps = {
-  actor: TrailActor,
+  actor: GumshoeActor,
 };
 
 export const SettingArea: React.FC<SettingAreaProps> = ({

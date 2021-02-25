@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useMemo, useState } from "react";
 import { generalAbility } from "../../constants";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { TrailItem } from "../../module/TrailItem";
+import { GumshoeItem } from "../../module/GumshoeItem";
 import { ThemeContext } from "../../theme";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";
@@ -14,7 +14,7 @@ import { TextArea } from "../inputs/TextArea";
 import { performAttack } from "./performAttack";
 
 type WeaponAttackProps = {
-  weapon: TrailItem;
+  weapon: GumshoeItem;
 };
 
 const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
@@ -29,7 +29,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
 
   const abilityName = weapon.data.data.ability;
 
-  const ability: TrailItem|undefined = weapon?.actor?.items.find((item: TrailItem) => {
+  const ability: GumshoeItem|undefined = weapon?.actor?.items.find((item: GumshoeItem) => {
     return (
       item.type === generalAbility && item.name === abilityName
     );

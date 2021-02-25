@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useState } from "react";
-import { TrailItem } from "../../module/TrailItem";
+import { GumshoeItem } from "../../module/GumshoeItem";
 type WeaponRowProps = {
-  weapon: TrailItem,
+  weapon: GumshoeItem,
 };
 
 export const WeaponRow: React.FC<WeaponRowProps> = ({

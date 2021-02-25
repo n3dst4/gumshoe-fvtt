@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { Fragment, useCallback } from "react";
-import { TrailActor } from "../../module/TrailActor";
+import { GumshoeActor } from "../../module/GumshoeActor";
 import { jsx } from "@emotion/react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { AbilitiesArea } from "./AbilitiesArea";
 import { CSSReset } from "../CSSReset";
-import { TrailLogoEditable } from "./TrailLogoEditable";
+import { LogoEditable } from "./LogoEditable";
 import { InputGrid } from "../inputs/InputGrid";
 import { GridField } from "../inputs/GridField";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -18,15 +18,15 @@ import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
 import { getShortNotes } from "../../settingsHelpers";
 
-type TrailActorSheetProps = {
-  actor: TrailActor,
+type GumshoeActorSheetProps = {
+  actor: GumshoeActor,
   foundryApplication: ActorSheet,
 }
 
-export const TrailActorSheet = ({
+export const GumshoeActorSheet = ({
   actor,
   foundryApplication,
-}: TrailActorSheetProps) => {
+}: GumshoeActorSheetProps) => {
   const onImageClick = useCallback(() => {
     console.log("onImageClick");
     const fp = new FilePicker({
@@ -81,7 +81,7 @@ export const TrailActorSheet = ({
             textAlign: "center",
           }}
         >
-          <TrailLogoEditable
+          <LogoEditable
             text={actor.data.name}
             subtext={actor.data.data.occupation}
             defaultSubtext="Investigator"

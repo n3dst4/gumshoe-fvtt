@@ -1,11 +1,11 @@
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/preloadTemplates";
-import { TrailActor } from "./module/TrailActor";
-import { TrailItem } from "./module/TrailItem";
-import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
-import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
+import { GumshoeActor } from "./module/GumshoeActor";
+import { GumshoeItem } from "./module/GumshoeItem";
+import { GumshoeActorSheetClass } from "./module/GumshoeActorSheetClass";
+import { GumshoeItemSheetClass } from "./module/GumshoeItemSheetClass";
 import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, systemName, weapon } from "./constants";
-import { TrailCombat } from "./module/TrailCombat";
+import { GumshoeCombat } from "./module/GumshoeCombat";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
 import { RecursivePartial, TrailItemData } from "./types";
@@ -26,17 +26,17 @@ Hooks.once("init", async function () {
   await preloadTemplates();
 
   // XXX TS needs going over here
-  CONFIG.Actor.entityClass = (TrailActor as any);
-  CONFIG.Item.entityClass = TrailItem;
-  CONFIG.Combat.entityClass = TrailCombat;
+  CONFIG.Actor.entityClass = (GumshoeActor as any);
+  CONFIG.Item.entityClass = GumshoeItem;
+  CONFIG.Combat.entityClass = GumshoeCombat;
 
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet(systemName, TrailActorSheetClass, { makeDefault: true });
+  Actors.registerSheet(systemName, GumshoeActorSheetClass, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(
     systemName,
-    TrailItemSheetClass,
+    GumshoeItemSheetClass,
     {
       makeDefault: true,
       types: [weapon, investigativeAbility, generalAbility, equipment],

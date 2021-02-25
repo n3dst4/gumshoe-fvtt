@@ -1,12 +1,12 @@
-import { TrailItem } from "../../module/TrailItem";
+import { GumshoeItem } from "../../module/GumshoeItem";
 
 type PerformAttackArgs1 = {
   spend: string,
   bonusPool: number,
   setSpend: (value: string) => void,
   setBonusPool: (value: number) => void,
-  weapon: TrailItem,
-  ability: TrailItem,
+  weapon: GumshoeItem,
+  ability: GumshoeItem,
 }
 
 type PerformAttackArgs2 = {

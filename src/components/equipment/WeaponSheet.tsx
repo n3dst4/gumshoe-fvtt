@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useEffect, useState } from "react";
-import { TrailItem } from "../../module/TrailItem";
+import { GumshoeItem } from "../../module/GumshoeItem";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { WeaponConfig } from "./WeaponConfig";
 import { WeaponAttack } from "./WeaponAttack";
 
 type WeaponSheetProps = {
-  weapon: TrailItem;
+  weapon: GumshoeItem;
   foundryWindow: Application;
 };
 

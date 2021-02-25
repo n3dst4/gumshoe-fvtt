@@ -3,14 +3,14 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext } from "react";
 import { generalAbility, investigativeAbility } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
-import { TrailActor } from "../../module/TrailActor";
-import { TrailItem } from "../../module/TrailItem";
+import { GumshoeActor } from "../../module/GumshoeActor";
+import { GumshoeItem } from "../../module/GumshoeItem";
 import { ThemeContext } from "../../theme";
 import { Checkbox } from "../inputs/Checkbox";
 import { AbilitySlug } from "./AbilitySlug";
 
 type AbilitiesAreaProps = {
-  actor: TrailActor,
+  actor: GumshoeActor,
 };
 
 export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
@@ -18,8 +18,8 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
 }) => {
   const theme = useContext(ThemeContext);
 
-  const investigativeAbilities: { [category: string]: TrailItem[] } = {};
-  const generalAbilities: { [category: string]: TrailItem[] } = {};
+  const investigativeAbilities: { [category: string]: GumshoeItem[] } = {};
+  const generalAbilities: { [category: string]: GumshoeItem[] } = {};
 
   const hideZeroRated = actor.data.data.hideZeroRated;
 
@@ -28,14 +28,14 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
       continue;
     }
     if (item.type === investigativeAbility) {
-      const ability = item as TrailItem;
+      const ability = item as GumshoeItem;
       const cat = ability.data.data.category || "Uncategorised";
       if (investigativeAbilities[cat] === undefined) {
         investigativeAbilities[cat] = [];
       }
       investigativeAbilities[cat].push(ability);
     } else if (item.type === generalAbility) {
-      const ability = item as TrailItem;
+      const ability = item as GumshoeItem;
       const cat = ability.data.data.category || "Uncategorised";
       if (generalAbilities[cat] === undefined) {
         generalAbilities[cat] = [];

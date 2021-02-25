@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { Fragment, useEffect, useState } from "react";
 import { useUpdate } from "../../hooks/useUpdate";
-import { TrailItem } from "../../module/TrailItem";
+import { GumshoeItem } from "../../module/GumshoeItem";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { isGeneralAbility } from "../../functions";
 import { AbilityTest } from "./AbilityTest";
@@ -10,7 +10,7 @@ import { AbilityEditorMain } from "./AbilityEditorMain";
 import { AbilityConfig } from "./AbilityConfig";
 
 type AbilitySheetProps = {
-  ability: TrailItem,
+  ability: GumshoeItem,
   foundryWindow: Application,
 };
 

@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
-import { TrailItem } from "../../module/TrailItem";
+import { GumshoeItem } from "../../module/GumshoeItem";
 import { SpecListItem } from "./SpecListItem";
 
 type SpecialityListProps = {
-  ability: TrailItem;
+  ability: GumshoeItem;
 };
 
 export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
