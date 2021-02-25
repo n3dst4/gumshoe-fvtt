@@ -151,7 +151,7 @@ function clean () {
  * Get the path to link to `dist`
  */
 function getLinkDir () {
-  const name = path.basename(path.resolve("."));
+  const name = require("./src/system.json").name;
   const config = fs.readJSONSync("foundryconfig.json");
   let destDir;
 
