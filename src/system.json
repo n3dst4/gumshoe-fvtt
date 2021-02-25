@@ -1,8 +1,8 @@
 {
-  "name": "trail-of-cthulhu-unsanctioned",
-  "title": "GUMSHOE",
-  "description": "Supports games using the GUMSHOE system by Robin D. Laws. Some games are built in, and can be adapted to any other GUMSHOE game.",
-  "version": "1.0.0-alpha.5",
+  "name": "gumshoe",
+  "title": "GUMSHOE™ System",
+  "description": "Support for GUMSHOE™ System games. Comes with configurations for Trail of Cthulhu and Night's Blacks Agents, and can be customized to support any other GUMSHOE-based game.",
+  "version": "2.0.0",
   "authors": [
     {
       "name": "Neil de Carteret",
@@ -11,20 +11,20 @@
     }
   ],
   "scripts": [],
-  "esmodules": ["trail.js"],
-  "styles": ["trail.css"],
+  "esmodules": ["gumshoe.js"],
+  "styles": ["gumshoe.css"],
   "packs": [
     {
       "name": "trailOfCthulhuAbilities",
       "label": "Trail of Cthulhu Abilities",
-      "system": "trail-of-cthulhu-unsanctioned",
+      "system": "gumshoe",
       "path": "./packs/trailOfCthulhuAbilities.db",
       "entity": "Item"
     },
     {
       "name": "nightsBlackAgentsAbilities",
       "label": "Night's Black Agents Abilities",
-      "system": "trail-of-cthulhu-unsanctioned",
+      "system": "gumshoe",
       "path": "./packs/nightsBlackAgentsAbilities.db",
       "entity": "Item"
     }
@@ -35,11 +35,11 @@
   "minimumCoreVersion": "0.7.9",
   "compatibleCoreVersion": "0.7.9",
   "initiative": "1d6",
-  "url": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned",
-  "manifest": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/raw/release/src/system.json",
-  "download": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/uploads/d26f3da06a925bd81bcb87aa412f3ec6/trail-of-cthulhu-unsanctioned-v1.0.0-alpha.4.zip",
+  "url": "https://gitlab.com/n3dst4/gumshoe-fvtt",
+  "manifest": "https://gitlab.com/n3dst4/gumshoe-fvtt/-/raw/release/src/system.json",
+  "download": "fixmefixmefixme",
   "license": "MIT",
-  "readme": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/blob/release/README.md",
-  "bugs": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/issues",
-  "changelog": "https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/blob/release/CHANGELOG.md"
+  "readme": "https://gitlab.com/n3dst4/gumshoe-fvtt/-/blob/release/README.md",
+  "bugs": "https://gitlab.com/n3dst4/gumshoe-fvtt/-/issues",
+  "changelog": "https://gitlab.com/n3dst4/gumshoe-fvtt/-/blob/release/CHANGELOG.md"
 }

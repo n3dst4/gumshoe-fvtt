@@ -13,7 +13,7 @@ This sytem isn't registered so to install it into your Foundry instance:
 3. Where it says **Manfest URL**, paste in
 
     ```
-    https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/raw/release/src/system.json
+    https://gitlab.com/n3dst4/gumshoe/-/raw/release/src/system.json
     ```
     
 4. Click **Install**
@@ -176,4 +176,4 @@ This System for Foundry VTT uses trademarks and/or copyrights owned by Pelgrane 
 Huge thanks to Nick van Oosten/NickEast for [Foundry Project Creator](https://gitlab.com/foundry-projects/foundry-pc/create-foundry-project) and [the Typescript types to go with it](https://gitlab.com/foundry-projects/foundry-pc/foundry-pc-types).
 
 
-[project-site]: https://gitlab.com/n3dst4/trail-of-cthulhu-unsanctioned/-/issues
+[project-site]: https://gitlab.com/n3dst4/gumshoe/-/issues

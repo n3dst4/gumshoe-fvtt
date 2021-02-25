@@ -4,7 +4,7 @@ import { TrailActor } from "./module/TrailActor";
 import { TrailItem } from "./module/TrailItem";
 import { TrailActorSheetClass } from "./module/TrailActorSheetClass";
 import { TrailItemSheetClass } from "./module/TrailItemSheetClass";
-import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, weapon } from "./constants";
+import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, systemName, weapon } from "./constants";
 import { TrailCombat } from "./module/TrailCombat";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
@@ -16,7 +16,7 @@ import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategor
 
 // Initialize system
 Hooks.once("init", async function () {
-  console.log("trail-of-cthulhu-unsanctioned | Initializing system");
+  console.log(`${systemName} | Initializing system`);
   // Assign custom classes and constants here
 
   // Register custom system settings
@@ -32,10 +32,10 @@ Hooks.once("init", async function () {
 
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("trail-of-cthulhu-unsanctioned", TrailActorSheetClass, { makeDefault: true });
+  Actors.registerSheet(systemName, TrailActorSheetClass, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(
-    "trail-of-cthulhu-unsanctioned",
+    systemName,
     TrailItemSheetClass,
     {
       makeDefault: true,

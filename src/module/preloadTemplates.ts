@@ -1,6 +1,6 @@
 export const preloadTemplates = async function () {
   const templatePaths: string[] = [
-    // Add paths to "systems/trail-of-cthulhu-unsanctioned/templates"
+    // Add paths to "systems/gumshoe/templates"
   ];
 
   // eslint-disable-next-line no-undef
