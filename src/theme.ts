@@ -32,7 +32,7 @@ export type Theme = {
 }
 
 export const trailTheme: Theme = {
-  displayName: "Trail of Cthulhu",
+  displayName: "Teal of Cthulhu",
   global: css`
     @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
