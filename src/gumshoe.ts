@@ -102,7 +102,7 @@ Hooks.on(
 
       // set image
       if (isNullOrEmptyString(data.img)) {
-        data.img = isGeneralAbility(data.type ?? "") ? investigativeAbilityIcon : generalAbilityIcon;
+        data.img = isGeneralAbility(data.type ?? "") ? generalAbilityIcon : investigativeAbilityIcon;
       }
     }
   },
