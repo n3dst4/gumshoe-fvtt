@@ -1,6 +1,8 @@
 # GUMSHOE System for Foundry VTT
 
-A Foundry VTT system for running any GUMSHOE-based game. This was formerly launched under the name "Trail of Cthulhu (Unsanctioned)" but now we have multi-system support!
+A Foundry VTT system for running any GUMSHOE-based game. 
+
+This was formerly launched under the name "Trail of Cthulhu (Unsanctioned)" but now we have multi-system support!
 
 <a 
   target="_new" 
@@ -49,95 +51,6 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 5. `npm run link` to link it into your foundry data folder
 6. `npm start` to start a live incremental build (so you don't need to keep running `npm run build` after every change).
 7. Open your local foundry server and create a world with "Trail of Cthulhu (Unsanctioned)" as the system.
-
-
-## TODO
-
-- [x] Combine ability compendia
-- [x] choosable theme support
-- [x] NBA theme
-- [x] Options tab
-- [x] Items directory - bug when opening items (the window doesn't open)
-- [x] Go through FI2, AS, & NBA and work out what they need.
-- [x] Collapse or refactor ability types to support powers and maybe General categories.
-- [x] General categories
-- [x] Migration strategery
-- [x] "Short notes" and "Long Notes"
-- [x] Configurable trackers (we can do this by adding "showTracker" to the ability definition)
-- [x] Move notes getters/setters into actor class
-- [x] make tracker headers clickable
-- [x] migrate old trackers to new trackers
-- [x] attributes based on dynamic trackers
-- [x] Item images for investigative & general abilities
-- [x] Custom system config flyout (the stock one is 🩲)
-- [x] Try embedding custom config as a "menu"?
-- [x] Choose default compendia for new characters
-- [x] Presets for ToC and NBA
-- [x] Look for uses of system.name and switch to systemName from constants
-- [x] bug - can't edit items (again)
-- [x] make settings a singleton
-- [x] only show custom config option when it’s in use
-- [x] high-contrast theme
-- [x] re-do nba theme
-- [ ] "nba light" theme
-
-
-## The future
-
-- [ ] i18n
-- [x] multi-system support
-  - [x] compendia of abilities
-  - [x] choose which sidebar pools are visible
-  - [x] character sheet skin
-  - [x] extra features?
-- [ ] expandy-collapsy bits on the notes area
-- [ ] rich text editing
-- [ ] Character gen mode? (track free values, point spends, I<->G trades, synergies)
-- [ ] GM player skill matrix (pickable actors, show a big ol' matrix)
-
-
-## GUMSHOE Games
-
-### Games that I have, and want to support:
-
-* [x] Trail of Cthulhu
-  * [x] Categorized investigating abilities
-  * [x] General Abilities
-  * [x] Health, Sanity, Stability, Magic
-* [x] Night's Black Agents
-  * [x] Categorized investigating abilities
-  * [x] General Abilities
-  * [x] Health & Stability
-* [ ] Fear Itself 2nd ed.
-  * [x] Categorized investigating abilities
-  * [x] General Abilities
-  * [ ] *Psychic Powers*
-  * [ ] *No trackers*
-* [ ] Ashen Stars
-  * [x] Categorized investigating abilities
-  * [x] General Abilities
-  * [ ] *"Boost"*
-  * [ ] *Special (Vas Mal)*
-  * [ ] Spaceships?
-
-### Games that I don't have yet, but would like to support:
-
-* [ ] The Yellow King
-* [ ] Mutant City Blues (2nd ed.)
-* [ ] The Fall of Delta Green
-
-### Other games (I am open to bribery):
-
-* [ ] Cthulhu Confidential (is 1-to-1)
-* [ ] Esoterrorists
-* [ ] Casting The Runes (aka "The M.R. James one")
-* [ ] Timewatch
-* [ ] Bubblegumshoe
-
-
-
-
- 
 
 
 ## Generating Compendia
