@@ -2,9 +2,15 @@
 
 A Foundry VTT system for running any GUMSHOE-based game. This was formerly launched under the name "Trail of Cthulhu (Unsanctioned)" but now we have multi-system support!
 
-![A screenshot of two character sheets in different styles, one for a Trail of Cthulhu character called Kath Hulu, and one for a Night's Black Agents character called Neil Athertep](./screenshot.jpg "Screenshot")
-
-<a target="_new" href="./screenshot.jpg"><img src="./screenshot-thumb.jpg" style="width: 50%"></a>
+<a 
+  target="_new" 
+  href="./screenshot.jpg"
+  title="Screenshot">
+  <img 
+    src="./screenshot-thumb.jpg" 
+    style="width: 50%" 
+    alt="A screenshot of two character sheets in different styles, one for a Trail of Cthulhu character called Kath Hulu, and one for a Night's Black Agents character called Neil Athertep">
+</a>
 
 ## How to install
 
