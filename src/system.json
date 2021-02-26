@@ -31,7 +31,7 @@
   "initiative": "1d6",
   "url": "https://gitlab.com/n3dst4/gumshoe-fvtt",
   "manifest": "https://gitlab.com/n3dst4/gumshoe-fvtt/-/raw/release/src/system.json",
-  "download": "fixmefixmefixme",
+  "download": "https://gitlab.com/n3dst4/gumshoe-fvtt/uploads/07a4ac54a8cbfcc09e260bf015a62488/gumshoe-v2.0.0.zip",
   "license": "MIT",
   "readme": "https://gitlab.com/n3dst4/gumshoe-fvtt/-/blob/release/README.md",
   "bugs": "https://gitlab.com/n3dst4/gumshoe-fvtt/-/issues",
