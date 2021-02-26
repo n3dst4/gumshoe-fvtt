@@ -2,7 +2,7 @@
 
 A Foundry VTT system for running any GUMSHOE-based game. 
 
-This was formerly launched under the name "Trail of Cthulhu (Unsanctioned)" but now we have multi-system support!
+(This was formerly launched under the name "Trail of Cthulhu (Unsanctioned)" but now we have multi-system support!)
 
 <a 
   target="_new" 
@@ -14,7 +14,39 @@ This was formerly launched under the name "Trail of Cthulhu (Unsanctioned)" but 
     alt="A screenshot of two character sheets in different styles, one for a Trail of Cthulhu character called Kath Hulu, and one for a Night's Black Agents character called Neil Athertep">
 </a>
 
+## Contents
+- [GUMSHOE System for Foundry VTT](#gumshoe-system-for-foundry-vtt)
+  - [Contents](#contents)
+  - [Features](#features)
+  - [How to install](#how-to-install)
+  - [Using the built-in game systems](#using-the-built-in-game-systems)
+  - [Setting up any GUMSHOE-based system that isn't built in](#setting-up-any-gumshoe-based-system-that-isnt-built-in)
+  - [Creating Characters](#creating-characters)
+  - [Using Abilities](#using-abilities)
+  - [Bug reports and contact](#bug-reports-and-contact)
+  - [Development & general hacking](#development--general-hacking)
+  - [Credits](#credits)
+
+
+## Features
+
+* A character sheet which tracks ratings and pools for all your Investigative and General abilities!
+* Spend pool points!
+* Roll general ability tests!
+* Refresh an individual ability or refresh all your pools at once!
+* Built-in support for:
+  * Trail of Cthulhu!
+  * Night's Black Agents!
+  * More coming soon!
+* Fully extensible to support basically any GUMSHOE game!
+* Visual themes for character sheets based on the built-in systems.
+* A high-contrast, (hopefully) accessibility-enhanced theme.
+* A sinister dark red version of one of the themes.
+
+
 ## How to install
+
+I'm going to assume you have a working knowledge of [Foundry VTT] (https://foundryvtt.com/), and the concepts it uses, like systems, modules, and worlds.
 
 This sytem isn't registered so to install it into your Foundry instance:
 
@@ -28,10 +60,62 @@ This sytem isn't registered so to install it into your Foundry instance:
     
 4. Click **Install**
 
+Now you can create a new world and choose **GUMSHOE** as the system.
 
-## Making PCs
 
-All the character abilities are represented as Items. They should all auto-populate wyhen you create a character, but there are compendium packs containing all the standard abilities from Trail of Cthulhu if you'd like to import them.
+## Using the built-in game systems
+
+The system comes preconfigured for **Trail of Cthulhu**. If that's what you want to play, you can skip this section and move ahead to [Making PCs](#making-pcs).
+
+If you want to use one of the other built-in systems, open the Settings sidebar tab and look for the **GUMSHOE System Settings** button. Click this to open the configuration. You can ignore 90% of this window and just choose one of the presets at the top! If you want to tweak the other setting can can do so.
+
+## Setting up any GUMSHOE-based system that isn't built in
+
+The basic idea is that all character abilities are "Items" in Foundry VTT-speak.
+
+The abilities that get added to a newly-created character all have to come from a **Compendium pack** (of type **"Item"**).
+
+So, first up, create a compendium pack to house your custom abilities. Give it a name like "Exampleshoe Abilities", if you're going to play Exampleshoe. You don't need to fill in the abilities yet.
+
+Now open the **Game Settings** sidebar tab and look for the **GUMSHOE System Settings** button. Click this to open the configuration. Pick any built-in system as a starting point, then customize the fields as you need to match your needs:
+
+* **Visual Theme** We ship with a handful of visual themes to support our built-in systems. You can pick whichever one you like.
+* **Compendium packs for new PCs** This is a really important one. This selects what abilities will be automatically added to newly-created characters. Select the compendium you created for your custom abilities and **UNSELECT** everything else. You *could* leave multiple packs selected but you probably don't want to.
+* **Investigative Ability Categories** These are just the headings that investigative abilities can appear under. It's worth noting that any ability can define its own category, so this setting is mainly for convenience when you're setting up new abilities/
+* **General Ability Categories** Like above, but for General abilities. Many GUMSHOE games only have one category for General abilities, called "General".
+* **Combat Abilities** This is a list of the abilities (by name) which can be used to make attacks in combat. 
+* **Short notes fields** A list of all the "small" text fields on the character sheet, after **Name** and **Occupation**. This is for short bits of text like "Drive" and "Previous Patron".
+* **Long notes fields** A list of all the long text areas on the character sheet, like "Notes", "Background", "Contacts" etc.
+
+Now you can create the abilities you need as items in the **Items directory**, and then add them to your compendium pack. 
+
+* **Pool** and **Rating** should be clear if you're familiar with GUMSHOE. Set the rating of you want characters to automatically start with a certain amount in that ability. Set the pool to match if you like, so they don't start out with an empty pool.
+
+Click the cog to see all the other config for an ability:
+
+* **Name** e.g. "Philately", "Rock climbing" (you can also type this in directly at the top of the window)
+* **Category** the drop-down will give you quick access to at thw **ability categories** you set up before. Abilities can also have custom categories.
+* **Min** and **Max** Some abilities can go negative, like Health and Stability, so you can give them a negative Min here. The Max is probably overkill and will likely be removed in a future update.
+* **Has Specialities?** If ticked, you will be able to add individual specialities to the ability. This is for abilities like **Language**, where yuou can add the individual languages your character knows.
+* **Occupational?** This is more for use when you're setting up an individual character - you can mark an ability as occupational fopr your own reference. We don't support points-based character generation (yet) so this is just for informational purposes.
+* **Can be investigative?** Another informational field. Some General Abilities are deemed to have an investigative usage, so they can be used "just by having them".
+* **Show Tracker?** Another important one - if ticked, the character sheet will show a clickable pool tracker for this ability. This is key for abilities like Health, Sanity, etc.
+
+
+## Creating Characters
+
+Create a character int he normal way, through the **Actors directory**. It should be pre-populated with the right abilities for your system.
+
+Most of the character shjeet should be self explanatory. Watch out for the Nuke button (hidden away on the settings tab of the character sheet) - it will blow away all your character's abilities and equipment.
+
+## Using Abilities
+
+Using Investigative abilities doesn't require any active effort - you just tell the GM that you're using `Geology` or whatever.
+
+If you want **spend points**, open the ability from your character sheet and shoose the number of points to spend.
+
+General abilities can also be **rolled** - choose the number of points to expend and click **Test**.
+
 
 ## Bug reports and contact
 
@@ -50,37 +134,7 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 4. `npm run build` to do a build
 5. `npm run link` to link it into your foundry data folder
 6. `npm start` to start a live incremental build (so you don't need to keep running `npm run build` after every change).
-7. Open your local foundry server and create a world with "Trail of Cthulhu (Unsanctioned)" as the system.
-
-
-## Generating Compendia
-
-1. In your **Items** tab, delete the "Trail of Cthulhu Abilies" folder
-2. In the **Compendium Packs** tab, make sure the edit lock is toggled off for the pack (right click and `Toggle edit lock` if you see a padlock.) 
-3. Open the browser console (F12) and type `generateTrailAbilitiesData()`
-4. Check the compenium packs if you like
-5. Copy the `packs/*.db` files back from `dist/` into `src/`
-
-
-## Release process
-
-We have "release" branch. Its job is to hold a manifest version that points to the right release download.
-
-To perform a release from `master`: 
-
-1. Update the version in `package.json` and `system.json`.
-2. Update the CHANGELOG.
-3. Run `npm run package`.
-4. Add the downloadable package .zip to the *previous* tag
-5. Get the download URL for the asset.
-6. Paste it into the `download` field of `system.json`.
-7. Commit and push.
-8. On GitLab, create a tag matching the new version.
-9. FF the `release` branch to to `master`.
-
-Now, anyone who installs or upgrades, will see the new manifest, and the new download.
-
-Why do we have a separate `release` branch? To keep control. The manifest on `master` can be unstable, broken, experimental, whatever and we know that users will be safely looking at the `release` version.
+7. Open your local foundry server and create a world with "GUMSHOE" as the system.
 
 
 ## Credits
