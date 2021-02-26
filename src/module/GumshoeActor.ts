@@ -142,8 +142,10 @@ Hooks.on("updateOwnedItem", (
   options: Record<string, unknown>,
   userId: string,
 ) => {
+  if (game.userId !== userId) return;
+
   // love 2 sink into a pit of imperative code
-  if (itemData.type === generalAbility && userId === game.data.userId) {
+  if (itemData.type === generalAbility) {
     if (["Sanity", "Stability", "Health", "Magic"].includes(itemData.name)) {
       if (diff.data?.pool !== undefined || diff.data?.rating !== undefined) {
         actor.update({
@@ -168,6 +170,8 @@ Hooks.on(
     options: Record<string, unknown>,
     userId: string,
   ) => {
+    if (game.userId !== userId) return;
+
     if (actor.items.size > 0) {
       return;
     }
