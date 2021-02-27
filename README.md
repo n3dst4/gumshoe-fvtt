@@ -62,6 +62,8 @@ This sytem isn't registered so to install it into your Foundry instance:
 
 Now you can create a new world and choose **GUMSHOE** as the system.
 
+If you've been using the precusor to the system, Trail of Cthulhu Unsanctioned, see [UPGRADING](./UPGRADING.md) for info about how to upgrade existing worlds to this new system.
+
 
 ## Using the built-in game systems
 
