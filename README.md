@@ -46,7 +46,7 @@ A Foundry VTT system for running any GUMSHOE-based game.
 
 ## How to install
 
-I'm going to assume you have a working knowledge of [Foundry VTT] (https://foundryvtt.com/), and the concepts it uses, like systems, modules, and worlds.
+I'm going to assume you have a working knowledge of [Foundry VTT](https://foundryvtt.com/), and the concepts it uses, like systems, modules, and worlds.
 
 This sytem isn't registered so to install it into your Foundry instance:
 
