@@ -1,7 +1,6 @@
 # Investigator System for Foundry VTT (GUMSHOE Compatible)
 
-A Foundry VTT system for managing characters that are compatible with GUMSHOE-based games. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
-
+A Foundry VTT system for managing characters compatible with GUMSHOE-based games. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
 
 <a 
   target="_new" 
@@ -10,16 +9,16 @@ A Foundry VTT system for managing characters that are compatible with GUMSHOE-ba
   <img 
     src="./screenshot-thumb.jpg" 
     style="width: 50%" 
-    alt="A screenshot of two character sheets in different styles, one for a Trail of Cthulhu character called Kath Hulu, and one for a Night's Black Agents character called Neil Athertep">
+    alt="A screenshot of two character sheets in different styles, one for a 1930s character called Kath Hulu, and one for a modern spy thriller character called Neil Athertep">
 </a>
 
 ## Contents
-- [GUMSHOE System for Foundry VTT](#gumshoe-system-for-foundry-vtt)
+- [Investigator System for Foundry VTT (GUMSHOE Compatible)](#investigator-system-for-foundry-vtt-gumshoe-compatible)
   - [Contents](#contents)
   - [Features](#features)
   - [How to install](#how-to-install)
   - [Using the built-in game systems](#using-the-built-in-game-systems)
-  - [Setting up any GUMSHOE-based system that isn't built in](#setting-up-any-gumshoe-based-system-that-isnt-built-in)
+  - [Setting up any system that isn't built in](#setting-up-any-system-that-isnt-built-in)
   - [Creating Characters](#creating-characters)
   - [Using Abilities](#using-abilities)
   - [Bug reports and contact](#bug-reports-and-contact)
@@ -37,7 +36,7 @@ A Foundry VTT system for managing characters that are compatible with GUMSHOE-ba
   * Trail of Cthulhu!
   * Night's Black Agents!
   * More coming soon!
-* Fully extensible to support basically any GUMSHOE game!
+* Fully extensible to support basically any GUMSHOE-compatible game!
 * Visual themes for character sheets based on the built-in systems.
 * A high-contrast, (hopefully) accessibility-enhanced theme.
 * A sinister dark red version of one of the themes.
@@ -54,12 +53,12 @@ This sytem isn't registered so to install it into your Foundry instance:
 3. Where it says **Manfest URL**, paste in
 
     ```
-    https://gitlab.com/n3dst4/gumshoe-fvtt/-/raw/release/src/system.json
+    https://gitlab.com/n3dst4/investigator-system/-/blob/release/src/system.json
     ```
     
 4. Click **Install**
 
-Now you can create a new world and choose **GUMSHOE** as the system.
+Now you can create a new world and choose this as the system.
 
 If you've been using the precusor to the system, Trail of Cthulhu Unsanctioned, see [UPGRADING](./UPGRADING.md) for info about how to upgrade existing worlds to this new system.
 
@@ -70,7 +69,7 @@ The system comes preconfigured for **Trail of Cthulhu**. If that's what you want
 
 If you want to use one of the other built-in systems, open the Settings sidebar tab and look for the **GUMSHOE System Settings** button. Click this to open the configuration. You can ignore 90% of this window and just choose one of the presets at the top! If you want to tweak the other setting can can do so.
 
-## Setting up any GUMSHOE-based system that isn't built in
+## Setting up any system that isn't built in
 
 The basic idea is that all character abilities are "Items" in Foundry VTT-speak.
 
@@ -83,14 +82,14 @@ Now open the **Game Settings** sidebar tab and look for the **GUMSHOE System Set
 * **Visual Theme** We ship with a handful of visual themes to support our built-in systems. You can pick whichever one you like.
 * **Compendium packs for new PCs** This is a really important one. This selects what abilities will be automatically added to newly-created characters. Select the compendium you created for your custom abilities and **UNSELECT** everything else. You *could* leave multiple packs selected but you probably don't want to.
 * **Investigative Ability Categories** These are just the headings that investigative abilities can appear under. It's worth noting that any ability can define its own category, so this setting is mainly for convenience when you're setting up new abilities/
-* **General Ability Categories** Like above, but for General abilities. Many GUMSHOE games only have one category for General abilities, called "General".
+* **General Ability Categories** Like above, but for General abilities. Many games only have one category for General abilities, called "General".
 * **Combat Abilities** This is a list of the abilities (by name) which can be used to make attacks in combat. 
 * **Short notes fields** A list of all the "small" text fields on the character sheet, after **Name** and **Occupation**. This is for short bits of text like "Drive" and "Previous Patron".
 * **Long notes fields** A list of all the long text areas on the character sheet, like "Notes", "Background", "Contacts" etc.
 
 Now you can create the abilities you need as items in the **Items directory**, and then add them to your compendium pack. 
 
-* **Pool** and **Rating** should be clear if you're familiar with GUMSHOE. Set the rating of you want characters to automatically start with a certain amount in that ability. Set the pool to match if you like, so they don't start out with an empty pool.
+* **Pool** and **Rating** should be clear if you're familiar with investigative game systems like this. Set the rating of you want characters to automatically start with a certain amount in that ability. Set the pool to match if you like, so they don't start out with an empty pool.
 
 Click the cog to see all the other config for an ability:
 
@@ -135,7 +134,7 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 4. `npm run build` to do a build
 5. `npm run link` to link it into your foundry data folder
 6. `npm start` to start a live incremental build (so you don't need to keep running `npm run build` after every change).
-7. Open your local foundry server and create a world with "GUMSHOE" as the system.
+7. Open your local foundry server and create a world using this as the system.
 
 
 ## Credits
@@ -152,4 +151,4 @@ This System for Foundry VTT uses trademarks and/or copyrights owned by Pelgrane 
 Huge thanks to Nick van Oosten/NickEast for [Foundry Project Creator](https://gitlab.com/foundry-projects/foundry-pc/create-foundry-project) and [the Typescript types to go with it](https://gitlab.com/foundry-projects/foundry-pc/foundry-pc-types).
 
 
-[project-site]: https://gitlab.com/n3dst4/gumshoe/-/issues
+[project-site]: https://gitlab.com/n3dst4/investigator-system/-/issues
