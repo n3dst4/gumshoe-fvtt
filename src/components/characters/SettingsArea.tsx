@@ -4,7 +4,7 @@ import React, { useCallback } from "react";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { themes } from "../../theme";
 import { GridField } from "../inputs/GridField";
-import { GridFieldStacked } from "../inputs/GridFieldStacked";
+// import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 
 type SettingAreaProps = {
@@ -35,7 +35,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
             Nuke
           </button>
         </GridField>
-        <GridFieldStacked><hr/></GridFieldStacked>
+        {/* <GridFieldStacked><hr/></GridFieldStacked>
         <GridFieldStacked label="Support">
           <p>
             If you would like to help me (Neil de Carteret) acquire the e-books
@@ -46,7 +46,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
             <a href="https://ko-fi.com/n3dst4">Buy me a coffee! (well, a bit of an RPG book)</a>
           </p>
         </GridFieldStacked>
-        <GridFieldStacked><hr/></GridFieldStacked>
+        <GridFieldStacked><hr/></GridFieldStacked> */}
     </InputGrid>
   );
 };
