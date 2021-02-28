@@ -1,7 +1,7 @@
 {
   "name": "gumshoe",
   "title": "GUMSHOE System",
-  "description": "Support for GUMSHOE System games. Comes with configurations for Trail of Cthulhu and Night's Blacks Agents, and can be customized to support any other GUMSHOE-based game.",
+  "description": "Compatible with Trail of Cthulhu and Night's Blacks Agents, and can be customized to work with any other GUMSHOE-based game.",
   "version": "2.0.2",
   "author": "Neil de Carteret",
   "scripts": [],
@@ -29,11 +29,11 @@
   "minimumCoreVersion": "0.7.9",
   "compatibleCoreVersion": "0.7.9",
   "initiative": "1d6",
-  "url": "https://gitlab.com/n3dst4/gumshoe-fvtt",
-  "manifest": "https://gitlab.com/n3dst4/gumshoe-fvtt/-/raw/release/src/system.json",
-  "download": "https://gitlab.com/n3dst4/gumshoe-fvtt/uploads/4584c71c1c7a10c5f88de8b22927eb6d/gumshoe-v2.0.2.zip",
+  "url": "https://gitlab.com/n3dst4/investigator-system",
+  "manifest": "https://gitlab.com/n3dst4/investigator-system/-/raw/release/src/system.json",
+  "download": "https://gitlab.com/n3dst4/investigator-system/uploads/4584c71c1c7a10c5f88de8b22927eb6d/gumshoe-v2.0.2.zip",
   "license": "MIT",
-  "readme": "https://gitlab.com/n3dst4/gumshoe-fvtt/-/blob/release/README.md",
-  "bugs": "https://gitlab.com/n3dst4/gumshoe-fvtt/-/issues",
-  "changelog": "https://gitlab.com/n3dst4/gumshoe-fvtt/-/blob/release/CHANGELOG.md"
+  "readme": "https://gitlab.com/n3dst4/investigator-system/-/blob/release/README.md",
+  "bugs": "https://gitlab.com/n3dst4/investigator-system/-/issues",
+  "changelog": "https://gitlab.com/n3dst4/investigator-system/-/blob/release/CHANGELOG.md"
 }
