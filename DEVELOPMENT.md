@@ -3,6 +3,7 @@
 ## The future
 
 - [ ] i18n
+- [ ] images for equipment & abilities
 - [ ] expandy-collapsy bits on the notes area
 - [ ] rich text editing
 - [ ] Character gen mode? (track free values, point spends, I<->G trades, synergies)
