@@ -1,8 +1,7 @@
-# GUMSHOE System for Foundry VTT
+# Investigator System for Foundry VTT (GUMSHOE Compatible)
 
-A Foundry VTT system for running any GUMSHOE-based game. 
+A Foundry VTT system for managing characters that are compatible with GUMSHOE-based games. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
 
-(This was formerly launched under the name "Trail of Cthulhu (Unsanctioned)" but now we have multi-system support!)
 
 <a 
   target="_new" 
