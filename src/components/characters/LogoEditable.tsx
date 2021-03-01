@@ -112,6 +112,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
       >
         {/* shadow-bearer */}
         <div
+          className="shadow-bearer"
           css={{
             textShadow: theme.logoShadows,
             zIndex: -1,
@@ -138,6 +139,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
 
         {/* gradient-bearer */}
         <div
+          className="gradient-bearer"
           css={{
             background: theme.logoGradient,
             backgroundClip: "text",
