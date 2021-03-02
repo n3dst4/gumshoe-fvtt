@@ -5,6 +5,7 @@ import {
 } from "./types";
 import * as trailData from "./trailData";
 import * as nbaData from "./nbaData";
+import * as fearData from "./fearData";
 import { packNames, systemName } from "../constants";
 
 export const emptyPack = async (pack: any) => {
@@ -71,5 +72,11 @@ export const initializePackGenerators = () => {
     emptyPack(pack);
     await generatePacks(nbaData.investigativeAbilities, nbaData.investigativeTemplate, pack);
     await generatePacks(nbaData.generalAbilities, nbaData.generalTemplate, pack);
+  };
+  (window as any).generateFearAbilities = async () => {
+    const pack = findPack(packNames.fearItselfAbilities);
+    emptyPack(pack);
+    await generatePacks(fearData.investigativeAbilities, fearData.investigativeTemplate, pack);
+    await generatePacks(fearData.generalAbilities, fearData.generalTemplate, pack);
   };
 };

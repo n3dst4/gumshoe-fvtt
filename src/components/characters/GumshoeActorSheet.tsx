@@ -16,7 +16,7 @@ import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
-import { getShortNotes } from "../../settingsHelpers";
+import { getOccupationlabel, getShortNotes } from "../../settingsHelpers";
 
 type GumshoeActorSheetProps = {
   actor: GumshoeActor,
@@ -54,6 +54,8 @@ export const GumshoeActorSheet = ({
   const theme = actor.getSheetTheme();
 
   const shortNotesNames = getShortNotes();
+
+  const occupationLabel = getOccupationlabel();
 
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
@@ -116,7 +118,7 @@ export const GumshoeActorSheet = ({
                 onChange={updateName}
               />
             </GridField>
-            <GridField label="Occupation">
+            <GridField label={occupationLabel}>
               <AsyncTextInput
                 value={actor.data.data.occupation}
                 onChange={updateOccupation}

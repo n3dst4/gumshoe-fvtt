@@ -21,6 +21,13 @@
       "system": "gumshoe",
       "path": "./packs/nightsBlackAgentsAbilities.db",
       "entity": "Item"
+    },
+    {
+      "name": "fearItselfAbilities",
+      "label": "Fear Itself Abilities",
+      "system": "gumshoe",
+      "path": "./packs/fearItselfAbilities.db",
+      "entity": "Item"
     }
   ],
   "languages": [],

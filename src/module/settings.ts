@@ -7,6 +7,7 @@ import {
   investigativeAbilityCategories,
   longNotes,
   newPCPacks,
+  occupationLabel,
   packNames,
   shortNotes,
   systemMigrationVersion,
@@ -67,6 +68,13 @@ export const registerSettings = function () {
     config: false,
     default: ["Scuffling", "Weapons", "Firearms", "Athletics"],
     type: Object,
+  });
+  game.settings.register(systemName, occupationLabel, {
+    name: "What do we call \"Occupation\"?",
+    scope: "world",
+    config: false,
+    default: "Occupation",
+    type: String,
   });
   game.settings.register(systemName, shortNotes, {
     name: "Short Notes",

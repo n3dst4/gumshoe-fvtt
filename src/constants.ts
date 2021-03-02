@@ -22,6 +22,7 @@ export const systemPreset = "systemPreset" as const;
 export const investigativeAbilityCategories = "investigativeAbilityCategories" as const;
 export const generalAbilityCategories = "generalAbilityCategories" as const;
 export const combatAbilities = "combatAbilities" as const;
+export const occupationLabel = "occupationLabel" as const;
 export const shortNotes = "shortNotes" as const;
 export const longNotes = "longNotes" as const;
 export const newPCPacks = "newPCPacks" as const;
@@ -39,4 +40,5 @@ export const generalAbilityIcon = `/systems/${systemName}/assets/icons/fist.webp
 export const packNames = {
   trailOfCthulhuAbilities: "trailOfCthulhuAbilities",
   nightsBlackAgentsAbilities: "nightsBlackAgentsAbilities",
+  fearItselfAbilities: "fearItselfAbilities",
 };

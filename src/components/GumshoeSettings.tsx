@@ -7,6 +7,8 @@ import * as settings from "../settingsHelpers";
 import { systemPresets } from "../systemPresets";
 import { themes, trailTheme } from "../theme";
 import { CSSReset } from "./CSSReset";
+import { AsyncTextArea } from "./inputs/AsyncTextArea";
+import { AsyncTextInput } from "./inputs/AsyncTextInput";
 import { Checkbox } from "./inputs/Checkbox";
 import { GridField } from "./inputs/GridField";
 import { GridFieldStacked } from "./inputs/GridFieldStacked";
@@ -60,6 +62,10 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
     settings.getCombatAbilities(),
     resetPreset,
   );
+  const [occupationLabel, setOccupationLabel] = useStateWithPreset(
+    settings.getOccupationlabel(),
+    resetPreset,
+  );
   const [shortNotes, setShortNotes] = useStateWithPreset(
     settings.getShortNotes(),
     resetPreset,
@@ -75,7 +81,9 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
 
   const onSelectPreset = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const presetId = e.currentTarget.value as (keyof typeof systemPresets)|typeof customSystem;
+      const presetId = e.currentTarget.value as
+        | keyof typeof systemPresets
+        | typeof customSystem;
       if (presetId === customSystem) {
         setSystemPreset(presetId);
         return;
@@ -90,6 +98,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       setInvestigativeAbilityCategories(preset.investigativeAbilityCategories);
       setGeneralAbilityCategories(preset.generalAbilityCategories);
       setCombatAbilities(preset.combatAbilities);
+      setOccupationLabel(preset.occupationLabel);
       setShortNotes(preset.shortNotes);
       setLongNotes(preset.longNotes);
       setNewPCPacks(preset.newPCPacks);
@@ -102,6 +111,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       setInvestigativeAbilityCategories,
       setLongNotes,
       setNewPCPacks,
+      setOccupationLabel,
       setShortNotes,
     ],
   );
@@ -135,6 +145,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
         ),
         settings.setGeneralAbilityCategories(generalAbilityCategories),
         settings.setCombatAbilities(combatAbilities),
+        settings.setOccupationLabel(occupationLabel),
         settings.setShortNotes(shortNotes),
         settings.setLongNotes(longNotes),
         settings.setNewPCPacks(newPCPacks),
@@ -150,6 +161,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       investigativeAbilityCategories,
       longNotes,
       newPCPacks,
+      occupationLabel,
       shortNotes,
       systemPreset,
     ],
@@ -187,6 +199,9 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           <GridField label="combatAbilities">
             <pre>{JSON.stringify(combatAbilities, null, 2)}</pre>
           </GridField>
+          <GridField label="occupationLabel">
+            <pre>{JSON.stringify(occupationLabel, null, 2)}</pre>
+          </GridField>
           <GridField label="shortNotes">
             <pre>{JSON.stringify(shortNotes, null, 2)}</pre>
           </GridField>
@@ -220,9 +235,9 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                   }
                 </option>
               ))}
-              {systemPreset === customSystem &&
+              {systemPreset === customSystem && (
                 <option value={customSystem}>Custom</option>
-              }
+              )}
             </select>
           </GridField>
 
@@ -297,6 +312,12 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           <GridField label="Combat Abilities">
             <ListEdit value={combatAbilities} onChange={setCombatAbilities} />
           </GridField>
+          <GridField label="Occupation Label">
+            <AsyncTextInput
+              value={occupationLabel}
+              onChange={setOccupationLabel}
+            />
+          </GridField>
           <GridField label="Short Notes Fields">
             <ListEdit value={shortNotes} onChange={setShortNotes} />
           </GridField>
@@ -313,10 +334,16 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           background: theme.colors.thin,
         }}
       >
-        <button css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }} onClick={onClickClose}>
+        <button
+          css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
+          onClick={onClickClose}
+        >
           <i className="fas fa-times" /> Cancel
         </button>
-        <button css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }} onClick={onClickSave}>
+        <button
+          css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
+          onClick={onClickSave}
+        >
           <i className="fas fa-save" /> Save Changes
         </button>
       </div>
