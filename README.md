@@ -1,4 +1,4 @@
-# Investigator System for Foundry VTT (GUMSHOE Compatible)
+# GUMSHOE System for Foundry VTT
 
 A Foundry VTT system for managing characters compatible with GUMSHOE-based games. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
 
@@ -13,7 +13,7 @@ A Foundry VTT system for managing characters compatible with GUMSHOE-based games
 </a>
 
 ## Contents
-- [Investigator System for Foundry VTT (GUMSHOE Compatible)](#investigator-system-for-foundry-vtt-gumshoe-compatible)
+- [GUMSHOE System for Foundry VTT](#gumshoe-system-for-foundry-vtt)
   - [Contents](#contents)
   - [Features](#features)
   - [How to install](#how-to-install)
@@ -53,7 +53,7 @@ This sytem isn't registered so to install it into your Foundry instance:
 3. Where it says **Manfest URL**, paste in
 
     ```
-    https://gitlab.com/n3dst4/investigator-system/-/raw/release/src/system.json
+    https://gitlab.com/n3dst4/gumshoe-fvtt/-/raw/release/src/system.json
     ```
     
 4. Click **Install**
