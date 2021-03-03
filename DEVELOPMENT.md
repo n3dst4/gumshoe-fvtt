@@ -20,11 +20,11 @@
   * [x] Categorized investigating abilities
   * [x] General Abilities
   * [x] Health & Stability
-* [ ] Fear Itself 2nd ed.
+* [x] Fear Itself 2nd ed.
   * [x] Categorized investigating abilities
   * [x] General Abilities
-  * [ ] *Psychic Powers*
-  * [ ] *No trackers*
+  * [x] *Psychic Powers*
+  * [x] ~~*No trackers*~~ Not accurate - the standard character sheet doesn't have trackers, but the system has health and stability.
 * [ ] Ashen Stars
   * [x] Categorized investigating abilities
   * [x] General Abilities
