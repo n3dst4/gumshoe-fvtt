@@ -12,7 +12,7 @@ export type Theme = {
   wallpaper: string,
   bodyFont?: string,
   displayFont?: string,
-  logoGradient: string,
+  logoFrontElementStyle: CSSObject,
   logoShadows: string,
   logoTransform: string,
   backdropStyle: CSSObject,
@@ -41,7 +41,10 @@ export const trailTheme: Theme = {
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal small-caps normal 1em 'Federo', serif",
   // logo:
-  logoGradient: "linear-gradient(135deg, #efb183 0%,#222 30%,#efb183 90%)",
+  logoFrontElementStyle: {
+    background: "linear-gradient(135deg, #efb183 0%,#222 30%,#efb183 90%)",
+    backgroundClip: "text",
+  },
   logoShadows: "2px 0px 1px black, 6px 0px 4px rgba(0,0,0,0.5), -1px 0px 0px rgba(255,255,255,0.5)",
   logoTransform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
   backdropStyle: {
@@ -73,7 +76,10 @@ export const nbaThemeDark: Theme = {
   wallpaper: `url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
-  logoGradient: "linear-gradient(135deg, #fff 0%, #fff 90%)",
+  logoFrontElementStyle: {
+    background: "linear-gradient(135deg, #fff 0%, #fff 90%)",
+    backgroundClip: "text",
+  },
   logoShadows: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
   logoTransform: "scale(0.8)",
   backdropStyle: {
@@ -109,7 +115,9 @@ export const nbaTheme: Theme = {
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
   // logo:
-  logoGradient: "linear-gradient(135deg, #fff 0%, #fff 90%)",
+  logoFrontElementStyle: {
+    color: "#fff",
+  },
   logoShadows: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
   logoTransform: "scale(0.8)",
   backdropStyle: {
@@ -144,7 +152,9 @@ export const highContrastTheme: Theme = {
   wallpaper: "",
   bodyFont: "1.2em sans-serif",
   displayFont: "1.2em sans-serif",
-  logoGradient: "linear-gradient(135deg, #000 0%, #000 90%)",
+  logoFrontElementStyle: {
+    color: "#000",
+  },
   logoShadows: "",
   logoTransform: "none",
   backdropStyle: {
@@ -172,18 +182,13 @@ export const fearTheme: Theme = {
   wallpaper: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em sunflower, serif",
-  // logo:
-  logoGradient: "linear-gradient(90deg, rgba(73, 61, 51, 1.0) 0%, rgba(97, 81, 68, 0.7) 100%)",
+  logoFrontElementStyle: {
+    background: "linear-gradient(90deg, rgba(73, 61, 51, 1.0) 0%, rgba(97, 81, 68, 0.7) 100%)",
+    backgroundClip: "text",
+  },
   logoShadows: "0px 0px 10px white",
   logoTransform: "scale(0.8)",
   backdropStyle: {
-    // background: `#4a0d00 url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
-    // backgroundSize: "cover",
-    // transform: "scaleY(0.9) scaleX(1.2) translateY(0.1em)",
-    // zIndex: -1,
-    // borderStyle: "solid",
-    // borderThickness: "2px 0",
-    // borderColor: "#433",
   },
   colors: {
     accent: "#615144",
@@ -198,6 +203,15 @@ export const fearTheme: Theme = {
     text: "#666",
   },
 };
+
+// @font-face {
+//   font-family: 'Unica One';
+//   font-style: normal;
+//   font-weight: 400;
+//   font-display: swap;
+//   src: url(https://fonts.gstatic.com/s/unicaone/v8/DPEuYwWHyAYGVTSmalsRf93eiEY.woff2) format('woff2');
+//   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+// }
 
 //
 
