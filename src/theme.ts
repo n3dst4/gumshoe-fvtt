@@ -13,7 +13,7 @@ export type Theme = {
   bodyFont?: string,
   displayFont?: string,
   logoFrontElementStyle: CSSObject,
-  logoShadows: string,
+  logoRearElementStyle: CSSObject,
   logoTransform: string,
   backdropStyle: CSSObject,
   // logo: CSSObject,
@@ -45,7 +45,9 @@ export const trailTheme: Theme = {
     background: "linear-gradient(135deg, #efb183 0%,#222 30%,#efb183 90%)",
     backgroundClip: "text",
   },
-  logoShadows: "2px 0px 1px black, 6px 0px 4px rgba(0,0,0,0.5), -1px 0px 0px rgba(255,255,255,0.5)",
+  logoRearElementStyle: {
+    textShadow: "2px 0px 1px black, 6px 0px 4px rgba(0,0,0,0.5), -1px 0px 0px rgba(255,255,255,0.5)",
+  },
   logoTransform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
   backdropStyle: {
     perspective: "500px",
@@ -80,7 +82,9 @@ export const nbaThemeDark: Theme = {
     background: "linear-gradient(135deg, #fff 0%, #fff 90%)",
     backgroundClip: "text",
   },
-  logoShadows: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
+  logoRearElementStyle: {
+    textShadow: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
+  },
   logoTransform: "scale(0.8)",
   backdropStyle: {
     // background: "linear-gradient(to right, #700 0%, #300 100%)",
@@ -118,13 +122,13 @@ export const nbaTheme: Theme = {
   logoFrontElementStyle: {
     color: "#fff",
   },
-  logoShadows: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
+  logoRearElementStyle: {
+    textShadow: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
+  },
   logoTransform: "scale(0.8)",
   backdropStyle: {
-    // background: "linear-gradient(to right, #700 0%, #300 100%)",
     background: `#4a0d00 url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
     backgroundSize: "cover",
-
     transform: "scaleY(0.9) scaleX(1.2) translateY(0.1em)",
     zIndex: -1,
     borderStyle: "solid",
@@ -155,7 +159,9 @@ export const highContrastTheme: Theme = {
   logoFrontElementStyle: {
     color: "#000",
   },
-  logoShadows: "",
+  logoRearElementStyle: {
+    display: "none",
+  },
   logoTransform: "none",
   backdropStyle: {
   },
@@ -186,7 +192,9 @@ export const fearTheme: Theme = {
     background: "linear-gradient(90deg, rgba(73, 61, 51, 1.0) 0%, rgba(97, 81, 68, 0.7) 100%)",
     backgroundClip: "text",
   },
-  logoShadows: "0px 0px 10px white",
+  logoRearElementStyle: {
+    textShadow: "0px 0px 10px white",
+  },
   logoTransform: "scale(0.8)",
   backdropStyle: {
   },

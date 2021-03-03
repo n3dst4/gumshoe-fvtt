@@ -114,9 +114,9 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
         <div
           className="shadow-bearer"
           css={{
-            textShadow: theme.logoShadows,
             zIndex: -1,
             ...textBearerStyle,
+            ...theme.logoRearElementStyle,
           }}
         >
           <div
