@@ -48,8 +48,21 @@ export const fearPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.fearItselfAbilities}`],
 };
 
+export const ashenPreset: SystemPreset = {
+  displayName: "Ashen Stars",
+  defaultTheme: "ashenTheme",
+  investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical", "Special (vas Mal)"],
+  generalAbilityCategories: ["General"],
+  combatAbilities: ["Scuffling", "Shooting"],
+  occupationLabel: "Species",
+  shortNotes: ["Drive", "Groundside Post", "Warpside Post"],
+  longNotes: ["Personal Arc", "Cybernetic Enhancements", "Viroware Enhancements", "What You Did During The War"],
+  newPCPacks: [`${systemName}.${packNames.ashenStarsAbilities}`],
+};
+
 export const systemPresets = {
-  trailPreset: trailPreset,
-  nbaPreset: nbaPreset,
-  fearpreset: fearPreset,
+  trailPreset,
+  nbaPreset,
+  fearPreset,
+  ashenPreset,
 };
