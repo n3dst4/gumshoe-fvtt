@@ -10,6 +10,12 @@ declare module "irid" {
     contrast(a?: string | Irid, b?: string | Irid): Irid;
     opacity(x: number): Irid;
     lighten(x: number): Irid;
+    lightness(x: number): Irid;
+    lightness(): void;
+    saturation(x: number): Irid;
+    saturation(): void;
+    complement(): Irid;
+    analagous(): [Irid, Irid, Irid];
   }
   export default Irid;
 }

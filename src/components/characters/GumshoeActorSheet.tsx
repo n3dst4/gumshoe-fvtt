@@ -81,6 +81,7 @@ export const GumshoeActorSheet = ({
           css={{
             gridArea: "title",
             textAlign: "center",
+            position: "relative",
           }}
         >
           <LogoEditable
@@ -109,6 +110,7 @@ export const GumshoeActorSheet = ({
             gridArea: "stats",
             padding: "1em",
             backgroundColor: theme.colors.thin,
+            position: "relative",
           }}
         >
           <InputGrid>

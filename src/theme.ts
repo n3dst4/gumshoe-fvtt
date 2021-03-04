@@ -9,7 +9,7 @@ const black = Irid("black");
 export type Theme = {
   displayName: string,
   global?: SerializedStyles,
-  wallpaper: string,
+  wallpaperUrl: string,
   bodyFont?: string,
   displayFont?: string,
   logoFrontElementStyle: CSSObject,
@@ -37,7 +37,7 @@ export const trailTheme: Theme = {
     @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
-  wallpaper: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal small-caps normal 1em 'Federo', serif",
   // logo:
@@ -75,7 +75,7 @@ export const nbaThemeDark: Theme = {
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     `,
   //    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-  wallpaper: `url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
+  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
   logoFrontElementStyle: {
@@ -115,7 +115,7 @@ export const nbaTheme: Theme = {
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
-  wallpaper: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
   // logo:
@@ -153,7 +153,7 @@ export const highContrastTheme: Theme = {
   displayName: "High Contrast",
   global: css`
   `,
-  wallpaper: "",
+  wallpaperUrl: "",
   bodyFont: "1.2em sans-serif",
   displayFont: "1.2em sans-serif",
   logoFrontElementStyle: {
@@ -185,7 +185,7 @@ export const fearTheme: Theme = {
     @import url("https://use.typekit.net/huq5kcj.css");
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
-  wallpaper: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
+  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em sunflower, serif",
   logoFrontElementStyle: {
@@ -212,14 +212,66 @@ export const fearTheme: Theme = {
   },
 };
 
-// @font-face {
-//   font-family: 'Unica One';
-//   font-style: normal;
-//   font-weight: 400;
-//   font-display: swap;
-//   src: url(https://fonts.gstatic.com/s/unicaone/v8/DPEuYwWHyAYGVTSmalsRf93eiEY.woff2) format('woff2');
-//   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-// }
+const ashenBlur = "5px";
+const ashenOffset = "3px";
+const stripNewlines = (s: string) => s.replace("\n", "");
+// 00d5ff
+const ashenColor = Irid("#282c34");
+const ashenComplement = Irid("#aff2f2");
+
+export const ashenTheme: Theme = {
+  displayName: "Ashy Starships",
+  global: css`
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+  `,
+  wallpaperUrl: "",
+  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  displayFont: "bold small-caps normal 1.1em 'Nova Square', serif",
+  // logo:
+  logoFrontElementStyle: {
+    background: "linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(108,108,108,1) 24%, rgba(148,148,148,1) 34%, rgba(106,106,106,1) 44%, rgba(0,0,0,1) 87%, rgba(143,143,143,1) 100%)",
+    backgroundClip: "text",
+  },
+  logoRearElementStyle: {
+    textShadow: stripNewlines(`
+      -${ashenOffset} -${ashenOffset} ${ashenBlur} #cdf6ff, 
+      -${ashenOffset} ${ashenOffset} ${ashenBlur} #cdf6ff, 
+      ${ashenOffset} -${ashenOffset} ${ashenBlur} #cdf6ff, 
+      ${ashenOffset} ${ashenOffset} ${ashenBlur} #cdf6ff`),
+  },
+  logoTransform: "rotateY(21deg) rotateZ(0deg) translateX(0%) scale(0.8)",
+  backdropStyle: {
+    perspective: "500px",
+    perspectiveOrigin: "50% 50%",
+
+    background: `url(systems/${systemName}/assets/wallpaper/philipp-trubchenko-jObj_p885Gg-unsplash.webp)`,
+    backgroundSize: "cover",
+    transform: "scaleY(1.1) scaleX(1.1) translateY(0%) rotate(0deg)",
+    height: "400%",
+    width: "150%",
+    zIndex: -1,
+    borderStyle: "none",
+    // opacity: 0.8,
+    maskImage: "linear-gradient(rgba(0, 0, 0, 1.0), transparent)",
+    // borderThickness: "2px 0",
+    // borderColor: "#433",
+  },
+  colors: {
+    wallpaper: ashenColor.lightness(0.05).toString(),
+    accent: ashenComplement.toString(),
+    glow: ashenComplement.lightness(0.7).toString(),
+
+    thin: ashenColor.lightness(0.1).opacity(0.5).toString(),
+    medium: ashenColor.lightness(0.3).opacity(0.5).toString(),
+    thick: ashenColor.lightness(0.4).toString(),
+
+    reverseThin: "rgba(255,255,255,0.1)",
+    reverseMedium: "rgba(255,255,255,0.3)",
+    reverseThick: "rgba(255,255,255,0.5)",
+    text: "#ddd",
+  },
+};
 
 //
 
@@ -229,6 +281,7 @@ export const themes: {[themeName: string]: Theme} = {
   nbaThemeDark,
   highContrastTheme,
   fearTheme,
+  ashenTheme,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
