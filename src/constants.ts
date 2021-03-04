@@ -41,4 +41,5 @@ export const packNames = {
   trailOfCthulhuAbilities: "trailOfCthulhuAbilities",
   nightsBlackAgentsAbilities: "nightsBlackAgentsAbilities",
   fearItselfAbilities: "fearItselfAbilities",
+  ashenStarsAbilities: "ashenStarsAbilities",
 };

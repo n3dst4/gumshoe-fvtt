@@ -28,6 +28,13 @@
       "system": "gumshoe",
       "path": "./packs/fearItselfAbilities.db",
       "entity": "Item"
+    },
+    {
+      "name": "ashenStarsAbilities",
+      "label": "Ashen Stars Abilities",
+      "system": "gumshoe",
+      "path": "./packs/ashenStarsAbilities.db",
+      "entity": "Item"
     }
   ],
   "languages": [],

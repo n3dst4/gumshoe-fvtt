@@ -6,6 +6,7 @@ import {
 import * as trailData from "./trailData";
 import * as nbaData from "./nbaData";
 import * as fearData from "./fearData";
+import * as ashenData from "./ashenData";
 import { packNames, systemName } from "../constants";
 
 export const emptyPack = async (pack: any) => {
@@ -78,5 +79,11 @@ export const initializePackGenerators = () => {
     emptyPack(pack);
     await generatePacks(fearData.investigativeAbilities, fearData.investigativeTemplate, pack);
     await generatePacks(fearData.generalAbilities, fearData.generalTemplate, pack);
+  };
+  (window as any).generateAshenAbilities = async () => {
+    const pack = findPack(packNames.ashenStarsAbilities);
+    emptyPack(pack);
+    await generatePacks(ashenData.investigativeAbilities, ashenData.investigativeTemplate, pack);
+    await generatePacks(ashenData.generalAbilities, ashenData.generalTemplate, pack);
   };
 };
