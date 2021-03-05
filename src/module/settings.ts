@@ -8,13 +8,14 @@ import {
   longNotes,
   newPCPacks,
   occupationLabel,
-  packNames,
   shortNotes,
   systemMigrationVersion,
   systemName,
   systemPreset,
+  useBoost,
 } from "../constants";
 import { mapValues } from "../functions";
+import { trailPreset } from "../systemPresets";
 import { Theme, themes } from "../theme";
 import { GumshoeSettingsClass } from "./GumshoeSettingsClass";
 
@@ -44,7 +45,7 @@ export const registerSettings = function () {
     scope: "world",
     config: false,
     choices: mapValues((theme: Theme) => (theme.displayName), themes),
-    default: "trailTheme",
+    default: trailPreset.defaultTheme,
     type: String,
   });
 
@@ -52,42 +53,42 @@ export const registerSettings = function () {
     name: "Investigative ability categories",
     scope: "world",
     config: false,
-    default: ["Academic", "Interpersonal", "Technical"],
+    default: trailPreset.investigativeAbilityCategories,
     type: Object,
   });
   game.settings.register(systemName, generalAbilityCategories, {
     name: "General ability categories",
     scope: "world",
     config: false,
-    default: ["General"],
+    default: trailPreset.generalAbilityCategories,
     type: Object,
   });
   game.settings.register(systemName, combatAbilities, {
     name: "Combat abilities",
     scope: "world",
     config: false,
-    default: ["Scuffling", "Weapons", "Firearms", "Athletics"],
+    default: trailPreset.combatAbilities,
     type: Object,
   });
   game.settings.register(systemName, occupationLabel, {
     name: "What do we call \"Occupation\"?",
     scope: "world",
     config: false,
-    default: "Occupation",
+    default: trailPreset.occupationLabel,
     type: String,
   });
   game.settings.register(systemName, shortNotes, {
     name: "Short Notes",
     scope: "world",
     config: false,
-    default: ["Drive"],
+    default: trailPreset.shortNotes,
     type: Object,
   });
   game.settings.register(systemName, longNotes, {
     name: "Long Notes",
     scope: "world",
     config: false,
-    default: ["Notes, Contacts etc.", "Occupational Benefits", "Pillars of Sanity", "Sources of Stability", "Background"],
+    default: trailPreset.longNotes,
     type: Object,
   });
 
@@ -95,7 +96,7 @@ export const registerSettings = function () {
     name: "Compendium packs for new PCs",
     scope: "world",
     config: false,
-    default: [`${systemName}.${packNames.trailOfCthulhuAbilities}`],
+    default: trailPreset.newPCPacks,
     type: Object,
   });
 
@@ -106,6 +107,15 @@ export const registerSettings = function () {
     config: false,
     default: "trailPreset",
     type: String,
+  });
+
+  game.settings.register(systemName, useBoost, {
+    name: "Use Boost",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: trailPreset.useBoost,
+    type: Boolean,
   });
 
   // Define a settings submenu which handles advanced configuration needs

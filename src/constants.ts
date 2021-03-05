@@ -26,6 +26,7 @@ export const occupationLabel = "occupationLabel" as const;
 export const shortNotes = "shortNotes" as const;
 export const longNotes = "longNotes" as const;
 export const newPCPacks = "newPCPacks" as const;
+export const useBoost = "useBoost" as const;
 /**
  * @deprecated use investigativeAbilityCategories and generalAbilityCategories instead
  */

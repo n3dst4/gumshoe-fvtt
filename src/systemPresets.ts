@@ -10,6 +10,7 @@ export type SystemPreset = {
   shortNotes: string[],
   longNotes: string[],
   newPCPacks: string[],
+  useBoost: boolean,
 }
 
 export const trailPreset: SystemPreset = {
@@ -22,6 +23,7 @@ export const trailPreset: SystemPreset = {
   shortNotes: ["Drive"],
   longNotes: ["Notes, Contacts etc.", "Occupational Benefits", "Pillars of Sanity", "Sources of Stability"],
   newPCPacks: [`${systemName}.${packNames.trailOfCthulhuAbilities}`],
+  useBoost: false,
 };
 
 export const nbaPreset: SystemPreset = {
@@ -34,6 +36,7 @@ export const nbaPreset: SystemPreset = {
   shortNotes: ["Drive", "Previous Patron"],
   longNotes: ["Covers", "Network Contacts", "Trust"],
   newPCPacks: [`${systemName}.${packNames.nightsBlackAgentsAbilities}`],
+  useBoost: false,
 };
 
 export const fearPreset: SystemPreset = {
@@ -46,6 +49,7 @@ export const fearPreset: SystemPreset = {
   shortNotes: [],
   longNotes: ["Risk Factors", "Sources of Stability", "Notes"],
   newPCPacks: [`${systemName}.${packNames.fearItselfAbilities}`],
+  useBoost: false,
 };
 
 export const ashenPreset: SystemPreset = {
@@ -58,6 +62,7 @@ export const ashenPreset: SystemPreset = {
   shortNotes: ["Drive", "Groundside Post", "Warpside Post"],
   longNotes: ["Personal Arc", "Cybernetic Enhancements", "Viroware Enhancements", "What You Did During The War"],
   newPCPacks: [`${systemName}.${packNames.ashenStarsAbilities}`],
+  useBoost: true,
 };
 
 export const systemPresets = {
