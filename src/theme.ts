@@ -225,7 +225,7 @@ export const ashenTheme: Theme = {
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
   `,
-  wallpaperUrl: "",
+  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/guille-pozzi-sbcIAn4Mn14-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "bold small-caps normal 1.1em 'Nova Square', serif",
   // logo:
@@ -262,8 +262,8 @@ export const ashenTheme: Theme = {
     accent: ashenComplement.toString(),
     glow: ashenComplement.lightness(0.7).toString(),
 
-    thin: ashenColor.lightness(0.1).opacity(0.5).toString(),
-    medium: ashenColor.lightness(0.3).opacity(0.5).toString(),
+    thin: ashenColor.lightness(0.3).opacity(0.5).toString(),
+    medium: ashenColor.lightness(0.1).opacity(0.5).toString(),
     thick: ashenColor.lightness(0.4).toString(),
 
     reverseThin: "rgba(255,255,255,0.1)",
@@ -273,7 +273,7 @@ export const ashenTheme: Theme = {
   },
 };
 
-//
+// guille-pozzi-sbcIAn4Mn14-unsplash.webp
 
 export const themes: {[themeName: string]: Theme} = {
   trailTheme,

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { css, jsx } from "@emotion/react";
+import { jsx } from "@emotion/react";
 import React from "react";
 type InputGridProps = {
   children: any,
@@ -12,14 +12,13 @@ export const InputGrid: React.FC<InputGridProps> = ({
 }) => {
   return (
     <div
-      css={css`
-        display: grid;
-        grid-template-rows: auto;
-        grid-template-columns: [label] max-content [control] 1fr [end];
-        grid-auto-rows: auto;
-        column-gap: 0.5em;
-        row-gap: 0.2em;
-      `}
+      css={{
+        display: "grid",
+        gridTemplateRows: "auto",
+        gridTemplateColumns: "[label] max-content [control] 1fr [end]",
+        gridAutoRows: "auto",
+        rowGap: "0.2em",
+      }}
       className={className}
     >
       {children}

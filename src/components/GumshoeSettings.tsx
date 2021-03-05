@@ -9,9 +9,9 @@ import { CSSReset } from "./CSSReset";
 import { AsyncTextInput } from "./inputs/AsyncTextInput";
 import { Checkbox } from "./inputs/Checkbox";
 import { GridField } from "./inputs/GridField";
-import { GridFieldStacked } from "./inputs/GridFieldStacked";
 import { InputGrid } from "./inputs/InputGrid";
 import { ListEdit } from "./inputs/ListEdit";
+import { SettingsGridField } from "./inputs/SettingsGridField";
 
 type GumshoeSettingsProps = {
   foundryApplication: Application;
@@ -172,6 +172,8 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
     ],
   );
 
+  let idx = 0;
+
   return (
     <CSSReset
       theme={theme}
@@ -187,46 +189,9 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
         padding: 0,
       }}
     >
-      {showJSON && (
-        <InputGrid css={{ flex: 1, overflow: "auto" }}>
-          <GridField label="systemMigrationVersion">
-            <pre>{JSON.stringify(systemMigrationVersion, null, 2)}</pre>
-          </GridField>
-          <GridField label="defaultTheme">
-            <pre>{JSON.stringify(defaultTheme, null, 2)}</pre>
-          </GridField>
-          <GridField label="investigativeAbilityCategories">
-            <pre>{JSON.stringify(investigativeAbilityCategories, null, 2)}</pre>
-          </GridField>
-          <GridField label="generalAbilityCategories">
-            <pre>{JSON.stringify(generalAbilityCategories, null, 2)}</pre>
-          </GridField>
-          <GridField label="combatAbilities">
-            <pre>{JSON.stringify(combatAbilities, null, 2)}</pre>
-          </GridField>
-          <GridField label="occupationLabel">
-            <pre>{JSON.stringify(occupationLabel, null, 2)}</pre>
-          </GridField>
-          <GridField label="shortNotes">
-            <pre>{JSON.stringify(shortNotes, null, 2)}</pre>
-          </GridField>
-          <GridField label="longNotes">
-            <pre>{JSON.stringify(longNotes, null, 2)}</pre>
-          </GridField>
-          <GridField label="systemPreset">
-            <pre>{JSON.stringify(systemPreset, null, 2)}</pre>
-          </GridField>
-          <GridField label="newPCPacks">
-            <pre>{JSON.stringify(newPCPacks, null, 2)}</pre>
-          </GridField>
-        </InputGrid>
-      )}
-      {showJSON || (
         <InputGrid
           css={{
-            flex: 1,
-            overflow: "auto",
-            background: theme.colors.thin,
+            background: `linear-gradient(to right, ${theme.colors.medium}, ${theme.colors.medium}), ${theme.wallpaperUrl}`,
             padding: "0.5em",
           }}
         >
@@ -245,12 +210,52 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
               )}
             </select>
           </GridField>
+        </InputGrid>
 
-          <GridFieldStacked>
-            <hr />
-          </GridFieldStacked>
-
-          <GridField label="Visual Theme">
+      {showJSON && (
+        <InputGrid css={{ flex: 1, overflow: "auto" }}>
+          <SettingsGridField label="systemMigrationVersion" index={idx++}>
+            <pre>{JSON.stringify(systemMigrationVersion, null, 2)}</pre>
+          </SettingsGridField>
+          <SettingsGridField label="defaultTheme" index={idx++}>
+            <pre>{JSON.stringify(defaultTheme, null, 2)}</pre>
+          </SettingsGridField>
+          <SettingsGridField label="investigativeAbilityCategories" index={idx}>
+            <pre>{JSON.stringify(investigativeAbilityCategories, null, 2)}</pre>
+          </SettingsGridField>
+          <SettingsGridField label="generalAbilityCategories" index={idx++}>
+            <pre>{JSON.stringify(generalAbilityCategories, null, 2)}</pre>
+          </SettingsGridField>
+          <SettingsGridField label="combatAbilities" index={idx++}>
+            <pre>{JSON.stringify(combatAbilities, null, 2)}</pre>
+          </SettingsGridField>
+          <SettingsGridField label="occupationLabel" index={idx++}>
+            <pre>{JSON.stringify(occupationLabel, null, 2)}</pre>
+          </SettingsGridField>
+          <SettingsGridField label="shortNotes" index={idx++}>
+            <pre>{JSON.stringify(shortNotes, null, 2)}</pre>
+          </SettingsGridField>
+          <SettingsGridField label="longNotes" index={idx++}>
+            <pre>{JSON.stringify(longNotes, null, 2)}</pre>
+          </SettingsGridField>
+          <SettingsGridField label="systemPreset" index={idx++}>
+            <pre>{JSON.stringify(systemPreset, null, 2)}</pre>
+          </SettingsGridField>
+          <SettingsGridField label="newPCPacks" index={idx++}>
+            <pre>{JSON.stringify(newPCPacks, null, 2)}</pre>
+          </SettingsGridField>
+        </InputGrid>
+      )}
+      {showJSON || (
+        <InputGrid
+          css={{
+            flex: 1,
+            overflow: "auto",
+            // background: theme.colors.thin,
+            // padding: "0.5em",
+          }}
+        >
+          <SettingsGridField label="Visual Theme" index={idx++}>
             <select
               value={defaultTheme}
               onChange={(e) => {
@@ -263,8 +268,8 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                 </option>
               ))}
             </select>
-          </GridField>
-          <GridField label="Compendium packs for new PCs">
+          </SettingsGridField>
+          <SettingsGridField label="Compendium packs for new PCs" index={idx++}>
             {game.packs
               .filter((pack: Compendium) => pack.metadata.entity === "Item")
               .map((pack: Compendium) => {
@@ -301,37 +306,37 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                   </label>
                 );
               })}
-          </GridField>
-          <GridField label="Investigative Ability Categories">
+          </SettingsGridField>
+          <SettingsGridField label="Investigative Ability Categories" index={idx++}>
             <ListEdit
               value={investigativeAbilityCategories}
               onChange={setInvestigativeAbilityCategories}
             />
-          </GridField>
-          <GridField label="General Ability Categories">
+          </SettingsGridField>
+          <SettingsGridField label="General Ability Categories" index={idx++}>
             <ListEdit
               value={generalAbilityCategories}
               onChange={setGeneralAbilityCategories}
             />
-          </GridField>
-          <GridField label="Combat Abilities">
+          </SettingsGridField>
+          <SettingsGridField label="Combat Abilities" index={idx++}>
             <ListEdit value={combatAbilities} onChange={setCombatAbilities} />
-          </GridField>
-          <GridField label="Occupation Label">
+          </SettingsGridField>
+          <SettingsGridField label="Occupation Label" index={idx++}>
             <AsyncTextInput
               value={occupationLabel}
               onChange={setOccupationLabel}
             />
-          </GridField>
-          <GridField label="Short Notes Fields">
+          </SettingsGridField>
+          <SettingsGridField label="Short Notes Fields" index={idx++}>
             <ListEdit value={shortNotes} onChange={setShortNotes} />
-          </GridField>
-          <GridField label="Long Notes Fields">
+          </SettingsGridField>
+          <SettingsGridField label="Long Notes Fields" index={idx++}>
             <ListEdit value={longNotes} onChange={setLongNotes} />
-          </GridField>
-          <GridField label="Can abilitiess be boosted?">
+          </SettingsGridField>
+          <SettingsGridField label="Can abilitiess be boosted?" index={idx++}>
             <Checkbox checked={useBoost} onChange={setUseBoost} />
-          </GridField>
+          </SettingsGridField>
         </InputGrid>
       )}
       <div
