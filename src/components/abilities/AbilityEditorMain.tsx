@@ -8,7 +8,8 @@ import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
-import { getCombatAbilities } from "../../settingsHelpers";
+import { getCombatAbilities, getUseBoost } from "../../settingsHelpers";
+import { Checkbox } from "../inputs/Checkbox";
 
 type AbilityEditorMainProps = {
   ability: GumshoeItem,
@@ -25,6 +26,8 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
   const onClickRefresh = useCallback(() => {
     ability.refreshPool();
   }, [ability]);
+
+  const useBoost = getUseBoost();
 
   const isCombatAbility = getCombatAbilities().includes(ability.name);
   const actorInitiativeAbility = ability?.actor?.data.data.initiativeAbility;
@@ -88,6 +91,11 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
             <SpecialityList ability={ability} />
           </div>
         </GridFieldStacked>
+      }
+      {useBoost &&
+        <GridField label="Boosted?">
+          <Checkbox checked={ability.getBoost()} onChange={ability.setBoost}/>
+        </GridField>
       }
       {isCombatAbility &&
         <GridField label="Combat order">

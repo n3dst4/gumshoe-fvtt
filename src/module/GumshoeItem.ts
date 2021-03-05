@@ -162,6 +162,9 @@ export class GumshoeItem extends Item<any> {
   getPool = () => this.data.data.pool ?? 0
   setPool = (pool: number) => this.update({ data: { pool } })
 
+  getBoost = () => this.data.data.boost ?? 0
+  setBoost = (boost: boolean) => this.update({ data: { boost } })
+
   getDamage = () => this.data.data.damage ?? 0
   setDamage = (damage: number) => this.update({ data: { damage } })
 

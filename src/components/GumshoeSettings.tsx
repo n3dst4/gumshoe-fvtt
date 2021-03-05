@@ -154,6 +154,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
         settings.setShortNotes(shortNotes),
         settings.setLongNotes(longNotes),
         settings.setNewPCPacks(newPCPacks),
+        settings.setUseBoost(useBoost),
         settings.setSystemPreset(systemPreset),
       ]);
       foundryApplication.close();
@@ -169,6 +170,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       occupationLabel,
       shortNotes,
       systemPreset,
+      useBoost,
     ],
   );
 
@@ -189,28 +191,28 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
         padding: 0,
       }}
     >
-        <InputGrid
-          css={{
-            background: `linear-gradient(to right, ${theme.colors.medium}, ${theme.colors.medium}), ${theme.wallpaperUrl}`,
-            padding: "0.5em",
-          }}
-        >
-          <GridField label="System Preset">
-            <select value={systemPreset} onChange={onSelectPreset}>
-              {Object.keys(systemPresets).map((presetId: string) => (
-                <option key={presetId} value={presetId}>
-                  {
-                    systemPresets[presetId as keyof typeof systemPresets]
-                      .displayName
-                  }
-                </option>
-              ))}
-              {systemPreset === customSystem && (
-                <option value={customSystem}>Custom</option>
-              )}
-            </select>
-          </GridField>
-        </InputGrid>
+      <InputGrid
+        css={{
+          background: `linear-gradient(to right, ${theme.colors.medium}, ${theme.colors.medium}), ${theme.wallpaperUrl}`,
+          padding: "0.5em",
+        }}
+      >
+        <GridField label="System Preset">
+          <select value={systemPreset} onChange={onSelectPreset}>
+            {Object.keys(systemPresets).map((presetId: string) => (
+              <option key={presetId} value={presetId}>
+                {
+                  systemPresets[presetId as keyof typeof systemPresets]
+                    .displayName
+                }
+              </option>
+            ))}
+            {systemPreset === customSystem && (
+              <option value={customSystem}>Custom</option>
+            )}
+          </select>
+        </GridField>
+      </InputGrid>
 
       {showJSON && (
         <InputGrid css={{ flex: 1, overflow: "auto" }}>
@@ -307,7 +309,10 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                 );
               })}
           </SettingsGridField>
-          <SettingsGridField label="Investigative Ability Categories" index={idx++}>
+          <SettingsGridField
+            label="Investigative Ability Categories"
+            index={idx++}
+          >
             <ListEdit
               value={investigativeAbilityCategories}
               onChange={setInvestigativeAbilityCategories}
