@@ -25,11 +25,11 @@
   * [x] General Abilities
   * [x] *Psychic Powers*
   * [x] ~~*No trackers*~~ Not accurate - the standard character sheet doesn't have trackers, but the system has health and stability.
-* [ ] Ashen Stars
+* [x] Ashen Stars
   * [x] Categorized investigating abilities
   * [x] General Abilities
+  * [x] *Special (Vas Mal)*
   * [ ] *"Boost"*
-  * [ ] *Special (Vas Mal)*
   * [ ] Spaceships?
 
 ## GUMSHOE Games that I don't have yet, but would like to support:
