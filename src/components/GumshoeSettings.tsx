@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useState } from "react";
@@ -7,7 +6,6 @@ import * as settings from "../settingsHelpers";
 import { systemPresets } from "../systemPresets";
 import { themes, trailTheme } from "../theme";
 import { CSSReset } from "./CSSReset";
-import { AsyncTextArea } from "./inputs/AsyncTextArea";
 import { AsyncTextInput } from "./inputs/AsyncTextInput";
 import { Checkbox } from "./inputs/Checkbox";
 import { GridField } from "./inputs/GridField";
@@ -40,6 +38,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
   const [systemPreset, setSystemPreset] = useState(settings.getSystemPreset());
 
   const resetPreset = useCallback(() => {
+    console.log("resetting the presetting");
     setSystemPreset(customSystem);
   }, []);
 
@@ -78,6 +77,10 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
     settings.getNewPCPacks(),
     resetPreset,
   );
+  const [useBoost, setUseBoost] = useStateWithPreset(
+    settings.getUseBoost(),
+    resetPreset,
+  );
 
   const onSelectPreset = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -102,6 +105,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       setShortNotes(preset.shortNotes);
       setLongNotes(preset.longNotes);
       setNewPCPacks(preset.newPCPacks);
+      setUseBoost(preset.useBoost);
       setSystemPreset(presetId);
     },
     [
@@ -113,6 +117,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       setNewPCPacks,
       setOccupationLabel,
       setShortNotes,
+      setUseBoost,
     ],
   );
 
@@ -323,6 +328,9 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           </GridField>
           <GridField label="Long Notes Fields">
             <ListEdit value={longNotes} onChange={setLongNotes} />
+          </GridField>
+          <GridField label="Can abilitiess be boosted?">
+            <Checkbox checked={useBoost} onChange={setUseBoost} />
           </GridField>
         </InputGrid>
       )}
