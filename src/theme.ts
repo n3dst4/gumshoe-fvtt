@@ -240,7 +240,7 @@ export const ashenTheme: Theme = {
       ${ashenOffset} -${ashenOffset} ${ashenBlur} #cdf6ff, 
       ${ashenOffset} ${ashenOffset} ${ashenBlur} #cdf6ff`),
   },
-  logoTransform: "rotateY(21deg) rotateZ(0deg) translateX(0%) scale(0.8)",
+  logoTransform: "rotateY(21deg) rotateZ(0deg) translateX(4%) scale(0.8)",
   backdropStyle: {
     perspective: "500px",
     perspectiveOrigin: "50% 50%",
