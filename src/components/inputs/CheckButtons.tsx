@@ -50,7 +50,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
             background: "grey",
             border: "2px inset white",
             backgroundColor: theme.colors.accent,
-            color: theme.colors.glow,
+            color: theme.colors.accentContrast,
             textShadow: `0 0 0.3em ${theme.colors.glow}`,
           },
           "&[disabled]+label": {

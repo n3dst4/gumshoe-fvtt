@@ -51,13 +51,13 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
         </a>
       </h2>
 
-      {vals.map((v) => (
+      {vals.map((value) => (
         <PoolCheckbox
-          key={v}
-          value={v}
+          key={value}
+          value={value}
           onClick={setPool}
-          selected={ability ? v === ability.data.data.pool : false}
-          disabled={ability ? v > ability.data.data.rating : true}
+          selected={ability && value === ability.data.data.pool}
+          disabled={ability && value > ability.data.data.rating}
         />
       ))}
     </div>

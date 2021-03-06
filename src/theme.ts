@@ -19,6 +19,7 @@ export type Theme = {
   // logo: CSSObject,
   colors: {
     accent: string,
+    accentContrast: string,
     glow: string,
     wallpaper: string,
     thick: string,
@@ -56,6 +57,7 @@ export const trailTheme: Theme = {
   },
   colors: {
     accent: "#1d5d5d",
+    accentContrast: "white",
     glow: "#5effff",
     wallpaper: "#ddd",
     thin: "rgba(255,255,255,0.2)",
@@ -97,6 +99,7 @@ export const nbaThemeDark: Theme = {
   },
   colors: {
     accent: "#fff",
+    accentContrast: "#600",
     glow: "#f33",
     wallpaper: "#4a0d00",
     thin: "rgba(0,0,0,0.2)",
@@ -137,6 +140,7 @@ export const nbaTheme: Theme = {
   },
   colors: {
     accent: "#962121",
+    accentContrast: "white",
     glow: "#ff0000",
     wallpaper: "#ddd",
     thin: "rgba(255,255,255,0.2)",
@@ -167,6 +171,7 @@ export const highContrastTheme: Theme = {
   },
   colors: {
     accent: "#005",
+    accentContrast: "white",
     glow: "#bbf",
     wallpaper: "#ddd",
     thin: white.opacity(0.2).toString(),
@@ -200,6 +205,7 @@ export const fearTheme: Theme = {
   },
   colors: {
     accent: "#615144",
+    accentContrast: "white",
     glow: "#fff",
     wallpaper: "#ddd",
     thin: "rgba(255,255,255,0.2)",
@@ -260,6 +266,7 @@ export const ashenTheme: Theme = {
   colors: {
     wallpaper: ashenColor.lightness(0.05).toString(),
     accent: ashenComplement.toString(),
+    accentContrast: "#333",
     glow: ashenComplement.lightness(0.7).toString(),
 
     thin: ashenColor.lightness(0.3).opacity(0.5).toString(),
