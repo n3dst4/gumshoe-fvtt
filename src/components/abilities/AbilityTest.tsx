@@ -30,7 +30,6 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
     if (ability.actor === null) { return; }
     const useBoost = game.settings.get(constants.systemName, constants.useBoost);
     const isBoosted = useBoost && ability.getBoost();
-    const boostMsg = isBoosted ? "" : " (+1 boost)";
     const boost = isBoosted ? 1 : 0;
     const roll = useBoost
       ? new Roll("1d6 + @spend + @boost", { spend, boost })

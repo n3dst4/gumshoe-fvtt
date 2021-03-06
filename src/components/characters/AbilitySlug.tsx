@@ -3,6 +3,7 @@ import React, { useCallback, useContext } from "react";
 import { jsx } from "@emotion/react";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
+import { getUseBoost } from "../../settingsHelpers";
 
 type AbilitySlugProps = {
   ability: GumshoeItem;
@@ -15,6 +16,7 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
       (app as any)._onDragStart(e);
     }
   }, [app]);
+  const boost = getUseBoost() && ability.getBoost();
 
   return (
     <a
@@ -48,6 +50,13 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
             css={{ fontSize: "0.8em", marginLeft: "0.5em" }}
             className="fa fa-search"
             title="Can be used investigatively"
+          />
+        )}
+        {boost && (
+          <i
+            css={{ fontSize: "0.8em", marginLeft: "0.5em" }}
+            className="fa fa-chart-line"
+            title="Boost"
           />
         )}
       </div>
