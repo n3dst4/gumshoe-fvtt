@@ -93,7 +93,7 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
         </GridFieldStacked>
       }
       {useBoost &&
-        <GridField label="Boosted?">
+        <GridField label="Boost?">
           <Checkbox checked={ability.getBoost()} onChange={ability.setBoost}/>
         </GridField>
       }
