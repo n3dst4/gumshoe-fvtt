@@ -21,10 +21,12 @@ export const Checkbox: React.FC<CheckboxProps> = ({
       checked={checked}
       css={{
         lineHeight: "inherit",
-        height: "inherit",
+        // height: "inherit",
         background: "red",
+        position: "relative",
+        top: "0.2em",
         "&[type=checkbox]": {
-          height: "inherit",
+          // height: "inherit",
         },
       }}
       onChange={(e) => {
