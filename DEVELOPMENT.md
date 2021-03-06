@@ -29,7 +29,7 @@
   * [x] Categorized investigating abilities
   * [x] General Abilities
   * [x] *Special (Vas Mal)*
-  * [ ] *"Boost"*
+  * [x] *"Boost"*
   * [ ] Spaceships?
 
 ## GUMSHOE Games that I don't have yet, but would like to support:
