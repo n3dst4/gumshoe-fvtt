@@ -7,7 +7,7 @@ import { Theme, themes } from "../theme";
 import { getDefaultThemeName, getNewPCPacks } from "../settingsHelpers";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export class GumshoeActor<T=any> extends Actor<TrailActorData> {
+export class GumshoeActor<T = any> extends Actor<TrailActorData> {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
@@ -23,7 +23,7 @@ export class GumshoeActor<T=any> extends Actor<TrailActorData> {
       "fa-sync",
       this.refresh,
     );
-  }
+  };
 
   refresh = () => {
     this.items.forEach((item) => {
@@ -35,7 +35,7 @@ export class GumshoeActor<T=any> extends Actor<TrailActorData> {
         });
       }
     });
-  }
+  };
 
   confirmNuke = () => {
     confirmADoodleDo(
@@ -45,7 +45,7 @@ export class GumshoeActor<T=any> extends Actor<TrailActorData> {
       "fa-radiation",
       () => this.nuke(),
     );
-  }
+  };
 
   nuke = async () => {
     await this.deleteEmbeddedEntity(
@@ -53,13 +53,15 @@ export class GumshoeActor<T=any> extends Actor<TrailActorData> {
       this.items.map((i: GumshoeItem) => i.id),
     );
     window.alert("Nuked");
-  }
+  };
 
   /// ///////////////////////////////////////////////////////////////////////////
   // ITEMS
 
   getAbilityByName (name: string) {
-    return this.items.find((item: GumshoeItem) => isAbility(item) && item.name === name);
+    return this.items.find(
+      (item: GumshoeItem) => isAbility(item) && item.name === name,
+    );
   }
 
   getEquipment () {
@@ -75,7 +77,9 @@ export class GumshoeActor<T=any> extends Actor<TrailActorData> {
   }
 
   getTrackerAbilities (): GumshoeItem[] {
-    return this.getAbilities().filter((item: GumshoeItem) => item.data.data.showTracker);
+    return this.getAbilities().filter(
+      (item: GumshoeItem) => item.data.data.showTracker,
+    );
   }
 
   // ---------------------------------------------------------------------------
@@ -86,50 +90,101 @@ export class GumshoeActor<T=any> extends Actor<TrailActorData> {
     return themes[themeName];
   }
 
-  getSheetThemeName (): string|null {
+  getSheetThemeName (): string | null {
     return this.data.data.sheetTheme;
   }
 
-  setSheetTheme = (sheetTheme: string|null) => this.update({ data: { sheetTheme } });
+  setSheetTheme = (sheetTheme: string | null) =>
+    this.update({ data: { sheetTheme } });
 
-  getNotes = () => this.data.data.notes ?? ""
-  setNotes = (notes: string) => this.update({ data: { notes } })
+  getNotes = () => this.data.data.notes ?? "";
+  setNotes = (notes: string) => this.update({ data: { notes } });
 
-  getOccupationalBenefits = () => this.data.data.occupationalBenefits ?? ""
-  setOccupationalBenefits = (occupationalBenefits: string) => this.update({ data: { occupationalBenefits } })
+  getOccupationalBenefits = () => this.data.data.occupationalBenefits ?? "";
+  setOccupationalBenefits = (occupationalBenefits: string) =>
+    this.update({ data: { occupationalBenefits } });
 
-  getPillarsOfSanity = () => this.data.data.pillarsOfSanity ?? ""
-  setPillarsOfSanity = (pillarsOfSanity: string) => this.update({ data: { pillarsOfSanity } })
+  getPillarsOfSanity = () => this.data.data.pillarsOfSanity ?? "";
+  setPillarsOfSanity = (pillarsOfSanity: string) =>
+    this.update({ data: { pillarsOfSanity } });
 
-  getSourcesOfStability = () => this.data.data.sourcesOfStability ?? ""
-  setSourcesOfStability = (sourcesOfStability: string) => this.update({ data: { sourcesOfStability } })
+  getSourcesOfStability = () => this.data.data.sourcesOfStability ?? "";
+  setSourcesOfStability = (sourcesOfStability: string) =>
+    this.update({ data: { sourcesOfStability } });
 
-  getBackground = () => this.data.data.background ?? ""
-  setBackground = (background: string) => this.update({ data: { background } })
+  getBackground = () => this.data.data.background ?? "";
+  setBackground = (background: string) => this.update({ data: { background } });
 
-  getLongNote = (i: number) => this.data.data.longNotes?.[i] ?? ""
-  getLongNotes = () => this.data.data.longNotes ?? []
+  getLongNote = (i: number) => this.data.data.longNotes?.[i] ?? "";
+  getLongNotes = () => this.data.data.longNotes ?? [];
   setLongNote = (i: number, text: string) => {
-    const newNotes = [...this.data.data.longNotes || []];
+    const newNotes = [...(this.data.data.longNotes || [])];
     newNotes[i] = text;
     this.update({
       data: {
         longNotes: newNotes,
       },
     });
-  }
+  };
 
-  getShortNote = (i: number) => this.data.data.shortNotes?.[i] ?? ""
-  getShortNotes = () => this.data.data.shortNotes ?? []
+  getShortNote = (i: number) => this.data.data.shortNotes?.[i] ?? "";
+  getShortNotes = () => this.data.data.shortNotes ?? [];
   setShortNote = (i: number, text: string) => {
-    const newNotes = [...this.data.data.shortNotes || []];
+    const newNotes = [...(this.data.data.shortNotes || [])];
     newNotes[i] = text;
     this.update({
       data: {
         shortNotes: newNotes,
       },
     });
-  }
+  };
+
+  getName = () => this.name;
+  setName = (name: string) => {
+    this.update({ name });
+  };
+
+  getActorIds = () => this.data.data.actorIds;
+  setActorIds = (actorIds: string[]) => {
+    this.update({ data: { actorIds } });
+  };
+
+  getActors = () => this.getActorIds().map((id) => game.actors.get(id));
+  addActorIds = (newIds: string[]) => {
+    const currentIds = this.getActorIds();
+    const effectiveIds = newIds.filter((id) => !currentIds.includes(id));
+    this.setActorIds([...currentIds, ...effectiveIds]);
+  };
+
+  removeActorId = (id: string) => {
+    this.setActorIds(this.getActorIds().filter((x) => x !== id));
+  };
+
+  // getGeneralAbilityNames = () => this.data.data.abilityNames;
+  // setGeneralAbilityNames = (abilityNames: string[]) => {
+  //   this.update({ data: { abilityNames } });
+  // };
+
+  // addGeneralAbilityNames = (newNames: string[]) => {
+  //   const currentNames = this.getGeneralAbilityNames();
+  //   const effectiveNames = newNames.filter(
+  //     (name) => !currentNames.includes(name),
+  //   );
+  //   this.setGeneralAbilityNames([...currentNames, ...effectiveNames]);
+  // };
+
+  // getInvestigativeAbilityNames = () => this.data.data.abilityNames;
+  // setInvestigativeAbilityNames = (abilityNames: string[]) => {
+  //   this.update({ data: { abilityNames } });
+  // };
+
+  // addInvestigativeAbilityNames = (newNames: string[]) => {
+  //   const currentNames = this.getInvestigativeAbilityNames();
+  //   const effectiveNames = newNames.filter(
+  //     (name) => !currentNames.includes(name),
+  //   );
+  //   this.setInvestigativeAbilityNames([...currentNames, ...effectiveNames]);
+  // };
 }
 
 /**

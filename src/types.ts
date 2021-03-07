@@ -58,6 +58,10 @@ export type TrailActorData = {
     stability: Resource,
     magic: Resource,
   },
+
+  // party stuff
+  abilityNames: string[],
+  actorIds: string[]
 };
 
 export type EquipmentData = {
@@ -97,7 +101,7 @@ export type CoreAbilityData = {
   showTracker: boolean,
 }
 
-export type InvestAbilityData = CoreAbilityData & {
+export type InvestigativeAbilityData = CoreAbilityData & {
   category: string,
 }
 
@@ -105,11 +109,11 @@ export type GeneralAbilityData = CoreAbilityData & {
   canBeInvestigative: boolean,
 }
 
-export type AbilityData = InvestAbilityData | GeneralAbilityData;
+export type AbilityData = InvestigativeAbilityData | GeneralAbilityData;
 
 // the most correct "type" for this is a Partial-wrapped splodge of all the
 // possibilities. I don't like it.
-export type TrailItemData = Partial<EquipmentData & WeaponData & InvestAbilityData & GeneralAbilityData>;
+export type TrailItemData = Partial<EquipmentData & WeaponData & InvestigativeAbilityData & GeneralAbilityData>;
 // export type TrailItemData = EquipmentData | WeaponData | AbilityData;
 
 /**

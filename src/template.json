@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["pc"],
+    "types": ["pc", "party"],
     "templates": {
     },
     "pc": {
@@ -44,6 +44,9 @@
           "value": 0
         }
       }
+    },
+    "party": {
+      "actorIds": []
     }
   },
   "Item": {

@@ -4,7 +4,7 @@ import { GumshoeActor } from "./module/GumshoeActor";
 import { GumshoeItem } from "./module/GumshoeItem";
 import { GumshoeActorSheetClass } from "./module/GumshoeActorSheetClass";
 import { GumshoeItemSheetClass } from "./module/GumshoeItemSheetClass";
-import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, systemName, weapon } from "./constants";
+import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, systemName, weapon } from "./constants";
 import { GumshoeCombat } from "./module/GumshoeCombat";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
@@ -13,6 +13,7 @@ import { isAbility, isGeneralAbility, isNullOrEmptyString } from "./functions";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
+import { GumshoePartySheetClass } from "./module/GumshoePartySheetClass";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -32,7 +33,20 @@ Hooks.once("init", async function () {
 
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet(systemName, GumshoeActorSheetClass, { makeDefault: true });
+  Actors.registerSheet(
+    systemName,
+    GumshoeActorSheetClass,
+    {
+      makeDefault: true,
+      types: [pc],
+    });
+  Actors.registerSheet(
+    systemName,
+    GumshoePartySheetClass,
+    {
+      makeDefault: true,
+      types: [party],
+    });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(
     systemName,
@@ -118,6 +132,6 @@ Hooks.on("renderSettings", (app: Application, html: JQuery) => {
   });
 });
 
-CONFIG.debug.hooks = false;
+CONFIG.debug.hooks = true;
 
 initializePackGenerators();
