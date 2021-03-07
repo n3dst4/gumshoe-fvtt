@@ -24,7 +24,7 @@ export type Resource = {
   value: number,
 }
 
-export type TrailActorData = {
+export type GumshoeActorData = {
   buildPoints: number,
   health: number,
   stability: number,
@@ -113,7 +113,7 @@ export type AbilityData = InvestigativeAbilityData | GeneralAbilityData;
 
 // the most correct "type" for this is a Partial-wrapped splodge of all the
 // possibilities. I don't like it.
-export type TrailItemData = Partial<EquipmentData & WeaponData & InvestigativeAbilityData & GeneralAbilityData>;
+export type GumshoeItemData = Partial<EquipmentData & WeaponData & InvestigativeAbilityData & GeneralAbilityData>;
 // export type TrailItemData = EquipmentData | WeaponData | AbilityData;
 
 /**

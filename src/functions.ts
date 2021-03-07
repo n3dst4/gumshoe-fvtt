@@ -52,3 +52,8 @@ export const mapValues = <V1, V2>(
 export const isNullOrEmptyString = (x: any) => {
   return x === null || x === undefined || x === "";
 };
+
+// Folder type is a bit fucky rn
+export const getFolderDescendants = <T extends Entity>(folder: any): T[] => {
+  return [...folder.children.flatMap(getFolderDescendants), ...folder.content];
+};

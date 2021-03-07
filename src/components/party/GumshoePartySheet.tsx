@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import * as constants from "../../constants";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { getDefaultThemeName, getNewPCPacks } from "../../settingsHelpers";
@@ -17,31 +17,17 @@ type GumshoePartySheetProps = {
 };
 
 type AbilityType = typeof constants.investigativeAbility| typeof constants.generalAbility;
-
 type AbilityTuple = [AbilityType, string, string];
-
 const typeHeaderString = "typeHeader" as const;
 const categoryHeaderString = "categoryHeader" as const;
 const abilityTupleString = "abilityTuple" as const;
-
 type TypeHeader = {[typeHeaderString]: AbilityType};
 type CategoryHeader = {[categoryHeaderString]: string};
 type AbilityRow = {[abilityTupleString]: AbilityTuple};
-
 type RowData = TypeHeader | CategoryHeader | AbilityRow;
-
 const hasOwnProperty = (x: any, y: string) => Object.prototype.hasOwnProperty.call(x, y);
-
 const isTypeHeader = (data: RowData): data is TypeHeader => hasOwnProperty(data, typeHeaderString);
 const isCategoryHeader = (data: RowData): data is CategoryHeader => hasOwnProperty(data, categoryHeaderString);
-// const isAbilityRow = (data: RowData): data is AbilityRow => hasOwnProperty(data, abilityTupleString);
-
-// type AbilityCategories = {[category: string]: string[]};
-
-// type AbilityTree = {
-//   [constants.investigativeAbility]: AbilityCategories,
-//   [constants.generalAbility]: AbilityCategories,
-// }
 
 const getSystemAbilities = async () => {
   const proms = getNewPCPacks().map(async (packId) => {
@@ -105,21 +91,6 @@ const buildRowData = (tuples: AbilityTuple[]): RowData[] => {
   return result;
 };
 
-// const buildAbilityTree = (tuples: AbilityTuple[]): AbilityTree => {
-//   const results: AbilityTree = {
-//     [constants.investigativeAbility]: { },
-//     [constants.generalAbility]: { },
-//   };
-//   for (const [type, category, name] of tuples) {
-//     if (results[type][category] === undefined) {
-//       results[type][category] = [];
-//     }
-//     results[type][category].push(name);
-//   }
-
-//   return results;
-// };
-
 export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
   foundryApplication,
   party,
@@ -128,15 +99,19 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
 
   const [rowData, setRowData] = useState<RowData[]>([]);
 
+  const [actors, setActors] = useState<GumshoeActor[]>([]);
+
   useEffect(() => {
     const getAbs = async () => {
       const tuples = await getSystemAbilities();
       const rowData = buildRowData(tuples);
       setRowData(rowData);
-    };
 
+      const actors = party.getActorIds().map((id) => game.actors.get(id) as GumshoeActor);
+      setActors(actors);
+    };
     getAbs();
-  }, []);
+  }, [party]);
 
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
@@ -148,29 +123,30 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
           right: 0,
           bottom: 0,
           left: 0,
-          display: "grid",
-          gridTemplateRows: "min-content max-content 1fr",
-          gridTemplateColumns: "10em 1fr 10em",
-          gap: "0.5em",
-          gridTemplateAreas:
-            "\"title title image\" " +
-            "\"pools stats image\" " +
-            "\"pools body  body\" ",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
+        <InputGrid>
+          <GridField label="Party Name">
+            <AsyncTextInput
+              value={party.getName()}
+              onChange={party.setName}
+              />
+          </GridField>
+        </InputGrid>
         <div
           css={{
-
+            display: "grid",
+            gridTemplateRows: "min-content max-content 1fr",
+            gridTemplateColumns: "10em 1fr 10em",
+            gap: "0.5em",
+            gridTemplateAreas:
+              "\"title title image\" " +
+              "\"pools stats image\" " +
+              "\"pools body  body\" ",
           }}
         >
-          <InputGrid>
-            <GridField label="Party Name">
-              <AsyncTextInput
-                value={party.getName()}
-                onChange={party.setName}
-                />
-            </GridField>
-          </InputGrid>
         </div>
         <div
           css={{
@@ -181,21 +157,40 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
             gridTemplateColumns: "max-content",
             gridAutoColumns: "minmax(min-content, 6em)",
             gap: "0.5em",
+            overflow: "auto",
           }}
         >
           {rowData.map((data, i) => {
             if (isTypeHeader(data)) {
               return (<h1 css={{ gridRow: i + 2 }}>
-                {data[typeHeaderString] === constants.generalAbility ? "General Abilities" : "Investigative Abilities"}
+                {data[typeHeaderString] === constants.generalAbility ? "General" : "Investigative"}
               </h1>);
             } else if (isCategoryHeader(data)) {
               return (<h2 css={{ gridRow: i + 2 }}>
                 {data[categoryHeaderString]}
               </h2>);
             } else {
-              return (<div css={{ gridRow: i + 2 }}>
-                {data[abilityTupleString][2]}
-              </div>);
+              return (
+                <Fragment>
+                  <div css={{ gridRow: i + 2 }}>
+                    {data[abilityTupleString][2]}
+                  </div>
+                  {actors.map((actor, j) => {
+                    return (
+                      <div
+                        key={actor.id}
+                        css={{
+                          gridRow: i + 2,
+                          gridCol: j + 2,
+                        }}
+                      >
+                        {actor.name}
+                      </div>
+                    );
+                  })
+                  }
+                </Fragment>
+              );
             }
           })}
         </div>

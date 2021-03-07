@@ -8,8 +8,8 @@ import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbility
 import { GumshoeCombat } from "./module/GumshoeCombat";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
-import { RecursivePartial, TrailItemData } from "./types";
-import { isAbility, isGeneralAbility, isNullOrEmptyString } from "./functions";
+import { RecursivePartial, GumshoeItemData } from "./types";
+import { getFolderDescendants, isAbility, isGeneralAbility, isNullOrEmptyString } from "./functions";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
@@ -94,7 +94,7 @@ Hooks.on("ready", async () => {
 Hooks.on(
   "preCreateItem",
   (
-    data: RecursivePartial<ItemData<TrailItemData>>,
+    data: RecursivePartial<ItemData<GumshoeItemData>>,
     options: any,
     userId: string,
   ) => {
@@ -131,6 +131,28 @@ Hooks.on("renderSettings", (app: Application, html: JQuery) => {
     gumshoeSettingsClassInstance.render(true);
   });
 });
+
+Hooks.on(
+  "dropActorSheetData",
+  (
+    targetActor: GumshoeActor,
+    application: Application,
+    dropData: { type: string; id: string; entity?: string },
+  ) => {
+    if (
+      targetActor.data.type !== party ||
+      (dropData.type !== "Actor" &&
+        (dropData.type !== "Folder" || dropData.entity !== "Actor")) ||
+      !game.user.isGM
+    ) {
+      return;
+    }
+    const actorIds = dropData.type === "Actor"
+      ? [dropData.id]
+      : getFolderDescendants(game.folders.get(dropData.id)).filter((actor) => actor.data.type === pc).map((actor) => actor.id);
+    targetActor.addActorIds(actorIds);
+  },
+);
 
 CONFIG.debug.hooks = true;
 

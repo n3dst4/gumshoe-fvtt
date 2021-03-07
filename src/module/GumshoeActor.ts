@@ -1,13 +1,13 @@
 import { equipment, generalAbility, weapon } from "../constants";
 import { isAbility } from "../functions";
-import { TrailActorData, RecursivePartial, TrailItemData } from "../types";
+import { GumshoeActorData, RecursivePartial, GumshoeItemData } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { GumshoeItem } from "./GumshoeItem";
 import { Theme, themes } from "../theme";
 import { getDefaultThemeName, getNewPCPacks } from "../settingsHelpers";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export class GumshoeActor<T = any> extends Actor<TrailActorData> {
+export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
@@ -192,8 +192,8 @@ export class GumshoeActor<T = any> extends Actor<TrailActorData> {
  */
 Hooks.on("updateOwnedItem", (
   actor: GumshoeActor,
-  itemData: ItemData<TrailItemData>,
-  diff: RecursivePartial<ItemData<TrailItemData>>,
+  itemData: ItemData<GumshoeItemData>,
+  diff: RecursivePartial<ItemData<GumshoeItemData>>,
   options: Record<string, unknown>,
   userId: string,
 ) => {
