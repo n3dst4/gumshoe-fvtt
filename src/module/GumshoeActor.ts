@@ -1,6 +1,6 @@
 import { equipment, generalAbility, weapon } from "../constants";
 import { isAbility } from "../functions";
-import { GumshoeActorData, RecursivePartial, GumshoeItemData } from "../types";
+import { GumshoeActorData, RecursivePartial, GumshoeItemData, AbilityType } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { GumshoeItem } from "./GumshoeItem";
 import { Theme, themes } from "../theme";
@@ -58,10 +58,14 @@ export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
   /// ///////////////////////////////////////////////////////////////////////////
   // ITEMS
 
-  getAbilityByName (name: string) {
+  getAbilityByName (name: string, type?: AbilityType) {
     return this.items.find(
-      (item: GumshoeItem) => isAbility(item) && item.name === name,
+      (item: GumshoeItem) => (type ? item.data.type === type : isAbility(item)) && item.name === name,
     );
+  }
+
+  getAbilityRatingByName (name:string) {
+    return this.getAbilityByName(name)?.getRating() ?? 0;
   }
 
   getEquipment () {

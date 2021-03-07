@@ -5,6 +5,7 @@ import * as constants from "../../constants";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { getDefaultThemeName, getNewPCPacks } from "../../settingsHelpers";
 import { themes } from "../../theme";
+import { AbilityType } from "../../types";
 import { CSSReset } from "../CSSReset";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -16,7 +17,6 @@ type GumshoePartySheetProps = {
   foundryApplication: ActorSheet,
 };
 
-type AbilityType = typeof constants.investigativeAbility| typeof constants.generalAbility;
 type AbilityTuple = [AbilityType, string, string];
 const typeHeaderString = "typeHeader" as const;
 const categoryHeaderString = "categoryHeader" as const;
@@ -101,17 +101,19 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
 
   const [actors, setActors] = useState<GumshoeActor[]>([]);
 
+  const actorIds = party.getActorIds();
+
   useEffect(() => {
     const getAbs = async () => {
       const tuples = await getSystemAbilities();
       const rowData = buildRowData(tuples);
       setRowData(rowData);
 
-      const actors = party.getActorIds().map((id) => game.actors.get(id) as GumshoeActor);
+      const actors = actorIds.map((id) => game.actors.get(id) as GumshoeActor);
       setActors(actors);
     };
     getAbs();
-  }, [party]);
+  }, [actorIds]);
 
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
@@ -201,7 +203,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                           gridColumn: j + 2,
                         }}
                       >
-                        {actor.name}
+                        {actor.getAbilityByName(data[abilityTupleString][2], data[abilityTupleString][0])?.getRating() ?? "--"}
                       </div>
                     );
                   })

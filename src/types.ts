@@ -1,3 +1,4 @@
+import * as constants from "./constants";
 // import { TrailActor } from "./module/TrailActor";
 // type BaseAbilityData = {
 //   "rating": number,
@@ -17,6 +18,8 @@
 // export type InvestigativeAbility = Item<InvestigativeAbilityData>;
 
 // export type GeneralAbility = Item<GeneralAbilityData>;
+
+export type AbilityType = typeof constants.investigativeAbility | typeof constants.generalAbility;
 
 export type Resource = {
   min?: number,
