@@ -137,29 +137,46 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
         </InputGrid>
         <div
           css={{
-            display: "grid",
-            gridTemplateRows: "min-content max-content 1fr",
-            gridTemplateColumns: "10em 1fr 10em",
-            gap: "0.5em",
-            gridTemplateAreas:
-              "\"title title image\" " +
-              "\"pools stats image\" " +
-              "\"pools body  body\" ",
-          }}
-        >
-        </div>
-        <div
-          css={{
             flex: 1,
             display: "grid",
-            gridTemplateRows: "3em",
+            gridTemplateRows: "auto",
             gridAutoRows: "auto",
             gridTemplateColumns: "max-content",
             gridAutoColumns: "minmax(min-content, 6em)",
-            gap: "0.5em",
+            // gap: "0.5em",
             overflow: "auto",
+            position: "relative",
           }}
         >
+          <div
+            css={{
+              gridRow: 1,
+              gridColumn: 1,
+              position: "sticky",
+              top: 0,
+              background: theme.colors.thick,
+            }}
+          >
+          </div>
+
+          {actors.map((actor, j) => {
+            return (
+              <div
+                key={actor.id}
+                css={{
+                  gridRow: 1,
+                  gridColumn: j + 2,
+                  position: "sticky",
+                  top: 0,
+                  background: theme.colors.thick,
+                }}
+              >
+                {actor.name}
+              </div>
+            );
+          })
+          }
+
           {rowData.map((data, i) => {
             if (isTypeHeader(data)) {
               return (<h1 css={{ gridRow: i + 2 }}>
@@ -181,7 +198,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                         key={actor.id}
                         css={{
                           gridRow: i + 2,
-                          gridCol: j + 2,
+                          gridColumn: j + 2,
                         }}
                       >
                         {actor.name}
