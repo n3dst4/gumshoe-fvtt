@@ -29,10 +29,19 @@ type CategoryHeader = {
   rowType: typeof categoryHeaderKey,
   category: string,
 };
+type ActorAbilityInfo = {
+  actorId: string,
+  abilityId: string,
+  rating: number,
+};
 type AbilityRow = {
   rowType: typeof abilityRowkey,
   name: string,
   abilityType: AbilityType,
+  actorInfo: {
+    [actorId: string]: ActorAbilityInfo,
+  },
+  total: number,
 };
 type RowData = TypeHeader | CategoryHeader | AbilityRow;
 const isTypeHeader = (data: RowData): data is TypeHeader =>
@@ -85,7 +94,10 @@ const compareTuples = (
   return nameComparison;
 };
 
-const buildRowData = (tuples: AbilityTuple[]): RowData[] => {
+const buildRowData = (
+  tuples: AbilityTuple[],
+  actors: GumshoeActor[],
+): RowData[] => {
   const result: RowData[] = [];
 
   const sorted = tuples.sort(compareTuples);
@@ -103,7 +115,29 @@ const buildRowData = (tuples: AbilityTuple[]): RowData[] => {
       result.push({ rowType: categoryHeaderKey, category });
       lastCategory = category;
     }
-    result.push({ rowType: abilityRowkey, name, abilityType });
+    const actorInfo: { [actorId: string]: ActorAbilityInfo } = {};
+    let total = 0;
+
+    for (const actor of actors) {
+      const ability = actor.getAbilityByName(name, abilityType);
+      if (ability) {
+        const rating = ability.getRating();
+        actorInfo[actor.id] = {
+          abilityId: ability.id,
+          actorId: actor.id,
+          rating,
+        };
+        total += rating;
+      }
+    }
+
+    result.push({
+      rowType: abilityRowkey,
+      name,
+      abilityType,
+      actorInfo,
+      total,
+    });
   }
   return result;
 };
@@ -119,12 +153,12 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
 
   useEffect(() => {
     const getAbs = async () => {
-      const tuples = await getSystemAbilities();
-      const rowData = buildRowData(tuples);
-      setRowData(rowData);
-
       const actors = actorIds.map((id) => game.actors.get(id) as GumshoeActor);
       setActors(actors);
+
+      const tuples = await getSystemAbilities();
+      const rowData = buildRowData(tuples, actors);
+      setRowData(rowData);
     };
     getAbs();
   }, [actorIds]);
@@ -208,23 +242,32 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                     {data.name}
                   </div>
                   {actors.map((actor, j) => {
+                    const actorInfo = data.actorInfo[actor.id];
                     return (
-                      <div
+                      <a
                         key={actor.id}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          actor.getOwnedItem(actorInfo.abilityId)?.sheet?.render(true);
+                        }}
                         css={{
+                          display: "block",
                           gridRow: i + 2,
                           gridColumn: j + 2,
                         }}
                       >
-                        {actor
-                          .getAbilityByName(
-                            data.name,
-                            data.abilityType,
-                          )
-                          ?.getRating() ?? "--"}
-                      </div>
+                        {actorInfo?.rating ?? "--"}
+                      </a>
                     );
                   })}
+                  <div
+                    css={{
+                      gridRow: i + 2,
+                      gridColumn: actors.length + 2,
+                    }}
+                  >
+                    {data.total}
+                  </div>
                 </Fragment>
               ); //
             }
