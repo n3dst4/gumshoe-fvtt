@@ -57,3 +57,8 @@ export const isNullOrEmptyString = (x: any) => {
 export const getFolderDescendants = <T extends Entity>(folder: any): T[] => {
   return [...folder.children.flatMap(getFolderDescendants), ...folder.content];
 };
+
+// version of Object.prototype.hasOwnProperty that's safe even when prototype
+// has been overridden
+export const hasOwnProperty = (x: any, y: string) =>
+  Object.prototype.hasOwnProperty.call(x, y);

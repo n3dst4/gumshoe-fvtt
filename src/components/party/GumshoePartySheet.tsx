@@ -13,49 +13,62 @@ import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 
 type GumshoePartySheetProps = {
-  party: GumshoeActor,
-  foundryApplication: ActorSheet,
+  party: GumshoeActor;
+  foundryApplication: ActorSheet;
 };
 
 type AbilityTuple = [AbilityType, string, string];
-const typeHeaderString = "typeHeader" as const;
-const categoryHeaderString = "categoryHeader" as const;
-const abilityTupleString = "abilityTuple" as const;
-type TypeHeader = {[typeHeaderString]: AbilityType};
-type CategoryHeader = {[categoryHeaderString]: string};
-type AbilityRow = {[abilityTupleString]: AbilityTuple};
+const typeHeaderKey = "typeHeader" as const;
+const categoryHeaderKey = "categoryHeader" as const;
+const abilityRowkey = "abilityRowString" as const;
+type TypeHeader = {
+  rowType: typeof typeHeaderKey;
+  abilityType: AbilityType;
+};
+type CategoryHeader = {
+  rowType: typeof categoryHeaderKey;
+  category: string;
+};
+type AbilityRow = { rowType: typeof abilityRowkey; name: string; abilityType: AbilityType };
 type RowData = TypeHeader | CategoryHeader | AbilityRow;
-const hasOwnProperty = (x: any, y: string) => Object.prototype.hasOwnProperty.call(x, y);
-const isTypeHeader = (data: RowData): data is TypeHeader => hasOwnProperty(data, typeHeaderString);
-const isCategoryHeader = (data: RowData): data is CategoryHeader => hasOwnProperty(data, categoryHeaderString);
+const isTypeHeader = (data: RowData): data is TypeHeader =>
+  data.rowType === typeHeaderKey;
+const isCategoryHeader = (data: RowData): data is CategoryHeader =>
+  data.rowType === categoryHeaderKey;
 
 const getSystemAbilities = async () => {
   const proms = getNewPCPacks().map(async (packId) => {
-    const content = await (game.packs
+    const content = await game.packs
       .find((p: any) => p.collection === packId)
-      .getContent());
-    const pairs: AbilityTuple[] = content.map((i: any) => [i.data.type, i.data.data.category, i.data.name]);
+      .getContent();
+    const pairs: AbilityTuple[] = content.map((i: any) => [
+      i.data.type,
+      i.data.data.category,
+      i.data.name,
+    ]);
     return pairs;
   });
   const results = await Promise.all(proms);
   return results.flat();
 };
 
-const compareTypes = (a:AbilityType, b: AbilityType) => (
+const compareTypes = (a: AbilityType, b: AbilityType) =>
   a === constants.investigativeAbility && b === constants.generalAbility
     ? -1
     : a === constants.generalAbility && b === constants.investigativeAbility
       ? +1
-      : 0
-);
+      : 0;
 
 const compareStrings = (a: string, b: string) => {
   const a_ = a.toLowerCase();
   const b_ = b.toLowerCase();
-  return (a_ < b_) ? -1 : (a_ > b_) ? +1 : 0;
+  return a_ < b_ ? -1 : a_ > b_ ? +1 : 0;
 };
 
-const compareTuples = ([aType, aCategory, aName]: AbilityTuple, [bType, bCategory, bName]: AbilityTuple) => {
+const compareTuples = (
+  [aType, aCategory, aName]: AbilityTuple,
+  [bType, bCategory, bName]: AbilityTuple,
+) => {
   const typeComparison = compareTypes(aType, bType);
   if (typeComparison !== 0) {
     return typeComparison;
@@ -73,20 +86,20 @@ const buildRowData = (tuples: AbilityTuple[]): RowData[] => {
 
   const sorted = tuples.sort(compareTuples);
 
-  let lastType: AbilityType|null = null;
-  let lastCategory: string|null = null;
+  let lastType: AbilityType | null = null;
+  let lastCategory: string | null = null;
 
-  for (const [type, category, name] of sorted) {
-    if (type !== lastType) {
-      result.push({ typeHeader: type });
-      lastType = type;
+  for (const [abilityType, category, name] of sorted) {
+    if (abilityType !== lastType) {
+      result.push({ rowType: typeHeaderKey, abilityType });
+      lastType = abilityType;
       lastCategory = null;
     }
     if (category !== lastCategory) {
-      result.push({ categoryHeader: category });
+      result.push({ rowType: categoryHeaderKey, category });
       lastCategory = category;
     }
-    result.push({ abilityTuple: [type, category, name] });
+    result.push({ rowType: abilityRowkey, name, abilityType });
   }
   return result;
 };
@@ -96,11 +109,8 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
   party,
 }) => {
   const theme = themes[getDefaultThemeName()] || themes.trailTheme;
-
   const [rowData, setRowData] = useState<RowData[]>([]);
-
   const [actors, setActors] = useState<GumshoeActor[]>([]);
-
   const actorIds = party.getActorIds();
 
   useEffect(() => {
@@ -131,10 +141,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
       >
         <InputGrid>
           <GridField label="Party Name">
-            <AsyncTextInput
-              value={party.getName()}
-              onChange={party.setName}
-              />
+            <AsyncTextInput value={party.getName()} onChange={party.setName} />
           </GridField>
         </InputGrid>
         <div
@@ -158,8 +165,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               top: 0,
               background: theme.colors.thick,
             }}
-          >
-          </div>
+          ></div>
 
           {actors.map((actor, j) => {
             return (
@@ -176,23 +182,26 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                 {actor.name}
               </div>
             );
-          })
-          }
+          })}
 
           {rowData.map((data, i) => {
             if (isTypeHeader(data)) {
-              return (<h1 css={{ gridRow: i + 2 }}>
-                {data[typeHeaderString] === constants.generalAbility ? "General" : "Investigative"}
-              </h1>);
+              return (
+                <h1 css={{ gridRow: i + 2 }}>
+                  {data.abilityType === constants.generalAbility
+                    ? "General"
+                    : "Investigative"}
+                </h1>
+              );
             } else if (isCategoryHeader(data)) {
-              return (<h2 css={{ gridRow: i + 2 }}>
-                {data[categoryHeaderString]}
-              </h2>);
+              return (
+                <h2 css={{ gridRow: i + 2 }}>{data.category}</h2>
+              );
             } else {
               return (
                 <Fragment>
                   <div css={{ gridRow: i + 2 }}>
-                    {data[abilityTupleString][2]}
+                    {data.name}
                   </div>
                   {actors.map((actor, j) => {
                     return (
@@ -203,13 +212,17 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                           gridColumn: j + 2,
                         }}
                       >
-                        {actor.getAbilityByName(data[abilityTupleString][2], data[abilityTupleString][0])?.getRating() ?? "--"}
+                        {actor
+                          .getAbilityByName(
+                            data.name,
+                            data.abilityType,
+                          )
+                          ?.getRating() ?? "--"}
                       </div>
                     );
-                  })
-                  }
+                  })}
                 </Fragment>
-              );
+              ); //
             }
           })}
         </div>
