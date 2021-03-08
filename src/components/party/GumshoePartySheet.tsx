@@ -13,8 +13,8 @@ import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 
 type GumshoePartySheetProps = {
-  party: GumshoeActor;
-  foundryApplication: ActorSheet;
+  party: GumshoeActor,
+  foundryApplication: ActorSheet,
 };
 
 type AbilityTuple = [AbilityType, string, string];
@@ -22,14 +22,18 @@ const typeHeaderKey = "typeHeader" as const;
 const categoryHeaderKey = "categoryHeader" as const;
 const abilityRowkey = "abilityRowString" as const;
 type TypeHeader = {
-  rowType: typeof typeHeaderKey;
-  abilityType: AbilityType;
+  rowType: typeof typeHeaderKey,
+  abilityType: AbilityType,
 };
 type CategoryHeader = {
-  rowType: typeof categoryHeaderKey;
-  category: string;
+  rowType: typeof categoryHeaderKey,
+  category: string,
 };
-type AbilityRow = { rowType: typeof abilityRowkey; name: string; abilityType: AbilityType };
+type AbilityRow = {
+  rowType: typeof abilityRowkey,
+  name: string,
+  abilityType: AbilityType,
+};
 type RowData = TypeHeader | CategoryHeader | AbilityRow;
 const isTypeHeader = (data: RowData): data is TypeHeader =>
   data.rowType === typeHeaderKey;

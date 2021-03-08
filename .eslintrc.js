@@ -32,6 +32,28 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": ["error", { args: "none", ignoreRestSiblings: true }],
     "react/prop-types": ["off"],
     "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/member-delimiter-style": ["error", {
+      multiline: {
+        delimiter: "comma",
+        requireLast: true,
+      },
+      singleline: {
+        delimiter: "comma",
+        requireLast: false,
+      },
+      overrides: {
+        interface: {
+          multiline: {
+            delimiter: "semi",
+            requireLast: true,
+          },
+          singleline: {
+            delimiter: "semi",
+            requireLast: true,
+          },
+        },
+      },
+    }],
   },
   overrides: [
     {
