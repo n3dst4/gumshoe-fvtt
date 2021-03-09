@@ -287,9 +287,6 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                         ? theme.colors.reverseThin
                         : "none",
                       marginBottom: "0.3em",
-                      ":hover": {
-                        textShadow: theme.colors.reverseThin,
-                      },
                     }}
                   >
                     <Checkbox
