@@ -14,7 +14,7 @@ import { ListEdit } from "./inputs/ListEdit";
 import { SettingsGridField } from "./inputs/SettingsGridField";
 
 type GumshoeSettingsProps = {
-  foundryApplication: Application;
+  foundryApplication: Application,
 };
 
 const useStateWithPreset = <T extends any>(initial: T, also: () => void) => {

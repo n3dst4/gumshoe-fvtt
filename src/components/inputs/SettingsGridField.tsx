@@ -5,7 +5,7 @@ import { ThemeContext } from "../../theme";
 import { GridField } from "./GridField";
 
 type SettingsGridFieldProps = ComponentProps<typeof GridField> & {
-  index?: number
+  index?: number,
 };
 
 export const SettingsGridField: React.FC<SettingsGridFieldProps> = ({

@@ -5,10 +5,10 @@ import { nanoid } from "nanoid";
 import { IdContext } from "../IdContext";
 
 type GridFieldProps = {
-  label?: string;
-  className?: string;
-  children?: any;
-  noLabel?: boolean;
+  label?: string,
+  className?: string,
+  children?: any,
+  noLabel?: boolean,
 };
 
 export const GridField: React.FC<GridFieldProps> = ({
