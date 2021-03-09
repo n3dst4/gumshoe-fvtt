@@ -29,7 +29,7 @@ export type Theme = {
     reverseMedium: string,
     reverseThick: string,
     text: string,
-  }
+  },
 }
 
 export const trailTheme: Theme = {
