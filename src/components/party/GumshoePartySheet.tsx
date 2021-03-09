@@ -177,11 +177,14 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
           flexDirection: "column",
         }}
       >
+        {/* Name field */}
         <InputGrid>
           <GridField label="Party Name">
             <AsyncTextInput value={party.getName()} onChange={party.setName} />
           </GridField>
         </InputGrid>
+
+        {/* Grid */}
         <div
           css={{
             flex: 1,
@@ -190,11 +193,12 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
             gridAutoRows: "auto",
             gridTemplateColumns: "max-content",
             gridAutoColumns: "minmax(min-content, 6em)",
-            // gap: "0.5em",
             overflow: "auto",
+            // gap: "0.5em",
             position: "relative",
           }}
         >
+          {/* Top left block */}
           <div
             css={{
               gridRow: 1,
@@ -202,9 +206,12 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               position: "sticky",
               top: 0,
               background: theme.colors.thick,
+              padding: "0.5em",
+              textAlign: "center",
             }}
           ></div>
 
+          {/* Actor names */}
           {actors.map((actor, j) => {
             return (
               <div
@@ -215,6 +222,8 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   position: "sticky",
                   top: 0,
                   background: theme.colors.thick,
+                  padding: "0.5em",
+                  textAlign: "center",
                 }}
               >
                 {actor.name}
@@ -222,25 +231,95 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
             );
           })}
 
+          {/* TOTAL header */}
+          <div
+            css={{
+              gridRow: 1,
+              gridColumn: actors.length + 2,
+              position: "sticky",
+              top: 0,
+              right: 0,
+              background: theme.colors.thick,
+              padding: "0.5em",
+              textAlign: "center",
+            }}
+          >
+            GRAND TURTLE
+          </div>
+          {/* WORKAROUND - when the entire right-hand column is `sticky`, FF
+          (as of 86) doesn't allocate space for it so the last mobile column
+          doesn't scroll past it properly. by including this "invisible",
+          non-sticky copy of the top-right cell, we force FF to allocate space
+          properly. On Chrome this has no effect because the space was allocated
+          right anyway. */}
+          <div
+            css={{
+              visibility: "hidden",
+              gridRow: 1,
+              gridColumn: actors.length + 2,
+              top: 0,
+              right: 0,
+              background: theme.colors.thick,
+              padding: "0.5em",
+              textAlign: "center",
+            }}
+          >
+            GRAND TURTLE
+          </div>
+
+          {/* Rows */}
           {rowData.map((data, i) => {
             if (isTypeHeader(data)) {
+              // Investigative or general
               return (
-                <h1 css={{ gridRow: i + 2 }}>
+                <h1
+                  css={{
+                    gridRow: i + 2,
+                    padding: "0.5em",
+                    textAlign: "left",
+                    position: "sticky",
+                    left: 0,
+                  }}
+                >
                   {data.abilityType === constants.generalAbility
                     ? "General"
                     : "Investigative"}
                 </h1>
               );
             } else if (isCategoryHeader(data)) {
+              // Category
               return (
-                <h2 css={{ gridRow: i + 2 }}>{data.category}</h2>
+                <h2
+                  css={{
+                    gridRow: i + 2,
+                    padding: "0.5em",
+                    textAlign: "left",
+                    position: "sticky",
+                    left: 0,
+                  }}
+                >
+                  {data.category}
+                </h2>
               );
             } else {
+              // Actual Abilities
+              const background = i % 2 === 0 ? theme.colors.medium : theme.colors.thin;
               return (
                 <Fragment>
-                  <div css={{ gridRow: i + 2 }}>
+
+                  {/* Ability name */}
+                  <div css={{
+                    gridRow: i + 2,
+                    background,
+                    padding: "0.5em",
+                    textAlign: "left",
+                    position: "sticky",
+                    left: 0,
+                  }}>
                     {data.name}
                   </div>
+
+                  {/* Ability scores */}
                   {actors.map((actor, j) => {
                     const actorInfo = data.actorInfo[actor.id];
                     return (
@@ -251,19 +330,29 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                           actor.getOwnedItem(actorInfo.abilityId)?.sheet?.render(true);
                         }}
                         css={{
+                          background,
                           display: "block",
                           gridRow: i + 2,
                           gridColumn: j + 2,
+                          padding: "0.5em",
+                          textAlign: "center",
                         }}
                       >
                         {actorInfo?.rating ?? "--"}
                       </a>
                     );
                   })}
+
+                  {/* Total */}
                   <div
                     css={{
+                      background,
                       gridRow: i + 2,
                       gridColumn: actors.length + 2,
+                      position: "sticky",
+                      right: 0,
+                      padding: "0.5em",
+                      textAlign: "center",
                     }}
                   >
                     {data.total}
