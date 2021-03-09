@@ -178,7 +178,11 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
         }}
       >
         {/* Name field */}
-        <InputGrid>
+        <InputGrid
+          css={{
+            paddingBottom: "0.5em",
+          }}
+        >
           <GridField label="Party Name">
             <AsyncTextInput value={party.getName()} onChange={party.setName} />
           </GridField>
@@ -208,6 +212,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               background: theme.colors.thick,
               padding: "0.5em",
               textAlign: "center",
+              zIndex: 1,
             }}
           ></div>
 
@@ -224,6 +229,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   background: theme.colors.thick,
                   padding: "0.5em",
                   textAlign: "center",
+                  zIndex: 2,
                 }}
               >
                 {actor.name}
@@ -242,6 +248,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               background: theme.colors.thick,
               padding: "0.5em",
               textAlign: "center",
+              zIndex: 3,
             }}
           >
             GRAND TURTLE
@@ -274,11 +281,13 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               return (
                 <h1
                   css={{
-                    gridRow: i + 2,
-                    padding: "0.5em",
-                    textAlign: "left",
-                    position: "sticky",
-                    left: 0,
+                    "&&": {
+                      gridRow: i + 2,
+                      padding: "0.5em",
+                      textAlign: "left",
+                      position: "sticky",
+                      left: 0,
+                    },
                   }}
                 >
                   {data.abilityType === constants.generalAbility
@@ -291,11 +300,13 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               return (
                 <h2
                   css={{
-                    gridRow: i + 2,
-                    padding: "0.5em",
-                    textAlign: "left",
-                    position: "sticky",
-                    left: 0,
+                    "&&": {
+                      gridRow: i + 2,
+                      padding: "0.5em",
+                      textAlign: "left",
+                      position: "sticky",
+                      left: 0,
+                    },
                   }}
                 >
                   {data.category}
