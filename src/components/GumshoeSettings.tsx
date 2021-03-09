@@ -271,7 +271,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
               ))}
             </select>
           </SettingsGridField>
-          <SettingsGridField label="Compendium packs for new PCs" index={idx++}>
+          <SettingsGridField label="Compendium packs for new PCs" index={idx++} noLabel>
             {game.packs
               .filter((pack: Compendium) => pack.metadata.entity === "Item")
               .map((pack: Compendium) => {
