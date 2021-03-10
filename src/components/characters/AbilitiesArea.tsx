@@ -53,7 +53,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
       <label
         css={{
           display: "block",
-          background: theme.colors.reverseThin,
+          background: theme.colors.bgTint,
           padding: "0.3em",
           borderRadius: "0.3em",
         }}

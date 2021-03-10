@@ -65,10 +65,10 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
   return (
     <InputGrid
       css={{
-        border: `1px solid ${theme.colors.reverseMedium}`,
+        border: `1px solid ${theme.colors.text}`,
         padding: "1em",
         marginBottom: "1em",
-        background: theme.colors.thin,
+        background: theme.colors.bgTransSecondary,
       }}
     >
       <GridField label="Spend">

@@ -15,20 +15,25 @@ export type Theme = {
   logoFrontElementStyle: CSSObject,
   logoRearElementStyle: CSSObject,
   logoTransform: string,
-  backdropStyle: CSSObject,
+  logoBackdropStyle: CSSObject,
+
   // logo: CSSObject,
   colors: {
     accent: string,
     accentContrast: string,
     glow: string,
     wallpaper: string,
-    thick: string,
-    thin: string,
-    medium: string,
-    reverseThin: string,
-    reverseMedium: string,
-    reverseThick: string,
+
+    bgOpaque: string,
+    bgTransSecondary: string,
+    bgTransPrimary: string,
+
+    bgTint: string,
+    // reverseMedium: string,
+    // reverseThick: string,
+
     text: string,
+    textMuted: string,
   },
 }
 
@@ -50,7 +55,7 @@ export const trailTheme: Theme = {
     textShadow: "2px 0px 1px black, 6px 0px 4px rgba(0,0,0,0.5), -1px 0px 0px rgba(255,255,255,0.5)",
   },
   logoTransform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
-  backdropStyle: {
+  logoBackdropStyle: {
     perspective: "500px",
     perspectiveOrigin: "50% 50%",
     backgroundImage: "radial-gradient(closest-side, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%)",
@@ -60,13 +65,14 @@ export const trailTheme: Theme = {
     accentContrast: "white",
     glow: "#5effff",
     wallpaper: "#ddd",
-    thin: "rgba(255,255,255,0.2)",
-    medium: "rgba(255,255,255,0.5)",
-    thick: "rgba(255,255,255,0.7)",
-    reverseThin: "rgba(0,0,0,0.1)",
-    reverseMedium: "rgba(0,0,0,0.3)",
-    reverseThick: "rgba(0,0,0,0.5)",
+    bgTransSecondary: "rgba(255,255,255,0.2)",
+    bgTransPrimary: "rgba(255,255,255,0.5)",
+    bgOpaque: "#fff",
+    bgTint: "rgba(0,0,0,0.1)",
+    // reverseMedium: "rgba(0,0,0,0.3)",
+    // reverseThick: "rgba(0,0,0,0.5)",
     text: "#433",
+    textMuted: "#744",
   },
 };
 
@@ -88,7 +94,7 @@ export const nbaThemeDark: Theme = {
     textShadow: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
   },
   logoTransform: "scale(0.8)",
-  backdropStyle: {
+  logoBackdropStyle: {
     // background: "linear-gradient(to right, #700 0%, #300 100%)",
     backgroundColor: "rgba(0,0,0,0.4)",
     transform: "scaleY(0.9) scaleX(1.2) translateY(0.1em)",
@@ -102,13 +108,14 @@ export const nbaThemeDark: Theme = {
     accentContrast: "#600",
     glow: "#f33",
     wallpaper: "#4a0d00",
-    thin: "rgba(0,0,0,0.2)",
-    medium: "rgba(0,0,0,0.4)",
-    thick: "rgba(0,0,0,0.6)",
-    reverseThin: "rgba(255,255,255,0.1)",
-    reverseMedium: "rgba(255,255,255,0.3)",
-    reverseThick: "rgba(255,255,255,0.5)",
+    bgTransSecondary: "rgba(0,0,0,0.2)",
+    bgTransPrimary: "rgba(0,0,0,0.4)",
+    bgOpaque: "#000",
+    bgTint: "rgba(255,255,255,0.1)",
+    // reverseMedium: "rgba(255,255,255,0.3)",
+    // reverseThick: "rgba(255,255,255,0.5)",
     text: "#ccc",
+    textMuted: "#aaa",
   },
 };
 
@@ -129,7 +136,7 @@ export const nbaTheme: Theme = {
     textShadow: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
   },
   logoTransform: "scale(0.8)",
-  backdropStyle: {
+  logoBackdropStyle: {
     background: `#4a0d00 url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
     backgroundSize: "cover",
     transform: "scaleY(0.9) scaleX(1.2) translateY(0.1em)",
@@ -143,13 +150,14 @@ export const nbaTheme: Theme = {
     accentContrast: "white",
     glow: "#ff0000",
     wallpaper: "#ddd",
-    thin: "rgba(255,255,255,0.2)",
-    medium: "rgba(255,255,255,0.5)",
-    thick: "rgba(255,255,255,0.7)",
-    reverseThin: "rgba(0,0,0,0.1)",
-    reverseMedium: "rgba(0,0,0,0.3)",
-    reverseThick: "rgba(0,0,0,0.5)",
+    bgTransSecondary: "rgba(255,255,255,0.2)",
+    bgTransPrimary: "rgba(255,255,255,0.5)",
+    bgOpaque: "#fff",
+    bgTint: "rgba(0,0,0,0.1)",
+    // reverseMedium: "rgba(0,0,0,0.3)",
+    // reverseThick: "rgba(0,0,0,0.5)",
     text: "#433",
+    textMuted: "#744",
   },
 };
 
@@ -167,20 +175,21 @@ export const highContrastTheme: Theme = {
     display: "none",
   },
   logoTransform: "none",
-  backdropStyle: {
+  logoBackdropStyle: {
   },
   colors: {
     accent: "#005",
     accentContrast: "white",
     glow: "#bbf",
     wallpaper: "#ddd",
-    thin: white.opacity(0.2).toString(),
-    medium: white.opacity(0.4).toString(),
-    thick: white.opacity(0.6).toString(),
-    reverseThin: black.opacity(0.1).toString(),
-    reverseMedium: black.opacity(0.2).toString(),
-    reverseThick: black.opacity(0.3).toString(),
+    bgTransSecondary: white.opacity(0.2).toString(),
+    bgTransPrimary: white.opacity(0.4).toString(),
+    bgOpaque: "#fff",
+    bgTint: black.opacity(0.1).toString(),
+    // reverseMedium: black.opacity(0.2).toString(),
+    // reverseThick: black.opacity(0.3).toString(),
     text: "#000",
+    textMuted: "#111",
   },
 };
 
@@ -201,20 +210,21 @@ export const fearTheme: Theme = {
     textShadow: "0px 0px 10px white",
   },
   logoTransform: "scale(0.8)",
-  backdropStyle: {
+  logoBackdropStyle: {
   },
   colors: {
     accent: "#615144",
     accentContrast: "white",
     glow: "#fff",
     wallpaper: "#ddd",
-    thin: "rgba(255,255,255,0.2)",
-    medium: "rgba(255,255,255,0.5)",
-    thick: "rgba(255,255,255,0.7)",
-    reverseThin: "rgba(0,0,0,0.1)",
-    reverseMedium: "rgba(0,0,0,0.3)",
-    reverseThick: "rgba(0,0,0,0.5)",
-    text: "#666",
+    bgTransSecondary: "rgba(255,255,255,0.2)",
+    bgTransPrimary: "rgba(255,255,255,0.5)",
+    bgOpaque: "white",
+    bgTint: "rgba(0,0,0,0.1)",
+    // reverseMedium: "rgba(0,0,0,0.3)",
+    // reverseThick: "rgba(0,0,0,0.5)",
+    text: "#444",
+    textMuted: "#666",
   },
 };
 
@@ -247,7 +257,7 @@ export const ashenTheme: Theme = {
       ${ashenOffset} ${ashenOffset} ${ashenBlur} #cdf6ff`),
   },
   logoTransform: "rotateY(21deg) rotateZ(0deg) translateX(4%) scale(0.8)",
-  backdropStyle: {
+  logoBackdropStyle: {
     perspective: "500px",
     perspectiveOrigin: "50% 50%",
 
@@ -269,14 +279,15 @@ export const ashenTheme: Theme = {
     accentContrast: "#333",
     glow: ashenComplement.lightness(0.7).toString(),
 
-    thin: ashenColor.lightness(0.3).opacity(0.5).toString(),
-    medium: ashenColor.lightness(0.1).opacity(0.5).toString(),
-    thick: ashenColor.lightness(0.4).toString(),
+    bgTransSecondary: ashenColor.lightness(0.3).opacity(0.5).toString(),
+    bgTransPrimary: ashenColor.lightness(0.1).opacity(0.5).toString(),
+    bgOpaque: ashenColor.lightness(0.1).toString(),
 
-    reverseThin: "rgba(255,255,255,0.1)",
-    reverseMedium: "rgba(255,255,255,0.3)",
-    reverseThick: "rgba(255,255,255,0.5)",
+    bgTint: "rgba(255,255,255,0.1)",
+    // reverseMedium: "rgba(255,255,255,0.3)",
+    // reverseThick: "rgba(255,255,255,0.5)",
     text: "#ddd",
+    textMuted: "#aaa",
   },
 };
 

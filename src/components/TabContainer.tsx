@@ -55,7 +55,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
             display: "inline-block",
             textAlign: "center",
             fontSize: "1.4em",
-            background: theme.colors.thin,
+            background: theme.colors.bgTransSecondary,
             borderRadius: "0.2em 0.2em 0 0",
             color: theme.colors.accent,
 
@@ -67,7 +67,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
             // background: "grey",
             // border: "2px inset white",
             // backgroundColor: "rgba(255,111,18,0.2)",
-            background: theme.colors.medium,
+            background: theme.colors.bgTransPrimary,
             ":hover": {
               textShadow: "none",
             },
@@ -105,7 +105,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
           flex: 1,
           position: "relative",
           overflow: "auto",
-          background: theme.colors.medium,
+          background: theme.colors.bgTransPrimary,
           padding: "0.5em",
         }}
       >

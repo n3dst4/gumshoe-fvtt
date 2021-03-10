@@ -14,7 +14,7 @@ import { TextArea } from "../inputs/TextArea";
 import { performAttack } from "./performAttack";
 
 type WeaponAttackProps = {
-  weapon: GumshoeItem;
+  weapon: GumshoeItem,
 };
 
 const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
@@ -106,10 +106,10 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     <Fragment>
       <InputGrid
         css={{
-          border: `1px solid ${theme.colors.reverseMedium}`,
+          border: `1px solid ${theme.colors.text}`,
           padding: "1em",
           marginBottom: "0.5em",
-          background: theme.colors.thin,
+          background: theme.colors.bgTransSecondary,
         }}
       >
         <GridField label="Spend">
@@ -136,8 +136,8 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
                     left: "50%",
                     transform: "translate(-50%, -50%)",
                     fontSize: "1.2em",
-                    backgroundColor: theme.colors.reverseThick,
-                    color: theme.colors.thick,
+                    backgroundColor: theme.colors.accentContrast,
+                    color: theme.colors.accent,
                     padding: "0 1em",
                   }}
                 >

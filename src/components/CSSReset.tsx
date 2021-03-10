@@ -4,9 +4,9 @@ import React from "react";
 import { ThemeContext, Theme } from "../theme";
 
 type CSSResetProps = {
-  children: any;
-  className?: string;
-  theme: Theme;
+  children: any,
+  className?: string,
+  theme: Theme,
 };
 
 export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }) => {
@@ -21,7 +21,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }
             scrollbarWidth: "thin",
             userSelect: "auto",
             boxSizing: "border-box",
-            scrollbarColor: `${theme.colors.accent} ${theme.colors.reverseThin}`,
+            scrollbarColor: `${theme.colors.accent} ${theme.colors.bgTint}`,
             "&:focus": {
               textDecoration: "underline",
               // textDecorationStyle: "dashed",
@@ -90,8 +90,8 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }
             padding: "0.1em 0.3em",
             borderStyle: "solid",
             borderWidth: "1px",
-            borderColor: theme.colors.reverseMedium,
-            background: theme.colors.medium,
+            borderColor: theme.colors.text,
+            background: theme.colors.bgTransPrimary,
             resize: "vertical",
             ":focus": {
               borderColor: theme.colors.accent,
@@ -101,7 +101,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }
           },
           select: {
             color: theme.colors.text,
-            background: theme.colors.thick,
+            background: theme.colors.bgOpaque,
             ":focus": {
               borderColor: theme.colors.accent,
               outline: "none",
@@ -112,8 +112,8 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }
             lineHeight: 1,
           },
           "button, input[type=button]": {
-            border: `2px groove ${theme.colors.reverseThick}`,
-            background: theme.colors.reverseThin,
+            border: `2px groove ${theme.colors.text}`,
+            background: theme.colors.bgTint,
           },
         }}
       >

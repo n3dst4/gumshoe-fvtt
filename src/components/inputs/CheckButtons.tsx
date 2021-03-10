@@ -39,7 +39,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
             fontSize: "1.4em",
             fontWeight: "bold",
             border: "2px groove white",
-            backgroundColor: theme.colors.medium,
+            backgroundColor: theme.colors.bgTransPrimary,
             paddingBottom: "0.3em",
             borderRadius: "0.2em",
             ":hover": {

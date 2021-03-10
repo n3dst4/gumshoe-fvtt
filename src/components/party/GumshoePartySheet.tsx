@@ -209,7 +209,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               gridColumn: 1,
               position: "sticky",
               top: 0,
-              background: theme.colors.thick,
+              background: theme.colors.bgOpaque,
               padding: "0.5em",
               textAlign: "center",
               zIndex: 1,
@@ -226,7 +226,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   gridColumn: j + 2,
                   position: "sticky",
                   top: 0,
-                  background: theme.colors.thick,
+                  backgroundColor: theme.colors.bgOpaque,
                   padding: "0.5em",
                   textAlign: "center",
                   zIndex: 2,
@@ -245,7 +245,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               position: "sticky",
               top: 0,
               right: 0,
-              background: theme.colors.thick,
+              background: theme.colors.bgOpaque,
               padding: "0.5em",
               textAlign: "center",
               zIndex: 3,
@@ -266,7 +266,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               gridColumn: actors.length + 2,
               top: 0,
               right: 0,
-              background: theme.colors.thick,
+              background: theme.colors.bgOpaque,
               padding: "0.5em",
               textAlign: "center",
             }}
@@ -314,14 +314,15 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               );
             } else {
               // Actual Abilities
-              const background = i % 2 === 0 ? theme.colors.medium : theme.colors.thin;
+              const background = i % 2 === 0 ? theme.colors.bgTransPrimary : theme.colors.bgTransSecondary;
               return (
                 <Fragment>
 
                   {/* Ability name */}
                   <div css={{
                     gridRow: i + 2,
-                    background,
+                    backgroundImage: `linear-gradient(to right, ${background} 0%, ${background} 100%)`,
+                    backgroundColor: theme.colors.wallpaper,
                     padding: "0.5em",
                     textAlign: "left",
                     position: "sticky",

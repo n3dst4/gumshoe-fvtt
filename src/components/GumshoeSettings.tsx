@@ -193,7 +193,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
     >
       <InputGrid
         css={{
-          background: `linear-gradient(to right, ${theme.colors.medium}, ${theme.colors.medium}), ${theme.wallpaperUrl}`,
+          background: `linear-gradient(to right, ${theme.colors.bgTransPrimary}, ${theme.colors.bgTransPrimary}), ${theme.wallpaperUrl}`,
           padding: "0.5em",
         }}
       >
@@ -284,7 +284,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                     css={{
                       display: "block",
                       background: isSelected
-                        ? theme.colors.reverseThin
+                        ? theme.colors.bgTint
                         : "none",
                       marginBottom: "0.3em",
                     }}
@@ -346,7 +346,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           display: "flex",
           flexDirection: "row",
           padding: "0.5em",
-          background: theme.colors.thin,
+          background: theme.colors.bgTransSecondary,
         }}
       >
         <button

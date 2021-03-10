@@ -31,7 +31,7 @@ export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
       css={{
         width: "auto",
         height: "1.2em",
-        background: selected ? theme.colors.accent : theme.colors.thick,
+        background: selected ? theme.colors.accent : theme.colors.bgOpaque,
         color: `${selected ? theme.colors.accentContrast : undefined} !important`,
         textAlign: "center",
         display: "inline-block",

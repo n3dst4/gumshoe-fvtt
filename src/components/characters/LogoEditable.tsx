@@ -5,8 +5,8 @@ import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { ThemeContext } from "../../theme";
 
 type LogoEditableProps = {
-  text: string;
-  subtext?: string;
+  text: string,
+  subtext?: string,
   defaultSubtext?: string,
   className?: string,
   onChangeText: (newValue: string) => void,
@@ -88,7 +88,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           right: 0,
           bottom: 0,
           left: 0,
-          ...theme.backdropStyle,
+          ...theme.logoBackdropStyle,
         }}
       />
       {/* inner - apply the transform */}
