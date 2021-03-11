@@ -193,7 +193,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
           css={{
             flex: 1,
             display: "grid",
-            gridTemplateRows: "auto",
+            gridTemplateRows: "minmax(auto, 4em)",
             gridAutoRows: "auto",
             gridTemplateColumns: "max-content",
             gridAutoColumns: "minmax(min-content, auto)",
@@ -230,6 +230,12 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   padding: "0.5em",
                   textAlign: "center",
                   zIndex: 2,
+                  lineHeight: 1,
+                  "-webkit-line-clamp": "2",
+                  display: "-webkit-box",
+                  "-webkit-box-orient": "vertical",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
                 }}
               >
                 {actor.name}
