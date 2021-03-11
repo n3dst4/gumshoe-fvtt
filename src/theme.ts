@@ -57,7 +57,7 @@ const overlay = (baseString: string, layerString: string): string => {
 };
 
 /**
- * Turn a ThemeSeed (bare basics for deefining a theme) into a fully usable
+ * Turn a ThemeSeed (bare basics for defining a theme) into a fully usable
  * theme
  */
 export const themeFactory = (seed: ThemeSeed): Theme => {
