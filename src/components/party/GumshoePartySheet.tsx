@@ -196,7 +196,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
             gridTemplateRows: "auto",
             gridAutoRows: "auto",
             gridTemplateColumns: "max-content",
-            gridAutoColumns: "minmax(min-content, 6em)",
+            gridAutoColumns: "minmax(min-content, auto)",
             overflow: "auto",
             // gap: "0.5em",
             position: "relative",
