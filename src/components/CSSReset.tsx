@@ -101,7 +101,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }
           },
           select: {
             color: theme.colors.text,
-            background: theme.colors.bgOpaque,
+            background: theme.colors.bgOpaquePrimary,
             ":focus": {
               borderColor: theme.colors.accent,
               outline: "none",

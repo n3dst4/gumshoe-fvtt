@@ -209,7 +209,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               gridColumn: 1,
               position: "sticky",
               top: 0,
-              background: theme.colors.bgOpaque,
+              background: theme.colors.bgOpaquePrimary,
               padding: "0.5em",
               textAlign: "center",
               zIndex: 1,
@@ -226,7 +226,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   gridColumn: j + 2,
                   position: "sticky",
                   top: 0,
-                  backgroundColor: theme.colors.bgOpaque,
+                  backgroundColor: theme.colors.bgOpaqueSecondary,
                   padding: "0.5em",
                   textAlign: "center",
                   zIndex: 2,
@@ -245,7 +245,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               position: "sticky",
               top: 0,
               right: 0,
-              background: theme.colors.bgOpaque,
+              background: theme.colors.bgOpaquePrimary,
               padding: "0.5em",
               textAlign: "center",
               zIndex: 3,
@@ -266,7 +266,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               gridColumn: actors.length + 2,
               top: 0,
               right: 0,
-              background: theme.colors.bgOpaque,
+              background: theme.colors.bgOpaquePrimary,
               padding: "0.5em",
               textAlign: "center",
             }}
@@ -314,15 +314,15 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               );
             } else {
               // Actual Abilities
-              const background = i % 2 === 0 ? theme.colors.bgTransPrimary : theme.colors.bgTransSecondary;
+              const bg = i % 2 === 0 ? theme.colors.bgTransPrimary : theme.colors.bgTransSecondary;
+              const headerBg = i % 2 === 0 ? theme.colors.bgOpaquePrimary : theme.colors.bgOpaqueSecondary;
               return (
                 <Fragment>
 
                   {/* Ability name */}
                   <div css={{
                     gridRow: i + 2,
-                    backgroundImage: `linear-gradient(to right, ${background} 0%, ${background} 100%)`,
-                    backgroundColor: theme.colors.wallpaper,
+                    backgroundColor: headerBg,
                     padding: "0.5em",
                     textAlign: "left",
                     position: "sticky",
@@ -342,7 +342,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                           actor.getOwnedItem(actorInfo.abilityId)?.sheet?.render(true);
                         }}
                         css={{
-                          background,
+                          background: bg,
                           display: "block",
                           gridRow: i + 2,
                           gridColumn: j + 2,
@@ -358,7 +358,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   {/* Total */}
                   <div
                     css={{
-                      background,
+                      background: headerBg,
                       gridRow: i + 2,
                       gridColumn: actors.length + 2,
                       position: "sticky",

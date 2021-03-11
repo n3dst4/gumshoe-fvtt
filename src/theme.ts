@@ -6,7 +6,7 @@ import Irid from "irid";
 const white = Irid("white");
 const black = Irid("black");
 
-export type Theme = {
+export type ThemeSeed = {
   displayName: string,
   global?: SerializedStyles,
   wallpaperUrl: string,
@@ -24,7 +24,7 @@ export type Theme = {
     glow: string,
     wallpaper: string,
 
-    bgOpaque: string,
+    // bgOpaque: string,
     bgTransSecondary: string,
     bgTransPrimary: string,
 
@@ -37,7 +37,41 @@ export type Theme = {
   },
 }
 
-export const trailTheme: Theme = {
+export type Theme = ThemeSeed & {
+  colors: ThemeSeed["colors"] & {
+    bgOpaquePrimary: string,
+    bgOpaqueSecondary: string,
+  },
+}
+
+/**
+ * Given two colors, create a third which is the result of overlaying the second
+ * on the first
+ */
+const overlay = (baseString: string, layerString: string): string => {
+  const layer = Irid(layerString);
+  const opacity = layer.opacity();
+  const layerOpaque = layer.opacity(1);
+  const result = Irid(baseString).blend(layerOpaque, opacity);
+  return result.toRGBString();
+};
+
+/**
+ * Turn a ThemeSeed (bare basics for deefining a theme) into a fully usable
+ * theme
+ */
+export const themeFactory = (seed: ThemeSeed): Theme => {
+  return {
+    ...seed,
+    colors: {
+      ...seed.colors,
+      bgOpaquePrimary: overlay(seed.colors.wallpaper, seed.colors.bgTransPrimary),
+      bgOpaqueSecondary: overlay(seed.colors.wallpaper, seed.colors.bgTransSecondary),
+    },
+  };
+};
+
+export const trailTheme: Theme = themeFactory({
   displayName: "Teal of Cthulhu",
   global: css`
     @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
@@ -67,16 +101,16 @@ export const trailTheme: Theme = {
     wallpaper: "#ddd",
     bgTransSecondary: "rgba(255,255,255,0.2)",
     bgTransPrimary: "rgba(255,255,255,0.5)",
-    bgOpaque: "#fff",
+    // bgOpaque: "#fff",
     bgTint: "rgba(0,0,0,0.1)",
     // reverseMedium: "rgba(0,0,0,0.3)",
     // reverseThick: "rgba(0,0,0,0.5)",
     text: "#433",
     textMuted: "#744",
   },
-};
+});
 
-export const nbaThemeDark: Theme = {
+export const nbaThemeDark: Theme = themeFactory({
   displayName: "Night's Dark Red Agents",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
@@ -110,16 +144,16 @@ export const nbaThemeDark: Theme = {
     wallpaper: "#4a0d00",
     bgTransSecondary: "rgba(0,0,0,0.2)",
     bgTransPrimary: "rgba(0,0,0,0.4)",
-    bgOpaque: "#000",
+    // bgOpaque: "#000",
     bgTint: "rgba(255,255,255,0.1)",
     // reverseMedium: "rgba(255,255,255,0.3)",
     // reverseThick: "rgba(255,255,255,0.5)",
     text: "#ccc",
     textMuted: "#aaa",
   },
-};
+});
 
-export const nbaTheme: Theme = {
+export const nbaTheme: Theme = themeFactory({
   displayName: "Nice Light Agents",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
@@ -152,16 +186,16 @@ export const nbaTheme: Theme = {
     wallpaper: "#ddd",
     bgTransSecondary: "rgba(255,255,255,0.2)",
     bgTransPrimary: "rgba(255,255,255,0.5)",
-    bgOpaque: "#fff",
+    // bgOpaque: "#fff",
     bgTint: "rgba(0,0,0,0.1)",
     // reverseMedium: "rgba(0,0,0,0.3)",
     // reverseThick: "rgba(0,0,0,0.5)",
     text: "#433",
     textMuted: "#744",
   },
-};
+});
 
-export const highContrastTheme: Theme = {
+export const highContrastTheme: Theme = themeFactory({
   displayName: "High Contrast",
   global: css`
   `,
@@ -184,16 +218,16 @@ export const highContrastTheme: Theme = {
     wallpaper: "#ddd",
     bgTransSecondary: white.opacity(0.2).toString(),
     bgTransPrimary: white.opacity(0.4).toString(),
-    bgOpaque: "#fff",
+    // bgOpaque: "#fff",
     bgTint: black.opacity(0.1).toString(),
     // reverseMedium: black.opacity(0.2).toString(),
     // reverseThick: black.opacity(0.3).toString(),
     text: "#000",
     textMuted: "#111",
   },
-};
+});
 
-export const fearTheme: Theme = {
+export const fearTheme: Theme = themeFactory({
   displayName: "Nothing To Fear",
   global: css`
     @import url("https://use.typekit.net/huq5kcj.css");
@@ -219,14 +253,14 @@ export const fearTheme: Theme = {
     wallpaper: "#ddd",
     bgTransSecondary: "rgba(255,255,255,0.2)",
     bgTransPrimary: "rgba(255,255,255,0.5)",
-    bgOpaque: "white",
+    // bgOpaque: "white",
     bgTint: "rgba(0,0,0,0.1)",
     // reverseMedium: "rgba(0,0,0,0.3)",
     // reverseThick: "rgba(0,0,0,0.5)",
     text: "#444",
     textMuted: "#666",
   },
-};
+});
 
 const ashenBlur = "5px";
 const ashenOffset = "3px";
@@ -235,7 +269,7 @@ const stripNewlines = (s: string) => s.replace("\n", "");
 const ashenColor = Irid("#282c34");
 const ashenComplement = Irid("#aff2f2");
 
-export const ashenTheme: Theme = {
+export const ashenTheme: Theme = themeFactory({
   displayName: "Ashy Starships",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
@@ -281,7 +315,7 @@ export const ashenTheme: Theme = {
 
     bgTransSecondary: ashenColor.lightness(0.3).opacity(0.5).toString(),
     bgTransPrimary: ashenColor.lightness(0.1).opacity(0.5).toString(),
-    bgOpaque: ashenColor.lightness(0.1).toString(),
+    // bgOpaque: ashenColor.lightness(0.1).toString(),
 
     bgTint: "rgba(255,255,255,0.1)",
     // reverseMedium: "rgba(255,255,255,0.3)",
@@ -289,7 +323,7 @@ export const ashenTheme: Theme = {
     text: "#ddd",
     textMuted: "#aaa",
   },
-};
+});
 
 // guille-pozzi-sbcIAn4Mn14-unsplash.webp
 
