@@ -43,7 +43,7 @@
   "minimumCoreVersion": "0.7.9",
   "compatibleCoreVersion": "0.7.9",
   "initiative": "1d6",
-  "url": "https://gitlab.com/n3dst4/investigator-system",
+  "url": "https://gitlab.com/n3dst4/gumshoe-fvtt",
   "manifest": "https://gitlab.com/n3dst4/investigator-system/-/raw/release/src/system.json",
   "download": "https://gitlab.com/n3dst4/investigator-system/uploads/4584c71c1c7a10c5f88de8b22927eb6d/gumshoe-v2.0.2.zip",
   "license": "MIT",
