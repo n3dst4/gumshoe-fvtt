@@ -2,6 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { Fragment, useEffect, useState } from "react";
 import * as constants from "../../constants";
+import { sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { getDefaultThemeName, getNewPCPacks } from "../../settingsHelpers";
 import { themes } from "../../theme";
@@ -154,7 +155,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
   useEffect(() => {
     const getAbs = async () => {
       const actors = actorIds.map((id) => game.actors.get(id) as GumshoeActor);
-      setActors(actors);
+      setActors(sortEntitiesByName(actors));
 
       const tuples = await getSystemAbilities();
       const rowData = buildRowData(tuples, actors);
