@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import * as constants from "../../constants";
+import { sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { getDefaultThemeName, getNewPCPacks } from "../../settingsHelpers";
 import { themes } from "../../theme";
@@ -49,17 +50,21 @@ const isTypeHeader = (data: RowData): data is TypeHeader =>
 const isCategoryHeader = (data: RowData): data is CategoryHeader =>
   data.rowType === categoryHeaderKey;
 
+/**
+ * get
+ */
 const getSystemAbilities = async () => {
   const proms = getNewPCPacks().map(async (packId) => {
+    // getting pack content is slow
     const content = await game.packs
       .find((p: any) => p.collection === packId)
       .getContent();
-    const pairs: AbilityTuple[] = content.map((i: any) => [
+    const tuples: AbilityTuple[] = content.map((i: any) => [
       i.data.type,
       i.data.data.category,
       i.data.name,
     ]);
-    return pairs;
+    return tuples;
   });
   const results = await Promise.all(proms);
   return results.flat();
@@ -147,21 +152,46 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
   party,
 }) => {
   const theme = themes[getDefaultThemeName()] || themes.trailTheme;
-  const [rowData, setRowData] = useState<RowData[]>([]);
+  const [abilityTuples, setAbilityTuples] = useState<AbilityTuple[]>([]);
   const [actors, setActors] = useState<GumshoeActor[]>([]);
+  const [rowData, setRowData] = useState<RowData[]>([]);
   const actorIds = party.getActorIds();
 
+  // effect 1: keep our "abilityTuples" in sync with system setting for
+  // "newPCPacks"
+  useEffect(() => {
+    getSystemAbilities().then(setAbilityTuples);
+    const onNewPCPacksUpdated = async (newPacks: string[]) => {
+      setAbilityTuples(await getSystemAbilities());
+    };
+    Hooks.on(constants.newPCPacksUpdated, onNewPCPacksUpdated);
+    return () => {
+      Hooks.off(constants.newPCPacksUpdated, onNewPCPacksUpdated);
+    };
+  }, []);
+
+  // effect 2: keep our row data in sync with abilityTuples and actors
   useEffect(() => {
     const getAbs = async () => {
+      // getting actors is fast
       const actors = actorIds.map((id) => game.actors.get(id) as GumshoeActor);
-      setActors(actors);
-
-      const tuples = await getSystemAbilities();
-      const rowData = buildRowData(tuples, actors);
+      setActors(sortEntitiesByName(actors));
+      const rowData = buildRowData(abilityTuples, actors);
+      // setting row data is slow - presumably this includes rendering time
       setRowData(rowData);
     };
     getAbs();
-  }, [actorIds]);
+  }, [abilityTuples, actorIds]);
+
+  const onClickRemoveActor = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const actorId = e.currentTarget.dataset.actorId;
+    if (actorId !== undefined) {
+      party.removeActorId(actorId);
+    }
+  }, [party]);
+
+  // const noActors = actors;
 
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
@@ -193,7 +223,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
           css={{
             flex: 1,
             display: "grid",
-            gridTemplateRows: "minmax(auto, 4em)",
+            gridTemplateRows: "min-content",
             gridAutoRows: "auto",
             gridTemplateColumns: "max-content",
             gridAutoColumns: "minmax(min-content, auto)",
@@ -209,10 +239,11 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               gridColumn: 1,
               position: "sticky",
               top: 0,
+              left: 0,
               background: theme.colors.bgOpaquePrimary,
               padding: "0.5em",
               textAlign: "center",
-              zIndex: 1,
+              zIndex: 3,
             }}
           ></div>
 
@@ -228,17 +259,44 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   top: 0,
                   backgroundColor: theme.colors.bgOpaqueSecondary,
                   padding: "0.5em",
-                  textAlign: "center",
                   zIndex: 2,
                   lineHeight: 1,
-                  "-webkit-line-clamp": "2",
-                  display: "-webkit-box",
-                  "-webkit-box-orient": "vertical",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
+                  textAlign: "center",
                 }}
-              >
-                {actor.name}
+                >
+                <a
+                  css={{
+                    webkitLineClamp: "2",
+                    textAlign: "center",
+                    display: "-webkit-box",
+                    webkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    actor.sheet.render(true);
+                  }}
+                >
+                  {actor.name}
+                </a>
+                <div>
+                  <button
+                    css={{
+                      "&&": {
+                        fontSize: "0.7em",
+                        padding: "0.1em 0.3em",
+                        border: `1px solid ${theme.colors.textMuted}`,
+                        width: "auto",
+                      },
+                    }}
+                    data-actor-id={actor.id}
+                    onClick={onClickRemoveActor}
+                  >
+                    REMOVE
+                  </button>
+                </div>
               </div>
             );
           })}
@@ -255,6 +313,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               padding: "0.5em",
               textAlign: "center",
               zIndex: 3,
+              lineHeight: 1,
             }}
           >
             GRAND TURTLE
@@ -275,6 +334,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               background: theme.colors.bgOpaquePrimary,
               padding: "0.5em",
               textAlign: "center",
+              lineHeight: 1,
             }}
           >
             GRAND TURTLE
@@ -286,6 +346,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               // Investigative or general
               return (
                 <h1
+                  key={data.abilityType}
                   css={{
                     "&&": {
                       gridRow: i + 2,
@@ -305,6 +366,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               // Category
               return (
                 <h2
+                  key={data.category + i}
                   css={{
                     "&&": {
                       gridRow: i + 2,
@@ -320,11 +382,25 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               );
             } else {
               // Actual Abilities
-              const bg = i % 2 === 0 ? theme.colors.bgTransPrimary : theme.colors.bgTransSecondary;
-              const headerBg = i % 2 === 0 ? theme.colors.bgOpaquePrimary : theme.colors.bgOpaqueSecondary;
-              return (
-                <Fragment>
+              const zero = data.total === 0;
+              const odd = i % 2 === 0;
 
+              const bg = zero
+                ? odd
+                    ? theme.colors.bgTransDangerPrimary
+                    : theme.colors.bgTransDangerSecondary
+                : odd
+                  ? theme.colors.bgTransPrimary
+                  : theme.colors.bgTransSecondary;
+              const headerBg = zero
+                ? odd
+                    ? theme.colors.bgOpaqueDangerPrimary
+                    : theme.colors.bgOpaqueDangerSecondary
+                : odd
+                  ? theme.colors.bgOpaquePrimary
+                  : theme.colors.bgOpaqueSecondary;
+              return (
+                <Fragment key={`${data.abilityType}$${data.name}`}>
                   {/* Ability name */}
                   <div css={{
                     gridRow: i + 2,
@@ -356,7 +432,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                           textAlign: "center",
                         }}
                       >
-                        {actorInfo?.rating ?? "--"}
+                        {actorInfo?.rating ?? "—"}
                       </a>
                     );
                   })}

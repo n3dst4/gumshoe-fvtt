@@ -1,4 +1,4 @@
-import { equipment, generalAbility, weapon } from "../constants";
+import { equipment, generalAbility, pc, weapon } from "../constants";
 import { isAbility } from "../functions";
 import { GumshoeActorData, RecursivePartial, GumshoeItemData, AbilityType } from "../types";
 import { confirmADoodleDo } from "./confirm";
@@ -60,11 +60,12 @@ export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
 
   getAbilityByName (name: string, type?: AbilityType) {
     return this.items.find(
-      (item: GumshoeItem) => (type ? item.data.type === type : isAbility(item)) && item.name === name,
+      (item: GumshoeItem) =>
+        (type ? item.data.type === type : isAbility(item)) && item.name === name,
     );
   }
 
-  getAbilityRatingByName (name:string) {
+  getAbilityRatingByName (name: string) {
     return this.getAbilityByName(name)?.getRating() ?? 0;
   }
 
@@ -156,7 +157,12 @@ export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
   getActors = () => this.getActorIds().map((id) => game.actors.get(id));
   addActorIds = (newIds: string[]) => {
     const currentIds = this.getActorIds();
-    const effectiveIds = newIds.filter((id) => !currentIds.includes(id));
+    const effectiveIds = newIds
+      .map((id) => game.actors.get(id))
+      .filter(
+        (actor) => actor.data.type === pc && !currentIds.includes(actor.id),
+      )
+      .map((actor) => actor.id);
     this.setActorIds([...currentIds, ...effectiveIds]);
   };
 
@@ -234,6 +240,11 @@ Hooks.on(
     if (actor.items.size > 0) {
       return;
     }
+
+    if (actor.data.type !== pc) {
+      return;
+    }
+
     const proms = getNewPCPacks().map(async (packId) => {
       const content = await (game.packs
         .find((p: any) => p.collection === packId)

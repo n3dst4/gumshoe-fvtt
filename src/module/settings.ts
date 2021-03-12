@@ -7,6 +7,7 @@ import {
   investigativeAbilityCategories,
   longNotes,
   newPCPacks,
+  newPCPacksUpdated,
   occupationLabel,
   shortNotes,
   systemMigrationVersion,
@@ -98,6 +99,9 @@ export const registerSettings = function () {
     config: false,
     default: trailPreset.newPCPacks,
     type: Object,
+    onChange: (newPacks: string[]) => {
+      Hooks.call(newPCPacksUpdated, newPacks);
+    },
   });
 
   game.settings.register(systemName, systemPreset, {
