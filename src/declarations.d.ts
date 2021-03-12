@@ -17,6 +17,8 @@ declare module "irid" {
     saturation(): void;
     complement(): Irid;
     analagous(): [Irid, Irid, Irid];
+    hue(): number;
+    hue(h: number): Irid;
   }
   export default Irid;
 }

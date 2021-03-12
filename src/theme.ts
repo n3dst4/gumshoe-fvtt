@@ -17,20 +17,21 @@ export type ThemeSeed = {
   logoTransform: string,
   logoBackdropStyle: CSSObject,
 
-  // logo: CSSObject,
   colors: {
     accent: string,
     accentContrast: string,
     glow: string,
     wallpaper: string,
 
-    // bgOpaque: string,
     bgTransSecondary: string,
     bgTransPrimary: string,
 
+    bgOpaqueDangerPrimary?: string,
+    bgOpaqueDangerSecondary?: string,
+    bgTransDangerPrimary?: string,
+    bgTransDangerSecondary?: string,
+
     bgTint: string,
-    // reverseMedium: string,
-    // reverseThick: string,
 
     text: string,
     textMuted: string,
@@ -41,6 +42,10 @@ export type Theme = ThemeSeed & {
   colors: ThemeSeed["colors"] & {
     bgOpaquePrimary: string,
     bgOpaqueSecondary: string,
+    bgOpaqueDangerPrimary: string,
+    bgOpaqueDangerSecondary: string,
+    bgTransDangerPrimary: string,
+    bgTransDangerSecondary: string,
   },
 }
 
@@ -61,12 +66,28 @@ const overlay = (baseString: string, layerString: string): string => {
  * theme
  */
 export const themeFactory = (seed: ThemeSeed): Theme => {
+  const bgOpaquePrimary = overlay(seed.colors.wallpaper, seed.colors.bgTransPrimary);
+  const bgOpaqueSecondary = overlay(seed.colors.wallpaper, seed.colors.bgTransSecondary);
+
+  const red = Irid("red");
+  const bgTransPrimary = Irid(seed.colors.bgTransPrimary);
+  const bgTransSecondary = Irid(seed.colors.bgTransSecondary);
+
+  const bgTransDangerPrimary = seed.colors.bgTransDangerPrimary || bgTransPrimary.blend(red, 0.3).opacity(bgTransPrimary.opacity()).toRGBString();
+  const bgTransDangerSecondary = seed.colors.bgTransDangerSecondary || bgTransSecondary.blend(red, 0.3).opacity(bgTransSecondary.opacity()).toRGBString();
+  const bgOpaqueDangerPrimary = seed.colors.bgOpaqueDangerPrimary || overlay(seed.colors.wallpaper, bgTransDangerPrimary);
+  const bgOpaqueDangerSecondary = seed.colors.bgOpaqueDangerSecondary || overlay(seed.colors.wallpaper, bgTransDangerSecondary);
+
   return {
     ...seed,
     colors: {
       ...seed.colors,
-      bgOpaquePrimary: overlay(seed.colors.wallpaper, seed.colors.bgTransPrimary),
-      bgOpaqueSecondary: overlay(seed.colors.wallpaper, seed.colors.bgTransSecondary),
+      bgOpaquePrimary,
+      bgOpaqueSecondary,
+      bgTransDangerPrimary,
+      bgTransDangerSecondary,
+      bgOpaqueDangerPrimary,
+      bgOpaqueDangerSecondary,
     },
   };
 };

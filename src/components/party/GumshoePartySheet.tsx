@@ -358,8 +358,23 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               );
             } else {
               // Actual Abilities
-              const bg = i % 2 === 0 ? theme.colors.bgTransPrimary : theme.colors.bgTransSecondary;
-              const headerBg = i % 2 === 0 ? theme.colors.bgOpaquePrimary : theme.colors.bgOpaqueSecondary;
+              const zero = data.total === 0;
+              const odd = i % 2 === 0;
+
+              const bg = zero
+                ? odd
+                    ? theme.colors.bgTransDangerPrimary
+                    : theme.colors.bgTransDangerSecondary
+                : odd
+                  ? theme.colors.bgTransPrimary
+                  : theme.colors.bgTransSecondary;
+              const headerBg = zero
+                ? odd
+                    ? theme.colors.bgOpaqueDangerPrimary
+                    : theme.colors.bgOpaqueDangerSecondary
+                : odd
+                  ? theme.colors.bgOpaquePrimary
+                  : theme.colors.bgOpaqueSecondary;
               return (
                 <Fragment>
 
