@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import * as constants from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
@@ -164,6 +164,14 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
     getAbs();
   }, [actorIds]);
 
+  const onClickRemoveActor = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const actorId = e.currentTarget.dataset.actorId;
+    if (actorId !== undefined) {
+      party.removeActorId(actorId);
+    }
+  }, [party]);
+
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
@@ -194,7 +202,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
           css={{
             flex: 1,
             display: "grid",
-            gridTemplateRows: "minmax(auto, 4em)",
+            gridTemplateRows: "min-content",
             gridAutoRows: "auto",
             gridTemplateColumns: "max-content",
             gridAutoColumns: "minmax(min-content, auto)",
@@ -251,6 +259,22 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                 >
                   {actor.name}
                 </a>
+                <div>
+                  <button
+                    css={{
+                      "&&": {
+                        fontSize: "0.7em",
+                        padding: "0.1em 0.3em",
+                        border: `1px solid ${theme.colors.textMuted}`,
+                        width: "auto",
+                      },
+                    }}
+                    data-actor-id={actor.id}
+                    onClick={onClickRemoveActor}
+                  >
+                    REMOVE
+                  </button>
+                </div>
               </div>
             );
           })}
@@ -370,7 +394,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                           textAlign: "center",
                         }}
                       >
-                        {actorInfo?.rating ?? "--"}
+                        {actorInfo?.rating ?? "—"}
                       </a>
                     );
                   })}
