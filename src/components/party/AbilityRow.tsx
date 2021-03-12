@@ -37,7 +37,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
       ? theme.colors.bgOpaquePrimary
       : theme.colors.bgOpaqueSecondary;
   return (
-    <Fragment key={`${data.abilityType}$${data.name}`}>
+    <Fragment>
       {/* Ability name */}
       <div css={{
         gridRow: index + 2,

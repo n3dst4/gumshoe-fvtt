@@ -16,7 +16,7 @@ export const isAbility = (item: Item | string) => (
   isInvestigativeAbility(item) || isGeneralAbility(item)
 );
 
-export const sortEntitiesByName = <T extends Entity>(ents: T[]) => {
+export const sortEntitiesByName = <T extends Entity|EntityData>(ents: T[]) => {
   return ents.sort(({ name: a }, { name: b }) => a < b ? -1 : a > b ? 1 : 0);
 };
 

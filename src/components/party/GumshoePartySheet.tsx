@@ -2,10 +2,11 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useState } from "react";
 import * as constants from "../../constants";
-import { sortEntitiesByName } from "../../functions";
+import { isAbility, sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { themes } from "../../theme";
+import { RecursivePartial } from "../../types";
 import { CSSReset } from "../CSSReset";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -46,15 +47,36 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
   // effect 2: keep our row data in sync with abilityTuples and actors
   useEffect(() => {
     const getAbs = async () => {
-      // getting actors is fast
-      const actors = actorIds.map((id) => game.actors.get(id) as GumshoeActor);
-      setActors(sortEntitiesByName(actors));
       const rowData = buildRowData(abilityTuples, actors);
       // setting row data is slow - presumably this includes rendering time
       setRowData(rowData);
     };
     getAbs();
-  }, [abilityTuples, actorIds]);
+  }, [abilityTuples, actors]);
+
+  // effect 3: listen for ability changes
+  useEffect(() => {
+    // getting actors is fast
+    const actors = actorIds.map((id) => game.actors.get(id) as GumshoeActor);
+    setActors(sortEntitiesByName(actors));
+    const hook = (
+      actor: GumshoeActor,
+      itemData: ItemData,
+      itemDataDiff: RecursivePartial<ItemData>,
+      options: any,
+      userId: string,
+    ) => {
+      if (actorIds.includes(actor.id) && isAbility(itemData.type)) {
+        // slightly hacky; clone the actors array so it's seen as new data and
+        // triggers effect 2
+        setActors([...actors]);
+      }
+    };
+    Hooks.on("updateOwnedItem", hook);
+    return () => {
+      Hooks.off("updateOwnedItem", hook);
+    };
+  }, [actorIds]);
 
   // callback for removing an actor
   const onClickRemoveActor = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
@@ -255,6 +277,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               // Actual Abilities
               return (
                 <AbilityRow
+                  key={`${data.abilityType}$${data.name}`}
                   data={data}
                   index={i}
                   actors={actors}
