@@ -161,10 +161,10 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                 >
                 <a
                   css={{
-                    webkitLineClamp: "2",
+                    "-webkit-line-clamp": "2",
                     textAlign: "center",
                     display: "-webkit-box",
-                    webkitBoxOrient: "vertical",
+                    "-webkit-box-orient": "vertical",
                     overflow: "hidden",
                   }}
                   onClick={(e) => {
