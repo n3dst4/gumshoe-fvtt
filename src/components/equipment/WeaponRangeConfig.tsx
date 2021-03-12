@@ -6,9 +6,9 @@ import { Checkbox } from "../inputs/Checkbox";
 import { GridField } from "../inputs/GridField";
 
 type WeaponRangeProps = {
-  label: string;
-  damage: number;
-  enabled: boolean;
+  label: string,
+  damage: number,
+  enabled: boolean,
   setDamage: (value: number) => void,
   setEnabled: (enabled: boolean) => void,
 };

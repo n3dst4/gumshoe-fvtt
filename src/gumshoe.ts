@@ -137,7 +137,7 @@ Hooks.on(
   (
     targetActor: GumshoeActor,
     application: Application,
-    dropData: { type: string; id: string; entity?: string },
+    dropData: { type: string, id: string, entity?: string },
   ) => {
     if (
       targetActor.data.type !== party ||

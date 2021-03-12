@@ -7,8 +7,8 @@ import { WeaponConfig } from "./WeaponConfig";
 import { WeaponAttack } from "./WeaponAttack";
 
 type WeaponSheetProps = {
-  weapon: GumshoeItem;
-  foundryWindow: Application;
+  weapon: GumshoeItem,
+  foundryWindow: Application,
 };
 
 export const WeaponSheet: React.FC<WeaponSheetProps> = ({

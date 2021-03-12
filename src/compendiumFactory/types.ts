@@ -27,7 +27,7 @@ type Name = {
 };
 
 export type BaseAbilityDump<T> = {
-  [category: string]: Array<Name & Partial<T>>
+  [category: string]: Array<Name & Partial<T>>,
 };
 
 export type InvestigativeAbilitiesData = BaseAbilityDump<InvestigativeAbilityTemplate>;

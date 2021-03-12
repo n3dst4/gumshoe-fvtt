@@ -64,7 +64,7 @@ export type GumshoeActorData = {
 
   // party stuff
   abilityNames: string[],
-  actorIds: string[]
+  actorIds: string[],
 };
 
 export type EquipmentData = {
@@ -88,8 +88,8 @@ export type WeaponData = {
   ammo: {
     min: number,
     max: number,
-    value: number
-  }
+    value: number,
+  },
 
 }
 

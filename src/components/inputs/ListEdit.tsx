@@ -3,8 +3,8 @@ import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 
 type ListEditProps = {
-  value: string[];
-  onChange: (value: string[]) => void;
+  value: string[],
+  onChange: (value: string[]) => void,
 };
 
 export const ListEdit: React.FC<ListEditProps> = ({

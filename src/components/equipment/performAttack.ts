@@ -11,7 +11,7 @@ type PerformAttackArgs1 = {
 
 type PerformAttackArgs2 = {
   description: string,
-  rangeDamage: number
+  rangeDamage: number,
 }
 
 export const performAttack = ({

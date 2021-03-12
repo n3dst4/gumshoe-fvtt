@@ -5,9 +5,9 @@ import React, { useMemo } from "react";
 import { IdContext } from "../IdContext";
 
 type GridFieldStackedProps = {
-  label?: string;
-  className?: string;
-  children: any;
+  label?: string,
+  className?: string,
+  children: any,
 };
 
 export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({

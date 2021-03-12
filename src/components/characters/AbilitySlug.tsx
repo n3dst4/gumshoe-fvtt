@@ -6,7 +6,7 @@ import { ActorSheetAppContext } from "../FoundryAppContext";
 import { getUseBoost } from "../../settingsHelpers";
 
 type AbilitySlugProps = {
-  ability: GumshoeItem;
+  ability: GumshoeItem,
 };
 
 export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {

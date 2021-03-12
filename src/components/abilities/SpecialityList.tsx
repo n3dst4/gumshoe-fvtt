@@ -5,7 +5,7 @@ import { GumshoeItem } from "../../module/GumshoeItem";
 import { SpecListItem } from "./SpecListItem";
 
 type SpecialityListProps = {
-  ability: GumshoeItem;
+  ability: GumshoeItem,
 };
 
 export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
