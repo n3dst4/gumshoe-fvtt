@@ -209,10 +209,11 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               gridColumn: 1,
               position: "sticky",
               top: 0,
+              left: 0,
               background: theme.colors.bgOpaquePrimary,
               padding: "0.5em",
               textAlign: "center",
-              zIndex: 1,
+              zIndex: 3,
             }}
           ></div>
 
@@ -231,14 +232,24 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   textAlign: "center",
                   zIndex: 2,
                   lineHeight: 1,
-                  "-webkit-line-clamp": "2",
-                  display: "-webkit-box",
-                  "-webkit-box-orient": "vertical",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                 }}
               >
-                {actor.name}
+                <a
+                  css={{
+                    "-webkit-line-clamp": "2",
+                    display: "-webkit-box",
+                    "-webkit-box-orient": "vertical",
+                    overflow: "hidden",
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    actor.sheet.render(true);
+                  }}
+                >
+                  {actor.name}
+                </a>
               </div>
             );
           })}
@@ -255,6 +266,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               padding: "0.5em",
               textAlign: "center",
               zIndex: 3,
+              lineHeight: 1,
             }}
           >
             GRAND TURTLE
@@ -275,6 +287,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               background: theme.colors.bgOpaquePrimary,
               padding: "0.5em",
               textAlign: "center",
+              lineHeight: 1,
             }}
           >
             GRAND TURTLE
