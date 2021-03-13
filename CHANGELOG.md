@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.1.0 (2021-03-15)
+
+* Add themes and compendium packs for Fear Itself and Ashen Stars
+* Add a Party Tracker, a matrix view of abilities in a party
+
 ## v2.0.1 (2021-02-26)
 
 * Mainly practicing my release process
