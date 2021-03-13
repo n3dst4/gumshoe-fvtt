@@ -50,40 +50,23 @@ const isTypeHeader = (data: RowData): data is TypeHeader =>
 const isCategoryHeader = (data: RowData): data is CategoryHeader =>
   data.rowType === categoryHeaderKey;
 
+/**
+ * get
+ */
 const getSystemAbilities = async () => {
-  const startTime = Date.now();
-
   const proms = getNewPCPacks().map(async (packId) => {
-    const startTime = Date.now();
-
     // getting pack content is slow
     const content = await game.packs
       .find((p: any) => p.collection === packId)
       .getContent();
-
-    const contentTime = Date.now();
-    console.log(`get content for pack in ${contentTime - startTime}ms`);
-
     const tuples: AbilityTuple[] = content.map((i: any) => [
       i.data.type,
       i.data.data.category,
       i.data.name,
     ]);
-
-    const tuplesTime = Date.now();
-    console.log(`mapped into tuples in ${tuplesTime - contentTime}ms`);
-
     return tuples;
   });
-
-  const promsTime = Date.now();
-  console.log(`acquired promises in ${promsTime - startTime}ms`);
-
   const results = await Promise.all(proms);
-
-  const awaitPromsTime = Date.now();
-  console.log(`awaited Promises in ${awaitPromsTime - promsTime}ms`);
-
   return results.flat();
 };
 
@@ -169,63 +152,36 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
   party,
 }) => {
   const theme = themes[getDefaultThemeName()] || themes.trailTheme;
-  // const abilityTuples = useState<AbilityTuple[]>([]);
+  const [abilityTuples, setAbilityTuples] = useState<AbilityTuple[]>([]);
   const [actors, setActors] = useState<GumshoeActor[]>([]);
   const [rowData, setRowData] = useState<RowData[]>([]);
   const actorIds = party.getActorIds();
 
+  // effect 1: keep our "abilityTuples" in sync with system setting for
+  // "newPCPacks"
   useEffect(() => {
-    const onNewPCPacksUpdated = (newPacks: string[]) => {
-
+    getSystemAbilities().then(setAbilityTuples);
+    const onNewPCPacksUpdated = async (newPacks: string[]) => {
+      setAbilityTuples(await getSystemAbilities());
     };
     Hooks.on(constants.newPCPacksUpdated, onNewPCPacksUpdated);
-
     return () => {
       Hooks.off(constants.newPCPacksUpdated, onNewPCPacksUpdated);
     };
   }, []);
 
-  // useEffect(() => {
-  //   const getAbs = async () => {
-  //     const startTime = Date.now();
-  //     console.log("starting abilities sync");
-
-  //     // const tuples = await getSystemAbilities();
-
-  //     const systemAbilitiesTime = Date.now();
-  //     console.log(`finished getting system abilities in ${systemAbilitiesTime - startTime}`);
-  //   };
-  //   getAbs();
-  // }, []);
-
+  // effect 2: keep our row data in sync with abilityTuples and actors
   useEffect(() => {
     const getAbs = async () => {
-      const startTime = Date.now();
-      console.log("starting sync");
-
+      // getting actors is fast
       const actors = actorIds.map((id) => game.actors.get(id) as GumshoeActor);
       setActors(sortEntitiesByName(actors));
-
-      const actorsTime = Date.now();
-      console.log(`finished actors in ${actorsTime - startTime}`);
-
-      const tuples = await getSystemAbilities();
-
-      const systemAbilitiesTime = Date.now();
-      console.log(`finished getting system abilities in ${systemAbilitiesTime - actorsTime}`);
-
-      const rowData = buildRowData(tuples, actors);
-
-      const rowDataTime = Date.now();
-      console.log(`finished building row data in ${rowDataTime - systemAbilitiesTime}`);
-
+      const rowData = buildRowData(abilityTuples, actors);
+      // setting row data is slow - presumably this includes rendering time
       setRowData(rowData);
-
-      const setRowDataTime = Date.now();
-      console.log(`finished setting row data in ${setRowDataTime - rowDataTime}`);
     };
     getAbs();
-  }, [actorIds]);
+  }, [abilityTuples, actorIds]);
 
   const onClickRemoveActor = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -303,16 +259,17 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   top: 0,
                   backgroundColor: theme.colors.bgOpaqueSecondary,
                   padding: "0.5em",
-                  textAlign: "center",
                   zIndex: 2,
                   lineHeight: 1,
                   overflow: "hidden",
                   textOverflow: "ellipsis",
+                  textAlign: "center",
                 }}
-              >
+                >
                 <a
                   css={{
                     webkitLineClamp: "2",
+                    textAlign: "center",
                     display: "-webkit-box",
                     webkitBoxOrient: "vertical",
                     overflow: "hidden",
