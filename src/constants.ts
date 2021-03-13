@@ -45,3 +45,7 @@ export const packNames = {
   fearItselfAbilities: "fearItselfAbilities",
   ashenStarsAbilities: "ashenStarsAbilities",
 };
+
+// hooks
+
+export const newPCPacksUpdated = `${systemName}:newPCPacksUpdated`;

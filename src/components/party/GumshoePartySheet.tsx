@@ -51,18 +51,39 @@ const isCategoryHeader = (data: RowData): data is CategoryHeader =>
   data.rowType === categoryHeaderKey;
 
 const getSystemAbilities = async () => {
+  const startTime = Date.now();
+
   const proms = getNewPCPacks().map(async (packId) => {
+    const startTime = Date.now();
+
+    // getting pack content is slow
     const content = await game.packs
       .find((p: any) => p.collection === packId)
       .getContent();
-    const pairs: AbilityTuple[] = content.map((i: any) => [
+
+    const contentTime = Date.now();
+    console.log(`get content for pack in ${contentTime - startTime}ms`);
+
+    const tuples: AbilityTuple[] = content.map((i: any) => [
       i.data.type,
       i.data.data.category,
       i.data.name,
     ]);
-    return pairs;
+
+    const tuplesTime = Date.now();
+    console.log(`mapped into tuples in ${tuplesTime - contentTime}ms`);
+
+    return tuples;
   });
+
+  const promsTime = Date.now();
+  console.log(`acquired promises in ${promsTime - startTime}ms`);
+
   const results = await Promise.all(proms);
+
+  const awaitPromsTime = Date.now();
+  console.log(`awaited Promises in ${awaitPromsTime - promsTime}ms`);
+
   return results.flat();
 };
 
@@ -148,18 +169,60 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
   party,
 }) => {
   const theme = themes[getDefaultThemeName()] || themes.trailTheme;
-  const [rowData, setRowData] = useState<RowData[]>([]);
+  // const abilityTuples = useState<AbilityTuple[]>([]);
   const [actors, setActors] = useState<GumshoeActor[]>([]);
+  const [rowData, setRowData] = useState<RowData[]>([]);
   const actorIds = party.getActorIds();
 
   useEffect(() => {
+    const onNewPCPacksUpdated = (newPacks: string[]) => {
+
+    };
+    Hooks.on(constants.newPCPacksUpdated, onNewPCPacksUpdated);
+
+    return () => {
+      Hooks.off(constants.newPCPacksUpdated, onNewPCPacksUpdated);
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   const getAbs = async () => {
+  //     const startTime = Date.now();
+  //     console.log("starting abilities sync");
+
+  //     // const tuples = await getSystemAbilities();
+
+  //     const systemAbilitiesTime = Date.now();
+  //     console.log(`finished getting system abilities in ${systemAbilitiesTime - startTime}`);
+  //   };
+  //   getAbs();
+  // }, []);
+
+  useEffect(() => {
     const getAbs = async () => {
+      const startTime = Date.now();
+      console.log("starting sync");
+
       const actors = actorIds.map((id) => game.actors.get(id) as GumshoeActor);
       setActors(sortEntitiesByName(actors));
 
+      const actorsTime = Date.now();
+      console.log(`finished actors in ${actorsTime - startTime}`);
+
       const tuples = await getSystemAbilities();
+
+      const systemAbilitiesTime = Date.now();
+      console.log(`finished getting system abilities in ${systemAbilitiesTime - actorsTime}`);
+
       const rowData = buildRowData(tuples, actors);
+
+      const rowDataTime = Date.now();
+      console.log(`finished building row data in ${rowDataTime - systemAbilitiesTime}`);
+
       setRowData(rowData);
+
+      const setRowDataTime = Date.now();
+      console.log(`finished setting row data in ${setRowDataTime - rowDataTime}`);
     };
     getAbs();
   }, [actorIds]);

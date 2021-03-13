@@ -154,6 +154,6 @@ Hooks.on(
   },
 );
 
-CONFIG.debug.hooks = false;
+CONFIG.debug.hooks = true;
 
 initializePackGenerators();
