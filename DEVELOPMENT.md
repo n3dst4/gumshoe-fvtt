@@ -1,5 +1,12 @@
 # Development notes
 
+- [ ] Bulk get actors
+- [ ] Message when no actors
+- [ ] Update more often
+- [ ] Sorting options
+- [ ] Filtering options
+
+
 ## The future
 
 - [ ] i18n

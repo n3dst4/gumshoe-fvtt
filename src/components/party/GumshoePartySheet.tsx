@@ -172,6 +172,8 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
     }
   }, [party]);
 
+  // const noActors = actors;
+
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
@@ -247,9 +249,9 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               >
                 <a
                   css={{
-                    "-webkit-line-clamp": "2",
+                    webkitLineClamp: "2",
                     display: "-webkit-box",
-                    "-webkit-box-orient": "vertical",
+                    webkitBoxOrient: "vertical",
                     overflow: "hidden",
                   }}
                   onClick={(e) => {
@@ -324,6 +326,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               // Investigative or general
               return (
                 <h1
+                  key={data.abilityType}
                   css={{
                     "&&": {
                       gridRow: i + 2,
@@ -343,6 +346,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               // Category
               return (
                 <h2
+                  key={data.category + i}
                   css={{
                     "&&": {
                       gridRow: i + 2,
@@ -376,8 +380,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   ? theme.colors.bgOpaquePrimary
                   : theme.colors.bgOpaqueSecondary;
               return (
-                <Fragment>
-
+                <Fragment key={`${data.abilityType}$${data.name}`}>
                   {/* Ability name */}
                   <div css={{
                     gridRow: i + 2,
