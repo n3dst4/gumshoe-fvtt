@@ -165,6 +165,9 @@ export const nbaThemeDark: Theme = themeFactory({
     wallpaper: "#4a0d00",
     bgTransSecondary: "rgba(0,0,0,0.2)",
     bgTransPrimary: "rgba(0,0,0,0.4)",
+    bgTransDangerPrimary: "rgba(255,128,0,0.2)",
+    bgTransDangerSecondary: "rgba(255,128,0,0.3)",
+
     // bgOpaque: "#000",
     bgTint: "rgba(255,255,255,0.1)",
     // reverseMedium: "rgba(255,255,255,0.3)",
@@ -271,7 +274,7 @@ export const fearTheme: Theme = themeFactory({
     accent: "#615144",
     accentContrast: "white",
     glow: "#fff",
-    wallpaper: "#ddd",
+    wallpaper: "#b6b3b3", //
     bgTransSecondary: "rgba(255,255,255,0.2)",
     bgTransPrimary: "rgba(255,255,255,0.5)",
     // bgOpaque: "white",
@@ -329,7 +332,7 @@ export const ashenTheme: Theme = themeFactory({
     // borderColor: "#433",
   },
   colors: {
-    wallpaper: ashenColor.lightness(0.05).toString(),
+    wallpaper: "#152938",
     accent: ashenComplement.toString(),
     accentContrast: "#333",
     glow: ashenComplement.lightness(0.7).toString(),

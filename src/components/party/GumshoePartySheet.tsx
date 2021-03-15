@@ -133,7 +133,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               position: "sticky",
               top: 0,
               left: 0,
-              background: theme.colors.bgOpaquePrimary,
+              background: theme.colors.bgOpaqueSecondary,
               padding: "0.5em",
               textAlign: "center",
               zIndex: 3,
@@ -150,7 +150,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   gridColumn: j + 2,
                   position: "sticky",
                   top: 0,
-                  backgroundColor: theme.colors.bgOpaqueSecondary,
+                  backgroundColor: theme.colors.bgOpaquePrimary,
                   padding: "0.5em",
                   zIndex: 2,
                   lineHeight: 1,
@@ -202,14 +202,14 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               position: "sticky",
               top: 0,
               right: 0,
-              background: theme.colors.bgOpaquePrimary,
+              background: theme.colors.bgOpaqueSecondary,
               padding: "0.5em",
               textAlign: "center",
               zIndex: 3,
               lineHeight: 1,
             }}
           >
-            GRAND TURTLE
+            Total
           </div>
           {/* WORKAROUND - when the entire right-hand column is `sticky`, FF
           (as of FF86) doesn't allocate space for it, so the penultimate column
