@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.1.1 (2021-03-15)
+
+* Quick patch release to include some minor theming tweaks I hadn't committed
+
 ## v2.1.0 (2021-03-15)
 
 * Add themes and compendium packs for Fear Itself and Ashen Stars

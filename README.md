@@ -21,6 +21,7 @@ A Foundry VTT system for managing characters compatible with GUMSHOE-based games
   - [Setting up any system that isn't built in](#setting-up-any-system-that-isnt-built-in)
   - [Creating Characters](#creating-characters)
   - [Using Abilities](#using-abilities)
+  - [Party Tracker](#party-tracker)
   - [Bug reports and contact](#bug-reports-and-contact)
   - [Development & general hacking](#development--general-hacking)
   - [Credits](#credits)
@@ -35,8 +36,11 @@ A Foundry VTT system for managing characters compatible with GUMSHOE-based games
 * Built-in support for:
   * Trail of Cthulhu!
   * Night's Black Agents!
+  * Ashen Stars!
+  * Fear Itself!
   * More coming soon!
 * Fully extensible to support basically any GUMSHOE-compatible game!
+* Party tracker (aka investigator matrix)
 * Visual themes for character sheets based on the built-in systems.
 * A high-contrast, (hopefully) accessibility-enhanced theme.
 * A sinister dark red version of one of the themes.
@@ -115,6 +119,20 @@ Using Investigative abilities doesn't require any active effort - you just tell 
 If you want **spend points**, open the ability from your character sheet and shoose the number of points to spend.
 
 General abilities can also be **rolled** - choose the number of points to expend and click **Test**.
+
+## Party Tracker
+
+As a GM, maybe you want to see a quick overview of all the abilities your players have between them, to make sure all your investigative bases are covered. This is sometimes called an "investigator matrix".
+
+To create a party tracker:
+
+1. Create a new actor, and choose "party" as the type.
+2. The "sheet" for this party will open, showing you all the standard abilities configured at the moment.
+3. **Drag** PC actors from the sidebar into the party tracker sheet to add them.
+4. You can directly pop open a character's ability from the tracker, for rapid adjusting.
+5. Totals adjust in real-time as you edit abilities.
+
+You can create multiple "party" actors if you want to tracks different groups of PCs as needed for your campaign.
 
 
 ## Bug reports and contact
