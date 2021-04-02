@@ -1,10 +1,10 @@
 # Development notes
 
-- [ ] Bulk get actors
 - [ ] Message when no actors
-- [ ] Update more often
+- [x] Update more often
 - [ ] Sorting options
 - [ ] Filtering options
+- [ ] Option to add missing ability on click
 
 
 ## The future
@@ -14,7 +14,7 @@
 - [ ] expandy-collapsy bits on the notes area
 - [ ] rich text editing
 - [ ] Character gen mode? (track free values, point spends, I<->G trades, synergies)
-- [ ] GM player skill matrix (pickable actors, show a big ol' matrix)
+- [x] GM player skill matrix (pickable actors, show a big ol' matrix)
 
 
 ## GUMSHOE Games that I have, and want to support:
@@ -38,19 +38,23 @@
   * [x] *Special (Vas Mal)*
   * [x] *"Boost"*
   * [ ] Spaceships?
+* [ ] The Fall of Delta Green
 
 ## GUMSHOE Games that I don't have yet, but would like to support:
 
 * [ ] The Yellow King
 * [ ] Mutant City Blues (2nd ed.)
-* [ ] The Fall of Delta Green
-
-## Other games (I am open to bribery):
-
 * [ ] Cthulhu Confidential (is 1-to-1)
+
+## Games that I have, and could be bribed to focus on:
+
+* [ ] Timewatch
+* [ ] The Gaean Reach
+
+## Other games:
+
 * [ ] Esoterrorists
 * [ ] Casting The Runes (aka "The M.R. James one")
-* [ ] Timewatch
 * [ ] Bubblegumshoe
 
 
