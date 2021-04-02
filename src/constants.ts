@@ -4,7 +4,7 @@ export const systemName = system.name;
 export const defaultMigratedSystemVersion = "0.0.0" as const;
 export const defaultSystemPreset = "trailPreset";
 export const templatesPath = `systems/${systemName}/templates` as const;
-export const reactTemplatePath = `${templatesPath}/react-application.handlebars` as const;
+export const reactTemplatePath = `${templatesPath}/react-application.hbs` as const;
 export const customSystem = "customSystem" as const;
 
 // item types
