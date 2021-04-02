@@ -142,6 +142,9 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
 
           {/* Actor names */}
           {actors.map((actor, j) => {
+            if (actor === undefined) {
+              return null;
+            }
             return (
               <div
                 key={actor.id}

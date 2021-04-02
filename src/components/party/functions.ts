@@ -93,6 +93,9 @@ export const buildRowData = (
     let total = 0;
 
     for (const actor of actors) {
+      if (actor === undefined) {
+        continue;
+      }
       const ability = actor.getAbilityByName(name, abilityType);
       if (ability) {
         const rating = ability.getRating();
