@@ -38,9 +38,23 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
     const onNewPCPacksUpdated = async (newPacks: string[]) => {
       setAbilityTuples(await getSystemAbilities());
     };
+    const onActorDeleted = (
+      deletedActor: GumshoeActor,
+      something: unknown, // i cannot tell what this is supposed to be
+      userId: string, // probably?
+    ) => {
+      const actorIds = party.data.data.actorIds.filter(
+        (id) => id !== deletedActor.id,
+      );
+      party.update({ actorIds });
+    };
+
     Hooks.on(constants.newPCPacksUpdated, onNewPCPacksUpdated);
+    Hooks.on("deleteActor", onActorDeleted);
+
     return () => {
       Hooks.off(constants.newPCPacksUpdated, onNewPCPacksUpdated);
+      Hooks.off("deleteActor", onActorDeleted);
     };
   }, []);
 
@@ -58,7 +72,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
   useEffect(() => {
     // getting actors is fast
     const actors = actorIds.map((id) => game.actors.get(id) as GumshoeActor);
-    setActors(sortEntitiesByName(actors));
+    setActors(sortEntitiesByName(actors).filter((actor) => actor !== undefined));
     const hook = (
       actor: GumshoeActor,
       itemData: ItemData,
@@ -142,12 +156,9 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
 
           {/* Actor names */}
           {actors.map((actor, j) => {
-            if (actor === undefined) {
-              return null;
-            }
             return (
               <div
-                key={actor.id}
+                key={actor?.id || `missing-${j}`}
                 css={{
                   gridRow: 1,
                   gridColumn: j + 2,
@@ -175,7 +186,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                     actor.sheet.render(true);
                   }}
                 >
-                  {actor.name}
+                  {actor?.name ?? "Missing"}
                 </a>
                 <div>
                   <button
@@ -187,7 +198,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                         width: "auto",
                       },
                     }}
-                    data-actor-id={actor.id}
+                    data-actor-id={actorIds[j]}
                     onClick={onClickRemoveActor}
                   >
                     REMOVE
