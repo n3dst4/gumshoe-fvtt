@@ -56,7 +56,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
       Hooks.off(constants.newPCPacksUpdated, onNewPCPacksUpdated);
       Hooks.off("deleteActor", onActorDeleted);
     };
-  }, []);
+  }, [party]);
 
   // effect 2: keep our row data in sync with abilityTuples and actors
   useEffect(() => {
