@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import * as constants from "../../constants";
 import { isAbility, sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
+import { GumshoeItem } from "../../module/GumshoeItem";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { themes } from "../../theme";
 import { RecursivePartial } from "../../types";
@@ -35,9 +36,11 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
   // "newPCPacks"
   useEffect(() => {
     getSystemAbilities().then(setAbilityTuples);
+
     const onNewPCPacksUpdated = async (newPacks: string[]) => {
       setAbilityTuples(await getSystemAbilities());
     };
+
     const onActorDeleted = (
       deletedActor: GumshoeActor,
       something: unknown, // i cannot tell what this is supposed to be
@@ -49,14 +52,27 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
       party.update({ actorIds });
     };
 
+    const onUpdateItem = async (
+      item: GumshoeItem,
+      dataDiff: any,
+      options: any,
+      useId: string,
+    ) => {
+      if (isAbility(item) && item.isOwned && party.data.data.actorIds.includes(item.actor?.id ?? "")) {
+        setAbilityTuples(await getSystemAbilities());
+      }
+    };
+
     // newPCPacksUpdated is a custom hook
     Hooks.on(constants.newPCPacksUpdated, onNewPCPacksUpdated);
-    // deleteActor is a standard hook
+    // standard hooks
     Hooks.on("deleteActor", onActorDeleted);
+    Hooks.on("updateItem", onUpdateItem);
 
     return () => {
       Hooks.off(constants.newPCPacksUpdated, onNewPCPacksUpdated);
       Hooks.off("deleteActor", onActorDeleted);
+      Hooks.off("updateItem", onUpdateItem);
     };
   }, [party]);
 
