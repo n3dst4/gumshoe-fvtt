@@ -41,7 +41,7 @@
   "gridDistance": 1,
   "gridUnits": "",
   "minimumCoreVersion": "0.7.9",
-  "compatibleCoreVersion": "0.7.9",
+  "compatibleCoreVersion": "0.8.1",
   "initiative": "1d6",
   "url": "https://gitlab.com/n3dst4/gumshoe-fvtt",
   "manifest": "https://gitlab.com/n3dst4/gumshoe-fvtt/-/raw/release/src/system.json",
