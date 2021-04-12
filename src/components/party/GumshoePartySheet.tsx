@@ -133,6 +133,26 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
           flexDirection: "column",
         }}
       >
+        {party.data.data.actorIds.length === 0 &&
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 100,
+              padding: "1em",
+              // border: `1px solid ${theme.colors.text}`,
+              borderRadius: "0.5em",
+              background: theme.colors.bgOpaquePrimary,
+              boxShadow: `0 0 1em 0em ${theme.colors.text}`,
+              fontSize: "1.4em",
+              textAlign: "center",
+            }}
+          >
+            No actors in this party yet! Drag PC actors from the sidebar into this window to add them.
+          </div>
+        }
         {/* Name field */}
         <InputGrid
           css={{
