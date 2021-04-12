@@ -49,7 +49,9 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
       party.update({ actorIds });
     };
 
+    // newPCPacksUpdated is a custom hook
     Hooks.on(constants.newPCPacksUpdated, onNewPCPacksUpdated);
+    // deleteActor is a standard hook
     Hooks.on("deleteActor", onActorDeleted);
 
     return () => {
