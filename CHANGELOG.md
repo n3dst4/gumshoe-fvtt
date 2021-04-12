@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.2.0 (2021-04-12)
+
+* Update FVTT compatibility to 0.8.1
+* Some minor fixes on the party sheet
+
 ## v2.1.1 (2021-03-15)
 
 * Quick patch release to include some minor theming tweaks I hadn't committed

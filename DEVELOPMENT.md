@@ -1,6 +1,6 @@
 # Development notes
 
-- [ ] Message when no actors
+- [x] Message when no actors
 - [x] Update more often
 - [ ] Sorting options
 - [ ] Filtering options
