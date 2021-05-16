@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.3.0 (2021-05-16)
+
+* FoundryVTT 0.8.3 compatible
+
 ## v2.2.0 (2021-04-12)
 
 * Update FVTT compatibility to 0.8.1
