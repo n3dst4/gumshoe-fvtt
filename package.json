@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "gumshoe-fvtt",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "Compatible with Trail of Cthulhu and Night's Blacks Agents, and can be customized to work with any other GUMSHOE-based game.",
   "scripts": {
     "package": "gulp package",

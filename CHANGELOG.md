@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.5.0 (2021-06-04)
+
+* FoundryVTT 0.8.8 compatible
+
 ## v2.4.0 (2021-06-04)
 
 * FoundryVTT 0.8.6 compatible
