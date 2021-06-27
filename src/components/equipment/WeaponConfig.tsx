@@ -12,6 +12,7 @@ import { WeaponRange } from "./WeaponRangeConfig";
 import { Checkbox } from "../inputs/Checkbox";
 import { getCombatAbilities } from "../../settingsHelpers";
 import { Translate } from "../Translate";
+import { systemName } from "../../constants";
 
 type WeaponConfigProps = {
   weapon: GumshoeItem,
@@ -25,21 +26,13 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
 
   const onClickDelete = useCallback(() => {
     const message = weapon.actor
-      ? <Translate
-          values={{
-            ActorName: weapon.actor.data.name,
-            EquipmentName: weapon.data.name,
-          }}
-        >
-          Delete ActorName&lsquo;s EquimentName?
-        </Translate>
-      : <Translate
-          values={{
-            EquipmentName: weapon.data.name,
-          }}
-        >
-          Delete EquimentName?
-        </Translate>;
+      ? game.i18n.format(`${systemName}.DeleteActorNamesEquipmentName`, {
+          ActorName: weapon.actor.data.name,
+          EquipmentName: weapon.data.name,
+        })
+      : game.i18n.format(`${systemName}.DeleteEquipmentName`, {
+        EquipmentName: weapon.data.name,
+      });
 
     const d = new Dialog({
       title: game.i18n.localize("Confirm"),
@@ -57,7 +50,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
           },
         },
       },
-      default: "two",
+      default: "cancel",
       // render: html => console.log("Register interactivity in the rendered dialog"),
       // close: html => console.log("This always is logged no matter which option is chosen"),
     });

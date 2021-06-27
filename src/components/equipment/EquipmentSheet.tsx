@@ -7,6 +7,8 @@ import { InputGrid } from "../inputs/InputGrid";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "../inputs/TextInput";
 import { TextArea } from "../inputs/TextArea";
+import { Translate } from "../Translate";
+import { systemName } from "../../constants";
 
 type EquipmentSheetProps = {
   entity: GumshoeItem,
@@ -22,26 +24,31 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
 
   const onClickDelete = useCallback(() => {
     const message = entity.actor
-      ? `Delete ${entity.actor.data.name}'s ${entity.data.name}?`
-      : `Delete "${entity.data.name}"?`;
+      ? game.i18n.format(`${systemName}.DeleteActorNamesEquipmentName`, {
+          ActorName: entity.actor.data.name,
+          EquipmentName: entity.data.name,
+        })
+      : game.i18n.format(`${systemName}.DeleteEquipmentName`, {
+        EquipmentName: entity.data.name,
+      });
 
     const d = new Dialog({
-      title: "Confirm",
+      title: game.i18n.localize("Confirm"),
       content: `<p>${message}</p>`,
       buttons: {
         cancel: {
           icon: '<i class="fas fa-ban"></i>',
-          label: "Cancel",
+          label: game.i18n.localize("Cancel"),
         },
         delete: {
           icon: '<i class="fas fa-trash"></i>',
-          label: "Delete",
+          label: game.i18n.localize("Delete"),
           callback: () => {
             entity.delete();
           },
         },
       },
-      default: "two",
+      default: "cancel",
       // render: html => console.log("Register interactivity in the rendered dialog"),
       // close: html => console.log("This always is logged no matter which option is chosen"),
     });
@@ -51,7 +58,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   return (
     <Fragment>
       <div>
-        Equipment
+        <Translate>Equipment</Translate>
         <a
           css={{
             float: "right",
@@ -73,7 +80,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
         ref={name.contentEditableRef}
       />
       <InputGrid>
-      <GridField label="Name">
+        <GridField label="Name">
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
         <GridField label="Notes">

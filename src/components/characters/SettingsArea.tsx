@@ -1,11 +1,13 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
+import { systemName } from "../../constants";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { themes } from "../../theme";
 import { GridField } from "../inputs/GridField";
 // import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
+import { Translate } from "../Translate";
 
 type SettingAreaProps = {
   actor: GumshoeActor,
@@ -27,12 +29,14 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
             {Object.keys(themes).map((themeName) => (
               <option key={themeName} value={themeName}>{themes[themeName].displayName}</option>
             ))}
-            <option value="default">(Use System Default)</option>
+            <option value="default">
+              {game.i18n.localize(`${systemName}.UseSystemDefault`)}
+            </option>
           </select>
         </GridField>
         <GridField label="Nuke">
           <button onClick={actor.confirmNuke}>
-            Nuke
+            <Translate>Nuke</Translate>
           </button>
         </GridField>
     </InputGrid>
