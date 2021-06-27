@@ -10,6 +10,7 @@ type GridFieldProps = {
   className?: string,
   children?: any,
   noLabel?: boolean,
+  noTranslate?: boolean,
 };
 
 export const GridField: React.FC<GridFieldProps> = ({
@@ -17,6 +18,7 @@ export const GridField: React.FC<GridFieldProps> = ({
   className,
   children,
   noLabel = false,
+  noTranslate = false,
 }) => {
   const id = useMemo(() => nanoid(), []);
   return (
@@ -30,7 +32,7 @@ export const GridField: React.FC<GridFieldProps> = ({
         }}
         className={className}
       >
-        {label && <Translate>{label}</Translate>}
+        {label && (noTranslate ? label : <Translate>{label}</Translate>)}
       </label>
       <div
         className={className}

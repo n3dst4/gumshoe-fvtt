@@ -11,6 +11,7 @@ import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 import { TextArea } from "../inputs/TextArea";
+import { Translate } from "../Translate";
 import { performAttack } from "./performAttack";
 
 type WeaponAttackProps = {
@@ -141,7 +142,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
                     padding: "0 1em",
                   }}
                 >
-                  Out of ammo
+                  <Translate>Out of ammo</Translate>
                 </div>
             }
             <button
@@ -149,28 +150,28 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
               disabled={ammoFail || !weapon.data.data.isPointBlank}
               onClick={onPointBlank}
             >
-              Point Blank
+              <Translate>Point Blank</Translate>
             </button>
             <button
               css={{ lineHeight: 1, flex: 1 }}
               disabled={ammoFail || !weapon.data.data.isCloseRange}
               onClick={onCloseRange}
             >
-              Close Range
+              <Translate>Close Range</Translate>
             </button>
             <button
               css={{ lineHeight: 1, flex: 1 }}
               disabled={ammoFail || !weapon.data.data.isNearRange}
               onClick={onNearRange}
             >
-              Near Range
+              <Translate>Near Range</Translate>
             </button>
             <button
               css={{ lineHeight: 1, flex: 1 }}
               disabled={ammoFail || !weapon.data.data.isLongRange}
               onClick={onLongRange}
             >
-              Long Range
+              <Translate>Long Range</Translate>
             </button>
           </div>
         </GridFieldStacked>
@@ -192,7 +193,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
                   }}
                   onClick={weapon.reload}
                 >
-                  Reload
+                  <Translate>Reload</Translate>
                 </button>
                 <AsyncNumberInput
                   css={{ flex: 1 }}
@@ -211,24 +212,39 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
         <GridField label="Bonus pool">
           <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />
         </GridField>
-        <GridField label={abilityName}>
+        <GridField noTranslate label={abilityName}>
           <a onClick={() => ability?.sheet.render(true)}>
-            Open {ability?.name} ability
+            <Translate
+              values={{ AbilityName: ability?.name ?? "" }}
+            >
+              Open (ability name) ability
+            </Translate>
           </a>
         </GridField>
         <GridField label="">
           {isAbilityUsed
             ? (
             <i>
-              This ability is currently being used for combat ordering
+              <Translate>This ability is currently being used for combat ordering</Translate>
             </i>
               )
             : (
             <span>
               <a onClick={onClickUseForInitiative}>
-                Use {ability?.name} for combat ordering
+                <Translate
+                  values={{ AbilityName: ability?.name ?? "" }}
+                >
+                  Use (ability name) for combat ordering
+                </Translate>
+
               </a>{" "}
-              (Currently using {actorInitiativeAbility || "nothing"})
+              (
+              <Translate
+                values={{ AbilityName: actorInitiativeAbility || "nothing" }}
+              >
+                Currently using (ability name)
+              </Translate>
+              )
             </span>
               )}
         </GridField>

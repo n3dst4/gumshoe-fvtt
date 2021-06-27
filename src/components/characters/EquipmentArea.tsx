@@ -4,6 +4,7 @@ import React from "react";
 import { equipment } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
+import { Translate } from "../Translate";
 
 type EquipmentAreaProps = {
   actor: GumshoeActor,
@@ -21,7 +22,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
             display: "inline",
           }}
         >
-          Equipment
+          <Translate>Equipment</Translate>
         </h1>
         <button
           css={{
@@ -38,7 +39,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
             // newItem.sheet.render(true);
           }}
         >
-          <i className="fa fa-plus"/>Add Equipment
+          <i className="fa fa-plus"/><Translate>Add Equipment</Translate>
         </button>
       </div>
       {items.length === 0 &&
@@ -48,7 +49,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
             fontSize: "1.2em",
           }}
         >
-          No equipment yet.
+          <Translate>No equipment yet.</Translate>
         </i>
       }
 

@@ -4,6 +4,7 @@ import React from "react";
 import { weapon } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
+import { Translate } from "../Translate";
 import { WeaponRow } from "./WeaponRow";
 
 type WeaponsAreaProps = {
@@ -22,7 +23,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
             display: "inline",
           }}
         >
-          Weapons
+          <Translate>Weapons</Translate>
         </h1>
         <button
           css={{
@@ -38,7 +39,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
             });
           }}
         >
-          <i className="fa fa-plus"/>Add Weapon
+          <i className="fa fa-plus"/><Translate>Add Weapon</Translate>
         </button>
       </div>
       {items.length === 0 &&
@@ -48,7 +49,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
             fontSize: "1.2em",
           }}
         >
-          No weapons yet! Good luck against the cultists.
+          <Translate>No weapons yet!</Translate>
         </i>
       }
       {items.length > 0 &&
@@ -62,32 +63,21 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
             ".header": {
               fontWeight: "bold",
             },
-            // rowGap: "0.5em",
           }}
         >
           <div className="header" css={{ gridColumn: 1 }}>
-            Weapon
+          <Translate>Weapon</Translate>
           </div>
           <div className="header" css={{ gridColumn: 2 }}>
-            Ammo
+          <Translate>Ammo</Translate>
           </div>
           <div className="header" css={{ gridColumn: 3 }}>
-            Notes
+          <Translate>Notes</Translate>
           </div>
           {
             sortEntitiesByName(items).map((item) => (
               <WeaponRow key={item.id} weapon={item}/>
             ))
-          }
-          {items.length === 0 &&
-            <i
-              css={{
-                display: "block",
-                gridColumn: "1/6",
-              }}
-            >
-              No weapons yet! Good luck against the cultists.
-            </i>
           }
         </div>
       }

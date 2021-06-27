@@ -11,6 +11,7 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { WeaponRange } from "./WeaponRangeConfig";
 import { Checkbox } from "../inputs/Checkbox";
 import { getCombatAbilities } from "../../settingsHelpers";
+import { Translate } from "../Translate";
 
 type WeaponConfigProps = {
   weapon: GumshoeItem,
@@ -24,20 +25,33 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
 
   const onClickDelete = useCallback(() => {
     const message = weapon.actor
-      ? `Delete ${weapon.actor.data.name}'s ${weapon.data.name}?`
-      : `Delete "${weapon.data.name}"?`;
+      ? <Translate
+          values={{
+            ActorName: weapon.actor.data.name,
+            EquipmentName: weapon.data.name,
+          }}
+        >
+          Delete ActorName&lsquo;s EquimentName?
+        </Translate>
+      : <Translate
+          values={{
+            EquipmentName: weapon.data.name,
+          }}
+        >
+          Delete EquimentName?
+        </Translate>;
 
     const d = new Dialog({
-      title: "Confirm",
+      title: game.i18n.localize("Confirm"),
       content: `<p>${message}</p>`,
       buttons: {
         cancel: {
           icon: '<i class="fas fa-ban"></i>',
-          label: "Cancel",
+          label: game.i18n.localize("Cancel"),
         },
         delete: {
           icon: '<i class="fas fa-trash"></i>',
-          label: "Delete",
+          label: game.i18n.localize("Delete"),
           callback: () => {
             weapon.delete();
           },
@@ -131,7 +145,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
           </Fragment>
         }
         <GridField label="Delete">
-          <button onClick={onClickDelete}>Delete</button>
+          <button onClick={onClickDelete}><Translate>Delete</Translate></button>
         </GridField>
       </InputGrid>
     </Fragment>

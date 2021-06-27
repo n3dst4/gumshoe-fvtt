@@ -121,7 +121,7 @@ export const GumshoeActorSheet = ({
                 onChange={updateName}
               />
             </GridField>
-            <GridField label={occupationLabel}>
+            <GridField noTranslate label={occupationLabel}>
               <AsyncTextInput
                 value={actor.data.data.occupation}
                 onChange={updateOccupation}
@@ -129,7 +129,7 @@ export const GumshoeActorSheet = ({
             </GridField>
             {
               shortNotesNames.map((name: string, i: number) => (
-                <GridField key={`${name}--${i}`} label={name}>
+                <GridField noTranslate key={`${name}--${i}`} label={name}>
                   <AsyncTextInput
                     value={actor.data.data.shortNotes[i]}
                     onChange={updateShortNote}

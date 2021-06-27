@@ -5,6 +5,7 @@ import { GumshoeItem } from "../../module/GumshoeItem";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { WeaponConfig } from "./WeaponConfig";
 import { WeaponAttack } from "./WeaponAttack";
+import { Translate } from "../Translate";
 
 type WeaponSheetProps = {
   weapon: GumshoeItem,
@@ -23,7 +24,7 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
   return (
     <Fragment>
       <div>
-        Weapon
+        <Translate>Weapon</Translate>
         {weapon.isOwned && (
           <a
             css={{
