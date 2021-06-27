@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "@types/dompurify": "^2.2.1",
+    "case": "^1.6.3",
     "dompurify": "^2.2.6",
     "irid": "^2.0.2",
     "lodash": "^4.17.20",

@@ -17,6 +17,7 @@ import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
 import { getOccupationlabel, getShortNotes } from "../../settingsHelpers";
+import { Translate } from "../Translate";
 
 type GumshoeActorSheetProps = {
   actor: GumshoeActor,
@@ -151,7 +152,7 @@ export const GumshoeActorSheet = ({
           }}
           >
             <button onClick={actor.confirmRefresh}>
-              Refresh
+              <Translate>Refresh</Translate>
             </button>
             <hr/>
             <TrackersArea actor={actor} />
