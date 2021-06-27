@@ -123,7 +123,12 @@ Hooks.on(
 );
 
 Hooks.on("renderSettings", (app: Application, html: JQuery) => {
-  const text = game.i18n.format(`${systemName}.SystemNameSystemSettings`, { SystemName: "GUMSHOE" });
+  const systemNameTranslated = game.i18n.localize(
+    `${systemName}.SystemName`,
+  );
+  const text = game.i18n.format(`${systemName}.SystemNameSystemSettings`, {
+    SystemName: systemNameTranslated,
+  });
   const button = $(`<button><i class="fas fa-search"></i>${text}</button>`);
   html.find('button[data-action="configure"]').after(button);
 
