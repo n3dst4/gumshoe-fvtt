@@ -3,6 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { useMemo } from "react";
 import Case from "case";
 import { systemName } from "../constants";
+import { getDebugTranslations } from "../settingsHelpers";
 
 type TranslateProps = {
   children: string,
@@ -13,6 +14,7 @@ export const Translate: React.FC<TranslateProps> = ({
   children,
   values,
 }) => {
+  const debug = getDebugTranslations();
   const pascal = useMemo(() => Case.pascal(children), [children]);
   const prefixed = `${systemName}.${pascal}`;
   const local = useMemo(() => game.i18n.format(prefixed, values), [prefixed, values]);
@@ -21,7 +23,7 @@ export const Translate: React.FC<TranslateProps> = ({
   return (
     <span
       style={{
-        background: has ? "lightgreen" : "red",
+        background: debug ? (has ? "lightgreen" : "red") : "none",
       }}
     >
       {has ? local : children}

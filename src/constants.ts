@@ -28,6 +28,8 @@ export const shortNotes = "shortNotes" as const;
 export const longNotes = "longNotes" as const;
 export const newPCPacks = "newPCPacks" as const;
 export const useBoost = "useBoost" as const;
+export const debugTranslations = "debugTranslations" as const;
+
 /**
  * @deprecated use investigativeAbilityCategories and generalAbilityCategories instead
  */

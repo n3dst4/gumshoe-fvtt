@@ -82,6 +82,10 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
     settings.getUseBoost(),
     resetPreset,
   );
+  const [debugTranslations, setDebugTranslations] = useStateWithPreset(
+    settings.getDebugTranslations(),
+    resetPreset,
+  );
 
   const onSelectPreset = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -157,6 +161,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
         settings.setNewPCPacks(newPCPacks),
         settings.setUseBoost(useBoost),
         settings.setSystemPreset(systemPreset),
+        settings.setDebugTranslations(debugTranslations),
       ]);
       foundryApplication.close();
     },
@@ -172,6 +177,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       shortNotes,
       systemPreset,
       useBoost,
+      debugTranslations,
     ],
   );
 
@@ -339,6 +345,9 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           </SettingsGridField>
           <SettingsGridField label="Can abilities be boosted?" index={idx++}>
             <Checkbox checked={useBoost} onChange={setUseBoost} />
+          </SettingsGridField>
+          <SettingsGridField label="Debug translations?" index={idx++}>
+            <Checkbox checked={debugTranslations} onChange={setDebugTranslations} />
           </SettingsGridField>
         </InputGrid>
       )}

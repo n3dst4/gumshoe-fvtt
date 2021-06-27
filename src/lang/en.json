@@ -78,5 +78,6 @@
   "gumshoe.RollingAbilityName": "Rolling {AbilityName}",
   "gumshoe.Pool": "Pool",
   "gumshoe.Rating": "Rating",
-  "gumshoe.NoActorsInThisPartyYetDragPCActorsFromTheSidebarIntoThisWindowToAddThem": "No actors in this party yet! Drag PC actors from the sidebar into this window to add them."
+  "gumshoe.NoActorsInThisPartyYetDragPCActorsFromTheSidebarIntoThisWindowToAddThem": "No actors in this party yet! Drag PC actors from the sidebar into this window to add them.",
+  "gumshoe.DebugTranslations": "Debug translations?"
 }

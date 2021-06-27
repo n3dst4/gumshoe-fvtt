@@ -14,6 +14,7 @@ export const getLongNotes = getSetting<string[]>(constants.longNotes);
 export const getNewPCPacks = getSetting<string[]>(constants.newPCPacks);
 export const getSystemPreset = getSetting<string>(constants.systemPreset);
 export const getUseBoost = getSetting<boolean>(constants.useBoost);
+export const getDebugTranslations = getSetting<boolean>(constants.debugTranslations);
 
 export const setSystemMigrationVersion = setSetting(constants.systemMigrationVersion);
 export const setDefaultThemeName = setSetting(constants.defaultThemeName);
@@ -26,6 +27,7 @@ export const setLongNotes = setSetting<string[]>(constants.longNotes);
 export const setNewPCPacks = setSetting<string[]>(constants.newPCPacks);
 export const setSystemPreset = setSetting<string>(constants.systemPreset);
 export const setUseBoost = setSetting<boolean>(constants.useBoost);
+export const setDebugTranslations = setSetting<boolean>(constants.debugTranslations);
 
 export const getDefaultGeneralAbilityCategory = () => {
   const cat = getGeneralAbilityCategories()[0];

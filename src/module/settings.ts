@@ -1,6 +1,7 @@
 import {
   abilityCategories,
   combatAbilities,
+  debugTranslations,
   defaultMigratedSystemVersion,
   defaultThemeName,
   generalAbilityCategories,
@@ -119,6 +120,15 @@ export const registerSettings = function () {
     scope: "world",
     config: false,
     default: trailPreset.useBoost,
+    type: Boolean,
+  });
+
+  game.settings.register(systemName, debugTranslations, {
+    name: "Debug translations?",
+    hint: "",
+    scope: "local",
+    config: false,
+    default: false,
     type: Boolean,
   });
 
