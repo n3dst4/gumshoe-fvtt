@@ -8,6 +8,7 @@ import { isGeneralAbility } from "../../functions";
 import { AbilityTest } from "./AbilityTest";
 import { AbilityEditorMain } from "./AbilityEditorMain";
 import { AbilityConfig } from "./AbilityConfig";
+import { Translate } from "../Translate";
 
 type AbilitySheetProps = {
   ability: GumshoeItem,
@@ -41,7 +42,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
       }}
     >
       <div>
-        {isGeneral ? "General" : "Investigative"} ability
+        <Translate>{isGeneral ? "General ability" : "Investigative ability"}</Translate>
         <a
           css={{
             float: "right",

@@ -10,6 +10,7 @@ import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
 import { getCombatAbilities, getUseBoost } from "../../settingsHelpers";
 import { Checkbox } from "../inputs/Checkbox";
+import { Translate } from "../Translate";
 
 type AbilityEditorMainProps = {
   ability: GumshoeItem,
@@ -69,7 +70,7 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
             }}
             onClick={onClickRefresh}
           >
-            Refresh
+            <Translate>Refresh</Translate>
           </button>
         </div>
       </GridField>

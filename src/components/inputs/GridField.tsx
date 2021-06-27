@@ -3,6 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { useMemo } from "react";
 import { nanoid } from "nanoid";
 import { IdContext } from "../IdContext";
+import { Translate } from "../Translate";
 
 type GridFieldProps = {
   label?: string,
@@ -29,7 +30,7 @@ export const GridField: React.FC<GridFieldProps> = ({
         }}
         className={className}
       >
-        {label}
+        {label && <Translate>{label}</Translate>}
       </label>
       <div
         className={className}

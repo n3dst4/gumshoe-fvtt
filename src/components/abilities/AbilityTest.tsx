@@ -9,6 +9,7 @@ import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
+import { Translate } from "../Translate";
 
 type AbilityTestProps = {
   ability: GumshoeItem,
@@ -86,11 +87,11 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
           }}
         >
           <button css={{ flex: 1 }} disabled={spend === "0"} onClick={onSpend}>
-            {isGeneral ? "Simple Spend" : "Spend"}
+            <Translate>{isGeneral ? "Simple Spend" : "Spend"}</Translate>
           </button>
           {isGeneral && (
             <button css={{ flex: 1 }} onClick={onTest}>
-              Test <i className="fa fa-dice" />
+              <Translate>Test</Translate> <i className="fa fa-dice" />
             </button>
           )}
         </div>

@@ -10,6 +10,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { Checkbox } from "../inputs/Checkbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../settingsHelpers";
+import { Translate } from "../Translate";
 
 type AbilityConfigProps = {
   ability: GumshoeItem,
@@ -178,7 +179,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
         </GridField>
       {ability.actor && (
         <GridField label="Delete ability">
-          <button onClick={onClickDelete}>Delete</button>
+          <button onClick={onClickDelete}><Translate>Delete</Translate></button>
         </GridField>
       )}
     </InputGrid>

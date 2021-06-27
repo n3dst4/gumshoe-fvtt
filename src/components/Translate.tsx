@@ -18,7 +18,15 @@ export const Translate: React.FC<TranslateProps> = ({
   const pascal = useMemo(() => Case.pascal(children), [children]);
   const prefixed = `${prefix}.${pascal}`;
   const local = useMemo(() => game.i18n.format(prefixed, values), [prefixed, values]);
+  const has = useMemo(() => (game.i18n as any).has(prefixed, false), [prefixed]);
+
   return (
-    <span>{local}</span>
+    <span
+      style={{
+        background: has ? "lightgreen" : "red",
+      }}
+    >
+      {has ? local : children}
+    </span>
   );
 };

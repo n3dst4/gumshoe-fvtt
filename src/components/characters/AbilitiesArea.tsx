@@ -7,6 +7,7 @@ import { GumshoeActor } from "../../module/GumshoeActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { ThemeContext } from "../../theme";
 import { Checkbox } from "../inputs/Checkbox";
+import { Translate } from "../Translate";
 import { AbilitySlug } from "./AbilitySlug";
 
 type AbilitiesAreaProps = {
@@ -62,7 +63,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
           checked={hideZeroRated}
           onChange={onChangeHideZero}
         />
-        Hide zero-rated abilities
+        <Translate>Hide zero-rated abilities</Translate>
       </label>
       <div
         css={{

@@ -1,7 +1,7 @@
 {
   "Investigator.SystemName": "GUMSHOE",
   "Investigator.Refresh": "Refresh",
-  "Investigator.Abilites": "Abilites",
+  "Investigator.Abilities": "Abilities",
   "Investigator.Equipment": "Equipment",
   "Investigator.Notes": "Notes",
   "Investigator.HideZeroRatedAbilities": "Hide zero-rated abilities",
@@ -9,7 +9,8 @@
   "Investigator.Health": "Health",
   "Investigator.Magic": "Magic",
   "Investigator.Stability": "Stability",
-  "Investigator.Investigative": "Investigative",
+  "Investigator.InvestigativeAbility": "Investigative ability",
+  "Investigator.GeneralAbility": "General ability",
   "Investigator.Academic": "Academic",
   "Investigator.Interpersonal": "Interpersonal",
   "Investigator.Technical": "Technical",

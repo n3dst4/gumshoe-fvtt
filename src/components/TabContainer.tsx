@@ -3,6 +3,7 @@ import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
 import React, { ChangeEvent, Fragment, useCallback, useContext, useMemo, useState } from "react";
 import { ThemeContext } from "../theme";
+import { Translate } from "./Translate";
 // import React, { useMemo, useState } from "react";
 
 type TabDefinition = {
@@ -95,7 +96,10 @@ export const TabContainer: React.FC<TabContainerProps> = ({
               onChange={onChange}
             />
             <label htmlFor={htmlId} tabIndex={0}>
-              {label}
+              {typeof label === "string"
+                ? <Translate>{label}</Translate>
+                : label
+              }
             </label>
           </Fragment>);
         })}
