@@ -13,6 +13,7 @@ import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
+import { Translate } from "../Translate";
 import { AbilityRow } from "./AbilityRow";
 import { buildRowData, getSystemAbilities } from "./functions";
 import { AbilityTuple, isCategoryHeader, isTypeHeader, RowData } from "./types";
@@ -150,7 +151,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               textAlign: "center",
             }}
           >
-            No actors in this party yet! Drag PC actors from the sidebar into this window to add them.
+            <Translate>No actors in this party yet! Drag PC actors from the sidebar into this window to add them.</Translate>
           </div>
         }
         {/* Name field */}
@@ -239,7 +240,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                     data-actor-id={actorIds[j]}
                     onClick={onClickRemoveActor}
                   >
-                    REMOVE
+                    <Translate>REMOVE</Translate>
                   </button>
                 </div>
               </div>
@@ -261,7 +262,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               lineHeight: 1,
             }}
           >
-            Total
+            <Translate>Total</Translate>
           </div>
           {/* WORKAROUND - when the entire right-hand column is `sticky`, FF
           (as of FF86) doesn't allocate space for it, so the penultimate column
@@ -282,7 +283,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
               lineHeight: 1,
             }}
           >
-            GRAND TURTLE
+            <Translate>Total</Translate>
           </div>
 
           {/* Rows */}
@@ -303,8 +304,8 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   }}
                 >
                   {data.abilityType === constants.generalAbility
-                    ? "General"
-                    : "Investigative"}
+                    ? <Translate>General</Translate>
+                    : <Translate>Investigative</Translate>}
                 </h1>
               );
             } else if (isCategoryHeader(data)) {

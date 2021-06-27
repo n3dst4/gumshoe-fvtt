@@ -7,6 +7,8 @@
   "gumshoe.HideZeroRatedAbilities": "Hide zero-rated abilities",
   "gumshoe.InvestigativeAbility": "Investigative ability",
   "gumshoe.GeneralAbility": "General ability",
+  "gumshoe.Investigative": "Investigative",
+  "gumshoe.General": "General",
   "gumshoe.Category": "Category",
   "gumshoe.Min": "Min",
   "gumshoe.Max": "Max",
@@ -75,5 +77,6 @@
   "gumshoe.AbilityPoolSpendForAbilityName": "Ability pool spend for {AbilityName}",
   "gumshoe.RollingAbilityName": "Rolling {AbilityName}",
   "gumshoe.Pool": "Pool",
-  "gumshoe.Rating": "Rating"
+  "gumshoe.Rating": "Rating",
+  "gumshoe.NoActorsInThisPartyYetDragPCActorsFromTheSidebarIntoThisWindowToAddThem": "No actors in this party yet! Drag PC actors from the sidebar into this window to add them."
 }

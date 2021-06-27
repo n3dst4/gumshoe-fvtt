@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
+import { Translate } from "../Translate";
 
 type ListEditProps = {
   value: string[],
@@ -84,7 +85,7 @@ export const ListEdit: React.FC<ListEditProps> = ({
         <button
           onClick={onClickAdd}
         >
-          <i className="fas fa-plus"/> Add item
+          <i className="fas fa-plus"/> <Translate>Add item</Translate>
         </button>
 
       </div>

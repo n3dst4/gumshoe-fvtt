@@ -12,6 +12,7 @@ import { GridField } from "./inputs/GridField";
 import { InputGrid } from "./inputs/InputGrid";
 import { ListEdit } from "./inputs/ListEdit";
 import { SettingsGridField } from "./inputs/SettingsGridField";
+import { Translate } from "./Translate";
 
 type GumshoeSettingsProps = {
   foundryApplication: Application,
@@ -336,7 +337,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           <SettingsGridField label="Long Notes Fields" index={idx++}>
             <ListEdit value={longNotes} onChange={setLongNotes} />
           </SettingsGridField>
-          <SettingsGridField label="Can abilitiess be boosted?" index={idx++}>
+          <SettingsGridField label="Can abilities be boosted?" index={idx++}>
             <Checkbox checked={useBoost} onChange={setUseBoost} />
           </SettingsGridField>
         </InputGrid>
@@ -353,13 +354,13 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
           onClick={onClickClose}
         >
-          <i className="fas fa-times" /> Cancel
+          <i className="fas fa-times" /> <Translate>Cancel</Translate>
         </button>
         <button
           css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
           onClick={onClickSave}
         >
-          <i className="fas fa-save" /> Save Changes
+          <i className="fas fa-save" /> <Translate>Save Changes</Translate>
         </button>
       </div>
     </CSSReset>
