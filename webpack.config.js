@@ -8,7 +8,7 @@ const isProduction =
 
 module.exports = {
   mode: isProduction ? "production" : "development",
-  entry: "./src/gumshoe.ts",
+  entry: "./src/investigator.ts",
   output: {
     path: path.join(__dirname, "dist"),
     filename: "gumshoe.js",

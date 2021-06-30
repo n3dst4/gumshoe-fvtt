@@ -110,7 +110,7 @@ function watch () {
       colors: true,
     }));
     if (err) {
-      console.err(err);
+      console.error(err);
     }
   });
   gulp.watch("src/**/*.less", { ignoreInitial: false }, buildLess);
