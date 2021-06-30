@@ -10,7 +10,7 @@
     "build:watch": "gulp watch",
     "start": "gulp watch",
     "watch": "gulp watch",
-    "clean": "gulp clean && gulp link --clean",
+    "clean": "gulp clean",
     "update-types": "npm install --save-dev gitlab:n3dst4/foundry-pc-types#safe"
   },
   "author": "",
