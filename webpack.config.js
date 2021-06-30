@@ -11,7 +11,7 @@ module.exports = {
   entry: "./src/investigator.ts",
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "gumshoe.js",
+    filename: "investigator.js",
   },
   devtool: isProduction ? undefined : "source-map",
   module: {

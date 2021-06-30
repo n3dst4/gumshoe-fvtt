@@ -5,34 +5,34 @@
   "version": "2.5.0",
   "author": "Neil de Carteret",
   "scripts": [],
-  "esmodules": ["gumshoe.js"],
-  "styles": ["gumshoe.css"],
+  "esmodules": ["investigator.js"],
+  "styles": ["investigator.css"],
   "packs": [
     {
       "name": "trailOfCthulhuAbilities",
       "label": "Trail of Cthulhu Abilities",
-      "system": "gumshoe",
+      "system": "investigator",
       "path": "./packs/trailOfCthulhuAbilities.db",
       "entity": "Item"
     },
     {
       "name": "nightsBlackAgentsAbilities",
       "label": "Night's Black Agents Abilities",
-      "system": "gumshoe",
+      "system": "investigator",
       "path": "./packs/nightsBlackAgentsAbilities.db",
       "entity": "Item"
     },
     {
       "name": "fearItselfAbilities",
       "label": "Fear Itself Abilities",
-      "system": "gumshoe",
+      "system": "investigator",
       "path": "./packs/fearItselfAbilities.db",
       "entity": "Item"
     },
     {
       "name": "ashenStarsAbilities",
       "label": "Ashen Stars Abilities",
-      "system": "gumshoe",
+      "system": "investigator",
       "path": "./packs/ashenStarsAbilities.db",
       "entity": "Item"
     }
