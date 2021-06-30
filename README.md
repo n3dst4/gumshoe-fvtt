@@ -1,4 +1,4 @@
-# GUMSHOE System for Foundry VTT
+# INVESTIGATOR System for Foundry VTT
 
 A Foundry VTT system for managing characters compatible with GUMSHOE-based games. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
 
@@ -13,7 +13,7 @@ A Foundry VTT system for managing characters compatible with GUMSHOE-based games
 </a>
 
 ## Contents
-- [GUMSHOE System for Foundry VTT](#gumshoe-system-for-foundry-vtt)
+- [INVESTIGATOR System for Foundry VTT](#investigator-system-for-foundry-vtt)
   - [Contents](#contents)
   - [Features](#features)
   - [How to install](#how-to-install)

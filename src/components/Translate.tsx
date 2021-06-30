@@ -26,7 +26,7 @@ export const Translate: React.FC<TranslateProps> = ({
         background: debug ? (has ? "lightgreen" : "red") : "none",
       }}
     >
-      {has ? local : children}
+      {local}
     </span>
   );
 };
