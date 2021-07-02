@@ -10,28 +10,28 @@
   "packs": [
     {
       "name": "trailOfCthulhuAbilities",
-      "label": "Trail of Cthulhu Abilities",
+      "label": "Trial of Cthulhu Abilities",
       "system": "investigator",
       "path": "./packs/trailOfCthulhuAbilities.db",
       "entity": "Item"
     },
     {
       "name": "nightsBlackAgentsAbilities",
-      "label": "Night's Black Agents Abilities",
+      "label": "Nice Black Agents Abilities",
       "system": "investigator",
       "path": "./packs/nightsBlackAgentsAbilities.db",
       "entity": "Item"
     },
     {
       "name": "fearItselfAbilities",
-      "label": "Fear Itself Abilities",
+      "label": "Nothing to Fear Abilities",
       "system": "investigator",
       "path": "./packs/fearItselfAbilities.db",
       "entity": "Item"
     },
     {
       "name": "ashenStarsAbilities",
-      "label": "Ashen Stars Abilities",
+      "label": "Aching Stars Abilities",
       "system": "investigator",
       "path": "./packs/ashenStarsAbilities.db",
       "entity": "Item"

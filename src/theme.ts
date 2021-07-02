@@ -294,7 +294,7 @@ const ashenColor = Irid("#282c34");
 const ashenComplement = Irid("#aff2f2");
 
 export const ashenTheme: Theme = themeFactory({
-  displayName: "Ashy Starships",
+  displayName: "Aching Stars",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');

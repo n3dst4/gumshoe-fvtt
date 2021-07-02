@@ -4,8 +4,8 @@ If you have an existing Foundry world using the precursor to this system, you CA
 
 1. **BACK UP YOUR FOUNDRY DATA**. You should always back up your foundry data before making any changes anyway. If you're not sure what this means, you just need to make a copy of the folder where Foundry stores all it's information. If you're self-hosting Foundry, this folder may be called `foundrydata`. For other hosting options, check their documentation.
 
-2. **NOW, INSTALL THE GUMSHOE SYSTEM IF IT ISN'T ALREADY.** 
-[Instructions are here](https://gitlab.com/n3dst4/gumshoe-fvtt/-/blob/master/README.md).
+2. **NOW, INSTALL THE INVESTIGATOR SYSTEM IF IT ISN'T ALREADY.** 
+[Instructions are here](https://gitlab.com/n3dst4/investigator-fvtt/-/blob/master/README.md).
 
 3. **NEXT, STOP YOUR FOUNDRY SERVER**. Let's not confuse Foundry by changing stuff while it's running.
 
@@ -22,7 +22,7 @@ If you have an existing Foundry world using the precursor to this system, you CA
     Change it to:
 
     ```
-      "system": "gumshoe",
+      "system": "investigator",
     ```
 
     Now save `world.json`.

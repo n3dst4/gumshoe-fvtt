@@ -14,7 +14,7 @@ export type SystemPreset = {
 }
 
 export const trailPreset: SystemPreset = {
-  displayName: "Trail of Cthulhu",
+  displayName: "Trial of Cthulhu",
   defaultTheme: "trailTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
@@ -27,7 +27,7 @@ export const trailPreset: SystemPreset = {
 };
 
 export const nbaPreset: SystemPreset = {
-  displayName: "Night's Black Agents",
+  displayName: "Nice Black Agents",
   defaultTheme: "nbaTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
@@ -40,7 +40,7 @@ export const nbaPreset: SystemPreset = {
 };
 
 export const fearPreset: SystemPreset = {
-  displayName: "Fear Itself",
+  displayName: "Nothing to Fear",
   defaultTheme: "fearTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical", "Psychic Powers"],
   generalAbilityCategories: ["General"],
