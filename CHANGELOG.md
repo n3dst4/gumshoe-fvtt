@@ -1,6 +1,11 @@
 # CHANGELOG
 
-## v2.5.0 (2021-06-04)
+## v3.0.0 (2021-07-03)
+
+* Move back to "Investigator" branding
+* Translations! Currently ony English is supported but we have a way to do others now.
+
+## v2.5.0 (2021-06-26)
 
 * FoundryVTT 0.8.8 compatible
 
