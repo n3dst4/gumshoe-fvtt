@@ -1,7 +1,7 @@
 {
   "name": "investigator",
   "title": "INVESTIGATOR System",
-  "description": "Unofficial GUMSHOE-compatible system for Foundry. Ships with compatiblity for Trail of Cthulhu, Night's Blacks Agents, Fear Itself, and Ashen Stars, and can be customized to work with any other GUMSHOE-based game.",
+  "description": "Unofficial GUMSHOE-compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
   "version": "3.0.0",
   "author": "Neil de Carteret",
   "scripts": [],

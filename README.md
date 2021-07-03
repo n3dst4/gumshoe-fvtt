@@ -1,6 +1,6 @@
 # INVESTIGATOR System for Foundry VTT
 
-A Foundry VTT system for managing characters compatible with GUMSHOE-based games. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
+Unofficial GUMSHOE-compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
 
 <a 
   target="_new" 
@@ -57,7 +57,7 @@ This sytem isn't registered so to install it into your Foundry instance:
 3. Where it says **Manfest URL**, paste in
 
     ```
-    https://gitlab.com/n3dst4/gumshoe-fvtt/-/raw/release/src/system.json
+    https://gitlab.com/n3dst4/investigator-fvtt/-/raw/release/src/system.json
     ```
     
 4. Click **Install**
@@ -69,9 +69,9 @@ If you've been using the precusor to the system, Trail of Cthulhu Unsanctioned, 
 
 ## Using the built-in game systems
 
-The system comes preconfigured for **Trail of Cthulhu**. If that's what you want to play, you can skip this section and move ahead to [Making PCs](#making-pcs).
+The system comes preconfigured for **Trial of Cthulhu**. If that's what you want to play, you can skip this section and move ahead to [Making PCs](#making-pcs).
 
-If you want to use one of the other built-in systems, open the Settings sidebar tab and look for the **GUMSHOE System Settings** button. Click this to open the configuration. You can ignore 90% of this window and just choose one of the presets at the top! If you want to tweak the other setting can can do so.
+If you want to use one of the other built-in systems, open the Settings sidebar tab and look for the **INVESTIGATOR System Settings** button. Click this to open the configuration. You can ignore 90% of this window and just choose one of the presets at the top! If you want to tweak the other setting can can do so.
 
 ## Setting up any system that isn't built in
 
@@ -81,7 +81,7 @@ The abilities that get added to a newly-created character all have to come from 
 
 So, first up, create a compendium pack to house your custom abilities. Give it a name like "Exampleshoe Abilities", if you're going to play Exampleshoe. You don't need to fill in the abilities yet.
 
-Now open the **Game Settings** sidebar tab and look for the **GUMSHOE System Settings** button. Click this to open the configuration. Pick any built-in system as a starting point, then customize the fields as you need to match your needs:
+Now open the **Game Settings** sidebar tab and look for the **INVESTIGATOR System Settings** button. Click this to open the configuration. Pick any built-in system as a starting point, then customize the fields as you need to match your needs:
 
 * **Visual Theme** We ship with a handful of visual themes to support our built-in systems. You can pick whichever one you like.
 * **Compendium packs for new PCs** This is a really important one. This selects what abilities will be automatically added to newly-created characters. Select the compendium you created for your custom abilities and **UNSELECT** everything else. You *could* leave multiple packs selected but you probably don't want to.
