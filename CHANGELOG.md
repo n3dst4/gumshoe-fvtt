@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## v3.0.1 (2021-07-03)
+
+* A couple of minor tweaks.
+
 ## v3.0.0 (2021-07-03)
 
-* Move back to "Investigator" branding
+* Move to "INVESTIGATOR" branding.
 * Translations! Currently ony English is supported but we have a way to do others now.
 
 ## v2.5.0 (2021-06-26)
@@ -39,7 +43,7 @@
 
 ## v2.0.0 (2021-02-26)
 
-* GUMSHOE for Foundry VTT is now re-launched separate from the previous Trail of Cthulhu system, which will go into maintenance mode with a s trong recommendation that folks upgrade to this one.
+* GUMSHOE for Foundry VTT is now re-launched separate from the previous Trail of Cthulhu system, which will go into maintenance mode with a strong recommendation that folks upgrade to this one.
 * Skipping a version number and dropping the pre-prelease suffix. Version numbers are free!
 * Launch this newly renamed GUMSHOE for Foundry VTT with support for Trail of Cthulhu (as taken from the previous incarnation) and Night's Black Agents.
 
