@@ -1,7 +1,7 @@
 {
   "name": "investigator",
   "title": "INVESTIGATOR System",
-  "description": "Unofficial GUMSHOE-compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
+  "description": "Unofficial system for Investigative games. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
   "version": "3.0.1",
   "author": "Neil de Carteret",
   "scripts": [],
@@ -9,31 +9,31 @@
   "styles": ["investigator.css"],
   "packs": [
     {
-      "name": "trailOfCthulhuAbilities",
-      "label": "Trial of Cthulhu Abilities",
+      "name": "pathOfCthulhuAbilities",
+      "label": "Path of Cthulhu Abilities",
       "system": "investigator",
-      "path": "./packs/trailOfCthulhuAbilities.db",
+      "path": "./packs/pathOfCthulhuAbilities.db",
       "entity": "Item"
     },
     {
-      "name": "nightsBlackAgentsAbilities",
+      "name": "niceBlackAgentsAbilities",
       "label": "Nice Black Agents Abilities",
       "system": "investigator",
-      "path": "./packs/nightsBlackAgentsAbilities.db",
+      "path": "./packs/niceBlackAgentsAbilities.db",
       "entity": "Item"
     },
     {
-      "name": "fearItselfAbilities",
+      "name": "nothingToFearAbilities",
       "label": "Nothing to Fear Abilities",
       "system": "investigator",
-      "path": "./packs/fearItselfAbilities.db",
+      "path": "./packs/nothingToFearAbilities.db",
       "entity": "Item"
     },
     {
-      "name": "ashenStarsAbilities",
-      "label": "Aching Stars Abilities",
+      "name": "pallidStarsAbilities",
+      "label": "Pallid Stars Abilities",
       "system": "investigator",
-      "path": "./packs/ashenStarsAbilities.db",
+      "path": "./packs/pallidStarsAbilities.db",
       "entity": "Item"
     }
   ],
