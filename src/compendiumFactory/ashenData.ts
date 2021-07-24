@@ -35,27 +35,27 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Anthropology" },
     { name: "Archaeology" },
     { name: "Botany" },
-    { name: "Cybe Culture" },
+    { name: "Cybe Culture" }, // not in SRD
     { name: "Forensic Accounting" },
     { name: "Forensic Psychology" },
     { name: "Geology" },
-    { name: "History, Balla" },
-    { name: "History, Combine" },
-    { name: "History, Durugh" },
-    { name: "History, Human" },
-    { name: "History, Kch-Thk" },
-    { name: "History, Tavak" },
+    { name: "History, Balla" }, // not in SRD
+    { name: "History, Combine" }, // not in SRD
+    { name: "History, Durugh" }, // not in SRD
+    { name: "History, Human" }, // not in SRD
+    { name: "History, Kch-Thk" }, // not in SRD
+    { name: "History, Tavak" }, // not in SRD
     { name: "Law" },
     { name: "Linguistics" },
-    { name: "Vas Mal Culture" },
-    { name: "Xenoculture" },
-    { name: "Zoology" },
+    { name: "Vas Mal Culture" }, // not in SRD
+    { name: "Xenoculture" }, // not in SRD
+    { name: "Zoology" }, // not in SRD
   ],
   Interpersonal: [
     { name: "Bullshit Detector" },
     { name: "Bureaucracy" },
     { name: "Cop Talk" },
-    { name: "Downside" },
+    { name: "Downside" }, // not in SRD
     { name: "Flattery" },
     { name: "Flirting" },
     { name: "Impersonate" },
@@ -68,62 +68,62 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
   ],
   Technical: [
     { name: "Astronomy" },
-    { name: "Bio Signatures" },
+    { name: "Bio Signatures" }, // not in SRD
     { name: "Chemistry" },
     { name: "Data Retrieval" },
-    { name: "Decryption" },
-    { name: "Energy Signatures" },
+    { name: "Decryption" }, // not in SRD
+    { name: "Energy Signatures" }, // not in SRD
     { name: "Evidence Collection" },
     { name: "Explosive Devices" },
     { name: "Forensic Anthropology" },
-    { name: "Forensic Engineering" },
-    { name: "Holo Surveillance" },
-    { name: "Imaging" },
-    { name: "Industrial Design" },
-    { name: "Kinetics" },
-    { name: "Virology" },
+    { name: "Forensic Engineering" }, // not in SRD
+    { name: "Holo Surveillance" }, // not in SRD
+    { name: "Imaging" }, // not in SRD
+    { name: "Industrial Design" }, // not in SRD
+    { name: "Kinetics" }, // not in SRD
+    { name: "Virology" }, // not in SRD
   ],
   "Special (Vas Mal)": [
-    { name: "Consciousness Simulation" },
-    { name: "Dreamsight" },
-    { name: "Neurosight" },
-    { name: "Timesight" },
+    { name: "Consciousness Simulation" }, // not in SRD
+    { name: "Dreamsight" }, // not in SRD
+    { name: "Neurosight" }, // not in SRD
+    { name: "Timesight" }, // not in SRD
   ],
 };
 
 export const generalAbilities: GeneralAbilitiesData = {
   General: [
     { name: "Athletics" },
-    { name: "Battle Console" },
+    { name: "Battle Console" }, // not in SRD
     { name: "Business Affairs" },
-    { name: "Communications Intercept" },
-    { name: "Emotion Suppression (Balla)" },
-    { name: "Enhancement Integration (Cybe)" },
-    { name: "Farsight (Vas Mal)" },
+    { name: "Communications Intercept" }, // not in SRD
+    { name: "Emotion Suppression (Balla)" }, // not in SRD
+    { name: "Enhancement Integration (Cybe)" }, // not in SRD
+    { name: "Farsight (Vas Mal)" }, // not in SRD
     { name: "Filch" },
-    { name: "Ground Craft" },
+    { name: "Ground Craft" }, // not in SRD
     { name: "Health", max: 15, min: -12, rating: 1, pool: 1, showTracker: true },
-    { name: "Helm Control" },
+    { name: "Helm Control" }, // not in SRD
     { name: "Infiltration" },
     { name: "Medic" },
-    { name: "Migrate Consciousness (Kch-Thk)" },
-    { name: "Naval Tactics" },
-    { name: "Neural Rewiring (Cybe)" },
-    { name: "Resist Battle Frenzy (Tavak)" },
-    { name: "Pathway Amplification (Vas Mal)" },
-    { name: "Probability Override (Vas Mal)" },
-    { name: "Phase (Durugh)" },
+    { name: "Migrate Consciousness (Kch-Thk)" }, // not in SRD
+    { name: "Naval Tactics" }, // not in SRD
+    { name: "Neural Rewiring (Cybe)" }, // not in SRD
+    { name: "Resist Battle Frenzy (Tavak)" }, // not in SRD
+    { name: "Pathway Amplification (Vas Mal)" }, // not in SRD
+    { name: "Probability Override (Vas Mal)" }, // not in SRD
+    { name: "Phase (Durugh)" }, // not in SRD
     { name: "Preparedness" },
-    { name: "Psychic Vitality (Vas Mal)" },
+    { name: "Psychic Vitality (Vas Mal)" }, // not in SRD
     { name: "Public Relations" },
     { name: "Scuffling" },
     { name: "Sense Trouble" },
     { name: "Shooting" },
-    { name: "Shuttle Craft" },
+    { name: "Shuttle Craft" }, // not in SRD
     { name: "Surveillance" },
-    { name: "Systems Design" },
-    { name: "Systems Repair" },
-    { name: "Viro Manipulation" },
+    { name: "Systems Design" }, // not in SRD
+    { name: "Systems Repair" }, // not in SRD
+    { name: "Viro Manipulation" }, // not in SRD
   ],
 };
 
