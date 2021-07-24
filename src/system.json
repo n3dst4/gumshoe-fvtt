@@ -1,7 +1,7 @@
 {
   "name": "investigator",
   "title": "INVESTIGATOR System",
-  "description": "Unofficial system for Investigative games. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
+  "description": "Unofficial GUMSHOE-Compatible system. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
   "version": "3.0.1",
   "author": "Neil de Carteret",
   "scripts": [],
