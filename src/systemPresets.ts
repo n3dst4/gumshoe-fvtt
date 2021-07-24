@@ -14,7 +14,7 @@ export type SystemPreset = {
 }
 
 export const trailPreset: SystemPreset = {
-  displayName: "Trial of Cthulhu",
+  displayName: "Path of Cthulhu",
   defaultTheme: "trailTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
@@ -53,7 +53,7 @@ export const fearPreset: SystemPreset = {
 };
 
 export const ashenPreset: SystemPreset = {
-  displayName: "Ashen Stars",
+  displayName: "Pallid Stars",
   defaultTheme: "ashenTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical", "Special (vas Mal)"],
   generalAbilityCategories: ["General"],
