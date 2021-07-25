@@ -122,10 +122,7 @@ export const tealTheme: Theme = themeFactory({
     wallpaper: "#ddd",
     bgTransSecondary: "rgba(255,255,255,0.2)",
     bgTransPrimary: "rgba(255,255,255,0.5)",
-    // bgOpaque: "#fff",
     bgTint: "rgba(0,0,0,0.1)",
-    // reverseMedium: "rgba(0,0,0,0.3)",
-    // reverseThick: "rgba(0,0,0,0.5)",
     text: "#433",
     textMuted: "#744",
   },
@@ -137,7 +134,6 @@ export const niceThemeDark: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     `,
-  //    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
   wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
@@ -150,13 +146,9 @@ export const niceThemeDark: Theme = themeFactory({
   },
   logoTransform: "scale(0.8)",
   logoBackdropStyle: {
-    // background: "linear-gradient(to right, #700 0%, #300 100%)",
     backgroundColor: "rgba(0,0,0,0.4)",
     transform: "scaleY(0.9) scaleX(1.2) translateY(0.1em)",
     zIndex: -1,
-    // borderStyle: "solid",
-    // borderThickness: "2px 0",
-    // borderColor: "#433",
   },
   colors: {
     accent: "#fff",
@@ -168,10 +160,7 @@ export const niceThemeDark: Theme = themeFactory({
     bgTransDangerPrimary: "rgba(255,128,0,0.2)",
     bgTransDangerSecondary: "rgba(255,128,0,0.3)",
 
-    // bgOpaque: "#000",
     bgTint: "rgba(255,255,255,0.1)",
-    // reverseMedium: "rgba(255,255,255,0.3)",
-    // reverseThick: "rgba(255,255,255,0.5)",
     text: "#ccc",
     textMuted: "#aaa",
   },
@@ -186,7 +175,6 @@ export const niceTheme: Theme = themeFactory({
   wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
-  // logo:
   logoFrontElementStyle: {
     color: "#fff",
   },
@@ -210,10 +198,7 @@ export const niceTheme: Theme = themeFactory({
     wallpaper: "#ddd",
     bgTransSecondary: "rgba(255,255,255,0.2)",
     bgTransPrimary: "rgba(255,255,255,0.5)",
-    // bgOpaque: "#fff",
     bgTint: "rgba(0,0,0,0.1)",
-    // reverseMedium: "rgba(0,0,0,0.3)",
-    // reverseThick: "rgba(0,0,0,0.5)",
     text: "#433",
     textMuted: "#744",
   },
@@ -242,10 +227,7 @@ export const highContrastTheme: Theme = themeFactory({
     wallpaper: "#ddd",
     bgTransSecondary: white.opacity(0.2).toString(),
     bgTransPrimary: white.opacity(0.4).toString(),
-    // bgOpaque: "#fff",
     bgTint: black.opacity(0.1).toString(),
-    // reverseMedium: black.opacity(0.2).toString(),
-    // reverseThick: black.opacity(0.3).toString(),
     text: "#000",
     textMuted: "#111",
   },
@@ -277,10 +259,7 @@ export const fearTheme: Theme = themeFactory({
     wallpaper: "#b6b3b3", //
     bgTransSecondary: "rgba(255,255,255,0.2)",
     bgTransPrimary: "rgba(255,255,255,0.5)",
-    // bgOpaque: "white",
     bgTint: "rgba(0,0,0,0.1)",
-    // reverseMedium: "rgba(0,0,0,0.3)",
-    // reverseThick: "rgba(0,0,0,0.5)",
     text: "#444",
     textMuted: "#666",
   },
@@ -289,7 +268,6 @@ export const fearTheme: Theme = themeFactory({
 const pallidBlur = "5px";
 const pallidOffset = "3px";
 const stripNewlines = (s: string) => s.replace("\n", "");
-// 00d5ff
 const pallidColor = Irid("#282c34");
 const pallidComplement = Irid("#aff2f2");
 
@@ -326,10 +304,7 @@ export const pallidTheme: Theme = themeFactory({
     width: "150%",
     zIndex: -1,
     borderStyle: "none",
-    // opacity: 0.8,
     maskImage: "linear-gradient(rgba(0, 0, 0, 1.0), transparent)",
-    // borderThickness: "2px 0",
-    // borderColor: "#433",
   },
   colors: {
     wallpaper: "#152938",
@@ -341,14 +316,10 @@ export const pallidTheme: Theme = themeFactory({
     bgTransPrimary: pallidColor.lightness(0.1).opacity(0.5).toString(),
 
     bgTint: "rgba(255,255,255,0.1)",
-    // reverseMedium: "rgba(255,255,255,0.3)",
-    // reverseThick: "rgba(255,255,255,0.5)",
     text: "#ddd",
     textMuted: "#aaa",
   },
 });
-
-// guille-pozzi-sbcIAn4Mn14-unsplash.webp
 
 export const themes: {[themeName: string]: Theme} = {
   tealTheme,
@@ -359,5 +330,4 @@ export const themes: {[themeName: string]: Theme} = {
   pallidTheme,
 };
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 export const ThemeContext = React.createContext<Theme>(tealTheme);
