@@ -13,9 +13,9 @@ export type SystemPreset = {
   useBoost: boolean,
 }
 
-export const trailPreset: SystemPreset = {
+export const pathOfCthulhuPreset: SystemPreset = {
   displayName: "Path of Cthulhu",
-  defaultTheme: "trailTheme",
+  defaultTheme: "tealTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Weapons", "Firearms", "Athletics"],
@@ -26,7 +26,7 @@ export const trailPreset: SystemPreset = {
   useBoost: false,
 };
 
-export const nbaPreset: SystemPreset = {
+export const niceBlackAgentsPreset: SystemPreset = {
   displayName: "Nice Black Agents",
   defaultTheme: "nbaTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
@@ -39,7 +39,7 @@ export const nbaPreset: SystemPreset = {
   useBoost: false,
 };
 
-export const fearPreset: SystemPreset = {
+export const nothingToFearPreset: SystemPreset = {
   displayName: "Nothing to Fear",
   defaultTheme: "fearTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical", "Psychic Powers"],
@@ -52,7 +52,7 @@ export const fearPreset: SystemPreset = {
   useBoost: false,
 };
 
-export const ashenPreset: SystemPreset = {
+export const pallidStarsPreset: SystemPreset = {
   displayName: "Pallid Stars",
   defaultTheme: "ashenTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical", "Special (vas Mal)"],
@@ -66,8 +66,8 @@ export const ashenPreset: SystemPreset = {
 };
 
 export const systemPresets = {
-  trailPreset,
-  nbaPreset,
-  fearPreset,
-  ashenPreset,
+  pathOfCthulhuPreset: pathOfCthulhuPreset,
+  niceBlackAgentsPreset: niceBlackAgentsPreset,
+  nothingToFearPreset: nothingToFearPreset,
+  pallidStarsPreset: pallidStarsPreset,
 };

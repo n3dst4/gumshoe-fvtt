@@ -30,7 +30,7 @@ const textBearerStyle: CSSObject = {
 const fontFactor = 16;
 
 /**
- * Outrageous Trail of Cthulhu logo
+ * Outrageous 1930s logo
  */
 export const LogoEditable: React.FC<LogoEditableProps> = ({
   text,

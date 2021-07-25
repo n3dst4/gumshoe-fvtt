@@ -34,13 +34,13 @@ Unofficial GUMSHOE-compatible system for Foundry VTT. Ships with compatiblity fo
 * Spend pool points!
 * Roll general ability tests!
 * Refresh an individual ability or refresh all your pools at once!
-* Built-in support for:
-  * Trail of Cthulhu!
-  * Night's Black Agents!
-  * Ashen Stars!
-  * Fear Itself!
+* Built-in support for several systems:
+  * "Path" of Cthulhu
+  * "Nice" Black Agents
+  * "Pallid" Stars
+  * "Nothing to Fear"
   * More coming soon!
-* Fully extensible to support basically any GUMSHOE-compatible game!
+* Fully extensible to support any GUMSHOE-compatible game
 * Party tracker (aka investigator matrix)
 * Visual themes for character sheets based on the built-in systems.
 * A high-contrast, (hopefully) accessibility-enhanced theme.
@@ -65,12 +65,12 @@ This sytem isn't registered so to install it into your Foundry instance:
 
 Now you can create a new world and choose this as the system.
 
-If you've been using the precusor to the system, Trail of Cthulhu Unsanctioned, see [UPGRADING](./UPGRADING.md) for info about how to upgrade existing worlds to this new system.
+If you've been using the precusor to the system, "T**** of Cthulhu Unsanctioned", see [UPGRADING](./UPGRADING.md) for info about how to upgrade existing worlds to this new system.
 
 
 ## Using the built-in game systems
 
-The system comes preconfigured for **Trial of Cthulhu**. If that's what you want to play, you can skip this section and move ahead to [Making PCs](#making-pcs).
+The system comes preconfigured for **Path of Cthulhu**. If that's what you want to play, you can skip this section and move ahead to [Making PCs](#making-pcs).
 
 If you want to use one of the other built-in systems, open the Settings sidebar tab and look for the **INVESTIGATOR System Settings** button. Click this to open the configuration. You can ignore 90% of this window and just choose one of the presets at the top! If you want to tweak the other setting can can do so.
 

@@ -17,7 +17,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
   index,
   actors,
 }) => {
-  const theme = themes[getDefaultThemeName()] || themes.trailTheme;
+  const theme = themes[getDefaultThemeName()] || themes.tealTheme;
 
   const zero = data.total === 0;
   const odd = index % 2 === 0;

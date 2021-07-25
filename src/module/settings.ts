@@ -17,7 +17,7 @@ import {
   useBoost,
 } from "../constants";
 import { mapValues } from "../functions";
-import { trailPreset } from "../systemPresets";
+import { pathOfCthulhuPreset } from "../systemPresets";
 import { Theme, themes } from "../theme";
 import { GumshoeSettingsClass } from "./GumshoeSettingsClass";
 
@@ -47,7 +47,7 @@ export const registerSettings = function () {
     scope: "world",
     config: false,
     choices: mapValues((theme: Theme) => (theme.displayName), themes),
-    default: trailPreset.defaultTheme,
+    default: pathOfCthulhuPreset.defaultTheme,
     type: String,
   });
 
@@ -55,42 +55,42 @@ export const registerSettings = function () {
     name: "Investigative ability categories",
     scope: "world",
     config: false,
-    default: trailPreset.investigativeAbilityCategories,
+    default: pathOfCthulhuPreset.investigativeAbilityCategories,
     type: Object,
   });
   game.settings.register(systemName, generalAbilityCategories, {
     name: "General ability categories",
     scope: "world",
     config: false,
-    default: trailPreset.generalAbilityCategories,
+    default: pathOfCthulhuPreset.generalAbilityCategories,
     type: Object,
   });
   game.settings.register(systemName, combatAbilities, {
     name: "Combat abilities",
     scope: "world",
     config: false,
-    default: trailPreset.combatAbilities,
+    default: pathOfCthulhuPreset.combatAbilities,
     type: Object,
   });
   game.settings.register(systemName, occupationLabel, {
     name: "What do we call \"Occupation\"?",
     scope: "world",
     config: false,
-    default: trailPreset.occupationLabel,
+    default: pathOfCthulhuPreset.occupationLabel,
     type: String,
   });
   game.settings.register(systemName, shortNotes, {
     name: "Short Notes",
     scope: "world",
     config: false,
-    default: trailPreset.shortNotes,
+    default: pathOfCthulhuPreset.shortNotes,
     type: Object,
   });
   game.settings.register(systemName, longNotes, {
     name: "Long Notes",
     scope: "world",
     config: false,
-    default: trailPreset.longNotes,
+    default: pathOfCthulhuPreset.longNotes,
     type: Object,
   });
 
@@ -98,7 +98,7 @@ export const registerSettings = function () {
     name: "Compendium packs for new PCs",
     scope: "world",
     config: false,
-    default: trailPreset.newPCPacks,
+    default: pathOfCthulhuPreset.newPCPacks,
     type: Object,
     onChange: (newPacks: string[]) => {
       Hooks.call(newPCPacksUpdated, newPacks);
@@ -110,7 +110,7 @@ export const registerSettings = function () {
     hint: "",
     scope: "world",
     config: false,
-    default: "trailPreset",
+    default: "pathOfCthulhuPreset",
     type: String,
   });
 
@@ -119,7 +119,7 @@ export const registerSettings = function () {
     hint: "",
     scope: "world",
     config: false,
-    default: trailPreset.useBoost,
+    default: pathOfCthulhuPreset.useBoost,
     type: Boolean,
   });
 

@@ -27,7 +27,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
   foundryApplication,
   party,
 }) => {
-  const theme = themes[getDefaultThemeName()] || themes.trailTheme;
+  const theme = themes[getDefaultThemeName()] || themes.tealTheme;
   const [abilityTuples, setAbilityTuples] = useState<AbilityTuple[]>([]);
   const [actors, setActors] = useState<GumshoeActor[]>([]);
   const [rowData, setRowData] = useState<RowData[]>([]);

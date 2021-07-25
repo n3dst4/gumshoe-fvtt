@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { customSystem } from "../constants";
 import * as settings from "../settingsHelpers";
 import { systemPresets } from "../systemPresets";
-import { themes, trailTheme } from "../theme";
+import { themes, tealTheme } from "../theme";
 import { CSSReset } from "./CSSReset";
 import { AsyncTextInput } from "./inputs/AsyncTextInput";
 import { Checkbox } from "./inputs/Checkbox";
@@ -126,7 +126,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
     ],
   );
 
-  const theme = themes[defaultTheme] || trailTheme;
+  const theme = themes[defaultTheme] || tealTheme;
 
   const [showJSON, setShowJSON] = useState(false);
 

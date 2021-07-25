@@ -1,24 +1,4 @@
 import * as constants from "./constants";
-// import { TrailActor } from "./module/TrailActor";
-// type BaseAbilityData = {
-//   "rating": number,
-//   "pool": number,
-//   "hasSpecialities": boolean,
-//   "speciality": string
-// }
-
-// export type InvestigativeAbilityData = BaseAbilityData & {
-//   "category": string,
-// }
-
-// export type GeneralAbilityData = BaseAbilityData & {
-//   "canBeInvestigative": boolean,
-// }
-
-// export type InvestigativeAbility = Item<InvestigativeAbilityData>;
-
-// export type GeneralAbility = Item<GeneralAbilityData>;
-
 export type AbilityType = typeof constants.investigativeAbility | typeof constants.generalAbility;
 
 export type Resource = {
@@ -117,7 +97,6 @@ export type AbilityData = InvestigativeAbilityData | GeneralAbilityData;
 // the most correct "type" for this is a Partial-wrapped splodge of all the
 // possibilities. I don't like it.
 export type GumshoeItemData = Partial<EquipmentData & WeaponData & InvestigativeAbilityData & GeneralAbilityData>;
-// export type TrailItemData = EquipmentData | WeaponData | AbilityData;
 
 /**
  * this is wild - extract a subset of prperties from a type based on a test

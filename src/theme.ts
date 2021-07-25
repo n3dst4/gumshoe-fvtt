@@ -92,7 +92,7 @@ export const themeFactory = (seed: ThemeSeed): Theme => {
   };
 };
 
-export const trailTheme: Theme = themeFactory({
+export const tealTheme: Theme = themeFactory({
   displayName: "Teal of Cthulhu",
   global: css`
     @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
@@ -352,7 +352,7 @@ export const ashenTheme: Theme = themeFactory({
 // guille-pozzi-sbcIAn4Mn14-unsplash.webp
 
 export const themes: {[themeName: string]: Theme} = {
-  trailTheme,
+  tealTheme,
   nbaTheme,
   nbaThemeDark,
   highContrastTheme,
@@ -361,4 +361,4 @@ export const themes: {[themeName: string]: Theme} = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export const ThemeContext = React.createContext<Theme>(trailTheme);
+export const ThemeContext = React.createContext<Theme>(tealTheme);
