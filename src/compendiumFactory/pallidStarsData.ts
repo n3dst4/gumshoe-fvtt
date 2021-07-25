@@ -35,27 +35,27 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Anthropology" },
     { name: "Archaeology" },
     { name: "Botany" },
-    { name: "Cybe Culture" }, // not in SRD
+    { name: "C___ Culture" }, // should be Cybe Culture
     { name: "Forensic Accounting" },
     { name: "Forensic Psychology" },
     { name: "Geology" },
-    { name: "History, Balla" }, // not in SRD
-    { name: "History, Combine" }, // not in SRD
-    { name: "History, Durugh" }, // not in SRD
-    { name: "History, Human" }, // not in SRD
-    { name: "History, Kch-Thk" }, // not in SRD
-    { name: "History, Tavak" }, // not in SRD
+    { name: "History, B____" }, // should be History, Balla
+    { name: "History, C______" }, // should be History, Combine
+    { name: "History, D_____" }, // should be History, Durugh
+    { name: "History, H____" }, // should be History, Human
+    { name: "History, K__-T__" }, // should be History, Kch-Thk
+    { name: "History, T____" }, // should be History, Tavak
     { name: "Law" },
     { name: "Linguistics" },
-    { name: "Vas Mal Culture" }, // not in SRD
-    { name: "Xenoculture" }, // not in SRD
-    { name: "Zoology" }, // not in SRD
+    { name: "V__ M__ Culture" }, // should be Vas Mal Culture
+    { name: "Xenology" }, // should be Xenoculture
+    { name: "Zoological Studies" }, // should be Zoology
   ],
   Interpersonal: [
     { name: "Bullshit Detector" },
     { name: "Bureaucracy" },
     { name: "Cop Talk" },
-    { name: "Downside" }, // not in SRD
+    { name: "Downclass" }, // should be Downside
     { name: "Flattery" },
     { name: "Flirting" },
     { name: "Impersonate" },
@@ -68,26 +68,26 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
   ],
   Technical: [
     { name: "Astronomy" },
-    { name: "Bio Signatures" }, // not in SRD
+    { name: "Bio Readings" }, // should be Bio Signatures
     { name: "Chemistry" },
     { name: "Data Retrieval" },
-    { name: "Decryption" }, // not in SRD
-    { name: "Energy Signatures" }, // not in SRD
+    { name: "Cryptography" }, // should be Decryption
+    { name: "Energy Readings" }, // should be Energy Signatures
     { name: "Evidence Collection" },
     { name: "Explosive Devices" },
     { name: "Forensic Anthropology" },
-    { name: "Forensic Engineering" }, // not in SRD
-    { name: "Holo Surveillance" }, // not in SRD
-    { name: "Imaging" }, // not in SRD
-    { name: "Industrial Design" }, // not in SRD
-    { name: "Kinetics" }, // not in SRD
-    { name: "Virology" }, // not in SRD
+    { name: "Forensic Mechanics" }, // should be Forensic Engineering
+    { name: "Holographic recording (covert)" }, // should be Holo Surveillance
+    { name: "Image Recording" }, // should be Imaging
+    { name: "Industrial Studies" }, // should be Industrial Design
+    { name: "Kinetic Ballistics" }, // should be Kinetics
+    { name: "Virus Studies" }, // should be Virology
   ],
-  "Special (Vas Mal)": [
-    { name: "Consciousness Simulation" }, // not in SRD
-    { name: "Dreamsight" }, // not in SRD
-    { name: "Neurosight" }, // not in SRD
-    { name: "Timesight" }, // not in SRD
+  Special: [ // should be Special (Vas Mal)
+    { name: "Conscience Emulation" }, // should be Consciousness Simulation
+    { name: "Dream Vision" }, // should be Dreamsight
+    { name: "Neuro Vision" }, // should be Neurosight
+    { name: "Time Vision" }, // should be Timesight
   ],
 };
 

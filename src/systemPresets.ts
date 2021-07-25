@@ -55,7 +55,7 @@ export const nothingToFearPreset: SystemPreset = {
 export const pallidStarsPreset: SystemPreset = {
   displayName: "Pallid Stars",
   defaultTheme: "pallidTheme",
-  investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical", "Special (vas Mal)"],
+  investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical", "Special"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Shooting"],
   occupationLabel: "Species",
