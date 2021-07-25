@@ -34,7 +34,6 @@ export const generatePacks = async <
 
   Object.keys(abilityData).forEach(
     async (category: keyof typeof abilityData) => {
-      // const folder = await Folder.create({ name: category, type: "Item" }, { temporary: true });
       const abilityDatas = abilityData[category].map((data: any) => {
         const { name, type, img, ...rest } = data;
         return {
@@ -51,7 +50,7 @@ export const generatePacks = async <
       });
       const items = await Item.create(abilityDatas, { temporary: true });
       // await pack.importEntity(folder);//
-      for (const item of (items as unknown) as Entity<any>[]) {
+      for (const item of items as unknown as Entity<any>[]) {
         await pack.importEntity(item);
         console.log(
           `Imported Item ${item.name} into Compendium pack ${pack.collection}`,
@@ -66,26 +65,58 @@ export const initializePackGenerators = () => {
     pathOfCthulhu: async () => {
       const pack = findPack(packNames.pathOfCthulhuAbilities);
       emptyPack(pack);
-      await generatePacks(pathOfCthulhuData.investigativeAbilities, pathOfCthulhuData.investigativeTemplate, pack);
-      await generatePacks(pathOfCthulhuData.generalAbilities, pathOfCthulhuData.generalTemplate, pack);
+      await generatePacks(
+        pathOfCthulhuData.investigativeAbilities,
+        pathOfCthulhuData.investigativeTemplate,
+        pack,
+      );
+      await generatePacks(
+        pathOfCthulhuData.generalAbilities,
+        pathOfCthulhuData.generalTemplate,
+        pack,
+      );
     },
     niceBlackAgents: async () => {
       const pack = findPack(packNames.niceBlackAgentsAbilities);
       emptyPack(pack);
-      await generatePacks(niceBlackAgentsData.investigativeAbilities, niceBlackAgentsData.investigativeTemplate, pack);
-      await generatePacks(niceBlackAgentsData.generalAbilities, niceBlackAgentsData.generalTemplate, pack);
+      await generatePacks(
+        niceBlackAgentsData.investigativeAbilities,
+        niceBlackAgentsData.investigativeTemplate,
+        pack,
+      );
+      await generatePacks(
+        niceBlackAgentsData.generalAbilities,
+        niceBlackAgentsData.generalTemplate,
+        pack,
+      );
     },
     nothingToFear: async () => {
       const pack = findPack(packNames.nothingToFearAbilities);
       emptyPack(pack);
-      await generatePacks(nothingToFearData.investigativeAbilities, nothingToFearData.investigativeTemplate, pack);
-      await generatePacks(nothingToFearData.generalAbilities, nothingToFearData.generalTemplate, pack);
+      await generatePacks(
+        nothingToFearData.investigativeAbilities,
+        nothingToFearData.investigativeTemplate,
+        pack,
+      );
+      await generatePacks(
+        nothingToFearData.generalAbilities,
+        nothingToFearData.generalTemplate,
+        pack,
+      );
     },
     pallidStars: async () => {
       const pack = findPack(packNames.pallidStarsAbilities);
       emptyPack(pack);
-      await generatePacks(pallidStarsData.investigativeAbilities, pallidStarsData.investigativeTemplate, pack);
-      await generatePacks(pallidStarsData.generalAbilities, pallidStarsData.generalTemplate, pack);
+      await generatePacks(
+        pallidStarsData.investigativeAbilities,
+        pallidStarsData.investigativeTemplate,
+        pack,
+      );
+      await generatePacks(
+        pallidStarsData.generalAbilities,
+        pallidStarsData.generalTemplate,
+        pack,
+      );
     },
   };
 };
