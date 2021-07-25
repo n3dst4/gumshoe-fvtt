@@ -3,10 +3,10 @@ import {
   GeneralAbilityTemplate,
   InvestigativeAbilityTemplate,
 } from "./types";
-import * as trailData from "./trailData";
-import * as nbaData from "./nbaData";
-import * as fearData from "./fearData";
-import * as ashenData from "./ashenData";
+import * as pathOfCthulhuData from "./pathOfCthulhuData";
+import * as niceBlackAgentsData from "./niceBlackAgentsData";
+import * as nothingToFearData from "./nothingToFearData";
+import * as pallidStarsData from "./pallidStarsData";
 import { packNames, systemName } from "../constants";
 
 export const emptyPack = async (pack: any) => {
@@ -65,25 +65,25 @@ export const initializePackGenerators = () => {
   (window as any).generateTrailAbilities = async () => {
     const pack = findPack(packNames.pathOfCthulhuAbilities);
     emptyPack(pack);
-    await generatePacks(trailData.investigativeAbilities, trailData.investigativeTemplate, pack);
-    await generatePacks(trailData.generalAbilities, trailData.generalTemplate, pack);
+    await generatePacks(pathOfCthulhuData.investigativeAbilities, pathOfCthulhuData.investigativeTemplate, pack);
+    await generatePacks(pathOfCthulhuData.generalAbilities, pathOfCthulhuData.generalTemplate, pack);
   };
   (window as any).generateNBAAbilities = async () => {
     const pack = findPack(packNames.niceBlackAgentsAbilities);
     emptyPack(pack);
-    await generatePacks(nbaData.investigativeAbilities, nbaData.investigativeTemplate, pack);
-    await generatePacks(nbaData.generalAbilities, nbaData.generalTemplate, pack);
+    await generatePacks(niceBlackAgentsData.investigativeAbilities, niceBlackAgentsData.investigativeTemplate, pack);
+    await generatePacks(niceBlackAgentsData.generalAbilities, niceBlackAgentsData.generalTemplate, pack);
   };
   (window as any).generateFearAbilities = async () => {
     const pack = findPack(packNames.nothingToFearAbilities);
     emptyPack(pack);
-    await generatePacks(fearData.investigativeAbilities, fearData.investigativeTemplate, pack);
-    await generatePacks(fearData.generalAbilities, fearData.generalTemplate, pack);
+    await generatePacks(nothingToFearData.investigativeAbilities, nothingToFearData.investigativeTemplate, pack);
+    await generatePacks(nothingToFearData.generalAbilities, nothingToFearData.generalTemplate, pack);
   };
   (window as any).generateAshenAbilities = async () => {
     const pack = findPack(packNames.pallidStarsAbilities);
     emptyPack(pack);
-    await generatePacks(ashenData.investigativeAbilities, ashenData.investigativeTemplate, pack);
-    await generatePacks(ashenData.generalAbilities, ashenData.generalTemplate, pack);
+    await generatePacks(pallidStarsData.investigativeAbilities, pallidStarsData.investigativeTemplate, pack);
+    await generatePacks(pallidStarsData.generalAbilities, pallidStarsData.generalTemplate, pack);
   };
 };
