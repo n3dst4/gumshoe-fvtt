@@ -36,16 +36,16 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Archaeology" },
     { name: "Architecture" },
     { name: "Art History" },
-    { name: "Criminology" },
-    { name: "Diagnosis" },
+    { name: "Criminology" }, // not in SRD
+    { name: "Diagnosis" }, // not in SRD
     { name: "History" },
-    { name: "Human Terrain" },
+    { name: "Human Terrain" }, // not in SRD
     { name: "Languages", hasSpecialities: true },
     { name: "Law" },
     { name: "Military Science" },
     { name: "Occult Studies" },
     { name: "Research" },
-    { name: "Vampirology" },
+    { name: "Vampirology" }, // not in SRD
   ],
   Interpersonal: [
     { name: "Bullshit Detector" },
@@ -65,16 +65,16 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Astronomy" },
     { name: "Chemistry" },
     { name: "Cryptography" },
-    { name: "Data Recovery" },
+    { name: "Data Recovery" }, // not in SRD (Data Retrieval)
     { name: "Electronic Surveillance" },
-    { name: "Forensic Pathology" },
+    { name: "Forensic Pathology" }, // not in SRD (Pathology)
     { name: "Forgery", hasSpecialities: true },
     { name: "Notice" },
     { name: "Outdoor Survival" },
-    { name: "Pharmacy" },
+    { name: "Pharmacy" }, // not in SRD
     { name: "Photography" },
     { name: "Traffic Analysis" },
-    { name: "Urban Survival", hasSpecialities: true },
+    { name: "Urban Survival", hasSpecialities: true }, // not in SRD
   ],
 };
 
@@ -82,11 +82,11 @@ export const generalAbilities: GeneralAbilitiesData = {
   General: [
     { name: "Athletics" },
     { name: "Conceal" },
-    { name: "Cover" },
-    { name: "Digital Intrusion" },
+    { name: "Cover" }, // not in SRD (could go "Cover Identities")
+    { name: "Digital Intrusion" }, // not in SRD
     { name: "Disguise" },
     { name: "Driving", hasSpecialities: true },
-    { name: "Explosive Devices" },
+    { name: "Explosive Devices" }, // not in SRD (Explosives)
     { name: "Filch" },
     { name: "Gambling" },
     { name: "Hand-to-Hand" },
@@ -102,6 +102,6 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Shrink" },
     { name: "Stability", max: 15, min: -12, rating: 4, pool: 4, showTracker: true },
     { name: "Surveillance" },
-    { name: "Weapons" },
+    { name: "Weapons" }, // not in SRD (Could go "Melee Weapons" or "Weaponry")
   ],
 };

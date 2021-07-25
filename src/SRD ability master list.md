@@ -1,7 +1,7 @@
 # SRD Abilities
 
 ## Investigative Academic
-
+Accounting (appears under "Sample Occupation: Private Investigator")
 Anthropology
 Archaeology
 Architecture
@@ -121,3 +121,5 @@ Reality Anchor
 Viroware Enhancement: Dominator
 
 Cherries
+
+
