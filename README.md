@@ -25,6 +25,7 @@ Unofficial GUMSHOE-compatible system for Foundry VTT. Ships with compatiblity fo
   - [Bug reports and contact](#bug-reports-and-contact)
   - [Development & general hacking](#development--general-hacking)
   - [Credits](#credits)
+    - [GUMSHOE SRD Creative Commons](#gumshoe-srd-creative-commons)
 
 
 ## Features
@@ -167,9 +168,12 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 
 <span>Photo by <a href="https://unsplash.com/@guillepozzi?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">guille pozzi</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 
-This System for Foundry VTT uses trademarks and/or copyrights owned by Pelgrane Press Ltd, which are used under the Pelgrane Press Ltd, Community Use Policy. We are expressly prohibited from charging you to use or access this content. This System for Foundry VTT is not published, endorsed, or specifically approved by Pelgrane Press Ltd. For more information about Pelgrane Press Ltd’s Community Use Policy, please visit [this page](https://wp.me/p7Ic36-5FU). For more information about Pelgrane Press Ltd visit [pelgranepress.com](http://pelgranepress.com/).”
-
 Huge thanks to Nick van Oosten/NickEast for [Foundry Project Creator](https://gitlab.com/foundry-projects/foundry-pc/create-foundry-project) and [the Typescript types to go with it](https://gitlab.com/foundry-projects/foundry-pc/foundry-pc-types).
+
+
+### GUMSHOE SRD Creative Commons
+
+This work is based on the GUMSHOE SRD (found at http://www.pelgranepress.com/?p=12466), a product of Pelgrane Press, developed, written, and edited by Robin D. Laws with additional material by Kenneth Hite, and licensed for our use under the Creative Commons Attribution 3.0 Unported license (http://creativecommons.org/licenses/by/3.0/)
 
 
 [project-site]: https://gitlab.com/n3dst4/investigator-system/-/issues
