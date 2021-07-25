@@ -28,7 +28,7 @@ export const pathOfCthulhuPreset: SystemPreset = {
 
 export const niceBlackAgentsPreset: SystemPreset = {
   displayName: "Nice Black Agents",
-  defaultTheme: "nbaTheme",
+  defaultTheme: "niceTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Hand-to-Hand", "Weapons", "Shooting", "Athletics"],
@@ -54,7 +54,7 @@ export const nothingToFearPreset: SystemPreset = {
 
 export const pallidStarsPreset: SystemPreset = {
   displayName: "Pallid Stars",
-  defaultTheme: "ashenTheme",
+  defaultTheme: "pallidTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical", "Special (vas Mal)"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Shooting"],

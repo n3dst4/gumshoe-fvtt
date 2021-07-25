@@ -131,8 +131,8 @@ export const tealTheme: Theme = themeFactory({
   },
 });
 
-export const nbaThemeDark: Theme = themeFactory({
-  displayName: "Night's Dark Red Agents",
+export const niceThemeDark: Theme = themeFactory({
+  displayName: "Nice Dark Red Agents",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
@@ -177,7 +177,7 @@ export const nbaThemeDark: Theme = themeFactory({
   },
 });
 
-export const nbaTheme: Theme = themeFactory({
+export const niceTheme: Theme = themeFactory({
   displayName: "Nice Light Agents",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
@@ -286,14 +286,14 @@ export const fearTheme: Theme = themeFactory({
   },
 });
 
-const ashenBlur = "5px";
-const ashenOffset = "3px";
+const pallidBlur = "5px";
+const pallidOffset = "3px";
 const stripNewlines = (s: string) => s.replace("\n", "");
 // 00d5ff
-const ashenColor = Irid("#282c34");
-const ashenComplement = Irid("#aff2f2");
+const pallidColor = Irid("#282c34");
+const pallidComplement = Irid("#aff2f2");
 
-export const ashenTheme: Theme = themeFactory({
+export const pallidTheme: Theme = themeFactory({
   displayName: "Aching Stars",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
@@ -309,10 +309,10 @@ export const ashenTheme: Theme = themeFactory({
   },
   logoRearElementStyle: {
     textShadow: stripNewlines(`
-      -${ashenOffset} -${ashenOffset} ${ashenBlur} #cdf6ff, 
-      -${ashenOffset} ${ashenOffset} ${ashenBlur} #cdf6ff, 
-      ${ashenOffset} -${ashenOffset} ${ashenBlur} #cdf6ff, 
-      ${ashenOffset} ${ashenOffset} ${ashenBlur} #cdf6ff`),
+      -${pallidOffset} -${pallidOffset} ${pallidBlur} #cdf6ff, 
+      -${pallidOffset} ${pallidOffset} ${pallidBlur} #cdf6ff, 
+      ${pallidOffset} -${pallidOffset} ${pallidBlur} #cdf6ff, 
+      ${pallidOffset} ${pallidOffset} ${pallidBlur} #cdf6ff`),
   },
   logoTransform: "rotateY(21deg) rotateZ(0deg) translateX(4%) scale(0.8)",
   logoBackdropStyle: {
@@ -333,13 +333,12 @@ export const ashenTheme: Theme = themeFactory({
   },
   colors: {
     wallpaper: "#152938",
-    accent: ashenComplement.toString(),
+    accent: pallidComplement.toString(),
     accentContrast: "#333",
-    glow: ashenComplement.lightness(0.7).toString(),
+    glow: pallidComplement.lightness(0.7).toString(),
 
-    bgTransSecondary: ashenColor.lightness(0.3).opacity(0.5).toString(),
-    bgTransPrimary: ashenColor.lightness(0.1).opacity(0.5).toString(),
-    // bgOpaque: ashenColor.lightness(0.1).toString(),
+    bgTransSecondary: pallidColor.lightness(0.3).opacity(0.5).toString(),
+    bgTransPrimary: pallidColor.lightness(0.1).opacity(0.5).toString(),
 
     bgTint: "rgba(255,255,255,0.1)",
     // reverseMedium: "rgba(255,255,255,0.3)",
@@ -353,11 +352,11 @@ export const ashenTheme: Theme = themeFactory({
 
 export const themes: {[themeName: string]: Theme} = {
   tealTheme,
-  nbaTheme,
-  nbaThemeDark,
+  niceTheme,
+  niceThemeDark,
   highContrastTheme,
   fearTheme,
-  ashenTheme,
+  pallidTheme,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
