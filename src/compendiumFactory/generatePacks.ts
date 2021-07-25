@@ -62,28 +62,41 @@ export const generatePacks = async <
 };
 
 export const initializePackGenerators = () => {
-  (window as any).generateTrailAbilities = async () => {
-    const pack = findPack(packNames.pathOfCthulhuAbilities);
-    emptyPack(pack);
-    await generatePacks(pathOfCthulhuData.investigativeAbilities, pathOfCthulhuData.investigativeTemplate, pack);
-    await generatePacks(pathOfCthulhuData.generalAbilities, pathOfCthulhuData.generalTemplate, pack);
-  };
-  (window as any).generateNBAAbilities = async () => {
-    const pack = findPack(packNames.niceBlackAgentsAbilities);
-    emptyPack(pack);
-    await generatePacks(niceBlackAgentsData.investigativeAbilities, niceBlackAgentsData.investigativeTemplate, pack);
-    await generatePacks(niceBlackAgentsData.generalAbilities, niceBlackAgentsData.generalTemplate, pack);
-  };
-  (window as any).generateFearAbilities = async () => {
-    const pack = findPack(packNames.nothingToFearAbilities);
-    emptyPack(pack);
-    await generatePacks(nothingToFearData.investigativeAbilities, nothingToFearData.investigativeTemplate, pack);
-    await generatePacks(nothingToFearData.generalAbilities, nothingToFearData.generalTemplate, pack);
-  };
-  (window as any).generateAshenAbilities = async () => {
-    const pack = findPack(packNames.pallidStarsAbilities);
-    emptyPack(pack);
-    await generatePacks(pallidStarsData.investigativeAbilities, pallidStarsData.investigativeTemplate, pack);
-    await generatePacks(pallidStarsData.generalAbilities, pallidStarsData.generalTemplate, pack);
+  window.generatePacks = {
+    pathOfCthulhu: async () => {
+      const pack = findPack(packNames.pathOfCthulhuAbilities);
+      emptyPack(pack);
+      await generatePacks(pathOfCthulhuData.investigativeAbilities, pathOfCthulhuData.investigativeTemplate, pack);
+      await generatePacks(pathOfCthulhuData.generalAbilities, pathOfCthulhuData.generalTemplate, pack);
+    },
+    niceBlackAgents: async () => {
+      const pack = findPack(packNames.niceBlackAgentsAbilities);
+      emptyPack(pack);
+      await generatePacks(niceBlackAgentsData.investigativeAbilities, niceBlackAgentsData.investigativeTemplate, pack);
+      await generatePacks(niceBlackAgentsData.generalAbilities, niceBlackAgentsData.generalTemplate, pack);
+    },
+    nothingToFear: async () => {
+      const pack = findPack(packNames.nothingToFearAbilities);
+      emptyPack(pack);
+      await generatePacks(nothingToFearData.investigativeAbilities, nothingToFearData.investigativeTemplate, pack);
+      await generatePacks(nothingToFearData.generalAbilities, nothingToFearData.generalTemplate, pack);
+    },
+    pallidStars: async () => {
+      const pack = findPack(packNames.pallidStarsAbilities);
+      emptyPack(pack);
+      await generatePacks(pallidStarsData.investigativeAbilities, pallidStarsData.investigativeTemplate, pack);
+      await generatePacks(pallidStarsData.generalAbilities, pallidStarsData.generalTemplate, pack);
+    },
   };
 };
+
+declare global {
+  interface Window {
+    generatePacks: {
+      pathOfCthulhu(): Promise<void>,
+      niceBlackAgents(): Promise<void>,
+      nothingToFear(): Promise<void>,
+      pallidStars(): Promise<void>,
+    };
+  }
+}
