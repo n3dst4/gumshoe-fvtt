@@ -42,10 +42,10 @@ export const generalAbilityIcon = `/systems/${systemName}/assets/icons/fist.webp
 // packs
 
 export const packNames = {
-  trailOfCthulhuAbilities: "trailOfCthulhuAbilities",
-  nightsBlackAgentsAbilities: "nightsBlackAgentsAbilities",
-  fearItselfAbilities: "fearItselfAbilities",
-  ashenStarsAbilities: "ashenStarsAbilities",
+  niceBlackAgentsAbilities: "niceBlackAgentsAbilities",
+  nothingToFearAbilities: "nothingToFearAbilities",
+  pallidStarsAbilities: "pallidStarsAbilities",
+  pathOfCthulhuAbilities: "pathOfCthulhuAbilities",
 };
 
 // hooks

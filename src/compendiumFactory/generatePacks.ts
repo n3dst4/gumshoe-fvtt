@@ -63,25 +63,25 @@ export const generatePacks = async <
 
 export const initializePackGenerators = () => {
   (window as any).generateTrailAbilities = async () => {
-    const pack = findPack(packNames.trailOfCthulhuAbilities);
+    const pack = findPack(packNames.pathOfCthulhuAbilities);
     emptyPack(pack);
     await generatePacks(trailData.investigativeAbilities, trailData.investigativeTemplate, pack);
     await generatePacks(trailData.generalAbilities, trailData.generalTemplate, pack);
   };
   (window as any).generateNBAAbilities = async () => {
-    const pack = findPack(packNames.nightsBlackAgentsAbilities);
+    const pack = findPack(packNames.niceBlackAgentsAbilities);
     emptyPack(pack);
     await generatePacks(nbaData.investigativeAbilities, nbaData.investigativeTemplate, pack);
     await generatePacks(nbaData.generalAbilities, nbaData.generalTemplate, pack);
   };
   (window as any).generateFearAbilities = async () => {
-    const pack = findPack(packNames.fearItselfAbilities);
+    const pack = findPack(packNames.nothingToFearAbilities);
     emptyPack(pack);
     await generatePacks(fearData.investigativeAbilities, fearData.investigativeTemplate, pack);
     await generatePacks(fearData.generalAbilities, fearData.generalTemplate, pack);
   };
   (window as any).generateAshenAbilities = async () => {
-    const pack = findPack(packNames.ashenStarsAbilities);
+    const pack = findPack(packNames.pallidStarsAbilities);
     emptyPack(pack);
     await generatePacks(ashenData.investigativeAbilities, ashenData.investigativeTemplate, pack);
     await generatePacks(ashenData.generalAbilities, ashenData.generalTemplate, pack);
