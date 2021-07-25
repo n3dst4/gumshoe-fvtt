@@ -35,19 +35,19 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Anthropology" },
     { name: "Archaeology" },
     { name: "Botany" },
-    { name: "C___ Culture" }, // should be Cybe Culture
+    { name: "C Culture" }, // should be Cybe Culture
     { name: "Forensic Accounting" },
     { name: "Forensic Psychology" },
     { name: "Geology" },
-    { name: "History, B____" }, // should be History, Balla
-    { name: "History, C______" }, // should be History, Combine
-    { name: "History, D_____" }, // should be History, Durugh
-    { name: "History, H____" }, // should be History, Human
-    { name: "History, K__-T__" }, // should be History, Kch-Thk
-    { name: "History, T____" }, // should be History, Tavak
+    { name: "History, B" }, // should be History, Balla
+    { name: "History, C" }, // should be History, Combine
+    { name: "History, D" }, // should be History, Durugh
+    { name: "History, H" }, // should be History, Human
+    { name: "History, K-T" }, // should be History, Kch-Thk
+    { name: "History, T" }, // should be History, Tavak
     { name: "Law" },
     { name: "Linguistics" },
-    { name: "V__ M__ Culture" }, // should be Vas Mal Culture
+    { name: "VM Culture" }, // should be Vas Mal Culture
     { name: "Xenology" }, // should be Xenoculture
     { name: "Zoological Studies" }, // should be Zoology
   ],
@@ -94,36 +94,37 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
 export const generalAbilities: GeneralAbilitiesData = {
   General: [
     { name: "Athletics" },
-    { name: "Battle Console" }, // not in SRD
+    { name: "Battle Control" }, // should be Battle Console
     { name: "Business Affairs" },
-    { name: "Communications Intercept" }, // not in SRD
-    { name: "Emotion Suppression (Balla)" }, // not in SRD
-    { name: "Enhancement Integration (Cybe)" }, // not in SRD
-    { name: "Farsight (Vas Mal)" }, // not in SRD
+    { name: "Comms Intercept" }, // should be Communications Intercept
+    { name: "Emotion Control" }, // should be Emotion Suppression (Balla)
+    { name: "Enhancement Maintenance" }, // should be Enhancement Integration (Cybe)
+    { name: "Faraway sight" }, // should be Farsight (Vas Mal)
     { name: "Filch" },
-    { name: "Ground Craft" }, // not in SRD
+    { name: "Ground Vehicle" }, // should be Ground Craft
     { name: "Health", max: 15, min: -12, rating: 1, pool: 1, showTracker: true },
-    { name: "Helm Control" }, // not in SRD
+    { name: "Helm Pilot" }, // should be Helm Control
     { name: "Infiltration" },
     { name: "Medic" },
-    { name: "Migrate Consciousness (Kch-Thk)" }, // not in SRD
-    { name: "Naval Tactics" }, // not in SRD
-    { name: "Neural Rewiring (Cybe)" }, // not in SRD
-    { name: "Resist Battle Frenzy (Tavak)" }, // not in SRD
-    { name: "Pathway Amplification (Vas Mal)" }, // not in SRD
-    { name: "Probability Override (Vas Mal)" }, // not in SRD
-    { name: "Phase (Durugh)" }, // not in SRD
+    { name: "Migrate Conscience" }, // should be Migrate Consciousness (Kch-Thk)
+    { name: "Naval Maneuvers" }, // should be Naval Tactics
+    { name: "Neural Restructuring" }, // should be Neural Rewiring (Cybe)
+    // placemarker
+    { name: "Resist Battle Frenzy (Tavak)" }, // should be Resist Battle Frenzy (Tavak)
+    { name: "Pathway Amplification (Vas Mal)" }, // should be Pathway Amplification (Vas Mal)
+    { name: "Probability Override (Vas Mal)" }, // should be Probability Override (Vas Mal)
+    { name: "Phase (Durugh)" }, // should be Phase (Durugh)
     { name: "Preparedness" },
-    { name: "Psychic Vitality (Vas Mal)" }, // not in SRD
+    { name: "Psychic Vitality (Vas Mal)" }, // should be Psychic Vitality (Vas Mal)
     { name: "Public Relations" },
     { name: "Scuffling" },
     { name: "Sense Trouble" },
     { name: "Shooting" },
-    { name: "Shuttle Craft" }, // not in SRD
+    { name: "Shuttle Craft" }, // should be Shuttle Craft
     { name: "Surveillance" },
-    { name: "Systems Design" }, // not in SRD
-    { name: "Systems Repair" }, // not in SRD
-    { name: "Viro Manipulation" }, // not in SRD
+    { name: "Systems Design" }, // should be Systems Design
+    { name: "Systems Repair" }, // should be Systems Repair
+    { name: "Viro Manipulation" }, // should be Viro Manipulation
   ],
 };
 
