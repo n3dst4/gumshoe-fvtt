@@ -33,13 +33,11 @@ export const generalTemplate: GeneralAbilityTemplate = {
 export const investigativeAbilities: InvestigativeAbilitiesData = {
   Academic: [
     { name: "History" },
-    { name: "Humanities" }, // not in SRD
     { name: "Languages" },
     { name: "Law" },
     { name: "Occult Studies" },
     { name: "Research" },
-    { name: "Social Sciences" }, // not in SRD
-    { name: "Trivia" }, // not in SRD
+    { name: "Trivia" },
   ],
   Interpersonal: [
     { name: "Bullshit Detector" },
@@ -55,22 +53,14 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Streetwise" },
   ],
   Technical: [
-    { name: "Computer Use" }, // not in SRD
-    { name: "Investigative Procedure" }, // not in SRD
     { name: "Medicine" },
     { name: "Notice" },
     { name: "Outdoor Survival" },
     { name: "Photography" },
-    { name: "Science" }, // not in SRD (should have !)
+    { name: "Science!" },
   ],
   "Psychic Powers": [
     { name: "Aura Reading" },
-    { name: "Medium" }, // not in SRD
-    { name: "Messenger" }, // not in SRD
-    { name: "Premonitions" }, // not in SRD
-    { name: "Remote Viewing" }, // not in SRD
-    { name: "Sensitive" }, // not in SRD
-    { name: "Synchronicity" }, // not in SRD
   ],
 };
 
