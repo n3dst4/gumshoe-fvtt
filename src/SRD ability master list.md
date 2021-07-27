@@ -1,123 +1,171 @@
 # SRD Abilities
 
-## Investigative Academic
-Accounting (appears under "Sample Occupation: Private Investigator")
-Anthropology
-Archaeology
-Architecture
-Art History
-Botany
-Comparative Religion
-Forensic Accounting
-Forensic Psychology
-Geology
-History
-Languages
-Law
-Linguistics
-Military Tactics
-Natural History
-Occult Studies
-Pathology
-Research
-Textual Analysis
-Trivia
+Following is a list of all the abilities given in the [GUMSHOE System Reference Document, V3][srd].
+
+## Investigative
+
+### Academic
+
+    Accounting (appears under "Sample Occupation: Private Investigator")
+    Anthropology
+    Archaeology
+    Architecture
+    Art History
+    Botany
+    Belle-Lettres
+    Comparative Religion
+    Culture
+    Fashion
+    Forensic Accounting
+    Forensic Psychology
+    Geology
+    History
+    Languages
+    Law
+    Linguistics
+    Military History
+    Military Tactics
+    Natural History
+    Occult Studies
+    Pathology
+    Poetry
+    Political Science 
+    Research
+    Textual Analysis
+    Trivia
 
 
-## Investigative Interpersonal
+### Interpersonal
 
-Authority
-Bullshit Detector
-Bureaucracy
-Charm
-Cop Talk
-Flattery
-Flirting
-High Society
-Impersonate
-Inspiration
-Interrogation
-Intimidation
-Negotiation
-Oral History
-Reassurance
-Respect
-Streetwise
-Taunt
-Tradecraft
-
-
-## Investigative Technical
-
-Astronomy
-Ballistics
-Camping
-Chemistry
-Craft
-Cryptography
-Data Retrieval
-Document Analysis
-Electronic Surveillance
-Evidence Collection
-Explosive Devices
-Fingerprinting
-Forensic Anthropology
-Forensic Entomology
-Forgery
-Hacking
-Locksmith
-Medical Expertise
-Notice
-Outdoor Survival
-Photography
-Science!
-Spying
-Traffic Analysis
+    Authority
+    Bonhomie
+    Bullshit Detector
+    Bureaucracy
+    Charm
+    Cop Talk
+    Flattery
+    Flirting
+    High Society
+    Impersonate
+    Inspiration
+    Interrogation
+    Intimidation
+    Leadership
+    Negotiation
+    Oral History
+    People Person
+    Reassurance
+    Respect
+    Salt of the Earth
+    Society
+    Streetwise
+    Taunt
+    Tradecraft
 
 
-## Investigative Exotic
+### Technical
 
-Analytic Taste
-Aura Reading
-Paradox Prevention (Technical)
-Timecraft (Academic)
+    Astronomy
+    Ballistics
+    Camping
+    Chemistry
+    Counterinsurgency
+    Craft
+    Cryptography
+    Data Retrieval
+    Document Analysis
+    Electronic Surveillance
+    Evidence Collection
+    Explosive Devices
+    Fingerprinting
+    Farming
+    Forensic Anthropology
+    Forensic Entomology
+    Forgery
+    Hacking
+    Hunting
+    Intuition
+    Locksmith
+    Medical Expertise
+    Notice
+    Outdoor Survival
+    Painting
+    Photography
+    Science!
+    Sculpture
+    Spying
+    Terrain
+    Traffic Analysis
+
+
+### Exotic
+
+    Analytic Taste
+    Aura Reading
+    Paradox Prevention (Technical)
+    Timecraft (Academic)
 
 
 ## General
 
-Athletics
-Burglary
-Business Affairs
-Conceal
-Disguise
-Driving
-Explosives
-Filch
-Fleeing
-Gambling
-Health
-Hypnosis
-Infiltration
-Mechanics
-Medic
-Piloting
-Preparedness
-Public Relations
-Riding
-Scuffling
-Sense Trouble
-Shrink
-Shooting
-Stability
-Surveillance
-Unobtrusiveness
+### Physical
 
-## General Exotic
+    Artillery 
+    Athletics
+    Driving
+    Fighting
+    Fleeing
+    Health
+    Infiltration
+    Piloting
+    Riding
+    Scuffling
+    Shooting
 
-Chronal Stability
-Mutant Power: Blood Spray
-Pathway Amplification
-Reality Anchor
-Viroware Enhancement: Dominator
 
-Cherries
+### Focus
+
+    Battlefield
+    Burglary
+    Conceal
+    Explosives
+    Filch
+    Insurgency 
+    Mechanics
+    Medic / First Aid
+    Network
+    Surveillance
+    Traps and Bombs
+    Unobtrusiveness
+
+
+### Presence 
+
+    Business Affairs 
+    Composure / Stability 
+    Business Affairs
+    Disguise
+    Gambling
+    Hypnosis
+    Morale 
+    Politics 
+    Preparedness
+    Public Relations
+    Scrounging 
+    Sense Trouble
+    Shrink
+    Composure / Stability
+
+
+### Exotic 
+
+    Chronal Stability
+    Mutant Power: Blood Spray
+    Pathway Amplification
+    Reality Anchor
+    Viroware Enhancement: Dominator
+
+* Cherries
+
+
+[srd]: https://site.pelgranepress.com/index.php/the-gumshoe-system-reference-document/
