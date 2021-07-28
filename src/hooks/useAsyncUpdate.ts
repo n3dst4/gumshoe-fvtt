@@ -20,13 +20,11 @@ export const useAsyncUpdate = (
 
   // callback for focus
   const onFocus = useCallback(() => {
-    console.log("focuse");
     focusedRef.current = true;
   }, []);
 
   // callback for blur
   const onBlur = useCallback(() => {
-    console.log("blur");
     focusedRef.current = false;
   }, []);
 
