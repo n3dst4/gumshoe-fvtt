@@ -4,10 +4,10 @@ import { ReactApplicationMixin } from "./ReactApplicationMixin";
 import { reactTemplatePath, systemName } from "../constants";
 
 class GumshoeSettingsClassBase extends FormApplication {
-  constructor (object: any, options: any) {
-    super(object, options);
-    console.log(object, options);
-  }
+  // constructor (object: any, options: any) {
+  //   super(object, options);
+  //   console.log(object, options);
+  // }
 
   /** @override */
   static get defaultOptions () {
