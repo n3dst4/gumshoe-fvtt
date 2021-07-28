@@ -18,6 +18,7 @@ Unofficial GUMSHOE-compatible system for Foundry VTT. Ships with compatiblity fo
   - [Features](#features)
   - [How to install](#how-to-install)
   - [Using the built-in game systems](#using-the-built-in-game-systems)
+  - [How to add the missing abilities](#how-to-add-the-missing-abilities)
   - [Setting up any system that isn't built in](#setting-up-any-system-that-isnt-built-in)
   - [Creating Characters](#creating-characters)
   - [Using Abilities](#using-abilities)
@@ -73,6 +74,32 @@ If you've been using the precusor to the system, "T**** of Cthulhu Unsanctioned"
 The system comes preconfigured for **Path of Cthulhu**. If that's what you want to play, you can skip this section and move ahead to [Making PCs](#making-pcs).
 
 If you want to use one of the other built-in systems, open the Settings sidebar tab and look for the **INVESTIGATOR System Settings** button. Click this to open the configuration. You can ignore 90% of this window and just choose one of the presets at the top! If you want to tweak the other setting can can do so.
+
+HOWEVER.
+
+You may be wondering why the ability compendiums supplied with this system seem to be missing certain abilities.
+
+**The reason**: because this is an unofficial system, we can only ship abilities that appear in the [GUMSHOE SRD][srd]. The SRD is fantastic document which lists many abilities, but not not all of them. So we've had to leave several out.
+
+
+## How to add the missing abilities
+
+1. In the Items tab, create a new folder. Give it a name like "Cthulhu extra abilities" or whatever.
+2. Add abilities as follows:
+
+    1. Click "New Item" (looks like a quill pen) next to the folder name.
+    2. Pick "investigativeAbility" or "generalAbility"
+    3. Configure the ability as needed.
+    4. Repeat until you have all the additional abilities you need.
+
+3. Right-click the folder and Export to Compendium.
+4. Flip over to the Game Settings tab and click INVESTIGATOR System Setting.
+5. Pick a the System Preset that you want.
+6. See where it says Compendium packs for new PCs? Put a tick (check) next to the name of your new "Extra abilities" compendium.
+
+Done! New PCs will now automatically be given the abilities in your new compendium. Also, if you create a party tracker, it will show those abilities in the list.
+
+
 
 ## Setting up any system that isn't built in
 
@@ -177,3 +204,4 @@ This work is based on the GUMSHOE SRD (found at http://www.pelgranepress.com/?p=
 
 
 [project-site]: https://gitlab.com/n3dst4/investigator-system/-/issues
+[srd]: https://site.pelgranepress.com/index.php/the-gumshoe-system-reference-document/
