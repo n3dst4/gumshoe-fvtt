@@ -35,7 +35,16 @@
       "system": "investigator",
       "path": "./packs/pallidStarsAbilities.db",
       "entity": "Item"
+    },
+    {
+      "name": "missingAbilitiesNote",
+      "label": "MISSING ABILITIES? READ THIS!",
+      "system": "investigator",
+      "path": "./packs/missingAbilitiesNote.db",
+      "entity": "JournalEntry"
     }
+
+    
   ],
   "languages": [
     {
