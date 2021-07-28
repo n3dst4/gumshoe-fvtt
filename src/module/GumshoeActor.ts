@@ -92,7 +92,12 @@ export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
 
   getSheetTheme (): Theme {
     const themeName = this.getSheetThemeName() || getDefaultThemeName();
-    return themes[themeName];
+    const theme = themes[themeName];
+    if (theme !== undefined) {
+      return theme;
+    } else {
+      return themes[getDefaultThemeName()];
+    }
   }
 
   getSheetThemeName (): string | null {
@@ -245,12 +250,20 @@ Hooks.on(
       return;
     }
 
-    const proms = getNewPCPacks().map(async (packId) => {
+    const proms = getNewPCPacks().map(async (packId, i) => {
+      console.log("PACK", packId);
       const content = await (game.packs
         .find((p: any) => p.collection === packId)
         .getContent());
-      const datas = content.map((i: any) => i.data);
-      await actor.createOwnedItem(datas);
+      const datas = content.map(({ data: { name, img, data, type } }: any) => ({
+        name,
+        img,
+        data,
+        type,
+      }));
+      console.log("datas", datas);
+      await (actor as any).createEmbeddedDocuments("Item", datas);
+      // createEmbeddedDocuments("Item", itemDataArray)
     });
     await Promise.all(proms);
   },
