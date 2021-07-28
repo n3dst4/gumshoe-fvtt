@@ -31,6 +31,11 @@ const fontFactor = 16;
 
 /**
  * Outrageous 1930s logo
+ *
+ * There is a known bug in Firefox at the time of writing which screws up the
+ * rendering https://bugzilla.mozilla.org/show_bug.cgi?id=1720995
+ * It's is marked RESOLVED, I've tested in nightly (as of 2021-07-28) and it
+ * seems okay, so I'm not going to sweat it.
  */
 export const LogoEditable: React.FC<LogoEditableProps> = ({
   text,
@@ -138,25 +143,38 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
         </div>
 
         {/* gradient-bearer */}
+        {/* This extra div is SOLELY to work around this Firefox bug
+          https://bugzilla.mozilla.org/show_bug.cgi?id=1720995
+          Basically if you have transform and background-clip: text on the same
+          element it cocks up. Bug was introduced in FF90, and as resolved in
+          FF92 so I could have ignored it but then again that's not how I roll.
+          I have tested this in FF nightlies and it is 100% fixed in FF92. When
+          FF92 hits mainline, it will be safe to come back and unwrap this div
+          and just apply textBearerStyle on the gradient-bearer div.
+          */}
         <div
-          className="gradient-bearer"
-          css={{
-            ...textBearerStyle,
-            ...theme.logoFrontElementStyle,
-          }}
+          css={textBearerStyle}
         >
           <div
+            className="gradient-bearer"
             css={{
-              ...textStyle,
+              // When F92 is mainline, unwrap this div and uncomment this style.
+              // ...textBearerStyle,
+              ...theme.logoFrontElementStyle,
             }}
-            contentEditable
-            ref={contentEditableRefText}
-            onInput={onInputText}
-            onFocus={onFocusText}
-            onBlur={onBlurText}
-          />
-          {subtext !== undefined &&
+            >
             <div
+              css={{
+                ...textStyle,
+              }}
+              contentEditable
+              ref={contentEditableRefText}
+              onInput={onInputText}
+              onFocus={onFocusText}
+              onBlur={onBlurText}
+              />
+            {subtext !== undefined &&
+              <div
               css={{
                 ...subtextSyle,
               }}
@@ -165,8 +183,9 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
               onInput={onInputSubtext}
               onFocus={onFocusSubtext}
               onBlur={onBlurSubtext}
-            />
-          }
+              />
+            }
+          </div>
         </div>
       </div>
     </div>
