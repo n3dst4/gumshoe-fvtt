@@ -2,7 +2,7 @@
   "private": false,
   "name": "investigator-fvtt",
   "version": "3.0.1",
-  "description": "Unofficial GUMSHOE-Compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
+  "description": "Unofficial GUMSHOE SRD-Compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
   "scripts": {
     "package": "gulp package",
     "build": "gulp build",

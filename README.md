@@ -1,6 +1,6 @@
 # INVESTIGATOR System for Foundry VTT
 
-Unofficial GUMSHOE-compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
+Unofficial GUMSHOE SRD-compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
 
 <a 
   target="_new" 
