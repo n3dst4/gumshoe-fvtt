@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v3.1.0
+
+* Remove non-SRD abilities
+
 ## v3.0.1 (2021-07-03)
 
 * A couple of minor tweaks.
