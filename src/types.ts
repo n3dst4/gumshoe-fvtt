@@ -7,96 +7,116 @@ export type Resource = {
   value: number,
 }
 
-export type GumshoeActorData = {
-  buildPoints: number,
-  health: number,
-  stability: number,
-  sanity: number,
-  magic: number,
+// utility
+type DataSource<TType extends string, TData> = {
+  type: TType,
+  data: TData,
+};
 
-  occupation: string,
+// START Actor data stuff
 
-  /** @deprecated */
-  drive: string,
-  /** @deprecated */
-  occupationalBenefits: string,
-  /** @deprecated */
-  pillarsOfSanity: string,
-  /** @deprecated */
-  sourcesOfStability: string,
-  /** @deprecated */
-  notes: string,
-  /** @deprecated */
-  background: string,
+// XXX I think there's a load of things in here we don't need, but let's revisit
+// once we're on foundry-vtt-types
+interface PCDataSourceData {
+  buildPoints: number;
+  health: number;
+  stability: number;
+  sanity: number;
+  magic: number;
 
-  longNotes: string[],
-  shortNotes: string[],
+  occupation: string;
 
-  initiativeAbility: string,
-  hideZeroRated: boolean,
-  sheetTheme: string|null,
+  longNotes: string[];
+  shortNotes: string[];
+
+  initiativeAbility: string;
+  hideZeroRated: boolean;
+  sheetTheme: string|null;
   resources: {
     health: Resource,
     sanity: Resource,
     stability: Resource,
     magic: Resource,
-  },
-
-  // party stuff
-  abilityNames: string[],
-  actorIds: string[],
-};
-
-export type EquipmentData = {
-  notes: string,
+  };
 }
 
-export type WeaponData = {
-  notes: string,
-  ability: string,
-  damage: number,
-  pointBlankDamage: number,
-  closeRangeDamage: number,
-  nearRangeDamage: number,
-  longRangeDamage: number,
-  isPointBlank: boolean,
-  isCloseRange: boolean,
-  isNearRange: boolean,
-  isLongRange: boolean,
-  usesAmmo: boolean,
-  ammoPerShot: number,
+interface PartyDataSourceData {
+  // party stuff
+  abilityNames: string[];
+  actorIds: string[];
+}
+
+type InvestigatorActorDataSource =
+  | DataSource<typeof constants.pc, PCDataSourceData>
+  | DataSource<typeof constants.party, PartyDataSourceData>
+
+declare global {
+  interface SourceConfig {
+    Actor: InvestigatorActorDataSource;
+  }
+}
+
+// -----------------------------------------------------------
+// Item stuff
+
+interface EquipmentDataSourceData {
+  notes: string;
+}
+
+interface WeaponDataSourceData {
+  notes: string;
+  ability: string;
+  damage: number;
+  pointBlankDamage: number;
+  closeRangeDamage: number;
+  nearRangeDamage: number;
+  longRangeDamage: number;
+  isPointBlank: boolean;
+  isCloseRange: boolean;
+  isNearRange: boolean;
+  isLongRange: boolean;
+  usesAmmo: boolean;
+  ammoPerShot: number;
   ammo: {
     min: number,
     max: number,
     value: number,
-  },
-
+  };
 }
 
-export type CoreAbilityData = {
-  rating: number,
-  pool: number,
-  min: number,
-  max: number,
-  occupational: boolean,
-  hasSpecialities: boolean,
-  specialities: string[],
-  showTracker: boolean,
+interface BaseAbilityDataSourceData {
+  rating: number;
+  pool: number;
+  min: number;
+  max: number;
+  occupational: boolean;
+  hasSpecialities: boolean;
+  specialities: string[];
+  showTracker: boolean;
 }
 
-export type InvestigativeAbilityData = CoreAbilityData & {
-  category: string,
+interface InvestigativeAbilityDataSourceData extends BaseAbilityDataSourceData {
+  category: string;
 }
 
-export type GeneralAbilityData = CoreAbilityData & {
-  canBeInvestigative: boolean,
+interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData {
+  canBeInvestigative: boolean;
 }
 
-export type AbilityData = InvestigativeAbilityData | GeneralAbilityData;
+type InvestigatorItemDataSource =
+  |DataSource<typeof constants.equipment, EquipmentDataSourceData>
+  |DataSource<typeof constants.weapon, WeaponDataSourceData>
+  |DataSource<typeof constants.generalAbility, GeneralAbilityDataSourceData>
+  |DataSource<typeof constants.investigativeAbility, InvestigativeAbilityDataSourceData>;
 
-// the most correct "type" for this is a Partial-wrapped splodge of all the
-// possibilities. I don't like it.
-export type GumshoeItemData = Partial<EquipmentData & WeaponData & InvestigativeAbilityData & GeneralAbilityData>;
+declare global {
+  interface SourceConfig {
+    Item: InvestigatorItemDataSource;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// UTILITY LIBRARY
 
 /**
  * this is wild - extract a subset of prperties from a type based on a test
