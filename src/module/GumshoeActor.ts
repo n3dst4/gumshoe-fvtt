@@ -1,13 +1,13 @@
 import { equipment, generalAbility, pc, weapon } from "../constants";
 import { isAbility } from "../functions";
-import { GumshoeActorData, RecursivePartial, GumshoeItemData, AbilityType } from "../types";
+import { PCDataSourceData, RecursivePartial, GumshoeItemData, AbilityType } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { GumshoeItem } from "./GumshoeItem";
 import { Theme, themes } from "../theme";
 import { getDefaultThemeName, getNewPCPacks } from "../settingsHelpers";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
+export class GumshoeActor<T = any> extends Actor<PCDataSourceData> {
   /**
    * Augment the basic actor data with additional dynamic data.
    */

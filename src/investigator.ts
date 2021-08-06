@@ -27,9 +27,9 @@ Hooks.once("init", async function () {
   await preloadTemplates();
 
   // XXX TS needs going over here
-  CONFIG.Actor.entityClass = (GumshoeActor as any);
-  CONFIG.Item.entityClass = GumshoeItem;
-  CONFIG.Combat.entityClass = GumshoeCombat;
+  CONFIG.Actor.documentClass = GumshoeActor;
+  CONFIG.Item.documentClass = GumshoeItem;
+  CONFIG.Combat.documentClass = GumshoeCombat;
 
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);

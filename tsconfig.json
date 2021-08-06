@@ -6,11 +6,11 @@
 			"ES6",
 			"ES2019"
 		],
-		"types": ["foundry-pc-types"],
+    "types": ["@league-of-foundry-developers/foundry-vtt-types"],
 		"moduleResolution": "node",
 		"jsx": "react",
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
-		"strict": true,
+		"strictNullChecks": true,
 	}
 }
