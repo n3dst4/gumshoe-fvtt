@@ -1,13 +1,12 @@
-import { equipment, generalAbility, pc, weapon } from "../constants";
-import { isAbility } from "../functions";
-import { PCDataSourceData, RecursivePartial, GumshoeItemData, AbilityType } from "../types";
+import { equipment, generalAbility, investigativeAbility, pc, weapon } from "../constants";
+import { assertGame, isAbility } from "../functions";
+import { RecursivePartial, AbilityType, InvestigatorItemDataSource } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { GumshoeItem } from "./GumshoeItem";
 import { Theme, themes } from "../theme";
 import { getDefaultThemeName, getNewPCPacks } from "../settingsHelpers";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export class GumshoeActor<T = any> extends Actor<PCDataSourceData> {
+export class GumshoeActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
@@ -27,7 +26,7 @@ export class GumshoeActor<T = any> extends Actor<PCDataSourceData> {
 
   refresh = () => {
     this.items.forEach((item) => {
-      if (item.data.data.rating !== item.data.data.pool) {
+      if ((item.data.type === generalAbility || item.data.type === investigativeAbility) && item.data.data.rating !== item.data.data.pool) {
         item.update({
           data: {
             pool: item.data.data.rating,
@@ -48,9 +47,9 @@ export class GumshoeActor<T = any> extends Actor<PCDataSourceData> {
   };
 
   nuke = async () => {
-    await this.deleteEmbeddedEntity(
+    await this.deleteEmbeddedDocuments(
       "OwnedItem",
-      this.items.map((i: GumshoeItem) => i.id),
+      this.items.map((i) => i.id).filter(i => i !== null) as string[],
     );
     window.alert("Nuked");
   };
@@ -60,7 +59,7 @@ export class GumshoeActor<T = any> extends Actor<PCDataSourceData> {
 
   getAbilityByName (name: string, type?: AbilityType) {
     return this.items.find(
-      (item: GumshoeItem) =>
+      (item) =>
         (type ? item.data.type === type : isAbility(item)) && item.name === name,
     );
   }
@@ -70,20 +69,23 @@ export class GumshoeActor<T = any> extends Actor<PCDataSourceData> {
   }
 
   getEquipment () {
-    return this.items.filter((item: GumshoeItem) => item.type === equipment);
+    return this.items.filter((item) => item.type === equipment);
   }
 
-  getWeapons (): GumshoeItem[] {
-    return this.items.filter((item: GumshoeItem) => item.type === weapon);
+  getWeapons () {
+    return this.items.filter((item) => item.type === weapon);
   }
 
-  getAbilities (): GumshoeItem[] {
-    return this.items.filter((item: GumshoeItem) => isAbility(item));
+  getAbilities () {
+    return this.items.filter((item) => isAbility(item));
   }
 
-  getTrackerAbilities (): GumshoeItem[] {
+  getTrackerAbilities () {
     return this.getAbilities().filter(
-      (item: GumshoeItem) => item.data.data.showTracker,
+      (item) => {
+        const data = item.data;
+        return (data.type === investigativeAbility || data.type === generalAbility) && data.data.showTracker;
+      },
     );
   }
 
@@ -101,7 +103,7 @@ export class GumshoeActor<T = any> extends Actor<PCDataSourceData> {
   }
 
   getSheetThemeName (): string | null {
-    return this.data.data.sheetTheme;
+    return this.data.type === "pc" ? this.data.data.sheetTheme : null;
   }
 
   setSheetTheme = (sheetTheme: string | null) =>
@@ -202,16 +204,23 @@ export class GumshoeActor<T = any> extends Actor<PCDataSourceData> {
   // };
 }
 
+declare global {
+  interface DocumentClassConfig {
+    Actor: typeof GumshoeActor;
+  }
+}
+
 /**
  * Keep "special" general abilities in sync with their corresponding resources
  */
 Hooks.on("updateOwnedItem", (
   actor: GumshoeActor,
-  itemData: ItemData<GumshoeItemData>,
-  diff: RecursivePartial<ItemData<GumshoeItemData>>,
+  itemData: InvestigatorItemDataSource,
+  diff: RecursivePartial<InvestigatorItemDataSource>,
   options: Record<string, unknown>,
   userId: string,
 ) => {
+  assertGame(game);
   if (game.userId !== userId) return;
 
   // love 2 sink into a pit of imperative code

@@ -1,23 +1,32 @@
 import { generalAbility, investigativeAbility } from "./constants";
+import { InvestigativeAbilityDataSourceData } from "./types";
 
-export const isInvestigativeAbility = (item: Item | string) => (
+export const isInvestigativeAbility = (item: Item) => (
   (typeof item === "string")
     ? item === investigativeAbility
     : item?.type === investigativeAbility
 );
 
-export const isGeneralAbility = (item: Item | string) => (
+export const isGeneralAbility = (item: Item) => (
   (typeof item === "string")
     ? item === generalAbility
     : item?.type === generalAbility
 );
 
-export const isAbility = (item: Item | string) => (
+export const isAbility = (item: Item) => (
   isInvestigativeAbility(item) || isGeneralAbility(item)
 );
 
-export const sortEntitiesByName = <T extends Entity|EntityData>(ents: T[]) => {
-  return ents.sort(({ name: a }, { name: b }) => a < b ? -1 : a > b ? 1 : 0);
+interface NameHaver {
+  name: string|null;
+}
+
+export const sortEntitiesByName = <T extends NameHaver>(ents: T[]) => {
+  return ents.sort((a, b) => {
+    const aName = a.name || "";
+    const bName = b.name || "";
+    return aName < bName ? -1 : aName > bName ? 1 : 0;
+  });
 };
 
 /**
@@ -62,3 +71,16 @@ export const getFolderDescendants = <T extends Entity>(folder: any): T[] => {
 // has been overridden
 export const hasOwnProperty = (x: any, y: string) =>
   Object.prototype.hasOwnProperty.call(x, y);
+
+/**
+ * Check that `game` has been initialised
+ */
+export function assertGame (game: any): asserts game is Game {
+  if (!(game instanceof Game)) {
+    throw new Error("game used before init hook");
+  }
+}
+
+export function assertInvestigativeAbility ({ data }: Item): asserts data is InvestigativeAbilityDataSourceData {
+
+}

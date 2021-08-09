@@ -19,8 +19,8 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
 }) => {
   const theme = useContext(ThemeContext);
 
-  const investigativeAbilities: { [category: string]: GumshoeItem[] } = {};
-  const generalAbilities: { [category: string]: GumshoeItem[] } = {};
+  const investigativeAbilities: { [category: string]: Item[] } = {};
+  const generalAbilities: { [category: string]: Item[] } = {};
 
   const hideZeroRated = actor.data.data.hideZeroRated;
 

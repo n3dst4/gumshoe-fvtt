@@ -8,12 +8,16 @@ export type Resource = {
 }
 
 // utility
-type DataSource<TType extends string, TData> = {
+export type DataSource<TType extends string, TData> = {
   type: TType,
   data: TData,
 };
 
-// START Actor data stuff
+// #############################################################################
+// #############################################################################
+// Actor data stuff
+// #############################################################################
+// #############################################################################
 
 // XXX I think there's a load of things in here we don't need, but let's revisit
 // once we're on foundry-vtt-types
@@ -54,16 +58,31 @@ declare global {
   interface SourceConfig {
     Actor: InvestigatorActorDataSource;
   }
+  interface DataConfig {
+    Actor: InvestigatorActorDataSource;
+  }
 }
 
-// -----------------------------------------------------------
+// #############################################################################
+// #############################################################################
 // Item stuff
+// #############################################################################
+// #############################################################################
 
-interface EquipmentDataSourceData {
+/** Stuff that is in common between Equipment and Weapons */
+interface BaseEquipmentDataSourceData {
   notes: string;
 }
 
-interface WeaponDataSourceData {
+/**
+ * data.data for equipment (currently the same as BaseEquipmentDataSourceData)
+ */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface EquipmentDataSourceData extends BaseEquipmentDataSourceData {
+}
+
+/** data.data for weapons */
+interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
   notes: string;
   ability: string;
   damage: number;
@@ -84,7 +103,8 @@ interface WeaponDataSourceData {
   };
 }
 
-interface BaseAbilityDataSourceData {
+/** data.data for either type of ability */
+export interface BaseAbilityDataSourceData {
   rating: number;
   pool: number;
   min: number;
@@ -95,28 +115,74 @@ interface BaseAbilityDataSourceData {
   showTracker: boolean;
 }
 
-interface InvestigativeAbilityDataSourceData extends BaseAbilityDataSourceData {
+/** data.data for investigative abilities */
+export interface InvestigativeAbilityDataSourceData extends BaseAbilityDataSourceData {
   category: string;
 }
 
-interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData {
+/** data.data for general abilities */
+export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData {
   canBeInvestigative: boolean;
 }
 
-type InvestigatorItemDataSource =
-  |DataSource<typeof constants.equipment, EquipmentDataSourceData>
-  |DataSource<typeof constants.weapon, WeaponDataSourceData>
-  |DataSource<typeof constants.generalAbility, GeneralAbilityDataSourceData>
-  |DataSource<typeof constants.investigativeAbility, InvestigativeAbilityDataSourceData>;
+/** data for equipment */
+export type EquipmentDataSource = DataSource<typeof constants.equipment, EquipmentDataSourceData>;
 
+/** data for weapons */
+export type WeaponDataSource = DataSource<typeof constants.weapon, WeaponDataSourceData>;
+
+/** data for general abilities */
+export type GeneralAbilityDataSource = DataSource<typeof constants.generalAbility, GeneralAbilityDataSourceData>;
+
+/** data for investigative abilities */
+export type InvestigativeAbilityDataSource = DataSource<typeof constants.investigativeAbility, InvestigativeAbilityDataSourceData>;
+
+/** data for weapon OR equipment (rn this basically means "notes") */
+export type WeaponOrEquipmentDataSource =
+  | WeaponDataSource
+  | EquipmentDataSource;
+
+/** data for either of the ability types */
+export type AbilityDataSource =
+  | GeneralAbilityDataSource
+  | InvestigativeAbilityDataSource;
+
+/** data for any kind of item */
+export type InvestigatorItemDataSource =
+  | WeaponOrEquipmentDataSource
+  | AbilityDataSource;
+
+// now we crowbar this into the global type system using declaration merging
 declare global {
   interface SourceConfig {
     Item: InvestigatorItemDataSource;
   }
+  interface DataConfig {
+    Item: InvestigatorItemDataSource;
+  }
 }
 
-// -----------------------------------------------------------------------------
+/** assert that a data is some kind of ability */
+export function assertAbilityDataSource (data: InvestigatorItemDataSource): asserts data is AbilityDataSource {
+  const isAbility = data.type === constants.investigativeAbility || data.type === constants.generalAbility;
+  if (!isAbility) {
+    throw new Error("Not an ability");
+  }
+}
+
+/** assert that a data is a weapon */
+export function assertWeaponDataSource (data: InvestigatorItemDataSource): asserts data is WeaponDataSource {
+  const isAbility = data.type === constants.weapon;
+  if (!isAbility) {
+    throw new Error("Not a weapon");
+  }
+}
+
+// #############################################################################
+// #############################################################################
 // UTILITY LIBRARY
+// #############################################################################
+// #############################################################################
 
 /**
  * this is wild - extract a subset of prperties from a type based on a test
