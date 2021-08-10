@@ -12,6 +12,7 @@ export type DataSource<TType extends string, TData> = {
   type: TType,
   name: string,
   data: TData,
+  img: string,
 };
 
 // #############################################################################
@@ -130,11 +131,12 @@ export interface BaseAbilityDataSourceData {
   specialities: string[];
   showTracker: boolean;
   boost: boolean;
+  category: string;
 }
 
 /** data.data for investigative abilities */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface InvestigativeAbilityDataSourceData extends BaseAbilityDataSourceData {
-  category: string;
 }
 
 /** data.data for general abilities */
@@ -179,11 +181,22 @@ declare global {
   }
 }
 
+export function isGeneralAbilityDataSource (data: InvestigatorItemDataSource): data is GeneralAbilityDataSource {
+  return data.type === constants.generalAbility;
+}
+
+export function isInvestigativeAbilityDataSource (data: InvestigatorItemDataSource): data is InvestigativeAbilityDataSource {
+  return data.type === constants.investigativeAbility;
+}
+
+export function isAbilityDataSource (data: InvestigatorItemDataSource): data is AbilityDataSource {
+  return isGeneralAbilityDataSource(data) || isInvestigativeAbilityDataSource(data);
+}
+
 /** assert that a data is some kind of ability */
 export function assertAbilityDataSource (data: InvestigatorItemDataSource): asserts data is AbilityDataSource {
-  const isAbility = data.type === constants.investigativeAbility || data.type === constants.generalAbility;
-  if (!isAbility) {
-    throw new Error("Not an ability");
+  if (!isAbilityDataSource(data)) {
+    // throw new Error("Not an ability");
   }
 }
 
