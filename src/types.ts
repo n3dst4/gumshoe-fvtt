@@ -10,6 +10,7 @@ export type Resource = {
 // utility
 export type DataSource<TType extends string, TData> = {
   type: TType,
+  name: string,
   data: TData,
 };
 

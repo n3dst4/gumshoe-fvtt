@@ -1,6 +1,6 @@
 import { equipment, generalAbility, investigativeAbility, pc, weapon } from "../constants";
 import { assertGame, isAbility } from "../functions";
-import { RecursivePartial, AbilityType, InvestigatorItemDataSource, assertPCDataSource, assertPartyDataSource } from "../types";
+import { RecursivePartial, AbilityType, InvestigatorItemDataSource, assertPCDataSource, assertPartyDataSource, InvestigativeAbilityDataSource } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { Theme, themes } from "../theme";
 import { getDefaultThemeName, getNewPCPacks } from "../settingsHelpers";
@@ -230,7 +230,8 @@ declare global {
 Hooks.on("updateOwnedItem", (
   actor: GumshoeActor,
   itemData: InvestigatorItemDataSource,
-  diff: RecursivePartial<InvestigatorItemDataSource>,
+  // this seems like a fib, but I can't see what else to type this as
+  diff: RecursivePartial<InvestigativeAbilityDataSource>,
   options: Record<string, unknown>,
   userId: string,
 ) => {
@@ -263,6 +264,7 @@ Hooks.on(
     options: Record<string, unknown>,
     userId: string,
   ) => {
+    assertGame(game);
     if (game.userId !== userId) return;
 
     if (actor.items.size > 0) {
@@ -274,11 +276,11 @@ Hooks.on(
     }
 
     const proms = getNewPCPacks().map(async (packId, i) => {
+      assertGame(game);
       console.log("PACK", packId);
-      const content = await (game.packs
-        .find((p: any) => p.collection === packId)
-        .getContent());
-      const datas = content.map(({ data: { name, img, data, type } }: any) => ({
+      // this was previously using getContent
+      const content = await (game.packs?.find((p: any) => p.collection === packId)?.getDocuments());
+      const datas = content?.map(({ data: { name, img, data, type } }: any) => ({
         name,
         img,
         data,
