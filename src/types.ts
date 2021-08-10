@@ -50,9 +50,12 @@ interface PartyDataSourceData {
   actorIds: string[];
 }
 
+type PCDataSource = DataSource<typeof constants.pc, PCDataSourceData>;
+type PartyDataSource = DataSource<typeof constants.party, PartyDataSourceData>;
+
 type InvestigatorActorDataSource =
-  | DataSource<typeof constants.pc, PCDataSourceData>
-  | DataSource<typeof constants.party, PartyDataSourceData>
+  | PCDataSource
+  | PartyDataSource
 
 declare global {
   interface SourceConfig {
@@ -60,6 +63,18 @@ declare global {
   }
   interface DataConfig {
     Actor: InvestigatorActorDataSource;
+  }
+}
+
+export function assertPCDataSource (data: InvestigatorActorDataSource): asserts data is PCDataSource {
+  if (data.type !== constants.pc) {
+    throw new Error("Not a PC");
+  }
+}
+
+export function assertPartyDataSource (data: InvestigatorActorDataSource): asserts data is PartyDataSource {
+  if (data.type !== constants.pc) {
+    throw new Error("Not a PC");
   }
 }
 
