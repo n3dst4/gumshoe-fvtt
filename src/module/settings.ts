@@ -16,7 +16,7 @@ import {
   systemPreset,
   useBoost,
 } from "../constants";
-import { mapValues } from "../functions";
+import { assertGame, mapValues } from "../functions";
 import { pathOfCthulhuPreset } from "../systemPresets";
 import { Theme, themes } from "../theme";
 import { GumshoeSettingsClass } from "./GumshoeSettingsClass";
@@ -24,6 +24,7 @@ import { GumshoeSettingsClass } from "./GumshoeSettingsClass";
 // any of these could have an `onChange` added if we wanted to
 
 export const registerSettings = function () {
+  assertGame(game);
   // this is legacy
   game.settings.register(systemName, abilityCategories, {
     name: "Ability categories",
