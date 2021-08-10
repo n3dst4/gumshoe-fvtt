@@ -113,6 +113,7 @@ export interface BaseAbilityDataSourceData {
   hasSpecialities: boolean;
   specialities: string[];
   showTracker: boolean;
+  boost: boolean;
 }
 
 /** data.data for investigative abilities */
@@ -175,6 +176,13 @@ export function assertWeaponDataSource (data: InvestigatorItemDataSource): asser
   const isAbility = data.type === constants.weapon;
   if (!isAbility) {
     throw new Error("Not a weapon");
+  }
+}
+
+export function assertWeaponOrEquipmentDataSource (data: InvestigatorItemDataSource): asserts data is WeaponOrEquipmentDataSource {
+  const isWeaponOrEquipmentDataSource = data.type === constants.weapon || data.type === constants.equipment;
+  if (!isWeaponOrEquipmentDataSource) {
+    throw new Error("Not a weapon or equipment");
   }
 }
 

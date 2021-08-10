@@ -1,5 +1,4 @@
 import { generalAbility, investigativeAbility } from "./constants";
-import { InvestigativeAbilityDataSourceData } from "./types";
 
 export const isInvestigativeAbility = (item: Item) => (
   (typeof item === "string")
@@ -63,7 +62,7 @@ export const isNullOrEmptyString = (x: any) => {
 };
 
 // Folder type is a bit fucky rn
-export const getFolderDescendants = <T extends Entity>(folder: any): T[] => {
+export const getFolderDescendants = <T extends Document>(folder: any): T[] => {
   return [...folder.children.flatMap(getFolderDescendants), ...folder.content];
 };
 
@@ -79,8 +78,4 @@ export function assertGame (game: any): asserts game is Game {
   if (!(game instanceof Game)) {
     throw new Error("game used before init hook");
   }
-}
-
-export function assertInvestigativeAbility ({ data }: Item): asserts data is InvestigativeAbilityDataSourceData {
-
 }

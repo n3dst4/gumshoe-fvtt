@@ -1,8 +1,8 @@
-import { assertInvestigativeAbility, fixLength, isAbility } from "../functions";
+import { fixLength, isAbility } from "../functions";
 import { Theme, themes } from "../theme";
 import { GumshoeActor } from "./GumshoeActor";
 import { getDefaultThemeName } from "../settingsHelpers";
-import { AbilityDataSource, assertAbilityDataSource, assertWeaponDataSource, InvestigativeAbilityDataSource } from "../types";
+import { assertAbilityDataSource, assertWeaponDataSource, assertWeaponOrEquipmentDataSource } from "../types";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -165,44 +165,135 @@ export class GumshoeItem extends Item {
     }
   }
 
-  getNotes = () => this.data.data.notes ?? ""
-  setNotes = (notes: string) => this.update({ data: { notes } })
+  getNotes = () => {
+    assertWeaponOrEquipmentDataSource(this.data);
+    return this.data.data.notes ?? "";
+  }
 
-  getAbility = () => this.data.data.ability ?? ""
-  setAbility = (ability: string) => this.update({ data: { ability } })
+  setNotes = (notes: string) => {
+    assertWeaponOrEquipmentDataSource(this.data);
+    this.update({ data: { notes } });
+  }
 
-  getPool = () => this.data.data.pool ?? 0
-  setPool = (pool: number) => this.update({ data: { pool } })
+  getAbility = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.ability ?? "";
+  }
 
-  getBoost = () => this.data.data.boost ?? 0
-  setBoost = (boost: boolean) => this.update({ data: { boost } })
+  setAbility = (ability: string) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { ability } });
+  }
 
-  getDamage = () => this.data.data.damage ?? 0
-  setDamage = (damage: number) => this.update({ data: { damage } })
+  getPool = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.pool ?? 0;
+  }
 
-  getPointBlankDamage = () => this.data.data.pointBlankDamage ?? 0
-  setPointBlankDamage = (pointBlankDamage: number) => this.update({ data: { pointBlankDamage } })
+  setPool = (pool: number) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { pool } });
+  }
 
-  getCloseRangeDamage = () => this.data.data.closeRangeDamage ?? 0
-  setCloseRangeDamage = (closeRangeDamage: number) => this.update({ data: { closeRangeDamage } })
+  getBoost = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.boost ?? 0;
+  }
 
-  getNearRangeDamage = () => this.data.data.nearRangeDamage ?? 0
-  setNearRangeDamage = (nearRangeDamage: number) => this.update({ data: { nearRangeDamage } })
+  setBoost = (boost: boolean) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { boost } });
+  }
 
-  getLongRangeDamage = () => this.data.data.longRangeDamage ?? 0
-  setLongRangeDamage = (longRangeDamage: number) => this.update({ data: { longRangeDamage } })
+  getDamage = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.damage ?? 0;
+  }
 
-  getIsPointBlank = () => this.data.data.isPointBlank
-  setIsPointBlank = (isPointBlank: boolean) => this.update({ data: { isPointBlank } })
+  setDamage = (damage: number) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { damage } });
+  }
 
-  getIsCloseRange = () => this.data.data.isCloseRange
-  setIsCloseRange = (isCloseRange: boolean) => this.update({ data: { isCloseRange } })
+  getPointBlankDamage = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.pointBlankDamage ?? 0;
+  }
 
-  getIsNearRange = () => this.data.data.isNearRange
-  setIsNearRange = (isNearRange: boolean) => this.update({ data: { isNearRange } })
+  setPointBlankDamage = (pointBlankDamage: number) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { pointBlankDamage } });
+  }
 
-  getIsLongRange = () => this.data.data.isLongRange
-  setIsLongRange = (isLongRange: boolean) => this.update({ data: { isLongRange } })
+  getCloseRangeDamage = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.closeRangeDamage ?? 0;
+  }
+
+  setCloseRangeDamage = (closeRangeDamage: number) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { closeRangeDamage } });
+  }
+
+  getNearRangeDamage = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.nearRangeDamage ?? 0;
+  }
+
+  setNearRangeDamage = (nearRangeDamage: number) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { nearRangeDamage } });
+  }
+
+  getLongRangeDamage = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.longRangeDamage ?? 0;
+  }
+
+  setLongRangeDamage = (longRangeDamage: number) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { longRangeDamage } });
+  }
+
+  getIsPointBlank = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.isPointBlank;
+  }
+
+  setIsPointBlank = (isPointBlank: boolean) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { isPointBlank } });
+  }
+
+  getIsCloseRange = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.isCloseRange;
+  }
+
+  setIsCloseRange = (isCloseRange: boolean) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { isCloseRange } });
+  }
+
+  getIsNearRange = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.isNearRange;
+  }
+
+  setIsNearRange = (isNearRange: boolean) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { isNearRange } });
+  }
+
+  getIsLongRange = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.isLongRange;
+  }
+
+  setIsLongRange = (isLongRange: boolean) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { isLongRange } });
+  }
 }
 
 declare global {
