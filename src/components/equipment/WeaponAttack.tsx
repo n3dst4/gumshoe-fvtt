@@ -5,6 +5,7 @@ import { generalAbility } from "../../constants";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { ThemeContext } from "../../theme";
+import { assertWeaponDataSource, isAbilityDataSource, isPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
@@ -20,25 +21,28 @@ type WeaponAttackProps = {
 
 const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
   const label = i.toString();
-  return { label, value: label, enabled: true };
+  return { label, value: Number(label), enabled: true };
 });
 
 export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
-  const [spend, setSpend] = useState("0");
+  assertWeaponDataSource(weapon.data);
+  const [spend, setSpend] = useState(0);
   const [bonusPool, setBonusPool] = useState(0);
   const theme = useContext(ThemeContext);
 
   const abilityName = weapon.data.data.ability;
 
-  const ability: GumshoeItem|undefined = weapon?.actor?.items.find((item: GumshoeItem) => {
+  const ability: GumshoeItem|undefined = weapon.actor?.items.find((item: GumshoeItem) => {
     return (
       item.type === generalAbility && item.name === abilityName
     );
   });
 
+  const pool = ability && isAbilityDataSource(ability.data) ? ability.data.data.pool : 0;
+
   const spendOptions = defaultSpendOptions.map((option) => ({
     ...option,
-    enabled: option.value <= ability?.data.data.pool + bonusPool,
+    enabled: option.value <= (pool + bonusPool),
   }));
 
   const basePerformAttack = useMemo(() => {
@@ -59,41 +63,50 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const notes = useAsyncUpdate(weapon.getNotes(), weapon.setNotes);
 
   const onPointBlank = useCallback(() => {
+    assertWeaponDataSource(weapon.data);
     basePerformAttack({
       description: "point blank",
       rangeDamage: weapon.data.data.pointBlankDamage,
     });
-  }, [basePerformAttack, weapon.data.data.pointBlankDamage]);
+  }, [basePerformAttack, weapon.data]);
 
   const onCloseRange = useCallback(() => {
+    assertWeaponDataSource(weapon.data);
     basePerformAttack({
       description: "close range",
       rangeDamage: weapon.data.data.closeRangeDamage,
     });
-  }, [basePerformAttack, weapon.data.data.closeRangeDamage]);
+  }, [basePerformAttack, weapon.data]);
 
   const onNearRange = useCallback(() => {
+    assertWeaponDataSource(weapon.data);
     basePerformAttack({
       description: "close range",
       rangeDamage: weapon.data.data.nearRangeDamage,
     });
-  }, [basePerformAttack, weapon.data.data.nearRangeDamage]);
+  }, [basePerformAttack, weapon.data]);
 
   const onLongRange = useCallback(() => {
+    assertWeaponDataSource(weapon.data);
     basePerformAttack({
       description: "long range",
       rangeDamage: weapon.data.data.longRangeDamage,
     });
-  }, [basePerformAttack, weapon.data.data.longRangeDamage]);
+  }, [basePerformAttack, weapon.data]);
 
-  const actorInitiativeAbility = weapon.actor?.data.data.initiativeAbility;
+  const weaponActorData = weapon.actor?.data;
+
+  const actorInitiativeAbility =
+    weaponActorData && isPCDataSource(weaponActorData)
+      ? weaponActorData.data.initiativeAbility
+      : "";
   const isAbilityUsed = actorInitiativeAbility === ability?.name;
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
       if (ability) {
         weapon.actor?.update({
           data: {
-            initiativeAbility: ability.name,
+            initiativeAbility: ability.name || "",
           },
         });
       }
@@ -213,7 +226,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
           <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />
         </GridField>
         <GridField noTranslate label={abilityName}>
-          <a onClick={() => ability?.sheet.render(true)}>
+          <a onClick={() => ability?.sheet?.render(true)}>
             <Translate
               values={{ AbilityName: ability?.name ?? "" }}
             >

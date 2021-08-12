@@ -68,15 +68,23 @@ declare global {
   }
 }
 
+export function isPCDataSource (data: InvestigatorActorDataSource): data is PCDataSource {
+  return (data.type === constants.pc);
+}
+
 export function assertPCDataSource (data: InvestigatorActorDataSource): asserts data is PCDataSource {
-  if (data.type !== constants.pc) {
+  if (!isPCDataSource(data)) {
     throw new Error("Not a PC");
   }
 }
 
+export function isPartyDataSource (data: InvestigatorActorDataSource): data is PartyDataSource {
+  return (data.type === constants.party);
+}
+
 export function assertPartyDataSource (data: InvestigatorActorDataSource): asserts data is PartyDataSource {
-  if (data.type !== constants.pc) {
-    throw new Error("Not a PC");
+  if (!isPartyDataSource(data)) {
+    throw new Error("Not a Party");
   }
 }
 
@@ -196,14 +204,14 @@ export function isAbilityDataSource (data: InvestigatorItemDataSource): data is 
 /** assert that a data is some kind of ability */
 export function assertAbilityDataSource (data: InvestigatorItemDataSource): asserts data is AbilityDataSource {
   if (!isAbilityDataSource(data)) {
-    // throw new Error("Not an ability");
+    throw new Error("Not an ability");
   }
 }
 
 /** assert that a data is a weapon */
 export function assertWeaponDataSource (data: InvestigatorItemDataSource): asserts data is WeaponDataSource {
-  const isAbility = data.type === constants.weapon;
-  if (!isAbility) {
+  const isWeapon = data.type === constants.weapon;
+  if (!isWeapon) {
     throw new Error("Not a weapon");
   }
 }

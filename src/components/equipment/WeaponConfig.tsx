@@ -13,6 +13,8 @@ import { Checkbox } from "../inputs/Checkbox";
 import { getCombatAbilities } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { systemName } from "../../constants";
+import { assertGame } from "../../functions";
+import { assertWeaponDataSource } from "../../types";
 
 type WeaponConfigProps = {
   weapon: GumshoeItem,
@@ -21,10 +23,13 @@ type WeaponConfigProps = {
 export const WeaponConfig: React.FC<WeaponConfigProps> = ({
   weapon,
 }) => {
-  const name = useAsyncUpdate(weapon.name, weapon.setName);
+  assertGame(game);
+  assertWeaponDataSource(weapon.data);
+  const name = useAsyncUpdate(weapon.name || "", weapon.setName);
   const notes = useAsyncUpdate(weapon.getNotes(), weapon.setNotes);
 
   const onClickDelete = useCallback(() => {
+    assertGame(game);
     const message = weapon.actor
       ? game.i18n.format(`${systemName}.DeleteActorNamesEquipmentName`, {
           ActorName: weapon.actor.data.name,

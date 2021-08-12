@@ -5,9 +5,9 @@ import { nanoid } from "nanoid";
 import { ThemeContext } from "../../theme";
 
 type CheckButtonsProps = {
-  options: Array<{label: string, value: string, enabled: boolean}>,
-  selected: string,
-  onChange: (newValue: string) => void,
+  options: Array<{label: string, value: number, enabled: boolean}>,
+  selected: number,
+  onChange: (newValue: number) => void,
 };
 
 export const CheckButtons: React.FC<CheckButtonsProps> = ({
@@ -17,7 +17,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
 }) => {
   const theme = useContext(ThemeContext);
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.currentTarget.value;
+    const newValue = Number(e.currentTarget.value);
     onChangeOrig(newValue);
   }, [onChangeOrig]);
 
