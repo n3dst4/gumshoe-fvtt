@@ -32,6 +32,7 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": ["error", { args: "none", ignoreRestSiblings: true }],
     "react/prop-types": ["off"],
     "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-namespace": ["warn", { allowDeclarations: true }],
     "@typescript-eslint/member-delimiter-style": ["error", {
       multiline: {
         delimiter: "comma",

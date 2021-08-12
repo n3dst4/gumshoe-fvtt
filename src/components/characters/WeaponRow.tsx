@@ -18,7 +18,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
     <a
       css={{ gridColumn: 1, overflow: "hidden", textOverflow: "ellipsis" }}
       className={hover ? "hover" : ""}
-      onClick={() => weapon.sheet.render(true)}
+      onClick={() => weapon.sheet?.render(true)}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >
@@ -27,7 +27,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
     <a
       css={{ gridColumn: 2 }}
       className={hover ? "hover" : ""}
-      onClick={() => weapon.sheet.render(true)}
+      onClick={() => weapon.sheet?.render(true)}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >
@@ -36,7 +36,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
     <a
       css={{ gridColumn: 3, overflow: "hidden", textOverflow: "ellipsis" }}
       className={hover ? "hover" : ""}
-      onClick={() => weapon.sheet.render(true)}
+      onClick={() => weapon.sheet?.render(true)}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >

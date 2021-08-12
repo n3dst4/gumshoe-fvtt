@@ -79,7 +79,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
               height: "inherit",
             }}
           >
-            {abilities.map((cat: string) => (
+            {abilities.map<JSX.Element>((cat: string) => (
               <option key={cat}>{cat}</option>
             ))}
           </select>

@@ -16,7 +16,7 @@ export const TrackersArea: React.FC<TrackersAreaProps> = ({
   return (
     <Fragment>
       {
-        abs.map((ability, i) => (
+        abs.map<JSX.Element>((ability, i) => (
           <PoolTracker key={`${ability.name}-- ${i}`} ability={ability} />
         ))
       }

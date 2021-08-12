@@ -35,7 +35,7 @@ export const ListEdit: React.FC<ListEditProps> = ({
 
   return (
     <div>
-      {value.map((s, i) => (
+      {value.map<JSX.Element>((s, i) => (
         <div
           key={i}
           css={{

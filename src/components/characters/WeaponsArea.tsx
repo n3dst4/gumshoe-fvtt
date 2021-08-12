@@ -31,12 +31,17 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
             width: "auto",
           }}
           onClick={async () => {
-            await actor.createOwnedItem({
-              type: weapon,
-              name: "New weapon",
-            }, {
-              renderSheet: true,
-            });
+            await actor.createEmbeddedDocuments(
+              weapon,
+              [
+                {
+                  type: weapon,
+                  name: "New weapon",
+                },
+              ],
+              {
+                renderSheet: true,
+              });
           }}
         >
           <i className="fa fa-plus"/><Translate>Add Weapon</Translate>
@@ -75,7 +80,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
           <Translate>Notes</Translate>
           </div>
           {
-            sortEntitiesByName(items).map((item) => (
+            sortEntitiesByName(items).map<JSX.Element>((item) => (
               <WeaponRow key={item.id} weapon={item}/>
             ))
           }

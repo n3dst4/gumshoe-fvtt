@@ -2,6 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { systemName } from "../../constants";
+import { assertGame } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { themes } from "../../theme";
 import { GridField } from "../inputs/GridField";
@@ -16,6 +17,7 @@ type SettingAreaProps = {
 export const SettingArea: React.FC<SettingAreaProps> = ({
   actor,
 }) => {
+  assertGame(game);
   const onSetTheme = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
     const themeName = (value === "default" ? null : value);
@@ -26,7 +28,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
     <InputGrid>
         <GridField label="Theme">
           <select onChange={onSetTheme} value={actor.getSheetThemeName() || "default"}>
-            {Object.keys(themes).map((themeName) => (
+            {Object.keys(themes).map<JSX.Element>((themeName) => (
               <option key={themeName} value={themeName}>{themes[themeName].displayName}</option>
             ))}
             <option value="default">

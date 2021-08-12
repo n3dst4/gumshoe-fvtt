@@ -18,6 +18,7 @@ import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
 import { getOccupationlabel, getShortNotes } from "../../settingsHelpers";
 import { Translate } from "../Translate";
+import { assertPCDataSource, isPCDataSource } from "../../types";
 
 type GumshoeActorSheetProps = {
   actor: GumshoeActor,
@@ -28,6 +29,7 @@ export const GumshoeActorSheet = ({
   actor,
   foundryApplication,
 }: GumshoeActorSheetProps) => {
+  assertPCDataSource(actor.data);
   const onImageClick = useCallback(() => {
     console.log("onImageClick");
     const fp = new FilePicker({
@@ -131,7 +133,7 @@ export const GumshoeActorSheet = ({
               shortNotesNames.map((name: string, i: number) => (
                 <GridField noTranslate key={`${name}--${i}`} label={name}>
                   <AsyncTextInput
-                    value={actor.data.data.shortNotes[i]}
+                    value={isPCDataSource(actor.data) ? actor.data.data.shortNotes[i] : ""}
                     onChange={updateShortNote}
                     index={i}
                   />

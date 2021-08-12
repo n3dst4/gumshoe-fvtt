@@ -25,6 +25,7 @@ import { GumshoeSettingsClass } from "./GumshoeSettingsClass";
 
 export const registerSettings = function () {
   assertGame(game);
+
   // this is legacy
   game.settings.register(systemName, abilityCategories, {
     name: "Ability categories",
@@ -100,7 +101,7 @@ export const registerSettings = function () {
     scope: "world",
     config: false,
     default: pathOfCthulhuPreset.newPCPacks,
-    type: Object,
+    type: Array,
     onChange: (newPacks: string[]) => {
       Hooks.call(newPCPacksUpdated, newPacks);
     },

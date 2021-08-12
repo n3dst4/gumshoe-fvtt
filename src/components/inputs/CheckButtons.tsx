@@ -62,7 +62,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
       }}
     >
       {
-        options.map(({ label, value, enabled }) => {
+        options.map<JSX.Element>(({ label, value, enabled }) => {
           const id = nanoid();
           return (
             <Fragment key={value}>

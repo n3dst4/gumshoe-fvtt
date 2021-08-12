@@ -203,7 +203,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
           ></div>
 
           {/* Actor names */}
-          {actors.map((actor, j) => {
+          {actors.map<JSX.Element>((actor, j) => {
             return (
               <div
                 key={actor?.id || `missing-${j}`}
@@ -296,7 +296,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
           </div>
 
           {/* Rows */}
-          {rowData.map((data, i) => {
+          {rowData.map<JSX.Element>((data, i) => {
             if (isTypeHeader(data)) {
               // Investigative or general
               return (

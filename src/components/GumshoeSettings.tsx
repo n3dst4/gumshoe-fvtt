@@ -205,7 +205,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       >
         <GridField label="System Preset">
           <select value={systemPreset} onChange={onSelectPreset}>
-            {Object.keys(systemPresets).map((presetId: string) => (
+            {Object.keys(systemPresets).map<JSX.Element>((presetId: string) => (
               <option key={presetId} value={presetId}>
                 {
                   systemPresets[presetId as keyof typeof systemPresets]
@@ -270,7 +270,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                 setDefaultTheme(e.currentTarget.value);
               }}
             >
-              {Object.keys(themes).map((themeName: string) => (
+              {Object.keys(themes).map<JSX.Element>((themeName: string) => (
                 <option key={themeName} value={themeName}>
                   {themes[themeName].displayName}
                 </option>
