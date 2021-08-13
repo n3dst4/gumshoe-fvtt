@@ -11,6 +11,7 @@ import { SpecialityList } from "./SpecialityList";
 import { getCombatAbilities, getUseBoost } from "../../settingsHelpers";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
+import { assertAbilityDataSource, assertPCDataSource, isPCDataSource } from "../../types";
 
 type AbilityEditorMainProps = {
   ability: GumshoeItem,
@@ -19,6 +20,7 @@ type AbilityEditorMainProps = {
 export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
   ability,
 }) => {
+  assertAbilityDataSource(ability.data);
   const updateRating = useCallback((rating) => {
     ability.setRating(rating);
   }, [ability]);
@@ -30,18 +32,19 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
 
   const useBoost = getUseBoost();
 
-  const isCombatAbility = getCombatAbilities().includes(ability.name);
-  const actorInitiativeAbility = ability?.actor?.data.data.initiativeAbility;
+  const isCombatAbility = getCombatAbilities().includes(ability.data.name);
+  const actorInitiativeAbility = isPCDataSource(ability?.actor?.data) && ability?.actor?.data.data.initiativeAbility;
   const isAbilityUsed = actorInitiativeAbility === ability.name;
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
+      assertPCDataSource(ability?.actor?.data);
       ability?.actor?.update({
         data: {
-          initiativeAbility: ability.name,
+          initiativeAbility: ability.data.name,
         },
       });
     },
-    [ability.actor, ability.name],
+    [ability?.actor, ability.data.name],
   );
 
   return (

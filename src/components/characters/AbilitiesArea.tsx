@@ -6,6 +6,7 @@ import { sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { ThemeContext } from "../../theme";
+import { assertAbilityDataSource, assertPCDataSource } from "../../types";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
 import { AbilitySlug } from "./AbilitySlug";
@@ -17,31 +18,31 @@ type AbilitiesAreaProps = {
 export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
   actor,
 }) => {
+  assertPCDataSource(actor.data);
   const theme = useContext(ThemeContext);
 
-  const investigativeAbilities: { [category: string]: Item[] } = {};
-  const generalAbilities: { [category: string]: Item[] } = {};
+  const investigativeAbilities: { [category: string]: GumshoeItem[] } = {};
+  const generalAbilities: { [category: string]: GumshoeItem[] } = {};
 
   const hideZeroRated = actor.data.data.hideZeroRated;
 
   for (const item of actor.items.values()) {
+    assertAbilityDataSource(item.data);
     if (hideZeroRated && item.data.data.rating === 0) {
       continue;
     }
-    if (item.type === investigativeAbility) {
-      const ability = item as GumshoeItem;
-      const cat = ability.data.data.category || "Uncategorised";
+    if (item.data.type === investigativeAbility) {
+      const cat = item.data.data.category || "Uncategorised";
       if (investigativeAbilities[cat] === undefined) {
         investigativeAbilities[cat] = [];
       }
-      investigativeAbilities[cat].push(ability);
+      investigativeAbilities[cat].push(item);
     } else if (item.type === generalAbility) {
-      const ability = item as GumshoeItem;
-      const cat = ability.data.data.category || "Uncategorised";
+      const cat = item.data.data.category || "Uncategorised";
       if (generalAbilities[cat] === undefined) {
         generalAbilities[cat] = [];
       }
-      generalAbilities[cat].push(ability);
+      generalAbilities[cat].push(item);
     }
   }
 
@@ -74,11 +75,11 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
         }}
       >
         <div css={{ gridArea: "investigative" }}>
-          {Object.keys(investigativeAbilities).sort().map((cat) => (
+          {Object.keys(investigativeAbilities).sort().map<JSX.Element>((cat) => (
             <div key={cat}>
               <h2>{cat}</h2>
               {
-                sortEntitiesByName(investigativeAbilities[cat]).map((ability) => (
+                sortEntitiesByName(investigativeAbilities[cat]).map<JSX.Element>((ability) => (
                   <AbilitySlug key={ability.id} ability={ability}/>
                 ))
               }
@@ -86,11 +87,11 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
           ))}
         </div>
         <div css={{ gridArea: "general" }}>
-          {Object.keys(generalAbilities).sort().map((cat) => (
+          {Object.keys(generalAbilities).sort().map<JSX.Element>((cat) => (
             <div key={cat}>
               <h2>{cat}</h2>
               {
-                sortEntitiesByName(generalAbilities[cat]).map((ability) => (
+                sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>((ability) => (
                   <AbilitySlug key={ability.id} ability={ability}/>
                 ))
               }

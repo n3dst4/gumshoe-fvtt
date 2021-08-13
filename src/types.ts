@@ -68,11 +68,11 @@ declare global {
   }
 }
 
-export function isPCDataSource (data: InvestigatorActorDataSource): data is PCDataSource {
-  return (data.type === constants.pc);
+export function isPCDataSource (data: InvestigatorActorDataSource | undefined | null): data is PCDataSource {
+  return (data ? data.type === constants.pc : false);
 }
 
-export function assertPCDataSource (data: InvestigatorActorDataSource): asserts data is PCDataSource {
+export function assertPCDataSource (data: InvestigatorActorDataSource | undefined | null): asserts data is PCDataSource {
   if (!isPCDataSource(data)) {
     throw new Error("Not a PC");
   }

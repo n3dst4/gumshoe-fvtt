@@ -3,6 +3,7 @@ import { jsx } from "@emotion/react";
 
 import React, { useCallback } from "react";
 import { GumshoeItem } from "../../module/GumshoeItem";
+import { assertAbilityDataSource, isAbilityDataSource } from "../../types";
 import { PoolCheckbox } from "./PoolCheckbox";
 
 const range = (from: number, to: number): number[] => {
@@ -20,6 +21,7 @@ type PoolTrackerProps = {
 export const PoolTracker: React.FC<PoolTrackerProps> = ({
   ability,
 }) => {
+  assertAbilityDataSource(ability?.data);
   const min = ability?.data.data.min ?? 0;
   const max = ability?.data.data.max ?? 12;
   const vals = range(min, max);
@@ -45,19 +47,19 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
     >
       <h2 css={{ gridColumn: "start / end" }}>
         <a
-          onClick={() => ability.sheet.render(true)}
+          onClick={() => ability.sheet?.render(true)}
         >
           {ability.name}
         </a>
       </h2>
 
-      {vals.map((value) => (
+      {vals.map<JSX.Element>((value) => (
         <PoolCheckbox
           key={value}
           value={value}
           onClick={setPool}
-          selected={ability && value === ability.data.data.pool}
-          disabled={ability && value > ability.data.data.rating}
+          selected={ability && isAbilityDataSource(ability.data) && value === ability.data.data.pool}
+          disabled={ability && isAbilityDataSource(ability.data) && value > ability.data.data.rating}
         />
       ))}
     </div>

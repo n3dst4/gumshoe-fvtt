@@ -11,6 +11,7 @@ import { Checkbox } from "../inputs/Checkbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../settingsHelpers";
 import { Translate } from "../Translate";
+import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
 
 type AbilityConfigProps = {
   ability: GumshoeItem,
@@ -19,6 +20,7 @@ type AbilityConfigProps = {
 export const AbilityConfig: React.FC<AbilityConfigProps> = ({
   ability,
 }) => {
+  assertAbilityDataSource(ability.data);
   const isGeneral = isGeneralAbility(ability);
 
   const updateName = useUpdate(ability, (name) => ({ name }));
@@ -108,7 +110,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
                 height: "inherit",
               }}
             >
-              {categories.map((cat: string) => (
+              {categories.map<JSX.Element>((cat: string) => (
                 <option key={cat}>{cat}</option>
               ))}
               <option value="">Custom</option>
@@ -159,7 +161,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
           }}
         />
       </GridField>
-      {isGeneral && (
+      {isGeneralAbilityDataSource(ability.data) && (
         <GridField label="Can be investigative?">
           <Checkbox
             checked={ability.data.data.canBeInvestigative}
