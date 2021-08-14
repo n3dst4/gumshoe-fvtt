@@ -6,7 +6,7 @@ import { sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { ThemeContext } from "../../theme";
-import { assertAbilityDataSource, assertPCDataSource } from "../../types";
+import { assertPCDataSource, isAbilityDataSource } from "../../types";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
 import { AbilitySlug } from "./AbilitySlug";
@@ -27,7 +27,9 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
   const hideZeroRated = actor.data.data.hideZeroRated;
 
   for (const item of actor.items.values()) {
-    assertAbilityDataSource(item.data);
+    if (!isAbilityDataSource(item.data)) {
+      continue;
+    }
     if (hideZeroRated && item.data.data.rating === 0) {
       continue;
     }
