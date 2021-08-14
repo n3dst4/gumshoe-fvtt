@@ -281,26 +281,15 @@ Hooks.on(
     for (const packId of getNewPCPacks()) {
       assertGame(game);
       console.log("PACK", packId);
-      // this was previously using getContent
       const content = await (game.packs?.find((p: any) => p.collection === packId)?.getDocuments());
-      // const datas = content?.map(({ data: { name, img, data, type } }) => ({
-      //   name,
-      //   img,
-      //   data,
-      //   type,
-      // }));
-      const datas = content?.map((document) => {
-        const obj = {
-          name: document.data.name,
-          img: document.data.img,
-          data: document.data.data,
-          type: document.data.type,
-        };
-        return obj;
-      });
+      const datas = content?.map(({ data: { name, img, data, type } }) => ({
+        name,
+        img,
+        data,
+        type,
+      }));
       console.log("datas", datas);
       await (actor as any).createEmbeddedDocuments("Item", datas);
-      // createEmbeddedDocuments("Item", itemDataArray)
     }
     console.log("COMPLETED");
   },
