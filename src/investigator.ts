@@ -8,8 +8,8 @@ import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbility
 import { GumshoeCombat } from "./module/GumshoeCombat";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
-import { RecursivePartial, GumshoeItemData } from "./types";
-import { getFolderDescendants, isAbility, isGeneralAbility, isNullOrEmptyString } from "./functions";
+import { InvestigatorItemDataSource, isAbilityDataSource, isGeneralAbilityDataSource } from "./types";
+import { assertGame, getFolderDescendants, isNullOrEmptyString } from "./functions";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
@@ -27,9 +27,9 @@ Hooks.once("init", async function () {
   await preloadTemplates();
 
   // XXX TS needs going over here
-  CONFIG.Actor.entityClass = (GumshoeActor as any);
-  CONFIG.Item.entityClass = GumshoeItem;
-  CONFIG.Combat.entityClass = GumshoeCombat;
+  CONFIG.Actor.documentClass = GumshoeActor;
+  CONFIG.Item.documentClass = GumshoeItem;
+  CONFIG.Combat.documentClass = GumshoeCombat;
 
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
@@ -66,7 +66,8 @@ Hooks.once("setup", function () {
 
 // Migration hook
 Hooks.on("ready", async () => {
-  if (!game.user.isGM) { return; }
+  assertGame(game);
+  if (!game.user?.isGM) { return; }
 
   const currentVersion = getSystemMigrationVersion();
   // newest version that needs a migration (make this the current version when
@@ -84,7 +85,7 @@ Hooks.on("ready", async () => {
     isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)
   ) {
     const warning = `Your ${system.title} system data is from too old a version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
-    ui.notifications.error(warning, { permanent: true });
+    (ui as any /* oh fuck off */).notifications.error(warning, { permanent: true });
   }
 
   // Perform the migration
@@ -94,14 +95,15 @@ Hooks.on("ready", async () => {
 Hooks.on(
   "preCreateItem",
   (
-    data: RecursivePartial<ItemData<GumshoeItemData>>,
+    data: InvestigatorItemDataSource,
     options: any,
     userId: string,
   ) => {
+    assertGame(game);
     if (game.userId !== userId) return;
 
     // ABILITIES
-    if (isAbility(data.type ?? "")) {
+    if (isAbilityDataSource(data)) {
       // set category
       if (isNullOrEmptyString(data.data?.category)) {
         const category = generalAbility
@@ -116,13 +118,14 @@ Hooks.on(
 
       // set image
       if (isNullOrEmptyString(data.img)) {
-        data.img = isGeneralAbility(data.type ?? "") ? generalAbilityIcon : investigativeAbilityIcon;
+        data.img = isGeneralAbilityDataSource(data) ? generalAbilityIcon : investigativeAbilityIcon;
       }
     }
   },
 );
 
 Hooks.on("renderSettings", (app: Application, html: JQuery) => {
+  assertGame(game);
   const systemNameTranslated = game.i18n.localize(
     `${systemName}.SystemName`,
   );
@@ -145,17 +148,24 @@ Hooks.on(
     application: Application,
     dropData: { type: string, id: string, entity?: string },
   ) => {
+    assertGame(game);
     if (
       targetActor.data.type !== party ||
       (dropData.type !== "Actor" &&
         (dropData.type !== "Folder" || dropData.entity !== "Actor")) ||
-      !game.user.isGM
+      !game.user?.isGM
     ) {
       return;
     }
-    const actorIds = dropData.type === "Actor"
-      ? [dropData.id]
-      : getFolderDescendants(game.folders.get(dropData.id)).filter((actor) => actor.data.type === pc).map((actor) => actor.id);
+    const actorIds =
+      dropData.type === "Actor"
+        ? [dropData.id]
+        : dropData.type === "Folder"
+          ? getFolderDescendants(game.folders?.get(dropData.id)).filter((actor) => {
+              return (actor as any).data.type === pc;
+            }).map((actor) => (actor as any).id)
+          : [];
+
     targetActor.addActorIds(actorIds);
   },
 );

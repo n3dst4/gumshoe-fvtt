@@ -2,12 +2,13 @@ import { fixLength, isAbility } from "../functions";
 import { Theme, themes } from "../theme";
 import { GumshoeActor } from "./GumshoeActor";
 import { getDefaultThemeName } from "../settingsHelpers";
+import { assertAbilityDataSource, assertWeaponDataSource, assertWeaponOrEquipmentDataSource } from "../types";
 
 /**
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
  */
-export class GumshoeItem extends Item<any> {
+export class GumshoeItem extends Item {
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
@@ -20,14 +21,8 @@ export class GumshoeItem extends Item<any> {
     // const data = itemData.data;
   }
 
-  assertAbility () {
-    if (!isAbility(this)) {
-      throw new Error(`${this.type} is not an ability`);
-    }
-  }
-
   refreshPool () {
-    this.assertAbility();
+    assertAbilityDataSource(this.data);
     this.update({
       data: {
         pool: this.data.data.rating ?? 0,
@@ -36,12 +31,12 @@ export class GumshoeItem extends Item<any> {
   }
 
   getSpecialities = () => {
-    this.assertAbility();
+    assertAbilityDataSource(this.data);
     return fixLength(this.data.data.specialities, this.data.data.rating, "");
   }
 
   setSpecialities = (newSpecs: string[]) => {
-    this.assertAbility();
+    assertAbilityDataSource(this.data);
     this.update({
       data: {
         specialities: fixLength(newSpecs, this.data.data.rating, ""),
@@ -50,7 +45,7 @@ export class GumshoeItem extends Item<any> {
   }
 
   getRating = (): number => {
-    this.assertAbility();
+    assertAbilityDataSource(this.data);
     if (!isAbility(this)) {
       throw new Error(`${this.type} does not have a rating`);
     }
@@ -58,7 +53,7 @@ export class GumshoeItem extends Item<any> {
   }
 
   setRating = (newRating: number) => {
-    this.assertAbility();
+    assertAbilityDataSource(this.data);
     this.update({
       data: {
         rating: newRating,
@@ -68,12 +63,12 @@ export class GumshoeItem extends Item<any> {
   }
 
   getHasSpecialities = () => {
-    this.assertAbility();
+    assertAbilityDataSource(this.data);
     return this.data.data.hasSpecialities ?? false;
   }
 
   setHasSpecialities = (hasSpecialities: boolean) => {
-    this.assertAbility();
+    assertAbilityDataSource(this.data);
     this.update({
       data: {
         hasSpecialities,
@@ -98,6 +93,7 @@ export class GumshoeItem extends Item<any> {
   }
 
   getAmmoMax = () => {
+    assertWeaponDataSource(this.data);
     return this.data.data.ammo?.max || 0;
   }
 
@@ -112,10 +108,12 @@ export class GumshoeItem extends Item<any> {
   }
 
   getAmmo = () => {
+    assertWeaponDataSource(this.data);
     return this.data.data.ammo?.value || 0;
   }
 
   reload = () => {
+    assertWeaponDataSource(this.data);
     this.update({
       data: {
         ammo: {
@@ -125,15 +123,29 @@ export class GumshoeItem extends Item<any> {
     });
   }
 
-  getAmmoPerShot = () => this.data.data.ammoPerShot ?? 1
-  setAmmoPerShot = (ammoPerShot: number) => this.update({
-    data: { ammoPerShot },
-  })
+  getAmmoPerShot = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.ammoPerShot ?? 1;
+  }
 
-  getUsesAmmo = () => this.data.data.usesAmmo ?? false
-  setUsesAmmo = (usesAmmo: boolean) => this.update({
-    data: { usesAmmo },
-  })
+  setAmmoPerShot = (ammoPerShot: number) => {
+    assertWeaponDataSource(this.data);
+    this.update({
+      data: { ammoPerShot },
+    });
+  }
+
+  getUsesAmmo = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.usesAmmo ?? false;
+  }
+
+  setUsesAmmo = (usesAmmo: boolean) => {
+    assertWeaponDataSource(this.data);
+    this.update({
+      data: { usesAmmo },
+    });
+  }
 
   // ---------------------------------------------------------------------------
   // THEME
@@ -153,42 +165,139 @@ export class GumshoeItem extends Item<any> {
     }
   }
 
-  getNotes = () => this.data.data.notes ?? ""
-  setNotes = (notes: string) => this.update({ data: { notes } })
+  getNotes = () => {
+    assertWeaponOrEquipmentDataSource(this.data);
+    return this.data.data.notes ?? "";
+  }
 
-  getAbility = () => this.data.data.ability ?? ""
-  setAbility = (ability: string) => this.update({ data: { ability } })
+  setNotes = (notes: string) => {
+    assertWeaponOrEquipmentDataSource(this.data);
+    this.update({ data: { notes } });
+  }
 
-  getPool = () => this.data.data.pool ?? 0
-  setPool = (pool: number) => this.update({ data: { pool } })
+  getAbility = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.ability ?? "";
+  }
 
-  getBoost = () => this.data.data.boost ?? 0
-  setBoost = (boost: boolean) => this.update({ data: { boost } })
+  setAbility = (ability: string) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { ability } });
+  }
 
-  getDamage = () => this.data.data.damage ?? 0
-  setDamage = (damage: number) => this.update({ data: { damage } })
+  getPool = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.pool ?? 0;
+  }
 
-  getPointBlankDamage = () => this.data.data.pointBlankDamage ?? 0
-  setPointBlankDamage = (pointBlankDamage: number) => this.update({ data: { pointBlankDamage } })
+  setPool = (pool: number) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { pool } });
+  }
 
-  getCloseRangeDamage = () => this.data.data.closeRangeDamage ?? 0
-  setCloseRangeDamage = (closeRangeDamage: number) => this.update({ data: { closeRangeDamage } })
+  getBoost = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.boost ?? 0;
+  }
 
-  getNearRangeDamage = () => this.data.data.nearRangeDamage ?? 0
-  setNearRangeDamage = (nearRangeDamage: number) => this.update({ data: { nearRangeDamage } })
+  setBoost = (boost: boolean) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { boost } });
+  }
 
-  getLongRangeDamage = () => this.data.data.longRangeDamage ?? 0
-  setLongRangeDamage = (longRangeDamage: number) => this.update({ data: { longRangeDamage } })
+  getDamage = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.damage ?? 0;
+  }
 
-  getIsPointBlank = () => this.data.data.isPointBlank
-  setIsPointBlank = (isPointBlank: boolean) => this.update({ data: { isPointBlank } })
+  setDamage = (damage: number) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { damage } });
+  }
 
-  getIsCloseRange = () => this.data.data.isCloseRange
-  setIsCloseRange = (isCloseRange: boolean) => this.update({ data: { isCloseRange } })
+  getPointBlankDamage = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.pointBlankDamage ?? 0;
+  }
 
-  getIsNearRange = () => this.data.data.isNearRange
-  setIsNearRange = (isNearRange: boolean) => this.update({ data: { isNearRange } })
+  setPointBlankDamage = (pointBlankDamage: number) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { pointBlankDamage } });
+  }
 
-  getIsLongRange = () => this.data.data.isLongRange
-  setIsLongRange = (isLongRange: boolean) => this.update({ data: { isLongRange } })
+  getCloseRangeDamage = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.closeRangeDamage ?? 0;
+  }
+
+  setCloseRangeDamage = (closeRangeDamage: number) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { closeRangeDamage } });
+  }
+
+  getNearRangeDamage = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.nearRangeDamage ?? 0;
+  }
+
+  setNearRangeDamage = (nearRangeDamage: number) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { nearRangeDamage } });
+  }
+
+  getLongRangeDamage = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.longRangeDamage ?? 0;
+  }
+
+  setLongRangeDamage = (longRangeDamage: number) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { longRangeDamage } });
+  }
+
+  getIsPointBlank = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.isPointBlank;
+  }
+
+  setIsPointBlank = (isPointBlank: boolean) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { isPointBlank } });
+  }
+
+  getIsCloseRange = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.isCloseRange;
+  }
+
+  setIsCloseRange = (isCloseRange: boolean) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { isCloseRange } });
+  }
+
+  getIsNearRange = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.isNearRange;
+  }
+
+  setIsNearRange = (isNearRange: boolean) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { isNearRange } });
+  }
+
+  getIsLongRange = () => {
+    assertWeaponDataSource(this.data);
+    return this.data.data.isLongRange;
+  }
+
+  setIsLongRange = (isLongRange: boolean) => {
+    assertWeaponDataSource(this.data);
+    this.update({ data: { isLongRange } });
+  }
+}
+
+declare global {
+  interface DocumentClassConfig {
+    Item: typeof GumshoeItem;
+  }
 }

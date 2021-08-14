@@ -9,6 +9,7 @@ import { TextInput } from "../inputs/TextInput";
 import { TextArea } from "../inputs/TextArea";
 import { Translate } from "../Translate";
 import { systemName } from "../../constants";
+import { assertGame } from "../../functions";
 
 type EquipmentSheetProps = {
   entity: GumshoeItem,
@@ -19,10 +20,11 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   entity,
   foundryWindow,
 }) => {
-  const name = useAsyncUpdate(entity.name, entity.setName);
+  const name = useAsyncUpdate(entity.name || "", entity.setName);
   const notes = useAsyncUpdate(entity.getNotes(), entity.setNotes);
 
   const onClickDelete = useCallback(() => {
+    assertGame(game);
     const message = entity.actor
       ? game.i18n.format(`${systemName}.DeleteActorNamesEquipmentName`, {
           ActorName: entity.actor.data.name,

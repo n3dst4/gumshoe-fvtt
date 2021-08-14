@@ -1,9 +1,9 @@
 import { GumshoeItem } from "../../module/GumshoeItem";
 
 type PerformAttackArgs1 = {
-  spend: string,
+  spend: number,
   bonusPool: number,
-  setSpend: (value: string) => void,
+  setSpend: (value: number) => void,
   setBonusPool: (value: number) => void,
   weapon: GumshoeItem,
   ability: GumshoeItem,
@@ -51,7 +51,7 @@ export const performAttack = ({
   const newBonusPool = Math.max(0, bonusPool - Number(spend));
   ability.setPool(newPool);
   setBonusPool(newBonusPool);
-  setSpend("0");
+  setSpend(0);
   weapon.setAmmo(Math.max(0, weapon.getAmmo() - weapon.getAmmoPerShot()));
 }
 ;

@@ -16,7 +16,7 @@ type Callback<T> = (val: T) => void;
  * const updateName = useUpdate(actor, (name) => ({name}))
  * const updateOccupation = useUpdate(entity, occupation => ({ data: { occupation } }));
  */
-export const useUpdate = <T>(entity: Entity, transform: Transform<T>): Callback<T> => {
+export const useUpdate = <T>(entity: foundry.abstract.Document<any, any>, transform: Transform<T>): Callback<T> => {
   // keep a record of the transform in a ref so it's stable and we don't keep
   // regenerating the callback
   const transformStable = useRef(transform);

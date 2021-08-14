@@ -5,6 +5,7 @@ import { migrateCompendium } from "./migrateCompendium";
 import { migrateItemData } from "./migrateItemData";
 import { migrateSceneData } from "./migrateSceneData";
 import { setSystemMigrationVersion } from "../settingsHelpers";
+import { assertGame } from "../functions";
 
 const title = system.title;
 
@@ -13,7 +14,8 @@ const title = system.title;
  * @return {Promise}      A Promise which resolves once the migration is completed
  */
 export const migrateWorld = async function () {
-  ui.notifications.info(
+  assertGame(game);
+  (ui as any).notifications.info(
     `Applying ${title} System Migration for version ${game.system.data.version}. 
     Please be patient and do not close your game or shut down your server.`,
     { permanent: true },
@@ -22,8 +24,9 @@ export const migrateWorld = async function () {
   await migrateAbilityCategories();
   await migrateToArrays();
 
+  assertGame(game);
   // Migrate World Actors
-  for (const a of game.actors.entities) {
+  for (const a of game.actors?.contents ?? []) {
     try {
       const updateData = migrateActorData(a.data);
       if (!isObjectEmpty(updateData)) {
@@ -37,7 +40,7 @@ export const migrateWorld = async function () {
   }
 
   // Migrate World Items
-  for (const i of game.items.entities) {
+  for (const i of game.items?.contents ?? []) {
     try {
       const updateData = migrateItemData(i.data);
       if (!isObjectEmpty(updateData)) {
@@ -51,7 +54,7 @@ export const migrateWorld = async function () {
   }
 
   // Migrate Actor Override Tokens
-  for (const s of game.scenes.entities) {
+  for (const s of game.scenes?.contents ?? []) {
     try {
       const updateData = migrateSceneData(s.data);
       if (!isObjectEmpty(updateData)) {
@@ -74,5 +77,5 @@ export const migrateWorld = async function () {
 
   // Set the migration as complete
   setSystemMigrationVersion(system.version);
-  ui.notifications.info(`${system.title} system migration to version ${system.version} completed!`, { permanent: true });
+  (ui as any).notifications.info(`${system.title} system migration to version ${system.version} completed!`, { permanent: true });
 };

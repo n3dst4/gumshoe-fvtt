@@ -1,7 +1,15 @@
 import * as constants from "./constants";
+import { assertGame } from "./functions";
 
-const getSetting = <T = string>(key: string) => (): T => game.settings.get(constants.systemName, key);
-const setSetting = <T = string>(key: string) => (value: T) => game.settings.set(constants.systemName, key, value);
+const getSetting = <T = string>(key: string) => (): T => {
+  assertGame(game);
+  return game.settings.get(constants.systemName, key) as T;
+};
+
+const setSetting = <T = string>(key: string) => (value: T) => {
+  assertGame(game);
+  return game.settings.set(constants.systemName, key, value);
+};
 
 export const getSystemMigrationVersion = getSetting(constants.systemMigrationVersion);
 export const getDefaultThemeName = getSetting(constants.defaultThemeName);

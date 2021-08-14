@@ -51,8 +51,8 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
       </div>
 
       {/* Ability scores */}
-      {actors.map((actor, j) => {
-        if (actor === undefined) {
+      {actors.map<JSX.Element|null>((actor, j) => {
+        if (actor === undefined || actor.id === null) {
           return null;
         }
         const actorInfo = data.actorInfo[actor.id];
