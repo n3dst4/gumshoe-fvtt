@@ -72,6 +72,9 @@ export const initializePackGenerators = () => {
   window.generatePacks = {
     pathOfCthulhu: async () => {
       const pack = findPack(packNames.pathOfCthulhuAbilities);
+      if (pack === undefined) {
+        return;
+      }
       emptyPack(pack);
       await generatePacks(
         pathOfCthulhuData.investigativeAbilities,
@@ -86,6 +89,9 @@ export const initializePackGenerators = () => {
     },
     niceBlackAgents: async () => {
       const pack = findPack(packNames.niceBlackAgentsAbilities);
+      if (pack === undefined) {
+        return;
+      }
       emptyPack(pack);
       await generatePacks(
         niceBlackAgentsData.investigativeAbilities,
@@ -100,6 +106,9 @@ export const initializePackGenerators = () => {
     },
     nothingToFear: async () => {
       const pack = findPack(packNames.nothingToFearAbilities);
+      if (pack === undefined) {
+        return;
+      }
       emptyPack(pack);
       await generatePacks(
         nothingToFearData.investigativeAbilities,
@@ -114,6 +123,9 @@ export const initializePackGenerators = () => {
     },
     pallidStars: async () => {
       const pack = findPack(packNames.pallidStarsAbilities);
+      if (pack === undefined) {
+        return;
+      }
       emptyPack(pack);
       await generatePacks(
         pallidStarsData.investigativeAbilities,
