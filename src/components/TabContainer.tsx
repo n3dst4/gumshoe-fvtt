@@ -83,25 +83,29 @@ export const TabContainer: React.FC<TabContainerProps> = ({
 
       }}
     >
+      {["foo", "bar"].map<JSX.Element>((x) => <span key={x}/>)}
+
       <div className="tab-strip">
-        {tabs.map(({ id, label }) => {
+        {tabs.map<jsx.JSX.Element>(({ id, label }) => {
           const htmlId = nanoid();
-          return (<Fragment key={id}>
-            <input
-              name={radioGroup}
-              id={htmlId}
-              type="radio"
-              value={id}
-              checked={id === selected}
-              onChange={onChange}
-            />
-            <label htmlFor={htmlId} tabIndex={0}>
-              {typeof label === "string"
-                ? <Translate>{label}</Translate>
-                : label
-              }
-            </label>
-          </Fragment>);
+          return (
+            <Fragment key={id}>
+              <input
+                name={radioGroup}
+                id={htmlId}
+                type="radio"
+                value={id}
+                checked={id === selected}
+                onChange={onChange}
+              />
+              <label htmlFor={htmlId} tabIndex={0}>
+                {typeof label === "string"
+                  ? <Translate>{label}</Translate>
+                  : label
+                }
+              </label>
+            </Fragment>
+          );
         })}
       </div>
       <div

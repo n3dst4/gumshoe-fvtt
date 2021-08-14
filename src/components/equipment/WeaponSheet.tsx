@@ -16,7 +16,7 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
   weapon,
   foundryWindow,
 }) => {
-  const name = useAsyncUpdate(weapon.name, weapon.setName);
+  const name = useAsyncUpdate(weapon.name || "", weapon.setName);
   const [configMode, setConfigMode] = useState(false);
   useEffect(() => {
     foundryWindow.render();

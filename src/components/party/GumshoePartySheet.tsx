@@ -2,12 +2,12 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useState } from "react";
 import * as constants from "../../constants";
-import { isAbility, sortEntitiesByName } from "../../functions";
+import { assertGame, isAbility, sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { themes } from "../../theme";
-import { RecursivePartial } from "../../types";
+import { assertPartyDataSource, InvestigatorItemDataSource, isAbilityDataSource, RecursivePartial } from "../../types";
 import { CSSReset } from "../CSSReset";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -47,6 +47,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
       something: unknown, // i cannot tell what this is supposed to be
       userId: string, // probably?
     ) => {
+      assertPartyDataSource(party.data);
       const actorIds = party.data.data.actorIds.filter(
         (id) => id !== deletedActor.id,
       );
@@ -59,6 +60,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
       options: any,
       useId: string,
     ) => {
+      assertPartyDataSource(party.data);
       if (isAbility(item) && item.isOwned && party.data.data.actorIds.includes(item.actor?.id ?? "")) {
         setAbilityTuples(await getSystemAbilities());
       }
@@ -89,17 +91,23 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
 
   // effect 3: listen for ability changes
   useEffect(() => {
+    assertGame(game);
     // getting actors is fast
-    const actors = actorIds.map((id) => game.actors.get(id) as GumshoeActor);
+    const actors = actorIds.flatMap((id) => {
+      assertGame(game);
+      const actor = game.actors?.get(id);
+      return actor ? [actor] : [];
+    });
     setActors(sortEntitiesByName(actors).filter((actor) => actor !== undefined));
     const hook = (
       actor: GumshoeActor,
-      itemData: ItemData,
-      itemDataDiff: RecursivePartial<ItemData>,
+      itemData: InvestigatorItemDataSource,
+      itemDataDiff: RecursivePartial<InvestigatorItemDataSource>,
       options: any,
       userId: string,
     ) => {
-      if (actorIds.includes(actor.id) && isAbility(itemData.type)) {
+      if (actor.id === null) return;
+      if (actorIds.includes(actor.id) && isAbilityDataSource(itemData)) {
         // slightly hacky; clone the actors array so it's seen as new data and
         // triggers effect 2
         setActors([...actors]);
@@ -120,6 +128,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
     }
   }, [party]);
 
+  assertPartyDataSource(party.data);
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
@@ -161,7 +170,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
           }}
         >
           <GridField label="Party Name">
-            <AsyncTextInput value={party.getName()} onChange={party.setName} />
+            <AsyncTextInput value={party.getName() || ""} onChange={party.setName} />
           </GridField>
         </InputGrid>
 
@@ -194,7 +203,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
           ></div>
 
           {/* Actor names */}
-          {actors.map((actor, j) => {
+          {actors.map<JSX.Element>((actor, j) => {
             return (
               <div
                 key={actor?.id || `missing-${j}`}
@@ -222,7 +231,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                   }}
                   onClick={(e) => {
                     e.preventDefault();
-                    actor.sheet.render(true);
+                    actor.sheet?.render(true);
                   }}
                 >
                   {actor?.name ?? "Missing"}
@@ -287,7 +296,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
           </div>
 
           {/* Rows */}
-          {rowData.map((data, i) => {
+          {rowData.map<JSX.Element>((data, i) => {
             if (isTypeHeader(data)) {
               // Investigative or general
               return (

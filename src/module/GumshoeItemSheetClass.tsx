@@ -11,20 +11,21 @@ import { ReactApplicationMixin } from "./ReactApplicationMixin";
 class GumshoeItemSheetClassBase extends ItemSheet {
   /** @override */
   static get defaultOptions () {
-    return mergeObject(super.defaultOptions, {
+    return {
+      ...super.defaultOptions,
       classes: [systemName, "sheet", "item"],
       template: reactTemplatePath,
       width: 400,
-      height: "auto",
+      height: "auto" as const,
       resizable: false,
-    });
+    };
   }
 }
 
 const render = (sheet: GumshoeItemSheetClassBase) => {
   return (
     <GumshoeItemSheet
-      item={sheet.entity}
+      item={sheet.document}
       foundryApplication={sheet}
     />
   );

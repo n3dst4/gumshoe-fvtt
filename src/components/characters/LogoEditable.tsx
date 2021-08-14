@@ -88,12 +88,12 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
       {/* Backdrop */}
       <div
         css={{
+          ...theme.logoBackdropStyle,
           position: "absolute",
           top: 0,
           right: 0,
           bottom: 0,
           left: 0,
-          ...theme.logoBackdropStyle,
         }}
       />
       {/* inner - apply the transform */}

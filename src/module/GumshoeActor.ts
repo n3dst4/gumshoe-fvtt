@@ -1,13 +1,11 @@
-import { equipment, generalAbility, pc, weapon } from "../constants";
-import { isAbility } from "../functions";
-import { GumshoeActorData, RecursivePartial, GumshoeItemData, AbilityType } from "../types";
+import { equipment, generalAbility, investigativeAbility, pc, weapon } from "../constants";
+import { assertGame, isAbility } from "../functions";
+import { RecursivePartial, AbilityType, InvestigatorItemDataSource, assertPCDataSource, assertPartyDataSource, InvestigativeAbilityDataSource } from "../types";
 import { confirmADoodleDo } from "./confirm";
-import { GumshoeItem } from "./GumshoeItem";
 import { Theme, themes } from "../theme";
 import { getDefaultThemeName, getNewPCPacks } from "../settingsHelpers";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
+export class GumshoeActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
@@ -27,7 +25,7 @@ export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
 
   refresh = () => {
     this.items.forEach((item) => {
-      if (item.data.data.rating !== item.data.data.pool) {
+      if ((item.data.type === generalAbility || item.data.type === investigativeAbility) && item.data.data.rating !== item.data.data.pool) {
         item.update({
           data: {
             pool: item.data.data.rating,
@@ -48,9 +46,9 @@ export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
   };
 
   nuke = async () => {
-    await this.deleteEmbeddedEntity(
+    await this.deleteEmbeddedDocuments(
       "OwnedItem",
-      this.items.map((i: GumshoeItem) => i.id),
+      this.items.map((i) => i.id).filter(i => i !== null) as string[],
     );
     window.alert("Nuked");
   };
@@ -60,7 +58,7 @@ export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
 
   getAbilityByName (name: string, type?: AbilityType) {
     return this.items.find(
-      (item: GumshoeItem) =>
+      (item) =>
         (type ? item.data.type === type : isAbility(item)) && item.name === name,
     );
   }
@@ -70,20 +68,23 @@ export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
   }
 
   getEquipment () {
-    return this.items.filter((item: GumshoeItem) => item.type === equipment);
+    return this.items.filter((item) => item.type === equipment);
   }
 
-  getWeapons (): GumshoeItem[] {
-    return this.items.filter((item: GumshoeItem) => item.type === weapon);
+  getWeapons () {
+    return this.items.filter((item) => item.type === weapon);
   }
 
-  getAbilities (): GumshoeItem[] {
-    return this.items.filter((item: GumshoeItem) => isAbility(item));
+  getAbilities () {
+    return this.items.filter((item) => isAbility(item));
   }
 
-  getTrackerAbilities (): GumshoeItem[] {
+  getTrackerAbilities () {
     return this.getAbilities().filter(
-      (item: GumshoeItem) => item.data.data.showTracker,
+      (item) => {
+        const data = item.data;
+        return (data.type === investigativeAbility || data.type === generalAbility) && data.data.showTracker;
+      },
     );
   }
 
@@ -101,33 +102,24 @@ export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
   }
 
   getSheetThemeName (): string | null {
-    return this.data.data.sheetTheme;
+    return this.data.type === "pc" ? this.data.data.sheetTheme : null;
   }
 
   setSheetTheme = (sheetTheme: string | null) =>
     this.update({ data: { sheetTheme } });
 
-  getNotes = () => this.data.data.notes ?? "";
-  setNotes = (notes: string) => this.update({ data: { notes } });
+  getLongNote = (i: number) => {
+    assertPCDataSource(this.data);
+    return this.data.data.longNotes?.[i] ?? "";
+  }
 
-  getOccupationalBenefits = () => this.data.data.occupationalBenefits ?? "";
-  setOccupationalBenefits = (occupationalBenefits: string) =>
-    this.update({ data: { occupationalBenefits } });
+  getLongNotes = () => {
+    assertPCDataSource(this.data);
+    return this.data.data.longNotes ?? [];
+  }
 
-  getPillarsOfSanity = () => this.data.data.pillarsOfSanity ?? "";
-  setPillarsOfSanity = (pillarsOfSanity: string) =>
-    this.update({ data: { pillarsOfSanity } });
-
-  getSourcesOfStability = () => this.data.data.sourcesOfStability ?? "";
-  setSourcesOfStability = (sourcesOfStability: string) =>
-    this.update({ data: { sourcesOfStability } });
-
-  getBackground = () => this.data.data.background ?? "";
-  setBackground = (background: string) => this.update({ data: { background } });
-
-  getLongNote = (i: number) => this.data.data.longNotes?.[i] ?? "";
-  getLongNotes = () => this.data.data.longNotes ?? [];
   setLongNote = (i: number, text: string) => {
+    assertPCDataSource(this.data);
     const newNotes = [...(this.data.data.longNotes || [])];
     newNotes[i] = text;
     this.update({
@@ -137,9 +129,18 @@ export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
     });
   };
 
-  getShortNote = (i: number) => this.data.data.shortNotes?.[i] ?? "";
-  getShortNotes = () => this.data.data.shortNotes ?? [];
+  getShortNote = (i: number) => {
+    assertPCDataSource(this.data);
+    return this.data.data.shortNotes?.[i] ?? "";
+  }
+
+  getShortNotes = () => {
+    assertPCDataSource(this.data);
+    return this.data.data.shortNotes ?? [];
+  }
+
   setShortNote = (i: number, text: string) => {
+    assertPCDataSource(this.data);
     const newNotes = [...(this.data.data.shortNotes || [])];
     newNotes[i] = text;
     this.update({
@@ -150,24 +151,39 @@ export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
   };
 
   getName = () => this.name;
+
   setName = (name: string) => {
     this.update({ name });
   };
 
-  getActorIds = () => this.data.data.actorIds;
+  getActorIds = () => {
+    assertPartyDataSource(this.data);
+    return this.data.data.actorIds;
+  }
+
   setActorIds = (actorIds: string[]) => {
+    assertPartyDataSource(this.data);
     this.update({ data: { actorIds } });
   };
 
-  getActors = () => this.getActorIds().map((id) => game.actors.get(id));
+  getActors = () => {
+    return this.getActorIds().map((id) => {
+      assertGame(game);
+      return game.actors?.get(id);
+    }).filter((actor) => actor !== undefined) as Actor[];
+  }
+
   addActorIds = (newIds: string[]) => {
     const currentIds = this.getActorIds();
-    const effectiveIds = newIds
-      .map((id) => game.actors.get(id))
+    const effectiveIds = (newIds
+      .map((id) => {
+        assertGame(game);
+        return game.actors?.get(id);
+      })
       .filter(
-        (actor) => actor.data.type === pc && !currentIds.includes(actor.id),
-      )
-      .map((actor) => actor.id);
+        (actor) => actor !== undefined && actor.id !== null && actor.data.type === pc && !currentIds.includes(actor.id),
+      ) as Actor[])
+      .map((actor) => actor.id) as string[];
     this.setActorIds([...currentIds, ...effectiveIds]);
   };
 
@@ -202,16 +218,24 @@ export class GumshoeActor<T = any> extends Actor<GumshoeActorData> {
   // };
 }
 
+declare global {
+  interface DocumentClassConfig {
+    Actor: typeof GumshoeActor;
+  }
+}
+
 /**
  * Keep "special" general abilities in sync with their corresponding resources
  */
 Hooks.on("updateOwnedItem", (
   actor: GumshoeActor,
-  itemData: ItemData<GumshoeItemData>,
-  diff: RecursivePartial<ItemData<GumshoeItemData>>,
+  itemData: InvestigatorItemDataSource,
+  // this seems like a fib, but I can't see what else to type this as
+  diff: RecursivePartial<InvestigativeAbilityDataSource>,
   options: Record<string, unknown>,
   userId: string,
 ) => {
+  assertGame(game);
   if (game.userId !== userId) return;
 
   // love 2 sink into a pit of imperative code
@@ -240,6 +264,7 @@ Hooks.on(
     options: Record<string, unknown>,
     userId: string,
   ) => {
+    assertGame(game);
     if (game.userId !== userId) return;
 
     if (actor.items.size > 0) {
@@ -250,12 +275,14 @@ Hooks.on(
       return;
     }
 
-    const proms = getNewPCPacks().map(async (packId, i) => {
+    // this used to be done in parallel with Promise.all but I was seeing some
+    // weird behaviour (duplicated or missing abilities, or weird reference
+    // errors) so I have switched it to inline to see if that helps
+    for (const packId of getNewPCPacks()) {
+      assertGame(game);
       console.log("PACK", packId);
-      const content = await (game.packs
-        .find((p: any) => p.collection === packId)
-        .getContent());
-      const datas = content.map(({ data: { name, img, data, type } }: any) => ({
+      const content = await (game.packs?.find((p: any) => p.collection === packId)?.getDocuments());
+      const datas = content?.map(({ data: { name, img, data, type } }) => ({
         name,
         img,
         data,
@@ -263,8 +290,7 @@ Hooks.on(
       }));
       console.log("datas", datas);
       await (actor as any).createEmbeddedDocuments("Item", datas);
-      // createEmbeddedDocuments("Item", itemDataArray)
-    });
-    await Promise.all(proms);
+    }
+    console.log("COMPLETED");
   },
 );

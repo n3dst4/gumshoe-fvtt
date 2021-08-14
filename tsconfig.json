@@ -6,9 +6,12 @@
 			"ES6",
 			"ES2019"
 		],
-		"types": ["foundry-pc-types"],
 		"moduleResolution": "node",
 		"jsx": "react",
+    "types": [
+			// "react",
+			"@league-of-foundry-developers/foundry-vtt-types"
+		],
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 		"strict": true,

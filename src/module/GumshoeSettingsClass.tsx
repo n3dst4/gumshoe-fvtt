@@ -20,6 +20,11 @@ class GumshoeSettingsClassBase extends FormApplication {
       title: "GUMSHOE Settings",
     });
   }
+
+  // this is here to satisfy foundry-vtt-types
+  _updateObject (event: Event, formData?: any) {
+    return Promise.resolve();
+  }
 }
 
 const render = (sheet: GumshoeSettingsClassBase) => {

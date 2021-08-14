@@ -2,9 +2,10 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useContext, useState } from "react";
 import * as constants from "../../constants";
-import { isGeneralAbility } from "../../functions";
+import { assertGame, isGeneralAbility } from "../../functions";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { ThemeContext } from "../../theme";
+import { assertAbilityDataSource } from "../../types";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
@@ -18,16 +19,18 @@ type AbilityTestProps = {
 
 const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
   const label = i.toString();
-  return { label, value: label, enabled: true };
+  return { label, value: Number(label), enabled: true };
 });
 
 export const AbilityTest: React.FC<AbilityTestProps> = ({
   ability,
 }) => {
   const theme = useContext(ThemeContext);
-  const [spend, setSpend] = useState("0");
+  const [spend, setSpend] = useState(0);
 
   const onTest = useCallback(() => {
+    assertGame(game);
+    assertAbilityDataSource(ability.data);
     if (ability.actor === null) { return; }
     const useBoost = game.settings.get(constants.systemName, constants.useBoost);
     const isBoosted = useBoost && ability.getBoost();
@@ -41,10 +44,11 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
       flavor: label,
     });
     ability.update({ data: { pool: ability.data.data.pool - Number(spend) || 0 } });
-    setSpend("0");
+    setSpend(0);
   }, [ability, spend]);
 
   const onSpend = useCallback(() => {
+    assertAbilityDataSource(ability.data);
     if (ability.actor === null) { return; }
     const roll = new Roll("@spend", { spend });
     const label = `Ability pool spend for ${ability.name}`;
@@ -53,13 +57,16 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
       flavor: label,
     });
     ability.update({ data: { pool: ability.data.data.pool - Number(spend) || 0 } });
-    setSpend("0");
+    setSpend(0);
   }, [ability, spend]);
 
-  const spendOptions = defaultSpendOptions.map((option) => ({
-    ...option,
-    enabled: option.value <= ability.data.data.pool,
-  }));
+  const spendOptions = defaultSpendOptions.map((option) => {
+    assertAbilityDataSource(ability.data);
+    return ({
+      ...option,
+      enabled: option.value <= ability.data.data.pool,
+    });
+  });
 
   const isGeneral = isGeneralAbility(ability);
 
@@ -86,7 +93,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
             flexDirection: "row",
           }}
         >
-          <button css={{ flex: 1 }} disabled={spend === "0"} onClick={onSpend}>
+          <button css={{ flex: 1 }} disabled={spend === 0} onClick={onSpend}>
             <Translate>{isGeneral ? "Simple Spend" : "Spend"}</Translate>
           </button>
           {isGeneral && (

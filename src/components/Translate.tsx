@@ -4,6 +4,7 @@ import React, { useMemo } from "react";
 import Case from "case";
 import { systemName } from "../constants";
 import { getDebugTranslations } from "../settingsHelpers";
+import { assertGame } from "../functions";
 
 type TranslateProps = {
   children: string,
@@ -14,11 +15,18 @@ export const Translate: React.FC<TranslateProps> = ({
   children,
   values,
 }) => {
+  assertGame(game);
   const debug = getDebugTranslations();
   const pascal = useMemo(() => Case.pascal(children), [children]);
   const prefixed = `${systemName}.${pascal}`;
-  const local = useMemo(() => game.i18n.format(prefixed, values), [prefixed, values]);
-  const has = useMemo(() => (game.i18n as any).has(prefixed, false), [prefixed]);
+  const local = useMemo(() => {
+    assertGame(game);
+    return game.i18n.format(prefixed, values);
+  }, [prefixed, values]);
+  const has = useMemo(() => {
+    assertGame(game);
+    return game.i18n.has(prefixed, false);
+  }, [prefixed]);
 
   return (
     <span

@@ -30,10 +30,10 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
             width: "auto",
           }}
           onClick={async () => {
-            await actor.createOwnedItem({
+            await actor.createEmbeddedDocuments("Item", [{
               type: equipment,
               name: "New item",
-            }, {
+            }], {
               renderSheet: true,
             });
             // newItem.sheet.render(true);
@@ -68,10 +68,10 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
           }}
         >
           {
-            sortEntitiesByName(items).map((item) => (
+            sortEntitiesByName(items).map<JSX.Element>((item) => (
               <a
                 key={item.id}
-                onClick={() => item.sheet.render(true)}
+                onClick={() => item.sheet?.render(true)}
               >
                 {item.name}
               </a>

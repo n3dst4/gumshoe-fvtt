@@ -3,6 +3,7 @@ import { AbilityType } from "../../types";
 import { abilityRowkey, AbilityTuple, ActorAbilityInfo, categoryHeaderKey, RowData, typeHeaderKey } from "./types";
 import * as constants from "../../constants";
 import { GumshoeActor } from "../../module/GumshoeActor";
+import { assertGame } from "../../functions";
 
 /**
  * get a sorted list of ability tuples
@@ -11,11 +12,10 @@ import { GumshoeActor } from "../../module/GumshoeActor";
  */
 export const getSystemAbilities = async (): Promise<AbilityTuple[]> => {
   const proms = getNewPCPacks().map(async (packId) => {
+    assertGame(game);
     // getting pack content is slow
-    const content = await game.packs
-      .find((p: any) => p.collection === packId)
-      .getContent();
-    const tuples: AbilityTuple[] = content.map((i: any) => [
+    const content = await game.packs.find((p: any) => p.collection === packId)?.getDocuments();
+    const tuples: AbilityTuple[] = (content || []).map((i: any) => [
       i.data.type,
       i.data.data.category,
       i.data.name,
@@ -97,7 +97,7 @@ export const buildRowData = (
         continue;
       }
       const ability = actor.getAbilityByName(name, abilityType);
-      if (ability) {
+      if (ability !== undefined && actor.id !== null && ability.id !== null) {
         const rating = ability.getRating();
         actorInfo[actor.id] = {
           abilityId: ability.id,

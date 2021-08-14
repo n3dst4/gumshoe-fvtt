@@ -60,7 +60,7 @@
   ],
   "gridDistance": 1,
   "gridUnits": "",
-  "minimumCoreVersion": "0.7.9",
+  "minimumCoreVersion": "0.8.8",
   "compatibleCoreVersion": "0.8.8",
   "initiative": "1d6",
   "url": "https://gitlab.com/n3dst4/investigator-fvtt",

@@ -8,15 +8,23 @@ import * as niceBlackAgentsData from "./niceBlackAgentsData";
 import * as nothingToFearData from "./nothingToFearData";
 import * as pallidStarsData from "./pallidStarsData";
 import { packNames, systemName } from "../constants";
+import { assertGame } from "../functions";
 
-export const emptyPack = async (pack: any) => {
-  const content = await pack.getContent();
-  content.forEach((item: Entity) => {
+/*
+ * Ugh, sorry about the types in here. It's a mess, but the see-saw of
+ * correctness vs. git-'er-done-ness has tipped right over and I can't face
+ * spending a day fighting type defs.
+ */
+
+export const emptyPack = async (pack: CompendiumCollection<CompendiumCollection.Metadata>) => {
+  const content = await pack.getDocuments();
+  content.forEach((item) => {
     item.delete();
   });
 };
 
 export const findPack = (packName: string) => {
+  assertGame(game);
   const pack = game.packs.find(
     (p: any) => p.collection === `${systemName}.${packName}`,
   );
@@ -34,7 +42,7 @@ export const generatePacks = async <
 
   Object.keys(abilityData).forEach(
     async (category: keyof typeof abilityData) => {
-      const abilityDatas = abilityData[category].map((data: any) => {
+      const abilityDatas = abilityData[category].map((data) => {
         const { name, type, img, ...rest } = data;
         return {
           type: template.type,
@@ -48,9 +56,9 @@ export const generatePacks = async <
           },
         };
       });
-      const items = await Item.create(abilityDatas, { temporary: true });
+      const items = await Item.create(abilityDatas as any, { temporary: true });
       // await pack.importEntity(folder);//
-      for (const item of items as unknown as Entity<any>[]) {
+      for (const item of items as any) {
         await pack.importEntity(item);
         console.log(
           `Imported Item ${item.name} into Compendium pack ${pack.collection}`,
@@ -64,6 +72,9 @@ export const initializePackGenerators = () => {
   window.generatePacks = {
     pathOfCthulhu: async () => {
       const pack = findPack(packNames.pathOfCthulhuAbilities);
+      if (pack === undefined) {
+        return;
+      }
       emptyPack(pack);
       await generatePacks(
         pathOfCthulhuData.investigativeAbilities,
@@ -78,6 +89,9 @@ export const initializePackGenerators = () => {
     },
     niceBlackAgents: async () => {
       const pack = findPack(packNames.niceBlackAgentsAbilities);
+      if (pack === undefined) {
+        return;
+      }
       emptyPack(pack);
       await generatePacks(
         niceBlackAgentsData.investigativeAbilities,
@@ -92,6 +106,9 @@ export const initializePackGenerators = () => {
     },
     nothingToFear: async () => {
       const pack = findPack(packNames.nothingToFearAbilities);
+      if (pack === undefined) {
+        return;
+      }
       emptyPack(pack);
       await generatePacks(
         nothingToFearData.investigativeAbilities,
@@ -106,6 +123,9 @@ export const initializePackGenerators = () => {
     },
     pallidStars: async () => {
       const pack = findPack(packNames.pallidStarsAbilities);
+      if (pack === undefined) {
+        return;
+      }
       emptyPack(pack);
       await generatePacks(
         pallidStarsData.investigativeAbilities,

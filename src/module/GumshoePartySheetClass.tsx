@@ -23,7 +23,7 @@ class GumshoePartySheetClassBase extends ActorSheet {
 const render = (sheet: GumshoePartySheetClassBase) => {
   return (
     <GumshoePartySheet
-      party={sheet.entity}
+      party={sheet.document}
       foundryApplication={sheet}
     />
   );

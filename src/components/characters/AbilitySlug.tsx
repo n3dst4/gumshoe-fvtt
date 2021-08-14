@@ -4,12 +4,14 @@ import { jsx } from "@emotion/react";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { getUseBoost } from "../../settingsHelpers";
+import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
 
 type AbilitySlugProps = {
   ability: GumshoeItem,
 };
 
 export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
+  assertAbilityDataSource(ability.data);
   const app = useContext(ActorSheetAppContext);
   const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
     if (app !== null) {
@@ -30,7 +32,7 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
         // },
       }}
       onClick={() => {
-        ability.sheet.render(true);
+        ability.sheet?.render(true);
       }}
       data-item-id={ability.id}
       onDragStart={onDragStart}
@@ -45,7 +47,7 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
           />
         )}
         {ability.name} ({ability.data.data.pool}/{ability.data.data.rating})
-        {ability.data.data.canBeInvestigative && (
+        {isGeneralAbilityDataSource(ability.data) && ability.data.data.canBeInvestigative && (
           <i
             css={{ fontSize: "0.8em", marginLeft: "0.5em" }}
             className="fa fa-search"
@@ -62,7 +64,7 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
       </div>
       {ability.data.data.hasSpecialities && (
         <div css={{ paddingLeft: "1em" }}>
-          {(ability.data.data.specialities || []).map((x: string, i: number) => (
+          {(ability.data.data.specialities || []).map<JSX.Element>((x: string, i: number) => (
             <div key={i}>{x.trim()}</div>
           ))}
         </div>

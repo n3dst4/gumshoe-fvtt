@@ -2,6 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { customSystem } from "../constants";
+import { assertGame } from "../functions";
 import * as settings from "../settingsHelpers";
 import { systemPresets } from "../systemPresets";
 import { themes, tealTheme } from "../theme";
@@ -34,6 +35,7 @@ const useStateWithPreset = <T extends any>(initial: T, also: () => void) => {
 export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
   foundryApplication,
 }) => {
+  assertGame(game);
   // there is also abilityCategories which is legacy and may be lying around for compat purposes
   const systemMigrationVersion = settings.getSystemMigrationVersion();
   const [systemPreset, setSystemPreset] = useState(settings.getSystemPreset());
@@ -47,17 +49,13 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
     settings.getDefaultThemeName(),
     resetPreset,
   );
-  const [
-    investigativeAbilityCategories,
-    setInvestigativeAbilityCategories,
-  ] = useStateWithPreset(
-    settings.getInvestigativeAbilityCategories(),
-    resetPreset,
-  );
-  const [
-    generalAbilityCategories,
-    setGeneralAbilityCategories,
-  ] = useStateWithPreset(settings.getGeneralAbilityCategories(), resetPreset);
+  const [investigativeAbilityCategories, setInvestigativeAbilityCategories] =
+    useStateWithPreset(
+      settings.getInvestigativeAbilityCategories(),
+      resetPreset,
+    );
+  const [generalAbilityCategories, setGeneralAbilityCategories] =
+    useStateWithPreset(settings.getGeneralAbilityCategories(), resetPreset);
   const [combatAbilities, setCombatAbilities] = useStateWithPreset(
     settings.getCombatAbilities(),
     resetPreset,
@@ -148,7 +146,8 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
   const onClickSave = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-      await Promise.all([
+
+      await Promise.all<unknown>([
         settings.setDefaultThemeName(defaultTheme),
         settings.setInvestigativeAbilityCategories(
           investigativeAbilityCategories,
@@ -166,18 +165,18 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       foundryApplication.close();
     },
     [
-      combatAbilities,
       defaultTheme,
-      foundryApplication,
-      generalAbilityCategories,
       investigativeAbilityCategories,
-      longNotes,
-      newPCPacks,
+      generalAbilityCategories,
+      combatAbilities,
       occupationLabel,
       shortNotes,
-      systemPreset,
+      longNotes,
+      newPCPacks,
       useBoost,
+      systemPreset,
       debugTranslations,
+      foundryApplication,
     ],
   );
 
@@ -206,7 +205,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       >
         <GridField label="System Preset">
           <select value={systemPreset} onChange={onSelectPreset}>
-            {Object.keys(systemPresets).map((presetId: string) => (
+            {Object.keys(systemPresets).map<JSX.Element>((presetId: string) => (
               <option key={presetId} value={presetId}>
                 {
                   systemPresets[presetId as keyof typeof systemPresets]
@@ -271,17 +270,21 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                 setDefaultTheme(e.currentTarget.value);
               }}
             >
-              {Object.keys(themes).map((themeName: string) => (
+              {Object.keys(themes).map<JSX.Element>((themeName: string) => (
                 <option key={themeName} value={themeName}>
                   {themes[themeName].displayName}
                 </option>
               ))}
             </select>
           </SettingsGridField>
-          <SettingsGridField label="Compendium packs for new PCs" index={idx++} noLabel>
+          <SettingsGridField
+            label="Compendium packs for new PCs"
+            index={idx++}
+            noLabel
+          >
             {game.packs
-              .filter((pack: Compendium) => pack.metadata.entity === "Item")
-              .map((pack: Compendium) => {
+              .filter((pack: CompendiumCollection<CompendiumCollection.Metadata>) => pack.metadata.entity === "Item")
+              .map((pack: CompendiumCollection<CompendiumCollection.Metadata>) => {
                 const isSelected = newPCPacks.includes(pack.collection);
                 return (
                   <label
@@ -290,9 +293,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                     title={pack.collection}
                     css={{
                       display: "block",
-                      background: isSelected
-                        ? theme.colors.bgTint
-                        : "none",
+                      background: isSelected ? theme.colors.bgTint : "none",
                       marginBottom: "0.3em",
                     }}
                   >
@@ -347,7 +348,10 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
             <Checkbox checked={useBoost} onChange={setUseBoost} />
           </SettingsGridField>
           <SettingsGridField label="Debug translations?" index={idx++}>
-            <Checkbox checked={debugTranslations} onChange={setDebugTranslations} />
+            <Checkbox
+              checked={debugTranslations}
+              onChange={setDebugTranslations}
+            />
           </SettingsGridField>
         </InputGrid>
       )}
