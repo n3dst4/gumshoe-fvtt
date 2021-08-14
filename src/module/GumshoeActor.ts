@@ -275,21 +275,33 @@ Hooks.on(
       return;
     }
 
-    const proms = getNewPCPacks().map(async (packId, i) => {
+    // this used to be done in parallel with Promise.all but I was seeing some
+    // weird behaviour (duplicated or missing abilities, or weird reference
+    // errors) so I have switched it to inline to see if that helps
+    for (const packId of getNewPCPacks()) {
       assertGame(game);
       console.log("PACK", packId);
       // this was previously using getContent
       const content = await (game.packs?.find((p: any) => p.collection === packId)?.getDocuments());
-      const datas = content?.map(({ data: { name, img, data, type } }: any) => ({
-        name,
-        img,
-        data,
-        type,
-      }));
+      // const datas = content?.map(({ data: { name, img, data, type } }) => ({
+      //   name,
+      //   img,
+      //   data,
+      //   type,
+      // }));
+      const datas = content?.map((document) => {
+        const obj = {
+          name: document.data.name,
+          img: document.data.img,
+          data: document.data.data,
+          type: document.data.type,
+        };
+        return obj;
+      });
       console.log("datas", datas);
       await (actor as any).createEmbeddedDocuments("Item", datas);
       // createEmbeddedDocuments("Item", itemDataArray)
-    });
-    await Promise.all(proms);
+    }
+    console.log("COMPLETED");
   },
 );
