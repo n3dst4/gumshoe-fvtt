@@ -1,6 +1,16 @@
 # CHANGELOG
 
-## v3.1.0
+## v4.0.0 (2021-08-14)
+
+* Drop compatibility for Foundry VTT < 0.8.0 :(
+* Fix Deprecation warnings when running in Foundry VTT 0.8.0+ :)
+* (Internal) switch from `foundry-pc-types` to the more up-to-date and complete
+  `@league-of-foundry-developers/foundry-vtt-types`.
+* Fix a bug where newly created characters' abilities were missing, duplicated, 
+  or weird.
+* Fix some translation issues.
+
+## v3.1.0 (2021-08-05)
 
 * Remove non-SRD abilities
 
