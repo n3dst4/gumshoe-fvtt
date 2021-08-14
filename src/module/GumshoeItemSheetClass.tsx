@@ -25,7 +25,7 @@ class GumshoeItemSheetClassBase extends ItemSheet {
 const render = (sheet: GumshoeItemSheetClassBase) => {
   return (
     <GumshoeItemSheet
-      item={sheet.entity}
+      item={sheet.document}
       foundryApplication={sheet}
     />
   );
