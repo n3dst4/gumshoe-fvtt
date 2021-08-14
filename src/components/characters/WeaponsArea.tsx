@@ -32,7 +32,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
           }}
           onClick={async () => {
             await actor.createEmbeddedDocuments(
-              weapon,
+              "Item",
               [
                 {
                   type: weapon,

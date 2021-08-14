@@ -30,7 +30,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
             width: "auto",
           }}
           onClick={async () => {
-            await actor.createEmbeddedDocuments(equipment, [{
+            await actor.createEmbeddedDocuments("Item", [{
               type: equipment,
               name: "New item",
             }], {
