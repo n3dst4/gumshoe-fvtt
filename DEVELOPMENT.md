@@ -39,12 +39,12 @@
   * [x] *"Boost"*
   * [ ] Spaceships?
 * [ ] The Fall of Delta Green
+* [ ] The Yellow King
+* [ ] Cthulhu Confidential (is 1-to-1)
 
 ## GUMSHOE Games that I don't have yet, but would like to support:
 
-* [ ] The Yellow King
 * [ ] Mutant City Blues (2nd ed.)
-* [ ] Cthulhu Confidential (is 1-to-1)
 
 ## Games that I have, and could be bribed to focus on:
 
