@@ -79,5 +79,6 @@
   "investigator.Pool": "Pool",
   "investigator.Rating": "Rating",
   "investigator.NoActorsInThisPartyYetDragPCActorsFromTheSidebarIntoThisWindowToAddThem": "No actors in this party yet! Drag PC actors from the sidebar into this window to add them.",
-  "investigator.DebugTranslations": "Debug translations?"
+  "investigator.DebugTranslations": "Debug translations?",
+  "investigator.Boost": "Boost?"
 }
