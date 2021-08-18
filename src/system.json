@@ -69,5 +69,11 @@
   "license": "MIT",
   "readme": "https://gitlab.com/n3dst4/investigator-fvtt/-/blob/release/README.md",
   "bugs": "https://gitlab.com/n3dst4/investigator-fvtt/-/issues",
-  "changelog": "https://gitlab.com/n3dst4/investigator-fvtt/-/blob/release/CHANGELOG.md"
+  "changelog": "https://gitlab.com/n3dst4/investigator-fvtt/-/blob/release/CHANGELOG.md",
+  "media": [
+    {
+      "type": "cover",
+      "url": "https://gitlab.com/n3dst4/investigator-fvtt/-/raw/master/cover.webp"
+    }
+  ]
 }
