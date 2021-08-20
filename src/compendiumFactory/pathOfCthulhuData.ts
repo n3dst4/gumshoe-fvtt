@@ -40,7 +40,7 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Cryptography" },
     { name: "Geology" },
     { name: "History" },
-    { name: "Language", hasSpecialities: true },
+    { name: "Languages", hasSpecialities: true },
     { name: "Law" },
     { name: "Medical Expertise" },
     { name: "Occult Studies" },
