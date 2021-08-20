@@ -80,5 +80,6 @@
   "investigator.Rating": "Rating",
   "investigator.NoActorsInThisPartyYetDragPCActorsFromTheSidebarIntoThisWindowToAddThem": "No actors in this party yet! Drag PC actors from the sidebar into this window to add them.",
   "investigator.DebugTranslations": "Debug translations?",
-  "investigator.Boost": "Boost?"
+  "investigator.Boost": "Boost?",
+  "investigator.CombatOrder": "Combat order"
 }
