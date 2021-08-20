@@ -30,6 +30,7 @@ export const Translate: React.FC<TranslateProps> = ({
 
   return (
     <span
+      title={debug ? prefixed : local}
       style={{
         background: debug ? (has ? "lightgreen" : "red") : "none",
       }}
