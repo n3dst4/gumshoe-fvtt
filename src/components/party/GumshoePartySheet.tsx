@@ -7,7 +7,7 @@ import { GumshoeActor } from "../../module/GumshoeActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { themes } from "../../theme";
-import { assertPartyDataSource, InvestigatorItemDataSource, isAbilityDataSource, RecursivePartial } from "../../types";
+import { assertPartyDataSource } from "../../types";
 import { CSSReset } from "../CSSReset";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -99,24 +99,6 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
       return actor ? [actor] : [];
     });
     setActors(sortEntitiesByName(actors).filter((actor) => actor !== undefined));
-    const hook = (
-      actor: GumshoeActor,
-      itemData: InvestigatorItemDataSource,
-      itemDataDiff: RecursivePartial<InvestigatorItemDataSource>,
-      options: any,
-      userId: string,
-    ) => {
-      if (actor.id === null) return;
-      if (actorIds.includes(actor.id) && isAbilityDataSource(itemData)) {
-        // slightly hacky; clone the actors array so it's seen as new data and
-        // triggers effect 2
-        setActors([...actors]);
-      }
-    };
-    Hooks.on("updateOwnedItem", hook);
-    return () => {
-      Hooks.off("updateOwnedItem", hook);
-    };
   }, [actorIds]);
 
   // callback for removing an actor
