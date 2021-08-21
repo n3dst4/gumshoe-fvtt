@@ -1,6 +1,6 @@
 import { equipment, generalAbility, investigativeAbility, pc, weapon } from "../constants";
 import { assertGame, isAbility } from "../functions";
-import { RecursivePartial, AbilityType, InvestigatorItemDataSource, assertPCDataSource, assertPartyDataSource, InvestigativeAbilityDataSource } from "../types";
+import { RecursivePartial, AbilityType, assertPCDataSource, assertPartyDataSource, InvestigativeAbilityDataSource } from "../types";
 import { confirmADoodleDo } from "./confirm";
 import { Theme, themes } from "../theme";
 import { getDefaultThemeName, getNewPCPacks } from "../settingsHelpers";
@@ -227,27 +227,28 @@ declare global {
 /**
  * Keep "special" general abilities in sync with their corresponding resources
  */
-Hooks.on("updateOwnedItem", (
-  actor: GumshoeActor,
-  itemData: InvestigatorItemDataSource,
+Hooks.on("updateItem", (
+  item: Item,
   // this seems like a fib, but I can't see what else to type this as
-  diff: RecursivePartial<InvestigativeAbilityDataSource>,
+  diff: RecursivePartial<InvestigativeAbilityDataSource> & { _id: string },
   options: Record<string, unknown>,
   userId: string,
 ) => {
   assertGame(game);
-  if (game.userId !== userId) return;
+  if (game.userId !== userId || item.actor === undefined) {
+    return;
+  }
 
   // love 2 sink into a pit of imperative code
-  if (itemData.type === generalAbility) {
-    if (["Sanity", "Stability", "Health", "Magic"].includes(itemData.name)) {
+  if (item.data.type === generalAbility) {
+    if (["Sanity", "Stability", "Health", "Magic"].includes(item.data.name)) {
       if (diff.data?.pool !== undefined || diff.data?.rating !== undefined) {
-        actor.update({
+        item.actor?.update({
           data: {
             resources: {
-              [itemData.name.toLowerCase()]: {
-                value: itemData.data.pool,
-                max: itemData.data.rating,
+              [item.data.name.toLowerCase()]: {
+                value: item.data.data.pool,
+                max: item.data.data.rating,
               },
             },
           },
