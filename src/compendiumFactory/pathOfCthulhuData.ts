@@ -82,7 +82,7 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Piloting" },
     { name: "Preparedness" },
     { name: "Riding", refreshesDaily: true },
-    { name: "Scuffling" },
+    { name: "Scuffling", refreshesDaily: true },
     { name: "Sense Trouble" },
     { name: "Stability", max: 15, min: -12, rating: 1, pool: 1, showTracker: true },
   ],
