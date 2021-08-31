@@ -10,7 +10,6 @@ type BaseAbilityTemplate = {
   max: number,
   occupational: boolean,
   showTracker: boolean,
-  refreshesDaily: boolean,
   img: string,
 }
 
