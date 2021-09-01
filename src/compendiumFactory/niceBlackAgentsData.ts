@@ -20,6 +20,7 @@ export const generalTemplate: GeneralAbilityTemplate = {
   img: generalAbilityIcon,
   canBeInvestigative: false,
   hasSpecialities: false,
+  refreshesDaily: false,
   specialities: [],
   rating: 0,
   pool: 0,
@@ -72,10 +73,10 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
 
 export const generalAbilities: GeneralAbilitiesData = {
   General: [
-    { name: "Athletics" },
+    { name: "Athletics", refreshesDaily: true },
     { name: "Conceal" },
     { name: "Disguise" },
-    { name: "Driving", hasSpecialities: true },
+    { name: "Driving", hasSpecialities: true, refreshesDaily: true },
     { name: "Filch" },
     { name: "Gambling" },
     { name: "Hand-to-Hand" },
@@ -87,7 +88,7 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Piloting", hasSpecialities: true },
     { name: "Preparedness" },
     { name: "Sense Trouble" },
-    { name: "Shooting" },
+    { name: "Shooting", refreshesDaily: true },
     { name: "Shrink" },
     { name: "Stability", max: 15, min: -12, rating: 4, pool: 4, showTracker: true },
     { name: "Surveillance" },
