@@ -20,6 +20,7 @@ export type InvestigativeAbilityTemplate = {
 export type GeneralAbilityTemplate = {
   type: typeof generalAbility,
   canBeInvestigative: boolean,
+  refreshesDaily: boolean,
 } & BaseAbilityTemplate;
 
 type Name = {
