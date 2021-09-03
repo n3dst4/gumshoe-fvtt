@@ -37,7 +37,7 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Archeology" },
     { name: "Architecture" },
     { name: "Art History" },
-    { name: "Comparative Religion"}
+    { name: "Comparative Religion"},
     { name: "Cryptography" },
     { name: "Forensic Accounting" },
     { name: "Geology" },
