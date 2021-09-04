@@ -37,7 +37,7 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Archeology" },
     { name: "Architecture" },
     { name: "Art History" },
-    { name: "Comparative Religion"},
+    { name: "Comparative Religion" },
     { name: "Cryptography" },
     { name: "Forensic Accounting" },
     { name: "Geology" },
@@ -57,7 +57,7 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Interrogation" },
     { name: "Intimidation" },
     { name: "Oral History" },
-    { name: "Negotiation" }
+    { name: "Negotiation" },
     { name: "Reassurance" },
     { name: "Streetwise" },
   ],
@@ -67,7 +67,7 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Craft" },
     { name: "Evidence Collection" },
     { name: "Locksmith" },
-    { name: "Outdoor Survival" }
+    { name: "Outdoor Survival" },
     { name: "Photography" },
   ],
 };
@@ -84,12 +84,12 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Fleeing" },
     { name: "Health", max: 15, min: -12, rating: 1, pool: 1, showTracker: true },
     { name: "Hypnosis" },
-    { name: "Mechanics" }
+    { name: "Mechanics" },
     { name: "Piloting" },
     { name: "Preparedness" },
     { name: "Riding" },
     { name: "Scuffling", refreshesDaily: true },
-    { name: "Shrink" }
+    { name: "Shrink" },
     { name: "Shooting", refreshesDaily: true },
     { name: "Sense Trouble" },
     { name: "Stability", max: 15, min: -12, rating: 1, pool: 1, showTracker: true },
