@@ -24,15 +24,23 @@ export class GumshoeActor extends Actor {
   };
 
   refresh = () => {
-    this.items.forEach((item) => {
-      if ((item.data.type === generalAbility || item.data.type === investigativeAbility) && item.data.data.rating !== item.data.data.pool) {
-        item.update({
+    const updates = Array.from(this.items).flatMap((item) => {
+      if (
+        (item.data.type === generalAbility ||
+          item.data.type === investigativeAbility) &&
+        item.data.data.rating !== item.data.data.pool
+      ) {
+        return [{
+          _id: item.data._id,
           data: {
             pool: item.data.data.rating,
           },
-        });
+        }];
+      } else {
+        return [];
       }
     });
+    this.updateEmbeddedDocuments("Item", updates);
   };
 
   confirmNuke = () => {
@@ -48,7 +56,7 @@ export class GumshoeActor extends Actor {
   nuke = async () => {
     await this.deleteEmbeddedDocuments(
       "OwnedItem",
-      this.items.map((i) => i.id).filter(i => i !== null) as string[],
+      this.items.map((i) => i.id).filter((i) => i !== null) as string[],
     );
     window.alert("Nuked");
   };
@@ -80,12 +88,13 @@ export class GumshoeActor extends Actor {
   }
 
   getTrackerAbilities () {
-    return this.getAbilities().filter(
-      (item) => {
-        const data = item.data;
-        return (data.type === investigativeAbility || data.type === generalAbility) && data.data.showTracker;
-      },
-    );
+    return this.getAbilities().filter((item) => {
+      const data = item.data;
+      return (
+        (data.type === investigativeAbility || data.type === generalAbility) &&
+        data.data.showTracker
+      );
+    });
   }
 
   // ---------------------------------------------------------------------------
@@ -111,12 +120,12 @@ export class GumshoeActor extends Actor {
   getLongNote = (i: number) => {
     assertPCDataSource(this.data);
     return this.data.data.longNotes?.[i] ?? "";
-  }
+  };
 
   getLongNotes = () => {
     assertPCDataSource(this.data);
     return this.data.data.longNotes ?? [];
-  }
+  };
 
   setLongNote = (i: number, text: string) => {
     assertPCDataSource(this.data);
@@ -132,12 +141,12 @@ export class GumshoeActor extends Actor {
   getShortNote = (i: number) => {
     assertPCDataSource(this.data);
     return this.data.data.shortNotes?.[i] ?? "";
-  }
+  };
 
   getShortNotes = () => {
     assertPCDataSource(this.data);
     return this.data.data.shortNotes ?? [];
-  }
+  };
 
   setShortNote = (i: number, text: string) => {
     assertPCDataSource(this.data);
@@ -159,7 +168,7 @@ export class GumshoeActor extends Actor {
   getActorIds = () => {
     assertPartyDataSource(this.data);
     return this.data.data.actorIds;
-  }
+  };
 
   setActorIds = (actorIds: string[]) => {
     assertPartyDataSource(this.data);
@@ -167,23 +176,30 @@ export class GumshoeActor extends Actor {
   };
 
   getActors = () => {
-    return this.getActorIds().map((id) => {
-      assertGame(game);
-      return game.actors?.get(id);
-    }).filter((actor) => actor !== undefined) as Actor[];
-  }
-
-  addActorIds = (newIds: string[]) => {
-    const currentIds = this.getActorIds();
-    const effectiveIds = (newIds
+    return this.getActorIds()
       .map((id) => {
         assertGame(game);
         return game.actors?.get(id);
       })
-      .filter(
-        (actor) => actor !== undefined && actor.id !== null && actor.data.type === pc && !currentIds.includes(actor.id),
-      ) as Actor[])
-      .map((actor) => actor.id) as string[];
+      .filter((actor) => actor !== undefined) as Actor[];
+  };
+
+  addActorIds = (newIds: string[]) => {
+    const currentIds = this.getActorIds();
+    const effectiveIds = (
+      newIds
+        .map((id) => {
+          assertGame(game);
+          return game.actors?.get(id);
+        })
+        .filter(
+          (actor) =>
+            actor !== undefined &&
+            actor.id !== null &&
+            actor.data.type === pc &&
+            !currentIds.includes(actor.id),
+        ) as Actor[]
+    ).map((actor) => actor.id) as string[];
     this.setActorIds([...currentIds, ...effectiveIds]);
   };
 
