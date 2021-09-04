@@ -56,7 +56,7 @@
   "investigator.WhoopsNo": "Whoops, No!",
   "investigator.NukeItFromOrbit": "Nuke it from orbit",
   "investigator.NukeAllOfActorNamesAbilitiesAndEquipment": "Nuke all of {ActorName}'s abilities and equipment?",
-  "investigator.RefreshAllOfActorNamesAbilities": "Refresh all of {ActorName}'s abilities? This will reset every pool back to match the rating of the ability.",
+  "investigator.RefreshAllOfActorNamesAbilities": "Refresh all of {ActorName}'s abilities? This will reset most pools back to match the rating of the ability.",
   "investigator.PartyName": "Party name",
   "investigator.Remove": "Remove",
   "investigator.Total": "Total",
