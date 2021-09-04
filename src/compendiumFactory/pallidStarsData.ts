@@ -1,35 +1,4 @@
-import { generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon } from "../constants";
-import { GeneralAbilitiesData, GeneralAbilityTemplate, InvestigativeAbilitiesData, InvestigativeAbilityTemplate } from "./types";
-
-export const investigativeTemplate: InvestigativeAbilityTemplate = {
-  type: investigativeAbility,
-  img: investigativeAbilityIcon,
-  category: "Academic",
-  hasSpecialities: false,
-  specialities: [],
-  rating: 0,
-  pool: 0,
-  min: 0,
-  max: 8,
-  occupational: false,
-  showTracker: false,
-};
-
-export const generalTemplate: GeneralAbilityTemplate = {
-  type: generalAbility,
-  img: generalAbilityIcon,
-  canBeInvestigative: false,
-  hasSpecialities: false,
-  refreshesDaily: false,
-  specialities: [],
-  rating: 0,
-  pool: 0,
-  min: 0,
-  max: 8,
-  occupational: false,
-  category: "General",
-  showTracker: false,
-};
+import { GeneralAbilitiesData, InvestigativeAbilitiesData } from "./types";
 
 export const investigativeAbilities: InvestigativeAbilitiesData = {
   Academic: [

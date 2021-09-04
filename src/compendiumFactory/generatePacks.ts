@@ -7,7 +7,7 @@ import * as pathOfCthulhuData from "./pathOfCthulhuData";
 import * as niceBlackAgentsData from "./niceBlackAgentsData";
 import * as nothingToFearData from "./nothingToFearData";
 import * as pallidStarsData from "./pallidStarsData";
-import { packNames, systemName } from "../constants";
+import { generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, packNames, systemName } from "../constants";
 import { assertGame } from "../functions";
 
 /*
@@ -15,6 +15,50 @@ import { assertGame } from "../functions";
  * correctness vs. git-'er-done-ness has tipped right over and I can't face
  * spending a day fighting type defs.
  */
+
+/**
+ * basic template for an investigative ability.
+ * we originally had one of these for each system but they were all identical.
+ * if we need to add points of articulation later we can do that as needed but
+ * for now this one template is fine for all systems.
+ */
+const investigativeTemplate: InvestigativeAbilityTemplate = {
+  type: investigativeAbility,
+  img: investigativeAbilityIcon,
+  category: "Academic",
+  hasSpecialities: false,
+  specialities: [],
+  rating: 0,
+  pool: 0,
+  min: 0,
+  max: 8,
+  occupational: false,
+  showTracker: false,
+  excludeFromGeneralRefresh: false,
+};
+
+/**
+ * basic template for a general ability.
+ * we originally had one of these for each system but they were all identical.
+ * if we need to add points of articulation later we can do that as needed but
+ * for now this one template is fine for all systems.
+ */
+const generalTemplate: GeneralAbilityTemplate = {
+  type: generalAbility,
+  img: generalAbilityIcon,
+  canBeInvestigative: false,
+  hasSpecialities: false,
+  refreshesDaily: false,
+  specialities: [],
+  rating: 0,
+  pool: 0,
+  min: 0,
+  max: 8,
+  occupational: false,
+  category: "General",
+  showTracker: false,
+  excludeFromGeneralRefresh: false,
+};
 
 export const emptyPack = async (pack: CompendiumCollection<CompendiumCollection.Metadata>) => {
   const content = await pack.getDocuments();
@@ -78,12 +122,12 @@ export const initializePackGenerators = () => {
       emptyPack(pack);
       await generatePacks(
         pathOfCthulhuData.investigativeAbilities,
-        pathOfCthulhuData.investigativeTemplate,
+        investigativeTemplate,
         pack,
       );
       await generatePacks(
         pathOfCthulhuData.generalAbilities,
-        pathOfCthulhuData.generalTemplate,
+        generalTemplate,
         pack,
       );
     },
@@ -95,12 +139,12 @@ export const initializePackGenerators = () => {
       emptyPack(pack);
       await generatePacks(
         niceBlackAgentsData.investigativeAbilities,
-        niceBlackAgentsData.investigativeTemplate,
+        investigativeTemplate,
         pack,
       );
       await generatePacks(
         niceBlackAgentsData.generalAbilities,
-        niceBlackAgentsData.generalTemplate,
+        generalTemplate,
         pack,
       );
     },
@@ -112,12 +156,12 @@ export const initializePackGenerators = () => {
       emptyPack(pack);
       await generatePacks(
         nothingToFearData.investigativeAbilities,
-        nothingToFearData.investigativeTemplate,
+        investigativeTemplate,
         pack,
       );
       await generatePacks(
         nothingToFearData.generalAbilities,
-        nothingToFearData.generalTemplate,
+        generalTemplate,
         pack,
       );
     },
@@ -129,12 +173,12 @@ export const initializePackGenerators = () => {
       emptyPack(pack);
       await generatePacks(
         pallidStarsData.investigativeAbilities,
-        pallidStarsData.investigativeTemplate,
+        investigativeTemplate,
         pack,
       );
       await generatePacks(
         pallidStarsData.generalAbilities,
-        pallidStarsData.generalTemplate,
+        generalTemplate,
         pack,
       );
     },

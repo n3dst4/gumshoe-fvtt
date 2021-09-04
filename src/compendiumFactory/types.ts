@@ -11,6 +11,7 @@ type BaseAbilityTemplate = {
   occupational: boolean,
   showTracker: boolean,
   img: string,
+  excludeFromGeneralRefresh: boolean,
 }
 
 export type InvestigativeAbilityTemplate = {
