@@ -29,6 +29,7 @@ const investigativeTemplate: InvestigativeAbilityTemplate = {
   hasSpecialities: false,
   specialities: [],
   rating: 0,
+  refreshesDaily: false,
   pool: 0,
   min: 0,
   max: 8,

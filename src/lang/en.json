@@ -83,5 +83,6 @@
   "investigator.DebugTranslations": "Debug translations?",
   "investigator.Boost": "Boost?",
   "investigator.CombatOrder": "Combat order",
-  "investigator.ExcludeFromGeneralRefresh": "Exclude from general refresh?"
+  "investigator.ExcludeFromGeneralRefresh": "Exclude from general refresh?",
+  "investigator.IncludeIn24hRefresh": "Include in 24h refresh?"
 }

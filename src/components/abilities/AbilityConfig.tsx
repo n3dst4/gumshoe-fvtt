@@ -30,6 +30,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
   const updateCanBeInvestigative = useUpdate(ability, (canBeInvestigative) => ({ data: { canBeInvestigative } }));
   const updateShowTracker = useUpdate(ability, (showTracker) => ({ data: { showTracker } }));
   const updateExcludeFromGeneralRefresh = useUpdate(ability, (excludeFromGeneralRefresh) => ({ data: { excludeFromGeneralRefresh } }));
+  const updateRefreshesDaily = useUpdate(ability, (refreshesDaily) => ({ data: { refreshesDaily } }));
   const updateMax = useUpdate(ability, (max) => ({ data: { max } }));
   const updateMin = useUpdate(ability, (min) => ({ data: { min } }));
 
@@ -185,6 +186,14 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
           checked={ability.data.data.excludeFromGeneralRefresh}
           onChange={(t) => {
             updateExcludeFromGeneralRefresh(t);
+          }}
+        />
+      </GridField>
+      <GridField label="Include in 24h refresh?">
+        <Checkbox
+          checked={ability.data.data.refreshesDaily}
+          onChange={(t) => {
+            updateRefreshesDaily(t);
           }}
         />
       </GridField>

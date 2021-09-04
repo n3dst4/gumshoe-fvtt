@@ -63,7 +63,8 @@
         "category": "",
         "showTracker": false,
         "boost":  false,
-        "excludeFromGeneralRefresh": false
+        "excludeFromGeneralRefresh": false,
+        "refreshesDaily": false
       }
     },
     "investigativeAbility": {

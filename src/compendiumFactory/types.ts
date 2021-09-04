@@ -12,6 +12,7 @@ type BaseAbilityTemplate = {
   showTracker: boolean,
   img: string,
   excludeFromGeneralRefresh: boolean,
+  refreshesDaily: boolean,
 }
 
 export type InvestigativeAbilityTemplate = {
@@ -21,7 +22,6 @@ export type InvestigativeAbilityTemplate = {
 export type GeneralAbilityTemplate = {
   type: typeof generalAbility,
   canBeInvestigative: boolean,
-  refreshesDaily: boolean,
 } & BaseAbilityTemplate;
 
 type Name = {
