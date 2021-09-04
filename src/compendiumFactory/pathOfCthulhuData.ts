@@ -11,11 +11,8 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "History" },
     { name: "Languages", hasSpecialities: true },
     { name: "Law" },
-    { name: "Medical Expertise" },
-    { name: "Occult Studies" },
   ],
   Interpersonal: [
-    { name: "Bullshit Detector" },
     { name: "Bureaucracy" },
     { name: "Cop Talk" },
     { name: "Flattery" },
