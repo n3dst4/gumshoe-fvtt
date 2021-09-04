@@ -62,7 +62,8 @@
         "occupational": false,
         "category": "",
         "showTracker": false,
-        "boost":  false
+        "boost":  false,
+        "excludeFromGeneralRefresh": false
       }
     },
     "investigativeAbility": {

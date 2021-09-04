@@ -81,5 +81,6 @@
   "investigator.NoActorsInThisPartyYetDragPCActorsFromTheSidebarIntoThisWindowToAddThem": "No actors in this party yet! Drag PC actors from the sidebar into this window to add them.",
   "investigator.DebugTranslations": "Debug translations?",
   "investigator.Boost": "Boost?",
-  "investigator.CombatOrder": "Combat order"
+  "investigator.CombatOrder": "Combat order",
+  "investigator.ExcludeFromGeneralRefresh": "Exclude from general refresh?"
 }

@@ -140,6 +140,7 @@ export interface BaseAbilityDataSourceData {
   showTracker: boolean;
   boost: boolean;
   category: string;
+  excludeFromGeneralRefresh: boolean;
 }
 
 /** data.data for investigative abilities */

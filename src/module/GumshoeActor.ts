@@ -28,7 +28,8 @@ export class GumshoeActor extends Actor {
       if (
         (item.data.type === generalAbility ||
           item.data.type === investigativeAbility) &&
-        item.data.data.rating !== item.data.data.pool
+        item.data.data.rating !== item.data.data.pool &&
+        !item.data.data.excludeFromGeneralRefresh
       ) {
         return [{
           _id: item.data._id,

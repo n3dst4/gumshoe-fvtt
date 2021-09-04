@@ -29,6 +29,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
   const updateOccupational = useUpdate(ability, (occupational) => ({ data: { occupational } }));
   const updateCanBeInvestigative = useUpdate(ability, (canBeInvestigative) => ({ data: { canBeInvestigative } }));
   const updateShowTracker = useUpdate(ability, (showTracker) => ({ data: { showTracker } }));
+  const updateExcludeFromGeneralRefresh = useUpdate(ability, (excludeFromGeneralRefresh) => ({ data: { excludeFromGeneralRefresh } }));
   const updateMax = useUpdate(ability, (max) => ({ data: { max } }));
   const updateMin = useUpdate(ability, (min) => ({ data: { min } }));
 
@@ -172,13 +173,21 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
         </GridField>
       )}
       <GridField label="Show tracker?">
-          <Checkbox
-            checked={ability.data.data.showTracker}
-            onChange={(t) => {
-              updateShowTracker(t);
-            }}
-          />
-        </GridField>
+        <Checkbox
+          checked={ability.data.data.showTracker}
+          onChange={(t) => {
+            updateShowTracker(t);
+          }}
+        />
+      </GridField>
+      <GridField label="Exclude from general refresh?">
+        <Checkbox
+          checked={ability.data.data.excludeFromGeneralRefresh}
+          onChange={(t) => {
+            updateExcludeFromGeneralRefresh(t);
+          }}
+        />
+      </GridField>
       {ability.actor && (
         <GridField label="Delete ability">
           <button onClick={onClickDelete}><Translate>Delete</Translate></button>
