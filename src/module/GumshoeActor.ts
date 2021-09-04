@@ -15,7 +15,18 @@ export class GumshoeActor extends Actor {
 
   confirmRefresh = () => {
     confirmADoodleDo(
-      "Refresh all of (actor name)'s abilities",
+      "Refresh all of (actor name)'s abilities?",
+      "Refresh",
+      "Cancel",
+      "fa-sync",
+      { ActorName: this.data.name },
+      this.refresh,
+    );
+  };
+
+  confirm24hRefresh = () => {
+    confirmADoodleDo(
+      "Refresh all of (actor name)'s abilities which refresh every 24h?",
       "Refresh",
       "Cancel",
       "fa-sync",

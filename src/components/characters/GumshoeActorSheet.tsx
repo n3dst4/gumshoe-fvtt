@@ -154,7 +154,11 @@ export const GumshoeActorSheet = ({
           }}
           >
             <button onClick={actor.confirmRefresh}>
-              <Translate>Refresh</Translate>
+              <Translate>Full Refresh</Translate>
+            </button>
+            <hr/>
+            <button onClick={actor.confirm24hRefresh}>
+              <Translate>24h Refresh</Translate>
             </button>
             <hr/>
             <TrackersArea actor={actor} />

@@ -83,6 +83,9 @@
   "investigator.DebugTranslations": "Debug translations?",
   "investigator.Boost": "Boost?",
   "investigator.CombatOrder": "Combat order",
-  "investigator.ExcludeFromGeneralRefresh": "Exclude from general refresh?",
-  "investigator.IncludeIn24hRefresh": "Include in 24h refresh?"
+  "investigator.ExcludeFromGeneralRefresh": "Exclude from full refresh?",
+  "investigator.IncludeIn24hRefresh": "Include in 24h refresh?",
+  "investigator.FullRefresh": "Full Refresh",
+  "investigator.24hRefresh": "24h Refresh",
+  "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEvery24h": "Refresh all of {ActorName}'s abilities which refresh every 24h?"
 }
