@@ -15,10 +15,11 @@ export class GumshoeActor extends Actor {
 
   confirmRefresh = () => {
     confirmADoodleDo(
-      `Refresh all of ${this.data.name}'s abilities? This will reset every pool back to match the rating of the ability.`,
+      "Refresh all of (actor name)'s abilities",
       "Refresh",
       "Cancel",
       "fa-sync",
+      { ActorName: this.data.name },
       this.refresh,
     );
   };
@@ -46,10 +47,11 @@ export class GumshoeActor extends Actor {
 
   confirmNuke = () => {
     confirmADoodleDo(
-      `Nuke all of ${this.data.name}'s abilities and equipment?`,
+      "NukeAllOfActorNamesAbilitiesAndEquipment",
       "Nuke it from orbit",
       "Whoops no!",
       "fa-radiation",
+      { ActorName: this.data.name },
       () => this.nuke(),
     );
   };
