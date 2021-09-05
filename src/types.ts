@@ -52,7 +52,7 @@ interface PartyDataSourceData {
   actorIds: string[];
 }
 
-type PCDataSource = DataSource<typeof constants.pc, PCDataSourceData>;
+export type PCDataSource = DataSource<typeof constants.pc, PCDataSourceData>;
 type PartyDataSource = DataSource<typeof constants.party, PartyDataSourceData>;
 
 type InvestigatorActorDataSource =

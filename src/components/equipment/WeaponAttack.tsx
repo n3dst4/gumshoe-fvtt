@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useContext, useMemo, useState } from "react";
+import React, { Fragment, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { generalAbility } from "../../constants";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { ThemeContext } from "../../theme";
-import { assertWeaponDataSource, isAbilityDataSource, isPCDataSource } from "../../types";
+import { assertWeaponDataSource, isAbilityDataSource, isPCDataSource, PCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
@@ -96,10 +96,26 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
 
   const weaponActorData = weapon.actor?.data;
 
-  const actorInitiativeAbility =
+  const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
     weaponActorData && isPCDataSource(weaponActorData)
       ? weaponActorData.data.initiativeAbility
-      : "";
+      : "",
+  );
+
+  useEffect(() => {
+    const callback = (actor: Actor, diff: {_id: string, data: DeepPartial<PCDataSource>}, options: unknown, id: string) => {
+      if (actor.data._id === weaponActorData?._id) {
+        setActorInitiativeAbility(weaponActorData && isPCDataSource(weaponActorData)
+          ? weaponActorData.data.initiativeAbility
+          : "");
+      }
+    };
+    Hooks.on("updateActor", callback);
+    return () => {
+      Hooks.off("updateActor", callback);
+    };
+  }, [weaponActorData]);
+
   const isAbilityUsed = actorInitiativeAbility === ability?.name;
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
