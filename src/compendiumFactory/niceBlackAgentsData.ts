@@ -53,7 +53,7 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Infiltration" },
     { name: "Mechanics" },
     { name: "Medic" },
-    { name: "Network" },
+    { name: "Network", excludeFromGeneralRefresh: true },
     { name: "Piloting", hasSpecialities: true, refreshesDaily: true },
     { name: "Preparedness" },
     { name: "Sense Trouble" },
