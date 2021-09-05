@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v4.1.0 (2021-09-05)
+
+* Feature: New checkbox to exclude an ability from the full refresh
+* Feature: "24h refresh" abilities
+* Bug fix: Refreshed abilities were not remembering their pool values between sessions.
+* Bug fix: the built-in resource trackers were not updating correctly.
+* Fix some translation issues.
+* Remove a couple more deprecated Foundry API calls.
+
 ## v4.0.0 (2021-08-14)
 
 * Drop compatibility for Foundry VTT < 0.8.0 :(
