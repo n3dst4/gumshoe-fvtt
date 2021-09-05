@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { GridField } from "../inputs/GridField";
@@ -11,7 +11,7 @@ import { SpecialityList } from "./SpecialityList";
 import { getCombatAbilities, getUseBoost } from "../../settingsHelpers";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
-import { assertAbilityDataSource, assertPCDataSource, isPCDataSource } from "../../types";
+import { assertAbilityDataSource, assertPCDataSource, isPCDataSource, PCDataSource } from "../../types";
 
 type AbilityEditorMainProps = {
   ability: GumshoeItem,
@@ -33,7 +33,23 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
   const useBoost = getUseBoost();
 
   const isCombatAbility = getCombatAbilities().includes(ability.data.name);
-  const actorInitiativeAbility = isPCDataSource(ability?.actor?.data) && ability?.actor?.data.data.initiativeAbility;
+
+  const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
+    isPCDataSource(ability?.actor?.data) && ability?.actor?.data.data.initiativeAbility,
+  );
+
+  useEffect(() => {
+    const callback = (actor: Actor, diff: {_id: string, data: DeepPartial<PCDataSource>}, options: unknown, id: string) => {
+      if (actor.data._id === ability?.actor?.data?._id) {
+        setActorInitiativeAbility(isPCDataSource(ability?.actor?.data) && ability?.actor?.data.data.initiativeAbility);
+      }
+    };
+    Hooks.on("updateActor", callback);
+    return () => {
+      Hooks.off("updateActor", callback);
+    };
+  }, [ability?.actor?.data]);
+
   const isAbilityUsed = actorInitiativeAbility === ability.name;
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {

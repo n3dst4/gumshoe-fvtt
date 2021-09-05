@@ -5,7 +5,6 @@ import { GumshoeItem } from "./module/GumshoeItem";
 import { GumshoeActorSheetClass } from "./module/GumshoeActorSheetClass";
 import { GumshoeItemSheetClass } from "./module/GumshoeItemSheetClass";
 import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, systemName, weapon } from "./constants";
-import { GumshoeCombat } from "./module/GumshoeCombat";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
 import { InvestigatorItemDataSource, isAbilityDataSource, isGeneralAbilityDataSource } from "./types";
@@ -14,6 +13,7 @@ import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
 import { GumshoePartySheetClass } from "./module/GumshoePartySheetClass";
+import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -29,7 +29,7 @@ Hooks.once("init", async function () {
   // XXX TS needs going over here
   CONFIG.Actor.documentClass = GumshoeActor;
   CONFIG.Item.documentClass = GumshoeItem;
-  CONFIG.Combat.documentClass = GumshoeCombat;
+  CONFIG.Combatant.documentClass = InvestigatorCombatant;
 
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
