@@ -31,7 +31,7 @@ export class GumshoeActor extends Actor {
       "Cancel",
       "fa-sync",
       { ActorName: this.data.name },
-      this.refresh,
+      this.refresh24h,
     );
   };
 
@@ -42,6 +42,29 @@ export class GumshoeActor extends Actor {
           item.data.type === investigativeAbility) &&
         item.data.data.rating !== item.data.data.pool &&
         !item.data.data.excludeFromGeneralRefresh
+      ) {
+        return [{
+          _id: item.data._id,
+          data: {
+            pool: item.data.data.rating,
+          },
+        }];
+      } else {
+        return [];
+      }
+    });
+    this.updateEmbeddedDocuments("Item", updates);
+  };
+
+  // if we end up with even more types of refresh it may be worth factoring out
+  // the actual refresh code but until then - rule of three
+  refresh24h = () => {
+    const updates = Array.from(this.items).flatMap((item) => {
+      if (
+        (item.data.type === generalAbility ||
+          item.data.type === investigativeAbility) &&
+        item.data.data.rating !== item.data.data.pool &&
+        item.data.data.refreshesDaily
       ) {
         return [{
           _id: item.data._id,
