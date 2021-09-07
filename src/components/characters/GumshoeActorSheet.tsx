@@ -83,7 +83,6 @@ export const GumshoeActorSheet = ({
         <div
           css={{
             gridArea: "title",
-            textAlign: "center",
             position: "relative",
           }}
         >

@@ -109,7 +109,8 @@ export const tealTheme: Theme = themeFactory({
   logoRearElementStyle: {
     textShadow: "2px 0px 1px black, 6px 0px 4px rgba(0,0,0,0.5), -1px 0px 0px rgba(255,255,255,0.5)",
   },
-  logoTransform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
+  // logoTransform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
+  logoTransform: "rotateY(-80deg) translateX(-10%)",
   logoBackdropStyle: {
     perspective: "500px",
     perspectiveOrigin: "50% 50%",
