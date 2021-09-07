@@ -27,7 +27,7 @@ const textBearerStyle: CSSObject = {
   transform: "translate(-50%, -50%)",
 };
 
-const fontFactor = 16;
+const fontFactor = 14;
 
 /**
  * Outrageous 1930s logo
