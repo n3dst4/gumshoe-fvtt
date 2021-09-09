@@ -7,7 +7,7 @@ export const installCompendiumExportButton = () => {
     "renderCompendium",
     (app: Compendium<CompendiumCollection.Metadata>, jQ: JQuery, data: any) => {
       const id = `investigator_export_${nanoid()}`;
-      jQ.find("header.window-header").append(
+      jQ.find("header.window-header a.close").before(
         `<a id="${id}"><i class="fas fa-cloud-download-alt"></i>Export</a>`,
       );
       document.querySelector(`#${id}`)?.addEventListener("click", async () => {
