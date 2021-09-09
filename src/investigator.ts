@@ -14,6 +14,7 @@ import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
 import { GumshoePartySheetClass } from "./module/GumshoePartySheetClass";
 import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
+import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -169,6 +170,8 @@ Hooks.on(
     targetActor.addActorIds(actorIds);
   },
 );
+
+installCompendiumExportButton();
 
 CONFIG.debug.hooks = true;
 
