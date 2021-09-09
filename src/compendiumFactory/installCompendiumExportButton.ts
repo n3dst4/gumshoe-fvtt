@@ -1,8 +1,11 @@
 import { nanoid } from "nanoid";
 import { assertGame } from "../functions";
 import { saveJson } from "../saveFile";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { fileOpen } from "browser-fs-access";
 
 export const installCompendiumExportButton = () => {
+  // Add the "export" button when rendering a Compendium window
   Hooks.on(
     "renderCompendium",
     (app: Compendium<CompendiumCollection.Metadata>, jQ: JQuery, data: any) => {
@@ -37,4 +40,22 @@ export const installCompendiumExportButton = () => {
       });
     },
   );
+
+  // add the "import" button when
+  Hooks.on("changeSidebarTab", (app: SidebarTab) => {
+    if (app.tabName !== "compendium") {
+      return;
+    }
+    const id = `file-picker-button-${nanoid()}`;
+    const content = $(`<div class="header-actions action-buttons flexrow">
+        <button id="${id}" class="import-compendium" type="submit"><i class="fas fa-cloud-upload-alt"></i> Import Compendium</button>
+    </div>`);
+    $(app.element[0]).find(".directory-header").append(content);
+    document.querySelector(`#${id}`)?.addEventListener("click", () => {
+      window.alert("okay");
+      // fileOpen({
+      //   mimeTypes: ["application/json"],
+      // });
+    });
+  });
 };
