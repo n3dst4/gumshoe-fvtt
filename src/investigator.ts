@@ -1,3 +1,4 @@
+// import "./setPublicPath";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/preloadTemplates";
 import { GumshoeActor } from "./module/GumshoeActor";
@@ -14,7 +15,7 @@ import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
 import { GumshoePartySheetClass } from "./module/GumshoePartySheetClass";
 import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
-import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
+// import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -171,7 +172,10 @@ Hooks.on(
   },
 );
 
-installCompendiumExportButton();
+(async () => {
+  const { installCompendiumExportButton } = await import("./compendiumFactory/installCompendiumExportButton");
+  installCompendiumExportButton();
+})();
 
 CONFIG.debug.hooks = true;
 
