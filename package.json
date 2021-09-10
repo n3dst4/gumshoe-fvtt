@@ -61,9 +61,9 @@
   },
   "dependencies": {
     "@types/dompurify": "^2.2.1",
-    "browser-fs-access": "^0.20.4",
     "case": "^1.6.3",
     "dompurify": "^2.2.6",
+    "file-system-access": "^1.0.1",
     "irid": "^2.0.2",
     "lodash": "^4.17.20",
     "nanoid": "^3.1.20",

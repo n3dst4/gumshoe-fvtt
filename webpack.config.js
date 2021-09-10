@@ -12,6 +12,9 @@ module.exports = {
   output: {
     path: path.join(__dirname, "dist"),
     filename: "investigator.js",
+    // not 100% sure on this - needed to make dynamic imports work but will
+    // foundry always be mounted at /?
+    publicPath: "/systems/investigator/",
   },
   devtool: isProduction ? undefined : "source-map",
   module: {
