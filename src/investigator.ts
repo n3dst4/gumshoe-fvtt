@@ -1,5 +1,5 @@
 // import "./setPublicPath";
-import "./currentScript";
+import { polyfillCurrentScript } from "./currentScript";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/preloadTemplates";
 import { GumshoeActor } from "./module/GumshoeActor";
@@ -17,6 +17,8 @@ import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategor
 import { GumshoePartySheetClass } from "./module/GumshoePartySheetClass";
 import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
 // import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
+
+polyfillCurrentScript();
 
 // Initialize system
 Hooks.once("init", async function () {

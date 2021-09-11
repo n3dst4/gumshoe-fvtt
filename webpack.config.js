@@ -8,17 +8,7 @@ const isProduction =
 
 module.exports = {
   mode: isProduction ? "production" : "development",
-  entry: {
-    currentScript: {
-      import: "./src/currentScript.js",
-      runtime: "main",
-      filename: "currentScript.js",
-    },
-    main: {
-      dependOn: "currentScript",
-      import: "./src/investigator.ts",
-    },
-  },
+  entry: ["./src/currentScript.js", "./src/investigator.ts"],
   output: {
     path: path.join(__dirname, "dist"),
     filename: "investigator.js",
