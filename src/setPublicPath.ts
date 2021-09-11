@@ -1,3 +1,3 @@
-/* eslint-disable camelcase */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const __webpack_public_path__ = getRoute("/parp/");
+const resolvedRoute = getRoute("/systems/investigator/");
+console.log(`setting __webpack_public_path__ to ${resolvedRoute}`);
+window.__webpack_public_path__ = resolvedRoute;

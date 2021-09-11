@@ -8,16 +8,23 @@ const isProduction =
 
 module.exports = {
   mode: isProduction ? "production" : "development",
-  entry: [
-    "./src/currentScript.js",
-    "./src/investigator.ts",
-  ],
+  entry: {
+    currentScript: {
+      import: "./src/currentScript.js",
+      runtime: "main",
+      filename: "currentScript.js",
+    },
+    main: {
+      dependOn: "currentScript",
+      import: "./src/investigator.ts",
+    },
+  },
   output: {
     path: path.join(__dirname, "dist"),
     filename: "investigator.js",
     // not 100% sure on this - needed to make dynamic imports work but will
     // foundry always be mounted at /?
-    // publicPath: "/systems/investigator/",
+    publicPath: "auto",
   },
   devtool: isProduction ? undefined : "source-map",
   module: {

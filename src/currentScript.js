@@ -1,7 +1,7 @@
 // document.currentScript polyfill by Adam Miller
 
 // MIT license
-
+console.log("currentScript polyfill starting");
 (function (document) {
   const currentScript = "currentScript";
 

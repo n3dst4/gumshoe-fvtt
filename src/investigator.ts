@@ -1,4 +1,5 @@
 // import "./setPublicPath";
+import "./currentScript";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/preloadTemplates";
 import { GumshoeActor } from "./module/GumshoeActor";
