@@ -15,15 +15,7 @@ import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
 import { GumshoePartySheetClass } from "./module/GumshoePartySheetClass";
 import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
-
-// // eslint-disable-next-line camelcase
-// declare let __webpack_public_path__: string;
 // import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
-
-// const resolvedRoute = getRoute("/systems/investigator") + "/";
-// console.log(`setting __webpack_public_path__ to ${resolvedRoute}`);
-// // eslint-disable-next-line camelcase, @typescript-eslint/no-unused-vars, prefer-const
-// __webpack_public_path__ = resolvedRoute;
 
 // Initialize system
 Hooks.once("init", async function () {

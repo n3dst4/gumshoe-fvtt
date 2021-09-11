@@ -8,16 +8,11 @@ const isProduction =
 
 module.exports = {
   mode: isProduction ? "production" : "development",
-  entry: [
-    // "./src/setPublicPath.js",
-    // "./src/currentScript.js",
-    "./src/investigator.ts",
-  ],
+  entry: "./src/investigator.ts",
   output: {
     path: path.join(__dirname, "dist"),
     filename: "investigator.js",
-    // not 100% sure on this - needed to make dynamic imports work but will
-    // foundry always be mounted at /?
+    // this is needed so we can reset __webpack_public_path__ at runtime
     publicPath: "",
   },
   devtool: isProduction ? undefined : "source-map",
