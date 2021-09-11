@@ -1,6 +1,8 @@
 import { nanoid } from "nanoid";
 import { assertGame } from "../functions";
 import { saveJson } from "../saveFile";
+// file-system-access does dynamic `import(...)` which caused some headaches -
+// see webpack.config.js and setWebpackPublicPath.ts
 import { showOpenFilePicker } from "file-system-access";
 
 export const installCompendiumExportButton = () => {
