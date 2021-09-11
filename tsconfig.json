@@ -15,8 +15,6 @@
 		],
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
-		"strict": true,
-		"allowJs": true,
-		"checkJs": false
+		"strict": true
 	}
 }

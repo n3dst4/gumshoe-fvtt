@@ -2,7 +2,7 @@
 
 // MIT license
 console.log("currentScript polyfill starting");
-export const polyfillCurrentScript = function (document) {
+(function (document) {
   const currentScript = "currentScript";
 
   // If browser needs currentScript polyfill, add get currentScript() to the document object
@@ -59,4 +59,4 @@ export const polyfillCurrentScript = function (document) {
       },
     });
   }
-};
+})(document);

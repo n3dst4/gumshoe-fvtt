@@ -23,7 +23,7 @@ declare module "irid" {
   export default Irid;
 }
 
-interface Window {
-  // eslint-disable-next-line camelcase
-  __webpack_public_path__?: string;
-}
+// interface Window {
+//   // eslint-disable-next-line camelcase
+//   __webpack_public_path__?: string;
+// }
