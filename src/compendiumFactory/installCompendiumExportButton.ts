@@ -4,6 +4,7 @@ import { saveJson } from "../saveFile";
 // file-system-access does dynamic `import(...)` which caused some headaches -
 // see webpack.config.js and setWebpackPublicPath.ts
 import { showOpenFilePicker } from "file-system-access";
+import { ExportedCompendium, importCompendium } from "./importCompendium";
 
 export const installCompendiumExportButton = () => {
   // Add the "export" button when rendering a Compendium window
@@ -30,12 +31,13 @@ export const installCompendiumExportButton = () => {
             data,
           }),
         );
+        const exportData: ExportedCompendium = {
+          name: app.collection.metadata.label,
+          entity: app.collection.metadata.entity,
+          contents: mapped,
+        };
         saveJson(
-          {
-            name: app.collection.metadata.label,
-            entity: app.collection.metadata.entity,
-            contents: mapped,
-          },
+          exportData,
           data.collection.metadata.name,
         );
       });
@@ -54,14 +56,19 @@ export const installCompendiumExportButton = () => {
     $(app.element[0]).find(".directory-header").append(content);
     document.querySelector(`#${id}`)?.addEventListener("click", async () => {
       const [fileHandle] = await showOpenFilePicker({
-        types: [], // default
-        multiple: false, // default
-        excludeAcceptAllOption: false, // default
-        _preferPolyfill: false, // default
+        types: [
+          {
+            description: "JSON",
+            accept: {
+              "application/json": [".json"],
+            },
+          },
+        ],
       } as any);
       const file = await fileHandle.getFile();
       const text = await file.text();
       console.log(text);
+      importCompendium(JSON.parse(text));
     });
   });
 };
