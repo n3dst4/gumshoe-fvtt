@@ -57,7 +57,9 @@ export const installCompendiumExportButton = () => {
         excludeAcceptAllOption: false, // default
         _preferPolyfill: false, // default
       } as any);
-      console.log(fileHandle);
+      const file = await fileHandle.getFile();
+      const text = await file.text();
+      console.log(text);
     });
   });
 };
