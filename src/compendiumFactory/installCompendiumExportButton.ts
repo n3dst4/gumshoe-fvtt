@@ -6,6 +6,9 @@ import { saveJson } from "../saveFile";
 import { showOpenFilePicker } from "file-system-access";
 import { ExportedCompendium, importCompendium } from "./importCompendium";
 
+const importButtonIconClass = "fa-cloud-upload-alt";
+const importButtonSpinnerClass = "fa-spinner fa-pulse";
+
 export const installCompendiumExportButton = () => {
   // Add the "export" button when rendering a Compendium window
   Hooks.on(
@@ -51,24 +54,30 @@ export const installCompendiumExportButton = () => {
     }
     const id = `file-picker-button-${nanoid()}`;
     const content = $(`<div class="header-actions action-buttons flexrow">
-        <button id="${id}" class="import-compendium" type="submit"><i class="fas fa-cloud-upload-alt"></i> Import Compendium</button>
+        <button id="${id}" class="import-compendium" type="submit">
+          <i class="fas ${importButtonIconClass}"></i> Import Compendium
+        </button>
     </div>`);
     $(app.element[0]).find(".directory-header").append(content);
     document.querySelector(`#${id}`)?.addEventListener("click", async () => {
-      const [fileHandle] = await showOpenFilePicker({
-        types: [
-          {
-            description: "JSON",
-            accept: {
-              "application/json": [".json"],
+      $(`#${id} i`).removeClass(importButtonIconClass).addClass(importButtonSpinnerClass);
+      try {
+        const [fileHandle] = await showOpenFilePicker({
+          types: [
+            {
+              description: "JSON",
+              accept: {
+                "application/json": [".json"],
+              },
             },
-          },
-        ],
-      } as any);
-      const file = await fileHandle.getFile();
-      const text = await file.text();
-      console.log(text);
-      importCompendium(JSON.parse(text));
+          ],
+        } as any);
+        const file = await fileHandle.getFile();
+        const text = await file.text();
+        importCompendium(JSON.parse(text));
+      } finally {
+        $(`#${id} i`).removeClass(importButtonSpinnerClass).addClass(importButtonIconClass);
+      }
     });
   });
 };
