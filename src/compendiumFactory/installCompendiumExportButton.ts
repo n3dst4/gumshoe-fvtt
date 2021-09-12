@@ -35,7 +35,8 @@ export const installCompendiumExportButton = () => {
           }),
         );
         const exportData: ExportedCompendium = {
-          name: app.collection.metadata.label,
+          label: app.collection.metadata.label,
+          name: app.collection.metadata.name,
           entity: app.collection.metadata.entity,
           contents: mapped,
         };
@@ -47,11 +48,11 @@ export const installCompendiumExportButton = () => {
     },
   );
 
-  // add the "import" button when
-  Hooks.on("changeSidebarTab", (app: SidebarTab) => {
+  const insertImportButton = (app: SidebarTab) => {
     if (app.tabName !== "compendium") {
       return;
     }
+    logger.log("sidebar changed to compendium - adding import button");
     $(app.element[0]).find(".directory-header .import-file-picker").remove();
     const id = `file-picker-button-${nanoid()}`;
     const content = $(`<div class="header-actions action-buttons flexrow import-file-picker">
@@ -82,5 +83,14 @@ export const installCompendiumExportButton = () => {
         $(`#${id} i`).removeClass(importButtonSpinnerClass).addClass(importButtonIconClass);
       }
     });
+  };
+
+  // add the "import" button when
+  Hooks.on("changeSidebarTab", (app: SidebarTab) => {
+    insertImportButton(app);
+  });
+
+  Hooks.on("renderSidebarTab", (app: SidebarTab, fuckNose: unknown, other: unknown) => {
+    insertImportButton(app);
   });
 };
