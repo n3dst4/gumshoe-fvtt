@@ -64,6 +64,7 @@ export const importCompendium = async (candidate: unknown) => {
     );
   }
 
-  logger.log(pack);
+  pack.apps.forEach((app) => app.render(true));
+
   ui.notifications?.info(`Finished importing compendium pack ${verified.label}`);
 };
