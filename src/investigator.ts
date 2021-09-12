@@ -8,7 +8,7 @@ import { GumshoeItemSheetClass } from "./module/GumshoeItemSheetClass";
 import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, systemName, weapon } from "./constants";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
-import { InvestigatorItemDataSource, isAbilityDataSource, isGeneralAbilityDataSource } from "./types";
+import { isAbilityDataSource, isGeneralAbilityDataSource } from "./types";
 import { assertGame, getFolderDescendants, isNullOrEmptyString } from "./functions";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
@@ -97,7 +97,8 @@ Hooks.on("ready", async () => {
 Hooks.on(
   "preCreateItem",
   (
-    data: InvestigatorItemDataSource,
+    item: Item,
+    createData: {name: string, type: string, data?: any, img?: string},
     options: any,
     userId: string,
   ) => {
@@ -105,22 +106,26 @@ Hooks.on(
     if (game.userId !== userId) return;
 
     // ABILITIES
-    if (isAbilityDataSource(data)) {
+    if (isAbilityDataSource(item.data)) {
+      const isGeneralAbility = isGeneralAbilityDataSource(item.data);
       // set category
-      if (isNullOrEmptyString(data.data?.category)) {
-        const category = generalAbility
+      if (isNullOrEmptyString(item.data.data.category)) {
+        const category = isGeneralAbility
           ? getDefaultGeneralAbilityCategory()
           : getDefaultInvestigativeAbilityCategory();
         console.log(
-          `found ability "${data.name}" with no category, updating to "${category}"`,
+          `found ability "${createData.name}" with no category, updating to "${category}"`,
         );
-        data.data = data.data || {};
-        data.data.category = category;
+        item.data.update({
+          data: { category },
+        });
       }
 
       // set image
-      if (isNullOrEmptyString(data.img)) {
-        data.img = isGeneralAbilityDataSource(data) ? generalAbilityIcon : investigativeAbilityIcon;
+      if (isNullOrEmptyString(item.data.img) || item.data.img === "icons/svg/item-bag.svg") {
+        item.data.update({
+          img: isGeneralAbility ? generalAbilityIcon : investigativeAbilityIcon,
+        });
       }
     }
   },
