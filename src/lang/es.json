@@ -82,9 +82,9 @@
   "investigator.DebugTranslations": "¿Depurar traducciones?",
   "investigator.Boost": "¿Potenciar?",
   "investigator.CombatOrder": "Orden de combate",
-  "investigator.ExcludeFromGeneralRefresh": "Desea excluir de la actualización completa?",
-  "investigator.IncludeIn24hRefresh": "Desea incluirlo en la actualización de las 24 horas?",
+  "investigator.ExcludeFromGeneralRefresh": "¿Desea excluir de la actualización completa?",
+  "investigator.IncludeIn24hRefresh": "¿Desea incluirlo en la actualización de las 24 horas?",
   "investigator.FullRefresh": "Actualitzación completa",
   "investigator.24hRefresh": "Actualitzación 24h",
-  "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEvery24h": "Actualizar todas las habilidades de {ActorName} que se actualizan cada 24 horas? "
+  "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEvery24h": "¿Actualizar todas las habilidades de {ActorName} que se actualizan cada 24 horas? "
 }
