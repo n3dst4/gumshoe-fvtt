@@ -5,7 +5,7 @@ import { RecursivePartial } from "../types";
 export type ExportedCompendium = {
   name: string,
   label: string,
-  entity: CompendiumCollection.Metadata["entity"],
+  entity: "Item" | "Actor",
   contents: any[],
 };
 
@@ -51,13 +51,18 @@ export const importCompendium = async (candidate: unknown) => {
     },
     {},
   );
-  const items = await Item.create(verified.contents as any, { temporary: true });
-  for (const item of items as any) {
-    await pack.importDocument(item);
-    console.log(
-      `Imported Item ${item.name} into Compendium pack ${pack.collection}`,
+  const maker = {
+    Actor: Actor,
+    Item: Item,
+  }[verified.entity];
+
+  const entities = await maker.create(verified.contents as any, { temporary: true });
+  for (const entity of entities as any) {
+    await pack.importDocument(entity);
+    logger.log(
+      `Imported ${verified.entity} ${entity.name} into Compendium pack ${pack.collection}`,
     );
   }
 
-  console.log(pack);
+  logger.log(pack);
 };

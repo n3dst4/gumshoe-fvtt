@@ -14,6 +14,10 @@ export const installCompendiumExportButton = () => {
   Hooks.on(
     "renderCompendium",
     (app: Compendium<CompendiumCollection.Metadata>, jQ: JQuery, data: any) => {
+      const entity = app.collection.metadata.entity;
+      if (!(entity === "Item" || entity === "Actor")) {
+        return;
+      }
       const id = `investigator_export_${nanoid()}`;
       jQ.find("header.window-header a.close").before(
         `<a id="${id}"><i class="fas fa-cloud-download-alt"></i>Export</a>`,
@@ -37,7 +41,7 @@ export const installCompendiumExportButton = () => {
         const exportData: ExportedCompendium = {
           label: app.collection.metadata.label,
           name: app.collection.metadata.name,
-          entity: app.collection.metadata.entity,
+          entity,
           contents: mapped,
         };
         saveJson(
