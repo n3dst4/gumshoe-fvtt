@@ -52,8 +52,9 @@ export const installCompendiumExportButton = () => {
     if (app.tabName !== "compendium") {
       return;
     }
+    $(app.element[0]).find(".directory-header .import-file-picker").remove();
     const id = `file-picker-button-${nanoid()}`;
-    const content = $(`<div class="header-actions action-buttons flexrow">
+    const content = $(`<div class="header-actions action-buttons flexrow import-file-picker">
         <button id="${id}" class="import-compendium" type="submit">
           <i class="fas ${importButtonIconClass}"></i> Import Compendium
         </button>
@@ -75,6 +76,8 @@ export const installCompendiumExportButton = () => {
         const file = await fileHandle.getFile();
         const text = await file.text();
         importCompendium(JSON.parse(text));
+      } catch (e) {
+        ui.notifications?.error(`Compendium pack import failed: ${e.message}`, { permanent: true });
       } finally {
         $(`#${id} i`).removeClass(importButtonSpinnerClass).addClass(importButtonIconClass);
       }
