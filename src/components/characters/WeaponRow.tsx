@@ -15,33 +15,33 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
 
   return (
     <Fragment>
-    <a
-      css={{ gridColumn: 1, overflow: "hidden", textOverflow: "ellipsis" }}
-      className={hover ? "hover" : ""}
-      onClick={() => weapon.sheet?.render(true)}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-    >
-      {weapon.name}
-    </a>
-    <a
-      css={{ gridColumn: 2 }}
-      className={hover ? "hover" : ""}
-      onClick={() => weapon.sheet?.render(true)}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-    >
-      {weapon.getUsesAmmo() ? weapon.getAmmo() : <span>&mdash;</span>}
-    </a>
-    <a
-      css={{ gridColumn: 3, overflow: "hidden", textOverflow: "ellipsis" }}
-      className={hover ? "hover" : ""}
-      onClick={() => weapon.sheet?.render(true)}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-    >
-      {weapon.getNotes()}
-    </a>
-  </Fragment>
+      <a
+        css={{ gridColumn: 1, overflow: "hidden", textOverflow: "ellipsis" }}
+        className={hover ? "hover" : ""}
+        onClick={() => weapon.sheet?.render(true)}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
+        {weapon.name}
+      </a>
+      <a
+        css={{ gridColumn: 2 }}
+        className={hover ? "hover" : ""}
+        onClick={() => weapon.sheet?.render(true)}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
+        {weapon.getUsesAmmo() ? weapon.getAmmo() : <span>&mdash;</span>}
+      </a>
+      <a
+        css={{ gridColumn: 3, overflow: "hidden", textOverflow: "ellipsis" }}
+        className={hover ? "hover" : ""}
+        onClick={() => weapon.sheet?.render(true)}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
+        {weapon.getNotes()}
+      </a>
+    </Fragment>
   );
 };
