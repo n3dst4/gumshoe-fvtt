@@ -52,12 +52,12 @@ export const installCompendiumExportButton = () => {
     if (app.tabName !== "compendium") {
       return;
     }
-    logger.log("compendium tab rebndered - adding import button");
+    logger.log("compendium tab rendered - adding import button");
     $(app.element[0]).find(".directory-header .import-file-picker").remove();
     const id = `file-picker-button-${nanoid()}`;
     const content = $(`<div class="header-actions action-buttons flexrow import-file-picker">
         <button id="${id}" class="import-compendium" type="submit">
-          <i class="fas ${importButtonIconClass}"></i> Import Compendium
+          <i class="fas ${importButtonIconClass}"></i> Import From JSON File
         </button>
     </div>`);
     $(app.element[0]).find(".directory-header").append(content);
