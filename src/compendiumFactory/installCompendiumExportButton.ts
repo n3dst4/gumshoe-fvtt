@@ -52,7 +52,7 @@ export const installCompendiumExportButton = () => {
     if (app.tabName !== "compendium") {
       return;
     }
-    logger.log("sidebar changed to compendium - adding import button");
+    logger.log("compendium tab rebndered - adding import button");
     $(app.element[0]).find(".directory-header .import-file-picker").remove();
     const id = `file-picker-button-${nanoid()}`;
     const content = $(`<div class="header-actions action-buttons flexrow import-file-picker">
