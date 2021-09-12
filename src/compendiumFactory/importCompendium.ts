@@ -39,7 +39,7 @@ export const importCompendium = async (candidate: unknown) => {
   }
   const verified = candidate as ExportedCompendium;
   const name = `${verified.name}-${nanoid()}`;
-  logger.log(`creating pack ${name}`);
+  ui.notifications?.info(`Beginning import of compendium pack ${verified.label}`);
   const pack = await CompendiumCollection.createCompendium(
     {
       entity: verified.entity,
@@ -65,4 +65,5 @@ export const importCompendium = async (candidate: unknown) => {
   }
 
   logger.log(pack);
+  ui.notifications?.info(`Finished importing compendium pack ${verified.label}`);
 };
