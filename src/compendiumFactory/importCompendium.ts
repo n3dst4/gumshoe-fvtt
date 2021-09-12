@@ -33,8 +33,8 @@ export const importCompendium = async (candidate: unknown) => {
     throw new Error("Candidate compendium did not contain any contents");
   }
   const verified = candidate as ExportedCompendium;
-  // const normalisedName = verified.name.toLowerCase().replace(/\s+/g, "-").replace(/^-a-z0-9/g, "");
   const name = `${verified.name}-${nanoid()}`;
+  logger.log(`creating pack ${name}`);
   const pack = await CompendiumCollection.createCompendium({
     entity: verified.entity,
     label: verified.label,
@@ -43,5 +43,6 @@ export const importCompendium = async (candidate: unknown) => {
     private: false,
     package: "world",
   }, { });
+
   console.log(pack);
 };
