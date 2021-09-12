@@ -105,7 +105,7 @@ export const generatePacks = async <
       // await pack.importEntity(folder);//
       for (const item of items as any) {
         await pack.importDocument(item);
-        console.log(
+        logger.log(
           `Imported Item ${item.name} into Compendium pack ${pack.collection}`,
         );
       }

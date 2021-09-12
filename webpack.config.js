@@ -12,6 +12,8 @@ module.exports = {
   output: {
     path: path.join(__dirname, "dist"),
     filename: "investigator.js",
+    // this is needed so we can reset __webpack_public_path__ at runtime
+    publicPath: "",
   },
   devtool: isProduction ? undefined : "source-map",
   module: {
