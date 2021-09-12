@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v4.2.0 (2021-09-12)
+
+* ***Beta Feature***: *Quick import and export of Item and Actor compendium packs, to facilitate sharing of home-brew ability packs. (#11)*
+* **Spanish translations!** INVESTIGATOR officially works in Spanish now, thanks to Rigal (@apz024), David Montilla (@montver), and Isaac Perez (@rizzibukki) (#7).
+* **Catalan translations!** INVESTIGATOR officially works in Catalan now, thanks to David Montilla (@montver) (#21).
+* **Bug fix:** Initiative is now based on the selected "combat ordering" ability (this was a Foundry 0.8.x breaking change) (#15)
+* **Bug fix:** Weapons which don't use ammo, no longer show an ammo count (#32).
+* **Bug fix:** Newly created abilities now have the right icon and have a category set (another latent Foundry 0.8.x breaker.) (#18 and #23)
+
 ## v4.1.0 (2021-09-05)
 
 * Feature: New checkbox to exclude an ability from the full refresh
