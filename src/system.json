@@ -53,14 +53,14 @@
       "path": "lang/en.json"
     },
     {
-      "lang": "pt",
-      "name": "Português",
-      "path": "lang/pt.json"
-    },
-    {
       "lang": "es",
       "name": "Español",
       "path": "lang/es.json"
+    },
+    {
+      "lang": "ca",
+      "name": "Català",
+      "path": "lang/ca.json"
     }
   ],
   "gridDistance": 1,
