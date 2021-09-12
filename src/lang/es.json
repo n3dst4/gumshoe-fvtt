@@ -51,7 +51,7 @@
   "investigator.NewItem": "Nuevo objeto",
   "investigator.Theme": "Tema",
   "investigator.UseSystemDefault": "Usar el sistema por defecto",
-  "investigator.Nuke": "Nuke","Bomba nuclear"
+  "investigator.Nuke": "Bomba nuclear",
   "investigator.Confirm": "Confirmar",
   "investigator.WhoopsNo": "¡Ups, No!",
   "investigator.NukeItFromOrbit": "Destrúyelo desde la órbita",
@@ -81,7 +81,7 @@
   "investigator.NoActorsInThisPartyYetDragPCActorsFromTheSidebarIntoThisWindowToAddThem": "¡Aún no hay actores en esta fiesta! Arrastre PJ la barra lateral a esta ventana para agregarlos", 
   "investigator.DebugTranslations": "¿Depurar traducciones?",
   "investigator.Boost": "¿Potenciar?",
-  "investigator.CombatOrder": "Orden de combate"
+  "investigator.CombatOrder": "Orden de combate",
   "investigator.ExcludeFromGeneralRefresh": "Desea excluir de la actualización completa?",
   "investigator.IncludeIn24hRefresh": "Desea incluirlo en la actualización de las 24 horas?",
   "investigator.FullRefresh": "Actualitzación completa",
