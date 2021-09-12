@@ -1,5 +1,5 @@
 {
-  "investigator.SystemName": "INVESTIGADOR",
+  "investigator.SystemName": "INVESTIGATOR",
   "investigator.Refresh": "Actualizar",
   "investigator.Abilities": "Habilidades",
   "investigator.Equipment": "Equipo",
@@ -67,10 +67,10 @@
   "investigator.InvestigativeAbilityCategories": "Categorías de habilidades de investigación",
   "investigator.GeneralAbilityCategories": "Categorías de habilidades generales",
   "investigator.CombatAbilities": "Habilidades de combate",
-  "investigator.OccupationLabel": "etiqueta profesional",
-  "investigator.ShortNotesFields": "Campos de las notas breves",
-  "investigator.LongNotesFields": "Campos de las notas largas",
-  "investigator.CanAbilitiesBeBoosted": "Pueden ser potenciadas",
+  "investigator.OccupationLabel": "Profesión",
+  "investigator.ShortNotesFields": "Notas breves",
+  "investigator.LongNotesFields": "Notas largas",
+  "investigator.CanAbilitiesBeBoosted": "Las habilidades pueden ser potenciadas",
   "investigator.Cancel": "Cancelar",
   "investigator.SaveChanges": "Guardar cambios",
   "investigator.AttacksWithWeaponNameRollingAbilityNameAtRangeName": "Atacar a {RangeName} con el arma {WeaponName} y la habilidad {AbilityName}",
@@ -78,8 +78,13 @@
   "investigator.RollingAbilityName": "Tirando {AbilityName}",
   "investigator.Pool": "Reserva",
   "investigator.Rating": "Puntuación",
-  "investigator.NoActorsInThisPartyYetDragPCActorsFromTheSidebarIntoThisWindowToAddThem": "¡Aún no hay actores en esta fiesta! Arrastre actores de PC desde la barra lateral a esta ventana para agregarlos", 
+  "investigator.NoActorsInThisPartyYetDragPCActorsFromTheSidebarIntoThisWindowToAddThem": "¡Aún no hay actores en esta fiesta! Arrastre PJ la barra lateral a esta ventana para agregarlos", 
   "investigator.DebugTranslations": "¿Depurar traducciones?",
   "investigator.Boost": "¿Potenciar?",
   "investigator.CombatOrder": "Orden de combate"
+  "investigator.ExcludeFromGeneralRefresh": "Desea excluir de la actualización completa?",
+  "investigator.IncludeIn24hRefresh": "Desea incluirlo en la actualización de las 24 horas?",
+  "investigator.FullRefresh": "Actualitzación completa",
+  "investigator.24hRefresh": "Actualitzación 24h",
+  "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEvery24h": "Actualizar todas las habilidades de {ActorName} que se actualizan cada 24 horas? "
 }
