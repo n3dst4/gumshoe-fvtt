@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useContext, useState } from "react";
 import * as constants from "../../constants";
-import { assertGame, isGeneralAbility } from "../../functions";
+import { assertGame, getTranslated, isGeneralAbility } from "../../functions";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { ThemeContext } from "../../theme";
 import { assertAbilityDataSource } from "../../types";
@@ -38,7 +38,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
     const roll = useBoost
       ? new Roll("1d6 + @spend + @boost", { spend, boost })
       : new Roll("1d6 + @spend", { spend });
-    const label = `Rolling ${ability.name}`;
+    const label = getTranslated("RollingAbilityName", { AbilityName: ability.name ?? "" });
     roll.roll().toMessage({
       speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
       flavor: label,
@@ -51,7 +51,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
     assertAbilityDataSource(ability.data);
     if (ability.actor === null) { return; }
     const roll = new Roll("@spend", { spend });
-    const label = `Ability pool spend for ${ability.name}`;
+    const label = getTranslated("AbilityPoolSpendForAbilityName", { AbilityName: ability.name ?? "" });
     roll.roll().toMessage({
       speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
       flavor: label,
