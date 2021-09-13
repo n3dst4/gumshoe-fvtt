@@ -12,6 +12,7 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
+import { confirmADoodleDo } from "../../module/confirmADoodleDo";
 
 type AbilityConfigProps = {
   ability: GumshoeItem,
@@ -36,30 +37,42 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
 
   const onClickDelete = useCallback(() => {
     const message = ability.actor
-      ? `Delete ${ability.actor.data.name}'s "${ability.data.name}" ability?`
-      : `Delete the "${ability.data.name}" ability?`;
+      ? "Delete {ActorName}'s \"{AbilityName}\" ability?"
+      : "Delete the \"{AbilityName}\" ability?";
 
-    const d = new Dialog({
-      title: "Confirm",
-      content: `<p>${message}</p>`,
-      buttons: {
-        cancel: {
-          icon: '<i class="fas fa-ban"></i>',
-          label: "Cancel",
-        },
-        delete: {
-          icon: '<i class="fas fa-trash"></i>',
-          label: "Delete",
-          callback: () => {
-            ability.delete();
-          },
-        },
+    confirmADoodleDo(
+      message,
+      "Delete",
+      "Cancel",
+      "fa-trash",
+      {
+        ActorName: ability.actor?.data.name ?? "",
+        AbilityName: ability.data.name,
       },
-      default: "two",
-      // render: html => console.log("Register interactivity in the rendered dialog"),
-      // close: html => console.log("This always is logged no matter which option is chosen"),
-    });
-    d.render(true);
+      ability.delete,
+    );
+
+    // const d = new Dialog({
+    //   title: "Confirm",
+    //   content: `<p>${message}</p>`,
+    //   buttons: {
+    //     cancel: {
+    //       icon: '<i class="fas fa-ban"></i>',
+    //       label: "Cancel",
+    //     },
+    //     delete: {
+    //       icon: '<i class="fas fa-trash"></i>',
+    //       label: "Delete",
+    //       callback: () => {
+    //         ability.delete();
+    //       },
+    //     },
+    //   },
+    //   default: "two",
+    //   // render: html => console.log("Register interactivity in the rendered dialog"),
+    //   // close: html => console.log("This always is logged no matter which option is chosen"),
+    // });
+    // d.render(true);
   }, [ability]);
 
   const categories = isGeneral ? getGeneralAbilityCategories() : getInvestigativeAbilityCategories();
@@ -197,11 +210,9 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
           }}
         />
       </GridField>
-      {ability.actor && (
-        <GridField label="Delete ability">
-          <button onClick={onClickDelete}><Translate>Delete</Translate></button>
-        </GridField>
-      )}
+      <GridField label="Delete ability">
+        <button onClick={onClickDelete}><Translate>Delete</Translate></button>
+      </GridField>
     </InputGrid>
   );
 };

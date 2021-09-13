@@ -1,5 +1,5 @@
 {
-  "investigator.SystemName": "INVESTIGADOR",
+  "investigator.SystemName": "INVESTIGATOR",
   "investigator.Refresh": "Refresh",
   "investigator.Abilities": "Abilities",
   "investigator.Equipment": "Equipment",
@@ -60,7 +60,7 @@
   "investigator.PartyName": "Party name",
   "investigator.Remove": "Remove",
   "investigator.Total": "Total",
-  "investigator.SystemNameSystemSettings": "Configurações do sistema {SystemName}",
+  "investigator.SystemNameSystemSettings": "{SystemName} System Settings",
   "investigator.SystemPreset": "System preset",
   "investigator.VisualTheme": "Visual theme",
   "investigator.CompendiumPacksForNewPCs": "Compendium packs for new PCs",
@@ -87,5 +87,7 @@
   "investigator.IncludeIn24hRefresh": "Include in 24h refresh?",
   "investigator.FullRefresh": "Full Refresh",
   "investigator.24hRefresh": "24h Refresh",
-  "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEvery24h": "Refresh all of {ActorName}'s abilities which refresh every 24h?"
+  "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEvery24h": "Refresh all of {ActorName}'s abilities which refresh every 24h?",
+  "investigator.DeleteActorNamesAbilityNameAbility": "Delete {ActorName}'s \"{AbilityName}\" ability?",
+  "investigator.DeleteTheAbilityNameAbility": "Delete the \"{AbilityName}\" ability?"
 }

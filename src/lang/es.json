@@ -86,5 +86,7 @@
   "investigator.IncludeIn24hRefresh": "¿Desea incluirlo en la actualización de las 24 horas?",
   "investigator.FullRefresh": "Actualitzación completa",
   "investigator.24hRefresh": "Actualitzación 24h",
-  "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEvery24h": "¿Actualizar todas las habilidades de {ActorName} que se actualizan cada 24 horas? "
+  "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEvery24h": "¿Actualizar todas las habilidades de {ActorName} que se actualizan cada 24 horas?",
+  "investigator.DeleteActorNamesAbilityNameAbility": "Delete {ActorName}'s \"{AbilityName}\" ability?",
+  "investigator.DeleteTheAbilityNameAbility": "Delete the \"{AbilityName}\" ability?"
 }
