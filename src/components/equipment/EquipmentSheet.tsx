@@ -8,8 +8,8 @@ import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "../inputs/TextInput";
 import { TextArea } from "../inputs/TextArea";
 import { Translate } from "../Translate";
-import { systemName } from "../../constants";
 import { assertGame } from "../../functions";
+import { confirmADoodleDo } from "../../module/confirmADoodleDo";
 
 type EquipmentSheetProps = {
   entity: GumshoeItem,
@@ -26,35 +26,22 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   const onClickDelete = useCallback(() => {
     assertGame(game);
     const message = entity.actor
-      ? game.i18n.format(`${systemName}.DeleteActorNamesEquipmentName`, {
-          ActorName: entity.actor.data.name,
-          EquipmentName: entity.data.name,
-        })
-      : game.i18n.format(`${systemName}.DeleteEquipmentName`, {
-        EquipmentName: entity.data.name,
-      });
+      ? "DeleteActorNamesEquipmentName"
+      : "DeleteEquipmentName";
 
-    const d = new Dialog({
-      title: game.i18n.localize("Confirm"),
-      content: `<p>${message}</p>`,
-      buttons: {
-        cancel: {
-          icon: '<i class="fas fa-ban"></i>',
-          label: game.i18n.localize("Cancel"),
-        },
-        delete: {
-          icon: '<i class="fas fa-trash"></i>',
-          label: game.i18n.localize("Delete"),
-          callback: () => {
-            entity.delete();
-          },
-        },
+    confirmADoodleDo(
+      message,
+      "Delete",
+      "Cancel",
+      "fa-trash",
+      {
+        ActorName: entity.actor?.data.name ?? "",
+        EquipmentName: entity.data.name,
       },
-      default: "cancel",
-      // render: html => console.log("Register interactivity in the rendered dialog"),
-      // close: html => console.log("This always is logged no matter which option is chosen"),
-    });
-    d.render(true);
+      () => {
+        entity.delete();
+      },
+    );
   }, [entity]);
 
   return (

@@ -49,7 +49,9 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
         ActorName: ability.actor?.data.name ?? "",
         AbilityName: ability.data.name,
       },
-      ability.delete,
+      () => {
+        ability.delete();
+      },
     );
   }, [ability]);
 
