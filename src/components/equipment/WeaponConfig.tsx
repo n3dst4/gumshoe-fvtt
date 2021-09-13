@@ -14,7 +14,7 @@ import { getCombatAbilities } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertGame } from "../../functions";
 import { assertWeaponDataSource } from "../../types";
-import { confirmADoodleDo } from "../../module/confirmADoodleDo";
+import { confirmADoodleDo } from "../../confirmADoodleDo";
 
 type WeaponConfigProps = {
   weapon: GumshoeItem,

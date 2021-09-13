@@ -1,7 +1,7 @@
 import { equipment, generalAbility, investigativeAbility, pc, weapon } from "../constants";
 import { assertGame, isAbility } from "../functions";
 import { RecursivePartial, AbilityType, assertPCDataSource, assertPartyDataSource, InvestigativeAbilityDataSource } from "../types";
-import { confirmADoodleDo } from "./confirmADoodleDo";
+import { confirmADoodleDo } from "../confirmADoodleDo";
 import { Theme, themes } from "../theme";
 import { getDefaultThemeName, getNewPCPacks } from "../settingsHelpers";
 

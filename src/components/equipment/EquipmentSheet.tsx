@@ -9,7 +9,7 @@ import { TextInput } from "../inputs/TextInput";
 import { TextArea } from "../inputs/TextArea";
 import { Translate } from "../Translate";
 import { assertGame } from "../../functions";
-import { confirmADoodleDo } from "../../module/confirmADoodleDo";
+import { confirmADoodleDo } from "../../confirmADoodleDo";
 
 type EquipmentSheetProps = {
   entity: GumshoeItem,

@@ -12,7 +12,7 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
-import { confirmADoodleDo } from "../../module/confirmADoodleDo";
+import { confirmADoodleDo } from "../../confirmADoodleDo";
 
 type AbilityConfigProps = {
   ability: GumshoeItem,

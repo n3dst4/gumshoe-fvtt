@@ -1,4 +1,7 @@
-import { generalAbility, investigativeAbility } from "./constants";
+import { generalAbility, investigativeAbility, systemName } from "./constants";
+import Case from "case";
+import { Dictionary } from "lodash";
+import { getDebugTranslations } from "./settingsHelpers";
 
 export const isInvestigativeAbility = (item: Item) => (
   (typeof item === "string")
@@ -79,3 +82,13 @@ export function assertGame (game: any): asserts game is Game {
     throw new Error("game used before init hook");
   }
 }
+
+export const getTranslated = (text: string, values: Dictionary<string|number>) => {
+  assertGame(game);
+  const debug = getDebugTranslations();
+  const pascal = Case.pascal(text);
+  const prefixed = `${systemName}.${pascal}`;
+  const local = game.i18n.format(prefixed, values);
+  const has = game.i18n.has(prefixed, false);
+  return `${debug ? (has ? "✔ " : "❌ ") : ""}${local}`;
+};
