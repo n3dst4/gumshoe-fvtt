@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ChangeEvent, useCallback, useState } from "react";
-import { isGeneralAbility } from "../../functions";
+import { confirmADoodleDo, isGeneralAbility } from "../../functions";
 import { useUpdate } from "../../hooks/useUpdate";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -12,7 +12,6 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
-import { confirmADoodleDo } from "../../confirmADoodleDo";
 
 type AbilityConfigProps = {
   ability: GumshoeItem,

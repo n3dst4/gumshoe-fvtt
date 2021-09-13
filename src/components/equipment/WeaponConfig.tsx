@@ -12,9 +12,8 @@ import { WeaponRange } from "./WeaponRangeConfig";
 import { Checkbox } from "../inputs/Checkbox";
 import { getCombatAbilities } from "../../settingsHelpers";
 import { Translate } from "../Translate";
-import { assertGame } from "../../functions";
+import { assertGame, confirmADoodleDo } from "../../functions";
 import { assertWeaponDataSource } from "../../types";
-import { confirmADoodleDo } from "../../confirmADoodleDo";
 
 type WeaponConfigProps = {
   weapon: GumshoeItem,
