@@ -1,3 +1,4 @@
+import { getTranslated } from "../../functions";
 import { GumshoeItem } from "../../module/GumshoeItem";
 
 type PerformAttackArgs1 = {
@@ -10,7 +11,7 @@ type PerformAttackArgs1 = {
 }
 
 type PerformAttackArgs2 = {
-  description: string,
+  rangeName: string,
   rangeDamage: number,
 }
 
@@ -22,13 +23,18 @@ export const performAttack = ({
   setSpend,
   setBonusPool,
 }: PerformAttackArgs1) => ({
-  description,
+  rangeName,
   rangeDamage,
 }: PerformAttackArgs2) => {
   if (ability.actor === null) { return; }
   const damage = weapon.getDamage();
   const hitRoll = new Roll("1d6 + @spend", { spend });
-  const hitLabel = `Attacks with <b>${weapon.name}</b>, rolling <b>${ability.name}</b> at ${description}`;
+  const rangeNameTranslated = getTranslated(rangeName);
+  const hitLabel = getTranslated("AttacksWithWeaponNameRollingAbilityNameAtRangeName", {
+    WeaponName: weapon.name ?? "",
+    AbilityName: ability.name ?? "",
+    RangeName: rangeNameTranslated,
+  });
   hitRoll.roll();
   hitRoll.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
@@ -39,7 +45,11 @@ export const performAttack = ({
     damage,
     rangeDamage,
   });
-  const damageLabel = `Damage at ${description} with <b>${weapon.name}</b>`;
+  const damageLabel = getTranslated("DamageAtRangeNameWithWeaponName", {
+    RangeName: rangeNameTranslated,
+    WeaponName: weapon.name ?? "",
+  });
+  // const damageLabel = `Damage at ${rangeName} with <b>${weapon.name}</b>`;
   damageRoll.roll();
   damageRoll.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: ability.actor }),

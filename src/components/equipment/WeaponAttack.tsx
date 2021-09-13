@@ -65,7 +65,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const onPointBlank = useCallback(() => {
     assertWeaponDataSource(weapon.data);
     basePerformAttack({
-      description: "point blank",
+      rangeName: "point blank",
       rangeDamage: weapon.data.data.pointBlankDamage,
     });
   }, [basePerformAttack, weapon.data]);
@@ -73,7 +73,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const onCloseRange = useCallback(() => {
     assertWeaponDataSource(weapon.data);
     basePerformAttack({
-      description: "close range",
+      rangeName: "close range",
       rangeDamage: weapon.data.data.closeRangeDamage,
     });
   }, [basePerformAttack, weapon.data]);
@@ -81,7 +81,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const onNearRange = useCallback(() => {
     assertWeaponDataSource(weapon.data);
     basePerformAttack({
-      description: "close range",
+      rangeName: "close range",
       rangeDamage: weapon.data.data.nearRangeDamage,
     });
   }, [basePerformAttack, weapon.data]);
@@ -89,7 +89,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const onLongRange = useCallback(() => {
     assertWeaponDataSource(weapon.data);
     basePerformAttack({
-      description: "long range",
+      rangeName: "long range",
       rangeDamage: weapon.data.data.longRangeDamage,
     });
   }, [basePerformAttack, weapon.data]);

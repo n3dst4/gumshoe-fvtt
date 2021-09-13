@@ -89,5 +89,6 @@
   "investigator.24hRefresh": "Actualisation 24h",
   "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEvery24h": "Actualiser les réserves des compétences qui se récupèrent toutes les 24h pour {ActorName}?",
   "investigator.DeleteActorNamesAbilityNameAbility": "Delete {ActorName}'s \"{AbilityName}\" ability?",
-  "investigator.DeleteTheAbilityNameAbility": "Delete the \"{AbilityName}\" ability?"
+  "investigator.DeleteTheAbilityNameAbility": "Delete the \"{AbilityName}\" ability?",
+    "investigator.DamageAtRangeNameWithWeaponName": "Damage at {RangeName} with <b>{WeaponName}</b>"
 }

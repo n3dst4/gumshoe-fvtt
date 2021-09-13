@@ -83,7 +83,10 @@ export function assertGame (game: any): asserts game is Game {
   }
 }
 
-export const getTranslated = (text: string, values: Dictionary<string|number>) => {
+export const getTranslated = (
+  text: string,
+  values: Dictionary<string|number> = {},
+) => {
   assertGame(game);
   const debug = getDebugTranslations();
   const pascal = Case.pascal(text);
