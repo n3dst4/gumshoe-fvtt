@@ -51,28 +51,6 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
       },
       ability.delete,
     );
-
-    // const d = new Dialog({
-    //   title: "Confirm",
-    //   content: `<p>${message}</p>`,
-    //   buttons: {
-    //     cancel: {
-    //       icon: '<i class="fas fa-ban"></i>',
-    //       label: "Cancel",
-    //     },
-    //     delete: {
-    //       icon: '<i class="fas fa-trash"></i>',
-    //       label: "Delete",
-    //       callback: () => {
-    //         ability.delete();
-    //       },
-    //     },
-    //   },
-    //   default: "two",
-    //   // render: html => console.log("Register interactivity in the rendered dialog"),
-    //   // close: html => console.log("This always is logged no matter which option is chosen"),
-    // });
-    // d.render(true);
   }, [ability]);
 
   const categories = isGeneral ? getGeneralAbilityCategories() : getInvestigativeAbilityCategories();
