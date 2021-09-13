@@ -76,7 +76,7 @@
   "investigator.SaveChanges": "Desar canvis",
   "investigator.AttacksWithWeaponNameRollingAbilityNameAtRangeName": "Atacar {RangeName} amb l'arma {WeaponName} i l'habilitat {AbilityName}",
   "investigator.AbilityPoolSpendForAbilityName": "Reserva d'habilitat {AbilityName} esgotada",
-  "investigator.RollingAbilityName": "tirant {AbilityName}",
+  "investigator.RollingAbilityName": "Tirant {AbilityName}",
   "investigator.Pool": "Reserva",
   "investigator.Rating": "Puntuació",
   "investigator.NoActorsInThisPartyYetDragPCActorsFromTheSidebarIntoThisWindowToAddThem": "Encara no hi ha actors en aquesta festa! Arrossega  PJ des de la barra lateral a aquesta finestra per afegir-los",
