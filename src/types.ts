@@ -210,9 +210,17 @@ export function assertAbilityDataSource (data: InvestigatorItemDataSource): asse
   }
 }
 
+export function isWeaponDataSource (data: InvestigatorItemDataSource): data is WeaponDataSource {
+  return data.type === constants.weapon;
+}
+
+export function isEquipmentDataSource (data: InvestigatorItemDataSource): data is EquipmentDataSource {
+  return data.type === constants.equipment;
+}
+
 /** assert that a data is a weapon */
 export function assertWeaponDataSource (data: InvestigatorItemDataSource): asserts data is WeaponDataSource {
-  const isWeapon = data.type === constants.weapon;
+  const isWeapon = isWeaponDataSource(data);
   if (!isWeapon) {
     throw new Error("Not a weapon");
   }

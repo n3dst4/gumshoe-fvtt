@@ -38,6 +38,8 @@ export const abilityCategories = "abilityCategories" as const;
 // assets
 export const investigativeAbilityIcon = `/systems/${systemName}/assets/icons/magnifying-glass.webp` as const;
 export const generalAbilityIcon = `/systems/${systemName}/assets/icons/fist.webp` as const;
+export const weaponIcon = `/systems/${systemName}/assets/icons/trench-knife.webp` as const;
+export const equipmentIcon = `/systems/${systemName}/assets/icons/shopping-bag.webp` as const;
 
 // packs
 

@@ -5,10 +5,10 @@ import { GumshoeActor } from "./module/GumshoeActor";
 import { GumshoeItem } from "./module/GumshoeItem";
 import { GumshoeActorSheetClass } from "./module/GumshoeActorSheetClass";
 import { GumshoeItemSheetClass } from "./module/GumshoeItemSheetClass";
-import { defaultMigratedSystemVersion, equipment, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, systemName, weapon } from "./constants";
+import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, systemName, weapon, weaponIcon } from "./constants";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
-import { isAbilityDataSource, isGeneralAbilityDataSource } from "./types";
+import { isAbilityDataSource, isGeneralAbilityDataSource, isWeaponDataSource, isEquipmentDataSource } from "./types";
 import { assertGame, getFolderDescendants, isNullOrEmptyString } from "./functions";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
@@ -120,13 +120,22 @@ Hooks.on(
           data: { category },
         });
       }
+    }
 
-      // set image
-      if (isNullOrEmptyString(item.data.img) || item.data.img === "icons/svg/item-bag.svg") {
-        item.data.update({
-          img: isGeneralAbility ? generalAbilityIcon : investigativeAbilityIcon,
-        });
-      }
+    // set image
+    if (
+      isNullOrEmptyString(item.data.img) ||
+      item.data.img === "icons/svg/item-bag.svg"
+    ) {
+      item.data.update({
+        img: isWeaponDataSource(item.data)
+          ? weaponIcon
+          : isEquipmentDataSource(item.data)
+            ? equipmentIcon
+            : isGeneralAbilityDataSource(item.data)
+              ? generalAbilityIcon
+              : investigativeAbilityIcon,
+      });
     }
   },
 );
