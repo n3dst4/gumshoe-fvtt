@@ -42,9 +42,14 @@
       "system": "investigator",
       "path": "./packs/missingAbilitiesNote.db",
       "entity": "JournalEntry"
+    },
+    {
+      "name": "investigatorWeapons",
+      "label": "SRD Weapons",
+      "system": "investigator",
+      "path": "./packs/investigatorWeapons.db",
+      "entity": "Item"
     }
-
-    
   ],
   "languages": [
     {
