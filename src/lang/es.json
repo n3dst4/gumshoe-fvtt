@@ -90,5 +90,6 @@
   "investigator.DeleteActorNamesAbilityNameAbility": "Delete {ActorName}'s \"{AbilityName}\" ability?",
   "investigator.DeleteTheAbilityNameAbility": "Delete the \"{AbilityName}\" ability?",
   "investigator.DamageAtRangeNameWithWeaponName": "Damage at {RangeName} with <b>{WeaponName}</b>",
-  "investigator.HitThreshold": "(es) Hit Threshold"
+  "investigator.HitThreshold": "(es) Hit Threshold",
+  "investigator.GoesFirstInCombat": "(es) Goes first in combat?"
 }
