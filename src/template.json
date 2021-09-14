@@ -22,6 +22,7 @@
       "buildPoints": 28,
       "hideZeroRated": false,
       "sheetTheme": null,
+      "hitThreshold": 3,
       "resources": {
         "health": {
           "min": 0,
