@@ -12,6 +12,8 @@ import { getCombatAbilities, getUseBoost } from "../../settingsHelpers";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, assertPCDataSource, isPCDataSource, PCDataSource } from "../../types";
+import { TextArea } from "../inputs/TextArea";
+import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 
 type AbilityEditorMainProps = {
   ability: GumshoeItem,
@@ -62,6 +64,7 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
     },
     [ability?.actor, ability.data.name],
   );
+  const notes = useAsyncUpdate(ability.getNotes(), ability.setNotes);
 
   return (
     <InputGrid>
@@ -117,6 +120,10 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
           <Checkbox checked={ability.getBoost()} onChange={ability.setBoost}/>
         </GridField>
       }
+      <GridFieldStacked label="Notes">
+        <TextArea value={notes.display} onChange={notes.onChange} />
+      </GridFieldStacked>
+
       {isCombatAbility &&
         <GridField label="Combat order">
           {isAbilityUsed

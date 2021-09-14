@@ -2,7 +2,7 @@ import { fixLength, isAbility } from "../functions";
 import { Theme, themes } from "../theme";
 import { GumshoeActor } from "./GumshoeActor";
 import { getDefaultThemeName } from "../settingsHelpers";
-import { assertAbilityDataSource, assertWeaponDataSource, assertWeaponOrEquipmentDataSource } from "../types";
+import { assertAbilityDataSource, assertWeaponDataSource } from "../types";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -166,12 +166,10 @@ export class GumshoeItem extends Item {
   }
 
   getNotes = () => {
-    assertWeaponOrEquipmentDataSource(this.data);
     return this.data.data.notes ?? "";
   }
 
   setNotes = (notes: string) => {
-    assertWeaponOrEquipmentDataSource(this.data);
     this.update({ data: { notes } });
   }
 

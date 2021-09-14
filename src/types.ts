@@ -136,6 +136,7 @@ export interface BaseAbilityDataSourceData {
   category: string;
   excludeFromGeneralRefresh: boolean;
   refreshesDaily: boolean;
+  notes: string;
 }
 
 /** data.data for investigative abilities */
