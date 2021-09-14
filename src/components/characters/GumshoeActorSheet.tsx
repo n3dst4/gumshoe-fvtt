@@ -19,6 +19,7 @@ import { TrackersArea } from "./TrackersArea";
 import { getOccupationlabel, getShortNotes } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertPCDataSource, isPCDataSource } from "../../types";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 type GumshoeActorSheetProps = {
   actor: GumshoeActor,
@@ -54,10 +55,12 @@ export const GumshoeActorSheet = ({
     actor.setShortNote(index, value);
   }, [actor]);
 
+  const updateHitThreshold = useCallback((newThreshold) => {
+    actor.setHitThreshold(newThreshold);
+  }, [actor]);
+
   const theme = actor.getSheetTheme();
-
   const shortNotesNames = getShortNotes();
-
   const occupationLabel = getOccupationlabel();
 
   return (
@@ -162,6 +165,15 @@ export const GumshoeActorSheet = ({
             </button>
             <hr/>
             <TrackersArea actor={actor} />
+            <hr/>
+            <h3 css={{ gridColumn: "start / end" }}>
+              <Translate>Hit Threshold</Translate>
+            </h3>
+            <AsyncNumberInput
+              min={0}
+              value={actor.data.data.hitThreshold}
+              onChange={updateHitThreshold}
+            />
         </div>
 
         <div

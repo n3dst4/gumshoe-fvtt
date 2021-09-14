@@ -243,6 +243,16 @@ export class GumshoeActor extends Actor {
     this.setActorIds(this.getActorIds().filter((x) => x !== id));
   };
 
+  getHitThreshold = () => {
+    assertPCDataSource(this.data);
+    return this.data.data.hitThreshold;
+  }
+
+  setHitThreshold = (newThreshold: number) => {
+    assertPCDataSource(this.data);
+    return this.update({ data: { hitThreshold: newThreshold } });
+  }
+
   // getGeneralAbilityNames = () => this.data.data.abilityNames;
   // setGeneralAbilityNames = (abilityNames: string[]) => {
   //   this.update({ data: { abilityNames } });

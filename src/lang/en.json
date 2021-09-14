@@ -90,5 +90,6 @@
   "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEvery24h": "Refresh all of {ActorName}'s abilities which refresh every 24h?",
   "investigator.DeleteActorNamesAbilityNameAbility": "Delete {ActorName}'s \"{AbilityName}\" ability?",
   "investigator.DeleteTheAbilityNameAbility": "Delete the \"{AbilityName}\" ability?",
-  "investigator.DamageAtRangeNameWithWeaponName": "Damage at {RangeName} with <b>{WeaponName}</b>"
+  "investigator.DamageAtRangeNameWithWeaponName": "Damage at {RangeName} with <b>{WeaponName}</b>",
+  "investigator.HitThreshold": "Hit Threshold"
 }
