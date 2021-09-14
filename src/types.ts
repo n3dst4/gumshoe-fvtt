@@ -25,16 +25,10 @@ export type DataSource<TType extends string, TData> = {
 // once we're on foundry-vtt-types
 interface PCDataSourceData {
   buildPoints: number;
-  health: number;
-  stability: number;
-  sanity: number;
-  magic: number;
 
   occupation: string;
-
   longNotes: string[];
   shortNotes: string[];
-
   initiativeAbility: string;
   hideZeroRated: boolean;
   sheetTheme: string|null;
