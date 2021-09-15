@@ -1,6 +1,6 @@
 import { ConfiguredDocumentClass } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
 import * as constants from "../constants";
-import { assertPCDataSource, isGeneralAbilityDataSource, isPCDataSource } from "../types";
+import { isGeneralAbilityDataSource, isPCDataSource } from "../types";
 import { GumshoeItem } from "./GumshoeItem";
 
 export class InvestigatorCombatant extends Combatant {
@@ -14,10 +14,10 @@ export class InvestigatorCombatant extends Combatant {
       (item: GumshoeItem) => item.type === constants.generalAbility && item.name === abilityName,
     );
     if (ability && ability.data.type === constants.generalAbility) {
-      let score = ability.data.data.rating.toString();
-      if (ability.data.data.goesFirstInCombat) {
-        score = `${score} + 100`;
-      }
+      const score = ability.data.data.rating.toString();
+      // if (ability.data.data.goesFirstInCombat) {
+      //   score = `${score} + 100`;
+      // }
       return score;
     } else {
       return "0";
@@ -51,7 +51,21 @@ export class InvestigatorCombat extends Combat {
     } else if (!aAbility.data.data.goesFirstInCombat && bAbility.data.data.goesFirstInCombat) {
       return 1;
     } else {
-
+      const aRating = aAbility.data.data.rating;
+      const bRating = bAbility.data.data.rating;
+      const aPool = aAbility.data.data.pool;
+      const bPool = bAbility.data.data.pool;
+      if (aRating < bRating) {
+        return 1;
+      } else if (aRating > bRating) {
+        return -1;
+      } else if (aPool < bPool) {
+        return 1;
+      } else if (aPool > bPool) {
+        return -1;
+      } else {
+        return 0;
+      }
     }
   }
 }

@@ -14,7 +14,7 @@ import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
 import { GumshoePartySheetClass } from "./module/GumshoePartySheetClass";
-import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
+import { InvestigatorCombat, InvestigatorCombatant } from "./module/InvestigatorCombatant";
 import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
 
 // Initialize system
@@ -32,6 +32,7 @@ Hooks.once("init", async function () {
   CONFIG.Actor.documentClass = GumshoeActor;
   CONFIG.Item.documentClass = GumshoeItem;
   CONFIG.Combatant.documentClass = InvestigatorCombatant;
+  CONFIG.Combat.documentClass = InvestigatorCombat;
 
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
