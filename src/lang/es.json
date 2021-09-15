@@ -87,8 +87,8 @@
   "investigator.FullRefresh": "Actualitzación completa",
   "investigator.24hRefresh": "Actualitzación 24h",
   "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEvery24h": "¿Actualizar todas las habilidades de {ActorName} que se actualizan cada 24 horas?",
-  "investigator.DeleteActorNamesAbilityNameAbility": "Delete {ActorName}'s \"{AbilityName}\" ability?",
-  "investigator.DeleteTheAbilityNameAbility": "Delete the \"{AbilityName}\" ability?",
-  "investigator.DamageAtRangeNameWithWeaponName": "Damage at {RangeName} with <b>{WeaponName}</b>",
-  "investigator.HitThreshold": "(es) Hit Threshold"
+  "investigator.DeleteActorNamesAbilityNameAbility": "¿Quieres borrar la habilidad \"{AbilityName}\" de {ActorName}?",
+  "investigator.DeleteTheAbilityNameAbility": "¿Quieres borrar la habilidad \"{AbilityName}\" ?",
+  "investigator.DamageAtRangeNameWithWeaponName": "Daño de {RangeName} con <b>{WeaponName}</b>",
+  "investigator.HitThreshold": "Umbral de golpe"
 }
