@@ -59,6 +59,7 @@ const generalTemplate: GeneralAbilityTemplate = {
   category: "General",
   showTracker: false,
   excludeFromGeneralRefresh: false,
+  goesFirstInCombat: false,
 };
 
 export const emptyPack = async (pack: CompendiumCollection<CompendiumCollection.Metadata>) => {
