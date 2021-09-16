@@ -321,6 +321,46 @@ export const pallidTheme: Theme = themeFactory({
   },
 });
 
+export const greenTriangleTheme: Theme = themeFactory({
+  displayName: "Green triangle",
+  global: css`
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Emblema+One&display=swap');    
+    @import url('https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap');    
+    @import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');    
+    @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');    
+  `,
+  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
+  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  displayFont: "normal normal normal 1.1em 'Spicy Rice', serif",
+  logoFrontElementStyle: {
+    background: "#51662e",
+    backgroundClip: "text",
+  },
+  logoRearElementStyle: {
+    textShadow: `
+    0 0 0.3em #fff,
+    0.1em 0.1em 0 #6c893d,
+    0.2em 0.2em 0 #90b256,
+    0.3em 0.3em 0 #a9c47c
+    `,
+  },
+  logoTransform: "scale(0.8)",
+  logoBackdropStyle: {
+  },
+  colors: {
+    accent: "#51662e",
+    accentContrast: "white",
+    glow: "#fff",
+    wallpaper: "#b6b3b3", //
+    bgTransSecondary: "rgba(255,255,255,0.2)",
+    bgTransPrimary: "rgba(255,255,255,0.5)",
+    bgTint: "rgba(0,0,0,0.1)",
+    text: "#444",
+    textMuted: "#666",
+  },
+});
+
 export const themes: {[themeName: string]: Theme} = {
   tealTheme,
   niceTheme,
@@ -328,6 +368,7 @@ export const themes: {[themeName: string]: Theme} = {
   highContrastTheme,
   fearTheme,
   pallidTheme,
+  greenTriangleTheme,
 };
 
 export const ThemeContext = React.createContext<Theme>(tealTheme);
