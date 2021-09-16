@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v4.3.0 (2021-09-16)
+
+* **French translations!** Merci @algol.
+* A compendium pack of default **SRD weapons** - thanks @yariv/@yarrriv
+* **Editable hit threshold** on the character sheet (#24) - this is purely informative at this point but I have ideas about making combat rolls better.
+* **Icons for weapons & equipment** (#27). Editable images for these (and abilities) is on the list for later.
+* **Notes field on abilities** (#19) This has been asked for by a few people.
+* Abilities can be marked as **"Goes first in combat"**, and they will always go before anyone using an ability which is not marked as "goes first in combat". This lets you have a Night's Black Agents-style "guns go first" rule.
+* **Bug fix**: Longer translations were pushing the ability configuration dialog (and others) out of whack (#29)
+* **Bug fix**: Various translation fixes (#32, #31, #30)
+* **Bug fix**: game-icons.net is given due attribution in README (#37)
+
 ## v4.2.0 (2021-09-12)
 
 * ***Beta Feature***: *Quick import and export of Item and Actor compendium packs, to facilitate sharing of home-brew ability packs. (#11)*

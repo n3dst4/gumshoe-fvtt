@@ -82,6 +82,7 @@ To perform a release from `master`:
 7. Commit and push.
 8. On GitLab, create a tag matching the new version.
 9. FF the `release` branch to to `master`.
+10. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
 
 Now, anyone who installs or upgrades, will see the new manifest, and the new download.
 

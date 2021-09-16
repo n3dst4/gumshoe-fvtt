@@ -92,5 +92,5 @@
   "investigator.DeleteTheAbilityNameAbility": "Enlever la compétence \"{AbilityName}\"?",
   "investigator.DamageAtRangeNameWithWeaponName": "Dégâts à {RangeName} avec <b>{WeaponName}</b>",
   "investigator.HitThreshold": "Seuil de blessure",
-  "investigator.GoesFirstInCombat": "(fr) Goes first in combat?"
+  "investigator.GoesFirstInCombat": "Agit avant en combat?"
 }
