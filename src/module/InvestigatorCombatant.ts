@@ -3,9 +3,12 @@ import * as constants from "../constants";
 import { isGeneralAbilityDataSource, isPCDataSource } from "../types";
 import { GumshoeItem } from "./GumshoeItem";
 
+/**
+ * Override base Combatant class to override the initiative formula.
+ * XXX what's i'd like to do is block it from doing a "roll" at all.
+ */
 export class InvestigatorCombatant extends Combatant {
   _getInitiativeFormula () {
-    // we can do combatant.actor to get the actor
     if (this.actor?.data.type !== constants.pc) {
       return "0";
     }
@@ -15,9 +18,6 @@ export class InvestigatorCombatant extends Combatant {
     );
     if (ability && ability.data.type === constants.generalAbility) {
       const score = ability.data.data.rating.toString();
-      // if (ability.data.data.goesFirstInCombat) {
-      //   score = `${score} + 100`;
-      // }
       return score;
     } else {
       return "0";
@@ -25,6 +25,9 @@ export class InvestigatorCombatant extends Combatant {
   }
 }
 
+/**
+ * Override base Combat so we can do custom GUMSHOE-style initiative
+ */
 export class InvestigatorCombat extends Combat {
   protected _sortCombatants (
     a: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
@@ -33,8 +36,6 @@ export class InvestigatorCombat extends Combat {
     if (!(a.actor !== null && b.actor !== null && isPCDataSource(a.actor?.data) && isPCDataSource(b.actor?.data))) {
       return 0;
     }
-    // const aData = a.actor.data.data;
-    // const bData = b.actor.data.data;
     const aAbilityName = a.actor.data.data.initiativeAbility;
     const aAbility = a.actor.items.find(
       (item: GumshoeItem) => item.type === constants.generalAbility && item.name === aAbilityName,
@@ -43,6 +44,8 @@ export class InvestigatorCombat extends Combat {
     const bAbility = b.actor.items.find(
       (item: GumshoeItem) => item.type === constants.generalAbility && item.name === bAbilityName,
     );
+    // working out initiative - "goes first" beats non-"goes first"; then
+    // compare ratings, then compare pools.
     if (!(aAbility !== undefined && bAbility !== undefined && isGeneralAbilityDataSource(aAbility.data) && isGeneralAbilityDataSource(bAbility.data))) {
       return 0;
     }
