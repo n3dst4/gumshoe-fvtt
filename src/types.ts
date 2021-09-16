@@ -147,6 +147,7 @@ export interface InvestigativeAbilityDataSourceData extends BaseAbilityDataSourc
 /** data.data for general abilities */
 export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData {
   canBeInvestigative: boolean;
+  goesFirstInCombat: boolean;
 }
 
 /** data for equipment */

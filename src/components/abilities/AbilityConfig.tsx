@@ -31,6 +31,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
   const updateShowTracker = useUpdate(ability, (showTracker) => ({ data: { showTracker } }));
   const updateExcludeFromGeneralRefresh = useUpdate(ability, (excludeFromGeneralRefresh) => ({ data: { excludeFromGeneralRefresh } }));
   const updateRefreshesDaily = useUpdate(ability, (refreshesDaily) => ({ data: { refreshesDaily } }));
+  const updateGoesFirstInCombat = useUpdate(ability, (goesFirstInCombat) => ({ data: { goesFirstInCombat } }));
   const updateMax = useUpdate(ability, (max) => ({ data: { max } }));
   const updateMin = useUpdate(ability, (min) => ({ data: { min } }));
 
@@ -189,6 +190,17 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
           }}
         />
       </GridField>
+      {
+        isGeneralAbilityDataSource(ability.data) &&
+          <GridField label="Goes first in combat?">
+            <Checkbox
+              checked={ability.data.data.goesFirstInCombat}
+              onChange={(t) => {
+                updateGoesFirstInCombat(t);
+              }}
+            />
+          </GridField>
+      }
       <GridField label="Delete ability">
         <button onClick={onClickDelete}><Translate>Delete</Translate></button>
       </GridField>

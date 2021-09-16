@@ -48,7 +48,7 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Preparedness" },
     { name: "Scuffling", refreshesDaily: true },
     { name: "Sense Trouble" },
-    { name: "Shooting", refreshesDaily: true },
+    { name: "Shooting", refreshesDaily: true, goesFirstInCombat: true },
     { name: "Shrink" },
     { name: "Stability", min: -12, rating: 1, pool: 1, showTracker: true },
   ],

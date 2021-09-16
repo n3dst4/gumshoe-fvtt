@@ -91,5 +91,6 @@
   "investigator.DeleteActorNamesAbilityNameAbility": "Vols esborrar l'habilitat \"{AbilityName}\" de {ActorName}?",
   "investigator.DeleteTheAbilityNameAbility": "Vols esborrar l'habilitat \"{AbilityName}\" ?",
   "investigator.DamageAtRangeNameWithWeaponName": "Mal de {RangeName} amb <b>{WeaponName}</b>",
-  "investigator.HitThreshold": "Llindar de cop"
+  "investigator.HitThreshold": "Llindar de cop",
+  "investigator.GoesFirstInCombat": "Vas primer en combat?"
 }

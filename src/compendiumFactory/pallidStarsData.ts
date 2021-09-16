@@ -52,7 +52,7 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Public Relations" },
     { name: "Scuffling", refreshesDaily: true },
     { name: "Sense Trouble" },
-    { name: "Shooting", refreshesDaily: true },
+    { name: "Shooting", refreshesDaily: true, goesFirstInCombat: true },
     { name: "Surveillance" },
   ],
 };

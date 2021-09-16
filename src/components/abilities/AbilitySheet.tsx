@@ -43,6 +43,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     >
       <div>
         <Translate>{isGeneral ? "General ability" : "Investigative ability"}</Translate>
+        {ability.actor && <span> ({ability.actor.data.name})</span>}
         <a
           css={{
             float: "right",

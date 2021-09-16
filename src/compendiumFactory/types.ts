@@ -22,6 +22,7 @@ export type InvestigativeAbilityTemplate = {
 export type GeneralAbilityTemplate = {
   type: typeof generalAbility,
   canBeInvestigative: boolean,
+  goesFirstInCombat: boolean,
 } & BaseAbilityTemplate;
 
 type Name = {

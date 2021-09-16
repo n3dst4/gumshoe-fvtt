@@ -91,5 +91,6 @@
   "investigator.DeleteActorNamesAbilityNameAbility": "¿Quieres borrar la habilidad \"{AbilityName}\" de {ActorName}?",
   "investigator.DeleteTheAbilityNameAbility": "¿Quieres borrar la habilidad \"{AbilityName}\" ?",
   "investigator.DamageAtRangeNameWithWeaponName": "Daño de {RangeName} con <b>{WeaponName}</b>",
-  "investigator.HitThreshold": "Umbral de golpe"
+  "investigator.HitThreshold": "Umbral de golpe",
+  "investigator.GoesFirstInCombat": "¿Vas primero en combate?"
 }
