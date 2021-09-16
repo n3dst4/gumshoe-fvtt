@@ -56,7 +56,7 @@
   "investigator.WhoopsNo": "¡Ups, No!",
   "investigator.NukeItFromOrbit": "Destrúyelo desde la órbita",
   "investigator.NukeAllOfActorNamesAbilitiesAndEquipment": "¿Eliminar todas las habilidades y equipo del personaje {ActorName}?",
-  "investigator.RefreshAllOfActorNamesAbilities": "XXX",
+  "investigator.RefreshAllOfActorNamesAbilities": "¿Quieres actualizar todas las habilidades de {ActorName}? Esta acción restablecerá las reservas para coincidir con la calificación de la habilidad. ",
   "investigator.PartyName": "Nombre del grupo",
   "investigator.Remove": "Eliminar",
   "investigator.Total": "Total",
