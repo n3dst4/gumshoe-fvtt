@@ -75,7 +75,7 @@ To perform a release from `master`:
 
 1. Update the version in `package.json` and `system.json`.
 2. Update the `CHANGELOG`.
-3. Run `npm run package`.
+3. Run `NODE_ENV=production npm run package`.
 4. Add the downloadable package .zip to an existing tag, e.g. https://gitlab.com/n3dst4/investigator-fvtt/-/tags/v3.0.0
 5. Get the download URL for the asset.
 6. Paste it into the `download` field of `system.json`.
