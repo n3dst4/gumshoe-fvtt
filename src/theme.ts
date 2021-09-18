@@ -371,12 +371,14 @@ export const deltaGroovyTheme: Theme = themeFactory({
     ""
     ,
   },
-  logoTransform: "scale(0.8)",
+  // logoTransform: "scale(0.8)",
+  logoTransform: "translateY(-0.1em)",
   logoBackdropStyle: {
     backgroundColor: "#293417",
     // backgroundImage: "conic-gradient(#f69d3c, #3f87a6)",
     backgroundImage: gradient,
     maskImage: "linear-gradient(rgba(0, 0, 0, 1.0), transparent)",
+    margin: "-50em",
   },
   colors: {
     accent: "#801d8c ",
