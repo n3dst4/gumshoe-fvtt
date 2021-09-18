@@ -321,8 +321,29 @@ export const pallidTheme: Theme = themeFactory({
   },
 });
 
-export const greenTriangleTheme: Theme = themeFactory({
-  displayName: "Green triangle",
+const numRepeats = 5;
+const colors = [
+  "#f4e83f",
+  "#a06f18",
+  "#b78d6c",
+  "#cc7171",
+  "#ebaa4b",
+  "#e47005",
+  "#ed9907",
+];
+const numColors = colors.length;
+const wedge = 360 / (numRepeats * numColors);
+const gradientParts = [
+  `${colors[0]} ${wedge}deg`,
+  ...(colors
+    .slice(1)
+    .map((color, i) => `${color} ${wedge * i}deg ${wedge * (i + 1)}deg`)),
+].join(", ");
+
+const gradient = `repeating-conic-gradient(${gradientParts})`;
+
+export const deltaGroovyTheme: Theme = themeFactory({
+  displayName: "Delta Groovy",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Emblema+One&display=swap');    
@@ -334,22 +355,31 @@ export const greenTriangleTheme: Theme = themeFactory({
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Spicy Rice', serif",
   logoFrontElementStyle: {
-    background: "#51662e",
+    background: "#fff",
     backgroundClip: "text",
   },
   logoRearElementStyle: {
-    textShadow: `
-    0 0 0.3em #fff,
-    0.1em 0.1em 0 #6c893d,
-    0.2em 0.2em 0 #90b256,
-    0.3em 0.3em 0 #a9c47c
-    `,
+    textShadow:
+    // "0 0 0.3em #fff, " +
+    "-0.01em -0.01em 0 #000, " +
+    "0.01em 0.01em 0 #000, " +
+    "0.1em  0.1em  0 #d22fe5ff, " +
+    "0.11em 0.11em 0 #000, " +
+    "0.2em 0.2em 0 #e5762fff, " +
+    "0.21em 0.21em 0 #000 " +
+    // "0.3em 0.3em 0 #a9c47c" +
+    ""
+    ,
   },
   logoTransform: "scale(0.8)",
   logoBackdropStyle: {
+    backgroundColor: "#293417",
+    // backgroundImage: "conic-gradient(#f69d3c, #3f87a6)",
+    backgroundImage: gradient,
+    maskImage: "linear-gradient(rgba(0, 0, 0, 1.0), transparent)",
   },
   colors: {
-    accent: "#51662e",
+    accent: "#801d8c ",
     accentContrast: "white",
     glow: "#fff",
     wallpaper: "#b6b3b3", //
@@ -368,7 +398,7 @@ export const themes: {[themeName: string]: Theme} = {
   highContrastTheme,
   fearTheme,
   pallidTheme,
-  greenTriangleTheme,
+  deltaGroovyTheme,
 };
 
 export const ThemeContext = React.createContext<Theme>(tealTheme);
