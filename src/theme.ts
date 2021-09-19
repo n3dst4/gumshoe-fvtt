@@ -346,9 +346,6 @@ export const deltaGroovyTheme: Theme = themeFactory({
   displayName: "Delta Groovy",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Emblema+One&display=swap');    
-    @import url('https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap');    
-    @import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');    
     @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');    
   `,
   wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
