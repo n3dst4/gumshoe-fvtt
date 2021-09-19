@@ -390,6 +390,56 @@ export const deltaGroovyTheme: Theme = themeFactory({
   },
 });
 
+export const greenTriangleTheme: Theme = themeFactory({
+  displayName: "Green triangle",
+  global: css`
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Keania+One&display=swap');
+  `,
+  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
+  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  displayFont: "normal normal normal 1.1em 'Keania One', serif",
+  logoFrontElementStyle: {
+    color: "#fff9",
+    // backgroundClip: "text",
+    textShadow: "0.1em 0.1em 0.1em black inset",
+    maskImage: `url(systems/${systemName}/assets/wallpaper/crackle2.webp)`,
+  },
+  logoRearElementStyle: {
+    textShadow:
+      "-0.05em -0.05em 0 #000b",
+    // textShadow:
+    // "-0.01em -0.01em 0 #000, " +
+    // "0.01em 0.01em 0 #000, " +
+    // "0.1em  0.1em  0 #d22fe5ff, " +
+    // "0.11em 0.11em 0 #000, " +
+    // "0.2em 0.2em 0 #e5762fff, " +
+    // "0.21em 0.21em 0 #000 " +
+    // ""
+    // ,
+  },
+  logoTransform: "scale(0.8) rotate(-1.5deg)",
+  // logoTransform: "translateY(-0.1em)",
+  logoBackdropStyle: {
+    // backgroundColor: "#293417",
+    // backgroundImage: "conic-gradient(#f69d3c, #3f87a6)",
+    // backgroundImage: gradient,
+    // maskImage: "linear-gradient(rgba(0, 0, 0, 1.0), transparent)",
+    // margin: "-50em",
+  },
+  colors: {
+    accent: "#997",
+    accentContrast: "black",
+    glow: "#fff",
+    wallpaper: "#b6b3b3", //
+    bgTransSecondary: "rgba(255,255,255,0.2)",
+    bgTransPrimary: "rgba(255,255,255,0.5)",
+    bgTint: "rgba(0,0,0,0.1)",
+    text: "#444",
+    textMuted: "#666",
+  },
+});
+
 export const themes: {[themeName: string]: Theme} = {
   tealTheme,
   niceTheme,
@@ -398,6 +448,7 @@ export const themes: {[themeName: string]: Theme} = {
   fearTheme,
   pallidTheme,
   deltaGroovyTheme,
+  greenTriangleTheme: greenTriangleTheme,
 };
 
 export const ThemeContext = React.createContext<Theme>(tealTheme);
