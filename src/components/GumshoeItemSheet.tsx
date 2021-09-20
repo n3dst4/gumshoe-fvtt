@@ -29,6 +29,7 @@ export const GumshoeItemSheet: React.FC<GumshoeItemSheetProps> = ({
     <ItemSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
         theme={theme}
+        shroudBackground
         css={{
           position: "relative",
           ":before": {

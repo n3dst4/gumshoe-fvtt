@@ -404,13 +404,16 @@ export const greenTriangleTheme: Theme = themeFactory({
   logoFrontElementStyle: {
     color: "#fff",
     // backgroundClip: "text",
-    // maskImage: `url(systems/${systemName}/assets/wallpaper/crackle2.webp)`,
+    maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-ctXf1GVyf9A-unsplash.webp)`,
+    maskMode: "luminance",
     // maskSize: "50%",
     maskRepeat: "repeat",
   },
   logoRearElementStyle: {
+    // textShadow:
+    //   "-0.05em -0.05em 0.1em #000, 0.05em 0.05em 0.1em #000, 0 0 0.2em #000",
     textShadow:
-      "-0.05em -0.05em 0.1em #000, 0.05em 0.05em 0.1em #000, 0 0 0.2em #000",
+      "0 0 0.2em #cfffc2",
     // textShadow:
     // "-0.01em -0.01em 0 #000, " +
     // "0.01em 0.01em 0 #000, " +
@@ -431,11 +434,11 @@ export const greenTriangleTheme: Theme = themeFactory({
     // margin: "-50em",
   },
   colors: {
-    accent: "#997",
-    accentContrast: "black",
-    glow: "#fff",
+    accent: "#3f3f34",
+    accentContrast: "white",
+    glow: "#cfffc2",
     wallpaper: "#b6b3b3", //
-    bgTransSecondary: "rgba(255,255,255,0.2)",
+    bgTransSecondary: "rgba(255,255,255,0.3)",
     bgTransPrimary: "rgba(255,255,255,0.5)",
     bgTint: "rgba(0,0,0,0.1)",
     text: "#444",
