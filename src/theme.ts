@@ -395,19 +395,22 @@ export const greenTriangleTheme: Theme = themeFactory({
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Keania+One&display=swap');
-  `,
+    @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@100;200;300;400;500;600;700;800;900&family=Big+Shoulders+Stencil+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');  `,
   wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
-  displayFont: "normal normal normal 1.1em 'Keania One', serif",
+  displayFont: "900 small-caps normal 1.1em 'Big Shoulders Stencil Text', serif",
   logoFrontElementStyle: {
-    color: "#fff9",
+    color: "#fff",
     // backgroundClip: "text",
-    textShadow: "0.1em 0.1em 0.1em black inset",
-    maskImage: `url(systems/${systemName}/assets/wallpaper/crackle2.webp)`,
+    // maskImage: `url(systems/${systemName}/assets/wallpaper/crackle2.webp)`,
+    // maskSize: "50%",
+    maskRepeat: "repeat",
   },
   logoRearElementStyle: {
     textShadow:
-      "-0.05em -0.05em 0 #000b",
+      "-0.05em -0.05em 0.1em #000, 0.05em 0.05em 0.1em #000, 0 0 0.2em #000",
     // textShadow:
     // "-0.01em -0.01em 0 #000, " +
     // "0.01em 0.01em 0 #000, " +
@@ -418,7 +421,7 @@ export const greenTriangleTheme: Theme = themeFactory({
     // ""
     // ,
   },
-  logoTransform: "scale(0.8) rotate(-1.5deg)",
+  logoTransform: "scale(1.0, 0.8) rotate(-1.5deg)",
   // logoTransform: "translateY(-0.1em)",
   logoBackdropStyle: {
     // backgroundColor: "#293417",
