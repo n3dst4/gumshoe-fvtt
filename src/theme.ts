@@ -236,12 +236,12 @@ export const highContrastTheme: Theme = themeFactory({
 export const fearTheme: Theme = themeFactory({
   displayName: "Nothing To Fear",
   global: css`
-    @import url("https://use.typekit.net/huq5kcj.css");
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
   `,
   wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
-  displayFont: "normal normal normal 1.1em sunflower, serif",
+  displayFont: "normal normal normal 1.1em 'Special Elite', serif",
   logoFrontElementStyle: {
     background: "linear-gradient(90deg, rgba(73, 61, 51, 1.0) 0%, rgba(97, 81, 68, 0.7) 100%)",
     backgroundClip: "text",
