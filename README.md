@@ -6,10 +6,10 @@ Includes 7 character sheet themes plus an extra high-contrast accessible theme.
 
 <a 
   target="_new" 
-  href="./assets/screenshots/theme_lineup.webp"
+  href="assets/screenshots/theme_lineup.webp"
   title="Screenshot">
   <img 
-    src="./assets/screenshots/theme_lineup_thumbnail.webp" 
+    src="assets/screenshots/theme_lineup_thumbnail.webp" 
     style="width: 50%" 
     alt="A screenshot seven different character sheet themes">
 </a>
