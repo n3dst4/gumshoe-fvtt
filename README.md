@@ -2,12 +2,14 @@
 
 Unofficial GUMSHOE SRD-compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
 
+Includes 7 character sheet themes plus an extra high-contrast accessible theme.
+
 <a 
   target="_new" 
-  href="./screenshot.jpg"
+  href="./assets/screenshots/theme_lineup.webp"
   title="Screenshot">
   <img 
-    src="./screenshot-thumb.jpg" 
+    src="./assets/screenshots/theme_lineup_thumbnail.webp" 
     style="width: 50%" 
     alt="A screenshot of two character sheets in different styles, one for a 1930s character called Kath Hulu, and one for a modern spy thriller character called Neil Athertep">
 </a>
