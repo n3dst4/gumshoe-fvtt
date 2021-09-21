@@ -4,7 +4,7 @@ Unofficial GUMSHOE SRD-compatible system for Foundry VTT. Ships with compatiblit
 
 Includes 7 character sheet themes plus an extra high-contrast accessible theme.
 
-![A screenshot seven different character sheet themes](./theme_lineup_thumbnail.webp)
+![A screenshot seven different character sheet themes](./theme_lineup_thumbnail.jpg)
 
 [(Full size image)](assets/screenshots/theme_lineup.webp)
 
