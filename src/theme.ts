@@ -416,15 +416,15 @@ export const greenTriangleTheme: Theme = themeFactory({
   },
   colors: {
     // accent: "#256425",
-    accent: "#dfd",
-    accentContrast: "#000",
+    accent: "#150",
+    accentContrast: "#fff",
     glow: "#cfffc2",
     wallpaper: "#b6b3b3", //
-    bgTransSecondary: "#0003",
-    bgTransPrimary: "#0005",
+    bgTransSecondary: "#fff6",
+    bgTransPrimary: "#fff9",
     bgTint: "rgba(0,0,0,0.1)",
-    text: "#fff",
-    textMuted: "#ddd",
+    text: "#000",
+    textMuted: "#33",
   },
 });
 
