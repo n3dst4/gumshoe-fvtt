@@ -236,12 +236,12 @@ export const highContrastTheme: Theme = themeFactory({
 export const fearTheme: Theme = themeFactory({
   displayName: "Nothing To Fear",
   global: css`
-    @import url("https://use.typekit.net/huq5kcj.css");
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
   `,
   wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
-  displayFont: "normal normal normal 1.1em sunflower, serif",
+  displayFont: "normal normal normal 1.1em 'Special Elite', serif",
   logoFrontElementStyle: {
     background: "linear-gradient(90deg, rgba(73, 61, 51, 1.0) 0%, rgba(97, 81, 68, 0.7) 100%)",
     backgroundClip: "text",
@@ -321,6 +321,113 @@ export const pallidTheme: Theme = themeFactory({
   },
 });
 
+const numRepeats = 5;
+const colors = [
+  "#f4e83f",
+  "#a06f18",
+  "#b78d6c",
+  "#cc7171",
+  "#ebaa4b",
+  "#e47005",
+  "#ed9907",
+];
+const numColors = colors.length;
+const wedge = 360 / (numRepeats * numColors);
+const gradientParts = [
+  `${colors[0]} ${wedge}deg`,
+  ...(colors
+    .slice(1)
+    .map((color, i) => `${color} ${wedge * i}deg ${wedge * (i + 1)}deg`)),
+].join(", ");
+
+const gradient = `repeating-conic-gradient(${gradientParts})`;
+
+export const deltaGroovyTheme: Theme = themeFactory({
+  displayName: "Delta Groovy",
+  global: css`
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');    
+  `,
+  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
+  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  displayFont: "normal normal normal 1.1em 'Spicy Rice', serif",
+  logoFrontElementStyle: {
+    background: "#fff",
+    backgroundClip: "text",
+  },
+  logoRearElementStyle: {
+    textShadow:
+    // "0 0 0.3em #fff, " +
+    "-0.01em -0.01em 0 #000, " +
+    "0.01em 0.01em 0 #000, " +
+    "0.1em  0.1em  0 #d22fe5ff, " +
+    "0.11em 0.11em 0 #000, " +
+    "0.2em 0.2em 0 #e5762fff, " +
+    "0.21em 0.21em 0 #000 " +
+    // "0.3em 0.3em 0 #a9c47c" +
+    ""
+    ,
+  },
+  // logoTransform: "scale(0.8)",
+  logoTransform: "translateY(-0.1em)",
+  logoBackdropStyle: {
+    backgroundColor: "#293417",
+    // backgroundImage: "conic-gradient(#f69d3c, #3f87a6)",
+    backgroundImage: gradient,
+    maskImage: "linear-gradient(rgba(0, 0, 0, 1.0), transparent)",
+    margin: "-50em",
+  },
+  colors: {
+    accent: "#801d8c ",
+    accentContrast: "white",
+    glow: "#fff",
+    wallpaper: "#b6b3b3", //
+    bgTransSecondary: "rgba(255,255,255,0.2)",
+    bgTransPrimary: "rgba(255,255,255,0.5)",
+    bgTint: "rgba(0,0,0,0.1)",
+    text: "#444",
+    textMuted: "#666",
+  },
+});
+
+export const greenTriangleTheme: Theme = themeFactory({
+  displayName: "Green triangle",
+  global: css`
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Keania+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@100;200;300;400;500;600;700;800;900&family=Big+Shoulders+Stencil+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');  `,
+  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
+  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  displayFont: "900 small-caps normal 1.1em 'Big Shoulders Stencil Text', serif",
+  logoFrontElementStyle: {
+    color: "#fff",
+    maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-ctXf1GVyf9A-unsplash.webp)`,
+    maskMode: "luminance",
+    maskRepeat: "repeat",
+  },
+  logoRearElementStyle: {
+    textShadow:
+      "0 0 0.2em #cfffc2",
+  },
+  logoTransform: "scale(1.0, 0.8) rotate(-1.5deg)",
+  logoBackdropStyle: {
+  },
+  colors: {
+    // accent: "#256425",
+    accent: "#150",
+    accentContrast: "#fff",
+    glow: "#cfffc2",
+    wallpaper: "#b6b3b3", //
+    bgTransSecondary: "#fff6",
+    bgTransPrimary: "#fff9",
+    bgTint: "rgba(0,0,0,0.1)",
+    text: "#000",
+    textMuted: "#33",
+  },
+});
+
 export const themes: {[themeName: string]: Theme} = {
   tealTheme,
   niceTheme,
@@ -328,6 +435,8 @@ export const themes: {[themeName: string]: Theme} = {
   highContrastTheme,
   fearTheme,
   pallidTheme,
+  deltaGroovyTheme,
+  greenTriangleTheme: greenTriangleTheme,
 };
 
 export const ThemeContext = React.createContext<Theme>(tealTheme);

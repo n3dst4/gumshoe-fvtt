@@ -7,9 +7,21 @@ type CSSResetProps = {
   children: any,
   className?: string,
   theme: Theme,
+  shroudBackground?: boolean,
 };
 
-export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }) => {
+const flatGradient = (color: string) => `linear-gradient(to right, ${color}, ${color})`;
+
+export const CSSReset: React.FC<CSSResetProps> = ({
+  className,
+  children,
+  theme,
+  shroudBackground,
+}: CSSResetProps) => {
+  const baseBg = `${theme.wallpaperUrl}, ${flatGradient(theme.colors.wallpaper)}`;
+  const background = shroudBackground
+    ? `${flatGradient(theme.colors.bgTransSecondary)}, ${baseBg}`
+    : baseBg;
   return (
     <ThemeContext.Provider value={theme}>
       <Global styles={theme.global} />
@@ -28,7 +40,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({ className, children, theme }
             },
           },
           font: theme.bodyFont,
-          background: `${theme.colors.wallpaper} ${theme.wallpaperUrl}`,
+          background,
           backgroundSize: "cover",
           backgroundPosition: "center",
           // backgroundBlendMode: "hard-light",

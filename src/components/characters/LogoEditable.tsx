@@ -87,6 +87,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     >
       {/* Backdrop */}
       <div
+        className="logo-backdrop"
         css={{
           ...theme.logoBackdropStyle,
           position: "absolute",
