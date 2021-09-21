@@ -403,46 +403,28 @@ export const greenTriangleTheme: Theme = themeFactory({
   displayFont: "900 small-caps normal 1.1em 'Big Shoulders Stencil Text', serif",
   logoFrontElementStyle: {
     color: "#fff",
-    // backgroundClip: "text",
     maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-ctXf1GVyf9A-unsplash.webp)`,
     maskMode: "luminance",
-    // maskSize: "50%",
     maskRepeat: "repeat",
   },
   logoRearElementStyle: {
-    // textShadow:
-    //   "-0.05em -0.05em 0.1em #000, 0.05em 0.05em 0.1em #000, 0 0 0.2em #000",
     textShadow:
       "0 0 0.2em #cfffc2",
-    // textShadow:
-    // "-0.01em -0.01em 0 #000, " +
-    // "0.01em 0.01em 0 #000, " +
-    // "0.1em  0.1em  0 #d22fe5ff, " +
-    // "0.11em 0.11em 0 #000, " +
-    // "0.2em 0.2em 0 #e5762fff, " +
-    // "0.21em 0.21em 0 #000 " +
-    // ""
-    // ,
   },
   logoTransform: "scale(1.0, 0.8) rotate(-1.5deg)",
-  // logoTransform: "translateY(-0.1em)",
   logoBackdropStyle: {
-    // backgroundColor: "#293417",
-    // backgroundImage: "conic-gradient(#f69d3c, #3f87a6)",
-    // backgroundImage: gradient,
-    // maskImage: "linear-gradient(rgba(0, 0, 0, 1.0), transparent)",
-    // margin: "-50em",
   },
   colors: {
-    accent: "#3f3f34",
-    accentContrast: "white",
+    // accent: "#256425",
+    accent: "#dfd",
+    accentContrast: "#000",
     glow: "#cfffc2",
     wallpaper: "#b6b3b3", //
-    bgTransSecondary: "rgba(255,255,255,0.3)",
-    bgTransPrimary: "rgba(255,255,255,0.5)",
+    bgTransSecondary: "#0003",
+    bgTransPrimary: "#0005",
     bgTint: "rgba(0,0,0,0.1)",
-    text: "#444",
-    textMuted: "#666",
+    text: "#fff",
+    textMuted: "#ddd",
   },
 });
 
