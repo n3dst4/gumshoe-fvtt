@@ -4,15 +4,9 @@ Unofficial GUMSHOE SRD-compatible system for Foundry VTT. Ships with compatiblit
 
 Includes 7 character sheet themes plus an extra high-contrast accessible theme.
 
-<a 
-  target="_new" 
-  href="assets/screenshots/theme_lineup.webp"
-  title="Screenshot">
-  <img 
-    src="assets/screenshots/theme_lineup_thumbnail.webp" 
-    style="width: 50%" 
-    alt="A screenshot seven different character sheet themes">
-</a>
+![A screenshot seven different character sheet themes](assets/screenshots/theme_lineup_thumbnail.webp)
+
+[(Full size image)](assets/screenshots/theme_lineup.webp)
 
 ## Contents
 - [INVESTIGATOR System for Foundry VTT](#investigator-system-for-foundry-vtt)
