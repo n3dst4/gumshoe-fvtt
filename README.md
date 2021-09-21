@@ -11,7 +11,7 @@ Includes 7 character sheet themes plus an extra high-contrast accessible theme.
   <img 
     src="./assets/screenshots/theme_lineup_thumbnail.webp" 
     style="width: 50%" 
-    alt="A screenshot of two character sheets in different styles, one for a 1930s character called Kath Hulu, and one for a modern spy thriller character called Neil Athertep">
+    alt="A screenshot seven different character sheet themes">
 </a>
 
 ## Contents
