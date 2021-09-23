@@ -5,7 +5,7 @@ import { GumshoeActor } from "./module/GumshoeActor";
 import { GumshoeItem } from "./module/GumshoeItem";
 import { GumshoeActorSheetClass } from "./module/GumshoeActorSheetClass";
 import { GumshoeItemSheetClass } from "./module/GumshoeItemSheetClass";
-import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, systemName, weapon, weaponIcon } from "./constants";
+import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon } from "./constants";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
 import { isAbilityDataSource, isGeneralAbilityDataSource, isWeaponDataSource, isEquipmentDataSource } from "./types";
@@ -14,6 +14,7 @@ import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
 import { GumshoePartySheetClass } from "./module/GumshoePartySheetClass";
+import { GumshoeNPCSheetClass } from "./module/GumshoeNPCSheetClass";
 import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
 import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
 import { InvestigatorCombat } from "./module/InvestigatorCombat";
@@ -43,6 +44,13 @@ Hooks.once("init", async function () {
     {
       makeDefault: true,
       types: [pc],
+    });
+  Actors.registerSheet(
+    systemName,
+    GumshoeNPCSheetClass,
+    {
+      makeDefault: true,
+      types: [npc],
     });
   Actors.registerSheet(
     systemName,
