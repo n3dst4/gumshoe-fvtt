@@ -92,5 +92,8 @@
   "investigator.DeleteTheAbilityNameAbility": "Delete the \"{AbilityName}\" ability?",
   "investigator.DamageAtRangeNameWithWeaponName": "Damage at {RangeName} with <b>{WeaponName}</b>",
   "investigator.HitThreshold": "Hit Threshold",
+  "investigator.AlertnessModifier": "Alertness",
+  "investigator.StealthModifier": "Stealth",
+  "investigator.StabilityLoss": "Stability Loss",
   "investigator.GoesFirstInCombat": "Goes first in combat?"
 }
