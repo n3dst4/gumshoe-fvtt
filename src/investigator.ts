@@ -60,6 +60,15 @@ Hooks.once("init", async function () {
       types: [weapon, investigativeAbility, generalAbility, equipment],
     },
   );
+
+  // register babele translations
+  if (typeof Babele !== "undefined") {
+    Babele.get().register({
+      module: "investigator",
+      lang: "es",
+      dir: "babele-es",
+    });
+  }
 });
 
 // Setup system

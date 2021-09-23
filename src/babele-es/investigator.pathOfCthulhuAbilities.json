@@ -1,0 +1,261 @@
+{
+	"label": "Path of Cthulhu Abilities",
+	"entries": [
+		{
+			"id": "Accounting",
+			"name": "Contabilidad"
+		},
+		{
+			"id": "Anthropology",
+			"name": "Antropología"
+		},
+		{
+			"id": "Archeology",
+			"name": "Arqueología"
+		},
+		{
+			"id": "Architecture",
+			"name": "Arquitectura"
+		},
+		{
+			"id": "Art",
+			"name": "Habilidad artistica"
+		},
+		{
+			"id": "Art History",
+			"name": "Historia del arte"
+		},
+		{
+			"id": "Assess Honesty",
+			"name": "Evaluar sinceridad"
+		},
+		{
+			"id": "Astronomy",
+			"name": "Astronomía"
+		},
+		{
+			"id": "Athletics",
+			"name": "Atletismo"
+		},
+		{
+			"id": "Bargain",
+			"name": "Regatear"
+		},
+		{
+			"id": "Biology",
+			"name": "Biología"
+		},
+		{
+			"id": "Bureaucracy",
+			"name": "Burocracia"
+		},
+		{
+			"id": "Chemistry",
+			"name": "Química"
+		},
+		{
+			"id": "Conceal",
+			"name": "Ocultar"
+		},
+		{
+			"id": "Cop Talk",
+			"name": "Jerga policial"
+		},
+		{
+			"id": "Craft",
+			"name": "Habilidad artesanal"
+		},
+		{
+			"id": "Credit Rating",
+			"name": "Crédito"
+		},
+		{
+			"id": "Cryptography",
+			"name": "Criptografía"
+		},
+		{
+			"id": "Cthulhu Mythos",
+			"name": "Mitos de Cthulhu"
+		},
+		{
+			"id": "Disguise",
+			"name": "Disfraz"
+		},
+		{
+			"id": "Driving",
+			"name": "Conducir"
+		},
+		{
+			"id": "Electrical Repair",
+			"name": "Electricidad"
+		},
+		{
+			"id": "Evidence Collection",
+			"name": "Recogida de pruebas"
+		},
+		{
+			"id": "Explosives",
+			"name": "Explosivos"
+		},
+		{
+			"id": "Filch",
+			"name": "Birlar"
+		},
+		{
+			"id": "Firearms",
+			"name": "Armas de fuego"
+		},
+		{
+			"id": "First Aid",
+			"name": "Primeros auxilios"
+		},
+		{
+			"id": "Flattery",
+			"name": "Adular"
+		},
+		{
+			"id": "Fleeing",
+			"name": "Huida"
+		},
+		{
+			"id": "Forensics",
+			"name": "Medicina forense"
+		},
+		{
+			"id": "Geology",
+			"name": "Geología"
+		},
+		{
+			"id": "Health",
+			"name": "Salud"
+		},
+		{
+			"id": "History",
+			"name": "Historia"
+		},
+		{
+			"id": "Hypnosis",
+			"name": "Hipnosis"
+		},
+		{
+			"id": "Interrogation",
+			"name": "Interrogatorio"
+		},
+		{
+			"id": "Intimidation",
+			"name": "Intimidación"
+		},
+		{
+			"id": "Language",
+			"name": "Idiomas"
+		},
+		{
+			"id": "Law",
+			"name": "Derecho"
+		},
+		{
+			"id": "Library Use",
+			"name": "Buscar libros"
+		},
+		{
+			"id": "Locksmith",
+			"name": "Cerrajería"
+		},
+		{
+			"id": "Magic",
+			"name": "Magia"
+		},
+		{
+			"id": "Mechanical Repair",
+			"name": "Mecánica"
+		},
+		{
+			"id": "Medicine",
+			"name": "Medicina"
+		},
+		{
+			"id": "Occult",
+			"name": "Ciencias ocultas"
+		},
+		{
+			"id": "Oral History",
+			"name": "Historia horal"
+		},
+		{
+			"id": "Outdoorsman",
+			"name": "Supervivencia"
+		},
+		{
+			"id": "Pharmacy",
+			"name": "Farmacología"
+		},
+		{
+			"id": "Photography",
+			"name": "Fotografía"
+		},
+		{
+			"id": "Physics",
+			"name": "Física"
+		},
+		{
+			"id": "Piloting",
+			"name": "Pilotaje"
+		},
+		{
+			"id": "Preparedness",
+			"name": "Preparación"
+		},
+		{
+			"id": "Psychoanalysis",
+			"name": "Psicoanalisis"
+		},
+		{
+			"id": "Reassurance",
+			"name": "Consolar"
+		},
+		{
+			"id": "Riding",
+			"name": "Monta"
+		},
+		{
+			"id": "Sanity",
+			"name": "Cordura"
+		},
+		{
+			"id": "Scuffling",
+			"name": "Escaramuza"
+		},
+		{
+			"id": "Sense Trouble",
+			"name": "Sentir el peligro"
+		},
+		{
+			"id": "Shadowing",
+			"name": "Seguir"
+		},
+		{
+			"id": "Stability",
+			"name": "Estabilidad"
+		},
+		{
+			"id": "Stealth",
+			"name": "Sigilo"
+		},
+		{
+			"id": "Streetwise",
+			"name": "Bajos fondos"
+		},
+		{
+			"id": "Technical",
+			"name": "Técnica"
+		},
+		{
+			"id": "Theology",
+			"name": "Teología"
+		},
+		{
+			"id": "Weapons",
+			"name": "Armas"
+		}
+	]
+}
