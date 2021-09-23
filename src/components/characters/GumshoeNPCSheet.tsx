@@ -7,8 +7,8 @@ import { CSSReset } from "../CSSReset";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { TabContainer } from "../TabContainer";
-import { NPCLogoEditable } from "./NPCLogoEditable";
-import { NPCAbilitiesArea } from "./NPCAbilitiesArea";
+import { LogoEditable } from "./LogoEditable";
+import { AbilitiesArea } from "./AbilitiesArea";
 import { EquipmentArea } from "./EquipmentArea";
 import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
@@ -94,7 +94,7 @@ export const GumshoeNPCSheet = ({
             position: "relative",
           }}
         >
-          <NPCLogoEditable
+          <LogoEditable
             text={actor.data.name}
             onChangeText={updateName}
           />
@@ -171,7 +171,10 @@ export const GumshoeNPCSheet = ({
               {
                 id: "abilities",
                 label: "Abilities",
-                content: <NPCAbilitiesArea actor={actor}/>,
+                content: <AbilitiesArea
+                  actor={actor}
+                  flipLeftRight={true}
+                />,
               },
               {
                 id: "equipment",

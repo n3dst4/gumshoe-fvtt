@@ -6,11 +6,11 @@ import { ThemeContext } from "../../theme";
 
 type LogoEditableProps = {
   text: string,
+  onChangeText: (newValue: string) => void,
   subtext?: string,
   defaultSubtext?: string,
   className?: string,
-  onChangeText: (newValue: string) => void,
-  onChangeSubtext: (newValue: string) => void,
+  onChangeSubtext?: (newValue: string) => void,
 };
 
 const subtextSyle: CSSObject = {
@@ -29,6 +29,8 @@ const textBearerStyle: CSSObject = {
 
 const fontFactor = 14;
 
+// const nullFunction = useCallback(() => {});
+
 /**
  * Outrageous 1930s logo
  *
@@ -39,14 +41,13 @@ const fontFactor = 14;
  */
 export const LogoEditable: React.FC<LogoEditableProps> = ({
   text,
-  subtext: subtextOrig,
-  defaultSubtext = "Investigator",
+  // subtext: subtextOrig,
+  subtext,
+  defaultSubtext = "",
   className,
-  onChangeText: onChangeTextOrig,
-  onChangeSubtext: onChangeSubtextOrig,
+  onChangeText,
+  onChangeSubtext,
 }) => {
-  const subtext = (subtextOrig ?? "").trim();
-
   const textStyle: CSSObject = {
     transition: "font-size 500ms",
     fontSize: `${Math.min(1, fontFactor / text.length)}em`,
@@ -60,7 +61,9 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     onBlur: onBlurText,
     contentEditableRef: contentEditableRefText,
     display: displayText,
-  } = useAsyncUpdate(text, onChangeTextOrig);
+  } = useAsyncUpdate(text, onChangeText);
+
+  const hasSubtext = (onChangeSubtext !== undefined);
 
   const {
     onInput: onInputSubtext,
@@ -68,7 +71,8 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     onBlur: onBlurSubtext,
     contentEditableRef: contentEditableRefSubtext,
     display: displaySubtext,
-  } = useAsyncUpdate(subtext || defaultSubtext, onChangeSubtextOrig);
+  } = useAsyncUpdate(subtext || defaultSubtext,
+    onChangeSubtext || (() => {}));
 
   const theme = useContext(ThemeContext);
 
@@ -132,7 +136,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           >
             {displayText}
           </div>
-          {subtext !== undefined &&
+          {hasSubtext &&
             <div
               css={{
                 ...subtextSyle,
@@ -174,7 +178,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
               onFocus={onFocusText}
               onBlur={onBlurText}
               />
-            {subtext !== undefined &&
+            {hasSubtext &&
               <div
               css={{
                 ...subtextSyle,
