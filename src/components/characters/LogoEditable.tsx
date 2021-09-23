@@ -29,8 +29,6 @@ const textBearerStyle: CSSObject = {
 
 const fontFactor = 14;
 
-// const nullFunction = useCallback(() => {});
-
 /**
  * Outrageous 1930s logo
  *
