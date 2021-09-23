@@ -46,8 +46,7 @@
 
       "buildPoints": 28,
       "hideZeroRated": false,
-      "sheetTheme": null,
-      "hitThreshold": 3,
+      "sheetTheme": null
     },
     "npc": {
       "templates": ["activeCharacter"],
@@ -58,7 +57,7 @@
 
       "alertness": 0,
       "stealth": 0,
-      "stabilityLoss": 0,
+      "stabilityLoss": 0
 
     },
     "party": {
