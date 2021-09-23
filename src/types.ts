@@ -40,6 +40,23 @@ interface PCDataSourceData {
   };
 }
 
+interface NPCDataSourceData {
+  notes: string;
+  initiativeAbility: string;
+  hideZeroRated: boolean;
+  sheetTheme: string|null;
+  hitThreshold: number;
+  alertness: number;
+  stealth: number;
+  stabilityLoss: number;
+  resources: {
+    health: Resource,
+    sanity: Resource,
+    stability: Resource,
+    magic: Resource,
+  };
+}
+
 interface PartyDataSourceData {
   // party stuff
   abilityNames: string[];
@@ -47,10 +64,12 @@ interface PartyDataSourceData {
 }
 
 export type PCDataSource = DataSource<typeof constants.pc, PCDataSourceData>;
+type NPCDataSource = DataSource<typeof constants.npc, NPCDataSourceData>;
 type PartyDataSource = DataSource<typeof constants.party, PartyDataSourceData>;
 
 type InvestigatorActorDataSource =
   | PCDataSource
+  | NPCDataSource
   | PartyDataSource
 
 declare global {
@@ -69,6 +88,16 @@ export function isPCDataSource (data: InvestigatorActorDataSource | undefined | 
 export function assertPCDataSource (data: InvestigatorActorDataSource | undefined | null): asserts data is PCDataSource {
   if (!isPCDataSource(data)) {
     throw new Error("Not a PC");
+  }
+}
+
+export function isNPCDataSource (data: InvestigatorActorDataSource | undefined | null): data is NPCDataSource {
+  return (data ? data.type === constants.npc : false);
+}
+
+export function assertNPCDataSource (data: InvestigatorActorDataSource | undefined | null): asserts data is NPCDataSource {
+  if (!isNPCDataSource(data)) {
+    throw new Error("Not an NPC");
   }
 }
 
