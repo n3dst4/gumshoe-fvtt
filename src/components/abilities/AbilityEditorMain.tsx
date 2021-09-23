@@ -11,7 +11,7 @@ import { SpecialityList } from "./SpecialityList";
 import { getCombatAbilities, getUseBoost } from "../../settingsHelpers";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
-import { assertAbilityDataSource, assertPCDataSource, isPCDataSource, PCDataSource } from "../../types";
+import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveCharacterDataSource, ActiveCharacterDataSource } from "../../types";
 import { TextArea } from "../inputs/TextArea";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 
@@ -37,13 +37,13 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
   const isCombatAbility = getCombatAbilities().includes(ability.data.name);
 
   const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
-    isPCDataSource(ability?.actor?.data) && ability?.actor?.data.data.initiativeAbility,
+    isActiveCharacterDataSource(ability?.actor?.data) && ability?.actor?.data.data.initiativeAbility,
   );
 
   useEffect(() => {
-    const callback = (actor: Actor, diff: {_id: string, data: DeepPartial<PCDataSource>}, options: unknown, id: string) => {
+    const callback = (actor: Actor, diff: {_id: string, data: DeepPartial<ActiveCharacterDataSource>}, options: unknown, id: string) => {
       if (actor.data._id === ability?.actor?.data?._id) {
-        setActorInitiativeAbility(isPCDataSource(ability?.actor?.data) && ability?.actor?.data.data.initiativeAbility);
+        setActorInitiativeAbility(isActiveCharacterDataSource(ability?.actor?.data) && ability?.actor?.data.data.initiativeAbility);
       }
     };
     Hooks.on("updateActor", callback);
@@ -55,7 +55,7 @@ export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
   const isAbilityUsed = actorInitiativeAbility === ability.name;
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
-      assertPCDataSource(ability?.actor?.data);
+      assertActiveCharacterDataSource(ability?.actor?.data);
       ability?.actor?.update({
         data: {
           initiativeAbility: ability.data.name,

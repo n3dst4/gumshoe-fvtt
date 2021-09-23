@@ -72,6 +72,10 @@ type InvestigatorActorDataSource =
   | NPCDataSource
   | PartyDataSource
 
+export type ActiveCharacterDataSource =
+  | PCDataSource
+  | NPCDataSource
+
 declare global {
   interface SourceConfig {
     Actor: InvestigatorActorDataSource;
@@ -98,6 +102,16 @@ export function isNPCDataSource (data: InvestigatorActorDataSource | undefined |
 export function assertNPCDataSource (data: InvestigatorActorDataSource | undefined | null): asserts data is NPCDataSource {
   if (!isNPCDataSource(data)) {
     throw new Error("Not an NPC");
+  }
+}
+
+export function isActiveCharacterDataSource (data: InvestigatorActorDataSource | undefined | null): data is ActiveCharacterDataSource {
+  return (data ? (data.type === constants.pc || data.type === constants.npc) : false);
+}
+
+export function assertActiveCharacterDataSource (data: InvestigatorActorDataSource | undefined | null): asserts data is ActiveCharacterDataSource {
+  if (!isActiveCharacterDataSource(data)) {
+    throw new Error("Not a PC or NPC");
   }
 }
 

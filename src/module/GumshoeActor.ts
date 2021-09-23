@@ -1,6 +1,6 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo, isAbility } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertPartyDataSource, InvestigativeAbilityDataSource } from "../types";
+import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource } from "../types";
 import { Theme, themes } from "../theme";
 import { getDefaultThemeName, getNewPCPacks } from "../settingsHelpers";
 
@@ -244,12 +244,12 @@ export class GumshoeActor extends Actor {
   };
 
   getHitThreshold = () => {
-    assertPCDataSource(this.data);
+    assertActiveCharacterDataSource(this.data);
     return this.data.data.hitThreshold;
   }
 
   setHitThreshold = (newThreshold: number) => {
-    assertPCDataSource(this.data);
+    assertActiveCharacterDataSource(this.data);
     return this.update({ data: { hitThreshold: newThreshold } });
   }
 
