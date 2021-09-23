@@ -1,4 +1,4 @@
-import { equipment, generalAbility, investigativeAbility, pc, weapon } from "../constants";
+import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo, isAbility } from "../functions";
 import { RecursivePartial, AbilityType, assertPCDataSource, assertPartyDataSource, InvestigativeAbilityDataSource } from "../types";
 import { Theme, themes } from "../theme";
@@ -147,7 +147,7 @@ export class GumshoeActor extends Actor {
   }
 
   getSheetThemeName (): string | null {
-    return this.data.type === "pc" ? this.data.data.sheetTheme : null;
+    return (this.data.type === pc || this.data.type === npc) ? this.data.data.sheetTheme : null;
   }
 
   setSheetTheme = (sheetTheme: string | null) =>
@@ -334,7 +334,7 @@ Hooks.on(
       return;
     }
 
-    if (actor.data.type !== pc) {
+    if (actor.data.type !== pc && actor.data.type !== npc) {
       return;
     }
 
