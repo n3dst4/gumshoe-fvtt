@@ -1,0 +1,213 @@
+{
+    "label": "pallidStarsAbilities - fr",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": [
+        {
+            "id": "Anthropology",
+            "name": "Anthropologie",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Archaeology",
+            "name": "Arch\u00e9ologie",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Astronomy",
+            "name": "Astronomie",
+            "category": "Technique"
+        },
+        {
+            "id": "Athletics",
+            "name": "Athl\u00e9tisme",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Botany",
+            "name": "Botanique",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Bullshit Detector",
+            "name": "D\u00e9tecteur de mensonges",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Bureaucracy",
+            "name": "Bureaucratie",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Business Affairs",
+            "name": "Business",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Chemistry",
+            "name": "Chimie",
+            "category": "Technique"
+        },
+        {
+            "id": "Cop Talk",
+            "name": "Jargon policier",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Cryptography",
+            "name": "Cryptographie",
+            "category": "Technique"
+        },
+        {
+            "id": "Culture",
+            "name": "Culture",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Data Retrieval",
+            "name": "R\u00e9cup\u00e9ration de donn\u00e9es",
+            "category": "Technique"
+        },
+        {
+            "id": "Evidence Collection",
+            "name": "Recueil d\u2019indices",
+            "category": "Technique"
+        },
+        {
+            "id": "Explosive Devices",
+            "name": "Engins explosifs",
+            "category": "Technique"
+        },
+        {
+            "id": "Filch",
+            "name": "Escamotage",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Flattery",
+            "name": "Flatterie",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Flirting",
+            "name": "S\u00e9duction",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Forensic Accounting",
+            "name": "Analyse \u2013 finance",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Forensic Anthropology",
+            "name": "Analyse \u2013 Anthropologie",
+            "category": "Technique"
+        },
+        {
+            "id": "Forensic Psychology",
+            "name": "Analyse \u2013 Psychologie",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Geology",
+            "name": "G\u00e9ologie",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Health",
+            "name": "Sant\u00e9",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "History",
+            "name": "Histoire",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Impersonate",
+            "name": "Incarner",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Infiltration",
+            "name": "Infiltration",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Inspiration",
+            "name": "Inspiration",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Interrogation",
+            "name": "Interrogatoire",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Intimidation",
+            "name": "Intimidation",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Law",
+            "name": "Droit",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Linguistics",
+            "name": "Linguistique",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Medic",
+            "name": "Premiers soins",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Negotiation",
+            "name": "N\u00e9gociation",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Preparedness",
+            "name": "Organisation",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Public Relations",
+            "name": "Relations publiques",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Reassurance",
+            "name": "Apaisement",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Respect",
+            "name": "Respect",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Scuffling",
+            "name": "Bagarre",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Sense Trouble",
+            "name": "Sixi\u00e8me sens",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Shooting",
+            "name": "Armes \u00e0 feu",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Surveillance",
+            "name": "Surveillance",
+            "category": "G\u00e9n\u00e9rale"
+        }
+    ]
+}

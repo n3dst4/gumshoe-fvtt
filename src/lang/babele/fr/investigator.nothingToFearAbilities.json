@@ -1,0 +1,198 @@
+{
+    "label": "nothingToFearAbilities - fr",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": [
+        {
+            "id": "Athletics",
+            "name": "Athl\u00e9tisme",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Aura Reading",
+            "name": "Lire les auras",
+            "category": "Exotique"
+        },
+        {
+            "id": "Bullshit Detector",
+            "name": "D\u00e9tecteur de mensonges",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Bureaucracy",
+            "name": "Bureaucratie",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Cop Talk",
+            "name": "Jargon policier",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Driving",
+            "name": "Conduite",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Filch",
+            "name": "Escamotage",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Flattery",
+            "name": "Flatterie",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Fleeing",
+            "name": "Fuir",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Flirting",
+            "name": "S\u00e9duction",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Health",
+            "name": "Sant\u00e9",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Hiding",
+            "name": "Se cacher",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "History",
+            "name": "Histoire",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Impersonate",
+            "name": "Incarner",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Infiltration",
+            "name": "Infiltration",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Interrogation",
+            "name": "Interrogatoire",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Intimidation",
+            "name": "Intimidation",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Languages",
+            "name": "Langues",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Law",
+            "name": "Droit",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Mechanics",
+            "name": "M\u00e9canique",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Medic",
+            "name": "Premiers soins",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Medicine",
+            "name": "M\u00e9decine",
+            "category": "Technique"
+        },
+        {
+            "id": "Negotiation",
+            "name": "N\u00e9gociation",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Notice",
+            "name": "Observation",
+            "category": "Technique"
+        },
+        {
+            "id": "Occult Studies",
+            "name": "Occultisme",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Outdoor Survival",
+            "name": "Survie en ext\u00e9rieur",
+            "category": "Technique"
+        },
+        {
+            "id": "Photography",
+            "name": "Photographie",
+            "category": "Technique"
+        },
+        {
+            "id": "Preparedness",
+            "name": "Organisation",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Reassurance",
+            "name": "Apaisement",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Research",
+            "name": "Recherche",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Science!",
+            "name": "Science !",
+            "category": "Technique"
+        },
+        {
+            "id": "Scuffling",
+            "name": "Bagarre",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Sense Trouble",
+            "name": "Sixi\u00e8me sens",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Shooting",
+            "name": "Armes \u00e0 feu",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Shrink",
+            "name": "Psychoth\u00e9rapie",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Stability",
+            "name": "Equilibre mental",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Streetwise",
+            "name": "Connaissance de la rue",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Trivia",
+            "name": "Trivia",
+            "category": "Acad\u00e9mique"
+        }
+    ]
+}
