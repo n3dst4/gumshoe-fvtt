@@ -85,6 +85,7 @@ async function copyFiles () {
     "system.json",
     "template.json",
     "packs",
+    "babele-es",
   ];
   try {
     for (const file of statics) {
@@ -115,7 +116,7 @@ function watch () {
   });
   gulp.watch("src/**/*.less", { ignoreInitial: false }, buildLess);
   gulp.watch(
-    ["src/assets", "src/fonts", "src/lang", "src/templates", "src/*.json"],
+    ["src/assets", "src/fonts", "src/lang", "src/templates", "src/*.json", "src/babele-es"],
     { ignoreInitial: false },
     copyFiles,
   );
