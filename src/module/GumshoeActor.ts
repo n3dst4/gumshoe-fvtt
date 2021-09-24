@@ -91,7 +91,7 @@ export class GumshoeActor extends Actor {
 
   nuke = async () => {
     await this.deleteEmbeddedDocuments(
-      "OwnedItem",
+      "Item",
       this.items.map((i) => i.id).filter((i) => i !== null) as string[],
     );
     window.alert("Nuked");
