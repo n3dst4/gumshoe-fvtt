@@ -204,6 +204,8 @@ Hooks.on(
 
 installCompendiumExportButton();
 
-CONFIG.debug.hooks = true;
-
 initializePackGenerators();
+
+if (window.location.hostname === "localhost") {
+  CONFIG.debug.hooks = true;
+}
