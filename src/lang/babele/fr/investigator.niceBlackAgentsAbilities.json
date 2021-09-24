@@ -1,0 +1,258 @@
+{
+    "label": "niceBlackAgentsAbilities - fr",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": [
+        {
+            "id": "Accounting",
+            "name": "Comptabilit\u00e9",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Archaeology",
+            "name": "Arch\u00e9ologie",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Architecture",
+            "name": "Architecture",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Art History",
+            "name": "Histoire de l\u2019art",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Astronomy",
+            "name": "Astronomie",
+            "category": "Technique"
+        },
+        {
+            "id": "Athletics",
+            "name": "Athl\u00e9tisme",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Bullshit Detector",
+            "name": "D\u00e9tecteur de mensonges",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Bureaucracy",
+            "name": "Bureaucratie",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Chemistry",
+            "name": "Chimie",
+            "category": "Technique"
+        },
+        {
+            "id": "Conceal",
+            "name": "Camouflage",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Cop Talk",
+            "name": "Jargon policier",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Cryptography",
+            "name": "Cryptographie",
+            "category": "Technique"
+        },
+        {
+            "id": "Disguise",
+            "name": "D\u00e9guisement",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Driving",
+            "name": "Conduite",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Electronic Surveillance",
+            "name": "Surveillance \u00e9lectronique",
+            "category": "Technique"
+        },
+        {
+            "id": "Filch",
+            "name": "Escamotage",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Flattery",
+            "name": "Flatterie",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Flirting",
+            "name": "S\u00e9duction",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Forgery",
+            "name": "Contrefa\u00e7on",
+            "category": "Technique"
+        },
+        {
+            "id": "Gambling",
+            "name": "Jeux d\u2019argent",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Hand-to-Hand",
+            "name": "Bagarre",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Health",
+            "name": "Sant\u00e9",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "High Society",
+            "name": "Haute soci\u00e9t\u00e9",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "History",
+            "name": "Histoire",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Infiltration",
+            "name": "Infiltration",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Interrogation",
+            "name": "Interrogatoire",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Intimidation",
+            "name": "Intimidation",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Languages",
+            "name": "Langues",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Law",
+            "name": "Droit",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Mechanics",
+            "name": "M\u00e9canique",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Medic",
+            "name": "Premiers soins",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Military Science",
+            "name": "Expertise militaire",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Negotiation",
+            "name": "N\u00e9gociation",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Network",
+            "name": "R\u00e9seau",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Notice",
+            "name": "Observation",
+            "category": "Technique"
+        },
+        {
+            "id": "Occult Studies",
+            "name": "Occultisme",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Outdoor Survival",
+            "name": "Survie en ext\u00e9rieur",
+            "category": "Technique"
+        },
+        {
+            "id": "Photography",
+            "name": "Photographie",
+            "category": "Technique"
+        },
+        {
+            "id": "Piloting",
+            "name": "Pilotage",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Preparedness",
+            "name": "Organisation",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Reassurance",
+            "name": "Apaisement",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Research",
+            "name": "Recherche",
+            "category": "Acad\u00e9mique"
+        },
+        {
+            "id": "Sense Trouble",
+            "name": "Sixi\u00e8me sens",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Shooting",
+            "name": "Armes \u00e0 feu",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Shrink",
+            "name": "Psychoth\u00e9rapie",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Stability",
+            "name": "Equilibre mental",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Streetwise",
+            "name": "Connaissance de la rue",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Surveillance",
+            "name": "Surveillance",
+            "category": "G\u00e9n\u00e9rale"
+        },
+        {
+            "id": "Tradecraft",
+            "name": "Renseignement",
+            "category": "Relationnelle"
+        },
+        {
+            "id": "Traffic Analysis",
+            "name": "Analyse de donn\u00e9es",
+            "category": "Technique"
+        }
+    ]
+}
