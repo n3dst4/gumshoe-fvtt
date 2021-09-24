@@ -63,11 +63,16 @@ Hooks.once("init", async function () {
 
   // register babele translations
   if (typeof Babele !== "undefined") {
-    Babele.get().register({
-      module: "investigator",
-      lang: "es",
-      dir: "babele-es",
-    });
+    const babele = Babele.get();
+    if (babele.setSystemTranslationsDir) {
+      babele.setSystemTranslationsDir("lang/babele");
+    } else {
+      const message = "Please make sure you have installed the latest version of Babele (unable to set system translations path).";
+      logger.warn(message);
+      Hooks.once("ready", () => {
+        ui.notifications?.warn(message);
+      });
+    }
   }
 });
 
