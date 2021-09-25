@@ -6,7 +6,7 @@ import { GumshoeItem } from "../../module/GumshoeItem";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { isGeneralAbility } from "../../functions";
 import { AbilityTest } from "./AbilityTest";
-import { AbilityEditorMain } from "./AbilityEditorMain";
+import { AbilityMainBits } from "./AbilityMainBits";
 import { AbilityConfig } from "./AbilityConfig";
 import { Translate } from "../Translate";
 
@@ -76,7 +76,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
         : <Fragment>
             {/* Spending/testing area */}
             {ability.isOwned && <AbilityTest ability={ability} />}
-            <AbilityEditorMain ability={ability} />
+            <AbilityMainBits ability={ability} />
           </Fragment>
       }
     </div>

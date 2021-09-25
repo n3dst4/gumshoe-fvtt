@@ -19,7 +19,7 @@ type AbilityEditorMainProps = {
   ability: GumshoeItem,
 };
 
-export const AbilityEditorMain: React.FC<AbilityEditorMainProps> = ({
+export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
   ability,
 }) => {
   assertAbilityDataSource(ability.data);
