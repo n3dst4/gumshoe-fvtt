@@ -15,6 +15,7 @@ Includes 7 character sheet themes plus an extra high-contrast accessible theme.
   - [How to install](#how-to-install)
   - [Using the built-in game systems](#using-the-built-in-game-systems)
   - [How to add the missing abilities](#how-to-add-the-missing-abilities)
+  - [Translations](#translations)
   - [Setting up any system that isn't built in](#setting-up-any-system-that-isnt-built-in)
   - [Creating Characters](#creating-characters)
   - [Using Abilities](#using-abilities)
@@ -95,6 +96,9 @@ You may be wondering why the ability compendiums supplied with this system seem 
 
 Done! New PCs will now automatically be given the abilities in your new compendium. Also, if you create a party tracker, it will show those abilities in the list.
 
+## Translations
+
+Thanks to Foundry's translation systems, plus the excellent [Babele](https://gitlab.com/riccisi/foundryvtt-babele) module, and the enormous contributions from many volunteers, INVESTIGATOR will work in more languages than just my native English! Check out the [Translations page on the wiki](https://gitlab.com/n3dst4/investigator-fvtt/-/wikis/Translations) to see what has been translated into which langauges and get instructions if you'd like to contribute a translation.
 
 
 ## Setting up any system that isn't built in
