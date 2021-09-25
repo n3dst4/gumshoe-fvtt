@@ -78,9 +78,10 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
           backgroundPosition: "center",
           borderRadius: "0.2em",
           boxShadow: "0em 0em 0.5em 0.1em rgba(0,0,0,0.5)",
-          transform: "rotateZ(2deg)",
+          transform: "rotateZ(-2deg)",
           width: "4em",
           height: "4em",
+          margin: "0 1em 0.5em 0",
         }}
         // onClick={onImageClick}
       />

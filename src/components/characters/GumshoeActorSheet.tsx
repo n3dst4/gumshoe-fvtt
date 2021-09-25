@@ -20,6 +20,7 @@ import { getOccupationlabel, getShortNotes } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertPCDataSource, isPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { ImagePickle } from "../ImagePickle";
 
 type GumshoeActorSheetProps = {
   actor: GumshoeActor,
@@ -31,22 +32,6 @@ export const GumshoeActorSheet = ({
   foundryApplication,
 }: GumshoeActorSheetProps) => {
   assertPCDataSource(actor.data);
-  const onImageClick = useCallback(() => {
-    console.log("onImageClick");
-    const fp = new FilePicker({
-      type: "image",
-      current: actor.data.img,
-      callback: (path: string) => {
-        actor.update({
-          img: path,
-        });
-      },
-      top: (foundryApplication.position.top ?? 0) + 40,
-      left: (foundryApplication.position.left ?? 0) + 10,
-    });
-    // types aren't quite right for fp
-    return (fp as any).browse();
-  }, [actor, foundryApplication.position.left, foundryApplication.position.top]);
 
   const updateName = useUpdate(actor, name => ({ name }));
   const updateOccupation = useUpdate(actor, occupation => ({ data: { occupation } }));
@@ -98,17 +83,13 @@ export const GumshoeActorSheet = ({
             onChangeSubtext={updateOccupation}
           />
         </div>
-        <div
-          css={{
-            gridArea: "image",
-            backgroundImage: `url("${actor.data.img}")`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            borderRadius: "0.2em",
-            boxShadow: "0em 0em 0.5em 0.1em rgba(0,0,0,0.5)",
-            transform: "rotateZ(2deg)",
-          }}
-          onClick={onImageClick}
+        <ImagePickle
+            document={actor}
+            application={foundryApplication}
+            css={{
+              gridArea: "image",
+              transform: "rotateZ(2deg)",
+            }}
         />
 
         <div
