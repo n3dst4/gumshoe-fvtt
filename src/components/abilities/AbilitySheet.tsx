@@ -39,24 +39,23 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     <div
       css={{
         paddingBottom: "1em",
+        display: "grid",
+        gridTemplateColumns: "auto 1fr auto",
+        gridTemplateRows: "auto auto auto",
+        gridTemplateAreas:
+          "\"image slug     cog\" " +
+          "\"image headline headline\" " +
+          "\"body  body     body\" ",
       }}
     >
-      <div>
+      {/* Slug */}
+      <div css={{ gridArea: "slug" }}>
         <Translate>{isGeneral ? "General ability" : "Investigative ability"}</Translate>
         {ability.actor && <span> ({ability.actor.data.name})</span>}
-        <a
-          css={{
-            float: "right",
-          }}
-          onClick={() => {
-            setConfigMode((mode) => !mode);
-          }}
-        >
-          <i className={`fa fa-${configMode ? "check" : "cog"}`}/>
-        </a>
       </div>
 
-      <h1>
+      {/* Headline */}
+      <h1 css={{ gridArea: "headline" }}>
         <span
           contentEditable
           css={{
@@ -70,15 +69,44 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
         />
       </h1>
 
+      {/* Image */}
+      <div
+        css={{
+          gridArea: "image",
+          backgroundImage: `url("${ability.data.img}")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          borderRadius: "0.2em",
+          boxShadow: "0em 0em 0.5em 0.1em rgba(0,0,0,0.5)",
+          transform: "rotateZ(2deg)",
+          width: "4em",
+          height: "4em",
+        }}
+        // onClick={onImageClick}
+      />
+
+      {/* Cog */}
+      <a
+        css={{
+          gridArea: "cog",
+        }}
+        onClick={() => {
+          setConfigMode((mode) => !mode);
+        }}
+      >
+        <i className={`fa fa-${configMode ? "check" : "cog"}`}/>
+      </a>
       {/* regular editing stuff */}
-      {configMode
-        ? <AbilityConfig ability={ability}/>
-        : <Fragment>
-            {/* Spending/testing area */}
-            {ability.isOwned && <AbilityTest ability={ability} />}
-            <AbilityMainBits ability={ability} />
-          </Fragment>
-      }
+      <div css={{ gridArea: "body" }}>
+        {configMode
+          ? <AbilityConfig ability={ability}/>
+          : <Fragment>
+              {/* Spending/testing area */}
+              {ability.isOwned && <AbilityTest ability={ability} />}
+              <AbilityMainBits ability={ability} />
+            </Fragment>
+        }
+      </div>
     </div>
   );
 };
