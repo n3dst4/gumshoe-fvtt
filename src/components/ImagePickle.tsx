@@ -39,7 +39,7 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
       // Display the image popout
       ip.render(true);
     }
-  }, [application.position.left, application.position.top, document]);
+  }, [application.position.left, application.position.top, document, editMode]);
 
   return (
     <div
