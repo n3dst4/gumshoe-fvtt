@@ -29,7 +29,6 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   }, [foundryWindow, configMode]);
 
   const {
-    // display,
     contentEditableRef: contentEditableRefName,
     onBlur: onBlurName,
     onFocus: onFocusName,
@@ -72,6 +71,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
 
       {/* Image */}
       <ImagePickle
+        editMode={configMode}
         document={ability}
         application={foundryWindow}
         css={{
