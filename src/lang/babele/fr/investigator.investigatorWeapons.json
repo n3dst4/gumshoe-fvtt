@@ -1,0 +1,41 @@
+{
+	"label": "Armes du SRD",
+	"entries": [
+		{
+			"id": "Firearm (heavy)",
+			"name": "Arme à feu (lourde)"
+		},
+		{
+			"id": "Firearm (light)",
+			"name": "Arme à feu (légère)"
+		},
+		{
+			"id": "Fist/kick",
+			"name": "Coup de poing/Pied"
+		},
+		{
+			"id": "Heavy club",
+			"name": "Gourdin"
+		},
+		{
+			"id": "Knife",
+			"name": "Couteau"
+		},
+		{
+			"id": "Machete",
+			"name": "Machette"
+		},
+		{
+			"id": "Police Baton",
+			"name": "Matraque"
+		},
+		{
+			"id": "Small improvised weapon",
+			"name": "Arme improvisée (petite)"
+		},
+		{
+			"id": "Sword",
+			"name": "Epée"
+		}
+	]
+}
