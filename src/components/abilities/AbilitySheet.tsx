@@ -9,10 +9,11 @@ import { AbilityTest } from "./AbilityTest";
 import { AbilityMainBits } from "./AbilityMainBits";
 import { AbilityConfig } from "./AbilityConfig";
 import { Translate } from "../Translate";
+import { ImagePickle } from "../ImagePickle";
 
 type AbilitySheetProps = {
   ability: GumshoeItem,
-  foundryWindow: Application,
+  foundryWindow: ItemSheet,
 };
 
 export const AbilitySheet: React.FC<AbilitySheetProps> = ({
@@ -70,20 +71,16 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
       </h1>
 
       {/* Image */}
-      <div
+      <ImagePickle
+        document={ability}
+        application={foundryWindow}
         css={{
           gridArea: "image",
-          backgroundImage: `url("${ability.data.img}")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          borderRadius: "0.2em",
-          boxShadow: "0em 0em 0.5em 0.1em rgba(0,0,0,0.5)",
           transform: "rotateZ(-2deg)",
           width: "4em",
           height: "4em",
           margin: "0 1em 0.5em 0",
         }}
-        // onClick={onImageClick}
       />
 
       {/* Cog */}

@@ -84,12 +84,12 @@ export const GumshoeActorSheet = ({
           />
         </div>
         <ImagePickle
-            document={actor}
-            application={foundryApplication}
-            css={{
-              gridArea: "image",
-              transform: "rotateZ(2deg)",
-            }}
+          document={actor}
+          application={foundryApplication}
+          css={{
+            gridArea: "image",
+            transform: "rotateZ(2deg)",
+          }}
         />
 
         <div
