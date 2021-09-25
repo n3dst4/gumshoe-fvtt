@@ -1,0 +1,165 @@
+{
+	"label": "Path of Cthulhu Abilities",
+	"entries": [
+		{
+			"id": "Anthropology",
+			"name": "Antropologia"
+		},
+		{
+			"id": "Archeology",
+			"name": "Arqueologia"
+		},
+		{
+			"id": "Architecture",
+			"name": "Arquitetura"
+		},
+		{
+			"id": "Art History",
+			"name": "História da Arte"
+		},
+		{
+			"id": "Astronomy",
+			"name": "Astronomia"
+		},
+		{
+			"id": "Athletics",
+			"name": "Atletismo"
+		},
+		{
+			"id": "Bureaucracy",
+			"name": "Burocracia"
+		},
+		{
+			"id": "Chemistry",
+			"name": "Química"
+		},
+		{
+			"id": "Conceal",
+			"name": "Ocultação"
+		},
+		{
+			"id": "Cop Talk",
+			"name": "Trato Policial"
+		},
+		{
+			"id": "Craft",
+			"name": "Ofício"
+		},
+		{
+			"id": "Cryptography",
+			"name": "Criptografia"
+		},
+		{
+			"id": "Disguise",
+			"name": "Disfarce"
+		},
+		{
+			"id": "Driving",
+			"name": "Condução"
+		},
+		{
+			"id": "Evidence Collection",
+			"name": "Coletar Evidências"
+		},
+		{
+			"id": "Explosives",
+			"name": "Explosivos"
+		},
+		{
+			"id": "Filch",
+			"name": "Punga"
+		},
+		{
+			"id": "First Aid",
+			"name": "Primeiros Socorros"
+		},
+		{
+			"id": "Flattery",
+			"name": "Bajulação"
+		},
+		{
+			"id": "Fleeing",
+			"name": "Fuga"
+		},
+		{
+			"id": "Geology",
+			"name": "Geologia"
+		},
+		{
+			"id": "Health",
+			"name": "Vitalidade"
+		},
+		{
+			"id": "History",
+			"name": "História"
+		},
+		{
+			"id": "Hypnosis",
+			"name": "Hipnose"
+		},
+		{
+			"id": "Interrogation",
+			"name": "Interrogatório"
+		},
+		{
+			"id": "Intimidation",
+			"name": "Intimidação"
+		},
+		{
+			"id": "Languages",
+			"name": "Idiomas"
+		},
+		{
+			"id": "Law",
+			"name": "Direito"
+		},
+		{
+			"id": "Locksmith",
+			"name": "Arrombamento"
+		},
+		{
+			"id": "Mechanics",
+			"name": "Reparos Mecânicos"
+		},
+		{
+			"id": "Oral History",
+			"name": "História Oral"
+		},
+		{
+			"id": "Photography",
+			"name": "Fotografia"
+		},
+		{
+			"id": "Piloting",
+			"name": "Pilotagem"
+		},
+		{
+			"id": "Preparedness",
+			"name": "Precaução"
+		},
+		{
+			"id": "Reassurance",
+			"name": "Convencimento"
+		},
+		{
+			"id": "Riding",
+			"name": "Equitação"
+		},
+		{
+			"id": "Scuffling",
+			"name": "Briga"
+		},
+		{
+			"id": "Sense Trouble",
+			"name": "Sentir Perigo"
+		},
+		{
+			"id": "Stability",
+			"name": "Estabilidade"
+		},
+		{
+			"id": "Streetwise",
+			"name": "Manha"
+		}
+	]
+}
