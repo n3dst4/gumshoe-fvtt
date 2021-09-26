@@ -322,6 +322,16 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                   const gridRow = i + 2;
                   return (
                     <IdContext.Provider value={id} key={pack.metadata.name}>
+                      {
+                        gridRow % 2 === 0 &&
+                        <div
+                          css={{
+                            gridRow,
+                            gridColumn: "1/4",
+                            background: theme.colors.bgTint,
+                          }}
+                        />
+                      }
                       <Checkbox
                         checked={pcSelected}
                         css={{
@@ -342,6 +352,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                         css={{
                           gridColumn: 3,
                           gridRow,
+                          top: 0,
                         }}
                         checked={npcSelected}
                         onChange={(checked) => {
@@ -361,7 +372,6 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                         htmlFor={id}
                         css={{
                           display: "block",
-                          background: pcSelected ? theme.colors.bgTint : "none",
                           paddingTop: "0.3em",
                           gridColumn: 2,
                           gridRow,
