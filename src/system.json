@@ -44,17 +44,17 @@
       "entity": "JournalEntry"
     },
     {
-      "name": "investigatorWeapons",
-      "label": "SRD Weapons",
-      "system": "investigator",
-      "path": "./packs/investigatorWeapons.db",
-      "entity": "Item"
-    },
-    {
       "name": "opponentAbilities",
       "label": "Opponent Abilities",
       "system": "investigator",
       "path": "./packs/opponentAbilities.db",
+      "entity": "Item"
+    },
+    {
+      "name": "investigatorWeapons",
+      "label": "SRD Weapons",
+      "system": "investigator",
+      "path": "./packs/investigatorWeapons.db",
       "entity": "Item"
     }
   ],

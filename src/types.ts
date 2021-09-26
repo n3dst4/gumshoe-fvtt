@@ -46,6 +46,7 @@ interface NPCDataSourceData {
   hideZeroRated: boolean;
   sheetTheme: string|null;
   hitThreshold: number;
+  armor: number;
   alertness: number;
   stealth: number;
   stabilityLoss: number;

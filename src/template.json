@@ -55,6 +55,7 @@
       "hideZeroRated": false,
       "sheetTheme": null,
 
+      "armor": 0,
       "alertness": 0,
       "stealth": 0,
       "stabilityLoss": 0

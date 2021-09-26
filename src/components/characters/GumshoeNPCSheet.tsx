@@ -50,6 +50,10 @@ export const GumshoeNPCSheet = ({
     return actor.update({ data: { hitThreshold: newThreshold } });
   }, [actor]);
 
+  const updateArmor = useCallback((newArmor) => {
+    return actor.update({ data: { armor: newArmor } });
+  }, [actor]);
+
   const updateAlertness = useCallback((newAlertness) => {
     return actor.update({ data: { alertness: newAlertness } });
   }, [actor]);
@@ -129,6 +133,14 @@ export const GumshoeNPCSheet = ({
               min={0}
               value={actor.data.data.hitThreshold}
               onChange={updateHitThreshold}
+            />
+            <h3 css={{ gridColumn: "start / end" }}>
+              <Translate>Armor</Translate>
+            </h3>
+            <AsyncNumberInput
+              min={-10}
+              value={actor.data.data.armor}
+              onChange={updateArmor}
             />
             <h3 css={{ gridColumn: "start / end" }}>
               <Translate>Alertness Modifier</Translate>
