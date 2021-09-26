@@ -6,11 +6,13 @@ import { IdContext } from "../IdContext";
 type CheckboxProps = {
   checked: boolean,
   onChange: (checked: boolean) => void,
+  className?: string,
 };
 
 export const Checkbox: React.FC<CheckboxProps> = ({
   checked,
   onChange,
+  className,
 }) => {
   const id = useContext(IdContext);
 
@@ -19,6 +21,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
       id={id}
       type="checkbox"
       checked={checked}
+      className={className}
       css={{
         lineHeight: "inherit",
         // height: "inherit",
