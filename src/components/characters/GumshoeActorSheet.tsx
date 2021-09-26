@@ -84,8 +84,7 @@ export const GumshoeActorSheet = ({
           />
         </div>
         <ImagePickle
-          editMode
-          document={actor}
+          subject={actor}
           application={foundryApplication}
           css={{
             gridArea: "image",

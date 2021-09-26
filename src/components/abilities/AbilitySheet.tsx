@@ -71,8 +71,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
 
       {/* Image */}
       <ImagePickle
-        editMode={configMode}
-        document={ability}
+        subject={ability}
         application={application}
         css={{
           gridArea: "image",

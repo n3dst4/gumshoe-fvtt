@@ -74,8 +74,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
 
       {/* Image */}
       <ImagePickle
-        editMode={true}
-        document={equipment}
+        subject={equipment}
         application={application}
         css={{
           gridArea: "image",

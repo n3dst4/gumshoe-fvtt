@@ -66,8 +66,7 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
 
       {/* Image */}
       <ImagePickle
-        editMode={true}
-        document={weapon}
+        subject={weapon}
         application={application}
         css={{
           gridArea: "image",

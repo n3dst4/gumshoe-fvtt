@@ -1,60 +1,127 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback } from "react";
+import React, { Fragment, useCallback, useContext, useState } from "react";
+import { ThemeContext } from "../theme";
+import { ImagePickerLink } from "./ImagePickerLink";
+
+const cover = {
+  position: "absolute",
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+} as const;
+
+const transitionTime = "0.3s";
 
 type ImagePickleProps = {
-  document: Actor | Item,
+  subject: Actor | Item,
   application: DocumentSheet,
   className?: string,
-  editMode: boolean,
 };
 
 export const ImagePickle: React.FC<ImagePickleProps> = ({
-  document,
+  subject,
   application,
   className,
-  editMode,
 }: ImagePickleProps) => {
-  const onImageClick = useCallback(() => {
-    if (editMode) {
-      const fp = new FilePicker({
-        type: "image",
-        current: document.data.img,
-        callback: (path: string) => {
-          document.update({
-            img: path,
-          });
-        },
-        top: (application.position.top ?? 0) + 40,
-        left: (application.position.left ?? 0) + 10,
-      });
-      return fp.browse();
-    } else {
-      const ip = new ImagePopout(document.data.img, {
-        title: document.data.name,
-        shareable: true,
-        // entity: document,
-      } as any);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const theme = useContext(ThemeContext);
 
-      // Display the image popout
-      ip.render(true);
-    }
-  }, [application.position.left, application.position.top, document, editMode]);
+  const onClickEdit = useCallback(() => {
+    const fp = new FilePicker({
+      type: "image",
+      current: subject.data.img,
+      callback: (path: string) => {
+        subject.update({
+          img: path,
+        });
+      },
+      top: (application.position.top ?? 0) + 40,
+      left: (application.position.left ?? 0) + 10,
+    });
+    return fp.browse();
+  }, [application.position.left, application.position.top, subject]);
+
+  const onClickShow = useCallback(() => {
+    const ip = new ImagePopout(subject.data.img, {
+      title: subject.data.name,
+      shareable: true,
+    } as any);
+    ip.render(true);
+  }, [subject.data.img, subject.data.name]);
+
+  const onClickCancel = useCallback(() => {
+    setShowOverlay(false);
+  }, []);
+
+  const onClickImage = useCallback((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.stopPropagation();
+    setShowOverlay(true);
+    const clickListener = () => {
+      setShowOverlay(false);
+    };
+    document.addEventListener("click", clickListener);
+
+    return () => {
+      document.removeEventListener("click", clickListener);
+    };
+  }, []);
 
   return (
     <div
       className={className}
       css={{
-        gridArea: "image",
-        transform: "rotateZ(2deg)",
-
-        backgroundImage: `url("${document.data.img}")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         borderRadius: "0.2em",
         boxShadow: "0em 0em 0.5em 0.1em rgba(0,0,0,0.5)",
+        position: "relative",
       }}
-      onClick={onImageClick}
-    />
+      onClick={(e) => onClickImage(e)}
+    >
+      <div
+        css={{
+          ...cover,
+          overflow: "hidden",
+        }}
+      >
+        <div
+          css={{
+            ...cover,
+            backgroundImage: `url("${subject.data.img}")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: showOverlay ? "blur(0.7em)" : undefined,
+            transition: `filter ${transitionTime} ease-in`,
+          }}
+        />
+      </div>
+
+      <div
+        css={{
+          ...cover,
+          opacity: showOverlay ? 1 : 0,
+          transition: `opacity ${transitionTime} ease-in`,
+          background: theme.colors.bgTransSecondary,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-around",
+          alignItems: "center",
+        }}
+      >
+        {showOverlay &&
+          <Fragment>
+            <ImagePickerLink onClick={onClickShow}>
+              Show
+            </ImagePickerLink>
+            <ImagePickerLink onClick={onClickEdit}>
+              Edit
+            </ImagePickerLink>
+            <ImagePickerLink onClick={onClickCancel}>
+              Cancel
+            </ImagePickerLink>
+          </Fragment>
+        }
+      </div>
+    </div>
   );
 };
