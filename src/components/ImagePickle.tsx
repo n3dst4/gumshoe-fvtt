@@ -29,6 +29,7 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
   const theme = useContext(ThemeContext);
 
   const onClickEdit = useCallback(() => {
+    setShowOverlay(false);
     const fp = new FilePicker({
       type: "image",
       current: subject.data.img,
@@ -44,6 +45,7 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
   }, [application.position.left, application.position.top, subject]);
 
   const onClickShow = useCallback(() => {
+    setShowOverlay(false);
     const ip = new ImagePopout(subject.data.img, {
       title: subject.data.name,
       shareable: true,
