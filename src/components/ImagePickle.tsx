@@ -47,11 +47,11 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
   const onClickShow = useCallback(() => {
     setShowOverlay(false);
     const ip = new ImagePopout(subject.data.img, {
-      title: subject.data.name,
+      title: subject.data.img,
       shareable: true,
     } as any);
     ip.render(true);
-  }, [subject.data.img, subject.data.name]);
+  }, [subject.data.img]);
 
   const onClickCancel = useCallback(() => {
     setShowOverlay(false);
