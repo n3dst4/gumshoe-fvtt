@@ -2,7 +2,7 @@ import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from
 import { assertGame, confirmADoodleDo, isAbility } from "../functions";
 import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource } from "../types";
 import { Theme, themes } from "../theme";
-import { getDefaultThemeName, getNewPCPacks } from "../settingsHelpers";
+import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 
 export class GumshoeActor extends Actor {
   /**
@@ -334,26 +334,41 @@ Hooks.on(
       return;
     }
 
-    if (actor.data.type !== pc && actor.data.type !== npc) {
-      return;
+    if (actor.data.type === pc) {
+      // this used to be done in parallel with Promise.all but I was seeing some
+      // weird behaviour (duplicated or missing abilities, or weird reference
+      // errors) so I have switched it to inline to see if that helps
+      for (const packId of getNewPCPacks()) {
+        assertGame(game);
+        console.log("PACK", packId);
+        const content = await (game.packs?.find((p: any) => p.collection === packId)?.getDocuments());
+        const datas = content?.map(({ data: { name, img, data, type } }) => ({
+          name,
+          img,
+          data,
+          type,
+        }));
+        console.log("datas", datas);
+        await (actor as any).createEmbeddedDocuments("Item", datas);
+      }
+      console.log("COMPLETED");
     }
 
-    // this used to be done in parallel with Promise.all but I was seeing some
-    // weird behaviour (duplicated or missing abilities, or weird reference
-    // errors) so I have switched it to inline to see if that helps
-    for (const packId of getNewPCPacks()) {
-      assertGame(game);
-      console.log("PACK", packId);
-      const content = await (game.packs?.find((p: any) => p.collection === packId)?.getDocuments());
-      const datas = content?.map(({ data: { name, img, data, type } }) => ({
-        name,
-        img,
-        data,
-        type,
-      }));
-      console.log("datas", datas);
-      await (actor as any).createEmbeddedDocuments("Item", datas);
+    if (actor.data.type === npc) {
+      for (const packId of getNewNPCPacks()) {
+        assertGame(game);
+        console.log("PACK", packId);
+        const content = await (game.packs?.find((p: any) => p.collection === packId)?.getDocuments());
+        const datas = content?.map(({ data: { name, img, data, type } }) => ({
+          name,
+          img,
+          data,
+          type,
+        }));
+        console.log("datas", datas);
+        await (actor as any).createEmbeddedDocuments("Item", datas);
+      }
+      console.log("COMPLETED");
     }
-    console.log("COMPLETED");
   },
 );

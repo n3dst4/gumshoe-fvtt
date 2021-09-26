@@ -27,6 +27,7 @@ export const occupationLabel = "occupationLabel" as const;
 export const shortNotes = "shortNotes" as const;
 export const longNotes = "longNotes" as const;
 export const newPCPacks = "newPCPacks" as const;
+export const newNPCPacks = "newNPCPacks" as const;
 export const useBoost = "useBoost" as const;
 export const debugTranslations = "debugTranslations" as const;
 
@@ -50,6 +51,9 @@ export const packNames = {
   pathOfCthulhuAbilities: "pathOfCthulhuAbilities",
 };
 
+export const npcPackName = "opponentAbilities";
+
 // hooks
 
 export const newPCPacksUpdated = `${systemName}:newPCPacksUpdated`;
+export const newNPCPacksUpdated = `${systemName}:newNPCPacksUpdated`;

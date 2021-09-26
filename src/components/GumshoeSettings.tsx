@@ -76,6 +76,10 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
     settings.getNewPCPacks(),
     resetPreset,
   );
+  const [newNPCPacks, setNewNPCPacks] = useStateWithPreset(
+    settings.getNewNPCPacks(),
+    resetPreset,
+  );
   const [useBoost, setUseBoost] = useStateWithPreset(
     settings.getUseBoost(),
     resetPreset,
@@ -108,6 +112,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       setShortNotes(preset.shortNotes);
       setLongNotes(preset.longNotes);
       setNewPCPacks(preset.newPCPacks);
+      setNewNPCPacks(preset.newNPCPacks);
       setUseBoost(preset.useBoost);
       setSystemPreset(presetId);
     },
@@ -118,6 +123,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       setInvestigativeAbilityCategories,
       setLongNotes,
       setNewPCPacks,
+      setNewNPCPacks,
       setOccupationLabel,
       setShortNotes,
       setUseBoost,
@@ -158,6 +164,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
         settings.setShortNotes(shortNotes),
         settings.setLongNotes(longNotes),
         settings.setNewPCPacks(newPCPacks),
+        settings.setNewNPCPacks(newNPCPacks),
         settings.setUseBoost(useBoost),
         settings.setSystemPreset(systemPreset),
         settings.setDebugTranslations(debugTranslations),
@@ -173,6 +180,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
       shortNotes,
       longNotes,
       newPCPacks,
+      newNPCPacks,
       useBoost,
       systemPreset,
       debugTranslations,
@@ -252,6 +260,9 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           <SettingsGridField label="newPCPacks" index={idx++}>
             <pre>{JSON.stringify(newPCPacks, null, 2)}</pre>
           </SettingsGridField>
+          <SettingsGridField label="newNPCPacks" index={idx++}>
+            <pre>{JSON.stringify(newNPCPacks, null, 2)}</pre>
+          </SettingsGridField>
         </InputGrid>
       )}
       {showJSON || (
@@ -278,14 +289,36 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
             </select>
           </SettingsGridField>
           <SettingsGridField
-            label="Compendium packs for new PCs"
+            label="Compendium packs for new characters"
             index={idx++}
             noLabel
           >
+            <Translate>PCs</Translate>/<Translate>NPCs</Translate>
+            {// <div
+            //   css={{
+            //     display: "grid",
+            //     gridTemplateColumns: "1fr max-content 1fr",
+            //     gridAutoRows: "min-content",
+            //     columnGap: "0.5em",
+            //     whiteSpace: "nowrap",
+            //     ".header": {
+            //       fontWeight: "bold",
+            //     },
+            //   }}
+            // >
+            //   <div css={{ gridColumn: 2 }}>
+            //   <Translate>PCs</Translate>
+            //   </div>
+            //   <div css={{ gridColumn: 3 }}>
+            //   <Translate>NPCs</Translate>
+            //   </div>
+            // </div>
+            }
             {game.packs
               .filter((pack: CompendiumCollection<CompendiumCollection.Metadata>) => pack.metadata.entity === "Item")
               .map((pack: CompendiumCollection<CompendiumCollection.Metadata>) => {
-                const isSelected = newPCPacks.includes(pack.collection);
+                const pcSelected = newPCPacks.includes(pack.collection);
+                const npcSelected = newNPCPacks.includes(pack.collection);
                 return (
                   <label
                     className="parp"
@@ -293,18 +326,30 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                     title={pack.collection}
                     css={{
                       display: "block",
-                      background: isSelected ? theme.colors.bgTint : "none",
+                      background: pcSelected ? theme.colors.bgTint : "none",
                       marginBottom: "0.3em",
                     }}
                   >
                     <Checkbox
-                      checked={isSelected}
+                      checked={pcSelected}
                       onChange={(checked) => {
                         if (checked) {
                           setNewPCPacks([...newPCPacks, pack.collection]);
                         } else {
                           setNewPCPacks(
                             newPCPacks.filter((x) => x !== pack.collection),
+                          );
+                        }
+                      }}
+                    />
+                    <Checkbox
+                      checked={npcSelected}
+                      onChange={(checked) => {
+                        if (checked) {
+                          setNewNPCPacks([...newNPCPacks, pack.collection]);
+                        } else {
+                          setNewNPCPacks(
+                            newNPCPacks.filter((x) => x !== pack.collection),
                           );
                         }
                       }}
