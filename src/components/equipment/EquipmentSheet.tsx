@@ -57,9 +57,20 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
           "\"body  body     body\" ",
       }}
     >
+      {/* Slug */}
       <div css={{ gridArea: "slug" }}>
         <Translate>Equipment</Translate>
       </div>
+
+      {/* Headline */}
+      <h1
+        css={{ gridArea: "headline" }}
+        contentEditable
+        onInput={name.onInput}
+        onFocus={name.onFocus}
+        onBlur={name.onBlur}
+        ref={name.contentEditableRef}
+      />
 
       {/* Image */}
       <ImagePickle
@@ -75,6 +86,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
         }}
       />
 
+      {/* Trash */}
       <a
         css={{
           gridArea: "trash",
@@ -86,14 +98,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
         <i className={"fa fa-trash"}/>
       </a>
 
-      <h1
-        css={{ gridArea: "headline" }}
-        contentEditable
-        onInput={name.onInput}
-        onFocus={name.onFocus}
-        onBlur={name.onBlur}
-        ref={name.contentEditableRef}
-      />
+      {/* Body */}
       <InputGrid css={{ gridArea: "body" }}>
         <GridField label="Name">
           <TextInput value={name.display} onChange={name.onChange} />

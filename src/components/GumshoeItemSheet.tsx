@@ -39,7 +39,6 @@ export const GumshoeItemSheet: React.FC<GumshoeItemSheetProps> = ({
             right: 0,
             bottom: 0,
             left: 0,
-            // backgroundColor: theme.colors.medium,
           },
         }}
       >

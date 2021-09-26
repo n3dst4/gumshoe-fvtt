@@ -35,10 +35,22 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
           "\"body  body     body\" ",
       }}
     >
+      {/* Slug */}
       <div css={{ gridArea: "slug" }}>
         <Translate>Weapon</Translate>
       </div>
 
+      {/* Headline */}
+      <h1
+        css={{ gridArea: "headline" }}
+        contentEditable
+        onInput={name.onInput}
+        onFocus={name.onFocus}
+        onBlur={name.onBlur}
+        ref={name.contentEditableRef}
+      />
+
+      {/* Cog */}
       {weapon.isOwned && (
         <a
           css={{
@@ -51,15 +63,6 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
           <i className={`fa fa-${configMode ? "check" : "cog"}`} />
         </a>
       )}
-
-      <h1
-        css={{ gridArea: "headline" }}
-        contentEditable
-        onInput={name.onInput}
-        onFocus={name.onFocus}
-        onBlur={name.onBlur}
-        ref={name.contentEditableRef}
-      />
 
       {/* Image */}
       <ImagePickle
