@@ -6,29 +6,29 @@ import { GumshoeItem } from "../../module/GumshoeItem";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { isGeneralAbility } from "../../functions";
 import { AbilityTest } from "./AbilityTest";
-import { AbilityEditorMain } from "./AbilityEditorMain";
+import { AbilityMainBits } from "./AbilityMainBits";
 import { AbilityConfig } from "./AbilityConfig";
 import { Translate } from "../Translate";
+import { ImagePickle } from "../ImagePickle";
 
 type AbilitySheetProps = {
   ability: GumshoeItem,
-  foundryWindow: Application,
+  application: ItemSheet,
 };
 
 export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   ability,
-  foundryWindow,
+  application,
 }) => {
   const isGeneral = isGeneralAbility(ability);
   const updateName = useUpdate(ability, (name) => ({ name }));
   const [configMode, setConfigMode] = useState(false);
 
   useEffect(() => {
-    foundryWindow.render();
-  }, [foundryWindow, configMode]);
+    application.render();
+  }, [application, configMode]);
 
   const {
-    // display,
     contentEditableRef: contentEditableRefName,
     onBlur: onBlurName,
     onFocus: onFocusName,
@@ -39,24 +39,23 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     <div
       css={{
         paddingBottom: "1em",
+        display: "grid",
+        gridTemplateColumns: "auto 1fr auto",
+        gridTemplateRows: "auto auto auto",
+        gridTemplateAreas:
+          "\"image slug     cog\" " +
+          "\"image headline headline\" " +
+          "\"body  body     body\" ",
       }}
     >
-      <div>
+      {/* Slug */}
+      <div css={{ gridArea: "slug" }}>
         <Translate>{isGeneral ? "General ability" : "Investigative ability"}</Translate>
         {ability.actor && <span> ({ability.actor.data.name})</span>}
-        <a
-          css={{
-            float: "right",
-          }}
-          onClick={() => {
-            setConfigMode((mode) => !mode);
-          }}
-        >
-          <i className={`fa fa-${configMode ? "check" : "cog"}`}/>
-        </a>
       </div>
 
-      <h1>
+      {/* Headline */}
+      <h1 css={{ gridArea: "headline" }}>
         <span
           contentEditable
           css={{
@@ -70,15 +69,41 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
         />
       </h1>
 
+      {/* Image */}
+      <ImagePickle
+        subject={ability}
+        application={application}
+        css={{
+          gridArea: "image",
+          transform: "rotateZ(-2deg)",
+          width: "4em",
+          height: "4em",
+          margin: "0 1em 0.5em 0",
+        }}
+      />
+
+      {/* Cog */}
+      <a
+        css={{
+          gridArea: "cog",
+        }}
+        onClick={() => {
+          setConfigMode((mode) => !mode);
+        }}
+      >
+        <i className={`fa fa-${configMode ? "check" : "cog"}`}/>
+      </a>
       {/* regular editing stuff */}
-      {configMode
-        ? <AbilityConfig ability={ability}/>
-        : <Fragment>
-            {/* Spending/testing area */}
-            {ability.isOwned && <AbilityTest ability={ability} />}
-            <AbilityEditorMain ability={ability} />
-          </Fragment>
-      }
+      <div css={{ gridArea: "body" }}>
+        {configMode
+          ? <AbilityConfig ability={ability}/>
+          : <Fragment>
+              {/* Spending/testing area */}
+              {ability.isOwned && <AbilityTest ability={ability} />}
+              <AbilityMainBits ability={ability} />
+            </Fragment>
+        }
+      </div>
     </div>
   );
 };

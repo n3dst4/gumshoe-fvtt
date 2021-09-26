@@ -39,17 +39,16 @@ export const GumshoeItemSheet: React.FC<GumshoeItemSheetProps> = ({
             right: 0,
             bottom: 0,
             left: 0,
-            // backgroundColor: theme.colors.medium,
           },
         }}
       >
         <div css={{ position: "relative" }}>
           {isAbility(item)
-            ? <AbilitySheet ability={item} foundryWindow={foundryApplication} />
+            ? <AbilitySheet ability={item} application={foundryApplication} />
             : item.type === equipment
-              ? <EquipmentSheet entity={item} foundryWindow={foundryApplication} />
+              ? <EquipmentSheet equipment={item} application={foundryApplication} />
               : item.type === weapon
-                ? <WeaponSheet weapon={item} foundryWindow={foundryApplication} />
+                ? <WeaponSheet weapon={item} application={foundryApplication} />
                 : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
           }
         </div>
