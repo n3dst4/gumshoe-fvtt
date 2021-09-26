@@ -13,20 +13,20 @@ import { ImagePickle } from "../ImagePickle";
 
 type AbilitySheetProps = {
   ability: GumshoeItem,
-  foundryWindow: ItemSheet,
+  application: ItemSheet,
 };
 
 export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   ability,
-  foundryWindow,
+  application,
 }) => {
   const isGeneral = isGeneralAbility(ability);
   const updateName = useUpdate(ability, (name) => ({ name }));
   const [configMode, setConfigMode] = useState(false);
 
   useEffect(() => {
-    foundryWindow.render();
-  }, [foundryWindow, configMode]);
+    application.render();
+  }, [application, configMode]);
 
   const {
     contentEditableRef: contentEditableRefName,
@@ -73,7 +73,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
       <ImagePickle
         editMode={configMode}
         document={ability}
-        application={foundryWindow}
+        application={application}
         css={{
           gridArea: "image",
           transform: "rotateZ(-2deg)",

@@ -10,18 +10,18 @@ import { ImagePickle } from "../ImagePickle";
 
 type WeaponSheetProps = {
   weapon: GumshoeItem,
-  foundryWindow: ItemSheet,
+  application: ItemSheet,
 };
 
 export const WeaponSheet: React.FC<WeaponSheetProps> = ({
   weapon,
-  foundryWindow,
+  application,
 }) => {
   const name = useAsyncUpdate(weapon.name || "", weapon.setName);
   const [configMode, setConfigMode] = useState(false);
   useEffect(() => {
-    foundryWindow.render();
-  }, [foundryWindow, configMode]);
+    application.render();
+  }, [application, configMode]);
   return (
     <div
       css={{
@@ -65,7 +65,7 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
       <ImagePickle
         editMode={true}
         document={weapon}
-        application={foundryWindow}
+        application={application}
         css={{
           gridArea: "image",
           transform: "rotateZ(-2deg)",

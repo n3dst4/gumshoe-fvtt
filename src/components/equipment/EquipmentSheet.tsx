@@ -12,20 +12,20 @@ import { assertGame, confirmADoodleDo } from "../../functions";
 import { ImagePickle } from "../ImagePickle";
 
 type EquipmentSheetProps = {
-  entity: GumshoeItem,
-  foundryWindow: ItemSheet,
+  equipment: GumshoeItem,
+  application: ItemSheet,
 };
 
 export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
-  entity,
-  foundryWindow,
+  equipment,
+  application,
 }) => {
-  const name = useAsyncUpdate(entity.name || "", entity.setName);
-  const notes = useAsyncUpdate(entity.getNotes(), entity.setNotes);
+  const name = useAsyncUpdate(equipment.name || "", equipment.setName);
+  const notes = useAsyncUpdate(equipment.getNotes(), equipment.setNotes);
 
   const onClickDelete = useCallback(() => {
     assertGame(game);
-    const message = entity.actor
+    const message = equipment.actor
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
@@ -35,14 +35,14 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
       "Cancel",
       "fa-trash",
       {
-        ActorName: entity.actor?.data.name ?? "",
-        EquipmentName: entity.data.name,
+        ActorName: equipment.actor?.data.name ?? "",
+        EquipmentName: equipment.data.name,
       },
       () => {
-        entity.delete();
+        equipment.delete();
       },
     );
-  }, [entity]);
+  }, [equipment]);
 
   return (
     <div
@@ -64,8 +64,8 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
       {/* Image */}
       <ImagePickle
         editMode={true}
-        document={entity}
-        application={foundryWindow}
+        document={equipment}
+        application={application}
         css={{
           gridArea: "image",
           transform: "rotateZ(-2deg)",
