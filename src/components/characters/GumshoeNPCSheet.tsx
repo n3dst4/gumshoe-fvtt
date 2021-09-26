@@ -9,7 +9,6 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { TabContainer } from "../TabContainer";
 import { LogoEditable } from "./LogoEditable";
 import { AbilitiesArea } from "./AbilitiesArea";
-import { EquipmentArea } from "./EquipmentArea";
 import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
@@ -88,6 +87,7 @@ export const GumshoeNPCSheet = ({
           gap: "0.5em",
           gridTemplateAreas:
             "\"title title image\" " +
+            "\"notes notes image\" " +
             "\"pools body  body\" ",
         }}
       >
@@ -102,6 +102,22 @@ export const GumshoeNPCSheet = ({
             text={actor.data.name}
             onChangeText={updateName}
           />
+        </div>
+        <div
+          css={{
+            gridArea: "notes",
+            padding: "1em",
+            backgroundColor: theme.colors.bgTransSecondary,
+            position: "relative",
+          }}
+        >
+          <Fragment>
+            <h2><Translate>Description</Translate></h2>
+            <AsyncTextArea
+              onChange={updateNPCNotes}
+              value={actor.data.data.notes}
+            />
+          </Fragment>
         </div>
         <div
           css={{
@@ -183,32 +199,14 @@ export const GumshoeNPCSheet = ({
               {
                 id: "abilities",
                 label: "Abilities",
-                content: <AbilitiesArea
-                  actor={actor}
-                  flipLeftRight={true}
-                />,
-              },
-              {
-                id: "equipment",
-                label: "Equipment",
                 content: (
                   <Fragment>
-                    <WeaponsArea actor={actor} />
-                    <div css={{ height: "1em" }}/>
-                    <EquipmentArea actor={actor} />
-                  </Fragment>
-                ),
-              },
-              {
-                id: "notes",
-                label: "Notes",
-                content: (
-                  <Fragment>
-                    <h2><Translate>Notes</Translate></h2>
-                    <AsyncTextArea
-                      onChange={updateNPCNotes}
-                      value={actor.data.data.notes}
+                    <AbilitiesArea
+                      actor={actor}
+                      flipLeftRight={true}
                     />
+                    <div css={{ height: "1em" }}/>
+                    <WeaponsArea actor={actor} />
                   </Fragment>
                 ),
               },

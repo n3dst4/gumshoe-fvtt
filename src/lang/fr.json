@@ -4,6 +4,7 @@
   "investigator.Abilities": "Compétences",
   "investigator.Equipment": "Équipment",
   "investigator.Notes": "Notes",
+  "investigator.Description": "Description",
   "investigator.HideZeroRatedAbilities": "Masquer les compétences à zéro",
   "investigator.InvestigativeAbility": "Compétences d'investigation",
   "investigator.GeneralAbility": "Compétences générales",
