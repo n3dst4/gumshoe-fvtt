@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback } from "react";
+import React, { useCallback } from "react";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
@@ -9,10 +9,11 @@ import { TextInput } from "../inputs/TextInput";
 import { TextArea } from "../inputs/TextArea";
 import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
+import { ImagePickle } from "../ImagePickle";
 
 type EquipmentSheetProps = {
   entity: GumshoeItem,
-  foundryWindow: Application,
+  foundryWindow: ItemSheet,
 };
 
 export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
@@ -44,30 +45,56 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   }, [entity]);
 
   return (
-    <Fragment>
-      <div>
+    <div
+      css={{
+        paddingBottom: "1em",
+        display: "grid",
+        gridTemplateColumns: "auto 1fr auto",
+        gridTemplateRows: "auto auto auto",
+        gridTemplateAreas:
+          "\"image slug     trash\" " +
+          "\"image headline headline\" " +
+          "\"body  body     body\" ",
+      }}
+    >
+      <div css={{ gridArea: "slug" }}>
         <Translate>Equipment</Translate>
-        <a
-          css={{
-            float: "right",
-          }}
-          onClick={() => {
-            onClickDelete();
-          }}
-        >
-          <i className={"fa fa-trash"}/>
-        </a>
-
       </div>
 
+      {/* Image */}
+      <ImagePickle
+        editMode={true}
+        document={entity}
+        application={foundryWindow}
+        css={{
+          gridArea: "image",
+          transform: "rotateZ(-2deg)",
+          width: "4em",
+          height: "4em",
+          margin: "0 1em 0.5em 0",
+        }}
+      />
+
+      <a
+        css={{
+          gridArea: "trash",
+        }}
+        onClick={() => {
+          onClickDelete();
+        }}
+      >
+        <i className={"fa fa-trash"}/>
+      </a>
+
       <h1
+        css={{ gridArea: "headline" }}
         contentEditable
         onInput={name.onInput}
         onFocus={name.onFocus}
         onBlur={name.onBlur}
         ref={name.contentEditableRef}
       />
-      <InputGrid>
+      <InputGrid css={{ gridArea: "body" }}>
         <GridField label="Name">
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
@@ -75,6 +102,6 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
           <TextArea value={notes.display} onChange={notes.onChange} />
         </GridField>
       </InputGrid>
-    </Fragment>
+    </div>
   );
 };
