@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React from "react";
+import React, { useCallback, useContext } from "react";
 import { equipment } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
+import { ActorSheetAppContext } from "../FoundryAppContext";
 import { Translate } from "../Translate";
 
 type EquipmentAreaProps = {
@@ -13,6 +14,14 @@ type EquipmentAreaProps = {
 export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
   actor,
 }) => {
+  const app = useContext(ActorSheetAppContext);
+
+  const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
+    if (app !== null) {
+      (app as any)._onDragStart(e);
+    }
+  }, [app]);
+
   const items = actor.getEquipment();
   return (
     <div>
@@ -71,7 +80,14 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
             sortEntitiesByName(items).map<JSX.Element>((item) => (
               <a
                 key={item.id}
+                css={{
+                  display: "block",
+                  position: "relative",
+                }}
                 onClick={() => item.sheet?.render(true)}
+                data-item-id={item.id}
+                onDragStart={onDragStart}
+                draggable="true"
               >
                 {item.name}
               </a>
