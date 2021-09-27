@@ -7,6 +7,7 @@ import * as pathOfCthulhuData from "./pathOfCthulhuData";
 import * as niceBlackAgentsData from "./niceBlackAgentsData";
 import * as nothingToFearData from "./nothingToFearData";
 import * as pallidStarsData from "./pallidStarsData";
+import * as srdAbilitiesData from "./srdAbilitiesData";
 import { generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, packNames, systemName } from "../constants";
 import { assertGame } from "../functions";
 
@@ -184,6 +185,23 @@ export const initializePackGenerators = () => {
         pack,
       );
     },
+    srdAbilities: async () => {
+      const pack = findPack(packNames.srdAbilities);
+      if (pack === undefined) {
+        return;
+      }
+      emptyPack(pack);
+      await generatePacks(
+        srdAbilitiesData.investigativeAbilities,
+        investigativeTemplate,
+        pack,
+      );
+      await generatePacks(
+        srdAbilitiesData.generalAbilities,
+        generalTemplate,
+        pack,
+      );
+    },
   };
 };
 
@@ -194,6 +212,7 @@ declare global {
       niceBlackAgents(): Promise<void>,
       nothingToFear(): Promise<void>,
       pallidStars(): Promise<void>,
+      srdAbilities(): Promise<void>,
     };
   }
 }
