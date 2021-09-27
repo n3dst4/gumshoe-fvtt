@@ -6,11 +6,9 @@ import { useUpdate } from "../../hooks/useUpdate";
 import { CSSReset } from "../CSSReset";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { TabContainer } from "../TabContainer";
 import { LogoEditable } from "./LogoEditable";
 import { AbilitiesArea } from "./AbilitiesArea";
 import { WeaponsArea } from "./WeaponsArea";
-import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
@@ -82,12 +80,13 @@ export const GumshoeNPCSheet = ({
           bottom: 0,
           left: 0,
           display: "grid",
-          gridTemplateRows: "min-content max-content 1fr",
+          gridTemplateRows: "min-content max-content min-content 1fr",
           gridTemplateColumns: "10em 1fr 10em",
           gap: "0.5em",
           gridTemplateAreas:
             "\"title title image\" " +
             "\"notes notes image\" " +
+            "\"stats stats stats\" " +
             "\"pools body  body\" ",
         }}
       >
@@ -101,18 +100,21 @@ export const GumshoeNPCSheet = ({
           <LogoEditable
             text={actor.data.name}
             onChangeText={updateName}
+            css={{
+              fontSize: "0.66em",
+            }}
           />
         </div>
         <div
           css={{
             gridArea: "notes",
-            padding: "1em",
+            padding: "0.5em",
             backgroundColor: theme.colors.bgTransSecondary,
             position: "relative",
           }}
         >
           <Fragment>
-            <h2><Translate>Description</Translate></h2>
+            <h3><Translate>Description</Translate></h3>
             <AsyncTextArea
               onChange={updateNPCNotes}
               value={actor.data.data.notes}
@@ -141,84 +143,102 @@ export const GumshoeNPCSheet = ({
             padding: "1em",
             background: theme.colors.bgTransPrimary,
           }}
-          >
-            <h3 css={{ gridColumn: "start / end" }}>
-              <Translate>Hit Threshold</Translate>
-            </h3>
+        >
+            <TrackersArea actor={actor} />
+        </div>
+
+        <div
+          css={{
+            gridArea: "stats",
+            position: "relative",
+            background: theme.colors.bgTransPrimary,
+            padding: "0.5em",
+            overflow: "auto",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "end",
+            gap: "1em",
+          }}
+        >
+          <Fragment>
+            <h3><Translate>Hit Threshold</Translate></h3>
             <AsyncNumberInput
               min={0}
               value={actor.data.data.hitThreshold}
               onChange={updateHitThreshold}
+              noPlusMinus={true}
+              css={{
+                width: "2em",
+              }}
             />
-            <h3 css={{ gridColumn: "start / end" }}>
-              <Translate>Armor</Translate>
-            </h3>
+          </Fragment>
+          <Fragment>
+            <h3><Translate>Armor</Translate></h3>
             <AsyncNumberInput
               min={-10}
               value={actor.data.data.armor}
               onChange={updateArmor}
+              noPlusMinus={true}
+              css={{
+                width: "2em",
+              }}
             />
-            <h3 css={{ gridColumn: "start / end" }}>
-              <Translate>Alertness Modifier</Translate>
-            </h3>
+            </Fragment>
+            <Fragment>
+              <h3><Translate>Alertness Modifier</Translate></h3>
             <AsyncNumberInput
               min={-10}
               value={actor.data.data.alertness}
               onChange={updateAlertness}
+              noPlusMinus={true}
+              css={{
+                width: "2em",
+              }}
             />
-            <h3 css={{ gridColumn: "start / end" }}>
-              <Translate>Stealth Modifier</Translate>
-            </h3>
+            </Fragment>
+            <Fragment>
+              <h3><Translate>Stealth Modifier</Translate></h3>
             <AsyncNumberInput
               min={-10}
               value={actor.data.data.stealth}
               onChange={updateStealth}
+              noPlusMinus={true}
+              css={{
+                width: "2em",
+              }}
             />
-            <h3 css={{ gridColumn: "start / end" }}>
-              <Translate>Stability Loss</Translate>
-            </h3>
+            </Fragment>
+            <Fragment>
+              <h3><Translate>Stability Loss</Translate></h3>
             <AsyncNumberInput
               min={-10}
               value={actor.data.data.stabilityLoss}
               onChange={updateStabilityLoss}
+              noPlusMinus={true}
+              css={{
+                width: "2em",
+              }}
             />
-            <hr/>
-            <TrackersArea actor={actor} />
+          </Fragment>
         </div>
 
         <div
           css={{
             gridArea: "body",
             position: "relative",
-            overflow: "hidden",
+            background: theme.colors.bgTransPrimary,
+            padding: "0.5em",
+            overflow: "auto",
           }}
         >
-          <TabContainer
-            defaultTab="abilities"
-            tabs={[
-              {
-                id: "abilities",
-                label: "Abilities",
-                content: (
-                  <Fragment>
-                    <AbilitiesArea
-                      actor={actor}
-                      flipLeftRight={true}
-                    />
-                    <div css={{ height: "1em" }}/>
-                    <WeaponsArea actor={actor} />
-                  </Fragment>
-                ),
-              },
-              {
-                id: "settings",
-                label: <i className="fa fa-cog" />,
-                content: (
-                  <SettingArea actor={actor} />
-                ),
-              },
-            ]}
-          />
+          <Fragment>
+            <AbilitiesArea
+              actor={actor}
+              flipLeftRight={true}
+            />
+            <div css={{ height: "1em" }}/>
+            <WeaponsArea actor={actor} />
+          </Fragment>
         </div>
       </CSSReset>
     </ActorSheetAppContext.Provider>

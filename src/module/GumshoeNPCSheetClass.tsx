@@ -14,8 +14,8 @@ class GumshoeNPCSheetClassBase extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "actor"],
       template: reactTemplatePath,
-      width: 660,
-      height: 900,
+      width: 700,
+      height: 600,
     });
   }
 }
