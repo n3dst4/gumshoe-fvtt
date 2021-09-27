@@ -48,6 +48,7 @@ export const packNames = {
   nothingToFearAbilities: "nothingToFearAbilities",
   pallidStarsAbilities: "pallidStarsAbilities",
   pathOfCthulhuAbilities: "pathOfCthulhuAbilities",
+  srdAbilities: "srdAbilities",
 };
 
 // hooks
