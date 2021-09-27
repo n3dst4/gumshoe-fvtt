@@ -81,12 +81,12 @@ export const GumshoeNPCSheet = ({
           left: 0,
           display: "grid",
           gridTemplateRows: "min-content max-content min-content 1fr",
-          gridTemplateColumns: "10em 1fr 10em",
+          gridTemplateColumns: "max-content 1fr 10em",
           gap: "0.5em",
           gridTemplateAreas:
             "\"title title image\" " +
             "\"notes notes image\" " +
-            "\"stats stats stats\" " +
+            "\"stats body body\" " +
             "\"pools body  body\" ",
         }}
       >
@@ -153,15 +153,14 @@ export const GumshoeNPCSheet = ({
             position: "relative",
             background: theme.colors.bgTransPrimary,
             padding: "0.5em",
-            overflow: "auto",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "end",
-            gap: "1em",
+            display: "grid",
+            gridTemplateColumns: "1fr max-content",
+            gridAutoRows: "min-content",
+            columnGap: "0.5em",
           }}
         >
           <Fragment>
-            <h3><Translate>Hit Threshold</Translate></h3>
+            <h3 css={{ gridColumn: "1" }}><Translate>Hit Threshold</Translate></h3>
             <AsyncNumberInput
               min={0}
               value={actor.data.data.hitThreshold}
@@ -169,11 +168,12 @@ export const GumshoeNPCSheet = ({
               noPlusMinus={true}
               css={{
                 width: "2em",
+                gridColumn: "2",
               }}
             />
           </Fragment>
           <Fragment>
-            <h3><Translate>Armor</Translate></h3>
+            <h3 css={{ gridColumn: "1" }}><Translate>Armor</Translate></h3>
             <AsyncNumberInput
               min={-10}
               value={actor.data.data.armor}
@@ -181,11 +181,12 @@ export const GumshoeNPCSheet = ({
               noPlusMinus={true}
               css={{
                 width: "2em",
+                gridColumn: "2",
               }}
             />
-            </Fragment>
-            <Fragment>
-              <h3><Translate>Alertness Modifier</Translate></h3>
+          </Fragment>
+          <Fragment>
+            <h3 css={{ gridColumn: "1" }}><Translate>Alertness Modifier</Translate></h3>
             <AsyncNumberInput
               min={-10}
               value={actor.data.data.alertness}
@@ -193,11 +194,12 @@ export const GumshoeNPCSheet = ({
               noPlusMinus={true}
               css={{
                 width: "2em",
+                gridColumn: "2",
               }}
             />
-            </Fragment>
-            <Fragment>
-              <h3><Translate>Stealth Modifier</Translate></h3>
+          </Fragment>
+          <Fragment>
+            <h3 css={{ gridColumn: "1" }}><Translate>Stealth Modifier</Translate></h3>
             <AsyncNumberInput
               min={-10}
               value={actor.data.data.stealth}
@@ -205,11 +207,12 @@ export const GumshoeNPCSheet = ({
               noPlusMinus={true}
               css={{
                 width: "2em",
+                gridColumn: "2",
               }}
             />
-            </Fragment>
-            <Fragment>
-              <h3><Translate>Stability Loss</Translate></h3>
+          </Fragment>
+          <Fragment>
+            <h3 css={{ gridColumn: "1" }}><Translate>Stability Loss</Translate></h3>
             <AsyncNumberInput
               min={-10}
               value={actor.data.data.stabilityLoss}
@@ -217,6 +220,7 @@ export const GumshoeNPCSheet = ({
               noPlusMinus={true}
               css={{
                 width: "2em",
+                gridColumn: "2",
               }}
             />
           </Fragment>
