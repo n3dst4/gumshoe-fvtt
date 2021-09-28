@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v4.4.0 (2021-09-28)
+
+* **New actor type and ability pack for NPCs!** (#5) Thanks to Yariv Yanay (@yariv on Discord, @yarrriv on GitLab). This closes one of the oldest feature requests.
+* **Two new character sheet themes!** Delta Groovy and Green Triangle (#20)
+* **Editable image for abilities and equipment!** (#28) Also the ability to view an image full size.
+* **All GUMSHOE SRD v3 abilities in one handy pack!** (#22) Even the ones that aren't in other packs.
+* **Babele translations for various packs!** (#40) Big thanks to @Simone [UTC +2]#6710 for patching Babele to allow systems to distribute translations.
+* **Bug fix** Package size is down from 4.4MB to 1.4MB (#39)
+* **Bug fix** Weapons and equipment can now be dragged out from the character sheet to the sidebar (#44)
+
 ## v4.3.0 (2021-09-16)
 
 * **French translations!** Merci @algol.
@@ -8,6 +18,7 @@
 * **Icons for weapons & equipment** (#27). Editable images for these (and abilities) is on the list for later.
 * **Notes field on abilities** (#19) This has been asked for by a few people.
 * Abilities can be marked as **"Goes first in combat"**, and they will always go before anyone using an ability which is not marked as "goes first in combat". This lets you have a Night's Black Agents-style "guns go first" rule.
+* **SRD weapons pack!** Thanks to Yariv Yanay (@yariv on Discord, @yarrriv on GitLab)
 * **Bug fix**: Longer translations were pushing the ability configuration dialog (and others) out of whack (#29)
 * **Bug fix**: Various translation fixes (#32, #31, #30)
 * **Bug fix**: game-icons.net is given due attribution in README (#37)
