@@ -8,7 +8,9 @@ import {
   investigativeAbilityCategories,
   longNotes,
   newPCPacks,
+  newNPCPacks,
   newPCPacksUpdated,
+  newNPCPacksUpdated,
   occupationLabel,
   shortNotes,
   systemMigrationVersion,
@@ -104,6 +106,17 @@ export const registerSettings = function () {
     type: Array,
     onChange: (newPacks: string[]) => {
       Hooks.call(newPCPacksUpdated, newPacks);
+    },
+  });
+
+  game.settings.register(systemName, newNPCPacks, {
+    name: "Compendium packs for new NPCs",
+    scope: "world",
+    config: false,
+    default: pathOfCthulhuPreset.newNPCPacks,
+    type: Array,
+    onChange: (newPacks: string[]) => {
+      Hooks.call(newNPCPacksUpdated, newPacks);
     },
   });
 

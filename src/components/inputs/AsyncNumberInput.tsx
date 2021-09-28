@@ -11,6 +11,7 @@ type AsyncNumberInputProps = {
   min?: number,
   max?: number,
   disabled?: boolean,
+  noPlusMinus?: boolean,
 };
 
 export type ValidationResult = {
@@ -42,6 +43,7 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
   min,
   max,
   disabled,
+  noPlusMinus,
 }) => {
   const validate = useCallback((text: string): ValidationResult => {
     const num = Number(text);
@@ -101,28 +103,32 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
       }}
       className={className}
     >
-      <button
-        css={{
-          lineHeight: "inherit",
-          flexBasis: "min-content",
-          flex: 0,
-        }}
-        onClick={onClickDec}
-        disabled={disabled}
-      >
-        <i className="fa fa-minus" />
-      </button>
-      <button
-        css={{
-          lineHeight: "inherit",
-          flexBasis: "min-content",
-          flex: 0,
-        }}
-        onClick={onClickInc}
-        disabled={disabled}
-      >
-        <i className="fa fa-plus" />
-      </button>
+      {(noPlusMinus === undefined || !noPlusMinus) &&
+        <button
+          css={{
+            lineHeight: "inherit",
+            flexBasis: "min-content",
+            flex: 0,
+          }}
+          onClick={onClickDec}
+          disabled={disabled}
+        >
+          <i className="fa fa-minus" />
+        </button>
+      }
+      {(noPlusMinus === undefined || !noPlusMinus) &&
+        <button
+          css={{
+            lineHeight: "inherit",
+            flexBasis: "min-content",
+            flex: 0,
+          }}
+          onClick={onClickInc}
+          disabled={disabled}
+        >
+          <i className="fa fa-plus" />
+        </button>
+      }
       <TextInput
         css={css`
           flex: 1;

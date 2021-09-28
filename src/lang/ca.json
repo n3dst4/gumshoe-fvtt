@@ -64,6 +64,8 @@
   "investigator.SystemPreset": "Configuracions predefinides del sistema",
   "investigator.VisualTheme": "Tema visual",
   "investigator.CompendiumPacksForNewPCs": "Compendis per nous PJ",
+  "investigator.PCs": "PJs",
+  "investigator.NPCs": "PNJs",
   "investigator.AddItem": "Afegir objecte",
   "investigator.InvestigativeAbilityCategories": "Categories d'habilitats de investigació",
   "investigator.GeneralAbilityCategories": "Categories d'habilitats generals",

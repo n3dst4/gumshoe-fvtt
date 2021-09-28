@@ -6,19 +6,21 @@ import { sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { ThemeContext } from "../../theme";
-import { assertPCDataSource, isAbilityDataSource } from "../../types";
+import { assertActiveCharacterDataSource, isAbilityDataSource } from "../../types";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
 import { AbilitySlug } from "./AbilitySlug";
 
 type AbilitiesAreaProps = {
   actor: GumshoeActor,
+  flipLeftRight?: boolean,
 };
 
 export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
   actor,
+  flipLeftRight,
 }) => {
-  assertPCDataSource(actor.data);
+  assertActiveCharacterDataSource(actor.data);
   const theme = useContext(ThemeContext);
 
   const investigativeAbilities: { [category: string]: GumshoeItem[] } = {};
@@ -72,7 +74,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
         css={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gridTemplateAreas: "'investigative general'",
+          gridTemplateAreas: (flipLeftRight) ? "'general investigative'" : "'investigative general'",
           gridTemplateRows: "auto",
         }}
       >

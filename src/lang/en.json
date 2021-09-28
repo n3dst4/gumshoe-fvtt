@@ -4,6 +4,7 @@
   "investigator.Abilities": "Abilities",
   "investigator.Equipment": "Equipment",
   "investigator.Notes": "Notes",
+  "investigator.Description": "Description",
   "investigator.HideZeroRatedAbilities": "Hide zero-rated abilities",
   "investigator.InvestigativeAbility": "Investigative ability",
   "investigator.GeneralAbility": "General ability",
@@ -63,7 +64,9 @@
   "investigator.SystemNameSystemSettings": "{SystemName} System Settings",
   "investigator.SystemPreset": "System preset",
   "investigator.VisualTheme": "Visual theme",
-  "investigator.CompendiumPacksForNewPCs": "Compendium packs for new PCs",
+  "investigator.CompendiumPacksForNewCharacters": "Compendium packs for new characters",
+  "investigator.PCs": "PCs",
+  "investigator.NPCs": "NPCs",
   "investigator.AddItem": "Add item",
   "investigator.InvestigativeAbilityCategories": "Investigative ability categories",
   "investigator.GeneralAbilityCategories": "General ability categories",
@@ -92,5 +95,9 @@
   "investigator.DeleteTheAbilityNameAbility": "Delete the \"{AbilityName}\" ability?",
   "investigator.DamageAtRangeNameWithWeaponName": "Damage at {RangeName} with <b>{WeaponName}</b>",
   "investigator.HitThreshold": "Hit Threshold",
+  "investigator.Armor": "Armor",
+  "investigator.AlertnessModifier": "Alertness",
+  "investigator.StealthModifier": "Stealth",
+  "investigator.StabilityLoss": "Stability Loss",
   "investigator.GoesFirstInCombat": "Goes first in combat?"
 }

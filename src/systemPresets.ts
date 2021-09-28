@@ -1,4 +1,4 @@
-import { packNames, systemName } from "./constants";
+import { packNames, systemName, npcPackName } from "./constants";
 
 export type SystemPreset = {
   displayName: string,
@@ -10,6 +10,7 @@ export type SystemPreset = {
   shortNotes: string[],
   longNotes: string[],
   newPCPacks: string[],
+  newNPCPacks: string[],
   useBoost: boolean,
 }
 
@@ -23,6 +24,7 @@ export const pathOfCthulhuPreset: SystemPreset = {
   shortNotes: ["Drive"],
   longNotes: ["Notes, Contacts etc.", "Occupational Benefits", "Pillars of Sanity", "Sources of Stability"],
   newPCPacks: [`${systemName}.${packNames.pathOfCthulhuAbilities}`],
+  newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: false,
 };
 
@@ -36,6 +38,7 @@ export const niceBlackAgentsPreset: SystemPreset = {
   shortNotes: ["Drive", "Previous Patron"],
   longNotes: ["Covers", "Network Contacts", "Trust"],
   newPCPacks: [`${systemName}.${packNames.niceBlackAgentsAbilities}`],
+  newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: false,
 };
 
@@ -49,6 +52,7 @@ export const nothingToFearPreset: SystemPreset = {
   shortNotes: [],
   longNotes: ["Risk Factors", "Sources of Stability", "Notes"],
   newPCPacks: [`${systemName}.${packNames.nothingToFearAbilities}`],
+  newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: false,
 };
 
@@ -62,6 +66,7 @@ export const pallidStarsPreset: SystemPreset = {
   shortNotes: ["Drive", "Groundside Post", "Warpside Post"],
   longNotes: ["Personal Arc", "Cybernetic Enhancements", "Viroware Enhancements", "What You Did During The War"],
   newPCPacks: [`${systemName}.${packNames.pallidStarsAbilities}`],
+  newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: true,
 };
 
