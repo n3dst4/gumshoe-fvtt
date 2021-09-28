@@ -51,10 +51,17 @@
       "entity": "Item"
     },
     {
-      "name": "investigatorWeapons",
+      "name": "srdWeapons",
       "label": "SRD Weapons",
       "system": "investigator",
-      "path": "./packs/investigatorWeapons.db",
+      "path": "./packs/srdWeapons.db",
+      "entity": "Item"
+    },
+    {
+      "name": "srdAbilities",
+      "label": "SRD Abilities",
+      "system": "investigator",
+      "path": "./packs/srdAbilities.db",
       "entity": "Item"
     }
   ],

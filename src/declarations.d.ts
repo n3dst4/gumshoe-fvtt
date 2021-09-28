@@ -22,3 +22,5 @@ declare module "irid" {
   }
   export default Irid;
 }
+
+declare const Babele: any;

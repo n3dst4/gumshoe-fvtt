@@ -194,6 +194,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
 
   return (
     <CSSReset
+      shroudBackground
       theme={theme}
       css={{
         position: "absolute",

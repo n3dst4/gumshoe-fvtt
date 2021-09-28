@@ -1,0 +1,32 @@
+{
+	"label": "SRD Weapons",
+	"entries": {
+		"Firearm (heavy)": {
+			"name": "Arma da Fogo (pesada)"
+		},
+		"Firearm (light)": {
+			"name": "Arma da Fogo (leve)"
+		},
+		"Fist/kick": {
+			"name": "Soco/chute"
+		},
+		"Heavy club": {
+			"name": "Porrete pesado"
+		},
+		"Knife": {
+			"name": "Faca"
+		},
+		"Machete": {
+			"name": "Machete"
+		},
+		"Police Baton": {
+			"name": "Cassetete policial"
+		},
+		"Small improvised weapon": {
+			"name": "Arma improvisada pequena"
+		},
+		"Sword": {
+			"name": "Espada"
+		}
+	}
+}

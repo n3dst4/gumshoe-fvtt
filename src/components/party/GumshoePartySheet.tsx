@@ -114,6 +114,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
+        shroudBackground
         theme={theme}
         css={{
           position: "absolute",
