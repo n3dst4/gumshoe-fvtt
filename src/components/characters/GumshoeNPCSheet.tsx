@@ -13,6 +13,7 @@ import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
 import { assertNPCDataSource } from "../../types";
+import { ImagePickle } from "../ImagePickle";
 
 type GumshoeNPCSheetProps = {
   actor: GumshoeActor,
@@ -24,23 +25,6 @@ export const GumshoeNPCSheet = ({
   foundryApplication,
 }: GumshoeNPCSheetProps) => {
   assertNPCDataSource(actor.data);
-  const onImageClick = useCallback(() => {
-    console.log("onImageClick");
-    const fp = new FilePicker({
-      type: "image",
-      current: actor.data.img,
-      callback: (path: string) => {
-        actor.update({
-          img: path,
-        });
-      },
-      top: (foundryApplication.position.top ?? 0) + 40,
-      left: (foundryApplication.position.left ?? 0) + 10,
-    });
-    // types aren't quite right for fp
-    return (fp as any).browse();
-  }, [actor, foundryApplication.position.left, foundryApplication.position.top]);
-
   const updateName = useUpdate(actor, name => ({ name }));
 
   const updateHitThreshold = useCallback((newThreshold) => {
@@ -121,17 +105,14 @@ export const GumshoeNPCSheet = ({
             />
           </Fragment>
         </div>
-        <div
+
+        <ImagePickle
+          subject={actor}
+          application={foundryApplication}
           css={{
             gridArea: "image",
-            backgroundImage: `url("${actor.data.img}")`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            borderRadius: "0.2em",
-            boxShadow: "0em 0em 0.5em 0.1em rgba(0,0,0,0.5)",
             transform: "rotateZ(2deg)",
           }}
-          onClick={onImageClick}
         />
 
         <div
