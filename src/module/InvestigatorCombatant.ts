@@ -1,15 +1,13 @@
 import * as constants from "../constants";
 import { GumshoeItem } from "./GumshoeItem";
-
+import { assertActiveCharacterDataSource } from "../types";
 /**
  * Override base Combatant class to override the initiative formula.
  * XXX what's i'd like to do is block it from doing a "roll" at all.
  */
 export class InvestigatorCombatant extends Combatant {
   _getInitiativeFormula () {
-    if (this.actor?.data.type !== constants.pc) {
-      return "0";
-    }
+    assertActiveCharacterDataSource(this.actor?.data);
     const abilityName = this.actor?.data.data.initiativeAbility;
     const ability = this.actor.items.find(
       (item: GumshoeItem) => item.type === constants.generalAbility && item.name === abilityName,

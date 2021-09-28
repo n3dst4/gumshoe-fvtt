@@ -1,6 +1,6 @@
 import { ConfiguredDocumentClass } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
 import * as constants from "../constants";
-import { isGeneralAbilityDataSource, isPCDataSource } from "../types";
+import { isGeneralAbilityDataSource, isActiveCharacterDataSource } from "../types";
 import { GumshoeItem } from "./GumshoeItem";
 
 /**
@@ -11,7 +11,7 @@ export class InvestigatorCombat extends Combat {
     a: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
     b: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
   ): number {
-    if (!(a.actor !== null && b.actor !== null && isPCDataSource(a.actor?.data) && isPCDataSource(b.actor?.data))) {
+    if (!(a.actor !== null && b.actor !== null && isActiveCharacterDataSource(a.actor?.data) && isActiveCharacterDataSource(b.actor?.data))) {
       return 0;
     }
     const aAbilityName = a.actor.data.data.initiativeAbility;
