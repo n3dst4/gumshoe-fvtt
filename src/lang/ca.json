@@ -4,6 +4,7 @@
   "investigator.Abilities": "Habilitats",
   "investigator.Equipment": "Equip",
   "investigator.Notes": "Notes",
+  "investigator.Description": "Description",
   "investigator.HideZeroRatedAbilities": "Amagar habilitats sense punts assignats.",
   "investigator.InvestigativeAbility": "Habilitat de investigació",
   "investigator.GeneralAbility": "Habilitat general",
@@ -94,5 +95,9 @@
   "investigator.DeleteTheAbilityNameAbility": "Vols esborrar l'habilitat \"{AbilityName}\" ?",
   "investigator.DamageAtRangeNameWithWeaponName": "Mal de {RangeName} amb <b>{WeaponName}</b>",
   "investigator.HitThreshold": "Llindar de cop",
-  "investigator.GoesFirstInCombat": "Vas primer en combat?"
+  "investigator.GoesFirstInCombat": "Vas primer en combat?",
+  "investigator.Armor": "Armor",
+  "investigator.AlertnessModifier": "Alertness",
+  "investigator.StealthModifier": "Stealth",
+  "investigator.StabilityLoss": "Stability Loss"
 }
