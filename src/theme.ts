@@ -425,6 +425,46 @@ export const greenTriangleTheme: Theme = themeFactory({
   },
 });
 
+export const whistleTheme: Theme = themeFactory({
+  displayName: "Antiquarian",
+  global: css`
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer:ital@0;1&display=swap');`,
+  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/kiwihug-qv05FvdE26k-unsplash.webp)`,
+  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  displayFont: "normal normal normal 1.1em 'IM Fell Great Primer', serif",
+  logoFrontElementStyle: {
+    color: "#000",
+    maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-ctXf1GVyf9A-unsplash.webp)`,
+    maskMode: "luminance",
+    maskRepeat: "repeat",
+  },
+  logoRearElementStyle: {
+    // textShadow: "0 0 0.2em #cfffc2",
+    display: "none",
+  },
+  // logoTransform: "scale(1.0, 0.8) rotate(-1.5deg)",
+  logoTransform: "scale(0.7) translateY(-0.35em)",
+  logoBackdropStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/headpiece7-768.webp)`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "bottom",
+    backgroundSize: "75%",
+  },
+  colors: {
+    // accent: "#256425",
+    accent: "#236",
+    accentContrast: "#fff",
+    glow: "#cfc2ff",
+    wallpaper: "#bb9", //
+    bgTransSecondary: "#fff6",
+    bgTransPrimary: "#fff9",
+    bgTint: "rgba(0,0,0,0.1)",
+    text: "#000",
+    textMuted: "#33",
+  },
+});
+
 export const themes: {[themeName: string]: Theme} = {
   tealTheme,
   niceTheme,
@@ -433,7 +473,8 @@ export const themes: {[themeName: string]: Theme} = {
   fearTheme,
   pallidTheme,
   deltaGroovyTheme,
-  greenTriangleTheme: greenTriangleTheme,
+  greenTriangleTheme,
+  whistleTheme,
 };
 
 export const ThemeContext = React.createContext<Theme>(tealTheme);
