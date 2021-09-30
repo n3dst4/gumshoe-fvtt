@@ -429,12 +429,12 @@ export const whistleTheme: Theme = themeFactory({
   displayName: "Antiquarian",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer:ital@0;1&display=swap');`,
+    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');`,
   // wallpaperUrl: "none",
   // wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/kiwihug-qv05FvdE26k-unsplash.webp)`,
   wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
-  displayFont: "normal normal normal 1.1em 'IM Fell Great Primer', serif",
+  displayFont: "normal small-caps normal 1.1em 'IM Fell English', serif",
   logoFrontElementStyle: {
     color: "#000",
     maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
