@@ -394,10 +394,7 @@ export const greenTriangleTheme: Theme = themeFactory({
   displayName: "Green triangle",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Keania+One&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@100;200;300;400;500;600;700;800;900&family=Big+Shoulders+Stencil+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');  `,
+    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@900&family=Big+Shoulders+Stencil+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');  `,
   wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "900 small-caps normal 1.1em 'Big Shoulders Stencil Text', serif",
