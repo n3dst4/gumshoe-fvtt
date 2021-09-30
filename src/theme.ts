@@ -425,7 +425,7 @@ export const greenTriangleTheme: Theme = themeFactory({
   },
 });
 
-export const whistleTheme: Theme = themeFactory({
+export const antiquarianTheme: Theme = themeFactory({
   displayName: "Antiquarian",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
@@ -483,7 +483,7 @@ export const themes: {[themeName: string]: Theme} = {
   pallidTheme,
   deltaGroovyTheme,
   greenTriangleTheme,
-  whistleTheme,
+  antiquarianTheme,
 };
 
 export const ThemeContext = React.createContext<Theme>(tealTheme);

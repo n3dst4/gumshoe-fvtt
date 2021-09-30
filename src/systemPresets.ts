@@ -70,9 +70,24 @@ export const pallidStarsPreset: SystemPreset = {
   useBoost: true,
 };
 
+export const castingTheRunesPreset: SystemPreset = {
+  displayName: "Casting the Runes",
+  defaultTheme: "antiquarianTheme",
+  investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
+  generalAbilityCategories: ["General"],
+  combatAbilities: ["Scuffling", "Weapons"],
+  occupationLabel: "Occupation",
+  shortNotes: ["Drive"],
+  longNotes: ["Income", "Contacts", "Magic", "Sources of Stability", "Things Encountered"],
+  newPCPacks: [`${systemName}.${packNames.castingTheRunesAbilities}`],
+  newNPCPacks: [`${systemName}.${npcPackName}`],
+  useBoost: false,
+};
+
 export const systemPresets = {
-  pathOfCthulhuPreset: pathOfCthulhuPreset,
-  niceBlackAgentsPreset: niceBlackAgentsPreset,
-  nothingToFearPreset: nothingToFearPreset,
-  pallidStarsPreset: pallidStarsPreset,
+  pathOfCthulhuPreset,
+  niceBlackAgentsPreset,
+  nothingToFearPreset,
+  pallidStarsPreset,
+  castingTheRunesPreset,
 };
