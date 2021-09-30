@@ -430,14 +430,18 @@ export const whistleTheme: Theme = themeFactory({
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer:ital@0;1&display=swap');`,
-  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/kiwihug-qv05FvdE26k-unsplash.webp)`,
+  // wallpaperUrl: "none",
+  // wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/kiwihug-qv05FvdE26k-unsplash.webp)`,
+  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'IM Fell Great Primer', serif",
   logoFrontElementStyle: {
     color: "#000",
-    maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-ctXf1GVyf9A-unsplash.webp)`,
+    maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
     maskMode: "luminance",
     maskRepeat: "repeat",
+    maskSize: "contain",
+    textShadow: "0.02em 0.02em 0px #fff",
   },
   logoRearElementStyle: {
     // textShadow: "0 0 0.2em #cfffc2",
@@ -450,18 +454,23 @@ export const whistleTheme: Theme = themeFactory({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "bottom",
     backgroundSize: "75%",
+    maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
+    maskMode: "luminance",
+    maskRepeat: "repeat",
+    maskSize: "contain",
+
   },
   colors: {
     // accent: "#256425",
     accent: "#236",
     accentContrast: "#fff",
     glow: "#cfc2ff",
-    wallpaper: "#bb9", //
+    wallpaper: "#eee", //
     bgTransSecondary: "#fff6",
     bgTransPrimary: "#fff9",
     bgTint: "rgba(0,0,0,0.1)",
-    text: "#000",
-    textMuted: "#33",
+    text: "#222",
+    textMuted: "#333",
   },
 });
 
