@@ -85,6 +85,11 @@
       "lang": "fr",
       "name": "Français",
       "path": "lang/fr.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português do Brasil",
+      "path": "lang/pt-BR.json"
     }
   ],
   "gridDistance": 1,
