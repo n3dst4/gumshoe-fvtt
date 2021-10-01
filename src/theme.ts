@@ -394,10 +394,7 @@ export const greenTriangleTheme: Theme = themeFactory({
   displayName: "Green triangle",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Keania+One&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@100;200;300;400;500;600;700;800;900&family=Big+Shoulders+Stencil+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');  `,
+    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@900&family=Big+Shoulders+Stencil+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');  `,
   wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "900 small-caps normal 1.1em 'Big Shoulders Stencil Text', serif",
@@ -428,6 +425,55 @@ export const greenTriangleTheme: Theme = themeFactory({
   },
 });
 
+export const antiquarianTheme: Theme = themeFactory({
+  displayName: "Antiquarian",
+  global: css`
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');`,
+  // wallpaperUrl: "none",
+  // wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/kiwihug-qv05FvdE26k-unsplash.webp)`,
+  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
+  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  displayFont: "normal small-caps normal 1.1em 'IM Fell English', serif",
+  logoFrontElementStyle: {
+    color: "#000",
+    maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
+    maskMode: "luminance",
+    maskRepeat: "repeat",
+    maskSize: "contain",
+    textShadow: "0.02em 0.02em 0px #fff",
+  },
+  logoRearElementStyle: {
+    // textShadow: "0 0 0.2em #cfffc2",
+    display: "none",
+  },
+  // logoTransform: "scale(1.0, 0.8) rotate(-1.5deg)",
+  logoTransform: "scale(0.6)",
+  logoBackdropStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/tailpiece9-768.webp), url(systems/${systemName}/assets/wallpaper/tailpiece9-768.webp)`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "bottom, top",
+    backgroundSize: "19%",
+    maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
+    maskMode: "luminance",
+    maskRepeat: "repeat",
+    maskSize: "contain",
+
+  },
+  colors: {
+    // accent: "#256425",
+    accent: "#236",
+    accentContrast: "#fff",
+    glow: "#cfffc2",
+    wallpaper: "#eee", //
+    bgTransSecondary: "#fff6",
+    bgTransPrimary: "#fff9",
+    bgTint: "rgba(0,0,0,0.1)",
+    text: "#222",
+    textMuted: "#333",
+  },
+});
+
 export const themes: {[themeName: string]: Theme} = {
   tealTheme,
   niceTheme,
@@ -436,7 +482,8 @@ export const themes: {[themeName: string]: Theme} = {
   fearTheme,
   pallidTheme,
   deltaGroovyTheme,
-  greenTriangleTheme: greenTriangleTheme,
+  greenTriangleTheme,
+  antiquarianTheme,
 };
 
 export const ThemeContext = React.createContext<Theme>(tealTheme);

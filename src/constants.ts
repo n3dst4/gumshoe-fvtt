@@ -50,6 +50,7 @@ export const packNames = {
   pallidStarsAbilities: "pallidStarsAbilities",
   pathOfCthulhuAbilities: "pathOfCthulhuAbilities",
   srdAbilities: "srdAbilities",
+  castingTheRunesAbilities: "castingTheRunesAbilities",
 };
 
 export const npcPackName = "opponentAbilities";

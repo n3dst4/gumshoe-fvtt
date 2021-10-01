@@ -63,6 +63,13 @@
       "system": "investigator",
       "path": "./packs/srdAbilities.db",
       "entity": "Item"
+    },
+    {
+      "name": "castingTheRunesAbilities",
+      "label": "Casting the Runes Abilities",
+      "system": "investigator",
+      "path": "./packs/castingTheRunesAbilities.db",
+      "entity": "Item"
     }
   ],
   "languages": [
