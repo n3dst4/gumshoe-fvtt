@@ -464,7 +464,7 @@ export const antiquarianTheme: Theme = themeFactory({
     // accent: "#256425",
     accent: "#236",
     accentContrast: "#fff",
-    glow: "#cfc2ff",
+    glow: "#cfffc2",
     wallpaper: "#eee", //
     bgTransSecondary: "#fff6",
     bgTransPrimary: "#fff9",
