@@ -2,11 +2,10 @@
     "label": "Compétences manquantes",
     "mapping": {
     },
-    "entries": [
-        {
-            "id": "MISSING ABILITIES? READ THIS!",
+    "entries": {
+        "MISSING ABILITIES? READ THIS!": {
             "name": "COMPETENCES MANQUANTES ? LISEZ MOI!",
             "description": "<p>Bonjour ! Vous vous demandez peut-être pourquoi certaines compétences semblent être manquantes des compendiums fournis avec ce système.</p>\n<p><strong>Pourquoi ?</strong> Comme il s'agit d'un système non officiel, nous ne pouvons livrer que des compétences qui apparaissent dans le <a href=\"https://site.pelgranepress.com/index.php/the-gumshoe-system-reference-document/\">GUMSHOE SRD</a>. Le SRD est un document fantastique qui répertorie de nombreuses compétences, mais pas toutes. Nous avons donc dû en omettre plusieurs.</p>\n<p> </p>\n<h2>Comment ajouter les compétences manquantes</h2>\n<ol>\n<li>Dans le l'onglet <strong>Compendium</strong>, créez un nouveau compendium avec le boutton \"Créer un Compendium\". Donnez-lui un nom comme \"Supplément Cthulhu\" par exemple.</li>\n <li>Dans le l'onglet <strong>Objets</strong>, créez un nouveau dossier. Donnez-lui un nom, de préférence le même que celui de votre compendium.</li>\n<li>Ajoutez vos compétences:\n<ol>\n<li>Cliquez sur l’icône en forme de plume á droite du nom du dossier \"<strong>Créer un objet</strong >\" donnez-lui le nom de la compétence désirée.</li>\n<li>Choisissez \"investigativeAbility\" ou \"generalAbility\" selon le type de la compétence (d’investigation ou générale)</li>\n<li>Configurez les détails de la compétence si nécessaire.</li>\n<li>Répétez jusqu'à ce que vous ayez toutes les compétences supplémentaires dont vous avez besoin.</li>\n</ol>\n</li>\n<li>Cliquez avec le bouton droit sur le dossier et choisissez <strong>Exporter vers le compendium.</strong>. Choisissez dans la liste votre compendium \"Supplément\".</li>\n<li>Retournez dans l'onglet <strong>Paramètres </strong> et cliquez sur <strong>Paramètres système INVESTIGATEUR.</strong></li> \n<li>Choisissez le <strong>Préréglage système</strong> que vous voulez utiliser.</li>\n<li>Dans la section <strong>Packs compendium pour les nouveaux PJ</strong>, cochez à côté du nom de votre nouveau compendium \"Supplément\".</li>\n</ol>\n<p>Les nouveaux PJ recevront désormais automatiquement les compétences de votre nouveau compendium. De plus, si vous créez une feuille de groupe, elle affichera les compétences dans la liste.</p>\n<p> </p>\n<h2>Comment configurer des compétences pour un jeu entièrement personnalisé</h2> \n<p>Exactement comme ci-dessus, sauf que lorsque vous accédez aux <strong>Packs compendium pour les nouveaux PJ</strong>, ne sélectionnez que votre nouveau compendium et désélectionnez les compendiums intégrés.<br /></p>\n<p> </p>\n<p> </p>"
         }
-	]
+    }
 }

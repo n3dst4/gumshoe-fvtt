@@ -1,165 +1,125 @@
 {
 	"label": "Path of Cthulhu Abilities",
-	"entries": [
-		{
-			"id": "Anthropology",
+	"entries": {
+		"Anthropology": {
 			"name": "Antropologia"
 		},
-		{
-			"id": "Archeology",
+		"Archeology": {
 			"name": "Arqueologia"
 		},
-		{
-			"id": "Architecture",
+		"Architecture": {
 			"name": "Arquitetura"
 		},
-		{
-			"id": "Art History",
+		"Art History": {
 			"name": "História da Arte"
 		},
-		{
-			"id": "Astronomy",
+		"Astronomy": {
 			"name": "Astronomia"
 		},
-		{
-			"id": "Athletics",
+		"Athletics": {
 			"name": "Atletismo"
 		},
-		{
-			"id": "Bureaucracy",
+		"Bureaucracy": {
 			"name": "Burocracia"
 		},
-		{
-			"id": "Chemistry",
+		"Chemistry": {
 			"name": "Química"
 		},
-		{
-			"id": "Conceal",
+		"Conceal": {
 			"name": "Ocultação"
 		},
-		{
-			"id": "Cop Talk",
+		"Cop Talk": {
 			"name": "Trato Policial"
 		},
-		{
-			"id": "Craft",
+		"Craft": {
 			"name": "Ofício"
 		},
-		{
-			"id": "Cryptography",
+		"Cryptography": {
 			"name": "Criptografia"
 		},
-		{
-			"id": "Disguise",
+		"Disguise": {
 			"name": "Disfarce"
 		},
-		{
-			"id": "Driving",
+		"Driving": {
 			"name": "Condução"
 		},
-		{
-			"id": "Evidence Collection",
+		"Evidence Collection": {
 			"name": "Coletar Evidências"
 		},
-		{
-			"id": "Explosives",
+		"Explosives": {
 			"name": "Explosivos"
 		},
-		{
-			"id": "Filch",
+		"Filch": {
 			"name": "Punga"
 		},
-		{
-			"id": "First Aid",
+		"First Aid": {
 			"name": "Primeiros Socorros"
 		},
-		{
-			"id": "Flattery",
+		"Flattery": {
 			"name": "Bajulação"
 		},
-		{
-			"id": "Fleeing",
+		"Fleeing": {
 			"name": "Fuga"
 		},
-		{
-			"id": "Geology",
+		"Geology": {
 			"name": "Geologia"
 		},
-		{
-			"id": "Health",
+		"Health": {
 			"name": "Vitalidade"
 		},
-		{
-			"id": "History",
+		"History": {
 			"name": "História"
 		},
-		{
-			"id": "Hypnosis",
+		"Hypnosis": {
 			"name": "Hipnose"
 		},
-		{
-			"id": "Interrogation",
+		"Interrogation": {
 			"name": "Interrogatório"
 		},
-		{
-			"id": "Intimidation",
+		"Intimidation": {
 			"name": "Intimidação"
 		},
-		{
-			"id": "Languages",
+		"Languages": {
 			"name": "Idiomas"
 		},
-		{
-			"id": "Law",
+		"Law": {
 			"name": "Direito"
 		},
-		{
-			"id": "Locksmith",
+		"Locksmith": {
 			"name": "Arrombamento"
 		},
-		{
-			"id": "Mechanics",
+		"Mechanics": {
 			"name": "Reparos Mecânicos"
 		},
-		{
-			"id": "Oral History",
+		"Oral History": {
 			"name": "História Oral"
 		},
-		{
-			"id": "Photography",
+		"Photography": {
 			"name": "Fotografia"
 		},
-		{
-			"id": "Piloting",
+		"Piloting": {
 			"name": "Pilotagem"
 		},
-		{
-			"id": "Preparedness",
+		"Preparedness": {
 			"name": "Precaução"
 		},
-		{
-			"id": "Reassurance",
+		"Reassurance": {
 			"name": "Convencimento"
 		},
-		{
-			"id": "Riding",
+		"Riding": {
 			"name": "Equitação"
 		},
-		{
-			"id": "Scuffling",
+		"Scuffling": {
 			"name": "Briga"
 		},
-		{
-			"id": "Sense Trouble",
+		"Sense Trouble": {
 			"name": "Sentir Perigo"
 		},
-		{
-			"id": "Stability",
+		"Stability": {
 			"name": "Estabilidade"
 		},
-		{
-			"id": "Streetwise",
+		"Streetwise": {
 			"name": "Manha"
 		}
-	]
+	}
 }

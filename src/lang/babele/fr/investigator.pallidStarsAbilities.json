@@ -3,211 +3,170 @@
     "mapping": {
         "category": "data.category"
     },
-    "entries": [
-        {
-            "id": "Anthropology",
+    "entries": {
+        "Anthropology": {
             "name": "Anthropologie",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Archaeology",
+        "Archaeology": {
             "name": "Arch\u00e9ologie",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Astronomy",
+        "Astronomy": {
             "name": "Astronomie",
             "category": "Technique"
         },
-        {
-            "id": "Athletics",
+        "Athletics": {
             "name": "Athl\u00e9tisme",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Botany",
+        "Botany": {
             "name": "Botanique",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Bullshit Detector",
+        "Bullshit Detector": {
             "name": "D\u00e9tecteur de mensonges",
             "category": "Relationnelle"
         },
-        {
-            "id": "Bureaucracy",
+        "Bureaucracy": {
             "name": "Bureaucratie",
             "category": "Relationnelle"
         },
-        {
-            "id": "Business Affairs",
+        "Business Affairs": {
             "name": "Business",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Chemistry",
+        "Chemistry": {
             "name": "Chimie",
             "category": "Technique"
         },
-        {
-            "id": "Cop Talk",
+        "Cop Talk": {
             "name": "Jargon policier",
             "category": "Relationnelle"
         },
-        {
-            "id": "Cryptography",
+        "Cryptography": {
             "name": "Cryptographie",
             "category": "Technique"
         },
-        {
-            "id": "Culture",
+        "Culture": {
             "name": "Culture",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Data Retrieval",
+        "Data Retrieval": {
             "name": "R\u00e9cup\u00e9ration de donn\u00e9es",
             "category": "Technique"
         },
-        {
-            "id": "Evidence Collection",
+        "Evidence Collection": {
             "name": "Recueil d\u2019indices",
             "category": "Technique"
         },
-        {
-            "id": "Explosive Devices",
+        "Explosive Devices": {
             "name": "Engins explosifs",
             "category": "Technique"
         },
-        {
-            "id": "Filch",
+        "Filch": {
             "name": "Escamotage",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Flattery",
+        "Flattery": {
             "name": "Flatterie",
             "category": "Relationnelle"
         },
-        {
-            "id": "Flirting",
+        "Flirting": {
             "name": "S\u00e9duction",
             "category": "Relationnelle"
         },
-        {
-            "id": "Forensic Accounting",
+        "Forensic Accounting": {
             "name": "Analyse \u2013 finance",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Forensic Anthropology",
+        "Forensic Anthropology": {
             "name": "Analyse \u2013 Anthropologie",
             "category": "Technique"
         },
-        {
-            "id": "Forensic Psychology",
+        "Forensic Psychology": {
             "name": "Analyse \u2013 Psychologie",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Geology",
+        "Geology": {
             "name": "G\u00e9ologie",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Health",
+        "Health": {
             "name": "Sant\u00e9",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "History",
+        "History": {
             "name": "Histoire",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Impersonate",
+        "Impersonate": {
             "name": "Incarner",
             "category": "Relationnelle"
         },
-        {
-            "id": "Infiltration",
+        "Infiltration": {
             "name": "Infiltration",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Inspiration",
+        "Inspiration": {
             "name": "Inspiration",
             "category": "Relationnelle"
         },
-        {
-            "id": "Interrogation",
+        "Interrogation": {
             "name": "Interrogatoire",
             "category": "Relationnelle"
         },
-        {
-            "id": "Intimidation",
+        "Intimidation": {
             "name": "Intimidation",
             "category": "Relationnelle"
         },
-        {
-            "id": "Law",
+        "Law": {
             "name": "Droit",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Linguistics",
+        "Linguistics": {
             "name": "Linguistique",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Medic",
+        "Medic": {
             "name": "Premiers soins",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Negotiation",
+        "Negotiation": {
             "name": "N\u00e9gociation",
             "category": "Relationnelle"
         },
-        {
-            "id": "Preparedness",
+        "Preparedness": {
             "name": "Organisation",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Public Relations",
+        "Public Relations": {
             "name": "Relations publiques",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Reassurance",
+        "Reassurance": {
             "name": "Apaisement",
             "category": "Relationnelle"
         },
-        {
-            "id": "Respect",
+        "Respect": {
             "name": "Respect",
             "category": "Relationnelle"
         },
-        {
-            "id": "Scuffling",
+        "Scuffling": {
             "name": "Bagarre",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Sense Trouble",
+        "Sense Trouble": {
             "name": "Sixi\u00e8me sens",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Shooting",
+        "Shooting": {
             "name": "Armes \u00e0 feu",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Surveillance",
+        "Surveillance": {
             "name": "Surveillance",
             "category": "G\u00e9n\u00e9rale"
         }
-    ]
+    }
 }

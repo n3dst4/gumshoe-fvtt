@@ -3,206 +3,166 @@
     "mapping": {
         "category": "data.category"
     },
-    "entries": [
-        {
-            "id": "Anthropology",
+    "entries": {
+        "Anthropology": {
             "name": "Anthropologie",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Archeology",
+        "Archeology": {
             "name": "Arch\u00e9ologie",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Architecture",
+        "Architecture": {
             "name": "Architecture",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Art History",
+        "Art History": {
             "name": "Histoire de l\u2019art",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Astronomy",
+        "Astronomy": {
             "name": "Astronomie",
             "category": "Technique"
         },
-        {
-            "id": "Athletics",
+        "Athletics": {
             "name": "Athl\u00e9tisme",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Bureaucracy",
+        "Bureaucracy": {
             "name": "Bureaucratie",
             "category": "Relationnelle"
         },
-        {
-            "id": "Chemistry",
+        "Chemistry": {
             "name": "Chimie",
             "category": "Technique"
         },
-        {
-            "id": "Conceal",
+        "Conceal": {
             "name": "Camouflage",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Cop Talk",
+        "Cop Talk": {
             "name": "Jargon policier",
             "category": "Relationnelle"
         },
-        {
-            "id": "Craft",
+        "Craft": {
             "name": "Artisanat",
             "category": "Technique"
         },
-        {
-            "id": "Cryptography",
+        "Cryptography": {
             "name": "Cryptographie",
             "category": "Technique"
         },
-        {
-            "id": "Disguise",
+        "Disguise": {
             "name": "D\u00e9guisement",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Driving",
+        "Driving": {
             "name": "Conduite",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Evidence Collection",
+        "Evidence Collection": {
             "name": "Recueil d\u2019indices",
             "category": "Technique"
         },
-        {
-            "id": "Explosives",
+        "Explosives": {
             "name": "Explosifs",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Filch",
+        "Filch": {
             "name": "Piquer",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "First Aid",
+        "First Aid": {
             "name": "Premiers soins",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Flattery",
+        "Flattery": {
             "name": "Flatterie",
             "category": "Relationnelle"
         },
-        {
-            "id": "Fleeing",
+        "Fleeing": {
             "name": "Fuir",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Geology",
+        "Geology": {
             "name": "G\u00e9ologie",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Health",
+        "Health": {
             "name": "Sant\u00e9",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "History",
+        "History": {
             "name": "Histoire",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Hypnosis",
+        "Hypnosis": {
             "name": "Hypnose",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Interrogation",
+        "Interrogation": {
             "name": "Interrogatoire",
             "category": "Relationnelle"
         },
-        {
-            "id": "Intimidation",
+        "Intimidation": {
             "name": "Intimidation",
             "category": "Relationnelle"
         },
-        {
-            "id": "Languages",
+        "Languages": {
             "name": "Langues",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Law",
+        "Law": {
             "name": "Droit",
             "category": "Acad\u00e9mique"
         },
-        {
-            "id": "Locksmith",
+        "Locksmith": {
             "name": "Crochetage",
             "category": "Technique"
         },
-        {
-            "id": "Oral History",
+        "Oral History": {
             "name": "Histoire orale",
             "category": "Relationnelle"
         },
-        {
-            "id": "Mechanics",
+        "Mechanics": {
             "name": "M\u00e9canique",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Photography",
+        "Photography": {
             "name": "Photographie",
             "category": "Technique"
         },
-        {
-            "id": "Piloting",
+        "Piloting": {
             "name": "Pilotage",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Preparedness",
+        "Preparedness": {
             "name": "Organisation",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Reassurance",
+        "Reassurance": {
             "name": "Apaisement",
             "category": "Relationnelle"
         },
-        {
-            "id": "Riding",
+        "Riding": {
             "name": "Equitation",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Scuffling",
+        "Scuffling": {
             "name": "Bagarre",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Sense Trouble",
+        "Sense Trouble": {
             "name": "Sixi\u00e8me sens",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Stability",
+        "Stability": {
             "name": "Equilibre mental",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Streetwise",
+        "Streetwise": {
             "name": "Connaissance de la rue",
             "category": "Relationnelle"
         }
-    ]
+    }
 }

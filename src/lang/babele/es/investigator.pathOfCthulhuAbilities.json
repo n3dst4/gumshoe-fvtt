@@ -1,261 +1,197 @@
 {
 	"label": "Path of Cthulhu Abilities",
-	"entries": [
-		{
-			"id": "Accounting",
+	"entries": {
+		"Accounting": {
 			"name": "Contabilidad"
 		},
-		{
-			"id": "Anthropology",
+		"Anthropology": {
 			"name": "Antropología"
 		},
-		{
-			"id": "Archeology",
+		"Archeology": {
 			"name": "Arqueología"
 		},
-		{
-			"id": "Architecture",
+		"Architecture": {
 			"name": "Arquitectura"
 		},
-		{
-			"id": "Art",
+		"Art": {
 			"name": "Habilidad artistica"
 		},
-		{
-			"id": "Art History",
+		"Art History": {
 			"name": "Historia del arte"
 		},
-		{
-			"id": "Assess Honesty",
+		"Assess Honesty": {
 			"name": "Evaluar sinceridad"
 		},
-		{
-			"id": "Astronomy",
+		"Astronomy": {
 			"name": "Astronomía"
 		},
-		{
-			"id": "Athletics",
+		"Athletics": {
 			"name": "Atletismo"
 		},
-		{
-			"id": "Bargain",
+		"Bargain": {
 			"name": "Regatear"
 		},
-		{
-			"id": "Biology",
+		"Biology": {
 			"name": "Biología"
 		},
-		{
-			"id": "Bureaucracy",
+		"Bureaucracy": {
 			"name": "Burocracia"
 		},
-		{
-			"id": "Chemistry",
+		"Chemistry": {
 			"name": "Química"
 		},
-		{
-			"id": "Conceal",
+		"Conceal": {
 			"name": "Ocultar"
 		},
-		{
-			"id": "Cop Talk",
+		"Cop Talk": {
 			"name": "Jerga policial"
 		},
-		{
-			"id": "Craft",
+		"Craft": {
 			"name": "Habilidad artesanal"
 		},
-		{
-			"id": "Credit Rating",
+		"Credit Rating": {
 			"name": "Crédito"
 		},
-		{
-			"id": "Cryptography",
+		"Cryptography": {
 			"name": "Criptografía"
 		},
-		{
-			"id": "Cthulhu Mythos",
+		"Cthulhu Mythos": {
 			"name": "Mitos de Cthulhu"
 		},
-		{
-			"id": "Disguise",
+		"Disguise": {
 			"name": "Disfraz"
 		},
-		{
-			"id": "Driving",
+		"Driving": {
 			"name": "Conducir"
 		},
-		{
-			"id": "Electrical Repair",
+		"Electrical Repair": {
 			"name": "Electricidad"
 		},
-		{
-			"id": "Evidence Collection",
+		"Evidence Collection": {
 			"name": "Recogida de pruebas"
 		},
-		{
-			"id": "Explosives",
+		"Explosives": {
 			"name": "Explosivos"
 		},
-		{
-			"id": "Filch",
+		"Filch": {
 			"name": "Birlar"
 		},
-		{
-			"id": "Firearms",
+		"Firearms": {
 			"name": "Armas de fuego"
 		},
-		{
-			"id": "First Aid",
+		"First Aid": {
 			"name": "Primeros auxilios"
 		},
-		{
-			"id": "Flattery",
+		"Flattery": {
 			"name": "Adular"
 		},
-		{
-			"id": "Fleeing",
+		"Fleeing": {
 			"name": "Huida"
 		},
-		{
-			"id": "Forensics",
+		"Forensics": {
 			"name": "Medicina forense"
 		},
-		{
-			"id": "Geology",
+		"Geology": {
 			"name": "Geología"
 		},
-		{
-			"id": "Health",
+		"Health": {
 			"name": "Salud"
 		},
-		{
-			"id": "History",
+		"History": {
 			"name": "Historia"
 		},
-		{
-			"id": "Hypnosis",
+		"Hypnosis": {
 			"name": "Hipnosis"
 		},
-		{
-			"id": "Interrogation",
+		"Interrogation": {
 			"name": "Interrogatorio"
 		},
-		{
-			"id": "Intimidation",
+		"Intimidation": {
 			"name": "Intimidación"
 		},
-		{
-			"id": "Language",
+		"Language": {
 			"name": "Idiomas"
 		},
-		{
-			"id": "Law",
+		"Law": {
 			"name": "Derecho"
 		},
-		{
-			"id": "Library Use",
+		"Library Use": {
 			"name": "Buscar libros"
 		},
-		{
-			"id": "Locksmith",
+		"Locksmith": {
 			"name": "Cerrajería"
 		},
-		{
-			"id": "Magic",
+		"Magic": {
 			"name": "Magia"
 		},
-		{
-			"id": "Mechanical Repair",
+		"Mechanical Repair": {
 			"name": "Mecánica"
 		},
-		{
-			"id": "Medicine",
+		"Medicine": {
 			"name": "Medicina"
 		},
-		{
-			"id": "Occult",
+		"Occult": {
 			"name": "Ciencias ocultas"
 		},
-		{
-			"id": "Oral History",
+		"Oral History": {
 			"name": "Historia horal"
 		},
-		{
-			"id": "Outdoorsman",
+		"Outdoorsman": {
 			"name": "Supervivencia"
 		},
-		{
-			"id": "Pharmacy",
+		"Pharmacy": {
 			"name": "Farmacología"
 		},
-		{
-			"id": "Photography",
+		"Photography": {
 			"name": "Fotografía"
 		},
-		{
-			"id": "Physics",
+		"Physics": {
 			"name": "Física"
 		},
-		{
-			"id": "Piloting",
+		"Piloting": {
 			"name": "Pilotaje"
 		},
-		{
-			"id": "Preparedness",
+		"Preparedness": {
 			"name": "Preparación"
 		},
-		{
-			"id": "Psychoanalysis",
+		"Psychoanalysis": {
 			"name": "Psicoanalisis"
 		},
-		{
-			"id": "Reassurance",
+		"Reassurance": {
 			"name": "Consolar"
 		},
-		{
-			"id": "Riding",
+		"Riding": {
 			"name": "Monta"
 		},
-		{
-			"id": "Sanity",
+		"Sanity": {
 			"name": "Cordura"
 		},
-		{
-			"id": "Scuffling",
+		"Scuffling": {
 			"name": "Escaramuza"
 		},
-		{
-			"id": "Sense Trouble",
+		"Sense Trouble": {
 			"name": "Sentir el peligro"
 		},
-		{
-			"id": "Shadowing",
+		"Shadowing": {
 			"name": "Seguir"
 		},
-		{
-			"id": "Stability",
+		"Stability": {
 			"name": "Estabilidad"
 		},
-		{
-			"id": "Stealth",
+		"Stealth": {
 			"name": "Sigilo"
 		},
-		{
-			"id": "Streetwise",
+		"Streetwise": {
 			"name": "Bajos fondos"
 		},
-		{
-			"id": "Technical",
+		"Technical": {
 			"name": "Técnica"
 		},
-		{
-			"id": "Theology",
+		"Theology": {
 			"name": "Teología"
 		},
-		{
-			"id": "Weapons",
+		"Weapons": {
 			"name": "Armas"
 		}
-	]
+	}
 }

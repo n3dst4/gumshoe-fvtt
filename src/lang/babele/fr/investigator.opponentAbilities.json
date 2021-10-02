@@ -3,51 +3,42 @@
     "mapping": {
         "category": "data.category"
     },
-    "entries": [
-        {
-            "id": "Athletics",
+    "entries": {
+        "Athletics": {
             "name": "Athl\u00e9tisme",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Driving",
+        "Driving": {
             "name": "Conduite",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Scuffling",
+        "Scuffling": {
             "name": "Bagarre",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Health",
+        "Health": {
             "name": "Sant\u00e9",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Sense Trouble",
+        "Sense Trouble": {
             "name": "Sixi\u00e8me sens",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Shooting",
+        "Shooting": {
             "name": "Armes \u00e0 feu",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Stability",
+        "Stability": {
             "name": "Equilibre mental",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Melee Attack",
+        "Melee Attack": {
             "name": "Attaque de m\u00eal\u00e9e",
             "category": "G\u00e9n\u00e9rale"
         },
-        {
-            "id": "Ranged Attack",
+        "Ranged Attack": {
             "name": "Attaque \u00e0 distance",
             "category": "G\u00e9n\u00e9rale"
         }
-    ]
+    }
 }
