@@ -36,14 +36,12 @@ export const CSSReset: React.FC<CSSResetProps> = ({
             scrollbarColor: `${theme.colors.accent} ${theme.colors.bgTint}`,
             "&:focus": {
               textDecoration: "underline",
-              // textDecorationStyle: "dashed",
             },
           },
           font: theme.bodyFont,
           background,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          // backgroundBlendMode: "hard-light",
           padding: "0.5em",
           color: theme.colors.text,
 
