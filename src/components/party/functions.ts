@@ -41,7 +41,7 @@ const compareTypes = (a: AbilityType, b: AbilityType) =>
 /**
  * case-insensitive string ordering fn
  */
-const compareStrings = (a: string, b: string): -1|0|1 => {
+const compareStrings = (a = "", b = ""): -1|0|1 => {
   const a_ = a.toLowerCase();
   const b_ = b.toLowerCase();
   return a_ < b_ ? -1 : a_ > b_ ? +1 : 0;
