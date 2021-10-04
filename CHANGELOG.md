@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v4.5.0 (2021-10-04)
+
+* **Casting the Runes** (#45) With thanks to The Design Mechanism, we have full support for [Casting the Runes](http://thedesignmechanism.com/Casting-the-Runes.php), the GUMSHOE-system RPG based on the works of M. R. James.
+* **Brazilian Portuguese translations** (#46) Big thanks Diogo A Gomes.
+* **Bug fix** The party matrix was broken if you had any non-ability compendium packs selected as default PC packs. Terribly sorry for any inconvenience etc., fixed now.
+
 ## v4.4.0 (2021-09-28)
 
 * **New actor type and ability pack for NPCs!** (#5) Thanks to Yariv Yanay (@yariv on Discord, @yarrriv on GitLab). This closes one of the oldest feature requests.
