@@ -1,5 +1,5 @@
 import { getNewPCPacks } from "../../settingsHelpers";
-import { AbilityType } from "../../types";
+import { AbilityType, isAbilityDataSource } from "../../types";
 import { abilityRowkey, AbilityTuple, ActorAbilityInfo, categoryHeaderKey, RowData, typeHeaderKey } from "./types";
 import * as constants from "../../constants";
 import { GumshoeActor } from "../../module/GumshoeActor";
@@ -15,11 +15,13 @@ export const getSystemAbilities = async (): Promise<AbilityTuple[]> => {
     assertGame(game);
     // getting pack content is slow
     const content = await game.packs.find((p: any) => p.collection === packId)?.getDocuments();
-    const tuples: AbilityTuple[] = (content || []).map((i: any) => [
-      i.data.type,
-      i.data.data.category,
-      i.data.name,
-    ]);
+    const tuples: AbilityTuple[] = (content || [])
+      .filter((x) => isAbilityDataSource(x.data))
+      .map((i: any) => [
+        i.data.type,
+        i.data.data.category,
+        i.data.name,
+      ]);
     return tuples;
   });
   const results = await Promise.all(proms);
@@ -39,7 +41,7 @@ const compareTypes = (a: AbilityType, b: AbilityType) =>
 /**
  * case-insensitive string ordering fn
  */
-const compareStrings = (a: string, b: string): -1|0|1 => {
+const compareStrings = (a = "", b = ""): -1|0|1 => {
   const a_ = a.toLowerCase();
   const b_ = b.toLowerCase();
   return a_ < b_ ? -1 : a_ > b_ ? +1 : 0;
