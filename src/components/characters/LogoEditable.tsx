@@ -77,7 +77,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
   return (
     // outer - set the transform origin
     <div
-      className={className}
+      className={`logo ${className}`}
       css={{
         display: "block",
         position: "relative",
@@ -89,7 +89,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     >
       {/* Backdrop */}
       <div
-        className="logo-backdrop"
+        className="backdrop"
         css={{
           ...theme.logoBackdropStyle,
           position: "absolute",
@@ -101,7 +101,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
       />
       {/* inner - apply the transform */}
       <div
-        className="inner-block"
+        className="text-elements-wrapper"
         css={{
           position: "absolute",
           top: 0,
@@ -111,20 +111,20 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           font: theme.displayFont,
           fontSize: "4em",
           whiteSpace: "nowrap",
-          transform: theme.logoTransform,
           caretColor: "black",
           border: "none",
           padding: 0,
           lineHeight: 1,
+          ...theme.logoTextElementsStyle,
         }}
       >
-        {/* shadow-bearer */}
+        {/* rear-element, aka the shadow-bearer */}
         <div
-          className="shadow-bearer"
+          className="rear-text-element shadow-bearer"
           css={{
             zIndex: -1,
             ...textBearerStyle,
-            ...theme.logoRearElementStyle,
+            ...theme.logoRearTextElementStyle,
           }}
         >
           <div
@@ -145,7 +145,8 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           }
         </div>
 
-        {/* gradient-bearer */}
+        {/* front element, aka the gradient-bearer (on themes that have text
+          gradients) */}
         {/* This extra div is SOLELY to work around this Firefox bug
           https://bugzilla.mozilla.org/show_bug.cgi?id=1720995
           Basically if you have transform and background-clip: text on the same
@@ -159,11 +160,11 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           css={textBearerStyle}
         >
           <div
-            className="gradient-bearer"
+            className="front-text-element gradient-bearer"
             css={{
               // When F92 is mainline, unwrap this div and uncomment this style.
               // ...textBearerStyle,
-              ...theme.logoFrontElementStyle,
+              ...theme.logoFrontTextElementStyle,
             }}
             >
             <div

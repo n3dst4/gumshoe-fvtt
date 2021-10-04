@@ -9,12 +9,12 @@ const black = Irid("black");
 export type ThemeSeed = {
   displayName: string,
   global?: SerializedStyles,
-  wallpaperUrl: string,
+  rootElementStyle: CSSObject,
   bodyFont?: string,
   displayFont?: string,
-  logoFrontElementStyle: CSSObject,
-  logoRearElementStyle: CSSObject,
-  logoTransform: string,
+  logoFrontTextElementStyle: CSSObject,
+  logoRearTextElementStyle: CSSObject,
+  logoTextElementsStyle: CSSObject,
   logoBackdropStyle: CSSObject,
 
   colors: {
@@ -80,6 +80,11 @@ export const themeFactory = (seed: ThemeSeed): Theme => {
 
   return {
     ...seed,
+    rootElementStyle: {
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      ...seed.rootElementStyle,
+    },
     colors: {
       ...seed.colors,
       bgOpaquePrimary,
@@ -98,18 +103,21 @@ export const tealTheme: Theme = themeFactory({
     @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
-  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+  rootElementStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+  },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal small-caps normal 1em 'Federo', serif",
-  // logo:
-  logoFrontElementStyle: {
+  logoFrontTextElementStyle: {
     background: "linear-gradient(135deg, #efb183 0%,#222 30%,#efb183 90%)",
     backgroundClip: "text",
   },
-  logoRearElementStyle: {
+  logoRearTextElementStyle: {
     textShadow: "2px 0px 1px black, 6px 0px 4px rgba(0,0,0,0.5), -1px 0px 0px rgba(255,255,255,0.5)",
   },
-  logoTransform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
+  logoTextElementsStyle: {
+    transform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
+  },
   logoBackdropStyle: {
     perspective: "500px",
     perspectiveOrigin: "50% 50%",
@@ -134,17 +142,21 @@ export const niceThemeDark: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     `,
-  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
+  rootElementStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
+  },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
-  logoFrontElementStyle: {
+  logoFrontTextElementStyle: {
     background: "linear-gradient(135deg, #fff 0%, #fff 90%)",
     backgroundClip: "text",
   },
-  logoRearElementStyle: {
+  logoRearTextElementStyle: {
     textShadow: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
   },
-  logoTransform: "scale(0.8)",
+  logoTextElementsStyle: {
+    transform: "scale(0.8)",
+  },
   logoBackdropStyle: {
     backgroundColor: "rgba(0,0,0,0.4)",
     transform: "scaleY(0.9) scaleX(1.2) translateY(0.1em)",
@@ -172,16 +184,20 @@ export const niceTheme: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
-  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+  rootElementStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+  },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
-  logoFrontElementStyle: {
+  logoFrontTextElementStyle: {
     color: "#fff",
   },
-  logoRearElementStyle: {
+  logoRearTextElementStyle: {
     textShadow: "2px 0px 1px black, -1px 0px 0px rgba(255,255,255,0.5)",
   },
-  logoTransform: "scale(0.8)",
+  logoTextElementsStyle: {
+    transform: "scale(0.8)",
+  },
   logoBackdropStyle: {
     background: `#4a0d00 url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
     backgroundSize: "cover",
@@ -208,16 +224,20 @@ export const highContrastTheme: Theme = themeFactory({
   displayName: "High Contrast",
   global: css`
   `,
-  wallpaperUrl: "",
+  rootElementStyle: {
+    backgroundImage: "",
+  },
   bodyFont: "1.2em sans-serif",
   displayFont: "1.2em sans-serif",
-  logoFrontElementStyle: {
+  logoFrontTextElementStyle: {
     color: "#000",
   },
-  logoRearElementStyle: {
+  logoRearTextElementStyle: {
     display: "none",
   },
-  logoTransform: "none",
+  logoTextElementsStyle: {
+    transform: "none",
+  },
   logoBackdropStyle: {
   },
   colors: {
@@ -239,17 +259,21 @@ export const fearTheme: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
   `,
-  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
+  rootElementStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
+  },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Special Elite', serif",
-  logoFrontElementStyle: {
+  logoFrontTextElementStyle: {
     background: "linear-gradient(90deg, rgba(73, 61, 51, 1.0) 0%, rgba(97, 81, 68, 0.7) 100%)",
     backgroundClip: "text",
   },
-  logoRearElementStyle: {
+  logoRearTextElementStyle: {
     textShadow: "0px 0px 10px white",
   },
-  logoTransform: "scale(0.8)",
+  logoTextElementsStyle: {
+    transform: "scale(0.8)",
+  },
   logoBackdropStyle: {
   },
   colors: {
@@ -277,22 +301,26 @@ export const pallidTheme: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
   `,
-  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/guille-pozzi-sbcIAn4Mn14-unsplash.webp)`,
+  rootElementStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/guille-pozzi-sbcIAn4Mn14-unsplash.webp)`,
+  },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "bold small-caps normal 1.1em 'Nova Square', serif",
   // logo:
-  logoFrontElementStyle: {
+  logoFrontTextElementStyle: {
     background: "linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(108,108,108,1) 24%, rgba(148,148,148,1) 34%, rgba(106,106,106,1) 44%, rgba(0,0,0,1) 87%, rgba(143,143,143,1) 100%)",
     backgroundClip: "text",
   },
-  logoRearElementStyle: {
+  logoRearTextElementStyle: {
     textShadow: stripNewlines(`
       -${pallidOffset} -${pallidOffset} ${pallidBlur} #cdf6ff, 
       -${pallidOffset} ${pallidOffset} ${pallidBlur} #cdf6ff, 
       ${pallidOffset} -${pallidOffset} ${pallidBlur} #cdf6ff, 
       ${pallidOffset} ${pallidOffset} ${pallidBlur} #cdf6ff`),
   },
-  logoTransform: "rotateY(21deg) rotateZ(0deg) translateX(4%) scale(0.8)",
+  logoTextElementsStyle: {
+    transform: "rotateY(21deg) rotateZ(0deg) translateX(4%) scale(0.8)",
+  },
   logoBackdropStyle: {
     perspective: "500px",
     perspectiveOrigin: "50% 50%",
@@ -348,14 +376,16 @@ export const deltaGroovyTheme: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');    
   `,
-  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
+  rootElementStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
+  },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Spicy Rice', serif",
-  logoFrontElementStyle: {
+  logoFrontTextElementStyle: {
     background: "#fff",
     backgroundClip: "text",
   },
-  logoRearElementStyle: {
+  logoRearTextElementStyle: {
     textShadow:
     // "0 0 0.3em #fff, " +
     "-0.01em -0.01em 0 #000, " +
@@ -368,11 +398,11 @@ export const deltaGroovyTheme: Theme = themeFactory({
     ""
     ,
   },
-  // logoTransform: "scale(0.8)",
-  logoTransform: "translateY(-0.1em)",
+  logoTextElementsStyle: {
+    transform: "translateY(-0.1em)",
+  },
   logoBackdropStyle: {
     backgroundColor: "#293417",
-    // backgroundImage: "conic-gradient(#f69d3c, #3f87a6)",
     backgroundImage: gradient,
     maskImage: "linear-gradient(rgba(0, 0, 0, 1.0), transparent)",
     margin: "-50em",
@@ -395,20 +425,24 @@ export const greenTriangleTheme: Theme = themeFactory({
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@900&family=Big+Shoulders+Stencil+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');  `,
-  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
+  rootElementStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
+  },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "900 small-caps normal 1.1em 'Big Shoulders Stencil Text', serif",
-  logoFrontElementStyle: {
+  logoFrontTextElementStyle: {
     color: "#fff",
     maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-ctXf1GVyf9A-unsplash.webp)`,
     maskMode: "luminance",
     maskRepeat: "repeat",
   },
-  logoRearElementStyle: {
+  logoRearTextElementStyle: {
     textShadow:
       "0 0 0.2em #cfffc2",
   },
-  logoTransform: "scale(1.0, 0.8) rotate(-1.5deg)",
+  logoTextElementsStyle: {
+    transform: "scale(1.0, 0.8) rotate(-1.5deg)",
+  },
   logoBackdropStyle: {
   },
   colors: {
@@ -430,12 +464,12 @@ export const antiquarianTheme: Theme = themeFactory({
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');`,
-  // wallpaperUrl: "none",
-  // wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/kiwihug-qv05FvdE26k-unsplash.webp)`,
-  wallpaperUrl: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
+  rootElementStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
+  },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal small-caps normal 1.1em 'IM Fell English', serif",
-  logoFrontElementStyle: {
+  logoFrontTextElementStyle: {
     color: "#000",
     maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
     maskMode: "luminance",
@@ -443,12 +477,12 @@ export const antiquarianTheme: Theme = themeFactory({
     maskSize: "contain",
     textShadow: "0.02em 0.02em 0px #fff",
   },
-  logoRearElementStyle: {
-    // textShadow: "0 0 0.2em #cfffc2",
+  logoRearTextElementStyle: {
     display: "none",
   },
-  // logoTransform: "scale(1.0, 0.8) rotate(-1.5deg)",
-  logoTransform: "scale(0.6)",
+  logoTextElementsStyle: {
+    transform: "scale(0.6)",
+  },
   logoBackdropStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/tailpiece9-768.webp), url(systems/${systemName}/assets/wallpaper/tailpiece9-768.webp)`,
     backgroundRepeat: "no-repeat",
@@ -461,7 +495,6 @@ export const antiquarianTheme: Theme = themeFactory({
 
   },
   colors: {
-    // accent: "#256425",
     accent: "#236",
     accentContrast: "#fff",
     glow: "#cfffc2",

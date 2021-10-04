@@ -10,18 +10,12 @@ type CSSResetProps = {
   shroudBackground?: boolean,
 };
 
-const flatGradient = (color: string) => `linear-gradient(to right, ${color}, ${color})`;
-
 export const CSSReset: React.FC<CSSResetProps> = ({
   className,
   children,
   theme,
   shroudBackground,
 }: CSSResetProps) => {
-  const baseBg = `${theme.wallpaperUrl}, ${flatGradient(theme.colors.wallpaper)}`;
-  const background = shroudBackground
-    ? `${flatGradient(theme.colors.bgTransSecondary)}, ${baseBg}`
-    : baseBg;
   return (
     <ThemeContext.Provider value={theme}>
       <Global styles={theme.global} />
@@ -38,10 +32,21 @@ export const CSSReset: React.FC<CSSResetProps> = ({
               textDecoration: "underline",
             },
           },
+          // use the :before element to cover everything in a tansparent color
+          // if needed
+          // "&:before": {
+          //   content: "''",
+          //   zIndex: -1000,
+          //   display: "block",
+          //   position: "absolute",
+          //   top: 0,
+          //   right: 0,
+          //   bottom: 0,
+          //   left: 0,
+          //   backgroundColor: shroudBackground ? theme.colors.bgTransSecondary : "transparent",
+          // },
           font: theme.bodyFont,
-          background,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          ...theme.rootElementStyle,
           padding: "0.5em",
           color: theme.colors.text,
 
@@ -127,7 +132,14 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           },
         }}
       >
+        <div
+          className="shroud"
+          css={{
+            backgroundColor: shroudBackground ? theme.colors.bgTransSecondary : "transparent",
+          }}
+        >
         {children}
+        </div>
       </div>
     </ThemeContext.Provider>
   );

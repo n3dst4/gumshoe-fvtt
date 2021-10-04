@@ -210,7 +210,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
     >
       <InputGrid
         css={{
-          background: `linear-gradient(to right, ${theme.colors.bgTransPrimary}, ${theme.colors.bgTransPrimary}), ${theme.wallpaperUrl}`,
+          // background: `linear-gradient(to right, ${theme.colors.bgTransPrimary}, ${theme.colors.bgTransPrimary}), ${theme.wallpaperUrl}`,
           padding: "0.5em",
         }}
       >
@@ -273,8 +273,6 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           css={{
             flex: 1,
             overflow: "auto",
-            // background: theme.colors.thin,
-            // padding: "0.5em",
           }}
         >
           <SettingsGridField label="Visual Theme" index={idx++}>
