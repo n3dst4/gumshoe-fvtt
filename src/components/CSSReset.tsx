@@ -22,6 +22,11 @@ export const CSSReset: React.FC<CSSResetProps> = ({
       <div
         className={className}
         css={{
+          font: theme.bodyFont,
+          padding: "0.5em",
+          color: theme.colors.text,
+          ...theme.rootElementStyle,
+
           "*": {
             // all: "initial",
             scrollbarWidth: "thin",
@@ -32,23 +37,6 @@ export const CSSReset: React.FC<CSSResetProps> = ({
               textDecoration: "underline",
             },
           },
-          // use the :before element to cover everything in a tansparent color
-          // if needed
-          // "&:before": {
-          //   content: "''",
-          //   zIndex: -1000,
-          //   display: "block",
-          //   position: "absolute",
-          //   top: 0,
-          //   right: 0,
-          //   bottom: 0,
-          //   left: 0,
-          //   backgroundColor: shroudBackground ? theme.colors.bgTransSecondary : "transparent",
-          // },
-          font: theme.bodyFont,
-          ...theme.rootElementStyle,
-          padding: "0.5em",
-          color: theme.colors.text,
 
           "h1, h2, h3, h4": {
             border: "none",
@@ -135,10 +123,17 @@ export const CSSReset: React.FC<CSSResetProps> = ({
         <div
           className="shroud"
           css={{
+            display: "block",
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            // overflow: "auto",
             backgroundColor: shroudBackground ? theme.colors.bgTransSecondary : "transparent",
           }}
         >
-        {children}
+          {children}
         </div>
       </div>
     </ThemeContext.Provider>
