@@ -2,7 +2,15 @@
 const path = require("path");
 const { readdir, readFile, writeFile } = require("fs/promises");
 const chalk = require("chalk");
+const Datastore = require("nedb-promises");
 
+/**
+ * go through the core en translations and mak sure all the non-en .json files
+ * have the same entries.
+ *
+ * this should become redundant if we start using a translation management
+ * platform
+ */
 async function groomTranslations () {
   const parts = path.parse(__filename);
   const langDir = path.join(parts.dir, "..", "src", "lang");
@@ -45,4 +53,26 @@ async function groomTranslations () {
   return Promise.all(proms);
 }
 
-groomTranslations();
+/**
+ * go though the compendium packs, and for each one, emit an untranslated
+ * template file. once comiotted and pushed, this will be picked up by transifex
+ * and update the translation list.
+ */
+async function updatePackSourceTranslations () {
+  const parts = path.parse(__filename);
+  // const langDir = path.join(parts.dir, "..", "src", "lang");
+  const packDir = path.join(parts.dir, "..", "src", "packs");
+  const files = (await readdir(packDir)).filter((f: string) => f.endsWith(".db"));
+  for (const file of files) {
+    const store = Datastore.create({
+      filename: path.join(packDir, file),
+      autoload: true,
+    });
+    const docs = await store.find({});
+    console.log("\n", file);
+    console.log(docs.map((d: any) => d.name).join(", "));
+  }
+}
+
+// groomTranslations();
+updatePackSourceTranslations();
