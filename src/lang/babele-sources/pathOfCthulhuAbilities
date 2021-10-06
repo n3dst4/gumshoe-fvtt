@@ -1,0 +1,168 @@
+{
+    "label": "Path of Cthulhu Abilities",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Athletics": {
+            "name": "Athletics",
+            "category": "General"
+        },
+        "Hypnosis": {
+            "name": "Hypnosis",
+            "category": "General"
+        },
+        "Health": {
+            "name": "Health",
+            "category": "General"
+        },
+        "Art History": {
+            "name": "Art History",
+            "category": "Academic"
+        },
+        "Streetwise": {
+            "name": "Streetwise",
+            "category": "Interpersonal"
+        },
+        "Conceal": {
+            "name": "Conceal",
+            "category": "General"
+        },
+        "Chemistry": {
+            "name": "Chemistry",
+            "category": "Technical"
+        },
+        "Sense Trouble": {
+            "name": "Sense Trouble",
+            "category": "General"
+        },
+        "Flattery": {
+            "name": "Flattery",
+            "category": "Interpersonal"
+        },
+        "Anthropology": {
+            "name": "Anthropology",
+            "category": "Academic"
+        },
+        "Cop Talk": {
+            "name": "Cop Talk",
+            "category": "Interpersonal"
+        },
+        "Driving": {
+            "name": "Driving",
+            "category": "General"
+        },
+        "Filch": {
+            "name": "Filch",
+            "category": "General"
+        },
+        "Preparedness": {
+            "name": "Preparedness",
+            "category": "General"
+        },
+        "Piloting": {
+            "name": "Piloting",
+            "category": "General"
+        },
+        "First Aid": {
+            "name": "First Aid",
+            "category": "General"
+        },
+        "History": {
+            "name": "History",
+            "category": "Academic"
+        },
+        "Cryptography": {
+            "name": "Cryptography",
+            "category": "Academic"
+        },
+        "Craft": {
+            "name": "Craft",
+            "category": "Technical"
+        },
+        "Fleeing": {
+            "name": "Fleeing",
+            "category": "General"
+        },
+        "Law": {
+            "name": "Law",
+            "category": "Academic"
+        },
+        "Intimidation": {
+            "name": "Intimidation",
+            "category": "Interpersonal"
+        },
+        "Bureaucracy": {
+            "name": "Bureaucracy",
+            "category": "Interpersonal"
+        },
+        "Interrogation": {
+            "name": "Interrogation",
+            "category": "Interpersonal"
+        },
+        "Reassurance": {
+            "name": "Reassurance",
+            "category": "Interpersonal"
+        },
+        "Disguise": {
+            "name": "Disguise",
+            "category": "General"
+        },
+        "Architecture": {
+            "name": "Architecture",
+            "category": "Academic"
+        },
+        "Geology": {
+            "name": "Geology",
+            "category": "Academic"
+        },
+        "Archeology": {
+            "name": "Archeology",
+            "category": "Academic"
+        },
+        "Scuffling": {
+            "name": "Scuffling",
+            "category": "General"
+        },
+        "Oral History": {
+            "name": "Oral History",
+            "category": "Interpersonal"
+        },
+        "Languages": {
+            "name": "Languages",
+            "category": "Academic"
+        },
+        "Stability": {
+            "name": "Stability",
+            "category": "General"
+        },
+        "Explosives": {
+            "name": "Explosives",
+            "category": "General"
+        },
+        "Locksmith": {
+            "name": "Locksmith",
+            "category": "Technical"
+        },
+        "Photography": {
+            "name": "Photography",
+            "category": "Technical"
+        },
+        "Evidence Collection": {
+            "name": "Evidence Collection",
+            "category": "Technical"
+        },
+        "Astronomy": {
+            "name": "Astronomy",
+            "category": "Technical"
+        },
+        "Riding": {
+            "name": "Riding",
+            "category": "General"
+        },
+        "Mechanics": {
+            "name": "Mechanics",
+            "category": "General"
+        }
+    }
+}
