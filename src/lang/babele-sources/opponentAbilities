@@ -1,0 +1,30 @@
+{
+    "label": "Opponent Abilities",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Ranged Attack": {
+            "name": "Ranged Attack"
+        },
+        "Health": {
+            "name": "Health",
+            "category": "General"
+        },
+        "Athletics": {
+            "name": "Athletics",
+            "category": "General"
+        },
+        "Melee Attack": {
+            "name": "Melee Attack"
+        },
+        "Scuffling": {
+            "name": "Scuffling",
+            "category": "General"
+        },
+        "Shooting": {
+            "name": "Shooting",
+            "category": "General"
+        }
+    }
+}

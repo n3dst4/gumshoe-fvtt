@@ -1,0 +1,208 @@
+{
+    "label": "Nice Black Agents Abilities",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Chemistry": {
+            "name": "Chemistry",
+            "category": "Technical"
+        },
+        "Law": {
+            "name": "Law",
+            "category": "Academic"
+        },
+        "Architecture": {
+            "name": "Architecture",
+            "category": "Academic"
+        },
+        "Interrogation": {
+            "name": "Interrogation",
+            "category": "Interpersonal"
+        },
+        "Languages": {
+            "name": "Languages",
+            "category": "Academic"
+        },
+        "Mechanics": {
+            "name": "Mechanics",
+            "category": "General"
+        },
+        "Electronic Surveillance": {
+            "name": "Electronic Surveillance",
+            "category": "Technical"
+        },
+        "Tradecraft": {
+            "name": "Tradecraft",
+            "category": "Interpersonal"
+        },
+        "Gambling": {
+            "name": "Gambling",
+            "category": "General"
+        },
+        "Bureaucracy": {
+            "name": "Bureaucracy",
+            "category": "Interpersonal"
+        },
+        "Hand-to-Hand": {
+            "name": "Hand-to-Hand",
+            "category": "General"
+        },
+        "Athletics": {
+            "name": "Athletics",
+            "category": "General"
+        },
+        "Flattery": {
+            "name": "Flattery",
+            "category": "Interpersonal"
+        },
+        "Notice": {
+            "name": "Notice",
+            "category": "Technical"
+        },
+        "Intimidation": {
+            "name": "Intimidation",
+            "category": "Interpersonal"
+        },
+        "Photography": {
+            "name": "Photography",
+            "category": "Technical"
+        },
+        "Streetwise": {
+            "name": "Streetwise",
+            "category": "Interpersonal"
+        },
+        "Traffic Analysis": {
+            "name": "Traffic Analysis",
+            "category": "Technical"
+        },
+        "Art History": {
+            "name": "Art History",
+            "category": "Academic"
+        },
+        "Accounting": {
+            "name": "Accounting",
+            "category": "Academic"
+        },
+        "Astronomy": {
+            "name": "Astronomy",
+            "category": "Technical"
+        },
+        "Surveillance": {
+            "name": "Surveillance",
+            "category": "General"
+        },
+        "High Society": {
+            "name": "High Society",
+            "category": "Interpersonal"
+        },
+        "Filch": {
+            "name": "Filch",
+            "category": "General"
+        },
+        "Infiltration": {
+            "name": "Infiltration",
+            "category": "General"
+        },
+        "Stability": {
+            "name": "Stability",
+            "category": "General"
+        },
+        "Piloting": {
+            "name": "Piloting",
+            "category": "General"
+        },
+        "Cryptography": {
+            "name": "Cryptography",
+            "category": "Technical"
+        },
+        "Bullshit Detector": {
+            "name": "Bullshit Detector",
+            "category": "Interpersonal"
+        },
+        "Network": {
+            "name": "Network",
+            "category": "General"
+        },
+        "Cop Talk": {
+            "name": "Cop Talk",
+            "category": "Interpersonal"
+        },
+        "Driving": {
+            "name": "Driving",
+            "category": "General"
+        },
+        "Military Science": {
+            "name": "Military Science",
+            "category": "Academic"
+        },
+        "Research": {
+            "name": "Research",
+            "category": "Academic"
+        },
+        "History": {
+            "name": "History",
+            "category": "Academic"
+        },
+        "Outdoor Survival": {
+            "name": "Outdoor Survival",
+            "category": "Technical"
+        },
+        "Reassurance": {
+            "name": "Reassurance",
+            "category": "Interpersonal"
+        },
+        "Preparedness": {
+            "name": "Preparedness",
+            "category": "General"
+        },
+        "Sense Trouble": {
+            "name": "Sense Trouble",
+            "category": "General"
+        },
+        "Shrink": {
+            "name": "Shrink",
+            "category": "General"
+        },
+        "Archaeology": {
+            "name": "Archaeology",
+            "category": "Academic"
+        },
+        "Forgery": {
+            "name": "Forgery",
+            "category": "Technical"
+        },
+        "Conceal": {
+            "name": "Conceal",
+            "category": "General"
+        },
+        "Flirting": {
+            "name": "Flirting",
+            "category": "Interpersonal"
+        },
+        "Disguise": {
+            "name": "Disguise",
+            "category": "General"
+        },
+        "Medic": {
+            "name": "Medic",
+            "category": "General"
+        },
+        "Occult Studies": {
+            "name": "Occult Studies",
+            "category": "Academic"
+        },
+        "Shooting": {
+            "name": "Shooting",
+            "category": "General"
+        },
+        "Negotiation": {
+            "name": "Negotiation",
+            "category": "Interpersonal"
+        },
+        "Health": {
+            "name": "Health",
+            "category": "General"
+        }
+    }
+}

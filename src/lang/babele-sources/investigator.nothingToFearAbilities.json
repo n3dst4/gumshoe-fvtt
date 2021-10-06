@@ -1,0 +1,122 @@
+{
+	"label": "Nothing to Fear Abilities",
+	"mapping": {
+		"category": "data.category"
+	},
+	"entries": {
+		"Athletics": {
+			"name": "Athletics"
+		},
+		"Aura Reading": {
+			"name": "Aura Reading"
+		},
+		"Bullshit Detector": {
+			"name": "Bullshit Detector"
+		},
+		"Bureaucracy": {
+			"name": "Bureaucracy"
+		},
+		"Cop Talk": {
+			"name": "Cop Talk"
+		},
+		"Driving": {
+			"name": "Driving"
+		},
+		"Filch": {
+			"name": "Filch"
+		},
+		"Flattery": {
+			"name": "Flattery"
+		},
+		"Fleeing": {
+			"name": "Fleeing"
+		},
+		"Flirting": {
+			"name": "Flirting"
+		},
+		"Health": {
+			"name": "Health"
+		},
+		"Hiding": {
+			"name": "Hiding"
+		},
+		"History": {
+			"name": "History"
+		},
+		"Impersonate": {
+			"name": "Impersonate"
+		},
+		"Infiltration": {
+			"name": "Infiltration"
+		},
+		"Interrogation": {
+			"name": "Interrogation"
+		},
+		"Intimidation": {
+			"name": "Intimidation"
+		},
+		"Languages": {
+			"name": "Languages"
+		},
+		"Law": {
+			"name": "Law"
+		},
+		"Mechanics": {
+			"name": "Mechanics"
+		},
+		"Medic": {
+			"name": "Medic"
+		},
+		"Medicine": {
+			"name": "Medicine"
+		},
+		"Negotiation": {
+			"name": "Negotiation"
+		},
+		"Notice": {
+			"name": "Notice"
+		},
+		"Occult Studies": {
+			"name": "Occult Studies"
+		},
+		"Outdoor Survival": {
+			"name": "Outdoor Survival"
+		},
+		"Photography": {
+			"name": "Photography"
+		},
+		"Preparedness": {
+			"name": "Preparedness"
+		},
+		"Reassurance": {
+			"name": "Reassurance"
+		},
+		"Research": {
+			"name": "Research"
+		},
+		"Science!": {
+			"name": "Science!"
+		},
+		"Scuffling": {
+			"name": "Scuffling"
+		},
+		"Sense Trouble": {
+			"name": "Sense Trouble"
+		},
+		"Shooting": {
+			"name": "Shooting"
+		},
+		"Shrink": {
+			"name": "Shrink"
+		},
+		"Stability": {
+			"name": "Stability"
+		},
+		"Streetwise": {
+			"name": "Streetwise"
+		},
+		"Trivia": {
+			"name": "Trivia"
+		}
+	}
+}

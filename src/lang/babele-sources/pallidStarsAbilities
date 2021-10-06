@@ -1,0 +1,172 @@
+{
+    "label": "Pallid Stars Abilities",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Chemistry": {
+            "name": "Chemistry",
+            "category": "Technical"
+        },
+        "Explosive Devices": {
+            "name": "Explosive Devices",
+            "category": "Technical"
+        },
+        "Negotiation": {
+            "name": "Negotiation",
+            "category": "Interpersonal"
+        },
+        "Scuffling": {
+            "name": "Scuffling",
+            "category": "General"
+        },
+        "Flirting": {
+            "name": "Flirting",
+            "category": "Interpersonal"
+        },
+        "Astronomy": {
+            "name": "Astronomy",
+            "category": "Technical"
+        },
+        "Interrogation": {
+            "name": "Interrogation",
+            "category": "Interpersonal"
+        },
+        "History": {
+            "name": "History",
+            "category": "Academic"
+        },
+        "Anthropology": {
+            "name": "Anthropology",
+            "category": "Academic"
+        },
+        "Impersonate": {
+            "name": "Impersonate",
+            "category": "Interpersonal"
+        },
+        "Respect": {
+            "name": "Respect",
+            "category": "Interpersonal"
+        },
+        "Cryptography": {
+            "name": "Cryptography",
+            "category": "Technical"
+        },
+        "Preparedness": {
+            "name": "Preparedness",
+            "category": "General"
+        },
+        "Reassurance": {
+            "name": "Reassurance",
+            "category": "Interpersonal"
+        },
+        "Cop Talk": {
+            "name": "Cop Talk",
+            "category": "Interpersonal"
+        },
+        "Bullshit Detector": {
+            "name": "Bullshit Detector",
+            "category": "Interpersonal"
+        },
+        "Flattery": {
+            "name": "Flattery",
+            "category": "Interpersonal"
+        },
+        "Surveillance": {
+            "name": "Surveillance",
+            "category": "General"
+        },
+        "Forensic Psychology": {
+            "name": "Forensic Psychology",
+            "category": "Academic"
+        },
+        "Bureaucracy": {
+            "name": "Bureaucracy",
+            "category": "Interpersonal"
+        },
+        "Linguistics": {
+            "name": "Linguistics",
+            "category": "Academic"
+        },
+        "Botany": {
+            "name": "Botany",
+            "category": "Academic"
+        },
+        "Archaeology": {
+            "name": "Archaeology",
+            "category": "Academic"
+        },
+        "Health": {
+            "name": "Health",
+            "category": "General"
+        },
+        "Intimidation": {
+            "name": "Intimidation",
+            "category": "Interpersonal"
+        },
+        "Shooting": {
+            "name": "Shooting",
+            "category": "General"
+        },
+        "Medic": {
+            "name": "Medic",
+            "category": "General"
+        },
+        "Athletics": {
+            "name": "Athletics",
+            "category": "General"
+        },
+        "Evidence Collection": {
+            "name": "Evidence Collection",
+            "category": "Technical"
+        },
+        "Forensic Anthropology": {
+            "name": "Forensic Anthropology",
+            "category": "Technical"
+        },
+        "Filch": {
+            "name": "Filch",
+            "category": "General"
+        },
+        "Inspiration": {
+            "name": "Inspiration",
+            "category": "Interpersonal"
+        },
+        "Infiltration": {
+            "name": "Infiltration",
+            "category": "General"
+        },
+        "Data Retrieval": {
+            "name": "Data Retrieval",
+            "category": "Technical"
+        },
+        "Business Affairs": {
+            "name": "Business Affairs",
+            "category": "General"
+        },
+        "Culture": {
+            "name": "Culture",
+            "category": "Academic"
+        },
+        "Public Relations": {
+            "name": "Public Relations",
+            "category": "General"
+        },
+        "Forensic Accounting": {
+            "name": "Forensic Accounting",
+            "category": "Academic"
+        },
+        "Sense Trouble": {
+            "name": "Sense Trouble",
+            "category": "General"
+        },
+        "Geology": {
+            "name": "Geology",
+            "category": "Academic"
+        },
+        "Law": {
+            "name": "Law",
+            "category": "Academic"
+        }
+    }
+}
