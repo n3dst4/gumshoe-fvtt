@@ -107,12 +107,18 @@ async function copyFiles () {
  * platform
  */
 async function groomTranslations () {
+  // ===========================================================================
+  // requires
+  // ===========================================================================
   const path = require("path");
   const { readdir, readFile, writeFile } = require("fs/promises");
   const chalk = require("chalk");
 
+  // ===========================================================================
+  // actual code
+  // ===========================================================================
   const parts = path.parse(__filename);
-  const langDir = path.join(parts.dir, "..", "src", "lang");
+  const langDir = path.join(parts.dir, "src", "lang");
   const files = (await readdir(langDir)).filter((f) => f.endsWith(".json") && f !== "en.json");
   const enPath = path.join(langDir, "en.json");
   const text = await (await readFile(enPath)).toString();
@@ -161,7 +167,7 @@ async function extractPackTranslationTemplates () {
   // ===========================================================================
   // requires
   // ===========================================================================
-  const system = require("../src/system.json");
+  const system = require("./src/system.json");
   const path = require("path");
   const {
     // readdir,
@@ -182,7 +188,7 @@ async function extractPackTranslationTemplates () {
   // actual code
   // ===========================================================================
   const parts = path.parse(__filename);
-  const srcDir = path.join(parts.dir, "..", "src");
+  const srcDir = path.join(parts.dir, "src");
   const itemPacks = system.packs.filter((p) => p.entity === "Item");
 
   for (const pack of itemPacks) {
