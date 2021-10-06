@@ -1,8 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require("path");
-const { readdir, readFile, writeFile } = require("fs/promises");
-const chalk = require("chalk");
-const Datastore = require("nedb-promises");
 
 /**
  * go through the core en translations and mak sure all the non-en .json files
@@ -12,6 +8,10 @@ const Datastore = require("nedb-promises");
  * platform
  */
 async function groomTranslations () {
+  const path = require("path");
+  const { readdir, readFile, writeFile } = require("fs/promises");
+  const chalk = require("chalk");
+
   const parts = path.parse(__filename);
   const langDir = path.join(parts.dir, "..", "src", "lang");
   const files = (await readdir(langDir)).filter((f: string) => f.endsWith(".json") && f !== "en.json");
@@ -53,26 +53,4 @@ async function groomTranslations () {
   return Promise.all(proms);
 }
 
-/**
- * go though the compendium packs, and for each one, emit an untranslated
- * template file. once comiotted and pushed, this will be picked up by transifex
- * and update the translation list.
- */
-async function updatePackSourceTranslations () {
-  const parts = path.parse(__filename);
-  // const langDir = path.join(parts.dir, "..", "src", "lang");
-  const packDir = path.join(parts.dir, "..", "src", "packs");
-  const files = (await readdir(packDir)).filter((f: string) => f.endsWith(".db"));
-  for (const file of files) {
-    const store = Datastore.create({
-      filename: path.join(packDir, file),
-      autoload: true,
-    });
-    const docs = await store.find({});
-    console.log("\n", file);
-    console.log(docs.map((d: any) => d.name).join(", "));
-  }
-}
-
-// groomTranslations();
-updatePackSourceTranslations();
+groomTranslations();
