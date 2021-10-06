@@ -1,0 +1,160 @@
+{
+    "label": "Nothing to Fear Abilities",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Athletics": {
+            "name": "Athletics",
+            "category": "General"
+        },
+        "Aura Reading": {
+            "name": "Aura Reading",
+            "category": "Psychic Powers"
+        },
+        "Bullshit Detector": {
+            "name": "Bullshit Detector",
+            "category": "Interpersonal"
+        },
+        "Bureaucracy": {
+            "name": "Bureaucracy",
+            "category": "Interpersonal"
+        },
+        "Cop Talk": {
+            "name": "Cop Talk",
+            "category": "Interpersonal"
+        },
+        "Driving": {
+            "name": "Driving",
+            "category": "General"
+        },
+        "Filch": {
+            "name": "Filch",
+            "category": "General"
+        },
+        "Flattery": {
+            "name": "Flattery",
+            "category": "Interpersonal"
+        },
+        "Fleeing": {
+            "name": "Fleeing",
+            "category": "General"
+        },
+        "Flirting": {
+            "name": "Flirting",
+            "category": "Interpersonal"
+        },
+        "Health": {
+            "name": "Health",
+            "category": "General"
+        },
+        "Hiding": {
+            "name": "Hiding",
+            "category": "General"
+        },
+        "History": {
+            "name": "History",
+            "category": "Academic"
+        },
+        "Impersonate": {
+            "name": "Impersonate",
+            "category": "Interpersonal"
+        },
+        "Infiltration": {
+            "name": "Infiltration",
+            "category": "General"
+        },
+        "Interrogation": {
+            "name": "Interrogation",
+            "category": "Interpersonal"
+        },
+        "Intimidation": {
+            "name": "Intimidation",
+            "category": "Interpersonal"
+        },
+        "Languages": {
+            "name": "Languages",
+            "category": "Academic"
+        },
+        "Law": {
+            "name": "Law",
+            "category": "Academic"
+        },
+        "Mechanics": {
+            "name": "Mechanics",
+            "category": "General"
+        },
+        "Medic": {
+            "name": "Medic",
+            "category": "General"
+        },
+        "Medicine": {
+            "name": "Medicine",
+            "category": "Technical"
+        },
+        "Negotiation": {
+            "name": "Negotiation",
+            "category": "Interpersonal"
+        },
+        "Notice": {
+            "name": "Notice",
+            "category": "Technical"
+        },
+        "Occult Studies": {
+            "name": "Occult Studies",
+            "category": "Academic"
+        },
+        "Outdoor Survival": {
+            "name": "Outdoor Survival",
+            "category": "Technical"
+        },
+        "Photography": {
+            "name": "Photography",
+            "category": "Technical"
+        },
+        "Preparedness": {
+            "name": "Preparedness",
+            "category": "General"
+        },
+        "Reassurance": {
+            "name": "Reassurance",
+            "category": "Interpersonal"
+        },
+        "Research": {
+            "name": "Research",
+            "category": "Academic"
+        },
+        "Science!": {
+            "name": "Science!",
+            "category": "Technical"
+        },
+        "Scuffling": {
+            "name": "Scuffling",
+            "category": "General"
+        },
+        "Sense Trouble": {
+            "name": "Sense Trouble",
+            "category": "General"
+        },
+        "Shooting": {
+            "name": "Shooting",
+            "category": "General"
+        },
+        "Shrink": {
+            "name": "Shrink",
+            "category": "General"
+        },
+        "Stability": {
+            "name": "Stability",
+            "category": "General"
+        },
+        "Streetwise": {
+            "name": "Streetwise",
+            "category": "Interpersonal"
+        },
+        "Trivia": {
+            "name": "Trivia",
+            "category": "Academic"
+        }
+    }
+}

@@ -1,0 +1,168 @@
+{
+    "label": "Path of Cthulhu Abilities",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "Anthropology",
+            "category": "Academic"
+        },
+        "Archeology": {
+            "name": "Archeology",
+            "category": "Academic"
+        },
+        "Architecture": {
+            "name": "Architecture",
+            "category": "Academic"
+        },
+        "Art History": {
+            "name": "Art History",
+            "category": "Academic"
+        },
+        "Astronomy": {
+            "name": "Astronomy",
+            "category": "Technical"
+        },
+        "Athletics": {
+            "name": "Athletics",
+            "category": "General"
+        },
+        "Bureaucracy": {
+            "name": "Bureaucracy",
+            "category": "Interpersonal"
+        },
+        "Chemistry": {
+            "name": "Chemistry",
+            "category": "Technical"
+        },
+        "Conceal": {
+            "name": "Conceal",
+            "category": "General"
+        },
+        "Cop Talk": {
+            "name": "Cop Talk",
+            "category": "Interpersonal"
+        },
+        "Craft": {
+            "name": "Craft",
+            "category": "Technical"
+        },
+        "Cryptography": {
+            "name": "Cryptography",
+            "category": "Academic"
+        },
+        "Disguise": {
+            "name": "Disguise",
+            "category": "General"
+        },
+        "Driving": {
+            "name": "Driving",
+            "category": "General"
+        },
+        "Evidence Collection": {
+            "name": "Evidence Collection",
+            "category": "Technical"
+        },
+        "Explosives": {
+            "name": "Explosives",
+            "category": "General"
+        },
+        "Filch": {
+            "name": "Filch",
+            "category": "General"
+        },
+        "First Aid": {
+            "name": "First Aid",
+            "category": "General"
+        },
+        "Flattery": {
+            "name": "Flattery",
+            "category": "Interpersonal"
+        },
+        "Fleeing": {
+            "name": "Fleeing",
+            "category": "General"
+        },
+        "Geology": {
+            "name": "Geology",
+            "category": "Academic"
+        },
+        "Health": {
+            "name": "Health",
+            "category": "General"
+        },
+        "History": {
+            "name": "History",
+            "category": "Academic"
+        },
+        "Hypnosis": {
+            "name": "Hypnosis",
+            "category": "General"
+        },
+        "Interrogation": {
+            "name": "Interrogation",
+            "category": "Interpersonal"
+        },
+        "Intimidation": {
+            "name": "Intimidation",
+            "category": "Interpersonal"
+        },
+        "Languages": {
+            "name": "Languages",
+            "category": "Academic"
+        },
+        "Law": {
+            "name": "Law",
+            "category": "Academic"
+        },
+        "Locksmith": {
+            "name": "Locksmith",
+            "category": "Technical"
+        },
+        "Mechanics": {
+            "name": "Mechanics",
+            "category": "General"
+        },
+        "Oral History": {
+            "name": "Oral History",
+            "category": "Interpersonal"
+        },
+        "Photography": {
+            "name": "Photography",
+            "category": "Technical"
+        },
+        "Piloting": {
+            "name": "Piloting",
+            "category": "General"
+        },
+        "Preparedness": {
+            "name": "Preparedness",
+            "category": "General"
+        },
+        "Reassurance": {
+            "name": "Reassurance",
+            "category": "Interpersonal"
+        },
+        "Riding": {
+            "name": "Riding",
+            "category": "General"
+        },
+        "Scuffling": {
+            "name": "Scuffling",
+            "category": "General"
+        },
+        "Sense Trouble": {
+            "name": "Sense Trouble",
+            "category": "General"
+        },
+        "Stability": {
+            "name": "Stability",
+            "category": "General"
+        },
+        "Streetwise": {
+            "name": "Streetwise",
+            "category": "Interpersonal"
+        }
+    }
+}

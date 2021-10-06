@@ -1,9 +1,17 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require("path");
-const { readdir, readFile, writeFile } = require("fs/promises");
-const chalk = require("chalk");
 
+/**
+ * go through the core en translations and mak sure all the non-en .json files
+ * have the same entries.
+ *
+ * this should become redundant if we start using a translation management
+ * platform
+ */
 async function groomTranslations () {
+  const path = require("path");
+  const { readdir, readFile, writeFile } = require("fs/promises");
+  const chalk = require("chalk");
+
   const parts = path.parse(__filename);
   const langDir = path.join(parts.dir, "..", "src", "lang");
   const files = (await readdir(langDir)).filter((f: string) => f.endsWith(".json") && f !== "en.json");
