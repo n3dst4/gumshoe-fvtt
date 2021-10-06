@@ -11,7 +11,8 @@
     "start": "gulp watch",
     "watch": "gulp watch",
     "clean": "gulp clean",
-    "groom-translations": "ts-node ./scripts/groom_translations.ts"
+    "groom-translations": "gulp groomTranslations",
+    "extract-pack-translation-templates": "gulp extractPackTranslationTemplates"
   },
   "author": "",
   "license": "",
