@@ -38,6 +38,7 @@ async function updatePackSourceTranslations () {
       autoload: true,
     });
     const docs = await store.find({});
+    docs.sort((a: any, b: any) => a.name.localeCompare(b.name));
     for (const doc of docs) {
       entries[doc.name] = {
         name: doc.name,
@@ -51,7 +52,8 @@ async function updatePackSourceTranslations () {
       mapping,
       entries,
     };
-    const outFilePath = path.join(srcDir, "lang", "babele-sources", path.basename(pack.path, ".db"));
+    const outFileName = `${system.name}.${path.basename(pack.path, ".db")}.json`;
+    const outFilePath = path.join(srcDir, "lang", "babele-sources", outFileName);
     const json = JSON.stringify(babeleData, null, 4);
     await writeFile(outFilePath, json);
   }

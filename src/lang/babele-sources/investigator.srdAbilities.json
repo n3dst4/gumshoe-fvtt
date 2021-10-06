@@ -1,0 +1,516 @@
+{
+    "label": "SRD Abilities",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Analytic Taste": {
+            "name": "Analytic Taste",
+            "category": "Exotic"
+        },
+        "Anthropology": {
+            "name": "Anthropology",
+            "category": "Academic"
+        },
+        "Archaeology": {
+            "name": "Archaeology",
+            "category": "Academic"
+        },
+        "Architecture": {
+            "name": "Architecture",
+            "category": "Academic"
+        },
+        "Art History": {
+            "name": "Art History",
+            "category": "Academic"
+        },
+        "Artillery": {
+            "name": "Artillery",
+            "category": "Physical"
+        },
+        "Astronomy": {
+            "name": "Astronomy",
+            "category": "Academic"
+        },
+        "Athletics": {
+            "name": "Athletics",
+            "category": "Physical"
+        },
+        "Aura Reading": {
+            "name": "Aura Reading",
+            "category": "Exotic"
+        },
+        "Authority": {
+            "name": "Authority",
+            "category": "Interpersonal"
+        },
+        "Ballistics": {
+            "name": "Ballistics",
+            "category": "Technical"
+        },
+        "Battlefield": {
+            "name": "Battlefield",
+            "category": "Focus"
+        },
+        "Belle-Lettres": {
+            "name": "Belle-Lettres",
+            "category": "Academic"
+        },
+        "Bonhomie": {
+            "name": "Bonhomie",
+            "category": "Interpersonal"
+        },
+        "Botany": {
+            "name": "Botany",
+            "category": "Academic"
+        },
+        "Bullshit Detector": {
+            "name": "Bullshit Detector",
+            "category": "Interpersonal"
+        },
+        "Bureaucracy": {
+            "name": "Bureaucracy",
+            "category": "Interpersonal"
+        },
+        "Burglary": {
+            "name": "Burglary",
+            "category": "Focus"
+        },
+        "Business Affairs": {
+            "name": "Business Affairs",
+            "category": "Presence"
+        },
+        "Camping": {
+            "name": "Camping",
+            "category": "Technical"
+        },
+        "Charm": {
+            "name": "Charm",
+            "category": "Interpersonal"
+        },
+        "Chemistry": {
+            "name": "Chemistry",
+            "category": "Technical"
+        },
+        "Chronal Stability": {
+            "name": "Chronal Stability",
+            "category": "Exotic"
+        },
+        "Comparative Religion": {
+            "name": "Comparative Religion",
+            "category": "Academic"
+        },
+        "Composure": {
+            "name": "Composure",
+            "category": "Presence"
+        },
+        "Conceal": {
+            "name": "Conceal",
+            "category": "Focus"
+        },
+        "Cop Talk": {
+            "name": "Cop Talk",
+            "category": "Interpersonal"
+        },
+        "Counterinsurgency": {
+            "name": "Counterinsurgency",
+            "category": "Technical"
+        },
+        "Craft": {
+            "name": "Craft",
+            "category": "Technical"
+        },
+        "Cryptography": {
+            "name": "Cryptography",
+            "category": "Technical"
+        },
+        "Culture": {
+            "name": "Culture",
+            "category": "Academic"
+        },
+        "Data Retrieval": {
+            "name": "Data Retrieval",
+            "category": "Technical"
+        },
+        "Disguise": {
+            "name": "Disguise",
+            "category": "Focus"
+        },
+        "Document Analysis": {
+            "name": "Document Analysis",
+            "category": "Technical"
+        },
+        "Driving": {
+            "name": "Driving",
+            "category": "Focus"
+        },
+        "Electronic Surveillance": {
+            "name": "Electronic Surveillance",
+            "category": "Technical"
+        },
+        "Evidence Collection": {
+            "name": "Evidence Collection",
+            "category": "Technical"
+        },
+        "Explosive Devices": {
+            "name": "Explosive Devices",
+            "category": "Technical"
+        },
+        "Explosives": {
+            "name": "Explosives",
+            "category": "Focus"
+        },
+        "Farming": {
+            "name": "Farming",
+            "category": "Technical"
+        },
+        "Fashion": {
+            "name": "Fashion",
+            "category": "Academic"
+        },
+        "Fighting": {
+            "name": "Fighting",
+            "category": "Physical"
+        },
+        "Filch": {
+            "name": "Filch",
+            "category": "Focus"
+        },
+        "Fingerprinting": {
+            "name": "Fingerprinting",
+            "category": "Technical"
+        },
+        "First Aid": {
+            "name": "First Aid",
+            "category": "Focus"
+        },
+        "Flattery": {
+            "name": "Flattery",
+            "category": "Interpersonal"
+        },
+        "Fleeing": {
+            "name": "Fleeing",
+            "category": "Physical"
+        },
+        "Flirting": {
+            "name": "Flirting",
+            "category": "Interpersonal"
+        },
+        "Forensic Accounting": {
+            "name": "Forensic Accounting",
+            "category": "Academic"
+        },
+        "Forensic Anthropology": {
+            "name": "Forensic Anthropology",
+            "category": "Technical"
+        },
+        "Forensic Entomology": {
+            "name": "Forensic Entomology",
+            "category": "Technical"
+        },
+        "Forensic Psychology": {
+            "name": "Forensic Psychology",
+            "category": "Academic"
+        },
+        "Forgery": {
+            "name": "Forgery",
+            "category": "Technical"
+        },
+        "Gambling": {
+            "name": "Gambling",
+            "category": "Presence"
+        },
+        "Geology": {
+            "name": "Geology",
+            "category": "Academic"
+        },
+        "Hacking": {
+            "name": "Hacking",
+            "category": "Technical"
+        },
+        "Health": {
+            "name": "Health",
+            "category": "Physical"
+        },
+        "High Society": {
+            "name": "High Society",
+            "category": "Interpersonal"
+        },
+        "History": {
+            "name": "History",
+            "category": "Academic"
+        },
+        "Hunting": {
+            "name": "Hunting",
+            "category": "Technical"
+        },
+        "Hypnosis": {
+            "name": "Hypnosis",
+            "category": "Presence"
+        },
+        "Impersonate": {
+            "name": "Impersonate",
+            "category": "Interpersonal"
+        },
+        "Infiltration": {
+            "name": "Infiltration",
+            "category": "Physical"
+        },
+        "Inspiration": {
+            "name": "Inspiration",
+            "category": "Interpersonal"
+        },
+        "Insurgency": {
+            "name": "Insurgency",
+            "category": "Focus"
+        },
+        "Interrogation": {
+            "name": "Interrogation",
+            "category": "Interpersonal"
+        },
+        "Intimidation": {
+            "name": "Intimidation",
+            "category": "Interpersonal"
+        },
+        "Intuition": {
+            "name": "Intuition",
+            "category": "Technical"
+        },
+        "Languages": {
+            "name": "Languages",
+            "category": "Academic"
+        },
+        "Law": {
+            "name": "Law",
+            "category": "Academic"
+        },
+        "Leadership": {
+            "name": "Leadership",
+            "category": "Interpersonal"
+        },
+        "Linguistics": {
+            "name": "Linguistics",
+            "category": "Academic"
+        },
+        "Locksmith": {
+            "name": "Locksmith",
+            "category": "Technical"
+        },
+        "Mechanics": {
+            "name": "Mechanics",
+            "category": "Focus"
+        },
+        "Medic": {
+            "name": "Medic",
+            "category": "Focus"
+        },
+        "Medical Expertise": {
+            "name": "Medical Expertise",
+            "category": "Technical"
+        },
+        "Military History": {
+            "name": "Military History",
+            "category": "Academic"
+        },
+        "Military Tactics": {
+            "name": "Military Tactics",
+            "category": "Academic"
+        },
+        "Morale": {
+            "name": "Morale",
+            "category": "Presence"
+        },
+        "Mutant Power: Blood Spray": {
+            "name": "Mutant Power: Blood Spray",
+            "category": "Exotic"
+        },
+        "Natural History": {
+            "name": "Natural History",
+            "category": "Academic"
+        },
+        "Negotiation": {
+            "name": "Negotiation",
+            "category": "Interpersonal"
+        },
+        "Network": {
+            "name": "Network",
+            "category": "Focus"
+        },
+        "Notice": {
+            "name": "Notice",
+            "category": "Technical"
+        },
+        "Occult Studies": {
+            "name": "Occult Studies",
+            "category": "Academic"
+        },
+        "Oral History": {
+            "name": "Oral History",
+            "category": "Interpersonal"
+        },
+        "Outdoor Survival": {
+            "name": "Outdoor Survival",
+            "category": "Technical"
+        },
+        "Painting": {
+            "name": "Painting",
+            "category": "Technical"
+        },
+        "Paradox Prevention": {
+            "name": "Paradox Prevention",
+            "category": "Technical"
+        },
+        "Pathology": {
+            "name": "Pathology",
+            "category": "Academic"
+        },
+        "Pathway Amplification": {
+            "name": "Pathway Amplification",
+            "category": "Exotic"
+        },
+        "People Person": {
+            "name": "People Person",
+            "category": "Interpersonal"
+        },
+        "Photography": {
+            "name": "Photography",
+            "category": "Technical"
+        },
+        "Piloting": {
+            "name": "Piloting",
+            "category": "Physical"
+        },
+        "Poetry": {
+            "name": "Poetry",
+            "category": "Academic"
+        },
+        "Political Science": {
+            "name": "Political Science",
+            "category": "Academic"
+        },
+        "Politics": {
+            "name": "Politics",
+            "category": "Presence"
+        },
+        "Preparedness": {
+            "name": "Preparedness",
+            "category": "Presence"
+        },
+        "Public Relations": {
+            "name": "Public Relations",
+            "category": "Presence"
+        },
+        "Reality Anchor": {
+            "name": "Reality Anchor",
+            "category": "Exotic"
+        },
+        "Reassurance": {
+            "name": "Reassurance",
+            "category": "Interpersonal"
+        },
+        "Research": {
+            "name": "Research",
+            "category": "Academic"
+        },
+        "Respect": {
+            "name": "Respect",
+            "category": "Interpersonal"
+        },
+        "Riding": {
+            "name": "Riding",
+            "category": "Physical"
+        },
+        "Salt of the Earth": {
+            "name": "Salt of the Earth",
+            "category": "Interpersonal"
+        },
+        "Science!": {
+            "name": "Science!",
+            "category": "Technical"
+        },
+        "Scrounging": {
+            "name": "Scrounging",
+            "category": "Presence"
+        },
+        "Scuffling": {
+            "name": "Scuffling",
+            "category": "Physical"
+        },
+        "Sculpture": {
+            "name": "Sculpture",
+            "category": "Technical"
+        },
+        "Sense Trouble": {
+            "name": "Sense Trouble",
+            "category": "Presence"
+        },
+        "Shooting": {
+            "name": "Shooting",
+            "category": "Physical"
+        },
+        "Shrink": {
+            "name": "Shrink",
+            "category": "Presence"
+        },
+        "Society": {
+            "name": "Society",
+            "category": "Interpersonal"
+        },
+        "Spying": {
+            "name": "Spying",
+            "category": "Technical"
+        },
+        "Stability": {
+            "name": "Stability",
+            "category": "Presence"
+        },
+        "Streetwise": {
+            "name": "Streetwise",
+            "category": "Interpersonal"
+        },
+        "Surveillance": {
+            "name": "Surveillance",
+            "category": "Focus"
+        },
+        "Taunt": {
+            "name": "Taunt",
+            "category": "Interpersonal"
+        },
+        "Terrain": {
+            "name": "Terrain",
+            "category": "Technical"
+        },
+        "Textual Analysis": {
+            "name": "Textual Analysis",
+            "category": "Academic"
+        },
+        "Timecraft": {
+            "name": "Timecraft",
+            "category": "Academic"
+        },
+        "Tradecraft": {
+            "name": "Tradecraft",
+            "category": "Interpersonal"
+        },
+        "Traffic Analysis": {
+            "name": "Traffic Analysis",
+            "category": "Technical"
+        },
+        "Traps and Bombs": {
+            "name": "Traps and Bombs",
+            "category": "Focus"
+        },
+        "Trivia": {
+            "name": "Trivia",
+            "category": "Academic"
+        },
+        "Unobtrusiveness": {
+            "name": "Unobtrusiveness",
+            "category": "Focus"
+        },
+        "Viroware Enhancement: Dominator": {
+            "name": "Viroware Enhancement: Dominator",
+            "category": "Exotic"
+        }
+    }
+}

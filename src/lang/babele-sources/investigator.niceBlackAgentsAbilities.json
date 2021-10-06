@@ -1,16 +1,32 @@
 {
-    "label": "Nothing to Fear Abilities",
+    "label": "Nice Black Agents Abilities",
     "mapping": {
         "category": "data.category"
     },
     "entries": {
+        "Accounting": {
+            "name": "Accounting",
+            "category": "Academic"
+        },
+        "Archaeology": {
+            "name": "Archaeology",
+            "category": "Academic"
+        },
+        "Architecture": {
+            "name": "Architecture",
+            "category": "Academic"
+        },
+        "Art History": {
+            "name": "Art History",
+            "category": "Academic"
+        },
+        "Astronomy": {
+            "name": "Astronomy",
+            "category": "Technical"
+        },
         "Athletics": {
             "name": "Athletics",
             "category": "General"
-        },
-        "Aura Reading": {
-            "name": "Aura Reading",
-            "category": "Psychic Powers"
         },
         "Bullshit Detector": {
             "name": "Bullshit Detector",
@@ -20,13 +36,33 @@
             "name": "Bureaucracy",
             "category": "Interpersonal"
         },
+        "Chemistry": {
+            "name": "Chemistry",
+            "category": "Technical"
+        },
+        "Conceal": {
+            "name": "Conceal",
+            "category": "General"
+        },
         "Cop Talk": {
             "name": "Cop Talk",
             "category": "Interpersonal"
         },
+        "Cryptography": {
+            "name": "Cryptography",
+            "category": "Technical"
+        },
+        "Disguise": {
+            "name": "Disguise",
+            "category": "General"
+        },
         "Driving": {
             "name": "Driving",
             "category": "General"
+        },
+        "Electronic Surveillance": {
+            "name": "Electronic Surveillance",
+            "category": "Technical"
         },
         "Filch": {
             "name": "Filch",
@@ -36,29 +72,33 @@
             "name": "Flattery",
             "category": "Interpersonal"
         },
-        "Fleeing": {
-            "name": "Fleeing",
-            "category": "General"
-        },
         "Flirting": {
             "name": "Flirting",
             "category": "Interpersonal"
+        },
+        "Forgery": {
+            "name": "Forgery",
+            "category": "Technical"
+        },
+        "Gambling": {
+            "name": "Gambling",
+            "category": "General"
+        },
+        "Hand-to-Hand": {
+            "name": "Hand-to-Hand",
+            "category": "General"
         },
         "Health": {
             "name": "Health",
             "category": "General"
         },
-        "Hiding": {
-            "name": "Hiding",
-            "category": "General"
+        "High Society": {
+            "name": "High Society",
+            "category": "Interpersonal"
         },
         "History": {
             "name": "History",
             "category": "Academic"
-        },
-        "Impersonate": {
-            "name": "Impersonate",
-            "category": "Interpersonal"
         },
         "Infiltration": {
             "name": "Infiltration",
@@ -88,13 +128,17 @@
             "name": "Medic",
             "category": "General"
         },
-        "Medicine": {
-            "name": "Medicine",
-            "category": "Technical"
+        "Military Science": {
+            "name": "Military Science",
+            "category": "Academic"
         },
         "Negotiation": {
             "name": "Negotiation",
             "category": "Interpersonal"
+        },
+        "Network": {
+            "name": "Network",
+            "category": "General"
         },
         "Notice": {
             "name": "Notice",
@@ -112,6 +156,10 @@
             "name": "Photography",
             "category": "Technical"
         },
+        "Piloting": {
+            "name": "Piloting",
+            "category": "General"
+        },
         "Preparedness": {
             "name": "Preparedness",
             "category": "General"
@@ -123,14 +171,6 @@
         "Research": {
             "name": "Research",
             "category": "Academic"
-        },
-        "Science!": {
-            "name": "Science!",
-            "category": "Technical"
-        },
-        "Scuffling": {
-            "name": "Scuffling",
-            "category": "General"
         },
         "Sense Trouble": {
             "name": "Sense Trouble",
@@ -152,9 +192,17 @@
             "name": "Streetwise",
             "category": "Interpersonal"
         },
-        "Trivia": {
-            "name": "Trivia",
-            "category": "Academic"
+        "Surveillance": {
+            "name": "Surveillance",
+            "category": "General"
+        },
+        "Tradecraft": {
+            "name": "Tradecraft",
+            "category": "Interpersonal"
+        },
+        "Traffic Analysis": {
+            "name": "Traffic Analysis",
+            "category": "Technical"
         }
     }
 }
