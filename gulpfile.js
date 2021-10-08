@@ -139,7 +139,7 @@ async function groomTranslations () {
       if (translation === undefined || translation.startsWith("FIXME")) {
         console.log(chalk.red(`${filename} is missing a translation for ${key}`));
       }
-      result[key] = translation ?? `FIXME ${enSorted[key]}`;
+      result[key] = translation ?? "";
     }
     for (const key of Object.keys(parsed)) {
       if (enSorted[key] === undefined) {
