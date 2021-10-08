@@ -4,6 +4,7 @@ import { GumshoeActor } from "../../module/GumshoeActor";
 import { jsx } from "@emotion/react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { AbilitiesArea } from "./AbilitiesArea";
+import { AbilitiesEditArea } from "./AbilitiesEditArea";
 import { CSSReset } from "../CSSReset";
 import { LogoEditable } from "./LogoEditable";
 import { InputGrid } from "../inputs/InputGrid";
@@ -171,6 +172,11 @@ export const GumshoeActorSheet = ({
                 id: "abilities",
                 label: "Abilities",
                 content: <AbilitiesArea actor={actor}/>,
+              },
+              {
+                id: "abilities-edit",
+                label: "Edit",
+                content: <AbilitiesEditArea actor={actor}/>,
               },
               {
                 id: "equipment",
