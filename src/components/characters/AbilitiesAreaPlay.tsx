@@ -9,14 +9,14 @@ import { ThemeContext } from "../../theme";
 import { assertActiveCharacterDataSource, isAbilityDataSource } from "../../types";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
-import { AbilityEditSlug } from "./AbilityEditSlug";
+import { AbilitySlugPlay } from "./AbilitySlugPlay";
 
-type AbilitiesEditAreaProps = {
+type AbilitiesAreaPlayProps = {
   actor: GumshoeActor,
   flipLeftRight?: boolean,
 };
 
-export const AbilitiesEditArea: React.FC<AbilitiesEditAreaProps> = ({
+export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
   actor,
   flipLeftRight,
 }) => {
@@ -82,17 +82,13 @@ export const AbilitiesEditArea: React.FC<AbilitiesEditAreaProps> = ({
           css={{
             gridArea: "investigative",
             display: "grid",
-            gridTemplateAreas: "'ability rating isocc'",
-            gridTemplateColumns: "max-content max-content 2em",
+            gridTemplateAreas: "'ability rating set spend'",
+            gridTemplateColumns: "max-content max-content max-content  max-content",
             columnGap: "0.5em",
             alignItems: "center",
             height: "0",
           }}
         >
-          <label css={{ gridColumn: "rating" }}>Rating</label>
-          <label css={{ gridColumn: "isocc" }} title="Occupational ability">
-            Occ.
-          </label>
           {Object.keys(investigativeAbilities).sort().map<JSX.Element>((cat) => (
             <Fragment
               key={cat}
@@ -100,7 +96,7 @@ export const AbilitiesEditArea: React.FC<AbilitiesEditAreaProps> = ({
               <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
               {
                 sortEntitiesByName(investigativeAbilities[cat]).map<JSX.Element>((ability) => (
-                  <AbilityEditSlug key={ability.id} ability={ability}/>
+                  <AbilitySlugPlay key={ability.id} ability={ability}/>
                 ))
               }
             </Fragment>
@@ -110,28 +106,21 @@ export const AbilitiesEditArea: React.FC<AbilitiesEditAreaProps> = ({
           css={{
             gridArea: "general",
             display: "grid",
-            gridTemplateColumns: "max-content max-content 2em 2em",
-            gridTemplateAreas: "'ability rating isocc canbeinv'",
+            gridTemplateColumns: "max-content max-content max-content  max-content",
+            gridTemplateAreas: "'ability rating set spend'",
             columnGap: "0.5em",
             alignItems: "center",
             height: "0",
           }}
         >
-          <label css={{ gridColumn: "rating" }}>Rating</label>
-          <label css={{ gridColumn: "isocc" }} title="Occupational ability">
-            Occ.
-          </label>
-          <label css={{ gridColumn: "canbeinv" }} title="Can be used as Investigative Ability">
-            Inv.
-          </label>
           {Object.keys(generalAbilities).sort().map<JSX.Element>((cat) => (
             <Fragment
               key={cat}
             >
-              <h2 css={{ gridColumn: "1 / span 4" }}>{cat}</h2>
+              <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
               {
                 sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>((ability) => (
-                  <AbilityEditSlug key={ability.id} ability={ability}/>
+                  <AbilitySlugPlay key={ability.id} ability={ability}/>
                 ))
               }
             </Fragment>

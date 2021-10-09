@@ -9,11 +9,11 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Checkbox } from "../inputs/Checkbox";
 import { SpecialityList } from "../abilities/SpecialityList";
 
-type AbilityEditSlugProps = {
+type AbilitySlugEditProps = {
   ability: GumshoeItem,
 };
 
-export const AbilityEditSlug: React.FC<AbilityEditSlugProps> = ({ ability }) => {
+export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability }) => {
   assertAbilityDataSource(ability.data);
   const app = useContext(ActorSheetAppContext);
   const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
@@ -40,7 +40,7 @@ export const AbilityEditSlug: React.FC<AbilityEditSlugProps> = ({ ability }) => 
       >
         {ability.name}
       </a>
-      <div css={{ gridColumn: "rating" }} >
+      <div css={{ gridColumn: "rating", justifySelf: "center" }} >
         <AsyncNumberInput
           min={0}
           value={ability.data.data.rating}
@@ -49,7 +49,7 @@ export const AbilityEditSlug: React.FC<AbilityEditSlugProps> = ({ ability }) => 
           css={{ width: "2em", height: "1em" }}
         />
       </div>
-      <div css={{ gridColumn: "isocc" }} >
+      <div css={{ gridColumn: "isocc", justifySelf: "center" }} >
         <Checkbox
           checked={ability.data.data.occupational}
           onChange={(t) => {
@@ -58,7 +58,7 @@ export const AbilityEditSlug: React.FC<AbilityEditSlugProps> = ({ ability }) => 
         />
       </div>
       {isGeneralAbilityDataSource(ability.data) && (
-        <div css={{ gridColumn: "canbeinv" }}>
+        <div css={{ gridColumn: "canbeinv", justifySelf: "center" }}>
           <Checkbox
             checked={ability.data.data.canBeInvestigative}
             onChange={(t) => {
@@ -67,8 +67,8 @@ export const AbilityEditSlug: React.FC<AbilityEditSlugProps> = ({ ability }) => 
           />
         </div>
       )}
-      {ability.getHasSpecialities() && (
-        <div css={{ paddingLeft: "1em", gridColumn: "ability" }}>
+      {ability.getHasSpecialities() && (ability.data.data.rating > 0) && (
+        <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
           <SpecialityList ability={ability} />
         </div>
       )}
