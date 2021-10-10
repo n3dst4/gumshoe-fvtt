@@ -17,7 +17,7 @@ class GumshoeSettingsClassBase extends FormApplication {
       width: 700,
       height: 800,
       resizable: true,
-      title: "GUMSHOE Settings",
+      title: "INVESTIGATOR Settings",
     });
   }
 
