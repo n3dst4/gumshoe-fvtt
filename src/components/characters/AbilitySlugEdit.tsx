@@ -11,9 +11,10 @@ import { SpecialityList } from "../abilities/SpecialityList";
 
 type AbilitySlugEditProps = {
   ability: GumshoeItem,
+  showOcc?: boolean,
 };
 
-export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability }) => {
+export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability, showOcc = true }) => {
   assertAbilityDataSource(ability.data);
   const app = useContext(ActorSheetAppContext);
   const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
@@ -28,14 +29,16 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability }) => 
     <Fragment
       key={ability.id}
     >
-      <div css={{ gridColumn: "isocc", justifySelf: "center" }} >
-        <Checkbox
-          checked={ability.data.data.occupational}
-          onChange={(t) => {
-            updateOccupational(t);
-          }}
-        />
-      </div>
+      { showOcc && (
+        <div css={{ gridColumn: "isocc", justifySelf: "center" }} >
+          <Checkbox
+            checked={ability.data.data.occupational}
+            onChange={(t) => {
+              updateOccupational(t);
+            }}
+          />
+        </div>
+      )}
       <a
         onClick={() => {
           ability.sheet?.render(true);

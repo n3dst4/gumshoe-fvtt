@@ -59,7 +59,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
             gridArea: "investigative",
             display: "grid",
             gridTemplateAreas: "'ability rating set spend'",
-            gridTemplateColumns: "min-content max-content max-content max-content",
+            gridTemplateColumns: "1fr max-content max-content max-content",
             columnGap: "0.2em",
             rowGap: "0.4em",
             alignItems: "center",
@@ -83,7 +83,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
           css={{
             gridArea: "general",
             display: "grid",
-            gridTemplateColumns: "min-content max-content max-content max-content",
+            gridTemplateColumns: "1fr max-content max-content max-content",
             gridTemplateAreas: "'ability rating set spend'",
             columnGap: "0.2em",
             rowGap: "0.4em",

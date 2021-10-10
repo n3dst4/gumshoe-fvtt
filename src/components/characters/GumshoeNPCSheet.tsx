@@ -241,6 +241,7 @@ export const GumshoeNPCSheet = ({
                   <AbilitiesAreaEdit
                     actor={actor}
                     flipLeftRight={true}
+                    showOcc={false}
                   />,
               },
             ]}

@@ -12,11 +12,13 @@ import { AbilitySlugEdit } from "./AbilitySlugEdit";
 type AbilitiesAreaEditProps = {
   actor: GumshoeActor,
   flipLeftRight?: boolean,
+  showOcc?: boolean,
 };
 
 export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
   actor,
   flipLeftRight,
+  showOcc = true,
 }) => {
   assertActiveCharacterDataSource(actor.data);
   const theme = useContext(ThemeContext);
@@ -57,20 +59,24 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
           css={{
             gridArea: "investigative",
             display: "grid",
-            gridTemplateAreas: "'isocc ability rating'",
-            gridTemplateColumns: "2em max-content max-content",
+            gridTemplateAreas: showOcc ? "'isocc ability rating'" : "'ability rating'",
+            gridTemplateColumns: showOcc ? "2em 1fr max-content" : "1fr max-content",
             columnGap: "0.5em",
             alignItems: "center",
             height: "0",
           }}
         >
-          <i
-            css={{ gridColumn: "isocc", font: theme.displayFont, fontSize: "smaller" }}
-            title="Occupational Ability"
-          >
-            Occ.
-          </i>
-          <i css={{ gridColumn: "rating", font: theme.displayFont, fontSize: "smaller" }}>Rating</i>
+          { showOcc && (
+            <i
+              css={{ gridColumn: "isocc", font: theme.displayFont, fontSize: "smaller" }}
+              title="Occupational Ability"
+            >
+              Occ.
+            </i>
+          )}
+          { showOcc && (
+            <i css={{ gridColumn: "rating", font: theme.displayFont, fontSize: "smaller" }}>Rating</i>
+          )}
           {Object.keys(investigativeAbilities).sort().map<JSX.Element>((cat) => (
             <Fragment
               key={cat}
@@ -78,7 +84,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
               <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
               {
                 sortEntitiesByName(investigativeAbilities[cat]).map<JSX.Element>((ability) => (
-                  <AbilitySlugEdit key={ability.id} ability={ability}/>
+                  <AbilitySlugEdit key={ability.id} ability={ability} showOcc={showOcc} />
                 ))
               }
             </Fragment>
@@ -88,20 +94,24 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
           css={{
             gridArea: "general",
             display: "grid",
-            gridTemplateAreas: "'isocc ability rating'",
-            gridTemplateColumns: "2em max-content max-content",
+            gridTemplateAreas: showOcc ? "'isocc ability rating'" : "'ability rating'",
+            gridTemplateColumns: showOcc ? "2em 1fr max-content" : "1fr max-content",
             columnGap: "0.5em",
             alignItems: "center",
             height: "0",
           }}
         >
-          <i
-            css={{ gridColumn: "isocc", font: theme.displayFont, fontSize: "smaller" }}
-            title="Occupational Ability"
-          >
-            Occ.
-          </i>
-          <i css={{ gridColumn: "rating", font: theme.displayFont, fontSize: "smaller" }}>Rating</i>
+          { showOcc && (
+            <i
+              css={{ gridColumn: "isocc", font: theme.displayFont, fontSize: "smaller" }}
+              title="Occupational Ability"
+            >
+              Occ.
+            </i>
+          )}
+          { showOcc && (
+            <i css={{ gridColumn: "rating", font: theme.displayFont, fontSize: "smaller" }}>Rating</i>
+          )}
           {Object.keys(generalAbilities).sort().map<JSX.Element>((cat) => (
             <Fragment
               key={cat}
@@ -109,7 +119,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
               <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
               {
                 sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>((ability) => (
-                  <AbilitySlugEdit key={ability.id} ability={ability}/>
+                  <AbilitySlugEdit key={ability.id} ability={ability} showOcc={showOcc}/>
                 ))
               }
             </Fragment>
