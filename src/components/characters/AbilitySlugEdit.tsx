@@ -3,7 +3,7 @@ import React, { Fragment, useCallback, useContext } from "react";
 import { jsx } from "@emotion/react";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
-import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
+import { assertAbilityDataSource } from "../../types";
 import { useUpdate } from "../../hooks/useUpdate";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Checkbox } from "../inputs/Checkbox";
@@ -23,12 +23,19 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability }) => 
   }, [app]);
   const updateRating = useCallback((rating) => { ability.setRating(rating); }, [ability]);
   const updateOccupational = useUpdate(ability, (occupational) => ({ data: { occupational } }));
-  const updateCanBeInvestigative = useUpdate(ability, (canBeInvestigative) => ({ data: { canBeInvestigative } }));
 
   return (
     <Fragment
       key={ability.id}
     >
+      <div css={{ gridColumn: "isocc", justifySelf: "center" }} >
+        <Checkbox
+          checked={ability.data.data.occupational}
+          onChange={(t) => {
+            updateOccupational(t);
+          }}
+        />
+      </div>
       <a
         onClick={() => {
           ability.sheet?.render(true);
@@ -49,24 +56,6 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability }) => 
           css={{ width: "2em", height: "1em" }}
         />
       </div>
-      <div css={{ gridColumn: "isocc", justifySelf: "center" }} >
-        <Checkbox
-          checked={ability.data.data.occupational}
-          onChange={(t) => {
-            updateOccupational(t);
-          }}
-        />
-      </div>
-      {isGeneralAbilityDataSource(ability.data) && (
-        <div css={{ gridColumn: "canbeinv", justifySelf: "center" }}>
-          <Checkbox
-            checked={ability.data.data.canBeInvestigative}
-            onChange={(t) => {
-              updateCanBeInvestigative(t);
-            }}
-          />
-        </div>
-      )}
       {ability.getHasSpecialities() && (ability.data.data.rating > 0) && (
         <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
           <SpecialityList ability={ability} />

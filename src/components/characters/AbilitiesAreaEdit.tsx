@@ -82,20 +82,20 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
           css={{
             gridArea: "investigative",
             display: "grid",
-            gridTemplateAreas: "'ability rating isocc'",
-            gridTemplateColumns: "max-content max-content 2em",
+            gridTemplateAreas: "'isocc ability rating'",
+            gridTemplateColumns: "2em max-content max-content",
             columnGap: "0.5em",
             alignItems: "center",
             height: "0",
           }}
         >
-          <i css={{ gridColumn: "rating", font: theme.displayFont, fontSize: "smaller" }}>Rating</i>
           <i
             css={{ gridColumn: "isocc", font: theme.displayFont, fontSize: "smaller" }}
             title="Occupational Ability"
           >
             Occ.
           </i>
+          <i css={{ gridColumn: "rating", font: theme.displayFont, fontSize: "smaller" }}>Rating</i>
           {Object.keys(investigativeAbilities).sort().map<JSX.Element>((cat) => (
             <Fragment
               key={cat}
@@ -113,26 +113,20 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
           css={{
             gridArea: "general",
             display: "grid",
-            gridTemplateColumns: "max-content max-content 2em 2em",
-            gridTemplateAreas: "'ability rating isocc canbeinv'",
+            gridTemplateAreas: "'isocc ability rating'",
+            gridTemplateColumns: "2em max-content max-content",
             columnGap: "0.5em",
             alignItems: "center",
             height: "0",
           }}
         >
-          <i css={{ gridColumn: "rating", font: theme.displayFont, fontSize: "smaller" }}>Rating</i>
           <i
             css={{ gridColumn: "isocc", font: theme.displayFont, fontSize: "smaller" }}
             title="Occupational Ability"
           >
             Occ.
           </i>
-          <i
-            css={{ gridColumn: "canbeinv", font: theme.displayFont, fontSize: "smaller" }}
-            title="Can be used as Investigative Ability"
-          >
-            Inv.
-          </i>
+          <i css={{ gridColumn: "rating", font: theme.displayFont, fontSize: "smaller" }}>Rating</i>
           {Object.keys(generalAbilities).sort().map<JSX.Element>((cat) => (
             <Fragment
               key={cat}

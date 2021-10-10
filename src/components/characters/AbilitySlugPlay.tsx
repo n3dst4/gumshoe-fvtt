@@ -71,7 +71,9 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
         data-item-id={ability.id}
         onDragStart={onDragStart}
         draggable="true"
-        css={{ gridColumn: "ability" }}
+        css={{
+          gridColumn: "ability",
+        }}
       >
         {ability.name}
       </a>
@@ -82,7 +84,7 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
         css={{
           gridColumn: "set",
           display: "grid",
-          gridTemplateColumns: "1.6em 1.6em 2em 1fr",
+          gridTemplateColumns: "1.6em 1.6em",
         }}
       >
         <button
@@ -99,26 +101,24 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
         >
           <i css={{ fontSize: "x-small" }} className="fa fa-minus" />
         </button>
-        <h3 css={{ gridColumn: "3", justifySelf: "center" }} > {spend} </h3>
-        <div
-          css={{
-            gridColumn: "4",
-            display: "flex",
-          }}
-        >
-          {isGeneralAbility(ability) && (
-            <button css={{ flex: 1 }} onClick={onTest}>
-              <i className="fa fa-dice" title="Test" />
-            </button>
-          )}
-          {(isInvestigativeAbility(ability) ||
-            (isGeneralAbilityDataSource(ability.data) && ability.data.data.canBeInvestigative)
-          ) && (
-            <button css={{ flex: 1 }} disabled={spend === 0} onClick={onSpend}>
-              <i className="fa fa-search" title="Spend" />
-            </button>
-          )}
-        </div>
+      </div>
+      <div css={{ gridColumn: "spend" }}>
+        {isInvestigativeAbility(ability) && (
+          <button disabled={spend === 0} onClick={onSpend}>
+            <i className="fa fa-search" title="Spend" />{spend}
+          </button>
+        )}
+        {isGeneralAbility(ability) && (
+          <button css={{ width: "4.1em" }} onClick={onTest}>
+            <i className="fa fa-dice" title="Test" />+{spend}
+          </button>
+        )}
+        { isGeneralAbilityDataSource(ability.data) &&
+          ability.data.data.canBeInvestigative && (
+          <button css={{ width: "2em" }} disabled={spend === 0} onClick={onSpend}>
+            <i className="fa fa-search" title="Spend" />
+          </button>
+        )}
       </div>
       {
       }
