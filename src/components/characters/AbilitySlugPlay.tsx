@@ -90,17 +90,17 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
       >
         <button
           css={{ gridColumn: "1" }}
-          onClick={onClickInc}
-          disabled={spend >= ability.data.data.pool}
-        >
-          <i css={{ fontSize: "x-small" }} className="fa fa-plus" />
-        </button>
-        <button
-          css={{ gridColumn: "2" }}
           onClick={onClickDec}
           disabled={spend <= 0}
         >
           <i css={{ fontSize: "x-small" }} className="fa fa-minus" />
+        </button>
+        <button
+          css={{ gridColumn: "2" }}
+          onClick={onClickInc}
+          disabled={spend >= ability.data.data.pool}
+        >
+          <i css={{ fontSize: "x-small" }} className="fa fa-plus" />
         </button>
       </div>
       <div css={{ gridColumn: "spend" }}>
