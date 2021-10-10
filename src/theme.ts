@@ -68,8 +68,19 @@ export type ThemeSeed = {
     wallpaper: string,
     danger?: string,
 
-    bgTransSecondary: string,
+    /**
+     * The contract for this color is: if you layer this color over the
+     * `rootElementStyle` or the `wallpaper` color, you will get a surface which
+     * can be use to mount text in either the `text`, `textMuted`, or `accent`
+     * colors.
+     */
     bgTransPrimary: string,
+
+    /**
+     * The contract for this color is: see @bgTransPrimary, but visually
+     * distinct.
+     */
+    bgTransSecondary: string,
 
     // bgOpaqueDangerPrimary?: string,
     // bgOpaqueDangerSecondary?: string,
