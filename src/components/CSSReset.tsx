@@ -131,10 +131,11 @@ export const CSSReset: React.FC<CSSResetProps> = ({
             left: 0,
             // overflow: "auto",
             backgroundColor: shroudBackground ? theme.colors.bgTransSecondary : "transparent",
+            zIndex: -1000,
           }}
         >
-          {children}
         </div>
+        {children}
       </div>
     </ThemeContext.Provider>
   );
