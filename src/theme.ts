@@ -7,6 +7,7 @@ const white = Irid("white");
 const black = Irid("black");
 
 export type ThemeSeed = {
+  schemaVersion: "v1",
   /** The name of the theme. Use puns and allusions liberally. */
   displayName: string,
   /**
@@ -144,6 +145,7 @@ export const themeFactory = (seed: ThemeSeed): Theme => {
 };
 
 export const tealTheme: Theme = themeFactory({
+  schemaVersion: "v1",
   displayName: "Teal of Cthulhu",
   global: css`
     @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
@@ -185,6 +187,7 @@ export const tealTheme: Theme = themeFactory({
 });
 
 export const niceThemeDark: Theme = themeFactory({
+  schemaVersion: "v1",
   displayName: "Nice Dark Red Agents",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
@@ -232,6 +235,7 @@ export const niceThemeDark: Theme = themeFactory({
 });
 
 export const niceTheme: Theme = themeFactory({
+  schemaVersion: "v1",
   displayName: "Nice Light Agents",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
@@ -276,6 +280,7 @@ export const niceTheme: Theme = themeFactory({
 });
 
 export const highContrastTheme: Theme = themeFactory({
+  schemaVersion: "v1",
   displayName: "High Contrast",
   global: css`
   `,
@@ -311,6 +316,7 @@ export const highContrastTheme: Theme = themeFactory({
 });
 
 export const fearTheme: Theme = themeFactory({
+  schemaVersion: "v1",
   displayName: "Nothing To Fear",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
@@ -355,6 +361,7 @@ const pallidColor = Irid("#282c34");
 const pallidComplement = Irid("#aff2f2");
 
 export const pallidTheme: Theme = themeFactory({
+  schemaVersion: "v1",
   displayName: "Aching Stars",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
@@ -430,6 +437,7 @@ const gradientParts = [
 const gradient = `repeating-conic-gradient(${gradientParts})`;
 
 export const deltaGroovyTheme: Theme = themeFactory({
+  schemaVersion: "v1",
   displayName: "Delta Groovy",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
@@ -482,6 +490,7 @@ export const deltaGroovyTheme: Theme = themeFactory({
 });
 
 export const greenTriangleTheme: Theme = themeFactory({
+  schemaVersion: "v1",
   displayName: "Green triangle",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
@@ -523,6 +532,7 @@ export const greenTriangleTheme: Theme = themeFactory({
 });
 
 export const antiquarianTheme: Theme = themeFactory({
+  schemaVersion: "v1",
   displayName: "Antiquarian",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
