@@ -21,7 +21,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability }) => 
       (app as any)._onDragStart(e);
     }
   }, [app]);
-  const updateRating = useCallback((rating) => { ability.setRating(rating); }, [ability]);
+  const updateRating = useCallback((rating) => { ability.setRatingRefresh(rating); }, [ability]);
   const updateOccupational = useUpdate(ability, (occupational) => ({ data: { occupational } }));
 
   return (
@@ -53,7 +53,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability }) => 
           value={ability.data.data.rating}
           onChange={updateRating}
           noPlusMinus={true}
-          css={{ width: "2em", height: "1em" }}
+          css={{ width: "2em" }}
         />
       </div>
       {ability.getHasSpecialities() && (ability.data.data.rating > 0) && (

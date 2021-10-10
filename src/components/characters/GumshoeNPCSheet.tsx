@@ -6,8 +6,10 @@ import { useUpdate } from "../../hooks/useUpdate";
 import { CSSReset } from "../CSSReset";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { TabContainer } from "../TabContainer";
 import { LogoEditable } from "./LogoEditable";
-import { AbilitiesArea } from "./AbilitiesArea";
+import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
+import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
 import { WeaponsArea } from "./WeaponsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
@@ -216,14 +218,33 @@ export const GumshoeNPCSheet = ({
             overflow: "auto",
           }}
         >
-          <Fragment>
-            <AbilitiesArea
-              actor={actor}
-              flipLeftRight={true}
-            />
-            <div css={{ height: "1em" }}/>
-            <WeaponsArea actor={actor} />
-          </Fragment>
+          <TabContainer
+            defaultTab="abilities"
+            tabs={[
+              {
+                id: "abilities",
+                label: "Abilities",
+                content:
+                  <Fragment>
+                    <WeaponsArea actor={actor} />
+                    <div css={{ height: "1em" }}/>
+                    <AbilitiesAreaPlay
+                      actor={actor}
+                      flipLeftRight={true}
+                    />
+                  </Fragment>,
+              },
+              {
+                id: "edit",
+                label: "Edit",
+                content:
+                  <AbilitiesAreaEdit
+                    actor={actor}
+                    flipLeftRight={true}
+                  />,
+              },
+            ]}
+          />
         </div>
       </CSSReset>
     </ActorSheetAppContext.Provider>

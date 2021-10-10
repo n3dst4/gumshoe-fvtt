@@ -3,7 +3,6 @@ import { Fragment, useCallback } from "react";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { jsx } from "@emotion/react";
 import { useUpdate } from "../../hooks/useUpdate";
-import { AbilitiesArea } from "./AbilitiesArea";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
 import { CSSReset } from "../CSSReset";
@@ -167,22 +166,12 @@ export const GumshoeActorSheet = ({
           }}
         >
           <TabContainer
-            defaultTab="abilities-play"
+            defaultTab="abilities"
             tabs={[
               {
                 id: "abilities",
                 label: "Abilities",
-                content: <AbilitiesArea actor={actor}/>,
-              },
-              {
-                id: "abilities-play",
-                label: "Play",
                 content: <AbilitiesAreaPlay actor={actor}/>,
-              },
-              {
-                id: "abilities-edit",
-                label: "Edit",
-                content: <AbilitiesAreaEdit actor={actor}/>,
               },
               {
                 id: "equipment",
@@ -201,6 +190,11 @@ export const GumshoeActorSheet = ({
                 content: (
                   <NotesArea actor={actor} />
                 ),
+              },
+              {
+                id: "abilities-edit",
+                label: "Edit",
+                content: <AbilitiesAreaEdit actor={actor}/>,
               },
               {
                 id: "settings",

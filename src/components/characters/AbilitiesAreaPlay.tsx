@@ -1,14 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useContext } from "react";
+import React, { Fragment } from "react";
 import { generalAbility, investigativeAbility } from "../../constants";
-import { sortEntitiesByName } from "../../functions";
+import { sortEntitiesByName, isInvestigativeAbility } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
-import { ThemeContext } from "../../theme";
 import { assertActiveCharacterDataSource, isAbilityDataSource } from "../../types";
-import { Checkbox } from "../inputs/Checkbox";
-import { Translate } from "../Translate";
 import { AbilitySlugPlay } from "./AbilitySlugPlay";
 
 type AbilitiesAreaPlayProps = {
@@ -21,18 +18,15 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
   flipLeftRight,
 }) => {
   assertActiveCharacterDataSource(actor.data);
-  const theme = useContext(ThemeContext);
 
   const investigativeAbilities: { [category: string]: GumshoeItem[] } = {};
   const generalAbilities: { [category: string]: GumshoeItem[] } = {};
-
-  const hideZeroRated = actor.data.data.hideZeroRated;
 
   for (const item of actor.items.values()) {
     if (!isAbilityDataSource(item.data)) {
       continue;
     }
-    if (hideZeroRated && item.data.data.rating === 0) {
+    if (isInvestigativeAbility(item) && item.data.data.rating === 0) {
       continue;
     }
     if (item.data.type === investigativeAbility) {
@@ -50,26 +44,8 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
     }
   }
 
-  const onChangeHideZero = useCallback((hideZeroRated: boolean) => {
-    actor.update({ data: { hideZeroRated } });
-  }, [actor]);
-
   return (
     <Fragment>
-      <label
-        css={{
-          display: "block",
-          background: theme.colors.bgTint,
-          padding: "0.3em",
-          borderRadius: "0.3em",
-        }}
-      >
-        <Checkbox
-          checked={hideZeroRated}
-          onChange={onChangeHideZero}
-        />
-        <Translate>Hide zero-rated abilities</Translate>
-      </label>
       <div
         css={{
           display: "grid",
