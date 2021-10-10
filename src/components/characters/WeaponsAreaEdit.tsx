@@ -75,7 +75,7 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
           </div>
           <div className="header" css={{ gridColumn: 2, alignSelf: "center" }}>
           <Translate>Damage</Translate>
-          <p> Base PB/CR/NR/LR </p>
+          <p><Translate>Base PB/CR/NR/LR</Translate></p>
           </div>
           <div className="header" css={{ gridColumn: 3 }}>
           <Translate>Ammo</Translate>
