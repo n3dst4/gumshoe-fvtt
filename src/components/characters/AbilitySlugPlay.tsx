@@ -73,6 +73,7 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
         draggable="true"
         css={{
           gridColumn: "ability",
+          lineHeight: 0.9,
         }}
       >
         {ability.name}
