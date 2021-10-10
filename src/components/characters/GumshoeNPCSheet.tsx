@@ -82,8 +82,8 @@ export const GumshoeNPCSheet = ({
           }}
         >
           <LogoEditable
-            text={actor.data.name}
-            onChangeText={updateName}
+            mainText={actor.data.name}
+            onChangeMainText={updateName}
             css={{
               fontSize: "0.66em",
             }}

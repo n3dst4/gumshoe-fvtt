@@ -76,11 +76,11 @@ export const GumshoeActorSheet = ({
           }}
         >
           <LogoEditable
-            text={actor.data.name}
-            subtext={actor.data.data.occupation}
-            defaultSubtext="Investigator"
-            onChangeText={updateName}
-            onChangeSubtext={updateOccupation}
+            mainText={actor.data.name}
+            subText={actor.data.data.occupation}
+            defaultSubText="Investigator"
+            onChangeMainText={updateName}
+            onChangeSubText={updateOccupation}
           />
         </div>
         <ImagePickle

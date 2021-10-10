@@ -5,12 +5,12 @@ import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { ThemeContext } from "../../theme";
 
 type LogoEditableProps = {
-  text: string,
-  onChangeText: (newValue: string) => void,
-  subtext?: string,
-  defaultSubtext?: string,
   className?: string,
-  onChangeSubtext?: (newValue: string) => void,
+  mainText: string,
+  subText?: string,
+  defaultSubText?: string,
+  onChangeMainText: (newValue: string) => void,
+  onChangeSubText?: (newValue: string) => void,
 };
 
 const subtextSyle: CSSObject = {
@@ -30,7 +30,16 @@ const textBearerStyle: CSSObject = {
 const fontFactor = 14;
 
 /**
- * Outrageous 1930s logo
+ * Fancy editable logo text for the top of the character sheet.
+ *
+ * This component is a bit tricksy and is made up of several elements.
+ *
+ * There are two strings displayed: `mainText` and "subText". Both strings are
+ * rendered twice, to allow for various CSS shenanigans, so there is a
+ * "front text element" and a "rear text element".
+ *
+ * There is also a backdrop which is just a div which can be styled however you
+ * need in the theme.
  *
  * There is a known bug in Firefox at the time of writing which screws up the
  * rendering https://bugzilla.mozilla.org/show_bug.cgi?id=1720995
@@ -38,17 +47,16 @@ const fontFactor = 14;
  * seems okay, so I'm not going to sweat it.
  */
 export const LogoEditable: React.FC<LogoEditableProps> = ({
-  text,
-  // subtext: subtextOrig,
-  subtext,
-  defaultSubtext = "",
   className,
-  onChangeText,
-  onChangeSubtext,
+  mainText,
+  subText,
+  defaultSubText = "",
+  onChangeMainText,
+  onChangeSubText,
 }) => {
   const textStyle: CSSObject = {
     transition: "font-size 500ms",
-    fontSize: `${Math.min(1, fontFactor / text.length)}em`,
+    fontSize: `${Math.min(1, fontFactor / mainText.length)}em`,
     padding: "0 1em",
   };
 
@@ -59,9 +67,9 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     onBlur: onBlurText,
     contentEditableRef: contentEditableRefText,
     display: displayText,
-  } = useAsyncUpdate(text, onChangeText);
+  } = useAsyncUpdate(mainText, onChangeMainText);
 
-  const hasSubtext = (onChangeSubtext !== undefined);
+  const hasSubtext = (onChangeSubText !== undefined);
 
   const {
     onInput: onInputSubtext,
@@ -69,8 +77,8 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     onBlur: onBlurSubtext,
     contentEditableRef: contentEditableRefSubtext,
     display: displaySubtext,
-  } = useAsyncUpdate(subtext || defaultSubtext,
-    onChangeSubtext || (() => {}));
+  } = useAsyncUpdate(subText || defaultSubText,
+    onChangeSubText || (() => {}));
 
   const theme = useContext(ThemeContext);
 
@@ -91,7 +99,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
       <div
         className="backdrop"
         css={{
-          ...theme.logoBackdropStyle,
+          ...theme.logo.backdropStyle,
           position: "absolute",
           top: 0,
           right: 0,
@@ -115,7 +123,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           border: "none",
           padding: 0,
           lineHeight: 1,
-          ...theme.logoTextElementsStyle,
+          ...theme.logo.textElementsStyle,
         }}
       >
         {/* rear-element, aka the shadow-bearer */}
@@ -124,7 +132,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           css={{
             zIndex: -1,
             ...textBearerStyle,
-            ...theme.logoRearTextElementStyle,
+            ...theme.logo.rearTextElementStyle,
           }}
         >
           <div
@@ -164,7 +172,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
             css={{
               // When F92 is mainline, unwrap this div and uncomment this style.
               // ...textBearerStyle,
-              ...theme.logoFrontTextElementStyle,
+              ...theme.logo.frontTextElementStyle,
             }}
             >
             <div
