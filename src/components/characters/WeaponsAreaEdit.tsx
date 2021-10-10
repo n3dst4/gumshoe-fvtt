@@ -5,13 +5,13 @@ import { weapon } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { Translate } from "../Translate";
-import { WeaponRow } from "./WeaponRow";
+import { WeaponRowEdit } from "./WeaponRowEdit";
 
-type WeaponsAreaProps = {
+type WeaponsAreaEditProps = {
   actor: GumshoeActor,
 };
 
-export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
+export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
   actor,
 }) => {
   const items = actor.getWeapons();
@@ -73,15 +73,16 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
           <div className="header" css={{ gridColumn: 1 }}>
           <Translate>Weapon</Translate>
           </div>
-          <div className="header" css={{ gridColumn: 2 }}>
+          <div className="header" css={{ gridColumn: 2, alignSelf: "center" }}>
           <Translate>Damage</Translate>
+          <p> Base PB/CR/NR/LR </p>
           </div>
           <div className="header" css={{ gridColumn: 3 }}>
           <Translate>Ammo</Translate>
           </div>
           {
             sortEntitiesByName(items).map<JSX.Element>((item) => (
-              <WeaponRow key={item.id} weapon={item}/>
+              <WeaponRowEdit key={item.id} weapon={item}/>
             ))
           }
         </div>

@@ -11,6 +11,7 @@ import { LogoEditable } from "./LogoEditable";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
 import { WeaponsArea } from "./WeaponsArea";
+import { WeaponsAreaEdit } from "./WeaponsAreaEdit";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
@@ -238,11 +239,15 @@ export const GumshoeNPCSheet = ({
                 id: "edit",
                 label: "Edit",
                 content:
-                  <AbilitiesAreaEdit
-                    actor={actor}
-                    flipLeftRight={true}
-                    showOcc={false}
-                  />,
+                  <Fragment>
+                    <WeaponsAreaEdit actor={actor} />
+                    <div css={{ height: "1em" }}/>
+                    <AbilitiesAreaEdit
+                      actor={actor}
+                      flipLeftRight={true}
+                      showOcc={false}
+                    />
+                  </Fragment>,
               },
             ]}
           />
