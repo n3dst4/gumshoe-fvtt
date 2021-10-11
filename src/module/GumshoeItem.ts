@@ -62,6 +62,17 @@ export class GumshoeItem extends Item {
     });
   }
 
+  setRatingRefresh = (newRating: number) => {
+    assertAbilityDataSource(this.data);
+    this.update({
+      data: {
+        rating: newRating,
+        pool: newRating,
+        specialities: fixLength(this.data.data.specialities, newRating, ""),
+      },
+    });
+  }
+
   getHasSpecialities = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.hasSpecialities ?? false;

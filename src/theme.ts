@@ -209,8 +209,8 @@ export const highContrastTheme: Theme = themeFactory({
   global: css`
   `,
   wallpaperUrl: "",
-  bodyFont: "1.2em sans-serif",
-  displayFont: "1.2em sans-serif",
+  bodyFont: "1.1em sans-serif",
+  displayFont: "1.1em sans-serif",
   logoFrontElementStyle: {
     color: "#000",
   },
