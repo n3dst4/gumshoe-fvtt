@@ -35,7 +35,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
         {weapon.name}
       </a>
       <a
-        css={{ gridColumn: 2 }}
+        css={{ gridColumn: 2, overflow: "hidden", textOverflow: "ellipsis" }}
         className={hover ? "hover" : ""}
         onClick={() => weapon.sheet?.render(true)}
         onMouseOver={onMouseOver}
@@ -44,10 +44,13 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
         onDragStart={onDragStart}
         draggable="true"
       >
-        {weapon.getUsesAmmo() ? weapon.getAmmo() : <span>&mdash;</span>}
+        {weapon.getIsPointBlank() ? weapon.getDamage() + weapon.getPointBlankDamage() : <span>&ndash;</span>}/
+        {weapon.getIsCloseRange() ? weapon.getDamage() + weapon.getCloseRangeDamage() : <span>&ndash;</span>}/
+        {weapon.getIsNearRange() ? weapon.getDamage() + weapon.getNearRangeDamage() : <span>&ndash;</span>}/
+        {weapon.getIsLongRange() ? weapon.getDamage() + weapon.getLongRangeDamage() : <span>&ndash;</span>}
       </a>
       <a
-        css={{ gridColumn: 3, overflow: "hidden", textOverflow: "ellipsis" }}
+        css={{ gridColumn: 3 }}
         className={hover ? "hover" : ""}
         onClick={() => weapon.sheet?.render(true)}
         onMouseOver={onMouseOver}
@@ -56,8 +59,13 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
         onDragStart={onDragStart}
         draggable="true"
       >
-        {weapon.getNotes()}
+        {weapon.getUsesAmmo() ? <span>{weapon.getAmmo()}/{weapon.getAmmoMax()}</span> : <span>&mdash;</span>}
       </a>
+      <div
+        css={{ gridColumn: "1 / 3", paddingLeft: "1em" }}
+      >
+        {weapon.getNotes()}
+      </div>
     </Fragment>
   );
 };

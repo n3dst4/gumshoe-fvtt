@@ -6,9 +6,12 @@ import { useUpdate } from "../../hooks/useUpdate";
 import { CSSReset } from "../CSSReset";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { TabContainer } from "../TabContainer";
 import { LogoEditable } from "./LogoEditable";
-import { AbilitiesArea } from "./AbilitiesArea";
+import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
+import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
 import { WeaponsArea } from "./WeaponsArea";
+import { WeaponsAreaEdit } from "./WeaponsAreaEdit";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
@@ -216,14 +219,38 @@ export const GumshoeNPCSheet = ({
             overflow: "auto",
           }}
         >
-          <Fragment>
-            <AbilitiesArea
-              actor={actor}
-              flipLeftRight={true}
-            />
-            <div css={{ height: "1em" }}/>
-            <WeaponsArea actor={actor} />
-          </Fragment>
+          <TabContainer
+            defaultTab="play"
+            tabs={[
+              {
+                id: "play",
+                label: "Play",
+                content:
+                  <Fragment>
+                    <WeaponsArea actor={actor} />
+                    <div css={{ height: "1em" }}/>
+                    <AbilitiesAreaPlay
+                      actor={actor}
+                      flipLeftRight={true}
+                    />
+                  </Fragment>,
+              },
+              {
+                id: "edit",
+                label: "Edit",
+                content:
+                  <Fragment>
+                    <WeaponsAreaEdit actor={actor} />
+                    <div css={{ height: "1em" }}/>
+                    <AbilitiesAreaEdit
+                      actor={actor}
+                      flipLeftRight={true}
+                      showOcc={false}
+                    />
+                  </Fragment>,
+              },
+            ]}
+          />
         </div>
       </CSSReset>
     </ActorSheetAppContext.Provider>
