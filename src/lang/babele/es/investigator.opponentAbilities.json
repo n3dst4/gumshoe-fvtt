@@ -1,7 +1,7 @@
 {
     "label": "Habilidades de combate",
     "mapping": {
-        "category": "datos.categoria"
+        "category": "data.category"
     },
     "entries": {
         "Athletics": {
