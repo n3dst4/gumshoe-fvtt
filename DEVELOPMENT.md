@@ -82,6 +82,8 @@ There are three npm tasks pertaining to translations:
   * use the Transifex command line tool, [`tx`](https://docs.transifex.com/client/installing-the-client), to pull in the latest translations and overwrite all the JSONs.
   * THIS WILL CLOBBER ANY JSON MODIFICATIONS WHICH HAVE NOT BEEN UPLOADED TO TRANSIFEX!
 
+To keep the translation imports running sweetly, you will need to update `.tx/config]` to map everything to the right places.
+
 ## Release process
 
 We have "release" branch. Its job is to hold a manifest version that points to the right release download.
