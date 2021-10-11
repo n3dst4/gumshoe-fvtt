@@ -11,3 +11,10 @@ source_file = src/lang/en.json
 source_lang = en
 type = KEYVALUEJSON
 
+[investigator-system.casting-the-runes-abilities]
+file_filter = src/lang/babele/<lang>/investigator.castingTheRunesAbilities.json
+minimum_perc = 0
+source_file = src/lang/babele-sources/investigator.castingTheRunesAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
