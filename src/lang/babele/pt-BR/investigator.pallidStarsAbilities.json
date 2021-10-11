@@ -1,5 +1,5 @@
 {
-    "label": "Habilidades Rastro de Cthulhu",
+    "label": "Habilidades Pallid Stars",
     "mapping": {
         "category": "data.category"
     },
@@ -8,16 +8,8 @@
             "name": "Antropologia",
             "category": "Acadêmica"
         },
-        "Archeology": {
+        "Archaeology": {
             "name": "Arqueologia",
-            "category": "Acadêmica"
-        },
-        "Architecture": {
-            "name": "Arquitetura",
-            "category": "Acadêmica"
-        },
-        "Art History": {
-            "name": "História da Arte",
             "category": "Acadêmica"
         },
         "Astronomy": {
@@ -28,61 +20,73 @@
             "name": "Atletismo",
             "category": "Geral"
         },
+        "Botany": {
+            "name": "Botânica",
+            "category": "Acadêmica"
+        },
+        "Bullshit Detector": {
+            "name": "Detector de Baboseira",
+            "category": "Interpessoal"
+        },
         "Bureaucracy": {
             "name": "Burocracia",
             "category": "Interpessoal"
+        },
+        "Business Affairs": {
+            "name": "Negócios",
+            "category": "Geral"
         },
         "Chemistry": {
             "name": "Química",
             "category": "Técnica"
         },
-        "Conceal": {
-            "name": "Ocultação",
-            "category": "Geral"
-        },
         "Cop Talk": {
             "name": "Trato Policial",
             "category": "Interpessoal"
         },
-        "Craft": {
-            "name": "Ofício",
-            "category": "Técnica"
-        },
         "Cryptography": {
             "name": "Criptografia",
+            "category": "Técnica"
+        },
+        "Culture": {
+            "name": "Cultura",
             "category": "Acadêmica"
         },
-        "Disguise": {
-            "name": "Disfarce",
-            "category": "Geral"
-        },
-        "Driving": {
-            "name": "Condução",
-            "category": "Geral"
+        "Data Retrieval": {
+            "name": "Recuperação de Dados",
+            "category": "Técnica"
         },
         "Evidence Collection": {
             "name": "Coletar Evidências",
             "category": "Técnica"
         },
-        "Explosives": {
-            "name": "Explosivos",
-            "category": "Geral"
+        "Explosive Devices": {
+            "name": "Dispositivos Explosivos",
+            "category": "Técnica"
         },
         "Filch": {
             "name": "Punga",
-            "category": "Geral"
-        },
-        "First Aid": {
-            "name": "Primeiros Socorros",
             "category": "Geral"
         },
         "Flattery": {
             "name": "Bajulação",
             "category": "Interpessoal"
         },
-        "Fleeing": {
-            "name": "Fuga",
-            "category": "Geral"
+        "Flirting": {
+            "name": "Flerte",
+            "category": "Interpessoal"
+        },
+        "Forensic Accounting": {
+            "name": "Perícia Contábil",
+            "category": "Acadêmica"
+        },
+        "Forensic Anthropology": {
+            "name": "Antropologia Forense",
+            "category": "Técnica"
+        },
+        "Forensic Psychology": {
+            "name": "Psicologia Forense",
+            "category": "Acadêmica"
         },
         "Geology": {
             "name": "Geologia",
@@ -96,9 +100,17 @@
             "name": "História",
             "category": "Acadêmica"
         },
-        "Hypnosis": {
-            "name": "Hipnose",
+        "Impersonate": {
+            "name": "Personificação",
+            "category": "Interpessoal"
+        },
+        "Infiltration": {
+            "name": "Infiltração",
             "category": "Geral"
+        },
+        "Inspiration": {
+            "name": "Inspiração",
+            "category": "Interpessoal"
         },
         "Interrogation": {
             "name": "Interrogatório",
@@ -108,45 +120,37 @@
             "name": "Intimidação",
             "category": "Interpessoal"
         },
-        "Languages": {
-            "name": "Idiomas",
-            "category": "Acadêmica"
-        },
         "Law": {
             "name": "Direito",
             "category": "Acadêmica"
         },
-        "Locksmith": {
-            "name": "Arrombamento",
-            "category": "Técnica"
+        "Linguistics": {
+            "name": "Linguística",
+            "category": "Acadêmica"
         },
-        "Mechanics": {
-            "name": "Reparos Mecânicos",
+        "Medic": {
+            "name": "Medicina",
             "category": "Geral"
         },
-        "Oral History": {
-            "name": "História Oral",
+        "Negotiation": {
+            "name": "Negociação",
             "category": "Interpessoal"
-        },
-        "Photography": {
-            "name": "Fotografia",
-            "category": "Técnica"
-        },
-        "Piloting": {
-            "name": "Pilotagem",
-            "category": "Geral"
         },
         "Preparedness": {
             "name": "Precaução",
+            "category": "Geral"
+        },
+        "Public Relations": {
+            "name": "Relações Públicas",
             "category": "Geral"
         },
         "Reassurance": {
             "name": "Convencimento",
             "category": "Interpessoal"
         },
-        "Riding": {
-            "name": "Equitação",
-            "category": "Geral"
+        "Respect": {
+            "name": "Respeito",
+            "category": "Interpessoal"
         },
         "Scuffling": {
             "name": "Briga",
@@ -156,13 +160,13 @@
             "name": "Sentir Perigo",
             "category": "Geral"
         },
-        "Stability": {
-            "name": "Estabilidade",
+        "Shooting": {
+            "name": "Tiro",
             "category": "Geral"
         },
-        "Streetwise": {
-            "name": "Manha",
-            "category": "Interpessoal"
+        "Surveillance": {
+            "name": "Vigilância",
+            "category": "Geral"
         }
     }
 }

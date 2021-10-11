@@ -1,0 +1,30 @@
+{
+    "label": "Habilidades dos Oponentes",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Athletics": {
+            "name": "Atletismo",
+            "category": "Geral"
+        },
+        "Health": {
+            "name": "Vitalidade",
+            "category": "Geral"
+        },
+        "Melee Attack": {
+            "name": "Ataque Corpo a Corpo"
+        },
+        "Ranged Attack": {
+            "name": "Ataque a Distância"
+        },
+        "Scuffling": {
+            "name": "Briga",
+            "category": "Geral"
+        },
+        "Shooting": {
+            "name": "Tiro",
+            "category": "Geral"
+        }
+    }
+}

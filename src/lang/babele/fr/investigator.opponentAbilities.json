@@ -8,36 +8,22 @@
             "name": "Athl\u00e9tisme",
             "category": "G\u00e9n\u00e9rale"
         },
-        "Driving": {
-            "name": "Conduite",
+        "Health": {
+            "name": "Sant\u00e9",
             "category": "G\u00e9n\u00e9rale"
+        },
+        "Melee Attack": {
+            "name": "Attaque de m\u00eal\u00e9e"
+        },
+        "Ranged Attack": {
+            "name": "Attaque \u00e0 distance"
         },
         "Scuffling": {
             "name": "Bagarre",
             "category": "G\u00e9n\u00e9rale"
         },
-        "Health": {
-            "name": "Sant\u00e9",
-            "category": "G\u00e9n\u00e9rale"
-        },
-        "Sense Trouble": {
-            "name": "Sixi\u00e8me sens",
-            "category": "G\u00e9n\u00e9rale"
-        },
         "Shooting": {
             "name": "Armes \u00e0 feu",
-            "category": "G\u00e9n\u00e9rale"
-        },
-        "Stability": {
-            "name": "Equilibre mental",
-            "category": "G\u00e9n\u00e9rale"
-        },
-        "Melee Attack": {
-            "name": "Attaque de m\u00eal\u00e9e",
-            "category": "G\u00e9n\u00e9rale"
-        },
-        "Ranged Attack": {
-            "name": "Attaque \u00e0 distance",
             "category": "G\u00e9n\u00e9rale"
         }
     }

@@ -1,14 +1,14 @@
 {
-    "label": "Habilidades Rastro de Cthulhu",
+    "label": "Habilidades NIce Black Agents",
     "mapping": {
         "category": "data.category"
     },
     "entries": {
-        "Anthropology": {
-            "name": "Antropologia",
+        "Accounting": {
+            "name": "Contabilidade",
             "category": "Acadêmica"
         },
-        "Archeology": {
+        "Archaeology": {
             "name": "Arqueologia",
             "category": "Acadêmica"
         },
@@ -28,6 +28,10 @@
             "name": "Atletismo",
             "category": "Geral"
         },
+        "Bullshit Detector": {
+            "name": "Detector de Baboseira",
+            "category": "Interpessoal"
+        },
         "Bureaucracy": {
             "name": "Burocracia",
             "category": "Interpessoal"
@@ -44,13 +48,9 @@
             "name": "Trato Policial",
             "category": "Interpessoal"
         },
-        "Craft": {
-            "name": "Ofício",
-            "category": "Técnica"
-        },
         "Cryptography": {
             "name": "Criptografia",
-            "category": "Acadêmica"
+            "category": "Técnica"
         },
         "Disguise": {
             "name": "Disfarce",
@@ -60,44 +60,48 @@
             "name": "Condução",
             "category": "Geral"
         },
-        "Evidence Collection": {
-            "name": "Coletar Evidências",
+        "Electronic Surveillance": {
+            "name": "Dispositivos Eletrônicos",
             "category": "Técnica"
-        },
-        "Explosives": {
-            "name": "Explosivos",
-            "category": "Geral"
         },
         "Filch": {
             "name": "Punga",
-            "category": "Geral"
-        },
-        "First Aid": {
-            "name": "Primeiros Socorros",
             "category": "Geral"
         },
         "Flattery": {
             "name": "Bajulação",
             "category": "Interpessoal"
         },
-        "Fleeing": {
-            "name": "Fuga",
+        "Flirting": {
+            "name": "Flerte",
+            "category": "Interpessoal"
+        },
+        "Forgery": {
+            "name": "Falsificação",
+            "category": "Técnica"
+        },
+        "Gambling": {
+            "name": "Jogos",
             "category": "Geral"
         },
-        "Geology": {
-            "name": "Geologia",
-            "category": "Acadêmica"
+        "Hand-to-Hand": {
+            "name": "Corpo a Corpo ",
+            "category": "Geral"
         },
         "Health": {
             "name": "Vitalidade",
             "category": "Geral"
         },
+        "High Society": {
+            "name": "Alta Sociedade",
+            "category": "Interpessoal"
+        },
         "History": {
             "name": "História",
             "category": "Acadêmica"
         },
-        "Hypnosis": {
-            "name": "Hipnose",
+        "Infiltration": {
+            "name": "Infiltração",
             "category": "Geral"
         },
         "Interrogation": {
@@ -116,17 +120,37 @@
             "name": "Direito",
             "category": "Acadêmica"
         },
-        "Locksmith": {
-            "name": "Arrombamento",
-            "category": "Técnica"
-        },
         "Mechanics": {
             "name": "Reparos Mecânicos",
             "category": "Geral"
         },
-        "Oral History": {
-            "name": "História Oral",
+        "Medic": {
+            "name": "Medicina",
+            "category": "Geral"
+        },
+        "Military Science": {
+            "name": "Ciência Militar",
+            "category": "Acadêmica"
+        },
+        "Negotiation": {
+            "name": "Negociação",
             "category": "Interpessoal"
+        },
+        "Network": {
+            "name": "Rede",
+            "category": "Geral"
+        },
+        "Notice": {
+            "name": "Percepção",
+            "category": "Técnica"
+        },
+        "Occult Studies": {
+            "name": "Estudos Ocultos",
+            "category": "Acadêmica"
+        },
+        "Outdoor Survival": {
+            "name": "Sobrevivência",
+            "category": "Técnica"
         },
         "Photography": {
             "name": "Fotografia",
@@ -144,16 +168,20 @@
             "name": "Convencimento",
             "category": "Interpessoal"
         },
-        "Riding": {
-            "name": "Equitação",
-            "category": "Geral"
-        },
-        "Scuffling": {
-            "name": "Briga",
-            "category": "Geral"
+        "Research": {
+            "name": "Pesquisa",
+            "category": "Acadêmica"
         },
         "Sense Trouble": {
             "name": "Sentir Perigo",
+            "category": "Geral"
+        },
+        "Shooting": {
+            "name": "Tiro",
+            "category": "Geral"
+        },
+        "Shrink": {
+            "name": "Ombro Amigo",
             "category": "Geral"
         },
         "Stability": {
@@ -163,6 +191,18 @@
         "Streetwise": {
             "name": "Manha",
             "category": "Interpessoal"
+        },
+        "Surveillance": {
+            "name": "Vigilância",
+            "category": "Geral"
+        },
+        "Tradecraft": {
+            "name": "Técnicas de Espionagem",
+            "category": "Interpessoal"
+        },
+        "Traffic Analysis": {
+            "name": "Analise de Tráfego",
+            "category": "Técnica"
         }
     }
 }
