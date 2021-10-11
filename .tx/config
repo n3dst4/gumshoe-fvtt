@@ -18,3 +18,52 @@ source_file = src/lang/babele-sources/investigator.castingTheRunesAbilities.json
 source_lang = en
 type = KEYVALUEJSON
 
+[investigator-system.nice-black-agents-abilities]
+file_filter = src/lang/babele/<lang>/investigator.niceBlackAgentsAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.niceBlackAgentsAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.nothing-to-fear-abilities]
+file_filter = src/lang/babele/<lang>/investigator.nothingToFearAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.nothingToFearAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.opponent-abilities]
+file_filter = src/lang/babele/<lang>/investigator.opponentAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.opponentAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.pallid-stars-abilities]
+file_filter = src/lang/babele/<lang>/investigator.pallidStarsAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.pallidStarsAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.path-of-cthulhu-abilities]
+file_filter = src/lang/babele/<lang>/investigator.pathOfCthulhuAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.pathOfCthulhuAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.srd-abilities]
+file_filter = src/lang/babele/<lang>/investigator.srdAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.srdAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.srd-weapons]
+file_filter = src/lang/babele/<lang>/investigator.srdWeapons.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.srdWeapons.json
+source_lang = en
+type = KEYVALUEJSON
+
