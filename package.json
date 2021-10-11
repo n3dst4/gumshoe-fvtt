@@ -12,7 +12,8 @@
     "watch": "gulp watch",
     "clean": "gulp clean",
     "groom-translations": "gulp groomTranslations",
-    "extract-pack-translation-templates": "gulp extractPackTranslationTemplates"
+    "extract-pack-translation-templates": "gulp extractPackTranslationTemplates",
+    "pull-translations": "tx pull --all"
   },
   "author": "",
   "license": "",

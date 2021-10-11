@@ -307,10 +307,10 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
               }}
             >
               <div css={{ gridColumn: 1, gridRow: 1 }}>
-              <Translate>PCs</Translate>
+              <label> <Translate>PCs</Translate> </label>
               </div>
               <div css={{ gridColumn: 3, gridRow: 1 }}>
-              <Translate>NPCs</Translate>
+              <label> <Translate>NPCs</Translate> </label>
               </div>
               {game.packs
                 .filter((pack: CompendiumCollection<CompendiumCollection.Metadata>) => pack.metadata.entity === "Item")

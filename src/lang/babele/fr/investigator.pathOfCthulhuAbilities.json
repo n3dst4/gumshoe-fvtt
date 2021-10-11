@@ -120,13 +120,13 @@
             "name": "Crochetage",
             "category": "Technique"
         },
-        "Oral History": {
-            "name": "Histoire orale",
-            "category": "Relationnelle"
-        },
         "Mechanics": {
             "name": "M\u00e9canique",
             "category": "G\u00e9n\u00e9rale"
+        },
+        "Oral History": {
+            "name": "Histoire orale",
+            "category": "Relationnelle"
         },
         "Photography": {
             "name": "Photographie",

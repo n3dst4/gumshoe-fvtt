@@ -298,8 +298,8 @@ export const highContrastTheme: Theme = themeFactory({
   rootElementStyle: {
     backgroundImage: "",
   },
-  bodyFont: "1.2em sans-serif",
-  displayFont: "1.2em sans-serif",
+  bodyFont: "1.1em sans-serif",
+  displayFont: "1.1em sans-serif",
   logo: {
     frontTextElementStyle: {
       color: "#000",

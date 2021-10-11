@@ -1,5 +1,5 @@
 {
-    "label": "Habilidades Rastro de Cthulhu",
+    "label": "Habilidades Casting the Runes",
     "mapping": {
         "category": "data.category"
     },
@@ -8,7 +8,7 @@
             "name": "Antropologia",
             "category": "Acadêmica"
         },
-        "Archeology": {
+        "Archaeology": {
             "name": "Arqueologia",
             "category": "Acadêmica"
         },
@@ -16,9 +16,17 @@
             "name": "Arquitetura",
             "category": "Acadêmica"
         },
+        "Art": {
+            "name": "Arte",
+            "category": "Técnica"
+        },
         "Art History": {
             "name": "História da Arte",
             "category": "Acadêmica"
+        },
+        "Assess Honesty": {
+            "name": "Avaliar Honestidade",
+            "category": "Interpessoal"
         },
         "Astronomy": {
             "name": "Astronomia",
@@ -28,29 +36,61 @@
             "name": "Atletismo",
             "category": "Geral"
         },
+        "Bargain": {
+            "name": "Barganha",
+            "category": "Interpessoal"
+        },
+        "Biology": {
+            "name": "Biologia",
+            "category": "Acadêmica"
+        },
+        "Bookkeeping": {
+            "name": "Escrituração",
+            "category": "Técnica"
+        },
         "Bureaucracy": {
             "name": "Burocracia",
+            "category": "Geral"
+        },
+        "Charm": {
+            "name": "Charme",
             "category": "Interpessoal"
         },
         "Chemistry": {
             "name": "Química",
             "category": "Técnica"
         },
+        "Class": {
+            "name": "Classe",
+            "category": "Interpessoal"
+        },
         "Conceal": {
             "name": "Ocultação",
             "category": "Geral"
         },
-        "Cop Talk": {
-            "name": "Trato Policial",
-            "category": "Interpessoal"
+        "Connections": {
+            "name": "Conexões",
+            "category": "Geral"
+        },
+        "Contemplation": {
+            "name": "Contemplação",
+            "category": "Acadêmica"
         },
         "Craft": {
             "name": "Ofício",
             "category": "Técnica"
         },
+        "Criminology": {
+            "name": "Criminologia",
+            "category": "Acadêmica"
+        },
         "Cryptography": {
             "name": "Criptografia",
-            "category": "Acadêmica"
+            "category": "Técnica"
+        },
+        "Demolition": {
+            "name": "Demolição",
+            "category": "Geral"
         },
         "Disguise": {
             "name": "Disfarce",
@@ -64,24 +104,36 @@
             "name": "Coletar Evidências",
             "category": "Técnica"
         },
-        "Explosives": {
-            "name": "Explosivos",
-            "category": "Geral"
+        "Fieldcraft": {
+            "name": "Sobrevivência",
+            "category": "Técnica"
         },
         "Filch": {
             "name": "Punga",
+            "category": "Geral"
+        },
+        "Firearms": {
+            "name": "Armas de Fogo",
             "category": "Geral"
         },
         "First Aid": {
             "name": "Primeiros Socorros",
             "category": "Geral"
         },
-        "Flattery": {
-            "name": "Bajulação",
-            "category": "Interpessoal"
-        },
         "Fleeing": {
             "name": "Fuga",
+            "category": "Geral"
+        },
+        "Folklore": {
+            "name": "Folclore",
+            "category": "Acadêmica"
+        },
+        "Forensics": {
+            "name": "Ciência Forense",
+            "category": "Técnica"
+        },
+        "Gambling": {
+            "name": "Jogos",
             "category": "Geral"
         },
         "Geology": {
@@ -108,7 +160,7 @@
             "name": "Intimidação",
             "category": "Interpessoal"
         },
-        "Languages": {
+        "Language": {
             "name": "Idiomas",
             "category": "Acadêmica"
         },
@@ -116,28 +168,44 @@
             "name": "Direito",
             "category": "Acadêmica"
         },
-        "Locksmith": {
-            "name": "Arrombamento",
-            "category": "Técnica"
+        "Library Use": {
+            "name": "Usar Biblioteca",
+            "category": "Acadêmica"
         },
         "Mechanics": {
             "name": "Reparos Mecânicos",
             "category": "Geral"
         },
-        "Oral History": {
-            "name": "História Oral",
-            "category": "Interpessoal"
+        "Medicine": {
+            "name": "Medicina",
+            "category": "Acadêmica"
+        },
+        "Navigation": {
+            "name": "Navegação",
+            "category": "Geral"
+        },
+        "Occult": {
+            "name": "Ocultismo",
+            "category": "Acadêmica"
+        },
+        "Pharmacy": {
+            "name": "Farmácia",
+            "category": "Técnica"
         },
         "Photography": {
             "name": "Fotografia",
             "category": "Técnica"
         },
-        "Piloting": {
-            "name": "Pilotagem",
-            "category": "Geral"
+        "Physics": {
+            "name": "Física",
+            "category": "Acadêmica"
         },
         "Preparedness": {
             "name": "Precaução",
+            "category": "Geral"
+        },
+        "Psychoanalysis": {
+            "name": "Psicanálise",
             "category": "Geral"
         },
         "Reassurance": {
@@ -148,6 +216,10 @@
             "name": "Equitação",
             "category": "Geral"
         },
+        "Sailing": {
+            "name": "Náutica",
+            "category": "Geral"
+        },
         "Scuffling": {
             "name": "Briga",
             "category": "Geral"
@@ -156,13 +228,33 @@
             "name": "Sentir Perigo",
             "category": "Geral"
         },
+        "Shadowing": {
+            "name": "Perseguição",
+            "category": "Geral"
+        },
         "Stability": {
             "name": "Estabilidade",
+            "category": "Geral"
+        },
+        "Stealth": {
+            "name": "Furtividade",
             "category": "Geral"
         },
         "Streetwise": {
             "name": "Manha",
             "category": "Interpessoal"
+        },
+        "Theology": {
+            "name": "Teologia",
+            "category": "Acadêmica"
+        },
+        "Trade": {
+            "name": "Comercio",
+            "category": "Geral"
+        },
+        "Weapons": {
+            "name": "Armas Brancas",
+            "category": "Geral"
         }
     }
 }

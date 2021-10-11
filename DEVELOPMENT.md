@@ -66,6 +66,23 @@
 4. Check the compenium packs if you like
 5. Copy the `packs/*.db` files back from `dist/` into `src/`
 
+## Translations
+
+There are three npm tasks pertaining to translations:
+
+* `npm run groom-translations` will:
+  * alphabetise `en.json` and all the other core translations.
+  * add any missing string stubs to the non `en` translations.
+  * report any missing translations.
+  * report any "extra" translations.
+* `npm run extract-pack-translation-templates` will:
+  * populate `src/lang/babele-sources` with template translation files based on the packs.
+  * YOU WILL PROBABLY WANT TO UPLOAD THESE TO TRANSIFEX IF THEY CHANGE.
+* `npm run pull-translations` will:
+  * use the Transifex command line tool, [`tx`](https://docs.transifex.com/client/installing-the-client), to pull in the latest translations and overwrite all the JSONs.
+  * THIS WILL CLOBBER ANY JSON MODIFICATIONS WHICH HAVE NOT BEEN UPLOADED TO TRANSIFEX!
+
+To keep the translation imports running sweetly, you will need to update `.tx/config]` to map everything to the right places.
 
 ## Release process
 

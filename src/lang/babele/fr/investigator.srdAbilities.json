@@ -4,19 +4,15 @@
         "category": "data.category"
     },
     "entries": {
-        "Accounting": {
-            "name": "Comptabilit\u00e9",
-            "category": "Acad\u00e9mique"
+        "Analytic Taste": {
+            "name": "Go\u00fbt analytique",
+            "category": "Exotique"
         },
         "Anthropology": {
             "name": "Anthropologie",
             "category": "Acad\u00e9mique"
         },
         "Archaeology": {
-            "name": "Arch\u00e9ologie",
-            "category": "Acad\u00e9mique"
-        },
-        "Archeology": {
             "name": "Arch\u00e9ologie",
             "category": "Acad\u00e9mique"
         },
@@ -28,101 +24,45 @@
             "name": "Histoire de l\u2019art",
             "category": "Acad\u00e9mique"
         },
-        "Botany": {
-            "name": "Botanique",
-            "category": "Acad\u00e9mique"
+        "Artillery": {
+            "name": "Artillery",
+            "category": "Physical"
         },
-        "Belle-Lettres": {
-            "name": "Belles-lettres",
-            "category": "Acad\u00e9mique"
+        "Astronomy": {
+            "name": "Astronomie",
+            "category": "Technique"
         },
-        "Comparative Religion": {
-            "name": "Religions compar\u00e9es",
-            "category": "Acad\u00e9mique"
+        "Athletics": {
+            "name": "Athl\u00e9tisme",
+            "category": "Physique"
         },
-        "Culture": {
-            "name": "Culture",
-            "category": "Acad\u00e9mique"
-        },
-        "Fashion": {
-            "name": "Mode",
-            "category": "Acad\u00e9mique"
-        },
-        "Forensic Accounting": {
-            "name": "Analyse \u2013 finance",
-            "category": "Acad\u00e9mique"
-        },
-        "Forensic Psychology": {
-            "name": "Analyse \u2013 Psychologie",
-            "category": "Acad\u00e9mique"
-        },
-        "Geology": {
-            "name": "G\u00e9ologie",
-            "category": "Acad\u00e9mique"
-        },
-        "History": {
-            "name": "Histoire",
-            "category": "Acad\u00e9mique"
-        },
-        "Languages": {
-            "name": "Langues",
-            "category": "Acad\u00e9mique"
-        },
-        "Law": {
-            "name": "Droit",
-            "category": "Acad\u00e9mique"
-        },
-        "Linguistics": {
-            "name": "Linguistique",
-            "category": "Acad\u00e9mique"
-        },
-        "Military History": {
-            "name": "Histoire militaire",
-            "category": "Acad\u00e9mique"
-        },
-        "Military Tactics": {
-            "name": "Tactique militaire",
-            "category": "Acad\u00e9mique"
-        },
-        "Natural History": {
-            "name": "Histoire naturelle",
-            "category": "Acad\u00e9mique"
-        },
-        "Occult Studies": {
-            "name": "Occultisme",
-            "category": "Acad\u00e9mique"
-        },
-        "Pathology": {
-            "name": "Pathologie",
-            "category": "Acad\u00e9mique"
-        },
-        "Poetry": {
-            "name": "Po\u00e9sie",
-            "category": "Acad\u00e9mique"
-        },
-        "Political Science ": {
-            "name": "Science politique",
-            "category": "Acad\u00e9mique"
-        },
-        "Research": {
-            "name": "Recherche",
-            "category": "Acad\u00e9mique"
-        },
-        "Textual Analysis": {
-            "name": "Analyse de texte",
-            "category": "Acad\u00e9mique"
-        },
-        "Trivia": {
-            "name": "Trivia",
-            "category": "Acad\u00e9mique"
+        "Aura Reading": {
+            "name": "Lire les auras",
+            "category": "Exotique"
         },
         "Authority": {
             "name": "Autorit\u00e9",
             "category": "Relationnelle"
         },
+        "Ballistics": {
+            "name": "Balistique",
+            "category": "Technique"
+        },
+        "Battlefield": {
+            "name": "Champ de bataille",
+            "category": "Focus"
+        },
+        "Belle-Lettres": {
+            "name": "Belles-lettres",
+            "category": "Acad\u00e9mique"
+        },
         "Bonhomie": {
             "name": "Bonhomie",
             "category": "Relationnelle"
+        },
+        "Botany": {
+            "name": "Botanique",
+            "category": "Acad\u00e9mique"
         },
         "Bullshit Detector": {
             "name": "D\u00e9tecteur de mensonges",
@@ -132,101 +72,45 @@
             "name": "Bureaucratie",
             "category": "Relationnelle"
         },
-        "Charm": {
-            "name": "Charme",
-            "category": "Relationnelle"
+        "Burglary": {
+            "name": "Cambriolage",
+            "category": "Focus"
         },
-        "Cop Talk": {
-            "name": "Jargon policier",
-            "category": "Relationnelle"
-        },
-        "Flattery": {
-            "name": "Flatterie",
-            "category": "Relationnelle"
-        },
-        "Flirting": {
-            "name": "S\u00e9duction",
-            "category": "Relationnelle"
-        },
-        "High Society": {
-            "name": "Haute soci\u00e9t\u00e9",
-            "category": "Relationnelle"
-        },
-        "Impersonate": {
-            "name": "Incarner",
-            "category": "Relationnelle"
-        },
-        "Inspiration": {
-            "name": "Inspiration",
-            "category": "Relationnelle"
-        },
-        "Interrogation": {
-            "name": "Interrogatoire",
-            "category": "Relationnelle"
-        },
-        "Intimidation": {
-            "name": "Intimidation",
-            "category": "Relationnelle"
-        },
-        "Leadership": {
-            "name": "Leadership",
-            "category": "Relationnelle"
-        },
-        "Negotiation": {
-            "name": "N\u00e9gociation",
-            "category": "Relationnelle"
-        },
-        "Oral History": {
-            "name": "Histoire orale",
-            "category": "Relationnelle"
-        },
-        "People Person": {
-            "name": "Personne sociale",
-            "category": "Relationnelle"
-        },
-        "Reassurance": {
-            "name": "Apaisement",
-            "category": "Relationnelle"
-        },
-        "Respect": {
-            "name": "Respect",
-            "category": "Relationnelle"
-        },
-        "Salt of the Earth": {
-            "name": "Sel de la terre",
-            "category": "Relationnelle"
-        },
-        "Society": {
-            "name": "Soci\u00e9t\u00e9",
-            "category": "Relationnelle"
-        },
-        "Streetwise": {
-            "name": "Connaissance de la rue",
-            "category": "Relationnelle"
-        },
-        "Taunt": {
-            "name": "Provoquer",
-            "category": "Relationnelle"
-        },
-        "Tradecraft": {
-            "name": "Renseignement",
-            "category": "Relationnelle"
-        },
-        "Astronomy": {
-            "name": "Astronomie",
-            "category": "Technique"
-        },
-        "Ballistics": {
-            "name": "Balistique",
-            "category": "Technique"
+        "Business Affairs": {
+            "name": "Business",
+            "category": "Pr\u00e9sence"
         },
         "Camping": {
             "name": "Camping",
             "category": "Technique"
         },
+        "Charm": {
+            "name": "Charme",
+            "category": "Relationnelle"
+        },
         "Chemistry": {
             "name": "Chimie",
             "category": "Technique"
+        },
+        "Chronal Stability": {
+            "name": "Stabilit\u00e9 Chronal",
+            "category": "Exotique"
+        },
+        "Comparative Religion": {
+            "name": "Religions compar\u00e9es",
+            "category": "Acad\u00e9mique"
+        },
+        "Composure": {
+            "name": "Sang-froid",
+            "category": "Pr\u00e9sence"
+        },
+        "Conceal": {
+            "name": "Camouflage",
+            "category": "Focus"
+        },
+        "Cop Talk": {
+            "name": "Jargon policier",
+            "category": "Relationnelle"
         },
         "Counterinsurgency": {
             "name": "Contre-insurection",
@@ -240,13 +124,25 @@
             "name": "Cryptographie",
             "category": "Technique"
         },
+        "Culture": {
+            "name": "Culture",
+            "category": "Acad\u00e9mique"
+        },
         "Data Retrieval": {
             "name": "R\u00e9cup\u00e9ration de donn\u00e9es",
             "category": "Technique"
         },
+        "Disguise": {
+            "name": "D\u00e9guisement",
+            "category": "Pr\u00e9sence"
+        },
         "Document Analysis": {
             "name": "Analyse de document",
             "category": "Technique"
+        },
+        "Driving": {
+            "name": "Conduite",
+            "category": "Physique"
         },
         "Electronic Surveillance": {
             "name": "Surveillance \u00e9lectronique",
@@ -260,13 +156,49 @@
             "name": "Engins explosifs",
             "category": "Technique"
         },
-        "Fingerprinting": {
-            "name": "Relev\u00e9 d'empreintes digitales",
-            "category": "Technique"
+        "Explosives": {
+            "name": "Engins explosifs",
+            "category": "Focus"
         },
         "Farming": {
             "name": "Agriculture",
             "category": "Technique"
+        },
+        "Fashion": {
+            "name": "Mode",
+            "category": "Acad\u00e9mique"
+        },
+        "Fighting": {
+            "name": "Combat",
+            "category": "Physique"
+        },
+        "Filch": {
+            "name": "Escamotage",
+            "category": "Focus"
+        },
+        "Fingerprinting": {
+            "name": "Relev\u00e9 d'empreintes digitales",
+            "category": "Technique"
+        },
+        "First Aid": {
+            "name": "Premiers soins",
+            "category": "Focus"
+        },
+        "Flattery": {
+            "name": "Flatterie",
+            "category": "Relationnelle"
+        },
+        "Fleeing": {
+            "name": "Fuir",
+            "category": "Physique"
+        },
+        "Flirting": {
+            "name": "S\u00e9duction",
+            "category": "Relationnelle"
+        },
+        "Forensic Accounting": {
+            "name": "Analyse \u2013 finance",
+            "category": "Acad\u00e9mique"
         },
         "Forensic Anthropology": {
             "name": "Analyse \u2013 Anthropologie",
@@ -276,149 +208,93 @@
             "name": "Analyse \u2013 Entomologique",
             "category": "Technique"
         },
+        "Forensic Psychology": {
+            "name": "Analyse \u2013 Psychologie",
+            "category": "Acad\u00e9mique"
+        },
         "Forgery": {
             "name": "Contrefa\u00e7on",
             "category": "Technique"
+        },
+        "Gambling": {
+            "name": "Jeux d\u2019argent",
+            "category": "Pr\u00e9sence"
+        },
+        "Geology": {
+            "name": "G\u00e9ologie",
+            "category": "Acad\u00e9mique"
         },
         "Hacking": {
             "name": "Hacking",
             "category": "Technique"
         },
+        "Health": {
+            "name": "Sant\u00e9",
+            "category": "Physique"
+        },
+        "High Society": {
+            "name": "Haute soci\u00e9t\u00e9",
+            "category": "Relationnelle"
+        },
+        "History": {
+            "name": "Histoire",
+            "category": "Acad\u00e9mique"
+        },
         "Hunting": {
             "name": "Chasse",
             "category": "Technique"
         },
-        "Intuition": {
-            "name": "Intuition",
-            "category": "Technique"
+        "Hypnosis": {
+            "name": "Hypnose",
+            "category": "Pr\u00e9sence"
         },
-        "Locksmith": {
-            "name": "Crochetage",
-            "category": "Technique"
-        },
-        "Medical Expertise": {
-            "name": "Expertise m\u00e9dicale",
-            "category": "Technique"
-        },
-        "Notice": {
-            "name": "Observation",
-            "category": "Technique"
-        },
-        "Outdoor Survival": {
-            "name": "Survie en ext\u00e9rieur",
-            "category": "Technique"
-        },
-        "Painting": {
-            "name": "Peinture",
-            "category": "Technique"
-        },
-        "Photography": {
-            "name": "Photographie",
-            "category": "Technique"
-        },
-        "Science!": {
-            "name": "Science !",
-            "category": "Technique"
-        },
-        "Sculpture": {
-            "name": "Sculpture",
-            "category": "Technique"
-        },
-        "Spying": {
-            "name": "Espionnage",
-            "category": "Technique"
-        },
-        "Terrain": {
-            "name": "Connaissance de l\u2019environnement",
-            "category": "Technique"
-        },
-        "Traffic Analysis": {
-            "name": "Analyse de donn\u00e9es",
-            "category": "Technique"
-        },
-        "Analytic Taste": {
-            "name": "Go\u00fbt analytique",
-            "category": "Exotique"
-        },
-        "Aura Reading": {
-            "name": "Lire les auras",
-            "category": "Exotique"
-        },
-        "Paradox Prevention": {
-            "name": "Pr\u00e9vention des paradoxes",
-            "category": "Exotique"
-        },
-        "Timecraft": {
-            "name": "Technique temporelle",
-            "category": "Exotique"
-        },
-        "Artillery ": {
-            "name": "Artillerie",
-            "category": "Physique"
-        },
-        "Athletics": {
-            "name": "Athl\u00e9tisme",
-            "category": "Physique"
-        },
-        "Driving": {
-            "name": "Conduite",
-            "category": "Physique"
-        },
-        "Fighting": {
-            "name": "Combat",
-            "category": "Physique"
-        },
-        "Fleeing": {
-            "name": "Fuir",
-            "category": "Physique"
-        },
-        "Health": {
-            "name": "Sant\u00e9",
-            "category": "Physique"
+        "Impersonate": {
+            "name": "Incarner",
+            "category": "Relationnelle"
         },
         "Infiltration": {
             "name": "Infiltration",
             "category": "Physique"
         },
-        "Piloting": {
-            "name": "Pilotage",
-            "category": "Physique"
+        "Inspiration": {
+            "name": "Inspiration",
+            "category": "Relationnelle"
         },
-        "Riding": {
-            "name": "Equitation",
-            "category": "Physique"
-        },
-        "Scuffling": {
-            "name": "Bagarre",
-            "category": "Physique"
-        },
-        "Shooting": {
-            "name": "Armes \u00e0 feu",
-            "category": "Physique"
-        },
-        "Battlefield": {
-            "name": "Champ de bataille",
+        "Insurgency": {
+            "name": "Insurgency",
             "category": "Focus"
         },
-        "Burglary": {
-            "name": "Cambriolage",
-            "category": "Focus"
+        "Interrogation": {
+            "name": "Interrogatoire",
+            "category": "Relationnelle"
         },
-        "Conceal": {
-            "name": "Camouflage",
-            "category": "Focus"
+        "Intimidation": {
+            "name": "Intimidation",
+            "category": "Relationnelle"
         },
-        "Explosives": {
-            "name": "Engins explosifs",
-            "category": "Focus"
+        "Intuition": {
+            "name": "Intuition",
+            "category": "Technique"
         },
-        "Filch": {
-            "name": "Escamotage",
-            "category": "Focus"
+        "Languages": {
+            "name": "Langues",
+            "category": "Acad\u00e9mique"
         },
-        "Insurgency ": {
-            "name": "Insurrection",
-            "category": "Focus"
+        "Law": {
+            "name": "Droit",
+            "category": "Acad\u00e9mique"
+        },
+        "Leadership": {
+            "name": "Leadership",
+            "category": "Relationnelle"
+        },
+        "Linguistics": {
+            "name": "Linguistique",
+            "category": "Acad\u00e9mique"
+        },
+        "Locksmith": {
+            "name": "Crochetage",
+            "category": "Technique"
         },
         "Mechanics": {
             "name": "M\u00e9canique",
@@ -428,57 +304,93 @@
             "name": "Soigner",
             "category": "Focus"
         },
-        "First Aid": {
-            "name": "Premiers soins",
-            "category": "Focus"
+        "Medical Expertise": {
+            "name": "Expertise m\u00e9dicale",
+            "category": "Technique"
+        },
+        "Military History": {
+            "name": "Histoire militaire",
+            "category": "Acad\u00e9mique"
+        },
+        "Military Tactics": {
+            "name": "Tactique militaire",
+            "category": "Acad\u00e9mique"
+        },
+        "Morale": {
+            "name": "Morale",
+            "category": "Presence"
+        },
+        "Mutant Power: Blood Spray": {
+            "name": "Pouvoir mutant\u00a0: jet de sang",
+            "category": "Exotique"
+        },
+        "Natural History": {
+            "name": "Histoire naturelle",
+            "category": "Acad\u00e9mique"
+        },
+        "Negotiation": {
+            "name": "N\u00e9gociation",
+            "category": "Relationnelle"
         },
         "Network": {
             "name": "R\u00e9seau",
             "category": "Focus"
         },
-        "Surveillance": {
-            "name": "Surveillance",
-            "category": "Focus"
+        "Notice": {
+            "name": "Observation",
+            "category": "Technique"
         },
-        "Traps and Bombs": {
-            "name": "Pi\u00e8ge et bombes",
-            "category": "Focus"
+        "Occult Studies": {
+            "name": "Occultisme",
+            "category": "Acad\u00e9mique"
         },
-        "Unobtrusiveness": {
-            "name": "Imperceptibilit\u00e9",
-            "category": "Focus"
+        "Oral History": {
+            "name": "Histoire orale",
+            "category": "Relationnelle"
         },
-        "Business Affairs ": {
-            "name": "Business",
-            "category": "Pr\u00e9sence"
+        "Outdoor Survival": {
+            "name": "Survie en ext\u00e9rieur",
+            "category": "Technique"
         },
-        "Composure / Stability ": {
-            "name": "Equilibre mental",
-            "category": "Pr\u00e9sence"
+        "Painting": {
+            "name": "Peinture",
+            "category": "Technique"
         },
-        "Business Affairs": {
-            "name": "Business",
-            "category": "Pr\u00e9sence"
+        "Paradox Prevention": {
+            "name": "Pr\u00e9vention des paradoxes",
+            "category": "Exotique"
         },
-        "Disguise": {
-            "name": "D\u00e9guisement",
-            "category": "Pr\u00e9sence"
+        "Pathology": {
+            "name": "Pathologie",
+            "category": "Acad\u00e9mique"
         },
-        "Gambling": {
-            "name": "Jeux d\u2019argent",
-            "category": "Pr\u00e9sence"
+        "Pathway Amplification": {
+            "name": "Amplification",
+            "category": "Exotique"
         },
-        "Hypnosis": {
-            "name": "Hypnose",
-            "category": "Pr\u00e9sence"
+        "People Person": {
+            "name": "Personne sociale",
+            "category": "Relationnelle"
         },
-        "Morale ": {
-            "name": "Moral",
-            "category": "Pr\u00e9sence"
+        "Photography": {
+            "name": "Photographie",
+            "category": "Technique"
         },
-        "Politics ": {
-            "name": "Politique",
-            "category": "Pr\u00e9sence"
+        "Piloting": {
+            "name": "Pilotage",
+            "category": "Physique"
+        },
+        "Poetry": {
+            "name": "Po\u00e9sie",
+            "category": "Acad\u00e9mique"
+        },
+        "Political Science": {
+            "name": "Political Science",
+            "category": "Academic"
+        },
+        "Politics": {
+            "name": "Politics",
+            "category": "Presence"
         },
         "Preparedness": {
             "name": "Organisation",
@@ -488,41 +400,113 @@
             "name": "Relations publiques",
             "category": "Pr\u00e9sence"
         },
+        "Reality Anchor": {
+            "name": "Ancrage de r\u00e9alit\u00e9",
+            "category": "Exotique"
+        },
+        "Reassurance": {
+            "name": "Apaisement",
+            "category": "Relationnelle"
+        },
+        "Research": {
+            "name": "Recherche",
+            "category": "Acad\u00e9mique"
+        },
+        "Respect": {
+            "name": "Respect",
+            "category": "Relationnelle"
+        },
+        "Riding": {
+            "name": "Equitation",
+            "category": "Physique"
+        },
+        "Salt of the Earth": {
+            "name": "Sel de la terre",
+            "category": "Relationnelle"
+        },
+        "Science!": {
+            "name": "Science !",
+            "category": "Technique"
+        },
         "Scrounging": {
             "name": "Syst\u00e8me D",
             "category": "Pr\u00e9sence"
+        },
+        "Scuffling": {
+            "name": "Bagarre",
+            "category": "Physique"
+        },
+        "Sculpture": {
+            "name": "Sculpture",
+            "category": "Technique"
         },
         "Sense Trouble": {
             "name": "Sixi\u00e8me sens",
             "category": "Pr\u00e9sence"
         },
+        "Shooting": {
+            "name": "Armes \u00e0 feu",
+            "category": "Physique"
+        },
         "Shrink": {
             "name": "Psychoth\u00e9rapie",
             "category": "Pr\u00e9sence"
         },
-        "Composure": {
-            "name": "Sang-froid",
-            "category": "Pr\u00e9sence"
+        "Society": {
+            "name": "Soci\u00e9t\u00e9",
+            "category": "Relationnelle"
+        },
+        "Spying": {
+            "name": "Espionnage",
+            "category": "Technique"
         },
         "Stability": {
             "name": "Equilibre mental",
             "category": "Pr\u00e9sence"
         },
-        "Chronal Stability": {
-            "name": "Stabilit\u00e9 Chronal",
+        "Streetwise": {
+            "name": "Connaissance de la rue",
+            "category": "Relationnelle"
+        },
+        "Surveillance": {
+            "name": "Surveillance",
+            "category": "Focus"
+        },
+        "Taunt": {
+            "name": "Provoquer",
+            "category": "Relationnelle"
+        },
+        "Terrain": {
+            "name": "Connaissance de l\u2019environnement",
+            "category": "Technique"
+        },
+        "Textual Analysis": {
+            "name": "Analyse de texte",
+            "category": "Acad\u00e9mique"
+        },
+        "Timecraft": {
+            "name": "Technique temporelle",
             "category": "Exotique"
         },
-        "Mutant Power: Blood Spray": {
-            "name": "Pouvoir mutant\u00a0: jet de sang",
-            "category": "Exotique"
+        "Tradecraft": {
+            "name": "Renseignement",
+            "category": "Relationnelle"
         },
-        "Pathway Amplification": {
-            "name": "Amplification",
-            "category": "Exotique"
+        "Traffic Analysis": {
+            "name": "Analyse de donn\u00e9es",
+            "category": "Technique"
         },
-        "Reality Anchor": {
-            "name": "Ancrage de r\u00e9alit\u00e9",
-            "category": "Exotique"
+        "Traps and Bombs": {
+            "name": "Pi\u00e8ge et bombes",
+            "category": "Focus"
+        },
+        "Trivia": {
+            "name": "Trivia",
+            "category": "Acad\u00e9mique"
+        },
+        "Unobtrusiveness": {
+            "name": "Imperceptibilit\u00e9",
+            "category": "Focus"
         },
         "Viroware Enhancement: Dominator": {
             "name": "Augmentation Viroware\u00a0: Dominator",

@@ -1,197 +1,168 @@
 {
-	"label": "Path of Cthulhu Abilities",
-	"entries": {
-		"Accounting": {
-			"name": "Contabilidad"
-		},
-		"Anthropology": {
-			"name": "Antropología"
-		},
-		"Archeology": {
-			"name": "Arqueología"
-		},
-		"Architecture": {
-			"name": "Arquitectura"
-		},
-		"Art": {
-			"name": "Habilidad artistica"
-		},
-		"Art History": {
-			"name": "Historia del arte"
-		},
-		"Assess Honesty": {
-			"name": "Evaluar sinceridad"
-		},
-		"Astronomy": {
-			"name": "Astronomía"
-		},
-		"Athletics": {
-			"name": "Atletismo"
-		},
-		"Bargain": {
-			"name": "Regatear"
-		},
-		"Biology": {
-			"name": "Biología"
-		},
-		"Bureaucracy": {
-			"name": "Burocracia"
-		},
-		"Chemistry": {
-			"name": "Química"
-		},
-		"Conceal": {
-			"name": "Ocultar"
-		},
-		"Cop Talk": {
-			"name": "Jerga policial"
-		},
-		"Craft": {
-			"name": "Habilidad artesanal"
-		},
-		"Credit Rating": {
-			"name": "Crédito"
-		},
-		"Cryptography": {
-			"name": "Criptografía"
-		},
-		"Cthulhu Mythos": {
-			"name": "Mitos de Cthulhu"
-		},
-		"Disguise": {
-			"name": "Disfraz"
-		},
-		"Driving": {
-			"name": "Conducir"
-		},
-		"Electrical Repair": {
-			"name": "Electricidad"
-		},
-		"Evidence Collection": {
-			"name": "Recogida de pruebas"
-		},
-		"Explosives": {
-			"name": "Explosivos"
-		},
-		"Filch": {
-			"name": "Birlar"
-		},
-		"Firearms": {
-			"name": "Armas de fuego"
-		},
-		"First Aid": {
-			"name": "Primeros auxilios"
-		},
-		"Flattery": {
-			"name": "Adular"
-		},
-		"Fleeing": {
-			"name": "Huida"
-		},
-		"Forensics": {
-			"name": "Medicina forense"
-		},
-		"Geology": {
-			"name": "Geología"
-		},
-		"Health": {
-			"name": "Salud"
-		},
-		"History": {
-			"name": "Historia"
-		},
-		"Hypnosis": {
-			"name": "Hipnosis"
-		},
-		"Interrogation": {
-			"name": "Interrogatorio"
-		},
-		"Intimidation": {
-			"name": "Intimidación"
-		},
-		"Language": {
-			"name": "Idiomas"
-		},
-		"Law": {
-			"name": "Derecho"
-		},
-		"Library Use": {
-			"name": "Buscar libros"
-		},
-		"Locksmith": {
-			"name": "Cerrajería"
-		},
-		"Magic": {
-			"name": "Magia"
-		},
-		"Mechanical Repair": {
-			"name": "Mecánica"
-		},
-		"Medicine": {
-			"name": "Medicina"
-		},
-		"Occult": {
-			"name": "Ciencias ocultas"
-		},
-		"Oral History": {
-			"name": "Historia horal"
-		},
-		"Outdoorsman": {
-			"name": "Supervivencia"
-		},
-		"Pharmacy": {
-			"name": "Farmacología"
-		},
-		"Photography": {
-			"name": "Fotografía"
-		},
-		"Physics": {
-			"name": "Física"
-		},
-		"Piloting": {
-			"name": "Pilotaje"
-		},
-		"Preparedness": {
-			"name": "Preparación"
-		},
-		"Psychoanalysis": {
-			"name": "Psicoanalisis"
-		},
-		"Reassurance": {
-			"name": "Consolar"
-		},
-		"Riding": {
-			"name": "Monta"
-		},
-		"Sanity": {
-			"name": "Cordura"
-		},
-		"Scuffling": {
-			"name": "Escaramuza"
-		},
-		"Sense Trouble": {
-			"name": "Sentir el peligro"
-		},
-		"Shadowing": {
-			"name": "Seguir"
-		},
-		"Stability": {
-			"name": "Estabilidad"
-		},
-		"Stealth": {
-			"name": "Sigilo"
-		},
-		"Streetwise": {
-			"name": "Bajos fondos"
-		},
-		"Technical": {
-			"name": "Técnica"
-		},
-		"Theology": {
-			"name": "Teología"
-		},
-		"Weapons": {
-			"name": "Armas"
-		}
-	}
+    "label": "Path of Cthulhu Abilities",
+    "mapping": {
+        "category": "datos.categoria"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "Antropología",
+            "category": "Académicas"
+        },
+        "Archeology": {
+            "name": "Arqueología",
+            "category": "Académicas"
+        },
+        "Architecture": {
+            "name": "Arquitectura",
+            "category": "Académicas"
+        },
+        "Art History": {
+            "name": "Historia del arte",
+            "category": "Académicas"
+        },
+        "Astronomy": {
+            "name": "Astronomía",
+            "category": "Técnicas"
+        },
+        "Athletics": {
+            "name": "Atletismo",
+            "category": "Generales"
+        },
+        "Bureaucracy": {
+            "name": "Burocracia",
+            "category": "Interpersonales"
+        },
+        "Chemistry": {
+            "name": "Química",
+            "category": "Técnicas"
+        },
+        "Conceal": {
+            "name": "Ocultar",
+            "category": "Generales"
+        },
+        "Cop Talk": {
+            "name": "Jerga policial",
+            "category": "Interpersonales"
+        },
+        "Craft": {
+            "name": "Habilidad artesanal",
+            "category": "Técnicas"
+        },
+        "Cryptography": {
+            "name": "Criptografía",
+            "category": "Académicas"
+        },
+        "Disguise": {
+            "name": "Disfraz",
+            "category": "Generales"
+        },
+        "Driving": {
+            "name": "Conducir",
+            "category": "Generales"
+        },
+        "Evidence Collection": {
+            "name": "Recogida de pruebas",
+            "category": "Técnicas"
+        },
+        "Explosives": {
+            "name": "Explosivos",
+            "category": "Generales"
+        },
+        "Filch": {
+            "name": "Birlar",
+            "category": "Generales"
+        },
+        "First Aid": {
+            "name": "Primeros auxilios",
+            "category": "Generales"
+        },
+        "Flattery": {
+            "name": "Adular",
+            "category": "Interpersonales"
+        },
+        "Fleeing": {
+            "name": "Huida",
+            "category": "Generales"
+        },
+        "Geology": {
+            "name": "Geología",
+            "category": "Académicas"
+        },
+        "Health": {
+            "name": "Salud",
+            "category": "Generales"
+        },
+        "History": {
+            "name": "Historia",
+            "category": "Académicas"
+        },
+        "Hypnosis": {
+            "name": "Hipnosis",
+            "category": "Generales"
+        },
+        "Interrogation": {
+            "name": "Interrogatorio",
+            "category": "Interpersonales"
+        },
+        "Intimidation": {
+            "name": "Intimidación",
+            "category": "Interpersonales"
+        },
+        "Languages": {
+            "name": "Idiomas",
+            "category": "Académicas"
+        },
+        "Law": {
+            "name": "Derecho",
+            "category": "Académicas"
+        },
+        "Locksmith": {
+            "name": "Cerrajería",
+            "category": "Técnicas"
+        },
+        "Mechanics": {
+            "name": "Mecánica",
+            "category": "Generales"
+        },
+        "Oral History": {
+            "name": "Historia horal",
+            "category": "Interpersonales"
+        },
+        "Photography": {
+            "name": "Fotografía",
+            "category": "Técnicas"
+        },
+        "Piloting": {
+            "name": "Pilotaje",
+            "category": "Generales"
+        },
+        "Preparedness": {
+            "name": "Preparación",
+            "category": "Generales"
+        },
+        "Reassurance": {
+            "name": "Consolar",
+            "category": "Interpersonales"
+        },
+        "Riding": {
+            "name": "Monta",
+            "category": "Generales"
+        },
+        "Scuffling": {
+            "name": "Escaramuza",
+            "category": "Generales"
+        },
+        "Sense Trouble": {
+            "name": "Sentir el peligro",
+            "category": "Generales"
+        },
+        "Stability": {
+            "name": "Estabilidad",
+            "category": "Generales"
+        },
+        "Streetwise": {
+            "name": "Bajos fondos",
+            "category": "Interpersonales"
+        }
+    }
 }
