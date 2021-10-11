@@ -1,5 +1,4 @@
 {
-    "investigator.Edit": "Edit",
     "investigator.24hRefresh": "24h Refresh",
     "investigator.Abilities": "Abilities",
     "investigator.Ability": "Ability",
@@ -37,6 +36,7 @@
     "investigator.DeleteEquipmentName": "Delete \"{EquipmentName}\"?",
     "investigator.DeleteTheAbilityNameAbility": "Delete the \"{AbilityName}\" ability?",
     "investigator.Description": "Description",
+    "investigator.Edit": "Edit",
     "investigator.Equipment": "Equipment",
     "investigator.ExcludeFromGeneralRefresh": "Exclude from full refresh?",
     "investigator.FullRefresh": "Full Refresh",
