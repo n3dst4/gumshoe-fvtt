@@ -1,0 +1,10 @@
+[main]
+host = https://www.transifex.com
+
+[investigator-system.en-json]
+file_filter = src/lang/<lang>.json
+minimum_perc = 0
+source_file = src/lang/en.json
+source_lang = en
+type = KEYVALUEJSON
+
