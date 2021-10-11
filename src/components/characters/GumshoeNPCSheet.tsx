@@ -220,11 +220,11 @@ export const GumshoeNPCSheet = ({
           }}
         >
           <TabContainer
-            defaultTab="abilities"
+            defaultTab="play"
             tabs={[
               {
-                id: "abilities",
-                label: "Abilities",
+                id: "play",
+                label: "Play",
                 content:
                   <Fragment>
                     <WeaponsArea actor={actor} />

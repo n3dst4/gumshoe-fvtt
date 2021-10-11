@@ -100,6 +100,127 @@ async function copyFiles () {
 }
 
 /**
+ * go through the core en translations and mak sure all the non-en .json files
+ * have the same entries.
+ *
+ * this should become redundant if we start using a translation management
+ * platform
+ */
+async function groomTranslations () {
+  // ===========================================================================
+  // requires
+  // ===========================================================================
+  const path = require("path");
+  const { readdir, readFile, writeFile } = require("fs/promises");
+  const chalk = require("chalk");
+
+  // ===========================================================================
+  // actual code
+  // ===========================================================================
+  const parts = path.parse(__filename);
+  const langDir = path.join(parts.dir, "src", "lang");
+  const files = (await readdir(langDir)).filter((f) => f.endsWith(".json") && f !== "en.json");
+  const enPath = path.join(langDir, "en.json");
+  const text = await (await readFile(enPath)).toString();
+  const enParsed = JSON.parse(text);
+  const enSorted = {};
+  for (const x of Object.keys(enParsed).sort()) {
+    enSorted[x] = enParsed[x];
+  }
+  const json = JSON.stringify(enSorted, null, 4);
+  await writeFile(enPath, json);
+
+  async function sortLang (filename) {
+    const filePath = path.join(langDir, filename);
+    const parsed = JSON.parse(await (await readFile(filePath)).toString());
+    const result = {};
+    for (const key of Object.keys(enSorted)) {
+      const translation = parsed[key];
+      if (translation === undefined || translation.startsWith("FIXME")) {
+        console.log(chalk.red(`${filename} is missing a translation for ${key}`));
+      }
+      result[key] = translation ?? "";
+    }
+    for (const key of Object.keys(parsed)) {
+      if (enSorted[key] === undefined) {
+        console.log(chalk.red(`${filename} has an extra (not in en.json) translation for ${key}`));
+        result[key] = parsed[key];
+      }
+    }
+    const json = JSON.stringify(result, null, 4);
+    await writeFile(filePath, json);
+  }
+
+  const proms = files.map(async (filename) => {
+    sortLang(filename);
+  });
+
+  return Promise.all(proms);
+}
+
+/**
+ * go though the compendium packs, and for each one, emit an untranslated
+ * template file. once comitted and pushed, this will be picked up by transifex
+ * and update the translation list.
+ */
+async function extractPackTranslationTemplates () {
+  // ===========================================================================
+  // requires
+  // ===========================================================================
+  const system = require("./src/system.json");
+  const path = require("path");
+  const {
+    // readdir,
+    // readFile,
+    writeFile,
+  } = require("fs/promises");
+  const chalk = require("chalk");
+  const Datastore = require("nedb-promises");
+
+  // ===========================================================================
+  // constants
+  // ===========================================================================
+  const mapping = {
+    category: "data.category",
+  };
+
+  // ===========================================================================
+  // actual code
+  // ===========================================================================
+  const parts = path.parse(__filename);
+  const srcDir = path.join(parts.dir, "src");
+  const itemPacks = system.packs.filter((p) => p.entity === "Item");
+
+  for (const pack of itemPacks) {
+    process.stdout.write(`Processing ${chalk.green(pack.label)}... `);
+    const entries = {};
+    const store = Datastore.create({
+      filename: path.join(srcDir, pack.path),
+      autoload: true,
+    });
+    const docs = await store.find({});
+    docs.sort((a, b) => a.name.localeCompare(b.name));
+    for (const doc of docs) {
+      entries[doc.name] = {
+        name: doc.name,
+        category: doc.data.category,
+      };
+    }
+    const numEntries = Object.keys(entries).length;
+    process.stdout.write(`found ${numEntries} entries\n`);
+    const babeleData = {
+      label: pack.label,
+      mapping,
+      entries,
+    };
+    const outFileName = `${system.name}.${path.basename(pack.path, ".db")}.json`;
+    const outFilePath = path.join(srcDir, "lang", "babele-sources", outFileName);
+    const json = JSON.stringify(babeleData, null, 4);
+    await writeFile(outFilePath, json);
+  }
+}
+
+/**
  * Watch for changes for each build step
  */
 function watch () {
@@ -421,3 +542,5 @@ exports.publish = gulp.series(
   bundlePackage,
   execGit,
 );
+exports.groomTranslations = groomTranslations;
+exports.extractPackTranslationTemplates = extractPackTranslationTemplates;
