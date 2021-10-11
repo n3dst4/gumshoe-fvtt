@@ -1,0 +1,69 @@
+[main]
+host = https://www.transifex.com
+# https://docs.transifex.com/client/client-configuration#language-mappings
+# Transifex uses an underscore instead of a dash
+lang_map = pt_PT: pt-PT, pt_BR: pt-BR
+
+[investigator-system.corestrings]
+file_filter = src/lang/<lang>.json
+minimum_perc = 0
+source_file = src/lang/en.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.casting-the-runes-abilities]
+file_filter = src/lang/babele/<lang>/investigator.castingTheRunesAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.castingTheRunesAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.nice-black-agents-abilities]
+file_filter = src/lang/babele/<lang>/investigator.niceBlackAgentsAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.niceBlackAgentsAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.nothing-to-fear-abilities]
+file_filter = src/lang/babele/<lang>/investigator.nothingToFearAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.nothingToFearAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.opponent-abilities]
+file_filter = src/lang/babele/<lang>/investigator.opponentAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.opponentAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.pallid-stars-abilities]
+file_filter = src/lang/babele/<lang>/investigator.pallidStarsAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.pallidStarsAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.path-of-cthulhu-abilities]
+file_filter = src/lang/babele/<lang>/investigator.pathOfCthulhuAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.pathOfCthulhuAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.srd-abilities]
+file_filter = src/lang/babele/<lang>/investigator.srdAbilities.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.srdAbilities.json
+source_lang = en
+type = KEYVALUEJSON
+
+[investigator-system.srd-weapons]
+file_filter = src/lang/babele/<lang>/investigator.srdWeapons.json
+minimum_perc = 80
+source_file = src/lang/babele-sources/investigator.srdWeapons.json
+source_lang = en
+type = KEYVALUEJSON
+

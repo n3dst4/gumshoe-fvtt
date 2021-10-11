@@ -98,7 +98,7 @@ Done! New PCs will now automatically be given the abilities in your new compendi
 
 ## Translations
 
-Thanks to Foundry's translation systems, plus the excellent [Babele](https://gitlab.com/riccisi/foundryvtt-babele) module, and the enormous contributions from many volunteers, INVESTIGATOR will work in more languages than just my native English! Check out the [Translations page on the wiki](https://gitlab.com/n3dst4/investigator-fvtt/-/wikis/Translations) to see what has been translated into which langauges and get instructions if you'd like to contribute a translation.
+Thanks to Foundry's translation systems, plus the excellent [Babele](https://gitlab.com/riccisi/foundryvtt-babele) module, and the enormous contributions from many volunteers, INVESTIGATOR will work in more languages than just my native English! Check out the [Translations page on the wiki](https://gitlab.com/n3dst4/investigator-fvtt/-/wikis/Translations) to see what has been translated into which languages and get instructions if you'd like to contribute a translation.
 
 
 ## Setting up any system that isn't built in

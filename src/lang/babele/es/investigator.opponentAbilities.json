@@ -1,0 +1,30 @@
+{
+    "label": "Habilidades de combate",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Athletics": {
+            "name": "Atletismo",
+            "category": "Generales"
+        },
+        "Health": {
+            "name": "Salud",
+            "category": "Generales"
+        },
+        "Melee Attack": {
+            "name": "Ataque cuerpo a cuerpo"
+        },
+        "Ranged Attack": {
+            "name": "Ataque a distancia"
+        },
+        "Scuffling": {
+            "name": "Escaramuza",
+            "category": "Generales"
+        },
+        "Shooting": {
+            "name": "Disparar",
+            "category": "Generales"
+        }
+    }
+}

@@ -1,35 +1,35 @@
 {
-    "label": "Armes du SRD",
+    "label": "SRD Armas",
     "mapping": {
         "category": "data.category"
     },
     "entries": {
         "Firearm (heavy)": {
-            "name": "Arme à feu (lourde)"
+            "name": "Arma de Fogo (pesada)"
         },
         "Firearm (light)": {
-            "name": "Arme à feu (légère)"
+            "name": "Arma de Fogo (leve)"
         },
         "Fist/kick": {
-            "name": "Coup de poing/Pied"
+            "name": "Punho/chute"
         },
         "Heavy club": {
-            "name": "Gourdin"
+            "name": "Porrete pesado"
         },
         "Knife": {
-            "name": "Couteau"
+            "name": "Faca"
         },
         "Machete": {
-            "name": "Machette"
+            "name": "Machete"
         },
         "Police Baton": {
-            "name": "Matraque"
+            "name": "Cassetete policial"
         },
         "Small improvised weapon": {
-            "name": "Arme improvisée (petite)"
+            "name": "Arma improvisada pequena"
         },
         "Sword": {
-            "name": "Epée"
+            "name": "Espada"
         }
     }
 }

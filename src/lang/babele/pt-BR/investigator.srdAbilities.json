@@ -1,0 +1,516 @@
+{
+    "label": "Habilidades SDR",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Analytic Taste": {
+            "name": "Paladar Analítico",
+            "category": "Exótica"
+        },
+        "Anthropology": {
+            "name": "Antropologia",
+            "category": "Acadêmica"
+        },
+        "Archaeology": {
+            "name": "Arqueologia",
+            "category": "Acadêmica"
+        },
+        "Architecture": {
+            "name": "Arquitetura",
+            "category": "Acadêmica"
+        },
+        "Art History": {
+            "name": "História da Arte",
+            "category": "Acadêmica"
+        },
+        "Artillery": {
+            "name": "Artilharia",
+            "category": "Física"
+        },
+        "Astronomy": {
+            "name": "Astronomia",
+            "category": "Acadêmica"
+        },
+        "Athletics": {
+            "name": "Atletismo",
+            "category": "Física"
+        },
+        "Aura Reading": {
+            "name": "Leitura de Aura",
+            "category": "Exótica"
+        },
+        "Authority": {
+            "name": "Autoridade",
+            "category": "Interpessoal"
+        },
+        "Ballistics": {
+            "name": "Balística",
+            "category": "Técnica"
+        },
+        "Battlefield": {
+            "name": "Campo de Batalha",
+            "category": "Foco"
+        },
+        "Belle-Lettres": {
+            "name": "Belle-Lettres",
+            "category": "Acadêmica"
+        },
+        "Bonhomie": {
+            "name": "Bonhomie",
+            "category": "Interpessoal"
+        },
+        "Botany": {
+            "name": "Botânica",
+            "category": "Acadêmica"
+        },
+        "Bullshit Detector": {
+            "name": "Detector de Baboseira",
+            "category": "Interpessoal"
+        },
+        "Bureaucracy": {
+            "name": "Burocracia",
+            "category": "Interpessoal"
+        },
+        "Burglary": {
+            "name": "Ladinagem",
+            "category": "Foco"
+        },
+        "Business Affairs": {
+            "name": "Negócios",
+            "category": "Presença"
+        },
+        "Camping": {
+            "name": "Acampamento",
+            "category": "Técnica"
+        },
+        "Charm": {
+            "name": "Charme",
+            "category": "Interpessoal"
+        },
+        "Chemistry": {
+            "name": "Química",
+            "category": "Técnica"
+        },
+        "Chronal Stability": {
+            "name": "Estabilidade Temporal",
+            "category": "Exótica"
+        },
+        "Comparative Religion": {
+            "name": "Religião Comparativa",
+            "category": "Acadêmica"
+        },
+        "Composure": {
+            "name": "Compostura",
+            "category": "Presença"
+        },
+        "Conceal": {
+            "name": "Ocultação",
+            "category": "Foco"
+        },
+        "Cop Talk": {
+            "name": "Trato Policial",
+            "category": "Interpessoal"
+        },
+        "Counterinsurgency": {
+            "name": "Contra-insurgência",
+            "category": "Técnica"
+        },
+        "Craft": {
+            "name": "Ofício",
+            "category": "Técnica"
+        },
+        "Cryptography": {
+            "name": "Criptografia",
+            "category": "Técnica"
+        },
+        "Culture": {
+            "name": "Cultura",
+            "category": "Acadêmica"
+        },
+        "Data Retrieval": {
+            "name": "Recuperação de Dados",
+            "category": "Técnica"
+        },
+        "Disguise": {
+            "name": "Disfarce",
+            "category": "Foco"
+        },
+        "Document Analysis": {
+            "name": "Análise de Documento",
+            "category": "Técnica"
+        },
+        "Driving": {
+            "name": "Condução",
+            "category": "Foco"
+        },
+        "Electronic Surveillance": {
+            "name": "Dispositivos Eletrônicos",
+            "category": "Técnica"
+        },
+        "Evidence Collection": {
+            "name": "Coletar Evidências",
+            "category": "Técnica"
+        },
+        "Explosive Devices": {
+            "name": "Dispositivos Explosivos",
+            "category": "Técnica"
+        },
+        "Explosives": {
+            "name": "Explosivos",
+            "category": "Foco"
+        },
+        "Farming": {
+            "name": "Agricultura",
+            "category": "Técnica"
+        },
+        "Fashion": {
+            "name": "Moda",
+            "category": "Acadêmica"
+        },
+        "Fighting": {
+            "name": "Luta",
+            "category": "Física"
+        },
+        "Filch": {
+            "name": "Punga",
+            "category": "Foco"
+        },
+        "Fingerprinting": {
+            "name": "Datiloscopia",
+            "category": "Técnica"
+        },
+        "First Aid": {
+            "name": "Primeiros Socorros",
+            "category": "Foco"
+        },
+        "Flattery": {
+            "name": "Bajulação",
+            "category": "Interpessoal"
+        },
+        "Fleeing": {
+            "name": "Fuga",
+            "category": "Física"
+        },
+        "Flirting": {
+            "name": "Flerte",
+            "category": "Interpessoal"
+        },
+        "Forensic Accounting": {
+            "name": "Perícia Contábil",
+            "category": "Acadêmica"
+        },
+        "Forensic Anthropology": {
+            "name": "Antropologia Forense",
+            "category": "Técnica"
+        },
+        "Forensic Entomology": {
+            "name": "Entomologia Forense",
+            "category": "Técnica"
+        },
+        "Forensic Psychology": {
+            "name": "Psicologia Forense",
+            "category": "Acadêmica"
+        },
+        "Forgery": {
+            "name": "Falsificação",
+            "category": "Técnica"
+        },
+        "Gambling": {
+            "name": "Jogos",
+            "category": "Presença"
+        },
+        "Geology": {
+            "name": "Geologia",
+            "category": "Acadêmica"
+        },
+        "Hacking": {
+            "name": "Hacking",
+            "category": "Técnica"
+        },
+        "Health": {
+            "name": "Vitalidade",
+            "category": "Física"
+        },
+        "High Society": {
+            "name": "Alta Sociedade",
+            "category": "Interpessoal"
+        },
+        "History": {
+            "name": "História",
+            "category": "Acadêmica"
+        },
+        "Hunting": {
+            "name": "Caça",
+            "category": "Técnica"
+        },
+        "Hypnosis": {
+            "name": "Hipnose",
+            "category": "Presença"
+        },
+        "Impersonate": {
+            "name": "Personificação",
+            "category": "Interpessoal"
+        },
+        "Infiltration": {
+            "name": "Infiltração",
+            "category": "Física"
+        },
+        "Inspiration": {
+            "name": "Inspiração",
+            "category": "Interpessoal"
+        },
+        "Insurgency": {
+            "name": "Insurgência",
+            "category": "Foco"
+        },
+        "Interrogation": {
+            "name": "Interrogatório",
+            "category": "Interpessoal"
+        },
+        "Intimidation": {
+            "name": "Intimidação",
+            "category": "Interpessoal"
+        },
+        "Intuition": {
+            "name": "Intuição",
+            "category": "Técnica"
+        },
+        "Languages": {
+            "name": "Idiomas",
+            "category": "Acadêmica"
+        },
+        "Law": {
+            "name": "Direito",
+            "category": "Acadêmica"
+        },
+        "Leadership": {
+            "name": "Liderança",
+            "category": "Interpessoal"
+        },
+        "Linguistics": {
+            "name": "Linguística",
+            "category": "Acadêmica"
+        },
+        "Locksmith": {
+            "name": "Arrombamento",
+            "category": "Técnica"
+        },
+        "Mechanics": {
+            "name": "Reparos Mecânicos",
+            "category": "Foco"
+        },
+        "Medic": {
+            "name": "Medicina",
+            "category": "Foco"
+        },
+        "Medical Expertise": {
+            "name": "Perícia Médica",
+            "category": "Técnica"
+        },
+        "Military History": {
+            "name": "História Militar",
+            "category": "Acadêmica"
+        },
+        "Military Tactics": {
+            "name": "Tática Militar",
+            "category": "Acadêmica"
+        },
+        "Morale": {
+            "name": "Moral",
+            "category": "Presença"
+        },
+        "Mutant Power: Blood Spray": {
+            "name": "Poder Mutante: Jato de Sangue",
+            "category": "Exótica"
+        },
+        "Natural History": {
+            "name": "História Natural",
+            "category": "Acadêmica"
+        },
+        "Negotiation": {
+            "name": "Negociação",
+            "category": "Interpessoal"
+        },
+        "Network": {
+            "name": "Rede",
+            "category": "Foco"
+        },
+        "Notice": {
+            "name": "Percepção",
+            "category": "Técnica"
+        },
+        "Occult Studies": {
+            "name": "Estudos Ocultos",
+            "category": "Acadêmica"
+        },
+        "Oral History": {
+            "name": "História Oral",
+            "category": "Interpessoal"
+        },
+        "Outdoor Survival": {
+            "name": "Sobrevivência",
+            "category": "Técnica"
+        },
+        "Painting": {
+            "name": "Pintura",
+            "category": "Técnica"
+        },
+        "Paradox Prevention": {
+            "name": "Prevenção de Paradoxo",
+            "category": "Técnica"
+        },
+        "Pathology": {
+            "name": "Patologia",
+            "category": "Acadêmica"
+        },
+        "Pathway Amplification": {
+            "name": "Amplificação de Caminho",
+            "category": "Exótica"
+        },
+        "People Person": {
+            "name": "Do Povo",
+            "category": "Interpessoal"
+        },
+        "Photography": {
+            "name": "Fotografia",
+            "category": "Técnica"
+        },
+        "Piloting": {
+            "name": "Pilotagem",
+            "category": "Física"
+        },
+        "Poetry": {
+            "name": "Poesia",
+            "category": "Acadêmica"
+        },
+        "Political Science": {
+            "name": "Ciência Política",
+            "category": "Acadêmica"
+        },
+        "Politics": {
+            "name": "Política",
+            "category": "Presença"
+        },
+        "Preparedness": {
+            "name": "Precaução",
+            "category": "Presença"
+        },
+        "Public Relations": {
+            "name": "Relações Públicas",
+            "category": "Presença"
+        },
+        "Reality Anchor": {
+            "name": "Âncora da Realidade",
+            "category": "Exótica"
+        },
+        "Reassurance": {
+            "name": "Convencimento",
+            "category": "Interpessoal"
+        },
+        "Research": {
+            "name": "Pesquisa",
+            "category": "Acadêmica"
+        },
+        "Respect": {
+            "name": "Respeito",
+            "category": "Interpessoal"
+        },
+        "Riding": {
+            "name": "Equitação",
+            "category": "Física"
+        },
+        "Salt of the Earth": {
+            "name": "Sal da Terra",
+            "category": "Interpessoal"
+        },
+        "Science!": {
+            "name": "Ciência!",
+            "category": "Técnica"
+        },
+        "Scrounging": {
+            "name": "Mendigo",
+            "category": "Presença"
+        },
+        "Scuffling": {
+            "name": "Briga",
+            "category": "Física"
+        },
+        "Sculpture": {
+            "name": "Escultura",
+            "category": "Técnica"
+        },
+        "Sense Trouble": {
+            "name": "Sentir Perigo",
+            "category": "Presença"
+        },
+        "Shooting": {
+            "name": "Tiro",
+            "category": "Física"
+        },
+        "Shrink": {
+            "name": "Ombro Amigo",
+            "category": "Presença"
+        },
+        "Society": {
+            "name": "Sociedade",
+            "category": "Interpessoal"
+        },
+        "Spying": {
+            "name": "Espionagem",
+            "category": "Técnica"
+        },
+        "Stability": {
+            "name": "Estabilidade",
+            "category": "Presença"
+        },
+        "Streetwise": {
+            "name": "Manha",
+            "category": "Interpessoal"
+        },
+        "Surveillance": {
+            "name": "Vigilância",
+            "category": "Foco"
+        },
+        "Taunt": {
+            "name": "Provocação",
+            "category": "Interpessoal"
+        },
+        "Terrain": {
+            "name": "Terreno",
+            "category": "Técnica"
+        },
+        "Textual Analysis": {
+            "name": "Análise Textual",
+            "category": "Acadêmica"
+        },
+        "Timecraft": {
+            "name": "Manipulação do Tempo",
+            "category": "Acadêmica"
+        },
+        "Tradecraft": {
+            "name": "Técnicas de Espionagem",
+            "category": "Interpessoal"
+        },
+        "Traffic Analysis": {
+            "name": "Analise de Tráfego",
+            "category": "Técnica"
+        },
+        "Traps and Bombs": {
+            "name": "Armadilhas e Bombas",
+            "category": "Foco"
+        },
+        "Trivia": {
+            "name": "Trivialidades",
+            "category": "Acadêmica"
+        },
+        "Unobtrusiveness": {
+            "name": "Circunspecção",
+            "category": "Foco"
+        },
+        "Viroware Enhancement: Dominator": {
+            "name": "Aprimoramento Viroware: Dominante",
+            "category": "Exótica"
+        }
+    }
+}
