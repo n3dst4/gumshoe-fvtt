@@ -25,12 +25,12 @@
             "category": "Acad\u00e9mique"
         },
         "Artillery": {
-            "name": "Artillery",
-            "category": "Physical"
+            "name": "Artillerie",
+            "category": "Physique"
         },
         "Astronomy": {
             "name": "Astronomie",
-            "category": "Technique"
+            "category": "Académique"
         },
         "Athletics": {
             "name": "Athl\u00e9tisme",
@@ -113,7 +113,7 @@
             "category": "Relationnelle"
         },
         "Counterinsurgency": {
-            "name": "Contre-insurection",
+            "name": "Contre-insurrection",
             "category": "Technique"
         },
         "Craft": {
@@ -209,7 +209,7 @@
             "category": "Technique"
         },
         "Forensic Psychology": {
-            "name": "Analyse \u2013 Psychologie",
+            "name": "Analyse - Psychologie",
             "category": "Acad\u00e9mique"
         },
         "Forgery": {
@@ -261,7 +261,7 @@
             "category": "Relationnelle"
         },
         "Insurgency": {
-            "name": "Insurgency",
+            "name": "Insurrection",
             "category": "Focus"
         },
         "Interrogation": {
@@ -317,8 +317,8 @@
             "category": "Acad\u00e9mique"
         },
         "Morale": {
-            "name": "Morale",
-            "category": "Presence"
+            "name": "Moral",
+            "category": "Présence"
         },
         "Mutant Power: Blood Spray": {
             "name": "Pouvoir mutant\u00a0: jet de sang",
@@ -385,12 +385,12 @@
             "category": "Acad\u00e9mique"
         },
         "Political Science": {
-            "name": "Political Science",
-            "category": "Academic"
+            "name": "Sciences politiques",
+            "category": "Académique"
         },
         "Politics": {
-            "name": "Politics",
-            "category": "Presence"
+            "name": "Politique",
+            "category": "Présence"
         },
         "Preparedness": {
             "name": "Organisation",
@@ -486,7 +486,7 @@
         },
         "Timecraft": {
             "name": "Technique temporelle",
-            "category": "Exotique"
+            "category": "Académique"
         },
         "Tradecraft": {
             "name": "Renseignement",

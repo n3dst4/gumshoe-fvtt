@@ -7,7 +7,7 @@
     "investigator.AddItem": "Ajouter une entrée",
     "investigator.AddWeapon": "Ajouter une arme",
     "investigator.AlertnessModifier": "Vigilance",
-    "investigator.Ammo": "Munition",
+    "investigator.Ammo": "Munitions",
     "investigator.AmmoCapacity": "Nombre de munition",
     "investigator.AmmoPerAttack": "Munition par attaque",
     "investigator.Armor": "Armure",
@@ -36,7 +36,7 @@
     "investigator.DeleteEquipmentName": "Effacer \"{EquipmentName}\"?",
     "investigator.DeleteTheAbilityNameAbility": "Enlever la compétence \"{AbilityName}\"?",
     "investigator.Description": "Description",
-    "investigator.Edit": "",
+    "investigator.Edit": "Editer",
     "investigator.Equipment": "Équipment",
     "investigator.ExcludeFromGeneralRefresh": "Exclure de l'actualisation complète?",
     "investigator.FullRefresh": "Actualiser tout",
@@ -70,10 +70,10 @@
     "investigator.OccupationLabel": "Label profession",
     "investigator.Occupational": "Professionnelle?",
     "investigator.OpenAbilityNameAbility": "Ouvrir la compétence {AbilityName}",
-    "investigator.OutOfAmmo": "Plus de munition",
+    "investigator.OutOfAmmo": "Plus de munitions",
     "investigator.PCs": "PJs",
     "investigator.PartyName": "Nom du groupe",
-    "investigator.Play": "",
+    "investigator.Play": "Jouer",
     "investigator.PointBlank": "Bout portant",
     "investigator.Pool": "Réserve",
     "investigator.Rating": "Niveau",
@@ -103,5 +103,5 @@
     "investigator.VisualTheme": "Thème",
     "investigator.Weapon": "Arme",
     "investigator.Weapons": "Armes",
-    "investigator.WhoopsNo": "Oops, Non!"
+    "investigator.WhoopsNo": "Oula, Non!"
 }

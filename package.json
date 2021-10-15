@@ -13,7 +13,7 @@
     "clean": "gulp clean",
     "groom-translations": "gulp groomTranslations",
     "extract-pack-translation-templates": "gulp extractPackTranslationTemplates",
-    "pull-translations": "tx pull --all"
+    "pull-translations": "tx pull --all --mode onlytranslated"
   },
   "author": "",
   "license": "",
