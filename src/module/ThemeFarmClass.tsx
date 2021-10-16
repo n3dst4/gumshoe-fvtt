@@ -9,9 +9,11 @@ class ThemeFarmClassBase extends FormApplication {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "item", "dialog"],
       template: reactTemplatePath,
-      width: 700,
-      height: 800,
+      width: window.innerWidth,
+      height: window.innerHeight,
       resizable: true,
+      top: 0,
+      left: 0,
       title: "Theme Farm",
     });
   }
