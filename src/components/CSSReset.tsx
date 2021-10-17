@@ -4,11 +4,16 @@ import React, { ReactNode, useEffect, useRef } from "react";
 import { ThemeContext, Theme } from "../theme";
 import { css } from "@emotion/css";
 
+export enum CSSResetMode {
+  large="large",
+  small="small"
+}
+
 type CSSResetProps = {
   children: ReactNode,
   className?: string,
   theme: Theme,
-  shroudBackground?: boolean,
+  mode: CSSResetMode,
   noStyleAppWindow?: boolean,
 };
 
@@ -16,7 +21,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
   className,
   children,
   theme,
-  shroudBackground,
+  mode,
   noStyleAppWindow = false,
 }: CSSResetProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -46,7 +51,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           padding: "0.5em",
           color: theme.colors.text,
           backgroundColor: theme.colors.wallpaper,
-          ...theme.rootElementStyle,
+          ...theme.largeSheetRootStyle,
 
           "*": {
             // all: "initial",

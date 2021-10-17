@@ -3,7 +3,7 @@ import { Fragment, useCallback } from "react";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { jsx } from "@emotion/react";
 import { useUpdate } from "../../hooks/useUpdate";
-import { CSSReset } from "../CSSReset";
+import { CSSReset, CSSResetMode } from "../CSSReset";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { TabContainer } from "../TabContainer";
@@ -60,6 +60,7 @@ export const GumshoeNPCSheet = ({
     <ActorSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
         theme={theme}
+        mode={CSSResetMode.small}
         css={{
           position: "absolute",
           top: 0,

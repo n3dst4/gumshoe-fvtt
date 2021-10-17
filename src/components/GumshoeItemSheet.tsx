@@ -7,7 +7,7 @@ import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
 import { isAbility } from "../functions";
 import { WeaponSheet } from "./equipment/WeaponSheet";
-import { CSSReset } from "./CSSReset";
+import { CSSReset, CSSResetMode } from "./CSSReset";
 import { ItemSheetAppContext } from "./FoundryAppContext";
 
 type GumshoeItemSheetProps = {
@@ -29,7 +29,7 @@ export const GumshoeItemSheet: React.FC<GumshoeItemSheetProps> = ({
     <ItemSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
         theme={theme}
-        shroudBackground
+        mode={CSSResetMode.small}
         css={{
           position: "relative",
           ":before": {

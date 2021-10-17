@@ -5,7 +5,7 @@ import { jsx } from "@emotion/react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
-import { CSSReset } from "../CSSReset";
+import { CSSReset, CSSResetMode } from "../CSSReset";
 import { LogoEditable } from "./LogoEditable";
 import { InputGrid } from "../inputs/InputGrid";
 import { GridField } from "../inputs/GridField";
@@ -53,6 +53,7 @@ export const GumshoeActorSheet = ({
     <ActorSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
         theme={theme}
+        mode={CSSResetMode.small}
         css={{
           position: "absolute",
           top: 0,

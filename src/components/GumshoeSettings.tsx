@@ -7,7 +7,7 @@ import { assertGame } from "../functions";
 import * as settings from "../settingsHelpers";
 import { systemPresets } from "../systemPresets";
 import { themes, tealTheme } from "../theme";
-import { CSSReset } from "./CSSReset";
+import { CSSReset, CSSResetMode } from "./CSSReset";
 import { IdContext } from "./IdContext";
 import { AsyncTextInput } from "./inputs/AsyncTextInput";
 import { Checkbox } from "./inputs/Checkbox";
@@ -194,7 +194,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
 
   return (
     <CSSReset
-      shroudBackground
+    mode={CSSResetMode.small}
       theme={theme}
       css={{
         position: "absolute",

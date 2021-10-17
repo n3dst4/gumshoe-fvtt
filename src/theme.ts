@@ -19,12 +19,22 @@ export type ThemeSeed = {
    * Will be applied to the root element of the themed area. This is a good
    * place to apply a wallpaper image.
    */
-  rootElementStyle: CSSObject,
+  largeSheetRootStyle: CSSObject,
   /**
+   * Will be applied to the root element of the themed area. This is a good
+   * place to apply a wallpaper image.
+   */
+  smallSheetRootStyle: CSSObject,
+   /**
    * If defined, these styles will be added to the app window for any <CSSReset>
    * unless `noStyleAppWindow` is given.
    */
   appWindowStyle?: CSSObject,
+  /**
+   * If defined, these styles will be in a layer over the root element for
+   * windows that put text directly on the root element
+   */
+  shroudStyle?: CSSObject,
   /**
    * Font string for block text.
    */
@@ -142,10 +152,10 @@ export const themeFactory = (seed: ThemeSeed): Theme => {
 
   return {
     ...seed,
-    rootElementStyle: {
+    largeSheetRootStyle: {
       backgroundSize: "cover",
       backgroundPosition: "center",
-      ...seed.rootElementStyle,
+      ...seed.largeSheetRootStyle,
     },
     colors: {
       ...seed.colors,
@@ -166,7 +176,10 @@ export const tealTheme: Theme = themeFactory({
     @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
-  rootElementStyle: {
+  largeSheetRootStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+  },
+  smallSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
@@ -208,11 +221,17 @@ export const niceThemeDark: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
-  rootElementStyle: {
+  largeSheetRootStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/nice_red_agents.webp)`,
+  },
+  smallSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/nice_red_agents.webp)`,
   },
   appWindowStyle: {
     boxShadow: "0 0 20px #f00",
+  },
+  shroudStyle: {
+    backgroundColor: "",
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
@@ -240,8 +259,8 @@ export const niceThemeDark: Theme = themeFactory({
     wallpaper: "#4a0d00",
     danger: "yellow",
 
-    bgTransSecondary: "rgba(0,0,0,0.2)",
-    bgTransPrimary: "rgba(0,0,0,0.4)",
+    bgTransSecondary: "rgba(0,0,0,0.25)",
+    bgTransPrimary: "rgba(0,0,0,0.5)",
 
     // bgTransDangerPrimary: "rgba(255,128,0,0.2)",
     // bgTransDangerSecondary: "rgba(255,128,0,0.3)",
@@ -259,7 +278,10 @@ export const niceTheme: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
-  rootElementStyle: {
+  largeSheetRootStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+  },
+  smallSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
@@ -302,8 +324,9 @@ export const highContrastTheme: Theme = themeFactory({
   displayName: "High Contrast",
   global: css`
   `,
-  rootElementStyle: {
-    backgroundImage: "",
+  largeSheetRootStyle: {
+  },
+  smallSheetRootStyle: {
   },
   bodyFont: "1.1em sans-serif",
   displayFont: "1.1em sans-serif",
@@ -341,7 +364,10 @@ export const fearTheme: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
   `,
-  rootElementStyle: {
+  largeSheetRootStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
+  },
+  smallSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
@@ -386,7 +412,10 @@ export const pallidTheme: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
   `,
-  rootElementStyle: {
+  largeSheetRootStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/guille-pozzi-sbcIAn4Mn14-unsplash.webp)`,
+  },
+  smallSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/guille-pozzi-sbcIAn4Mn14-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
@@ -462,7 +491,10 @@ export const deltaGroovyTheme: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');    
   `,
-  rootElementStyle: {
+  largeSheetRootStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
+  },
+  smallSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
@@ -513,8 +545,12 @@ export const greenTriangleTheme: Theme = themeFactory({
   displayName: "Green triangle",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@900&family=Big+Shoulders+Stencil+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');  `,
-  rootElementStyle: {
+    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@900&family=Big+Shoulders+Stencil+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');
+  `,
+  largeSheetRootStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
+  },
+  smallSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
@@ -555,8 +591,12 @@ export const antiquarianTheme: Theme = themeFactory({
   displayName: "Antiquarian",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');`,
-  rootElementStyle: {
+    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');
+  `,
+  largeSheetRootStyle: {
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
+  },
+  smallSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",

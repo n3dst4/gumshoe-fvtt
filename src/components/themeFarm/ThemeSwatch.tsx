@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React from "react";
 import { Theme } from "../../theme";
-import { CSSReset } from "../CSSReset";
+import { CSSReset, CSSResetMode } from "../CSSReset";
 
 type ThemeSwatchProps = {
   theme: Theme,
@@ -12,42 +12,51 @@ export const ThemeSwatch: React.FC<ThemeSwatchProps> = ({
   theme,
 }: ThemeSwatchProps) => {
   return (
-    <CSSReset
-      noStyleAppWindow
-      theme={theme}
+    <div
       css={{
         display: "flex",
         flexDirection: "column",
         gap: "1em",
       }}
     >
-      <div
+      <CSSReset
+        noStyleAppWindow
+        mode={CSSResetMode.small}
+        theme={theme}
         css={{
-          flex: 1,
-          backgroundColor: "transparent",
+          display: "flex",
+          flexDirection: "column",
+          gap: "1em",
         }}
       >
-        {theme.displayName}<br/>
-        transparent
-      </div>
-      <div
-        css={{
-          flex: 1,
-          backgroundColor: theme.colors.bgTransPrimary,
-        }}
-      >
-        {theme.displayName}<br/>
-        bgTransPrimary
-      </div>
-      <div
-        css={{
-          flex: 1,
-          backgroundColor: theme.colors.bgTransSecondary,
-        }}
-      >
-        {theme.displayName}<br/>
-        bgTransSecondary
-      </div>
-    </CSSReset>
+        <div
+          css={{
+            flex: 1,
+            backgroundColor: "transparent",
+          }}
+        >
+          {theme.displayName}<br/>
+          transparent
+        </div>
+        <div
+          css={{
+            flex: 1,
+            backgroundColor: theme.colors.bgTransPrimary,
+          }}
+        >
+          {theme.displayName}<br/>
+          bgTransPrimary
+        </div>
+        <div
+          css={{
+            flex: 1,
+            backgroundColor: theme.colors.bgTransSecondary,
+          }}
+        >
+          {theme.displayName}<br/>
+          bgTransSecondary
+        </div>
+      </CSSReset>
+    </div>
   );
 };
