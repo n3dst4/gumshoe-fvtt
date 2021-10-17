@@ -21,6 +21,11 @@ export type ThemeSeed = {
    */
   rootElementStyle: CSSObject,
   /**
+   * If defined, these styles will be added to the app window for any <CSSReset>
+   * unless `noStyleAppWindow` is given.
+   */
+  appWindowStyle?: CSSObject,
+  /**
    * Font string for block text.
    */
   bodyFont?: string,
@@ -99,11 +104,10 @@ export type Theme = ThemeSeed & {
   colors: ThemeSeed["colors"] & {
     bgOpaquePrimary: string,
     bgOpaqueSecondary: string,
-    bgOpaqueDangerPrimary: string,
-    bgOpaqueDangerSecondary: string,
-
     bgTransDangerPrimary: string,
     bgTransDangerSecondary: string,
+    bgOpaqueDangerPrimary: string,
+    bgOpaqueDangerSecondary: string,
   },
 }
 
@@ -203,9 +207,12 @@ export const niceThemeDark: Theme = themeFactory({
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
-    `,
+  `,
   rootElementStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
+  },
+  appWindowStyle: {
+    boxShadow: "0 0 20px #f00",
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
@@ -311,15 +318,16 @@ export const highContrastTheme: Theme = themeFactory({
       transform: "none",
     },
     backdropStyle: {
+      background: "white",
     },
   },
   colors: {
     accent: "#005",
     accentContrast: "white",
     glow: "#bbf",
-    wallpaper: "#ddd",
-    bgTransSecondary: white.opacity(0.2).toString(),
-    bgTransPrimary: white.opacity(0.4).toString(),
+    wallpaper: "#666",
+    bgTransSecondary: white.opacity(0.7).toString(),
+    bgTransPrimary: white.opacity(0.9).toString(),
     bgTint: black.opacity(0.1).toString(),
     text: "#000",
     textMuted: "#111",

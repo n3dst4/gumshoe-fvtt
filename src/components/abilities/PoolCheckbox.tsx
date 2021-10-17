@@ -6,51 +6,35 @@ import { ThemeContext } from "../../theme";
 type PoolCheckboxProps = {
   value: number,
   selected: boolean,
-  disabled: boolean,
   onClick: (value: number) => void,
 };
 
 export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
   value,
   selected,
-  disabled,
   onClick: onClickProp,
 }) => {
   const onClick = useCallback(() => {
-    if (!disabled) {
-      onClickProp(value);
-    }
-  }, [disabled, onClickProp, value]);
+    onClickProp(value);
+  }, [onClickProp, value]);
 
   const theme = useContext(ThemeContext);
 
   return (
     <a
-      tabIndex={disabled ? undefined : 0}
+      tabIndex={0}
       onClick={onClick}
       css={{
         width: "auto",
         height: "1.2em",
-        background: selected ? theme.colors.accent : theme.colors.bgOpaquePrimary,
+        background: selected ? theme.colors.accent : theme.colors.bgTransPrimary,
         color: `${selected ? theme.colors.accentContrast : undefined} !important`,
         textAlign: "center",
         display: "inline-block",
         position: "relative",
-        opacity: disabled ? 0.3 : 1,
       }}
     >
       {value}
-      {disabled &&
-        <i
-          className="fa fa-times"
-          css={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        />
-      }
     </a>
   );
 }

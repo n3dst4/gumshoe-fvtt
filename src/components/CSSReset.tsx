@@ -1,13 +1,15 @@
 /** @jsx jsx */
 import { Global, jsx } from "@emotion/react";
-import React from "react";
+import React, { ReactNode, useEffect, useRef } from "react";
 import { ThemeContext, Theme } from "../theme";
+import { css } from "@emotion/css";
 
 type CSSResetProps = {
-  children: any,
+  children: ReactNode,
   className?: string,
   theme: Theme,
   shroudBackground?: boolean,
+  noStyleAppWindow?: boolean,
 };
 
 export const CSSReset: React.FC<CSSResetProps> = ({
@@ -15,16 +17,35 @@ export const CSSReset: React.FC<CSSResetProps> = ({
   children,
   theme,
   shroudBackground,
+  noStyleAppWindow = false,
 }: CSSResetProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  // add app window styles if there's a continaing app window
+  useEffect(() => {
+    // interacting with Foundry's stuff with jQuery feels a bit 2001 but putting
+    // it in a hook keeps is nice and encapsulated.
+    const className = css(theme.appWindowStyle);
+    if (ref.current !== null && !noStyleAppWindow) {
+      const el = jQuery(ref.current).closest(".window-app");
+      el.addClass(className);
+      return function () {
+        el.removeClass(className);
+      };
+    }
+  }, [noStyleAppWindow, theme.appWindowStyle]);
+
   return (
     <ThemeContext.Provider value={theme}>
       <Global styles={theme.global} />
       <div
+        ref={ref}
         className={className}
         css={{
           font: theme.bodyFont,
           padding: "0.5em",
           color: theme.colors.text,
+          backgroundColor: theme.colors.wallpaper,
           ...theme.rootElementStyle,
 
           "*": {
@@ -104,7 +125,10 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           },
           select: {
             color: theme.colors.text,
-            background: theme.colors.bgOpaquePrimary,
+            background: theme.colors.bgTransPrimary,
+            option: {
+              background: theme.colors.bgTransPrimary,
+            },
             ":focus": {
               borderColor: theme.colors.accent,
               outline: "none",

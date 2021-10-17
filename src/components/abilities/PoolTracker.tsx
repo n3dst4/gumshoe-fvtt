@@ -23,7 +23,7 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
 }) => {
   assertAbilityDataSource(ability?.data);
   const min = ability?.data.data.min ?? 0;
-  const max = ability?.data.data.max ?? 12;
+  const max = ability?.data.data.rating;
   const vals = range(min, max);
 
   const setPool = useCallback((pool: number) => {
@@ -59,7 +59,6 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({
           value={value}
           onClick={setPool}
           selected={ability && isAbilityDataSource(ability.data) && value === ability.data.data.pool}
-          disabled={ability && isAbilityDataSource(ability.data) && value > ability.data.data.rating}
         />
       ))}
     </div>

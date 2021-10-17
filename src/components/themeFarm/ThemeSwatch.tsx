@@ -13,6 +13,7 @@ export const ThemeSwatch: React.FC<ThemeSwatchProps> = ({
 }: ThemeSwatchProps) => {
   return (
     <CSSReset
+      noStyleAppWindow
       theme={theme}
       css={{
         display: "flex",
