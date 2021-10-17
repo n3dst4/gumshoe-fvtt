@@ -275,7 +275,7 @@ export const niceTheme: Theme = themeFactory({
       transform: "scale(0.8)",
     },
     backdropStyle: {
-      background: `#4a0d00 url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
+      background: `#4a0d00 url(systems/${systemName}/assets/wallpaper/nice_red_agents.webp)`,
       backgroundSize: "cover",
       transform: "scaleY(0.9) scaleX(1.2) translateY(0.1em)",
       zIndex: -1,
