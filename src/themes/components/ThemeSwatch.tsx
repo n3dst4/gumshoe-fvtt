@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { Theme } from "../../themes/types";
-import { CSSReset, CSSResetMode } from "../CSSReset";
+import { Theme } from "../types";
+import { CSSReset, CSSResetMode } from "../../components/CSSReset";
 
 type ThemeSwatchProps = {
   theme: Theme,
