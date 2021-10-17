@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useMemo } from "react";
 import { nanoid } from "nanoid";
-import { ThemeContext } from "../../theme";
+import { ThemeContext } from "../../themes/ThemeContext";
 
 type CheckButtonsProps = {
   options: Array<{label: string, value: number, enabled: boolean}>,

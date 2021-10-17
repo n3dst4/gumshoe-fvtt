@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ReactNode } from "react";
-import { themes } from "../../theme";
+import { themes } from "../../themes/themes";
 import { ThemeSwatch } from "./ThemeSwatch";
 
 type ThemeFarmProps = {

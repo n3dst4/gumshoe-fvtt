@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { Global, jsx } from "@emotion/react";
 import React, { ReactNode, useEffect, useRef } from "react";
-import { ThemeContext, Theme } from "../theme";
+import { Theme } from "../themes/types";
 import { css } from "@emotion/css";
+import { ThemeContext } from "../themes/ThemeContext";
 
 export enum CSSResetMode {
   large="large",

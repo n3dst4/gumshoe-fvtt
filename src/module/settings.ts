@@ -20,7 +20,8 @@ import {
 } from "../constants";
 import { assertGame, mapValues } from "../functions";
 import { pathOfCthulhuPreset } from "../systemPresets";
-import { Theme, themes } from "../theme";
+import { themes } from "../themes/themes";
+import { Theme } from "../themes/types";
 import { GumshoeSettingsClass } from "./GumshoeSettingsClass";
 
 // any of these could have an `onChange` added if we wanted to

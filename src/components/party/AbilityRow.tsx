@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { Fragment } from "react";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { getDefaultThemeName } from "../../settingsHelpers";
-import { themes } from "../../theme";
+import { themes } from "../../themes/themes";
 import { AbilityRowData } from "./types";
 
 type AbilityRowProps = {

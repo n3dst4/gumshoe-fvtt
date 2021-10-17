@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
 import React, { ChangeEvent, Fragment, useCallback, useContext, useMemo, useState } from "react";
-import { ThemeContext } from "../theme";
+import { ThemeContext } from "../themes/ThemeContext";
 import { Translate } from "./Translate";
 // import React, { useMemo, useState } from "react";
 

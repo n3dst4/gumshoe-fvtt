@@ -4,7 +4,7 @@ import React, { Fragment, useCallback, useContext, useEffect, useMemo, useState 
 import { generalAbility } from "../../constants";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { GumshoeItem } from "../../module/GumshoeItem";
-import { ThemeContext } from "../../theme";
+import { ThemeContext } from "../../themes/ThemeContext";
 import { assertWeaponDataSource, isAbilityDataSource, isPCDataSource, PCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";

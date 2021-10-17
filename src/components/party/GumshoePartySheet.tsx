@@ -6,7 +6,7 @@ import { assertGame, isAbility, sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { getDefaultThemeName } from "../../settingsHelpers";
-import { themes } from "../../theme";
+import { themes } from "../../themes/themes";
 import { assertPartyDataSource } from "../../types";
 import { CSSReset, CSSResetMode } from "../CSSReset";
 import { ActorSheetAppContext } from "../FoundryAppContext";

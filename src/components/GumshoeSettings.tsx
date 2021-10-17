@@ -6,7 +6,8 @@ import { customSystem } from "../constants";
 import { assertGame } from "../functions";
 import * as settings from "../settingsHelpers";
 import { systemPresets } from "../systemPresets";
-import { themes, tealTheme } from "../theme";
+import { themes } from "../themes/themes";
+import { tealTheme } from "../themes/tealTheme";
 import { CSSReset, CSSResetMode } from "./CSSReset";
 import { IdContext } from "./IdContext";
 import { AsyncTextInput } from "./inputs/AsyncTextInput";
@@ -194,7 +195,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
 
   return (
     <CSSReset
-    mode={CSSResetMode.small}
+      mode={CSSResetMode.small}
       theme={theme}
       css={{
         position: "absolute",

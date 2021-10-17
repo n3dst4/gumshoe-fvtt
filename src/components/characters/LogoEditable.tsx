@@ -2,7 +2,7 @@
 import { CSSObject, jsx } from "@emotion/react";
 import React, { useContext } from "react";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { ThemeContext } from "../../theme";
+import { ThemeContext } from "../../themes/ThemeContext";
 
 type LogoEditableProps = {
   className?: string,

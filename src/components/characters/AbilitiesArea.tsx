@@ -5,7 +5,7 @@ import { generalAbility, investigativeAbility } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
-import { ThemeContext } from "../../theme";
+import { ThemeContext } from "../../themes/ThemeContext";
 import { assertActiveCharacterDataSource, isAbilityDataSource } from "../../types";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";

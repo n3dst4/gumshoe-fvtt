@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ComponentProps, useContext } from "react";
-import { ThemeContext } from "../../theme";
+import { ThemeContext } from "../../themes/ThemeContext";
 import { GridField } from "./GridField";
 
 type SettingsGridFieldProps = ComponentProps<typeof GridField> & {

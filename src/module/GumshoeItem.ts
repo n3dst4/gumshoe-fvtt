@@ -1,5 +1,6 @@
 import { fixLength, isAbility } from "../functions";
-import { Theme, themes } from "../theme";
+import { themes } from "../themes/themes";
+import { Theme } from "../themes/types";
 import { GumshoeActor } from "./GumshoeActor";
 import { getDefaultThemeName } from "../settingsHelpers";
 import { assertAbilityDataSource, assertWeaponDataSource } from "../types";
