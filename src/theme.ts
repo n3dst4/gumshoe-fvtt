@@ -209,7 +209,7 @@ export const niceThemeDark: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
   rootElementStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/tina-dawson-Kim9COAIEGc-unsplash-dark-red.webp)`,
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/nice_red_agents.webp)`,
   },
   appWindowStyle: {
     boxShadow: "0 0 20px #f00",

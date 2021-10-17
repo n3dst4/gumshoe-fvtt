@@ -144,7 +144,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           },
         }}
       >
-        <div
+        {/* <div
           className="shroud"
           css={{
             display: "block",
@@ -158,7 +158,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
             zIndex: -1000,
           }}
         >
-        </div>
+        </div> */}
         {children}
       </div>
     </ThemeContext.Provider>
