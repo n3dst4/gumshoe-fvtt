@@ -14,7 +14,7 @@ export const greenTriangleTheme: Theme = themeFactory({
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
   },
   smallSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
+    backgroundImage: `linear-gradient( to right, #fff9,#fff9), url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "900 small-caps normal 1.1em 'Big Shoulders Stencil Text', serif",

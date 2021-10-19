@@ -20,9 +20,6 @@ export const pallidTheme: Theme = themeFactory({
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/guille-pozzi-sbcIAn4Mn14-unsplash.webp)`,
   },
-  smallSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/guille-pozzi-sbcIAn4Mn14-unsplash.webp)`,
-  },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "bold small-caps normal 1.1em 'Nova Square', serif",
   logo: {

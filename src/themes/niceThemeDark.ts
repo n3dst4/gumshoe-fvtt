@@ -14,7 +14,7 @@ export const niceThemeDark: Theme = themeFactory({
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/nice_red_agents.webp)`,
   },
   smallSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/nice_red_agents.webp)`,
+    backgroundImage: `linear-gradient( to right, #0002,#0002), url(systems/${systemName}/assets/wallpaper/nice_red_agents.webp)`,
   },
   appWindowStyle: {
     boxShadow: "0 0 20px #f00",
@@ -45,8 +45,8 @@ export const niceThemeDark: Theme = themeFactory({
     wallpaper: "#4a0d00",
     danger: "yellow",
 
-    backgroundSecondary: "rgba(0,0,0,0.25)",
-    backgroundPrimary: "rgba(0,0,0,0.5)",
+    backgroundSecondary: "#0004",
+    backgroundPrimary: "#0007",
 
     // bgTransDangerPrimary: "rgba(255,128,0,0.2)",
     // bgTransDangerSecondary: "rgba(255,128,0,0.3)",

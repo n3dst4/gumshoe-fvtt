@@ -53,7 +53,7 @@ export const GumshoeActorSheet = ({
     <ActorSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
         theme={theme}
-        mode={CSSResetMode.small}
+        mode={CSSResetMode.large}
         css={{
           position: "absolute",
           top: 0,
