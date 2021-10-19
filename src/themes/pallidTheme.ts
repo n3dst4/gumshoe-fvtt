@@ -64,6 +64,5 @@ export const pallidTheme: Theme = themeFactory({
 
     bgTint: "rgba(255,255,255,0.1)",
     text: "#ddd",
-    textMuted: "#aaa",
   },
 });

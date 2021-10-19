@@ -71,11 +71,16 @@ export type ThemeSeed = {
    * All the values in this collection should be parseable as CSS colors
    */
   colors: {
+    wallpaper: string,
+    text: string,
+    /**
+     * should work alongside `text` and `textMuted`
+     */
     accent: string,
     accentContrast: string,
     glow: string,
-    wallpaper: string,
     danger?: string,
+    bgTint: string,
 
     /**
      * The contract for this color is: if you layer this color over the
@@ -91,16 +96,6 @@ export type ThemeSeed = {
      */
     bgTransSecondary: string,
 
-    // bgOpaqueDangerPrimary?: string,
-    // bgOpaqueDangerSecondary?: string,
-
-    // bgTransDangerPrimary?: string,
-    // bgTransDangerSecondary?: string,
-
-    bgTint: string,
-
-    text: string,
-    textMuted: string,
   },
 }
 

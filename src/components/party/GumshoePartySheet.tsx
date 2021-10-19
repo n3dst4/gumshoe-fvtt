@@ -225,7 +225,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                       "&&": {
                         fontSize: "0.7em",
                         padding: "0.1em 0.3em",
-                        border: `1px solid ${theme.colors.textMuted}`,
+                        border: `1px solid ${theme.colors.text}`,
                         width: "auto",
                       },
                     }}

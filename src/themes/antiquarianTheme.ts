@@ -53,6 +53,5 @@ export const antiquarianTheme: Theme = themeFactory({
     bgTransPrimary: "#fff9",
     bgTint: "rgba(0,0,0,0.1)",
     text: "#222",
-    textMuted: "#333",
   },
 });

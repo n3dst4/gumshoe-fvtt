@@ -11,7 +11,6 @@ type ThemeFarmProps = {
 export const ThemeFarm: React.FC<ThemeFarmProps> = ({
   foundryApplication,
 }: ThemeFarmProps) => {
-  console.info("THEMES!", Object.values(themes));
   return (
     <div
       css={{

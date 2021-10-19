@@ -56,6 +56,5 @@ export const niceThemeDark: Theme = themeFactory({
 
     bgTint: "rgba(255,255,255,0.1)",
     text: "#ccc",
-    textMuted: "#aaa",
   },
 });

@@ -45,6 +45,5 @@ export const greenTriangleTheme: Theme = themeFactory({
     bgTransPrimary: "#fff9",
     bgTint: "rgba(0,0,0,0.1)",
     text: "#000",
-    textMuted: "#33",
   },
 });

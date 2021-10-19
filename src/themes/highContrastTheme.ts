@@ -40,6 +40,5 @@ export const highContrastTheme: Theme = themeFactory({
     bgTransPrimary: white.opacity(0.9).toString(),
     bgTint: black.opacity(0.1).toString(),
     text: "#000",
-    textMuted: "#111",
   },
 });

@@ -47,6 +47,5 @@ export const niceTheme: Theme = themeFactory({
     bgTransPrimary: "rgba(255,255,255,0.5)",
     bgTint: "rgba(0,0,0,0.1)",
     text: "#433",
-    textMuted: "#744",
   },
 });
