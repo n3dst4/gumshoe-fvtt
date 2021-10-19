@@ -18,11 +18,11 @@ const overlay = (baseString: string, layerString: string): string => {
  * theme
  */
 export const themeFactory = (seed: ThemeSeed): Theme => {
-  const bgOpaquePrimary = overlay(seed.colors.wallpaper, seed.colors.bgTransPrimary);
-  const bgOpaqueSecondary = overlay(seed.colors.wallpaper, seed.colors.bgTransSecondary);
+  const bgOpaquePrimary = overlay(seed.colors.wallpaper, seed.colors.backgroundPrimary);
+  const bgOpaqueSecondary = overlay(seed.colors.wallpaper, seed.colors.backgroundSecondary);
 
-  const bgTransPrimary = Irid(seed.colors.bgTransPrimary);
-  const bgTransSecondary = Irid(seed.colors.bgTransSecondary);
+  const bgTransPrimary = Irid(seed.colors.backgroundPrimary);
+  const bgTransSecondary = Irid(seed.colors.backgroundSecondary);
   const danger = Irid(seed.colors.danger ?? "red");
 
   const bgTransDangerPrimary = bgTransPrimary.blend(danger, 0.5).opacity(bgTransPrimary.opacity()).toRGBString();

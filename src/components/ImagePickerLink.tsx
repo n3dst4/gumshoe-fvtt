@@ -22,13 +22,13 @@ export const ImagePickerLink: React.FC<ImagePickerLinkProps> = ({
     <a
       onClick={onClickCb}
       css={{
-        backgroundColor: theme.colors.bgTransSecondary,
+        backgroundColor: theme.colors.backgroundSecondary,
         padding: "0 0.5em",
         borderRadius: "0.5em",
         font: theme.displayFont,
         transition: "background-color 0.2s",
         ":hover": {
-          backgroundColor: theme.colors.bgTransPrimary,
+          backgroundColor: theme.colors.backgroundPrimary,
         },
       }}
     >

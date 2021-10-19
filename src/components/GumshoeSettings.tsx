@@ -328,7 +328,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                           css={{
                             gridRow,
                             gridColumn: "1/4",
-                            background: theme.colors.bgTint,
+                            background: theme.colors.backgroundButton,
                           }}
                         />
                       }
@@ -431,7 +431,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           display: "flex",
           flexDirection: "row",
           padding: "0.5em",
-          background: theme.colors.bgTransSecondary,
+          background: theme.colors.backgroundSecondary,
         }}
       >
         <button

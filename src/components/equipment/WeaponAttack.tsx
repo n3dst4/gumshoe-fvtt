@@ -139,7 +139,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
           border: `1px solid ${theme.colors.text}`,
           padding: "1em",
           marginBottom: "0.5em",
-          background: theme.colors.bgTransSecondary,
+          background: theme.colors.backgroundSecondary,
         }}
       >
         <GridField label="Spend">

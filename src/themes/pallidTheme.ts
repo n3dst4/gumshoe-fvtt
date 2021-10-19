@@ -59,10 +59,10 @@ export const pallidTheme: Theme = themeFactory({
     accentContrast: "#333",
     glow: pallidComplement.lightness(0.7).toString(),
 
-    bgTransSecondary: pallidColor.lightness(0.3).opacity(0.5).toString(),
-    bgTransPrimary: pallidColor.lightness(0.1).opacity(0.5).toString(),
+    backgroundSecondary: pallidColor.lightness(0.3).opacity(0.5).toString(),
+    backgroundPrimary: pallidColor.lightness(0.1).opacity(0.5).toString(),
 
-    bgTint: "rgba(255,255,255,0.1)",
+    backgroundButton: "rgba(255,255,255,0.1)",
     text: "#ddd",
   },
 });

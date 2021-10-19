@@ -52,14 +52,14 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           padding: "0.5em",
           color: theme.colors.text,
           backgroundColor: theme.colors.wallpaper,
-          ...theme.largeSheetRootStyle,
+          ...(mode === CSSResetMode.large ? theme.largeSheetRootStyle : theme.smallSheetRootStyle),
 
           "*": {
             // all: "initial",
             scrollbarWidth: "thin",
             userSelect: "auto",
             boxSizing: "border-box",
-            scrollbarColor: `${theme.colors.accent} ${theme.colors.bgTint}`,
+            scrollbarColor: `${theme.colors.accent} ${theme.colors.backgroundButton}`,
             "&:focus": {
               textDecoration: "underline",
             },
@@ -121,7 +121,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
             borderStyle: "solid",
             borderWidth: "1px",
             borderColor: theme.colors.text,
-            background: theme.colors.bgTransPrimary,
+            background: theme.colors.backgroundPrimary,
             resize: "vertical",
             ":focus": {
               borderColor: theme.colors.accent,
@@ -131,9 +131,9 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           },
           select: {
             color: theme.colors.text,
-            background: theme.colors.bgTransPrimary,
+            background: theme.colors.backgroundPrimary,
             option: {
-              background: theme.colors.bgTransPrimary,
+              background: theme.colors.backgroundPrimary,
             },
             ":focus": {
               borderColor: theme.colors.accent,
@@ -146,25 +146,10 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           },
           "button, input[type=button]": {
             border: `2px groove ${theme.colors.text}`,
-            background: theme.colors.bgTint,
+            background: theme.colors.backgroundButton,
           },
         }}
       >
-        {/* <div
-          className="shroud"
-          css={{
-            display: "block",
-            position: "absolute",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-            // overflow: "auto",
-            backgroundColor: shroudBackground ? theme.colors.bgTransSecondary : "transparent",
-            zIndex: -1000,
-          }}
-        >
-        </div> */}
         {children}
       </div>
     </ThemeContext.Provider>

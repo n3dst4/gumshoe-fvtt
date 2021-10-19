@@ -97,7 +97,7 @@ export const GumshoeNPCSheet = ({
           css={{
             gridArea: "notes",
             padding: "0.5em",
-            backgroundColor: theme.colors.bgTransSecondary,
+            backgroundColor: theme.colors.backgroundSecondary,
             position: "relative",
           }}
         >
@@ -126,7 +126,7 @@ export const GumshoeNPCSheet = ({
             overflowX: "visible",
             overflowY: "auto",
             padding: "1em",
-            background: theme.colors.bgTransPrimary,
+            background: theme.colors.backgroundPrimary,
           }}
         >
             <TrackersArea actor={actor} />
@@ -136,7 +136,7 @@ export const GumshoeNPCSheet = ({
           css={{
             gridArea: "stats",
             position: "relative",
-            background: theme.colors.bgTransPrimary,
+            background: theme.colors.backgroundPrimary,
             padding: "0.5em",
             display: "grid",
             gridTemplateColumns: "1fr max-content",
@@ -215,7 +215,7 @@ export const GumshoeNPCSheet = ({
           css={{
             gridArea: "body",
             position: "relative",
-            background: theme.colors.bgTransPrimary,
+            background: theme.colors.backgroundPrimary,
             padding: "0.5em",
             overflow: "auto",
           }}

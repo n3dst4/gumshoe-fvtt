@@ -11,12 +11,16 @@ export type ThemeSeed = {
   global?: SerializedStyles,
   /**
    * Will be applied to the root element of the themed area. This is a good
-   * place to apply a wallpaper image.
+   * place to apply a wallpaper image. It is assumed that any window using this
+   * style will always layer `backgroundPrimary` or `backgroundSecondary` over
+   * it before adding text.
    */
   largeSheetRootStyle: CSSObject,
   /**
    * Will be applied to the root element of the themed area. This is a good
-   * place to apply a wallpaper image.
+   * place to apply a wallpaper image. Unlike `largeSheetRootStyle`, text might
+   * be applied directly onto this background. This is a good place to adjust
+   * the background to make it directly usable.
    * @default largeSheetRootStyle
    */
   smallSheetRootStyle?: CSSObject,
@@ -67,30 +71,53 @@ export type ThemeSeed = {
    * All the values in this collection should be parseable as CSS colors
    */
   colors: {
+    /**
+     * callout color for clickable text and other "hot" items
+     */
     accent: string,
+    /**
+     * when `accent is used as a background, this color should work as text over
+     * it
+     */
     accentContrast: string,
+    /**
+     * used for hover effect on hot items
+     */
     glow: string,
+    /**
+     * tinting color used to indicate danger. Should be given as a bold, opaque
+     * color, but will be blended in use.
+     * @default red
+     */
     danger?: string,
+    /**
+     * flat color to stand in as the background before images have loaded
+     */
     wallpaper: string,
+    /**
+     * basic non-interactive text color
+     */
     text: string,
     /**
-     * should work alongside `text` and `textMuted`
+     * background for buttons
      */
-    bgTint: string,
-
+    backgroundButton: string,
     /**
      * The contract for this color is: if you layer this color over the
      * `rootElementStyle` or the `wallpaper` color, you will get a surface which
-     * can be use to mount text in either the `text`, `textMuted`, or `accent`
-     * colors.
+     * can be used for text in either the `text` or `accent` colors.
      */
-    bgTransPrimary: string,
+    backgroundPrimary: string,
 
     /**
-     * The contract for this color is: see @bgTransPrimary, but visually
-     * distinct.
+     * The contract for this color is
+     * 1. the same as backgroundPrimary but should look less prominent (will be
+     * used for inactive tabs)
+     * 2. can also be layered *on top of* backgroundPrimary to create a
+     * secondary panel
+     * @see {@link backgroundPrimary}
      */
-    bgTransSecondary: string,
+    backgroundSecondary: string,
 
   },
 }

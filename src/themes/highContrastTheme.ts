@@ -34,9 +34,9 @@ export const highContrastTheme: Theme = themeFactory({
     accentContrast: "white",
     glow: "#bbf",
     wallpaper: "#666",
-    bgTransSecondary: white.opacity(0.7).toString(),
-    bgTransPrimary: white.opacity(0.9).toString(),
-    bgTint: black.opacity(0.1).toString(),
+    backgroundSecondary: white.opacity(0.7).toString(),
+    backgroundPrimary: white.opacity(0.9).toString(),
+    backgroundButton: black.opacity(0.1).toString(),
     text: "#000",
   },
 });

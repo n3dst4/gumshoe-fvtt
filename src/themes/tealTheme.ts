@@ -37,9 +37,9 @@ export const tealTheme: Theme = themeFactory({
     accentContrast: "white",
     glow: "#5effff",
     wallpaper: "#ddd",
-    bgTransSecondary: "rgba(255,255,255,0.2)",
-    bgTransPrimary: "rgba(255,255,255,0.5)",
-    bgTint: "rgba(0,0,0,0.1)",
+    backgroundSecondary: "rgba(255,255,255,0.2)",
+    backgroundPrimary: "rgba(255,255,255,0.5)",
+    backgroundButton: "rgba(0,0,0,0.1)",
     text: "#433",
   },
 });

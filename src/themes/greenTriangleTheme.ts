@@ -41,9 +41,9 @@ export const greenTriangleTheme: Theme = themeFactory({
     accentContrast: "#fff",
     glow: "#cfffc2",
     wallpaper: "#b6b3b3", //
-    bgTransSecondary: "#fff6",
-    bgTransPrimary: "#fff9",
-    bgTint: "rgba(0,0,0,0.1)",
+    backgroundSecondary: "#fff6",
+    backgroundPrimary: "#fff9",
+    backgroundButton: "rgba(0,0,0,0.1)",
     text: "#000",
   },
 });

@@ -76,7 +76,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
         border: `1px solid ${theme.colors.text}`,
         padding: "1em",
         marginBottom: "1em",
-        background: theme.colors.bgTransSecondary,
+        background: theme.colors.backgroundSecondary,
       }}
     >
       <GridField label="Spend">

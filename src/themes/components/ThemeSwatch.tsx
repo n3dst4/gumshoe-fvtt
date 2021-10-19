@@ -41,7 +41,7 @@ export const ThemeSwatch: React.FC<ThemeSwatchProps> = ({
         <div
           css={{
             flex: 1,
-            backgroundColor: theme.colors.bgTransPrimary,
+            backgroundColor: theme.colors.backgroundPrimary,
           }}
         >
           {theme.displayName}<br/>
@@ -50,7 +50,7 @@ export const ThemeSwatch: React.FC<ThemeSwatchProps> = ({
         <div
           css={{
             flex: 1,
-            backgroundColor: theme.colors.bgTransSecondary,
+            backgroundColor: theme.colors.backgroundSecondary,
           }}
         >
           {theme.displayName}<br/>

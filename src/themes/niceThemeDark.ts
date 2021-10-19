@@ -45,13 +45,13 @@ export const niceThemeDark: Theme = themeFactory({
     wallpaper: "#4a0d00",
     danger: "yellow",
 
-    bgTransSecondary: "rgba(0,0,0,0.25)",
-    bgTransPrimary: "rgba(0,0,0,0.5)",
+    backgroundSecondary: "rgba(0,0,0,0.25)",
+    backgroundPrimary: "rgba(0,0,0,0.5)",
 
     // bgTransDangerPrimary: "rgba(255,128,0,0.2)",
     // bgTransDangerSecondary: "rgba(255,128,0,0.3)",
 
-    bgTint: "rgba(255,255,255,0.1)",
+    backgroundButton: "rgba(255,255,255,0.1)",
     text: "#ccc",
   },
 });

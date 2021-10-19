@@ -19,7 +19,7 @@ export const SettingsGridField: React.FC<SettingsGridFieldProps> = ({
       {...props}
       css={{
         padding: "0.5em",
-        background: tint ? theme.colors.bgTransSecondary : "none",
+        background: tint ? theme.colors.backgroundSecondary : "none",
       }}
 
     />

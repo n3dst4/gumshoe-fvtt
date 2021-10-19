@@ -98,7 +98,7 @@ export const GumshoeActorSheet = ({
           css={{
             gridArea: "stats",
             padding: "1em",
-            backgroundColor: theme.colors.bgTransSecondary,
+            backgroundColor: theme.colors.backgroundSecondary,
             position: "relative",
           }}
         >
@@ -136,7 +136,7 @@ export const GumshoeActorSheet = ({
             overflowX: "visible",
             overflowY: "auto",
             padding: "1em",
-            background: theme.colors.bgTransPrimary,
+            background: theme.colors.backgroundPrimary,
           }}
           >
             <button onClick={actor.confirmRefresh}>
