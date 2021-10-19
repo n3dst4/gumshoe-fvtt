@@ -37,6 +37,7 @@ export const themeFactory = (seed: ThemeSeed): Theme => {
       backgroundPosition: "center",
       ...seed.largeSheetRootStyle,
     },
+    smallSheetRootStyle: seed.smallSheetRootStyle ?? seed.largeSheetRootStyle,
     colors: {
       ...seed.colors,
       bgOpaquePrimary,

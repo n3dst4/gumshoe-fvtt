@@ -13,9 +13,9 @@ export const antiquarianTheme: Theme = themeFactory({
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
   },
-  smallSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
-  },
+  // smallSheetRootStyle: {
+  //   backgroundImage: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
+  // },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal small-caps normal 1.1em 'IM Fell English', serif",
   logo: {

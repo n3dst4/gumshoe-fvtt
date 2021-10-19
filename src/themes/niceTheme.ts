@@ -13,9 +13,6 @@ export const niceTheme: Theme = themeFactory({
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   },
-  smallSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
-  },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
   logo: {

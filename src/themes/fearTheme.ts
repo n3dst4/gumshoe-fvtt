@@ -13,9 +13,9 @@ export const fearTheme: Theme = themeFactory({
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
   },
-  smallSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
-  },
+  // smallSheetRootStyle: {
+  //   backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
+  // },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Special Elite', serif",
   logo: {

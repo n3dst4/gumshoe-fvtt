@@ -19,9 +19,6 @@ export const niceThemeDark: Theme = themeFactory({
   appWindowStyle: {
     boxShadow: "0 0 20px #f00",
   },
-  shroudStyle: {
-    backgroundColor: "",
-  },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
   logo: {

@@ -13,8 +13,6 @@ export const highContrastTheme: Theme = themeFactory({
   `,
   largeSheetRootStyle: {
   },
-  smallSheetRootStyle: {
-  },
   bodyFont: "1.1em sans-serif",
   displayFont: "1.1em sans-serif",
   logo: {

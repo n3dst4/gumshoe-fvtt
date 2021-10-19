@@ -17,18 +17,14 @@ export type ThemeSeed = {
   /**
    * Will be applied to the root element of the themed area. This is a good
    * place to apply a wallpaper image.
+   * @default largeSheetRootStyle
    */
-  smallSheetRootStyle: CSSObject,
+  smallSheetRootStyle?: CSSObject,
   /**
    * If defined, these styles will be added to the app window for any <CSSReset>
    * unless `noStyleAppWindow` is given.
    */
   appWindowStyle?: CSSObject,
-  /**
-   * If defined, these styles will be in a layer over the root element for
-   * windows that put text directly on the root element
-   */
-  shroudStyle?: CSSObject,
   /**
    * Font string for block text.
    */
@@ -71,15 +67,15 @@ export type ThemeSeed = {
    * All the values in this collection should be parseable as CSS colors
    */
   colors: {
+    accent: string,
+    accentContrast: string,
+    glow: string,
+    danger?: string,
     wallpaper: string,
     text: string,
     /**
      * should work alongside `text` and `textMuted`
      */
-    accent: string,
-    accentContrast: string,
-    glow: string,
-    danger?: string,
     bgTint: string,
 
     /**
@@ -100,6 +96,8 @@ export type ThemeSeed = {
 }
 
 export type Theme = ThemeSeed & {
+  smallSheetRootStyle: CSSObject,
+
   colors: ThemeSeed["colors"] & {
     bgOpaquePrimary: string,
     bgOpaqueSecondary: string,
