@@ -14,7 +14,8 @@ export const getSystemAbilities = async (): Promise<AbilityTuple[]> => {
   const proms = getNewPCPacks().map(async (packId) => {
     assertGame(game);
     // getting pack content is slow
-    const content = await game.packs.find((p: any) => p.collection === packId)?.getDocuments();
+    const pack = game.packs.find((p: any) => p.metadata.entity === "Item" && p.collection === packId);
+    const content = await pack?.getDocuments();
     const tuples: AbilityTuple[] = (content || [])
       .filter((x) => isAbilityDataSource(x.data))
       .map((i: any) => [
