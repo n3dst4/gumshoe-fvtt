@@ -4,7 +4,7 @@ import React, { useCallback } from "react";
 import { systemName } from "../../constants";
 import { assertGame } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
-import { themes } from "../../theme";
+import { themes } from "../../themes/themes";
 import { GridField } from "../inputs/GridField";
 // import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";

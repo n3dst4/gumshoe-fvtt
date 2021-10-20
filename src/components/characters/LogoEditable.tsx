@@ -2,15 +2,15 @@
 import { CSSObject, jsx } from "@emotion/react";
 import React, { useContext } from "react";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { ThemeContext } from "../../theme";
+import { ThemeContext } from "../../themes/ThemeContext";
 
 type LogoEditableProps = {
-  text: string,
-  onChangeText: (newValue: string) => void,
-  subtext?: string,
-  defaultSubtext?: string,
   className?: string,
-  onChangeSubtext?: (newValue: string) => void,
+  mainText: string,
+  subText?: string,
+  defaultSubText?: string,
+  onChangeMainText: (newValue: string) => void,
+  onChangeSubText?: (newValue: string) => void,
 };
 
 const subtextSyle: CSSObject = {
@@ -30,7 +30,16 @@ const textBearerStyle: CSSObject = {
 const fontFactor = 14;
 
 /**
- * Outrageous 1930s logo
+ * Fancy editable logo text for the top of the character sheet.
+ *
+ * This component is a bit tricksy and is made up of several elements.
+ *
+ * There are two strings displayed: `mainText` and "subText". Both strings are
+ * rendered twice, to allow for various CSS shenanigans, so there is a
+ * "front text element" and a "rear text element".
+ *
+ * There is also a backdrop which is just a div which can be styled however you
+ * need in the theme.
  *
  * There is a known bug in Firefox at the time of writing which screws up the
  * rendering https://bugzilla.mozilla.org/show_bug.cgi?id=1720995
@@ -38,17 +47,16 @@ const fontFactor = 14;
  * seems okay, so I'm not going to sweat it.
  */
 export const LogoEditable: React.FC<LogoEditableProps> = ({
-  text,
-  // subtext: subtextOrig,
-  subtext,
-  defaultSubtext = "",
   className,
-  onChangeText,
-  onChangeSubtext,
+  mainText,
+  subText,
+  defaultSubText = "",
+  onChangeMainText,
+  onChangeSubText,
 }) => {
   const textStyle: CSSObject = {
     transition: "font-size 500ms",
-    fontSize: `${Math.min(1, fontFactor / text.length)}em`,
+    fontSize: `${Math.min(1, fontFactor / mainText.length)}em`,
     padding: "0 1em",
   };
 
@@ -59,9 +67,9 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     onBlur: onBlurText,
     contentEditableRef: contentEditableRefText,
     display: displayText,
-  } = useAsyncUpdate(text, onChangeText);
+  } = useAsyncUpdate(mainText, onChangeMainText);
 
-  const hasSubtext = (onChangeSubtext !== undefined);
+  const hasSubtext = (onChangeSubText !== undefined);
 
   const {
     onInput: onInputSubtext,
@@ -69,15 +77,15 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     onBlur: onBlurSubtext,
     contentEditableRef: contentEditableRefSubtext,
     display: displaySubtext,
-  } = useAsyncUpdate(subtext || defaultSubtext,
-    onChangeSubtext || (() => {}));
+  } = useAsyncUpdate(subText || defaultSubText,
+    onChangeSubText || (() => {}));
 
   const theme = useContext(ThemeContext);
 
   return (
     // outer - set the transform origin
     <div
-      className={className}
+      className={`logo ${className}`}
       css={{
         display: "block",
         position: "relative",
@@ -89,9 +97,9 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     >
       {/* Backdrop */}
       <div
-        className="logo-backdrop"
+        className="backdrop"
         css={{
-          ...theme.logoBackdropStyle,
+          ...theme.logo.backdropStyle,
           position: "absolute",
           top: 0,
           right: 0,
@@ -101,7 +109,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
       />
       {/* inner - apply the transform */}
       <div
-        className="inner-block"
+        className="text-elements-wrapper"
         css={{
           position: "absolute",
           top: 0,
@@ -111,20 +119,20 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           font: theme.displayFont,
           fontSize: "4em",
           whiteSpace: "nowrap",
-          transform: theme.logoTransform,
           caretColor: "black",
           border: "none",
           padding: 0,
           lineHeight: 1,
+          ...theme.logo.textElementsStyle,
         }}
       >
-        {/* shadow-bearer */}
+        {/* rear-element, aka the shadow-bearer */}
         <div
-          className="shadow-bearer"
+          className="rear-text-element shadow-bearer"
           css={{
             zIndex: -1,
             ...textBearerStyle,
-            ...theme.logoRearElementStyle,
+            ...theme.logo.rearTextElementStyle,
           }}
         >
           <div
@@ -145,7 +153,8 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           }
         </div>
 
-        {/* gradient-bearer */}
+        {/* front element, aka the gradient-bearer (on themes that have text
+          gradients) */}
         {/* This extra div is SOLELY to work around this Firefox bug
           https://bugzilla.mozilla.org/show_bug.cgi?id=1720995
           Basically if you have transform and background-clip: text on the same
@@ -159,11 +168,11 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           css={textBearerStyle}
         >
           <div
-            className="gradient-bearer"
+            className="front-text-element gradient-bearer"
             css={{
               // When F92 is mainline, unwrap this div and uncomment this style.
               // ...textBearerStyle,
-              ...theme.logoFrontElementStyle,
+              ...theme.logo.frontTextElementStyle,
             }}
             >
             <div

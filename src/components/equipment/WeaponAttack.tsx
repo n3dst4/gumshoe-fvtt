@@ -4,7 +4,7 @@ import React, { Fragment, useCallback, useContext, useEffect, useMemo, useState 
 import { generalAbility } from "../../constants";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { GumshoeItem } from "../../module/GumshoeItem";
-import { ThemeContext } from "../../theme";
+import { ThemeContext } from "../../themes/ThemeContext";
 import { assertWeaponDataSource, isAbilityDataSource, isPCDataSource, PCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";
@@ -139,7 +139,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
           border: `1px solid ${theme.colors.text}`,
           padding: "1em",
           marginBottom: "0.5em",
-          background: theme.colors.bgTransSecondary,
+          background: theme.colors.backgroundSecondary,
         }}
       >
         <GridField label="Spend">

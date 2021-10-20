@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useState } from "react";
-import { ThemeContext } from "../theme";
+import { ThemeContext } from "../themes/ThemeContext";
 import { ImagePickerLink } from "./ImagePickerLink";
 
 const cover = {
@@ -103,7 +103,7 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
           ...cover,
           opacity: showOverlay ? 1 : 0,
           transition: `opacity ${transitionTime} ease-in`,
-          background: theme.colors.bgTransSecondary,
+          background: theme.colors.backgroundSecondary,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-around",

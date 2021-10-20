@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { Fragment } from "react";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { getDefaultThemeName } from "../../settingsHelpers";
-import { themes } from "../../theme";
+import { themes } from "../../themes/themes";
 import { AbilityRowData } from "./types";
 
 type AbilityRowProps = {
@@ -27,8 +27,8 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
         ? theme.colors.bgTransDangerPrimary
         : theme.colors.bgTransDangerSecondary
     : odd
-      ? theme.colors.bgTransPrimary
-      : theme.colors.bgTransSecondary;
+      ? theme.colors.backgroundPrimary
+      : theme.colors.backgroundSecondary;
   const headerBg = zero
     ? odd
         ? theme.colors.bgOpaqueDangerPrimary

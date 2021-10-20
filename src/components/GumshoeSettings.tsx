@@ -6,8 +6,9 @@ import { customSystem } from "../constants";
 import { assertGame } from "../functions";
 import * as settings from "../settingsHelpers";
 import { systemPresets } from "../systemPresets";
-import { themes, tealTheme } from "../theme";
-import { CSSReset } from "./CSSReset";
+import { themes } from "../themes/themes";
+import { tealTheme } from "../themes/tealTheme";
+import { CSSReset, CSSResetMode } from "./CSSReset";
 import { IdContext } from "./IdContext";
 import { AsyncTextInput } from "./inputs/AsyncTextInput";
 import { Checkbox } from "./inputs/Checkbox";
@@ -194,7 +195,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
 
   return (
     <CSSReset
-      shroudBackground
+      mode={CSSResetMode.small}
       theme={theme}
       css={{
         position: "absolute",
@@ -210,7 +211,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
     >
       <InputGrid
         css={{
-          background: `linear-gradient(to right, ${theme.colors.bgTransPrimary}, ${theme.colors.bgTransPrimary}), ${theme.wallpaperUrl}`,
+          // background: `linear-gradient(to right, ${theme.colors.bgTransPrimary}, ${theme.colors.bgTransPrimary}), ${theme.wallpaperUrl}`,
           padding: "0.5em",
         }}
       >
@@ -273,8 +274,6 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           css={{
             flex: 1,
             overflow: "auto",
-            // background: theme.colors.thin,
-            // padding: "0.5em",
           }}
         >
           <SettingsGridField label="Visual Theme" index={idx++}>
@@ -329,7 +328,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
                           css={{
                             gridRow,
                             gridColumn: "1/4",
-                            background: theme.colors.bgTint,
+                            background: theme.colors.backgroundButton,
                           }}
                         />
                       }
@@ -432,7 +431,7 @@ export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
           display: "flex",
           flexDirection: "row",
           padding: "0.5em",
-          background: theme.colors.bgTransSecondary,
+          background: theme.colors.backgroundSecondary,
         }}
       >
         <button

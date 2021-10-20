@@ -6,9 +6,9 @@ import { assertGame, isAbility, sortEntitiesByName } from "../../functions";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { getDefaultThemeName } from "../../settingsHelpers";
-import { themes } from "../../theme";
+import { themes } from "../../themes/themes";
 import { assertPartyDataSource } from "../../types";
-import { CSSReset } from "../CSSReset";
+import { CSSReset, CSSResetMode } from "../CSSReset";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
@@ -114,7 +114,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
-        shroudBackground
+        mode={CSSResetMode.small}
         theme={theme}
         css={{
           position: "absolute",
@@ -225,7 +225,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
                       "&&": {
                         fontSize: "0.7em",
                         padding: "0.1em 0.3em",
-                        border: `1px solid ${theme.colors.textMuted}`,
+                        border: `1px solid ${theme.colors.text}`,
                         width: "auto",
                       },
                     }}

@@ -4,7 +4,7 @@ import React, { useCallback, useContext, useState } from "react";
 import * as constants from "../../constants";
 import { assertGame, getTranslated, isGeneralAbility } from "../../functions";
 import { GumshoeItem } from "../../module/GumshoeItem";
-import { ThemeContext } from "../../theme";
+import { ThemeContext } from "../../themes/ThemeContext";
 import { assertAbilityDataSource } from "../../types";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
@@ -76,7 +76,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
         border: `1px solid ${theme.colors.text}`,
         padding: "1em",
         marginBottom: "1em",
-        background: theme.colors.bgTransSecondary,
+        background: theme.colors.backgroundSecondary,
       }}
     >
       <GridField label="Spend">

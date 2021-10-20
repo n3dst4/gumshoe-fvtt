@@ -3,7 +3,7 @@ import { Fragment, useCallback } from "react";
 import { GumshoeActor } from "../../module/GumshoeActor";
 import { jsx } from "@emotion/react";
 import { useUpdate } from "../../hooks/useUpdate";
-import { CSSReset } from "../CSSReset";
+import { CSSReset, CSSResetMode } from "../CSSReset";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { TabContainer } from "../TabContainer";
@@ -60,6 +60,7 @@ export const GumshoeNPCSheet = ({
     <ActorSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
         theme={theme}
+        mode={CSSResetMode.small}
         css={{
           position: "absolute",
           top: 0,
@@ -85,8 +86,8 @@ export const GumshoeNPCSheet = ({
           }}
         >
           <LogoEditable
-            text={actor.data.name}
-            onChangeText={updateName}
+            mainText={actor.data.name}
+            onChangeMainText={updateName}
             css={{
               fontSize: "0.66em",
             }}
@@ -96,7 +97,7 @@ export const GumshoeNPCSheet = ({
           css={{
             gridArea: "notes",
             padding: "0.5em",
-            backgroundColor: theme.colors.bgTransSecondary,
+            backgroundColor: theme.colors.backgroundSecondary,
             position: "relative",
           }}
         >
@@ -125,7 +126,7 @@ export const GumshoeNPCSheet = ({
             overflowX: "visible",
             overflowY: "auto",
             padding: "1em",
-            background: theme.colors.bgTransPrimary,
+            background: theme.colors.backgroundPrimary,
           }}
         >
             <TrackersArea actor={actor} />
@@ -135,7 +136,7 @@ export const GumshoeNPCSheet = ({
           css={{
             gridArea: "stats",
             position: "relative",
-            background: theme.colors.bgTransPrimary,
+            background: theme.colors.backgroundPrimary,
             padding: "0.5em",
             display: "grid",
             gridTemplateColumns: "1fr max-content",
@@ -214,7 +215,7 @@ export const GumshoeNPCSheet = ({
           css={{
             gridArea: "body",
             position: "relative",
-            background: theme.colors.bgTransPrimary,
+            background: theme.colors.backgroundPrimary,
             padding: "0.5em",
             overflow: "auto",
           }}

@@ -18,6 +18,7 @@ import { GumshoeNPCSheetClass } from "./module/GumshoeNPCSheetClass";
 import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
 import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
 import { InvestigatorCombat } from "./module/InvestigatorCombat";
+import { installShowThemeFarmHack } from "./module/ThemeFarmClass";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -88,6 +89,9 @@ Hooks.once("init", async function () {
 Hooks.once("setup", function () {
   // Do anything after initialization but before
   // ready
+
+  // install the console callback to show the theme farm
+  installShowThemeFarmHack();
 });
 
 // Migration hook

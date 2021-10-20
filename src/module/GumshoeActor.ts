@@ -1,8 +1,9 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo, isAbility } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource } from "../types";
-import { Theme, themes } from "../theme";
+import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource } from "../types";
+import { themes } from "../themes/themes";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
+import { Theme } from "../themes/types";
 
 export class GumshoeActor extends Actor {
   /**
@@ -124,13 +125,9 @@ export class GumshoeActor extends Actor {
   }
 
   getTrackerAbilities () {
-    return this.getAbilities().filter((item) => {
-      const data = item.data;
-      return (
-        (data.type === investigativeAbility || data.type === generalAbility) &&
-        data.data.showTracker
-      );
-    });
+    return this.getAbilities().filter((item) =>
+      (isAbilityDataSource(item.data) && item.data.data.showTracker),
+    );
   }
 
   // ---------------------------------------------------------------------------

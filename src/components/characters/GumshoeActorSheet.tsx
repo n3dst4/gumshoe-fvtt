@@ -5,7 +5,7 @@ import { jsx } from "@emotion/react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
-import { CSSReset } from "../CSSReset";
+import { CSSReset, CSSResetMode } from "../CSSReset";
 import { LogoEditable } from "./LogoEditable";
 import { InputGrid } from "../inputs/InputGrid";
 import { GridField } from "../inputs/GridField";
@@ -53,6 +53,7 @@ export const GumshoeActorSheet = ({
     <ActorSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
         theme={theme}
+        mode={CSSResetMode.large}
         css={{
           position: "absolute",
           top: 0,
@@ -77,11 +78,11 @@ export const GumshoeActorSheet = ({
           }}
         >
           <LogoEditable
-            text={actor.data.name}
-            subtext={actor.data.data.occupation}
-            defaultSubtext="Investigator"
-            onChangeText={updateName}
-            onChangeSubtext={updateOccupation}
+            mainText={actor.data.name}
+            subText={actor.data.data.occupation}
+            defaultSubText="Investigator"
+            onChangeMainText={updateName}
+            onChangeSubText={updateOccupation}
           />
         </div>
         <ImagePickle
@@ -97,7 +98,7 @@ export const GumshoeActorSheet = ({
           css={{
             gridArea: "stats",
             padding: "1em",
-            backgroundColor: theme.colors.bgTransSecondary,
+            backgroundColor: theme.colors.backgroundSecondary,
             position: "relative",
           }}
         >
@@ -135,7 +136,7 @@ export const GumshoeActorSheet = ({
             overflowX: "visible",
             overflowY: "auto",
             padding: "1em",
-            background: theme.colors.bgTransPrimary,
+            background: theme.colors.backgroundPrimary,
           }}
           >
             <button onClick={actor.confirmRefresh}>

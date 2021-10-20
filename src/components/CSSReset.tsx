@@ -1,51 +1,69 @@
 /** @jsx jsx */
 import { Global, jsx } from "@emotion/react";
-import React from "react";
-import { ThemeContext, Theme } from "../theme";
+import React, { ReactNode, useEffect, useRef } from "react";
+import { Theme } from "../themes/types";
+import { css } from "@emotion/css";
+import { ThemeContext } from "../themes/ThemeContext";
+
+export enum CSSResetMode {
+  large="large",
+  small="small"
+}
 
 type CSSResetProps = {
-  children: any,
+  children: ReactNode,
   className?: string,
   theme: Theme,
-  shroudBackground?: boolean,
+  mode: CSSResetMode,
+  noStyleAppWindow?: boolean,
 };
-
-const flatGradient = (color: string) => `linear-gradient(to right, ${color}, ${color})`;
 
 export const CSSReset: React.FC<CSSResetProps> = ({
   className,
   children,
   theme,
-  shroudBackground,
+  mode,
+  noStyleAppWindow = false,
 }: CSSResetProps) => {
-  const baseBg = `${theme.wallpaperUrl}, ${flatGradient(theme.colors.wallpaper)}`;
-  const background = shroudBackground
-    ? `${flatGradient(theme.colors.bgTransSecondary)}, ${baseBg}`
-    : baseBg;
+  const ref = useRef<HTMLDivElement>(null);
+
+  // add app window styles if there's a continaing app window
+  useEffect(() => {
+    // interacting with Foundry's stuff with jQuery feels a bit 2001 but putting
+    // it in a hook keeps is nice and encapsulated.
+    const className = css(theme.appWindowStyle);
+    if (ref.current !== null && !noStyleAppWindow) {
+      const el = jQuery(ref.current).closest(".window-app");
+      el.addClass(className);
+      return function () {
+        el.removeClass(className);
+      };
+    }
+  }, [noStyleAppWindow, theme.appWindowStyle]);
+
   return (
     <ThemeContext.Provider value={theme}>
       <Global styles={theme.global} />
       <div
+        ref={ref}
         className={className}
         css={{
+          font: theme.bodyFont,
+          padding: "0.5em",
+          color: theme.colors.text,
+          backgroundColor: theme.colors.wallpaper,
+          ...(mode === CSSResetMode.large ? theme.largeSheetRootStyle : theme.smallSheetRootStyle),
+
           "*": {
             // all: "initial",
             scrollbarWidth: "thin",
             userSelect: "auto",
             boxSizing: "border-box",
-            scrollbarColor: `${theme.colors.accent} ${theme.colors.bgTint}`,
+            scrollbarColor: `${theme.colors.accent} ${theme.colors.backgroundButton}`,
             "&:focus": {
               textDecoration: "underline",
-              // textDecorationStyle: "dashed",
             },
           },
-          font: theme.bodyFont,
-          background,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          // backgroundBlendMode: "hard-light",
-          padding: "0.5em",
-          color: theme.colors.text,
 
           "h1, h2, h3, h4": {
             border: "none",
@@ -103,7 +121,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
             borderStyle: "solid",
             borderWidth: "1px",
             borderColor: theme.colors.text,
-            background: theme.colors.bgTransPrimary,
+            background: theme.colors.backgroundPrimary,
             resize: "vertical",
             ":focus": {
               borderColor: theme.colors.accent,
@@ -113,7 +131,10 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           },
           select: {
             color: theme.colors.text,
-            background: theme.colors.bgOpaquePrimary,
+            background: theme.colors.backgroundPrimary,
+            option: {
+              background: theme.colors.backgroundPrimary,
+            },
             ":focus": {
               borderColor: theme.colors.accent,
               outline: "none",
@@ -125,7 +146,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           },
           "button, input[type=button]": {
             border: `2px groove ${theme.colors.text}`,
-            background: theme.colors.bgTint,
+            background: theme.colors.backgroundButton,
           },
         }}
       >

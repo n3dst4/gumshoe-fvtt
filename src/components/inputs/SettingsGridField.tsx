@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ComponentProps, useContext } from "react";
-import { ThemeContext } from "../../theme";
+import { ThemeContext } from "../../themes/ThemeContext";
 import { GridField } from "./GridField";
 
 type SettingsGridFieldProps = ComponentProps<typeof GridField> & {
@@ -19,7 +19,7 @@ export const SettingsGridField: React.FC<SettingsGridFieldProps> = ({
       {...props}
       css={{
         padding: "0.5em",
-        background: tint ? theme.colors.bgTransSecondary : "none",
+        background: tint ? theme.colors.backgroundSecondary : "none",
       }}
 
     />

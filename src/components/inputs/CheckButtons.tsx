@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useMemo } from "react";
 import { nanoid } from "nanoid";
-import { ThemeContext } from "../../theme";
+import { ThemeContext } from "../../themes/ThemeContext";
 
 type CheckButtonsProps = {
   options: Array<{label: string, value: number, enabled: boolean}>,
@@ -39,7 +39,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
             fontSize: "1.4em",
             fontWeight: "bold",
             border: "2px groove white",
-            backgroundColor: theme.colors.bgTransPrimary,
+            backgroundColor: theme.colors.backgroundPrimary,
             paddingBottom: "0.3em",
             borderRadius: "0.2em",
             ":hover": {
