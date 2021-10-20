@@ -5,7 +5,7 @@ import { Theme } from "./types";
 
 const numRepeats = 5;
 const colors = [
-  "#f4e83f",
+  // "#f4e83f", // this is a bright yellow, dropping it for now
   "#a06f18",
   "#b78d6c",
   "#cc7171",
@@ -14,15 +14,12 @@ const colors = [
   "#ed9907",
 ];
 const numColors = colors.length;
-const wedge = 360 / (numRepeats * numColors);
-const gradientParts = [
-  `${colors[0]} ${wedge}deg`,
-  ...(colors
-    .slice(1)
-    .map((color, i) => `${color} ${wedge * i}deg ${wedge * (i + 1)}deg`)),
-].join(", ");
-
-const gradient = `repeating-conic-gradient(${gradientParts})`;
+const wedgeAngle = 360 / (numRepeats * numColors);
+const gradientParts = colors
+  .map((color, i) => `${color} ${wedgeAngle * i}deg ${wedgeAngle * (i + 1)}deg`)
+  .join(", ");
+const starburstGradient = `repeating-conic-gradient(${gradientParts})`;
+const starburstGradientOffset = `repeating-conic-gradient(from 0deg at 10% 10%, ${gradientParts})`;
 
 export const deltaGroovyTheme: Theme = themeFactory({
   schemaVersion: "v1",
@@ -31,11 +28,15 @@ export const deltaGroovyTheme: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');    
   `,
-  largeSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
-  },
   smallSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
+    ":before": {
+      backgroundImage: starburstGradientOffset,
+      maskImage: "linear-gradient(rgba(0, 0, 0, 0.6), transparent)",
+    },
+    background: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
+  },
+  largeSheetRootStyle: {
+    background: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Spicy Rice', serif",
@@ -62,7 +63,7 @@ export const deltaGroovyTheme: Theme = themeFactory({
     },
     backdropStyle: {
       backgroundColor: "#293417",
-      backgroundImage: gradient,
+      backgroundImage: starburstGradient,
       maskImage: "linear-gradient(rgba(0, 0, 0, 1.0), transparent)",
       margin: "-50em",
     },
