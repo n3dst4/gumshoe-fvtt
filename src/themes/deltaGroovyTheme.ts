@@ -1,9 +1,8 @@
 import { css } from "@emotion/react";
 import { systemName } from "../constants";
-import { themeFactory } from "./functions";
+import { createStarburstGradient, themeFactory } from "./functions";
 import { Theme } from "./types";
 
-const numRepeats = 5;
 const colors = [
   // "#f4e83f", // this is a bright yellow, dropping it for now
   "#a06f18",
@@ -13,13 +12,9 @@ const colors = [
   "#e47005",
   "#ed9907",
 ];
-const numColors = colors.length;
-const wedgeAngle = 360 / (numRepeats * numColors);
-const gradientParts = colors
-  .map((color, i) => `${color} ${wedgeAngle * i}deg ${wedgeAngle * (i + 1)}deg`)
-  .join(", ");
-const starburstGradient = `repeating-conic-gradient(${gradientParts})`;
-const starburstGradientOffset = `repeating-conic-gradient(from 0deg at 10% 10%, ${gradientParts})`;
+
+const starburstGradient = createStarburstGradient(colors, 5, "50%", "50%");
+const starburstGradientOffset = createStarburstGradient(colors, 10, "10%", "10%");
 
 export const deltaGroovyTheme: Theme = themeFactory({
   schemaVersion: "v1",
@@ -31,7 +26,16 @@ export const deltaGroovyTheme: Theme = themeFactory({
   smallSheetRootStyle: {
     ":before": {
       backgroundImage: starburstGradientOffset,
-      maskImage: "linear-gradient(rgba(0, 0, 0, 0.6), transparent)",
+      maskImage: "linear-gradient(rgba(0, 0, 0, 0.5), transparent)",
+      content: '" "',
+      position: "absolute",
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    "&>*": {
+      zIndex: 1,
     },
     background: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
   },

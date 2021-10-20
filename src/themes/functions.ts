@@ -49,3 +49,19 @@ export const themeFactory = (seed: ThemeSeed): Theme => {
     },
   };
 };
+
+export const createStarburstGradient = (
+  colors: string[],
+  numRepeats: number,
+  xPos: string,
+  yPos: string,
+) => {
+  const numColors = colors.length;
+  const wedgeAngle = 360 / (numRepeats * numColors);
+  const gradientParts = colors
+    .map((color, i) => `${color} ${wedgeAngle * i}deg ${wedgeAngle * (i + 1)}deg`)
+    .join(", ");
+  const starburstGradient = `repeating-conic-gradient(from 0deg at ${xPos} ${yPos}, ${gradientParts})`;
+
+  return starburstGradient;
+};
