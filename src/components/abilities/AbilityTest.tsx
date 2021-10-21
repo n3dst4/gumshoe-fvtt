@@ -28,7 +28,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
   const theme = useContext(ThemeContext);
   const [spend, setSpend] = useState(0);
 
-  const onTest = useCallback(() => {
+  const onTest = useCallback(async () => {
     assertGame(game);
     assertAbilityDataSource(ability.data);
     if (ability.actor === null) { return; }
@@ -38,11 +38,33 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
     const roll = useBoost
       ? new Roll("1d6 + @spend + @boost", { spend, boost })
       : new Roll("1d6 + @spend", { spend });
-    const label = getTranslated("RollingAbilityName", { AbilityName: ability.name ?? "" });
-    roll.roll().toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-      flavor: label,
-    });
+    // const label = getTranslated("RollingAbilityName", { AbilityName: ability.name ?? "" });
+
+    roll.evaluate();
+
+    // const speaker = ChatMessage.getSpeaker({ actor: ability.parent as GumshoeActor });
+    // const messageData = {
+    //   speaker,
+    //   content: "<h1>helloe</h1>",
+    //   type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+    //   roll: "5d6",
+    // };
+    // ChatMessage.create(messageData, {});
+
+    // ChatMessage.create({
+    //   content: "<h1>helloe</h1>",
+    //   speaker: {
+    //     actor: ability.parent?.data._id,
+    //   },
+    //   type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+    //   roll: JSON.stringify(roll.toJSON()),
+    // });
+
+    // roll.toMessage({
+    //   speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
+    //   flavor: label,
+    // });
+
     ability.update({ data: { pool: ability.data.data.pool - Number(spend) || 0 } });
     setSpend(0);
   }, [ability, spend]);
