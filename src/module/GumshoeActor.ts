@@ -361,8 +361,8 @@ Hooks.on(
       for (const packId of getNewNPCPacks()) {
         assertGame(game);
         console.log("PACK", packId);
-        const content = await (game.packs?.find((p: any) => p.collection === packId)?.getDocuments());
-        const datas = content?.map(({ data: { name, img, data, type } }) => ({
+        const content = await (game.packs?.find((p) => p.metadata.entity === "Item" && p.collection === packId)?.getDocuments());
+        const datas = (content as GumshoeItem[])?.map(({ data: { name, img, data, type } }) => ({
           name,
           img,
           data,
