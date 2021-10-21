@@ -239,7 +239,7 @@ export function isInvestigativeAbilityDataSource (data: InvestigatorItemDataSour
   return data.type === constants.investigativeAbility;
 }
 
-export function isAbilityDataSource (data: InvestigatorItemDataSource): data is AbilityDataSource {
+export function isAbilityDataSource (data: any): data is AbilityDataSource {
   return isGeneralAbilityDataSource(data) || isInvestigativeAbilityDataSource(data);
 }
 
