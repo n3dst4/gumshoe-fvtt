@@ -10,9 +10,9 @@ export class GumshoeActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
-  prepareData (): void {
-    super.prepareData();
-  }
+  // prepareData (): void {
+  //   super.prepareData();
+  // }
 
   confirmRefresh = () => {
     confirmADoodleDo(
