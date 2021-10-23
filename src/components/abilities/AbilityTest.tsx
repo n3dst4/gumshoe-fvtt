@@ -4,7 +4,6 @@ import React, { useCallback, useContext, useState } from "react";
 import * as constants from "../../constants";
 import { assertGame, getTranslated, isGeneralAbility } from "../../functions";
 import { GumshoeItem } from "../../module/GumshoeItem";
-// import { InvestigatorRoll } from "../../module/InvestigatorRoll";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertAbilityDataSource } from "../../types";
 import { CheckButtons } from "../inputs/CheckButtons";
@@ -42,24 +41,6 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
     const label = getTranslated("RollingAbilityName", { AbilityName: ability.name ?? "" });
 
     roll.evaluate();
-
-    // const speaker = ChatMessage.getSpeaker({ actor: ability.parent as GumshoeActor });
-    // const messageData = {
-    //   speaker,
-    //   content: "<h1>helloe</h1>",
-    //   type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-    //   roll: "5d6",
-    // };
-    // ChatMessage.create(messageData, {});
-
-    // ChatMessage.create({
-    //   content: "<h1>helloe</h1>",
-    //   speaker: {
-    //     actor: ability.parent?.data._id,
-    //   },
-    //   type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-    //   roll: JSON.stringify(roll.toJSON()),
-    // });
 
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: ability.actor }),

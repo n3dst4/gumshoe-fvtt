@@ -3,11 +3,11 @@ import { jsx } from "@emotion/react";
 import React, { useCallback, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
-interface RollMessageProps {
+interface AbilityTestCardProps {
   msg: ChatMessage;
 }
 
-const RollMessage: React.FC<RollMessageProps> = React.memo(({
+const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
   msg,
 }) => {
   const renderCountRef = useRef(0);
@@ -36,11 +36,11 @@ const RollMessage: React.FC<RollMessageProps> = React.memo(({
   );
 });
 
-export const installChatMessageWrangler = () => {
+export const installAbilityTestCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {
     const el = html.find(".investigator-ability-test").get(0);
     if (el) {
-      ReactDOM.render(<RollMessage msg={chatMessage} />, el);
+      ReactDOM.render(<AbilityTestCard msg={chatMessage} />, el);
     }
   });
 };
