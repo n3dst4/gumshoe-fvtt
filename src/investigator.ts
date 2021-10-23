@@ -19,6 +19,7 @@ import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
 import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
 import { InvestigatorCombat } from "./module/InvestigatorCombat";
 import { installShowThemeFarmHack } from "./module/ThemeFarmClass";
+import { installChatMessageWrangler } from "./components/messages/AbilityTest";
 // import { InvestigatorChatMessage } from "./module/InvestigatorChatMessage";
 
 // Initialize system
@@ -219,6 +220,8 @@ Hooks.on(
 installCompendiumExportButton();
 
 initializePackGenerators();
+
+installChatMessageWrangler();
 
 if (window.location.hostname === "localhost") {
   CONFIG.debug.hooks = true;

@@ -4,7 +4,7 @@ import React, { useCallback, useContext, useState } from "react";
 import * as constants from "../../constants";
 import { assertGame, getTranslated, isGeneralAbility } from "../../functions";
 import { GumshoeItem } from "../../module/GumshoeItem";
-import { InvestigatorRoll } from "../../module/InvestigatorRoll";
+// import { InvestigatorRoll } from "../../module/InvestigatorRoll";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertAbilityDataSource } from "../../types";
 import { CheckButtons } from "../inputs/CheckButtons";
@@ -37,9 +37,9 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
     const isBoosted = useBoost && ability.getBoost();
     const boost = isBoosted ? 1 : 0;
     const roll = useBoost
-      ? new InvestigatorRoll("1d6 + @spend + @boost", { spend, boost })
-      : new InvestigatorRoll("1d6 + @spend", { spend });
-    // const label = getTranslated("RollingAbilityName", { AbilityName: ability.name ?? "" });
+      ? new Roll("1d6 + @spend + @boost", { spend, boost })
+      : new Roll("1d6 + @spend", { spend });
+    const label = getTranslated("RollingAbilityName", { AbilityName: ability.name ?? "" });
 
     roll.evaluate();
 
@@ -61,10 +61,11 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
     //   roll: JSON.stringify(roll.toJSON()),
     // });
 
-    // roll.toMessage({
-    //   speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-    //   flavor: label,
-    // });
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
+      flavor: label,
+      content: '<div class="investigator-ability-test"/>',
+    });
 
     ability.update({ data: { pool: ability.data.data.pool - Number(spend) || 0 } });
     setSpend(0);
