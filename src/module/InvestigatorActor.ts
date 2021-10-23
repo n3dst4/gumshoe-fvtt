@@ -6,7 +6,7 @@ import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsH
 import { Theme } from "../themes/types";
 import { GumshoeItem } from "./GumshoeItem";
 
-export class GumshoeActor extends Actor {
+export class InvestigatorActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
@@ -280,7 +280,7 @@ export class GumshoeActor extends Actor {
 
 declare global {
   interface DocumentClassConfig {
-    Actor: typeof GumshoeActor;
+    Actor: typeof InvestigatorActor;
   }
 }
 
@@ -321,7 +321,7 @@ Hooks.on("updateItem", (
 Hooks.on(
   "createActor",
   async (
-    actor: GumshoeActor,
+    actor: InvestigatorActor,
     options: Record<string, unknown>,
     userId: string,
   ) => {

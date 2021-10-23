@@ -1,7 +1,7 @@
 import "./setWebkitPublicPath";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/preloadTemplates";
-import { GumshoeActor } from "./module/GumshoeActor";
+import { InvestigatorActor } from "./module/InvestigatorActor";
 import { GumshoeItem } from "./module/GumshoeItem";
 import { GumshoeActorSheetClass } from "./module/GumshoeActorSheetClass";
 import { GumshoeItemSheetClass } from "./module/GumshoeItemSheetClass";
@@ -34,7 +34,7 @@ Hooks.once("init", async function () {
   await preloadTemplates();
 
   // XXX TS needs going over here
-  CONFIG.Actor.documentClass = GumshoeActor;
+  CONFIG.Actor.documentClass = InvestigatorActor;
   CONFIG.Item.documentClass = GumshoeItem;
   CONFIG.Combatant.documentClass = InvestigatorCombatant;
   CONFIG.Combat.documentClass = InvestigatorCombat;
@@ -191,7 +191,7 @@ Hooks.on("renderSettings", (app: Application, html: JQuery) => {
 Hooks.on(
   "dropActorSheetData",
   (
-    targetActor: GumshoeActor,
+    targetActor: InvestigatorActor,
     application: Application,
     dropData: { type: string, id: string, entity?: string },
   ) => {

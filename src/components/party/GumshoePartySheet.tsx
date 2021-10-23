@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useState } from "react";
 import * as constants from "../../constants";
 import { assertGame, isAbility, sortEntitiesByName } from "../../functions";
-import { GumshoeActor } from "../../module/GumshoeActor";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { themes } from "../../themes/themes";
@@ -19,7 +19,7 @@ import { buildRowData, getSystemAbilities } from "./functions";
 import { AbilityTuple, isCategoryHeader, isTypeHeader, RowData } from "./types";
 
 type GumshoePartySheetProps = {
-  party: GumshoeActor,
+  party: InvestigatorActor,
   foundryApplication: ActorSheet,
 };
 
@@ -29,7 +29,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
 }) => {
   const theme = themes[getDefaultThemeName()] || themes.tealTheme;
   const [abilityTuples, setAbilityTuples] = useState<AbilityTuple[]>([]);
-  const [actors, setActors] = useState<GumshoeActor[]>([]);
+  const [actors, setActors] = useState<InvestigatorActor[]>([]);
   const [rowData, setRowData] = useState<RowData[]>([]);
   const actorIds = party.getActorIds();
 
@@ -43,7 +43,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
     };
 
     const onActorDeleted = (
-      deletedActor: GumshoeActor,
+      deletedActor: InvestigatorActor,
       something: unknown, // i cannot tell what this is supposed to be
       userId: string, // probably?
     ) => {

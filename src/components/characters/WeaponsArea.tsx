@@ -3,12 +3,12 @@ import { jsx } from "@emotion/react";
 import React from "react";
 import { weapon } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
-import { GumshoeActor } from "../../module/GumshoeActor";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { Translate } from "../Translate";
 import { WeaponRow } from "./WeaponRow";
 
 type WeaponsAreaProps = {
-  actor: GumshoeActor,
+  actor: InvestigatorActor,
 };
 
 export const WeaponsArea: React.FC<WeaponsAreaProps> = ({

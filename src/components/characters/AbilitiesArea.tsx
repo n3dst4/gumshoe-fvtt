@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext } from "react";
 import { generalAbility, investigativeAbility } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
-import { GumshoeActor } from "../../module/GumshoeActor";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertActiveCharacterDataSource, isAbilityDataSource } from "../../types";
@@ -12,7 +12,7 @@ import { Translate } from "../Translate";
 import { AbilitySlug } from "./AbilitySlug";
 
 type AbilitiesAreaProps = {
-  actor: GumshoeActor,
+  actor: InvestigatorActor,
   flipLeftRight?: boolean,
 };
 

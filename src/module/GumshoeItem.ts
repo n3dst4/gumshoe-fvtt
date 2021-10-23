@@ -1,7 +1,7 @@
 import { fixLength, isAbility } from "../functions";
 import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
-import { GumshoeActor } from "./GumshoeActor";
+import { InvestigatorActor } from "./InvestigatorActor";
 import { getDefaultThemeName } from "../settingsHelpers";
 import { assertAbilityDataSource, assertWeaponDataSource } from "../types";
 
@@ -171,7 +171,7 @@ export class GumshoeItem extends Item {
   getThemeName (): string {
     const systemThemeName = getDefaultThemeName();
     if (this.isOwned) {
-      return (this.actor as GumshoeActor).getSheetThemeName() || systemThemeName;
+      return (this.actor as InvestigatorActor).getSheetThemeName() || systemThemeName;
     } else {
       return systemThemeName;
     }

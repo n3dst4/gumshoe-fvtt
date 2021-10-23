@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment } from "react";
-import { GumshoeActor } from "../../module/GumshoeActor";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { PoolTracker } from "../abilities/PoolTracker";
 
 type TrackersAreaProps = {
-  actor: GumshoeActor,
+  actor: InvestigatorActor,
 };
 
 export const TrackersArea: React.FC<TrackersAreaProps> = ({

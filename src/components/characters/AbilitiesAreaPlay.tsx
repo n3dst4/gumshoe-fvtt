@@ -3,13 +3,13 @@ import { jsx } from "@emotion/react";
 import React, { Fragment } from "react";
 import { generalAbility, investigativeAbility } from "../../constants";
 import { sortEntitiesByName, isInvestigativeAbility } from "../../functions";
-import { GumshoeActor } from "../../module/GumshoeActor";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { GumshoeItem } from "../../module/GumshoeItem";
 import { assertActiveCharacterDataSource, isAbilityDataSource } from "../../types";
 import { AbilitySlugPlay } from "./AbilitySlugPlay";
 
 type AbilitiesAreaPlayProps = {
-  actor: GumshoeActor,
+  actor: InvestigatorActor,
   flipLeftRight?: boolean,
 };
 

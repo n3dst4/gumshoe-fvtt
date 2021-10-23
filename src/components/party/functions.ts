@@ -2,7 +2,7 @@ import { getNewPCPacks } from "../../settingsHelpers";
 import { AbilityType, isAbilityDataSource } from "../../types";
 import { abilityRowkey, AbilityTuple, ActorAbilityInfo, categoryHeaderKey, RowData, typeHeaderKey } from "./types";
 import * as constants from "../../constants";
-import { GumshoeActor } from "../../module/GumshoeActor";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertGame } from "../../functions";
 
 /**
@@ -73,7 +73,7 @@ const compareTuples = (
  */
 export const buildRowData = (
   tuples: AbilityTuple[],
-  actors: GumshoeActor[],
+  actors: InvestigatorActor[],
 ): RowData[] => {
   const result: RowData[] = [];
 
