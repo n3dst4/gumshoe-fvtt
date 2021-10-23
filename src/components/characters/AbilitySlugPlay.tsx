@@ -4,7 +4,7 @@ import React, { Fragment, useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
-import { getTranslated, isGeneralAbility, isInvestigativeAbility } from "../../functions";
+import { isGeneralAbility, isInvestigativeAbility } from "../../functions";
 // import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 type AbilitySlugPlayProps = {
@@ -28,24 +28,17 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
   }, [ability, spend]);
 
   const onSpend = useCallback(() => {
-    assertAbilityDataSource(ability.data);
-    if (ability.actor === null) { return; }
-    const roll = new Roll("@spend", { spend });
-    const label = getTranslated("AbilityPoolSpendForAbilityName", { AbilityName: ability.name ?? "" });
-    roll.roll().toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-      flavor: label,
-    });
-    ability.update({ data: { pool: ability.data.data.pool - Number(spend) || 0 } });
+    ability.spendAbility(spend);
     setSpend(0);
   }, [ability, spend]);
 
   const onClickInc = useCallback(() => {
-    setSpend(spend + 1);
-  }, [spend]);
+    setSpend(s => s + 1);
+  }, []);
+
   const onClickDec = useCallback(() => {
-    setSpend(spend - 1);
-  }, [spend]);
+    setSpend(s => s - 1);
+  }, []);
 
   return (
     <Fragment

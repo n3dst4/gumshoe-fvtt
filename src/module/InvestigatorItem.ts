@@ -46,6 +46,18 @@ export class InvestigatorItem extends Item {
     this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
   }
 
+  spendAbility (spend: number) {
+    assertAbilityDataSource(this.data);
+    if (this.actor === null) { return; }
+    const roll = new Roll("@spend", { spend });
+    const label = getTranslated("AbilityPoolSpendForAbilityName", { AbilityName: this.name ?? "" });
+    roll.roll().toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      flavor: label,
+    });
+    this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
+  }
+
   refreshPool () {
     assertAbilityDataSource(this.data);
     this.update({

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback, useContext, useState } from "react";
-import { getTranslated, isGeneralAbility } from "../../functions";
+import { isGeneralAbility } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertAbilityDataSource } from "../../types";
@@ -33,15 +33,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
   }, [ability, spend]);
 
   const onSpend = useCallback(() => {
-    assertAbilityDataSource(ability.data);
-    if (ability.actor === null) { return; }
-    const roll = new Roll("@spend", { spend });
-    const label = getTranslated("AbilityPoolSpendForAbilityName", { AbilityName: ability.name ?? "" });
-    roll.roll().toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-      flavor: label,
-    });
-    ability.update({ data: { pool: ability.data.data.pool - Number(spend) || 0 } });
+    ability.spendAbility(spend);
     setSpend(0);
   }, [ability, spend]);
 
