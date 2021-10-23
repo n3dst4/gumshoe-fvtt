@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 
 import React, { useCallback } from "react";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityDataSource, isAbilityDataSource } from "../../types";
 import { PoolCheckbox } from "./PoolCheckbox";
 
@@ -15,7 +15,7 @@ const range = (from: number, to: number): number[] => {
 };
 
 type PoolTrackerProps = {
-  ability: GumshoeItem,
+  ability: InvestigatorItem,
 };
 
 export const PoolTracker: React.FC<PoolTrackerProps> = ({

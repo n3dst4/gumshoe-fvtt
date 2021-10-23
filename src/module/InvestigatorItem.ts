@@ -9,7 +9,7 @@ import { assertAbilityDataSource, assertWeaponDataSource } from "../types";
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
  */
-export class GumshoeItem extends Item {
+export class InvestigatorItem extends Item {
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
@@ -308,6 +308,6 @@ export class GumshoeItem extends Item {
 
 declare global {
   interface DocumentClassConfig {
-    Item: typeof GumshoeItem;
+    Item: typeof InvestigatorItem;
   }
 }

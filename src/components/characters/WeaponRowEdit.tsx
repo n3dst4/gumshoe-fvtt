@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useState } from "react";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextArea } from "../inputs/TextArea";
@@ -9,7 +9,7 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Checkbox } from "../inputs/Checkbox";
 
 type WeaponRowEditProps = {
-  weapon: GumshoeItem,
+  weapon: InvestigatorItem,
 };
 
 export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({

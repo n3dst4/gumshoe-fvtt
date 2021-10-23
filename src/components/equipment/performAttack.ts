@@ -1,13 +1,13 @@
 import { getTranslated } from "../../functions";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 
 type PerformAttackArgs1 = {
   spend: number,
   bonusPool: number,
   setSpend: (value: number) => void,
   setBonusPool: (value: number) => void,
-  weapon: GumshoeItem,
-  ability: GumshoeItem,
+  weapon: InvestigatorItem,
+  ability: InvestigatorItem,
 }
 
 type PerformAttackArgs2 = {

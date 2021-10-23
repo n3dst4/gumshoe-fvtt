@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useState } from "react";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 type WeaponRowProps = {
-  weapon: GumshoeItem,
+  weapon: InvestigatorItem,
 };
 
 export const WeaponRow: React.FC<WeaponRowProps> = ({

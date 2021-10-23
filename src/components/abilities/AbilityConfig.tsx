@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { ChangeEvent, useCallback, useState } from "react";
 import { confirmADoodleDo, isGeneralAbility } from "../../functions";
 import { useUpdate } from "../../hooks/useUpdate";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
@@ -14,7 +14,7 @@ import { Translate } from "../Translate";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
 
 type AbilityConfigProps = {
-  ability: GumshoeItem,
+  ability: InvestigatorItem,
 };
 
 export const AbilityConfig: React.FC<AbilityConfigProps> = ({

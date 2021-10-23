@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect } from "react";
 import { useUpdate } from "../../hooks/useUpdate";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -16,7 +16,7 @@ import { TextArea } from "../inputs/TextArea";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 
 type AbilityEditorMainProps = {
-  ability: GumshoeItem,
+  ability: InvestigatorItem,
 };
 
 export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({

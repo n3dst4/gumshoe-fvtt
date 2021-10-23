@@ -1,5 +1,5 @@
 import * as constants from "../constants";
-import { GumshoeItem } from "./GumshoeItem";
+import { InvestigatorItem } from "./InvestigatorItem";
 import { assertActiveCharacterDataSource } from "../types";
 /**
  * Override base Combatant class to override the initiative formula.
@@ -10,7 +10,7 @@ export class InvestigatorCombatant extends Combatant {
     assertActiveCharacterDataSource(this.actor?.data);
     const abilityName = this.actor?.data.data.initiativeAbility;
     const ability = this.actor.items.find(
-      (item: GumshoeItem) => item.type === constants.generalAbility && item.name === abilityName,
+      (item: InvestigatorItem) => item.type === constants.generalAbility && item.name === abilityName,
     );
     if (ability && ability.data.type === constants.generalAbility) {
       const score = ability.data.data.rating.toString();

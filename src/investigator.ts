@@ -2,7 +2,7 @@ import "./setWebkitPublicPath";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/preloadTemplates";
 import { InvestigatorActor } from "./module/InvestigatorActor";
-import { GumshoeItem } from "./module/GumshoeItem";
+import { InvestigatorItem } from "./module/InvestigatorItem";
 import { GumshoeActorSheetClass } from "./module/GumshoeActorSheetClass";
 import { GumshoeItemSheetClass } from "./module/GumshoeItemSheetClass";
 import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon } from "./constants";
@@ -35,7 +35,7 @@ Hooks.once("init", async function () {
 
   // XXX TS needs going over here
   CONFIG.Actor.documentClass = InvestigatorActor;
-  CONFIG.Item.documentClass = GumshoeItem;
+  CONFIG.Item.documentClass = InvestigatorItem;
   CONFIG.Combatant.documentClass = InvestigatorCombatant;
   CONFIG.Combat.documentClass = InvestigatorCombat;
   // CONFIG.ChatMessage.documentClass = InvestigatorChatMessage;

@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { useCallback, useContext, useState } from "react";
 import * as constants from "../../constants";
 import { assertGame, getTranslated, isGeneralAbility } from "../../functions";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertAbilityDataSource } from "../../types";
 import { CheckButtons } from "../inputs/CheckButtons";
@@ -13,7 +13,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 
 type AbilityTestProps = {
-  ability: GumshoeItem,
+  ability: InvestigatorItem,
 
 };
 

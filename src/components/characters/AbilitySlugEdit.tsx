@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { Fragment, useCallback, useContext } from "react";
 import { jsx } from "@emotion/react";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { assertAbilityDataSource } from "../../types";
 import { useUpdate } from "../../hooks/useUpdate";
@@ -10,7 +10,7 @@ import { Checkbox } from "../inputs/Checkbox";
 import { SpecialityList } from "../abilities/SpecialityList";
 
 type AbilitySlugEditProps = {
-  ability: GumshoeItem,
+  ability: InvestigatorItem,
   showOcc?: boolean,
 };
 

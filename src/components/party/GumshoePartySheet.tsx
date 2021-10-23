@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import * as constants from "../../constants";
 import { assertGame, isAbility, sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { themes } from "../../themes/themes";
 import { assertPartyDataSource } from "../../types";
@@ -55,7 +55,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
     };
 
     const onUpdateItem = async (
-      item: GumshoeItem,
+      item: InvestigatorItem,
       dataDiff: any,
       options: any,
       useId: string,

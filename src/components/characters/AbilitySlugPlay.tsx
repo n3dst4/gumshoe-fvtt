@@ -2,14 +2,14 @@
 import { jsx } from "@emotion/react";
 import * as constants from "../../constants";
 import React, { Fragment, useCallback, useContext, useState } from "react";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
 import { assertGame, getTranslated, isGeneralAbility, isInvestigativeAbility } from "../../functions";
 // import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 type AbilitySlugPlayProps = {
-  ability: GumshoeItem,
+  ability: InvestigatorItem,
 };
 
 export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => {

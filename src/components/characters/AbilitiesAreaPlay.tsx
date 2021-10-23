@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 import { generalAbility, investigativeAbility } from "../../constants";
 import { sortEntitiesByName, isInvestigativeAbility } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertActiveCharacterDataSource, isAbilityDataSource } from "../../types";
 import { AbilitySlugPlay } from "./AbilitySlugPlay";
 
@@ -19,8 +19,8 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
 }) => {
   assertActiveCharacterDataSource(actor.data);
 
-  const investigativeAbilities: { [category: string]: GumshoeItem[] } = {};
-  const generalAbilities: { [category: string]: GumshoeItem[] } = {};
+  const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
+  const generalAbilities: { [category: string]: InvestigatorItem[] } = {};
 
   for (const item of actor.items.values()) {
     if (!isAbilityDataSource(item.data)) {
