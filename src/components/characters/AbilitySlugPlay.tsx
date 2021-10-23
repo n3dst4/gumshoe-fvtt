@@ -1,11 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import * as constants from "../../constants";
 import React, { Fragment, useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
-import { assertGame, getTranslated, isGeneralAbility, isInvestigativeAbility } from "../../functions";
+import { getTranslated, isGeneralAbility, isInvestigativeAbility } from "../../functions";
 // import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 type AbilitySlugPlayProps = {
@@ -22,24 +21,12 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
   }, [app]);
 
   const [spend, setSpend] = useState(0);
+
   const onTest = useCallback(() => {
-    assertGame(game);
-    assertAbilityDataSource(ability.data);
-    if (ability.actor === null) { return; }
-    const useBoost = game.settings.get(constants.systemName, constants.useBoost);
-    const isBoosted = useBoost && ability.getBoost();
-    const boost = isBoosted ? 1 : 0;
-    const roll = useBoost
-      ? new Roll("1d6 + @spend + @boost", { spend, boost })
-      : new Roll("1d6 + @spend", { spend });
-    const label = getTranslated("RollingAbilityName", { AbilityName: ability.name ?? "" });
-    roll.roll().toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-      flavor: label,
-    });
-    ability.update({ data: { pool: ability.data.data.pool - Number(spend) || 0 } });
+    ability.testAbility(spend);
     setSpend(0);
   }, [ability, spend]);
+
   const onSpend = useCallback(() => {
     assertAbilityDataSource(ability.data);
     if (ability.actor === null) { return; }

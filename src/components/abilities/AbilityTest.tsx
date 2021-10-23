@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback, useContext, useState } from "react";
-import * as constants from "../../constants";
-import { assertGame, getTranslated, isGeneralAbility } from "../../functions";
+import { getTranslated, isGeneralAbility } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertAbilityDataSource } from "../../types";
@@ -29,26 +28,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
   const [spend, setSpend] = useState(0);
 
   const onTest = useCallback(async () => {
-    assertGame(game);
-    assertAbilityDataSource(ability.data);
-    if (ability.actor === null) { return; }
-    const useBoost = game.settings.get(constants.systemName, constants.useBoost);
-    const isBoosted = useBoost && ability.getBoost();
-    const boost = isBoosted ? 1 : 0;
-    const roll = useBoost
-      ? new Roll("1d6 + @spend + @boost", { spend, boost })
-      : new Roll("1d6 + @spend", { spend });
-    const label = getTranslated("RollingAbilityName", { AbilityName: ability.name ?? "" });
-
-    roll.evaluate();
-
-    roll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-      flavor: label,
-      content: '<div class="investigator-ability-test"/>',
-    });
-
-    ability.update({ data: { pool: ability.data.data.pool - Number(spend) || 0 } });
+    ability.testAbility(spend);
     setSpend(0);
   }, [ability, spend]);
 

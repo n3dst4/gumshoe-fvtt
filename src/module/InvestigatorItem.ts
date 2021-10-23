@@ -1,9 +1,10 @@
-import { fixLength, isAbility } from "../functions";
+import { assertGame, fixLength, getTranslated, isAbility } from "../functions";
 import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
 import { InvestigatorActor } from "./InvestigatorActor";
 import { getDefaultThemeName } from "../settingsHelpers";
 import { assertAbilityDataSource, assertWeaponDataSource } from "../types";
+import * as constants from "../constants";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -20,6 +21,29 @@ export class InvestigatorItem extends Item {
     // const itemData = this.data;
     // const actorData = this.actor ? this.actor.data : {};
     // const data = itemData.data;
+  }
+
+  testAbility (spend: number) {
+    assertGame(game);
+    assertAbilityDataSource(this.data);
+    if (this.actor === null) { return; }
+    const useBoost = game.settings.get(constants.systemName, constants.useBoost);
+    const isBoosted = useBoost && this.getBoost();
+    const boost = isBoosted ? 1 : 0;
+    const roll = useBoost
+      ? new Roll("1d6 + @spend + @boost", { spend, boost })
+      : new Roll("1d6 + @spend", { spend });
+    const label = getTranslated("RollingAbilityName", { AbilityName: this.name ?? "" });
+
+    roll.evaluate();
+
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      flavor: label,
+      content: '<div class="investigator-ability-test"/>',
+    });
+
+    this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
   }
 
   refreshPool () {
