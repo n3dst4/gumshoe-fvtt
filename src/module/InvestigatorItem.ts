@@ -33,14 +33,17 @@ export class InvestigatorItem extends Item {
     const roll = useBoost
       ? new Roll("1d6 + @spend + @boost", { spend, boost })
       : new Roll("1d6 + @spend", { spend });
-    const label = getTranslated("RollingAbilityName", { AbilityName: this.name ?? "" });
+    const flavor = getTranslated("RollingAbilityName", { AbilityName: this.name ?? "" });
 
     roll.evaluate();
 
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor: label,
+      flavor,
       content: '<div class="investigator-ability-test"/>',
+      messageData: {
+        ability: this,
+      },
     });
 
     this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
@@ -50,10 +53,14 @@ export class InvestigatorItem extends Item {
     assertAbilityDataSource(this.data);
     if (this.actor === null) { return; }
     const roll = new Roll("@spend", { spend });
-    const label = getTranslated("AbilityPoolSpendForAbilityName", { AbilityName: this.name ?? "" });
+    const flavor = getTranslated("AbilityPoolSpendForAbilityName", { AbilityName: this.name ?? "" });
     roll.roll().toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor: label,
+      flavor,
+      content: '<div class="investigator-ability-spend"/>',
+      messageData: {
+        ability: this,
+      },
     });
     this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
   }

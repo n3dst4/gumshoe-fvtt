@@ -24,7 +24,7 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
       }}
     >
       <div>
-        Result from React, take 2: {msg.roll?.result}
+        Result for {msg.getRollData}: {msg.roll?.result}
       </div>
       <div>
         Counter: {x}; <a onClick={incX}>Inc++</a>
@@ -39,6 +39,7 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
 export const installAbilityTestCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {
     const el = html.find(".investigator-ability-test").get(0);
+    logger.log("chatMessage: ", chatMessage);
     if (el) {
       ReactDOM.render(<AbilityTestCard msg={chatMessage} />, el);
     }
