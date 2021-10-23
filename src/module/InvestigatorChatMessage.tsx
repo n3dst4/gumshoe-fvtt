@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React from "react";
 import ReactDOM from "react-dom";
-import { assertGame } from "../functions";
+import { assertGame, isGame } from "../functions";
 
 interface RollMessageProps {
   msg: ChatMessage;
@@ -14,6 +14,14 @@ const RollMessage: React.FC<RollMessageProps> = React.memo(({
   msg,
 }) => {
   assertGame(game);
+
+  const isWhisper = msg.data.whisper.some(id => isGame(game) && id !== game.user?.id);
+  const whisperTo = msg.data.whisper.map(u => {
+    assertGame(game);
+    const user = game.users?.get(u);
+    return user ? user.name : null;
+  }).filterJoin(", ");
+
   return (
   // <div
   //   className="chat-message message flexcol"
@@ -36,8 +44,8 @@ const RollMessage: React.FC<RollMessageProps> = React.memo(({
               }
           </span>
 
-          {msg.data.whisper &&
-            <span className="whisper-to">{game.i18n.localize("CHAT.To")}: {msg.data.whisper}</span>
+          {isWhisper &&
+            <span className="whisper-to">{game.i18n.localize("CHAT.To")}: {whisperTo}</span>
           }
 
           {msg.data.flavor &&
@@ -53,7 +61,8 @@ const RollMessage: React.FC<RollMessageProps> = React.memo(({
 
 export class InvestigatorChatMessage extends ChatMessage {
   async getHTML () {
-    if (this.isRoll && this.roll) {
+    const x = false;
+    if (this.isRoll && this.roll && x) {
       const div = document.createElement("div");
       ReactDOM.render(<RollMessage roll={this.roll} msg={this}/>, div);
       return jQuery(div);

@@ -4,6 +4,7 @@ import React, { useCallback, useContext, useState } from "react";
 import * as constants from "../../constants";
 import { assertGame, getTranslated, isGeneralAbility } from "../../functions";
 import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorRoll } from "../../module/InvestigatorRoll";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertAbilityDataSource } from "../../types";
 import { CheckButtons } from "../inputs/CheckButtons";
@@ -36,8 +37,8 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
     const isBoosted = useBoost && ability.getBoost();
     const boost = isBoosted ? 1 : 0;
     const roll = useBoost
-      ? new Roll("1d6 + @spend + @boost", { spend, boost })
-      : new Roll("1d6 + @spend", { spend });
+      ? new InvestigatorRoll("1d6 + @spend + @boost", { spend, boost })
+      : new InvestigatorRoll("1d6 + @spend", { spend });
     // const label = getTranslated("RollingAbilityName", { AbilityName: ability.name ?? "" });
 
     roll.evaluate();

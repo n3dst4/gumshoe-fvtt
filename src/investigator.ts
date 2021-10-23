@@ -19,7 +19,7 @@ import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
 import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
 import { InvestigatorCombat } from "./module/InvestigatorCombat";
 import { installShowThemeFarmHack } from "./module/ThemeFarmClass";
-import { InvestigatorChatMessage } from "./module/InvestigatorChatMessage";
+// import { InvestigatorChatMessage } from "./module/InvestigatorChatMessage";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -37,7 +37,7 @@ Hooks.once("init", async function () {
   CONFIG.Item.documentClass = GumshoeItem;
   CONFIG.Combatant.documentClass = InvestigatorCombatant;
   CONFIG.Combat.documentClass = InvestigatorCombat;
-  CONFIG.ChatMessage.documentClass = InvestigatorChatMessage;
+  // CONFIG.ChatMessage.documentClass = InvestigatorChatMessage;
 
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
