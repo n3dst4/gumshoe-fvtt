@@ -2,10 +2,6 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import { getDefaultThemeName } from "../../settingsHelpers";
-import { themes } from "../../themes/themes";
-import { CSSReset, CSSResetMode } from "../CSSReset";
-// import { assertGame } from "../../functions";
 
 interface RollMessageProps {
   msg: ChatMessage;
@@ -14,19 +10,15 @@ interface RollMessageProps {
 const RollMessage: React.FC<RollMessageProps> = React.memo(({
   msg,
 }) => {
-  // assertGame(game);
   const renderCountRef = useRef(0);
   const [x, setX] = useState(0);
   const incX = useCallback(() => {
     setX((x) => x + 1);
   }, []);
-  const theme = themes[getDefaultThemeName()];
 
   renderCountRef.current++;
   return (
-    <CSSReset
-      theme={theme}
-      mode={CSSResetMode.small}
+    <div
       css={{
         position: "relative",
       }}
@@ -40,7 +32,7 @@ const RollMessage: React.FC<RollMessageProps> = React.memo(({
       <div>
         Render count: {renderCountRef.current}
       </div>
-    </CSSReset>
+    </div>
   );
 });
 
