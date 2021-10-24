@@ -2,8 +2,9 @@
 import { jsx } from "@emotion/react";
 import React from "react";
 import ReactDOM from "react-dom";
-import { assertGame } from "../../functions";
+import { assertGame, isGeneralAbility } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { Translate } from "../Translate";
 
 interface AbilityTestCardProps {
   msg: ChatMessage;
@@ -12,28 +13,60 @@ interface AbilityTestCardProps {
 
 const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
   msg,
+  ability,
 }) => {
+  const isGeneral = isGeneralAbility(ability);
+
   return (
     <div
       css={{
         position: "relative",
+        display: "grid",
+        gridTemplateColumns: "max-content 1fr",
+        gridTemplateRows: "auto auto",
+        gridTemplateAreas:
+          "\"image headline\" " +
+          "\"body  body\" ",
       }}
     >
-      <div>
-        {/* {msg.data.} */}
-      </div>
+      {/* IMAGE */}
       <div
         css={{
-
+          height: "3em",
+          width: "3em",
+          gridArea: "image",
+          backgroundImage: `url(${ability.data.img})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          transform: "scale(0.9) rotate(-5deg)",
+        }}
+      />
+      {/* HEADLINE */}
+      <div
+        css={{
+          gridArea: "headline",
         }}
       >
-        {msg.roll?.formula}
+        <div>
+          <small>
+            <Translate>
+              {isGeneral ? "General ability" : "Investigative ability"}
+            </Translate>
+          </small>
+        </div>
+        <div>
+          {ability.data.name}
+        </div>
       </div>
-      <div>
-        {msg.roll?.result}
-      </div>
-      <div>
+      {/* RESULT */}
+      <div
+        css={{
+          gridArea: "body",
+        }}
+      >
+        {msg.roll?.formula} =
         {msg.roll?.total}
+        {/* {msg.roll?.result} */}
       </div>
     </div>
   );

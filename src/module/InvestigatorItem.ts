@@ -39,7 +39,7 @@ export class InvestigatorItem extends Item {
 
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor,
+      // flavor,
       content: `<div class="investigator-ability-test" data-item-id="${this.data._id}" data-actor-id="${this.parent?.data._id}"/>`,
     });
 
