@@ -40,10 +40,12 @@ export class InvestigatorItem extends Item {
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       flavor,
-      content: '<div class="investigator-ability-test"/>',
-      messageData: {
-        ability: this,
-      },
+      content: `<div class="investigator-ability-test" data-item-id="${this.data._id}" data-actor-id="${this.parent?.data._id}"/>`,
+    });
+
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      flavor,
     });
 
     this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });

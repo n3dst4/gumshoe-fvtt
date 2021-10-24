@@ -1,22 +1,18 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback, useRef, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
+import { assertGame } from "../../functions";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 
 interface AbilityTestCardProps {
   msg: ChatMessage;
+  ability: InvestigatorItem;
 }
 
 const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
   msg,
 }) => {
-  const renderCountRef = useRef(0);
-  const [x, setX] = useState(0);
-  const incX = useCallback(() => {
-    setX((x) => x + 1);
-  }, []);
-
-  renderCountRef.current++;
   return (
     <div
       css={{
@@ -24,13 +20,20 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
       }}
     >
       <div>
-        Result for {msg.getRollData}: {msg.roll?.result}
+        {/* {msg.data.} */}
+      </div>
+      <div
+        css={{
+
+        }}
+      >
+        {msg.roll?.formula}
       </div>
       <div>
-        Counter: {x}; <a onClick={incX}>Inc++</a>
+        {msg.roll?.result}
       </div>
       <div>
-        Render count: {renderCountRef.current}
+        {msg.roll?.total}
       </div>
     </div>
   );
@@ -38,10 +41,29 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
 
 export const installAbilityTestCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {
+    assertGame(game);
     const el = html.find(".investigator-ability-test").get(0);
-    logger.log("chatMessage: ", chatMessage);
-    if (el) {
-      ReactDOM.render(<AbilityTestCard msg={chatMessage} />, el);
+    // this seems clunky but I can't see a way to pass arbitrary data through
+    // rolls or chat messages. at least this way to filth is confined to this
+    // handler - we grab the actor and ability here and pass them on to the
+    // component, which can just think in terms of the data.
+    const abilityId = el.getAttribute("data-item-id");
+    const actorId = el.getAttribute("data-actor-id");
+    if (abilityId === null) {
+      logger.error("Ability test chat message found with no 'data-item-id' attribute.");
+      return;
+    }
+    if (actorId === null) {
+      logger.error("Ability test chat message found with no 'data-actor-id' attribute.");
+      return;
+    }
+    const actor = game.actors?.get(actorId);
+    const ability = actor?.items.get(abilityId);
+    if (el && abilityId && ability) {
+      ReactDOM.render(
+        <AbilityTestCard msg={chatMessage} ability={ability} />,
+        el,
+      );
     }
   });
 };
