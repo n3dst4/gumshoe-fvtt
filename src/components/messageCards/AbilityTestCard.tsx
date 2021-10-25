@@ -1,10 +1,13 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React from "react";
+import React, { useCallback } from "react";
 import ReactDOM from "react-dom";
-import { assertGame, isGeneralAbility } from "../../functions";
+import {
+  assertGame,
+  // isGeneralAbility,
+} from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { Translate } from "../Translate";
+// import { Translate } from "../Translate";
 
 interface AbilityTestCardProps {
   msg: ChatMessage;
@@ -15,10 +18,14 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
   msg,
   ability,
 }) => {
-  const isGeneral = isGeneralAbility(ability);
+  // const isGeneral = isGeneralAbility(ability);
+  const onClick = useCallback(() => {
+    ability.sheet?.render(true);
+  }, [ability.sheet]);
 
   return (
     <div
+      className="dice-roll"
       css={{
         position: "relative",
         display: "grid",
@@ -26,48 +33,51 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
         gridTemplateRows: "auto auto",
         gridTemplateAreas:
           "\"image headline\" " +
-          "\"body  body\" ",
+          "\"image body\" ",
+        alignItems: "center",
       }}
     >
       {/* IMAGE */}
       <div
         css={{
-          height: "3em",
-          width: "3em",
+          height: "4em",
+          width: "4em",
           gridArea: "image",
           backgroundImage: `url(${ability.data.img})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           transform: "scale(0.9) rotate(-5deg)",
+          boxShadow: "0 0 0.5em black",
+          marginRight: "1em",
         }}
       />
       {/* HEADLINE */}
       <div
         css={{
           gridArea: "headline",
+          // lineHeight: "3em",
+          // verticalAlign: "middle",
         }}
       >
-        <div>
-          <small>
-            <Translate>
-              {isGeneral ? "General ability" : "Investigative ability"}
-            </Translate>
-          </small>
-        </div>
-        <div>
-          {ability.data.name}
-        </div>
+          <b><a onClick={onClick}>{ability.data.name}</a></b>
+          {/* {" "}
+          ({msg.roll?.formula}) */}
       </div>
       {/* RESULT */}
-      <div
+      <h4
+        className="dice-total"
         css={{
           gridArea: "body",
+          "&&": {
+            marginTop: "0.5em",
+          },
+          // textAlign: "center",
+          // verticalAlign: "middle",
+          // fontSize: "3em",
         }}
       >
-        {msg.roll?.formula} =
         {msg.roll?.total}
-        {/* {msg.roll?.result} */}
-      </div>
+      </h4>
     </div>
   );
 });

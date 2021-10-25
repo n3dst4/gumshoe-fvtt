@@ -33,7 +33,7 @@ export class InvestigatorItem extends Item {
     const roll = useBoost
       ? new Roll("1d6 + @spend + @boost", { spend, boost })
       : new Roll("1d6 + @spend", { spend });
-    const flavor = getTranslated("RollingAbilityName", { AbilityName: this.name ?? "" });
+    // const flavor = getTranslated("RollingAbilityName", { AbilityName: this.name ?? "" });
 
     roll.evaluate();
 
@@ -43,10 +43,10 @@ export class InvestigatorItem extends Item {
       content: `<div class="investigator-ability-test" data-item-id="${this.data._id}" data-actor-id="${this.parent?.data._id}"/>`,
     });
 
-    roll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor,
-    });
+    // roll.toMessage({
+    //   speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+    //   flavor,
+    // });
 
     this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
   }
