@@ -1,27 +1,85 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-import React, { useCallback } from "react";
+import {
+  jsx,
+  // css,
+  // keyframes,
+} from "@emotion/react";
+import { css } from "@emotion/css";
+import React, { useCallback, useState } from "react";
 import ReactDOM from "react-dom";
 import {
   assertGame,
-  // isGeneralAbility,
 } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-// import { Translate } from "../Translate";
+import { CSSTransition } from "react-transition-group";
+import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 
 interface AbilityTestCardProps {
   msg: ChatMessage;
   ability: InvestigatorItem;
 }
 
+// const bounce = keyframes`
+//   from, 20%, 53%, 80%, to {
+//     transform: translate3d(0,0,0);
+//   }
+
+//   40%, 43% {
+//     transform: translate3d(0, -30px, 0);
+//   }
+
+//   70% {
+//     transform: translate3d(0, -15px, 0);
+//   }
+
+//   90% {
+//     transform: translate3d(0,-4px,0);
+//   }
+// `;
+
+const maxHeight = 30;
+const duration = 300;
+const maxHeightTransition = `max-height ${duration}ms`;
+
+const termsClasses: CSSTransitionClassNames = {
+  enter: css({
+    maxHeight: 0,
+  }),
+  enterActive: css({
+    maxHeight,
+    transition: maxHeightTransition,
+  }),
+  enterDone: css({
+    maxHeight,
+    // transition: "height 300ms",
+  }),
+  exit: css({
+    maxHeight,
+  }),
+  exitActive: css({
+    maxHeight: "0px",
+    transition: maxHeightTransition,
+  }),
+  exitDone: css({
+    maxHeight: "0px",
+    // transition: "height 300ms",
+  }),
+};
+
 const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
   msg,
   ability,
 }) => {
   // const isGeneral = isGeneralAbility(ability);
-  const onClick = useCallback(() => {
+  const onClickAbilityName = useCallback(() => {
     ability.sheet?.render(true);
   }, [ability.sheet]);
+
+  const [showTerms, setShowTerms] = useState(false);
+
+  const onClickResult = useCallback(() => {
+    setShowTerms(s => !s);
+  }, []);
 
   return (
     <div
@@ -30,9 +88,10 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
         position: "relative",
         display: "grid",
         gridTemplateColumns: "max-content 1fr",
-        gridTemplateRows: "auto auto",
+        gridTemplateRows: "auto auto auto",
         gridTemplateAreas:
           "\"image headline\" " +
+          "\"image terms\" " +
           "\"image body\" ",
         alignItems: "center",
       }}
@@ -49,22 +108,58 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
           transform: "scale(0.9) rotate(-5deg)",
           boxShadow: "0 0 0.5em black",
           marginRight: "1em",
+          alignSelf: "start",
         }}
       />
       {/* HEADLINE */}
       <div
         css={{
           gridArea: "headline",
-          // lineHeight: "3em",
-          // verticalAlign: "middle",
         }}
       >
-          <b><a onClick={onClick}>{ability.data.name}</a></b>
-          {/* {" "}
-          ({msg.roll?.formula}) */}
+        <b><a onClick={onClickAbilityName}>{ability.data.name}</a></b>
       </div>
+      {/* TERMS */}
+      <CSSTransition
+        in={showTerms}
+        timeout={duration}
+        classNames={{
+          ...termsClasses,
+          // appear: "my-appear",
+          // appearActive: "my-active-appear",
+          // appearDone: "my-done-appear",
+          // enter: "my-enter",
+          // enterActive: "my-active-enter",
+          // enterDone: "my-done-enter",
+          // exit: "my-exit",
+          // exitActive: "my-active-exit",
+          // exitDone: "my-done-exit",
+        }}
+        unmountOnExit
+        // onEnter={() => setShowButton(false)}
+        // onExited={() => setShowButton(true)}
+      >
+        <div
+          css={{
+            gridArea: "terms",
+            overflow: "hidden",
+          }}
+        >
+          terms
+        </div>
+      </CSSTransition>
+      {/* {showTerms &&
+        <div
+          css={{
+            gridArea: "terms",
+          }}
+        >
+          terms
+        </div>
+      } */}
       {/* RESULT */}
-      <h4
+      <a
+        onClick={onClickResult}
         className="dice-total"
         css={{
           gridArea: "body",
@@ -77,7 +172,7 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
         }}
       >
         {msg.roll?.total}
-      </h4>
+      </a>
     </div>
   );
 });
