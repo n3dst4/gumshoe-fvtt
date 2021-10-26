@@ -20,24 +20,6 @@ interface AbilityTestCardProps {
   ability: InvestigatorItem;
 }
 
-// const bounce = keyframes`
-//   from, 20%, 53%, 80%, to {
-//     transform: translate3d(0,0,0);
-//   }
-
-//   40%, 43% {
-//     transform: translate3d(0, -30px, 0);
-//   }
-
-//   70% {
-//     transform: translate3d(0, -15px, 0);
-//   }
-
-//   90% {
-//     transform: translate3d(0,-4px,0);
-//   }
-// `;
-
 const maxHeight = "3em";
 const duration = 200;
 const maxHeightTransition = `max-height ${duration}ms ease-out`;
@@ -53,7 +35,6 @@ const termsClasses: CSSTransitionClassNames = {
   enterDone: css({
     maxHeight: "none",
     overflow: "visible",
-    // transition: "height 300ms",
   }),
   exit: css({
     maxHeight,
@@ -64,7 +45,6 @@ const termsClasses: CSSTransitionClassNames = {
   }),
   exitDone: css({
     maxHeight: 0,
-    // transition: "height 300ms",
   }),
 };
 
@@ -82,8 +62,6 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
   const onClickResult = useCallback(() => {
     setShowTerms(s => !s);
   }, []);
-
-  // msg.roll?.terms;
 
   return (
     <div
