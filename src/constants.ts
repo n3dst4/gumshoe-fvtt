@@ -45,17 +45,27 @@ export const equipmentIcon = `/systems/${systemName}/assets/icons/shopping-bag.w
 // packs
 
 export const packNames = {
-  niceBlackAgentsAbilities: "niceBlackAgentsAbilities",
-  nothingToFearAbilities: "nothingToFearAbilities",
-  pallidStarsAbilities: "pallidStarsAbilities",
-  pathOfCthulhuAbilities: "pathOfCthulhuAbilities",
-  srdAbilities: "srdAbilities",
-  castingTheRunesAbilities: "castingTheRunesAbilities",
+  niceBlackAgentsAbilities: "niceBlackAgentsAbilities" as const,
+  nothingToFearAbilities: "nothingToFearAbilities" as const,
+  pallidStarsAbilities: "pallidStarsAbilities" as const,
+  pathOfCthulhuAbilities: "pathOfCthulhuAbilities" as const,
+  srdAbilities: "srdAbilities" as const,
+  castingTheRunesAbilities: "castingTheRunesAbilities" as const,
 };
 
-export const npcPackName = "opponentAbilities";
+export const npcPackName = "opponentAbilities" as const;
 
 // hooks
 
-export const newPCPacksUpdated = `${systemName}:newPCPacksUpdated`;
-export const newNPCPacksUpdated = `${systemName}:newNPCPacksUpdated`;
+export const newPCPacksUpdated = `${systemName}:newPCPacksUpdated` as const;
+export const newNPCPacksUpdated = `${systemName}:newNPCPacksUpdated` as const;
+
+// css classes
+
+export const abilityChatMessageClassName = "investigator-ability-test" as const;
+export const htmlDataItemId = "data-item-id" as const;
+export const htmlDataActorId = "data-actor-id" as const;
+export const htmlDataMode = "data-mode" as const;
+export const htmlDataModeTest = "test" as const;
+export const htmlDataModeSpend = "spend" as const;
+export const htmlDataModeCombat = "combat" as const;

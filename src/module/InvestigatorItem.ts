@@ -1,4 +1,4 @@
-import { assertGame, fixLength, getTranslated, isAbility } from "../functions";
+import { assertGame, fixLength, isAbility } from "../functions";
 import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
 import { InvestigatorActor } from "./InvestigatorActor";
@@ -36,7 +36,14 @@ export class InvestigatorItem extends Item {
     roll.evaluate();
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content: `<div class="investigator-ability-test" data-item-id="${this.data._id}" data-actor-id="${this.parent?.data._id}"/>`,
+      content: `
+        <div 
+          class="${constants.abilityChatMessageClassName}"
+          ${constants.htmlDataItemId}="${this.data._id}"
+          ${constants.htmlDataActorId}="${this.parent?.data._id}"
+          ${constants.htmlDataMode}="${constants.htmlDataModeTest}"
+        />
+      `,
     });
     this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
   }
@@ -45,14 +52,17 @@ export class InvestigatorItem extends Item {
     assertAbilityDataSource(this.data);
     if (this.actor === null) { return; }
     const roll = new Roll("@spend", { spend });
-    const flavor = getTranslated("AbilityPoolSpendForAbilityName", { AbilityName: this.name ?? "" });
-    roll.roll().toMessage({
+    roll.evaluate();
+    roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor,
-      content: '<div class="investigator-ability-spend"/>',
-      messageData: {
-        ability: this,
-      },
+      content: `
+        <div
+          class="${constants.abilityChatMessageClassName}"
+          ${constants.htmlDataItemId}="${this.data._id}"
+          ${constants.htmlDataActorId}="${this.parent?.data._id}"
+          ${constants.htmlDataMode}="${constants.htmlDataModeSpend}"
+        />
+      `,
     });
     this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
   }
