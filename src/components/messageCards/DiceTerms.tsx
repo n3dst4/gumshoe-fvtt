@@ -14,7 +14,7 @@ export const DiceTerms: React.FC<DiceTermsProps> = ({
 }: DiceTermsProps) => {
   logger.log("terms: ", terms);
   return (
-    <div
+    <span
       className={className}
     >
       {terms.map<ReactNode>((term, i) => {
@@ -53,6 +53,6 @@ export const DiceTerms: React.FC<DiceTermsProps> = ({
         }
       })
       }
-    </div>
+    </span>
   );
 };

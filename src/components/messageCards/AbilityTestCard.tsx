@@ -1,21 +1,15 @@
 /** @jsx jsx */
 import {
   jsx,
-  // css,
-  // keyframes,
 } from "@emotion/react";
 import { css } from "@emotion/css";
-import React, { useCallback, useState } from "react";
-import ReactDOM from "react-dom";
-import {
-  assertGame,
-} from "../../functions";
+import React, { Fragment, useCallback, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { CSSTransition } from "react-transition-group";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { DiceTerms } from "./DiceTerms";
-import * as constants from "../../constants";
-import { AbilityCardMode, isAbilityCardMode } from "./types";
+import { AbilityCardMode } from "./types";
+import { Translate } from "../Translate";
 
 interface AbilityTestCardProps {
   msg: ChatMessage;
@@ -36,9 +30,6 @@ const termsClasses: CSSTransitionClassNames = {
     transition: maxHeightTransition,
     overflow: "hidden",
   }),
-  // enterDone: css({
-  //   // maxHeight: "none",
-  // }),
   exit: css({
     maxHeight,
   }),
@@ -47,14 +38,12 @@ const termsClasses: CSSTransitionClassNames = {
     transition: maxHeightTransition,
     overflow: "hidden",
   }),
-  // exitDone: css({
-  //   maxHeight: 0,
-  // }),
 };
 
-const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
+export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
   msg,
   ability,
+  mode,
 }) => {
   // const isGeneral = isGeneralAbility(ability);
   const onClickAbilityName = useCallback(() => {
@@ -104,6 +93,20 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
         }}
       >
         <b><a onClick={onClickAbilityName}>{ability.data.name}</a></b>
+        {!showTerms && (
+          <span>
+            {" "}
+            {mode === "spend" &&
+              <Translate>PointSpend</Translate>
+            }
+            {mode === "test" &&
+              <Translate>AbilityTest</Translate>
+            }
+            {mode === "combat" &&
+              <Translate>CombatNoun</Translate>
+            }
+          </span>
+        )}
       </div>
       {/* TERMS */}
       <CSSTransition
@@ -120,7 +123,20 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
             // overflow: "hidden",
           }}
         >
-          <DiceTerms terms={msg.roll?.terms} />
+          {mode === "spend" &&
+            <Translate>PointSpend</Translate>
+          }
+          {mode === "test" &&
+            <Fragment>
+              <Translate>AbilityTest</Translate>
+              {": "}
+              <DiceTerms terms={msg.roll?.terms} />
+              {" ="}
+            </Fragment>
+          }
+          {mode === "combat" &&
+            <Translate>CombatNoun</Translate>
+          }
         </div>
       </CSSTransition>
       {/* RESULT */}
@@ -142,46 +158,3 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
     </div>
   );
 });
-
-export const installAbilityCardChatWrangler = () => {
-  Hooks.on("renderChatMessage", (chatMessage, html, options) => {
-    assertGame(game);
-    const el = html.find(`.${constants.abilityChatMessageClassName}`).get(0);
-    // this seems clunky but I can't see a way to pass arbitrary data through
-    // rolls or chat messages. at least this way to filth is confined to this
-    // handler - we grab the actor and ability here and pass them on to the
-    // component, which can just think in terms of the data.
-    const abilityId = el.getAttribute(constants.htmlDataItemId);
-    const actorId = el.getAttribute(constants.htmlDataActorId);
-    const mode = el.getAttribute(constants.htmlDataMode);
-    if (abilityId === null) {
-      logger.error(
-        `Ability test chat message found with no '${constants.htmlDataItemId}' attribute.`,
-        el,
-      );
-      return;
-    }
-    if (actorId === null) {
-      logger.error(
-        `Ability test chat message found with no '${constants.htmlDataActorId}' attribute.`,
-        el,
-      );
-      return;
-    }
-    if (mode === null || !isAbilityCardMode(mode)) {
-      logger.error(
-        `Ability test chat message found withou a valid '${constants.htmlDataMode}' attribute. (Valid values are "test", "spend", "combat"`,
-        el,
-      );
-      return;
-    }
-    const actor = game.actors?.get(actorId);
-    const ability = actor?.items.get(abilityId);
-    if (el && abilityId && ability) {
-      ReactDOM.render(
-        <AbilityTestCard msg={chatMessage} ability={ability} mode={mode} />,
-        el,
-      );
-    }
-  });
-};

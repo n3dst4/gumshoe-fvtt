@@ -19,7 +19,7 @@ import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
 import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
 import { InvestigatorCombat } from "./module/InvestigatorCombat";
 import { installShowThemeFarmHack } from "./module/ThemeFarmClass";
-import { installAbilityCardChatWrangler } from "./components/messageCards/AbilityTestCard";
+import { installAbilityCardChatWrangler } from "./components/messageCards/installAbilityCardChatWrangler";
 // import { InvestigatorChatMessage } from "./module/InvestigatorChatMessage";
 
 // Initialize system
