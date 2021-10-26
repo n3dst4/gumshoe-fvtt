@@ -58,7 +58,7 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
     ability.sheet?.render(true);
   }, [ability.sheet]);
 
-  const [showTerms, setShowTerms] = useState(false);
+  const [showTerms, setShowTerms] = useState(true);
 
   const onClickResult = useCallback(() => {
     setShowTerms(s => !s);
