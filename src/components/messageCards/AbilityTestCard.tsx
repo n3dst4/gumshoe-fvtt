@@ -13,6 +13,7 @@ import {
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { CSSTransition } from "react-transition-group";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
+import { DiceTerms } from "./DiceTerms";
 
 interface AbilityTestCardProps {
   msg: ChatMessage;
@@ -37,7 +38,7 @@ interface AbilityTestCardProps {
 //   }
 // `;
 
-const maxHeight = "1em";
+const maxHeight = "3em";
 const duration = 200;
 const maxHeightTransition = `max-height ${duration}ms ease-out`;
 
@@ -50,7 +51,8 @@ const termsClasses: CSSTransitionClassNames = {
     transition: maxHeightTransition,
   }),
   enterDone: css({
-    maxHeight,
+    maxHeight: "none",
+    overflow: "visible",
     // transition: "height 300ms",
   }),
   exit: css({
@@ -80,6 +82,8 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
   const onClickResult = useCallback(() => {
     setShowTerms(s => !s);
   }, []);
+
+  // msg.roll?.terms;
 
   return (
     <div
@@ -125,19 +129,8 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
         timeout={duration}
         classNames={{
           ...termsClasses,
-          // appear: "my-appear",
-          // appearActive: "my-active-appear",
-          // appearDone: "my-done-appear",
-          // enter: "my-enter",
-          // enterActive: "my-active-enter",
-          // enterDone: "my-done-enter",
-          // exit: "my-exit",
-          // exitActive: "my-active-exit",
-          // exitDone: "my-done-exit",
         }}
         unmountOnExit
-        // onEnter={() => setShowButton(false)}
-        // onExited={() => setShowButton(true)}
       >
         <div
           css={{
@@ -145,18 +138,9 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
             overflow: "hidden",
           }}
         >
-          terms
+          <DiceTerms terms={msg.roll?.terms} />
         </div>
       </CSSTransition>
-      {/* {showTerms &&
-        <div
-          css={{
-            gridArea: "terms",
-          }}
-        >
-          terms
-        </div>
-      } */}
       {/* RESULT */}
       <a
         onClick={onClickResult}
