@@ -30,7 +30,7 @@ export class InvestigatorItem extends Item {
     const useBoost = game.settings.get(constants.systemName, constants.useBoost);
     const isBoosted = useBoost && this.getBoost();
     const boost = isBoosted ? 1 : 0;
-    const roll = useBoost
+    const roll = isBoosted
       ? new Roll("1d6 + @spend + @boost", { spend, boost })
       : new Roll("1d6 + @spend", { spend });
     roll.evaluate();
