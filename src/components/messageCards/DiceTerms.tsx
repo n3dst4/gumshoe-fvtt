@@ -46,7 +46,7 @@ export const DiceTerms: React.FC<DiceTermsProps> = ({
           return results;
         } else if ((term as OperatorTerm).operator) {
           return <span key={i}>{(term as OperatorTerm).operator}</span>;
-        } else if ((term as NumericTerm).number) {
+        } else if ((term as NumericTerm).number !== undefined) {
           return <span key={i}>{(term as NumericTerm).number}</span>;
         } else {
           return null;
