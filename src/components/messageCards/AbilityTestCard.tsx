@@ -31,21 +31,22 @@ const termsClasses: CSSTransitionClassNames = {
   enterActive: css({
     maxHeight,
     transition: maxHeightTransition,
+    overflow: "hidden",
   }),
-  enterDone: css({
-    maxHeight: "none",
-    overflow: "visible",
-  }),
+  // enterDone: css({
+  //   // maxHeight: "none",
+  // }),
   exit: css({
     maxHeight,
   }),
   exitActive: css({
     maxHeight: 0,
     transition: maxHeightTransition,
+    overflow: "hidden",
   }),
-  exitDone: css({
-    maxHeight: 0,
-  }),
+  // exitDone: css({
+  //   maxHeight: 0,
+  // }),
 };
 
 const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
@@ -113,7 +114,7 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
         <div
           css={{
             gridArea: "terms",
-            overflow: "hidden",
+            // overflow: "hidden",
           }}
         >
           <DiceTerms terms={msg.roll?.terms} />
