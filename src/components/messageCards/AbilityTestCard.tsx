@@ -37,9 +37,9 @@ interface AbilityTestCardProps {
 //   }
 // `;
 
-const maxHeight = 30;
-const duration = 300;
-const maxHeightTransition = `max-height ${duration}ms`;
+const maxHeight = "1em";
+const duration = 200;
+const maxHeightTransition = `max-height ${duration}ms ease-out`;
 
 const termsClasses: CSSTransitionClassNames = {
   enter: css({
@@ -57,11 +57,11 @@ const termsClasses: CSSTransitionClassNames = {
     maxHeight,
   }),
   exitActive: css({
-    maxHeight: "0px",
+    maxHeight: 0,
     transition: maxHeightTransition,
   }),
   exitDone: css({
-    maxHeight: "0px",
+    maxHeight: 0,
     // transition: "height 300ms",
   }),
 };
@@ -88,7 +88,7 @@ const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
         position: "relative",
         display: "grid",
         gridTemplateColumns: "max-content 1fr",
-        gridTemplateRows: "auto auto auto",
+        gridTemplateRows: "max-content minmax(0, max-content) max-content",
         gridTemplateAreas:
           "\"image headline\" " +
           "\"image terms\" " +
