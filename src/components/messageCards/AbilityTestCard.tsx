@@ -14,6 +14,8 @@ import { Translate } from "../Translate";
 interface AbilityTestCardProps {
   msg: ChatMessage;
   ability: InvestigatorItem;
+  weapon: InvestigatorItem|undefined;
+  rangeName: string|undefined;
   mode: AbilityCardMode;
 }
 
@@ -44,6 +46,8 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
   msg,
   ability,
   mode,
+  rangeName,
+  weapon,
 }) => {
   // const isGeneral = isGeneralAbility(ability);
   const onClickAbilityName = useCallback(() => {

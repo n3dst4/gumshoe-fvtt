@@ -69,3 +69,5 @@ export const htmlDataMode = "data-mode" as const;
 export const htmlDataModeTest = "test" as const;
 export const htmlDataModeSpend = "spend" as const;
 export const htmlDataModeCombat = "combat" as const;
+export const htmlDataRange = "data-range" as const;
+export const htmlDataWeaponId = "data-range" as const;

@@ -13,7 +13,10 @@ import { AbilityTestCard } from "./AbilityTestCard";
 export const installAbilityCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {
     assertGame(game);
-    const el = html.find(`.${constants.abilityChatMessageClassName}`).get(0);
+    const el: HTMLElement|undefined = html.find(`.${constants.abilityChatMessageClassName}`).get(0);
+    if (el === undefined) {
+      return;
+    }
     // this seems clunky but I can't see a way to pass arbitrary data through
     // rolls or chat messages. at least this way to filth is confined to this
     // handler - we grab the actor and ability here and pass them on to the
@@ -21,6 +24,8 @@ export const installAbilityCardChatWrangler = () => {
     const abilityId = el.getAttribute(constants.htmlDataItemId);
     const actorId = el.getAttribute(constants.htmlDataActorId);
     const mode = el.getAttribute(constants.htmlDataMode);
+    const weaponId = el.getAttribute(constants.htmlDataWeaponId);
+    const rangeName = el.getAttribute(constants.htmlDataRange);
     if (abilityId === null) {
       logger.error(
         `Ability test chat message found with no '${constants.htmlDataItemId}' attribute.`,
@@ -44,9 +49,16 @@ export const installAbilityCardChatWrangler = () => {
     }
     const actor = game.actors?.get(actorId);
     const ability = actor?.items.get(abilityId);
+    const weapon = weaponId ? actor?.items.get(weaponId) : undefined;
     if (el && abilityId && ability) {
       ReactDOM.render(
-        <AbilityTestCard msg={chatMessage} ability={ability} mode={mode} />,
+        <AbilityTestCard
+          msg={chatMessage}
+          ability={ability}
+          mode={mode}
+          weapon={weapon}
+          rangeName={rangeName ?? undefined}
+        />,
         el,
       );
     }

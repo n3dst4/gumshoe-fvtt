@@ -101,7 +101,6 @@ Hooks.once("setup", function () {
 Hooks.on("ready", async () => {
   assertGame(game);
   if (!game.user?.isGM) { return; }
-
   const currentVersion = getSystemMigrationVersion();
   // newest version that needs a migration (make this the current version when
   // you introduce a new migration)
@@ -120,9 +119,17 @@ Hooks.on("ready", async () => {
     const warning = `Your ${system.title} system data is from too old a version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
     (ui as any /* oh fuck off */).notifications.error(warning, { permanent: true });
   }
-
   // Perform the migration
   migrateWorld();
+});
+
+Hooks.on("ready", async () => {
+  assertGame(game);
+  // turn off simultaneous rolls for DSN
+  // simone's version from the docs:
+  game.settings.set("dice-so-nice", "enabledSimultaneousRollForMessage", false);
+  // the one that actually exists:
+  game.settings.set("dice-so-nice", "enabledSimultaneousRolls", false);
 });
 
 Hooks.on(
