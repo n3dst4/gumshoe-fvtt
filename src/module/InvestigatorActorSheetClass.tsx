@@ -1,6 +1,6 @@
 // import ReactDOM from "react-dom";
 import React from "react";
-import { GumshoeNPCSheet } from "../components/characters/GumshoeNPCSheet";
+import { GumshoeActorSheet } from "../components/characters/GumshoeActorSheet";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
@@ -8,28 +8,28 @@ import { ReactApplicationMixin } from "./ReactApplicationMixin";
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-class GumshoeNPCSheetClassBase extends ActorSheet {
+class InvestigatorActorSheetClassBase extends ActorSheet {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "actor"],
       template: reactTemplatePath,
-      width: 660,
-      height: 600,
+      width: 777,
+      height: 900,
     });
   }
 }
 
-const render = (sheet: GumshoeNPCSheetClassBase) => {
+const render = (sheet: InvestigatorActorSheetClassBase) => {
   return (
-    <GumshoeNPCSheet
+    <GumshoeActorSheet
       actor={sheet.document}
       foundryApplication={sheet}
     />
   );
 };
 
-export const GumshoeNPCSheetClass = ReactApplicationMixin(
-  GumshoeNPCSheetClassBase,
+export const InvestigatorActorSheetClass = ReactApplicationMixin(
+  InvestigatorActorSheetClassBase,
   render,
 );

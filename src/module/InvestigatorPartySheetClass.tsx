@@ -1,6 +1,6 @@
 // import ReactDOM from "react-dom";
 import React from "react";
-import { GumshoeActorSheet } from "../components/characters/GumshoeActorSheet";
+import { GumshoePartySheet } from "../components/party/GumshoePartySheet";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
@@ -8,28 +8,28 @@ import { ReactApplicationMixin } from "./ReactApplicationMixin";
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-class GumshoeActorSheetClassBase extends ActorSheet {
+class InvestigatorPartySheetClassBase extends ActorSheet {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "actor"],
       template: reactTemplatePath,
-      width: 777,
+      width: 660,
       height: 900,
     });
   }
 }
 
-const render = (sheet: GumshoeActorSheetClassBase) => {
+const render = (sheet: InvestigatorPartySheetClassBase) => {
   return (
-    <GumshoeActorSheet
-      actor={sheet.document}
+    <GumshoePartySheet
+      party={sheet.document}
       foundryApplication={sheet}
     />
   );
 };
 
-export const GumshoeActorSheetClass = ReactApplicationMixin(
-  GumshoeActorSheetClassBase,
+export const InvestigatorPartySheetClass = ReactApplicationMixin(
+  InvestigatorPartySheetClassBase,
   render,
 );

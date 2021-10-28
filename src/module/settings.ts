@@ -22,7 +22,7 @@ import { assertGame, mapValues } from "../functions";
 import { pathOfCthulhuPreset } from "../systemPresets";
 import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
-import { GumshoeSettingsClass } from "./GumshoeSettingsClass";
+import { InvestigatorSettingsClass } from "./InvestigatorSettingsClass";
 
 // any of these could have an `onChange` added if we wanted to
 
@@ -154,7 +154,7 @@ export const registerSettings = function () {
     label: "Open GUMSHOE System Settings", // The text label used in the button
     // hint: "A description of what will occur in the submenu dialog.",
     icon: "fas fa-search", // A Font Awesome icon used in the submenu button
-    type: GumshoeSettingsClass, // A FormApplication subclass which should be created
+    type: InvestigatorSettingsClass, // A FormApplication subclass which should be created
     restricted: true, // Restrict this submenu to gamemaster only?
   });
 };

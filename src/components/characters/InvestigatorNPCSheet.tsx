@@ -18,15 +18,15 @@ import { Translate } from "../Translate";
 import { assertNPCDataSource } from "../../types";
 import { ImagePickle } from "../ImagePickle";
 
-type GumshoeNPCSheetProps = {
+type InvestigatorNPCSheetProps = {
   actor: InvestigatorActor,
   foundryApplication: ActorSheet,
 }
 
-export const GumshoeNPCSheet = ({
+export const InvestigatorNPCSheet = ({
   actor,
   foundryApplication,
-}: GumshoeNPCSheetProps) => {
+}: InvestigatorNPCSheetProps) => {
   assertNPCDataSource(actor.data);
   const updateName = useUpdate(actor, name => ({ name }));
 

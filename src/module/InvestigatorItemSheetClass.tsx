@@ -8,7 +8,7 @@ import { ReactApplicationMixin } from "./ReactApplicationMixin";
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-class GumshoeItemSheetClassBase extends ItemSheet {
+class InvestigatorItemSheetClassBase extends ItemSheet {
   /** @override */
   static get defaultOptions () {
     return {
@@ -22,7 +22,7 @@ class GumshoeItemSheetClassBase extends ItemSheet {
   }
 }
 
-const render = (sheet: GumshoeItemSheetClassBase) => {
+const render = (sheet: InvestigatorItemSheetClassBase) => {
   return (
     <GumshoeItemSheet
       item={sheet.document}
@@ -31,7 +31,7 @@ const render = (sheet: GumshoeItemSheetClassBase) => {
   );
 };
 
-export const GumshoeItemSheetClass = ReactApplicationMixin(
-  GumshoeItemSheetClassBase,
+export const InvestigatorItemSheetClass = ReactApplicationMixin(
+  InvestigatorItemSheetClassBase,
   render,
 );

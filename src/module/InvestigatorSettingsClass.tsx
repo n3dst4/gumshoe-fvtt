@@ -3,7 +3,7 @@ import { GumshoeSettings } from "../components/GumshoeSettings";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 import { reactTemplatePath, systemName } from "../constants";
 
-class GumshoeSettingsClassBase extends FormApplication {
+class InvestigatorSettingsClassBase extends FormApplication {
   // constructor (object: any, options: any) {
   //   super(object, options);
   //   console.log(object, options);
@@ -27,7 +27,7 @@ class GumshoeSettingsClassBase extends FormApplication {
   }
 }
 
-const render = (sheet: GumshoeSettingsClassBase) => {
+const render = (sheet: InvestigatorSettingsClassBase) => {
   $(sheet.element).find(".header-button.close").hide();
   return (
     <GumshoeSettings
@@ -36,9 +36,9 @@ const render = (sheet: GumshoeSettingsClassBase) => {
   );
 };
 
-export const GumshoeSettingsClass = ReactApplicationMixin(
-  GumshoeSettingsClassBase,
+export const InvestigatorSettingsClass = ReactApplicationMixin(
+  InvestigatorSettingsClassBase,
   render,
 );
 
-export const gumshoeSettingsClassInstance = new GumshoeSettingsClass({}, {});
+export const gumshoeSettingsClassInstance = new InvestigatorSettingsClass({}, {});

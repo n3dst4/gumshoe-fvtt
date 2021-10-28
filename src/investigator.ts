@@ -3,18 +3,18 @@ import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/preloadTemplates";
 import { InvestigatorActor } from "./module/InvestigatorActor";
 import { InvestigatorItem } from "./module/InvestigatorItem";
-import { GumshoeActorSheetClass } from "./module/GumshoeActorSheetClass";
-import { GumshoeItemSheetClass } from "./module/GumshoeItemSheetClass";
+import { InvestigatorActorSheetClass } from "./module/InvestigatorActorSheetClass";
+import { InvestigatorItemSheetClass } from "./module/InvestigatorItemSheetClass";
 import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon } from "./constants";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
 import { isAbilityDataSource, isGeneralAbilityDataSource, isWeaponDataSource, isEquipmentDataSource } from "./types";
 import { assertGame, getFolderDescendants, isNullOrEmptyString } from "./functions";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
-import { gumshoeSettingsClassInstance } from "./module/GumshoeSettingsClass";
+import { gumshoeSettingsClassInstance } from "./module/InvestigatorSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
-import { GumshoePartySheetClass } from "./module/GumshoePartySheetClass";
-import { GumshoeNPCSheetClass } from "./module/GumshoeNPCSheetClass";
+import { InvestigatorPartySheetClass } from "./module/InvestigatorPartySheetClass";
+import { InvestigatorNPCSheetClass } from "./module/InvestigatorNPCSheetClass";
 import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
 import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
 import { InvestigatorCombat } from "./module/InvestigatorCombat";
@@ -44,21 +44,21 @@ Hooks.once("init", async function () {
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(
     systemName,
-    GumshoeActorSheetClass,
+    InvestigatorActorSheetClass,
     {
       makeDefault: true,
       types: [pc],
     });
   Actors.registerSheet(
     systemName,
-    GumshoeNPCSheetClass,
+    InvestigatorNPCSheetClass,
     {
       makeDefault: true,
       types: [npc],
     });
   Actors.registerSheet(
     systemName,
-    GumshoePartySheetClass,
+    InvestigatorPartySheetClass,
     {
       makeDefault: true,
       types: [party],
@@ -66,7 +66,7 @@ Hooks.once("init", async function () {
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(
     systemName,
-    GumshoeItemSheetClass,
+    InvestigatorItemSheetClass,
     {
       makeDefault: true,
       types: [weapon, investigativeAbility, generalAbility, equipment],
