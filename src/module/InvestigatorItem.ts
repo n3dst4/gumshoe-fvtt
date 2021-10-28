@@ -23,7 +23,7 @@ export class InvestigatorItem extends Item {
     // const data = itemData.data;
   }
 
-  testAbility (spend: number) {
+  async testAbility (spend: number) {
     assertGame(game);
     assertAbilityDataSource(this.data);
     if (this.actor === null) { return; }
@@ -33,7 +33,7 @@ export class InvestigatorItem extends Item {
     const roll = isBoosted
       ? new Roll("1d6 + @spend + @boost", { spend, boost })
       : new Roll("1d6 + @spend", { spend });
-    roll.evaluate();
+    await roll.evaluate({ async: true });
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       content: `
@@ -48,11 +48,11 @@ export class InvestigatorItem extends Item {
     this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
   }
 
-  spendAbility (spend: number) {
+  async spendAbility (spend: number) {
     assertAbilityDataSource(this.data);
     if (this.actor === null) { return; }
     const roll = new Roll("@spend", { spend });
-    roll.evaluate();
+    await roll.evaluate({ async: true });
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       content: `
