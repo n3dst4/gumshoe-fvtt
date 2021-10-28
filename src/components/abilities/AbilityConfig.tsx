@@ -7,11 +7,11 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
-import { Checkbox } from "../inputs/Checkbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
+import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 
 type AbilityConfigProps = {
   ability: InvestigatorItem,
@@ -141,7 +141,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
         />
       </GridField>
       <GridField label="Has Specialities?">
-        <Checkbox
+        <AsyncCheckbox
           checked={ability.data.data.hasSpecialities}
           onChange={(t) => {
             updateHasSpecialities(t);
@@ -149,7 +149,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
         />
       </GridField>
       <GridField label="Occupational?">
-        <Checkbox
+        <AsyncCheckbox
           checked={ability.data.data.occupational}
           onChange={(t) => {
             updateOccupational(t);
@@ -158,7 +158,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
       </GridField>
       {isGeneralAbilityDataSource(ability.data) && (
         <GridField label="Can be investigative?">
-          <Checkbox
+          <AsyncCheckbox
             checked={ability.data.data.canBeInvestigative}
             onChange={(t) => {
               updateCanBeInvestigative(t);
@@ -167,7 +167,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
         </GridField>
       )}
       <GridField label="Show tracker?">
-        <Checkbox
+        <AsyncCheckbox
           checked={ability.data.data.showTracker}
           onChange={(t) => {
             updateShowTracker(t);
@@ -175,7 +175,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
         />
       </GridField>
       <GridField label="Exclude from general refresh?">
-        <Checkbox
+        <AsyncCheckbox
           checked={ability.data.data.excludeFromGeneralRefresh}
           onChange={(t) => {
             updateExcludeFromGeneralRefresh(t);
@@ -183,7 +183,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
         />
       </GridField>
       <GridField label="Include in 24h refresh?">
-        <Checkbox
+        <AsyncCheckbox
           checked={ability.data.data.refreshesDaily}
           onChange={(t) => {
             updateRefreshesDaily(t);
@@ -193,7 +193,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
       {
         isGeneralAbilityDataSource(ability.data) &&
           <GridField label="Goes first in combat?">
-            <Checkbox
+            <AsyncCheckbox
               checked={ability.data.data.goesFirstInCombat}
               onChange={(t) => {
                 updateGoesFirstInCombat(t);

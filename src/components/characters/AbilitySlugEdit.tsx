@@ -6,8 +6,8 @@ import { ActorSheetAppContext } from "../FoundryAppContext";
 import { assertAbilityDataSource } from "../../types";
 import { useUpdate } from "../../hooks/useUpdate";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { Checkbox } from "../inputs/Checkbox";
 import { SpecialityList } from "../abilities/SpecialityList";
+import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 
 type AbilitySlugEditProps = {
   ability: InvestigatorItem,
@@ -25,13 +25,19 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability, showO
   const updateRating = useCallback((rating) => { ability.setRatingRefresh(rating); }, [ability]);
   const updateOccupational = useUpdate(ability, (occupational) => ({ data: { occupational } }));
 
+  // const [occupational, setOccupational] = useState(ability.data.data.occupational);
+  // useEffect(() => {
+  //   assertAbilityDataSource(ability.data);
+  //   setOccupational(ability.data.data.occupational);
+  // }, [ability.data, ability.data.data.occupational]);
+
   return (
     <Fragment
       key={ability.id}
     >
       { showOcc && (
         <div css={{ gridColumn: "isocc", justifySelf: "center" }} >
-          <Checkbox
+          <AsyncCheckbox
             checked={ability.data.data.occupational}
             onChange={(t) => {
               updateOccupational(t);

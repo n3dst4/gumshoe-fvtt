@@ -6,7 +6,7 @@ import { ActorSheetAppContext } from "../FoundryAppContext";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextArea } from "../inputs/TextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { Checkbox } from "../inputs/Checkbox";
+import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem,
@@ -90,7 +90,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         )}
       </div>
       <div css={{ gridColumn: 3, display: "flex" }}>
-        <Checkbox
+        <AsyncCheckbox
           checked={weapon.getUsesAmmo()}
           onChange={weapon.setUsesAmmo}
         />

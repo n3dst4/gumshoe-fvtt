@@ -9,11 +9,11 @@ import { TextInput } from "../inputs/TextInput";
 import { TextArea } from "../inputs/TextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { WeaponRange } from "./WeaponRangeConfig";
-import { Checkbox } from "../inputs/Checkbox";
 import { getCombatAbilities } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { assertWeaponDataSource } from "../../types";
+import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 
 type WeaponConfigProps = {
   weapon: InvestigatorItem,
@@ -105,7 +105,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
           <TextArea value={notes.display} onChange={notes.onChange} />
         </GridField>
         <GridField label="Uses ammo?">
-          <Checkbox
+          <AsyncCheckbox
             checked={weapon.getUsesAmmo()}
             onChange={weapon.setUsesAmmo}
           />

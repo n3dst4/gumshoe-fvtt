@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
+import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { Checkbox } from "../inputs/Checkbox";
 import { GridField } from "../inputs/GridField";
 
 type WeaponRangeProps = {
@@ -28,7 +28,7 @@ export const WeaponRange: React.FC<WeaponRangeProps> = ({
           flexDirection: "row",
         }}
       >
-        <Checkbox
+        <AsyncCheckbox
           checked={enabled}
           onChange={setEnabled}
         />

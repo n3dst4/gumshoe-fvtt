@@ -9,11 +9,11 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
 import { getCombatAbilities, getUseBoost } from "../../settingsHelpers";
-import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveCharacterDataSource, ActiveCharacterDataSource } from "../../types";
 import { TextArea } from "../inputs/TextArea";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
+import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 
 type AbilityEditorMainProps = {
   ability: InvestigatorItem,
@@ -117,7 +117,7 @@ export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
       }
       {useBoost &&
         <GridField label="Boost?">
-          <Checkbox checked={ability.getBoost()} onChange={ability.setBoost}/>
+          <AsyncCheckbox checked={ability.getBoost()} onChange={ability.setBoost}/>
         </GridField>
       }
       <GridFieldStacked label="Notes">
