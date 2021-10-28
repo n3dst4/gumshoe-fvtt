@@ -149,9 +149,9 @@ export const registerSettings = function () {
   });
 
   // Define a settings submenu which handles advanced configuration needs
-  game.settings.registerMenu(systemName, "gumshoeSettingsMenu", {
-    name: "GUMSHOE Settings",
-    label: "Open GUMSHOE System Settings", // The text label used in the button
+  game.settings.registerMenu(systemName, "investigatorSettingsMenu", {
+    name: "INVESTIGATOR Settings",
+    label: "Open INVESTIGATOR System Settings", // The text label used in the button
     // hint: "A description of what will occur in the submenu dialog.",
     icon: "fas fa-search", // A Font Awesome icon used in the submenu button
     type: InvestigatorSettingsClass, // A FormApplication subclass which should be created

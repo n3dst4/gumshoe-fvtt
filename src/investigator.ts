@@ -11,7 +11,7 @@ import { migrateWorld } from "./migrations/migrateWorld";
 import { isAbilityDataSource, isGeneralAbilityDataSource, isWeaponDataSource, isEquipmentDataSource } from "./types";
 import { assertGame, getFolderDescendants, isNullOrEmptyString } from "./functions";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
-import { gumshoeSettingsClassInstance } from "./module/InvestigatorSettingsClass";
+import { investigatorSettingsClassInstance } from "./module/InvestigatorSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
 import { InvestigatorPartySheetClass } from "./module/InvestigatorPartySheetClass";
 import { InvestigatorNPCSheetClass } from "./module/InvestigatorNPCSheetClass";
@@ -191,7 +191,7 @@ Hooks.on("renderSettings", (app: Application, html: JQuery) => {
 
   button.on("click", ev => {
     ev.preventDefault();
-    gumshoeSettingsClassInstance.render(true);
+    investigatorSettingsClassInstance.render(true);
   });
 });
 

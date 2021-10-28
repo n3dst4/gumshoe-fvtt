@@ -1,6 +1,6 @@
 export const preloadTemplates = async function () {
   const templatePaths: string[] = [
-    // Add paths to "systems/gumshoe/templates"
+    // Add paths to "systems/investigator/templates"
   ];
 
   // eslint-disable-next-line no-undef

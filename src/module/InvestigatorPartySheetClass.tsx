@@ -1,6 +1,6 @@
 // import ReactDOM from "react-dom";
 import React from "react";
-import { GumshoePartySheet } from "../components/party/GumshoePartySheet";
+import { InvestigatorPartySheet } from "../components/party/InvestigatorPartySheet";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
@@ -22,7 +22,7 @@ class InvestigatorPartySheetClassBase extends ActorSheet {
 
 const render = (sheet: InvestigatorPartySheetClassBase) => {
   return (
-    <GumshoePartySheet
+    <InvestigatorPartySheet
       party={sheet.document}
       foundryApplication={sheet}
     />

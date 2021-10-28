@@ -18,12 +18,12 @@ import { AbilityRow } from "./AbilityRow";
 import { buildRowData, getSystemAbilities } from "./functions";
 import { AbilityTuple, isCategoryHeader, isTypeHeader, RowData } from "./types";
 
-type GumshoePartySheetProps = {
+type InvestigatorPartySheetProps = {
   party: InvestigatorActor,
   foundryApplication: ActorSheet,
 };
 
-export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
+export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
   foundryApplication,
   party,
 }) => {

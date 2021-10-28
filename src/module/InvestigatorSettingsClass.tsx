@@ -41,4 +41,4 @@ export const InvestigatorSettingsClass = ReactApplicationMixin(
   render,
 );
 
-export const gumshoeSettingsClassInstance = new InvestigatorSettingsClass({}, {});
+export const investigatorSettingsClassInstance = new InvestigatorSettingsClass({}, {});

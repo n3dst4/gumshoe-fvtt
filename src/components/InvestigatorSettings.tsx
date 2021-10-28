@@ -138,9 +138,9 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
   const [showJSON, setShowJSON] = useState(false);
 
   useEffect(() => {
-    (window as any).debugGumshoeSettings = setShowJSON;
+    (window as any).debugInvestigatorSettings = setShowJSON;
     return () => {
-      delete (window as any).debugGumshoeSettings;
+      delete (window as any).debugInvestigatorSettings;
     };
   }, []);
 
