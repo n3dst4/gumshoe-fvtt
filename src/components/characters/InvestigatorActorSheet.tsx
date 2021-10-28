@@ -23,15 +23,15 @@ import { assertPCDataSource, isPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { ImagePickle } from "../ImagePickle";
 
-type GumshoeActorSheetProps = {
+type InvestigatorActorSheetProps = {
   actor: InvestigatorActor,
   foundryApplication: ActorSheet,
 }
 
-export const GumshoeActorSheet = ({
+export const InvestigatorActorSheet = ({
   actor,
   foundryApplication,
-}: GumshoeActorSheetProps) => {
+}: InvestigatorActorSheetProps) => {
   assertPCDataSource(actor.data);
 
   const updateName = useUpdate(actor, name => ({ name }));

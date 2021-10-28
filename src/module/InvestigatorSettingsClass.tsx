@@ -1,5 +1,5 @@
 import React from "react";
-import { GumshoeSettings } from "../components/GumshoeSettings";
+import { InvestigatorSettings } from "../components/InvestigatorSettings";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 import { reactTemplatePath, systemName } from "../constants";
 
@@ -30,7 +30,7 @@ class InvestigatorSettingsClassBase extends FormApplication {
 const render = (sheet: InvestigatorSettingsClassBase) => {
   $(sheet.element).find(".header-button.close").hide();
   return (
-    <GumshoeSettings
+    <InvestigatorSettings
       foundryApplication={sheet}
     />
   );

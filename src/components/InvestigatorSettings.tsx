@@ -18,7 +18,7 @@ import { ListEdit } from "./inputs/ListEdit";
 import { SettingsGridField } from "./inputs/SettingsGridField";
 import { Translate } from "./Translate";
 
-type GumshoeSettingsProps = {
+type InvestigatorSettingsProps = {
   foundryApplication: Application,
 };
 
@@ -35,7 +35,7 @@ const useStateWithPreset = <T extends any>(initial: T, also: () => void) => {
   return retVal;
 };
 
-export const GumshoeSettings: React.FC<GumshoeSettingsProps> = ({
+export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
   foundryApplication,
 }) => {
   assertGame(game);

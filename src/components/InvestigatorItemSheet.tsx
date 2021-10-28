@@ -10,7 +10,7 @@ import { WeaponSheet } from "./equipment/WeaponSheet";
 import { CSSReset, CSSResetMode } from "./CSSReset";
 import { ItemSheetAppContext } from "./FoundryAppContext";
 
-type GumshoeItemSheetProps = {
+type InvestigatorItemSheetProps = {
   item: InvestigatorItem,
   foundryApplication: ItemSheet,
 };
@@ -19,7 +19,7 @@ type GumshoeItemSheetProps = {
  * We only register one "Item" sheet with foundry and then dispatch based on
  * type here.
  */
-export const GumshoeItemSheet: React.FC<GumshoeItemSheetProps> = ({
+export const InvestigatorItemSheet: React.FC<InvestigatorItemSheetProps> = ({
   item,
   foundryApplication,
 }) => {

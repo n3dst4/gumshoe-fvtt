@@ -1,6 +1,6 @@
 // import ReactDOM from "react-dom";
 import React from "react";
-import { GumshoeActorSheet } from "../components/characters/GumshoeActorSheet";
+import { InvestigatorActorSheet } from "../components/characters/InvestigatorActorSheet";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
@@ -22,7 +22,7 @@ class InvestigatorActorSheetClassBase extends ActorSheet {
 
 const render = (sheet: InvestigatorActorSheetClassBase) => {
   return (
-    <GumshoeActorSheet
+    <InvestigatorActorSheet
       actor={sheet.document}
       foundryApplication={sheet}
     />
