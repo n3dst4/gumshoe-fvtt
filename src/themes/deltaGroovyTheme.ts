@@ -37,10 +37,10 @@ export const deltaGroovyTheme: Theme = themeFactory({
     "&>*": {
       zIndex: 1,
     },
-    background: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/pulpy_paper.webp)`,
   },
   largeSheetRootStyle: {
-    background: `url(systems/${systemName}/assets/wallpaper/stil-wtqe5nd5MYk-unsplash.webp)`,
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/pulpy_paper.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Spicy Rice', serif",
