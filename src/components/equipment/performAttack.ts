@@ -29,12 +29,6 @@ export const performAttack = ({
   if (ability.actor === null) { return; }
   const damage = weapon.getDamage();
   const hitRoll = new Roll("1d6 + @spend", { spend });
-  // const rangeNameTranslated = getTranslated(rangeName);
-  // const hitLabel = getTranslated("AttacksWithWeaponNameRollingAbilityNameAtRangeName", {
-  //   WeaponName: weapon.name ?? "",
-  //   AbilityName: ability.name ?? "",
-  //   RangeName: rangeNameTranslated,
-  // });
   await hitRoll.evaluate({ async: true });
   hitRoll.dice[0].options.rollOrder = 1;
 
@@ -46,15 +40,13 @@ export const performAttack = ({
   await damageRoll.evaluate({ async: true });
   damageRoll.dice[0].options.rollOrder = 2;
 
-  // const damageLabel = getTranslated("DamageAtRangeNameWithWeaponName", {
-  //   RangeName: rangeNameTranslated,
-  //   WeaponName: weapon.name ?? "",
-  // });
-  // const damageLabel = `Damage at ${rangeName} with <b>${weapon.name}</b>`;
+  // const hitPool = PoolTerm.fromRolls([hitRoll]);
+  // const damagePool = PoolTerm.fromRolls([damageRoll]);
 
   const pool = PoolTerm.fromRolls([hitRoll, damageRoll]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const actualRoll = Roll.fromTerms([pool]);
+  // actualRoll.evaluate({ async: true });
 
   actualRoll.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: ability.actor }),

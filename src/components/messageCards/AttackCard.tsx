@@ -8,6 +8,8 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { CSSTransition } from "react-transition-group";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { Translate } from "../Translate";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { DiceTerms } from "./DiceTerms";
 // import * as constants from "../../constants";
 
 interface AttackCardProps {
@@ -46,7 +48,6 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
   rangeName,
   weapon,
 }) => {
-  // const isGeneral = isGeneralAbility(ability);
   const onClickAbilityName = useCallback(() => {
     ability.sheet?.render(true);
   }, [ability.sheet]);
@@ -59,6 +60,14 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
 
   const img = weapon.data.img;
 
+  const poolRolls = (msg.roll?.terms[0] as PoolTerm).rolls;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const hitTerms = poolRolls[0].terms;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const damageTerms = poolRolls[1].terms;
+  logger.log(hitTerms);
+  logger.log(damageTerms);
+
   return (
     <div
       className="dice-roll"
@@ -69,8 +78,10 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
         gridTemplateRows: "max-content minmax(0, max-content) max-content",
         gridTemplateAreas:
           "\"image headline\" " +
-          "\"image terms\" " +
-          "\"image body\" ",
+          "\"image hit-terms\" " +
+          "\"image hit-body\" " +
+          "\"image damage-terms\" " +
+          "\"image damage-body\" ",
         alignItems: "center",
       }}
     >
@@ -96,11 +107,13 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
         }}
       >
         <b><a onClick={onClickAbilityName}>{weapon.data.name}</a></b>
+        {" "}
+        (<Translate>{rangeName}</Translate>)
         {!showTerms && (
           <Translate>AttackNoun</Translate>
         )}
       </div>
-      {/* TERMS */}
+      {/* HIT TERMS */}
       <CSSTransition
         in={showTerms}
         timeout={duration}
@@ -111,10 +124,11 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
       >
         <div
           css={{
-            gridArea: "terms",
+            gridArea: "hit-terms",
           }}
         >
-          <Translate>AttackNoun</Translate>
+          <Translate>Hit roll</Translate>:
+          <DiceTerms terms={hitTerms} />
         </div>
       </CSSTransition>
       {/* RESULT */}
