@@ -12,7 +12,6 @@ export const DiceTerms: React.FC<DiceTermsProps> = ({
   terms = [],
   className,
 }: DiceTermsProps) => {
-  logger.log("terms: ", terms);
   return (
     <span
       className={className}
