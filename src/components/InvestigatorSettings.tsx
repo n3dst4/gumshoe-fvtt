@@ -314,7 +314,18 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
               <label> <Translate>NPCs</Translate> </label>
               </div>
               {game.packs
-                .filter((pack: CompendiumCollection<CompendiumCollection.Metadata>) => pack.metadata.entity === "Item")
+                .filter((pack: CompendiumCollection<CompendiumCollection.Metadata>) => {
+                  // v0.8/v9 compatibility hack - in v9 pack.metadata.entity is
+                  // getter which warns you about deprecation and then returns
+                  // pack.metadata.type BUT it's throwing "this.metadata is
+                  // undefined" for me, hence this touchy-feeling approach
+                  try {
+                    const documentType = (pack.metadata as any).type ?? pack.metadata.entity;
+                    return documentType === "Item";
+                  } catch (e) {
+                    return false;
+                  }
+                })
                 .map<JSX.Element>((pack: CompendiumCollection<CompendiumCollection.Metadata>, i) => {
                   const pcSelected = newPCPacks.includes(pack.collection);
                   const npcSelected = newNPCPacks.includes(pack.collection);
