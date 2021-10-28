@@ -48,9 +48,9 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
   rangeName,
   weapon,
 }) => {
-  const onClickAbilityName = useCallback(() => {
-    ability.sheet?.render(true);
-  }, [ability.sheet]);
+  const onClickWeaponName = useCallback(() => {
+    weapon.sheet?.render(true);
+  }, [weapon.sheet]);
 
   const [showTerms, setShowTerms] = useState(true);
 
@@ -90,6 +90,7 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
           backgroundImage: `url(${img})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
           transform: "scale(0.9) rotate(-5deg)",
           boxShadow: "0 0 0.5em black",
           marginRight: "1em",
@@ -102,7 +103,7 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
           gridArea: "headline",
         }}
       >
-        <b><a onClick={onClickAbilityName}>{weapon.data.name}</a></b>
+        <b><a onClick={onClickWeaponName}>{weapon.data.name}</a></b>
         {" "}
         (<Translate>{rangeName}</Translate>)
       </div>

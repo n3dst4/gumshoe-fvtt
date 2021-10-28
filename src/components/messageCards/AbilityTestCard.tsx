@@ -80,6 +80,7 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
           backgroundImage: `url(${ability.data.img})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
           transform: "scale(0.9) rotate(-5deg)",
           boxShadow: "0 0 0.5em black",
           marginRight: "1em",

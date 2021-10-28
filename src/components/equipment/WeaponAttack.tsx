@@ -81,7 +81,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const onNearRange = useCallback(() => {
     assertWeaponDataSource(weapon.data);
     basePerformAttack({
-      rangeName: "close range",
+      rangeName: "near range",
       rangeDamage: weapon.data.data.nearRangeDamage,
     });
   }, [basePerformAttack, weapon.data]);
