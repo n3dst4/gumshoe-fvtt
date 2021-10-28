@@ -1,5 +1,6 @@
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import * as constants from "../../constants";
+import { assertGame } from "../../functions";
 
 type PerformAttackArgs1 = {
   spend: number,
@@ -26,9 +27,16 @@ export const performAttack = ({
   rangeName,
   rangeDamage,
 }: PerformAttackArgs2) => {
+  assertGame(game);
   if (ability.actor === null) { return; }
   const damage = weapon.getDamage();
-  const hitRoll = new Roll("1d6 + @spend", { spend });
+
+  const useBoost = game.settings.get(constants.systemName, constants.useBoost);
+  const isBoosted = useBoost && ability.getBoost();
+  const boost = isBoosted ? 1 : 0;
+  const hitRoll = isBoosted
+    ? new Roll("1d6 + @spend + @boost", { spend, boost })
+    : new Roll("1d6 + @spend", { spend });
   await hitRoll.evaluate({ async: true });
   hitRoll.dice[0].options.rollOrder = 1;
 
