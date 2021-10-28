@@ -9,6 +9,7 @@ import {
 import * as constants from "../../constants";
 import { isAbilityCardMode } from "./types";
 import { AbilityTestCard } from "./AbilityTestCard";
+import { AttackCard } from "./AttackCard";
 
 export const installAbilityCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {
@@ -51,16 +52,22 @@ export const installAbilityCardChatWrangler = () => {
     const ability = actor?.items.get(abilityId);
     const weapon = weaponId ? actor?.items.get(weaponId) : undefined;
     if (el && abilityId && ability) {
-      ReactDOM.render(
-        <AbilityTestCard
+      let content: JSX.Element;
+      if (weapon && rangeName) {
+        content = <AttackCard
+          msg={chatMessage}
+          ability={ability}
+          weapon={weapon}
+          rangeName={rangeName}
+        />;
+      } else {
+        content = <AbilityTestCard
           msg={chatMessage}
           ability={ability}
           mode={mode}
-          weapon={weapon}
-          rangeName={rangeName ?? undefined}
-        />,
-        el,
-      );
+        />;
+      }
+      ReactDOM.render(content, el);
     }
   });
 };

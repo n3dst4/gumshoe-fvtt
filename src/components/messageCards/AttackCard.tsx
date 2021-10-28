@@ -3,19 +3,18 @@ import {
   jsx,
 } from "@emotion/react";
 import { css } from "@emotion/css";
-import React, { Fragment, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { CSSTransition } from "react-transition-group";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
-import { DiceTerms } from "./DiceTerms";
-import { AbilityCardMode } from "./types";
 import { Translate } from "../Translate";
-import * as constants from "../../constants";
+// import * as constants from "../../constants";
 
-interface AbilityTestCardProps {
+interface AttackCardProps {
   msg: ChatMessage;
   ability: InvestigatorItem;
-  mode: AbilityCardMode;
+  weapon: InvestigatorItem;
+  rangeName: string;
 }
 
 const maxHeight = "3em";
@@ -41,11 +40,13 @@ const termsClasses: CSSTransitionClassNames = {
   }),
 };
 
-export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
+export const AttackCard: React.FC<AttackCardProps> = React.memo(({
   msg,
   ability,
-  mode,
+  rangeName,
+  weapon,
 }) => {
+  // const isGeneral = isGeneralAbility(ability);
   const onClickAbilityName = useCallback(() => {
     ability.sheet?.render(true);
   }, [ability.sheet]);
@@ -55,6 +56,8 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
   const onClickResult = useCallback(() => {
     setShowTerms(s => !s);
   }, []);
+
+  const img = weapon.data.img;
 
   return (
     <div
@@ -77,7 +80,7 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
           height: "4em",
           width: "4em",
           gridArea: "image",
-          backgroundImage: `url(${ability.data.img})`,
+          backgroundImage: `url(${img})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           transform: "scale(0.9) rotate(-5deg)",
@@ -92,17 +95,9 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
           gridArea: "headline",
         }}
       >
-        <b><a onClick={onClickAbilityName}>{ability.data.name}</a></b>
+        <b><a onClick={onClickAbilityName}>{weapon.data.name}</a></b>
         {!showTerms && (
-          <span>
-            {" "}
-            {mode === constants.htmlDataModeSpend &&
-              <Translate>PointSpend</Translate>
-            }
-            {mode === constants.htmlDataModeTest &&
-              <Translate>AbilityTest</Translate>
-            }
-          </span>
+          <Translate>AttackNoun</Translate>
         )}
       </div>
       {/* TERMS */}
@@ -119,17 +114,7 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
             gridArea: "terms",
           }}
         >
-          {mode === "spend" &&
-            <Translate>PointSpend</Translate>
-          }
-          {mode === "test" &&
-            <Fragment>
-              <Translate>AbilityTest</Translate>
-              {": "}
-              <DiceTerms terms={msg.roll?.terms} />
-              {" ="}
-            </Fragment>
-          }
+          <Translate>AttackNoun</Translate>
         </div>
       </CSSTransition>
       {/* RESULT */}

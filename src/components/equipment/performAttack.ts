@@ -63,7 +63,7 @@ export const performAttack = ({
       class="${constants.abilityChatMessageClassName}"
       ${constants.htmlDataItemId}="${ability.data._id}"
       ${constants.htmlDataActorId}="${ability.parent?.data._id}"
-      ${constants.htmlDataMode}="${constants.htmlDataModeCombat}"
+      ${constants.htmlDataMode}="${constants.htmlDataModeAttack}"
       ${constants.htmlDataRange}="${rangeName}"
       ${constants.htmlDataWeaponId}="${weapon.data._id}"
     />

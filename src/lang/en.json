@@ -105,5 +105,6 @@
     "investigator.Weapons": "Weapons",
     "investigator.WhoopsNo": "Whoops, No!",
     "investigator.PointSpend": "Point spend",
-    "investigator.AbilityTest": "Ability test"
+    "investigator.AbilityTest": "Ability test",
+    "investigator.AttackNoun": "Attack"
 }
