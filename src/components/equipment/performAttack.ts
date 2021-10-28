@@ -40,13 +40,8 @@ export const performAttack = ({
   await damageRoll.evaluate({ async: true });
   damageRoll.dice[0].options.rollOrder = 2;
 
-  // const hitPool = PoolTerm.fromRolls([hitRoll]);
-  // const damagePool = PoolTerm.fromRolls([damageRoll]);
-
   const pool = PoolTerm.fromRolls([hitRoll, damageRoll]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const actualRoll = Roll.fromTerms([pool]);
-  // actualRoll.evaluate({ async: true });
 
   actualRoll.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
@@ -61,29 +56,6 @@ export const performAttack = ({
     />
   `,
   });
-
-  // damageRoll.toMessage({
-  //   speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-  //   flavor: damageLabel,
-  // });
-
-  // -------------------
-  // const attack = await new Roll("d20").evaluate({ async: true });
-  // attack.dice[0].options.rollOrder = 1;
-
-  // const directDamage = await new Roll("d6").evaluate({ async: true });
-  // directDamage.dice[0].options.rollOrder = 2;
-
-  // const aoeDamage = await new Roll("d4").evaluate({ async: true });
-  // aoeDamage.dice[0].options.rollOrder = 2;
-
-  // // Merge rolls
-  // const rolls = [attack, directDamage, aoeDamage]; // array of Roll
-  // const pool2 = PoolTerm.fromRolls(rolls);
-  // const roll2 = Roll.fromTerms([pool2]);
-
-  // roll2.toMessage();
-  // -----------------------
 
   const currentPool = ability.getPool();
   const poolHit = Math.max(0, Number(spend) - bonusPool);

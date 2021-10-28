@@ -16,6 +16,10 @@ export const DiceTerms: React.FC<DiceTermsProps> = ({
   return (
     <span
       className={className}
+      css={{
+        display: "inline-block",
+        paddingBottom: "0.3em",
+      }}
     >
       {terms.map<ReactNode>((term, i) => {
         if ((term as DiceTerm).results) {
@@ -35,7 +39,6 @@ export const DiceTerms: React.FC<DiceTermsProps> = ({
                   borderStyle: "outset",
                   borderColor: "#bbb",
                   marginRight: "0.2em",
-                  marginBottom: "0.3em",
                   transform: `rotate(${(Math.random() * 12) - 6}deg)`,
                 }}
               >

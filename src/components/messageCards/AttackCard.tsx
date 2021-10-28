@@ -61,12 +61,8 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
   const img = weapon.data.img;
 
   const poolRolls = (msg.roll?.terms[0] as PoolTerm).rolls;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const hitTerms = poolRolls[0].terms;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const damageTerms = poolRolls[1].terms;
-  logger.log(hitTerms);
-  logger.log(damageTerms);
+  const hitRoll = poolRolls[0];
+  const damageRoll = poolRolls[1];
 
   return (
     <div
@@ -109,9 +105,6 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
         <b><a onClick={onClickAbilityName}>{weapon.data.name}</a></b>
         {" "}
         (<Translate>{rangeName}</Translate>)
-        {!showTerms && (
-          <Translate>AttackNoun</Translate>
-        )}
       </div>
       {/* HIT TERMS */}
       <CSSTransition
@@ -127,23 +120,54 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
             gridArea: "hit-terms",
           }}
         >
-          <Translate>Hit roll</Translate>:
-          <DiceTerms terms={hitTerms} />
+          <Translate>Hit roll</Translate>
+          {": "}
+          <DiceTerms terms={hitRoll.terms} />
+          {" ="}
         </div>
       </CSSTransition>
-      {/* RESULT */}
+      {/* HIT RESULT */}
       <a
         onClick={onClickResult}
         className="dice-total"
         css={{
-          gridArea: "body",
-          "&&": {
-            marginTop: "0.5em",
-          },
+          gridArea: "hit-body",
         }}
       >
-        {msg.roll?.total}
+        {hitRoll.total}
       </a>
+
+      {/* DAMAGE TERMS */}
+      <CSSTransition
+        in={showTerms}
+        timeout={duration}
+        classNames={{
+          ...termsClasses,
+        }}
+        unmountOnExit
+      >
+        <div
+          css={{
+            gridArea: "damage-terms",
+          }}
+        >
+          <Translate>Damage</Translate>
+          {": "}
+          <DiceTerms terms={damageRoll.terms} />
+          {" ="}
+        </div>
+      </CSSTransition>
+      {/* DAMAGE RESULT */}
+      <a
+        onClick={onClickResult}
+        className="dice-total"
+        css={{
+          gridArea: "damage-body",
+        }}
+      >
+        {damageRoll.total}
+      </a>
+
     </div>
   );
 });
