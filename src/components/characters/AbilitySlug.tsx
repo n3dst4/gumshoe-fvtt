@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import React, { useCallback, useContext } from "react";
 import { jsx } from "@emotion/react";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { getUseBoost } from "../../settingsHelpers";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
 
 type AbilitySlugProps = {
-  ability: GumshoeItem,
+  ability: InvestigatorItem,
 };
 
 export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {

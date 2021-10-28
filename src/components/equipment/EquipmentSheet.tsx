@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
@@ -12,7 +12,7 @@ import { assertGame, confirmADoodleDo } from "../../functions";
 import { ImagePickle } from "../ImagePickle";
 
 type EquipmentSheetProps = {
-  equipment: GumshoeItem,
+  equipment: InvestigatorItem,
   application: ItemSheet,
 };
 

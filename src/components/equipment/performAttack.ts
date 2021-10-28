@@ -1,13 +1,14 @@
-import { getTranslated } from "../../functions";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
+import * as constants from "../../constants";
+import { assertGame } from "../../functions";
 
 type PerformAttackArgs1 = {
   spend: number,
   bonusPool: number,
   setSpend: (value: number) => void,
   setBonusPool: (value: number) => void,
-  weapon: GumshoeItem,
-  ability: GumshoeItem,
+  weapon: InvestigatorItem,
+  ability: InvestigatorItem,
 }
 
 type PerformAttackArgs2 = {
@@ -22,39 +23,48 @@ export const performAttack = ({
   bonusPool,
   setSpend,
   setBonusPool,
-}: PerformAttackArgs1) => ({
+}: PerformAttackArgs1) => async ({
   rangeName,
   rangeDamage,
 }: PerformAttackArgs2) => {
+  assertGame(game);
   if (ability.actor === null) { return; }
   const damage = weapon.getDamage();
-  const hitRoll = new Roll("1d6 + @spend", { spend });
-  const rangeNameTranslated = getTranslated(rangeName);
-  const hitLabel = getTranslated("AttacksWithWeaponNameRollingAbilityNameAtRangeName", {
-    WeaponName: weapon.name ?? "",
-    AbilityName: ability.name ?? "",
-    RangeName: rangeNameTranslated,
-  });
-  hitRoll.roll();
-  hitRoll.toMessage({
-    speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-    flavor: hitLabel,
-  });
+
+  const useBoost = game.settings.get(constants.systemName, constants.useBoost);
+  const isBoosted = useBoost && ability.getBoost();
+  const boost = isBoosted ? 1 : 0;
+  const hitRoll = isBoosted
+    ? new Roll("1d6 + @spend + @boost", { spend, boost })
+    : new Roll("1d6 + @spend", { spend });
+  await hitRoll.evaluate({ async: true });
+  hitRoll.dice[0].options.rollOrder = 1;
+
   const damageRoll = new Roll("1d6 + @damage + @rangeDamage", {
     spend,
     damage,
     rangeDamage,
   });
-  const damageLabel = getTranslated("DamageAtRangeNameWithWeaponName", {
-    RangeName: rangeNameTranslated,
-    WeaponName: weapon.name ?? "",
-  });
-  // const damageLabel = `Damage at ${rangeName} with <b>${weapon.name}</b>`;
-  damageRoll.roll();
-  damageRoll.toMessage({
+  await damageRoll.evaluate({ async: true });
+  damageRoll.dice[0].options.rollOrder = 2;
+
+  const pool = PoolTerm.fromRolls([hitRoll, damageRoll]);
+  const actualRoll = Roll.fromTerms([pool]);
+
+  actualRoll.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-    flavor: damageLabel,
+    content: `
+    <div 
+      class="${constants.abilityChatMessageClassName}"
+      ${constants.htmlDataItemId}="${ability.data._id}"
+      ${constants.htmlDataActorId}="${ability.parent?.data._id}"
+      ${constants.htmlDataMode}="${constants.htmlDataModeAttack}"
+      ${constants.htmlDataRange}="${rangeName}"
+      ${constants.htmlDataWeaponId}="${weapon.data._id}"
+    />
+  `,
   });
+
   const currentPool = ability.getPool();
   const poolHit = Math.max(0, Number(spend) - bonusPool);
   const newPool = Math.max(0, currentPool - poolHit);

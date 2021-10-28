@@ -1,15 +1,14 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import * as constants from "../../constants";
 import React, { Fragment, useCallback, useContext, useState } from "react";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
-import { assertGame, getTranslated, isGeneralAbility, isInvestigativeAbility } from "../../functions";
+import { isGeneralAbility, isInvestigativeAbility } from "../../functions";
 // import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 type AbilitySlugPlayProps = {
-  ability: GumshoeItem,
+  ability: InvestigatorItem,
 };
 
 export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => {
@@ -22,43 +21,24 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
   }, [app]);
 
   const [spend, setSpend] = useState(0);
+
   const onTest = useCallback(() => {
-    assertGame(game);
-    assertAbilityDataSource(ability.data);
-    if (ability.actor === null) { return; }
-    const useBoost = game.settings.get(constants.systemName, constants.useBoost);
-    const isBoosted = useBoost && ability.getBoost();
-    const boost = isBoosted ? 1 : 0;
-    const roll = useBoost
-      ? new Roll("1d6 + @spend + @boost", { spend, boost })
-      : new Roll("1d6 + @spend", { spend });
-    const label = getTranslated("RollingAbilityName", { AbilityName: ability.name ?? "" });
-    roll.roll().toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-      flavor: label,
-    });
-    ability.update({ data: { pool: ability.data.data.pool - Number(spend) || 0 } });
+    ability.testAbility(spend);
     setSpend(0);
   }, [ability, spend]);
+
   const onSpend = useCallback(() => {
-    assertAbilityDataSource(ability.data);
-    if (ability.actor === null) { return; }
-    const roll = new Roll("@spend", { spend });
-    const label = getTranslated("AbilityPoolSpendForAbilityName", { AbilityName: ability.name ?? "" });
-    roll.roll().toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: ability.actor }),
-      flavor: label,
-    });
-    ability.update({ data: { pool: ability.data.data.pool - Number(spend) || 0 } });
+    ability.spendAbility(spend);
     setSpend(0);
   }, [ability, spend]);
 
   const onClickInc = useCallback(() => {
-    setSpend(spend + 1);
-  }, [spend]);
+    setSpend(s => s + 1);
+  }, []);
+
   const onClickDec = useCallback(() => {
-    setSpend(spend - 1);
-  }, [spend]);
+    setSpend(s => s - 1);
+  }, []);
 
   return (
     <Fragment

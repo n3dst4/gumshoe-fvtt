@@ -1,15 +1,16 @@
-import { fixLength, isAbility } from "../functions";
+import { assertGame, fixLength, isAbility } from "../functions";
 import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
-import { GumshoeActor } from "./GumshoeActor";
+import { InvestigatorActor } from "./InvestigatorActor";
 import { getDefaultThemeName } from "../settingsHelpers";
 import { assertAbilityDataSource, assertWeaponDataSource } from "../types";
+import * as constants from "../constants";
 
 /**
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
  */
-export class GumshoeItem extends Item {
+export class InvestigatorItem extends Item {
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
@@ -20,6 +21,50 @@ export class GumshoeItem extends Item {
     // const itemData = this.data;
     // const actorData = this.actor ? this.actor.data : {};
     // const data = itemData.data;
+  }
+
+  testAbility (spend: number) {
+    assertGame(game);
+    assertAbilityDataSource(this.data);
+    if (this.actor === null) { return; }
+    const useBoost = game.settings.get(constants.systemName, constants.useBoost);
+    const isBoosted = useBoost && this.getBoost();
+    const boost = isBoosted ? 1 : 0;
+    const roll = isBoosted
+      ? new Roll("1d6 + @spend + @boost", { spend, boost })
+      : new Roll("1d6 + @spend", { spend });
+    roll.evaluate();
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content: `
+        <div 
+          class="${constants.abilityChatMessageClassName}"
+          ${constants.htmlDataItemId}="${this.data._id}"
+          ${constants.htmlDataActorId}="${this.parent?.data._id}"
+          ${constants.htmlDataMode}="${constants.htmlDataModeTest}"
+        />
+      `,
+    });
+    this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
+  }
+
+  spendAbility (spend: number) {
+    assertAbilityDataSource(this.data);
+    if (this.actor === null) { return; }
+    const roll = new Roll("@spend", { spend });
+    roll.evaluate();
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content: `
+        <div
+          class="${constants.abilityChatMessageClassName}"
+          ${constants.htmlDataItemId}="${this.data._id}"
+          ${constants.htmlDataActorId}="${this.parent?.data._id}"
+          ${constants.htmlDataMode}="${constants.htmlDataModeSpend}"
+        />
+      `,
+    });
+    this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
   }
 
   refreshPool () {
@@ -171,7 +216,7 @@ export class GumshoeItem extends Item {
   getThemeName (): string {
     const systemThemeName = getDefaultThemeName();
     if (this.isOwned) {
-      return (this.actor as GumshoeActor).getSheetThemeName() || systemThemeName;
+      return (this.actor as InvestigatorActor).getSheetThemeName() || systemThemeName;
     } else {
       return systemThemeName;
     }
@@ -308,6 +353,6 @@ export class GumshoeItem extends Item {
 
 declare global {
   interface DocumentClassConfig {
-    Item: typeof GumshoeItem;
+    Item: typeof InvestigatorItem;
   }
 }

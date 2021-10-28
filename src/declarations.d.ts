@@ -24,3 +24,10 @@ declare module "irid" {
 }
 
 declare const Babele: any;
+
+// DSN uses this extra dice term option to sequence rolls
+declare namespace RollTerm {
+  interface Options {
+    rollOrder?: number;
+  }
+}

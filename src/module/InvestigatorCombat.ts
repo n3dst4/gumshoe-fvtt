@@ -1,7 +1,7 @@
 import { ConfiguredDocumentClass } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
 import * as constants from "../constants";
 import { isGeneralAbilityDataSource, isActiveCharacterDataSource } from "../types";
-import { GumshoeItem } from "./GumshoeItem";
+import { InvestigatorItem } from "./InvestigatorItem";
 
 /**
  * Override base Combat so we can do custom GUMSHOE-style initiative
@@ -16,11 +16,11 @@ export class InvestigatorCombat extends Combat {
     }
     const aAbilityName = a.actor.data.data.initiativeAbility;
     const aAbility = a.actor.items.find(
-      (item: GumshoeItem) => item.type === constants.generalAbility && item.name === aAbilityName,
+      (item: InvestigatorItem) => item.type === constants.generalAbility && item.name === aAbilityName,
     );
     const bAbilityName = b.actor.data.data.initiativeAbility;
     const bAbility = b.actor.items.find(
-      (item: GumshoeItem) => item.type === constants.generalAbility && item.name === bAbilityName,
+      (item: InvestigatorItem) => item.type === constants.generalAbility && item.name === bAbilityName,
     );
     // working out initiative - "goes first" beats non-"goes first"; then
     // compare ratings, then compare pools.

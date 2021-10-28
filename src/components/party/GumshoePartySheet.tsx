@@ -3,8 +3,8 @@ import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useState } from "react";
 import * as constants from "../../constants";
 import { assertGame, isAbility, sortEntitiesByName } from "../../functions";
-import { GumshoeActor } from "../../module/GumshoeActor";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { themes } from "../../themes/themes";
 import { assertPartyDataSource } from "../../types";
@@ -19,7 +19,7 @@ import { buildRowData, getSystemAbilities } from "./functions";
 import { AbilityTuple, isCategoryHeader, isTypeHeader, RowData } from "./types";
 
 type GumshoePartySheetProps = {
-  party: GumshoeActor,
+  party: InvestigatorActor,
   foundryApplication: ActorSheet,
 };
 
@@ -29,7 +29,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
 }) => {
   const theme = themes[getDefaultThemeName()] || themes.tealTheme;
   const [abilityTuples, setAbilityTuples] = useState<AbilityTuple[]>([]);
-  const [actors, setActors] = useState<GumshoeActor[]>([]);
+  const [actors, setActors] = useState<InvestigatorActor[]>([]);
   const [rowData, setRowData] = useState<RowData[]>([]);
   const actorIds = party.getActorIds();
 
@@ -43,7 +43,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
     };
 
     const onActorDeleted = (
-      deletedActor: GumshoeActor,
+      deletedActor: InvestigatorActor,
       something: unknown, // i cannot tell what this is supposed to be
       userId: string, // probably?
     ) => {
@@ -55,7 +55,7 @@ export const GumshoePartySheet: React.FC<GumshoePartySheetProps> = ({
     };
 
     const onUpdateItem = async (
-      item: GumshoeItem,
+      item: InvestigatorItem,
       dataDiff: any,
       options: any,
       useId: string,

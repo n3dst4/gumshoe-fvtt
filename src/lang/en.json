@@ -103,5 +103,8 @@
     "investigator.VisualTheme": "Visual theme",
     "investigator.Weapon": "Weapon",
     "investigator.Weapons": "Weapons",
-    "investigator.WhoopsNo": "Whoops, No!"
+    "investigator.WhoopsNo": "Whoops, No!",
+    "investigator.PointSpend": "Point spend",
+    "investigator.AbilityTest": "Ability test",
+    "investigator.HitRoll": "Hit roll"
 }

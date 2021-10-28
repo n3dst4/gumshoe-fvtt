@@ -77,8 +77,12 @@ export const hasOwnProperty = (x: any, y: string) =>
 /**
  * Check that `game` has been initialised
  */
+export function isGame (game: any): game is Game {
+  return game instanceof Game;
+}
+
 export function assertGame (game: any): asserts game is Game {
-  if (!(game instanceof Game)) {
+  if (!isGame(game)) {
     throw new Error("game used before init hook");
   }
 }

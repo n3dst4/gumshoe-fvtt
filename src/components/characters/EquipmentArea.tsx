@@ -3,12 +3,12 @@ import { jsx } from "@emotion/react";
 import React, { useCallback, useContext } from "react";
 import { equipment } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
-import { GumshoeActor } from "../../module/GumshoeActor";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { Translate } from "../Translate";
 
 type EquipmentAreaProps = {
-  actor: GumshoeActor,
+  actor: InvestigatorActor,
 };
 
 export const EquipmentArea: React.FC<EquipmentAreaProps> = ({

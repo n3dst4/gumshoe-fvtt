@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { Fragment, useCallback } from "react";
-import { GumshoeActor } from "../../module/GumshoeActor";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { jsx } from "@emotion/react";
 import { useUpdate } from "../../hooks/useUpdate";
 import { CSSReset, CSSResetMode } from "../CSSReset";
@@ -19,7 +19,7 @@ import { assertNPCDataSource } from "../../types";
 import { ImagePickle } from "../ImagePickle";
 
 type GumshoeNPCSheetProps = {
-  actor: GumshoeActor,
+  actor: InvestigatorActor,
   foundryApplication: ActorSheet,
 }
 

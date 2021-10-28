@@ -1,8 +1,8 @@
 import "./setWebkitPublicPath";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/preloadTemplates";
-import { GumshoeActor } from "./module/GumshoeActor";
-import { GumshoeItem } from "./module/GumshoeItem";
+import { InvestigatorActor } from "./module/InvestigatorActor";
+import { InvestigatorItem } from "./module/InvestigatorItem";
 import { GumshoeActorSheetClass } from "./module/GumshoeActorSheetClass";
 import { GumshoeItemSheetClass } from "./module/GumshoeItemSheetClass";
 import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon } from "./constants";
@@ -19,6 +19,8 @@ import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
 import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
 import { InvestigatorCombat } from "./module/InvestigatorCombat";
 import { installShowThemeFarmHack } from "./module/ThemeFarmClass";
+import { installAbilityCardChatWrangler } from "./components/messageCards/installAbilityCardChatWrangler";
+// import { InvestigatorChatMessage } from "./module/InvestigatorChatMessage";
 
 // Initialize system
 Hooks.once("init", async function () {
@@ -32,10 +34,11 @@ Hooks.once("init", async function () {
   await preloadTemplates();
 
   // XXX TS needs going over here
-  CONFIG.Actor.documentClass = GumshoeActor;
-  CONFIG.Item.documentClass = GumshoeItem;
+  CONFIG.Actor.documentClass = InvestigatorActor;
+  CONFIG.Item.documentClass = InvestigatorItem;
   CONFIG.Combatant.documentClass = InvestigatorCombatant;
   CONFIG.Combat.documentClass = InvestigatorCombat;
+  // CONFIG.ChatMessage.documentClass = InvestigatorChatMessage;
 
   // Register custom sheets (if any)
   Actors.unregisterSheet("core", ActorSheet);
@@ -98,7 +101,6 @@ Hooks.once("setup", function () {
 Hooks.on("ready", async () => {
   assertGame(game);
   if (!game.user?.isGM) { return; }
-
   const currentVersion = getSystemMigrationVersion();
   // newest version that needs a migration (make this the current version when
   // you introduce a new migration)
@@ -117,9 +119,17 @@ Hooks.on("ready", async () => {
     const warning = `Your ${system.title} system data is from too old a version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
     (ui as any /* oh fuck off */).notifications.error(warning, { permanent: true });
   }
-
   // Perform the migration
   migrateWorld();
+});
+
+Hooks.on("ready", async () => {
+  assertGame(game);
+  // turn off simultaneous rolls for DSN
+  // simone's version from the docs:
+  game.settings.set("dice-so-nice", "enabledSimultaneousRollForMessage", false);
+  // the one that actually exists:
+  game.settings.set("dice-so-nice", "enabledSimultaneousRolls", false);
 });
 
 Hooks.on(
@@ -188,7 +198,7 @@ Hooks.on("renderSettings", (app: Application, html: JQuery) => {
 Hooks.on(
   "dropActorSheetData",
   (
-    targetActor: GumshoeActor,
+    targetActor: InvestigatorActor,
     application: Application,
     dropData: { type: string, id: string, entity?: string },
   ) => {
@@ -217,6 +227,8 @@ Hooks.on(
 installCompendiumExportButton();
 
 initializePackGenerators();
+
+installAbilityCardChatWrangler();
 
 if (window.location.hostname === "localhost") {
   CONFIG.debug.hooks = true;

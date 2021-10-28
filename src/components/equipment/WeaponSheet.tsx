@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useEffect, useState } from "react";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { WeaponConfig } from "./WeaponConfig";
 import { WeaponAttack } from "./WeaponAttack";
@@ -9,7 +9,7 @@ import { Translate } from "../Translate";
 import { ImagePickle } from "../ImagePickle";
 
 type WeaponSheetProps = {
-  weapon: GumshoeItem,
+  weapon: InvestigatorItem,
   application: ItemSheet,
 };
 

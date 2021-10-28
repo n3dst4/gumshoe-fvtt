@@ -4,15 +4,15 @@ import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacte
 import { themes } from "../themes/themes";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { Theme } from "../themes/types";
-import { GumshoeItem } from "./GumshoeItem";
+import { InvestigatorItem } from "./InvestigatorItem";
 
-export class GumshoeActor extends Actor {
+export class InvestigatorActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
-  prepareData (): void {
-    super.prepareData();
-  }
+  // prepareData (): void {
+  //   super.prepareData();
+  // }
 
   confirmRefresh = () => {
     confirmADoodleDo(
@@ -99,7 +99,7 @@ export class GumshoeActor extends Actor {
     window.alert("Nuked");
   };
 
-  /// ///////////////////////////////////////////////////////////////////////////
+  /// //////////////////////////////////////////////////////////////////////////
   // ITEMS
 
   getAbilityByName (name: string, type?: AbilityType) {
@@ -280,7 +280,7 @@ export class GumshoeActor extends Actor {
 
 declare global {
   interface DocumentClassConfig {
-    Actor: typeof GumshoeActor;
+    Actor: typeof InvestigatorActor;
   }
 }
 
@@ -321,7 +321,7 @@ Hooks.on("updateItem", (
 Hooks.on(
   "createActor",
   async (
-    actor: GumshoeActor,
+    actor: InvestigatorActor,
     options: Record<string, unknown>,
     userId: string,
   ) => {
@@ -343,7 +343,7 @@ Hooks.on(
         const datas = content?.map((item) => {
           // XXX clunk cast here because there doesn't seem to be a sane way to
           // check the type of something coming out of a compendium pack.
-          const { data: { name, img, data, type } } = item as GumshoeItem;
+          const { data: { name, img, data, type } } = item as InvestigatorItem;
           return {
             name,
             img,
@@ -362,7 +362,7 @@ Hooks.on(
         assertGame(game);
         console.log("PACK", packId);
         const content = await (game.packs?.find((p) => p.metadata.entity === "Item" && p.collection === packId)?.getDocuments());
-        const datas = (content as GumshoeItem[])?.map(({ data: { name, img, data, type } }) => ({
+        const datas = (content as InvestigatorItem[])?.map(({ data: { name, img, data, type } }) => ({
           name,
           img,
           data,

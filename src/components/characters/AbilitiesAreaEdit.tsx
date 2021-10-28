@@ -3,14 +3,14 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useContext } from "react";
 import { generalAbility, investigativeAbility } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
-import { GumshoeActor } from "../../module/GumshoeActor";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertActiveCharacterDataSource, isAbilityDataSource } from "../../types";
 import { AbilitySlugEdit } from "./AbilitySlugEdit";
 
 type AbilitiesAreaEditProps = {
-  actor: GumshoeActor,
+  actor: InvestigatorActor,
   flipLeftRight?: boolean,
   showOcc?: boolean,
 };
@@ -23,8 +23,8 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
   assertActiveCharacterDataSource(actor.data);
   const theme = useContext(ThemeContext);
 
-  const investigativeAbilities: { [category: string]: GumshoeItem[] } = {};
-  const generalAbilities: { [category: string]: GumshoeItem[] } = {};
+  const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
+  const generalAbilities: { [category: string]: InvestigatorItem[] } = {};
 
   for (const item of actor.items.values()) {
     if (!isAbilityDataSource(item.data)) {

@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React from "react";
 import { equipment, weapon } from "../constants";
-import { GumshoeItem } from "../module/GumshoeItem";
+import { InvestigatorItem } from "../module/InvestigatorItem";
 import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
 import { isAbility } from "../functions";
@@ -11,7 +11,7 @@ import { CSSReset, CSSResetMode } from "./CSSReset";
 import { ItemSheetAppContext } from "./FoundryAppContext";
 
 type GumshoeItemSheetProps = {
-  item: GumshoeItem,
+  item: InvestigatorItem,
   foundryApplication: ItemSheet,
 };
 

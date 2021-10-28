@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { Fragment, useEffect, useState } from "react";
 import { useUpdate } from "../../hooks/useUpdate";
-import { GumshoeItem } from "../../module/GumshoeItem";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { isGeneralAbility } from "../../functions";
 import { AbilityTest } from "./AbilityTest";
@@ -12,7 +12,7 @@ import { Translate } from "../Translate";
 import { ImagePickle } from "../ImagePickle";
 
 type AbilitySheetProps = {
-  ability: GumshoeItem,
+  ability: InvestigatorItem,
   application: ItemSheet,
 };
 

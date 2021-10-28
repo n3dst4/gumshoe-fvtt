@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment } from "react";
-import { GumshoeActor } from "../../module/GumshoeActor";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { themes } from "../../themes/themes";
 import { AbilityRowData } from "./types";
@@ -9,7 +9,7 @@ import { AbilityRowData } from "./types";
 type AbilityRowProps = {
   data: AbilityRowData,
   index: number,
-  actors: GumshoeActor[],
+  actors: InvestigatorActor[],
 };
 
 export const AbilityRow: React.FC<AbilityRowProps> = ({

@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { systemName } from "../../constants";
 import { assertGame } from "../../functions";
-import { GumshoeActor } from "../../module/GumshoeActor";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { themes } from "../../themes/themes";
 import { GridField } from "../inputs/GridField";
 // import { GridFieldStacked } from "../inputs/GridFieldStacked";
@@ -11,7 +11,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 
 type SettingAreaProps = {
-  actor: GumshoeActor,
+  actor: InvestigatorActor,
 };
 
 export const SettingArea: React.FC<SettingAreaProps> = ({

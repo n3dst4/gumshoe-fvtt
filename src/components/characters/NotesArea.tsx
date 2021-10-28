@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback } from "react";
-import { GumshoeActor } from "../../module/GumshoeActor";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { getLongNotes } from "../../settingsHelpers";
 import { assertPCDataSource } from "../../types";
 
 type NotesAreaProps = {
-  actor: GumshoeActor,
+  actor: InvestigatorActor,
 };
 
 export const NotesArea: React.FC<NotesAreaProps> = ({
