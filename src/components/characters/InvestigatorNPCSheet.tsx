@@ -60,7 +60,7 @@ export const InvestigatorNPCSheet = ({
     <ActorSheetAppContext.Provider value={foundryApplication}>
       <CSSReset
         theme={theme}
-        mode={CSSResetMode.small}
+        mode={CSSResetMode.large}
         css={{
           position: "absolute",
           top: 0,
