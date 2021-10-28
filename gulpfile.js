@@ -144,7 +144,7 @@ async function groomTranslations () {
     for (const key of Object.keys(parsed)) {
       if (enSorted[key] === undefined) {
         console.log(chalk.red(`${filename} has an extra (not in en.json) translation for ${key}`));
-        result[key] = parsed[key];
+        // result[key] = parsed[key];
       }
     }
     const json = JSON.stringify(result, null, 4);
