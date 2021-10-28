@@ -1,6 +1,6 @@
 // import ReactDOM from "react-dom";
 import React from "react";
-import { InvestigatorActorSheet } from "../components/characters/InvestigatorActorSheet";
+import { InvestigatorPCSheet } from "../components/characters/InvestigatorPCSheet";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
@@ -8,7 +8,7 @@ import { ReactApplicationMixin } from "./ReactApplicationMixin";
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-class InvestigatorActorSheetClassBase extends ActorSheet {
+class InvestigatorPCSheetClassBase extends ActorSheet {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
@@ -20,16 +20,16 @@ class InvestigatorActorSheetClassBase extends ActorSheet {
   }
 }
 
-const render = (sheet: InvestigatorActorSheetClassBase) => {
+const render = (sheet: InvestigatorPCSheetClassBase) => {
   return (
-    <InvestigatorActorSheet
+    <InvestigatorPCSheet
       actor={sheet.document}
       foundryApplication={sheet}
     />
   );
 };
 
-export const InvestigatorActorSheetClass = ReactApplicationMixin(
-  InvestigatorActorSheetClassBase,
+export const InvestigatorPCSheetClass = ReactApplicationMixin(
+  InvestigatorPCSheetClassBase,
   render,
 );

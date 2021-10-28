@@ -3,7 +3,7 @@ import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/preloadTemplates";
 import { InvestigatorActor } from "./module/InvestigatorActor";
 import { InvestigatorItem } from "./module/InvestigatorItem";
-import { InvestigatorActorSheetClass } from "./module/InvestigatorActorSheetClass";
+import { InvestigatorPCSheetClass } from "./module/InvestigatorPCSheetClass";
 import { InvestigatorItemSheetClass } from "./module/InvestigatorItemSheetClass";
 import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon } from "./constants";
 import system from "./system.json";
@@ -44,7 +44,7 @@ Hooks.once("init", async function () {
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(
     systemName,
-    InvestigatorActorSheetClass,
+    InvestigatorPCSheetClass,
     {
       makeDefault: true,
       types: [pc],

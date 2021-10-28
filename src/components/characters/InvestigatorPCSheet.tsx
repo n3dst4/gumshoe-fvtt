@@ -23,15 +23,15 @@ import { assertPCDataSource, isPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { ImagePickle } from "../ImagePickle";
 
-type InvestigatorActorSheetProps = {
+type InvestigatorPCSheetProps = {
   actor: InvestigatorActor,
   foundryApplication: ActorSheet,
 }
 
-export const InvestigatorActorSheet = ({
+export const InvestigatorPCSheet = ({
   actor,
   foundryApplication,
-}: InvestigatorActorSheetProps) => {
+}: InvestigatorPCSheetProps) => {
   assertPCDataSource(actor.data);
 
   const updateName = useUpdate(actor, name => ({ name }));
