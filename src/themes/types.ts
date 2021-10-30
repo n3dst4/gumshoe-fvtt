@@ -43,6 +43,12 @@ export type ThemeSeed = {
    */
   logo: {
     /**
+     * This number is used when working out how to scale the lettering in the
+     * character sheet logo. The default is 14,
+     * @default 14
+     */
+    fontScaleFactor?: number,
+    /**
      * These styles will be applied to the front text element, so you can do the
      * `background-clip: text; color: transparent;` trick to get gradient (or
      * other image) text.
@@ -132,5 +138,9 @@ export type Theme = ThemeSeed & {
     bgTransDangerSecondary: string,
     bgOpaqueDangerPrimary: string,
     bgOpaqueDangerSecondary: string,
+  },
+
+  logo: ThemeSeed["logo"] & {
+    fontScaleFactor: number,
   },
 }

@@ -27,8 +27,6 @@ const textBearerStyle: CSSObject = {
   transform: "translate(-50%, -50%)",
 };
 
-const fontFactor = 14;
-
 /**
  * Fancy editable logo text for the top of the character sheet.
  *
@@ -54,9 +52,11 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
   onChangeMainText,
   onChangeSubText,
 }) => {
+  const theme = useContext(ThemeContext);
+
   const textStyle: CSSObject = {
     transition: "font-size 500ms",
-    fontSize: `${Math.min(1, fontFactor / mainText.length)}em`,
+    fontSize: `${Math.min(1, theme.logo.fontScaleFactor / mainText.length)}em`,
     padding: "0 1em",
   };
 
@@ -79,8 +79,6 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     display: displaySubtext,
   } = useAsyncUpdate(subText || defaultSubText,
     onChangeSubText || (() => {}));
-
-  const theme = useContext(ThemeContext);
 
   return (
     // outer - set the transform origin

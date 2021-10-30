@@ -19,19 +19,26 @@ export const antiquarianTheme: Theme = themeFactory({
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal small-caps normal 1.1em 'IM Fell English', serif",
   logo: {
+    fontScaleFactor: 24,
     frontTextElementStyle: {
       color: "#000",
       maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
       maskMode: "luminance",
       maskRepeat: "repeat",
       maskSize: "contain",
-      textShadow: "0.02em 0.02em 0px #fff",
+      textShadow: [
+        "0.03em 0.03em 0px #fff",
+        // "0.06em 0.06em 0px #000",
+        "-0.03em -0.03em 0px #fff",
+        // "-0.06em -0.06em 0px #000",
+      ].join(", "),
     },
     rearTextElementStyle: {
       display: "none",
     },
     textElementsStyle: {
       transform: "scale(0.6)",
+      fontWeight: "bold",
     },
     backdropStyle: {
       backgroundImage: `url(systems/${systemName}/assets/wallpaper/tailpiece9-768.webp), url(systems/${systemName}/assets/wallpaper/tailpiece9-768.webp)`,
@@ -42,6 +49,7 @@ export const antiquarianTheme: Theme = themeFactory({
       maskMode: "luminance",
       maskRepeat: "repeat",
       maskSize: "contain",
+      opacity: 0.7,
     },
   },
   colors: {

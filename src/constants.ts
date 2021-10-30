@@ -30,6 +30,7 @@ export const newPCPacks = "newPCPacks" as const;
 export const newNPCPacks = "newNPCPacks" as const;
 export const useBoost = "useBoost" as const;
 export const debugTranslations = "debugTranslations" as const;
+export const moribundWorldAbilities = "moribundWorldAbilities" as const;
 
 /**
  * @deprecated use investigativeAbilityCategories and generalAbilityCategories instead

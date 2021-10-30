@@ -1,6 +1,8 @@
 import Irid from "irid";
 import { Theme, ThemeSeed } from "./types";
 
+const defaultFontScaleFactor = 14;
+
 /**
  * Given two colors, create a third which is the result of overlaying the second
  * on the first
@@ -46,6 +48,10 @@ export const themeFactory = (seed: ThemeSeed): Theme => {
       bgTransDangerSecondary,
       bgOpaqueDangerPrimary,
       bgOpaqueDangerSecondary,
+    },
+    logo: {
+      ...seed.logo,
+      fontScaleFactor: seed.logo.fontScaleFactor ?? defaultFontScaleFactor,
     },
   };
 };
