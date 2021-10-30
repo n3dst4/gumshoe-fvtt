@@ -69,8 +69,8 @@
     "types": ["investigativeAbility", "generalAbility", "equipment", "weapon"],
     "templates": {
       "ability": {
-        "rating": 1,
-        "pool": 1,
+        "rating": 0,
+        "pool": 0,
         "hasSpecialities": false,
         "specialities": [],
         "min": 0,

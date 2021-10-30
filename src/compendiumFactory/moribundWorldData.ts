@@ -1,0 +1,73 @@
+import { GeneralAbilitiesData, InvestigativeAbilitiesData } from "./types";
+
+export const investigativeAbilities: InvestigativeAbilitiesData = {
+};
+
+export const generalAbilities: GeneralAbilitiesData = {
+  Persuade: [
+    { name: "Glib" },
+    { name: "Eloquent" },
+    { name: "Obfuscatory " },
+    { name: "Forthright" },
+    { name: "Charming" },
+    { name: "Intimidating" },
+  ],
+  Rebuff: [
+    { name: "Obtuse" },
+    { name: "Wary" },
+    { name: "Penetrating" },
+    { name: "Lawyerly" },
+    { name: "Contrary" },
+    { name: "Pure-Hearted" },
+  ],
+  Attack: [
+    { name: "Strength" },
+    { name: "Speed" },
+    { name: "Finesse" },
+    { name: "Cunning" },
+    { name: "Ferocity" },
+    { name: "Caution" },
+  ],
+  Defense: [
+    { name: "Dodge" },
+    { name: "Parry" },
+    { name: "Sure-Footedness" },
+    { name: "Intuition" },
+    { name: "Misdirection" },
+    { name: "Vexation" },
+  ],
+  Magic: [
+    { name: "Studious" },
+    { name: "Insightful" },
+    { name: "Forceful" },
+    { name: "Daring" },
+    { name: "Devious" },
+    { name: "Curious" },
+  ],
+  General: [
+    { name: "Health", min: -12, rating: 1, pool: 1, showTracker: true },
+    { name: "Appraisal" },
+    { name: "Athletics" },
+    { name: "Concealment" },
+    { name: "Craftsmanship" },
+    { name: "Driving" },
+    { name: "Engineering" },
+    { name: "Etiquette" },
+    { name: "Gambling" },
+    { name: "Imposture" },
+    { name: "Living Rough" },
+    { name: "Pedantry" },
+    { name: "Perception" },
+    { name: "Physician" },
+    { name: "Quick Fingers" },
+    { name: "Riding" },
+    { name: "Scuttlebutt" },
+    { name: "Seamanship" },
+    { name: "Seduction" },
+    { name: "Stealth" },
+    { name: "Stewardship" },
+    { name: "Tracking" },
+    { name: "Wealth" },
+    { name: "Wherewithal" },
+  ],
+};

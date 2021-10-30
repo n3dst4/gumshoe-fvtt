@@ -84,10 +84,25 @@ export const castingTheRunesPreset: SystemPreset = {
   useBoost: false,
 };
 
+export const moribundWorldPreset: SystemPreset = {
+  displayName: "Moribund World",
+  defaultTheme: "antiquarianTheme",
+  investigativeAbilityCategories: [],
+  generalAbilityCategories: ["Persuade", "Rebuff", "Attack", "Defense", "Magic", "General"],
+  combatAbilities: ["Strength", "Speed", "Finesse", "Cunning", "Ferocity", "Caution"],
+  occupationLabel: "Précis",
+  shortNotes: [],
+  longNotes: ["General", "Facial Features", "Hair", "Notable Mannerisms", "Costume"],
+  newPCPacks: [`${systemName}.${packNames.moribundWorldAbilities}`],
+  newNPCPacks: [`${systemName}.${packNames.moribundWorldAbilities}`],
+  useBoost: false,
+};
+
 export const systemPresets = {
   pathOfCthulhuPreset,
   niceBlackAgentsPreset,
   nothingToFearPreset,
   pallidStarsPreset,
   castingTheRunesPreset,
+  moribundWorldPreset,
 };
