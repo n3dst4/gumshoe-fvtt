@@ -197,6 +197,11 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         settings.setUseBoost(useBoost),
         settings.setSystemPreset(systemPreset),
         settings.setDebugTranslations(debugTranslations),
+        settings.setMwPoolsExceedRatings(mwPoolsExceedRatings),
+        settings.setMwHideInvestigative(mwHideInvestigative),
+        settings.setMwRerollInsteadOfAddon(mwRerollInsteadOfAddon),
+        settings.setMwUse248Refreshes(mwUse248Refreshes),
+
       ]);
       foundryApplication.close();
     },
@@ -214,6 +219,10 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       systemPreset,
       debugTranslations,
       foundryApplication,
+      mwPoolsExceedRatings,
+      mwHideInvestigative,
+      mwRerollInsteadOfAddon,
+      mwUse248Refreshes,
     ],
   );
 
