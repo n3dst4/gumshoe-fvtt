@@ -28,6 +28,7 @@ interface PCDataSourceData {
   occupation: string;
   longNotes: string[];
   shortNotes: string[];
+  hiddenShortNotes: string[];
   initiativeAbility: string;
   hideZeroRated: boolean;
   sheetTheme: string|null;

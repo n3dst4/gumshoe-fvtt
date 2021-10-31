@@ -108,6 +108,10 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     settings.getMwUse248Refreshes(),
     resetPreset,
   );
+  const [mwHiddenShortNotes, setMwHiddenShortNotes] = useStateWithPreset(
+    settings.getMwHiddenShortNotes(),
+    resetPreset,
+  );
 
   const onSelectPreset = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -138,6 +142,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setMwHideInvestigative(preset.mwHideInvestigative);
       setMwRerollInsteadOfAddon(preset.mwRerollInsteadOfAddon);
       setMwUse248Refreshes(preset.mwUse248Refreshes);
+      setMwHiddenShortNotes(preset.mwHiddenShortNotes ?? []);
       setSystemPreset(presetId);
     },
     [
@@ -155,6 +160,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setMwHideInvestigative,
       setMwRerollInsteadOfAddon,
       setMwUse248Refreshes,
+      setMwHiddenShortNotes,
       setSystemPreset,
     ],
   );
@@ -201,7 +207,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         settings.setMwHideInvestigative(mwHideInvestigative),
         settings.setMwRerollInsteadOfAddon(mwRerollInsteadOfAddon),
         settings.setMwUse248Refreshes(mwUse248Refreshes),
-
+        settings.setMwHiddenShortNotes(mwHiddenShortNotes),
       ]);
       foundryApplication.close();
     },
@@ -223,6 +229,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       mwHideInvestigative,
       mwRerollInsteadOfAddon,
       mwUse248Refreshes,
+      mwHiddenShortNotes,
     ],
   );
 
@@ -499,6 +506,9 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
               checked={mwUse248Refreshes}
               onChange={setMwUse248Refreshes}
             />
+          </SettingsGridField>
+          <SettingsGridField label="Hidden Short Notes Fields" index={idx++}>
+            <ListEdit value={mwHiddenShortNotes} onChange={setMwHiddenShortNotes} />
           </SettingsGridField>
 
         </InputGrid>

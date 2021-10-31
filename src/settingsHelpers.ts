@@ -29,6 +29,7 @@ export const getMwPoolsExceedRatings = getSetting<boolean>(constants.mwPoolsExce
 export const getMwHideInvestigative = getSetting<boolean>(constants.mwHideInvestigative);
 export const getMwRerollInsteadOfAddon = getSetting<boolean>(constants.mwRerollInsteadOfAddon);
 export const getMwUse248Refreshes = getSetting<boolean>(constants.mwUse248Refreshes);
+export const getMwHiddenShortNotes = getSetting<string[]>(constants.mwHiddenShortNotes);
 
 export const setSystemMigrationVersion = setSetting(constants.systemMigrationVersion);
 export const setDefaultThemeName = setSetting(constants.defaultThemeName);
@@ -48,6 +49,7 @@ export const setMwPoolsExceedRatings = setSetting<boolean>(constants.mwPoolsExce
 export const setMwHideInvestigative = setSetting<boolean>(constants.mwHideInvestigative);
 export const setMwRerollInsteadOfAddon = setSetting<boolean>(constants.mwRerollInsteadOfAddon);
 export const setMwUse248Refreshes = setSetting<boolean>(constants.mwUse248Refreshes);
+export const setMwHiddenShortNotes = setSetting<string[]>(constants.mwHiddenShortNotes);
 
 export const getDefaultGeneralAbilityCategory = () => {
   const cat = getGeneralAbilityCategories()[0];

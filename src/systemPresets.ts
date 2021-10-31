@@ -16,6 +16,7 @@ export interface SystemPreset {
   mwHideInvestigative: boolean;
   mwRerollInsteadOfAddon: boolean;
   mwUse248Refreshes: boolean;
+  mwHiddenShortNotes?: string[];
 }
 
 export const pathOfCthulhuPreset: SystemPreset = {
@@ -115,7 +116,7 @@ export const moribundWorldPreset: SystemPreset = {
   generalAbilityCategories: ["Persuade", "Rebuff", "Attack", "Defense", "Resist", "Magic", "General"],
   combatAbilities: ["Strength", "Speed", "Finesse", "Cunning", "Ferocity", "Caution"],
   occupationLabel: "Précis",
-  shortNotes: [],
+  shortNotes: ["Series level"],
   longNotes: ["General", "Facial Features", "Hair", "Notable Mannerisms", "Costume"],
   newPCPacks: [`${systemName}.${packNames.moribundWorldAbilities}`],
   newNPCPacks: [`${systemName}.${packNames.moribundWorldAbilities}`],
@@ -124,6 +125,7 @@ export const moribundWorldPreset: SystemPreset = {
   mwHideInvestigative: true,
   mwRerollInsteadOfAddon: true,
   mwUse248Refreshes: true,
+  mwHiddenShortNotes: ["Sympathy points"],
 };
 
 export const systemPresets = {

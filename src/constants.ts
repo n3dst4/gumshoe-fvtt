@@ -32,6 +32,7 @@ export const useBoost = "useBoost" as const;
 export const debugTranslations = "debugTranslations" as const;
 
 // settings for MW-specific settings
+export const mwHiddenShortNotes = "mwHiddenShortNotes" as const;
 export const mwPoolsExceedRatings = "mwPoolsExceedRatings" as const;
 export const mwHideInvestigative = "mwHideInvestigative" as const;
 export const mwRerollInsteadOfAddon = "mwRerollInsteadOfAddon" as const;

@@ -165,6 +165,15 @@ export const registerSettings = function () {
     type: Boolean,
   });
 
+  game.settings.register(c.systemName, c.mwHiddenShortNotes, {
+    name: "Hidden short notes",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: [],
+    type: Object,
+  });
+
   // Define a settings submenu which handles advanced configuration needs
   game.settings.registerMenu(c.systemName, "investigatorSettingsMenu", {
     name: "INVESTIGATOR Settings",

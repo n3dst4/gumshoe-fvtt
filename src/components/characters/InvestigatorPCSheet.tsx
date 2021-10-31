@@ -17,11 +17,12 @@ import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
-import { getOccupationlabel, getShortNotes } from "../../settingsHelpers";
+import { getMwHiddenShortNotes, getOccupationlabel, getShortNotes } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertPCDataSource, isPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { ImagePickle } from "../ImagePickle";
+import { assertGame } from "../../functions";
 
 type InvestigatorPCSheetProps = {
   actor: InvestigatorActor,
@@ -32,6 +33,7 @@ export const InvestigatorPCSheet = ({
   actor,
   foundryApplication,
 }: InvestigatorPCSheetProps) => {
+  assertGame(game);
   assertPCDataSource(actor.data);
 
   const updateName = useUpdate(actor, name => ({ name }));
@@ -41,12 +43,17 @@ export const InvestigatorPCSheet = ({
     actor.setShortNote(index, value);
   }, [actor]);
 
+  const updateMwHiddenShortNote = useCallback((value, index) => {
+    actor.setMwHiddenShortNote(index, value);
+  }, [actor]);
+
   const updateHitThreshold = useCallback((newThreshold) => {
     actor.setHitThreshold(newThreshold);
   }, [actor]);
 
   const theme = actor.getSheetTheme();
   const shortNotesNames = getShortNotes();
+  const shortHiddenNotesNames = getMwHiddenShortNotes();
   const occupationLabel = getOccupationlabel();
 
   return (
@@ -121,6 +128,17 @@ export const InvestigatorPCSheet = ({
                   <AsyncTextInput
                     value={isPCDataSource(actor.data) ? actor.data.data.shortNotes[i] : ""}
                     onChange={updateShortNote}
+                    index={i}
+                  />
+                </GridField>
+              ))
+            }
+            {
+              game.user?.isGM && shortHiddenNotesNames.map((name: string, i: number) => (
+                <GridField noTranslate key={`${name}--${i}`} label={name}>
+                  <AsyncTextInput
+                    value={isPCDataSource(actor.data) ? actor.data.data.hiddenShortNotes[i] : ""}
+                    onChange={updateMwHiddenShortNote}
                     index={i}
                   />
                 </GridField>

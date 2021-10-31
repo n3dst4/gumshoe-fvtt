@@ -193,6 +193,17 @@ export class InvestigatorActor extends Actor {
     });
   };
 
+  setMwHiddenShortNote = (i: number, text: string) => {
+    assertPCDataSource(this.data);
+    const newNotes = [...(this.data.data.hiddenShortNotes || [])];
+    newNotes[i] = text;
+    this.update({
+      data: {
+        hiddenShortNotes: newNotes,
+      },
+    });
+  };
+
   getName = () => this.name;
 
   setName = (name: string) => {
