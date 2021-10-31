@@ -92,6 +92,23 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     resetPreset,
   );
 
+  const [mwPoolsExceedRatings, setMwPoolsExceedRatings] = useStateWithPreset(
+    settings.getMwPoolsExceedRatings(),
+    resetPreset,
+  );
+  const [mwHideInvestigative, setMwHideInvestigative] = useStateWithPreset(
+    settings.getMwHideInvestigative(),
+    resetPreset,
+  );
+  const [mwRerollInsteadOfAddon, setMwRerollInsteadOfAddon] = useStateWithPreset(
+    settings.getMwRerollInsteadOfAddon(),
+    resetPreset,
+  );
+  const [mwUse248Refreshes, setMwUse248Refreshes] = useStateWithPreset(
+    settings.getMwUse248Refreshes(),
+    resetPreset,
+  );
+
   const onSelectPreset = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
       const presetId = e.currentTarget.value as
@@ -435,6 +452,37 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
               onChange={setDebugTranslations}
             />
           </SettingsGridField>
+          <hr css={{ gridColumn: "label / end" }}/>
+          <h2
+            css={{ gridColumn: "label / end" }}
+          >
+            <Translate>Settings for Moribund World users</Translate>
+          </h2>
+          <SettingsGridField label="Allow pools to exceed ratings" index={idx++}>
+            <Checkbox
+              checked={mwPoolsExceedRatings}
+              onChange={setMwPoolsExceedRatings}
+            />
+          </SettingsGridField>
+          <SettingsGridField label="Hide Investigative abilities" index={idx++}>
+            <Checkbox
+              checked={mwHideInvestigative}
+              onChange={setMwHideInvestigative}
+            />
+          </SettingsGridField>
+          <SettingsGridField label="Spend points to re-roll" index={idx++}>
+            <Checkbox
+              checked={mwRerollInsteadOfAddon}
+              onChange={setMwRerollInsteadOfAddon}
+            />
+          </SettingsGridField>
+          <SettingsGridField label="Use 2/4/8 hour refresh groups" index={idx++}>
+            <Checkbox
+              checked={mwUse248Refreshes}
+              onChange={setMwUse248Refreshes}
+            />
+          </SettingsGridField>
+
         </InputGrid>
       )}
       <div

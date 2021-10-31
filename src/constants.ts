@@ -30,7 +30,12 @@ export const newPCPacks = "newPCPacks" as const;
 export const newNPCPacks = "newNPCPacks" as const;
 export const useBoost = "useBoost" as const;
 export const debugTranslations = "debugTranslations" as const;
-export const moribundWorldAbilities = "moribundWorldAbilities" as const;
+
+// settings for MW-specific settings
+export const mwPoolsExceedRatings = "mwPoolsExceedRatings" as const;
+export const mwHideInvestigative = "mwHideInvestigative" as const;
+export const mwRerollInsteadOfAddon = "mwRerollInsteadOfAddon" as const;
+export const mwUse248Refreshes = "mwUse248Refreshes" as const;
 
 /**
  * @deprecated use investigativeAbilityCategories and generalAbilityCategories instead

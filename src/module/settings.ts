@@ -129,8 +129,35 @@ export const registerSettings = function () {
     type: Boolean,
   });
 
-  game.settings.register(c.systemName, c.moribundWorldAbilities, {
-    name: "Can pools exceed ratings?",
+  game.settings.register(c.systemName, c.mwPoolsExceedRatings, {
+    name: "Allow pools to exceed ratings",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+  });
+
+  game.settings.register(c.systemName, c.mwHideInvestigative, {
+    name: "Hide Investigative abilities",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+  });
+
+  game.settings.register(c.systemName, c.mwRerollInsteadOfAddon, {
+    name: "Spend points to re-roll",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+  });
+
+  game.settings.register(c.systemName, c.mwUse248Refreshes, {
+    name: "Use 2/4/8 hour refresh groups",
     hint: "",
     scope: "world",
     config: false,

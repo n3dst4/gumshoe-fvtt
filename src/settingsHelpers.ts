@@ -25,6 +25,11 @@ export const getSystemPreset = getSetting<string>(constants.systemPreset);
 export const getUseBoost = getSetting<boolean>(constants.useBoost);
 export const getDebugTranslations = getSetting<boolean>(constants.debugTranslations);
 
+export const getMwPoolsExceedRatings = getSetting<boolean>(constants.mwPoolsExceedRatings);
+export const getMwHideInvestigative = getSetting<boolean>(constants.mwHideInvestigative);
+export const getMwRerollInsteadOfAddon = getSetting<boolean>(constants.mwRerollInsteadOfAddon);
+export const getMwUse248Refreshes = getSetting<boolean>(constants.mwUse248Refreshes);
+
 export const setSystemMigrationVersion = setSetting(constants.systemMigrationVersion);
 export const setDefaultThemeName = setSetting(constants.defaultThemeName);
 export const setInvestigativeAbilityCategories = setSetting<string[]>(constants.investigativeAbilityCategories);
@@ -38,6 +43,11 @@ export const setNewNPCPacks = setSetting<string[]>(constants.newNPCPacks);
 export const setSystemPreset = setSetting<string>(constants.systemPreset);
 export const setUseBoost = setSetting<boolean>(constants.useBoost);
 export const setDebugTranslations = setSetting<boolean>(constants.debugTranslations);
+
+export const setMwPoolsExceedRatings = setSetting<boolean>(constants.mwPoolsExceedRatings);
+export const setMwHideInvestigative = setSetting<boolean>(constants.mwHideInvestigative);
+export const setMwRerollInsteadOfAddon = setSetting<boolean>(constants.mwRerollInsteadOfAddon);
+export const setMwUse248Refreshes = setSetting<boolean>(constants.mwUse248Refreshes);
 
 export const getDefaultGeneralAbilityCategory = () => {
   const cat = getGeneralAbilityCategories()[0];
