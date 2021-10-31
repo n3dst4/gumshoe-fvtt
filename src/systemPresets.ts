@@ -112,7 +112,7 @@ export const moribundWorldPreset: SystemPreset = {
   displayName: "Moribund World",
   defaultTheme: "antiquarianTheme",
   investigativeAbilityCategories: [],
-  generalAbilityCategories: ["Persuade", "Rebuff", "Attack", "Defense", "Magic", "General"],
+  generalAbilityCategories: ["Persuade", "Rebuff", "Attack", "Defense", "Resist", "Magic", "General"],
   combatAbilities: ["Strength", "Speed", "Finesse", "Cunning", "Ferocity", "Caution"],
   occupationLabel: "Précis",
   shortNotes: [],

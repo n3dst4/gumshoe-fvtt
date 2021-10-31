@@ -36,6 +36,14 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Misdirection" },
     { name: "Vexation" },
   ],
+  Resist: [
+    { name: "Arrogance" },
+    { name: "Avarice" },
+    { name: "Indolence" },
+    { name: "Gourmandism" },
+    { name: "Pettifoggery" },
+    { name: "Rakishness" },
+  ],
   Magic: [
     { name: "Studious" },
     { name: "Insightful" },
