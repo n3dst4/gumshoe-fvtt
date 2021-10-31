@@ -1,17 +1,21 @@
 import { packNames, systemName, npcPackName } from "./constants";
 
-export type SystemPreset = {
-  displayName: string,
-  defaultTheme: string,
-  investigativeAbilityCategories: string[],
-  generalAbilityCategories: string[],
-  combatAbilities: string[],
-  occupationLabel: string,
-  shortNotes: string[],
-  longNotes: string[],
-  newPCPacks: string[],
-  newNPCPacks: string[],
-  useBoost: boolean,
+export interface SystemPreset {
+  displayName: string;
+  defaultTheme: string;
+  investigativeAbilityCategories: string[];
+  generalAbilityCategories: string[];
+  combatAbilities: string[];
+  occupationLabel: string;
+  shortNotes: string[];
+  longNotes: string[];
+  newPCPacks: string[];
+  newNPCPacks: string[];
+  useBoost: boolean;
+  mwPoolsExceedRatings: boolean;
+  mwHideInvestigative: boolean;
+  mwRerollInsteadOfAddon: boolean;
+  mwUse248Refreshes: boolean;
 }
 
 export const pathOfCthulhuPreset: SystemPreset = {
@@ -26,6 +30,10 @@ export const pathOfCthulhuPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.pathOfCthulhuAbilities}`],
   newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: false,
+  mwPoolsExceedRatings: false,
+  mwHideInvestigative: false,
+  mwRerollInsteadOfAddon: false,
+  mwUse248Refreshes: false,
 };
 
 export const niceBlackAgentsPreset: SystemPreset = {
@@ -40,6 +48,10 @@ export const niceBlackAgentsPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.niceBlackAgentsAbilities}`],
   newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: false,
+  mwPoolsExceedRatings: false,
+  mwHideInvestigative: false,
+  mwRerollInsteadOfAddon: false,
+  mwUse248Refreshes: false,
 };
 
 export const nothingToFearPreset: SystemPreset = {
@@ -54,6 +66,10 @@ export const nothingToFearPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.nothingToFearAbilities}`],
   newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: false,
+  mwPoolsExceedRatings: false,
+  mwHideInvestigative: false,
+  mwRerollInsteadOfAddon: false,
+  mwUse248Refreshes: false,
 };
 
 export const pallidStarsPreset: SystemPreset = {
@@ -68,6 +84,10 @@ export const pallidStarsPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.pallidStarsAbilities}`],
   newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: true,
+  mwPoolsExceedRatings: false,
+  mwHideInvestigative: false,
+  mwRerollInsteadOfAddon: false,
+  mwUse248Refreshes: false,
 };
 
 export const castingTheRunesPreset: SystemPreset = {
@@ -82,6 +102,10 @@ export const castingTheRunesPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.castingTheRunesAbilities}`],
   newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: false,
+  mwPoolsExceedRatings: false,
+  mwHideInvestigative: false,
+  mwRerollInsteadOfAddon: false,
+  mwUse248Refreshes: false,
 };
 
 export const moribundWorldPreset: SystemPreset = {
@@ -96,6 +120,10 @@ export const moribundWorldPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.moribundWorldAbilities}`],
   newNPCPacks: [`${systemName}.${packNames.moribundWorldAbilities}`],
   useBoost: false,
+  mwPoolsExceedRatings: true,
+  mwHideInvestigative: true,
+  mwRerollInsteadOfAddon: true,
+  mwUse248Refreshes: true,
 };
 
 export const systemPresets = {

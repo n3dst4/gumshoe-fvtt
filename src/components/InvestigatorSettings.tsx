@@ -134,6 +134,10 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setNewPCPacks(preset.newPCPacks);
       setNewNPCPacks(preset.newNPCPacks);
       setUseBoost(preset.useBoost);
+      setMwPoolsExceedRatings(preset.mwPoolsExceedRatings);
+      setMwHideInvestigative(preset.mwHideInvestigative);
+      setMwRerollInsteadOfAddon(preset.mwRerollInsteadOfAddon);
+      setMwUse248Refreshes(preset.mwUse248Refreshes);
       setSystemPreset(presetId);
     },
     [
@@ -147,6 +151,11 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setOccupationLabel,
       setShortNotes,
       setUseBoost,
+      setMwPoolsExceedRatings,
+      setMwHideInvestigative,
+      setMwRerollInsteadOfAddon,
+      setMwUse248Refreshes,
+      setSystemPreset,
     ],
   );
 
