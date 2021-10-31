@@ -41,7 +41,7 @@ Hooks.once("init", async function () {
   // CONFIG.ChatMessage.documentClass = InvestigatorChatMessage;
 
   // Register custom sheets (if any)
-  Actors.unregisterSheet("core", ActorSheet);
+  // Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(
     systemName,
     InvestigatorPCSheetClass,
