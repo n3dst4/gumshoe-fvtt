@@ -12,6 +12,8 @@ export const antiquarianTheme: Theme = themeFactory({
   `,
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
   },
   // smallSheetRootStyle: {
   //   backgroundImage: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
