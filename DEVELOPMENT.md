@@ -86,7 +86,7 @@ To keep the translation imports running sweetly, you will need to update `.tx/co
 
 ## Release process
 
-We have "release" branch. Its job is to hold a manifest version that points to the right release download.
+We have a "release" branch. Its job is to hold a manifest version that points to the right release download.
 
 To perform a release from `master`: 
 
