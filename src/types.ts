@@ -182,6 +182,9 @@ export interface BaseAbilityDataSourceData {
   excludeFromGeneralRefresh: boolean;
   refreshesDaily: boolean;
   notes: string;
+  // this is defined separately for gen/inv in template.json so they have
+  // different defaults but it's the same property
+  hideIfZeroRated: boolean;
 }
 
 /** data.data for investigative abilities */

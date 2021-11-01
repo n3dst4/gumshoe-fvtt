@@ -110,5 +110,6 @@
     "investigator.Use248HourRefreshGroups": "Use 2/4/8 hour refresh groups",
     "investigator.SettingsForMoribundWorldUsers": "Settings for Moribund World users",
     "investigator.HiddenShortNotesFields": "Hidden short notes",
-    "investigator.NoAbilitiesInThisCategory": "No abilities in this category"
+    "investigator.NoAbilitiesInThisCategory": "No abilities in this category",
+    "investigator.HideIfZeroRated": "Hide if zero-rated?"
 }

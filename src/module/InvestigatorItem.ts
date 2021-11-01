@@ -349,6 +349,16 @@ export class InvestigatorItem extends Item {
     assertWeaponDataSource(this.data);
     this.update({ data: { isLongRange } });
   }
+
+  getHideIfZeroRated = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.hideIfZeroRated;
+  }
+
+  setHideIfZeroRated = (hideIfZeroRated: boolean) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { hideIfZeroRated } });
+  }
 }
 
 declare global {

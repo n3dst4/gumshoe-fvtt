@@ -3,7 +3,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../settingsHelpers";
 import { isAbilityDataSource } from "../../types";
 
-export const useAbilities = (actor: Actor, hideZeroRatedInvestigative: boolean) => {
+export const useAbilities = (actor: Actor, hideZeroRated: boolean) => {
   const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
   const generalAbilities: { [category: string]: InvestigatorItem[] } = {};
   const systemInvestigativeCats = getInvestigativeAbilityCategories();
@@ -19,10 +19,10 @@ export const useAbilities = (actor: Actor, hideZeroRatedInvestigative: boolean) 
     if (!isAbilityDataSource(item.data)) {
       continue;
     }
+    if (hideZeroRated && item.data.data.hideIfZeroRated && item.data.data.rating === 0) {
+      continue;
+    }
     if (item.data.type === investigativeAbility) {
-      if (hideZeroRatedInvestigative && item.data.data.rating === 0) {
-        continue;
-      }
       const cat = item.data.data.category || "Uncategorised";
       if (investigativeAbilities[cat] === undefined) {
         investigativeAbilities[cat] = [];

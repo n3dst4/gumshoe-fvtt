@@ -86,12 +86,14 @@
       }
     },
     "investigativeAbility": {
-      "templates": ["ability"]
+      "templates": ["ability"],
+      "hideIfZeroRated": true
     },
     "generalAbility": {
       "templates": ["ability"],
       "canBeInvestigative": false,
-      "goesFirstInCombat": false
+      "goesFirstInCombat": false,
+      "hideIfZeroRated": false
     },
     "equipment": {
       "notes": ""

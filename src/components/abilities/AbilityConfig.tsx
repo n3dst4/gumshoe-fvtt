@@ -31,6 +31,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
   const updateShowTracker = useUpdate(ability, (showTracker) => ({ data: { showTracker } }));
   const updateExcludeFromGeneralRefresh = useUpdate(ability, (excludeFromGeneralRefresh) => ({ data: { excludeFromGeneralRefresh } }));
   const updateRefreshesDaily = useUpdate(ability, (refreshesDaily) => ({ data: { refreshesDaily } }));
+  const updateHideIfZeroRated = useUpdate(ability, (hideIfZeroRated) => ({ data: { hideIfZeroRated } }));
   const updateGoesFirstInCombat = useUpdate(ability, (goesFirstInCombat) => ({ data: { goesFirstInCombat } }));
   const updateMax = useUpdate(ability, (max) => ({ data: { max } }));
   const updateMin = useUpdate(ability, (min) => ({ data: { min } }));
@@ -187,6 +188,14 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
           checked={ability.data.data.refreshesDaily}
           onChange={(t) => {
             updateRefreshesDaily(t);
+          }}
+        />
+      </GridField>
+      <GridField label="Hide if zero-rated?">
+        <AsyncCheckbox
+          checked={ability.data.data.hideIfZeroRated}
+          onChange={(t) => {
+            updateHideIfZeroRated(t);
           }}
         />
       </GridField>
