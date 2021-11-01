@@ -18,7 +18,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
   flipLeftRight,
 }) => {
   assertActiveCharacterDataSource(actor.data);
-  const { investigativeAbilities, generalAbilities } = useAbilities(actor);
+  const { investigativeAbilities, generalAbilities } = useAbilities(actor, true);
 
   return (
     <Fragment>

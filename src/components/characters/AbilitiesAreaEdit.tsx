@@ -23,7 +23,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
 }) => {
   assertActiveCharacterDataSource(actor.data);
   const theme = useContext(ThemeContext);
-  const { investigativeAbilities, generalAbilities } = useAbilities(actor);
+  const { investigativeAbilities, generalAbilities } = useAbilities(actor, false);
   const hideInv = getMwHideInvestigative();
   const showOcc = showOccProp && (!hideInv);
 

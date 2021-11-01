@@ -3,6 +3,6 @@ import { Translate } from "../Translate";
 
 export const NoAbilitiesNote: React.FC = () => {
   return (
-    <i><Translate>No abilities in this category</Translate></i>
+    <i style={{ gridColumn: "1/-1" }}><Translate>No abilities in this category</Translate></i>
   );
 };
