@@ -1,15 +1,14 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useContext } from "react";
-import { generalAbility, investigativeAbility } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { getGeneralAbilityCategories, getInvestigativeAbilityCategories, getMwHideInvestigative } from "../../settingsHelpers";
+import { getMwHideInvestigative } from "../../settingsHelpers";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { assertActiveCharacterDataSource, isAbilityDataSource } from "../../types";
+import { assertActiveCharacterDataSource } from "../../types";
 import { AbilitySlugEdit } from "./AbilitySlugEdit";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
+import { useAbilities } from "./useAbilities";
 
 type AbilitiesAreaEditProps = {
   actor: InvestigatorActor,
@@ -24,37 +23,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
 }) => {
   assertActiveCharacterDataSource(actor.data);
   const theme = useContext(ThemeContext);
-
-  const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
-  const generalAbilities: { [category: string]: InvestigatorItem[] } = {};
-  const systemInvestigativeCats = getInvestigativeAbilityCategories();
-  const systemGeneralCats = getGeneralAbilityCategories();
-  for (const cat of systemInvestigativeCats) {
-    investigativeAbilities[cat] = [];
-  }
-  for (const cat of systemGeneralCats) {
-    generalAbilities[cat] = [];
-  }
-
-  for (const item of actor.items.values()) {
-    if (!isAbilityDataSource(item.data)) {
-      continue;
-    }
-    if (item.data.type === investigativeAbility) {
-      const cat = item.data.data.category || "Uncategorised";
-      if (investigativeAbilities[cat] === undefined) {
-        investigativeAbilities[cat] = [];
-      }
-      investigativeAbilities[cat].push(item);
-    } else if (item.type === generalAbility) {
-      const cat = item.data.data.category || "Uncategorised";
-      if (generalAbilities[cat] === undefined) {
-        generalAbilities[cat] = [];
-      }
-      generalAbilities[cat].push(item);
-    }
-  }
-
+  const { investigativeAbilities, generalAbilities } = useAbilities(actor);
   const hideInv = getMwHideInvestigative();
   const showOcc = showOccProp && (!hideInv);
 
