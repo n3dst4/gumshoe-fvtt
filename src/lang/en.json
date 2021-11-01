@@ -109,5 +109,6 @@
     "investigator.SpendPointsToReRoll": "Spend points to re-roll",
     "investigator.Use248HourRefreshGroups": "Use 2/4/8 hour refresh groups",
     "investigator.SettingsForMoribundWorldUsers": "Settings for Moribund World users",
-    "investigator.HiddenShortNotesFields": "Hidden short notes"
+    "investigator.HiddenShortNotesFields": "Hidden short notes",
+    "investigator.NoAbilitiesInThisCategory": "No abilities in this category"
 }

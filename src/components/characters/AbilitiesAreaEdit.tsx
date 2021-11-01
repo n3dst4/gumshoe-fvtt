@@ -5,10 +5,11 @@ import { generalAbility, investigativeAbility } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { getMwHideInvestigative } from "../../settingsHelpers";
+import { getGeneralAbilityCategories, getInvestigativeAbilityCategories, getMwHideInvestigative } from "../../settingsHelpers";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertActiveCharacterDataSource, isAbilityDataSource } from "../../types";
 import { AbilitySlugEdit } from "./AbilitySlugEdit";
+import { NoAbilitiesNote } from "./NoAbilitiesNote";
 
 type AbilitiesAreaEditProps = {
   actor: InvestigatorActor,
@@ -19,13 +20,21 @@ type AbilitiesAreaEditProps = {
 export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
   actor,
   flipLeftRight,
-  showOcc = true,
+  showOcc: showOccProp = true,
 }) => {
   assertActiveCharacterDataSource(actor.data);
   const theme = useContext(ThemeContext);
 
   const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
   const generalAbilities: { [category: string]: InvestigatorItem[] } = {};
+  const systemInvestigativeCats = getInvestigativeAbilityCategories();
+  const systemGeneralCats = getGeneralAbilityCategories();
+  for (const cat of systemInvestigativeCats) {
+    investigativeAbilities[cat] = [];
+  }
+  for (const cat of systemGeneralCats) {
+    generalAbilities[cat] = [];
+  }
 
   for (const item of actor.items.values()) {
     if (!isAbilityDataSource(item.data)) {
@@ -47,6 +56,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
   }
 
   const hideInv = getMwHideInvestigative();
+  const showOcc = showOccProp && (!hideInv);
 
   return (
     <Fragment>
@@ -100,7 +110,6 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
               </i>
             )}
             {Object.keys(investigativeAbilities)
-              .sort()
               .map<JSX.Element>((cat) => (
                 <Fragment key={cat}>
                   <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
@@ -113,6 +122,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
                       showOcc={showOcc}
                     />
                   ))}
+                  {investigativeAbilities[cat].length === 0 && <NoAbilitiesNote />}
                 </Fragment>
               ))}
           </div>
@@ -157,7 +167,6 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
             </i>
           )}
           {Object.keys(generalAbilities)
-            .sort()
             .map<JSX.Element>((cat) => (
               <Fragment key={cat}>
                 <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
@@ -170,6 +179,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
                     />
                   ),
                 )}
+                {generalAbilities[cat].length === 0 && <NoAbilitiesNote />}
               </Fragment>
             ))}
         </div>
