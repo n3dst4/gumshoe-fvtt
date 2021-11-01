@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v4.7.1 (2021-11-01)
+
+* Whoops
+* Update `compatibleCoreVersion` in system manifest (#54)
+
 ## v4.7.0 (2021-11-01)
 
 * **Improved chat messages** for spends, tests, and combat rolls (#26).
