@@ -5,6 +5,7 @@ import { generalAbility, investigativeAbility } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { getMwHideInvestigative } from "../../settingsHelpers";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertActiveCharacterDataSource, isAbilityDataSource } from "../../types";
 import { AbilitySlugEdit } from "./AbilitySlugEdit";
@@ -45,85 +46,132 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
     }
   }
 
+  const hideInv = getMwHideInvestigative();
+
   return (
     <Fragment>
       <div
         css={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gridTemplateAreas: (flipLeftRight) ? "'general investigative'" : "'investigative general'",
+          gridTemplateAreas: flipLeftRight || hideInv
+            ? "'general investigative'"
+            : "'investigative general'",
           columnGap: "1em",
         }}
       >
-        <div
-          css={{
-            gridArea: "investigative",
-            display: "grid",
-            gridTemplateAreas: showOcc ? "'isocc ability rating'" : "'ability rating'",
-            gridTemplateColumns: showOcc ? "2em 1fr max-content" : "1fr max-content",
-            columnGap: "0.5em",
-            alignItems: "center",
-            height: "0",
-          }}
-        >
-          { showOcc && (
-            <i
-              css={{ gridColumn: "isocc", font: theme.displayFont, fontSize: "smaller" }}
-              title="Occupational Ability"
-            >
-              Occ.
-            </i>
-          )}
-          { showOcc && (
-            <i css={{ gridColumn: "rating", font: theme.displayFont, fontSize: "smaller" }}>Rating</i>
-          )}
-          {Object.keys(investigativeAbilities).sort().map<JSX.Element>((cat) => (
-            <Fragment
-              key={cat}
-            >
-              <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
-              {
-                sortEntitiesByName(investigativeAbilities[cat]).map<JSX.Element>((ability) => (
-                  <AbilitySlugEdit key={ability.id} ability={ability} showOcc={showOcc} />
-                ))
-              }
-            </Fragment>
-          ))}
-        </div>
+        {!hideInv &&
+          <div
+            css={{
+              gridArea: "investigative",
+              display: "grid",
+              gridTemplateAreas: showOcc
+                ? "'isocc ability rating'"
+                : "'ability rating'",
+              gridTemplateColumns: showOcc
+                ? "2em 1fr max-content"
+                : "1fr max-content",
+              columnGap: "0.5em",
+              alignItems: "center",
+              height: "0",
+            }}
+          >
+            {showOcc && (
+              <i
+                css={{
+                  gridColumn: "isocc",
+                  font: theme.displayFont,
+                  fontSize: "smaller",
+                }}
+                title="Occupational Ability"
+              >
+                Occ.
+              </i>
+            )}
+            {showOcc && (
+              <i
+                css={{
+                  gridColumn: "rating",
+                  font: theme.displayFont,
+                  fontSize: "smaller",
+                }}
+              >
+                Rating
+              </i>
+            )}
+            {Object.keys(investigativeAbilities)
+              .sort()
+              .map<JSX.Element>((cat) => (
+                <Fragment key={cat}>
+                  <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
+                  {sortEntitiesByName(
+                    investigativeAbilities[cat],
+                  ).map<JSX.Element>((ability) => (
+                    <AbilitySlugEdit
+                      key={ability.id}
+                      ability={ability}
+                      showOcc={showOcc}
+                    />
+                  ))}
+                </Fragment>
+              ))}
+          </div>
+        }
+
         <div
           css={{
             gridArea: "general",
             display: "grid",
-            gridTemplateAreas: showOcc ? "'isocc ability rating'" : "'ability rating'",
-            gridTemplateColumns: showOcc ? "2em 1fr max-content" : "1fr max-content",
+            gridTemplateAreas: showOcc
+              ? "'isocc ability rating'"
+              : "'ability rating'",
+            gridTemplateColumns: showOcc
+              ? "2em 1fr max-content"
+              : "1fr max-content",
             columnGap: "0.5em",
             alignItems: "center",
             height: "0",
           }}
         >
-          { showOcc && (
+          {showOcc && (
             <i
-              css={{ gridColumn: "isocc", font: theme.displayFont, fontSize: "smaller" }}
+              css={{
+                gridColumn: "isocc",
+                font: theme.displayFont,
+                fontSize: "smaller",
+              }}
               title="Occupational Ability"
             >
               Occ.
             </i>
           )}
-          { showOcc && (
-            <i css={{ gridColumn: "rating", font: theme.displayFont, fontSize: "smaller" }}>Rating</i>
-          )}
-          {Object.keys(generalAbilities).sort().map<JSX.Element>((cat) => (
-            <Fragment
-              key={cat}
+          {showOcc && (
+            <i
+              css={{
+                gridColumn: "rating",
+                font: theme.displayFont,
+                fontSize: "smaller",
+              }}
             >
-              <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
-              {
-                sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>((ability) => (
-                  <AbilitySlugEdit key={ability.id} ability={ability} showOcc={showOcc}/>
-                ))
-              }
-            </Fragment>
-          ))}
+              Rating
+            </i>
+          )}
+          {Object.keys(generalAbilities)
+            .sort()
+            .map<JSX.Element>((cat) => (
+              <Fragment key={cat}>
+                <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
+                {sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>(
+                  (ability) => (
+                    <AbilitySlugEdit
+                      key={ability.id}
+                      ability={ability}
+                      showOcc={showOcc}
+                    />
+                  ),
+                )}
+              </Fragment>
+            ))}
         </div>
       </div>
     </Fragment>
