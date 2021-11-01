@@ -17,12 +17,13 @@ import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
-import { getMwHiddenShortNotes, getOccupationlabel, getShortNotes } from "../../settingsHelpers";
+import { getMwHiddenShortNotes, getMwRerollInsteadOfAddon, getOccupationlabel, getShortNotes } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertPCDataSource, isPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { ImagePickle } from "../ImagePickle";
 import { assertGame } from "../../functions";
+import { AbilitiesAreaMW } from "./AbilitiesAreaMW";
 
 type InvestigatorPCSheetProps = {
   actor: InvestigatorActor,
@@ -190,7 +191,7 @@ export const InvestigatorPCSheet = ({
               {
                 id: "abilities",
                 label: "Abilities",
-                content: <AbilitiesAreaPlay actor={actor}/>,
+                content: getMwRerollInsteadOfAddon() ? <AbilitiesAreaMW actor={actor}/> : <AbilitiesAreaPlay actor={actor}/>,
               },
               {
                 id: "equipment",
