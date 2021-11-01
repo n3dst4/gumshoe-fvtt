@@ -16,7 +16,7 @@ export const AbilitiesAreaMW: React.FC<AbilitiesAreaMWProps> = ({
   actor,
 }) => {
   assertActiveCharacterDataSource(actor.data);
-  const { generalAbilities } = useAbilities(actor, false);
+  const { generalAbilities } = useAbilities(actor, true);
 
   return (
     <Fragment>

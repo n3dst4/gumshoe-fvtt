@@ -38,6 +38,7 @@ const investigativeTemplate: InvestigativeAbilityTemplate = {
   occupational: false,
   showTracker: false,
   excludeFromGeneralRefresh: false,
+  hideIfZeroRated: true,
 };
 
 /**
@@ -62,6 +63,7 @@ const generalTemplate: GeneralAbilityTemplate = {
   showTracker: false,
   excludeFromGeneralRefresh: false,
   goesFirstInCombat: false,
+  hideIfZeroRated: false,
 };
 
 export const emptyPack = async (pack: CompendiumCollection<CompendiumCollection.Metadata>) => {
