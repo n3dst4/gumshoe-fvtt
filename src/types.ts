@@ -1,6 +1,10 @@
 import * as constants from "./constants";
 export type AbilityType = typeof constants.investigativeAbility | typeof constants.generalAbility;
 
+export type MWDifficulty =
+  | "easy"
+  | number;
+
 export type Resource = {
   min?: number,
   max: number,

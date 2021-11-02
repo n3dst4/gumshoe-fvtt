@@ -3,7 +3,7 @@ import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
 import { InvestigatorActor } from "./InvestigatorActor";
 import { getDefaultThemeName } from "../settingsHelpers";
-import { assertAbilityDataSource, assertWeaponDataSource } from "../types";
+import { assertAbilityDataSource, assertWeaponDataSource, MWDifficulty } from "../types";
 import * as constants from "../constants";
 
 /**
@@ -65,6 +65,10 @@ export class InvestigatorItem extends Item {
       `,
     });
     this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
+  }
+
+  async mwTestAbility (difficulty: MWDifficulty, boonLevy: number) {
+    // TODO
   }
 
   refreshPool () {

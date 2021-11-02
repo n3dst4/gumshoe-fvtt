@@ -10,6 +10,8 @@ import { AbilityMainBits } from "./AbilityMainBits";
 import { AbilityConfig } from "./AbilityConfig";
 import { Translate } from "../Translate";
 import { ImagePickle } from "../ImagePickle";
+import { getMwRerollInsteadOfAddon } from "../../settingsHelpers";
+import { AbilityTestMW } from "./AbilityTestMW";
 
 type AbilitySheetProps = {
   ability: InvestigatorItem,
@@ -34,6 +36,8 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     onFocus: onFocusName,
     onInput: onInputName,
   } = useAsyncUpdate(ability.data.name, updateName);
+
+  const mwRerollInsteadOfAddon = getMwRerollInsteadOfAddon();
 
   return (
     <div
@@ -99,7 +103,10 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
           ? <AbilityConfig ability={ability}/>
           : <Fragment>
               {/* Spending/testing area */}
-              {ability.isOwned && <AbilityTest ability={ability} />}
+              {ability.isOwned &&
+                mwRerollInsteadOfAddon
+                ? <AbilityTestMW ability={ability} />
+                : <AbilityTest ability={ability} />}
               <AbilityMainBits ability={ability} />
             </Fragment>
         }
