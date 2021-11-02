@@ -34,6 +34,7 @@ export const AbilitiesAreaMW: React.FC<AbilitiesAreaMWProps> = ({
               display: "grid",
               gridTemplateColumns: "1fr max-content max-content max-content",
               gridTemplateAreas: "'ability rating set spend'",
+              gridAutoRows: "min-content",
               columnGap: "0.2em",
               rowGap: "0.4em",
               alignItems: "center",
