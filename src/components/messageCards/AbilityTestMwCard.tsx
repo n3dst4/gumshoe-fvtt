@@ -6,21 +6,17 @@ import React, { Fragment, useCallback, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { CSSTransition } from "react-transition-group";
 import { DiceTerms } from "./DiceTerms";
-import { AbilityCardMode } from "./types";
 import { Translate } from "../Translate";
-import * as constants from "../../constants";
 import { duration, termsClasses } from "./termsClasses";
 
 interface AbilityTestMwCardProps {
   msg: ChatMessage;
   ability: InvestigatorItem;
-  mode: AbilityCardMode;
 }
 
 export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
   msg,
   ability,
-  mode,
 }) => {
   const onClickAbilityName = useCallback(() => {
     ability.sheet?.render(true);
@@ -73,12 +69,7 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
         {!showTerms && (
           <span>
             {" "}
-            {mode === constants.htmlDataModeSpend &&
-              <Translate>PointSpend</Translate>
-            }
-            {mode === constants.htmlDataModeTest &&
-              <Translate>AbilityTest</Translate>
-            }
+            <Translate>AbilityTest</Translate>
           </span>
         )}
       </div>
@@ -96,17 +87,12 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
             gridArea: "terms",
           }}
         >
-          {mode === "spend" &&
-            <Translate>PointSpend</Translate>
-          }
-          {mode === "test" &&
-            <Fragment>
-              <Translate>AbilityTest</Translate>
-              {": "}
-              <DiceTerms terms={msg.roll?.terms} />
-              {" ="}
-            </Fragment>
-          }
+          <Fragment>
+            <Translate>AbilityTest</Translate>
+            {": "}
+            <DiceTerms terms={msg.roll?.terms} />
+            {" ="}
+          </Fragment>
         </div>
       </CSSTransition>
       {/* RESULT */}
