@@ -11,13 +11,13 @@ import { Translate } from "../Translate";
 import * as constants from "../../constants";
 import { duration, termsClasses } from "./termsClasses";
 
-interface AbilityTestCardProps {
+interface AbilityTestMwCardProps {
   msg: ChatMessage;
   ability: InvestigatorItem;
   mode: AbilityCardMode;
 }
 
-export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
+export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
   msg,
   ability,
   mode,

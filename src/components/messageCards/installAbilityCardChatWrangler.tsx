@@ -10,6 +10,7 @@ import * as constants from "../../constants";
 import { isAbilityCardMode } from "./types";
 import { AbilityTestCard } from "./AbilityTestCard";
 import { AttackCard } from "./AttackCard";
+import { AbilityTestMwCard } from "./AbilityTestMwCard";
 
 export const installAbilityCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {
@@ -25,49 +26,65 @@ export const installAbilityCardChatWrangler = () => {
     const abilityId = el.getAttribute(constants.htmlDataItemId);
     const actorId = el.getAttribute(constants.htmlDataActorId);
     const mode = el.getAttribute(constants.htmlDataMode);
-    const weaponId = el.getAttribute(constants.htmlDataWeaponId);
-    const rangeName = el.getAttribute(constants.htmlDataRange);
-    if (abilityId === null) {
+    const actor = actorId && game.actors?.get(actorId);
+    if (!actor) {
       logger.error(
-        `Ability test chat message found with no '${constants.htmlDataItemId}' attribute.`,
-        el,
+        `Missing or invalid '${constants.htmlDataActorId}' attribute.`, el,
       );
       return;
     }
-    if (actorId === null) {
+    const ability = abilityId && actor?.items.get(abilityId);
+    if (!ability) {
       logger.error(
-        `Ability test chat message found with no '${constants.htmlDataActorId}' attribute.`,
+        `Missing or invalid '${constants.htmlDataItemId}' attribute.`,
         el,
       );
       return;
     }
     if (mode === null || !isAbilityCardMode(mode)) {
       logger.error(
-        `Ability test chat message found withou a valid '${constants.htmlDataMode}' attribute. (Valid values are "test", "spend", "combat"`,
+        `Invalid '${constants.htmlDataMode}' attribute. (Valid values are "test", "spend", "combat")`,
         el,
       );
       return;
     }
-    const actor = game.actors?.get(actorId);
-    const ability = actor?.items.get(abilityId);
-    const weapon = weaponId ? actor?.items.get(weaponId) : undefined;
-    if (el && abilityId && ability) {
-      let content: JSX.Element;
-      if (weapon && rangeName) {
-        content = <AttackCard
-          msg={chatMessage}
-          ability={ability}
-          weapon={weapon}
-          rangeName={rangeName}
-        />;
-      } else {
-        content = <AbilityTestCard
-          msg={chatMessage}
-          ability={ability}
-          mode={mode}
-        />;
+    let content: JSX.Element;
+    if (mode === constants.htmlDataModeAttack) {
+      // ATTACK!!!!!!
+      const weaponId = el.getAttribute(constants.htmlDataWeaponId);
+      const rangeName = el.getAttribute(constants.htmlDataRange);
+      if (!rangeName) {
+        logger.error(
+          `Missing or invalid '${constants.htmlDataRange}' attribute.`, el,
+        );
+        return;
       }
-      ReactDOM.render(content, el);
+      const weapon = weaponId ? actor?.items.get(weaponId) : undefined;
+      if (!weapon) {
+        logger.error(
+          `Missing or invalid '${constants.htmlDataWeaponId}' attribute.`, el,
+        );
+        return;
+      }
+      content = <AttackCard
+        msg={chatMessage}
+        ability={ability}
+        weapon={weapon}
+        rangeName={rangeName}
+      />;
+    } else if (mode === constants.htmlDataModeMwTest) {
+      content = <AbilityTestMwCard
+        msg={chatMessage}
+        ability={ability}
+      />;
+    } else {
+      // TEST /SPEND
+      content = <AbilityTestCard
+        msg={chatMessage}
+        ability={ability}
+        mode={mode}
+      />;
     }
+    ReactDOM.render(content, el);
   });
 };

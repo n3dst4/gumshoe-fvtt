@@ -1,8 +1,13 @@
 import * as constants from "../../constants";
 
-export type AbilityCardMode =
+type AbilityCardModeTestSpend =
   | typeof constants.htmlDataModeTest
   | typeof constants.htmlDataModeSpend;
+
+export type AbilityCardMode =
+  | AbilityCardModeTestSpend
+  | typeof constants.htmlDataModeAttack
+  | typeof constants.htmlDataModeMwTest;
 
 export const isAbilityCardMode = (
   candidate: string | AbilityCardMode,
@@ -10,6 +15,7 @@ export const isAbilityCardMode = (
   return (
     candidate === constants.htmlDataModeTest ||
     candidate === constants.htmlDataModeSpend ||
-    candidate === constants.htmlDataModeAttack
+    candidate === constants.htmlDataModeAttack ||
+    candidate === constants.htmlDataModeMwTest
   );
 };

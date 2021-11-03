@@ -67,8 +67,29 @@ export class InvestigatorItem extends Item {
     this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
   }
 
-  async mwTestAbility (difficulty: MWDifficulty, boonLevy: number) {
-    // TODO
+  async mwTestAbility (difficulty: MWDifficulty, boonLevy: number, isReRoll = false) {
+    assertGame(game);
+    assertAbilityDataSource(this.data);
+    if (this.actor === null) { return; }
+    const diffMod = (difficulty === "easy") ? 0 : difficulty;
+    const roll = new Roll("1d6 + @diffMod", { diffMod });
+    await roll.evaluate({ async: true });
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content: `
+        <div 
+          class="${constants.abilityChatMessageClassName}"
+          ${constants.htmlDataItemId}="${this.data._id}"
+          ${constants.htmlDataActorId}="${this.parent?.data._id}"
+          ${constants.htmlDataMode}="${constants.htmlDataModeMwTest}"
+          ${constants.htmlDataMwDifficulty} = ${difficulty}
+          ${constants.htmlDataMwBoonLevy} = ${boonLevy}
+          ${constants.htmlDataMwIsReRoll} = ${isReRoll}
+        />
+      `,
+    });
+    const cost = (isReRoll ? 1 : 0) + boonLevy;
+    this.update({ data: { pool: this.data.data.pool - cost } });
   }
 
   refreshPool () {
