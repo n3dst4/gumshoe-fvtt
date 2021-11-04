@@ -11,6 +11,7 @@ import { isAbilityCardMode } from "./types";
 import { AbilityTestCard } from "./AbilityTestCard";
 import { AttackCard } from "./AttackCard";
 import { AbilityTestMwCard } from "./AbilityTestMwCard";
+import { MWDifficulty } from "../../types";
 
 export const installAbilityCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {
@@ -73,12 +74,18 @@ export const installAbilityCardChatWrangler = () => {
         rangeName={rangeName}
       />;
     } else if (mode === constants.htmlDataModeMwTest) {
+      // MW TEST
+      const difficultyAttr = el.getAttribute(constants.htmlDataMwDifficulty);
+      const difficulty: MWDifficulty = difficultyAttr === "easy"
+        ? "easy"
+        : Number(difficultyAttr ?? 0);
       content = <AbilityTestMwCard
         msg={chatMessage}
         ability={ability}
+        difficulty={difficulty}
       />;
     } else {
-      // TEST /SPEND
+      // REGULAR TEST /SPEND
       content = <AbilityTestCard
         msg={chatMessage}
         ability={ability}

@@ -72,7 +72,10 @@ export class InvestigatorItem extends Item {
     assertAbilityDataSource(this.data);
     if (this.actor === null) { return; }
     const diffMod = (difficulty === "easy") ? 0 : difficulty;
-    const roll = new Roll("1d6 + @diffMod", { diffMod });
+    const operator = diffMod < 0 ? "-" : "+";
+    const roll = diffMod === 0
+      ? new Roll("1d6")
+      : new Roll(`1d6 ${operator} @diffMod`, { diffMod: Math.abs(diffMod) });
     await roll.evaluate({ async: true });
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),

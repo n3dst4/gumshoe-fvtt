@@ -1,32 +1,81 @@
 /** @jsx jsx */
-import {
-  jsx,
-} from "@emotion/react";
-import React, { Fragment, useCallback, useState } from "react";
+import { jsx } from "@emotion/react";
+import React, { useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { CSSTransition } from "react-transition-group";
 import { DiceTerms } from "./DiceTerms";
 import { Translate } from "../Translate";
-import { duration, termsClasses } from "./termsClasses";
+import { MWDifficulty } from "../../types";
 
 interface AbilityTestMwCardProps {
   msg: ChatMessage;
   ability: InvestigatorItem;
+  difficulty: MWDifficulty;
 }
+
+type SuccessOrFailure ="success" | "failure";
+
+interface MWResult {
+  successorFailure: SuccessOrFailure;
+  text: string;
+  color: string;
+}
+
+export const mainColors: {[x in SuccessOrFailure]: string} = {
+  success: "#a7d5a7",
+  failure: "#d59292",
+};
+
+const results: {[value: number]: MWResult} = {
+  1: {
+    color: "red",
+    successorFailure: "failure",
+    text: "Dismal",
+  },
+  2: {
+    color: mainColors.failure,
+    successorFailure: "failure",
+    text: "Quotidian",
+  },
+  3: {
+    color: "#ffff81",
+    successorFailure: "failure",
+    text: "Exasperating",
+  },
+  4: {
+    color: "#ffff81",
+    successorFailure: "success",
+    text: "Hair’s-Breadth",
+  },
+  5: {
+    color: mainColors.success,
+    successorFailure: "success",
+    text: "Prosaic",
+  },
+  6: {
+    color: "#0f0",
+    successorFailure: "success",
+    text: "Illustrious",
+  },
+};
 
 export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
   msg,
   ability,
+  difficulty,
 }) => {
   const onClickAbilityName = useCallback(() => {
     ability.sheet?.render(true);
   }, [ability.sheet]);
 
-  const [showTerms, setShowTerms] = useState(true);
+  // const [showTerms, setShowTerms] = useState(true);
 
-  const onClickResult = useCallback(() => {
-    setShowTerms(s => !s);
-  }, []);
+  // const onClickResult = useCallback(() => {
+  //   setShowTerms(s => !s);
+  // }, []);
+
+  const cappedResult = Math.max(Math.min(msg.roll?.total ?? 1, 6), 1);
+  const effectiveResult = difficulty === "easy" && cappedResult === 3 ? 4 : cappedResult;
+  const deets = results[effectiveResult];
 
   return (
     <div
@@ -66,15 +115,12 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
         }}
       >
         <b><a onClick={onClickAbilityName}>{ability.data.name}</a></b>
-        {!showTerms && (
-          <span>
-            {" "}
-            <Translate>AbilityTest</Translate>
-          </span>
-        )}
+        {" "}
+        <DiceTerms terms={msg.roll?.terms} />
+        {difficulty === "easy" && <span>(<Translate>Easy</Translate>)</span>}
       </div>
       {/* TERMS */}
-      <CSSTransition
+      {/* <CSSTransition
         in={showTerms}
         timeout={duration}
         classNames={{
@@ -94,20 +140,33 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
             {" ="}
           </Fragment>
         </div>
-      </CSSTransition>
+      </CSSTransition> */}
       {/* RESULT */}
-      <a
-        onClick={onClickResult}
-        className="dice-total"
+      <div
         css={{
+          background: mainColors[deets.successorFailure],
+          textAlign: "center",
+          padding: "0.5em",
+          border: "1px solid #777",
+          borderRadius: "0.5em",
           gridArea: "body",
-          "&&": {
-            marginTop: "0.5em",
-          },
         }}
-      >
-        {msg.roll?.total}
-      </a>
+        >
+          <Translate>
+            {deets.successorFailure === "failure" ? "FailureExclamation" : "SuccessExclamation"}
+          </Translate>
+          <div
+            css={{
+              marginTop: "0.5em",
+              // padding: "1em",
+              background: deets.color,
+              border: "1px solid #777",
+              borderRadius: "0.5em",
+            }}
+          >
+            {deets.text}
+          </div>
+      </div>
     </div>
   );
 });

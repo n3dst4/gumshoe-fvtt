@@ -111,5 +111,8 @@
     "investigator.SettingsForMoribundWorldUsers": "Settings for Moribund World users",
     "investigator.HiddenShortNotesFields": "Hidden short notes",
     "investigator.NoAbilitiesInThisCategory": "No abilities in this category",
-    "investigator.HideIfZeroRated": "Hide if zero-rated?"
+    "investigator.HideIfZeroRated": "Hide if zero-rated?",
+    "investigator.Easy": "Easy",
+    "investigator.SuccessExclamation": "Success!",
+    "investigator.FailureExclamation": "Failure!"
 }
