@@ -91,7 +91,7 @@ export class InvestigatorItem extends Item {
         />
       `,
     });
-    const cost = (isReRoll ? 1 : 0) + boonLevy;
+    const cost = (isReRoll ? 1 : 0) - boonLevy;
     this.update({ data: { pool: this.data.data.pool - cost } });
   }
 

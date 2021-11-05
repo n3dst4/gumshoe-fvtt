@@ -4,7 +4,7 @@ import React, { useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { MWDifficulty } from "../../types";
-import { GridFieldStacked } from "../inputs/GridFieldStacked";
+import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 
@@ -41,11 +41,12 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
         marginBottom: "1em",
         background: theme.colors.backgroundSecondary,
         display: "grid",
-        gridTemplateColumns: "1fr max-content",
+        gridTemplateColumns: "max-content 1fr",
         gridTemplateRows: "auto",
         gridTemplateAreas: `
           "inputs button"
         `,
+        gap: "0.5em",
       }}
     >
       <InputGrid
@@ -53,23 +54,25 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
           gridArea: "inputs",
         }}
       >
-        <GridFieldStacked label="Difficulty">
-          <select value={difficulty} onChange={onChangeDifficulty}>
+        <GridField label="Difficulty">
+          <select css={{ display: "block" }} value={difficulty} onChange={onChangeDifficulty}>
             <option value="easy">Easy</option>
             <option value={0}>Normal</option>
             <option value={-1}>Hard (-1)</option>
             <option value={-2}>Very Hard (-2)</option>
           </select>
-        </GridFieldStacked>
-        <GridFieldStacked label="Boon/levy">
-          <select value={boonLevy} onChange={onChangeBoonLevy}>
-            <option value={+2}>Boon +2</option>
-            <option value={+1}>Boon +1</option>
-            <option value={0}>0</option>
-            <option value={-1}>Levy (-1)</option>
-            <option value={-2}>Levy (-2)</option>
-          </select>
-        </GridFieldStacked>
+        </GridField>
+        <GridField label="Boon/levy">
+          <div css={{ position: "relative" }}>
+            <select css={{ display: "block" }} value={boonLevy} onChange={onChangeBoonLevy}>
+              <option value={+2}>Boon +2</option>
+              <option value={+1}>Boon +1</option>
+              <option value={0}>0</option>
+              <option value={-1}>Levy (-1)</option>
+              <option value={-2}>Levy (-2)</option>
+            </select>
+          </div>
+        </GridField>
       </InputGrid>
       <button css={{ gridArea: "button" }} onClick={onTest}>
         <Translate>Test</Translate>
