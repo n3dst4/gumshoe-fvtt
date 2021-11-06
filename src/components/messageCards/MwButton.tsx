@@ -9,18 +9,22 @@ import { MWResult } from "./types";
 
 type MwButtonProps = {
   deets: MWResult,
+  onClick: () => void,
 };
 
 const basicShadow = "0 0 0.5em 0 #0007";
 
 export const MwButton: React.FC<MwButtonProps> = ({
+  onClick: onClickProp,
   deets,
 }: MwButtonProps) => {
   const { hover, onMouseEnter, onMouseLeave } = useHover();
+
   return (
     <button
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onClick={onClickProp}
       css={{
         textAlign: "center",
         padding: "0.2em",

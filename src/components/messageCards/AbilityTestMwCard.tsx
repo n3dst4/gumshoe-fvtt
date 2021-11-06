@@ -14,6 +14,8 @@ interface AbilityTestMwCardProps {
   msg: ChatMessage;
   ability: InvestigatorItem;
   difficulty: MWDifficulty;
+  boonLevy: number;
+  isReRoll: boolean;
 }
 
 const results: {[value: number]: MWResult} = {
@@ -47,20 +49,20 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
   msg,
   ability,
   difficulty,
+  boonLevy,
+  isReRoll,
 }) => {
   const onClickAbilityName = useCallback(() => {
     ability.sheet?.render(true);
   }, [ability.sheet]);
 
-  // const [showTerms, setShowTerms] = useState(true);
-
-  // const onClickResult = useCallback(() => {
-  //   setShowTerms(s => !s);
-  // }, []);
-
   const cappedResult = Math.max(Math.min(msg.roll?.total ?? 1, 6), 1);
   const effectiveResult = difficulty === "easy" && cappedResult === 3 ? 4 : cappedResult;
   const deets = results[effectiveResult];
+
+  const onClickReRoll = useCallback(() => {
+    ability.mwTestAbility(difficulty, boonLevy, true);
+  }, [ability, boonLevy, difficulty]);
 
   return (
     <div
@@ -95,9 +97,13 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
         {" "}
         <DiceTerms terms={msg.roll?.terms} />
         {difficulty === "easy" && <span>(<Translate>Easy</Translate>)</span>}
+        {boonLevy < 0 && <span><Translate>Levy</Translate>: {boonLevy}</span>}
+        {boonLevy > 0 && <span><Translate>Boon</Translate>: +{boonLevy}</span>}
+        {isReRoll && <span>(<Translate>Re-roll</Translate>)</span>}
+
       </div>
       {/* RESULT */}
-      <MwButton deets={deets}/>
+      <MwButton onClick={onClickReRoll} deets={deets}/>
     </div>
   );
 });
