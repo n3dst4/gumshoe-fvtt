@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertActiveCharacterDataSource } from "../../types";
-import { AbilitySlugPlay } from "./AbilitySlugPlay";
+import { AbilitySlugPlayMw } from "./AbilitySlugPlayMw";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
 import { useAbilities } from "./useAbilities";
 
@@ -44,7 +44,7 @@ export const AbilitiesAreaMW: React.FC<AbilitiesAreaMWProps> = ({
             <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
             {
               sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>((ability) => (
-                <AbilitySlugPlay key={ability.id} ability={ability}/>
+                <AbilitySlugPlayMw key={ability.id} ability={ability}/>
               ))
             }
             {generalAbilities[cat].length === 0 && <NoAbilitiesNote />}
