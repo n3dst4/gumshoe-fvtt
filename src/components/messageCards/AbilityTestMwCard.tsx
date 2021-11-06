@@ -9,6 +9,7 @@ import { systemName } from "../../constants";
 import { css } from "@emotion/css";
 import { MWResult } from "./types";
 import { MwButton } from "./MwButton";
+import { MwCostSlug } from "./MwCostSlug";
 
 interface AbilityTestMwCardProps {
   msg: ChatMessage;
@@ -64,6 +65,14 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
     ability.mwTestAbility(difficulty, boonLevy, true);
   }, [ability, boonLevy, difficulty]);
 
+  const boonLevyFactor = boonLevy < 0
+    ? <MwCostSlug><Translate>Levy</Translate>: {boonLevy}</MwCostSlug>
+    : boonLevy > 0
+      ? <MwCostSlug><Translate>Boon</Translate>: +{boonLevy}</MwCostSlug>
+      : null;
+
+  const reRollFactor = isReRoll && <MwCostSlug><Translate>Re-roll</Translate>: -1</MwCostSlug>;
+
   return (
     <div
       className="dice-roll"
@@ -74,7 +83,7 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
         gridTemplateRows: "max-content minmax(0, max-content) max-content",
         gridTemplateAreas:
           "\"headline\" " +
-          "\"terms\" " +
+          "\"pool\" " +
           "\"body\" ",
         alignItems: "center",
       }}
@@ -97,10 +106,18 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
         {" "}
         <DiceTerms terms={msg.roll?.terms} />
         {difficulty === "easy" && <span>(<Translate>Easy</Translate>)</span>}
-        {boonLevy < 0 && <span><Translate>Levy</Translate>: {boonLevy}</span>}
-        {boonLevy > 0 && <span><Translate>Boon</Translate>: +{boonLevy}</span>}
-        {isReRoll && <span>(<Translate>Re-roll</Translate>)</span>}
-
+        {difficulty === -1 && <span>(<Translate>Hard</Translate>)</span>}
+        {difficulty < -1 && <span>(<Translate>Very Hard</Translate>)</span>}
+      </div>
+      {/* POOL */}
+      <div
+        css={{
+          gridArea: "pool",
+        }}
+      >
+        <Translate>Pool</Translate>: x
+        {boonLevyFactor}
+        {reRollFactor}
       </div>
       {/* RESULT */}
       <MwButton onClick={onClickReRoll} deets={deets}/>

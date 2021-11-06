@@ -113,6 +113,8 @@
     "investigator.NoAbilitiesInThisCategory": "No abilities in this category",
     "investigator.HideIfZeroRated": "Hide if zero-rated?",
     "investigator.Easy": "Easy",
+    "investigator.Hard": "Hard",
+    "investigator.VeryHard": "Very Hard",
     "investigator.SuccessExclamation": "Success!",
     "investigator.FailureExclamation": "Failure!",
     "investigator.Difficulty": "Difficulty",
@@ -120,5 +122,4 @@
     "investigator.ReRoll": "Re-Roll",
     "investigator.Levy": "Levy",
     "investigator.Boon": "Boon"
-
 }
