@@ -1,10 +1,12 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
+import { Global, jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { DiceTerms } from "./DiceTerms";
 import { Translate } from "../Translate";
 import { MWDifficulty } from "../../types";
+import { systemName } from "../../constants";
+import { css } from "@emotion/css";
 
 interface AbilityTestMwCardProps {
   msg: ChatMessage;
@@ -116,30 +118,22 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
       css={{
         position: "relative",
         display: "grid",
-        gridTemplateColumns: "max-content 1fr",
+        gridTemplateColumns: "1fr",
         gridTemplateRows: "max-content minmax(0, max-content) max-content",
         gridTemplateAreas:
-          "\"image headline\" " +
-          "\"image terms\" " +
-          "\"image body\" ",
+          "\"headline\" " +
+          "\"terms\" " +
+          "\"body\" ",
         alignItems: "center",
       }}
     >
-      {/* IMAGE */}
-      <div
-        css={{
-          height: "4em",
-          width: "4em",
-          gridArea: "image",
-          backgroundImage: `url(${ability.data.img})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          transform: "scale(0.9) rotate(-5deg)",
-          boxShadow: "0 0 0.5em black",
-          marginRight: "1em",
-          alignSelf: "start",
-        }}
+      <Global
+        styles={css`
+          @font-face {
+            font-family: "Longdon Decorative Regular";
+            src: url(systems/${systemName}/assets/fonts/LongdonDecorative.woff2) format('woff2');
+          }
+        `}
       />
       {/* HEADLINE */}
       <div
@@ -178,15 +172,17 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
       <div
         css={{
           textAlign: "center",
-          padding: "0.5em",
+          padding: "0.2em",
           gridArea: "body",
           marginTop: "0.5em",
           borderRadius: "2em",
           backgroundImage: [
             `radial-gradient(closest-side, ${deets.color}77 0%, ${deets.color}00 100%)`,
-            "linear-gradient(to bottom, #777, #000)",
+            "linear-gradient(to bottom, #999, #000)",
           ].join(", "),
           boxShadow: basicShadow,
+          fontFamily: "'Longdon Decorative Regular', sans-serif",
+          fontSize: "1.5em",
         }}
       >
         <div
