@@ -1,0 +1,12 @@
+{
+    "investigator.Boon": "Boon",
+    "investigator.Easy": "Easy",
+    "investigator.Hard": "Hard",
+    "investigator.VeryHard": "Very Hard",
+    "investigator.SuccessExclamation": "Success!",
+    "investigator.FailureExclamation": "Failure!",
+    "investigator.Difficulty": "Difficulty",
+    "investigator.BoonLevy": "Boon/Levy",
+    "investigator.ReRoll": "Re-Roll",
+    "investigator.Levy": "Levy"
+}
