@@ -81,13 +81,14 @@ export const installAbilityCardChatWrangler = () => {
         : Number(difficultyAttr ?? 0);
       const boonLevy = Number(el.getAttribute(constants.htmlDataMwBoonLevy) ?? 0);
       const isReRoll = el.getAttribute(constants.htmlDataMwIsReRoll) === "true";
-
+      const pool = Number(el.getAttribute(constants.htmlDataMwPool));
       content = <AbilityTestMwCard
         msg={chatMessage}
         ability={ability}
         difficulty={difficulty}
         boonLevy={boonLevy}
         isReRoll={isReRoll}
+        pool={pool}
       />;
     } else {
       // REGULAR TEST /SPEND

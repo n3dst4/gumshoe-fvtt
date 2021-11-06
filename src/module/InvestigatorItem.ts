@@ -77,6 +77,12 @@ export class InvestigatorItem extends Item {
       ? new Roll("1d6")
       : new Roll(`1d6 ${operator} @diffMod`, { diffMod: Math.abs(diffMod) });
     await roll.evaluate({ async: true });
+    const cost = (isReRoll ? 1 : 0) - boonLevy;
+    if (cost > this.data.data.pool) {
+      ui.notifications?.error(`Attempted to ${isReRoll ? "re-" : ""}roll ${this.data.name} with a levy of ${boonLevy} but pool is currently at ${this.data.data.pool}`);
+      return;
+    }
+    const newPool = Math.max(0, this.data.data.pool - cost);
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       content: `
@@ -88,11 +94,11 @@ export class InvestigatorItem extends Item {
           ${constants.htmlDataMwDifficulty} = ${difficulty}
           ${constants.htmlDataMwBoonLevy} = ${boonLevy}
           ${constants.htmlDataMwIsReRoll} = ${isReRoll}
+          ${constants.htmlDataMwPool} = ${newPool}
         />
       `,
     });
-    const cost = (isReRoll ? 1 : 0) - boonLevy;
-    this.update({ data: { pool: this.data.data.pool - cost } });
+    this.update({ data: { pool: newPool } });
   }
 
   refreshPool () {

@@ -17,6 +17,7 @@ interface AbilityTestMwCardProps {
   difficulty: MWDifficulty;
   boonLevy: number;
   isReRoll: boolean;
+  pool: number;
 }
 
 const results: {[value: number]: MWResult} = {
@@ -52,6 +53,7 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
   difficulty,
   boonLevy,
   isReRoll,
+  pool,
 }) => {
   const onClickAbilityName = useCallback(() => {
     ability.sheet?.render(true);
@@ -115,7 +117,7 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
           gridArea: "pool",
         }}
       >
-        <Translate>Pool</Translate>: x
+        <Translate>Pool</Translate>: {pool}
         {boonLevyFactor}
         {reRollFactor}
       </div>
