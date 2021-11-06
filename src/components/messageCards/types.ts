@@ -19,3 +19,8 @@ export const isAbilityCardMode = (
     candidate === constants.htmlDataModeMwTest
   );
 };
+
+export interface MWResult {
+  text: string;
+  color: string;
+}
