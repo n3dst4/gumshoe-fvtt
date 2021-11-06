@@ -116,5 +116,6 @@
     "investigator.SuccessExclamation": "Success!",
     "investigator.FailureExclamation": "Failure!",
     "investigator.Difficulty": "Difficulty",
-    "investigator.BoonLevy": "Boon/Levy"
+    "investigator.BoonLevy": "Boon/Levy",
+    "investigator.ReRoll": "Re-Roll"
 }

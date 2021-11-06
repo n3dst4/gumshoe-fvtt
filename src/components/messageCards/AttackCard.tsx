@@ -7,7 +7,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { CSSTransition } from "react-transition-group";
 import { Translate } from "../Translate";
 import { DiceTerms } from "./DiceTerms";
-import { duration, termsClasses } from "./termsClasses";
+import { duration, termsClasses } from "./transitions";
 // import * as constants from "../../constants";
 
 interface AttackCardProps {

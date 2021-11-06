@@ -9,7 +9,7 @@ import { DiceTerms } from "./DiceTerms";
 import { AbilityCardMode } from "./types";
 import { Translate } from "../Translate";
 import * as constants from "../../constants";
-import { duration, termsClasses } from "./termsClasses";
+import { duration, termsClasses } from "./transitions";
 
 interface AbilityTestCardProps {
   msg: ChatMessage;
