@@ -200,6 +200,13 @@ export interface InvestigativeAbilityDataSourceData extends BaseAbilityDataSourc
 export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData {
   canBeInvestigative: boolean;
   goesFirstInCombat: boolean;
+  // MW-specific fields
+  mwTrumps: string;
+  mwTrumpedBy: string;
+  mwBenefits: string;
+  mwDrawbacks: string;
+  mwRefreshes: string;
+  mwAutomaticSuccess: string;
 }
 
 /** data for equipment */
@@ -254,6 +261,13 @@ export function isAbilityDataSource (data: any): data is AbilityDataSource {
 /** assert that a data is some kind of ability */
 export function assertAbilityDataSource (data: InvestigatorItemDataSource): asserts data is AbilityDataSource {
   if (!isAbilityDataSource(data)) {
+    throw new Error("Not an ability");
+  }
+}
+
+/** assert that a data is a general ability */
+export function assertGeneralAbilityDataSource (data: InvestigatorItemDataSource): asserts data is GeneralAbilityDataSource {
+  if (!isGeneralAbilityDataSource(data)) {
     throw new Error("Not an ability");
   }
 }

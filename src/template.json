@@ -93,8 +93,14 @@
       "templates": ["ability"],
       "canBeInvestigative": false,
       "goesFirstInCombat": false,
-      "hideIfZeroRated": false
-    },
+      "hideIfZeroRated": false,
+      "mwTrumps": "",
+      "mwTrumpedBy": "",
+      "mwBenefits": "",
+      "mwDrawbacks": "",
+      "mwRefreshes": "",
+      "mwAutomaticSuccess": ""      
+  },
     "equipment": {
       "notes": ""
     },

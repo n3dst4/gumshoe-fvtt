@@ -3,7 +3,7 @@ import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
 import { InvestigatorActor } from "./InvestigatorActor";
 import { getDefaultThemeName } from "../settingsHelpers";
-import { assertAbilityDataSource, assertWeaponDataSource, MWDifficulty } from "../types";
+import { assertAbilityDataSource, assertGeneralAbilityDataSource, assertWeaponDataSource, MWDifficulty } from "../types";
 import * as constants from "../constants";
 
 /**
@@ -392,6 +392,66 @@ export class InvestigatorItem extends Item {
   setHideIfZeroRated = (hideIfZeroRated: boolean) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { hideIfZeroRated } });
+  }
+
+  getMwTrumps = () => {
+    assertGeneralAbilityDataSource(this.data);
+    return this.data.data.mwTrumps;
+  }
+
+  setMwTrumps = (mwTrumps: string) => {
+    assertGeneralAbilityDataSource(this.data);
+    this.update({ data: { mwTrumps } });
+  }
+
+  getMwTrumpedBy = () => {
+    assertGeneralAbilityDataSource(this.data);
+    return this.data.data.mwTrumpedBy;
+  }
+
+  setMwTrumpedBy = (mwTrumpedBy: string) => {
+    assertGeneralAbilityDataSource(this.data);
+    this.update({ data: { mwTrumpedBy } });
+  }
+
+  getMwBenefits = () => {
+    assertGeneralAbilityDataSource(this.data);
+    return this.data.data.mwBenefits;
+  }
+
+  setMwBenefits = (mwBenefits: string) => {
+    assertGeneralAbilityDataSource(this.data);
+    this.update({ data: { mwBenefits } });
+  }
+
+  getMwDrawbacks = () => {
+    assertGeneralAbilityDataSource(this.data);
+    return this.data.data.mwDrawbacks;
+  }
+
+  setMwDrawbacks = (mwDrawbacks: string) => {
+    assertGeneralAbilityDataSource(this.data);
+    this.update({ data: { mwDrawbacks } });
+  }
+
+  getMwRefreshes = () => {
+    assertGeneralAbilityDataSource(this.data);
+    return this.data.data.mwRefreshes;
+  }
+
+  setMwRefreshes = (mwRefreshes: string) => {
+    assertGeneralAbilityDataSource(this.data);
+    this.update({ data: { mwRefreshes } });
+  }
+
+  getMwAutomaticSuccess = () => {
+    assertGeneralAbilityDataSource(this.data);
+    return this.data.data.mwAutomaticSuccess;
+  }
+
+  setMwAutomaticSuccess = (mwAutomaticSuccess: string) => {
+    assertGeneralAbilityDataSource(this.data);
+    this.update({ data: { mwAutomaticSuccess } });
   }
 }
 
