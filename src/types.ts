@@ -203,10 +203,6 @@ export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData 
   // MW-specific fields
   mwTrumps: string;
   mwTrumpedBy: string;
-  mwBenefitsAndDrawbacks: string;
-  mwRefreshes: string;
-  mwAutomaticSuccess: string;
-  mwIsBigSix: boolean;
 }
 
 /** data for equipment */

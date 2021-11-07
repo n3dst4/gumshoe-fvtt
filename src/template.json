@@ -95,10 +95,7 @@
       "goesFirstInCombat": false,
       "hideIfZeroRated": false,
       "mwTrumps": "",
-      "mwTrumpedBy": "",
-      "mwBenefitsAndDrawBacks": "",
-      "mwAutomaticSuccess": "",
-      "mwIsBigSix": false
+      "mwTrumpedBy": ""
   },
     "equipment": {
       "notes": ""
