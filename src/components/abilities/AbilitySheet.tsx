@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useEffect, useState } from "react";
-import { useUpdate } from "../../hooks/useUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { isGeneralAbility } from "../../functions";
@@ -23,7 +22,6 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   application,
 }) => {
   const isGeneral = isGeneralAbility(ability);
-  const updateName = useUpdate(ability, (name) => ({ name }));
   const [configMode, setConfigMode] = useState(false);
 
   useEffect(() => {
@@ -35,7 +33,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     onBlur: onBlurName,
     onFocus: onFocusName,
     onInput: onInputName,
-  } = useAsyncUpdate(ability.data.name, updateName);
+  } = useAsyncUpdate(ability.data.name, ability.setName);
 
   const mwRerollInsteadOfAddon = getMwRerollInsteadOfAddon();
 

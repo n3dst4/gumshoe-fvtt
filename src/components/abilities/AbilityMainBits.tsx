@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect } from "react";
-import { useUpdate } from "../../hooks/useUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
@@ -26,7 +25,6 @@ export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
   const updateRating = useCallback((rating) => {
     ability.setRating(rating);
   }, [ability]);
-  const updatePool = useUpdate(ability, (pool) => ({ data: { pool } }));
 
   const onClickRefresh = useCallback(() => {
     ability.refreshPool();
@@ -81,7 +79,7 @@ export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
             min={0}
             max={mwPoolsExceedRatings ? undefined : ability.data.data.rating}
             value={ability.data.data.pool}
-            onChange={updatePool}
+            onChange={ability.setPool}
             css={{
               flex: 1,
             }}

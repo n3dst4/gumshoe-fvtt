@@ -12,17 +12,9 @@ import * as constants from "../constants";
  */
 export class InvestigatorItem extends Item {
   /**
-   * Augment the basic Item data model with additional dynamic data.
+   * classic gumshoe test: spend a number of points from the pool, and add that
+   * to a d6
    */
-  prepareData () {
-    super.prepareData();
-
-    // Get the Item's data
-    // const itemData = this.data;
-    // const actorData = this.actor ? this.actor.data : {};
-    // const data = itemData.data;
-  }
-
   async testAbility (spend: number) {
     assertGame(game);
     assertAbilityDataSource(this.data);
@@ -48,6 +40,10 @@ export class InvestigatorItem extends Item {
     this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
   }
 
+  /**
+   * gumshoe spend - no dice, just spend a number of points in exchange for some
+   * goodies
+   */
   async spendAbility (spend: number) {
     assertAbilityDataSource(this.data);
     if (this.actor === null) { return; }
@@ -67,6 +63,10 @@ export class InvestigatorItem extends Item {
     this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
   }
 
+  /**
+   * DERPG/"Moribund World" style roll - d6 +/- a difficulty modifier, with an
+   * additional boon or levy on the pool. can be re-rolled for one extra point.
+   */
   async mwTestAbility (difficulty: MWDifficulty, boonLevy: number, isReRoll = false) {
     assertGame(game);
     assertAbilityDataSource(this.data);
@@ -101,6 +101,9 @@ export class InvestigatorItem extends Item {
     this.update({ data: { pool: newPool } });
   }
 
+  /**
+   * reset the pool to the rating
+   */
   refreshPool () {
     assertAbilityDataSource(this.data);
     this.update({
@@ -108,6 +111,103 @@ export class InvestigatorItem extends Item {
         pool: this.data.data.rating ?? 0,
       },
     });
+  }
+
+  // ###########################################################################
+  // GETTERS GONNA GET
+  // SETTERS GONNA SET
+  // basically we have a getter/setter pair for every attribute so they can be
+  // used as handy callbacks in the component tree
+  // ###########################################################################
+
+  getCategory = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.category;
+  }
+
+  setCategory = (category: string) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { category } });
+  }
+
+  getMin = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.min;
+  }
+
+  setMin = (min: number) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { min } });
+  }
+
+  getMax = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.max;
+  }
+
+  setMax = (max: number) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { max } });
+  }
+
+  getOccupational = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.occupational;
+  }
+
+  setOccupational = (occupational: boolean) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { occupational } });
+  }
+
+  getCanBeInvestigative = () => {
+    assertGeneralAbilityDataSource(this.data);
+    return this.data.data.canBeInvestigative;
+  }
+
+  setCanBeInvestigative = (canBeInvestigative: boolean) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { canBeInvestigative } });
+  }
+
+  getShowTracker = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.showTracker;
+  }
+
+  setShowTracker = (showTracker: boolean) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { showTracker } });
+  }
+
+  getExcludeFromGeneralRefresh = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.excludeFromGeneralRefresh;
+  }
+
+  setExcludeFromGeneralRefresh = (excludeFromGeneralRefresh: boolean) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { excludeFromGeneralRefresh } });
+  }
+
+  getRefreshesDaily = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.refreshesDaily;
+  }
+
+  setRefreshesDaily = (refreshesDaily: boolean) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { refreshesDaily } });
+  }
+
+  getGoesFirstInCombat = () => {
+    assertGeneralAbilityDataSource(this.data);
+    return this.data.data.goesFirstInCombat;
+  }
+
+  setGoesFirstInCombat = (goesFirstInCombat: boolean) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { goesFirstInCombat } });
   }
 
   getSpecialities = () => {
@@ -237,9 +337,6 @@ export class InvestigatorItem extends Item {
       data: { usesAmmo },
     });
   }
-
-  // ---------------------------------------------------------------------------
-  // THEME
 
   getTheme (): Theme {
     const themeName = this.getThemeName();
@@ -393,6 +490,9 @@ export class InvestigatorItem extends Item {
     assertAbilityDataSource(this.data);
     this.update({ data: { hideIfZeroRated } });
   }
+
+  // ---------------------------------------------------------------------------
+  // MW specific fields
 
   getMwTrumps = () => {
     assertGeneralAbilityDataSource(this.data);

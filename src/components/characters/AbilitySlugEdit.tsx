@@ -4,7 +4,6 @@ import { jsx } from "@emotion/react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { assertAbilityDataSource } from "../../types";
-import { useUpdate } from "../../hooks/useUpdate";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { SpecialityList } from "../abilities/SpecialityList";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
@@ -23,7 +22,6 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability, showO
     }
   }, [app]);
   const updateRating = useCallback((rating) => { ability.setRatingRefresh(rating); }, [ability]);
-  const updateOccupational = useUpdate(ability, (occupational) => ({ data: { occupational } }));
 
   // const [occupational, setOccupational] = useState(ability.data.data.occupational);
   // useEffect(() => {
@@ -39,9 +37,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability, showO
         <div css={{ gridColumn: "isocc", justifySelf: "center" }} >
           <AsyncCheckbox
             checked={ability.data.data.occupational}
-            onChange={(t) => {
-              updateOccupational(t);
-            }}
+            onChange={ability.setOccupational}
           />
         </div>
       )}

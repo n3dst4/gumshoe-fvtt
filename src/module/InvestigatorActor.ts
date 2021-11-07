@@ -99,7 +99,7 @@ export class InvestigatorActor extends Actor {
     window.alert("Nuked");
   };
 
-  /// //////////////////////////////////////////////////////////////////////////
+  // ###########################################################################
   // ITEMS
 
   getAbilityByName (name: string, type?: AbilityType) {
@@ -131,8 +131,28 @@ export class InvestigatorActor extends Actor {
     );
   }
 
-  // ---------------------------------------------------------------------------
-  // THEME
+  // ###########################################################################
+  // GETTERS GONNA GET
+  // SETTERS GONNA SET
+  // basically we have a getter/setter pair for every attribute so they can be
+  // used as handy callbacks in the component tree
+  // ###########################################################################
+
+  getName = () => this.name;
+
+  setName = (name: string) => {
+    this.update({ name });
+  };
+
+  getOccupation = () => {
+    assertPCDataSource(this.data);
+    return this.data.data.occupation;
+  }
+
+  setOccupation = (occupation: string) => {
+    assertPCDataSource(this.data);
+    this.update({ data: { occupation } });
+  }
 
   getSheetTheme (): Theme {
     const themeName = this.getSheetThemeName() || getDefaultThemeName();
@@ -204,12 +224,18 @@ export class InvestigatorActor extends Actor {
     });
   };
 
-  getName = () => this.name;
+  getHitThreshold = () => {
+    assertActiveCharacterDataSource(this.data);
+    return this.data.data.hitThreshold;
+  }
 
-  setName = (name: string) => {
-    this.update({ name });
-  };
+  setHitThreshold = (hitThreshold: number) => {
+    assertActiveCharacterDataSource(this.data);
+    return this.update({ data: { hitThreshold } });
+  }
 
+  // ###########################################################################
+  // For the party sheet
   getActorIds = () => {
     assertPartyDataSource(this.data);
     return this.data.data.actorIds;
@@ -251,42 +277,6 @@ export class InvestigatorActor extends Actor {
   removeActorId = (id: string) => {
     this.setActorIds(this.getActorIds().filter((x) => x !== id));
   };
-
-  getHitThreshold = () => {
-    assertActiveCharacterDataSource(this.data);
-    return this.data.data.hitThreshold;
-  }
-
-  setHitThreshold = (newThreshold: number) => {
-    assertActiveCharacterDataSource(this.data);
-    return this.update({ data: { hitThreshold: newThreshold } });
-  }
-
-  // getGeneralAbilityNames = () => this.data.data.abilityNames;
-  // setGeneralAbilityNames = (abilityNames: string[]) => {
-  //   this.update({ data: { abilityNames } });
-  // };
-
-  // addGeneralAbilityNames = (newNames: string[]) => {
-  //   const currentNames = this.getGeneralAbilityNames();
-  //   const effectiveNames = newNames.filter(
-  //     (name) => !currentNames.includes(name),
-  //   );
-  //   this.setGeneralAbilityNames([...currentNames, ...effectiveNames]);
-  // };
-
-  // getInvestigativeAbilityNames = () => this.data.data.abilityNames;
-  // setInvestigativeAbilityNames = (abilityNames: string[]) => {
-  //   this.update({ data: { abilityNames } });
-  // };
-
-  // addInvestigativeAbilityNames = (newNames: string[]) => {
-  //   const currentNames = this.getInvestigativeAbilityNames();
-  //   const effectiveNames = newNames.filter(
-  //     (name) => !currentNames.includes(name),
-  //   );
-  //   this.setInvestigativeAbilityNames([...currentNames, ...effectiveNames]);
-  // };
 }
 
 declare global {

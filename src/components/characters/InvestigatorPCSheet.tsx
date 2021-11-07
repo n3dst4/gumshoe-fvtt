@@ -2,7 +2,6 @@
 import { Fragment, useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { jsx } from "@emotion/react";
-import { useUpdate } from "../../hooks/useUpdate";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
 import { CSSReset, CSSResetMode } from "../CSSReset";
@@ -36,9 +35,6 @@ export const InvestigatorPCSheet = ({
 }: InvestigatorPCSheetProps) => {
   assertGame(game);
   assertPCDataSource(actor.data);
-
-  const updateName = useUpdate(actor, name => ({ name }));
-  const updateOccupation = useUpdate(actor, occupation => ({ data: { occupation } }));
 
   const updateShortNote = useCallback((value, index) => {
     actor.setShortNote(index, value);
@@ -89,8 +85,8 @@ export const InvestigatorPCSheet = ({
             mainText={actor.data.name}
             subText={actor.data.data.occupation}
             defaultSubText="Investigator"
-            onChangeMainText={updateName}
-            onChangeSubText={updateOccupation}
+            onChangeMainText={actor.setName}
+            onChangeSubText={actor.setOccupation}
           />
         </div>
         <ImagePickle
@@ -114,13 +110,13 @@ export const InvestigatorPCSheet = ({
           <GridField label="Name">
               <AsyncTextInput
                 value={actor.data.name}
-                onChange={updateName}
+                onChange={actor.setName}
               />
             </GridField>
             <GridField noTranslate label={occupationLabel}>
               <AsyncTextInput
                 value={actor.data.data.occupation}
-                onChange={updateOccupation}
+                onChange={actor.setOccupation}
               />
             </GridField>
             {
