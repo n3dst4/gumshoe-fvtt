@@ -27,7 +27,14 @@ export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({
         `}
         className={className}
       >
-        {label && (noTranslate ? label : <Translate>{label}</Translate>)}
+        <label
+          htmlFor={htmlId}
+          css={{
+          }}
+        >
+          {label && (noTranslate ? label : <Translate>{label}</Translate>)}
+        </label>
+
         {children}
       </div>
     </IdContext.Provider>
