@@ -24,6 +24,14 @@ import { installAbilityCardChatWrangler } from "./components/messageCards/instal
 
 // Initialize system
 Hooks.once("init", async function () {
+  // this is how we could delete an item type, if we felt like it:
+  // assertGame(game);
+  // delete CONFIG.Item.typeLabels.generalAbility;
+  // game.system.entityTypes.Item.splice(
+  //   game.system.entityTypes.Item.indexOf("generalAbility"),
+  //   1
+  // );
+
   console.log(`${systemName} | Initializing system`);
   // Assign custom classes and constants here
 
