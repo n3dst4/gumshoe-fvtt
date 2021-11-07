@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ChangeEvent, useCallback, useContext } from "react";
+import { getMwShowExtraAbilityFields } from "../../settingsHelpers";
 import { IdContext } from "../IdContext";
 
 type TextAreaProps = {
@@ -38,6 +39,7 @@ export const TextArea: React.FC<TextAreaProps> = ({
       css={{
         flex: 1,
         width: "100%",
+        height: getMwShowExtraAbilityFields() ? "10em" : "4em",
       }}
       className={className}
       data-lpignore="true"
