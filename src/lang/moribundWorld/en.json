@@ -19,5 +19,10 @@
     "investigator.HideIfZeroRated": "Hide if zero-rated?",
     "investigator.ShowExtraFieldsOnAbilities": "Show extra fields on abilities?",
     "investigator.UseAlternativeItemTypes": "Use alternative item types",
-    "investigator.TrumpsOrCounters": "Trumps/counters"
+    "investigator.TrumpsOrCounters": "Trumps/counters",
+    "investigator.IsTrumpedOrCounteredBy": "Trumped/countered by",
+    "investigator.Benefits": "Benefits",
+    "investigator.Drawbacks": "Drawbacks",
+    "investigator.Refreshes": "Refreshes",
+    "investigator.AutomaticSuccess": "Auto success"
 }
