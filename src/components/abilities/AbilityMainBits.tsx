@@ -14,17 +14,14 @@ import { TextArea } from "../inputs/TextArea";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 
-type AbilityEditorMainProps = {
+type AbilityMainBitsProps = {
   ability: InvestigatorItem,
 };
 
-export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
+export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
   ability,
 }) => {
   assertAbilityDataSource(ability.data);
-  const updateRating = useCallback((rating) => {
-    ability.setRating(rating);
-  }, [ability]);
 
   const onClickRefresh = useCallback(() => {
     ability.refreshPool();
@@ -100,7 +97,7 @@ export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
         <AsyncNumberInput
           min={0}
           value={ability.data.data.rating}
-          onChange={updateRating}
+          onChange={ability.setRating}
         />
       </GridField>
       {ability.getHasSpecialities() &&

@@ -9,8 +9,9 @@ import { AbilityMainBits } from "./AbilityMainBits";
 import { AbilityConfig } from "./AbilityConfig";
 import { Translate } from "../Translate";
 import { ImagePickle } from "../ImagePickle";
-import { getMwRerollInsteadOfAddon } from "../../settingsHelpers";
+import { getMwRerollInsteadOfAddon, getMwShowExtraAbilityFields } from "../../settingsHelpers";
 import { AbilityTestMW } from "./AbilityTestMW";
+import { AbilityMwExtraFields } from "./AbilityMwExtraFields";
 
 type AbilitySheetProps = {
   ability: InvestigatorItem,
@@ -106,6 +107,9 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
                 ? <AbilityTestMW ability={ability} />
                 : <AbilityTest ability={ability} />}
               <AbilityMainBits ability={ability} />
+              {getMwShowExtraAbilityFields() &&
+                <AbilityMwExtraFields ability={ability} />
+              }
             </Fragment>
         }
       </div>

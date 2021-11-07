@@ -18,5 +18,6 @@
     "investigator.NoAbilitiesInThisCategory": "No abilities in this category",
     "investigator.HideIfZeroRated": "Hide if zero-rated?",
     "investigator.ShowExtraFieldsOnAbilities": "Show extra fields on abilities?",
-    "investigator.UseAlternativeItemTypes": "Use alternative item types"
+    "investigator.UseAlternativeItemTypes": "Use alternative item types",
+    "investigator.TrumpsOrCounters": "Trumps/counters"
 }
