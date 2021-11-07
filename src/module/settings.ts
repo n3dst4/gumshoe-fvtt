@@ -174,6 +174,24 @@ export const registerSettings = function () {
     type: Object,
   });
 
+  game.settings.register(c.systemName, c.mwShowExtraAbilityFields, {
+    name: "Show extra fields on abilities",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+  });
+
+  game.settings.register(c.systemName, c.mwUseAlternativeItemTypes, {
+    name: "Use alternative item types",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+  });
+
   // Define a settings submenu which handles advanced configuration needs
   game.settings.registerMenu(c.systemName, "investigatorSettingsMenu", {
     name: "INVESTIGATOR Settings",

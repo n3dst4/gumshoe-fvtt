@@ -24,7 +24,7 @@ export const termsClasses: CSSTransitionClassNames = {
   }),
 };
 
-export const opacityDuration = 300;
+export const opacityDuration = 400;
 const opacityTransition = `opacity ${opacityDuration}ms linear`;
 
 export const fadeInOutClasses: CSSTransitionClassNames = {
@@ -34,7 +34,7 @@ export const fadeInOutClasses: CSSTransitionClassNames = {
   enterActive: css({
     opacity: 1,
     maxHeight,
-    transition: opacityTransition,
+    transition: `${opacityTransition} 400ms`,
   }),
   exit: css({
     opacity: 1,

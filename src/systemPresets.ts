@@ -17,6 +17,8 @@ export interface SystemPreset {
   mwRerollInsteadOfAddon: boolean;
   mwUse248Refreshes: boolean;
   mwHiddenShortNotes?: string[];
+  mwShowExtraAbilityFields: boolean;
+  mwUseAlternativeItemTypes: boolean;
 }
 
 export const pathOfCthulhuPreset: SystemPreset = {
@@ -35,6 +37,8 @@ export const pathOfCthulhuPreset: SystemPreset = {
   mwHideInvestigative: false,
   mwRerollInsteadOfAddon: false,
   mwUse248Refreshes: false,
+  mwShowExtraAbilityFields: false,
+  mwUseAlternativeItemTypes: false,
 };
 
 export const niceBlackAgentsPreset: SystemPreset = {
@@ -53,6 +57,8 @@ export const niceBlackAgentsPreset: SystemPreset = {
   mwHideInvestigative: false,
   mwRerollInsteadOfAddon: false,
   mwUse248Refreshes: false,
+  mwShowExtraAbilityFields: false,
+  mwUseAlternativeItemTypes: false,
 };
 
 export const nothingToFearPreset: SystemPreset = {
@@ -71,6 +77,8 @@ export const nothingToFearPreset: SystemPreset = {
   mwHideInvestigative: false,
   mwRerollInsteadOfAddon: false,
   mwUse248Refreshes: false,
+  mwShowExtraAbilityFields: false,
+  mwUseAlternativeItemTypes: false,
 };
 
 export const pallidStarsPreset: SystemPreset = {
@@ -89,6 +97,8 @@ export const pallidStarsPreset: SystemPreset = {
   mwHideInvestigative: false,
   mwRerollInsteadOfAddon: false,
   mwUse248Refreshes: false,
+  mwShowExtraAbilityFields: false,
+  mwUseAlternativeItemTypes: false,
 };
 
 export const castingTheRunesPreset: SystemPreset = {
@@ -107,6 +117,8 @@ export const castingTheRunesPreset: SystemPreset = {
   mwHideInvestigative: false,
   mwRerollInsteadOfAddon: false,
   mwUse248Refreshes: false,
+  mwShowExtraAbilityFields: false,
+  mwUseAlternativeItemTypes: false,
 };
 
 export const moribundWorldPreset: SystemPreset = {
@@ -126,6 +138,8 @@ export const moribundWorldPreset: SystemPreset = {
   mwRerollInsteadOfAddon: true,
   mwUse248Refreshes: true,
   mwHiddenShortNotes: ["Sympathy points"],
+  mwShowExtraAbilityFields: true,
+  mwUseAlternativeItemTypes: true,
 };
 
 export const systemPresets = {

@@ -30,6 +30,8 @@ export const getMwHideInvestigative = getSetting<boolean>(constants.mwHideInvest
 export const getMwRerollInsteadOfAddon = getSetting<boolean>(constants.mwRerollInsteadOfAddon);
 export const getMwUse248Refreshes = getSetting<boolean>(constants.mwUse248Refreshes);
 export const getMwHiddenShortNotes = getSetting<string[]>(constants.mwHiddenShortNotes);
+export const getMwShowExtraAbilityFields = getSetting<boolean>(constants.mwShowExtraAbilityFields);
+export const getMwUseAlternativeItemTypes = getSetting<boolean>(constants.mwUseAlternativeItemTypes);
 
 export const setSystemMigrationVersion = setSetting(constants.systemMigrationVersion);
 export const setDefaultThemeName = setSetting(constants.defaultThemeName);
@@ -50,6 +52,8 @@ export const setMwHideInvestigative = setSetting<boolean>(constants.mwHideInvest
 export const setMwRerollInsteadOfAddon = setSetting<boolean>(constants.mwRerollInsteadOfAddon);
 export const setMwUse248Refreshes = setSetting<boolean>(constants.mwUse248Refreshes);
 export const setMwHiddenShortNotes = setSetting<string[]>(constants.mwHiddenShortNotes);
+export const setMwShowExtraAbilityFields = setSetting<boolean>(constants.mwShowExtraAbilityFields);
+export const setMwUseAlternativeItemTypes = setSetting<boolean>(constants.mwUseAlternativeItemTypes);
 
 export const getDefaultGeneralAbilityCategory = () => {
   const cat = getGeneralAbilityCategories()[0];

@@ -112,6 +112,14 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     settings.getMwHiddenShortNotes(),
     resetPreset,
   );
+  const [mwShowExtraAbilityFields, setMwShowExtraAbilityFields] = useStateWithPreset(
+    settings.getMwShowExtraAbilityFields(),
+    resetPreset,
+  );
+  const [mwUseAlternativeItemTypes, setMwUseAlternativeItemTypes] = useStateWithPreset(
+    settings.getMwUseAlternativeItemTypes(),
+    resetPreset,
+  );
 
   const onSelectPreset = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -143,25 +151,28 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setMwRerollInsteadOfAddon(preset.mwRerollInsteadOfAddon);
       setMwUse248Refreshes(preset.mwUse248Refreshes);
       setMwHiddenShortNotes(preset.mwHiddenShortNotes ?? []);
+      setMwShowExtraAbilityFields(preset.mwShowExtraAbilityFields);
+      setMwUseAlternativeItemTypes(preset.mwUseAlternativeItemTypes);
       setSystemPreset(presetId);
     },
     [
-      setCombatAbilities,
       setDefaultTheme,
-      setGeneralAbilityCategories,
       setInvestigativeAbilityCategories,
+      setGeneralAbilityCategories,
+      setCombatAbilities,
+      setOccupationLabel,
+      setShortNotes,
       setLongNotes,
       setNewPCPacks,
       setNewNPCPacks,
-      setOccupationLabel,
-      setShortNotes,
       setUseBoost,
       setMwPoolsExceedRatings,
       setMwHideInvestigative,
       setMwRerollInsteadOfAddon,
       setMwUse248Refreshes,
       setMwHiddenShortNotes,
-      setSystemPreset,
+      setMwShowExtraAbilityFields,
+      setMwUseAlternativeItemTypes,
     ],
   );
 
@@ -208,6 +219,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         settings.setMwRerollInsteadOfAddon(mwRerollInsteadOfAddon),
         settings.setMwUse248Refreshes(mwUse248Refreshes),
         settings.setMwHiddenShortNotes(mwHiddenShortNotes),
+        settings.setMwShowExtraAbilityFields(mwShowExtraAbilityFields),
+        settings.setMwUseAlternativeItemTypes(mwUseAlternativeItemTypes),
       ]);
       foundryApplication.close();
     },
@@ -224,12 +237,14 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       useBoost,
       systemPreset,
       debugTranslations,
-      foundryApplication,
       mwPoolsExceedRatings,
       mwHideInvestigative,
       mwRerollInsteadOfAddon,
       mwUse248Refreshes,
       mwHiddenShortNotes,
+      mwShowExtraAbilityFields,
+      mwUseAlternativeItemTypes,
+      foundryApplication,
     ],
   );
 
@@ -505,6 +520,18 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
             <Checkbox
               checked={mwUse248Refreshes}
               onChange={setMwUse248Refreshes}
+            />
+          </SettingsGridField>
+          <SettingsGridField label="Show extra fields on abilities" index={idx++}>
+            <Checkbox
+              checked={mwShowExtraAbilityFields}
+              onChange={setMwShowExtraAbilityFields}
+            />
+          </SettingsGridField>
+          <SettingsGridField label="Use alternative item types" index={idx++}>
+            <Checkbox
+              checked={mwUseAlternativeItemTypes}
+              onChange={setMwUseAlternativeItemTypes}
             />
           </SettingsGridField>
           <SettingsGridField label="Hidden Short Notes Fields" index={idx++}>

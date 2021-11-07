@@ -4,7 +4,7 @@ import React from "react";
 import { CSSTransition } from "react-transition-group";
 import { useHover } from "../../hooks/useHover";
 import { Translate } from "../Translate";
-import { fadeInOutClasses, opacityDuration } from "./transitions";
+import { fadeInOutClasses } from "./transitions";
 import { MWResult } from "./types";
 
 type MwButtonProps = {
@@ -67,7 +67,7 @@ export const MwButton: React.FC<MwButtonProps> = ({
       >
         <CSSTransition
           in={!hover}
-          timeout={opacityDuration}
+          timeout={1000}
           classNames={{
             ...fadeInOutClasses,
           }}
@@ -78,7 +78,7 @@ export const MwButton: React.FC<MwButtonProps> = ({
         </CSSTransition>
         <CSSTransition
           in={hover}
-          timeout={opacityDuration}
+          timeout={1000}
           classNames={{
             ...fadeInOutClasses,
           }}

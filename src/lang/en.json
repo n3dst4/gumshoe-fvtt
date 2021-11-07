@@ -103,13 +103,5 @@
     "investigator.VisualTheme": "Visual theme",
     "investigator.Weapon": "Weapon",
     "investigator.Weapons": "Weapons",
-    "investigator.WhoopsNo": "Whoops, No!",
-    "investigator.AllowPoolsToExceedRatings": "Allow pools to exceed ratings",
-    "investigator.HideInvestigativeAbilities": "Hide Investigative abilities",
-    "investigator.SpendPointsToReRoll": "Spend points to re-roll",
-    "investigator.Use248HourRefreshGroups": "Use 2/4/8 hour refresh groups",
-    "investigator.SettingsForMoribundWorldUsers": "Settings for Moribund World users",
-    "investigator.HiddenShortNotesFields": "Hidden short notes",
-    "investigator.NoAbilitiesInThisCategory": "No abilities in this category",
-    "investigator.HideIfZeroRated": "Hide if zero-rated?"
+    "investigator.WhoopsNo": "Whoops, No!"
 }
