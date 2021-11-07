@@ -7,7 +7,7 @@ import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../settingsHelpers";
+import { getGeneralAbilityCategories, getInvestigativeAbilityCategories, getMwShowExtraAbilityFields } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
@@ -179,6 +179,15 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
             <AsyncCheckbox
               checked={ability.data.data.goesFirstInCombat}
               onChange={ability.setGoesFirstInCombat}
+            />
+          </GridField>
+      }
+      {
+        isGeneralAbilityDataSource(ability.data) && getMwShowExtraAbilityFields() &&
+          <GridField label="Big six?">
+            <AsyncCheckbox
+              checked={ability.data.data.mwIsBigSix}
+              onChange={ability.setMwIsBigSix}
             />
           </GridField>
       }

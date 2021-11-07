@@ -514,24 +514,14 @@ export class InvestigatorItem extends Item {
     this.update({ data: { mwTrumpedBy } });
   }
 
-  getMwBenefits = () => {
+  getMwBenefitsAndDrawBacks = () => {
     assertGeneralAbilityDataSource(this.data);
-    return this.data.data.mwBenefits;
+    return this.data.data.mwBenefitsAndDrawbacks;
   }
 
-  setMwBenefits = (mwBenefits: string) => {
+  setMwBenefitsAndDrawbacks = (mwBenefitsAndDrawbacks: string) => {
     assertGeneralAbilityDataSource(this.data);
-    this.update({ data: { mwBenefits } });
-  }
-
-  getMwDrawbacks = () => {
-    assertGeneralAbilityDataSource(this.data);
-    return this.data.data.mwDrawbacks;
-  }
-
-  setMwDrawbacks = (mwDrawbacks: string) => {
-    assertGeneralAbilityDataSource(this.data);
-    this.update({ data: { mwDrawbacks } });
+    this.update({ data: { mwBenefitsAndDrawbacks } });
   }
 
   getMwRefreshes = () => {
@@ -552,6 +542,16 @@ export class InvestigatorItem extends Item {
   setMwAutomaticSuccess = (mwAutomaticSuccess: string) => {
     assertGeneralAbilityDataSource(this.data);
     this.update({ data: { mwAutomaticSuccess } });
+  }
+
+  getMwIsBigSix = () => {
+    assertGeneralAbilityDataSource(this.data);
+    return this.data.data.mwIsBigSix;
+  }
+
+  setMwIsBigSix = (mwIsBigSix: boolean) => {
+    assertGeneralAbilityDataSource(this.data);
+    this.update({ data: { mwIsBigSix } });
   }
 }
 

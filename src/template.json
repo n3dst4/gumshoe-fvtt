@@ -96,10 +96,9 @@
       "hideIfZeroRated": false,
       "mwTrumps": "",
       "mwTrumpedBy": "",
-      "mwBenefits": "",
-      "mwDrawbacks": "",
-      "mwRefreshes": "",
-      "mwAutomaticSuccess": ""      
+      "mwBenefitsAndDrawBacks": "",
+      "mwAutomaticSuccess": "",
+      "mwIsBigSix": false
   },
     "equipment": {
       "notes": ""

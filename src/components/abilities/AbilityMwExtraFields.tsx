@@ -19,28 +19,22 @@ export const AbilityMwExtraFields: React.FC<AbilityMwExtraFieldsProps> = ({
 
   return (
     <InputGrid>
-      <GridField label="Trumps or Counters">
+      <GridField label={ability.getMwIsBigSix() ? "Trumps" : "Counters"}>
           <AsyncTextInput
             value={ability.data.data.mwTrumps}
             onChange={ability.setMwTrumps}
           />
       </GridField>
-      <GridField label="Is Trumped or Countered by">
+      <GridField label={ability.getMwIsBigSix() ? "Trumped by" : "Countered by"}>
           <AsyncTextInput
             value={ability.data.data.mwTrumpedBy}
             onChange={ability.setMwTrumpedBy}
           />
       </GridField>
-      <GridField label="Benefits">
+      <GridField label="Benefits & Drawbacks">
           <AsyncTextArea
-            value={ability.data.data.mwBenefits}
-            onChange={ability.setMwBenefits}
-          />
-      </GridField>
-      <GridField label="Drawbacks">
-          <AsyncTextArea
-            value={ability.data.data.mwDrawbacks}
-            onChange={ability.setMwDrawbacks}
+            value={ability.data.data.mwBenefitsAndDrawbacks}
+            onChange={ability.setMwBenefitsAndDrawbacks}
           />
       </GridField>
       <GridField label="Refreshes">
