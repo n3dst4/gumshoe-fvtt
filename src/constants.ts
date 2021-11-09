@@ -15,6 +15,7 @@ export const weapon = "weapon" as const;
 export const pc = "pc" as const;
 export const npc = "npc" as const;
 export const party = "party" as const;
+export const mwItem = "mwItem" as const;
 
 // settings keys
 export const defaultThemeName = "defaultThemeName" as const;

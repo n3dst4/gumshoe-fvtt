@@ -67,7 +67,7 @@
     }
   },
   "Item": {
-    "types": ["investigativeAbility", "generalAbility", "equipment", "weapon"],
+    "types": ["investigativeAbility", "generalAbility", "equipment", "weapon", "mwItem"],
     "templates": {
       "ability": {
         "rating": 0,
@@ -96,7 +96,7 @@
       "hideIfZeroRated": false,
       "mwTrumps": "",
       "mwTrumpedBy": ""
-  },
+    },
     "equipment": {
       "notes": ""
     },
@@ -119,6 +119,13 @@
         "max": 10,
         "value": 10
       }
+    },
+    "mwItem": {
+      "myType": "tweak",
+      "notes": "",
+      "charges": 0,
+      "meleeOrMissile": "melee",
+      "ranges": [0,0,0,0]
     }
   }
 }

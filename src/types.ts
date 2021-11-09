@@ -205,6 +205,15 @@ export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData 
   mwTrumpedBy: string;
 }
 
+/** data.data for Moribund World stuff */
+export interface MwItemDataSourceData {
+  "mwType": "tweak"|"spell"|"cantrap"|"enchantedItem"|"weapon";
+  "notes": "";
+  "charges": 0;
+  "meleeOrMissile": "melee"|"missile";
+  "ranges": [number, number, number, number];
+}
+
 /** data for equipment */
 export type EquipmentDataSource = DataSource<typeof constants.equipment, EquipmentDataSourceData>;
 
@@ -216,6 +225,9 @@ export type GeneralAbilityDataSource = DataSource<typeof constants.generalAbilit
 
 /** data for investigative abilities */
 export type InvestigativeAbilityDataSource = DataSource<typeof constants.investigativeAbility, InvestigativeAbilityDataSourceData>;
+
+/** data for Moribund World stuff */
+export type MwItemDataSource = DataSource<typeof constants.mwItem, MwItemDataSourceData>;
 
 /** data for weapon OR equipment (rn this basically means "notes") */
 export type WeaponOrEquipmentDataSource =
@@ -230,7 +242,8 @@ export type AbilityDataSource =
 /** data for any kind of item */
 export type InvestigatorItemDataSource =
   | WeaponOrEquipmentDataSource
-  | AbilityDataSource;
+  | AbilityDataSource
+  | MwItemDataSource;
 
 // now we crowbar this into the global type system using declaration merging
 declare global {
@@ -288,6 +301,17 @@ export function assertWeaponOrEquipmentDataSource (data: InvestigatorItemDataSou
   const isWeaponOrEquipmentDataSource = data.type === constants.weapon || data.type === constants.equipment;
   if (!isWeaponOrEquipmentDataSource) {
     throw new Error("Not a weapon or equipment");
+  }
+}
+
+export function isMwItemDataSource (data: InvestigatorItemDataSource): data is MwItemDataSource {
+  return data.type === constants.mwItem;
+}
+
+export function assertMwItemDataSource (data: InvestigatorItemDataSource): asserts data is MwItemDataSource {
+  const isMwItem = isMwItemDataSource(data);
+  if (!isMwItem) {
+    throw new Error("Not a MW Item");
   }
 }
 
