@@ -1,5 +1,5 @@
 import "./setWebkitPublicPath";
-import { registerSettings } from "./module/settings";
+import { registerSettings } from "./module/registerSettings";
 import { preloadTemplates } from "./module/preloadTemplates";
 import { InvestigatorActor } from "./module/InvestigatorActor";
 import { InvestigatorItem } from "./module/InvestigatorItem";
