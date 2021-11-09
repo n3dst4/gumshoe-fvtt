@@ -34,11 +34,9 @@ export const debugTranslations = "debugTranslations" as const;
 
 // settings for MW-specific settings
 export const mwHiddenShortNotes = "mwHiddenShortNotes" as const;
-export const mwPoolsExceedRatings = "mwPoolsExceedRatings" as const;
-export const mwHideInvestigative = "mwHideInvestigative" as const;
-export const mwRerollInsteadOfAddon = "mwRerollInsteadOfAddon" as const;
-export const mwUse248Refreshes = "mwUse248Refreshes" as const;
-export const mwShowExtraAbilityFields = "mwShowExtraAbilityFields" as const;
+
+export const useMwStyleAbilities = "useMwStyleAbilities" as const;
+
 export const mwUseAlternativeItemTypes = "mwUseAlternativeItemTypes" as const;
 
 /**

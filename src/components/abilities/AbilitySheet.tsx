@@ -9,7 +9,7 @@ import { AbilityMainBits } from "./AbilityMainBits";
 import { AbilityConfig } from "./AbilityConfig";
 import { Translate } from "../Translate";
 import { ImagePickle } from "../ImagePickle";
-import { getMwRerollInsteadOfAddon, getMwShowExtraAbilityFields } from "../../settingsHelpers";
+import { getUseMwStyleAbilities } from "../../settingsHelpers";
 import { AbilityTestMW } from "./AbilityTestMW";
 import { AbilityMwExtraFields } from "./AbilityMwExtraFields";
 
@@ -36,7 +36,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     onInput: onInputName,
   } = useAsyncUpdate(ability.data.name, ability.setName);
 
-  const mwRerollInsteadOfAddon = getMwRerollInsteadOfAddon();
+  const useMwStyleAbilities = getUseMwStyleAbilities();
 
   return (
     <div
@@ -103,11 +103,11 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
           : <Fragment>
               {/* Spending/testing area */}
               {ability.isOwned &&
-                mwRerollInsteadOfAddon
+                useMwStyleAbilities
                 ? <AbilityTestMW ability={ability} />
                 : <AbilityTest ability={ability} />}
               <AbilityMainBits ability={ability} />
-              {getMwShowExtraAbilityFields() &&
+              {getUseMwStyleAbilities() &&
                 <AbilityMwExtraFields ability={ability} />
               }
             </Fragment>

@@ -92,28 +92,12 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     resetPreset,
   );
 
-  const [mwPoolsExceedRatings, setMwPoolsExceedRatings] = useStateWithPreset(
-    settings.getMwPoolsExceedRatings(),
-    resetPreset,
-  );
-  const [mwHideInvestigative, setMwHideInvestigative] = useStateWithPreset(
-    settings.getMwHideInvestigative(),
-    resetPreset,
-  );
-  const [mwRerollInsteadOfAddon, setMwRerollInsteadOfAddon] = useStateWithPreset(
-    settings.getMwRerollInsteadOfAddon(),
-    resetPreset,
-  );
-  const [mwUse248Refreshes, setMwUse248Refreshes] = useStateWithPreset(
-    settings.getMwUse248Refreshes(),
+  const [useMwStyleAbilities, setUseMwStyleAbilities] = useStateWithPreset(
+    settings.getUseMwStyleAbilities(),
     resetPreset,
   );
   const [mwHiddenShortNotes, setMwHiddenShortNotes] = useStateWithPreset(
     settings.getMwHiddenShortNotes(),
-    resetPreset,
-  );
-  const [mwShowExtraAbilityFields, setMwShowExtraAbilityFields] = useStateWithPreset(
-    settings.getMwShowExtraAbilityFields(),
     resetPreset,
   );
   const [mwUseAlternativeItemTypes, setMwUseAlternativeItemTypes] = useStateWithPreset(
@@ -146,12 +130,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setNewPCPacks(preset.newPCPacks);
       setNewNPCPacks(preset.newNPCPacks);
       setUseBoost(preset.useBoost);
-      setMwPoolsExceedRatings(preset.mwPoolsExceedRatings);
-      setMwHideInvestigative(preset.mwHideInvestigative);
-      setMwRerollInsteadOfAddon(preset.mwRerollInsteadOfAddon);
-      setMwUse248Refreshes(preset.mwUse248Refreshes);
+      setUseMwStyleAbilities(preset.useMwStyleAbilities);
       setMwHiddenShortNotes(preset.mwHiddenShortNotes ?? []);
-      setMwShowExtraAbilityFields(preset.mwShowExtraAbilityFields);
       setMwUseAlternativeItemTypes(preset.mwUseAlternativeItemTypes);
       setSystemPreset(presetId);
     },
@@ -166,12 +146,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setNewPCPacks,
       setNewNPCPacks,
       setUseBoost,
-      setMwPoolsExceedRatings,
-      setMwHideInvestigative,
-      setMwRerollInsteadOfAddon,
-      setMwUse248Refreshes,
+      setUseMwStyleAbilities,
       setMwHiddenShortNotes,
-      setMwShowExtraAbilityFields,
       setMwUseAlternativeItemTypes,
     ],
   );
@@ -214,12 +190,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         settings.setUseBoost(useBoost),
         settings.setSystemPreset(systemPreset),
         settings.setDebugTranslations(debugTranslations),
-        settings.setMwPoolsExceedRatings(mwPoolsExceedRatings),
-        settings.setMwHideInvestigative(mwHideInvestigative),
-        settings.setMwRerollInsteadOfAddon(mwRerollInsteadOfAddon),
-        settings.setMwUse248Refreshes(mwUse248Refreshes),
+        settings.setUseMwStyleAbilities(useMwStyleAbilities),
         settings.setMwHiddenShortNotes(mwHiddenShortNotes),
-        settings.setMwShowExtraAbilityFields(mwShowExtraAbilityFields),
         settings.setMwUseAlternativeItemTypes(mwUseAlternativeItemTypes),
       ]);
       foundryApplication.close();
@@ -237,12 +209,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       useBoost,
       systemPreset,
       debugTranslations,
-      mwPoolsExceedRatings,
-      mwHideInvestigative,
-      mwRerollInsteadOfAddon,
-      mwUse248Refreshes,
+      useMwStyleAbilities,
       mwHiddenShortNotes,
-      mwShowExtraAbilityFields,
       mwUseAlternativeItemTypes,
       foundryApplication,
     ],
@@ -498,34 +466,10 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
           >
             <Translate>Settings for Moribund World users</Translate>
           </h2>
-          <SettingsGridField label="Allow pools to exceed ratings" index={idx++}>
+          <SettingsGridField label="Use Moribund World-style abilities" index={idx++}>
             <Checkbox
-              checked={mwPoolsExceedRatings}
-              onChange={setMwPoolsExceedRatings}
-            />
-          </SettingsGridField>
-          <SettingsGridField label="Hide Investigative abilities" index={idx++}>
-            <Checkbox
-              checked={mwHideInvestigative}
-              onChange={setMwHideInvestigative}
-            />
-          </SettingsGridField>
-          <SettingsGridField label="Spend points to re-roll" index={idx++}>
-            <Checkbox
-              checked={mwRerollInsteadOfAddon}
-              onChange={setMwRerollInsteadOfAddon}
-            />
-          </SettingsGridField>
-          <SettingsGridField label="Use 2/4/8 hour refresh groups" index={idx++}>
-            <Checkbox
-              checked={mwUse248Refreshes}
-              onChange={setMwUse248Refreshes}
-            />
-          </SettingsGridField>
-          <SettingsGridField label="Show extra fields on abilities" index={idx++}>
-            <Checkbox
-              checked={mwShowExtraAbilityFields}
-              onChange={setMwShowExtraAbilityFields}
+              checked={useMwStyleAbilities}
+              onChange={setUseMwStyleAbilities}
             />
           </SettingsGridField>
           <SettingsGridField label="Use alternative item types" index={idx++}>

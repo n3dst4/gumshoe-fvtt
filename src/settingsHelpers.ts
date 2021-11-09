@@ -25,12 +25,8 @@ export const getSystemPreset = getSetting<string>(constants.systemPreset);
 export const getUseBoost = getSetting<boolean>(constants.useBoost);
 export const getDebugTranslations = getSetting<boolean>(constants.debugTranslations);
 
-export const getMwPoolsExceedRatings = getSetting<boolean>(constants.mwPoolsExceedRatings);
-export const getMwHideInvestigative = getSetting<boolean>(constants.mwHideInvestigative);
-export const getMwRerollInsteadOfAddon = getSetting<boolean>(constants.mwRerollInsteadOfAddon);
-export const getMwUse248Refreshes = getSetting<boolean>(constants.mwUse248Refreshes);
+export const getUseMwStyleAbilities = getSetting<boolean>(constants.useMwStyleAbilities);
 export const getMwHiddenShortNotes = getSetting<string[]>(constants.mwHiddenShortNotes);
-export const getMwShowExtraAbilityFields = getSetting<boolean>(constants.mwShowExtraAbilityFields);
 export const getMwUseAlternativeItemTypes = getSetting<boolean>(constants.mwUseAlternativeItemTypes);
 
 export const setSystemMigrationVersion = setSetting(constants.systemMigrationVersion);
@@ -47,12 +43,8 @@ export const setSystemPreset = setSetting<string>(constants.systemPreset);
 export const setUseBoost = setSetting<boolean>(constants.useBoost);
 export const setDebugTranslations = setSetting<boolean>(constants.debugTranslations);
 
-export const setMwPoolsExceedRatings = setSetting<boolean>(constants.mwPoolsExceedRatings);
-export const setMwHideInvestigative = setSetting<boolean>(constants.mwHideInvestigative);
-export const setMwRerollInsteadOfAddon = setSetting<boolean>(constants.mwRerollInsteadOfAddon);
-export const setMwUse248Refreshes = setSetting<boolean>(constants.mwUse248Refreshes);
+export const setUseMwStyleAbilities = setSetting<boolean>(constants.useMwStyleAbilities);
 export const setMwHiddenShortNotes = setSetting<string[]>(constants.mwHiddenShortNotes);
-export const setMwShowExtraAbilityFields = setSetting<boolean>(constants.mwShowExtraAbilityFields);
 export const setMwUseAlternativeItemTypes = setSetting<boolean>(constants.mwUseAlternativeItemTypes);
 
 export const getDefaultGeneralAbilityCategory = () => {

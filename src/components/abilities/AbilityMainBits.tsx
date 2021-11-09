@@ -7,7 +7,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
-import { getCombatAbilities, getMwPoolsExceedRatings, getUseBoost } from "../../settingsHelpers";
+import { getCombatAbilities, getUseMwStyleAbilities, getUseBoost } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveCharacterDataSource, ActiveCharacterDataSource } from "../../types";
 import { TextArea } from "../inputs/TextArea";
@@ -61,7 +61,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
   );
   const notes = useAsyncUpdate(ability.getNotes(), ability.setNotes);
 
-  const mwPoolsExceedRatings = getMwPoolsExceedRatings();
+  const useMwStyleAbilities = getUseMwStyleAbilities();
 
   return (
     <InputGrid>
@@ -74,7 +74,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
         >
           <AsyncNumberInput
             min={0}
-            max={mwPoolsExceedRatings ? undefined : ability.data.data.rating}
+            max={useMwStyleAbilities ? undefined : ability.data.data.rating}
             value={ability.data.data.pool}
             onChange={ability.setPool}
             css={{

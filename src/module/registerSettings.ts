@@ -129,35 +129,8 @@ export const registerSettings = function () {
     type: Boolean,
   });
 
-  game.settings.register(c.systemName, c.mwPoolsExceedRatings, {
-    name: "Allow pools to exceed ratings",
-    hint: "",
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean,
-  });
-
-  game.settings.register(c.systemName, c.mwHideInvestigative, {
-    name: "Hide Investigative abilities",
-    hint: "",
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean,
-  });
-
-  game.settings.register(c.systemName, c.mwRerollInsteadOfAddon, {
-    name: "Spend points to re-roll",
-    hint: "",
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean,
-  });
-
-  game.settings.register(c.systemName, c.mwUse248Refreshes, {
-    name: "Use 2/4/8 hour refresh groups",
+  game.settings.register(c.systemName, c.useMwStyleAbilities, {
+    name: "Use Moribund World-style abilities",
     hint: "",
     scope: "world",
     config: false,
@@ -172,15 +145,6 @@ export const registerSettings = function () {
     config: false,
     default: [],
     type: Object,
-  });
-
-  game.settings.register(c.systemName, c.mwShowExtraAbilityFields, {
-    name: "Show extra fields on abilities",
-    hint: "",
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean,
   });
 
   game.settings.register(c.systemName, c.mwUseAlternativeItemTypes, {

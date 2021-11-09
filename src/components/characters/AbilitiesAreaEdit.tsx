@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useContext } from "react";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { getMwHideInvestigative } from "../../settingsHelpers";
+import { getUseMwStyleAbilities } from "../../settingsHelpers";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertActiveCharacterDataSource } from "../../types";
 import { AbilitySlugEdit } from "./AbilitySlugEdit";
@@ -24,7 +24,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
   assertActiveCharacterDataSource(actor.data);
   const theme = useContext(ThemeContext);
   const { investigativeAbilities, generalAbilities } = useAbilities(actor, false);
-  const hideInv = getMwHideInvestigative();
+  const hideInv = getUseMwStyleAbilities();
   const showOcc = showOccProp && (!hideInv);
 
   return (
