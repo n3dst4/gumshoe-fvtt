@@ -118,7 +118,13 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
         </GridField>
       }
       <GridFieldStacked label="Notes">
-        <TextArea value={notes.display} onChange={notes.onChange} />
+        <TextArea
+          value={notes.display}
+          onChange={notes.onChange}
+          css={{
+            height: getUseMwStyleAbilities() ? "10em" : "4em",
+          }}
+        />
       </GridFieldStacked>
 
       {isCombatAbility &&

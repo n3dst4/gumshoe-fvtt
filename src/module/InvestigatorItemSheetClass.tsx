@@ -16,8 +16,8 @@ class InvestigatorItemSheetClassBase extends ItemSheet {
       classes: [systemName, "sheet", "item"],
       template: reactTemplatePath,
       width: 400,
-      height: "auto" as const,
-      resizable: false,
+      height: 400,
+      resizable: true,
     };
   }
 }
