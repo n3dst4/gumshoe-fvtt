@@ -16,8 +16,8 @@ class InvestigatorItemSheetClassBase extends ItemSheet {
       classes: [systemName, "sheet", "item"],
       template: reactTemplatePath,
       width: 400,
-      height: 400,
-      resizable: true,
+      height: "auto" as const,
+      resizable: false,
     };
   }
 }
@@ -33,5 +33,24 @@ const render = (sheet: InvestigatorItemSheetClassBase) => {
 
 export const InvestigatorItemSheetClass = ReactApplicationMixin(
   InvestigatorItemSheetClassBase,
+  render,
+);
+
+class InvestigatorAbilitySheetClassBase extends ItemSheet {
+  /** @override */
+  static get defaultOptions () {
+    return {
+      ...super.defaultOptions,
+      classes: [systemName, "sheet", "item"],
+      template: reactTemplatePath,
+      width: 400,
+      height: 600,
+      resizable: true,
+    };
+  }
+}
+
+export const InvestigatorAbilitySheetClass = ReactApplicationMixin(
+  InvestigatorAbilitySheetClassBase,
   render,
 );
