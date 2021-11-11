@@ -43,8 +43,9 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
       css={{
         paddingBottom: "1em",
         display: "grid",
+        height: "100%",
         gridTemplateColumns: "auto 1fr auto",
-        gridTemplateRows: "auto auto auto",
+        gridTemplateRows: "auto auto 1fr",
         gridTemplateAreas:
           "\"image slug     cog\" " +
           "\"image headline headline\" " +
