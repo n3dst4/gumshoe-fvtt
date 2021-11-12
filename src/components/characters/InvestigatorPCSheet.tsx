@@ -16,7 +16,7 @@ import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
-import { getMwHiddenShortNotes, getUseMwStyleAbilities, getOccupationlabel, getShortNotes } from "../../settingsHelpers";
+import { getMwHiddenShortNotes, getUseMwStyleAbilities, getOccupationlabel, getShortNotes, getMwUseAlternativeItemTypes } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertPCDataSource, isPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -190,23 +190,25 @@ export const InvestigatorPCSheet = ({
                 label: "Abilities",
                 content: getUseMwStyleAbilities() ? <AbilitiesAreaMW actor={actor}/> : <AbilitiesAreaPlay actor={actor}/>,
               },
-              {
-                id: "equipment",
-                label: "Equipment",
-                content: (
-                  getUseMwStyleAbilities()
-                    ? (
+              getMwUseAlternativeItemTypes()
+                ? {
+                    id: "items",
+                    label: "MWItems",
+                    content: (
                       <MwItemArea actor={actor} />
-                      )
-                    : (
+                    ),
+                  }
+                : {
+                    id: "equipment",
+                    label: "Equipment",
+                    content: (
                       <Fragment>
                         <WeaponsArea actor={actor} />
                         <div css={{ height: "1em" }}/>
                         <EquipmentArea actor={actor} />
                       </Fragment>
-                      )
-                ),
-              },
+                    ),
+                  },
               {
                 id: "notes",
                 label: "Notes",
