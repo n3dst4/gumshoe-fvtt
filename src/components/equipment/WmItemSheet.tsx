@@ -10,6 +10,8 @@ import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
+import { absoluteCover } from "../absoluteCover";
+import { assertMwItemDataSource, MwType } from "../../types";
 
 type WmItemSheetProps = {
   item: InvestigatorItem,
@@ -20,6 +22,8 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
   item,
   application,
 }) => {
+  assertMwItemDataSource(item.data);
+
   const name = useAsyncUpdate(item.name || "", item.setName);
 
   const onClickDelete = useCallback(() => {
@@ -43,19 +47,22 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
     );
   }, [item]);
 
+  const onChangeType = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    item.setMwType(e.currentTarget.value as MwType);
+  }, [item]);
+
   return (
     <div
       css={{
-        paddingBottom: "1em",
+        ...absoluteCover,
+        padding: "1em",
         display: "grid",
-        position: "relative",
         gridTemplateColumns: "auto 1fr auto",
-        gridTemplateRows: "auto auto auto auto",
+        gridTemplateRows: "auto auto 1fr",
         gridTemplateAreas:
           "\"image  slug      trash\" " +
           "\"image  headline  headline\" " +
-          "\"type   type      type\" " +
-          "\"notes  notes     notes\" ",
+          "\"body   body      body\" ",
       }}
     >
       {/* Slug */}
@@ -99,12 +106,37 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
       </a>
 
       {/* Body */}
-      <InputGrid css={{ gridArea: "body" }}>
+      <InputGrid
+        css={{
+          gridArea: "body",
+          gridTemplateRows: "auto auto 1fr",
+          gridAutoRows: "auto",
+        }}
+      >
         <GridField label="Name">
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
+        <GridField label="Type">
+          <select value={item.data.data.mwType} onChange={onChangeType}>
+            <option value="tweak">Tweak</option>
+            <option value="spell">Spell</option>
+            <option value="cantrap">Cantrap</option>
+            <option value="enchantedItem">Enchanted item</option>
+            <option value="meleeWeapon">Melee weapon</option>
+            <option value="missileWeapon">Missile weapon</option>
+          </select>
+        </GridField>
         <GridField label="Notes">
-          <AsyncTextArea value={item.data.data.notes} onChange={item.setNotes} />
+          <AsyncTextArea
+            value={item.data.data.notes}
+            onChange={item.setNotes}
+            css={{
+              height: "100%",
+              "&&": {
+                resize: "none",
+              },
+            }}
+          />
         </GridField>
       </InputGrid>
     </div>

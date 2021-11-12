@@ -4,8 +4,8 @@ import { preloadTemplates } from "./module/preloadTemplates";
 import { InvestigatorActor } from "./module/InvestigatorActor";
 import { InvestigatorItem } from "./module/InvestigatorItem";
 import { InvestigatorPCSheetClass } from "./module/InvestigatorPCSheetClass";
-import { InvestigatorAbilitySheetClass, InvestigatorItemSheetClass } from "./module/InvestigatorItemSheetClass";
-import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon } from "./constants";
+import { InvestigatorAbilitySheetClass, InvestigatorEquipmentSheetClass, InvestigatorMwItemSheetClass } from "./module/InvestigatorItemSheetClass";
+import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon, mwItem } from "./constants";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
 import { isAbilityDataSource, isGeneralAbilityDataSource, isWeaponDataSource, isEquipmentDataSource } from "./types";
@@ -74,7 +74,7 @@ Hooks.once("init", async function () {
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(
     systemName,
-    InvestigatorItemSheetClass,
+    InvestigatorEquipmentSheetClass,
     {
       makeDefault: true,
       types: [weapon, equipment],
@@ -86,6 +86,14 @@ Hooks.once("init", async function () {
     {
       makeDefault: true,
       types: [investigativeAbility, generalAbility],
+    },
+  );
+  Items.registerSheet(
+    systemName,
+    InvestigatorMwItemSheetClass,
+    {
+      makeDefault: true,
+      types: [mwItem],
     },
   );
 
