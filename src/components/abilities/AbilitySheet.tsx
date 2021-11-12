@@ -44,6 +44,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
         paddingBottom: "1em",
         display: "grid",
         height: "100%",
+        position: "relative",
         gridTemplateColumns: "auto 1fr auto",
         gridTemplateRows: "auto auto 1fr",
         gridTemplateAreas:

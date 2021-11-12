@@ -33,10 +33,6 @@ export const deltaGroovyTheme: Theme = themeFactory({
       right: 0,
       bottom: 0,
       left: 0,
-      zIndex: 0,
-    },
-    "&>*": {
-      zIndex: 1,
     },
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/pulpy_paper.webp)`,
   },
