@@ -115,7 +115,12 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
         }}
       >
         <GridField label="Name">
-          <TextInput value={name.display} onChange={name.onChange} />
+          <TextInput
+            value={name.display}
+            onChange={name.onChange}
+            // onFocus={name.onFocus}
+            // onBlur={name.onBlur}
+          />
         </GridField>
         <GridField label="MwType">
           <select value={item.data.data.mwType} onChange={onChangeType}>

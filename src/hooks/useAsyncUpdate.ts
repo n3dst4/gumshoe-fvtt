@@ -39,30 +39,14 @@ export const useAsyncUpdate = (
     onChangeThrottled(value, index);
   }, [index, onChangeThrottled]);
 
-  // for posterity, i'm leaving this here - a mechanism to relay the text
-  // through a secondary div to avoid having the text affected by
-  // text-transform: uppercase on the element. We've fixed that differently by
-  // using font-variant: small-caps but it might be handy in future.
-
-  // const repeaterDivRef = useRef<HTMLDivElement|null>(null);
-  // useEffect(() => {
-  //   repeaterDivRef.current = document.createElement("div");
-  //   document.body.appendChild(repeaterDivRef.current);
-  // }, []);
-
   // stuff for handling content-editable - first, a ref to attach to the element
   const contentEditableRef = useRef<HTMLDivElement|null>(null);
-
-  const setValue = useCallback((val: string) => {
-    setDisplay(val);
-    onChangeThrottled(val);
-  }, [onChangeThrottled]);
 
   // a callback for whe edits happen
   const onInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
     const text = e.currentTarget.innerText;
-    setValue(text);
-  }, [setValue]);
+    onChange(text);
+  }, [onChange]);
 
   // update the display text when the value changes, but only if we're not
   // focused.
@@ -83,6 +67,16 @@ export const useAsyncUpdate = (
 
     contentEditableRef,
     onInput,
-    setValue,
   };
 };
+
+// for posterity, i'm leaving this here - a mechanism to relay the text
+// through a secondary div to avoid having the text affected by
+// text-transform: uppercase on the element. We've fixed that differently by
+// using font-variant: small-caps but it might be handy in future.
+
+// const repeaterDivRef = useRef<HTMLDivElement|null>(null);
+// useEffect(() => {
+//   repeaterDivRef.current = document.createElement("div");
+//   document.body.appendChild(repeaterDivRef.current);
+// }, []);
