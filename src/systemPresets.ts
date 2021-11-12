@@ -111,7 +111,7 @@ export const moribundWorldPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.moribundWorldAbilities}`],
   newNPCPacks: [`${systemName}.${packNames.moribundWorldAbilities}`],
   useBoost: false,
-  useMwStyleAbilities: false,
+  useMwStyleAbilities: true,
   mwUseAlternativeItemTypes: true,
 };
 
