@@ -1,15 +1,15 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ChangeEvent, useCallback, useState } from "react";
-import { confirmADoodleDo, isGeneralAbility } from "../../functions";
+import { assertGame, confirmADoodleDo, isGeneralAbility } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../settingsHelpers";
+import { getGeneralAbilityCategories, getInvestigativeAbilityCategories, getUseMwStyleAbilities } from "../../settingsHelpers";
 import { Translate } from "../Translate";
-import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
+import { assertAbilityDataSource, isGeneralAbilityDataSource, MwRefreshGroup } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 
 type AbilityConfigProps = {
@@ -19,6 +19,7 @@ type AbilityConfigProps = {
 export const AbilityConfig: React.FC<AbilityConfigProps> = ({
   ability,
 }) => {
+  assertGame(game);
   assertAbilityDataSource(ability.data);
   const isGeneral = isGeneralAbility(ability);
 
@@ -182,6 +183,19 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
             />
           </GridField>
       }
+      {
+        getUseMwStyleAbilities() && isGeneralAbilityDataSource(ability.data) &&
+          <GridField label="Refresh group">
+            <select
+              value={ability.data.data.mwRefreshGroup}
+              onChange={(e) => { ability.setMwRefreshGroup(Number(e.currentTarget.value) as MwRefreshGroup); }}
+            >
+              <option value="2">{game.i18n.format("investigator.XHours", { x: "2" })}</option>
+              <option value="4">{game.i18n.format("investigator.XHours", { x: "4" })}</option>
+              <option value="8">{game.i18n.format("investigator.XHours", { x: "8" })}</option>
+            </select>
+          </GridField>
+  }
       <GridField label="Delete ability">
         <button onClick={onClickDelete}><Translate>Delete</Translate></button>
       </GridField>

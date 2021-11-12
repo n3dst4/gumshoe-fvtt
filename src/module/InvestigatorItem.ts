@@ -9,6 +9,7 @@ import {
   assertMwItemDataSource,
   assertWeaponDataSource,
   MWDifficulty,
+  MwRefreshGroup,
   MwType,
   RangeTuple,
 } from "../types";
@@ -562,6 +563,16 @@ export class InvestigatorItem extends Item {
     const ranges = [...this.data.data.ranges] as RangeTuple;
     ranges[range] = value;
     this.update({ data: { ranges } });
+  }
+
+  getMwRefreshGroup= () => {
+    assertGeneralAbilityDataSource(this.data);
+    return this.data.data.mwRefreshGroup;
+  }
+
+  setMwRefreshGroup = (mwRefreshGroup: MwRefreshGroup) => {
+    assertGeneralAbilityDataSource(this.data);
+    this.update({ data: { mwRefreshGroup } });
   }
 }
 

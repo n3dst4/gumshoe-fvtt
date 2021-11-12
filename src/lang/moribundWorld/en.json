@@ -32,5 +32,7 @@
     "investigator.Short": "Short",
     "investigator.Medium": "Medium",
     "investigator.Long": "Long",
-    "investigator.Extreme": "Extreme"
+    "investigator.Extreme": "Extreme",
+    "investigator.RefreshGroup": "Refresh group",
+    "investigator.XHours": "{x} hours"
 }

@@ -196,6 +196,8 @@ export interface BaseAbilityDataSourceData {
 export interface InvestigativeAbilityDataSourceData extends BaseAbilityDataSourceData {
 }
 
+export type MwRefreshGroup = 2|4|8;
+
 /** data.data for general abilities */
 export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData {
   canBeInvestigative: boolean;
@@ -203,6 +205,7 @@ export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData 
   // MW-specific fields
   mwTrumps: string;
   mwTrumpedBy: string;
+  mwRefreshGroup: MwRefreshGroup;
 }
 
 export type MwType = "tweak"|"spell"|"cantrap"|"enchantedItem"|"meleeWeapon"|"missileWeapon";
