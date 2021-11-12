@@ -121,10 +121,9 @@
       }
     },
     "mwItem": {
-      "myType": "tweak",
+      "mwType": "tweak",
       "notes": "",
       "charges": 0,
-      "meleeOrMissile": "melee",
       "ranges": [0,0,0,0]
     }
   }

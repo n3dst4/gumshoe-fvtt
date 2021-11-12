@@ -205,13 +205,15 @@ export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData 
   mwTrumpedBy: string;
 }
 
+export type MwType = "tweak"|"spell"|"cantrap"|"enchantedItem"|"meleeWeapon"|"missileWeapon";
+export type RangeTuple = [number, number, number, number];
+
 /** data.data for Moribund World stuff */
 export interface MwItemDataSourceData {
-  "mwType": "tweak"|"spell"|"cantrap"|"enchantedItem"|"weapon";
-  "notes": "";
-  "charges": 0;
-  "meleeOrMissile": "melee"|"missile";
-  "ranges": [number, number, number, number];
+  mwType: MwType;
+  notes: string;
+  charges: number;
+  ranges: RangeTuple;
 }
 
 /** data for equipment */

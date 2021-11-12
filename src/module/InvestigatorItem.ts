@@ -3,7 +3,14 @@ import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
 import { InvestigatorActor } from "./InvestigatorActor";
 import { getDefaultThemeName } from "../settingsHelpers";
-import { assertAbilityDataSource, assertGeneralAbilityDataSource, assertWeaponDataSource, MWDifficulty } from "../types";
+import {
+  assertAbilityDataSource,
+  assertGeneralAbilityDataSource,
+  assertMwItemDataSource,
+  assertWeaponDataSource,
+  MWDifficulty,
+  MwType,
+} from "../types";
 import * as constants from "../constants";
 
 /**
@@ -512,6 +519,41 @@ export class InvestigatorItem extends Item {
   setMwTrumpedBy = (mwTrumpedBy: string) => {
     assertGeneralAbilityDataSource(this.data);
     this.update({ data: { mwTrumpedBy } });
+  }
+
+  getMwType = () => {
+    assertMwItemDataSource(this.data);
+    return this.data.data.mwType;
+  }
+
+  setMwType = (mwType: MwType) => {
+    assertMwItemDataSource(this.data);
+    this.update({ data: { mwType } });
+  }
+
+  getCharges = () => {
+    assertMwItemDataSource(this.data);
+    return this.data.data.charges;
+  }
+
+  setCharges = (charges: number) => {
+    assertMwItemDataSource(this.data);
+    this.update({ data: { charges } });
+  }
+
+  getRanges = () => {
+    assertMwItemDataSource(this.data);
+    return this.data.data.ranges;
+  }
+
+  getRange = (range: 0|1|2|3) => {
+    assertMwItemDataSource(this.data);
+    return this.data.data.ranges[range];
+  }
+
+  setRanges = (ranges: [number, number, number, number]) => {
+    assertMwItemDataSource(this.data);
+    this.update({ data: { ranges } });
   }
 }
 
