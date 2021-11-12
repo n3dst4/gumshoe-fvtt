@@ -10,6 +10,7 @@ import {
   assertWeaponDataSource,
   MWDifficulty,
   MwType,
+  RangeTuple,
 } from "../types";
 import * as constants from "../constants";
 
@@ -553,6 +554,13 @@ export class InvestigatorItem extends Item {
 
   setRanges = (ranges: [number, number, number, number]) => {
     assertMwItemDataSource(this.data);
+    this.update({ data: { ranges } });
+  }
+
+  setRange = (range: 0|1|2|3) => (value: number) => {
+    assertMwItemDataSource(this.data);
+    const ranges = [...this.data.data.ranges] as RangeTuple;
+    ranges[range] = value;
     this.update({ data: { ranges } });
   }
 }

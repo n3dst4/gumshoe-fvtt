@@ -13,6 +13,7 @@ import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { absoluteCover } from "../absoluteCover";
 import { assertMwItemDataSource, MwType } from "../../types";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 type WmItemSheetProps = {
   item: InvestigatorItem,
@@ -145,6 +146,63 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
             }}
           />
         </GridFieldStacked>
+        {
+          item.data.data.mwType === "enchantedItem" &&
+          <GridField label="Charges">
+            <AsyncNumberInput
+              onChange={item.setCharges}
+              value={item.getCharges()}
+              min={0}
+            />
+          </GridField>
+        }
+        {
+          item.data.data.mwType === "missileWeapon" &&
+          <GridFieldStacked label="Ranges">
+            <div
+              css={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <GridFieldStacked label="Short" css={{ flex: 1 }}>
+                <AsyncNumberInput
+                  onChange={item.setRange(0)}
+                  value={item.getRange(0)}
+                  min={0}
+                />
+              </GridFieldStacked>
+              <GridFieldStacked label="Medium" css={{ flex: 1 }}>
+                <AsyncNumberInput
+                  onChange={item.setRange(1)}
+                  value={item.getRange(1)}
+                  min={0}
+                />
+              </GridFieldStacked>
+            </div>
+            <div
+              css={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <GridFieldStacked label="Long" css={{ flex: 1 }}>
+                <AsyncNumberInput
+                  onChange={item.setRange(2)}
+                  value={item.getRange(2)}
+                  min={0}
+                />
+              </GridFieldStacked>
+              <GridFieldStacked label="Extreme" css={{ flex: 1 }}>
+                <AsyncNumberInput
+                  onChange={item.setRange(3)}
+                  value={item.getRange(3)}
+                  min={0}
+                />
+              </GridFieldStacked>
+            </div>
+          </GridFieldStacked>
+        }
       </InputGrid>
     </div>
   );

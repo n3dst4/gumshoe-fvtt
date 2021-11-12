@@ -26,5 +26,11 @@
     "investigator.EnchantedItems": "Enchanted Items",
     "investigator.MeleeWeapons": "Melee Weapons",
     "investigator.MissileWeapons": "Missile Weapons",
-    "investigator.NoItemsYet": "No items yet"
+    "investigator.NoItemsYet": "No items yet",
+    "investigator.Charges": "Charges",
+    "investigator.Ranges": "Ranges",
+    "investigator.Short": "Short",
+    "investigator.Medium": "Medium",
+    "investigator.Long": "Long",
+    "investigator.Extreme": "Extreme"
 }
