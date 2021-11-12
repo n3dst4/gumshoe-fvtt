@@ -26,6 +26,7 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
   assertMwItemDataSource(item.data);
 
   const name = useAsyncUpdate(item.name || "", item.setName);
+  const nameInput = useAsyncUpdate(item.name || "", item.setName);
 
   const onClickDelete = useCallback(() => {
     assertGame(game);
@@ -116,10 +117,10 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
       >
         <GridField label="Name">
           <TextInput
-            value={name.display}
-            onChange={name.onChange}
-            // onFocus={name.onFocus}
-            // onBlur={name.onBlur}
+            value={nameInput.display}
+            onChange={nameInput.onChange}
+            onFocus={nameInput.onFocus}
+            onBlur={nameInput.onBlur}
           />
         </GridField>
         <GridField label="MwType">
