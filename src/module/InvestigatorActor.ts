@@ -1,6 +1,6 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo, isAbility } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource } from "../types";
+import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource } from "../types";
 import { themes } from "../themes/themes";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { Theme } from "../themes/types";
@@ -123,6 +123,23 @@ export class InvestigatorActor extends Actor {
 
   getAbilities () {
     return this.items.filter((item) => isAbility(item));
+  }
+
+  getMwItems () {
+    const allItems = this.items.filter((item) => isMwItemDataSource(item.data));
+    const items: {[type in MwType]: Item[]} = {
+      tweak: [],
+      spell: [],
+      cantrap: [],
+      enchantedItem: [],
+      meleeWeapon: [],
+      missileWeapon: [],
+    };
+    for (const item of allItems) {
+      assertMwItemDataSource(item.data);
+      items[item.data.data.mwType].push(item);
+    }
+    return items;
   }
 
   getTrackerAbilities () {

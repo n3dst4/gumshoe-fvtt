@@ -1,17 +1,17 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback, useContext } from "react";
-import { equipment } from "../../constants";
+import { mwItem } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { Translate } from "../Translate";
 
-type EquipmentAreaProps = {
+type MwItemAreaProps = {
   actor: InvestigatorActor,
 };
 
-export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
+export const MwItemArea: React.FC<MwItemAreaProps> = ({
   actor,
 }) => {
   const app = useContext(ActorSheetAppContext);
@@ -22,7 +22,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
     }
   }, [app]);
 
-  const items = actor.getEquipment();
+  const items = actor.getMwItems();
   return (
     <div>
       <div>
@@ -31,7 +31,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
             display: "inline",
           }}
         >
-          <Translate>Equipment</Translate>
+          <Translate>Tweaks</Translate>
         </h1>
         <button
           css={{
@@ -40,25 +40,24 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
           }}
           onClick={async () => {
             await actor.createEmbeddedDocuments("Item", [{
-              type: equipment,
+              type: mwItem,
               name: "New item",
             }], {
               renderSheet: true,
             });
-            // newItem.sheet.render(true);
           }}
         >
-          <i className="fa fa-plus"/><Translate>Add Equipment</Translate>
+          <i className="fa fa-plus"/><Translate>Add Item</Translate>
         </button>
       </div>
-      {items.length === 0 &&
+      {items.tweak.length === 0 &&
         <i
           css={{
             display: "block",
             fontSize: "1.2em",
           }}
         >
-          <Translate>No equipment yet.</Translate>
+          <Translate>No items yet.</Translate>
         </i>
       }
 
@@ -68,7 +67,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
         }}
       >
         {
-          sortEntitiesByName(items).map<JSX.Element>((item) => (
+          sortEntitiesByName(items.tweak).map<JSX.Element>((item) => (
             <a
               key={item.id}
               css={{

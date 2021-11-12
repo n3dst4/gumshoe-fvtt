@@ -23,6 +23,7 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { ImagePickle } from "../ImagePickle";
 import { assertGame } from "../../functions";
 import { AbilitiesAreaMW } from "./AbilitiesAreaMW";
+import { MwItemArea } from "./MwItemArea";
 
 type InvestigatorPCSheetProps = {
   actor: InvestigatorActor,
@@ -193,11 +194,17 @@ export const InvestigatorPCSheet = ({
                 id: "equipment",
                 label: "Equipment",
                 content: (
-                  <Fragment>
-                    <WeaponsArea actor={actor} />
-                    <div css={{ height: "1em" }}/>
-                    <EquipmentArea actor={actor} />
-                  </Fragment>
+                  getUseMwStyleAbilities()
+                    ? (
+                      <MwItemArea actor={actor} />
+                      )
+                    : (
+                      <Fragment>
+                        <WeaponsArea actor={actor} />
+                        <div css={{ height: "1em" }}/>
+                        <EquipmentArea actor={actor} />
+                      </Fragment>
+                      )
                 ),
               },
               {
