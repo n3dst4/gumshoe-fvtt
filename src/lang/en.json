@@ -104,5 +104,6 @@
     "investigator.Weapon": "Weapon",
     "investigator.Weapons": "Weapons",
     "investigator.WhoopsNo": "Whoops, No!",
-    "investigator.Specialities": "Specialities"
+    "investigator.Specialities": "Specialities",
+    "investigator.Speciality": "Speciality"
 }

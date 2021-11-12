@@ -17,7 +17,11 @@ export const AbilityMwExtraFields: React.FC<AbilityMwExtraFieldsProps> = ({
   assertGeneralAbilityDataSource(ability.data);
 
   return (
-    <InputGrid>
+    <InputGrid
+      css={{
+        paddingTop: "0.5em",
+      }}
+    >
       <GridField label="Trumps">
           <AsyncTextInput
             value={ability.data.data.mwTrumps}

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { css, jsx } from "@emotion/react";
+import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
 import React, { useMemo } from "react";
 import { IdContext } from "../IdContext";
@@ -22,9 +22,12 @@ export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({
   return (
     <IdContext.Provider value={htmlId}>
       <div
-        css={css`
-          grid-column: label / end;
-        `}
+        css={{
+          gridColumn: "label / end",
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+        }}
         className={className}
       >
         <label
@@ -34,8 +37,14 @@ export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({
         >
           {label && (noTranslate ? label : <Translate>{label}</Translate>)}
         </label>
-
-        {children}
+        <div
+          css={{
+            position: "relative",
+            flex: 1,
+          }}
+        >
+          {children}
+        </div>
       </div>
     </IdContext.Provider>
   );

@@ -64,7 +64,12 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
   const useMwStyleAbilities = getUseMwStyleAbilities();
 
   return (
-    <InputGrid>
+    <InputGrid
+      css={{
+        flex: 1,
+        gridTemplateRows: "auto auto 1fr",
+      }}
+    >
       <GridField label="Pool">
         <div
           css={{
@@ -100,6 +105,19 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
           onChange={ability.setRating}
         />
       </GridField>
+      <GridFieldStacked label="Notes">
+        <TextArea
+          value={notes.display}
+          onChange={notes.onChange}
+          css={{
+            height: "100%",
+            "&&": {
+              resize: "none",
+
+            },
+          }}
+        />
+      </GridFieldStacked>
       {ability.getHasSpecialities() &&
         <GridFieldStacked label={ability.getSpecialities().length === 1 ? "Speciality" : "Specialities"}>
           <div
@@ -117,15 +135,6 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
           <AsyncCheckbox checked={ability.getBoost()} onChange={ability.setBoost}/>
         </GridField>
       }
-      <GridFieldStacked label="Notes">
-        <TextArea
-          value={notes.display}
-          onChange={notes.onChange}
-          css={{
-            height: getUseMwStyleAbilities() ? "10em" : "4em",
-          }}
-        />
-      </GridFieldStacked>
 
       {isCombatAbility &&
         <GridField label="Combat order">

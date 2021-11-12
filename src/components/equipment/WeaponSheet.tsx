@@ -26,6 +26,7 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
     <div
       css={{
         paddingBottom: "1em",
+        position: "relative",
         display: "grid",
         gridTemplateColumns: "auto 1fr auto",
         gridTemplateRows: "auto auto auto",

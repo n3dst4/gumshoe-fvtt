@@ -98,7 +98,13 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
         <i className={`fa fa-${configMode ? "check" : "cog"}`}/>
       </a>
       {/* regular editing stuff */}
-      <div css={{ gridArea: "body" }}>
+      <div
+        css={{
+          gridArea: "body",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         {configMode
           ? <AbilityConfig ability={ability}/>
           : <Fragment>
