@@ -12,6 +12,7 @@ import { ImagePickle } from "../ImagePickle";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { absoluteCover } from "../absoluteCover";
 import { assertMwItemDataSource, MwType } from "../../types";
+import { GridFieldStacked } from "../inputs/GridFieldStacked";
 
 type WmItemSheetProps = {
   item: InvestigatorItem,
@@ -116,7 +117,7 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
         <GridField label="Name">
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
-        <GridField label="Type">
+        <GridField label="MwType">
           <select value={item.data.data.mwType} onChange={onChangeType}>
             <option value="tweak">Tweak</option>
             <option value="spell">Spell</option>
@@ -126,7 +127,7 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
             <option value="missileWeapon">Missile weapon</option>
           </select>
         </GridField>
-        <GridField label="Notes">
+        <GridFieldStacked label="Notes">
           <AsyncTextArea
             value={item.data.data.notes}
             onChange={item.setNotes}
@@ -137,7 +138,7 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
               },
             }}
           />
-        </GridField>
+        </GridFieldStacked>
       </InputGrid>
     </div>
   );

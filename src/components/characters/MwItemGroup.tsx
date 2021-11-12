@@ -3,11 +3,14 @@ import { jsx } from "@emotion/react";
 import React from "react";
 import { mwItem } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
+import { MwType } from "../../types";
 import { Translate } from "../Translate";
 
 interface MwItemGroupProps {
   actor: Actor;
   items: Item[];
+  name: string;
+  mwType: MwType;
   onDragStart: (e: React.DragEvent<HTMLAnchorElement>) => void;
 }
 
@@ -15,6 +18,8 @@ export const MwItemGroup: React.FC<MwItemGroupProps> = ({
   actor,
   items,
   onDragStart,
+  name,
+  mwType,
 }: MwItemGroupProps) => {
   return (
     <div>
@@ -24,7 +29,7 @@ export const MwItemGroup: React.FC<MwItemGroupProps> = ({
             display: "inline",
           }}
         >
-          <Translate>Tweaks</Translate>
+          <Translate>{name}</Translate>
         </h1>
         <button
           css={{
@@ -38,6 +43,9 @@ export const MwItemGroup: React.FC<MwItemGroupProps> = ({
                 {
                   type: mwItem,
                   name: "New item",
+                  data: {
+                    mwType,
+                  },
                 },
               ],
               {

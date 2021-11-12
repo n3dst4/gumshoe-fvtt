@@ -19,5 +19,12 @@
     "investigator.TrumpedBy": "Trumped by",
     "investigator.MWItem": "Item",
     "investigator.MWItems": "Items",
-    "investigator.Tweaks": "Tweaks"
+    "investigator.Tweaks": "Tweaks",
+    "investigator.MwType": "Type",
+    "investigator.Cantraps": "Cantraps",
+    "investigator.Spells": "Spells",
+    "investigator.EnchantedItems": "Enchanted Items",
+    "investigator.MeleeWeapons": "Melee Weapons",
+    "investigator.MissileWeapons": "Missile Weapons",
+    "investigator.NoItemsYet": "No items yet"
 }
