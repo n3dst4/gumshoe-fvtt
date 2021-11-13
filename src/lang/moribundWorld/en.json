@@ -34,5 +34,9 @@
     "investigator.Long": "Long",
     "investigator.Extreme": "Extreme",
     "investigator.RefreshGroup": "Refresh group",
-    "investigator.XHours": "{x} hours"
+    "investigator.XHours": "{x} hours",
+    "investigator.2hRefresh": "2h Refresh",
+    "investigator.4hRefresh": "4h Refresh",
+    "investigator.8hRefresh": "8h Refresh",
+    "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEveryHoursHours": "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?"
 }

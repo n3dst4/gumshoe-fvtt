@@ -1,6 +1,6 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo, isAbility } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource } from "../types";
+import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup } from "../types";
 import { themes } from "../themes/themes";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { Theme } from "../themes/types";
@@ -36,6 +36,23 @@ export class InvestigatorActor extends Actor {
     );
   };
 
+  confirmMwRefresh (group: MwRefreshGroup) {
+    return () => {
+      confirmADoodleDo(
+        "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?",
+        "Refresh",
+        "Cancel",
+        "fa-sync",
+        { ActorName: this.data.name, Hours: group },
+        () => this.mWrefresh(group),
+      );
+    };
+  }
+
+  confirmMw2Refresh = this.confirmMwRefresh(2)
+  confirmMw4Refresh = this.confirmMwRefresh(4)
+  confirmMw8Refresh = this.confirmMwRefresh(8)
+
   refresh = () => {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
@@ -56,6 +73,26 @@ export class InvestigatorActor extends Actor {
     });
     this.updateEmbeddedDocuments("Item", updates);
   };
+
+  mWrefresh (group: MwRefreshGroup) {
+    const updates = Array.from(this.items).flatMap((item) => {
+      if (
+        (item.data.type === generalAbility) &&
+        item.data.data.rating > item.data.data.pool &&
+        item.data.data.mwRefreshGroup === group
+      ) {
+        return [{
+          _id: item.data._id,
+          data: {
+            pool: item.data.data.rating,
+          },
+        }];
+      } else {
+        return [];
+      }
+    });
+    this.updateEmbeddedDocuments("Item", updates);
+  }
 
   // if we end up with even more types of refresh it may be worth factoring out
   // the actual refresh code but until then - rule of three

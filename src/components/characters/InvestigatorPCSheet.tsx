@@ -155,14 +155,34 @@ export const InvestigatorPCSheet = ({
             background: theme.colors.backgroundPrimary,
           }}
           >
+            {getUseMwStyleAbilities() &&
+              <Fragment>
+              <button onClick={actor.confirmMw2Refresh}>
+                <Translate>2h Refresh</Translate>
+              </button>
+              <hr/>
+              <button onClick={actor.confirmMw4Refresh}>
+                <Translate>4h Refresh</Translate>
+              </button>
+              <hr/>
+              <button onClick={actor.confirmMw8Refresh}>
+                <Translate>8h Refresh</Translate>
+              </button>
+              <hr/>
+              </Fragment>
+            }
             <button onClick={actor.confirmRefresh}>
               <Translate>Full Refresh</Translate>
             </button>
             <hr/>
-            <button onClick={actor.confirm24hRefresh}>
-              <Translate>24h Refresh</Translate>
-            </button>
-            <hr/>
+            {getUseMwStyleAbilities ||
+              <Fragment>
+                <button onClick={actor.confirm24hRefresh}>
+                  <Translate>24h Refresh</Translate>
+                </button>
+                <hr/>
+              </Fragment>
+            }
             <TrackersArea actor={actor} />
             <hr/>
             <h3 css={{ gridColumn: "start / end" }}>
