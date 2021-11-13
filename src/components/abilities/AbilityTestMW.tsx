@@ -37,7 +37,7 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
     <div
       css={{
         border: `1px solid ${theme.colors.text}`,
-        padding: "1em",
+        padding: "0.5em",
         marginBottom: "1em",
         background: theme.colors.backgroundSecondary,
         display: "grid",
@@ -55,7 +55,7 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
         }}
       >
         <GridField label="Difficulty">
-          <select css={{ display: "block" }} value={difficulty} onChange={onChangeDifficulty}>
+          <select css={{ display: "block", width: "100%" }} value={difficulty} onChange={onChangeDifficulty}>
             <option value="easy">Easy</option>
             <option value={0}>Normal</option>
             <option value={-1}>Hard (-1)</option>
@@ -64,7 +64,7 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
         </GridField>
         <GridField label="Boon/levy">
           <div css={{ position: "relative" }}>
-            <select css={{ display: "block" }} value={boonLevy} onChange={onChangeBoonLevy}>
+            <select css={{ display: "block", width: "100%" }} value={boonLevy} onChange={onChangeBoonLevy}>
               <option value={+2}>Boon +2</option>
               <option value={+1}>Boon +1</option>
               <option value={0}>0</option>

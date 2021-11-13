@@ -125,7 +125,13 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
           />
         </GridField>
         <GridField label="MwType">
-          <select value={item.data.data.mwType} onChange={onChangeType}>
+          <select
+            value={item.data.data.mwType}
+            onChange={onChangeType}
+            css={{
+              width: "100%",
+            }}
+          >
             <option value="tweak">Tweak</option>
             <option value="spell">Spell</option>
             <option value="cantrap">Cantrap</option>
