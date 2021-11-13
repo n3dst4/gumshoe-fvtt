@@ -6,6 +6,7 @@ import { Translate } from "../Translate";
 import { MwButton } from "./MwButton";
 import { MWResult } from "./types";
 import * as constants from "../../constants";
+import { MwCostSlug } from "./MwCostSlug";
 
 type WallopNegateMode =
   | typeof constants.htmlDataModeMwNegate
@@ -34,6 +35,10 @@ export const AbilityNegateOrWallopMwCard: React.FC<AbilityNegateOrWallopMwCardPr
     const onClickAbilityName = useCallback(() => {
       ability.sheet?.render(true);
     }, [ability.sheet]);
+
+    const costFactor = mode === constants.htmlDataModeMwNegate
+      ? <span><Translate>Negate</Translate>: -{constants.mwNegateCost}</span>
+      : <span><Translate>Wallop</Translate>: -{constants.mwWallopCost}</span>;
 
     return (
       <div
@@ -64,6 +69,7 @@ export const AbilityNegateOrWallopMwCard: React.FC<AbilityNegateOrWallopMwCardPr
           }}
         >
           <Translate>Pool</Translate>: {pool}
+          <MwCostSlug>{costFactor}</MwCostSlug>
         </div>
         {/* RESULT */}
         <MwButton deets={deets[mode]} />

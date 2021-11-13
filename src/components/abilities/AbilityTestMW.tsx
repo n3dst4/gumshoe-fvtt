@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback, useContext, useState } from "react";
+import { mwNegateCost, mwWallopCost } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertGeneralAbilityDataSource, MWDifficulty } from "../../types";
@@ -89,10 +90,10 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
           flexDirection: "row",
         }}
       >
-        <button disabled={ability.data.data.pool < 3} css={{ flex: "1" }} onClick={onNegateIllustrious}>
+        <button disabled={ability.data.data.pool < mwNegateCost} css={{ flex: "1" }} onClick={onNegateIllustrious}>
           <Translate>Negate</Translate>
         </button>
-        <button disabled={ability.data.data.pool < 5} css={{ flex: "1" }} onClick={onWallop}>
+        <button disabled={ability.data.data.pool < mwWallopCost} css={{ flex: "1" }} onClick={onWallop}>
           <Translate>Wallop</Translate>
         </button>
         <button css={{ flex: "2" }} onClick={onTest}>

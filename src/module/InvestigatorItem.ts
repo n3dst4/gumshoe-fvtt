@@ -112,7 +112,7 @@ export class InvestigatorItem extends Item {
 
   mWNegateIllustrious () {
     assertAbilityDataSource(this.data);
-    const newPool = Math.max(0, this.data.data.pool - 3);
+    const newPool = Math.max(0, this.data.data.pool - constants.mwNegateCost);
     ChatMessage.create({
       content: `
         <div 
@@ -129,7 +129,7 @@ export class InvestigatorItem extends Item {
 
   async mWWallop () {
     assertAbilityDataSource(this.data);
-    const newPool = Math.max(0, this.data.data.pool - 5);
+    const newPool = Math.max(0, this.data.data.pool - constants.mwWallopCost);
     ChatMessage.create({
       content: `
         <div 

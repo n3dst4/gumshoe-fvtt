@@ -87,3 +87,7 @@ export const htmlDataMwDifficulty = "data-mw-difficulty" as const;
 export const htmlDataMwBoonLevy = "data-mw-boon-levy" as const;
 export const htmlDataMwIsReRoll = "data-mw-is-re-roll" as const;
 export const htmlDataMwPool = "data-mw-pool" as const;
+
+// other?
+export const mwWallopCost = 5;
+export const mwNegateCost = 3;
