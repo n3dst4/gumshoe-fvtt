@@ -21,6 +21,14 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
     ability.mwTestAbility(difficulty, boonLevy);
   }, [ability, boonLevy, difficulty]);
 
+  const onWallop = useCallback(() => {
+    ability.mWWallop();
+  }, [ability]);
+
+  const onNegateIllustrious = useCallback(() => {
+    ability.mWNegateIllustrious();
+  }, [ability]);
+
   const onChangeDifficulty = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.currentTarget.value;
     const diff = val === "easy" ? "easy" : Number(val);
@@ -40,20 +48,12 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
         padding: "0.5em",
         marginBottom: "1em",
         background: theme.colors.backgroundSecondary,
-        display: "grid",
-        gridTemplateColumns: "max-content 1fr",
-        gridTemplateRows: "auto",
-        gridTemplateAreas: `
-          "inputs button"
-        `,
+        display: "flex",
+        flexDirection: "column",
         gap: "0.5em",
       }}
     >
-      <InputGrid
-        css={{
-          gridArea: "inputs",
-        }}
-      >
+      <InputGrid>
         <GridField label="Difficulty">
           <select css={{ display: "block", width: "100%" }} value={difficulty} onChange={onChangeDifficulty}>
             <option value="easy">Easy</option>
@@ -74,9 +74,22 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
           </div>
         </GridField>
       </InputGrid>
-      <button css={{ gridArea: "button" }} onClick={onTest}>
-        <Translate>Test</Translate>
-      </button>
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        <button css={{ flex: "1" }} onClick={onNegateIllustrious}>
+          <Translate>Negate</Translate>
+        </button>
+        <button css={{ flex: "1" }} onClick={onWallop}>
+          <Translate>Wallop</Translate>
+        </button>
+        <button css={{ flex: "2" }} onClick={onTest}>
+          <Translate>Test</Translate>
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,12 +1,10 @@
 /** @jsx jsx */
-import { Global, jsx } from "@emotion/react";
+import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { DiceTerms } from "./DiceTerms";
 import { Translate } from "../Translate";
 import { MWDifficulty } from "../../types";
-import { systemName } from "../../constants";
-import { css } from "@emotion/css";
 import { MWResult } from "./types";
 import { MwButton } from "./MwButton";
 import { MwCostSlug } from "./MwCostSlug";
@@ -90,14 +88,6 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
         alignItems: "center",
       }}
     >
-      <Global
-        styles={css`
-          @font-face {
-            font-family: "Longdon Decorative Regular";
-            src: url(systems/${systemName}/assets/fonts/LongdonDecorative.woff2) format('woff2');
-          }
-        `}
-      />
       {/* HEADLINE */}
       <div
         css={{

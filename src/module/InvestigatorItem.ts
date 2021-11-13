@@ -110,6 +110,32 @@ export class InvestigatorItem extends Item {
     this.update({ data: { pool: newPool } });
   }
 
+  async mWNegateIllustrious () {
+    ChatMessage.create({
+      content: `
+        <div 
+          class="${constants.abilityChatMessageClassName}"
+          ${constants.htmlDataItemId}="${this.data._id}"
+          ${constants.htmlDataActorId}="${this.parent?.data._id}"
+          ${constants.htmlDataMode}="${constants.htmlDataModeMwNegate}"
+        />
+      `,
+    });
+  }
+
+  async mWWallop () {
+    ChatMessage.create({
+      content: `
+        <div 
+          class="${constants.abilityChatMessageClassName}"
+          ${constants.htmlDataItemId}="${this.data._id}"
+          ${constants.htmlDataActorId}="${this.parent?.data._id}"
+          ${constants.htmlDataMode}="${constants.htmlDataModeMwWallop}"
+        />
+      `,
+    });
+  }
+
   /**
    * reset the pool to the rating
    */

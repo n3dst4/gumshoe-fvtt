@@ -12,6 +12,7 @@ import { AbilityTestCard } from "./AbilityTestCard";
 import { AttackCard } from "./AttackCard";
 import { AbilityTestMwCard } from "./AbilityTestMwCard";
 import { MWDifficulty } from "../../types";
+import { AbilityNegateOrWallopMwCard } from "./AbilityNegateOrWallopMwCard";
 
 export const installAbilityCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {
@@ -89,6 +90,15 @@ export const installAbilityCardChatWrangler = () => {
         boonLevy={boonLevy}
         isReRoll={isReRoll}
         pool={pool}
+      />;
+    } else if (mode === constants.htmlDataModeMwWallop || mode === constants.htmlDataModeMwNegate) {
+      // MW NEGATE OR WALLOP
+      const pool = Number(el.getAttribute(constants.htmlDataMwPool));
+      content = <AbilityNegateOrWallopMwCard
+        msg={chatMessage}
+        ability={ability}
+        pool={pool}
+        mode={mode}
       />;
     } else {
       // REGULAR TEST /SPEND

@@ -7,7 +7,9 @@ type AbilityCardModeTestSpend =
 export type AbilityCardMode =
   | AbilityCardModeTestSpend
   | typeof constants.htmlDataModeAttack
-  | typeof constants.htmlDataModeMwTest;
+  | typeof constants.htmlDataModeMwTest
+  | typeof constants.htmlDataModeMwNegate
+  | typeof constants.htmlDataModeMwWallop;
 
 export const isAbilityCardMode = (
   candidate: string | AbilityCardMode,
@@ -16,7 +18,9 @@ export const isAbilityCardMode = (
     candidate === constants.htmlDataModeTest ||
     candidate === constants.htmlDataModeSpend ||
     candidate === constants.htmlDataModeAttack ||
-    candidate === constants.htmlDataModeMwTest
+    candidate === constants.htmlDataModeMwTest ||
+    candidate === constants.htmlDataModeMwNegate ||
+    candidate === constants.htmlDataModeMwWallop
   );
 };
 

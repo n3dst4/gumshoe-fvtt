@@ -38,5 +38,7 @@
     "investigator.2hRefresh": "2h Refresh",
     "investigator.4hRefresh": "4h Refresh",
     "investigator.8hRefresh": "8h Refresh",
-    "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEveryHoursHours": "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?"
+    "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEveryHoursHours": "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?",
+    "investigator.Negate": "Negate",
+    "investigator.Wallop": "Wallop"
 }
