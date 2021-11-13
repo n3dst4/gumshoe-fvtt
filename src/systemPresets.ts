@@ -113,6 +113,7 @@ export const moribundWorldPreset: SystemPreset = {
   useBoost: false,
   useMwStyleAbilities: true,
   mwUseAlternativeItemTypes: true,
+  mwHiddenShortNotes: ["Sympathy points"],
 };
 
 export const systemPresets = {
