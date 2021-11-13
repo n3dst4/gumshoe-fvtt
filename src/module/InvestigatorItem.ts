@@ -76,7 +76,7 @@ export class InvestigatorItem extends Item {
    * DERPG/"Moribund World" style roll - d6 +/- a difficulty modifier, with an
    * additional boon or levy on the pool. can be re-rolled for one extra point.
    */
-  async mwTestAbility (difficulty: MWDifficulty, boonLevy: number, isReRoll = false) {
+  async mwTestAbility (difficulty: MWDifficulty, boonLevy: number, reRoll: number | null = null) {
     assertGame(game);
     assertAbilityDataSource(this.data);
     if (this.actor === null) { return; }
@@ -86,9 +86,9 @@ export class InvestigatorItem extends Item {
       ? new Roll("1d6")
       : new Roll(`1d6 ${operator} @diffMod`, { diffMod: Math.abs(diffMod) });
     await roll.evaluate({ async: true });
-    const cost = (isReRoll ? 1 : 0) - boonLevy;
+    const cost = (reRoll === 1 ? 4 : reRoll === null ? 0 : 1) - boonLevy;
     if (cost > this.data.data.pool) {
-      ui.notifications?.error(`Attempted to ${isReRoll ? "re-" : ""}roll ${this.data.name} with a levy of ${boonLevy} but pool is currently at ${this.data.data.pool}`);
+      ui.notifications?.error(`Attempted to ${reRoll ? `re-roll a ${reRoll} with` : "roll"} ${this.data.name} with a levy of ${boonLevy} but pool is currently at ${this.data.data.pool}`);
       return;
     }
     const newPool = Math.max(0, this.data.data.pool - cost);
@@ -102,7 +102,7 @@ export class InvestigatorItem extends Item {
           ${constants.htmlDataMode}="${constants.htmlDataModeMwTest}"
           ${constants.htmlDataMwDifficulty} = ${difficulty}
           ${constants.htmlDataMwBoonLevy} = ${boonLevy}
-          ${constants.htmlDataMwIsReRoll} = ${isReRoll}
+          ${constants.htmlDataMwIsReRoll} = ${reRoll}
           ${constants.htmlDataMwPool} = ${newPool}
         />
       `,
