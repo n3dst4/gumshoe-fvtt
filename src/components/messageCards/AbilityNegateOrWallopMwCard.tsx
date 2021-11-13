@@ -24,8 +24,8 @@ const deets: { [mode in WallopNegateMode]: MWResult } = {
     text: "Negate Illustrious",
   },
   [constants.htmlDataModeMwWallop]: {
-    color: "#ffffff",
-    text: "WALLOP!",
+    color: "#bbbbbb",
+    text: "WALLOP",
   },
 };
 

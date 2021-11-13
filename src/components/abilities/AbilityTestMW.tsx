@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { MWDifficulty } from "../../types";
+import { assertGeneralAbilityDataSource, MWDifficulty } from "../../types";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
@@ -13,6 +13,7 @@ type AbilityTestMWProps = {
 };
 
 export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
+  assertGeneralAbilityDataSource(ability.data);
   const theme = useContext(ThemeContext);
   const [difficulty, setDifficulty] = useState<MWDifficulty>(0);
   const [boonLevy, setBoonLevy] = useState(0);
@@ -55,7 +56,11 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
     >
       <InputGrid>
         <GridField label="Difficulty">
-          <select css={{ display: "block", width: "100%" }} value={difficulty} onChange={onChangeDifficulty}>
+          <select
+            css={{ display: "block", width: "100%" }}
+            value={difficulty}
+            onChange={onChangeDifficulty}
+          >
             <option value="easy">Easy</option>
             <option value={0}>Normal</option>
             <option value={-1}>Hard (-1)</option>
@@ -64,7 +69,11 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
         </GridField>
         <GridField label="Boon/levy">
           <div css={{ position: "relative" }}>
-            <select css={{ display: "block", width: "100%" }} value={boonLevy} onChange={onChangeBoonLevy}>
+            <select
+              css={{ display: "block", width: "100%" }}
+              value={boonLevy}
+              onChange={onChangeBoonLevy}
+            >
               <option value={+2}>Boon +2</option>
               <option value={+1}>Boon +1</option>
               <option value={0}>0</option>
@@ -80,10 +89,10 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
           flexDirection: "row",
         }}
       >
-        <button css={{ flex: "1" }} onClick={onNegateIllustrious}>
+        <button disabled={ability.data.data.pool < 3} css={{ flex: "1" }} onClick={onNegateIllustrious}>
           <Translate>Negate</Translate>
         </button>
-        <button css={{ flex: "1" }} onClick={onWallop}>
+        <button disabled={ability.data.data.pool < 5} css={{ flex: "1" }} onClick={onWallop}>
           <Translate>Wallop</Translate>
         </button>
         <button css={{ flex: "2" }} onClick={onTest}>

@@ -110,7 +110,9 @@ export class InvestigatorItem extends Item {
     this.update({ data: { pool: newPool } });
   }
 
-  async mWNegateIllustrious () {
+  mWNegateIllustrious () {
+    assertAbilityDataSource(this.data);
+    const newPool = Math.max(0, this.data.data.pool - 3);
     ChatMessage.create({
       content: `
         <div 
@@ -118,12 +120,16 @@ export class InvestigatorItem extends Item {
           ${constants.htmlDataItemId}="${this.data._id}"
           ${constants.htmlDataActorId}="${this.parent?.data._id}"
           ${constants.htmlDataMode}="${constants.htmlDataModeMwNegate}"
+          ${constants.htmlDataMwPool} = ${newPool}
         />
       `,
     });
+    this.update({ data: { pool: newPool } });
   }
 
   async mWWallop () {
+    assertAbilityDataSource(this.data);
+    const newPool = Math.max(0, this.data.data.pool - 5);
     ChatMessage.create({
       content: `
         <div 
@@ -131,9 +137,11 @@ export class InvestigatorItem extends Item {
           ${constants.htmlDataItemId}="${this.data._id}"
           ${constants.htmlDataActorId}="${this.parent?.data._id}"
           ${constants.htmlDataMode}="${constants.htmlDataModeMwWallop}"
+          ${constants.htmlDataMwPool} = ${newPool}
         />
       `,
     });
+    this.update({ data: { pool: newPool } });
   }
 
   /**
