@@ -78,6 +78,7 @@ export class InvestigatorActor extends Actor {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
         (item.data.type === generalAbility) &&
+        // MW refreshes allow you to keep a boon
         item.data.data.rating > item.data.data.pool &&
         item.data.data.mwRefreshGroup === group
       ) {
