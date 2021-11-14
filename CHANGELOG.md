@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v4.7.1 (2021-11-01)
+
+* Whoops
+* Update `compatibleCoreVersion` in system manifest (#54)
+
+## v4.7.0 (2021-11-01)
+
+* **Improved chat messages** for spends, tests, and combat rolls (#26).
+* **(Initial) Foundry v9.x compatibility** - seems okay but we will monitor as FVTT 9.x progresses (#54).
+* Bug fix: there were some check boxes which were a bit laggy (#55).
+* The Delta Groovy theme has had some polish (#56, #57).
+* Behind-the-scenes code improvements (#53, #58).
+
+
 ## v4.6.0 (2021-10-20)
 
 * **New "Play" and "Edit" tabs** (#41) Thanks to Yariv Yanay (@yariv on Discord, @yarrriv on GitLab). The main character sheet tab is now interative and you can performs tests and spends directly from it instead of having to open the ability pop-up. There's also an "Edit" tab for rapid ability editing.
