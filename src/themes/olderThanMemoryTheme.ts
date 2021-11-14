@@ -3,7 +3,7 @@ import { systemName } from "../constants";
 import { themeFactory } from "./functions";
 import { Theme } from "./types";
 
-const accent = "#7aefff";
+const accent = "#fda994";
 
 export const olderThanMemoryTheme: Theme = themeFactory({
   schemaVersion: "v1",
@@ -12,14 +12,14 @@ export const olderThanMemoryTheme: Theme = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
   largeSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/nice_red_agents.webp)`,
-    backgroundPosition: "center",
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/red_sands.jpg)`,
+    backgroundPosition: "top",
     backgroundSize: "cover",
   },
   smallSheetRootStyle: {
-    backgroundImage: `linear-gradient( to right, #0002,#0002), url(systems/${systemName}/assets/wallpaper/crisp_black_rock.jpg)`,
+    backgroundImage: `linear-gradient( to right, #0009,#0009), url(systems/${systemName}/assets/wallpaper/red_sands.jpg)`,
     backgroundPosition: "center",
-    backgroundSize: "cover",
+    backgroundSize: "auto",
   },
   appWindowStyle: {
     boxShadow: `0 0 20px ${accent}`,
@@ -51,7 +51,7 @@ export const olderThanMemoryTheme: Theme = themeFactory({
       ].join(","),
       backgroundImage: [
         `radial-gradient(closest-side, ${accent}77 0%, ${accent}00 100%)`,
-        "linear-gradient(to bottom, #666, #000)",
+        "linear-gradient(to bottom, #6667, #0007)",
       ].join(", "),
       padding: "0.1em",
     },
@@ -64,7 +64,7 @@ export const olderThanMemoryTheme: Theme = themeFactory({
     },
   },
   colors: {
-    accent: "#fff",
+    accent: "#fed0c5",
     accentContrast: "#333",
     glow: accent,
     wallpaper: "#333",
