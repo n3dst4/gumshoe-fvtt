@@ -71,7 +71,7 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
       ? <MwCostSlug><Translate>Boon</Translate>: +{boonLevy}</MwCostSlug>
       : null;
 
-  const reRollFactor = reRoll && <MwCostSlug><Translate>Re-roll</Translate>: -1</MwCostSlug>;
+  const reRollFactor = reRoll && <MwCostSlug><Translate>Re-roll</Translate>: {reRoll === 1 ? "-4" : "-1"}</MwCostSlug>;
 
   return (
     <div
