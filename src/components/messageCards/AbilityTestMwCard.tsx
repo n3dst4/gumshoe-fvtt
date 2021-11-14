@@ -14,7 +14,7 @@ interface AbilityTestMwCardProps {
   ability: InvestigatorItem;
   difficulty: MWDifficulty;
   boonLevy: number;
-  isReRoll: boolean;
+  reRoll: number|undefined;
   pool: number;
 }
 
@@ -50,7 +50,7 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
   ability,
   difficulty,
   boonLevy,
-  isReRoll,
+  reRoll,
   pool,
 }) => {
   const onClickAbilityName = useCallback(() => {
@@ -71,7 +71,7 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
       ? <MwCostSlug><Translate>Boon</Translate>: +{boonLevy}</MwCostSlug>
       : null;
 
-  const reRollFactor = isReRoll && <MwCostSlug><Translate>Re-roll</Translate>: -1</MwCostSlug>;
+  const reRollFactor = reRoll && <MwCostSlug><Translate>Re-roll</Translate>: -1</MwCostSlug>;
 
   return (
     <div

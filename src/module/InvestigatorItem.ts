@@ -102,7 +102,7 @@ export class InvestigatorItem extends Item {
           ${constants.htmlDataMode}="${constants.htmlDataModeMwTest}"
           ${constants.htmlDataMwDifficulty} = ${difficulty}
           ${constants.htmlDataMwBoonLevy} = ${boonLevy}
-          ${constants.htmlDataMwIsReRoll} = ${reRoll}
+          ${constants.htmlDataMwReRoll} = ${reRoll === null ? '""' : reRoll}
           ${constants.htmlDataMwPool} = ${newPool}
         />
       `,

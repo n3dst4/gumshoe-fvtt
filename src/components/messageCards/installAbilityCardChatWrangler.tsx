@@ -81,14 +81,14 @@ export const installAbilityCardChatWrangler = () => {
         ? "easy"
         : Number(difficultyAttr ?? 0);
       const boonLevy = Number(el.getAttribute(constants.htmlDataMwBoonLevy) ?? 0);
-      const isReRoll = el.getAttribute(constants.htmlDataMwIsReRoll) === "true";
+      const reRoll = el.getAttribute(constants.htmlDataMwReRoll);
       const pool = Number(el.getAttribute(constants.htmlDataMwPool));
       content = <AbilityTestMwCard
         msg={chatMessage}
         ability={ability}
         difficulty={difficulty}
         boonLevy={boonLevy}
-        isReRoll={isReRoll}
+        reRoll={reRoll ? Number(reRoll) : undefined}
         pool={pool}
       />;
     } else if (mode === constants.htmlDataModeMwWallop || mode === constants.htmlDataModeMwNegate) {
