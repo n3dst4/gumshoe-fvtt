@@ -101,7 +101,7 @@ export const castingTheRunesPreset: SystemPreset = {
 
 export const moribundWorldPreset: SystemPreset = {
   displayName: "Moribund World",
-  defaultTheme: "antiquarianTheme",
+  defaultTheme: "olderThanMemoryTheme",
   investigativeAbilityCategories: [],
   generalAbilityCategories: ["Persuade", "Rebuff", "Attack", "Defense", "Resist", "Magic", "General"],
   combatAbilities: ["Strength", "Speed", "Finesse", "Cunning", "Ferocity", "Caution"],
