@@ -7,6 +7,7 @@ import { pallidTheme } from "./pallidTheme";
 import { deltaGroovyTheme } from "./deltaGroovyTheme";
 import { greenTriangleTheme } from "./greenTriangleTheme";
 import { antiquarianTheme } from "./antiquarianTheme";
+import { olderThanMemoryTheme } from "./olderThanMemoryTheme";
 import { Theme } from "./types";
 
 export const themes: {[themeName: string]: Theme} = {
@@ -19,4 +20,5 @@ export const themes: {[themeName: string]: Theme} = {
   deltaGroovyTheme,
   greenTriangleTheme,
   antiquarianTheme,
+  olderThanMemoryTheme,
 };
