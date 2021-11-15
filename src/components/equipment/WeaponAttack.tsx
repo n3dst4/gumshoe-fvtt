@@ -268,11 +268,15 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
 
               </a>{" "}
               (
-              <Translate
-                values={{ AbilityName: actorInitiativeAbility || "nothing" }}
-              >
-                Currently using (ability name)
-              </Translate>
+                {
+                  actorInitiativeAbility
+                    ? <Translate
+                        values={{ AbilityName: actorInitiativeAbility }}
+                      >
+                        Currently using (ability name)
+                      </Translate>
+                    : <Translate>Currently using nothing</Translate>
+                }
               )
             </span>
               )}

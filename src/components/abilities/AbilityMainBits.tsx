@@ -129,15 +129,29 @@ export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
           {isAbilityUsed
             ? (
             <i>
-              This ability is currently being used for combat ordering
+              <Translate>This ability is currently being used for combat ordering</Translate>
             </i>
               )
             : (
             <span>
               <a onClick={onClickUseForInitiative}>
-                Use {ability.name} for combat ordering
+                <Translate
+                  values={{ AbilityName: ability?.name ?? "" }}
+                >
+                  Use (ability name) for combat ordering
+                </Translate>
               </a>{" "}
-              (Currently using {actorInitiativeAbility || "nothing"})
+              (
+                {
+                  actorInitiativeAbility
+                    ? <Translate
+                        values={{ AbilityName: actorInitiativeAbility }}
+                      >
+                        Currently using (ability name)
+                      </Translate>
+                    : <Translate>Currently using nothing</Translate>
+                }
+              )
             </span>
               )}
         </GridField>
