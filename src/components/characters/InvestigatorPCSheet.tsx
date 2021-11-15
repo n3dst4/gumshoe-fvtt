@@ -102,7 +102,7 @@ export const InvestigatorPCSheet = ({
         <div
           css={{
             gridArea: "stats",
-            padding: "1em",
+            padding: "0.5em",
             backgroundColor: theme.colors.backgroundSecondary,
             position: "relative",
           }}
@@ -151,7 +151,7 @@ export const InvestigatorPCSheet = ({
             position: "relative",
             overflowX: "visible",
             overflowY: "auto",
-            padding: "1em",
+            padding: "0.5em",
             background: theme.colors.backgroundPrimary,
           }}
           >
