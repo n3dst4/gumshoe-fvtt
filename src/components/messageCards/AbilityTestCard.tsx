@@ -14,8 +14,10 @@ import * as constants from "../../constants";
 
 interface AbilityTestCardProps {
   msg: ChatMessage;
-  ability: InvestigatorItem;
+  ability: InvestigatorItem|undefined;
   mode: AbilityCardMode;
+  name: string|null;
+  imageUrl: string|null;
 }
 
 const maxHeight = "3em";
@@ -45,10 +47,12 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
   msg,
   ability,
   mode,
+  name,
+  imageUrl,
 }) => {
   const onClickAbilityName = useCallback(() => {
-    ability.sheet?.render(true);
-  }, [ability.sheet]);
+    ability?.sheet?.render(true);
+  }, [ability?.sheet]);
 
   const [showTerms, setShowTerms] = useState(true);
 
@@ -77,7 +81,7 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
           height: "4em",
           width: "4em",
           gridArea: "image",
-          backgroundImage: `url(${ability.data.img})`,
+          backgroundImage: `url(${ability?.data.img ?? imageUrl})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -93,7 +97,7 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(({
           gridArea: "headline",
         }}
       >
-        <b><a onClick={onClickAbilityName}>{ability.data.name}</a></b>
+        <b><a onClick={onClickAbilityName}>{name ?? ability?.data.name ?? "Missing"}</a></b>
         {!showTerms && (
           <span>
             {" "}

@@ -14,9 +14,10 @@ import { DiceTerms } from "./DiceTerms";
 
 interface AttackCardProps {
   msg: ChatMessage;
-  ability: InvestigatorItem;
-  weapon: InvestigatorItem;
-  rangeName: string;
+  weapon: InvestigatorItem|undefined;
+  rangeName: string|null;
+  name: string|null;
+  imageUrl: string|null;
 }
 
 const maxHeight = "3em";
@@ -44,13 +45,14 @@ const termsClasses: CSSTransitionClassNames = {
 
 export const AttackCard: React.FC<AttackCardProps> = React.memo(({
   msg,
-  ability,
   rangeName,
   weapon,
+  name,
+  imageUrl,
 }) => {
   const onClickWeaponName = useCallback(() => {
-    weapon.sheet?.render(true);
-  }, [weapon.sheet]);
+    weapon?.sheet?.render(true);
+  }, [weapon?.sheet]);
 
   const [showTerms, setShowTerms] = useState(true);
 
@@ -58,7 +60,7 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
     setShowTerms(s => !s);
   }, []);
 
-  const img = weapon.data.img;
+  const img = weapon?.data.img ?? imageUrl;
 
   const poolRolls = (msg.roll?.terms[0] as PoolTerm).rolls;
   const hitRoll = poolRolls[0];
@@ -103,9 +105,9 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
           gridArea: "headline",
         }}
       >
-        <b><a onClick={onClickWeaponName}>{weapon.data.name}</a></b>
+        <b><a onClick={onClickWeaponName}>{name ?? weapon?.data.name}</a></b>
         {" "}
-        (<Translate>{rangeName}</Translate>)
+        (<Translate>{rangeName || ""}</Translate>)
       </div>
       {/* HIT TERMS */}
       <CSSTransition

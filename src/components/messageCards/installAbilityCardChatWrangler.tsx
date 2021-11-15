@@ -27,13 +27,9 @@ export const installAbilityCardChatWrangler = () => {
     const mode = el.getAttribute(constants.htmlDataMode);
     const weaponId = el.getAttribute(constants.htmlDataWeaponId);
     const rangeName = el.getAttribute(constants.htmlDataRange);
-    if (abilityId === null) {
-      logger.error(
-        `Ability test chat message found with no '${constants.htmlDataItemId}' attribute.`,
-        el,
-      );
-      return;
-    }
+    const name = el.getAttribute(constants.htmlDataName);
+    const imageUrl = el.getAttribute(constants.htmlDataImageUrl);
+
     if (actorId === null) {
       logger.error(
         `Ability test chat message found with no '${constants.htmlDataActorId}' attribute.`,
@@ -43,28 +39,31 @@ export const installAbilityCardChatWrangler = () => {
     }
     if (mode === null || !isAbilityCardMode(mode)) {
       logger.error(
-        `Ability test chat message found withou a valid '${constants.htmlDataMode}' attribute. (Valid values are "test", "spend", "combat"`,
+        `Ability test chat message found without a valid '${constants.htmlDataMode}' attribute. (Valid values are "test", "spend", "combat"`,
         el,
       );
       return;
     }
     const actor = game.actors?.get(actorId);
-    const ability = actor?.items.get(abilityId);
+    const ability = abilityId ? actor?.items.get(abilityId) : undefined;
     const weapon = weaponId ? actor?.items.get(weaponId) : undefined;
-    if (el && abilityId && ability) {
+    if (el && abilityId) {
       let content: JSX.Element;
-      if (weapon && rangeName) {
+      if (mode === constants.htmlDataModeAttack) {
         content = <AttackCard
           msg={chatMessage}
-          ability={ability}
           weapon={weapon}
           rangeName={rangeName}
+          name={name}
+          imageUrl={imageUrl}
         />;
       } else {
         content = <AbilityTestCard
           msg={chatMessage}
           ability={ability}
           mode={mode}
+          name={name}
+          imageUrl={imageUrl}
         />;
       }
       ReactDOM.render(content, el);

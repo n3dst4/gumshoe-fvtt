@@ -71,3 +71,5 @@ export const htmlDataModeSpend = "spend" as const;
 export const htmlDataModeAttack = "attack" as const;
 export const htmlDataRange = "data-range" as const;
 export const htmlDataWeaponId = "data-weapon-id" as const;
+export const htmlDataName = "data-name" as const;
+export const htmlDataImageUrl = "data-image-url" as const;

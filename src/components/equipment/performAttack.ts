@@ -61,6 +61,8 @@ export const performAttack = ({
       ${constants.htmlDataMode}="${constants.htmlDataModeAttack}"
       ${constants.htmlDataRange}="${rangeName}"
       ${constants.htmlDataWeaponId}="${weapon.data._id}"
+      ${constants.htmlDataName}="${weapon.data.name}"
+      ${constants.htmlDataImageUrl}="${weapon.data.img}"  
     />
   `,
   });

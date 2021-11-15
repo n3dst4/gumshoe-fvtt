@@ -42,6 +42,8 @@ export class InvestigatorItem extends Item {
           ${constants.htmlDataItemId}="${this.data._id}"
           ${constants.htmlDataActorId}="${this.parent?.data._id}"
           ${constants.htmlDataMode}="${constants.htmlDataModeTest}"
+          ${constants.htmlDataName}="${this.data.name}"
+          ${constants.htmlDataImageUrl}="${this.data.img}"
         />
       `,
     });
@@ -61,6 +63,8 @@ export class InvestigatorItem extends Item {
           ${constants.htmlDataItemId}="${this.data._id}"
           ${constants.htmlDataActorId}="${this.parent?.data._id}"
           ${constants.htmlDataMode}="${constants.htmlDataModeSpend}"
+          ${constants.htmlDataName}="${this.data.name}"
+          ${constants.htmlDataImageUrl}="${this.data.img}"
         />
       `,
     });
