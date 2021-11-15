@@ -3,7 +3,7 @@ import { systemName } from "../constants";
 import { themeFactory } from "./functions";
 import { Theme } from "./types";
 
-const accent = "#fda994";
+const glow = "#fda994";
 
 export const olderThanMemoryTheme: Theme = themeFactory({
   schemaVersion: "v1",
@@ -19,10 +19,10 @@ export const olderThanMemoryTheme: Theme = themeFactory({
   smallSheetRootStyle: {
     backgroundImage: `linear-gradient( to right, #0009,#0009), url(systems/${systemName}/assets/wallpaper/red_sands.jpg)`,
     backgroundPosition: "center",
-    backgroundSize: "cover",
+    backgroundSize: "cpver",
   },
   appWindowStyle: {
-    boxShadow: `0 0 20px ${accent}`,
+    boxShadow: `0 0 20px ${glow}`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal small-caps normal 1.1em 'Longdon Decorative Regular', serif",
@@ -35,22 +35,22 @@ export const olderThanMemoryTheme: Theme = themeFactory({
       // maskRepeat: "repeat",
       // maskSize: "contain",
       textShadow: [
-        `0 0 0.5em ${accent}`,
-        `0 0 0.2em ${accent}`,
-        `0 0 1em ${accent}`,
-        `0 0 2em ${accent}`,
+        `0 0 0.5em ${glow}`,
+        `0 0 0.2em ${glow}`,
+        `0 0 1em ${glow}`,
+        `0 0 2em ${glow}`,
       ].join(", "),
     },
     rearTextElementStyle: {
       // display: "none",
-      border: `2px solid ${accent}`,
+      border: `2px solid ${glow}`,
       borderRadius: "3em",
       boxShadow: [
-        `0 0 0.5em 0 inset ${accent}`,
-        `0 0 0.5em 0 ${accent}`,
+        `0 0 0.5em 0 inset ${glow}`,
+        `0 0 0.5em 0 ${glow}`,
       ].join(","),
       backgroundImage: [
-        `radial-gradient(closest-side, ${accent}77 0%, ${accent}00 100%)`,
+        `radial-gradient(closest-side, ${glow}77 0%, ${glow}00 100%)`,
         "linear-gradient(to bottom, #6667, #0007)",
       ].join(", "),
       padding: "0.1em",
@@ -64,9 +64,9 @@ export const olderThanMemoryTheme: Theme = themeFactory({
     },
   },
   colors: {
-    accent: "#fed0c5",
+    accent: "#fc8e72",
     accentContrast: "#333",
-    glow: accent,
+    glow,
     wallpaper: "#333",
     backgroundPrimary: "#111c",
     backgroundSecondary: "#1119",
