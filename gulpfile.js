@@ -133,22 +133,18 @@ async function groomTranslations () {
   async function sortLang (filename) {
     const filePath = path.join(langDir, filename);
     const parsed = JSON.parse(await (await readFile(filePath)).toString());
-    const result = {};
     for (const key of Object.keys(enSorted)) {
       const translation = parsed[key];
-      if (translation === undefined || translation.startsWith("FIXME")) {
+      const missing = translation === undefined || translation.startsWith("FIXME");
+      if (missing) {
         console.log(chalk.red(`${filename} is missing a translation for ${key}`));
       }
-      result[key] = translation ?? "";
     }
     for (const key of Object.keys(parsed)) {
       if (enSorted[key] === undefined) {
         console.log(chalk.red(`${filename} has an extra (not in en.json) translation for ${key}`));
-        // result[key] = parsed[key];
       }
     }
-    const json = JSON.stringify(result, null, 4);
-    await writeFile(filePath, json);
   }
 
   const proms = files.map(async (filename) => {
