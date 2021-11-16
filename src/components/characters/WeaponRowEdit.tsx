@@ -3,10 +3,9 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
-import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { TextArea } from "../inputs/TextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
+import { AsyncTextArea } from "../inputs/AsyncTextArea";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem,
@@ -24,8 +23,6 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   const [hover, setHover] = useState(false);
   const onMouseOver = useCallback(() => { setHover(true); }, []);
   const onMouseOut = useCallback(() => { setHover(false); }, []);
-
-  const notes = useAsyncUpdate(weapon.getNotes(), weapon.setNotes);
 
   return (
     <Fragment>
@@ -117,7 +114,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
       <div
         css={{ gridColumn: "1 / -2", paddingLeft: "1em" }}
       >
-        <TextArea value={notes.display} onChange={notes.onChange} />
+        <AsyncTextArea value={weapon.getNotes()} onChange={weapon.setNotes} />
       </div>
     </Fragment>
   );

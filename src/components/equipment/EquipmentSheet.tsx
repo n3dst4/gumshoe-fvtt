@@ -6,10 +6,10 @@ import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "../inputs/TextInput";
-import { TextArea } from "../inputs/TextArea";
 import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { ImagePickle } from "../ImagePickle";
+import { AsyncTextArea } from "../inputs/AsyncTextArea";
 
 type EquipmentSheetProps = {
   equipment: InvestigatorItem,
@@ -21,7 +21,6 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   application,
 }) => {
   const name = useAsyncUpdate(equipment.name || "", equipment.setName);
-  const notes = useAsyncUpdate(equipment.getNotes(), equipment.setNotes);
 
   const onClickDelete = useCallback(() => {
     assertGame(game);
@@ -103,7 +102,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
         <GridField label="Notes">
-          <TextArea value={notes.display} onChange={notes.onChange} />
+          <AsyncTextArea value={equipment.getNotes()} onChange={equipment.setNotes} />
         </GridField>
       </InputGrid>
     </div>

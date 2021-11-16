@@ -11,9 +11,9 @@ import { SpecialityList } from "./SpecialityList";
 import { getCombatAbilities, getUseBoost } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveCharacterDataSource, ActiveCharacterDataSource } from "../../types";
-import { TextArea } from "../inputs/TextArea";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
+import { AsyncTextArea } from "../inputs/AsyncTextArea";
 
 type AbilityEditorMainProps = {
   ability: InvestigatorItem,
@@ -121,7 +121,7 @@ export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
         </GridField>
       }
       <GridFieldStacked label="Notes">
-        <TextArea value={notes.display} onChange={notes.onChange} />
+        <AsyncTextArea value={notes.display} onChange={notes.onChange} />
       </GridFieldStacked>
 
       {isCombatAbility &&

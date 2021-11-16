@@ -2,16 +2,15 @@
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { generalAbility } from "../../constants";
-import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertWeaponDataSource, isAbilityDataSource, isPCDataSource, PCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
-import { TextArea } from "../inputs/TextArea";
 import { Translate } from "../Translate";
 import { performAttack } from "./performAttack";
 
@@ -59,8 +58,6 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
       return () => {};
     }
   }, [ability, bonusPool, spend, weapon]);
-
-  const notes = useAsyncUpdate(weapon.getNotes(), weapon.setNotes);
 
   const onPointBlank = useCallback(() => {
     assertWeaponDataSource(weapon.data);
@@ -236,7 +233,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
         }
 
         <GridField label="Notes">
-          <TextArea value={notes.display} onChange={notes.onChange} />
+          <AsyncTextArea value={weapon.getNotes()} onChange={weapon.setNotes} />
         </GridField>
         <GridField label="Bonus pool">
           <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />

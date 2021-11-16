@@ -6,7 +6,6 @@ import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "../inputs/TextInput";
-import { TextArea } from "../inputs/TextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { WeaponRange } from "./WeaponRangeConfig";
 import { getCombatAbilities } from "../../settingsHelpers";
@@ -14,6 +13,7 @@ import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { assertWeaponDataSource } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
+import { AsyncTextArea } from "../inputs/AsyncTextArea";
 
 type WeaponConfigProps = {
   weapon: InvestigatorItem,
@@ -25,7 +25,6 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
   assertGame(game);
   assertWeaponDataSource(weapon.data);
   const name = useAsyncUpdate(weapon.name || "", weapon.setName);
-  const notes = useAsyncUpdate(weapon.getNotes(), weapon.setNotes);
 
   const onClickDelete = useCallback(() => {
     assertGame(game);
@@ -102,7 +101,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
           setEnabled={weapon.setIsLongRange}
         />
         <GridField label="Notes">
-          <TextArea value={notes.display} onChange={notes.onChange} />
+          <AsyncTextArea value={weapon.getNotes()} onChange={weapon.setNotes} />
         </GridField>
         <GridField label="Uses ammo?">
           <AsyncCheckbox
