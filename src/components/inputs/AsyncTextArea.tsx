@@ -2,7 +2,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { assertGame } from "../../functions";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextArea } from "./TextArea";
 
