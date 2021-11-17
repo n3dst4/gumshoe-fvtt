@@ -69,7 +69,11 @@
     "types": ["investigativeAbility", "generalAbility", "equipment", "weapon"],
     "templates": {
       "notes": {
-        "notes": ""
+        "notes": {
+          "format": "plain",
+          "source": "",
+          "html": ""
+        }
       },
       "ability": {
         "rating": 1,
