@@ -15,6 +15,22 @@ export type DataSource<TType extends string, TData> = {
   img: string,
 };
 
+// NOTES
+export enum NoteFormat {
+  plain = "plain",
+  richText = "richText",
+  markdown = "markdown",
+}
+
+export interface BaseNote {
+  source: string;
+  html: string;
+}
+
+export interface NoteWithFormat extends BaseNote {
+  format: NoteFormat;
+}
+
 // #############################################################################
 // #############################################################################
 // Actor data stuff
@@ -26,7 +42,8 @@ export type DataSource<TType extends string, TData> = {
 interface PCDataSourceData {
   buildPoints: number;
   occupation: string;
-  longNotes: string[];
+  longNotes: BaseNote[];
+  longNotesFormat: NoteFormat;
   shortNotes: string[];
   initiativeAbility: string;
   hideZeroRated: boolean;
@@ -41,7 +58,7 @@ interface PCDataSourceData {
 }
 
 interface NPCDataSourceData {
-  notes: string;
+  notes: NoteWithFormat;
   initiativeAbility: string;
   hideZeroRated: boolean;
   sheetTheme: string|null;
@@ -134,7 +151,7 @@ export function assertPartyDataSource (data: InvestigatorActorDataSource): asser
 
 /** Stuff that is in common between Equipment and Weapons */
 interface BaseEquipmentDataSourceData {
-  notes: string;
+  notes: NoteWithFormat;
 }
 
 /**
@@ -146,7 +163,6 @@ interface EquipmentDataSourceData extends BaseEquipmentDataSourceData {
 
 /** data.data for weapons */
 interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
-  notes: string;
   ability: string;
   damage: number;
   pointBlankDamage: number;
@@ -180,7 +196,7 @@ export interface BaseAbilityDataSourceData {
   category: string;
   excludeFromGeneralRefresh: boolean;
   refreshesDaily: boolean;
-  notes: string;
+  notes: NoteWithFormat;
 }
 
 /** data.data for investigative abilities */
