@@ -1,5 +1,5 @@
 import { migrateItemData } from "./migrateItemData";
-import { _moveOldNotesToNewNoteSlots } from "./_moveOldNotesToNewNoteSlots";
+import { _moveOldNotesToNewNoteSlots } from "./actorMigrations";
 
 /**
  * Migrate a single Actor entity to incorporate latest data model changes

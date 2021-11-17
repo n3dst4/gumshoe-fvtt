@@ -38,10 +38,15 @@
       "occupationalBenefits": "",
       "pillarsOfSanity": "",
       "sourcesOfStability": "",
-      "notes": "",
+      "notes": {
+        "format": "richText",
+        "source": "",
+        "html": ""
+      },
       "background": "",
 
       "shortNotes": [],
+      "longNotesFormat": "richText",
       "longNotes": [],
 
       "buildPoints": 28,
@@ -70,7 +75,7 @@
     "templates": {
       "notes": {
         "notes": {
-          "format": "plain",
+          "format": "richText",
           "source": "",
           "html": ""
         }

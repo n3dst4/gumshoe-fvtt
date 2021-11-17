@@ -66,9 +66,11 @@
   "dependencies": {
     "@emotion/css": "^11.5.0",
     "@types/dompurify": "^2.2.1",
+    "@types/html-escaper": "^3.0.0",
     "case": "^1.6.3",
     "dompurify": "^2.2.6",
     "file-system-access": "^1.0.1",
+    "html-escaper": "^3.0.3",
     "irid": "^2.0.2",
     "lodash": "^4.17.20",
     "nanoid": "^3.1.20",
