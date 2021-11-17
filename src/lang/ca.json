@@ -25,6 +25,7 @@
     "investigator.CompendiumPacksForNewCharacters": "Nou paquet de compendis per nous personatges",
     "investigator.Confirm": "Confirmar",
     "investigator.CurrentlyUsingAbilityName": "actualment fent servir {AbilityName}",
+    "investigator.CurrentlyUsingNothing": "",
     "investigator.Damage": "Mal",
     "investigator.DamageAtRangeNameWithWeaponName": "Mal de {RangeName} amb <b>{WeaponName}</b>",
     "investigator.DebugTranslations": "Depurar traduccions?",

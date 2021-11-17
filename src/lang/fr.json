@@ -25,6 +25,7 @@
     "investigator.CompendiumPacksForNewCharacters": "Packs compendium pour nouveaux personnages",
     "investigator.Confirm": "Confirmer",
     "investigator.CurrentlyUsingAbilityName": "Utilise {AbilityName}",
+    "investigator.CurrentlyUsingNothing": "Pas de compétence utilisée pour l'ordre d'initiative",
     "investigator.Damage": "Dégâts",
     "investigator.DamageAtRangeNameWithWeaponName": "Dégâts à {RangeName} avec <b>{WeaponName}</b>",
     "investigator.DebugTranslations": "Déboguer les traductions?",
