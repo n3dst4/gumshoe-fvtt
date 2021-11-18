@@ -2,7 +2,7 @@
   "name": "investigator",
   "title": "INVESTIGATOR System",
   "description": "Unofficial GUMSHOE SRD-Compatible system. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
-  "version": "4.7.3",
+  "version": "4.7.2",
   "author": "Neil de Carteret",
   "scripts": [],
   "esmodules": ["investigator.js"],

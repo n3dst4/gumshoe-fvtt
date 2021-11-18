@@ -164,7 +164,12 @@ export class InvestigatorActor extends Actor {
   setLongNote = (i: number, text: string) => {
     assertPCDataSource(this.data);
     const newNotes = [...(this.data.data.longNotes || [])];
-    newNotes[i] = text;
+    // XXX RTF
+    newNotes[i] = {
+      ...newNotes[i],
+      html: text,
+      source: text,
+    };
     this.update({
       data: {
         longNotes: newNotes,

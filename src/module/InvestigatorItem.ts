@@ -3,8 +3,12 @@ import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
 import { InvestigatorActor } from "./InvestigatorActor";
 import { getDefaultThemeName } from "../settingsHelpers";
-import { assertAbilityDataSource, assertWeaponDataSource } from "../types";
+import { assertAbilityDataSource, assertWeaponDataSource, NoteFormat } from "../types";
 import * as constants from "../constants";
+import { escape } from "html-escaper";
+import { marked } from "marked";
+import DOMPurify from "dompurify";
+import { turndown } from "../turndown";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -230,8 +234,52 @@ export class InvestigatorItem extends Item {
     return this.data.data.notes ?? "";
   }
 
-  setNotes = (notes: string) => {
-    this.update({ data: { notes } });
+  setNotesFormat = (newFormat: NoteFormat) => {
+    const oldFormat = this.data.data.notes.format;
+    const oldSource = this.data.data.notes.source;
+    let newSource = "";
+    let newHtml = "";
+    if (newFormat === oldFormat) {
+      return;
+    }
+    if (newFormat === NoteFormat.plain) {
+      if (oldFormat === NoteFormat.markdown) {
+        newSource = oldSource;
+      } else if (oldFormat === NoteFormat.richText) {
+        newSource = turndown(oldSource);
+      }
+      newHtml = escape(newSource);
+    } else if (newFormat === NoteFormat.markdown) {
+      if (oldFormat === NoteFormat.plain) {
+        newSource = oldSource;
+      } else if (oldFormat === NoteFormat.richText) {
+        newSource = turndown(oldSource);
+      }
+      newHtml = marked(newSource);
+    } else if (newFormat === NoteFormat.richText) {
+      if (oldFormat === NoteFormat.plain) {
+        newSource = escape(oldSource);
+      } else if (oldFormat === NoteFormat.markdown) {
+        newSource = marked(oldSource);
+      }
+      newHtml = newSource;
+    }
+    const html = DOMPurify.sanitize(newHtml);
+    this.update({ data: { notes: { format: newFormat, source: newSource, html } } });
+  }
+
+  setNotesSource = (source: string) => {
+    const format = this.data.data.notes.format;
+    let newHtml = "";
+    if (format === NoteFormat.plain) {
+      newHtml = escape(source);
+    } else if (format === NoteFormat.markdown) {
+      newHtml = marked.parse(source);
+    } else if (format === NoteFormat.richText) {
+      newHtml = source;
+    }
+    const html = DOMPurify.sanitize(newHtml);
+    this.update({ data: { notes: { format, source, html } } });
   }
 
   getAbility = () => {

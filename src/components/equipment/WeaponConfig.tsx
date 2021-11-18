@@ -101,7 +101,8 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
           setEnabled={weapon.setIsLongRange}
         />
         <GridField label="Notes">
-          <AsyncTextArea value={weapon.getNotes()} onChange={weapon.setNotes} />
+          {/* XXX RTF */}
+          <AsyncTextArea value={weapon.getNotes().source} onChange={weapon.setNotesSource} />
         </GridField>
         <GridField label="Uses ammo?">
           <AsyncCheckbox

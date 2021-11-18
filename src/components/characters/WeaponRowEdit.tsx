@@ -114,7 +114,8 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
       <div
         css={{ gridColumn: "1 / -2", paddingLeft: "1em" }}
       >
-        <AsyncTextArea value={weapon.getNotes()} onChange={weapon.setNotes} />
+        {/* XXX RTF */}
+        <AsyncTextArea value={weapon.getNotes().source} onChange={weapon.setNotesSource} />
       </div>
     </Fragment>
   );

@@ -64,7 +64,8 @@ export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
     },
     [ability?.actor, ability.data.name],
   );
-  const notes = useAsyncUpdate(ability.getNotes(), ability.setNotes);
+  // XXX RTF
+  const notes = useAsyncUpdate(ability.getNotes().source, ability.setNotesSource);
 
   return (
     <InputGrid>

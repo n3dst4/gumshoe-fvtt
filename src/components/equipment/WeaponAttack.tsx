@@ -233,7 +233,8 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
         }
 
         <GridField label="Notes">
-          <AsyncTextArea value={weapon.getNotes()} onChange={weapon.setNotes} />
+          {/* XXX RTF */}
+          <AsyncTextArea value={weapon.getNotes().source} onChange={weapon.setNotesSource} />
         </GridField>
         <GridField label="Bonus pool">
           <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />

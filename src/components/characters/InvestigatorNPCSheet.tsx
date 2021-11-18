@@ -50,10 +50,6 @@ export const InvestigatorNPCSheet = ({
     return actor.update({ data: { stabilityLoss: newStabilityLoss } });
   }, [actor]);
 
-  const updateNPCNotes = useCallback((newNotes) => {
-    return actor.update({ data: { notes: newNotes } });
-  }, [actor]);
-
   const theme = actor.getSheetTheme();
 
   return (
@@ -104,8 +100,9 @@ export const InvestigatorNPCSheet = ({
           <Fragment>
             <h3><Translate>Description</Translate></h3>
             <AsyncTextArea
-              onChange={updateNPCNotes}
-              value={actor.data.data.notes}
+              // XXX RTF
+              onChange={(x) => {}}
+              value={actor.data.data.notes.source}
             />
           </Fragment>
         </div>

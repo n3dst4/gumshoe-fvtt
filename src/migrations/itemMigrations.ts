@@ -43,7 +43,10 @@ export const setIconForAbilities = (data: any, updateData: any) => {
 
 export const upgradeNotesToRichText = (data: any, updateData: any) => {
   if (typeof data.data.notes === "string") {
-    updateData.data.data.notes = {
+    if (!updateData.data) {
+      updateData.data = {};
+    }
+    updateData.data.notes = {
       format: "plain",
       source: data.data.notes,
       html: escape(data.data.notes),

@@ -102,7 +102,8 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
         <GridField label="Notes">
-          <AsyncTextArea value={equipment.getNotes()} onChange={equipment.setNotes} />
+          {/* XXX RTF */}
+          <AsyncTextArea value={equipment.getNotes().source} onChange={equipment.setNotesSource} />
         </GridField>
       </InputGrid>
     </div>

@@ -55,13 +55,19 @@ export const upgradeLongNotesToRichText = (data: any, updateData: any) => {
       }
     }
     if (updateNeeded) {
+      if (!updateData.data) {
+        updateData.data = {};
+      }
       updateData.data.longNotesFormat = "plain";
       updateData.data.longNotes = newLongNotes;
     }
   }
   if (data.type === constants.npc) {
     if (typeof data.data.notes === "string") {
-      updateData.data.data.notes = {
+      if (!updateData.data) {
+        updateData.data = {};
+      }
+      updateData.data.notes = {
         format: "plain",
         source: data.data.notes,
         html: escape(data.data.notes),
