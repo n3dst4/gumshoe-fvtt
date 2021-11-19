@@ -34,7 +34,7 @@ export const NotesArea: React.FC<NotesAreaProps> = ({
               <AsyncTextArea
                 onChange={updateLongNote}
                 // XXX RTF
-                value={actor.data.data.longNotes[i].source}
+                value={actor.data.data.longNotes[i]?.source ?? ""}
                 index={i}
               />
             </Fragment>
