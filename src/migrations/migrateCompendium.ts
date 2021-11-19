@@ -18,7 +18,7 @@ export const migrateCompendium = async function (pack: any) {
 
   // Begin by requesting server-side data model migration and get the migrated content
   await pack.migrate();
-  const content = await pack.getContent();
+  const content = await pack.getDocuments();
 
   // Iterate over compendium entries - applying fine-tuned migration functions
   for (const ent of content) {
