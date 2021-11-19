@@ -25,6 +25,7 @@
     "investigator.CompendiumPacksForNewCharacters": "Compêndio para novos personagens",
     "investigator.Confirm": "Confirmar",
     "investigator.CurrentlyUsingAbilityName": "Usando {AbilityName}",
+    "investigator.CurrentlyUsingNothing": "",
     "investigator.Damage": "Dano",
     "investigator.DamageAtRangeNameWithWeaponName": "Dano a {RangeName} com <b>{WeaponName}</b>",
     "investigator.DebugTranslations": "Depurar traduções?",
