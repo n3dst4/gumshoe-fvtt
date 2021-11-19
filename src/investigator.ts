@@ -229,7 +229,3 @@ installCompendiumExportButton();
 initializePackGenerators();
 
 installAbilityCardChatWrangler();
-
-if (window.location.hostname === "localhost") {
-  CONFIG.debug.hooks = true;
-}
