@@ -2,7 +2,6 @@
 import { Fragment, useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { jsx } from "@emotion/react";
-import { useUpdate } from "../../hooks/useUpdate";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
 import { CSSReset, CSSResetMode } from "../CSSReset";
@@ -17,11 +16,14 @@ import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
-import { getOccupationlabel, getShortNotes } from "../../settingsHelpers";
+import { getMwHiddenShortNotes, getUseMwStyleAbilities, getOccupationlabel, getShortNotes, getMwUseAlternativeItemTypes } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertPCDataSource, isPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { ImagePickle } from "../ImagePickle";
+import { assertGame } from "../../functions";
+import { AbilitiesAreaMW } from "./AbilitiesAreaMW";
+import { MwItemArea } from "./MwItemArea";
 
 type InvestigatorPCSheetProps = {
   actor: InvestigatorActor,
@@ -32,13 +34,15 @@ export const InvestigatorPCSheet = ({
   actor,
   foundryApplication,
 }: InvestigatorPCSheetProps) => {
+  assertGame(game);
   assertPCDataSource(actor.data);
-
-  const updateName = useUpdate(actor, name => ({ name }));
-  const updateOccupation = useUpdate(actor, occupation => ({ data: { occupation } }));
 
   const updateShortNote = useCallback((value, index) => {
     actor.setShortNote(index, value);
+  }, [actor]);
+
+  const updateMwHiddenShortNote = useCallback((value, index) => {
+    actor.setMwHiddenShortNote(index, value);
   }, [actor]);
 
   const updateHitThreshold = useCallback((newThreshold) => {
@@ -47,6 +51,7 @@ export const InvestigatorPCSheet = ({
 
   const theme = actor.getSheetTheme();
   const shortNotesNames = getShortNotes();
+  const shortHiddenNotesNames = getMwHiddenShortNotes();
   const occupationLabel = getOccupationlabel();
 
   return (
@@ -81,8 +86,8 @@ export const InvestigatorPCSheet = ({
             mainText={actor.data.name}
             subText={actor.data.data.occupation}
             defaultSubText="Investigator"
-            onChangeMainText={updateName}
-            onChangeSubText={updateOccupation}
+            onChangeMainText={actor.setName}
+            onChangeSubText={actor.setOccupation}
           />
         </div>
         <ImagePickle
@@ -97,7 +102,7 @@ export const InvestigatorPCSheet = ({
         <div
           css={{
             gridArea: "stats",
-            padding: "1em",
+            padding: "0.5em",
             backgroundColor: theme.colors.backgroundSecondary,
             position: "relative",
           }}
@@ -106,13 +111,13 @@ export const InvestigatorPCSheet = ({
           <GridField label="Name">
               <AsyncTextInput
                 value={actor.data.name}
-                onChange={updateName}
+                onChange={actor.setName}
               />
             </GridField>
             <GridField noTranslate label={occupationLabel}>
               <AsyncTextInput
                 value={actor.data.data.occupation}
-                onChange={updateOccupation}
+                onChange={actor.setOccupation}
               />
             </GridField>
             {
@@ -121,6 +126,17 @@ export const InvestigatorPCSheet = ({
                   <AsyncTextInput
                     value={isPCDataSource(actor.data) ? actor.data.data.shortNotes[i] : ""}
                     onChange={updateShortNote}
+                    index={i}
+                  />
+                </GridField>
+              ))
+            }
+            {
+              game.user?.isGM && shortHiddenNotesNames.map((name: string, i: number) => (
+                <GridField noTranslate key={`${name}--${i}`} label={name}>
+                  <AsyncTextInput
+                    value={isPCDataSource(actor.data) ? actor.data.data.hiddenShortNotes[i] : ""}
+                    onChange={updateMwHiddenShortNote}
                     index={i}
                   />
                 </GridField>
@@ -135,18 +151,38 @@ export const InvestigatorPCSheet = ({
             position: "relative",
             overflowX: "visible",
             overflowY: "auto",
-            padding: "1em",
+            padding: "0.5em",
             background: theme.colors.backgroundPrimary,
           }}
           >
+            {getUseMwStyleAbilities() &&
+              <Fragment>
+              <button onClick={actor.confirmMw2Refresh}>
+                <Translate>2h Refresh</Translate>
+              </button>
+              <hr/>
+              <button onClick={actor.confirmMw4Refresh}>
+                <Translate>4h Refresh</Translate>
+              </button>
+              <hr/>
+              <button onClick={actor.confirmMw8Refresh}>
+                <Translate>8h Refresh</Translate>
+              </button>
+              <hr/>
+              </Fragment>
+            }
             <button onClick={actor.confirmRefresh}>
               <Translate>Full Refresh</Translate>
             </button>
             <hr/>
-            <button onClick={actor.confirm24hRefresh}>
-              <Translate>24h Refresh</Translate>
-            </button>
-            <hr/>
+            {getUseMwStyleAbilities ||
+              <Fragment>
+                <button onClick={actor.confirm24hRefresh}>
+                  <Translate>24h Refresh</Translate>
+                </button>
+                <hr/>
+              </Fragment>
+            }
             <TrackersArea actor={actor} />
             <hr/>
             <h3 css={{ gridColumn: "start / end" }}>
@@ -172,19 +208,27 @@ export const InvestigatorPCSheet = ({
               {
                 id: "abilities",
                 label: "Abilities",
-                content: <AbilitiesAreaPlay actor={actor}/>,
+                content: getUseMwStyleAbilities() ? <AbilitiesAreaMW actor={actor}/> : <AbilitiesAreaPlay actor={actor}/>,
               },
-              {
-                id: "equipment",
-                label: "Equipment",
-                content: (
-                  <Fragment>
-                    <WeaponsArea actor={actor} />
-                    <div css={{ height: "1em" }}/>
-                    <EquipmentArea actor={actor} />
-                  </Fragment>
-                ),
-              },
+              getMwUseAlternativeItemTypes()
+                ? {
+                    id: "items",
+                    label: "MWItems",
+                    content: (
+                      <MwItemArea actor={actor} />
+                    ),
+                  }
+                : {
+                    id: "equipment",
+                    label: "Equipment",
+                    content: (
+                      <Fragment>
+                        <WeaponsArea actor={actor} />
+                        <div css={{ height: "1em" }}/>
+                        <EquipmentArea actor={actor} />
+                      </Fragment>
+                    ),
+                  },
               {
                 id: "notes",
                 label: "Notes",

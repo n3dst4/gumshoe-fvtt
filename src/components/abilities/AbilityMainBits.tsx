@@ -1,32 +1,27 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect } from "react";
-import { useUpdate } from "../../hooks/useUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
-import { getCombatAbilities, getUseBoost } from "../../settingsHelpers";
+import { getCombatAbilities, getUseMwStyleAbilities, getUseBoost } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveCharacterDataSource, ActiveCharacterDataSource } from "../../types";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 
-type AbilityEditorMainProps = {
+type AbilityMainBitsProps = {
   ability: InvestigatorItem,
 };
 
-export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
+export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
   ability,
 }) => {
   assertAbilityDataSource(ability.data);
-  const updateRating = useCallback((rating) => {
-    ability.setRating(rating);
-  }, [ability]);
-  const updatePool = useUpdate(ability, (pool) => ({ data: { pool } }));
 
   const onClickRefresh = useCallback(() => {
     ability.refreshPool();
@@ -67,8 +62,15 @@ export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
   // XXX RTF
   const notes = useAsyncUpdate(ability.getNotes().source, ability.setNotesSource);
 
+  const useMwStyleAbilities = getUseMwStyleAbilities();
+
   return (
-    <InputGrid>
+    <InputGrid
+      css={{
+        flex: 1,
+        gridTemplateRows: "auto auto 1fr",
+      }}
+    >
       <GridField label="Pool">
         <div
           css={{
@@ -78,9 +80,9 @@ export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
         >
           <AsyncNumberInput
             min={0}
-            max={ability.data.data.rating}
+            max={useMwStyleAbilities ? undefined : ability.data.data.rating}
             value={ability.data.data.pool}
-            onChange={updatePool}
+            onChange={ability.setPool}
             css={{
               flex: 1,
             }}
@@ -101,9 +103,22 @@ export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
         <AsyncNumberInput
           min={0}
           value={ability.data.data.rating}
-          onChange={updateRating}
+          onChange={ability.setRating}
         />
       </GridField>
+      <GridFieldStacked label="Notes">
+        <TextArea
+          value={notes.display}
+          onChange={notes.onChange}
+          css={{
+            height: "100%",
+            "&&": {
+              resize: "none",
+
+            },
+          }}
+        />
+      </GridFieldStacked>
       {ability.getHasSpecialities() &&
         <GridFieldStacked label={ability.getSpecialities().length === 1 ? "Speciality" : "Specialities"}>
           <div
@@ -121,9 +136,6 @@ export const AbilityMainBits: React.FC<AbilityEditorMainProps> = ({
           <AsyncCheckbox checked={ability.getBoost()} onChange={ability.setBoost}/>
         </GridField>
       }
-      <GridFieldStacked label="Notes">
-        <AsyncTextArea value={notes.display} onChange={notes.onChange} />
-      </GridFieldStacked>
 
       {isCombatAbility &&
         <GridField label="Combat order">

@@ -70,6 +70,13 @@
       "system": "investigator",
       "path": "./packs/castingTheRunesAbilities.db",
       "entity": "Item"
+    },
+    {
+      "name": "moribundWorldAbilities",
+      "label": "Moribund World Abilities",
+      "system": "investigator",
+      "path": "./packs/moribundWorldAbilities.db",
+      "entity": "Item"
     }
   ],
   "languages": [
@@ -77,6 +84,10 @@
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
+    },{
+      "lang": "en",
+      "name": "English",
+      "path": "lang/moribundWorld/en.json"
     },
     {
       "lang": "es",

@@ -1,11 +1,11 @@
 import "./setWebkitPublicPath";
-import { registerSettings } from "./module/settings";
+import { registerSettings } from "./module/registerSettings";
 import { preloadTemplates } from "./module/preloadTemplates";
 import { InvestigatorActor } from "./module/InvestigatorActor";
 import { InvestigatorItem } from "./module/InvestigatorItem";
 import { InvestigatorPCSheetClass } from "./module/InvestigatorPCSheetClass";
-import { InvestigatorItemSheetClass } from "./module/InvestigatorItemSheetClass";
-import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon } from "./constants";
+import { InvestigatorAbilitySheetClass, InvestigatorEquipmentSheetClass, InvestigatorMwItemSheetClass } from "./module/InvestigatorItemSheetClass";
+import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon, mwItem } from "./constants";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
 import { isAbilityDataSource, isGeneralAbilityDataSource, isWeaponDataSource, isEquipmentDataSource } from "./types";
@@ -24,6 +24,14 @@ import { installAbilityCardChatWrangler } from "./components/messageCards/instal
 
 // Initialize system
 Hooks.once("init", async function () {
+  // this is how we could delete an item type, if we felt like it:
+  // assertGame(game);
+  // delete CONFIG.Item.typeLabels.generalAbility;
+  // game.system.entityTypes.Item.splice(
+  //   game.system.entityTypes.Item.indexOf("generalAbility"),
+  //   1
+  // );
+
   console.log(`${systemName} | Initializing system`);
   // Assign custom classes and constants here
 
@@ -41,7 +49,7 @@ Hooks.once("init", async function () {
   // CONFIG.ChatMessage.documentClass = InvestigatorChatMessage;
 
   // Register custom sheets (if any)
-  Actors.unregisterSheet("core", ActorSheet);
+  // Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(
     systemName,
     InvestigatorPCSheetClass,
@@ -66,10 +74,26 @@ Hooks.once("init", async function () {
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(
     systemName,
-    InvestigatorItemSheetClass,
+    InvestigatorEquipmentSheetClass,
     {
       makeDefault: true,
-      types: [weapon, investigativeAbility, generalAbility, equipment],
+      types: [weapon, equipment],
+    },
+  );
+  Items.registerSheet(
+    systemName,
+    InvestigatorAbilitySheetClass,
+    {
+      makeDefault: true,
+      types: [investigativeAbility, generalAbility],
+    },
+  );
+  Items.registerSheet(
+    systemName,
+    InvestigatorMwItemSheetClass,
+    {
+      makeDefault: true,
+      types: [mwItem],
     },
   );
 

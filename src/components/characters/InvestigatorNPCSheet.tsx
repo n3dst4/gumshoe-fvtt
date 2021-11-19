@@ -2,7 +2,6 @@
 import { Fragment, useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { jsx } from "@emotion/react";
-import { useUpdate } from "../../hooks/useUpdate";
 import { CSSReset, CSSResetMode } from "../CSSReset";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -28,7 +27,6 @@ export const InvestigatorNPCSheet = ({
   foundryApplication,
 }: InvestigatorNPCSheetProps) => {
   assertNPCDataSource(actor.data);
-  const updateName = useUpdate(actor, name => ({ name }));
 
   const updateHitThreshold = useCallback((newThreshold) => {
     return actor.update({ data: { hitThreshold: newThreshold } });
@@ -83,7 +81,7 @@ export const InvestigatorNPCSheet = ({
         >
           <LogoEditable
             mainText={actor.data.name}
-            onChangeMainText={updateName}
+            onChangeMainText={actor.setName}
             css={{
               fontSize: "0.66em",
             }}

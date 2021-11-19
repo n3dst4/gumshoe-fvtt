@@ -46,6 +46,7 @@
       "background": "",
 
       "shortNotes": [],
+      "hiddenShortNotes": [],
       "longNotesFormat": "richText",
       "longNotes": [],
 
@@ -71,7 +72,7 @@
     }
   },
   "Item": {
-    "types": ["investigativeAbility", "generalAbility", "equipment", "weapon"],
+    "types": ["investigativeAbility", "generalAbility", "equipment", "weapon", "mwItem"],
     "templates": {
       "notes": {
         "notes": {
@@ -81,8 +82,8 @@
         }
       },
       "ability": {
-        "rating": 1,
-        "pool": 1,
+        "rating": 0,
+        "pool": 0,
         "hasSpecialities": false,
         "specialities": [],
         "min": 0,
@@ -96,12 +97,17 @@
       }
     },
     "investigativeAbility": {
-      "templates": ["notes", "ability"]
+      "templates": ["notes", "ability"],
+      "hideIfZeroRated": true
     },
     "generalAbility": {
       "templates": ["notes", "ability"],
       "canBeInvestigative": false,
-      "goesFirstInCombat": false
+      "goesFirstInCombat": false,
+      "hideIfZeroRated": false,
+      "mwTrumps": "",
+      "mwTrumpedBy": "",
+      "mwRefreshGroup": 2
     },
     "equipment": {
       "templates": ["notes"]
@@ -125,6 +131,12 @@
         "max": 10,
         "value": 10
       }
+    },
+    "mwItem": {
+      "mwType": "tweak",
+      "notes": "",
+      "charges": 0,
+      "ranges": [0,0,0,0]
     }
   }
 }

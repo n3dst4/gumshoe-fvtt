@@ -2,14 +2,12 @@
 import {
   jsx,
 } from "@emotion/react";
-import { css } from "@emotion/css";
 import React, { useCallback, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { CSSTransition } from "react-transition-group";
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { Translate } from "../Translate";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { DiceTerms } from "./DiceTerms";
+import { duration, termsClasses } from "./transitions";
 // import * as constants from "../../constants";
 
 interface AttackCardProps {
@@ -19,29 +17,6 @@ interface AttackCardProps {
   name: string|null;
   imageUrl: string|null;
 }
-
-const maxHeight = "3em";
-const duration = 200;
-const maxHeightTransition = `max-height ${duration}ms ease-out`;
-
-const termsClasses: CSSTransitionClassNames = {
-  enter: css({
-    maxHeight: 0,
-  }),
-  enterActive: css({
-    maxHeight,
-    transition: maxHeightTransition,
-    overflow: "hidden",
-  }),
-  exit: css({
-    maxHeight,
-  }),
-  exitActive: css({
-    maxHeight: 0,
-    transition: maxHeightTransition,
-    overflow: "hidden",
-  }),
-};
 
 export const AttackCard: React.FC<AttackCardProps> = React.memo(({
   msg,

@@ -1,17 +1,22 @@
 import { packNames, systemName, npcPackName } from "./constants";
 
-export type SystemPreset = {
-  displayName: string,
-  defaultTheme: string,
-  investigativeAbilityCategories: string[],
-  generalAbilityCategories: string[],
-  combatAbilities: string[],
-  occupationLabel: string,
-  shortNotes: string[],
-  longNotes: string[],
-  newPCPacks: string[],
-  newNPCPacks: string[],
-  useBoost: boolean,
+export interface SystemPreset {
+  displayName: string;
+  defaultTheme: string;
+  investigativeAbilityCategories: string[];
+  generalAbilityCategories: string[];
+  combatAbilities: string[];
+  occupationLabel: string;
+  shortNotes: string[];
+  longNotes: string[];
+  newPCPacks: string[];
+  newNPCPacks: string[];
+  useBoost: boolean;
+
+  useMwStyleAbilities: boolean;
+
+  mwHiddenShortNotes?: string[];
+  mwUseAlternativeItemTypes: boolean;
 }
 
 export const pathOfCthulhuPreset: SystemPreset = {
@@ -26,6 +31,8 @@ export const pathOfCthulhuPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.pathOfCthulhuAbilities}`],
   newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: false,
+  useMwStyleAbilities: false,
+  mwUseAlternativeItemTypes: false,
 };
 
 export const niceBlackAgentsPreset: SystemPreset = {
@@ -40,6 +47,8 @@ export const niceBlackAgentsPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.niceBlackAgentsAbilities}`],
   newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: false,
+  useMwStyleAbilities: false,
+  mwUseAlternativeItemTypes: false,
 };
 
 export const nothingToFearPreset: SystemPreset = {
@@ -54,6 +63,8 @@ export const nothingToFearPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.nothingToFearAbilities}`],
   newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: false,
+  useMwStyleAbilities: false,
+  mwUseAlternativeItemTypes: false,
 };
 
 export const pallidStarsPreset: SystemPreset = {
@@ -68,6 +79,8 @@ export const pallidStarsPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.pallidStarsAbilities}`],
   newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: true,
+  useMwStyleAbilities: false,
+  mwUseAlternativeItemTypes: false,
 };
 
 export const castingTheRunesPreset: SystemPreset = {
@@ -82,6 +95,25 @@ export const castingTheRunesPreset: SystemPreset = {
   newPCPacks: [`${systemName}.${packNames.castingTheRunesAbilities}`],
   newNPCPacks: [`${systemName}.${npcPackName}`],
   useBoost: false,
+  useMwStyleAbilities: false,
+  mwUseAlternativeItemTypes: false,
+};
+
+export const moribundWorldPreset: SystemPreset = {
+  displayName: "Moribund World",
+  defaultTheme: "olderThanMemoryTheme",
+  investigativeAbilityCategories: [],
+  generalAbilityCategories: ["Persuade", "Rebuff", "Attack", "Defense", "Resist", "Magic", "General"],
+  combatAbilities: ["Strength", "Speed", "Finesse", "Cunning", "Ferocity", "Caution"],
+  occupationLabel: "Précis",
+  shortNotes: ["Series level"],
+  longNotes: ["General", "Facial Features", "Hair", "Notable Mannerisms", "Costume"],
+  newPCPacks: [`${systemName}.${packNames.moribundWorldAbilities}`],
+  newNPCPacks: [`${systemName}.${packNames.moribundWorldAbilities}`],
+  useBoost: false,
+  useMwStyleAbilities: true,
+  mwUseAlternativeItemTypes: true,
+  mwHiddenShortNotes: ["Sympathy points"],
 };
 
 export const systemPresets = {
@@ -90,4 +122,5 @@ export const systemPresets = {
   nothingToFearPreset,
   pallidStarsPreset,
   castingTheRunesPreset,
+  moribundWorldPreset,
 };

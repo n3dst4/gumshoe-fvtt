@@ -1,6 +1,6 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo, isAbility } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource } from "../types";
+import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup } from "../types";
 import { themes } from "../themes/themes";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { Theme } from "../themes/types";
@@ -36,6 +36,23 @@ export class InvestigatorActor extends Actor {
     );
   };
 
+  confirmMwRefresh (group: MwRefreshGroup) {
+    return () => {
+      confirmADoodleDo(
+        "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?",
+        "Refresh",
+        "Cancel",
+        "fa-sync",
+        { ActorName: this.data.name, Hours: group },
+        () => this.mWrefresh(group),
+      );
+    };
+  }
+
+  confirmMw2Refresh = this.confirmMwRefresh(2)
+  confirmMw4Refresh = this.confirmMwRefresh(4)
+  confirmMw8Refresh = this.confirmMwRefresh(8)
+
   refresh = () => {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
@@ -56,6 +73,27 @@ export class InvestigatorActor extends Actor {
     });
     this.updateEmbeddedDocuments("Item", updates);
   };
+
+  mWrefresh (group: MwRefreshGroup) {
+    const updates = Array.from(this.items).flatMap((item) => {
+      if (
+        (item.data.type === generalAbility) &&
+        // MW refreshes allow you to keep a boon
+        item.data.data.rating > item.data.data.pool &&
+        item.data.data.mwRefreshGroup === group
+      ) {
+        return [{
+          _id: item.data._id,
+          data: {
+            pool: item.data.data.rating,
+          },
+        }];
+      } else {
+        return [];
+      }
+    });
+    this.updateEmbeddedDocuments("Item", updates);
+  }
 
   // if we end up with even more types of refresh it may be worth factoring out
   // the actual refresh code but until then - rule of three
@@ -99,7 +137,7 @@ export class InvestigatorActor extends Actor {
     window.alert("Nuked");
   };
 
-  /// //////////////////////////////////////////////////////////////////////////
+  // ###########################################################################
   // ITEMS
 
   getAbilityByName (name: string, type?: AbilityType) {
@@ -125,14 +163,51 @@ export class InvestigatorActor extends Actor {
     return this.items.filter((item) => isAbility(item));
   }
 
+  getMwItems () {
+    const allItems = this.items.filter((item) => isMwItemDataSource(item.data));
+    const items: {[type in MwType]: Item[]} = {
+      tweak: [],
+      spell: [],
+      cantrap: [],
+      enchantedItem: [],
+      meleeWeapon: [],
+      missileWeapon: [],
+    };
+    for (const item of allItems) {
+      assertMwItemDataSource(item.data);
+      items[item.data.data.mwType].push(item);
+    }
+    return items;
+  }
+
   getTrackerAbilities () {
     return this.getAbilities().filter((item) =>
       (isAbilityDataSource(item.data) && item.data.data.showTracker),
     );
   }
 
-  // ---------------------------------------------------------------------------
-  // THEME
+  // ###########################################################################
+  // GETTERS GONNA GET
+  // SETTERS GONNA SET
+  // basically we have a getter/setter pair for every attribute so they can be
+  // used as handy callbacks in the component tree
+  // ###########################################################################
+
+  getName = () => this.name;
+
+  setName = (name: string) => {
+    this.update({ name });
+  };
+
+  getOccupation = () => {
+    assertPCDataSource(this.data);
+    return this.data.data.occupation;
+  }
+
+  setOccupation = (occupation: string) => {
+    assertPCDataSource(this.data);
+    this.update({ data: { occupation } });
+  }
 
   getSheetTheme (): Theme {
     const themeName = this.getSheetThemeName() || getDefaultThemeName();
@@ -198,12 +273,29 @@ export class InvestigatorActor extends Actor {
     });
   };
 
-  getName = () => this.name;
-
-  setName = (name: string) => {
-    this.update({ name });
+  setMwHiddenShortNote = (i: number, text: string) => {
+    assertPCDataSource(this.data);
+    const newNotes = [...(this.data.data.hiddenShortNotes || [])];
+    newNotes[i] = text;
+    this.update({
+      data: {
+        hiddenShortNotes: newNotes,
+      },
+    });
   };
 
+  getHitThreshold = () => {
+    assertActiveCharacterDataSource(this.data);
+    return this.data.data.hitThreshold;
+  }
+
+  setHitThreshold = (hitThreshold: number) => {
+    assertActiveCharacterDataSource(this.data);
+    return this.update({ data: { hitThreshold } });
+  }
+
+  // ###########################################################################
+  // For the party sheet
   getActorIds = () => {
     assertPartyDataSource(this.data);
     return this.data.data.actorIds;
@@ -245,42 +337,6 @@ export class InvestigatorActor extends Actor {
   removeActorId = (id: string) => {
     this.setActorIds(this.getActorIds().filter((x) => x !== id));
   };
-
-  getHitThreshold = () => {
-    assertActiveCharacterDataSource(this.data);
-    return this.data.data.hitThreshold;
-  }
-
-  setHitThreshold = (newThreshold: number) => {
-    assertActiveCharacterDataSource(this.data);
-    return this.update({ data: { hitThreshold: newThreshold } });
-  }
-
-  // getGeneralAbilityNames = () => this.data.data.abilityNames;
-  // setGeneralAbilityNames = (abilityNames: string[]) => {
-  //   this.update({ data: { abilityNames } });
-  // };
-
-  // addGeneralAbilityNames = (newNames: string[]) => {
-  //   const currentNames = this.getGeneralAbilityNames();
-  //   const effectiveNames = newNames.filter(
-  //     (name) => !currentNames.includes(name),
-  //   );
-  //   this.setGeneralAbilityNames([...currentNames, ...effectiveNames]);
-  // };
-
-  // getInvestigativeAbilityNames = () => this.data.data.abilityNames;
-  // setInvestigativeAbilityNames = (abilityNames: string[]) => {
-  //   this.update({ data: { abilityNames } });
-  // };
-
-  // addInvestigativeAbilityNames = (newNames: string[]) => {
-  //   const currentNames = this.getInvestigativeAbilityNames();
-  //   const effectiveNames = newNames.filter(
-  //     (name) => !currentNames.includes(name),
-  //   );
-  //   this.setInvestigativeAbilityNames([...currentNames, ...effectiveNames]);
-  // };
 }
 
 declare global {

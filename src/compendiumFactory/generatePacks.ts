@@ -8,6 +8,7 @@ import * as niceBlackAgentsData from "./niceBlackAgentsData";
 import * as nothingToFearData from "./nothingToFearData";
 import * as pallidStarsData from "./pallidStarsData";
 import * as srdAbilitiesData from "./srdAbilitiesData";
+import * as moribundWorldData from "./moribundWorldData";
 import { generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, packNames, systemName } from "../constants";
 import { assertGame } from "../functions";
 
@@ -37,6 +38,7 @@ const investigativeTemplate: InvestigativeAbilityTemplate = {
   occupational: false,
   showTracker: false,
   excludeFromGeneralRefresh: false,
+  hideIfZeroRated: true,
 };
 
 /**
@@ -61,6 +63,7 @@ const generalTemplate: GeneralAbilityTemplate = {
   showTracker: false,
   excludeFromGeneralRefresh: false,
   goesFirstInCombat: false,
+  hideIfZeroRated: false,
 };
 
 export const emptyPack = async (pack: CompendiumCollection<CompendiumCollection.Metadata>) => {
@@ -202,6 +205,23 @@ export const initializePackGenerators = () => {
         pack,
       );
     },
+    moribundWorldAbilities: async () => {
+      const pack = findPack(packNames.moribundWorldAbilities);
+      if (pack === undefined) {
+        return;
+      }
+      emptyPack(pack);
+      await generatePacks(
+        moribundWorldData.investigativeAbilities,
+        investigativeTemplate,
+        pack,
+      );
+      await generatePacks(
+        moribundWorldData.generalAbilities,
+        generalTemplate,
+        pack,
+      );
+    },
   };
 };
 
@@ -213,6 +233,7 @@ declare global {
       nothingToFear(): Promise<void>,
       pallidStars(): Promise<void>,
       srdAbilities(): Promise<void>,
+      moribundWorldAbilities(): Promise<void>,
     };
   }
 }

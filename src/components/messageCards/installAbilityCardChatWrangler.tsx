@@ -10,6 +10,9 @@ import * as constants from "../../constants";
 import { isAbilityCardMode } from "./types";
 import { AbilityTestCard } from "./AbilityTestCard";
 import { AttackCard } from "./AttackCard";
+import { AbilityTestMwCard } from "./AbilityTestMwCard";
+import { MWDifficulty } from "../../types";
+import { AbilityNegateOrWallopMwCard } from "./AbilityNegateOrWallopMwCard";
 
 export const installAbilityCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {
@@ -32,7 +35,7 @@ export const installAbilityCardChatWrangler = () => {
 
     if (actorId === null) {
       logger.error(
-        `Ability test chat message found with no '${constants.htmlDataActorId}' attribute.`,
+        `Missing or invalid '${constants.htmlDataItemId}' attribute.`,
         el,
       );
       return;
@@ -66,7 +69,53 @@ export const installAbilityCardChatWrangler = () => {
           imageUrl={imageUrl}
         />;
       }
-      ReactDOM.render(content, el);
+      const weapon = weaponId ? actor?.items.get(weaponId) : undefined;
+      if (!weapon) {
+        logger.error(
+          `Missing or invalid '${constants.htmlDataWeaponId}' attribute.`, el,
+        );
+        return;
+      }
+      content = <AttackCard
+        msg={chatMessage}
+        ability={ability}
+        weapon={weapon}
+        rangeName={rangeName}
+      />;
+    } else if (mode === constants.htmlDataModeMwTest) {
+      // MW TEST
+      const difficultyAttr = el.getAttribute(constants.htmlDataMwDifficulty);
+      const difficulty: MWDifficulty = difficultyAttr === "easy"
+        ? "easy"
+        : Number(difficultyAttr ?? 0);
+      const boonLevy = Number(el.getAttribute(constants.htmlDataMwBoonLevy) ?? 0);
+      const reRoll = el.getAttribute(constants.htmlDataMwReRoll);
+      const pool = Number(el.getAttribute(constants.htmlDataMwPool));
+      content = <AbilityTestMwCard
+        msg={chatMessage}
+        ability={ability}
+        difficulty={difficulty}
+        boonLevy={boonLevy}
+        reRoll={reRoll ? Number(reRoll) : undefined}
+        pool={pool}
+      />;
+    } else if (mode === constants.htmlDataModeMwWallop || mode === constants.htmlDataModeMwNegate) {
+      // MW NEGATE OR WALLOP
+      const pool = Number(el.getAttribute(constants.htmlDataMwPool));
+      content = <AbilityNegateOrWallopMwCard
+        msg={chatMessage}
+        ability={ability}
+        pool={pool}
+        mode={mode}
+      />;
+    } else {
+      // REGULAR TEST /SPEND
+      content = <AbilityTestCard
+        msg={chatMessage}
+        ability={ability}
+        mode={mode}
+      />;
     }
+    ReactDOM.render(content, el);
   });
 };

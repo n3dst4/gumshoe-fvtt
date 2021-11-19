@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useEffect, useState } from "react";
-import { useUpdate } from "../../hooks/useUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { isGeneralAbility } from "../../functions";
@@ -10,6 +9,9 @@ import { AbilityMainBits } from "./AbilityMainBits";
 import { AbilityConfig } from "./AbilityConfig";
 import { Translate } from "../Translate";
 import { ImagePickle } from "../ImagePickle";
+import { getUseMwStyleAbilities } from "../../settingsHelpers";
+import { AbilityTestMW } from "./AbilityTestMW";
+import { AbilityMwExtraFields } from "./AbilityMwExtraFields";
 
 type AbilitySheetProps = {
   ability: InvestigatorItem,
@@ -21,7 +23,6 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   application,
 }) => {
   const isGeneral = isGeneralAbility(ability);
-  const updateName = useUpdate(ability, (name) => ({ name }));
   const [configMode, setConfigMode] = useState(false);
 
   useEffect(() => {
@@ -33,15 +34,19 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     onBlur: onBlurName,
     onFocus: onFocusName,
     onInput: onInputName,
-  } = useAsyncUpdate(ability.data.name, updateName);
+  } = useAsyncUpdate(ability.data.name, ability.setName);
+
+  const useMwStyleAbilities = getUseMwStyleAbilities();
 
   return (
     <div
       css={{
         paddingBottom: "1em",
         display: "grid",
+        height: "100%",
+        position: "relative",
         gridTemplateColumns: "auto 1fr auto",
-        gridTemplateRows: "auto auto auto",
+        gridTemplateRows: "auto auto 1fr",
         gridTemplateAreas:
           "\"image slug     cog\" " +
           "\"image headline headline\" " +
@@ -94,13 +99,25 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
         <i className={`fa fa-${configMode ? "check" : "cog"}`}/>
       </a>
       {/* regular editing stuff */}
-      <div css={{ gridArea: "body" }}>
+      <div
+        css={{
+          gridArea: "body",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         {configMode
           ? <AbilityConfig ability={ability}/>
           : <Fragment>
               {/* Spending/testing area */}
-              {ability.isOwned && <AbilityTest ability={ability} />}
+              {ability.isOwned &&
+                useMwStyleAbilities
+                ? <AbilityTestMW ability={ability} />
+                : <AbilityTest ability={ability} />}
               <AbilityMainBits ability={ability} />
+              {getUseMwStyleAbilities() &&
+                <AbilityMwExtraFields ability={ability} />
+              }
             </Fragment>
         }
       </div>

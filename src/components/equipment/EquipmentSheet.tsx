@@ -48,6 +48,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
       css={{
         paddingBottom: "1em",
         display: "grid",
+        position: "relative",
         gridTemplateColumns: "auto 1fr auto",
         gridTemplateRows: "auto auto auto",
         gridTemplateAreas:

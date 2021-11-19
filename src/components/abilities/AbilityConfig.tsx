@@ -1,16 +1,15 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ChangeEvent, useCallback, useState } from "react";
-import { confirmADoodleDo, isGeneralAbility } from "../../functions";
-import { useUpdate } from "../../hooks/useUpdate";
+import { assertGame, confirmADoodleDo, isGeneralAbility } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../settingsHelpers";
+import { getGeneralAbilityCategories, getInvestigativeAbilityCategories, getUseMwStyleAbilities } from "../../settingsHelpers";
 import { Translate } from "../Translate";
-import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
+import { assertAbilityDataSource, isGeneralAbilityDataSource, MwRefreshGroup } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 
 type AbilityConfigProps = {
@@ -20,20 +19,9 @@ type AbilityConfigProps = {
 export const AbilityConfig: React.FC<AbilityConfigProps> = ({
   ability,
 }) => {
+  assertGame(game);
   assertAbilityDataSource(ability.data);
   const isGeneral = isGeneralAbility(ability);
-
-  const updateName = useUpdate(ability, (name) => ({ name }));
-  const updateCategory = useUpdate(ability, (category) => ({ data: { category } }));
-  const updateHasSpecialities = useUpdate(ability, (hasSpecialities) => ({ data: { hasSpecialities } }));
-  const updateOccupational = useUpdate(ability, (occupational) => ({ data: { occupational } }));
-  const updateCanBeInvestigative = useUpdate(ability, (canBeInvestigative) => ({ data: { canBeInvestigative } }));
-  const updateShowTracker = useUpdate(ability, (showTracker) => ({ data: { showTracker } }));
-  const updateExcludeFromGeneralRefresh = useUpdate(ability, (excludeFromGeneralRefresh) => ({ data: { excludeFromGeneralRefresh } }));
-  const updateRefreshesDaily = useUpdate(ability, (refreshesDaily) => ({ data: { refreshesDaily } }));
-  const updateGoesFirstInCombat = useUpdate(ability, (goesFirstInCombat) => ({ data: { goesFirstInCombat } }));
-  const updateMax = useUpdate(ability, (max) => ({ data: { max } }));
-  const updateMin = useUpdate(ability, (min) => ({ data: { min } }));
 
   const onClickDelete = useCallback(() => {
     const message = ability.actor
@@ -68,9 +56,9 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
       setSelectCustomOption(true);
     } else {
       setSelectCustomOption(false);
-      updateCategory(e.currentTarget.value);
+      ability.setCategory(e.currentTarget.value);
     }
-  }, [updateCategory]);
+  }, [ability]);
 
   const selectedCat = selectCustomOption ? "" : ability.data.data.category;
 
@@ -83,7 +71,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
   return (
     <InputGrid>
       <GridField label="Name">
-        <AsyncTextInput value={ability.data.name} onChange={updateName} />
+        <AsyncTextInput value={ability.data.name} onChange={ability.setName} />
       </GridField>
       <GridField label="Category">
         <div
@@ -119,7 +107,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
             {showCustomField &&
               <AsyncTextInput
                 value={ability.data.data.category}
-                onChange={updateCategory}
+                onChange={ability.setCategory}
               />
             }
           </div>
@@ -130,64 +118,60 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
         <AsyncNumberInput
           max={ability.data.data.max}
           value={ability.data.data.min}
-          onChange={updateMin}
+          onChange={ability.setMin}
         />
       </GridField>
       <GridField label="Max">
         <AsyncNumberInput
           min={ability.data.data.min}
           value={ability.data.data.max}
-          onChange={updateMax}
+          onChange={ability.setMax}
         />
       </GridField>
       <GridField label="Has Specialities?">
         <AsyncCheckbox
           checked={ability.data.data.hasSpecialities}
           onChange={(t) => {
-            updateHasSpecialities(t);
+            ability.setHasSpecialities(t);
           }}
         />
       </GridField>
       <GridField label="Occupational?">
         <AsyncCheckbox
           checked={ability.data.data.occupational}
-          onChange={(t) => {
-            updateOccupational(t);
-          }}
+          onChange={ability.setOccupational}
         />
       </GridField>
       {isGeneralAbilityDataSource(ability.data) && (
         <GridField label="Can be investigative?">
           <AsyncCheckbox
             checked={ability.data.data.canBeInvestigative}
-            onChange={(t) => {
-              updateCanBeInvestigative(t);
-            }}
+            onChange={ability.setCanBeInvestigative}
           />
         </GridField>
       )}
       <GridField label="Show tracker?">
         <AsyncCheckbox
           checked={ability.data.data.showTracker}
-          onChange={(t) => {
-            updateShowTracker(t);
-          }}
+          onChange={ability.setShowTracker}
         />
       </GridField>
       <GridField label="Exclude from general refresh?">
         <AsyncCheckbox
           checked={ability.data.data.excludeFromGeneralRefresh}
-          onChange={(t) => {
-            updateExcludeFromGeneralRefresh(t);
-          }}
+          onChange={ability.setExcludeFromGeneralRefresh}
         />
       </GridField>
       <GridField label="Include in 24h refresh?">
         <AsyncCheckbox
           checked={ability.data.data.refreshesDaily}
-          onChange={(t) => {
-            updateRefreshesDaily(t);
-          }}
+          onChange={ability.setRefreshesDaily}
+        />
+      </GridField>
+      <GridField label="Hide if zero-rated?">
+        <AsyncCheckbox
+          checked={ability.data.data.hideIfZeroRated}
+          onChange={ability.setHideIfZeroRated}
         />
       </GridField>
       {
@@ -195,12 +179,23 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
           <GridField label="Goes first in combat?">
             <AsyncCheckbox
               checked={ability.data.data.goesFirstInCombat}
-              onChange={(t) => {
-                updateGoesFirstInCombat(t);
-              }}
+              onChange={ability.setGoesFirstInCombat}
             />
           </GridField>
       }
+      {
+        getUseMwStyleAbilities() && isGeneralAbilityDataSource(ability.data) &&
+          <GridField label="Refresh group">
+            <select
+              value={ability.data.data.mwRefreshGroup}
+              onChange={(e) => { ability.setMwRefreshGroup(Number(e.currentTarget.value) as MwRefreshGroup); }}
+            >
+              <option value="2">{game.i18n.format("investigator.XHours", { x: "2" })}</option>
+              <option value="4">{game.i18n.format("investigator.XHours", { x: "4" })}</option>
+              <option value="8">{game.i18n.format("investigator.XHours", { x: "8" })}</option>
+            </select>
+          </GridField>
+  }
       <GridField label="Delete ability">
         <button onClick={onClickDelete}><Translate>Delete</Translate></button>
       </GridField>

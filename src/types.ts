@@ -1,6 +1,10 @@
 import * as constants from "./constants";
 export type AbilityType = typeof constants.investigativeAbility | typeof constants.generalAbility;
 
+export type MWDifficulty =
+  | "easy"
+  | number;
+
 export type Resource = {
   min?: number,
   max: number,
@@ -45,6 +49,7 @@ interface PCDataSourceData {
   longNotes: BaseNote[];
   longNotesFormat: NoteFormat;
   shortNotes: string[];
+  hiddenShortNotes: string[];
   initiativeAbility: string;
   hideZeroRated: boolean;
   sheetTheme: string|null;
@@ -197,6 +202,9 @@ export interface BaseAbilityDataSourceData {
   excludeFromGeneralRefresh: boolean;
   refreshesDaily: boolean;
   notes: NoteWithFormat;
+  // this is defined separately for gen/inv in template.json so they have
+  // different defaults but it's the same property
+  hideIfZeroRated: boolean;
 }
 
 /** data.data for investigative abilities */
@@ -204,10 +212,27 @@ export interface BaseAbilityDataSourceData {
 export interface InvestigativeAbilityDataSourceData extends BaseAbilityDataSourceData {
 }
 
+export type MwRefreshGroup = 2|4|8;
+
 /** data.data for general abilities */
 export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData {
   canBeInvestigative: boolean;
   goesFirstInCombat: boolean;
+  // MW-specific fields
+  mwTrumps: string;
+  mwTrumpedBy: string;
+  mwRefreshGroup: MwRefreshGroup;
+}
+
+export type MwType = "tweak"|"spell"|"cantrap"|"enchantedItem"|"meleeWeapon"|"missileWeapon";
+export type RangeTuple = [number, number, number, number];
+
+/** data.data for Moribund World stuff */
+export interface MwItemDataSourceData {
+  mwType: MwType;
+  notes: string;
+  charges: number;
+  ranges: RangeTuple;
 }
 
 /** data for equipment */
@@ -222,6 +247,9 @@ export type GeneralAbilityDataSource = DataSource<typeof constants.generalAbilit
 /** data for investigative abilities */
 export type InvestigativeAbilityDataSource = DataSource<typeof constants.investigativeAbility, InvestigativeAbilityDataSourceData>;
 
+/** data for Moribund World stuff */
+export type MwItemDataSource = DataSource<typeof constants.mwItem, MwItemDataSourceData>;
+
 /** data for weapon OR equipment (rn this basically means "notes") */
 export type WeaponOrEquipmentDataSource =
   | WeaponDataSource
@@ -235,7 +263,8 @@ export type AbilityDataSource =
 /** data for any kind of item */
 export type InvestigatorItemDataSource =
   | WeaponOrEquipmentDataSource
-  | AbilityDataSource;
+  | AbilityDataSource
+  | MwItemDataSource;
 
 // now we crowbar this into the global type system using declaration merging
 declare global {
@@ -266,6 +295,13 @@ export function assertAbilityDataSource (data: InvestigatorItemDataSource): asse
   }
 }
 
+/** assert that a data is a general ability */
+export function assertGeneralAbilityDataSource (data: InvestigatorItemDataSource): asserts data is GeneralAbilityDataSource {
+  if (!isGeneralAbilityDataSource(data)) {
+    throw new Error("Not an ability");
+  }
+}
+
 export function isWeaponDataSource (data: InvestigatorItemDataSource): data is WeaponDataSource {
   return data.type === constants.weapon;
 }
@@ -286,6 +322,17 @@ export function assertWeaponOrEquipmentDataSource (data: InvestigatorItemDataSou
   const isWeaponOrEquipmentDataSource = data.type === constants.weapon || data.type === constants.equipment;
   if (!isWeaponOrEquipmentDataSource) {
     throw new Error("Not a weapon or equipment");
+  }
+}
+
+export function isMwItemDataSource (data: InvestigatorItemDataSource): data is MwItemDataSource {
+  return data.type === constants.mwItem;
+}
+
+export function assertMwItemDataSource (data: InvestigatorItemDataSource): asserts data is MwItemDataSource {
+  const isMwItem = isMwItemDataSource(data);
+  if (!isMwItem) {
+    throw new Error("Not a MW Item");
   }
 }
 

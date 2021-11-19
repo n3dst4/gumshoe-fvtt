@@ -64,6 +64,7 @@ export const TextArea: React.FC<TextAreaProps> = ({
       css={{
         flex: 1,
         width: "100%",
+        height: "4em",
       }}
       className={className}
       data-lpignore="true"

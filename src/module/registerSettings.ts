@@ -1,23 +1,4 @@
-import {
-  abilityCategories,
-  combatAbilities,
-  debugTranslations,
-  defaultMigratedSystemVersion,
-  defaultThemeName,
-  generalAbilityCategories,
-  investigativeAbilityCategories,
-  longNotes,
-  newPCPacks,
-  newNPCPacks,
-  newPCPacksUpdated,
-  newNPCPacksUpdated,
-  occupationLabel,
-  shortNotes,
-  systemMigrationVersion,
-  systemName,
-  systemPreset,
-  useBoost,
-} from "../constants";
+import * as c from "../constants";
 import { assertGame, mapValues } from "../functions";
 import { pathOfCthulhuPreset } from "../systemPresets";
 import { themes } from "../themes/themes";
@@ -30,7 +11,7 @@ export const registerSettings = function () {
   assertGame(game);
 
   // this is legacy
-  game.settings.register(systemName, abilityCategories, {
+  game.settings.register(c.systemName, c.abilityCategories, {
     name: "Ability categories",
     hint: "Comma-separated (DNU)",
     scope: "world",
@@ -39,15 +20,15 @@ export const registerSettings = function () {
     type: String,
   });
 
-  game.settings.register(systemName, systemMigrationVersion, {
+  game.settings.register(c.systemName, c.systemMigrationVersion, {
     name: "System migration version",
     hint: "",
     scope: "world",
     config: false,
-    default: defaultMigratedSystemVersion,
+    default: c.defaultMigratedSystemVersion,
     type: String,
   });
-  game.settings.register(systemName, defaultThemeName, {
+  game.settings.register(c.systemName, c.defaultThemeName, {
     name: "Default sheet theme",
     scope: "world",
     config: false,
@@ -56,42 +37,42 @@ export const registerSettings = function () {
     type: String,
   });
 
-  game.settings.register(systemName, investigativeAbilityCategories, {
+  game.settings.register(c.systemName, c.investigativeAbilityCategories, {
     name: "Investigative ability categories",
     scope: "world",
     config: false,
     default: pathOfCthulhuPreset.investigativeAbilityCategories,
     type: Object,
   });
-  game.settings.register(systemName, generalAbilityCategories, {
+  game.settings.register(c.systemName, c.generalAbilityCategories, {
     name: "General ability categories",
     scope: "world",
     config: false,
     default: pathOfCthulhuPreset.generalAbilityCategories,
     type: Object,
   });
-  game.settings.register(systemName, combatAbilities, {
+  game.settings.register(c.systemName, c.combatAbilities, {
     name: "Combat abilities",
     scope: "world",
     config: false,
     default: pathOfCthulhuPreset.combatAbilities,
     type: Object,
   });
-  game.settings.register(systemName, occupationLabel, {
+  game.settings.register(c.systemName, c.occupationLabel, {
     name: "What do we call \"Occupation\"?",
     scope: "world",
     config: false,
     default: pathOfCthulhuPreset.occupationLabel,
     type: String,
   });
-  game.settings.register(systemName, shortNotes, {
+  game.settings.register(c.systemName, c.shortNotes, {
     name: "Short Notes",
     scope: "world",
     config: false,
     default: pathOfCthulhuPreset.shortNotes,
     type: Object,
   });
-  game.settings.register(systemName, longNotes, {
+  game.settings.register(c.systemName, c.longNotes, {
     name: "Long Notes",
     scope: "world",
     config: false,
@@ -99,29 +80,29 @@ export const registerSettings = function () {
     type: Object,
   });
 
-  game.settings.register(systemName, newPCPacks, {
+  game.settings.register(c.systemName, c.newPCPacks, {
     name: "Compendium packs for new PCs",
     scope: "world",
     config: false,
     default: pathOfCthulhuPreset.newPCPacks,
     type: Array,
     onChange: (newPacks: string[]) => {
-      Hooks.call(newPCPacksUpdated, newPacks);
+      Hooks.call(c.newPCPacksUpdated, newPacks);
     },
   });
 
-  game.settings.register(systemName, newNPCPacks, {
+  game.settings.register(c.systemName, c.newNPCPacks, {
     name: "Compendium packs for new NPCs",
     scope: "world",
     config: false,
     default: pathOfCthulhuPreset.newNPCPacks,
     type: Array,
     onChange: (newPacks: string[]) => {
-      Hooks.call(newNPCPacksUpdated, newPacks);
+      Hooks.call(c.newNPCPacksUpdated, newPacks);
     },
   });
 
-  game.settings.register(systemName, systemPreset, {
+  game.settings.register(c.systemName, c.systemPreset, {
     name: "System preset",
     hint: "",
     scope: "world",
@@ -130,7 +111,7 @@ export const registerSettings = function () {
     type: String,
   });
 
-  game.settings.register(systemName, useBoost, {
+  game.settings.register(c.systemName, c.useBoost, {
     name: "Use Boost",
     hint: "",
     scope: "world",
@@ -139,7 +120,7 @@ export const registerSettings = function () {
     type: Boolean,
   });
 
-  game.settings.register(systemName, debugTranslations, {
+  game.settings.register(c.systemName, c.debugTranslations, {
     name: "Debug translations?",
     hint: "",
     scope: "local",
@@ -148,8 +129,35 @@ export const registerSettings = function () {
     type: Boolean,
   });
 
+  game.settings.register(c.systemName, c.useMwStyleAbilities, {
+    name: "Use Moribund World-style abilities",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+  });
+
+  game.settings.register(c.systemName, c.mwHiddenShortNotes, {
+    name: "Hidden short notes",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: [],
+    type: Object,
+  });
+
+  game.settings.register(c.systemName, c.mwUseAlternativeItemTypes, {
+    name: "Use alternative item types",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+  });
+
   // Define a settings submenu which handles advanced configuration needs
-  game.settings.registerMenu(systemName, "investigatorSettingsMenu", {
+  game.settings.registerMenu(c.systemName, "investigatorSettingsMenu", {
     name: "INVESTIGATOR Settings",
     label: "Open INVESTIGATOR System Settings", // The text label used in the button
     // hint: "A description of what will occur in the submenu dialog.",
