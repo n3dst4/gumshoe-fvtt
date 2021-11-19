@@ -21,14 +21,17 @@ export const migrateActorData = function (actorData: any) {
   let hasItemUpdates = false;
   const items = actorData.items.map((i: any) => {
     // Migrate the Owned Item
-    const itemUpdate = migrateItemData(i);
+    const itemUpdate = migrateItemData(i.data);
 
     // Update the Owned Item
     if (!isObjectEmpty(itemUpdate)) {
       hasItemUpdates = true;
-      return mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
+      return {
+        ...i.data,
+        ...itemUpdate,
+      };
     } else {
-      return i;
+      return i.data;
     }
   });
   if (hasItemUpdates) updateData.items = items;
