@@ -39,7 +39,7 @@ export const migrateCompendium = async function (pack: any) {
 
       // Save the entry, if data was changed
       updateData._id = ent.id;
-      await pack.updateEntity(updateData);
+      await ent.update(updateData);
       console.log(`Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
     } catch (err) {
       // Handle migration failures
