@@ -265,7 +265,11 @@ export class InvestigatorItem extends Item {
       newHtml = newSource;
     }
     const html = DOMPurify.sanitize(newHtml);
-    this.update({ data: { notes: { format: newFormat, source: newSource, html } } });
+    this.update({
+      data: {
+        notes: { format: newFormat, source: newSource, html },
+      },
+    });
   }
 
   setNotesSource = (source: string) => {
