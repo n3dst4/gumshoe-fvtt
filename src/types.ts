@@ -230,7 +230,7 @@ export type RangeTuple = [number, number, number, number];
 /** data.data for Moribund World stuff */
 export interface MwItemDataSourceData {
   mwType: MwType;
-  notes: string;
+  notes: NoteWithFormat;
   charges: number;
   ranges: RangeTuple;
 }

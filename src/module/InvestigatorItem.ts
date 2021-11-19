@@ -11,6 +11,7 @@ import {
   MWDifficulty,
   MwRefreshGroup,
   MwType,
+  NoteFormat,
   RangeTuple,
 } from "../types";
 import * as constants from "../constants";
@@ -447,7 +448,7 @@ export class InvestigatorItem extends Item {
   }
 
   setNotesSource = (source: string) => {
-    const format = this.data.data.notes.format;
+    const format = this.data.data.notes.format;//
     let newHtml = "";
     if (format === NoteFormat.plain) {
       newHtml = escape(source);

@@ -10,7 +10,6 @@ import { SpecialityList } from "./SpecialityList";
 import { getCombatAbilities, getUseMwStyleAbilities, getUseBoost } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveCharacterDataSource, ActiveCharacterDataSource } from "../../types";
-import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 
@@ -59,8 +58,6 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     },
     [ability?.actor, ability.data.name],
   );
-  // XXX RTF
-  const notes = useAsyncUpdate(ability.getNotes().source, ability.setNotesSource);
 
   const useMwStyleAbilities = getUseMwStyleAbilities();
 
@@ -107,9 +104,9 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
         />
       </GridField>
       <GridFieldStacked label="Notes">
-        <TextArea
-          value={notes.display}
-          onChange={notes.onChange}
+        <AsyncTextArea
+          value={ability.getNotes().source}
+          onChange={ability.setNotesSource}
           css={{
             height: "100%",
             "&&": {

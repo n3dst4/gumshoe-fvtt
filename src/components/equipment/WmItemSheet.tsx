@@ -142,8 +142,8 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
         </GridField>
         <GridFieldStacked label="Notes">
           <AsyncTextArea
-            value={item.data.data.notes}
-            onChange={item.setNotes}
+            value={item.getNotes().source}
+            onChange={item.setNotesSource}
             css={{
               height: "100%",
               "&&": {
