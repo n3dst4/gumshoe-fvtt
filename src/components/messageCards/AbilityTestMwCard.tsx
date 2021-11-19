@@ -11,11 +11,12 @@ import { MwCostSlug } from "./MwCostSlug";
 
 interface AbilityTestMwCardProps {
   msg: ChatMessage;
-  ability: InvestigatorItem;
+  ability: InvestigatorItem|undefined;
   difficulty: MWDifficulty;
   boonLevy: number;
   reRoll: number|undefined;
   pool: number;
+  name: string|null;
 }
 
 const results: {[value: number]: MWResult} = {
@@ -52,17 +53,18 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
   boonLevy,
   reRoll,
   pool,
+  name,
 }) => {
   const onClickAbilityName = useCallback(() => {
-    ability.sheet?.render(true);
-  }, [ability.sheet]);
+    ability?.sheet?.render(true);
+  }, [ability?.sheet]);
 
   const cappedResult = Math.max(Math.min(msg.roll?.total ?? 1, 6), 1);
   const effectiveResult = difficulty === "easy" && cappedResult === 3 ? 4 : cappedResult;
   const deets = results[effectiveResult];
 
   const onClickReRoll = useCallback(() => {
-    ability.mwTestAbility(difficulty, boonLevy, effectiveResult);
+    ability?.mwTestAbility(difficulty, boonLevy, effectiveResult);
   }, [ability, boonLevy, difficulty, effectiveResult]);
 
   const boonLevyFactor = boonLevy < 0
@@ -94,7 +96,7 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
           gridArea: "headline",
         }}
       >
-        <b><a onClick={onClickAbilityName}>{ability.data.name}</a></b>
+        <b><a onClick={onClickAbilityName}>{name ?? ability?.data.name ?? "Missing"}</a></b>
         {" "}
         <DiceTerms terms={msg.roll?.terms} />
         {difficulty === "easy" && <span>(<Translate>Easy</Translate>)</span>}

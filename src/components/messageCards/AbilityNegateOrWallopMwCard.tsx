@@ -14,9 +14,10 @@ type WallopNegateMode =
 
 interface AbilityNegateOrWallopMwCardProps {
   msg: ChatMessage;
-  ability: InvestigatorItem;
+  ability: InvestigatorItem|undefined;
   pool: number;
   mode: WallopNegateMode;
+  name: string|null;
 }
 
 const deets: { [mode in WallopNegateMode]: MWResult } = {
@@ -31,10 +32,10 @@ const deets: { [mode in WallopNegateMode]: MWResult } = {
 };
 
 export const AbilityNegateOrWallopMwCard: React.FC<AbilityNegateOrWallopMwCardProps> =
-  React.memo(({ msg, ability, pool, mode }) => {
+  React.memo(({ msg, ability, pool, mode, name }) => {
     const onClickAbilityName = useCallback(() => {
-      ability.sheet?.render(true);
-    }, [ability.sheet]);
+      ability?.sheet?.render(true);
+    }, [ability?.sheet]);
 
     const costFactor = mode === constants.htmlDataModeMwNegate
       ? <span><Translate>Negate</Translate>: -{constants.mwNegateCost}</span>
@@ -59,7 +60,7 @@ export const AbilityNegateOrWallopMwCard: React.FC<AbilityNegateOrWallopMwCardPr
           }}
         >
           <b>
-            <a onClick={onClickAbilityName}>{ability.data.name}</a>
+            <a onClick={onClickAbilityName}>{name ?? ability?.data.name ?? "Missing"}</a>
           </b>
         </div>
         {/* POOL */}

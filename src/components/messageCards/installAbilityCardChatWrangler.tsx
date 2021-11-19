@@ -49,38 +49,15 @@ export const installAbilityCardChatWrangler = () => {
     }
     const actor = game.actors?.get(actorId);
     const ability = abilityId ? actor?.items.get(abilityId) : undefined;
-    const weapon = weaponId ? actor?.items.get(weaponId) : undefined;
-    if (el && abilityId) {
-      let content: JSX.Element;
-      if (mode === constants.htmlDataModeAttack) {
-        content = <AttackCard
-          msg={chatMessage}
-          weapon={weapon}
-          rangeName={rangeName}
-          name={name}
-          imageUrl={imageUrl}
-        />;
-      } else {
-        content = <AbilityTestCard
-          msg={chatMessage}
-          ability={ability}
-          mode={mode}
-          name={name}
-          imageUrl={imageUrl}
-        />;
-      }
+    let content: JSX.Element;
+    if (mode === constants.htmlDataModeAttack) {
       const weapon = weaponId ? actor?.items.get(weaponId) : undefined;
-      if (!weapon) {
-        logger.error(
-          `Missing or invalid '${constants.htmlDataWeaponId}' attribute.`, el,
-        );
-        return;
-      }
       content = <AttackCard
         msg={chatMessage}
-        ability={ability}
         weapon={weapon}
         rangeName={rangeName}
+        imageUrl={imageUrl}
+        name={name}
       />;
     } else if (mode === constants.htmlDataModeMwTest) {
       // MW TEST
@@ -98,6 +75,7 @@ export const installAbilityCardChatWrangler = () => {
         boonLevy={boonLevy}
         reRoll={reRoll ? Number(reRoll) : undefined}
         pool={pool}
+        name={name}
       />;
     } else if (mode === constants.htmlDataModeMwWallop || mode === constants.htmlDataModeMwNegate) {
       // MW NEGATE OR WALLOP
@@ -107,6 +85,7 @@ export const installAbilityCardChatWrangler = () => {
         ability={ability}
         pool={pool}
         mode={mode}
+        name={name}
       />;
     } else {
       // REGULAR TEST /SPEND
@@ -114,6 +93,8 @@ export const installAbilityCardChatWrangler = () => {
         msg={chatMessage}
         ability={ability}
         mode={mode}
+        imageUrl={imageUrl}
+        name={name}
       />;
     }
     ReactDOM.render(content, el);
