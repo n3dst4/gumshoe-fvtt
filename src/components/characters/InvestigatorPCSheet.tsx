@@ -175,7 +175,7 @@ export const InvestigatorPCSheet = ({
               <Translate>Full Refresh</Translate>
             </button>
             <hr/>
-            {getUseMwStyleAbilities ||
+            {getUseMwStyleAbilities() ||
               <Fragment>
                 <button onClick={actor.confirm24hRefresh}>
                   <Translate>24h Refresh</Translate>
