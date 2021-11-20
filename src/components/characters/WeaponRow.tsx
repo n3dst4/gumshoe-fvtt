@@ -64,7 +64,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
       <div
         css={{ gridColumn: "1 / 3", paddingLeft: "1em" }}
       >
-        {weapon.getNotes()}
+        {weapon.getNotes().source}
       </div>
     </Fragment>
   );
