@@ -11,7 +11,7 @@ import { getCombatAbilities, getUseMwStyleAbilities, getUseBoost } from "../../s
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveCharacterDataSource, ActiveCharacterDataSource } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { AsyncTextArea } from "../inputs/AsyncTextArea";
+import { TextEditor } from "../inputs/TextEditor";
 
 type AbilityMainBitsProps = {
   ability: InvestigatorItem,
@@ -104,9 +104,12 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
         />
       </GridField>
       <GridFieldStacked label="Notes">
-        <AsyncTextArea
-          value={ability.getNotes().source}
-          onChange={ability.setNotesSource}
+        <TextEditor
+          source={ability.getNotes().source}
+          format={ability.getNotes().format}
+          html={ability.getNotes().html}
+          setSource={ability.setNotesSource}
+          setFormat={ability.setNotesFormat}
           css={{
             height: "100%",
             "&&": {

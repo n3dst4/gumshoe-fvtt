@@ -409,7 +409,7 @@ export class InvestigatorItem extends Item {
     return this.data.data.notes ?? "";
   }
 
-  setNotesFormat = (newFormat: NoteFormat) => {
+  setNotesFormat = async (newFormat: NoteFormat) => {
     const oldFormat = this.data.data.notes.format;
     const oldSource = this.data.data.notes.source;
     let newSource = "";
@@ -440,14 +440,14 @@ export class InvestigatorItem extends Item {
       newHtml = newSource;
     }
     const html = DOMPurify.sanitize(newHtml);
-    this.update({
+    await this.update({
       data: {
         notes: { format: newFormat, source: newSource, html },
       },
     });
   }
 
-  setNotesSource = (source: string) => {
+  setNotesSource = async (source: string) => {
     const format = this.data.data.notes.format;//
     let newHtml = "";
     if (format === NoteFormat.plain) {
@@ -458,7 +458,7 @@ export class InvestigatorItem extends Item {
       newHtml = source;
     }
     const html = DOMPurify.sanitize(newHtml);
-    this.update({ data: { notes: { format, source, html } } });
+    await this.update({ data: { notes: { format, source, html } } });
   }
 
   getAbility = () => {

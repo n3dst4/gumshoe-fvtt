@@ -106,5 +106,9 @@
     "investigator.Weapons": "Weapons",
     "investigator.WhoopsNo": "Whoops, No!",
     "investigator.Specialities": "Specialities",
-    "investigator.Speciality": "Speciality"
+    "investigator.Speciality": "Speciality",
+    "investigator.Plain": "Plain",
+    "investigator.Markdown": "Markdown",
+    "investigator.Richtext": "Richtext"
+
 }
