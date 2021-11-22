@@ -31,3 +31,7 @@ declare namespace RollTerm {
     rollOrder?: number;
   }
 }
+
+// declare module "!!to-string-loader!css-loader!@stackoverflow/stacks-editor/dist/styles.css";
+// declare module "!!to-string-loader!css-loader!./stacks-css.css";
+declare module "!!to-string-loader!css-loader!*.css";
