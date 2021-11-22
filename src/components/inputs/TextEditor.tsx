@@ -6,6 +6,7 @@ import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextArea } from "./AsyncTextArea";
+import { MarkdownEditor } from "./MarkdownEditor";
 
 interface TextEditorProps {
   source: string;
@@ -51,7 +52,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
     );
   } else if (format === NoteFormat.markdown) {
     editor = (
-      <AsyncTextArea
+      <MarkdownEditor
         key="markdown"
         className={className}
         onChange={setSource}
@@ -72,6 +73,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
               position: "absolute",
               top: 0,
               right: 0,
+              zIndex: 1,
             }}
           >
             <a onClick={() => setEditMode((e) => !e)}>
