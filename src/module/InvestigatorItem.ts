@@ -439,7 +439,7 @@ export class InvestigatorItem extends Item {
       }
       newHtml = newSource;
     }
-    const html = DOMPurify.sanitize(newHtml);
+    const html = TextEditor.enrichHTML(DOMPurify.sanitize(newHtml));
     await this.update({
       data: {
         notes: { format: newFormat, source: newSource, html },
@@ -457,7 +457,7 @@ export class InvestigatorItem extends Item {
     } else if (format === NoteFormat.richText) {
       newHtml = source;
     }
-    const html = DOMPurify.sanitize(newHtml);
+    const html = TextEditor.enrichHTML(DOMPurify.sanitize(newHtml));
     await this.update({ data: { notes: { format, source, html } } });
   }
 
