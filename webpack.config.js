@@ -67,18 +67,6 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.css$/i,
-        use: [
-          {
-            loader: "style-loader",
-            options: {
-              attributes: { "data-parp": "parp!" },
-              insert: ".head",
-            },
-          },
-          { loader: "css-loader" }],
-      },
     ],
   },
   resolve: {
