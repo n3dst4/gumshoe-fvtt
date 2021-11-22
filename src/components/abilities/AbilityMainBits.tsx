@@ -11,7 +11,7 @@ import { getCombatAbilities, getUseMwStyleAbilities, getUseBoost } from "../../s
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveCharacterDataSource, ActiveCharacterDataSource } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { TextEditor } from "../inputs/TextEditor";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 
 type AbilityMainBitsProps = {
   ability: InvestigatorItem,
@@ -104,7 +104,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
         />
       </GridField>
       <GridFieldStacked label="Notes">
-        <TextEditor
+        <NotesEditorWithControls
           source={ability.getNotes().source}
           format={ability.getNotes().format}
           html={ability.getNotes().html}

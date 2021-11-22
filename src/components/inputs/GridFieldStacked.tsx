@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
-import React, { useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import { IdContext } from "../IdContext";
 import { Translate } from "../Translate";
 
 type GridFieldStackedProps = {
-  label?: string,
+  label?: string|ReactNode,
   className?: string,
   children: any,
   noTranslate?: boolean,
@@ -35,7 +35,7 @@ export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({
           css={{
           }}
         >
-          {label && (noTranslate ? label : <Translate>{label}</Translate>)}
+          {label && ((noTranslate || typeof label !== "string") ? label : <Translate>{label}</Translate>)}
         </label>
         <div
           css={{
