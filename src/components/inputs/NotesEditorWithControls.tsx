@@ -3,7 +3,6 @@ import { jsx } from "@emotion/react";
 import React, { useState } from "react";
 import { assertGame } from "../../functions";
 import { NoteFormat } from "../../types";
-import { absoluteCover } from "../absoluteCover";
 import { Translate } from "../Translate";
 import { NotesEditor } from "./NotesEditor";
 interface TextEditorWithControlsProps {
@@ -28,13 +27,16 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   return (
     <div
       css={{
-        ...absoluteCover,
+        gridColumn: "label / end",
+        position: "relative",
         display: "flex",
         flexDirection: "column",
       }}
     >
       <div css={{ display: "flex", flexDirection: "row" }}>
-        <Translate>Notes</Translate>
+        <label>
+          <Translate>Notes</Translate>
+        </label>
         <span css={{ flex: 1 }}/>
         <div>
           <a onClick={() => setEditMode((e) => !e)}>

@@ -103,22 +103,20 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
           onChange={ability.setRating}
         />
       </GridField>
-      <GridFieldStacked label="Notes">
-        <NotesEditorWithControls
-          source={ability.getNotes().source}
-          format={ability.getNotes().format}
-          html={ability.getNotes().html}
-          setSource={ability.setNotesSource}
-          setFormat={ability.setNotesFormat}
-          css={{
-            height: "100%",
-            "&&": {
-              resize: "none",
+      <NotesEditorWithControls
+        source={ability.getNotes().source}
+        format={ability.getNotes().format}
+        html={ability.getNotes().html}
+        setSource={ability.setNotesSource}
+        setFormat={ability.setNotesFormat}
+        css={{
+          height: "100%",
+          "&&": {
+            resize: "none",
 
-            },
-          }}
-        />
-      </GridFieldStacked>
+          },
+        }}
+      />
       {ability.getHasSpecialities() &&
         <GridFieldStacked label={ability.getSpecialities().length === 1 ? "Speciality" : "Specialities"}>
           <div
