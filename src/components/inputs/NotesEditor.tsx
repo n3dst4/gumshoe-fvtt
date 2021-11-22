@@ -15,6 +15,7 @@ interface NotesEditorProps {
   setSource: (source: string) => Promise<void>;
   className?: string;
   editMode: boolean;
+  showSource: boolean;
 }
 
 export const NotesEditor: React.FC<NotesEditorProps> = ({
@@ -24,11 +25,24 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
   setSource,
   className,
   editMode,
+  showSource,
 }: NotesEditorProps) => {
   assertGame(game);
   const theme = useContext(ThemeContext);
   let editor: ReactNode;
-  if (!editMode) {
+  if (showSource) {
+    editor = <pre
+      css={{
+        ...absoluteCover,
+        overflow: "auto",
+        background: theme.colors.backgroundPrimary,
+        padding: "0.5em",
+        border: `1px solid ${theme.colors.text}`,
+      }}
+    >
+      {source}
+    </pre>;
+  } else if (!editMode) {
     editor = <div
       css={{
         ...absoluteCover,

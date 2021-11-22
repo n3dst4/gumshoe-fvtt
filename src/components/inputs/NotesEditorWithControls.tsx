@@ -24,6 +24,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
 }: TextEditorWithControlsProps) => {
   assertGame(game);
   const [editMode, setEditMode] = useState(false);
+  const [showSource, setShowSource] = useState(false);
   return (
     <div
       css={{
@@ -39,6 +40,9 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
         </label>
         <span css={{ flex: 1 }}/>
         <div>
+          <a onClick={() => setShowSource((e) => !e)}>
+            <i className="fas fa-envelope-open-text"/>
+          </a>
           <a onClick={() => setEditMode((e) => !e)}>
             <i className="fas fa-edit"/>
           </a>
@@ -66,6 +70,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
           setSource={setSource}
           className={className}
           editMode={editMode}
+          showSource={showSource}
         />
       </div>
     </div>
