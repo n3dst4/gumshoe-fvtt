@@ -7,6 +7,7 @@ import { NoteFormat } from "../../types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextArea } from "./AsyncTextArea";
 import { MarkdownEditor } from "./MarkdownEditor";
+import { RichTextEditor } from "./RichTextEditor";
 
 interface NotesEditorProps {
   source: string;
@@ -56,7 +57,6 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
   } else if (format === NoteFormat.plain) {
     editor = (
       <AsyncTextArea
-        key="plain"
         className={className}
         onChange={setSource}
         value={source}
@@ -65,7 +65,6 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
   } else if (format === NoteFormat.markdown) {
     editor = (
       <MarkdownEditor
-        key="markdown"
         className={className}
         onChange={setSource}
         value={source}
@@ -73,8 +72,7 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
     );
   } else if (format === NoteFormat.richText) {
     editor = (
-      <AsyncTextArea
-        key="markdown"
+      <RichTextEditor
         className={className}
         onChange={setSource}
         value={source}
