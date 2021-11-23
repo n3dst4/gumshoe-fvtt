@@ -1,4 +1,4 @@
-import { assertGame, fixLength, formatText, isAbility } from "../functions";
+import { assertGame, fixLength, plainTextToHtml, isAbility, htmlToMarkdown } from "../functions";
 import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
 import { InvestigatorActor } from "./InvestigatorActor";
@@ -17,7 +17,6 @@ import {
 import * as constants from "../constants";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
-import { turndown } from "../turndown";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -420,19 +419,19 @@ export class InvestigatorItem extends Item {
       if (oldFormat === NoteFormat.markdown) {
         newSource = oldSource;
       } else if (oldFormat === NoteFormat.richText) {
-        newSource = turndown(oldSource);
+        newSource = htmlToMarkdown(oldSource);
       }
-      newHtml = formatText(newSource);
+      newHtml = plainTextToHtml(newSource);
     } else if (newFormat === NoteFormat.markdown) {
       if (oldFormat === NoteFormat.plain) {
         newSource = oldSource;
       } else if (oldFormat === NoteFormat.richText) {
-        newSource = turndown(oldSource);
+        newSource = htmlToMarkdown(oldSource);
       }
       newHtml = marked(newSource);
     } else if (newFormat === NoteFormat.richText) {
       if (oldFormat === NoteFormat.plain) {
-        newSource = formatText(oldSource);
+        newSource = plainTextToHtml(oldSource);
       } else if (oldFormat === NoteFormat.markdown) {
         newSource = marked(oldSource);
       }
@@ -450,7 +449,7 @@ export class InvestigatorItem extends Item {
     const format = this.data.data.notes.format;//
     let newHtml = "";
     if (format === NoteFormat.plain) {
-      newHtml = formatText(source);
+      newHtml = plainTextToHtml(source);
     } else if (format === NoteFormat.markdown) {
       newHtml = marked.parse(source);
     } else if (format === NoteFormat.richText) {

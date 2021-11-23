@@ -3,6 +3,7 @@ import Case from "case";
 import { Dictionary } from "lodash";
 import { getDebugTranslations } from "./settingsHelpers";
 import { escape as escapeText } from "html-escaper";
+import { safeTurndown } from "./turndown";
 
 export const isInvestigativeAbility = (item: Item) => (
   (typeof item === "string")
@@ -132,7 +133,20 @@ export const confirmADoodleDo = (
   d.render(true);
 };
 
-export const formatText = (source: string) => {
+export const plainTextToHtml = (source: string) => {
   return escapeText(source).replace(/\n/g, "<br/>");
-  // return `<pre>${escapeText(source)}</pre>`;
+};
+
+/**
+ * use turndown to get markdown back out of html, but then specifically unescape
+ * foundry's link syntax
+ */
+export const htmlToMarkdown = (source: string) => {
+  // ever first-time a cool regex and then realise you don't need it, but
+  // you're so proud of your ninja regex skills dating back to doing Perl in the
+  // 90s that you want to leave it in as a comment? Anyway check this bad boy
+  // out. Turns out I don't need it because I've overridden turndown to stop it
+  // doing any escaping at all.
+  // return turndown(source).replace(/@(\w+)\\\[(\w+)\\\]\{([^}]*)\}/g, (m, p1, p2, p3) => `@${p1}[${p2}]{${p3}}`);
+  return safeTurndown(source);
 };
