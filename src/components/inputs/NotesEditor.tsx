@@ -71,6 +71,15 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
         value={source}
       />
     );
+  } else if (format === NoteFormat.richText) {
+    editor = (
+      <AsyncTextArea
+        key="markdown"
+        className={className}
+        onChange={setSource}
+        value={source}
+      />
+    );
   }
   return (
     <div

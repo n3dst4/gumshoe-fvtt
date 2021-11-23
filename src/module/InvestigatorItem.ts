@@ -1,4 +1,4 @@
-import { assertGame, fixLength, isAbility } from "../functions";
+import { assertGame, fixLength, formatText, isAbility } from "../functions";
 import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
 import { InvestigatorActor } from "./InvestigatorActor";
@@ -15,7 +15,6 @@ import {
   RangeTuple,
 } from "../types";
 import * as constants from "../constants";
-import { escape } from "html-escaper";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { turndown } from "../turndown";
@@ -423,7 +422,7 @@ export class InvestigatorItem extends Item {
       } else if (oldFormat === NoteFormat.richText) {
         newSource = turndown(oldSource);
       }
-      newHtml = escape(newSource);
+      newHtml = formatText(newSource);
     } else if (newFormat === NoteFormat.markdown) {
       if (oldFormat === NoteFormat.plain) {
         newSource = oldSource;
@@ -433,7 +432,7 @@ export class InvestigatorItem extends Item {
       newHtml = marked(newSource);
     } else if (newFormat === NoteFormat.richText) {
       if (oldFormat === NoteFormat.plain) {
-        newSource = escape(oldSource);
+        newSource = formatText(oldSource);
       } else if (oldFormat === NoteFormat.markdown) {
         newSource = marked(oldSource);
       }
@@ -451,7 +450,7 @@ export class InvestigatorItem extends Item {
     const format = this.data.data.notes.format;//
     let newHtml = "";
     if (format === NoteFormat.plain) {
-      newHtml = escape(source);
+      newHtml = formatText(source);
     } else if (format === NoteFormat.markdown) {
       newHtml = marked.parse(source);
     } else if (format === NoteFormat.richText) {

@@ -2,6 +2,7 @@ import { generalAbility, investigativeAbility, systemName } from "./constants";
 import Case from "case";
 import { Dictionary } from "lodash";
 import { getDebugTranslations } from "./settingsHelpers";
+import { escape as escapeText } from "html-escaper";
 
 export const isInvestigativeAbility = (item: Item) => (
   (typeof item === "string")
@@ -129,4 +130,9 @@ export const confirmADoodleDo = (
     default: "cancel",
   });
   d.render(true);
+};
+
+export const formatText = (source: string) => {
+  return escapeText(source).replace(/\n/g, "<br/>");
+  // return `<pre>${escapeText(source)}</pre>`;
 };
