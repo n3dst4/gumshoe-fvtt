@@ -13,7 +13,7 @@ interface NotesEditorProps {
   source: string;
   html: string;
   format: NoteFormat;
-  setSource: (source: string) => Promise<void>;
+  setSource: (source: string) => void;
   className?: string;
   editMode: boolean;
   showSource: boolean;

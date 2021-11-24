@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { absoluteCover } from "../absoluteCover";
 type RichTextEditorProps = {
   value: string,
-  onChange: (value: string) => Promise<void>,
+  onChange: (value: string) => void,
   className?: string,
 };
 

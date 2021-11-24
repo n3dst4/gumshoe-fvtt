@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { assertGame } from "../../functions";
 import { NoteFormat } from "../../types";
 import { Translate } from "../Translate";
@@ -27,6 +27,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   assertGame(game);
   const [editMode, setEditMode] = useState(false);
   const [showSource, setShowSource] = useState(false);
+  const [liveSource, setLiveSource] = useState(source);
   const isDebugging = (game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(constants.systemName);
   return (
     <div
@@ -64,7 +65,10 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
                   width: "auto",
                   marginRight: "1em",
                 }}
-                onClick={() => setEditMode(true)}
+                onClick={() => {
+                  setLiveSource(source);
+                  setEditMode(true);
+                }}
               >
                 <i className="fas fa-edit"/>
                 <Translate>Edit</Translate>
@@ -73,16 +77,34 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
 
           {
             (editMode) &&
-              <button
-                css={{
-                  width: "auto",
-                  marginRight: "1em",
-                }}
-                onClick={() => setEditMode(false)}
-              >
-                <i className="fas fa-save"/>
-                <Translate>Save</Translate>
-              </button>
+              <Fragment>
+                <button
+                  css={{
+                    width: "auto",
+                    marginRight: "1em",
+                  }}
+                  onClick={() => {
+                    setSource(liveSource);
+                    setEditMode(false);
+                  }}
+                >
+                  <i className="fas fa-save"/>
+                  <Translate>Save</Translate>
+                </button>
+                <button
+                  css={{
+                    width: "auto",
+                    marginRight: "1em",
+                  }}
+                  onClick={() => {
+                    setLiveSource(source);
+                    setEditMode(false);
+                  }}
+                >
+                  <i className="fas fa-ban"/>
+                  <Translate>Cancel</Translate>
+                </button>
+              </Fragment>
           }
 
           {
@@ -106,7 +128,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
           source={source}
           html={html}
           format={format}
-          setSource={setSource}
+          setSource={setLiveSource}
           className={className}
           editMode={editMode}
           showSource={showSource}

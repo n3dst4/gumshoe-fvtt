@@ -5,7 +5,7 @@ import { AsyncTextArea } from "./AsyncTextArea";
 
 interface MarkdownEditorProps {
   value: string;
-  onChange: (value: string) => Promise<void>;
+  onChange: (value: string) => void;
   className?: string;
 }
 
