@@ -248,6 +248,32 @@ Hooks.on(
   },
 );
 
+// type debugs = CONFIG["debug"];
+
+// declare global {
+//   interface CONFIG {
+//     foo: number;
+//     debug: debugs & {
+//       investigatorTranslations: boolean,
+//     };
+//   }
+// }
+
+Hooks.on(
+  "devModeReady",
+  () => {
+    // CONFIG.debug.investigatorTranslations = false;
+    assertGame(game);
+    (game.modules.get("_dev-mode") as any)?.api.registerPackageDebugFlag(
+      "investigator",
+      "boolean",
+      {
+        default: false,
+      },
+    );
+  },
+);
+
 installCompendiumExportButton();
 
 initializePackGenerators();
