@@ -5,6 +5,8 @@ import { assertGame } from "../../functions";
 import { NoteFormat } from "../../types";
 import { Translate } from "../Translate";
 import { NotesEditor } from "./NotesEditor";
+import * as constants from "../../constants";
+
 interface TextEditorWithControlsProps {
   source: string;
   html: string;
@@ -25,6 +27,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   assertGame(game);
   const [editMode, setEditMode] = useState(false);
   const [showSource, setShowSource] = useState(false);
+  const isDebugging = (game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(constants.systemName);
   return (
     <div
       css={{
@@ -40,14 +43,50 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
         </label>
         <span css={{ flex: 1 }}/>
         <div>
-          <a onClick={() => setShowSource((e) => !e)}>
-            <i className="fas fa-envelope-open-text"/>
-          </a>
-          <a onClick={() => setEditMode((e) => !e)}>
-            <i className="fas fa-edit"/>
-          </a>
           {
-            (setFormat) && (
+            isDebugging &&
+              <button
+                css={{
+                  width: "auto",
+                  marginRight: "1em",
+                }}
+                onClick={() => setShowSource((e) => !e)}
+              >
+                <i className="fas fa-envelope-open-text"/>
+                View source
+              </button>
+          }
+
+{
+            (!editMode) &&
+              <button
+                css={{
+                  width: "auto",
+                  marginRight: "1em",
+                }}
+                onClick={() => setEditMode(true)}
+              >
+                <i className="fas fa-edit"/>
+                <Translate>Edit</Translate>
+              </button>
+          }
+
+          {
+            (editMode) &&
+              <button
+                css={{
+                  width: "auto",
+                  marginRight: "1em",
+                }}
+                onClick={() => setEditMode(false)}
+              >
+                <i className="fas fa-save"/>
+                <Translate>Save</Translate>
+              </button>
+          }
+
+          {
+            setFormat && editMode && (
               <select value={format} onChange={(e) => setFormat(e.currentTarget.value as NoteFormat)}>
                 <option value={NoteFormat.plain}>{game.i18n.localize("investigator.Plain")}</option>
                 <option value={NoteFormat.markdown}>{game.i18n.localize("investigator.Markdown")}</option>
