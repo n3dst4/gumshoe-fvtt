@@ -28,19 +28,18 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
-    confirmADoodleDo(
+    confirmADoodleDo({
       message,
-      "Delete",
-      "Cancel",
-      "fa-trash",
-      {
+      confirmText: "Delete",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-trash",
+      values: {
         ActorName: equipment.actor?.data.name ?? "",
         EquipmentName: equipment.data.name,
       },
-      () => {
-        equipment.delete();
-      },
-    );
+    }).then(() => {
+      equipment.delete();
+    });
   }, [equipment]);
 
   return (

@@ -15,37 +15,34 @@ export class InvestigatorActor extends Actor {
   // }
 
   confirmRefresh = () => {
-    confirmADoodleDo(
-      "Refresh all of (actor name)'s abilities?",
-      "Refresh",
-      "Cancel",
-      "fa-sync",
-      { ActorName: this.data.name },
-      this.refresh,
-    );
+    confirmADoodleDo({
+      message: "Refresh all of (actor name)'s abilities?",
+      confirmText: "Refresh",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-sync",
+      values: { ActorName: this.data.name },
+    }).then(this.refresh);
   };
 
   confirm24hRefresh = () => {
-    confirmADoodleDo(
-      "Refresh all of (actor name)'s abilities which refresh every 24h?",
-      "Refresh",
-      "Cancel",
-      "fa-sync",
-      { ActorName: this.data.name },
-      this.refresh24h,
-    );
+    confirmADoodleDo({
+      message: "Refresh all of (actor name)'s abilities which refresh every 24h?",
+      confirmText: "Refresh",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-sync",
+      values: { ActorName: this.data.name },
+    }).then(this.refresh24h);
   };
 
   confirmMwRefresh (group: MwRefreshGroup) {
     return () => {
-      confirmADoodleDo(
-        "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?",
-        "Refresh",
-        "Cancel",
-        "fa-sync",
-        { ActorName: this.data.name, Hours: group },
-        () => this.mWrefresh(group),
-      );
+      confirmADoodleDo({
+        message: "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?",
+        confirmText: "Refresh",
+        cancelText: "Cancel",
+        confirmIconClass: "fa-sync",
+        values: { ActorName: this.data.name, Hours: group },
+      }).then(() => this.mWrefresh(group));
     };
   }
 
@@ -119,14 +116,13 @@ export class InvestigatorActor extends Actor {
   };
 
   confirmNuke = () => {
-    confirmADoodleDo(
-      "NukeAllOfActorNamesAbilitiesAndEquipment",
-      "Nuke it from orbit",
-      "Whoops no!",
-      "fa-radiation",
-      { ActorName: this.data.name },
-      () => this.nuke(),
-    );
+    confirmADoodleDo({
+      message: "NukeAllOfActorNamesAbilitiesAndEquipment",
+      confirmText: "Nuke it from orbit",
+      cancelText: "Whoops no!",
+      confirmIconClass: "fa-radiation",
+      values: { ActorName: this.data.name },
+    }).then(() => this.nuke());
   };
 
   nuke = async () => {

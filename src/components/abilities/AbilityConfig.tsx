@@ -28,19 +28,18 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
       ? "Delete {ActorName}'s \"{AbilityName}\" ability?"
       : "Delete the \"{AbilityName}\" ability?";
 
-    confirmADoodleDo(
-      message,
-      "Delete",
-      "Cancel",
-      "fa-trash",
-      {
+    confirmADoodleDo({
+      message: message,
+      confirmText: "Delete",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-trash",
+      values: {
         ActorName: ability.actor?.data.name ?? "",
         AbilityName: ability.data.name,
       },
-      () => {
-        ability.delete();
-      },
-    );
+    }).then(() => {
+      ability.delete();
+    });
   }, [ability]);
 
   const categories = isGeneral ? getGeneralAbilityCategories() : getInvestigativeAbilityCategories();

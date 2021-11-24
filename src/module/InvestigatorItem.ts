@@ -413,7 +413,7 @@ export class InvestigatorItem extends Item {
     let newSource = "";
     let newHtml = "";
     if (newFormat === oldFormat) {
-      return;
+      return oldSource;
     }
     if (newFormat === NoteFormat.plain) {
       if (oldFormat === NoteFormat.markdown) {
@@ -443,6 +443,7 @@ export class InvestigatorItem extends Item {
         notes: { format: newFormat, source: newSource, html },
       },
     });
+    return newSource;
   }
 
   setNotesSource = async (source: string) => {

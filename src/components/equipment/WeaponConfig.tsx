@@ -32,19 +32,18 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
-    confirmADoodleDo(
+    confirmADoodleDo({
       message,
-      "Delete",
-      "Cancel",
-      "fa-trash",
-      {
+      confirmText: "Delete",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-trash",
+      values: {
         ActorName: weapon.actor?.data.name ?? "",
         EquipmentName: weapon.data.name,
       },
-      () => {
-        weapon.delete();
-      },
-    );
+    }).then(() => {
+      weapon.delete();
+    });
   }, [weapon]);
 
   const abilities = getCombatAbilities();

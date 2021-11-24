@@ -35,19 +35,18 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
-    confirmADoodleDo(
+    confirmADoodleDo({
       message,
-      "Delete",
-      "Cancel",
-      "fa-trash",
-      {
+      confirmText: "Delete",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-trash",
+      values: {
         ActorName: item.actor?.data.name ?? "",
         EquipmentName: item.data.name,
       },
-      () => {
-        item.delete();
-      },
-    );
+    }).then(() => {
+      item.delete();
+    });
   }, [item]);
 
   const onChangeType = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
