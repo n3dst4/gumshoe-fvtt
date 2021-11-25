@@ -1,4 +1,4 @@
-import { assertGame, fixLength, plainTextToHtml, htmlToMarkdown } from "../functions";
+import { assertGame, fixLength } from "../functions";
 import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
 import { InvestigatorActor } from "./InvestigatorActor";
@@ -17,6 +17,7 @@ import {
 import * as constants from "../constants";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
+import { convertNotes, plainTextToHtml } from "../textFunctions";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -407,37 +408,11 @@ export class InvestigatorItem extends Item {
   setNotesFormat = async (newFormat: NoteFormat) => {
     const oldFormat = this.data.data.notes.format;
     const oldSource = this.data.data.notes.source;
-    let newSource = "";
-    let newHtml = "";
-    if (newFormat === oldFormat) {
-      return oldSource;
-    }
-    if (newFormat === NoteFormat.plain) {
-      if (oldFormat === NoteFormat.markdown) {
-        newSource = oldSource;
-      } else if (oldFormat === NoteFormat.richText) {
-        newSource = htmlToMarkdown(oldSource);
-      }
-      newHtml = plainTextToHtml(newSource);
-    } else if (newFormat === NoteFormat.markdown) {
-      if (oldFormat === NoteFormat.plain) {
-        newSource = oldSource;
-      } else if (oldFormat === NoteFormat.richText) {
-        newSource = htmlToMarkdown(oldSource);
-      }
-      newHtml = marked(newSource);
-    } else if (newFormat === NoteFormat.richText) {
-      if (oldFormat === NoteFormat.plain) {
-        newSource = plainTextToHtml(oldSource);
-      } else if (oldFormat === NoteFormat.markdown) {
-        newSource = marked(oldSource);
-      }
-      newHtml = newSource;
-    }
-    const html = TextEditor.enrichHTML(DOMPurify.sanitize(newHtml));
+    const oldHtml = this.data.data.notes.html;
+    const { newSource, newHtml } = convertNotes(oldFormat, newFormat, oldSource, oldHtml);
     await this.update({
       data: {
-        notes: { format: newFormat, source: newSource, html },
+        notes: { format: newFormat, source: newSource, html: newHtml },
       },
     });
     return newSource;
@@ -445,11 +420,12 @@ export class InvestigatorItem extends Item {
 
   setNotesSource = async (source: string) => {
     const format = this.data.data.notes.format;//
+
     let newHtml = "";
     if (format === NoteFormat.plain) {
       newHtml = plainTextToHtml(source);
     } else if (format === NoteFormat.markdown) {
-      newHtml = marked.parse(source);
+      newHtml = marked(source);
     } else if (format === NoteFormat.richText) {
       newHtml = source;
     }
