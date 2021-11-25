@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ChangeEvent, useCallback, useState } from "react";
-import { assertGame, confirmADoodleDo, isGeneralAbility } from "../../functions";
+import { assertGame, confirmADoodleDo } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
@@ -21,7 +21,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
 }) => {
   assertGame(game);
   assertAbilityDataSource(ability.data);
-  const isGeneral = isGeneralAbility(ability);
+  const isGeneral = isGeneralAbilityDataSource(ability.data);
 
   const onClickDelete = useCallback(() => {
     const message = ability.actor

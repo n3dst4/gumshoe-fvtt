@@ -5,7 +5,6 @@ import { equipment, mwItem, weapon } from "../constants";
 import { InvestigatorItem } from "../module/InvestigatorItem";
 import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
-import { isAbility } from "../functions";
 import { WeaponSheet } from "./equipment/WeaponSheet";
 import { CSSReset, CSSResetMode } from "./CSSReset";
 import { ItemSheetAppContext } from "./FoundryAppContext";
@@ -46,7 +45,7 @@ export const InvestigatorItemSheet: React.FC<InvestigatorItemSheetProps> = ({
         mode={CSSResetMode.small}
         css={style}
       >
-        {isAbility(item)
+        {isAbilityDataSource(item.data)
           ? <AbilitySheet ability={item} application={foundryApplication} />
           : item.type === equipment
             ? <EquipmentSheet equipment={item} application={foundryApplication} />

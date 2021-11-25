@@ -1,25 +1,9 @@
-import { generalAbility, investigativeAbility, systemName } from "./constants";
+import { systemName } from "./constants";
 import Case from "case";
 import { Dictionary } from "lodash";
 import { getDebugTranslations } from "./settingsHelpers";
 import { escape as escapeText } from "html-escaper";
 import { safeTurndown } from "./turndown";
-
-export const isInvestigativeAbility = (item: Item) => (
-  (typeof item === "string")
-    ? item === investigativeAbility
-    : item?.type === investigativeAbility
-);
-
-export const isGeneralAbility = (item: Item) => (
-  (typeof item === "string")
-    ? item === generalAbility
-    : item?.type === generalAbility
-);
-
-export const isAbility = (item: Item) => (
-  isInvestigativeAbility(item) || isGeneralAbility(item)
-);
 
 interface NameHaver {
   name: string|null;

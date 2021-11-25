@@ -3,9 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
-import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
-import { isGeneralAbility, isInvestigativeAbility } from "../../functions";
-// import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { assertAbilityDataSource, isGeneralAbilityDataSource, isInvestigativeAbilityDataSource } from "../../types";
 
 type AbilitySlugPlayProps = {
   ability: InvestigatorItem,
@@ -84,12 +82,12 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
         </button>
       </div>
       <div css={{ gridColumn: "spend" }}>
-        {isInvestigativeAbility(ability) && (
+        {isInvestigativeAbilityDataSource(ability.data) && (
           <button disabled={spend === 0} onClick={onSpend}>
             <i className="fa fa-search" title="Spend" />{spend}
           </button>
         )}
-        {isGeneralAbility(ability) && (
+        {isGeneralAbilityDataSource(ability.data) && (
           <button css={{ width: "4.1em" }} onClick={onTest}>
             <i className="fa fa-dice" title="Test" />+{spend}
           </button>

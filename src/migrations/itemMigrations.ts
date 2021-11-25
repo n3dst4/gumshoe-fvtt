@@ -1,7 +1,8 @@
 import { generalAbility, generalAbilityIcon, investigativeAbilityIcon } from "../constants";
-import { isAbility, isGeneralAbility, isNullOrEmptyString } from "../functions";
+import { isNullOrEmptyString } from "../functions";
 import { getSystemMigrationVersion, getDefaultGeneralAbilityCategory } from "../settingsHelpers";
 import { escape } from "html-escaper";
+import { isAbilityDataSource, isGeneralAbilityDataSource } from "../types";
 
 export const addCategoryToGeneralAbilities = (data: any, updateData: any) => {
   if (data.type === generalAbility && isNullOrEmptyString(data.data?.category)) {
@@ -30,11 +31,11 @@ export const setTrackersForPreAlpha4Updates = (data: any, updateData: any) => {
 };
 
 export const setIconForAbilities = (data: any, updateData: any) => {
-  if (isAbility(data.type) && (isNullOrEmptyString(data.img) || data.img === "icons/svg/mystery-man.svg")) {
+  if (isAbilityDataSource(data) && (isNullOrEmptyString(data.img) || data.img === "icons/svg/mystery-man.svg")) {
     if (!updateData.data) {
       updateData.data = {};
     }
-    updateData.img = isGeneralAbility(data.type ?? "")
+    updateData.img = isGeneralAbilityDataSource(data ?? "")
       ? generalAbilityIcon
       : investigativeAbilityIcon;
   }

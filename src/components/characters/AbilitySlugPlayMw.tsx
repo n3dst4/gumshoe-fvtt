@@ -3,9 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
-import { assertAbilityDataSource } from "../../types";
-import { isGeneralAbility } from "../../functions";
-// import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
 
 type AbilitySlugPlayMwProps = {
   ability: InvestigatorItem,
@@ -79,7 +77,7 @@ export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({ ability })
         </button>
       </div>
       <div css={{ gridColumn: "spend" }}>
-        {isGeneralAbility(ability) && (
+        {isGeneralAbilityDataSource(ability.data) && (
           <button css={{ width: "4.1em" }} onClick={onTest}>
             <i className="fa fa-dice" title="Test" />+{boonLevy}
           </button>

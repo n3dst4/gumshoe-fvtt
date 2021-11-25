@@ -1,4 +1,4 @@
-import { assertGame, fixLength, plainTextToHtml, isAbility, htmlToMarkdown } from "../functions";
+import { assertGame, fixLength, plainTextToHtml, htmlToMarkdown } from "../functions";
 import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
 import { InvestigatorActor } from "./InvestigatorActor";
@@ -276,9 +276,6 @@ export class InvestigatorItem extends Item {
 
   getRating = (): number => {
     assertAbilityDataSource(this.data);
-    if (!isAbility(this)) {
-      throw new Error(`${this.type} does not have a rating`);
-    }
     return this.data.data.rating ?? 0;
   }
 

@@ -3,7 +3,6 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useEffect, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { isGeneralAbility } from "../../functions";
 import { AbilityTest } from "./AbilityTest";
 import { AbilityMainBits } from "./AbilityMainBits";
 import { AbilityConfig } from "./AbilityConfig";
@@ -12,6 +11,7 @@ import { ImagePickle } from "../ImagePickle";
 import { getUseMwStyleAbilities } from "../../settingsHelpers";
 import { AbilityTestMW } from "./AbilityTestMW";
 import { AbilityMwExtraFields } from "./AbilityMwExtraFields";
+import { isGeneralAbilityDataSource } from "../../types";
 
 type AbilitySheetProps = {
   ability: InvestigatorItem,
@@ -22,7 +22,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   ability,
   application,
 }) => {
-  const isGeneral = isGeneralAbility(ability);
+  const isGeneral = isGeneralAbilityDataSource(ability.data);
   const [configMode, setConfigMode] = useState(false);
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
-import { assertGame, confirmADoodleDo, isAbility } from "../functions";
+import { assertGame, confirmADoodleDo } from "../functions";
 import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup } from "../types";
 import { themes } from "../themes/themes";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
@@ -139,7 +139,7 @@ export class InvestigatorActor extends Actor {
   getAbilityByName (name: string, type?: AbilityType) {
     return this.items.find(
       (item) =>
-        (type ? item.data.type === type : isAbility(item)) && item.name === name,
+        (type ? item.data.type === type : isAbilityDataSource(item.data)) && item.name === name,
     );
   }
 
@@ -156,7 +156,7 @@ export class InvestigatorActor extends Actor {
   }
 
   getAbilities () {
-    return this.items.filter((item) => isAbility(item));
+    return this.items.filter((item) => isAbilityDataSource(item.data));
   }
 
   getMwItems () {
