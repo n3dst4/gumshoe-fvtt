@@ -43,10 +43,10 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   }, [source]);
 
   const onClickSave = useCallback(() => {
-    setLiveSource(source);
+    setSource(liveSource);
     setEditMode(false);
     setDirty(false);
-  }, [source]);
+  }, [liveSource, setSource]);
 
   const onClickCancel = useCallback(async () => {
     if (dirty) {
@@ -164,6 +164,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
           className={className}
           editMode={editMode}
           showSource={showSource}
+          onSave={onClickSave}
         />
       </div>
     </div>

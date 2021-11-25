@@ -17,6 +17,7 @@ interface NotesEditorProps {
   className?: string;
   editMode: boolean;
   showSource: boolean;
+  onSave: () => void;
 }
 
 export const NotesEditor: React.FC<NotesEditorProps> = ({
@@ -27,6 +28,7 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
   className,
   editMode,
   showSource,
+  onSave,
 }: NotesEditorProps) => {
   assertGame(game);
   const theme = useContext(ThemeContext);
@@ -76,6 +78,7 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
         className={className}
         onChange={setSource}
         value={source}
+        onSave={onSave}
       />
     );
   }
