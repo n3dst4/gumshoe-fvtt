@@ -13,7 +13,7 @@ import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { assertWeaponDataSource } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { AsyncTextArea } from "../inputs/AsyncTextArea";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 
 type WeaponConfigProps = {
   weapon: InvestigatorItem,
@@ -99,10 +99,13 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
           setDamage={weapon.setLongRangeDamage}
           setEnabled={weapon.setIsLongRange}
         />
-        <GridField label="Notes">
-          {/* XXX RTF */}
-          <AsyncTextArea value={weapon.getNotes().source} onChange={weapon.setNotesSource} />
-        </GridField>
+        <NotesEditorWithControls
+          allowChangeFormat
+          format={weapon.data.data.notes.format}
+          html={weapon.data.data.notes.html}
+          source={weapon.data.data.notes.source}
+          onSave={weapon.setNotes}
+        />
         <GridField label="Uses ammo?">
           <AsyncCheckbox
             checked={weapon.getUsesAmmo()}

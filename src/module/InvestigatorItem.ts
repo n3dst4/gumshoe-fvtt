@@ -11,13 +11,10 @@ import {
   MWDifficulty,
   MwRefreshGroup,
   MwType,
-  NoteFormat,
+  NoteWithFormat,
   RangeTuple,
 } from "../types";
 import * as constants from "../constants";
-import { marked } from "marked";
-import DOMPurify from "dompurify";
-import { convertNotes, plainTextToHtml } from "../textFunctions";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -405,33 +402,37 @@ export class InvestigatorItem extends Item {
     return this.data.data.notes ?? "";
   }
 
-  setNotesFormat = async (newFormat: NoteFormat) => {
-    const oldFormat = this.data.data.notes.format;
-    const oldSource = this.data.data.notes.source;
-    const oldHtml = this.data.data.notes.html;
-    const { newSource, newHtml } = convertNotes(oldFormat, newFormat, oldSource, oldHtml);
-    await this.update({
-      data: {
-        notes: { format: newFormat, source: newSource, html: newHtml },
-      },
-    });
-    return newSource;
+  setNotes = async (newNotes: NoteWithFormat) => {
+    await this.update({ data: { notes: newNotes } });
   }
 
-  setNotesSource = async (source: string) => {
-    const format = this.data.data.notes.format;//
+  // setNotesFormat = async (newFormat: NoteFormat) => {
+  //   const oldFormat = this.data.data.notes.format;
+  //   const oldSource = this.data.data.notes.source;
+  //   const oldHtml = this.data.data.notes.html;
+  //   const { newSource, newHtml } = convertNotes(oldFormat, newFormat, oldSource, oldHtml);
+  //   await this.update({
+  //     data: {
+  //       notes: { format: newFormat, source: newSource, html: newHtml },
+  //     },
+  //   });
+  //   return newSource;
+  // }
 
-    let newHtml = "";
-    if (format === NoteFormat.plain) {
-      newHtml = plainTextToHtml(source);
-    } else if (format === NoteFormat.markdown) {
-      newHtml = marked(source);
-    } else if (format === NoteFormat.richText) {
-      newHtml = source;
-    }
-    const html = TextEditor.enrichHTML(DOMPurify.sanitize(newHtml));
-    await this.update({ data: { notes: { format, source, html } } });
-  }
+  // setNotesSource = async (source: string) => {
+  //   const format = this.data.data.notes.format;//
+
+  //   let newHtml = "";
+  //   if (format === NoteFormat.plain) {
+  //     newHtml = plainTextToHtml(source);
+  //   } else if (format === NoteFormat.markdown) {
+  //     newHtml = marked(source);
+  //   } else if (format === NoteFormat.richText) {
+  //     newHtml = source;
+  //   }
+  //   const html = TextEditor.enrichHTML(DOMPurify.sanitize(newHtml));
+  //   await this.update({ data: { notes: { format, source, html } } });
+  // }
 
   getAbility = () => {
     assertWeaponDataSource(this.data);

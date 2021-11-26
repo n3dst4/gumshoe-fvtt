@@ -6,11 +6,11 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertWeaponDataSource, isAbilityDataSource, isPCDataSource, PCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { Translate } from "../Translate";
 import { performAttack } from "./performAttack";
 
@@ -232,10 +232,13 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
             </GridField>
         }
 
-        <GridField label="Notes">
-          {/* XXX RTF */}
-          <AsyncTextArea value={weapon.getNotes().source} onChange={weapon.setNotesSource} />
-        </GridField>
+        <NotesEditorWithControls
+          allowChangeFormat
+          format={weapon.data.data.notes.format}
+          html={weapon.data.data.notes.html}
+          source={weapon.data.data.notes.source}
+          onSave={weapon.setNotes}
+        />
         <GridField label="Bonus pool">
           <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />
         </GridField>

@@ -81,3 +81,16 @@ export function convertNotes (oldFormat: NoteFormat, newFormat: NoteFormat, oldS
   const newHtml = TextEditor.enrichHTML(DOMPurify.sanitize(unsafeNewHtml));
   return { newSource, newHtml };
 }
+
+export function toHtml (format: NoteFormat, source: string) {
+  let newHtml = "";
+  if (format === NoteFormat.plain) {
+    newHtml = plainTextToHtml(source);
+  } else if (format === NoteFormat.markdown) {
+    newHtml = markdownToHtml(source);
+  } else if (format === NoteFormat.richText) {
+    newHtml = source;
+  }
+  const html = TextEditor.enrichHTML(DOMPurify.sanitize(newHtml));
+  return html;
+}

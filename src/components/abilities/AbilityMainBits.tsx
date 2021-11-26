@@ -107,8 +107,10 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
         source={ability.getNotes().source}
         format={ability.getNotes().format}
         html={ability.getNotes().html}
-        setSource={ability.setNotesSource}
-        setFormat={ability.setNotesFormat}
+        // setSource={ability.setNotesSource}
+        // setFormat={ability.setNotesFormat}
+        allowChangeFormat
+        onSave={ability.setNotes}
         css={{
           height: "100%",
           "&&": {

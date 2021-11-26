@@ -5,7 +5,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { AsyncTextArea } from "../inputs/AsyncTextArea";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem,
@@ -115,7 +115,14 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         css={{ gridColumn: "1 / -2", paddingLeft: "1em" }}
       >
         {/* XXX RTF */}
-        <AsyncTextArea value={weapon.getNotes().source} onChange={weapon.setNotesSource} />
+        <div dangerouslySetInnerHTML={{ __html: weapon.data.data.notes.html }} />
+        {/* <NotesEditorWithControls
+          allowChangeFormat
+          format={weapon.data.data.notes.format}
+          html={weapon.data.data.notes.html}
+          source={weapon.data.data.notes.source}
+          onSave={weapon.setNotes}
+        /> */}
       </div>
     </Fragment>
   );

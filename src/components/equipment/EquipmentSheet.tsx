@@ -9,7 +9,7 @@ import { TextInput } from "../inputs/TextInput";
 import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { ImagePickle } from "../ImagePickle";
-import { AsyncTextArea } from "../inputs/AsyncTextArea";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 
 type EquipmentSheetProps = {
   equipment: InvestigatorItem,
@@ -101,10 +101,13 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
         <GridField label="Name">
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
-        <GridField label="Notes">
-          {/* XXX RTF */}
-          <AsyncTextArea value={equipment.getNotes().source} onChange={equipment.setNotesSource} />
-        </GridField>
+        <NotesEditorWithControls
+          allowChangeFormat
+          format={equipment.data.data.notes.format}
+          html={equipment.data.data.notes.html}
+          source={equipment.data.data.notes.source}
+          onSave={equipment.setNotes}
+        />
       </InputGrid>
     </div>
   );

@@ -9,11 +9,11 @@ import { TextInput } from "../inputs/TextInput";
 import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { ImagePickle } from "../ImagePickle";
-import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { absoluteCover } from "../absoluteCover";
 import { assertMwItemDataSource, MwType } from "../../types";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 
 type WmItemSheetProps = {
   item: InvestigatorItem,
@@ -139,7 +139,21 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
             <option value="missileWeapon">Missile weapon</option>
           </select>
         </GridField>
-        <GridFieldStacked label="Notes">
+        <NotesEditorWithControls
+          allowChangeFormat
+          format={item.data.data.notes.format}
+          html={item.data.data.notes.html}
+          source={item.data.data.notes.source}
+          onSave={item.setNotes}
+          css={{
+            height: "100%",
+            "&&": {
+              resize: "none",
+            },
+          }}
+        />
+
+        {/* <GridFieldStacked label="Notes">
           <AsyncTextArea
             value={item.getNotes().source}
             onChange={item.setNotesSource}
@@ -150,7 +164,7 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
               },
             }}
           />
-        </GridFieldStacked>
+        </GridFieldStacked> */}
         {
           item.data.data.mwType === "enchantedItem" &&
           <GridField label="Charges">
