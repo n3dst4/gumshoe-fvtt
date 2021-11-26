@@ -103,7 +103,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
               <button
                 css={{
                   width: "auto",
-                  marginRight: "1em",
+                  marginRight: "0.5em",
                 }}
                 onClick={() => setShowSource((e) => !e)}
               >
@@ -112,12 +112,12 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
               </button>
           }
 
-{
+          {
             (!editMode) &&
               <button
                 css={{
                   width: "auto",
-                  marginRight: "1em",
+                  marginRight: "0.5em",
                 }}
                 onClick={onClickEdit}
               >
@@ -132,17 +132,17 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
                 <button
                   css={{
                     width: "auto",
-                    marginRight: "1em",
+                    marginRight: "0.5em",
                   }}
                   onClick={onClickSave}
                 >
-                  <i className="fas fa-save"/>
+                  <i className="fas fa-download"/>
                   <Translate>Save</Translate>
                 </button>
                 <button
                   css={{
                     width: "auto",
-                    marginRight: "1em",
+                    marginRight: "0.5em",
                   }}
                   onClick={onClickCancel}
                 >
