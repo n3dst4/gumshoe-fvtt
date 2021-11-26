@@ -5,7 +5,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { ThemeContext } from "../../themes/ThemeContext";
+import { WeaponRowEditNotes } from "./WeaponRowEditNotes";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem,
@@ -14,7 +14,6 @@ type WeaponRowEditProps = {
 export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   weapon,
 }) => {
-  const theme = useContext(ThemeContext);
   const app = useContext(ActorSheetAppContext);
   const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
     if (app !== null) {
@@ -112,17 +111,8 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           </span>
         )}
       </div>
-      <div
-        css={{
-          gridColumn: "1 / -1",
-          padding: "0.5em 0.5em 0.5em 1em",
-          maxHeight: "6em",
-          overflow: "auto",
-          whiteSpace: "normal",
-          margin: "0.5em",
-          border: `1px solid ${theme.colors.text}`,
-        }}
-        dangerouslySetInnerHTML={{ __html: weapon.data.data.notes.html }}
+      <WeaponRowEditNotes
+        html={weapon.data.data.notes.html}
       />
     </Fragment>
   );
