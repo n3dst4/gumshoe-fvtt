@@ -10,6 +10,7 @@ import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { ImagePickle } from "../ImagePickle";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { absoluteCover } from "../absoluteCover";
 
 type EquipmentSheetProps = {
   equipment: InvestigatorItem,
@@ -45,11 +46,11 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   return (
     <div
       css={{
-        paddingBottom: "1em",
+        ...absoluteCover,
+        padding: "0.5em 0.5em 1em 0.5em",
         display: "grid",
-        position: "relative",
         gridTemplateColumns: "auto 1fr auto",
-        gridTemplateRows: "auto auto auto",
+        gridTemplateRows: "auto auto 1fr",
         gridTemplateAreas:
           "\"image slug     trash\" " +
           "\"image headline headline\" " +
@@ -97,7 +98,11 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
       </a>
 
       {/* Body */}
-      <InputGrid css={{ gridArea: "body" }}>
+      <InputGrid css={{
+        gridArea: "body",
+        position: "relative",
+        gridTemplateRows: "auto 1fr",
+      }}>
         <GridField label="Name">
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
@@ -107,6 +112,12 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
           html={equipment.data.data.notes.html}
           source={equipment.data.data.notes.source}
           onSave={equipment.setNotes}
+          css={{
+            height: "100%",
+            "&&": {
+              resize: "none",
+            },
+          }}
         />
       </InputGrid>
     </div>
