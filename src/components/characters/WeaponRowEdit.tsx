@@ -5,7 +5,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+// import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem,
