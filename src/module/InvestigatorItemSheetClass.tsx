@@ -15,7 +15,7 @@ class InvestigatorEquipmentSheetClassBase extends ItemSheet {
       ...super.defaultOptions,
       classes: [systemName, "sheet", "item"],
       template: reactTemplatePath,
-      width: 400,
+      width: 450,
       height: 600,
       resizable: true,
     };
@@ -43,7 +43,7 @@ class InvestigatorAbilitySheetClassBase extends ItemSheet {
       ...super.defaultOptions,
       classes: [systemName, "sheet", "item"],
       template: reactTemplatePath,
-      width: 400,
+      width: 450,
       height: 600,
       resizable: true,
     };
@@ -62,7 +62,7 @@ class InvestigatorMwItemSheetClassBase extends ItemSheet {
       ...super.defaultOptions,
       classes: [systemName, "sheet", "item"],
       template: reactTemplatePath,
-      width: 400,
+      width: 450,
       height: 600,
       resizable: true,
     };
