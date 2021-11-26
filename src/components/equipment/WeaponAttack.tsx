@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { generalAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertWeaponDataSource, isAbilityDataSource, isPCDataSource, PCDataSource } from "../../types";
+import { absoluteCover } from "../absoluteCover";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
@@ -130,7 +131,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const ammoFail = weapon.getUsesAmmo() && weapon.getAmmo() <= 0;
 
   return (
-    <Fragment>
+    <div css={{ ...absoluteCover, display: "flex", flexDirection: "column" }}>
       <InputGrid
         css={{
           border: `1px solid ${theme.colors.text}`,
@@ -202,7 +203,12 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
           </div>
         </GridFieldStacked>
       </InputGrid>
-      <InputGrid>
+      <InputGrid
+        css={{
+          flex: 1,
+          gridTemplateRows: `${weapon.data.data.usesAmmo ? "auto " : ""}1fr`,
+        }}
+      >
         {weapon.data.data.usesAmmo &&
             <GridField label="Ammo">
               <div
@@ -289,6 +295,6 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
               )}
         </GridField>
       </InputGrid>
-    </Fragment>
+    </div>
   );
 };
