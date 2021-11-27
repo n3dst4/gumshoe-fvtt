@@ -112,7 +112,8 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         )}
       </div>
       <WeaponRowEditNotes
-        html={weapon.data.data.notes.html}
+        note={weapon.data.data.notes}
+        onSave={weapon.setNotes}
       />
     </Fragment>
   );

@@ -1,33 +1,30 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { absoluteCover } from "../absoluteCover";
 type RichTextEditorProps = {
-  value: string,
-  onChange: (value: string) => void,
+  initialValue: string,
   className?: string,
-  onSave: () => void,
+  onSave: (newSource: string) => void,
 };
 
 export const RichTextEditor: React.FC<RichTextEditorProps> = ({
-  value,
-  onChange,
+  initialValue,
   className,
   onSave,
 }: RichTextEditorProps) => {
   const ref = useRef<HTMLTextAreaElement>(null);
-  const [initialValue] = useState(value);
   useEffect(() => {
-    // const options =
+    let currentValue = initialValue;
     if (ref.current) {
       const instancePromise = TextEditor.create({
         target: ref.current,
         save_onsavecallback: () => {
-          onSave();
+          onSave(currentValue);
         },
       } as any, initialValue).then((mce) => {
-        mce.on("change", (event) => {
-          onChange(mce.getContent());
+        mce.on("change", () => {
+          currentValue = mce.getContent();
         });
         return mce;
       });
@@ -37,12 +34,12 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
         });
       };
     }
-  }, [initialValue, onChange, onSave]);
+  }, [initialValue, onSave]);
   const onSubmit = useCallback((e: any) => {
     e.preventDefault();
     e.stopPropagation();
     // eslint-disable-next-line no-debugger
-    debugger;
+    // debugger;
   }, []);
 
   return (
@@ -55,11 +52,10 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
     >
       <textarea
         ref={ref}
-        value={value}
-        // onChange={onChange}
+        value={initialValue}
         className={className}
       >
-        {value}
+        {initialValue}
       </textarea>
     </form>
   );

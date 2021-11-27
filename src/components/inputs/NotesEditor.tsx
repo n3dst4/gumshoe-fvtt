@@ -76,8 +76,7 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
     editor = (
       <RichTextEditor
         className={className}
-        onChange={setSource}
-        value={source}
+        initialValue={source}
         onSave={onSave}
       />
     );
