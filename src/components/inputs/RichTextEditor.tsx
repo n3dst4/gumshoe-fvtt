@@ -49,11 +49,11 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
         ...absoluteCover,
         backgroundColor: "white",
       }}
-    >
+      className={className}
+      >
       <textarea
         ref={ref}
         value={initialValue}
-        className={className}
       >
         {initialValue}
       </textarea>
