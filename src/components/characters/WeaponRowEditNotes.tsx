@@ -2,13 +2,15 @@
 import { jsx } from "@emotion/react";
 import { DocumentModificationOptions } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
 import { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { ThemeContext } from "../../themes/ThemeContext";
+// import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";
+// import { absoluteCover } from "../absoluteCover";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { MarkdownEditor } from "../inputs/MarkdownEditor";
 import { RichTextEditor } from "../inputs/RichTextEditor";
+import { Translate } from "../Translate";
 
 interface WeaponRowEditNotesProps {
   className?: string;
@@ -65,7 +67,7 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
     setEditMode(true);
   }, [setEditMode]);
 
-  const theme = useContext(ThemeContext);
+  // const theme = useContext(ThemeContext);
   const onSaveRichtext = useCallback((html) => {
     item.setNotes({
       source: html,
@@ -86,20 +88,38 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
       className={className}
       css={{
         gridColumn: "1 / -1",
-        padding: "0.5em 0.5em 0.5em 1em",
-        maxHeight,
-        overflow: "auto",
+        // maxHeight,
         whiteSpace: "normal",
-        margin: "0.5em",
-        border: `1px solid ${theme.colors.text}`,
+        margin: "0 0 0.5em 1em",
         position: "relative",
       }}
     >
+      {editMode && (note.format === NoteFormat.plain || note.format === NoteFormat.markdown) &&
+        <div
+          css={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+          }}
+        >
+          <button><Translate>Save</Translate></button>
+          <button><Translate>Cancel</Translate></button>
+        </div>
+      }
       {!editMode &&
         <div
+          css={{
+            // ...absoluteCover,
+            maxHeight,
+            overflow: "auto",
+
+            // border: `1px solid ${theme.colors.text}`,
+            // padding: "0.5em 0.5em 0.5em 1em",
+          }}
           onClick={goEditMode}
-          dangerouslySetInnerHTML={{ __html: liveHtml }}
-        />
+        >
+          <div dangerouslySetInnerHTML={{ __html: liveHtml }}/>
+        </div>
       }
       {editMode && (note.format === NoteFormat.plain) &&
         <AsyncTextArea
