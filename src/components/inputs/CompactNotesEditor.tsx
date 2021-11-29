@@ -4,19 +4,24 @@ import React, { useCallback, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { toHtml } from "../../textFunctions";
 import { NoteFormat } from "../../types";
-import { AsyncTextArea } from "../inputs/AsyncTextArea";
-import { MarkdownEditor } from "../inputs/MarkdownEditor";
-import { RichTextEditor } from "../inputs/RichTextEditor";
+import { AsyncTextArea } from "./AsyncTextArea";
+import { MarkdownEditor } from "./MarkdownEditor";
+import { RichTextEditor } from "./RichTextEditor";
 
-interface WeaponRowEditNotesProps {
+interface CompactNotesEditorProps {
   className?: string;
   item: InvestigatorItem;
 }
 
-export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
+/**
+ * A simple editor designed to work in compact situations. No control to change
+ * format. Markdowm/plain are directly editable. Richtext just renders HTML
+ * until clicked, then turns into a TinyMCE.
+ */
+export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
   className,
   item,
-}: WeaponRowEditNotesProps) => {
+}: CompactNotesEditorProps) => {
   const note = item.getNotes();
 
   const onChange = useCallback(

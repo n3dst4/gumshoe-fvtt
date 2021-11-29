@@ -5,7 +5,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { WeaponRowEditNotes } from "./WeaponRowEditNotes";
+import { CompactNotesEditor } from "../inputs/CompactNotesEditor";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem,
@@ -111,7 +111,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           </span>
         )}
       </div>
-      <WeaponRowEditNotes
+      <CompactNotesEditor
         item={weapon}
       />
     </Fragment>
