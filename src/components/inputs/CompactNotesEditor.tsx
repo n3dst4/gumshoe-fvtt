@@ -83,7 +83,7 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
           >
             <RichTextEditor
               onSave={onSaveRichtext}
-              initialValue={note.source}
+              value={note.source}
             />
           </div>
             )

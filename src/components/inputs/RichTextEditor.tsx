@@ -1,19 +1,30 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useWhyDidYouUpdate } from "../../hooks/useWhyDidYouUpdate";
 import { absoluteCover } from "../absoluteCover";
 type RichTextEditorProps = {
-  initialValue: string,
+  value: string,
   className?: string,
   onSave: (newSource: string) => void,
+  onChange?: (newSource: string) => void,
 };
 
 export const RichTextEditor: React.FC<RichTextEditorProps> = ({
-  initialValue,
+  value,
   className,
   onSave,
+  onChange,
 }: RichTextEditorProps) => {
+  useWhyDidYouUpdate("RichTextEditor", {
+    value,
+    className,
+    onSave,
+    onChange,
+  });
+
   const ref = useRef<HTMLTextAreaElement>(null);
+  const [initialValue] = useState(value);
   useEffect(() => {
     let currentValue = initialValue;
     if (ref.current) {
@@ -24,7 +35,9 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
         },
       } as any, initialValue).then((mce) => {
         mce.on("change", () => {
-          currentValue = mce.getContent();
+          const content = mce.getContent();
+          onChange && onChange(content);
+          currentValue = content;
         });
         return mce;
       });
@@ -34,17 +47,17 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
         });
       };
     }
-  }, [initialValue, onSave]);
-  const onSubmit = useCallback((e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
-    // eslint-disable-next-line no-debugger
-    // debugger;
-  }, []);
+  }, [initialValue, onChange, onSave]);
+  // const onSubmit = useCallback((e: any) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   // eslint-disable-next-line no-debugger
+  //   // debugger;
+  // }, []);
 
   return (
     <form
-      onSubmit={onSubmit}
+      // onSubmit={onSubmit}
       css={{
         ...absoluteCover,
         backgroundColor: "white",

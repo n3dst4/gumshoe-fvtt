@@ -7,13 +7,12 @@ import { Translate } from "../Translate";
 import { NotesEditor } from "./NotesEditor";
 import * as constants from "../../constants";
 import { convertNotes, toHtml } from "../../textFunctions";
+import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 
 interface TextEditorWithControlsProps {
   source: string;
   html: string;
   format: NoteFormat;
-  // setSource: (source: string) => Promise<void>;
-  // setFormat?: (format: NoteFormat) => Promise<string>;
   className?: string;
   onSave: (note: NoteWithFormat) => void;
   allowChangeFormat: boolean;
@@ -31,9 +30,9 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   const [editMode, setEditMode] = useState(false);
   const [showSource, setShowSource] = useState(false);
 
-  const [liveSource, setLiveSource] = useState(origSource);
-  const [liveHtml, setLiveHtml] = useState(origHtml);
-  const [liveFormat, setLiveFormat] = useState(origFormat);
+  const [liveSource, setLiveSource, getLiveSource] = useStateWithGetter(origSource);
+  const [liveHtml, setLiveHtml, getLiveHtml] = useStateWithGetter(origHtml);
+  const [liveFormat, setLiveFormat, getLiveFormat] = useStateWithGetter(origFormat);
 
   const [dirty, setDirty] = useState(false);
   const isDebugging = (game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(constants.systemName);
@@ -42,23 +41,23 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
     setLiveSource(newSource);
     setLiveHtml(toHtml(liveFormat, newSource));
     setDirty(true);
-  }, [liveFormat]);
+  }, [liveFormat, setLiveHtml, setLiveSource]);
 
   const onClickEdit = useCallback(() => {
     setLiveSource(origSource);
     setEditMode(true);
     setDirty(false);
-  }, [origSource]);
+  }, [origSource, setLiveSource]);
 
   const onClickSave = useCallback(() => {
     onSave({
-      format: liveFormat,
-      html: liveHtml,
-      source: liveSource,
+      format: getLiveFormat(),
+      html: getLiveHtml(),
+      source: getLiveSource(),
     });
     setEditMode(false);
     setDirty(false);
-  }, [liveFormat, liveHtml, liveSource, onSave]);
+  }, [getLiveFormat, getLiveHtml, getLiveSource, onSave]);
 
   const onClickCancel = useCallback(async () => {
     if (dirty) {
@@ -72,7 +71,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
     setLiveSource(origSource);
     setEditMode(false);
     setDirty(false);
-  }, [dirty, origSource]);
+  }, [dirty, origSource, setLiveSource]);
 
   const onChangeFormat = useCallback(async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newFormat = e.currentTarget.value as NoteFormat;
@@ -81,7 +80,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
     setLiveSource(newSource);
     setLiveHtml(newHtml);
     setDirty(true);
-  }, [liveFormat, liveHtml, liveSource]);
+  }, [liveFormat, liveHtml, liveSource, setLiveFormat, setLiveHtml, setLiveSource]);
 
   return (
     <div
@@ -173,10 +172,10 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
           source={liveSource}
           html={liveHtml}
           format={liveFormat}
-          setSource={onEdit}
           className={className}
           editMode={editMode}
           showSource={showSource}
+          setSource={onEdit}
           onSave={onClickSave}
         />
       </div>

@@ -32,7 +32,9 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
 }: NotesEditorProps) => {
   assertGame(game);
   const theme = useContext(ThemeContext);
+
   let editor: ReactNode;
+
   if (showSource) {
     editor = <pre
       css={{
@@ -76,8 +78,9 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
     editor = (
       <RichTextEditor
         className={className}
-        initialValue={source}
+        value={source}
         onSave={onSave}
+        onChange={setSource}
       />
     );
   }
