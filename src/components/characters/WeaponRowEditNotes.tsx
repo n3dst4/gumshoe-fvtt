@@ -18,34 +18,6 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
   item,
 }: WeaponRowEditNotesProps) => {
   const note = item.getNotes();
-  const [richtextEditMode, setRichtextEditMode] = useState(false);
-  // const [liveSource, setLiveSource, getLiveSource] = useStateWithGetter(note.source);
-  // const [liveHtml, setLiveHtml] = useStateWithGetter(note.html);
-  // const [liveFormat, setLiveFormat, getLiveFormat] = useStateWithGetter(note.format);
-
-  // useEffect(() => {
-  //   const whenItemUpdates = (
-  //     updatedItem: Item,
-  //     change: DeepPartial<ItemDataConstructorData | undefined>,
-  //     options: DocumentModificationOptions,
-  //     userId: string,
-  //   ) => {
-  //     if (updatedItem.id === item.id) {
-  //       setLiveHtml(item.getNotes().html);
-  //       if (getEditMode()) {
-  //         setLiveSource(item.getNotes().source);
-  //       }
-  //       setLiveFormat(item.getNotes().format);
-  //     }
-  //   };
-  //   Hooks.on<Hooks.UpdateDocument<typeof Item>>(
-  //     "updateItem",
-  //     whenItemUpdates,
-  //   );
-  //   return () => {
-  //     Hooks.off("updateItem", whenItemUpdates);
-  //   };
-  // }, [getEditMode, item, setLiveFormat, setLiveHtml, setLiveSource]);
 
   const onChange = useCallback(
     async (source: string) => {
@@ -56,23 +28,32 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
         html,
         source,
       });
-      setRichtextEditMode(false);
     },
     [item],
+  );
+
+  // we do a little more work to avoid always rendering a TinyMCE for every
+  // single item, which probably wouldn't scale very well.
+
+  const [richtextEditMode, setRichtextEditMode] = useState(false);
+
+  const onSaveRichtext = useCallback(
+    async (source: string) => {
+      await onChange(source);
+      setRichtextEditMode(false);
+    },
+    [onChange],
   );
 
   const goEditMode = useCallback(() => {
     setRichtextEditMode(true);
   }, []);
 
-  const maxHeight = "8em";
-
   return (
     <div
       className={className}
       css={{
         gridColumn: "1 / -1",
-        // maxHeight,
         whiteSpace: "normal",
         margin: "0 0 0.5em 1em",
         position: "relative",
@@ -93,13 +74,16 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
             }}
             onClick={goEditMode}
           >
-            <RichTextEditor onSave={onChange} initialValue={note.source} />
+            <RichTextEditor
+              onSave={onSaveRichtext}
+              initialValue={note.source}
+            />
           </div>
             )
           : (
           <div
             css={{
-              maxHeight,
+              maxHeight: "8em",
               overflow: "auto",
             }}
             onClick={goEditMode}
