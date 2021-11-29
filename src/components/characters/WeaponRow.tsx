@@ -62,9 +62,16 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
         {weapon.getUsesAmmo() ? <span>{weapon.getAmmo()}/{weapon.getAmmoMax()}</span> : <span>&mdash;</span>}
       </a>
       <div
-        css={{ gridColumn: "1 / 3", paddingLeft: "1em" }}
+        css={{
+          gridColumn: "1 / -1",
+          paddingLeft: "1em",
+          whiteSpace: "normal",
+          maxHeight: "8em",
+          overflow: "auto",
+          marginBottom: "1em",
+        }}
       >
-        {weapon.getNotes().source}
+        <div dangerouslySetInnerHTML={{ __html: weapon.getNotes().html }} />
       </div>
     </Fragment>
   );
