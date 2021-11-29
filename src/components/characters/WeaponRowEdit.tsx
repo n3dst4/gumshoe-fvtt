@@ -112,7 +112,8 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         )}
       </div>
       <CompactNotesEditor
-        item={weapon}
+        note={weapon.getNotes()}
+        onChange={weapon.setNotes}
       />
     </Fragment>
   );

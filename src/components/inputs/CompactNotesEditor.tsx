@@ -1,16 +1,16 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback, useState } from "react";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { toHtml } from "../../textFunctions";
-import { NoteFormat } from "../../types";
+import { NoteFormat, NoteWithFormat } from "../../types";
 import { AsyncTextArea } from "./AsyncTextArea";
 import { MarkdownEditor } from "./MarkdownEditor";
 import { RichTextEditor } from "./RichTextEditor";
 
 interface CompactNotesEditorProps {
   className?: string;
-  item: InvestigatorItem;
+  note: NoteWithFormat;
+  onChange: (note: NoteWithFormat) => Promise<void>;
 }
 
 /**
@@ -20,21 +20,23 @@ interface CompactNotesEditorProps {
  */
 export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
   className,
-  item,
+  note,
+  onChange: onSave,
 }: CompactNotesEditorProps) => {
-  const note = item.getNotes();
+  const [liveHtml, setLiveHtml] = useState(note.html);
 
   const onChange = useCallback(
     async (source: string) => {
-      const format = item.getNotes().format;
-      const html = toHtml(item.getNotes().format, source);
-      await item.setNotes({
+      const format = note.format;
+      const html = toHtml(note.format, source);
+      await onSave({
         format,
         html,
         source,
       });
+      setLiveHtml(html);
     },
-    [item],
+    [note.format, onSave],
   );
 
   // we do a little more work to avoid always rendering a TinyMCE for every
@@ -93,7 +95,7 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
             }}
             onClick={goEditMode}
           >
-            <div dangerouslySetInnerHTML={{ __html: note.html }} />
+            <div dangerouslySetInnerHTML={{ __html: liveHtml }} />
           </div>
             ))}
     </div>
