@@ -68,6 +68,7 @@
 
     },
     "party": {
+      "templates": [],
       "actorIds": []
     }
   },
@@ -133,8 +134,8 @@
       }
     },
     "mwItem": {
+      "templates": ["notes"],
       "mwType": "tweak",
-      "notes": "",
       "charges": 0,
       "ranges": [0,0,0,0]
     }
