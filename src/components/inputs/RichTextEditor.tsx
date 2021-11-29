@@ -53,10 +53,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
       >
       <textarea
         ref={ref}
-        value={initialValue}
-      >
-        {initialValue}
-      </textarea>
+      />
     </form>
   );
 };
