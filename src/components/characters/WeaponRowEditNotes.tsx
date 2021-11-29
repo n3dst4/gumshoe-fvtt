@@ -1,31 +1,15 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import { DocumentModificationOptions } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
-import { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { toHtml } from "../../textFunctions";
 import { NoteFormat } from "../../types";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { MarkdownEditor } from "../inputs/MarkdownEditor";
-import { RichTextEditor } from "../inputs/RichTextEditor";
-import { Translate } from "../Translate";
 
 interface WeaponRowEditNotesProps {
   className?: string;
   item: InvestigatorItem;
-}
-
-function useStateWithGetter<T> (initial: T) {
-  const [value, setValue] = useState(initial);
-  const ref = useRef(initial);
-  useEffect(function () {
-    ref.current = value;
-  }, [value]);
-  const getValue = useCallback(function () {
-    return ref.current;
-  }, []);
-  return [value, setValue, getValue] as const; // as const makes it a tuple
 }
 
 export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
@@ -33,67 +17,45 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
   item,
 }: WeaponRowEditNotesProps) => {
   const note = item.getNotes();
-  const [editMode, setEditMode, getEditMode] = useStateWithGetter(false);
-  const [liveSource, setLiveSource, getLiveSource] = useStateWithGetter(note.source);
-  const [liveHtml, setLiveHtml] = useStateWithGetter(note.html);
-  const [liveFormat, setLiveFormat, getLiveFormat] = useStateWithGetter(note.format);
+  // const [liveSource, setLiveSource, getLiveSource] = useStateWithGetter(note.source);
+  // const [liveHtml, setLiveHtml] = useStateWithGetter(note.html);
+  // const [liveFormat, setLiveFormat, getLiveFormat] = useStateWithGetter(note.format);
 
-  useEffect(() => {
-    const whenItemUpdates = (
-      updatedItem: Item,
-      change: DeepPartial<ItemDataConstructorData | undefined>,
-      options: DocumentModificationOptions,
-      userId: string,
-    ) => {
-      if (updatedItem.id === item.id) {
-        setLiveHtml(item.getNotes().html);
-        if (getEditMode()) {
-          setLiveSource(item.getNotes().source);
-        }
-        setLiveFormat(item.getNotes().format);
-      }
-    };
-    Hooks.on<Hooks.UpdateDocument<typeof Item>>(
-      "updateItem",
-      whenItemUpdates,
-    );
-    return () => {
-      Hooks.off("updateItem", whenItemUpdates);
-    };
-  }, [getEditMode, item, setLiveFormat, setLiveHtml, setLiveSource]);
+  // useEffect(() => {
+  //   const whenItemUpdates = (
+  //     updatedItem: Item,
+  //     change: DeepPartial<ItemDataConstructorData | undefined>,
+  //     options: DocumentModificationOptions,
+  //     userId: string,
+  //   ) => {
+  //     if (updatedItem.id === item.id) {
+  //       setLiveHtml(item.getNotes().html);
+  //       if (getEditMode()) {
+  //         setLiveSource(item.getNotes().source);
+  //       }
+  //       setLiveFormat(item.getNotes().format);
+  //     }
+  //   };
+  //   Hooks.on<Hooks.UpdateDocument<typeof Item>>(
+  //     "updateItem",
+  //     whenItemUpdates,
+  //   );
+  //   return () => {
+  //     Hooks.off("updateItem", whenItemUpdates);
+  //   };
+  // }, [getEditMode, item, setLiveFormat, setLiveHtml, setLiveSource]);
 
-  const goEditMode = useCallback(() => {
-    setEditMode(true);
-  }, [setEditMode]);
-
-  // const theme = useContext(ThemeContext);
-  const onSaveRichtext = useCallback((html) => {
+  const onChange = useCallback((source: string) => {
+    const format = item.getNotes().format;
+    const html = toHtml(item.getNotes().format, source);
     item.setNotes({
-      source: html,
-      html,
-      format: liveFormat,
-    }).then(() => {
-      setEditMode(false);
-    });
-  }, [item, liveFormat, setEditMode]);
-
-  const onSavePlainText = useCallback(() => {
-    const source = getLiveSource();
-    const format = getLiveFormat();
-    item.setNotes({
-      source: source,
-      html: toHtml(format, source),
       format,
-    }).then(() => {
-      setEditMode(false);
+      html,
+      source,
     });
-  }, [getLiveFormat, getLiveSource, item, setEditMode]);
+  }, [item]);
 
-  const maxHeight = editMode
-    ? (note.format === NoteFormat.richText
-        ? "unset"
-        : "8em")
-    : "6em";
+  const maxHeight = "8em";
 
   return (
     <div
@@ -106,57 +68,29 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
         position: "relative",
       }}
     >
-      {editMode && (note.format === NoteFormat.plain || note.format === NoteFormat.markdown) &&
-        <div
-          css={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-          }}
-        >
-          <button onClick={onSavePlainText}><Translate>Save</Translate></button>
-          <button><Translate>Cancel</Translate></button>
-        </div>
+      {(note.format === NoteFormat.plain) &&
+        <AsyncTextArea
+          onChange={onChange}
+          value={note.source}
+        />
       }
-      {!editMode &&
+      {(note.format === NoteFormat.markdown) &&
+        <MarkdownEditor
+          onChange={onChange}
+          value={note.source}
+        />
+      }
+      {(note.format === NoteFormat.richText) &&
         <div
           css={{
-            // ...absoluteCover,
             maxHeight,
             overflow: "auto",
-
-            // border: `1px solid ${theme.colors.text}`,
-            // padding: "0.5em 0.5em 0.5em 1em",
           }}
-          onClick={goEditMode}
+          // onClick={goEditMode}
         >
-          <div dangerouslySetInnerHTML={{ __html: liveHtml }}/>
+          <div dangerouslySetInnerHTML={{ __html: note.html }}/>
         </div>
       }
-      {editMode && (note.format === NoteFormat.plain) &&
-        <AsyncTextArea
-          onChange={setLiveSource}
-          value={liveSource}
-        />
-      }
-      {editMode && (note.format === NoteFormat.markdown) &&
-        <MarkdownEditor
-          onChange={setLiveSource}
-          value={liveSource}
-        />
-      }
-      {editMode && (note.format === NoteFormat.richText) &&
-        <div
-          css={{
-            height: "12em",
-          }}
-        >
-          <RichTextEditor
-            onSave={onSaveRichtext}
-            initialValue={liveSource}
-          />
-        </div>
-      }
-    </div>
+      </div>
   );
 };
