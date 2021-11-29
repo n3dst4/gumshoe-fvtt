@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { toHtml } from "../../textFunctions";
 import { NoteFormat } from "../../types";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { MarkdownEditor } from "../inputs/MarkdownEditor";
+import { RichTextEditor } from "../inputs/RichTextEditor";
 
 interface WeaponRowEditNotesProps {
   className?: string;
@@ -17,6 +18,7 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
   item,
 }: WeaponRowEditNotesProps) => {
   const note = item.getNotes();
+  const [richtextEditMode, setRichtextEditMode] = useState(false);
   // const [liveSource, setLiveSource, getLiveSource] = useStateWithGetter(note.source);
   // const [liveHtml, setLiveHtml] = useStateWithGetter(note.html);
   // const [liveFormat, setLiveFormat, getLiveFormat] = useStateWithGetter(note.format);
@@ -45,15 +47,23 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
   //   };
   // }, [getEditMode, item, setLiveFormat, setLiveHtml, setLiveSource]);
 
-  const onChange = useCallback((source: string) => {
-    const format = item.getNotes().format;
-    const html = toHtml(item.getNotes().format, source);
-    item.setNotes({
-      format,
-      html,
-      source,
-    });
-  }, [item]);
+  const onChange = useCallback(
+    async (source: string) => {
+      const format = item.getNotes().format;
+      const html = toHtml(item.getNotes().format, source);
+      await item.setNotes({
+        format,
+        html,
+        source,
+      });
+      setRichtextEditMode(false);
+    },
+    [item],
+  );
+
+  const goEditMode = useCallback(() => {
+    setRichtextEditMode(true);
+  }, []);
 
   const maxHeight = "8em";
 
@@ -68,29 +78,35 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
         position: "relative",
       }}
     >
-      {(note.format === NoteFormat.plain) &&
-        <AsyncTextArea
-          onChange={onChange}
-          value={note.source}
-        />
-      }
-      {(note.format === NoteFormat.markdown) &&
-        <MarkdownEditor
-          onChange={onChange}
-          value={note.source}
-        />
-      }
-      {(note.format === NoteFormat.richText) &&
-        <div
-          css={{
-            maxHeight,
-            overflow: "auto",
-          }}
-          // onClick={goEditMode}
-        >
-          <div dangerouslySetInnerHTML={{ __html: note.html }}/>
-        </div>
-      }
-      </div>
+      {note.format === NoteFormat.plain && (
+        <AsyncTextArea onChange={onChange} value={note.source} />
+      )}
+      {note.format === NoteFormat.markdown && (
+        <MarkdownEditor onChange={onChange} value={note.source} />
+      )}
+      {note.format === NoteFormat.richText &&
+        (richtextEditMode
+          ? (
+            <div
+            css={{
+              height: "12em",
+            }}
+            onClick={goEditMode}
+          >
+            <RichTextEditor onSave={onChange} initialValue={note.source} />
+          </div>
+            )
+          : (
+          <div
+            css={{
+              maxHeight,
+              overflow: "auto",
+            }}
+            onClick={goEditMode}
+          >
+            <div dangerouslySetInnerHTML={{ __html: note.html }} />
+          </div>
+            ))}
+    </div>
   );
 };
