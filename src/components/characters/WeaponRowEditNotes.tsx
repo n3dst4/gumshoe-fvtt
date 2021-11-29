@@ -4,9 +4,8 @@ import { DocumentModificationOptions } from "@league-of-foundry-developers/found
 import { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-// import { ThemeContext } from "../../themes/ThemeContext";
+import { toHtml } from "../../textFunctions";
 import { NoteFormat } from "../../types";
-// import { absoluteCover } from "../absoluteCover";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { MarkdownEditor } from "../inputs/MarkdownEditor";
 import { RichTextEditor } from "../inputs/RichTextEditor";
@@ -35,9 +34,9 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
 }: WeaponRowEditNotesProps) => {
   const note = item.getNotes();
   const [editMode, setEditMode, getEditMode] = useStateWithGetter(false);
-  const [liveSource, setLiveSource] = useStateWithGetter(note.source);
-  const [liveHtml, setLiveHtml] = useState(note.html);
-  const [liveFormat, setLiveFormat] = useState(note.format);
+  const [liveSource, setLiveSource, getLiveSource] = useStateWithGetter(note.source);
+  const [liveHtml, setLiveHtml] = useStateWithGetter(note.html);
+  const [liveFormat, setLiveFormat, getLiveFormat] = useStateWithGetter(note.format);
 
   useEffect(() => {
     const whenItemUpdates = (
@@ -61,7 +60,7 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
     return () => {
       Hooks.off("updateItem", whenItemUpdates);
     };
-  }, [getEditMode, item, setLiveSource]);
+  }, [getEditMode, item, setLiveFormat, setLiveHtml, setLiveSource]);
 
   const goEditMode = useCallback(() => {
     setEditMode(true);
@@ -77,6 +76,19 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
       setEditMode(false);
     });
   }, [item, liveFormat, setEditMode]);
+
+  const onSavePlainText = useCallback(() => {
+    const source = getLiveSource();
+    const format = getLiveFormat();
+    item.setNotes({
+      source: source,
+      html: toHtml(format, source),
+      format,
+    }).then(() => {
+      setEditMode(false);
+    });
+  }, [getLiveFormat, getLiveSource, item, setEditMode]);
+
   const maxHeight = editMode
     ? (note.format === NoteFormat.richText
         ? "unset"
@@ -102,7 +114,7 @@ export const WeaponRowEditNotes: React.FC<WeaponRowEditNotesProps> = ({
             right: 0,
           }}
         >
-          <button><Translate>Save</Translate></button>
+          <button onClick={onSavePlainText}><Translate>Save</Translate></button>
           <button><Translate>Cancel</Translate></button>
         </div>
       }
