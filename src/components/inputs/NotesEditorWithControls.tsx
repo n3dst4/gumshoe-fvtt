@@ -35,8 +35,6 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   const [getLiveHtml, setLiveHtml, liveHtml] = useStateWithGetter(origHtml);
   const [getLiveFormat, setLiveFormat, liveFormat] = useStateWithGetter(origFormat);
 
-  logger.log(liveFormat);
-
   const [dirty, setDirty] = useState(false);
   const isDebugging = (game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(constants.systemName);
 
