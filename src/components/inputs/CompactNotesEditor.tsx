@@ -16,7 +16,7 @@ interface CompactNotesEditorProps {
 
 /**
  * A simple editor designed to work in compact situations. No control to change
- * format. Markdowm/plain are directly editable. Richtext just renders HTML
+ * format. Markdowm/plain are directly editable. Rich text just renders HTML
  * until clicked, then turns into a TinyMCE.
  */
 export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
@@ -43,19 +43,19 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
   // we do a little more work to avoid always rendering a TinyMCE for every
   // single item, which probably wouldn't scale very well.
 
-  const [richtextEditMode, setRichtextEditMode] = useState(false);
-  const [getRichtextSource, setRichtextSource] = useStateWithGetter(note.source);
+  const [richTextEditMode, setRichTextEditMode] = useState(false);
+  const [getRichTextSource, setRichTextSource] = useStateWithGetter(note.source);
 
-  const onSaveRichtext = useCallback(
+  const onSaveRichText = useCallback(
     async () => {
-      await onChange(getRichtextSource());
-      setRichtextEditMode(false);
+      await onChange(getRichTextSource());
+      setRichTextEditMode(false);
     },
-    [getRichtextSource, onChange],
+    [getRichTextSource, onChange],
   );
 
   const goEditMode = useCallback(() => {
-    setRichtextEditMode(true);
+    setRichTextEditMode(true);
   }, []);
 
   return (
@@ -75,7 +75,7 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
         <MarkdownEditor onChange={onChange} value={note.source} />
       )}
       {note.format === NoteFormat.richText &&
-        (richtextEditMode
+        (richTextEditMode
           ? (
             <div
             css={{
@@ -84,8 +84,8 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
             onClick={goEditMode}
           >
             <RichTextEditor
-              onChange={setRichtextSource}
-              onSave={onSaveRichtext}
+              onChange={setRichTextSource}
+              onSave={onSaveRichText}
               value={note.source}
             />
           </div>

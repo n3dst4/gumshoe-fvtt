@@ -156,7 +156,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
               <select value={getLiveFormat()} onChange={onChangeFormat}>
                 <option value={NoteFormat.plain}>{game.i18n.localize("investigator.Plain")}</option>
                 <option value={NoteFormat.markdown}>{game.i18n.localize("investigator.Markdown")}</option>
-                <option value={NoteFormat.richText}>{game.i18n.localize("investigator.Richtext")}</option>
+                <option value={NoteFormat.richText}>{game.i18n.localize("investigator.RichText")}</option>
               </select>
             )
           }

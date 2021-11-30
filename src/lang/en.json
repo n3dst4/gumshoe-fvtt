@@ -109,6 +109,6 @@
     "investigator.Speciality": "Speciality",
     "investigator.Plain": "Plain",
     "investigator.Markdown": "Markdown",
-    "investigator.Richtext": "Richtext",
+    "investigator.RichText": "Rich Text",
     "investigator.Save": "Save"
 }
