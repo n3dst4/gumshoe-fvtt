@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback, useState } from "react";
+import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 import { toHtml } from "../../textFunctions";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { AsyncTextArea } from "./AsyncTextArea";
@@ -43,13 +44,14 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
   // single item, which probably wouldn't scale very well.
 
   const [richtextEditMode, setRichtextEditMode] = useState(false);
+  const [getRichtextSource, setRichtextSource] = useStateWithGetter(note.source);
 
   const onSaveRichtext = useCallback(
-    async (source: string) => {
-      await onChange(source);
+    async () => {
+      await onChange(getRichtextSource());
       setRichtextEditMode(false);
     },
-    [onChange],
+    [getRichtextSource, onChange],
   );
 
   const goEditMode = useCallback(() => {
@@ -82,6 +84,7 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
             onClick={goEditMode}
           >
             <RichTextEditor
+              onChange={setRichtextSource}
               onSave={onSaveRichtext}
               value={note.source}
             />

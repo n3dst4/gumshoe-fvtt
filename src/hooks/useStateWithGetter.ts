@@ -5,8 +5,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
  * practice of stuffing state into a ref so you can get it back later in a
  * callback without regenerating the callback every time the value changes.
  *
- * Honestly not sure if this is a good idea. Seems too obvious< like, why isn't
- * this standard?
+ * This is actually an encapsulation of a practice suggested by the Hooks FAQ
+ * itself https://reactjs.org/docs/hooks-faq.html#how-to-read-an-often-changing-value-from-usecallback
+ *
+ * They actually recommend using `dispatch` instead of passing callbacks around.
  */
 export function useStateWithGetter<T> (initial: T) {
   const [value, setValue] = useState(initial);
@@ -17,5 +19,5 @@ export function useStateWithGetter<T> (initial: T) {
   const getValue = useCallback(function () {
     return ref.current;
   }, []);
-  return [value, setValue, getValue] as const; // as const makes it a tuple
+  return [getValue, setValue] as const; // as const makes it a tuple
 }

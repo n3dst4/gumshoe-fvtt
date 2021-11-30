@@ -30,18 +30,18 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   const [editMode, setEditMode] = useState(false);
   const [showSource, setShowSource] = useState(false);
 
-  const [liveSource, setLiveSource, getLiveSource] = useStateWithGetter(origSource);
-  const [liveHtml, setLiveHtml, getLiveHtml] = useStateWithGetter(origHtml);
-  const [liveFormat, setLiveFormat, getLiveFormat] = useStateWithGetter(origFormat);
+  const [getLiveSource, setLiveSource] = useStateWithGetter(origSource);
+  const [getLiveHtml, setLiveHtml] = useStateWithGetter(origHtml);
+  const [getLiveFormat, setLiveFormat] = useStateWithGetter(origFormat);
 
   const [dirty, setDirty] = useState(false);
   const isDebugging = (game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(constants.systemName);
 
   const onEdit = useCallback((newSource: string) => {
     setLiveSource(newSource);
-    setLiveHtml(toHtml(liveFormat, newSource));
+    setLiveHtml(toHtml(getLiveFormat(), newSource));
     setDirty(true);
-  }, [liveFormat, setLiveHtml, setLiveSource]);
+  }, [getLiveFormat, setLiveHtml, setLiveSource]);
 
   const onClickEdit = useCallback(() => {
     setLiveSource(origSource);
@@ -75,12 +75,12 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
 
   const onChangeFormat = useCallback(async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newFormat = e.currentTarget.value as NoteFormat;
-    const { newHtml, newSource } = convertNotes(liveFormat, newFormat, liveSource, liveHtml);
+    const { newHtml, newSource } = convertNotes(getLiveFormat(), newFormat, getLiveSource(), getLiveHtml());
     setLiveFormat(newFormat);
     setLiveSource(newSource);
     setLiveHtml(newHtml);
     setDirty(true);
-  }, [liveFormat, liveHtml, liveSource, setLiveFormat, setLiveHtml, setLiveSource]);
+  }, [getLiveFormat, getLiveHtml, getLiveSource, setLiveFormat, setLiveHtml, setLiveSource]);
 
   return (
     <div
@@ -153,7 +153,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
 
           {
             allowChangeFormat && editMode && (
-              <select value={liveFormat} onChange={onChangeFormat}>
+              <select value={getLiveFormat()} onChange={onChangeFormat}>
                 <option value={NoteFormat.plain}>{game.i18n.localize("investigator.Plain")}</option>
                 <option value={NoteFormat.markdown}>{game.i18n.localize("investigator.Markdown")}</option>
                 <option value={NoteFormat.richText}>{game.i18n.localize("investigator.Richtext")}</option>
@@ -169,9 +169,9 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
         }}
       >
         <NotesEditor
-          source={liveSource}
-          html={liveHtml}
-          format={liveFormat}
+          source={getLiveSource()}
+          html={getLiveHtml()}
+          format={getLiveFormat()}
           className={className}
           editMode={editMode}
           showSource={showSource}
