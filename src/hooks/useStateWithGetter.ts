@@ -19,5 +19,5 @@ export function useStateWithGetter<T> (initial: T) {
   const getValue = useCallback(function () {
     return ref.current;
   }, []);
-  return [getValue, setValue] as const; // as const makes it a tuple
+  return [getValue, setValue, value] as const; // as const makes it a tuple
 }

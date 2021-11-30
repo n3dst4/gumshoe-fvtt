@@ -50,21 +50,18 @@ export function htmlToPlaintext (html: string) {
   return htmlToMarkdown(html);
 }
 
-export function convertNotes (oldFormat: NoteFormat, newFormat: NoteFormat, oldSource: string, oldHtml: string) {
+export function convertNotes (oldFormat: NoteFormat, newFormat: NoteFormat, oldSource: string) {
   let newSource = "";
   let unsafeNewHtml = "";
-  if (newFormat === oldFormat) {
-    return { newSource: oldSource, newHtml: oldHtml };
-  }
   if (newFormat === NoteFormat.plain) {
-    if (oldFormat === NoteFormat.markdown) {
+    if (oldFormat === NoteFormat.markdown || oldFormat === NoteFormat.plain) {
       newSource = oldSource;
     } else if (oldFormat === NoteFormat.richText) {
       newSource = htmlToPlaintext(oldSource);
     }
     unsafeNewHtml = plainTextToHtml(newSource);
   } else if (newFormat === NoteFormat.markdown) {
-    if (oldFormat === NoteFormat.plain) {
+    if (oldFormat === NoteFormat.plain || oldFormat === NoteFormat.markdown) {
       newSource = oldSource;
     } else if (oldFormat === NoteFormat.richText) {
       newSource = htmlToMarkdown(oldSource);
@@ -75,6 +72,8 @@ export function convertNotes (oldFormat: NoteFormat, newFormat: NoteFormat, oldS
       newSource = plainTextToHtml(oldSource);
     } else if (oldFormat === NoteFormat.markdown) {
       newSource = markdownToHtml(oldSource);
+    } else if (oldFormat === NoteFormat.richText) {
+      newSource = oldSource;
     }
     unsafeNewHtml = newSource;
   }

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useState } from "react";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React, { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { Translate } from "../Translate";
@@ -30,18 +31,20 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   const [editMode, setEditMode] = useState(false);
   const [showSource, setShowSource] = useState(false);
 
-  const [getLiveSource, setLiveSource] = useStateWithGetter(origSource);
-  const [getLiveHtml, setLiveHtml] = useStateWithGetter(origHtml);
-  const [getLiveFormat, setLiveFormat] = useStateWithGetter(origFormat);
+  const [getLiveSource, setLiveSource, liveSource] = useStateWithGetter(origSource);
+  const [getLiveHtml, setLiveHtml, liveHtml] = useStateWithGetter(origHtml);
+  const [getLiveFormat, setLiveFormat, liveFormat] = useStateWithGetter(origFormat);
+
+  logger.log(liveFormat);
 
   const [dirty, setDirty] = useState(false);
   const isDebugging = (game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(constants.systemName);
 
   const onEdit = useCallback((newSource: string) => {
     setLiveSource(newSource);
-    setLiveHtml(toHtml(getLiveFormat(), newSource));
+    setLiveHtml(toHtml(liveFormat, newSource));
     setDirty(true);
-  }, [getLiveFormat, setLiveHtml, setLiveSource]);
+  }, [liveFormat, setLiveHtml, setLiveSource]);
 
   const onClickEdit = useCallback(() => {
     setLiveSource(origSource);
@@ -75,12 +78,12 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
 
   const onChangeFormat = useCallback(async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newFormat = e.currentTarget.value as NoteFormat;
-    const { newHtml, newSource } = convertNotes(getLiveFormat(), newFormat, getLiveSource(), getLiveHtml());
+    const { newHtml, newSource } = convertNotes(liveFormat, newFormat, liveSource);
     setLiveFormat(newFormat);
     setLiveSource(newSource);
     setLiveHtml(newHtml);
     setDirty(true);
-  }, [getLiveFormat, getLiveHtml, getLiveSource, setLiveFormat, setLiveHtml, setLiveSource]);
+  }, [liveFormat, liveSource, setLiveFormat, setLiveHtml, setLiveSource]);
 
   return (
     <div
@@ -153,7 +156,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
 
           {
             allowChangeFormat && editMode && (
-              <select value={getLiveFormat()} onChange={onChangeFormat}>
+              <select value={liveFormat} onChange={onChangeFormat}>
                 <option value={NoteFormat.plain}>{game.i18n.localize("investigator.Plain")}</option>
                 <option value={NoteFormat.markdown}>{game.i18n.localize("investigator.Markdown")}</option>
                 <option value={NoteFormat.richText}>{game.i18n.localize("investigator.RichText")}</option>
@@ -169,9 +172,9 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
         }}
       >
         <NotesEditor
-          source={getLiveSource()}
-          html={getLiveHtml()}
-          format={getLiveFormat()}
+          source={liveSource}
+          html={liveHtml}
+          format={liveFormat}
           className={className}
           editMode={editMode}
           showSource={showSource}
