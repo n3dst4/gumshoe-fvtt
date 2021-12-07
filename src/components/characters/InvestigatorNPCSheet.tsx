@@ -129,6 +129,10 @@ export const InvestigatorNPCSheet = ({
             background: theme.colors.backgroundPrimary,
           }}
         >
+            <button onClick={actor.confirmRefresh}>
+              <Translate>Full Refresh</Translate>
+            </button>
+            <hr/>
             <TrackersArea actor={actor} />
         </div>
 
