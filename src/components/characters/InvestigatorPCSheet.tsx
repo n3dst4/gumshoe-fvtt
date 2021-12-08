@@ -24,6 +24,7 @@ import { ImagePickle } from "../ImagePickle";
 import { assertGame } from "../../functions";
 import { AbilitiesAreaMW } from "./AbilitiesAreaMW";
 import { MwItemArea } from "./MwItemArea";
+import { InitDropDown } from "../abilities/InitDropDown";
 
 type InvestigatorPCSheetProps = {
   actor: InvestigatorActor,
@@ -193,6 +194,11 @@ export const InvestigatorPCSheet = ({
               value={actor.data.data.hitThreshold}
               onChange={updateHitThreshold}
             />
+            <hr/>
+            <h3 css={{ gridColumn: "start / end" }}>
+              <Translate>Combat Order</Translate>
+            </h3>
+            <InitDropDown actor={actor} />
         </div>
 
         <div
