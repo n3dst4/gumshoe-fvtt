@@ -19,11 +19,9 @@ export const InitDropDown: React.FC<InitDropDownProps> = ({
   );
 
   useEffect(() => {
-    const callback = (actor: Actor, diff: {_id: string, data: DeepPartial<ActiveCharacterDataSource>}, options: unknown, id: string) => {
+    const callback = (actor: InvestigatorActor, diff: {_id: string, data: DeepPartial<ActiveCharacterDataSource>}, options: unknown, id: string) => {
       assertActiveCharacterDataSource(actor?.data);
-      setActorInitiativeAbility(actor?.data?.data?.initiativeAbility);
-      console.log("hooked");
-      console.log(actor);
+      setActorInitiativeAbility(actor.getInitiativeAbility());
     };
     Hooks.on("updateActor", callback);
     return () => {
@@ -34,7 +32,10 @@ export const InitDropDown: React.FC<InitDropDownProps> = ({
   const onSelectInitiativeAbility = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       const selectedAbility = e.currentTarget.value;
-      actor.setInitiativeAbility(selectedAbility);
+      actor.setInitiativeAbility(selectedAbility).then(
+        () => {
+          actor.rollInitiative({ rerollInitiative: true });
+        });
     },
     [actor],
   );
