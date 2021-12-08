@@ -2,7 +2,6 @@
 import { Fragment, useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { jsx } from "@emotion/react";
-import { useUpdate } from "../../hooks/useUpdate";
 import { CSSReset, CSSResetMode } from "../CSSReset";
 import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -29,7 +28,6 @@ export const InvestigatorNPCSheet = ({
   foundryApplication,
 }: InvestigatorNPCSheetProps) => {
   assertNPCDataSource(actor.data);
-  const updateName = useUpdate(actor, name => ({ name }));
 
   const updateHitThreshold = useCallback((newThreshold) => {
     return actor.update({ data: { hitThreshold: newThreshold } });
@@ -49,10 +47,6 @@ export const InvestigatorNPCSheet = ({
 
   const updateStabilityLoss = useCallback((newStabilityLoss) => {
     return actor.update({ data: { stabilityLoss: newStabilityLoss } });
-  }, [actor]);
-
-  const updateNPCNotes = useCallback((newNotes) => {
-    return actor.update({ data: { notes: newNotes } });
   }, [actor]);
 
   const theme = actor.getSheetTheme();
@@ -88,7 +82,7 @@ export const InvestigatorNPCSheet = ({
         >
           <LogoEditable
             mainText={actor.data.name}
-            onChangeMainText={updateName}
+            onChangeMainText={actor.setName}
             css={{
               fontSize: "0.66em",
             }}
@@ -105,8 +99,9 @@ export const InvestigatorNPCSheet = ({
           <Fragment>
             <h3><Translate>Description</Translate></h3>
             <AsyncTextArea
-              onChange={updateNPCNotes}
-              value={actor.data.data.notes}
+              // XXX RTF
+              onChange={(x) => {}}
+              value={actor.data.data.notes.source}
             />
           </Fragment>
         </div>

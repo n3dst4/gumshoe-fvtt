@@ -82,16 +82,15 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
     onBlur,
     onChange,
     onFocus,
-    setValue,
   } = useAsyncUpdate((value || 0).toString(), onChangeString);
 
   const onClickInc = useCallback(() => {
-    setValue(adjust(display, +1, min, max));
-  }, [display, max, min, setValue]);
+    onChange(adjust(display, +1, min, max));
+  }, [display, max, min, onChange]);
 
   const onClickDec = useCallback(() => {
-    setValue(adjust(display, -1, min, max));
-  }, [display, max, min, setValue]);
+    onChange(adjust(display, -1, min, max));
+  }, [display, max, min, onChange]);
 
   const result = validate(display);
 

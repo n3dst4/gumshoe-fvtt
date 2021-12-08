@@ -15,6 +15,7 @@ export const weapon = "weapon" as const;
 export const pc = "pc" as const;
 export const npc = "npc" as const;
 export const party = "party" as const;
+export const mwItem = "mwItem" as const;
 
 // settings keys
 export const defaultThemeName = "defaultThemeName" as const;
@@ -30,6 +31,13 @@ export const newPCPacks = "newPCPacks" as const;
 export const newNPCPacks = "newNPCPacks" as const;
 export const useBoost = "useBoost" as const;
 export const debugTranslations = "debugTranslations" as const;
+
+// settings for MW-specific settings
+export const mwHiddenShortNotes = "mwHiddenShortNotes" as const;
+
+export const useMwStyleAbilities = "useMwStyleAbilities" as const;
+
+export const mwUseAlternativeItemTypes = "mwUseAlternativeItemTypes" as const;
 
 /**
  * @deprecated use investigativeAbilityCategories and generalAbilityCategories instead
@@ -51,6 +59,7 @@ export const packNames = {
   pathOfCthulhuAbilities: "pathOfCthulhuAbilities" as const,
   srdAbilities: "srdAbilities" as const,
   castingTheRunesAbilities: "castingTheRunesAbilities" as const,
+  moribundWorldAbilities: "moribundWorldAbilities" as const,
 };
 
 export const npcPackName = "opponentAbilities" as const;
@@ -69,7 +78,18 @@ export const htmlDataMode = "data-mode" as const;
 export const htmlDataModeTest = "test" as const;
 export const htmlDataModeSpend = "spend" as const;
 export const htmlDataModeAttack = "attack" as const;
+export const htmlDataModeMwTest = "mw-test" as const;
+export const htmlDataModeMwWallop = "mw-wallop" as const;
+export const htmlDataModeMwNegate = "mw-negate" as const;
 export const htmlDataRange = "data-range" as const;
 export const htmlDataWeaponId = "data-weapon-id" as const;
 export const htmlDataName = "data-name" as const;
 export const htmlDataImageUrl = "data-image-url" as const;
+export const htmlDataMwDifficulty = "data-mw-difficulty" as const;
+export const htmlDataMwBoonLevy = "data-mw-boon-levy" as const;
+export const htmlDataMwReRoll = "data-mw-re-roll" as const;
+export const htmlDataMwPool = "data-mw-pool" as const;
+
+// other?
+export const mwWallopCost = 5;
+export const mwNegateCost = 3;

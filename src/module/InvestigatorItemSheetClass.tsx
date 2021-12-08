@@ -8,21 +8,21 @@ import { ReactApplicationMixin } from "./ReactApplicationMixin";
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-class InvestigatorItemSheetClassBase extends ItemSheet {
+class InvestigatorEquipmentSheetClassBase extends ItemSheet {
   /** @override */
   static get defaultOptions () {
     return {
       ...super.defaultOptions,
       classes: [systemName, "sheet", "item"],
       template: reactTemplatePath,
-      width: 400,
-      height: "auto" as const,
-      resizable: false,
+      width: 450,
+      height: 600,
+      resizable: true,
     };
   }
 }
 
-const render = (sheet: InvestigatorItemSheetClassBase) => {
+const render = (sheet: InvestigatorEquipmentSheetClassBase) => {
   return (
     <InvestigatorItemSheet
       item={sheet.document}
@@ -31,7 +31,45 @@ const render = (sheet: InvestigatorItemSheetClassBase) => {
   );
 };
 
-export const InvestigatorItemSheetClass = ReactApplicationMixin(
-  InvestigatorItemSheetClassBase,
+export const InvestigatorEquipmentSheetClass = ReactApplicationMixin(
+  InvestigatorEquipmentSheetClassBase,
+  render,
+);
+
+class InvestigatorAbilitySheetClassBase extends ItemSheet {
+  /** @override */
+  static get defaultOptions () {
+    return {
+      ...super.defaultOptions,
+      classes: [systemName, "sheet", "item"],
+      template: reactTemplatePath,
+      width: 450,
+      height: 600,
+      resizable: true,
+    };
+  }
+}
+
+export const InvestigatorAbilitySheetClass = ReactApplicationMixin(
+  InvestigatorAbilitySheetClassBase,
+  render,
+);
+
+class InvestigatorMwItemSheetClassBase extends ItemSheet {
+  /** @override */
+  static get defaultOptions () {
+    return {
+      ...super.defaultOptions,
+      classes: [systemName, "sheet", "item"],
+      template: reactTemplatePath,
+      width: 450,
+      height: 600,
+      resizable: true,
+    };
+  }
+}
+
+export const InvestigatorMwItemSheetClass = ReactApplicationMixin(
+  InvestigatorMwItemSheetClassBase,
   render,
 );

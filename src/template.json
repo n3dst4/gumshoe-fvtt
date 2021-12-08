@@ -38,10 +38,16 @@
       "occupationalBenefits": "",
       "pillarsOfSanity": "",
       "sourcesOfStability": "",
-      "notes": "",
+      "notes": {
+        "format": "richText",
+        "source": "",
+        "html": ""
+      },
       "background": "",
 
       "shortNotes": [],
+      "hiddenShortNotes": [],
+      "longNotesFormat": "richText",
       "longNotes": [],
 
       "buildPoints": 28,
@@ -62,15 +68,23 @@
 
     },
     "party": {
+      "templates": [],
       "actorIds": []
     }
   },
   "Item": {
-    "types": ["investigativeAbility", "generalAbility", "equipment", "weapon"],
+    "types": ["investigativeAbility", "generalAbility", "equipment", "weapon", "mwItem"],
     "templates": {
+      "notes": {
+        "notes": {
+          "format": "richText",
+          "source": "",
+          "html": ""
+        }
+      },
       "ability": {
-        "rating": 1,
-        "pool": 1,
+        "rating": 0,
+        "pool": 0,
         "hasSpecialities": false,
         "specialities": [],
         "min": 0,
@@ -80,22 +94,27 @@
         "showTracker": false,
         "boost":  false,
         "excludeFromGeneralRefresh": false,
-        "refreshesDaily": false,
-        "notes": ""
+        "refreshesDaily": false
       }
     },
     "investigativeAbility": {
-      "templates": ["ability"]
+      "templates": ["notes", "ability"],
+      "hideIfZeroRated": true
     },
     "generalAbility": {
-      "templates": ["ability"],
+      "templates": ["notes", "ability"],
       "canBeInvestigative": false,
-      "goesFirstInCombat": false
+      "goesFirstInCombat": false,
+      "hideIfZeroRated": false,
+      "mwTrumps": "",
+      "mwTrumpedBy": "",
+      "mwRefreshGroup": 2
     },
     "equipment": {
-      "notes": ""
+      "templates": ["notes"]
     },
     "weapon": {
+      "templates": ["notes"],
       "ability": "Scuffling",
       "damage": 0,
       "pointBlankDamage": 0,
@@ -106,7 +125,6 @@
       "isCloseRange": true,
       "isNearRange": true,
       "isLongRange": false,
-      "notes": "",
       "usesAmmo": true,
       "ammoPerShot": 1,
       "ammo": {
@@ -114,6 +132,12 @@
         "max": 10,
         "value": 10
       }
+    },
+    "mwItem": {
+      "templates": ["notes"],
+      "mwType": "tweak",
+      "charges": 0,
+      "ranges": [0,0,0,0]
     }
   }
 }

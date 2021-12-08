@@ -52,6 +52,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           padding: "0.5em",
           color: theme.colors.text,
           backgroundColor: theme.colors.wallpaper,
+          height: "100%",
           ...(mode === CSSResetMode.large ? theme.largeSheetRootStyle : theme.smallSheetRootStyle),
 
           "*": {

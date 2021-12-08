@@ -67,33 +67,23 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
           columns: "auto 12em",
         }}
       >
-        <div
-          css={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gridAutoRows: "min-content",
-            columnGap: "1em",
-            rowGap: "0.5em",
-          }}
-        >
-          {
-            sortEntitiesByName(items).map<JSX.Element>((item) => (
-              <a
-                key={item.id}
-                css={{
-                  display: "block",
-                  position: "relative",
-                }}
-                onClick={() => item.sheet?.render(true)}
-                data-item-id={item.id}
-                onDragStart={onDragStart}
-                draggable="true"
-              >
-                {item.name}
-              </a>
-            ))
-          }
-        </div>
+        {
+          sortEntitiesByName(items).map<JSX.Element>((item) => (
+            <a
+              key={item.id}
+              css={{
+                display: "block",
+                position: "relative",
+              }}
+              onClick={() => item.sheet?.render(true)}
+              data-item-id={item.id}
+              onDragStart={onDragStart}
+              draggable="true"
+            >
+              {item.name}
+            </a>
+          ))
+        }
       </div>
     </div>
   );

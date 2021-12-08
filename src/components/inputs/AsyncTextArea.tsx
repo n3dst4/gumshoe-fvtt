@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { ChangeEvent, useCallback, useContext } from "react";
+import React from "react";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { IdContext } from "../IdContext";
+import { TextArea } from "./TextArea";
 
 type AsyncTextAreaProps = {
   className?: string,
@@ -20,8 +20,6 @@ export const AsyncTextArea: React.FC<AsyncTextAreaProps> = ({
   disabled,
   index,
 }) => {
-  const id = useContext(IdContext);
-
   const {
     onChange,
     onFocus,
@@ -29,21 +27,12 @@ export const AsyncTextArea: React.FC<AsyncTextAreaProps> = ({
     display,
   } = useAsyncUpdate(value, onChangeOrig, index);
 
-  const onChangeCb = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-    onChange(e.currentTarget.value);
-  }, [index, onChange]);
-
   return (
-    <textarea
-      id={id}
-      css={{
-        flex: 1,
-        width: "100%",
-      }}
+    <TextArea
       className={className}
-      data-lpignore="true"
       value={display || ""}
-      onChange={onChangeCb}
+      onChange={onChange}
+
       onFocus={onFocus}
       onBlur={onBlur}
       disabled={disabled}

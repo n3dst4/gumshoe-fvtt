@@ -104,5 +104,11 @@
     "investigator.VisualTheme": "Visual theme",
     "investigator.Weapon": "Weapon",
     "investigator.Weapons": "Weapons",
-    "investigator.WhoopsNo": "Whoops, No!"
+    "investigator.WhoopsNo": "Whoops, No!",
+    "investigator.Specialities": "Specialities",
+    "investigator.Speciality": "Speciality",
+    "investigator.Plain": "Plain",
+    "investigator.Markdown": "Markdown",
+    "investigator.RichText": "Rich Text",
+    "investigator.Save": "Save"
 }
