@@ -17,6 +17,7 @@ import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
 import { assertNPCDataSource } from "../../types";
 import { ImagePickle } from "../ImagePickle";
+import { InitDropDown } from "../abilities/InitDropDown";
 
 type InvestigatorNPCSheetProps = {
   actor: InvestigatorActor,
@@ -129,11 +130,12 @@ export const InvestigatorNPCSheet = ({
             background: theme.colors.backgroundPrimary,
           }}
         >
-            <button onClick={actor.confirmRefresh}>
-              <Translate>Full Refresh</Translate>
-            </button>
-            <hr/>
             <TrackersArea actor={actor} />
+            <hr/>
+            <h4 css={{ width: "8em" }}>
+              <Translate>Combat Order</Translate>
+            </h4>
+            <InitDropDown actor={actor} />
         </div>
 
         <div
@@ -148,6 +150,13 @@ export const InvestigatorNPCSheet = ({
             columnGap: "0.5em",
           }}
         >
+          <button
+            onClick={actor.confirmRefresh}
+            css={{ gridColumn: "1 / span 2" }}
+          >
+            <Translate>Full Refresh</Translate>
+          </button>
+          <hr/>
           <Fragment>
             <h3 css={{ gridColumn: "1" }}><Translate>Hit Threshold</Translate></h3>
             <AsyncNumberInput
