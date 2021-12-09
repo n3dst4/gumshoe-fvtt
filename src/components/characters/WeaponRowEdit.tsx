@@ -1,11 +1,14 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useContext, useState } from "react";
+import React, { Fragment, useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
+import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { CompactNotesEditor } from "../inputs/CompactNotesEditor";
+import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
+import { assertGame, confirmADoodleDo } from "../../functions";
+import { assertWeaponDataSource } from "../../types";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem,
@@ -14,38 +17,72 @@ type WeaponRowEditProps = {
 export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   weapon,
 }) => {
-  const app = useContext(ActorSheetAppContext);
-  const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
-    if (app !== null) {
-      (app as any)._onDragStart(e);
+  assertWeaponDataSource(weapon.data);
+
+  const name = useAsyncUpdate(weapon.name || "", weapon.setName);
+
+  const weaponRangeReduce = useCallback(() => {
+    if (weapon.getIsLongRange()) {
+      weapon.setIsLongRange(false);
+    } else if (weapon.getIsNearRange()) {
+      weapon.setIsNearRange(false);
+    } else if (weapon.getIsCloseRange()) {
+      weapon.setIsCloseRange(false);
     }
-  }, [app]);
-  const [hover, setHover] = useState(false);
-  const onMouseOver = useCallback(() => { setHover(true); }, []);
-  const onMouseOut = useCallback(() => { setHover(false); }, []);
+  }, [weapon]);
+  const weaponRangeExpand = useCallback(() => {
+    if (!weapon.getIsCloseRange()) {
+      weapon.setIsCloseRange(true);
+    } else if (!weapon.getIsNearRange()) {
+      weapon.setIsNearRange(true);
+    } else if (!weapon.getIsLongRange()) {
+      weapon.setIsLongRange(true);
+    }
+  }, [weapon]);
+  const onClickDelete = useCallback(() => {
+    assertGame(game);
+    const message = weapon.actor
+      ? "DeleteActorNamesEquipmentName"
+      : "DeleteEquipmentName";
+
+    confirmADoodleDo({
+      message,
+      confirmText: "Delete",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-trash",
+      values: {
+        ActorName: weapon.actor?.data.name ?? "",
+        EquipmentName: weapon.data.name,
+      },
+    }).then(() => {
+      weapon.delete();
+    });
+  }, [weapon]);
 
   return (
     <Fragment>
-      <a
+      <div
         css={{ gridColumn: 1, overflow: "hidden", textOverflow: "ellipsis" }}
-        className={hover ? "hover" : ""}
-        onClick={() => weapon.sheet?.render(true)}
-        onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut}
-        data-item-id={weapon.id}
-        onDragStart={onDragStart}
-        draggable="true"
-      >
-        {weapon.name}
-      </a>
+        contentEditable
+        onInput={name.onInput}
+        onFocus={name.onFocus}
+        onBlur={name.onBlur}
+        ref={name.contentEditableRef}
+      />
       <div css={{ gridColumn: 2, display: "flex" }}>
         <AsyncNumberInput
           min={0}
           value={weapon.getDamage()}
           onChange={weapon.setDamage}
           noPlusMinus={true}
-          css={{ width: "3em", paddingRight: "1.5em" }}
+          css={{ width: "2.3em", paddingRight: "0.3em" }}
         />
+        <button
+          css={{ width: "1em", padding: "0" }}
+          onClick={weaponRangeReduce}
+        >
+        <i className="fa fa-chevron-left"/>
+        </button>
         { weapon.getIsPointBlank() && (
           <AsyncNumberInput
             min={0}
@@ -85,6 +122,12 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
             css={{ width: "1.5em" }}
           />
         )}
+        <button
+          css={{ width: "1em", padding: "0" }}
+          onClick={weaponRangeExpand}
+        >
+        <i className="fa fa-chevron-right"/>
+        </button>
       </div>
       <div css={{ gridColumn: 3, display: "flex" }}>
         <AsyncCheckbox
@@ -111,6 +154,18 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           </span>
         )}
       </div>
+      <button
+        css={{ gridColumn: 4, width: "1.6em", padding: "0" }}
+        onClick={onClickDelete}
+      >
+        <i className="fa fa-trash"/>
+      </button>
+      <span css={{ gridColumn: 1, margin: "0 0 1em 0em" }}>
+      <CombatAbilityDropDown
+        value={weapon.data.data.ability}
+        onChange={(e) => weapon.setAbility(e)}
+      />
+      </span>
       <CompactNotesEditor
         note={weapon.getNotes()}
         onChange={weapon.setNotes}

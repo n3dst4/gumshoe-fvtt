@@ -15,7 +15,7 @@ class InvestigatorNPCSheetClassBase extends ActorSheet {
       classes: [systemName, "sheet", "actor"],
       template: reactTemplatePath,
       width: 660,
-      height: 600,
+      height: 660,
     });
   }
 }

@@ -24,6 +24,7 @@ import { ImagePickle } from "../ImagePickle";
 import { assertGame } from "../../functions";
 import { AbilitiesAreaMW } from "./AbilitiesAreaMW";
 import { MwItemArea } from "./MwItemArea";
+import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 
 type InvestigatorPCSheetProps = {
   actor: InvestigatorActor,
@@ -192,6 +193,19 @@ export const InvestigatorPCSheet = ({
               min={0}
               value={actor.data.data.hitThreshold}
               onChange={updateHitThreshold}
+            />
+            <hr/>
+            <h3 css={{ gridColumn: "start / end" }}>
+              <Translate>Combat Order</Translate>
+            </h3>
+            <CombatAbilityDropDown
+              value={actor.getInitiativeAbility()}
+              onChange={(selectedAbility) => {
+                actor.setInitiativeAbility(selectedAbility).then(
+                  () => {
+                    actor.rollInitiative({ rerollInitiative: true });
+                  });
+              }}
             />
         </div>
 

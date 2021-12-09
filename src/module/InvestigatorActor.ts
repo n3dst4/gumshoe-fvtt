@@ -290,6 +290,16 @@ export class InvestigatorActor extends Actor {
     return this.update({ data: { hitThreshold } });
   }
 
+  getInitiativeAbility = () => {
+    assertActiveCharacterDataSource(this.data);
+    return this.data.data.initiativeAbility;
+  }
+
+  setInitiativeAbility = (initiativeAbility: string) => {
+    assertActiveCharacterDataSource(this.data);
+    return this.update({ data: { initiativeAbility } });
+  }
+
   // ###########################################################################
   // For the party sheet
   getActorIds = () => {
