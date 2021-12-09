@@ -5,7 +5,10 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
+import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { CompactNotesEditor } from "../inputs/CompactNotesEditor";
+import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
+import { assertWeaponDataSource } from "../../types";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem,
@@ -14,6 +17,8 @@ type WeaponRowEditProps = {
 export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   weapon,
 }) => {
+  assertWeaponDataSource(weapon.data);
+
   const app = useContext(ActorSheetAppContext);
   const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
     if (app !== null) {
@@ -23,6 +28,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   const [hover, setHover] = useState(false);
   const onMouseOver = useCallback(() => { setHover(true); }, []);
   const onMouseOut = useCallback(() => { setHover(false); }, []);
+  const name = useAsyncUpdate(weapon.name || "", weapon.setName);
 
   const weaponRangeReduce = useCallback(() => {
     if (weapon.getIsLongRange()) {
@@ -55,7 +61,13 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         onDragStart={onDragStart}
         draggable="true"
       >
-        {weapon.name}
+        <div
+          contentEditable
+          onInput={name.onInput}
+          onFocus={name.onFocus}
+          onBlur={name.onBlur}
+          ref={name.contentEditableRef}
+        />
       </a>
       <div css={{ gridColumn: 2, display: "flex" }}>
         <AsyncNumberInput
@@ -63,7 +75,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           value={weapon.getDamage()}
           onChange={weapon.setDamage}
           noPlusMinus={true}
-          css={{ width: "3em", paddingRight: "0.3em" }}
+          css={{ width: "2.3em", paddingRight: "0.3em" }}
         />
         <button
           css={{ width: "1.2em", padding: "0" }}
@@ -142,6 +154,12 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           </span>
         )}
       </div>
+      <span css={{ gridColumn: 1 }}>
+      <CombatAbilityDropDown
+        value={weapon.data.data.ability}
+        onChange={(e) => weapon.setAbility(e)}
+      />
+      </span>
       <CompactNotesEditor
         note={weapon.getNotes()}
         onChange={weapon.setNotes}

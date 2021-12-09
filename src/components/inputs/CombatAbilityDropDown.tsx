@@ -12,7 +12,6 @@ export const CombatAbilityDropDown: React.FC<CombatAbilityDropDownProps> = ({
   value,
   onChange: onChangeOrig,
 }) => {
-
   const combatAbilities = getCombatAbilities().sort();
 
   const onSelectInitiativeAbility = useCallback(
