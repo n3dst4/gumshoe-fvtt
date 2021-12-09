@@ -63,7 +63,7 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
         <div
           css={{
             display: "grid",
-            gridTemplateColumns: "1fr 12em max-content min-content",
+            gridTemplateColumns: "1fr 11em max-content min-content",
             gridAutoRows: "min-content",
             columnGap: "0.5em",
             whiteSpace: "nowrap",

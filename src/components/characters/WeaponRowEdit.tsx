@@ -98,10 +98,10 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           css={{ width: "2.3em", paddingRight: "0.3em" }}
         />
         <button
-          css={{ width: "1.2em", padding: "0" }}
+          css={{ width: "1em", padding: "0" }}
           onClick={weaponRangeReduce}
         >
-        <i className="fa fa-chevron-left fa-xs"/>
+        <i className="fa fa-chevron-left"/>
         </button>
         { weapon.getIsPointBlank() && (
           <AsyncNumberInput
@@ -143,10 +143,10 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           />
         )}
         <button
-          css={{ width: "1.2em", padding: "0" }}
+          css={{ width: "1em", padding: "0" }}
           onClick={weaponRangeExpand}
         >
-        <i className="fa fa-chevron-right fa-xs"/>
+        <i className="fa fa-chevron-right"/>
         </button>
       </div>
       <div css={{ gridColumn: 3, display: "flex" }}>
@@ -175,10 +175,10 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         )}
       </div>
       <button
-        css={{ gridColumn: 4 }}
+        css={{ gridColumn: 4, width: "1.6em", padding: "0" }}
         onClick={onClickDelete}
       >
-        <i className="fa fa-trash fa-xs"/>
+        <i className="fa fa-trash"/>
       </button>
       <span css={{ gridColumn: 1, margin: "0 0 1em 0em" }}>
       <CombatAbilityDropDown
