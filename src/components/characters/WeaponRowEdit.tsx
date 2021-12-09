@@ -71,24 +71,14 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
 
   return (
     <Fragment>
-      <a
+      <div
         css={{ gridColumn: 1, overflow: "hidden", textOverflow: "ellipsis" }}
-        className={hover ? "hover" : ""}
-        onClick={() => weapon.sheet?.render(true)}
-        onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut}
-        data-item-id={weapon.id}
-        onDragStart={onDragStart}
-        draggable="true"
-      >
-        <div
-          contentEditable
-          onInput={name.onInput}
-          onFocus={name.onFocus}
-          onBlur={name.onBlur}
-          ref={name.contentEditableRef}
-        />
-      </a>
+        contentEditable
+        onInput={name.onInput}
+        onFocus={name.onFocus}
+        onBlur={name.onBlur}
+        ref={name.contentEditableRef}
+      />
       <div css={{ gridColumn: 2, display: "flex" }}>
         <AsyncNumberInput
           min={0}
