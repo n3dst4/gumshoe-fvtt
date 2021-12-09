@@ -24,6 +24,25 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   const onMouseOver = useCallback(() => { setHover(true); }, []);
   const onMouseOut = useCallback(() => { setHover(false); }, []);
 
+  const weaponRangeReduce = useCallback(() => {
+    if (weapon.getIsLongRange()) {
+      weapon.setIsLongRange(false);
+    } else if (weapon.getIsNearRange()) {
+      weapon.setIsNearRange(false);
+    } else if (weapon.getIsCloseRange()) {
+      weapon.setIsCloseRange(false);
+    }
+  }, [weapon]);
+  const weaponRangeExpand = useCallback(() => {
+    if (!weapon.getIsCloseRange()) {
+      weapon.setIsCloseRange(true);
+    } else if (!weapon.getIsNearRange()) {
+      weapon.setIsNearRange(true);
+    } else if (!weapon.getIsLongRange()) {
+      weapon.setIsLongRange(true);
+    }
+  }, [weapon]);
+
   return (
     <Fragment>
       <a
@@ -44,8 +63,14 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           value={weapon.getDamage()}
           onChange={weapon.setDamage}
           noPlusMinus={true}
-          css={{ width: "3em", paddingRight: "1.5em" }}
+          css={{ width: "3em", paddingRight: "0.3em" }}
         />
+        <button
+          css={{ width: "1.2em", padding: "0" }}
+          onClick={weaponRangeReduce}
+        >
+        <i className="fa fa-chevron-left fa-xs"/>
+        </button>
         { weapon.getIsPointBlank() && (
           <AsyncNumberInput
             min={0}
@@ -85,6 +110,12 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
             css={{ width: "1.5em" }}
           />
         )}
+        <button
+          css={{ width: "1.2em", padding: "0" }}
+          onClick={weaponRangeExpand}
+        >
+        <i className="fa fa-chevron-right fa-xs"/>
+        </button>
       </div>
       <div css={{ gridColumn: 3, display: "flex" }}>
         <AsyncCheckbox
