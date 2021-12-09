@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useContext, useState } from "react";
+import React, { Fragment, useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
@@ -20,15 +19,6 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
 }) => {
   assertWeaponDataSource(weapon.data);
 
-  const app = useContext(ActorSheetAppContext);
-  const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
-    if (app !== null) {
-      (app as any)._onDragStart(e);
-    }
-  }, [app]);
-  const [hover, setHover] = useState(false);
-  const onMouseOver = useCallback(() => { setHover(true); }, []);
-  const onMouseOut = useCallback(() => { setHover(false); }, []);
   const name = useAsyncUpdate(weapon.name || "", weapon.setName);
 
   const weaponRangeReduce = useCallback(() => {
