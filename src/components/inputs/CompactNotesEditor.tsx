@@ -64,7 +64,7 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
       css={{
         gridColumn: "2 / -1",
         whiteSpace: "normal",
-        margin: "0 0 0.5em 1em",
+        margin: "0 0 0.5em 0em",
         position: "relative",
       }}
     >

@@ -8,6 +8,7 @@ import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { CompactNotesEditor } from "../inputs/CompactNotesEditor";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
+import { assertGame, confirmADoodleDo } from "../../functions";
 import { assertWeaponDataSource } from "../../types";
 
 type WeaponRowEditProps = {
@@ -47,6 +48,25 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
     } else if (!weapon.getIsLongRange()) {
       weapon.setIsLongRange(true);
     }
+  }, [weapon]);
+  const onClickDelete = useCallback(() => {
+    assertGame(game);
+    const message = weapon.actor
+      ? "DeleteActorNamesEquipmentName"
+      : "DeleteEquipmentName";
+
+    confirmADoodleDo({
+      message,
+      confirmText: "Delete",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-trash",
+      values: {
+        ActorName: weapon.actor?.data.name ?? "",
+        EquipmentName: weapon.data.name,
+      },
+    }).then(() => {
+      weapon.delete();
+    });
   }, [weapon]);
 
   return (
@@ -154,7 +174,13 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           </span>
         )}
       </div>
-      <span css={{ gridColumn: 1 }}>
+      <button
+        css={{ gridColumn: 4 }}
+        onClick={onClickDelete}
+      >
+        <i className="fa fa-trash fa-xs"/>
+      </button>
+      <span css={{ gridColumn: 1, margin: "0 0 1em 0em" }}>
       <CombatAbilityDropDown
         value={weapon.data.data.ability}
         onChange={(e) => weapon.setAbility(e)}
