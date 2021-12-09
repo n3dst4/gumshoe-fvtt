@@ -16,7 +16,7 @@ import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
 import { assertNPCDataSource } from "../../types";
 import { ImagePickle } from "../ImagePickle";
-import { InitDropDown } from "../abilities/InitDropDown";
+import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 
 type InvestigatorNPCSheetProps = {
   actor: InvestigatorActor,
@@ -130,7 +130,15 @@ export const InvestigatorNPCSheet = ({
             <h4 css={{ width: "8em" }}>
               <Translate>Combat Order</Translate>
             </h4>
-            <InitDropDown actor={actor} />
+            <CombatAbilityDropDown
+              value={actor.getInitiativeAbility()}
+              onChange={(selectedAbility) => {
+                actor.setInitiativeAbility(selectedAbility).then(
+                  () => {
+                    actor.rollInitiative({ rerollInitiative: true });
+                  });
+              }}
+            />
         </div>
 
         <div
