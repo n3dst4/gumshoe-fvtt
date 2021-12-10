@@ -295,9 +295,10 @@ export class InvestigatorActor extends Actor {
     return this.data.data.initiativeAbility;
   }
 
-  setInitiativeAbility = (initiativeAbility: string) => {
+  setInitiativeAbility = async (initiativeAbility: string) => {
     assertActiveCharacterDataSource(this.data);
-    return this.update({ data: { initiativeAbility } });
+    await this.update({ data: { initiativeAbility } });
+    await this.rollInitiative({ rerollInitiative: true });
   }
 
   // ###########################################################################

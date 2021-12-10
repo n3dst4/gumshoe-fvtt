@@ -200,12 +200,7 @@ export const InvestigatorPCSheet = ({
             </h3>
             <CombatAbilityDropDown
               value={actor.getInitiativeAbility()}
-              onChange={(selectedAbility) => {
-                actor.setInitiativeAbility(selectedAbility).then(
-                  () => {
-                    actor.rollInitiative({ rerollInitiative: true });
-                  });
-              }}
+              onChange={actor.setInitiativeAbility}
             />
         </div>
 
