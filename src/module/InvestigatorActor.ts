@@ -296,9 +296,18 @@ export class InvestigatorActor extends Actor {
   }
 
   setInitiativeAbility = async (initiativeAbility: string) => {
+    assertGame(game);
+    // there must be an easier way to do this
+    // const isInCombat = game.combat?.combatants.some((c) => {
+    //   return c.token?.actor?.data._id === this.data._id;
+    // });
+    const isInCombat = !!(this.token?.combatant);
+    logger.log("isInCombat", isInCombat);
     assertActiveCharacterDataSource(this.data);
     await this.update({ data: { initiativeAbility } });
-    await this.rollInitiative({ rerollInitiative: true });
+    if (isInCombat) {
+      await this.rollInitiative({ rerollInitiative: true });
+    }
   }
 
   // ###########################################################################
