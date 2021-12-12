@@ -18,6 +18,8 @@ import { assertNPCDataSource } from "../../types";
 import { ImagePickle } from "../ImagePickle";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { InputGrid } from "../inputs/InputGrid";
+import { absoluteCover } from "../absoluteCover";
 
 type InvestigatorNPCSheetProps = {
   actor: InvestigatorActor,
@@ -98,6 +100,12 @@ export const InvestigatorNPCSheet = ({
             height: "12em",
           }}
         >
+          <InputGrid
+            css={{
+              ...absoluteCover,
+              gridTemplateRows: "1fr",
+            }}
+          >
             <NotesEditorWithControls
               allowChangeFormat
               format={actor.getNotes().format}
@@ -110,7 +118,8 @@ export const InvestigatorNPCSheet = ({
                   resize: "none",
                 },
               }}
-                />
+            />
+          </InputGrid>
             {/* <h3><Translate>Description</Translate></h3>
             <AsyncTextArea
               // XXX RTF
