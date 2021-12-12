@@ -66,7 +66,7 @@ export const InvestigatorNPCSheet = ({
           bottom: 0,
           left: 0,
           display: "grid",
-          gridTemplateRows: "min-content 12em min-content 1fr",
+          gridTemplateRows: "min-content 1fr min-content 1.5fr",
           gridTemplateColumns: "max-content 1fr 10em",
           gap: "0.5em",
           gridTemplateAreas:
