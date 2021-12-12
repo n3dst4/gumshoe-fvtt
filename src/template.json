@@ -31,10 +31,8 @@
     },
     "pc": {
       "templates": ["activeCharacter"],
-
       "drive": "",
       "occupation": "",
-
       "occupationalBenefits": "",
       "pillarsOfSanity": "",
       "sourcesOfStability": "",
@@ -56,11 +54,13 @@
     },
     "npc": {
       "templates": ["activeCharacter"],
-
-      "notes": "",
+      "notes": {
+        "format": "richText",
+        "source": "",
+        "html": ""
+      },
       "hideZeroRated": false,
       "sheetTheme": null,
-
       "armor": 0,
       "alertness": 0,
       "stealth": 0,

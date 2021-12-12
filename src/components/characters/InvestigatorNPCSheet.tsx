@@ -3,7 +3,7 @@ import { Fragment, useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { jsx } from "@emotion/react";
 import { CSSReset, CSSResetMode } from "../CSSReset";
-import { AsyncTextArea } from "../inputs/AsyncTextArea";
+// import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { TabContainer } from "../TabContainer";
 import { LogoEditable } from "./LogoEditable";
@@ -17,6 +17,7 @@ import { Translate } from "../Translate";
 import { assertNPCDataSource } from "../../types";
 import { ImagePickle } from "../ImagePickle";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 
 type InvestigatorNPCSheetProps = {
   actor: InvestigatorActor,
@@ -94,16 +95,28 @@ export const InvestigatorNPCSheet = ({
             padding: "0.5em",
             backgroundColor: theme.colors.backgroundSecondary,
             position: "relative",
+            height: "12em",
           }}
         >
-          <Fragment>
-            <h3><Translate>Description</Translate></h3>
+            <NotesEditorWithControls
+              allowChangeFormat
+              format={actor.getNotes().format}
+              html={actor.getNotes().html}
+              source={actor.getNotes().source}
+              onSave={actor.setNotes}
+              css={{
+                height: "100%",
+                "&&": {
+                  resize: "none",
+                },
+              }}
+                />
+            {/* <h3><Translate>Description</Translate></h3>
             <AsyncTextArea
               // XXX RTF
               onChange={(x) => {}}
               value={actor.data.data.notes.source}
-            />
-          </Fragment>
+            /> */}
         </div>
 
         <ImagePickle

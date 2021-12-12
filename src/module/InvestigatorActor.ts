@@ -1,6 +1,6 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup } from "../types";
+import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat } from "../types";
 import { themes } from "../themes/themes";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { Theme } from "../themes/types";
@@ -221,6 +221,16 @@ export class InvestigatorActor extends Actor {
 
   setSheetTheme = (sheetTheme: string | null) =>
     this.update({ data: { sheetTheme } });
+
+  getNotes = () => {
+    assertNPCDataSource(this.data);
+    return this.data.data.notes;
+  }
+
+  setNotes = (notes: NoteWithFormat) => {
+    assertNPCDataSource(this.data);
+    this.update({ data: { notes } });
+  }
 
   getLongNote = (i: number) => {
     assertPCDataSource(this.data);
