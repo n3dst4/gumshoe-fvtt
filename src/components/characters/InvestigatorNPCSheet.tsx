@@ -66,7 +66,7 @@ export const InvestigatorNPCSheet = ({
           bottom: 0,
           left: 0,
           display: "grid",
-          gridTemplateRows: "min-content max-content min-content 1fr",
+          gridTemplateRows: "min-content 12em min-content 1fr",
           gridTemplateColumns: "max-content 1fr 10em",
           gap: "0.5em",
           gridTemplateAreas:
@@ -97,7 +97,7 @@ export const InvestigatorNPCSheet = ({
             padding: "0.5em",
             backgroundColor: theme.colors.backgroundSecondary,
             position: "relative",
-            height: "12em",
+            // height: "12em",
           }}
         >
           <InputGrid

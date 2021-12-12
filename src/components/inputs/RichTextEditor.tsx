@@ -35,6 +35,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
       const instancePromise = TextEditor.create({
         target: ref.current,
         save_onsavecallback: onSave,
+        height: "100%",
       } as any, initialValue).then((mce) => {
         mce.on("change", () => {
           const content = mce.getContent();
@@ -66,9 +67,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
       }}
       className={className}
       >
-      <textarea
-        ref={ref}
-      />
+      <textarea ref={ref} css={{ height: "100%" }}/>
     </form>
   );
 };
