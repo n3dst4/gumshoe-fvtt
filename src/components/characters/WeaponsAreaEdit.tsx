@@ -36,12 +36,14 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
               [
                 {
                   type: weapon,
-                  name: "New weapon",
+                  name: "A new weapon",
+                  data: {
+                    notes: {
+                      format: "plain",
+                    },
+                  },
                 },
-              ],
-              {
-                renderSheet: true,
-              });
+              ]);
           }}
         >
           <i className="fa fa-plus"/><Translate>Add Weapon</Translate>
@@ -61,7 +63,7 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
         <div
           css={{
             display: "grid",
-            gridTemplateColumns: "1fr max-content max-content",
+            gridTemplateColumns: "1fr 11em max-content min-content",
             gridAutoRows: "min-content",
             columnGap: "0.5em",
             whiteSpace: "nowrap",

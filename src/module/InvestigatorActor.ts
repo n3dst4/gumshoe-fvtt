@@ -290,6 +290,21 @@ export class InvestigatorActor extends Actor {
     return this.update({ data: { hitThreshold } });
   }
 
+  getInitiativeAbility = () => {
+    assertActiveCharacterDataSource(this.data);
+    return this.data.data.initiativeAbility;
+  }
+
+  setInitiativeAbility = async (initiativeAbility: string) => {
+    assertGame(game);
+    assertActiveCharacterDataSource(this.data);
+    await this.update({ data: { initiativeAbility } });
+    const isInCombat = !!(this.token?.combatant);
+    if (isInCombat) {
+      await this.rollInitiative({ rerollInitiative: true });
+    }
+  }
+
   // ###########################################################################
   // For the party sheet
   getActorIds = () => {
