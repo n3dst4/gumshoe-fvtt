@@ -120,12 +120,6 @@ export const InvestigatorNPCSheet = ({
               }}
             />
           </InputGrid>
-            {/* <h3><Translate>Description</Translate></h3>
-            <AsyncTextArea
-              // XXX RTF
-              onChange={(x) => {}}
-              value={actor.data.data.notes.source}
-            /> */}
         </div>
 
         <ImagePickle
