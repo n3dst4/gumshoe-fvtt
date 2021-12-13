@@ -15,8 +15,10 @@ interface TextEditorWithControlsProps {
   html: string;
   format: NoteFormat;
   className?: string;
-  onSave: (note: NoteWithFormat) => void;
+  onSave: (note: NoteWithFormat, index?: number) => void;
   allowChangeFormat: boolean;
+  index?: number;
+  title?: string;
 }
 
 export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
@@ -26,6 +28,8 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   onSave,
   className,
   allowChangeFormat,
+  index,
+  title,
 }: TextEditorWithControlsProps) => {
   assertGame(game);
   const [editMode, setEditMode] = useState(false);
@@ -55,10 +59,10 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
       format: getLiveFormat(),
       html: getLiveHtml(),
       source: getLiveSource(),
-    });
+    }, index);
     setEditMode(false);
     setDirty(false);
-  }, [getLiveFormat, getLiveHtml, getLiveSource, onSave]);
+  }, [getLiveFormat, getLiveHtml, getLiveSource, index, onSave]);
 
   const onClickCancel = useCallback(async () => {
     if (dirty) {
@@ -94,7 +98,10 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
     >
       <div css={{ display: "flex", flexDirection: "row" }}>
         <label>
-          <Translate>Notes</Translate>
+          {title === undefined
+            ? <Translate>Notes</Translate>
+            : title
+          }
         </label>
         <span css={{ flex: 1 }}/>
         <div>

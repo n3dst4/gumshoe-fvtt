@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback } from "react";
+import React, { useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { getLongNotes } from "../../settingsHelpers";
 import { assertPCDataSource } from "../../types";
+import { InputGrid } from "../inputs/InputGrid";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 
 type NotesAreaProps = {
   actor: InvestigatorActor,
@@ -29,15 +30,17 @@ export const NotesArea: React.FC<NotesAreaProps> = ({
         longNotesNames.map<JSX.Element>((name: string, i: number) => {
           assertPCDataSource(actor.data);
           return (
-            <Fragment key={`${name}--${i}`}>
-              <h2>{name}</h2>
-              <AsyncTextArea
-                onChange={updateLongNote}
-                // XXX RTF
-                value={actor.data.data.longNotes[i]?.source ?? ""}
+            <InputGrid key={`${name}--${i}`} css={{ height: "12em" }}>
+              <NotesEditorWithControls
+                title={name}
                 index={i}
+                allowChangeFormat={false}
+                format={actor.data.data.longNotesFormat}
+                html={actor.data.data.longNotes[i].html}
+                source={actor.data.data.longNotes[i].source}
+                onSave={updateLongNote}
               />
-            </Fragment>
+            </InputGrid>
           );
         })
       }

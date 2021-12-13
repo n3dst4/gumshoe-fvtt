@@ -1,10 +1,11 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat } from "../types";
+import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat } from "../types";
 import { themes } from "../themes/themes";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { Theme } from "../themes/types";
 import { InvestigatorItem } from "./InvestigatorItem";
+import { convertNotes } from "../textFunctions";
 
 export class InvestigatorActor extends Actor {
   /**
@@ -242,21 +243,25 @@ export class InvestigatorActor extends Actor {
     return this.data.data.longNotes ?? [];
   };
 
-  setLongNote = (i: number, text: string) => {
+  setLongNote = (i: number, note: BaseNote) => {
     assertPCDataSource(this.data);
-    const newNotes = [...(this.data.data.longNotes || [])];
-    // XXX RTF
-    newNotes[i] = {
-      ...newNotes[i],
-      html: text,
-      source: text,
-    };
-    this.update({
-      data: {
-        longNotes: newNotes,
-      },
-    });
+    const longNotes = [...(this.data.data.longNotes || [])];
+    longNotes[i] = note;
+    this.update({ data: { longNotes } });
   };
+
+  setLongNotesFormat = (longNotesFormat: NoteFormat) => {
+    assertPCDataSource(this.data);
+    const longNotes = (this.data.data.longNotes || []).map<BaseNote>((note) => {
+      assertPCDataSource(this.data);
+      const { newHtml, newSource } = convertNotes(this.data.data.longNotesFormat, longNotesFormat, note.source);
+      return {
+        html: newHtml,
+        source: newSource,
+      };
+    });
+    this.update({ data: { longNotes, longNotesFormat } });
+  }
 
   getShortNote = (i: number) => {
     assertPCDataSource(this.data);

@@ -110,5 +110,6 @@
     "investigator.Plain": "Plain",
     "investigator.Markdown": "Markdown",
     "investigator.RichText": "Rich Text",
-    "investigator.Save": "Save"
+    "investigator.Save": "Save",
+    "investigator.NotesFormat": "Notes Format"
 }
