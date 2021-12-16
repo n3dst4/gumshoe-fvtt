@@ -71,7 +71,6 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
       />
       <div css={{ gridColumn: 2, display: "flex" }}>
         <AsyncNumberInput
-          min={0}
           value={weapon.getDamage()}
           onChange={weapon.setDamage}
           noPlusMinus={true}
@@ -85,7 +84,6 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         </button>
         { weapon.getIsPointBlank() && (
           <AsyncNumberInput
-            min={0}
             value={weapon.getPointBlankDamage()}
             onChange={weapon.setPointBlankDamage}
             noPlusMinus={true}
@@ -95,7 +93,6 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         { weapon.getIsCloseRange() && "/" }
         { weapon.getIsCloseRange() && (
           <AsyncNumberInput
-            min={0}
             value={weapon.getCloseRangeDamage()}
             onChange={weapon.setCloseRangeDamage}
             noPlusMinus={true}
@@ -105,7 +102,6 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         { weapon.getIsNearRange() && "/" }
         { weapon.getIsNearRange() && (
           <AsyncNumberInput
-            min={0}
             value={weapon.getNearRangeDamage()}
             onChange={weapon.setNearRangeDamage}
             noPlusMinus={true}
@@ -115,7 +111,6 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         { weapon.getIsLongRange() && "/" }
         { weapon.getIsLongRange() && (
           <AsyncNumberInput
-            min={0}
             value={weapon.getLongRangeDamage()}
             onChange={weapon.setLongRangeDamage}
             noPlusMinus={true}
