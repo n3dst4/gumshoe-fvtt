@@ -142,3 +142,10 @@ export const confirmADoodleDo = ({
   });
   return promise;
 };
+
+export function getDevMode () {
+  assertGame(game);
+  return (game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(
+    systemName,
+  );
+}

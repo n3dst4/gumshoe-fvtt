@@ -25,6 +25,8 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
     actor.setSheetTheme(themeName);
   }, [actor]);
 
+  // const isDevMode = getDevMode();
+
   return (
     <InputGrid>
         <GridField label="Theme">

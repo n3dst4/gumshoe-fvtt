@@ -1,12 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { Fragment, useCallback, useEffect, useRef, useState } from "react";
-import { assertGame, confirmADoodleDo } from "../../functions";
+import React, { Fragment, useCallback, useState } from "react";
+import { assertGame, confirmADoodleDo, getDevMode } from "../../functions";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { Translate } from "../Translate";
 import { NotesEditor } from "./NotesEditor";
-import * as constants from "../../constants";
 import { convertNotes, toHtml } from "../../textFunctions";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 
@@ -40,7 +38,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   const [getLiveFormat, setLiveFormat, liveFormat] = useStateWithGetter(origFormat);
 
   const [dirty, setDirty] = useState(false);
-  const isDebugging = (game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(constants.systemName);
+  const isDebugging = getDevMode();
 
   const onEdit = useCallback((newSource: string) => {
     setLiveSource(newSource);
