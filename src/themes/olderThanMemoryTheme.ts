@@ -9,7 +9,7 @@ export const olderThanMemoryTheme: Theme = themeFactory({
   schemaVersion: "v1",
   displayName: "Older Than Memory",
   global: css`
-    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital@0;1&display=swap');
   `,
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/red_sands.jpg)`,
@@ -24,8 +24,8 @@ export const olderThanMemoryTheme: Theme = themeFactory({
   appWindowStyle: {
     boxShadow: `0 0 20px ${glow}`,
   },
-  bodyFont: "16px 'Patrick Hand SC', sans-serif",
-  displayFont: "normal small-caps normal 1.1em 'Longdon Decorative Regular', serif",
+  bodyFont: "16px 'Signika', sans-serif",
+  displayFont: "bold small-caps normal 1.1em 'Signika', serif",
   logo: {
     fontScaleFactor: 24,
     frontTextElementStyle: {
@@ -56,6 +56,7 @@ export const olderThanMemoryTheme: Theme = themeFactory({
       padding: "0.1em",
     },
     textElementsStyle: {
+      font: "normal small-caps normal 1.1em 'Longdon Decorative Regular', serif",
       transform: "scale(0.6)",
       fontWeight: "bold",
     },
@@ -68,8 +69,8 @@ export const olderThanMemoryTheme: Theme = themeFactory({
     accentContrast: "#333",
     glow,
     wallpaper: "#333",
-    backgroundPrimary: "#111c",
-    backgroundSecondary: "#1119",
+    backgroundPrimary: "#211616cc",
+    backgroundSecondary: "#21161699",
     backgroundButton: "rgba(0,0,0,0.1)",
     text: "#ccc", // "#9ad6de",
   },
