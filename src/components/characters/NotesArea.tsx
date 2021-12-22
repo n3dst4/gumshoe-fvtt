@@ -36,8 +36,8 @@ export const NotesArea: React.FC<NotesAreaProps> = ({
                 index={i}
                 allowChangeFormat={false}
                 format={actor.data.data.longNotesFormat}
-                html={actor.data.data.longNotes[i].html}
-                source={actor.data.data.longNotes[i].source}
+                html={actor.data.data.longNotes[i]?.html ?? ""}
+                source={actor.data.data.longNotes[i]?.source ?? ""}
                 onSave={updateLongNote}
               />
             </InputGrid>
