@@ -112,8 +112,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
                 }}
                 onClick={() => setShowSource((e) => !e)}
               >
-                <i className="fas fa-envelope-open-text"/>
-                {showSource ? "Hide source" : "View source"}
+                <i className={showSource ? "fas fa-window-close" : "fas fa-code"}/>
               </button>
           }
 
