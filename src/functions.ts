@@ -71,12 +71,19 @@ export function assertGame (game: any): asserts game is Game {
   }
 }
 
+export function getDevMode () {
+  assertGame(game);
+  return (game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(
+    systemName,
+  );
+}
+
 export const getTranslated = (
   text: string,
   values: Dictionary<string|number> = {},
 ) => {
   assertGame(game);
-  const debug = getDebugTranslations();
+  const debug = getDebugTranslations() && getDevMode();
   const pascal = Case.pascal(text);
   const prefixed = `${systemName}.${pascal}`;
   const local = game.i18n.format(prefixed, values);
@@ -142,10 +149,3 @@ export const confirmADoodleDo = ({
   });
   return promise;
 };
-
-export function getDevMode () {
-  assertGame(game);
-  return (game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(
-    systemName,
-  );
-}

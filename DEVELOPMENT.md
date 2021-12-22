@@ -1,23 +1,9 @@
 # Development notes
 
-- [x] Message when no actors
-- [x] Update more often
-- [ ] Sorting options
-- [ ] Filtering options
-- [ ] Option to add missing ability on click
 
+## Games supported/future plans
 
-## The future
-
-- [ ] i18n
-- [ ] images for equipment & abilities
-- [ ] expandy-collapsy bits on the notes area
-- [ ] rich text editing
-- [ ] Character gen mode? (track free values, point spends, I<->G trades, synergies)
-- [x] GM player skill matrix (pickable actors, show a big ol' matrix)
-
-
-## GUMSHOE Games that I have, and want to support:
+### GUMSHOE Games that I have, and want to support:
 
 * [x] Trail of Cthulhu
   * [x] Categorized investigating abilities
@@ -42,19 +28,19 @@
 * [ ] The Yellow King
 * [ ] Cthulhu Confidential (is 1-to-1)
 
-## GUMSHOE Games that I don't have yet, but would like to support:
+### GUMSHOE Games that I don't have yet, but would like to support:
 
+* [x] Casting The Runes (aka "The M.R. James one")
 * [ ] Mutant City Blues (2nd ed.)
 
-## Games that I have, and could be bribed to focus on:
+### Games that I have, and could be bribed to focus on:
 
 * [ ] Timewatch
 * [ ] The Gaean Reach
 
-## Other games:
+### Other games:
 
 * [ ] Esoterrorists
-* [ ] Casting The Runes (aka "The M.R. James one")
 * [ ] Bubblegumshoe
 
 
@@ -72,7 +58,6 @@ There are three npm tasks pertaining to translations:
 
 * `npm run groom-translations` will:
   * alphabetise `en.json` and all the other core translations.
-  * add any missing string stubs to the non `en` translations.
   * report any missing translations.
   * report any "extra" translations.
 * `npm run extract-pack-translation-templates` will:
@@ -83,6 +68,18 @@ There are three npm tasks pertaining to translations:
   * THIS WILL CLOBBER ANY JSON MODIFICATIONS WHICH HAVE NOT BEEN UPLOADED TO TRANSIFEX!
 
 To keep the translation imports running sweetly, you will need to update `.tx/config` to map everything to the right places.
+
+
+## Developer mode
+
+There's a fantastic Foundry VTT module called [🧙 Developer Mode](https://foundryvtt.com/packages/_dev-mode). I highly recommend installing it if you're doing any development work on Foundry. You can also use it to activate specific developer features for systems. To do this, click on the little wizard dude in the top left of the screen, go to "Package specific debugging", and "Enable Debug Mode" for "INVESTIGATOR System".
+
+What this enables (list subject to change):
+
+* Notes fields will now have a "view source" mode (looks like `</>`.)
+* "NUKE" button on PC character sheet (this used to be present all the time.)
+* "Debug translations" option available in INVESTIGATOR System Settings.
+
 
 ## Release process
 

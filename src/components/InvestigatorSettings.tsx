@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
 import React, { useCallback, useEffect, useState } from "react";
 import { customSystem } from "../constants";
-import { assertGame } from "../functions";
+import { assertGame, getDevMode } from "../functions";
 import * as settings from "../settingsHelpers";
 import { systemPresets } from "../systemPresets";
 import { themes } from "../themes/themes";
@@ -217,6 +217,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
   );
 
   let idx = 0;
+
+  const isDevMode = getDevMode();
 
   return (
     <CSSReset
@@ -454,12 +456,15 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
           <SettingsGridField label="Can abilities be boosted?" index={idx++}>
             <Checkbox checked={useBoost} onChange={setUseBoost} />
           </SettingsGridField>
-          <SettingsGridField label="Debug translations?" index={idx++}>
-            <Checkbox
-              checked={debugTranslations}
-              onChange={setDebugTranslations}
-            />
-          </SettingsGridField>
+          {
+            isDevMode &&
+              <SettingsGridField label="Debug translations?" index={idx++}>
+                <Checkbox
+                  checked={debugTranslations}
+                  onChange={setDebugTranslations}
+                />
+              </SettingsGridField>
+          }
           <hr css={{ gridColumn: "label / end" }}/>
           <h2
             css={{ gridColumn: "label / end" }}

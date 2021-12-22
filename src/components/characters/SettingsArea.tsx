@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { systemName } from "../../constants";
-import { assertGame } from "../../functions";
+import { assertGame, getDevMode } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { themes } from "../../themes/themes";
 import { assertPCDataSource, NoteFormat } from "../../types";
@@ -25,7 +25,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
     actor.setSheetTheme(themeName);
   }, [actor]);
 
-  // const isDevMode = getDevMode();
+  const isDevMode = getDevMode();
 
   return (
     <InputGrid>
@@ -53,11 +53,13 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
           </select>
         </GridField>
 
-        <GridField label="Nuke">
-          <button onClick={actor.confirmNuke}>
-            <Translate>Nuke</Translate>
-          </button>
-        </GridField>
+        {isDevMode &&
+          <GridField label="Nuke">
+            <button onClick={actor.confirmNuke}>
+              <Translate>Nuke</Translate>
+            </button>
+          </GridField>
+        }
     </InputGrid>
   );
 };
