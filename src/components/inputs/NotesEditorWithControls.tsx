@@ -113,12 +113,12 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
                 onClick={() => setShowSource((e) => !e)}
               >
                 <i className="fas fa-envelope-open-text"/>
-                View source
+                {showSource ? "Hide source" : "View source"}
               </button>
           }
 
           {
-            (!editMode) &&
+            (!editMode && !showSource) &&
               <button
                 css={{
                   width: "auto",
@@ -132,7 +132,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
           }
 
           {
-            (editMode) &&
+            (editMode && !showSource) &&
               <Fragment>
                 <button
                   css={{
@@ -158,7 +158,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
           }
 
           {
-            allowChangeFormat && editMode && (
+            allowChangeFormat && editMode && !showSource && (
               <select value={liveFormat} onChange={onChangeFormat}>
                 <option value={NoteFormat.plain}>{game.i18n.localize("investigator.Plain")}</option>
                 <option value={NoteFormat.markdown}>{game.i18n.localize("investigator.Markdown")}</option>
