@@ -66,7 +66,7 @@ export const olderThanMemoryTheme: Theme = themeFactory({
     },
   },
   colors: {
-    accent: "#fc8e72",
+    accent: "#fdbd8e",
     accentContrast: "#333",
     glow,
     wallpaper: "#333",

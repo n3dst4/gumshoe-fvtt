@@ -150,6 +150,9 @@ export const CSSReset: React.FC<CSSResetProps> = ({
             border: `2px groove ${theme.colors.controlBorder}`,
             background: theme.colors.backgroundButton,
           },
+          hr: {
+            borderColor: theme.colors.controlBorder,
+          },
         }}
       >
         {children}
