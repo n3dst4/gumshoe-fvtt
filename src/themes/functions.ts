@@ -32,6 +32,8 @@ export const themeFactory = (seed: ThemeSeed): Theme => {
   const bgOpaqueDangerPrimary = overlay(seed.colors.wallpaper, bgTransDangerPrimary);
   const bgOpaqueDangerSecondary = overlay(seed.colors.wallpaper, bgTransDangerSecondary);
 
+  const controlBorder = seed.colors.controlBorder ?? seed.colors.text;
+
   return {
     ...seed,
     largeSheetRootStyle: {
@@ -48,6 +50,7 @@ export const themeFactory = (seed: ThemeSeed): Theme => {
       bgTransDangerSecondary,
       bgOpaqueDangerPrimary,
       bgOpaqueDangerSecondary,
+      controlBorder,
     },
     logo: {
       ...seed.logo,

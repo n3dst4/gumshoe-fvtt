@@ -54,7 +54,7 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
         overflow: "auto",
         background: theme.colors.backgroundPrimary,
         padding: "0.5em",
-        border: `1px solid ${theme.colors.text}`,
+        border: `1px solid ${theme.colors.controlBorder}`,
       }}
       dangerouslySetInnerHTML={{ __html: html }}
     />;

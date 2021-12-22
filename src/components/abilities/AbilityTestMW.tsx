@@ -46,7 +46,7 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
   return (
     <div
       css={{
-        border: `1px solid ${theme.colors.text}`,
+        border: `1px solid ${theme.colors.controlBorder}`,
         padding: "0.5em",
         marginBottom: "1em",
         background: theme.colors.backgroundSecondary,

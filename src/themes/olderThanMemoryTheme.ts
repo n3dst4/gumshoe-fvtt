@@ -74,5 +74,6 @@ export const olderThanMemoryTheme: Theme = themeFactory({
     backgroundSecondary: "#21161699",
     backgroundButton: "rgba(0,0,0,0.1)",
     text: "#ccc", // "#9ad6de",
+    controlBorder: "#825050",
   },
 });

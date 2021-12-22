@@ -125,6 +125,12 @@ export type ThemeSeed = {
      */
     backgroundSecondary: string,
 
+    /**
+     * Color used to outline controls
+     * @default text
+     */
+    controlBorder?: string,
+
   },
 }
 
@@ -138,6 +144,7 @@ export type Theme = ThemeSeed & {
     bgTransDangerSecondary: string,
     bgOpaqueDangerPrimary: string,
     bgOpaqueDangerSecondary: string,
+    controlBorder: string,
   },
 
   logo: ThemeSeed["logo"] & {
