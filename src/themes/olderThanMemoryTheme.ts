@@ -25,7 +25,7 @@ export const olderThanMemoryTheme: Theme = themeFactory({
     boxShadow: `0 0 20px ${glow}`,
   },
   bodyFont: "16px 'Signika', sans-serif",
-  displayFont: "bold small-caps normal 1.1em 'Signika', serif",
+  displayFont: "normal normal normal 1.1em 'Cambridge Medium', serif",
   logo: {
     fontScaleFactor: 24,
     frontTextElementStyle: {
