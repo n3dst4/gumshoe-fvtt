@@ -10,6 +10,7 @@ export const olderThanMemoryTheme: Theme = themeFactory({
   displayName: "Older Than Memory",
   global: css`
     @import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital@0;1&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600;700&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fira+Sans+Condensed:ital@0;1&display=swap');
   `,
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/red_sands.jpg)`,
@@ -24,8 +25,8 @@ export const olderThanMemoryTheme: Theme = themeFactory({
   appWindowStyle: {
     boxShadow: `0 0 20px ${glow}`,
   },
-  bodyFont: "16px 'Signika', sans-serif",
-  displayFont: "bold small-caps normal 1.1em 'Signika', serif",
+  bodyFont: "normal 16px 'Signika', sans-serif",
+  displayFont: "bold normal normal 1.1em 'Cormorant Unicase', serif",
   logo: {
     fontScaleFactor: 24,
     frontTextElementStyle: {
