@@ -9,7 +9,7 @@ import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility,
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
 import { isAbilityDataSource, isGeneralAbilityDataSource, isWeaponDataSource, isEquipmentDataSource } from "./types";
-import { assertGame, getFolderDescendants, isNullOrEmptyString } from "./functions";
+import { assertGame, getFolderDescendants, getTranslated, isNullOrEmptyString } from "./functions";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { investigatorSettingsClassInstance } from "./module/InvestigatorSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
@@ -204,10 +204,8 @@ Hooks.on(
 
 Hooks.on("renderSettings", (app: Application, html: JQuery) => {
   assertGame(game);
-  const systemNameTranslated = game.i18n.localize(
-    `${systemName}.SystemName`,
-  );
-  const text = game.i18n.format(`${systemName}.SystemNameSystemSettings`, {
+  const systemNameTranslated = getTranslated("SystemName");
+  const text = getTranslated("SystemNameSystemSettings", {
     SystemName: systemNameTranslated,
   });
   const button = $(`<button><i class="fas fa-search"></i>${text}</button>`);

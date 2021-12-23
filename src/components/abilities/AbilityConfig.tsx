@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ChangeEvent, useCallback, useState } from "react";
-import { assertGame, confirmADoodleDo } from "../../functions";
+import { assertGame, confirmADoodleDo, getTranslated } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
@@ -189,9 +189,9 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
               value={ability.data.data.mwRefreshGroup}
               onChange={(e) => { ability.setMwRefreshGroup(Number(e.currentTarget.value) as MwRefreshGroup); }}
             >
-              <option value="2">{game.i18n.format("investigator.XHours", { x: "2" })}</option>
-              <option value="4">{game.i18n.format("investigator.XHours", { x: "4" })}</option>
-              <option value="8">{game.i18n.format("investigator.XHours", { x: "8" })}</option>
+              <option value="2">{getTranslated("XHours", { x: "2" })}</option>
+              <option value="4">{getTranslated("XHours", { x: "4" })}</option>
+              <option value="8">{getTranslated("XHours", { x: "8" })}</option>
             </select>
           </GridField>
   }

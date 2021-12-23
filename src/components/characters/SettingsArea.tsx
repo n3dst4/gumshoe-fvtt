@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
-import { systemName } from "../../constants";
-import { assertGame, getDevMode } from "../../functions";
+import { assertGame, getDevMode, getTranslated } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { themes } from "../../themes/themes";
 import { assertPCDataSource, NoteFormat } from "../../types";
@@ -35,7 +34,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
               <option key={themeName} value={themeName}>{themes[themeName].displayName}</option>
             ))}
             <option value="default">
-              {game.i18n.localize(`${systemName}.UseSystemDefault`)}
+              {getTranslated("UseSystemDefault")}
             </option>
           </select>
         </GridField>
@@ -47,9 +46,9 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
               actor.setLongNotesFormat(e.currentTarget.value as NoteFormat);
             }}
           >
-            <option value={NoteFormat.plain}>{game.i18n.localize("investigator.Plain")}</option>
-            <option value={NoteFormat.markdown}>{game.i18n.localize("investigator.Markdown")}</option>
-            <option value={NoteFormat.richText}>{game.i18n.localize("investigator.RichText")}</option>
+            <option value={NoteFormat.plain}>{getTranslated("Plain")}</option>
+            <option value={NoteFormat.markdown}>{getTranslated("Markdown")}</option>
+            <option value={NoteFormat.richText}>{getTranslated("RichText")}</option>
           </select>
         </GridField>
 

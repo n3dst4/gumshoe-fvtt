@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useState } from "react";
-import { assertGame, confirmADoodleDo, getDevMode } from "../../functions";
+import { assertGame, confirmADoodleDo, getDevMode, getTranslated } from "../../functions";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { Translate } from "../Translate";
 import { NotesEditor } from "./NotesEditor";
@@ -159,9 +159,9 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
           {
             allowChangeFormat && editMode && !showSource && (
               <select value={liveFormat} onChange={onChangeFormat}>
-                <option value={NoteFormat.plain}>{game.i18n.localize("investigator.Plain")}</option>
-                <option value={NoteFormat.markdown}>{game.i18n.localize("investigator.Markdown")}</option>
-                <option value={NoteFormat.richText}>{game.i18n.localize("investigator.RichText")}</option>
+                <option value={NoteFormat.plain}>{getTranslated("Plain")}</option>
+                <option value={NoteFormat.markdown}>{getTranslated("Markdown")}</option>
+                <option value={NoteFormat.richText}>{getTranslated("RichText")}</option>
               </select>
             )
           }
