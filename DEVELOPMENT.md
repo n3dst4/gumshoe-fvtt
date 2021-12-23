@@ -1,5 +1,17 @@
 # Development notes
 
+## Development & general hacking
+
+If you're a developer and you'd like to hack on this code, please be aware it uses Webpack and React so some of it will not look like normal Handlebars + JQuery Foundry stuff.
+
+1. Clone the repo.
+2. Copy `foundryconfig_template.json` to `foundryconfig.json` and edit it to fill in the `dataPath`, e.g.  `"dataPath" "/home/ndc/foundrydata",`.
+3. `npm i` to install dependencies
+4. `npm run build` to do a build
+5. `npm run link` to link it into your foundry data folder
+6. `npm start` to start a live incremental build (so you don't need to keep running `npm run build` after every change).
+7. Open your local foundry server and create a world using this as the system.
+
 
 ## Games supported/future plans
 
