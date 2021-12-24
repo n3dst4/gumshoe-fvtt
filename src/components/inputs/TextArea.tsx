@@ -53,7 +53,7 @@ export const TextArea: React.FC<TextAreaProps> = ({
       if (!config) return false;
       const entity = (config.collection as any).instance.get(data.id);
       if (!entity) return false;
-      const link = `@${data.type}[${entity._id}]{${entity.name}}`;
+      const link = `@${data.type}[${entity.data._id}]{${entity.name}}`;
       onChange?.(`${value || ""}${link}`, index);
     }
   };
