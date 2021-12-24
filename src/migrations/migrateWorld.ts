@@ -6,6 +6,7 @@ import { migrateItemData } from "./migrateItemData";
 import { migrateSceneData } from "./migrateSceneData";
 import { setSystemMigrationVersion } from "../settingsHelpers";
 import { assertGame } from "../functions";
+import * as constants from "../constants";
 
 const title = system.title;
 
@@ -71,7 +72,7 @@ export const migrateWorld = async function () {
   // Migrate World Compendium Packs
   // XXX another any
   for (const p of (game.packs as any)) {
-    if (p.metadata.package !== "world") continue;
+    if (p.metadata.package !== "world" && p.metadata.package !== constants.systemName) continue;
     if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
     await migrateCompendium(p);
   }
