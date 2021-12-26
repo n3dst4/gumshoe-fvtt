@@ -4,11 +4,11 @@ import React, { Fragment, useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { CompactNotesEditor } from "../inputs/CompactNotesEditor";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { assertWeaponDataSource } from "../../types";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem,
@@ -18,8 +18,6 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   weapon,
 }) => {
   assertWeaponDataSource(weapon.data);
-
-  const name = useAsyncUpdate(weapon.name || "", weapon.setName);
 
   const weaponRangeReduce = useCallback(() => {
     if (weapon.getIsLongRange()) {
@@ -61,13 +59,11 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
 
   return (
     <Fragment>
-      <div
-        css={{ gridColumn: 1, overflow: "hidden", textOverflow: "ellipsis" }}
-        contentEditable
-        onInput={name.onInput}
-        onFocus={name.onFocus}
-        onBlur={name.onBlur}
-        ref={name.contentEditableRef}
+      <hr css={{ gridColumn: "1/-1" }} />
+      <AsyncTextInput
+        css={{ gridColumn: 1 }}
+        value={weapon.name ?? ""}
+        onChange={weapon.setName}
       />
       <div css={{ gridColumn: 2, display: "flex" }}>
         <AsyncNumberInput

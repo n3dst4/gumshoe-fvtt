@@ -25,7 +25,7 @@ export const CombatAbilityDropDown: React.FC<CombatAbilityDropDownProps> = ({
     <select
       value={value}
       onChange={onSelectInitiativeAbility}
-      css={{ width: "9.5em" }}
+      css={{ width: "8.5em" }}
     >
       {combatAbilities.map<JSX.Element>((ability) => (
         <option key={ability} value={ability}>{ability}</option>

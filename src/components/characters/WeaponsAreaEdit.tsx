@@ -72,14 +72,22 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
             },
           }}
         >
-          <div className="header" css={{ gridColumn: 1 }}>
+          <div className="header" css={{ gridColumn: 1, alignSelf: "end" }}>
             <Translate>Weapon</Translate>
           </div>
-          <div className="header" css={{ gridColumn: 2, alignSelf: "center" }}>
-            <Translate>Damage</Translate>
-            <p><Translate>Base PB/CR/NR/LR</Translate></p>
+          <div className="header" css={{ gridColumn: 2, alignSelf: "end" }}>
+            <div
+              css={{
+                borderWidth: "1px 1px 0 1px",
+                borderRadius: "1em",
+                borderStyle: "solid",
+              }}
+            >
+              <Translate>Damage</Translate>
+            </div>
+            <div><Translate>Base PB/CR/NR/LR</Translate></div>
           </div>
-          <div className="header" css={{ gridColumn: 3 }}>
+          <div className="header" css={{ gridColumn: 3, alignSelf: "end" }}>
             <Translate>Ammo</Translate>
           </div>
           {

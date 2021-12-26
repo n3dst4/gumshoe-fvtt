@@ -14,7 +14,7 @@ class InvestigatorNPCSheetClassBase extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "actor"],
       template: reactTemplatePath,
-      width: 660,
+      width: 700,
       height: 660,
     });
   }
