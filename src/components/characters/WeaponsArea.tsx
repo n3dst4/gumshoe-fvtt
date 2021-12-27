@@ -74,10 +74,10 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
           <Translate>Weapon</Translate>
           </div>
           <div className="header" css={{ gridColumn: 2 }}>
-          <Translate>Damage</Translate>
+          <Translate>Ammo</Translate>
           </div>
           <div className="header" css={{ gridColumn: 3 }}>
-          <Translate>Ammo</Translate>
+          <Translate>Damage</Translate>
           </div>
           {
             sortEntitiesByName(items).map<JSX.Element>((item) => (

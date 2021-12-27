@@ -5,14 +5,16 @@ import { nanoid } from "nanoid";
 import { ThemeContext } from "../../themes/ThemeContext";
 
 type CheckButtonsProps = {
-  options: Array<{label: string, value: number, enabled: boolean}>,
+  options: Array<{label: string, value: number, enabled: boolean, hover?: string}>,
   selected: number,
+  size?: number,
   onChange: (newValue: number) => void,
 };
 
 export const CheckButtons: React.FC<CheckButtonsProps> = ({
   options,
   selected,
+  size = 1.4,
   onChange: onChangeOrig,
 }) => {
   const theme = useContext(ThemeContext);
@@ -29,14 +31,14 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
         display: "flex",
         flexDirection: "row",
         gap: "0.3em",
-        lineHeight: 1.4,
+        lineHeight: size,
         "input[type=radio]": {
           display: "none",
           "+label": {
             padding: "0",
             flex: 1,
             textAlign: "center",
-            fontSize: "1.4em",
+            fontSize: size.toString() + "em",
             fontWeight: "bold",
             border: "2px groove white",
             backgroundColor: theme.colors.backgroundPrimary,
@@ -62,7 +64,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
       }}
     >
       {
-        options.map<JSX.Element>(({ label, value, enabled }) => {
+        options.map<JSX.Element>(({ label, value, enabled, hover }) => {
           const id = nanoid();
           return (
             <Fragment key={value}>
@@ -75,7 +77,7 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
                 onChange={onChange}
                 disabled={!enabled}//
               />
-              <label htmlFor={id} tabIndex={0}>
+              <label htmlFor={id} tabIndex={0} title={hover}>
                 {label}
               </label>
             </Fragment>
