@@ -1,5 +1,18 @@
 # Development notes
 
+- [Development notes](#development-notes)
+  - [Development & general hacking](#development--general-hacking)
+  - [Migrations](#migrations)
+  - [Games supported/future plans](#games-supportedfuture-plans)
+    - [GUMSHOE Games that I have, and want to support:](#gumshoe-games-that-i-have-and-want-to-support)
+    - [GUMSHOE Games that I don't have yet, but would like to support:](#gumshoe-games-that-i-dont-have-yet-but-would-like-to-support)
+    - [Games that I have, and could be bribed to focus on:](#games-that-i-have-and-could-be-bribed-to-focus-on)
+    - [Other games:](#other-games)
+  - [Generating Compendium packs](#generating-compendium-packs)
+  - [Translations](#translations)
+  - [Using the "Developer mode" module](#using-the-developer-mode-module)
+  - [Release process](#release-process)
+
 ## Development & general hacking
 
 If you're a developer and you'd like to hack on this code, please be aware it uses Webpack and React so some of it will not look like normal Handlebars + JQuery Foundry stuff.
@@ -11,6 +24,16 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 5. `npm run link` to link it into your foundry data folder
 6. `npm start` to start a live incremental build (so you don't need to keep running `npm run build` after every change).
 7. Open your local foundry server and create a world using this as the system.
+
+## Migrations
+
+The migrations system is inspired by an earlier version of the one in the 5e system. It is triggered from `investigator.ts` based on version number.
+
+If you want to force migrations to run, try this:
+
+```ts
+game.settings.set("investigator","systemMigrationVersion", "1.0.0")
+```
 
 
 ## Games supported/future plans
@@ -82,7 +105,7 @@ There are three npm tasks pertaining to translations:
 To keep the translation imports running sweetly, you will need to update `.tx/config` to map everything to the right places.
 
 
-## Developer mode
+## Using the "Developer mode" module
 
 There's a fantastic Foundry VTT module called [🧙 Developer Mode](https://foundryvtt.com/packages/_dev-mode). I highly recommend installing it if you're doing any development work on Foundry. You can also use it to activate specific developer features for systems. To do this, click on the little wizard dude in the top left of the screen, go to "Package specific debugging", and "Enable Debug Mode" for "INVESTIGATOR System".
 
