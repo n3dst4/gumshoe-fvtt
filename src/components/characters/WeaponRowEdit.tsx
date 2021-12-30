@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback } from "react";
+import React, { Fragment, useCallback, useContext } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
@@ -9,6 +9,7 @@ import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { assertWeaponDataSource } from "../../types";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { ThemeContext } from "../../themes/ThemeContext";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem,
@@ -20,6 +21,8 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   index,
 }) => {
   assertWeaponDataSource(weapon.data);
+
+  const theme = useContext(ThemeContext);
 
   const weaponRangeReduce = useCallback(() => {
     if (weapon.getIsLongRange()) {
@@ -59,31 +62,42 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
     });
   }, [weapon]);
 
-  const gridRow = ((index) * 2) + 2;
-
-  // 2 + 5 * x
+  const gridRow = ((index) * 3) + 2;
 
   return (
     <Fragment>
-      {/* <div
+      <div
         css={{
           gridColumn: "1/-1",
-          gridRow,
+          gridRow: `${gridRow}/${gridRow + 2}`,
+          background: theme.colors.backgroundButton,
+          // margin: "0.5em",
         }}
-      >
-        <hr
-          css={{
-            borderStyle: "solid",
-            borderWidth: "1px",
-          }}
-        />
-      </div> */}
+      />
+      <div
+        css={{
+          gridColumn: "1/-1",
+          gridRow: `${gridRow + 2}/${gridRow + 3}`,
+          height: "0.5em",
+        }}
+      />
       <AsyncTextInput
-        css={{ gridColumn: 1, gridRow }}
+        css={{
+          gridColumn: 1,
+          gridRow,
+          margin: "0.5em 0.5em 0 0.5em",
+        }}
         value={weapon.name ?? ""}
         onChange={weapon.setName}
       />
-      <div css={{ gridColumn: 2, display: "flex", gridRow }}>
+      <div
+        css={{
+          gridColumn: 2,
+          gridRow,
+          display: "flex",
+          margin: "0.5em 0 0 0",
+        }}
+      >
         <AsyncNumberInput
           value={weapon.getDamage()}
           onChange={weapon.setDamage}
@@ -138,7 +152,14 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         <i className="fa fa-chevron-right"/>
         </button>
       </div>
-      <div css={{ gridColumn: 3, display: "flex", gridRow }}>
+      <div
+        css={{
+          gridColumn: 3,
+          display: "flex",
+          gridRow,
+          margin: "0.5em 0 0 0",
+        }}
+      >
         <AsyncCheckbox
           checked={weapon.getUsesAmmo()}
           onChange={weapon.setUsesAmmo}
@@ -164,12 +185,25 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         )}
       </div>
       <button
-        css={{ gridColumn: 4, width: "1.6em", padding: "0", gridRow }}
+        css={{
+          gridColumn: 4,
+          gridRow,
+          width: "1.6em",
+          padding: "0",
+          margin: "0.5em 0.5em 0 0",
+        }}
         onClick={onClickDelete}
       >
         <i className="fa fa-trash"/>
       </button>
-      <span css={{ gridColumn: 1, margin: "0 0 1em 0em", gridRow: gridRow + 1 }}>
+      <span
+        css={{
+          gridColumn: 1,
+          gridRow: gridRow + 1,
+          // margin: "0 0 1em 0em",
+          margin: "0 0 0.5em 0.5em",
+        }}
+      >
         <CombatAbilityDropDown
           value={weapon.data.data.ability}
           onChange={(e) => weapon.setAbility(e)}
@@ -179,6 +213,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         css={{
           gridColumn: "2 / -1",
           gridRow: gridRow + 1,
+          margin: "0 0.5em 0.5em 0",
         }}
         note={weapon.getNotes()}
         onChange={weapon.setNotes}

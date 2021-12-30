@@ -63,7 +63,7 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
         <div
           css={{
             display: "grid",
-            gridTemplateColumns: "9em 1fr max-content min-content",
+            gridTemplateColumns: "10em 1fr max-content min-content",
             gridAutoRows: "min-content",
             columnGap: "0.5em",
             whiteSpace: "nowrap",
@@ -78,9 +78,9 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
           <div className="header" css={{ gridColumn: 2, alignSelf: "end", gridRow: 1 }}>
             <div
               css={{
-                borderWidth: "1px 1px 0 1px",
-                borderRadius: "1em",
-                borderStyle: "solid",
+                // borderWidth: "1px 1px 0 1px",
+                // borderRadius: "1em",
+                // borderStyle: "solid",
               }}
             >
               <Translate>Damage</Translate>
