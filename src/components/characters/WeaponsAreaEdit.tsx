@@ -72,10 +72,10 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
             },
           }}
         >
-          <div className="header" css={{ gridColumn: 1, alignSelf: "end" }}>
+          <div className="header" css={{ gridColumn: 1, alignSelf: "end", gridRow: 1 }}>
             <Translate>Weapon</Translate>
           </div>
-          <div className="header" css={{ gridColumn: 2, alignSelf: "end" }}>
+          <div className="header" css={{ gridColumn: 2, alignSelf: "end", gridRow: 1 }}>
             <div
               css={{
                 borderWidth: "1px 1px 0 1px",
@@ -87,12 +87,12 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
             </div>
             <div><Translate>Base PB/CR/NR/LR</Translate></div>
           </div>
-          <div className="header" css={{ gridColumn: 3, alignSelf: "end" }}>
+          <div className="header" css={{ gridColumn: 3, alignSelf: "end", gridRow: 1 }}>
             <Translate>Ammo</Translate>
           </div>
           {
-            sortEntitiesByName(items).map<JSX.Element>((item) => (
-              <WeaponRowEdit key={item.id} weapon={item}/>
+            sortEntitiesByName(items).map<JSX.Element>((item, index) => (
+              <WeaponRowEdit key={item.id} weapon={item} index={index}/>
             ))
           }
         </div>

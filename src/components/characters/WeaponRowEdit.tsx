@@ -12,10 +12,12 @@ import { AsyncTextInput } from "../inputs/AsyncTextInput";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem,
+  index: number,
 };
 
 export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   weapon,
+  index,
 }) => {
   assertWeaponDataSource(weapon.data);
 
@@ -57,15 +59,31 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
     });
   }, [weapon]);
 
+  const gridRow = ((index) * 2) + 2;
+
+  // 2 + 5 * x
+
   return (
     <Fragment>
-      <hr css={{ gridColumn: "1/-1" }} />
+      {/* <div
+        css={{
+          gridColumn: "1/-1",
+          gridRow,
+        }}
+      >
+        <hr
+          css={{
+            borderStyle: "solid",
+            borderWidth: "1px",
+          }}
+        />
+      </div> */}
       <AsyncTextInput
-        css={{ gridColumn: 1 }}
+        css={{ gridColumn: 1, gridRow }}
         value={weapon.name ?? ""}
         onChange={weapon.setName}
       />
-      <div css={{ gridColumn: 2, display: "flex" }}>
+      <div css={{ gridColumn: 2, display: "flex", gridRow }}>
         <AsyncNumberInput
           value={weapon.getDamage()}
           onChange={weapon.setDamage}
@@ -120,7 +138,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         <i className="fa fa-chevron-right"/>
         </button>
       </div>
-      <div css={{ gridColumn: 3, display: "flex" }}>
+      <div css={{ gridColumn: 3, display: "flex", gridRow }}>
         <AsyncCheckbox
           checked={weapon.getUsesAmmo()}
           onChange={weapon.setUsesAmmo}
@@ -146,18 +164,22 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         )}
       </div>
       <button
-        css={{ gridColumn: 4, width: "1.6em", padding: "0" }}
+        css={{ gridColumn: 4, width: "1.6em", padding: "0", gridRow }}
         onClick={onClickDelete}
       >
         <i className="fa fa-trash"/>
       </button>
-      <span css={{ gridColumn: 1, margin: "0 0 1em 0em" }}>
-      <CombatAbilityDropDown
-        value={weapon.data.data.ability}
-        onChange={(e) => weapon.setAbility(e)}
-      />
+      <span css={{ gridColumn: 1, margin: "0 0 1em 0em", gridRow: gridRow + 1 }}>
+        <CombatAbilityDropDown
+          value={weapon.data.data.ability}
+          onChange={(e) => weapon.setAbility(e)}
+        />
       </span>
       <CompactNotesEditor
+        css={{
+          gridColumn: "2 / -1",
+          gridRow: gridRow + 1,
+        }}
         note={weapon.getNotes()}
         onChange={weapon.setNotes}
       />
