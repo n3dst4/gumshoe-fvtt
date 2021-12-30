@@ -72,7 +72,7 @@ export const migrateWorld = async function () {
   // Migrate World Compendium Packs
   // XXX another any
   for (const p of (game.packs as any)) {
-    if (p.metadata.package !== "world" && p.metadata.package !== constants.systemName) continue;
+    if (p.metadata.package !== "world") continue;
     if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
     await migrateCompendium(p);
   }
@@ -80,4 +80,13 @@ export const migrateWorld = async function () {
   // Set the migration as complete
   setSystemMigrationVersion(system.version);
   ui.notifications?.info(`${system.title} system migration to version ${system.version} completed!`, { permanent: true });
+};
+
+(window as any).migrateSystemCompendiums = async () => {
+  assertGame(game);
+  for (const p of (game.packs as any)) {
+    if (p.metadata.package !== constants.systemName) continue;
+    if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
+    await migrateCompendium(p);
+  }
 };
