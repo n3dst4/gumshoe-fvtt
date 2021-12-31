@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v4.8.0 (2021-12-31)
+
+Happy new year! A big update. 
+
+* **Tested against Foundry VTT v9.238**
+* **Rich text support!** All the places where previously we had plain-text notes areas, you can ow choose to edit as either rich text (using Foundry's standard rich text editor,) [Markdown](https://commonmark.org/help/) (if you're into that sort of thing), or plain text.
+* Rules support for the **"Moribund World" system**, which is very similar to GUMSHOE but not quite.
+* **The "Nuke" button is now hidden** unless you're using the [🧙 Developer Mode](https://foundryvtt.com/packages/_dev-mode) module.
+* Speaking of which, [🧙 Developer Mode](https://foundryvtt.com/packages/_dev-mode) is now the preferred way to activate developer features.
+* You can now set the **Initiative Ability** directly from the character sheet. This a great QoL feature, thanks to @yariv).
+* German translations! Thanks to `@muwak` on Gitlab.
+* **Bug fix** There were some missing translations around combat ordering. Fixed now.
+* **Bug fix** The new chat messages from 4.7.0 could go weird if the relevant ability or weapon was removed. Fixed now.
+
 ## v4.7.1 (2021-11-01)
 
 * Whoops
