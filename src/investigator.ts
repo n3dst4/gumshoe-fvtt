@@ -128,7 +128,7 @@ Hooks.on("ready", async () => {
   const currentVersion = getSystemMigrationVersion();
   // newest version that needs a migration (make this the current version when
   // you introduce a new migration)
-  const NEEDS_MIGRATION_VERSION = "4.7.2";
+  const NEEDS_MIGRATION_VERSION = "4.8.0";
   // oldest version which can be migrated reliably
   const COMPATIBLE_MIGRATION_VERSION = "1.0.0";
   const needsMigration = isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
