@@ -1,10 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback, useContext, useState } from "react";
-import { isGeneralAbility } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { assertAbilityDataSource } from "../../types";
+import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
@@ -45,12 +44,12 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
     });
   });
 
-  const isGeneral = isGeneralAbility(ability);
+  const isGeneral = isGeneralAbilityDataSource(ability.data);
 
   return (
     <InputGrid
       css={{
-        border: `1px solid ${theme.colors.text}`,
+        border: `1px solid ${theme.colors.controlBorder}`,
         padding: "1em",
         marginBottom: "1em",
         background: theme.colors.backgroundSecondary,

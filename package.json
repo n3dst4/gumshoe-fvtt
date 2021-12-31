@@ -26,11 +26,14 @@
     "@babel/preset-typescript": "^7.12.7",
     "@emotion/react": "^11.1.4",
     "@league-of-foundry-developers/foundry-vtt-types": "^0.8.9-7",
+    "@types/dompurify": "^2.3.1",
     "@types/lodash": "^4.14.167",
+    "@types/marked": "^4.0.1",
     "@types/nanoid": "^2.1.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-transition-group": "^4.4.4",
+    "@types/turndown": "^5.0.1",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
     "archiver": "^5.2.0",
@@ -65,16 +68,19 @@
   },
   "dependencies": {
     "@emotion/css": "^11.5.0",
-    "@types/dompurify": "^2.2.1",
+    "@types/html-escaper": "^3.0.0",
     "case": "^1.6.3",
-    "dompurify": "^2.2.6",
+    "dompurify": "^2.3.3",
     "file-system-access": "^1.0.1",
+    "html-escaper": "^3.0.3",
     "irid": "^2.0.2",
     "lodash": "^4.17.20",
+    "marked": "^4.0.3",
     "nanoid": "^3.1.20",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
-    "react-transition-group": "^4.4.2"
+    "react-transition-group": "^4.4.2",
+    "turndown": "^7.1.1"
   }
 }

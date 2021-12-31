@@ -36,12 +36,14 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
               [
                 {
                   type: weapon,
-                  name: "New weapon",
+                  name: "A new weapon",
+                  data: {
+                    notes: {
+                      format: "plain",
+                    },
+                  },
                 },
-              ],
-              {
-                renderSheet: true,
-              });
+              ]);
           }}
         >
           <i className="fa fa-plus"/><Translate>Add Weapon</Translate>
@@ -61,7 +63,7 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
         <div
           css={{
             display: "grid",
-            gridTemplateColumns: "1fr max-content max-content 1fr",
+            gridTemplateColumns: "10em 1fr max-content min-content",
             gridAutoRows: "min-content",
             columnGap: "0.5em",
             whiteSpace: "nowrap",
@@ -70,19 +72,27 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
             },
           }}
         >
-          <div className="header" css={{ gridColumn: 1 }}>
-          <Translate>Weapon</Translate>
+          <div className="header" css={{ gridColumn: 1, alignSelf: "end", gridRow: 1 }}>
+            <Translate>Weapon</Translate>
           </div>
-          <div className="header" css={{ gridColumn: 2, alignSelf: "center" }}>
-          <Translate>Damage</Translate>
-          <p><Translate>Base PB/CR/NR/LR</Translate></p>
+          <div className="header" css={{ gridColumn: 2, alignSelf: "end", gridRow: 1 }}>
+            <div
+              css={{
+                // borderWidth: "1px 1px 0 1px",
+                // borderRadius: "1em",
+                // borderStyle: "solid",
+              }}
+            >
+              <Translate>Damage</Translate>
+            </div>
+            <div><Translate>Base PB/CR/NR/LR</Translate></div>
           </div>
-          <div className="header" css={{ gridColumn: 3 }}>
-          <Translate>Ammo</Translate>
+          <div className="header" css={{ gridColumn: 3, alignSelf: "end", gridRow: 1 }}>
+            <Translate>Ammo</Translate>
           </div>
           {
-            sortEntitiesByName(items).map<JSX.Element>((item) => (
-              <WeaponRowEdit key={item.id} weapon={item}/>
+            sortEntitiesByName(items).map<JSX.Element>((item, index) => (
+              <WeaponRowEdit key={item.id} weapon={item} index={index}/>
             ))
           }
         </div>

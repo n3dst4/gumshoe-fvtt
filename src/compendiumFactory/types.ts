@@ -13,6 +13,7 @@ type BaseAbilityTemplate = {
   img: string,
   excludeFromGeneralRefresh: boolean,
   refreshesDaily: boolean,
+  hideIfZeroRated: boolean,
 }
 
 export type InvestigativeAbilityTemplate = {

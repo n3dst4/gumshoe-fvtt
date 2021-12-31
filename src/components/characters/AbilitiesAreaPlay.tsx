@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment } from "react";
-import { generalAbility, investigativeAbility } from "../../constants";
-import { sortEntitiesByName, isInvestigativeAbility } from "../../functions";
+import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { assertActiveCharacterDataSource, isAbilityDataSource } from "../../types";
+import { assertActiveCharacterDataSource } from "../../types";
 import { AbilitySlugPlay } from "./AbilitySlugPlay";
+import { NoAbilitiesNote } from "./NoAbilitiesNote";
+import { useAbilities } from "./useAbilities";
 
 type AbilitiesAreaPlayProps = {
   actor: InvestigatorActor,
@@ -18,31 +18,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
   flipLeftRight,
 }) => {
   assertActiveCharacterDataSource(actor.data);
-
-  const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
-  const generalAbilities: { [category: string]: InvestigatorItem[] } = {};
-
-  for (const item of actor.items.values()) {
-    if (!isAbilityDataSource(item.data)) {
-      continue;
-    }
-    if (isInvestigativeAbility(item) && item.data.data.rating === 0) {
-      continue;
-    }
-    if (item.data.type === investigativeAbility) {
-      const cat = item.data.data.category || "Uncategorised";
-      if (investigativeAbilities[cat] === undefined) {
-        investigativeAbilities[cat] = [];
-      }
-      investigativeAbilities[cat].push(item);
-    } else if (item.type === generalAbility) {
-      const cat = item.data.data.category || "Uncategorised";
-      if (generalAbilities[cat] === undefined) {
-        generalAbilities[cat] = [];
-      }
-      generalAbilities[cat].push(item);
-    }
-  }
+  const { investigativeAbilities, generalAbilities } = useAbilities(actor, true);
 
   return (
     <Fragment>
@@ -66,7 +42,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
             height: "0",
           }}
         >
-          {Object.keys(investigativeAbilities).sort().map<JSX.Element>((cat) => (
+          {Object.keys(investigativeAbilities).map<JSX.Element>((cat) => (
             <Fragment
               key={cat}
             >
@@ -76,6 +52,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
                   <AbilitySlugPlay key={ability.id} ability={ability}/>
                 ))
               }
+              {investigativeAbilities[cat].length === 0 && <NoAbilitiesNote />}
             </Fragment>
           ))}
         </div>
@@ -91,7 +68,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
             height: "0",
           }}
         >
-          {Object.keys(generalAbilities).sort().map<JSX.Element>((cat) => (
+          {Object.keys(generalAbilities).map<JSX.Element>((cat) => (
             <Fragment
               key={cat}
             >
@@ -101,6 +78,8 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
                   <AbilitySlugPlay key={ability.id} ability={ability}/>
                 ))
               }
+              {generalAbilities[cat].length === 0 && <NoAbilitiesNote />}
+
             </Fragment>
           ))}
         </div>

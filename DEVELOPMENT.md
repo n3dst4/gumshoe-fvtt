@@ -1,23 +1,44 @@
 # Development notes
 
-- [x] Message when no actors
-- [x] Update more often
-- [ ] Sorting options
-- [ ] Filtering options
-- [ ] Option to add missing ability on click
+- [Development notes](#development-notes)
+  - [Development & general hacking](#development--general-hacking)
+  - [Migrations](#migrations)
+  - [Games supported/future plans](#games-supportedfuture-plans)
+    - [GUMSHOE Games that I have, and want to support:](#gumshoe-games-that-i-have-and-want-to-support)
+    - [GUMSHOE Games that I don't have yet, but would like to support:](#gumshoe-games-that-i-dont-have-yet-but-would-like-to-support)
+    - [Games that I have, and could be bribed to focus on:](#games-that-i-have-and-could-be-bribed-to-focus-on)
+    - [Other games:](#other-games)
+  - [Generating Compendium packs](#generating-compendium-packs)
+  - [Translations](#translations)
+  - [Using the "Developer mode" module](#using-the-developer-mode-module)
+  - [Release process](#release-process)
+
+## Development & general hacking
+
+If you're a developer and you'd like to hack on this code, please be aware it uses Webpack and React so some of it will not look like normal Handlebars + JQuery Foundry stuff.
+
+1. Clone the repo.
+2. Copy `foundryconfig_template.json` to `foundryconfig.json` and edit it to fill in the `dataPath`, e.g.  `"dataPath" "/home/ndc/foundrydata",`.
+3. `npm i` to install dependencies
+4. `npm run build` to do a build
+5. `npm run link` to link it into your foundry data folder
+6. `npm start` to start a live incremental build (so you don't need to keep running `npm run build` after every change).
+7. Open your local foundry server and create a world using this as the system.
+
+## Migrations
+
+The migrations system is inspired by an earlier version of the one in the 5e system. It is triggered from `investigator.ts` based on version number.
+
+If you want to force migrations to run, try this:
+
+```ts
+game.settings.set("investigator","systemMigrationVersion", "1.0.0")
+```
 
 
-## The future
+## Games supported/future plans
 
-- [ ] i18n
-- [ ] images for equipment & abilities
-- [ ] expandy-collapsy bits on the notes area
-- [ ] rich text editing
-- [ ] Character gen mode? (track free values, point spends, I<->G trades, synergies)
-- [x] GM player skill matrix (pickable actors, show a big ol' matrix)
-
-
-## GUMSHOE Games that I have, and want to support:
+### GUMSHOE Games that I have, and want to support:
 
 * [x] Trail of Cthulhu
   * [x] Categorized investigating abilities
@@ -42,19 +63,19 @@
 * [ ] The Yellow King
 * [ ] Cthulhu Confidential (is 1-to-1)
 
-## GUMSHOE Games that I don't have yet, but would like to support:
+### GUMSHOE Games that I don't have yet, but would like to support:
 
+* [x] Casting The Runes (aka "The M.R. James one")
 * [ ] Mutant City Blues (2nd ed.)
 
-## Games that I have, and could be bribed to focus on:
+### Games that I have, and could be bribed to focus on:
 
 * [ ] Timewatch
 * [ ] The Gaean Reach
 
-## Other games:
+### Other games:
 
 * [ ] Esoterrorists
-* [ ] Casting The Runes (aka "The M.R. James one")
 * [ ] Bubblegumshoe
 
 
@@ -72,7 +93,6 @@ There are three npm tasks pertaining to translations:
 
 * `npm run groom-translations` will:
   * alphabetise `en.json` and all the other core translations.
-  * add any missing string stubs to the non `en` translations.
   * report any missing translations.
   * report any "extra" translations.
 * `npm run extract-pack-translation-templates` will:
@@ -83,6 +103,18 @@ There are three npm tasks pertaining to translations:
   * THIS WILL CLOBBER ANY JSON MODIFICATIONS WHICH HAVE NOT BEEN UPLOADED TO TRANSIFEX!
 
 To keep the translation imports running sweetly, you will need to update `.tx/config` to map everything to the right places.
+
+
+## Using the "Developer mode" module
+
+There's a fantastic Foundry VTT module called [🧙 Developer Mode](https://foundryvtt.com/packages/_dev-mode). I highly recommend installing it if you're doing any development work on Foundry. You can also use it to activate specific developer features for systems. To do this, click on the little wizard dude in the top left of the screen, go to "Package specific debugging", and "Enable Debug Mode" for "INVESTIGATOR System".
+
+What this enables (list subject to change):
+
+* Notes fields will now have a "view source" mode (looks like `</>`.)
+* "NUKE" button on PC character sheet (this used to be present all the time.)
+* "Debug translations" option available in INVESTIGATOR System Settings.
+
 
 ## Release process
 

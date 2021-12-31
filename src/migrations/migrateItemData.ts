@@ -1,7 +1,8 @@
 import {
-  _addCategoryToGeneralAbilities,
-  _setIconForAbilities,
-  _setTrackersForPreAlpha4Updates,
+  addCategoryToGeneralAbilities,
+  setIconForAbilities,
+  setTrackersForPreAlpha4Updates,
+  upgradeNotesToRichText,
 } from "./itemMigrations";
 
 /**
@@ -10,8 +11,9 @@ import {
  */
 export const migrateItemData = function (item: any): any {
   const updateData = {};
-  _addCategoryToGeneralAbilities(item, updateData);
-  _setTrackersForPreAlpha4Updates(item, updateData);
-  _setIconForAbilities(item, updateData);
+  addCategoryToGeneralAbilities(item, updateData);
+  setTrackersForPreAlpha4Updates(item, updateData);
+  setIconForAbilities(item, updateData);
+  upgradeNotesToRichText(item, updateData);
   return updateData;
 };

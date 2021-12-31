@@ -7,6 +7,7 @@ import { WeaponConfig } from "./WeaponConfig";
 import { WeaponAttack } from "./WeaponAttack";
 import { Translate } from "../Translate";
 import { ImagePickle } from "../ImagePickle";
+import { absoluteCover } from "../absoluteCover";
 
 type WeaponSheetProps = {
   weapon: InvestigatorItem,
@@ -25,10 +26,11 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
   return (
     <div
       css={{
-        paddingBottom: "1em",
+        ...absoluteCover,
+        padding: "0.5em 0.5em 1em 0.5em",
         display: "grid",
         gridTemplateColumns: "auto 1fr auto",
-        gridTemplateRows: "auto auto auto",
+        gridTemplateRows: "auto auto 1fr",
         gridTemplateAreas:
           "\"image slug     cog\" " +
           "\"image headline headline\" " +
@@ -77,7 +79,7 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
         }}
       />
 
-      <div css={{ gridArea: "body" }}>
+      <div css={{ gridArea: "body", position: "relative" }}>
         {configMode || !weapon.isOwned
           ? (
           <WeaponConfig weapon={weapon} />

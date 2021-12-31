@@ -1,10 +1,11 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
-import { assertGame, confirmADoodleDo, isAbility } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource } from "../types";
+import { assertGame, confirmADoodleDo } from "../functions";
+import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat } from "../types";
 import { themes } from "../themes/themes";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { Theme } from "../themes/types";
 import { InvestigatorItem } from "./InvestigatorItem";
+import { convertNotes } from "../textFunctions";
 
 export class InvestigatorActor extends Actor {
   /**
@@ -15,26 +16,40 @@ export class InvestigatorActor extends Actor {
   // }
 
   confirmRefresh = () => {
-    confirmADoodleDo(
-      "Refresh all of (actor name)'s abilities?",
-      "Refresh",
-      "Cancel",
-      "fa-sync",
-      { ActorName: this.data.name },
-      this.refresh,
-    );
+    confirmADoodleDo({
+      message: "Refresh all of (actor name)'s abilities?",
+      confirmText: "Refresh",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-sync",
+      values: { ActorName: this.data.name },
+    }).then(this.refresh);
   };
 
   confirm24hRefresh = () => {
-    confirmADoodleDo(
-      "Refresh all of (actor name)'s abilities which refresh every 24h?",
-      "Refresh",
-      "Cancel",
-      "fa-sync",
-      { ActorName: this.data.name },
-      this.refresh24h,
-    );
+    confirmADoodleDo({
+      message: "Refresh all of (actor name)'s abilities which refresh every 24h?",
+      confirmText: "Refresh",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-sync",
+      values: { ActorName: this.data.name },
+    }).then(this.refresh24h);
   };
+
+  confirmMwRefresh (group: MwRefreshGroup) {
+    return () => {
+      confirmADoodleDo({
+        message: "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?",
+        confirmText: "Refresh",
+        cancelText: "Cancel",
+        confirmIconClass: "fa-sync",
+        values: { ActorName: this.data.name, Hours: group },
+      }).then(() => this.mWrefresh(group));
+    };
+  }
+
+  confirmMw2Refresh = this.confirmMwRefresh(2)
+  confirmMw4Refresh = this.confirmMwRefresh(4)
+  confirmMw8Refresh = this.confirmMwRefresh(8)
 
   refresh = () => {
     const updates = Array.from(this.items).flatMap((item) => {
@@ -56,6 +71,27 @@ export class InvestigatorActor extends Actor {
     });
     this.updateEmbeddedDocuments("Item", updates);
   };
+
+  mWrefresh (group: MwRefreshGroup) {
+    const updates = Array.from(this.items).flatMap((item) => {
+      if (
+        (item.data.type === generalAbility) &&
+        // MW refreshes allow you to keep a boon
+        item.data.data.rating > item.data.data.pool &&
+        item.data.data.mwRefreshGroup === group
+      ) {
+        return [{
+          _id: item.data._id,
+          data: {
+            pool: item.data.data.rating,
+          },
+        }];
+      } else {
+        return [];
+      }
+    });
+    this.updateEmbeddedDocuments("Item", updates);
+  }
 
   // if we end up with even more types of refresh it may be worth factoring out
   // the actual refresh code but until then - rule of three
@@ -81,14 +117,13 @@ export class InvestigatorActor extends Actor {
   };
 
   confirmNuke = () => {
-    confirmADoodleDo(
-      "NukeAllOfActorNamesAbilitiesAndEquipment",
-      "Nuke it from orbit",
-      "Whoops no!",
-      "fa-radiation",
-      { ActorName: this.data.name },
-      () => this.nuke(),
-    );
+    confirmADoodleDo({
+      message: "NukeAllOfActorNamesAbilitiesAndEquipment",
+      confirmText: "Nuke it from orbit",
+      cancelText: "Whoops no!",
+      confirmIconClass: "fa-radiation",
+      values: { ActorName: this.data.name },
+    }).then(() => this.nuke());
   };
 
   nuke = async () => {
@@ -99,13 +134,13 @@ export class InvestigatorActor extends Actor {
     window.alert("Nuked");
   };
 
-  /// //////////////////////////////////////////////////////////////////////////
+  // ###########################################################################
   // ITEMS
 
   getAbilityByName (name: string, type?: AbilityType) {
     return this.items.find(
       (item) =>
-        (type ? item.data.type === type : isAbility(item)) && item.name === name,
+        (type ? item.data.type === type : isAbilityDataSource(item.data)) && item.name === name,
     );
   }
 
@@ -122,7 +157,24 @@ export class InvestigatorActor extends Actor {
   }
 
   getAbilities () {
-    return this.items.filter((item) => isAbility(item));
+    return this.items.filter((item) => isAbilityDataSource(item.data));
+  }
+
+  getMwItems () {
+    const allItems = this.items.filter((item) => isMwItemDataSource(item.data));
+    const items: {[type in MwType]: Item[]} = {
+      tweak: [],
+      spell: [],
+      cantrap: [],
+      enchantedItem: [],
+      meleeWeapon: [],
+      missileWeapon: [],
+    };
+    for (const item of allItems) {
+      assertMwItemDataSource(item.data);
+      items[item.data.data.mwType].push(item);
+    }
+    return items;
   }
 
   getTrackerAbilities () {
@@ -131,8 +183,28 @@ export class InvestigatorActor extends Actor {
     );
   }
 
-  // ---------------------------------------------------------------------------
-  // THEME
+  // ###########################################################################
+  // GETTERS GONNA GET
+  // SETTERS GONNA SET
+  // basically we have a getter/setter pair for every attribute so they can be
+  // used as handy callbacks in the component tree
+  // ###########################################################################
+
+  getName = () => this.name;
+
+  setName = (name: string) => {
+    this.update({ name });
+  };
+
+  getOccupation = () => {
+    assertPCDataSource(this.data);
+    return this.data.data.occupation;
+  }
+
+  setOccupation = (occupation: string) => {
+    assertPCDataSource(this.data);
+    this.update({ data: { occupation } });
+  }
 
   getSheetTheme (): Theme {
     const themeName = this.getSheetThemeName() || getDefaultThemeName();
@@ -151,6 +223,16 @@ export class InvestigatorActor extends Actor {
   setSheetTheme = (sheetTheme: string | null) =>
     this.update({ data: { sheetTheme } });
 
+  getNotes = () => {
+    assertNPCDataSource(this.data);
+    return this.data.data.notes;
+  }
+
+  setNotes = (notes: NoteWithFormat) => {
+    assertNPCDataSource(this.data);
+    this.update({ data: { notes } });
+  }
+
   getLongNote = (i: number) => {
     assertPCDataSource(this.data);
     return this.data.data.longNotes?.[i] ?? "";
@@ -161,16 +243,25 @@ export class InvestigatorActor extends Actor {
     return this.data.data.longNotes ?? [];
   };
 
-  setLongNote = (i: number, text: string) => {
+  setLongNote = (i: number, note: BaseNote) => {
     assertPCDataSource(this.data);
-    const newNotes = [...(this.data.data.longNotes || [])];
-    newNotes[i] = text;
-    this.update({
-      data: {
-        longNotes: newNotes,
-      },
-    });
+    const longNotes = [...(this.data.data.longNotes || [])];
+    longNotes[i] = note;
+    this.update({ data: { longNotes } });
   };
+
+  setLongNotesFormat = (longNotesFormat: NoteFormat) => {
+    assertPCDataSource(this.data);
+    const longNotes = (this.data.data.longNotes || []).map<BaseNote>((note) => {
+      assertPCDataSource(this.data);
+      const { newHtml, newSource } = convertNotes(this.data.data.longNotesFormat, longNotesFormat, note.source);
+      return {
+        html: newHtml,
+        source: newSource,
+      };
+    });
+    this.update({ data: { longNotes, longNotesFormat } });
+  }
 
   getShortNote = (i: number) => {
     assertPCDataSource(this.data);
@@ -193,12 +284,44 @@ export class InvestigatorActor extends Actor {
     });
   };
 
-  getName = () => this.name;
-
-  setName = (name: string) => {
-    this.update({ name });
+  setMwHiddenShortNote = (i: number, text: string) => {
+    assertPCDataSource(this.data);
+    const newNotes = [...(this.data.data.hiddenShortNotes || [])];
+    newNotes[i] = text;
+    this.update({
+      data: {
+        hiddenShortNotes: newNotes,
+      },
+    });
   };
 
+  getHitThreshold = () => {
+    assertActiveCharacterDataSource(this.data);
+    return this.data.data.hitThreshold;
+  }
+
+  setHitThreshold = (hitThreshold: number) => {
+    assertActiveCharacterDataSource(this.data);
+    return this.update({ data: { hitThreshold } });
+  }
+
+  getInitiativeAbility = () => {
+    assertActiveCharacterDataSource(this.data);
+    return this.data.data.initiativeAbility;
+  }
+
+  setInitiativeAbility = async (initiativeAbility: string) => {
+    assertGame(game);
+    assertActiveCharacterDataSource(this.data);
+    await this.update({ data: { initiativeAbility } });
+    const isInCombat = !!(this.token?.combatant);
+    if (isInCombat) {
+      await this.rollInitiative({ rerollInitiative: true });
+    }
+  }
+
+  // ###########################################################################
+  // For the party sheet
   getActorIds = () => {
     assertPartyDataSource(this.data);
     return this.data.data.actorIds;
@@ -240,42 +363,6 @@ export class InvestigatorActor extends Actor {
   removeActorId = (id: string) => {
     this.setActorIds(this.getActorIds().filter((x) => x !== id));
   };
-
-  getHitThreshold = () => {
-    assertActiveCharacterDataSource(this.data);
-    return this.data.data.hitThreshold;
-  }
-
-  setHitThreshold = (newThreshold: number) => {
-    assertActiveCharacterDataSource(this.data);
-    return this.update({ data: { hitThreshold: newThreshold } });
-  }
-
-  // getGeneralAbilityNames = () => this.data.data.abilityNames;
-  // setGeneralAbilityNames = (abilityNames: string[]) => {
-  //   this.update({ data: { abilityNames } });
-  // };
-
-  // addGeneralAbilityNames = (newNames: string[]) => {
-  //   const currentNames = this.getGeneralAbilityNames();
-  //   const effectiveNames = newNames.filter(
-  //     (name) => !currentNames.includes(name),
-  //   );
-  //   this.setGeneralAbilityNames([...currentNames, ...effectiveNames]);
-  // };
-
-  // getInvestigativeAbilityNames = () => this.data.data.abilityNames;
-  // setInvestigativeAbilityNames = (abilityNames: string[]) => {
-  //   this.update({ data: { abilityNames } });
-  // };
-
-  // addInvestigativeAbilityNames = (newNames: string[]) => {
-  //   const currentNames = this.getInvestigativeAbilityNames();
-  //   const effectiveNames = newNames.filter(
-  //     (name) => !currentNames.includes(name),
-  //   );
-  //   this.setInvestigativeAbilityNames([...currentNames, ...effectiveNames]);
-  // };
 }
 
 declare global {

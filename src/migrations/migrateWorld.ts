@@ -6,11 +6,13 @@ import { migrateItemData } from "./migrateItemData";
 import { migrateSceneData } from "./migrateSceneData";
 import { setSystemMigrationVersion } from "../settingsHelpers";
 import { assertGame } from "../functions";
+import * as constants from "../constants";
 
 const title = system.title;
 
 /**
- * Perform a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
+ * Perform a system migration for the entire World, applying migrations for
+ * Actors, Items, and Compendium packs
  * @return {Promise}      A Promise which resolves once the migration is completed
  */
 export const migrateWorld = async function () {
@@ -78,4 +80,13 @@ export const migrateWorld = async function () {
   // Set the migration as complete
   setSystemMigrationVersion(system.version);
   ui.notifications?.info(`${system.title} system migration to version ${system.version} completed!`, { permanent: true });
+};
+
+(window as any).migrateSystemCompendiums = async () => {
+  assertGame(game);
+  for (const p of (game.packs as any)) {
+    if (p.metadata.package !== constants.systemName) continue;
+    if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
+    await migrateCompendium(p);
+  }
 };

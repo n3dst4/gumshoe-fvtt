@@ -52,6 +52,8 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           padding: "0.5em",
           color: theme.colors.text,
           backgroundColor: theme.colors.wallpaper,
+          height: "100%",
+          accentColor: theme.colors.accent,
           ...(mode === CSSResetMode.large ? theme.largeSheetRootStyle : theme.smallSheetRootStyle),
 
           "*": {
@@ -113,14 +115,14 @@ export const CSSReset: React.FC<CSSResetProps> = ({
             textDecoration: "underline",
             textShadow: `0 0 0.5em ${theme.colors.glow}`,
           },
-          "input, input[type=text], textarea": {
+          "input, input[type=text], textarea, select, option": {
             font: theme.bodyFont,
             fontVariantLigatures: "none",
             color: theme.colors.accent,
             padding: "0.1em 0.3em",
             borderStyle: "solid",
             borderWidth: "1px",
-            borderColor: theme.colors.text,
+            borderColor: theme.colors.controlBorder,
             background: theme.colors.backgroundPrimary,
             resize: "vertical",
             ":focus": {
@@ -145,8 +147,11 @@ export const CSSReset: React.FC<CSSResetProps> = ({
             lineHeight: 1,
           },
           "button, input[type=button]": {
-            border: `2px groove ${theme.colors.text}`,
+            border: `2px groove ${theme.colors.controlBorder}`,
             background: theme.colors.backgroundButton,
+          },
+          hr: {
+            borderColor: theme.colors.controlBorder,
           },
         }}
       >

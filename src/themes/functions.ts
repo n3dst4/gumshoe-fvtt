@@ -1,6 +1,8 @@
 import Irid from "irid";
 import { Theme, ThemeSeed } from "./types";
 
+const defaultFontScaleFactor = 14;
+
 /**
  * Given two colors, create a third which is the result of overlaying the second
  * on the first
@@ -30,6 +32,8 @@ export const themeFactory = (seed: ThemeSeed): Theme => {
   const bgOpaqueDangerPrimary = overlay(seed.colors.wallpaper, bgTransDangerPrimary);
   const bgOpaqueDangerSecondary = overlay(seed.colors.wallpaper, bgTransDangerSecondary);
 
+  const controlBorder = seed.colors.controlBorder ?? seed.colors.text;
+
   return {
     ...seed,
     largeSheetRootStyle: {
@@ -46,6 +50,11 @@ export const themeFactory = (seed: ThemeSeed): Theme => {
       bgTransDangerSecondary,
       bgOpaqueDangerPrimary,
       bgOpaqueDangerSecondary,
+      controlBorder,
+    },
+    logo: {
+      ...seed.logo,
+      fontScaleFactor: seed.logo.fontScaleFactor ?? defaultFontScaleFactor,
     },
   };
 };

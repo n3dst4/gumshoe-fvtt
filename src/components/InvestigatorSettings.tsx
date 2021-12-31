@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
 import React, { useCallback, useEffect, useState } from "react";
 import { customSystem } from "../constants";
-import { assertGame } from "../functions";
+import { assertGame, getDevMode } from "../functions";
 import * as settings from "../settingsHelpers";
 import { systemPresets } from "../systemPresets";
 import { themes } from "../themes/themes";
@@ -92,6 +92,19 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     resetPreset,
   );
 
+  const [useMwStyleAbilities, setUseMwStyleAbilities] = useStateWithPreset(
+    settings.getUseMwStyleAbilities(),
+    resetPreset,
+  );
+  const [mwHiddenShortNotes, setMwHiddenShortNotes] = useStateWithPreset(
+    settings.getMwHiddenShortNotes(),
+    resetPreset,
+  );
+  const [mwUseAlternativeItemTypes, setMwUseAlternativeItemTypes] = useStateWithPreset(
+    settings.getMwUseAlternativeItemTypes(),
+    resetPreset,
+  );
+
   const onSelectPreset = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
       const presetId = e.currentTarget.value as
@@ -117,19 +130,25 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setNewPCPacks(preset.newPCPacks);
       setNewNPCPacks(preset.newNPCPacks);
       setUseBoost(preset.useBoost);
+      setUseMwStyleAbilities(preset.useMwStyleAbilities);
+      setMwHiddenShortNotes(preset.mwHiddenShortNotes ?? []);
+      setMwUseAlternativeItemTypes(preset.mwUseAlternativeItemTypes);
       setSystemPreset(presetId);
     },
     [
-      setCombatAbilities,
       setDefaultTheme,
-      setGeneralAbilityCategories,
       setInvestigativeAbilityCategories,
+      setGeneralAbilityCategories,
+      setCombatAbilities,
+      setOccupationLabel,
+      setShortNotes,
       setLongNotes,
       setNewPCPacks,
       setNewNPCPacks,
-      setOccupationLabel,
-      setShortNotes,
       setUseBoost,
+      setUseMwStyleAbilities,
+      setMwHiddenShortNotes,
+      setMwUseAlternativeItemTypes,
     ],
   );
 
@@ -171,6 +190,9 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         settings.setUseBoost(useBoost),
         settings.setSystemPreset(systemPreset),
         settings.setDebugTranslations(debugTranslations),
+        settings.setUseMwStyleAbilities(useMwStyleAbilities),
+        settings.setMwHiddenShortNotes(mwHiddenShortNotes),
+        settings.setMwUseAlternativeItemTypes(mwUseAlternativeItemTypes),
       ]);
       foundryApplication.close();
     },
@@ -187,11 +209,16 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       useBoost,
       systemPreset,
       debugTranslations,
+      useMwStyleAbilities,
+      mwHiddenShortNotes,
+      mwUseAlternativeItemTypes,
       foundryApplication,
     ],
   );
 
   let idx = 0;
+
+  const isDevMode = getDevMode();
 
   return (
     <CSSReset
@@ -429,12 +456,37 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
           <SettingsGridField label="Can abilities be boosted?" index={idx++}>
             <Checkbox checked={useBoost} onChange={setUseBoost} />
           </SettingsGridField>
-          <SettingsGridField label="Debug translations?" index={idx++}>
+          {
+            isDevMode &&
+              <SettingsGridField label="Debug translations?" index={idx++}>
+                <Checkbox
+                  checked={debugTranslations}
+                  onChange={setDebugTranslations}
+                />
+              </SettingsGridField>
+          }
+          <hr css={{ gridColumn: "label / end" }}/>
+          <h2
+            css={{ gridColumn: "label / end" }}
+          >
+            <Translate>Settings for Moribund World users</Translate>
+          </h2>
+          <SettingsGridField label="Use Moribund World-style abilities" index={idx++}>
             <Checkbox
-              checked={debugTranslations}
-              onChange={setDebugTranslations}
+              checked={useMwStyleAbilities}
+              onChange={setUseMwStyleAbilities}
             />
           </SettingsGridField>
+          <SettingsGridField label="Use alternative item types" index={idx++}>
+            <Checkbox
+              checked={mwUseAlternativeItemTypes}
+              onChange={setMwUseAlternativeItemTypes}
+            />
+          </SettingsGridField>
+          <SettingsGridField label="Hidden Short Notes Fields" index={idx++}>
+            <ListEdit value={mwHiddenShortNotes} onChange={setMwHiddenShortNotes} />
+          </SettingsGridField>
+
         </InputGrid>
       )}
       <div

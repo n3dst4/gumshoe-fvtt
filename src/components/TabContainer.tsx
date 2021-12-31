@@ -35,6 +35,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
 
   return (
     <div
+      key={selected}
       css={{
         position: "absolute",
         top: 0,

@@ -2,12 +2,12 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useState } from "react";
 import * as constants from "../../constants";
-import { assertGame, isAbility, sortEntitiesByName } from "../../functions";
+import { assertGame, sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { themes } from "../../themes/themes";
-import { assertPartyDataSource } from "../../types";
+import { assertPartyDataSource, isAbilityDataSource } from "../../types";
 import { CSSReset, CSSResetMode } from "../CSSReset";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -61,7 +61,7 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
       useId: string,
     ) => {
       assertPartyDataSource(party.data);
-      if (isAbility(item) && item.isOwned && party.data.data.actorIds.includes(item.actor?.id ?? "")) {
+      if (isAbilityDataSource(item.data) && item.isOwned && party.data.data.actorIds.includes(item.actor?.id ?? "")) {
         setAbilityTuples(await getSystemAbilities());
       }
     };

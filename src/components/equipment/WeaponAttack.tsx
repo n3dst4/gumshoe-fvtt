@@ -1,17 +1,17 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { generalAbility } from "../../constants";
-import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertWeaponDataSource, isAbilityDataSource, isPCDataSource, PCDataSource } from "../../types";
+import { absoluteCover } from "../absoluteCover";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
-import { TextArea } from "../inputs/TextArea";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { Translate } from "../Translate";
 import { performAttack } from "./performAttack";
 
@@ -59,8 +59,6 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
       return () => {};
     }
   }, [ability, bonusPool, spend, weapon]);
-
-  const notes = useAsyncUpdate(weapon.getNotes(), weapon.setNotes);
 
   const onPointBlank = useCallback(() => {
     assertWeaponDataSource(weapon.data);
@@ -133,7 +131,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const ammoFail = weapon.getUsesAmmo() && weapon.getAmmo() <= 0;
 
   return (
-    <Fragment>
+    <div css={{ ...absoluteCover, display: "flex", flexDirection: "column" }}>
       <InputGrid
         css={{
           border: `1px solid ${theme.colors.text}`,
@@ -205,7 +203,12 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
           </div>
         </GridFieldStacked>
       </InputGrid>
-      <InputGrid>
+      <InputGrid
+        css={{
+          flex: 1,
+          gridTemplateRows: `${weapon.data.data.usesAmmo ? "auto " : ""}1fr`,
+        }}
+      >
         {weapon.data.data.usesAmmo &&
             <GridField label="Ammo">
               <div
@@ -235,9 +238,19 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
             </GridField>
         }
 
-        <GridField label="Notes">
-          <TextArea value={notes.display} onChange={notes.onChange} />
-        </GridField>
+        <NotesEditorWithControls
+          allowChangeFormat
+          format={weapon.data.data.notes.format}
+          html={weapon.data.data.notes.html}
+          source={weapon.data.data.notes.source}
+          onSave={weapon.setNotes}
+          css={{
+            height: "100%",
+            "&&": {
+              resize: "none",
+            },
+          }}
+        />
         <GridField label="Bonus pool">
           <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />
         </GridField>
@@ -282,6 +295,6 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
               )}
         </GridField>
       </InputGrid>
-    </Fragment>
+    </div>
   );
 };

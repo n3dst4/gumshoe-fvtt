@@ -6,10 +6,11 @@ import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "../inputs/TextInput";
-import { TextArea } from "../inputs/TextArea";
 import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { ImagePickle } from "../ImagePickle";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { absoluteCover } from "../absoluteCover";
 
 type EquipmentSheetProps = {
   equipment: InvestigatorItem,
@@ -21,7 +22,6 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   application,
 }) => {
   const name = useAsyncUpdate(equipment.name || "", equipment.setName);
-  const notes = useAsyncUpdate(equipment.getNotes(), equipment.setNotes);
 
   const onClickDelete = useCallback(() => {
     assertGame(game);
@@ -29,28 +29,28 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
-    confirmADoodleDo(
+    confirmADoodleDo({
       message,
-      "Delete",
-      "Cancel",
-      "fa-trash",
-      {
+      confirmText: "Delete",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-trash",
+      values: {
         ActorName: equipment.actor?.data.name ?? "",
         EquipmentName: equipment.data.name,
       },
-      () => {
-        equipment.delete();
-      },
-    );
+    }).then(() => {
+      equipment.delete();
+    });
   }, [equipment]);
 
   return (
     <div
       css={{
-        paddingBottom: "1em",
+        ...absoluteCover,
+        padding: "0.5em 0.5em 1em 0.5em",
         display: "grid",
         gridTemplateColumns: "auto 1fr auto",
-        gridTemplateRows: "auto auto auto",
+        gridTemplateRows: "auto auto 1fr",
         gridTemplateAreas:
           "\"image slug     trash\" " +
           "\"image headline headline\" " +
@@ -98,13 +98,27 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
       </a>
 
       {/* Body */}
-      <InputGrid css={{ gridArea: "body" }}>
+      <InputGrid css={{
+        gridArea: "body",
+        position: "relative",
+        gridTemplateRows: "auto 1fr",
+      }}>
         <GridField label="Name">
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
-        <GridField label="Notes">
-          <TextArea value={notes.display} onChange={notes.onChange} />
-        </GridField>
+        <NotesEditorWithControls
+          allowChangeFormat
+          format={equipment.data.data.notes.format}
+          html={equipment.data.data.notes.html}
+          source={equipment.data.data.notes.source}
+          onSave={equipment.setNotes}
+          css={{
+            height: "100%",
+            "&&": {
+              resize: "none",
+            },
+          }}
+        />
       </InputGrid>
     </div>
   );

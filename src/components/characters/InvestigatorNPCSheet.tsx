@@ -2,9 +2,8 @@
 import { Fragment, useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { jsx } from "@emotion/react";
-import { useUpdate } from "../../hooks/useUpdate";
 import { CSSReset, CSSResetMode } from "../CSSReset";
-import { AsyncTextArea } from "../inputs/AsyncTextArea";
+// import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { TabContainer } from "../TabContainer";
 import { LogoEditable } from "./LogoEditable";
@@ -17,6 +16,10 @@ import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
 import { assertNPCDataSource } from "../../types";
 import { ImagePickle } from "../ImagePickle";
+import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { InputGrid } from "../inputs/InputGrid";
+import { absoluteCover } from "../absoluteCover";
 
 type InvestigatorNPCSheetProps = {
   actor: InvestigatorActor,
@@ -28,7 +31,6 @@ export const InvestigatorNPCSheet = ({
   foundryApplication,
 }: InvestigatorNPCSheetProps) => {
   assertNPCDataSource(actor.data);
-  const updateName = useUpdate(actor, name => ({ name }));
 
   const updateHitThreshold = useCallback((newThreshold) => {
     return actor.update({ data: { hitThreshold: newThreshold } });
@@ -50,10 +52,6 @@ export const InvestigatorNPCSheet = ({
     return actor.update({ data: { stabilityLoss: newStabilityLoss } });
   }, [actor]);
 
-  const updateNPCNotes = useCallback((newNotes) => {
-    return actor.update({ data: { notes: newNotes } });
-  }, [actor]);
-
   const theme = actor.getSheetTheme();
 
   return (
@@ -68,7 +66,7 @@ export const InvestigatorNPCSheet = ({
           bottom: 0,
           left: 0,
           display: "grid",
-          gridTemplateRows: "min-content max-content min-content 1fr",
+          gridTemplateRows: "min-content 1fr min-content 1.5fr",
           gridTemplateColumns: "max-content 1fr 10em",
           gap: "0.5em",
           gridTemplateAreas:
@@ -87,7 +85,7 @@ export const InvestigatorNPCSheet = ({
         >
           <LogoEditable
             mainText={actor.data.name}
-            onChangeMainText={updateName}
+            onChangeMainText={actor.setName}
             css={{
               fontSize: "0.66em",
             }}
@@ -99,15 +97,29 @@ export const InvestigatorNPCSheet = ({
             padding: "0.5em",
             backgroundColor: theme.colors.backgroundSecondary,
             position: "relative",
+            // height: "12em",
           }}
         >
-          <Fragment>
-            <h3><Translate>Description</Translate></h3>
-            <AsyncTextArea
-              onChange={updateNPCNotes}
-              value={actor.data.data.notes}
+          <InputGrid
+            css={{
+              ...absoluteCover,
+              gridTemplateRows: "1fr",
+            }}
+          >
+            <NotesEditorWithControls
+              allowChangeFormat
+              format={actor.getNotes().format}
+              html={actor.getNotes().html}
+              source={actor.getNotes().source}
+              onSave={actor.setNotes}
+              css={{
+                height: "100%",
+                "&&": {
+                  resize: "none",
+                },
+              }}
             />
-          </Fragment>
+          </InputGrid>
         </div>
 
         <ImagePickle
@@ -130,6 +142,14 @@ export const InvestigatorNPCSheet = ({
           }}
         >
             <TrackersArea actor={actor} />
+            <hr/>
+            <h4 css={{ width: "8em" }}>
+              <Translate>Combat Order</Translate>
+            </h4>
+            <CombatAbilityDropDown
+              value={actor.getInitiativeAbility()}
+              onChange={actor.setInitiativeAbility}
+            />
         </div>
 
         <div
@@ -144,6 +164,13 @@ export const InvestigatorNPCSheet = ({
             columnGap: "0.5em",
           }}
         >
+          <button
+            onClick={actor.confirmRefresh}
+            css={{ gridColumn: "1 / span 2" }}
+          >
+            <Translate>Full Refresh</Translate>
+          </button>
+          <hr/>
           <Fragment>
             <h3 css={{ gridColumn: "1" }}><Translate>Hit Threshold</Translate></h3>
             <AsyncNumberInput

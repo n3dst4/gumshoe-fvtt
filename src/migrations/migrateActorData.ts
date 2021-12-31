@@ -1,5 +1,5 @@
 import { migrateItemData } from "./migrateItemData";
-import { _moveOldNotesToNewNoteSlots } from "./_moveOldNotesToNewNoteSlots";
+import { moveOldNotesToNewNoteSlots, upgradeLongNotesToRichText } from "./actorMigrations";
 
 /**
  * Migrate a single Actor entity to incorporate latest data model changes
@@ -13,21 +13,25 @@ export const migrateActorData = function (actorData: any) {
   // Actor Data Updates
   // _migrateActorMovement(actor, updateData);
   // _migrateActorSenses(actor, updateData);
-  _moveOldNotesToNewNoteSlots(actorData, updateData);
+  moveOldNotesToNewNoteSlots(actorData, updateData);
+  upgradeLongNotesToRichText(actorData, updateData);
 
   // Migrate Owned Items
   if (!actorData.items) return updateData;
   let hasItemUpdates = false;
   const items = actorData.items.map((i: any) => {
     // Migrate the Owned Item
-    const itemUpdate = migrateItemData(i);
+    const itemUpdate = migrateItemData(i.data);
 
     // Update the Owned Item
     if (!isObjectEmpty(itemUpdate)) {
       hasItemUpdates = true;
-      return mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
+      return {
+        ...i.data,
+        ...itemUpdate,
+      };
     } else {
-      return i;
+      return i.data;
     }
   });
   if (hasItemUpdates) updateData.items = items;

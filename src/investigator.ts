@@ -1,15 +1,15 @@
 import "./setWebkitPublicPath";
-import { registerSettings } from "./module/settings";
+import { registerSettings } from "./module/registerSettings";
 import { preloadTemplates } from "./module/preloadTemplates";
 import { InvestigatorActor } from "./module/InvestigatorActor";
 import { InvestigatorItem } from "./module/InvestigatorItem";
 import { InvestigatorPCSheetClass } from "./module/InvestigatorPCSheetClass";
-import { InvestigatorItemSheetClass } from "./module/InvestigatorItemSheetClass";
-import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon } from "./constants";
+import { InvestigatorAbilitySheetClass, InvestigatorEquipmentSheetClass, InvestigatorMwItemSheetClass } from "./module/InvestigatorItemSheetClass";
+import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon, mwItem } from "./constants";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
 import { isAbilityDataSource, isGeneralAbilityDataSource, isWeaponDataSource, isEquipmentDataSource } from "./types";
-import { assertGame, getFolderDescendants, isNullOrEmptyString } from "./functions";
+import { assertGame, getFolderDescendants, getTranslated, isNullOrEmptyString } from "./functions";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { investigatorSettingsClassInstance } from "./module/InvestigatorSettingsClass";
 import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory, getSystemMigrationVersion } from "./settingsHelpers";
@@ -24,6 +24,14 @@ import { installAbilityCardChatWrangler } from "./components/messageCards/instal
 
 // Initialize system
 Hooks.once("init", async function () {
+  // this is how we could delete an item type, if we felt like it:
+  // assertGame(game);
+  // delete CONFIG.Item.typeLabels.generalAbility;
+  // game.system.entityTypes.Item.splice(
+  //   game.system.entityTypes.Item.indexOf("generalAbility"),
+  //   1
+  // );
+
   console.log(`${systemName} | Initializing system`);
   // Assign custom classes and constants here
 
@@ -41,7 +49,7 @@ Hooks.once("init", async function () {
   // CONFIG.ChatMessage.documentClass = InvestigatorChatMessage;
 
   // Register custom sheets (if any)
-  Actors.unregisterSheet("core", ActorSheet);
+  // Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(
     systemName,
     InvestigatorPCSheetClass,
@@ -66,10 +74,26 @@ Hooks.once("init", async function () {
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(
     systemName,
-    InvestigatorItemSheetClass,
+    InvestigatorEquipmentSheetClass,
     {
       makeDefault: true,
-      types: [weapon, investigativeAbility, generalAbility, equipment],
+      types: [weapon, equipment],
+    },
+  );
+  Items.registerSheet(
+    systemName,
+    InvestigatorAbilitySheetClass,
+    {
+      makeDefault: true,
+      types: [investigativeAbility, generalAbility],
+    },
+  );
+  Items.registerSheet(
+    systemName,
+    InvestigatorMwItemSheetClass,
+    {
+      makeDefault: true,
+      types: [mwItem],
     },
   );
 
@@ -104,9 +128,9 @@ Hooks.on("ready", async () => {
   const currentVersion = getSystemMigrationVersion();
   // newest version that needs a migration (make this the current version when
   // you introduce a new migration)
-  const NEEDS_MIGRATION_VERSION = "1.0.0-alpha.5";
+  const NEEDS_MIGRATION_VERSION = "4.7.2";
   // oldest version which can be migrated reliably
-  const COMPATIBLE_MIGRATION_VERSION = "1.0.0-alpha.2";
+  const COMPATIBLE_MIGRATION_VERSION = "1.0.0";
   const needsMigration = isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
   if (!needsMigration) return;
 
@@ -180,10 +204,8 @@ Hooks.on(
 
 Hooks.on("renderSettings", (app: Application, html: JQuery) => {
   assertGame(game);
-  const systemNameTranslated = game.i18n.localize(
-    `${systemName}.SystemName`,
-  );
-  const text = game.i18n.format(`${systemName}.SystemNameSystemSettings`, {
+  const systemNameTranslated = getTranslated("SystemName");
+  const text = getTranslated("SystemNameSystemSettings", {
     SystemName: systemNameTranslated,
   });
   const button = $(`<button><i class="fas fa-search"></i>${text}</button>`);
@@ -224,12 +246,22 @@ Hooks.on(
   },
 );
 
+Hooks.on(
+  "devModeReady",
+  () => {
+    assertGame(game);
+    (game.modules.get("_dev-mode") as any)?.api.registerPackageDebugFlag(
+      "investigator",
+      "boolean",
+      {
+        default: false,
+      },
+    );
+  },
+);
+
 installCompendiumExportButton();
 
 initializePackGenerators();
 
 installAbilityCardChatWrangler();
-
-if (window.location.hostname === "localhost") {
-  CONFIG.debug.hooks = true;
-}

@@ -1,57 +1,117 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { Fragment, useCallback, useContext, useState } from "react";
+import React, { Fragment, useCallback, useContext } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { ActorSheetAppContext } from "../FoundryAppContext";
-import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { TextArea } from "../inputs/TextArea";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
+import { CompactNotesEditor } from "../inputs/CompactNotesEditor";
+import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
+import { assertGame, confirmADoodleDo } from "../../functions";
+import { assertWeaponDataSource } from "../../types";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { ThemeContext } from "../../themes/ThemeContext";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem,
+  index: number,
 };
 
 export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   weapon,
+  index,
 }) => {
-  const app = useContext(ActorSheetAppContext);
-  const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
-    if (app !== null) {
-      (app as any)._onDragStart(e);
-    }
-  }, [app]);
-  const [hover, setHover] = useState(false);
-  const onMouseOver = useCallback(() => { setHover(true); }, []);
-  const onMouseOut = useCallback(() => { setHover(false); }, []);
+  assertWeaponDataSource(weapon.data);
 
-  const notes = useAsyncUpdate(weapon.getNotes(), weapon.setNotes);
+  const theme = useContext(ThemeContext);
+
+  const weaponRangeReduce = useCallback(() => {
+    if (weapon.getIsLongRange()) {
+      weapon.setIsLongRange(false);
+    } else if (weapon.getIsNearRange()) {
+      weapon.setIsNearRange(false);
+    } else if (weapon.getIsCloseRange()) {
+      weapon.setIsCloseRange(false);
+    }
+  }, [weapon]);
+  const weaponRangeExpand = useCallback(() => {
+    if (!weapon.getIsCloseRange()) {
+      weapon.setIsCloseRange(true);
+    } else if (!weapon.getIsNearRange()) {
+      weapon.setIsNearRange(true);
+    } else if (!weapon.getIsLongRange()) {
+      weapon.setIsLongRange(true);
+    }
+  }, [weapon]);
+  const onClickDelete = useCallback(() => {
+    assertGame(game);
+    const message = weapon.actor
+      ? "DeleteActorNamesEquipmentName"
+      : "DeleteEquipmentName";
+
+    confirmADoodleDo({
+      message,
+      confirmText: "Delete",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-trash",
+      values: {
+        ActorName: weapon.actor?.data.name ?? "",
+        EquipmentName: weapon.data.name,
+      },
+    }).then(() => {
+      weapon.delete();
+    });
+  }, [weapon]);
+
+  const gridRow = ((index) * 3) + 2;
 
   return (
     <Fragment>
-      <a
-        css={{ gridColumn: 1, overflow: "hidden", textOverflow: "ellipsis" }}
-        className={hover ? "hover" : ""}
-        onClick={() => weapon.sheet?.render(true)}
-        onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut}
-        data-item-id={weapon.id}
-        onDragStart={onDragStart}
-        draggable="true"
+      <div
+        css={{
+          gridColumn: "1/-1",
+          gridRow: `${gridRow}/${gridRow + 2}`,
+          background: theme.colors.backgroundButton,
+          // margin: "0.5em",
+        }}
+      />
+      <div
+        css={{
+          gridColumn: "1/-1",
+          gridRow: `${gridRow + 2}/${gridRow + 3}`,
+          height: "0.5em",
+        }}
+      />
+      <AsyncTextInput
+        css={{
+          gridColumn: 1,
+          gridRow,
+          margin: "0.5em 0.5em 0 0.5em",
+        }}
+        value={weapon.name ?? ""}
+        onChange={weapon.setName}
+      />
+      <div
+        css={{
+          gridColumn: 2,
+          gridRow,
+          display: "flex",
+          margin: "0.5em 0 0 0",
+        }}
       >
-        {weapon.name}
-      </a>
-      <div css={{ gridColumn: 2, display: "flex" }}>
         <AsyncNumberInput
-          min={0}
           value={weapon.getDamage()}
           onChange={weapon.setDamage}
           noPlusMinus={true}
-          css={{ width: "3em", paddingRight: "1.5em" }}
+          css={{ width: "2.3em", paddingRight: "0.3em" }}
         />
+        <button
+          css={{ width: "1em", padding: "0" }}
+          onClick={weaponRangeReduce}
+        >
+        <i className="fa fa-chevron-left"/>
+        </button>
         { weapon.getIsPointBlank() && (
           <AsyncNumberInput
-            min={0}
             value={weapon.getPointBlankDamage()}
             onChange={weapon.setPointBlankDamage}
             noPlusMinus={true}
@@ -61,7 +121,6 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         { weapon.getIsCloseRange() && "/" }
         { weapon.getIsCloseRange() && (
           <AsyncNumberInput
-            min={0}
             value={weapon.getCloseRangeDamage()}
             onChange={weapon.setCloseRangeDamage}
             noPlusMinus={true}
@@ -71,7 +130,6 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         { weapon.getIsNearRange() && "/" }
         { weapon.getIsNearRange() && (
           <AsyncNumberInput
-            min={0}
             value={weapon.getNearRangeDamage()}
             onChange={weapon.setNearRangeDamage}
             noPlusMinus={true}
@@ -81,15 +139,27 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         { weapon.getIsLongRange() && "/" }
         { weapon.getIsLongRange() && (
           <AsyncNumberInput
-            min={0}
             value={weapon.getLongRangeDamage()}
             onChange={weapon.setLongRangeDamage}
             noPlusMinus={true}
             css={{ width: "1.5em" }}
           />
         )}
+        <button
+          css={{ width: "1em", padding: "0" }}
+          onClick={weaponRangeExpand}
+        >
+        <i className="fa fa-chevron-right"/>
+        </button>
       </div>
-      <div css={{ gridColumn: 3, display: "flex" }}>
+      <div
+        css={{
+          gridColumn: 3,
+          display: "flex",
+          gridRow,
+          margin: "0.5em 0 0 0",
+        }}
+      >
         <AsyncCheckbox
           checked={weapon.getUsesAmmo()}
           onChange={weapon.setUsesAmmo}
@@ -114,11 +184,40 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           </span>
         )}
       </div>
-      <div
-        css={{ gridColumn: "1 / -2", paddingLeft: "1em" }}
+      <button
+        css={{
+          gridColumn: 4,
+          gridRow,
+          width: "1.6em",
+          padding: "0",
+          margin: "0.5em 0.5em 0 0",
+        }}
+        onClick={onClickDelete}
       >
-        <TextArea value={notes.display} onChange={notes.onChange} />
-      </div>
+        <i className="fa fa-trash"/>
+      </button>
+      <span
+        css={{
+          gridColumn: 1,
+          gridRow: gridRow + 1,
+          // margin: "0 0 1em 0em",
+          margin: "0 0 0.5em 0.5em",
+        }}
+      >
+        <CombatAbilityDropDown
+          value={weapon.data.data.ability}
+          onChange={(e) => weapon.setAbility(e)}
+        />
+      </span>
+      <CompactNotesEditor
+        css={{
+          gridColumn: "2 / -1",
+          gridRow: gridRow + 1,
+          margin: "0 0.5em 0.5em 0",
+        }}
+        note={weapon.getNotes()}
+        onChange={weapon.setNotes}
+      />
     </Fragment>
   );
 };
