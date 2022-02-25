@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback } from "react";
+import React, { Fragment, useCallback, useContext } from "react";
 import { assertGame, getDevMode, getTranslated } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { ThemeContext } from "../../themes/ThemeContext";
 import { themes } from "../../themes/themes";
 import { assertPCDataSource, NoteFormat } from "../../types";
 import { GridField } from "../inputs/GridField";
@@ -24,10 +25,14 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
     actor.setSheetTheme(themeName);
   }, [actor]);
 
+  const theme = useContext(ThemeContext);
+
   const isDevMode = getDevMode();
 
   return (
-    <InputGrid>
+    <Fragment>
+
+      <InputGrid>
         <GridField label="Theme">
           <select onChange={onSetTheme} value={actor.getSheetThemeName() || "default"}>
             {Object.keys(themes).map<JSX.Element>((themeName) => (
@@ -45,7 +50,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
             onChange={(e) => {
               actor.setLongNotesFormat(e.currentTarget.value as NoteFormat);
             }}
-          >
+            >
             <option value={NoteFormat.plain}>{getTranslated("Plain")}</option>
             <option value={NoteFormat.markdown}>{getTranslated("Markdown")}</option>
             <option value={NoteFormat.richText}>{getTranslated("RichText")}</option>
@@ -59,6 +64,27 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
             </button>
           </GridField>
         }
-    </InputGrid>
+      </InputGrid>
+
+      <p
+        css={{
+          textTransform: "initial",
+          border: "1px dashed currentColor",
+          padding: "1em",
+          margin: "2em 1em 1em 1em",
+          backgroundColor: theme.colors.backgroundSecondary,
+        }}
+      >
+        <a target="_new" href="https://gitlab.com/n3dst4/investigator-fvtt/-/blob/master/README.md">
+          INVESTIGATOR System
+        </a>{" "}
+        is made by me, Neil de Carteret. Find all my non-work links and ways to
+        contact me at my{" "}
+        <a target="_new" href="https://lumphammer.net">
+          Lumphammer Projects
+        </a>{" "}
+        site.
+      </p>
+    </Fragment>
   );
 };
