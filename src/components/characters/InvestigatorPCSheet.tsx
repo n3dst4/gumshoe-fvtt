@@ -16,7 +16,7 @@ import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
-import { getMwHiddenShortNotes, getUseMwStyleAbilities, getOccupationlabel, getShortNotes, getMwUseAlternativeItemTypes } from "../../settingsHelpers";
+import { getMwHiddenShortNotes, getUseMwStyleAbilities, getOccupationlabel, getShortNotes, getMwUseAlternativeItemTypes, getUseMwInjuryStatus } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertPCDataSource, isPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -25,6 +25,7 @@ import { assertGame } from "../../functions";
 import { AbilitiesAreaMW } from "./AbilitiesAreaMW";
 import { MwItemArea } from "./MwItemArea";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
+import { MwInjuryStatusWidget } from "./MwInjuryStatusWidget";
 
 type InvestigatorPCSheetProps = {
   actor: InvestigatorActor,
@@ -183,6 +184,9 @@ export const InvestigatorPCSheet = ({
                 </button>
                 <hr/>
               </Fragment>
+            }
+            {getUseMwInjuryStatus() &&
+              <MwInjuryStatusWidget status={actor.getMwInjuryStatus()} />
             }
             <TrackersArea actor={actor} />
             <hr/>
