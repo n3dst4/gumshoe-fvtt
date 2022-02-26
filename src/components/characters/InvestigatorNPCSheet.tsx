@@ -20,6 +20,8 @@ import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { InputGrid } from "../inputs/InputGrid";
 import { absoluteCover } from "../absoluteCover";
+import { getUseMwInjuryStatus } from "../../settingsHelpers";
+import { MwInjuryStatusWidget } from "./MwInjuryStatusWidget";
 
 type InvestigatorNPCSheetProps = {
   actor: InvestigatorActor,
@@ -170,6 +172,14 @@ export const InvestigatorNPCSheet = ({
           >
             <Translate>Full Refresh</Translate>
           </button>
+          {getUseMwInjuryStatus() &&
+            <div css={{ gridColumn: "1/3" }}>
+              <MwInjuryStatusWidget
+                status={actor.getMwInjuryStatus()}
+                setStatus={actor.setMwInjuryStatus}
+                />
+            </div>
+          }
           <hr/>
           <Fragment>
             <h3 css={{ gridColumn: "1" }}><Translate>Hit Threshold</Translate></h3>
