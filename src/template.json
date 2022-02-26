@@ -6,6 +6,7 @@
         "initiativeAbility": "",
         "hitThreshold": 3,
         "hideZeroRated": false,
+        "mwInjuryStatus": "uninjured",
         "resources": {
           "health": {
             "min": 0,
@@ -43,7 +44,6 @@
         "html": ""
       },
       "background": "",
-
       "shortNotes": [],
       "hiddenShortNotes": [],
       "longNotesFormat": "richText",

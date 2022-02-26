@@ -1,6 +1,6 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat } from "../types";
+import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat, MwInjuryStatus } from "../types";
 import { themes } from "../themes/themes";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { Theme } from "../themes/types";
@@ -318,6 +318,18 @@ export class InvestigatorActor extends Actor {
     if (isInCombat) {
       await this.rollInitiative({ rerollInitiative: true });
     }
+  }
+
+  // ###########################################################################
+  // Moribund World stuff
+  getMwInjuryStatus = () => {
+    assertActiveCharacterDataSource(this.data);
+    return this.data.data.mwInjuryStatus;
+  }
+
+  setMwInjuryStatus = (mwInjuryStatus: MwInjuryStatus) => {
+    assertActiveCharacterDataSource(this.data);
+    return this.update({ data: { mwInjuryStatus } });
   }
 
   // ###########################################################################

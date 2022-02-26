@@ -10,6 +10,7 @@
     - [Other games:](#other-games)
   - [Generating Compendium packs](#generating-compendium-packs)
   - [Translations](#translations)
+  - [Adding Actor or Item data fields](#adding-actor-or-item-data-fields)
   - [Using the "Developer mode" module](#using-the-developer-mode-module)
   - [Release process](#release-process)
 
@@ -103,6 +104,13 @@ There are three npm tasks pertaining to translations:
   * THIS WILL CLOBBER ANY JSON MODIFICATIONS WHICH HAVE NOT BEEN UPLOADED TO TRANSIFEX!
 
 To keep the translation imports running sweetly, you will need to update `.tx/config` to map everything to the right places.
+
+
+## Adding Actor or Item data fields
+
+1. Add the field to [`src/template.json`](). This is what Foundry uses to generate initial data for new actors and items, and to do some kind of validation on entries when they get saved.
+2. Add the field to [`src/types.ts`](), in the appropriate `*SourceData` type.
+3. In  `src/module/InvestigatorActor.ts`, add `get*` and `set*` methods with the appropriate `assert*` call (see existing examples.)
 
 
 ## Using the "Developer mode" module

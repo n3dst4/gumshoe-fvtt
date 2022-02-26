@@ -35,6 +35,14 @@ export interface NoteWithFormat extends BaseNote {
   format: NoteFormat;
 }
 
+export enum MwInjuryStatus {
+  uninjured = "uninjured",
+  hurt = "hurt",
+  down = "down",
+  unconscious = "unconscious",
+  dead = "dead",
+}
+
 // #############################################################################
 // #############################################################################
 // Actor data stuff
@@ -54,6 +62,7 @@ interface PCDataSourceData {
   hideZeroRated: boolean;
   sheetTheme: string|null;
   hitThreshold: number;
+  mwInjuryStatus: MwInjuryStatus;
   resources: {
     health: Resource,
     sanity: Resource,
@@ -72,6 +81,7 @@ interface NPCDataSourceData {
   alertness: number;
   stealth: number;
   stabilityLoss: number;
+  mwInjuryStatus: MwInjuryStatus;
   resources: {
     health: Resource,
     sanity: Resource,
