@@ -21,8 +21,29 @@ export const MwInjuryStatusWidget: React.FC<MwInjuryStatusWidgetProps> = ({
     setStatus(display);
   }, [display, setStatus]);
 
+  const color = display === MwInjuryStatus.uninjured
+    ? "#0f07"
+    : display === MwInjuryStatus.hurt
+      ? "#770f"
+      : display === MwInjuryStatus.down || display === MwInjuryStatus.unconscious
+        ? "#950f"
+        // dead
+        : "#f00f";
+
   return (
-    <div>
+    <div
+      css={{
+        padding: "0.5em 0 1em 0",
+        backgroundImage: `radial-gradient(closest-side, ${color}, #0000)`,
+      }}
+    >
+      <div
+        css={{
+          fontSize: "0.8em",
+        }}
+      >
+        Injury Status
+      </div>
       <select
         css={{
           width: "100%",
