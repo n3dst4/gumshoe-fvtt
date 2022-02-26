@@ -156,6 +156,15 @@ export const registerSettings = function () {
     type: Boolean,
   });
 
+  game.settings.register(c.systemName, c.useMwInjuryStatus, {
+    name: "Use injury status",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+  });
+
   // Define a settings submenu which handles advanced configuration needs
   game.settings.registerMenu(c.systemName, "investigatorSettingsMenu", {
     name: "INVESTIGATOR Settings",

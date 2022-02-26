@@ -34,10 +34,9 @@ export const debugTranslations = "debugTranslations" as const;
 
 // settings for MW-specific settings
 export const mwHiddenShortNotes = "mwHiddenShortNotes" as const;
-
 export const useMwStyleAbilities = "useMwStyleAbilities" as const;
-
 export const mwUseAlternativeItemTypes = "mwUseAlternativeItemTypes" as const;
+export const useMwInjuryStatus = "useMwInjuryStatus" as const;
 
 /**
  * @deprecated use investigativeAbilityCategories and generalAbilityCategories instead

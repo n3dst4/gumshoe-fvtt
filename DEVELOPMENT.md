@@ -11,6 +11,7 @@
   - [Generating Compendium packs](#generating-compendium-packs)
   - [Translations](#translations)
   - [Adding Actor or Item data fields](#adding-actor-or-item-data-fields)
+  - [Adding system settings](#adding-system-settings)
   - [Using the "Developer mode" module](#using-the-developer-mode-module)
   - [Release process](#release-process)
 
@@ -111,6 +112,18 @@ To keep the translation imports running sweetly, you will need to update `.tx/co
 1. Add the field to [`src/template.json`](). This is what Foundry uses to generate initial data for new actors and items, and to do some kind of validation on entries when they get saved.
 2. Add the field to [`src/types.ts`](), in the appropriate `*SourceData` type.
 3. In  `src/module/InvestigatorActor.ts`, add `get*` and `set*` methods with the appropriate `assert*` call (see existing examples.)
+
+
+## Adding system settings
+
+1. Add a constant to [`src/constants.ts`]().
+2. Add an entry to [`src/module/registerSettings.ts`]().
+3. Add helper functions to [`src/settingsHelpers.ts`]().
+4. In [`src/components/InvestigatorSettings.tsx`]():
+   1. Add a `useStateWithPreset` thing for the new setting.
+   2. Add it to `onClickSave`.
+   3. Add it to the JSX somewhere - see the existing examples.
+5. You will probably need to add a translation string to [`src/lang/en.json`]() or maybe [`src/lang/moribundWorld/en.json`]() for MW stuffs.
 
 
 ## Using the "Developer mode" module

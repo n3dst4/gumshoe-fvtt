@@ -28,6 +28,7 @@ export const getDebugTranslations = getSetting<boolean>(constants.debugTranslati
 export const getUseMwStyleAbilities = getSetting<boolean>(constants.useMwStyleAbilities);
 export const getMwHiddenShortNotes = getSetting<string[]>(constants.mwHiddenShortNotes);
 export const getMwUseAlternativeItemTypes = getSetting<boolean>(constants.mwUseAlternativeItemTypes);
+export const getUseMwInjuryStatus = getSetting<boolean>(constants.useMwInjuryStatus);
 
 export const setSystemMigrationVersion = setSetting(constants.systemMigrationVersion);
 export const setDefaultThemeName = setSetting(constants.defaultThemeName);
@@ -46,6 +47,7 @@ export const setDebugTranslations = setSetting<boolean>(constants.debugTranslati
 export const setUseMwStyleAbilities = setSetting<boolean>(constants.useMwStyleAbilities);
 export const setMwHiddenShortNotes = setSetting<string[]>(constants.mwHiddenShortNotes);
 export const setMwUseAlternativeItemTypes = setSetting<boolean>(constants.mwUseAlternativeItemTypes);
+export const setUseMwInjuryStatus = setSetting<boolean>(constants.useMwInjuryStatus);
 
 export const getDefaultGeneralAbilityCategory = () => {
   const cat = getGeneralAbilityCategories()[0];

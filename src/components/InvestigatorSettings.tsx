@@ -105,6 +105,11 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     resetPreset,
   );
 
+  const [useMwInjuryStatus, setUseMwInjuryStatus] = useStateWithPreset(
+    settings.getUseMwInjuryStatus(),
+    resetPreset,
+  );
+
   const onSelectPreset = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
       const presetId = e.currentTarget.value as
@@ -193,6 +198,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         settings.setUseMwStyleAbilities(useMwStyleAbilities),
         settings.setMwHiddenShortNotes(mwHiddenShortNotes),
         settings.setMwUseAlternativeItemTypes(mwUseAlternativeItemTypes),
+        settings.setUseMwInjuryStatus(useMwInjuryStatus),
       ]);
       foundryApplication.close();
     },
@@ -213,6 +219,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       mwHiddenShortNotes,
       mwUseAlternativeItemTypes,
       foundryApplication,
+      useMwInjuryStatus,
     ],
   );
 
@@ -485,6 +492,12 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
           </SettingsGridField>
           <SettingsGridField label="Hidden Short Notes Fields" index={idx++}>
             <ListEdit value={mwHiddenShortNotes} onChange={setMwHiddenShortNotes} />
+          </SettingsGridField>
+          <SettingsGridField label="Use injury status" index={idx++}>
+            <Checkbox
+              checked={useMwInjuryStatus}
+              onChange={setUseMwInjuryStatus}
+            />
           </SettingsGridField>
 
         </InputGrid>
