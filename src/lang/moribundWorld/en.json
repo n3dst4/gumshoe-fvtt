@@ -41,5 +41,11 @@
     "investigator.RefreshAllOfActorNamesAbilitiesWhichRefreshEveryHoursHours": "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?",
     "investigator.Negate": "Negate",
     "investigator.Wallop": "Wallop",
-    "investigator.UseInjuryStatus": "Use injury Status"
+    "investigator.UseInjuryStatus": "Use injury Status",
+    "investigator.Uninjured": "Uninjured",
+    "investigator.Hurt": "Hurt",
+    "investigator.Down": "Down",
+    "investigator.Unconscious": "Unconscious",
+    "investigator.Dead": "Dead"
+
 }

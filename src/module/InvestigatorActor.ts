@@ -327,9 +327,9 @@ export class InvestigatorActor extends Actor {
     return this.data.data.mwInjuryStatus;
   }
 
-  setMwInjuryStatus = (mwInjuryStatus: MwInjuryStatus) => {
+  setMwInjuryStatus = async (mwInjuryStatus: MwInjuryStatus) => {
     assertActiveCharacterDataSource(this.data);
-    return this.update({ data: { mwInjuryStatus } });
+    await this.update({ data: { mwInjuryStatus } });
   }
 
   // ###########################################################################

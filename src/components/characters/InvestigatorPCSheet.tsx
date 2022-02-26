@@ -186,7 +186,13 @@ export const InvestigatorPCSheet = ({
               </Fragment>
             }
             {getUseMwInjuryStatus() &&
-              <MwInjuryStatusWidget status={actor.getMwInjuryStatus()} />
+              <Fragment>
+                <MwInjuryStatusWidget
+                  status={actor.getMwInjuryStatus()}
+                  setStatus={actor.setMwInjuryStatus}
+                />
+                <hr/>
+              </Fragment>
             }
             <TrackersArea actor={actor} />
             <hr/>
