@@ -5,6 +5,7 @@
       "activeCharacter": {
         "initiativeAbility": "",
         "hitThreshold": 3,
+        "hideZeroRated": false,
         "resources": {
           "health": {
             "min": 0,
@@ -47,7 +48,6 @@
       "hiddenShortNotes": [],
       "longNotesFormat": "richText",
       "longNotes": [],
-
       "buildPoints": 28,
       "hideZeroRated": false,
       "sheetTheme": null
@@ -59,8 +59,6 @@
         "source": "",
         "html": ""
       },
-      "hideZeroRated": false,
-      "sheetTheme": null,
       "armor": 0,
       "alertness": 0,
       "stealth": 0,
