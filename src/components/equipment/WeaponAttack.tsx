@@ -46,18 +46,14 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   }));
 
   const basePerformAttack = useMemo(() => {
-    if (ability) {
-      return performAttack({
-        spend,
-        bonusPool,
-        setSpend,
-        setBonusPool,
-        ability,
-        weapon,
-      });
-    } else {
-      return () => {};
-    }
+    return performAttack({
+      spend,
+      bonusPool,
+      setSpend,
+      setBonusPool,
+      ability,
+      weapon,
+    });
   }, [ability, bonusPool, spend, weapon]);
 
   const onPointBlank = useCallback(() => {
