@@ -29,6 +29,9 @@ export const MwItemArea: React.FC<MwItemAreaProps> = ({
       <MwItemGroup name="EnchantedItems" mwType="enchantedItem" items={items.enchantedItem} onDragStart={onDragStart} actor={actor} />
       <MwItemGroup name="Melee Weapons" mwType="meleeWeapon" items={items.meleeWeapon} onDragStart={onDragStart} actor={actor} />
       <MwItemGroup name="Missile Weapons" mwType="missileWeapon" items={items.missileWeapon} onDragStart={onDragStart} actor={actor} />
+      <MwItemGroup name="Manses" mwType="manse" items={items.manse} onDragStart={onDragStart} actor={actor} />
+      <MwItemGroup name="Sandestins" mwType="sandestin" items={items.sandestin} onDragStart={onDragStart} actor={actor} />
+      <MwItemGroup name="Retainers" mwType="retainer" items={items.retainer} onDragStart={onDragStart} actor={actor} />
     </div>
   );
 };

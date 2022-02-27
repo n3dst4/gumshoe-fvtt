@@ -9,7 +9,7 @@ import { WeaponSheet } from "./equipment/WeaponSheet";
 import { CSSReset, CSSResetMode } from "./CSSReset";
 import { ItemSheetAppContext } from "./FoundryAppContext";
 import { isAbilityDataSource, isMwItemDataSource } from "../types";
-import { WmItemSheet } from "./equipment/WmItemSheet";
+import { MwItemSheet } from "./equipment/MwItemSheet";
 
 type InvestigatorItemSheetProps = {
   item: InvestigatorItem,
@@ -52,7 +52,7 @@ export const InvestigatorItemSheet: React.FC<InvestigatorItemSheetProps> = ({
             : item.type === weapon
               ? <WeaponSheet weapon={item} application={foundryApplication} />
               : item.type === mwItem
-                ? <WmItemSheet item={item} application={foundryApplication} />
+                ? <MwItemSheet item={item} application={foundryApplication} />
                 : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
         }
       </CSSReset>

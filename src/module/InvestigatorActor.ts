@@ -169,6 +169,9 @@ export class InvestigatorActor extends Actor {
       enchantedItem: [],
       meleeWeapon: [],
       missileWeapon: [],
+      manse: [],
+      retainer: [],
+      sandestin: [],
     };
     for (const item of allItems) {
       assertMwItemDataSource(item.data);

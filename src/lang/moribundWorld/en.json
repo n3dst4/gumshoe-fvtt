@@ -46,6 +46,8 @@
     "investigator.Hurt": "Hurt",
     "investigator.Down": "Down",
     "investigator.Unconscious": "Unconscious",
-    "investigator.Dead": "Dead"
-
+    "investigator.Dead": "Dead",
+    "investigator.Manses": "Manses",
+    "investigator.Sandestins": "Sandestins",
+    "investigator.Retainers": "Retainers"
 }

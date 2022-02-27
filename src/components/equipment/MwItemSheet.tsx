@@ -15,12 +15,12 @@ import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 
-type WmItemSheetProps = {
+type MwItemSheetProps = {
   item: InvestigatorItem,
   application: ItemSheet,
 };
 
-export const WmItemSheet: React.FC<WmItemSheetProps> = ({
+export const MwItemSheet: React.FC<MwItemSheetProps> = ({
   item,
   application,
 }) => {
@@ -137,6 +137,9 @@ export const WmItemSheet: React.FC<WmItemSheetProps> = ({
             <option value="enchantedItem">Enchanted item</option>
             <option value="meleeWeapon">Melee weapon</option>
             <option value="missileWeapon">Missile weapon</option>
+            <option value="manse">Manse</option>
+            <option value="sandestin">Sandestin</option>
+            <option value="retainer">Retainer</option>
           </select>
         </GridField>
         <NotesEditorWithControls

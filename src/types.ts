@@ -234,7 +234,7 @@ export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData 
   mwRefreshGroup: MwRefreshGroup;
 }
 
-export type MwType = "tweak"|"spell"|"cantrap"|"enchantedItem"|"meleeWeapon"|"missileWeapon";
+export type MwType = "tweak"|"spell"|"cantrap"|"enchantedItem"|"meleeWeapon"|"missileWeapon"|"manse"|"sandestin"|"retainer";
 export type RangeTuple = [number, number, number, number];
 
 /** data.data for Moribund World stuff */
