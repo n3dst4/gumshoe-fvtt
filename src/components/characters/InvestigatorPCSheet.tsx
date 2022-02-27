@@ -22,10 +22,10 @@ import { assertPCDataSource, isPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { ImagePickle } from "../ImagePickle";
 import { assertGame } from "../../functions";
-import { AbilitiesAreaMW } from "./AbilitiesAreaMW";
-import { MwItemArea } from "./MwItemArea";
+import { AbilitiesAreaMW } from "./MoribundWorld/AbilitiesAreaMW";
+import { MwItemArea } from "./MoribundWorld/MwItemArea";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
-import { MwInjuryStatusWidget } from "./MwInjuryStatusWidget";
+import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 
 type InvestigatorPCSheetProps = {
   actor: InvestigatorActor,

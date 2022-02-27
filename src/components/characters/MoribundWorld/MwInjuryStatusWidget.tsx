@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useEffect, useState } from "react";
-import { assertGame } from "../../functions";
-import { MwInjuryStatus } from "../../types";
+import { assertGame } from "../../../functions";
+import { MwInjuryStatus } from "../../../types";
 
 interface MwInjuryStatusWidgetProps {
   status: MwInjuryStatus;

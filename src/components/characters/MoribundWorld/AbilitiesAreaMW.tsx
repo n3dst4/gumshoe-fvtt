@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { sortEntitiesByName } from "../../functions";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { assertActiveCharacterDataSource } from "../../types";
-import { AbilitiesColumnMW } from "./AbilitiesColumnMW";
-import { useAbilities } from "./useAbilities";
+import { sortEntitiesByName } from "../../../functions";
+import { InvestigatorActor } from "../../../module/InvestigatorActor";
+import { assertActiveCharacterDataSource } from "../../../types";
+import { AbilitiesColumnMW } from "../AbilitiesColumnMW";
+import { useAbilities } from "../useAbilities";
 
 type AbilitiesAreaMWProps = {
   actor: InvestigatorActor,

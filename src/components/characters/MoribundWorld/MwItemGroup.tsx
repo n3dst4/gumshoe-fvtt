@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { mwItem } from "../../constants";
-import { sortEntitiesByName } from "../../functions";
-import { MwType } from "../../types";
-import { Translate } from "../Translate";
+import { mwItem } from "../../../constants";
+import { sortEntitiesByName } from "../../../functions";
+import { MwType } from "../../../types";
+import { Translate } from "../../Translate";
 
 interface MwItemGroupProps {
   actor: Actor;
@@ -22,7 +22,11 @@ export const MwItemGroup: React.FC<MwItemGroupProps> = ({
   mwType,
 }: MwItemGroupProps) => {
   return (
-    <div>
+    <div
+      css={{
+        marginBottom: "1em",
+      }}
+    >
       <div>
         <h1
           css={{

@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback, useContext } from "react";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { ActorSheetAppContext } from "../FoundryAppContext";
+import { InvestigatorActor } from "../../../module/InvestigatorActor";
+import { ActorSheetAppContext } from "../../FoundryAppContext";
 import { MwItemGroup } from "./MwItemGroup";
 
 type MwItemAreaProps = {

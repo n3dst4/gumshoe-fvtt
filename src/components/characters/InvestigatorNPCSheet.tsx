@@ -21,7 +21,7 @@ import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { InputGrid } from "../inputs/InputGrid";
 import { absoluteCover } from "../absoluteCover";
 import { getUseMwInjuryStatus } from "../../settingsHelpers";
-import { MwInjuryStatusWidget } from "./MwInjuryStatusWidget";
+import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 
 type InvestigatorNPCSheetProps = {
   actor: InvestigatorActor,
