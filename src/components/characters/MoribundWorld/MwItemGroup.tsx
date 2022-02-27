@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React from "react";
+import React, { useContext } from "react";
 import { mwItem } from "../../../constants";
 import { sortEntitiesByName } from "../../../functions";
+import { ThemeContext } from "../../../themes/ThemeContext";
 import { MwType } from "../../../types";
 import { Translate } from "../../Translate";
 
@@ -21,10 +22,13 @@ export const MwItemGroup: React.FC<MwItemGroupProps> = ({
   name,
   mwType,
 }: MwItemGroupProps) => {
+  const theme = useContext(ThemeContext);
   return (
     <div
       css={{
-        marginBottom: "1em",
+        marginBottom: "0.5em",
+        paddingBottom: "0.5em",
+        borderBottom: `1px solid ${theme.colors.controlBorder}`,
       }}
     >
       <div>
