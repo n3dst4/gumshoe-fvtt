@@ -20,6 +20,7 @@ import { installCompendiumExportButton } from "./compendiumFactory/installCompen
 import { InvestigatorCombat } from "./module/InvestigatorCombat";
 import { installShowThemeFarmHack } from "./module/ThemeFarmClass";
 import { installAbilityCardChatWrangler } from "./components/messageCards/installAbilityCardChatWrangler";
+import { installFathom } from "./installFathom";
 // import { InvestigatorChatMessage } from "./module/InvestigatorChatMessage";
 
 // Initialize system
@@ -265,3 +266,5 @@ installCompendiumExportButton();
 initializePackGenerators();
 
 installAbilityCardChatWrangler();
+
+installFathom();
