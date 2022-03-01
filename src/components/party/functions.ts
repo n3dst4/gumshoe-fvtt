@@ -100,14 +100,14 @@ export const buildRowData = (
         continue;
       }
       const ability = actor.getAbilityByName(name, abilityType);
-      if (ability !== undefined && actor.id !== null && ability.id !== null) {
-        const rating = ability.getRating();
+      if (actor.id !== null) {
+        const rating = ability?.getRating();
         actorInfo[actor.id] = {
-          abilityId: ability.id,
+          abilityId: ability?.id ?? undefined,
           actorId: actor.id,
           rating,
         };
-        total += rating;
+        total += (rating ?? 0);
       }
     }
 

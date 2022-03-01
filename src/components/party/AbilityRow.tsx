@@ -1,25 +1,26 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment } from "react";
+import { confirmADoodleDo } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { themes } from "../../themes/themes";
 import { AbilityRowData } from "./types";
 
 type AbilityRowProps = {
-  data: AbilityRowData,
+  abilityData: AbilityRowData,
   index: number,
   actors: InvestigatorActor[],
 };
 
 export const AbilityRow: React.FC<AbilityRowProps> = ({
-  data,
+  abilityData,
   index,
   actors,
 }) => {
   const theme = themes[getDefaultThemeName()] || themes.tealTheme;
 
-  const zero = data.total === 0;
+  const zero = abilityData.total === 0;
   const odd = index % 2 === 0;
 
   const bg = zero
@@ -47,7 +48,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
         position: "sticky",
         left: 0,
       }}>
-        {data.name}
+        {abilityData.name}
       </div>
 
       {/* Ability scores */}
@@ -55,13 +56,29 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
         if (actor === undefined || actor.id === null) {
           return null;
         }
-        const actorInfo = data.actorInfo[actor.id];
+        const actorInfo = abilityData.actorInfo[actor.id];
         return (
           <a
             key={actor.id}
             onClick={(e) => {
               e.preventDefault();
-              actor.items.get(actorInfo.abilityId)?.sheet?.render(true);
+              const ability = actorInfo.abilityId ? actor.items.get(actorInfo.abilityId) : undefined;
+              if (ability) {
+                ability.sheet?.render(true);
+              } else {
+                confirmADoodleDo({
+                  message: "{ActorName} does not have {AbilityName}. Add it now?",
+                  confirmText: "Yes please!",
+                  cancelText: "No thanks",
+                  confirmIconClass: "fa-check",
+                  values: {
+                    ActorName: actor.name ?? "",
+                    AbilityName: abilityData.name,
+                  },
+                }).then(() => {
+                  logger.log("OKAY");
+                });
+              }
             }}
             css={{
               background: bg,
@@ -89,7 +106,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
           textAlign: "center",
         }}
       >
-        {data.total}
+        {abilityData.total}
       </div>
     </Fragment>
   ); //

@@ -14,8 +14,8 @@ export type CategoryHeaderData = {
 };
 export type ActorAbilityInfo = {
   actorId: string,
-  abilityId: string,
-  rating: number,
+  abilityId: string | undefined,
+  rating: number | undefined,
 };
 export type AbilityRowData = {
   rowType: typeof abilityRowkey,

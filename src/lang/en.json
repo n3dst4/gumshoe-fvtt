@@ -111,5 +111,8 @@
     "investigator.VisualTheme": "Visual theme",
     "investigator.Weapon": "Weapon",
     "investigator.Weapons": "Weapons",
-    "investigator.WhoopsNo": "Whoops, No!"
+    "investigator.WhoopsNo": "Whoops, No!",
+    "investigator.ActorNameDoesNotHaveAbilityNameAddItNow": "{ActorName} does not have {AbilityName}. Add it now?",
+    "investigator.YesPlease": "Yes please!",
+    "investigator.NoThanks": "No thanks"
 }

@@ -323,7 +323,7 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
               return (
                 <AbilityRow
                   key={`${data.abilityType}$${data.name}`}
-                  data={data}
+                  abilityData={data}
                   index={i}
                   actors={actors}
                 />
