@@ -77,8 +77,12 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
                   },
                 }).then(() => {
                   logger.log("OKAY");
-                  Item.create(abilityRowData.abilityDataSource, { parent: actor });
-                  // actor.items.
+                  const newAbility = Item.create(abilityRowData.abilityDataSource, { parent: actor });
+                  return newAbility;
+                }).then((newAbility) => {
+                  if (newAbility) {
+                    newAbility.sheet?.render(true);
+                  }
                 });
               }
             }}
