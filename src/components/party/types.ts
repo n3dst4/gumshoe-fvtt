@@ -1,6 +1,5 @@
-import { AbilityType } from "../../types";
+import { AbilityDataSource, AbilityType } from "../../types";
 
-export type AbilityTuple = [AbilityType, string, string];
 export const typeHeaderKey = "typeHeader" as const;
 export const categoryHeaderKey = "categoryHeader" as const;
 export const abilityRowkey = "abilityRowString" as const;
@@ -19,8 +18,7 @@ export type ActorAbilityInfo = {
 };
 export type AbilityRowData = {
   rowType: typeof abilityRowkey,
-  name: string,
-  abilityType: AbilityType,
+  abilityDataSource: AbilityDataSource,
   actorInfo: {
     [actorId: string]: ActorAbilityInfo,
   },

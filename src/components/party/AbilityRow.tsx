@@ -8,19 +8,19 @@ import { themes } from "../../themes/themes";
 import { AbilityRowData } from "./types";
 
 type AbilityRowProps = {
-  abilityData: AbilityRowData,
+  abilityRowData: AbilityRowData,
   index: number,
   actors: InvestigatorActor[],
 };
 
 export const AbilityRow: React.FC<AbilityRowProps> = ({
-  abilityData,
+  abilityRowData,
   index,
   actors,
 }) => {
   const theme = themes[getDefaultThemeName()] || themes.tealTheme;
 
-  const zero = abilityData.total === 0;
+  const zero = abilityRowData.total === 0;
   const odd = index % 2 === 0;
 
   const bg = zero
@@ -48,7 +48,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
         position: "sticky",
         left: 0,
       }}>
-        {abilityData.name}
+        {abilityRowData.abilityDataSource.name}
       </div>
 
       {/* Ability scores */}
@@ -56,7 +56,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
         if (actor === undefined || actor.id === null) {
           return null;
         }
-        const actorInfo = abilityData.actorInfo[actor.id];
+        const actorInfo = abilityRowData.actorInfo[actor.id];
         return (
           <a
             key={actor.id}
@@ -73,10 +73,12 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
                   confirmIconClass: "fa-check",
                   values: {
                     ActorName: actor.name ?? "",
-                    AbilityName: abilityData.name,
+                    AbilityName: abilityRowData.abilityDataSource.name,
                   },
                 }).then(() => {
                   logger.log("OKAY");
+                  Item.create(abilityRowData.abilityDataSource, { parent: actor });
+                  // actor.items.
                 });
               }
             }}
@@ -106,7 +108,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
           textAlign: "center",
         }}
       >
-        {abilityData.total}
+        {abilityRowData.total}
       </div>
     </Fragment>
   ); //

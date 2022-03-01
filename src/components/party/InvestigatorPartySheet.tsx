@@ -7,7 +7,7 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { themes } from "../../themes/themes";
-import { assertPartyDataSource, isAbilityDataSource } from "../../types";
+import { AbilityDataSource, assertPartyDataSource, isAbilityDataSource } from "../../types";
 import { CSSReset, CSSResetMode } from "../CSSReset";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -16,7 +16,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 import { AbilityRow } from "./AbilityRow";
 import { buildRowData, getSystemAbilities } from "./functions";
-import { AbilityTuple, isCategoryHeader, isTypeHeader, RowData } from "./types";
+import { isCategoryHeader, isTypeHeader, RowData } from "./types";
 
 type InvestigatorPartySheetProps = {
   party: InvestigatorActor,
@@ -28,7 +28,7 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
   party,
 }) => {
   const theme = themes[getDefaultThemeName()] || themes.tealTheme;
-  const [abilityTuples, setAbilityTuples] = useState<AbilityTuple[]>([]);
+  const [abilities, setAbilities] = useState<AbilityDataSource[]>([]);
   const [actors, setActors] = useState<InvestigatorActor[]>([]);
   const [rowData, setRowData] = useState<RowData[]>([]);
   const actorIds = party.getActorIds();
@@ -36,10 +36,10 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
   // effect 1: keep our "abilityTuples" in sync with system setting for
   // "newPCPacks"
   useEffect(() => {
-    getSystemAbilities().then(setAbilityTuples);
+    getSystemAbilities().then(setAbilities);
 
     const onNewPCPacksUpdated = async (newPacks: string[]) => {
-      setAbilityTuples(await getSystemAbilities());
+      setAbilities(await getSystemAbilities());
     };
 
     const onActorDeleted = (
@@ -62,7 +62,7 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
     ) => {
       assertPartyDataSource(party.data);
       if (isAbilityDataSource(item.data) && item.isOwned && party.data.data.actorIds.includes(item.actor?.id ?? "")) {
-        setAbilityTuples(await getSystemAbilities());
+        setAbilities(await getSystemAbilities());
       }
     };
 
@@ -79,15 +79,15 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
     };
   }, [party]);
 
-  // effect 2: keep our row data in sync with abilityTuples and actors
+  // effect 2: keep our row data in sync with abilities and actors
   useEffect(() => {
     const getAbs = async () => {
-      const rowData = buildRowData(abilityTuples, actors);
+      const rowData = buildRowData(abilities, actors);
       // setting row data is slow - presumably this includes rendering time
       setRowData(rowData);
     };
     getAbs();
-  }, [abilityTuples, actors]);
+  }, [abilities, actors]);
 
   // effect 3: listen for ability changes
   useEffect(() => {
@@ -322,8 +322,8 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
               // Actual Abilities
               return (
                 <AbilityRow
-                  key={`${data.abilityType}$${data.name}`}
-                  abilityData={data}
+                  key={`${data.abilityDataSource.type}$${data.abilityDataSource.name}`}
+                  abilityRowData={data}
                   index={i}
                   actors={actors}
                 />
