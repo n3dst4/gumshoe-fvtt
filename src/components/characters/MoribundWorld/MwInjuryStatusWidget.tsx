@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useEffect, useState } from "react";
-import { assertGame } from "../../../functions";
+import { assertGame, getTranslated } from "../../../functions";
 import { MwInjuryStatus } from "../../../types";
 
 interface MwInjuryStatusWidgetProps {
@@ -54,19 +54,19 @@ export const MwInjuryStatusWidget: React.FC<MwInjuryStatusWidgetProps> = ({
         }}
       >
         <option value={MwInjuryStatus.uninjured}>
-          {game.i18n.format("Uninjured")}
+          {getTranslated("Uninjured")}
         </option>
         <option value={MwInjuryStatus.hurt}>
-          {game.i18n.format("Hurt")}
+          {getTranslated("Hurt")}
         </option>
         <option value={MwInjuryStatus.down}>
-          {game.i18n.format("Down")}
+          {getTranslated("Down")}
         </option>
         <option value={MwInjuryStatus.unconscious}>
-          {game.i18n.format("Unconscious")}
+          {getTranslated("Unconscious")}
         </option>
         <option value={MwInjuryStatus.dead}>
-          {game.i18n.format("Dead")}
+          {getTranslated("Dead")}
         </option>
       </select>
     </div>
