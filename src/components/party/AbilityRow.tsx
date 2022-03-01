@@ -61,7 +61,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
             key={actor.id}
             onClick={(e) => {
               e.preventDefault();
-              actor.getOwnedItem(actorInfo.abilityId)?.sheet?.render(true);
+              actor.items.get(actorInfo.abilityId)?.sheet?.render(true);
             }}
             css={{
               background: bg,
