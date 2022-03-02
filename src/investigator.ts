@@ -5,10 +5,10 @@ import { InvestigatorActor } from "./module/InvestigatorActor";
 import { InvestigatorItem } from "./module/InvestigatorItem";
 import { InvestigatorPCSheetClass } from "./module/InvestigatorPCSheetClass";
 import { InvestigatorAbilitySheetClass, InvestigatorEquipmentSheetClass, InvestigatorMwItemSheetClass } from "./module/InvestigatorItemSheetClass";
-import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon, mwItem } from "./constants";
+import { defaultMigratedSystemVersion, equipment, equipmentIcon, generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, party, pc, npc, systemName, weapon, weaponIcon, mwItem, pcIcon, partyIcon, npcIcon } from "./constants";
 import system from "./system.json";
 import { migrateWorld } from "./migrations/migrateWorld";
-import { isAbilityDataSource, isGeneralAbilityDataSource, isWeaponDataSource, isEquipmentDataSource } from "./types";
+import { isAbilityDataSource, isGeneralAbilityDataSource, isWeaponDataSource, isEquipmentDataSource, isPCDataSource, isNPCDataSource, isPartyDataSource } from "./types";
 import { assertGame, getFolderDescendants, getTranslated, isNullOrEmptyString } from "./functions";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { investigatorSettingsClassInstance } from "./module/InvestigatorSettingsClass";
@@ -258,6 +258,32 @@ Hooks.on(
         default: false,
       },
     );
+  },
+);
+
+Hooks.on(
+  "preCreateActor",
+  (
+    actor: Actor,
+    createData: {name: string, type: string, data?: any, img?: string},
+    options: any,
+    userId: string,
+  ) => {
+    assertGame(game);
+    if (game.userId !== userId) return;
+
+    // set image
+    if (isNullOrEmptyString(actor.data.img) || actor.data.img === "icons/svg/mystery-man.svg") {
+      actor.data.update({
+        img: isPCDataSource(actor.data)
+          ? pcIcon
+          : isNPCDataSource(actor.data)
+            ? npcIcon
+            : isPartyDataSource(actor.data)
+              ? partyIcon
+              : undefined,
+      });
+    }
   },
 );
 

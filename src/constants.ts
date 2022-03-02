@@ -48,6 +48,9 @@ export const investigativeAbilityIcon = `/systems/${systemName}/assets/icons/mag
 export const generalAbilityIcon = `/systems/${systemName}/assets/icons/fist.webp` as const;
 export const weaponIcon = `/systems/${systemName}/assets/icons/trench-knife.webp` as const;
 export const equipmentIcon = `/systems/${systemName}/assets/icons/shopping-bag.webp` as const;
+export const pcIcon = `/systems/${systemName}/assets/icons/sherlock-holmes.webp` as const;
+export const npcIcon = `/systems/${systemName}/assets/icons/cowled.webp` as const;
+export const partyIcon = `/systems/${systemName}/assets/icons/dark-squad.webp` as const;
 
 // packs
 
