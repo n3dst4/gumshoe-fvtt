@@ -437,7 +437,7 @@ Hooks.on(
     if (actor.data.type === pc) {
       // this used to be done in parallel with Promise.all but I was seeing some
       // weird behaviour (duplicated or missing abilities, or weird reference
-      // errors) so I have switched it to inline to see if that helps
+      // errors) so I have switched it to serial to see if that helps
       for (const packId of getNewPCPacks()) {
         assertGame(game);
         console.log("PACK", packId);
