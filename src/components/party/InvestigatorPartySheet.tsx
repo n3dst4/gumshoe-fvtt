@@ -10,6 +10,7 @@ import { themes } from "../../themes/themes";
 import { AbilityDataSource, assertPartyDataSource, isAbilityDataSource } from "../../types";
 import { CSSReset, CSSResetMode } from "../CSSReset";
 import { ActorSheetAppContext } from "../FoundryAppContext";
+import { ImagePickle } from "../ImagePickle";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
@@ -187,7 +188,18 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
               textAlign: "center",
               zIndex: 3,
             }}
-          ></div>
+          >
+            <ImagePickle
+              subject={party}
+              application={foundryApplication}
+              css={{
+                height: "5em",
+                width: "4em",
+                transform: "rotateZ(-2deg)",
+                margin: "0 auto",
+              }}
+            />
+          </div>
 
           {/* Actor names */}
           {actors.map<JSX.Element>((actor, j) => {
