@@ -54,7 +54,7 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
       party.update({ actorIds });
     };
 
-    const onUpdateItem = async (
+    const onUpdateDeleteCreateItem = async (
       item: InvestigatorItem,
       dataDiff: any,
       options: any,
@@ -70,12 +70,16 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
     Hooks.on(constants.newPCPacksUpdated, onNewPCPacksUpdated);
     // standard hooks
     Hooks.on("deleteActor", onActorDeleted);
-    Hooks.on("updateItem", onUpdateItem);
+    Hooks.on("updateItem", onUpdateDeleteCreateItem);
+    Hooks.on("deleteItem", onUpdateDeleteCreateItem);
+    Hooks.on("createItem", onUpdateDeleteCreateItem);
 
     return () => {
       Hooks.off(constants.newPCPacksUpdated, onNewPCPacksUpdated);
       Hooks.off("deleteActor", onActorDeleted);
-      Hooks.off("updateItem", onUpdateItem);
+      Hooks.off("updateItem", onUpdateDeleteCreateItem);
+      Hooks.off("deleteItem", onUpdateDeleteCreateItem);
+      Hooks.off("createItem", onUpdateDeleteCreateItem);
     };
   }, [party]);
 
