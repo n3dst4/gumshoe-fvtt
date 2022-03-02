@@ -207,12 +207,13 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
                   textOverflow: "ellipsis",
                   textAlign: "center",
                 }}
-                >
+              >
                 <a
                   css={{
-                    "-webkit-line-clamp": "2",
                     textAlign: "center",
+                    // shenanigans to get the line count limited to 2
                     display: "-webkit-box",
+                    "-webkit-line-clamp": "2",
                     "-webkit-box-orient": "vertical",
                     overflow: "hidden",
                   }}
@@ -221,9 +222,27 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
                     actor.sheet?.render(true);
                   }}
                 >
+                  <div
+                    css={{
+                      width: "3em",
+                      height: "3em",
+                      backgroundImage: `url(${actor.data.img})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      margin: "0 auto",
+                    }}
+                  />
                   {actor?.name ?? "Missing"}
                 </a>
-                <div>
+                <div css={{ height: "1.5em" }}/>
+                <div
+                  css={{
+                    position: "absolute",
+                    bottom: "0.5em",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                  }}
+                >
                   <button
                     css={{
                       "&&": {
