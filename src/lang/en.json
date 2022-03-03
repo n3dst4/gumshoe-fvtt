@@ -3,6 +3,7 @@
     "investigator.Abilities": "Abilities",
     "investigator.Ability": "Ability",
     "investigator.AbilityTest": "Ability test",
+    "investigator.ActorNameDoesNotHaveAbilityNameAddItNow": "{ActorName} does not have {AbilityName}. Add it now?",
     "investigator.AddEquipment": "Add equipment",
     "investigator.AddItem": "Add item",
     "investigator.AddWeapon": "Add Weapon",
@@ -64,6 +65,7 @@
     "investigator.NewWeapon": "New weapon",
     "investigator.NoActorsInThisPartyYetDragPCActorsFromTheSidebarIntoThisWindowToAddThem": "No actors in this party yet! Drag PC actors from the sidebar into this window to add them.",
     "investigator.NoEquipmentYet": "No equipment yet",
+    "investigator.NoThanks": "No thanks",
     "investigator.NoWeaponsYet": "No weapons yet - good luck against the cultists!",
     "investigator.Notes": "Notes",
     "investigator.NotesFormat": "Notes Format",
@@ -112,7 +114,5 @@
     "investigator.Weapon": "Weapon",
     "investigator.Weapons": "Weapons",
     "investigator.WhoopsNo": "Whoops, No!",
-    "investigator.ActorNameDoesNotHaveAbilityNameAddItNow": "{ActorName} does not have {AbilityName}. Add it now?",
-    "investigator.YesPlease": "Yes please!",
-    "investigator.NoThanks": "No thanks"
+    "investigator.YesPlease": "Yes please!"
 }
