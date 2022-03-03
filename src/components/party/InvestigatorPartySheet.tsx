@@ -264,7 +264,7 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
                         width: "auto",
                       },
                     }}
-                    data-actor-id={actorIds[j]}
+                    data-actor-id={actor.data._id}
                     onClick={onClickRemoveActor}
                   >
                     <Translate>REMOVE</Translate>
