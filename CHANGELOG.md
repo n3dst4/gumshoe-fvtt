@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 4.9.0 (2022-03-03)
+
+Happy March! A big list of updates today:
+
+* **Tested against Foundry VTT v9.251**
+* Several QoL improvements for Moribund World mode:
+  * Better layout on the abilities page and items page
+  * High-level items types (sandestins, manses, retainers)
+  * Injury status
+* The party sheet now lets you add missing abilities! This a really easy way to fill in abilities on characters when you're tinkering with your setup.
+* Default images for PCs, NPCs, and parties.
+* The party sheet now shows PC images.
+* The party sheet now has a an editable image.
+* **Bug fix** If a character is missing the relevant ability for a weapon, they can now do a simple +0 roll.
+* **Bug fix** You can now click to open an ability from the party sheet directly in FVTT 9.x, as you could in 8.x.
+* **Bug fix** The "Remove" buttons across the top of the party sheet now remove the right charcater.
+
 ## v4.8.0 (2021-12-31)
 
 Happy new year! A big update. 
