@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 4.9.1 (2022-03-04)
+
+* Minor fixes
+
 ## 4.9.0 (2022-03-03)
 
 Happy March! A big list of updates today:
