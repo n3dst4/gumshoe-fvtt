@@ -5,7 +5,7 @@
   "description": "Unofficial GUMSHOE SRD-Compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
   "scripts": {
     "package": "NODE_ENV=production gulp package",
-    "build": "gulp build",
+    "build": "NODE_ENV=development gulp build",
     "link": "gulp link",
     "build:watch": "npm start",
     "start": "NODE_ENV=development gulp watch",

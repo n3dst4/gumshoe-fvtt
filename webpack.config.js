@@ -82,7 +82,7 @@ module.exports = {
   plugins: [
     // new BundleAnalyzerPlugin(),
     new webpack.EnvironmentPlugin({
-      NODE_ENV: "development",
+      NODE_ENV: process.env.NODE_ENV ?? "development",
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
