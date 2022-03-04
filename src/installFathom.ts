@@ -11,7 +11,7 @@ export function installFathom () {
     // script.)
     logger.log("Installing Fathom");
     const scriptEl = document.createElement("script");
-    scriptEl.setAttribute("src", "https://cdn.usefathom.com/script.js");
+    scriptEl.setAttribute("src", "https://twentyseven-metal.lumphammer.net/script.js");
     scriptEl.setAttribute("data-spa", "auto");
     scriptEl.setAttribute("data-site", "HXDZGAVA");
     scriptEl.setAttribute("defer", "defer");
