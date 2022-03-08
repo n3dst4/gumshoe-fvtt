@@ -1,14 +1,14 @@
-import "./setWebkitPublicPath";
-import { registerSettings } from "./module/registerSettings";
-import { preloadTemplates } from "./module/preloadTemplates";
-import { InvestigatorActor } from "./module/InvestigatorActor";
-import { InvestigatorItem } from "./module/InvestigatorItem";
-import { InvestigatorPCSheetClass } from "./module/InvestigatorPCSheetClass";
+import "../../setWebkitPublicPath";
+import { registerSettings } from "../../module/registerSettings";
+import { preloadTemplates } from "../../module/preloadTemplates";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { InvestigatorPCSheetClass } from "../../module/InvestigatorPCSheetClass";
 import {
   InvestigatorAbilitySheetClass,
   InvestigatorEquipmentSheetClass,
   InvestigatorMwItemSheetClass,
-} from "./module/InvestigatorItemSheetClass";
+} from "../../module/InvestigatorItemSheetClass";
 import {
   defaultMigratedSystemVersion,
   equipment,
@@ -27,9 +27,9 @@ import {
   pcIcon,
   partyIcon,
   npcIcon,
-} from "./constants";
-import system from "./system.json";
-import { migrateWorld } from "./migrations/migrateWorld";
+} from "../../constants";
+import system from "../../system.json";
+import { migrateWorld } from "../../migrations/migrateWorld";
 import {
   isAbilityDataSource,
   isGeneralAbilityDataSource,
@@ -38,28 +38,28 @@ import {
   isPCDataSource,
   isNPCDataSource,
   isPartyDataSource,
-} from "./types";
+} from "../../types";
 import {
   assertGame,
   getFolderDescendants,
   getTranslated,
   isNullOrEmptyString,
-} from "./functions";
-import { initializePackGenerators } from "./compendiumFactory/generatePacks";
-import { investigatorSettingsClassInstance } from "./module/InvestigatorSettingsClass";
+} from "../../functions";
+import { initializePackGenerators } from "../../compendiumFactory/generatePacks";
+import { investigatorSettingsClassInstance } from "../../module/InvestigatorSettingsClass";
 import {
   getDefaultGeneralAbilityCategory,
   getDefaultInvestigativeAbilityCategory,
   getSystemMigrationVersion,
-} from "./settingsHelpers";
-import { InvestigatorPartySheetClass } from "./module/InvestigatorPartySheetClass";
-import { InvestigatorNPCSheetClass } from "./module/InvestigatorNPCSheetClass";
-import { InvestigatorCombatant } from "./module/InvestigatorCombatant";
-import { installCompendiumExportButton } from "./compendiumFactory/installCompendiumExportButton";
-import { InvestigatorCombat } from "./module/InvestigatorCombat";
-import { installShowThemeFarmHack } from "./module/ThemeFarmClass";
-import { installAbilityCardChatWrangler } from "./components/messageCards/installAbilityCardChatWrangler";
-import { installFathom } from "./installFathom";
+} from "../../settingsHelpers";
+import { InvestigatorPartySheetClass } from "../../module/InvestigatorPartySheetClass";
+import { InvestigatorNPCSheetClass } from "../../module/InvestigatorNPCSheetClass";
+import { InvestigatorCombatant } from "../../module/InvestigatorCombatant";
+import { installCompendiumExportButton } from "../../compendiumFactory/installCompendiumExportButton";
+import { InvestigatorCombat } from "../../module/InvestigatorCombat";
+import { installShowThemeFarmHack } from "../../module/ThemeFarmClass";
+import { installAbilityCardChatWrangler } from "../../components/messageCards/installAbilityCardChatWrangler";
+import { installFathom } from "../../installFathom";
 // import { InvestigatorChatMessage } from "./module/InvestigatorChatMessage";
 
 // Initialize system
