@@ -14,6 +14,7 @@
   - [Adding system settings](#adding-system-settings)
   - [Using the "Developer mode" module](#using-the-developer-mode-module)
   - [Release process](#release-process)
+    - [Why do we have a separate `release` branch?](#why-do-we-have-a-separate-release-branch)
 
 ## Development & general hacking
 
@@ -156,4 +157,6 @@ To perform a release from `master`:
 
 Now, anyone who installs or upgrades, will see the new manifest, and the new download.
 
-Why do we have a separate `release` branch? To keep control. The manifest on `master` can be unstable, broken, experimental, whatever and we know that users will be safely looking at the `release` version.
+### Why do we have a separate `release` branch?
+
+To keep control. The manifest on `master` can be unstable, broken, experimental, whatever and we know that users will be safely looking at the `release` version.
