@@ -406,34 +406,6 @@ export class InvestigatorItem extends Item {
     await this.update({ data: { notes: newNotes } });
   }
 
-  // setNotesFormat = async (newFormat: NoteFormat) => {
-  //   const oldFormat = this.data.data.notes.format;
-  //   const oldSource = this.data.data.notes.source;
-  //   const oldHtml = this.data.data.notes.html;
-  //   const { newSource, newHtml } = convertNotes(oldFormat, newFormat, oldSource, oldHtml);
-  //   await this.update({
-  //     data: {
-  //       notes: { format: newFormat, source: newSource, html: newHtml },
-  //     },
-  //   });
-  //   return newSource;
-  // }
-
-  // setNotesSource = async (source: string) => {
-  //   const format = this.data.data.notes.format;//
-
-  //   let newHtml = "";
-  //   if (format === NoteFormat.plain) {
-  //     newHtml = plainTextToHtml(source);
-  //   } else if (format === NoteFormat.markdown) {
-  //     newHtml = marked(source);
-  //   } else if (format === NoteFormat.richText) {
-  //     newHtml = source;
-  //   }
-  //   const html = TextEditor.enrichHTML(DOMPurify.sanitize(newHtml));
-  //   await this.update({ data: { notes: { format, source, html } } });
-  // }
-
   getAbility = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.ability ?? "";
