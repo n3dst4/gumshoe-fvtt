@@ -3,13 +3,15 @@ import { InvestigatorSettings } from "../components/InvestigatorSettings";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 import { reactTemplatePath, systemName } from "../constants";
 
-class InvestigatorSettingsClassBase extends FormApplication {
-  // constructor (object: any, options: any) {
-  //   super(object, options);
-  //   console.log(object, options);
-  // }
+// eslint doesn't like object, but it's what foundry-vtt-types wants
+// eslint-disable-next-line @typescript-eslint/ban-types
+export class InvestigatorSettingsClassBase extends FormApplication<FormApplicationOptions, object, undefined> {
+  constructor (object: any, options: any) {
+    super(object, options);
+    console.log(object, options);
+  }
 
-  /** @override */
+  // /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "item", "dialog"],

@@ -41,7 +41,7 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
       top: (application.position.top ?? 0) + 40,
       left: (application.position.left ?? 0) + 10,
     });
-    return fp.browse();
+    return fp.browse("");
   }, [application.position.left, application.position.top, subject]);
 
   const onClickShow = useCallback(() => {

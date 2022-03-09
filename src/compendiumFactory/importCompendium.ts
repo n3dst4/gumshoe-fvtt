@@ -42,7 +42,7 @@ export const importCompendium = async (candidate: unknown) => {
   ui.notifications?.info(`Beginning import of compendium pack ${verified.label}`);
   const pack = await CompendiumCollection.createCompendium(
     {
-      entity: verified.entity,
+      type: verified.entity,
       label: verified.label,
       name,
       path: "",
