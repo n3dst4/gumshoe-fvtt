@@ -33,6 +33,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-transition-group": "^4.4.4",
+    "@types/sanitize-html": "^2.6.2",
     "@types/turndown": "^5.0.1",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
@@ -70,7 +71,6 @@
     "@emotion/css": "^11.5.0",
     "@types/html-escaper": "^3.0.0",
     "case": "^1.6.3",
-    "dompurify": "^2.3.3",
     "file-system-access": "^1.0.1",
     "html-escaper": "^3.0.3",
     "irid": "^2.0.2",
@@ -81,6 +81,7 @@
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
     "react-transition-group": "^4.4.2",
+    "sanitize-html": "^2.7.0",
     "turndown": "^7.1.1"
   }
 }

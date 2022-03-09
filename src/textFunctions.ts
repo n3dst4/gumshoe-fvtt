@@ -1,9 +1,8 @@
-import DOMPurify from "dompurify";
 import { escape as escapeText } from "html-escaper";
 import { marked } from "marked";
 import TurndownService from "turndown";
 import { NoteFormat } from "./types";
-
+import sanitizeHtml from "sanitize-html";
 /**
  * Override TurndownService to prevent escaping
  */
@@ -77,7 +76,7 @@ export function convertNotes (oldFormat: NoteFormat, newFormat: NoteFormat, oldS
     }
     unsafeNewHtml = newSource;
   }
-  const newHtml = TextEditor.enrichHTML(DOMPurify.sanitize(unsafeNewHtml));
+  const newHtml = TextEditor.enrichHTML(sanitizeHtml(unsafeNewHtml));
   return { newSource, newHtml };
 }
 
@@ -90,6 +89,6 @@ export function toHtml (format: NoteFormat, source: string) {
   } else if (format === NoteFormat.richText) {
     newHtml = source;
   }
-  const html = TextEditor.enrichHTML(DOMPurify.sanitize(newHtml));
+  const html = TextEditor.enrichHTML(sanitizeHtml(newHtml));
   return html;
 }
