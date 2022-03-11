@@ -11,39 +11,23 @@ const webpack = require("webpack");
 const webpackConfig = require("./webpack.config");
 const rimraf = require("rimraf");
 
+const srcPath = "src";
+const manifestPath = path.join(srcPath, "system.json");
+
 function getConfig () {
   const configPath = path.resolve(process.cwd(), "foundryconfig.json");
   let config;
-
   if (fs.existsSync(configPath)) {
     config = fs.readJSONSync(configPath);
     return config;
+  } else {
+    throw new Error("foundryconfig.json not found. Make a copy of foundryconfig_template.json and customise it to your needs.");
   }
 }
 
 function getManifest () {
-  const json = {};
-
-  if (fs.existsSync("src")) {
-    json.root = "src";
-  } else {
-    json.root = "dist";
-  }
-
-  const modulePath = path.join(json.root, "module.json");
-  const systemPath = path.join(json.root, "system.json");
-
-  if (fs.existsSync(modulePath)) {
-    json.file = fs.readJSONSync(modulePath);
-    json.name = "module.json";
-  } else if (fs.existsSync(systemPath)) {
-    json.file = fs.readJSONSync(systemPath);
-    json.name = "system.json";
-  } else {
-    return;
-  }
-
-  return json;
+  const manifest = fs.readJSONSync(manifestPath);
+  return manifest;
 }
 
 /********************/
@@ -76,7 +60,7 @@ function buildLess () {
  * Copy static files
  */
 async function copyFiles () {
-  const statics = [
+  const staticPaths = [
     "lang",
     "fonts",
     "assets",
@@ -88,9 +72,12 @@ async function copyFiles () {
     "babele-es",
   ];
   try {
-    for (const file of statics) {
-      if (fs.existsSync(path.join("src", file))) {
-        await fs.copy(path.join("src", file), path.join("dist", file));
+    for (const staticPath of staticPaths) {
+      if (fs.existsSync(path.join("src", staticPath))) {
+        await fs.copy(
+          path.join("src", staticPath),
+          path.join("dist", staticPath),
+        );
       }
     }
     return Promise.resolve();
@@ -165,11 +152,7 @@ async function extractPackTranslationTemplates () {
   // ===========================================================================
   const system = require("./src/system.json");
   const path = require("path");
-  const {
-    // readdir,
-    // readFile,
-    writeFile,
-  } = require("fs/promises");
+  const { writeFile } = require("fs/promises");
   const chalk = require("chalk");
   const Datastore = require("nedb-promises");
 
