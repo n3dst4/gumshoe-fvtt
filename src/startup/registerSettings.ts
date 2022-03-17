@@ -3,7 +3,7 @@ import { assertGame, mapValues } from "../functions";
 import { pathOfCthulhuPreset } from "../systemPresets";
 import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
-import { InvestigatorSettingsClass } from "./InvestigatorSettingsClass";
+import { InvestigatorSettingsClass } from "../module/InvestigatorSettingsClass";
 
 // any of these could have an `onChange` added if we wanted to
 

@@ -38,9 +38,3 @@ export const ThemeFarmClass = ReactApplicationMixin(
 );
 
 export const themeFarmClassInstance = new ThemeFarmClass({}, {});
-
-export function installShowThemeFarmHack () {
-  (window as any).showThemeFarm = function showThemefarm () {
-    themeFarmClassInstance.render(true);
-  };
-}

@@ -6,11 +6,6 @@ import { reactTemplatePath, systemName } from "../constants";
 // eslint doesn't like object, but it's what foundry-vtt-types wants
 // eslint-disable-next-line @typescript-eslint/ban-types
 export class InvestigatorSettingsClassBase extends FormApplication<FormApplicationOptions, object, undefined> {
-  constructor (object: any, options: any) {
-    super(object, options);
-    console.log(object, options);
-  }
-
   // /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
@@ -43,4 +38,4 @@ export const InvestigatorSettingsClass = ReactApplicationMixin(
   render,
 );
 
-export const investigatorSettingsClassInstance = new InvestigatorSettingsClass({}, {});
+export const investigatorSettingsClassInstance = new InvestigatorSettingsClass(undefined, {});

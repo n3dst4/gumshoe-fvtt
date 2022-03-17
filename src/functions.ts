@@ -65,12 +65,22 @@ export function isGame (game: any): game is Game {
   return game instanceof Game;
 }
 
+/**
+ * Throw if `game` has not been initialized. This is hyper unlikely at runtime
+ * but technically possible during a calamitous upfuckage to TS keeps us honest
+ * and requires a check.
+ */
 export function assertGame (game: any): asserts game is Game {
   if (!isGame(game)) {
     throw new Error("game used before init hook");
   }
 }
 
+/**
+ * The developer mode package allows any module to be put into "debug mode".
+ * This is just a convenience function to get the curent value of the debug flag
+ * for INVESTIGATOR.
+ */
 export function getDevMode () {
   assertGame(game);
   return (game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(
@@ -78,6 +88,9 @@ export function getDevMode () {
   );
 }
 
+/**
+ * convenience method to grab a translated string
+ */
 export const getTranslated = (
   text: string,
   values: Dictionary<string|number> = {},

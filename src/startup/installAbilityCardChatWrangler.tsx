@@ -5,14 +5,14 @@ import {
 import ReactDOM from "react-dom";
 import {
   assertGame,
-} from "../../functions";
-import * as constants from "../../constants";
-import { isAbilityCardMode } from "./types";
-import { AbilityTestCard } from "./AbilityTestCard";
-import { AttackCard } from "./AttackCard";
-import { AbilityTestMwCard } from "./AbilityTestMwCard";
-import { MWDifficulty } from "../../types";
-import { AbilityNegateOrWallopMwCard } from "./AbilityNegateOrWallopMwCard";
+} from "../functions";
+import * as constants from "../constants";
+import { isAbilityCardMode } from "../components/messageCards/types";
+import { AbilityTestCard } from "../components/messageCards/AbilityTestCard";
+import { AttackCard } from "../components/messageCards/AttackCard";
+import { AbilityTestMwCard } from "../components/messageCards/AbilityTestMwCard";
+import { MWDifficulty } from "../types";
+import { AbilityNegateOrWallopMwCard } from "../components/messageCards/AbilityNegateOrWallopMwCard";
 
 export const installAbilityCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {

@@ -4,7 +4,7 @@ import { saveJson } from "../saveFile";
 // file-system-access does dynamic `import(...)` which caused some headaches -
 // see webpack.config.js and setWebpackPublicPath.ts
 import { showOpenFilePicker } from "file-system-access";
-import { ExportedCompendium, importCompendium } from "./importCompendium";
+import { ExportedCompendium, importCompendium } from "../compendiumFactory/importCompendium";
 
 const importButtonIconClass = "fa-cloud-upload-alt";
 const importButtonSpinnerClass = "fa-spinner fa-pulse";

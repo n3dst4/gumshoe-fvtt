@@ -11,6 +11,10 @@
 // b. modules like file-system-access which are gonna do dynamic imports whether
 // we like it or not will work.
 
+// the reason this is just raw code and not a callable function: we need this to
+// execute immediately, at the very top of the entry file, not waiting for all
+// the other imports to finish before we do it.
+
 declare let __webpack_public_path__: string;
 
 let publicPath = getRoute("/systems/investigator/");
