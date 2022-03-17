@@ -3,6 +3,7 @@
     "investigator.Abilities": "Compétences",
     "investigator.Ability": "Compétence",
     "investigator.AbilityTest": "Test de compétence",
+    "investigator.ActorNameDoesNotHaveAbilityNameAddItNow": "{ActorName} n'a pas la compétence {AbilityName}. Ajouter?",
     "investigator.AddEquipment": "Ajouter équipement",
     "investigator.AddItem": "Ajouter une entrée",
     "investigator.AddWeapon": "Ajouter une arme",
@@ -64,6 +65,7 @@
     "investigator.NewWeapon": "Nouvelle arme",
     "investigator.NoActorsInThisPartyYetDragPCActorsFromTheSidebarIntoThisWindowToAddThem": "Pas de personnage dans le groupe! Déposer des personnages PJ depuis la barre latérale dans cette fenêtre pour les y ajouter.",
     "investigator.NoEquipmentYet": "Pas d'équipement",
+    "investigator.NoThanks": "Non",
     "investigator.NoWeaponsYet": "Pas d'armes - Bonne chance contre les cultistes!",
     "investigator.Notes": "Notes",
     "investigator.NotesFormat": "Format des notes",
@@ -111,5 +113,6 @@
     "investigator.VisualTheme": "Thème",
     "investigator.Weapon": "Arme",
     "investigator.Weapons": "Armes",
-    "investigator.WhoopsNo": "Oula, Non!"
+    "investigator.WhoopsNo": "Oula, Non!",
+    "investigator.YesPlease": "Oui"
 }
