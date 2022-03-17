@@ -34,7 +34,11 @@ export const deltaGroovyTheme: Theme = themeFactory({
       bottom: 0,
       left: 0,
     },
+    "&>*": {
+      position: "relative",
+    },
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/pulpy_paper.webp)`,
+    position: "relative",
   },
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemName}/assets/wallpaper/pulpy_paper.webp)`,
