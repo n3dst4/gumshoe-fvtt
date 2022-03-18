@@ -2,7 +2,7 @@
 host = https://www.transifex.com
 # https://docs.transifex.com/client/client-configuration#language-mappings
 # Transifex uses an underscore instead of a dash
-lang_map = pt_PT: pt-PT, pt_BR: pt-BR
+lang_map = pt_PT: pt-PT, pt_BR: pt-BR, ja_JP: ja-JP
 
 [investigator-system.corestrings]
 file_filter = src/lang/<lang>.json

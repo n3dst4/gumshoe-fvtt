@@ -1,0 +1,168 @@
+{
+    "label": "パス・オブ・クトゥルー技能",
+    "mapping": {
+        "category": "カテゴリ"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "人類学",
+            "category": "学術系探索技能"
+        },
+        "Archeology": {
+            "name": "考古学",
+            "category": "学術系探索技能"
+        },
+        "Architecture": {
+            "name": "建築学",
+            "category": "学術系探索技能"
+        },
+        "Art History": {
+            "name": "美術史",
+            "category": "学術系探索技能"
+        },
+        "Astronomy": {
+            "name": "天文学",
+            "category": "技術系探索技能"
+        },
+        "Athletics": {
+            "name": "運動",
+            "category": "一般技能"
+        },
+        "Bureaucracy": {
+            "name": "官僚制度",
+            "category": "交渉系探索技能"
+        },
+        "Chemistry": {
+            "name": "化学",
+            "category": "技術系探索技能"
+        },
+        "Conceal": {
+            "name": "隠蔽",
+            "category": "一般技能"
+        },
+        "Cop Talk": {
+            "name": "警官言葉",
+            "category": "交渉系探索技能"
+        },
+        "Craft": {
+            "name": "製作",
+            "category": "技術系探索技能"
+        },
+        "Cryptography": {
+            "name": "暗号学",
+            "category": "学術系探索技能"
+        },
+        "Disguise": {
+            "name": "変装",
+            "category": "一般技能"
+        },
+        "Driving": {
+            "name": "運転",
+            "category": "一般技能"
+        },
+        "Evidence Collection": {
+            "name": "証拠収集",
+            "category": "技術系探索技能"
+        },
+        "Explosives": {
+            "name": "爆発物",
+            "category": "一般技能"
+        },
+        "Filch": {
+            "name": "スリ",
+            "category": "一般技能"
+        },
+        "First Aid": {
+            "name": "応急手当て",
+            "category": "一般技能"
+        },
+        "Flattery": {
+            "name": "巧言令色",
+            "category": "交渉系探索技能"
+        },
+        "Fleeing": {
+            "name": "逃走",
+            "category": "一般技能"
+        },
+        "Geology": {
+            "name": "地質学",
+            "category": "学術系探索技能"
+        },
+        "Health": {
+            "name": "体力",
+            "category": "一般技能"
+        },
+        "History": {
+            "name": "歴史学",
+            "category": "学術系探索技能"
+        },
+        "Hypnosis": {
+            "name": "催眠術",
+            "category": "一般技能"
+        },
+        "Interrogation": {
+            "name": "尋問",
+            "category": "交渉系探索技能"
+        },
+        "Intimidation": {
+            "name": "威圧",
+            "category": "交渉系探索技能"
+        },
+        "Languages": {
+            "name": "語学",
+            "category": "学術系探索技能"
+        },
+        "Law": {
+            "name": "法学",
+            "category": "学術系探索技能"
+        },
+        "Locksmith": {
+            "name": "鍵開け",
+            "category": "技術系探索技能"
+        },
+        "Mechanics": {
+            "name": "機械修理",
+            "category": "一般技能"
+        },
+        "Oral History": {
+            "name": "聞き集め",
+            "category": "交渉系探索技能"
+        },
+        "Photography": {
+            "name": "撮影",
+            "category": "技術系探索技能"
+        },
+        "Piloting": {
+            "name": "操縦",
+            "category": "一般技能"
+        },
+        "Preparedness": {
+            "name": "もしもの備え",
+            "category": "一般技能"
+        },
+        "Reassurance": {
+            "name": "安心",
+            "category": "交渉系探索技能"
+        },
+        "Riding": {
+            "name": "騎乗",
+            "category": "一般技能"
+        },
+        "Scuffling": {
+            "name": "格闘",
+            "category": "一般技能"
+        },
+        "Sense Trouble": {
+            "name": "嫌な気配",
+            "category": "一般技能"
+        },
+        "Stability": {
+            "name": "安定度",
+            "category": "一般技能"
+        },
+        "Streetwise": {
+            "name": "裏社会",
+            "category": "交渉系探索技能"
+        }
+    }
+}
