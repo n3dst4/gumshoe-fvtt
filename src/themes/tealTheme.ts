@@ -1,9 +1,9 @@
 import { css } from "@emotion/react";
 import { systemName } from "../constants";
 import { themeFactory } from "./functions";
-import { Theme } from "./types";
+import { ThemeV1 } from "./types";
 
-export const tealTheme: Theme = themeFactory({
+export const tealTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Teal of Cthulhu",
   global: css`

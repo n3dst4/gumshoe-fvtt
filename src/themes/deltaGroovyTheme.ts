@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { systemName } from "../constants";
 import { createStarburstGradient, themeFactory } from "./functions";
-import { Theme } from "./types";
+import { ThemeV1 } from "./types";
 
 const colors = [
   // "#f4e83f", // this is a bright yellow, dropping it for now
@@ -16,7 +16,7 @@ const colors = [
 const starburstGradient = createStarburstGradient(colors, 5, "50%", "50%");
 const starburstGradientOffset = createStarburstGradient(colors, 10, "10%", "10%");
 
-export const deltaGroovyTheme: Theme = themeFactory({
+export const deltaGroovyTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Delta Groovy",
   global: css`

@@ -1,12 +1,12 @@
 import { css } from "@emotion/react";
 import Irid from "irid";
 import { themeFactory } from "./functions";
-import { Theme } from "./types";
+import { ThemeV1 } from "./types";
 
 const white = Irid("white");
 const black = Irid("black");
 
-export const highContrastTheme: Theme = themeFactory({
+export const highContrastTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "High Contrast",
   global: css`

@@ -1,7 +1,7 @@
 import * as c from "../constants";
 import { assertGame, getThemes, mapValues } from "../functions";
 import { pathOfCthulhuPreset } from "../systemPresets";
-import { Theme } from "../themes/types";
+import { ThemeV1 } from "../themes/types";
 import { InvestigatorSettingsClass } from "../module/InvestigatorSettingsClass";
 
 // any of these could have an `onChange` added if we wanted to
@@ -31,7 +31,7 @@ export const registerSettings = function () {
     name: "Default sheet theme",
     scope: "world",
     config: false,
-    choices: mapValues((theme: Theme) => (theme.displayName), getThemes()),
+    choices: mapValues((theme: ThemeV1) => (theme.displayName), getThemes()),
     default: pathOfCthulhuPreset.defaultTheme,
     type: String,
   });

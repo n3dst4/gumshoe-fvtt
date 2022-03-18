@@ -1,9 +1,9 @@
 import { css } from "@emotion/react";
 import { systemName } from "../constants";
 import { themeFactory } from "./functions";
-import { Theme } from "./types";
+import { ThemeV1 } from "./types";
 
-export const niceThemeDark: Theme = themeFactory({
+export const niceThemeDark: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Nice Dark Red Agents",
   global: css`

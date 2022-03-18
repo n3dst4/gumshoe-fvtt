@@ -8,9 +8,9 @@ import { deltaGroovyTheme } from "./deltaGroovyTheme";
 import { greenTriangleTheme } from "./greenTriangleTheme";
 import { antiquarianTheme } from "./antiquarianTheme";
 import { olderThanMemoryTheme } from "./olderThanMemoryTheme";
-import { Theme } from "./types";
+import { ThemeV1 } from "./types";
 
-export const baseThemes: {[themeName: string]: Theme} = {
+export const baseThemes: {[themeName: string]: ThemeV1} = {
   tealTheme,
   niceTheme,
   niceThemeDark,

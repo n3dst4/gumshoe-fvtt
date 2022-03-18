@@ -1,6 +1,6 @@
 import { CSSObject, SerializedStyles } from "@emotion/react";
 
-export type ThemeSeed = {
+export type ThemeSeedV1 = {
   schemaVersion: "v1",
   /** The name of the theme. Use puns and allusions liberally. */
   displayName: string,
@@ -134,10 +134,10 @@ export type ThemeSeed = {
   },
 }
 
-export type Theme = ThemeSeed & {
+export type ThemeV1 = ThemeSeedV1 & {
   smallSheetRootStyle: CSSObject,
 
-  colors: ThemeSeed["colors"] & {
+  colors: ThemeSeedV1["colors"] & {
     bgOpaquePrimary: string,
     bgOpaqueSecondary: string,
     bgTransDangerPrimary: string,
@@ -147,7 +147,7 @@ export type Theme = ThemeSeed & {
     controlBorder: string,
   },
 
-  logo: ThemeSeed["logo"] & {
+  logo: ThemeSeedV1["logo"] & {
     fontScaleFactor: number,
   },
 }

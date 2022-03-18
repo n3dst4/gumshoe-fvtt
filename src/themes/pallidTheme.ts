@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import Irid from "irid";
 import { systemName } from "../constants";
 import { themeFactory } from "./functions";
-import { Theme } from "./types";
+import { ThemeV1 } from "./types";
 
 const pallidBlur = "5px";
 const pallidOffset = "3px";
@@ -10,7 +10,7 @@ const stripNewlines = (s: string) => s.replace("\n", "");
 const pallidColor = Irid("#282c34");
 const pallidComplement = Irid("#aff2f2");
 
-export const pallidTheme: Theme = themeFactory({
+export const pallidTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Aching Stars",
   global: css`

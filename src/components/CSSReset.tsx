@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { Global, jsx } from "@emotion/react";
 import React, { ReactNode, useEffect, useRef } from "react";
-import { Theme } from "../themes/types";
+import { ThemeV1 } from "../themes/types";
 import { css } from "@emotion/css";
 import { ThemeContext } from "../themes/ThemeContext";
 
@@ -13,7 +13,7 @@ export enum CSSResetMode {
 type CSSResetProps = {
   children: ReactNode,
   className?: string,
-  theme: Theme,
+  theme: ThemeV1,
   mode: CSSResetMode,
   noStyleAppWindow?: boolean,
 };

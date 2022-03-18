@@ -1,5 +1,5 @@
 import Irid from "irid";
-import { Theme, ThemeSeed } from "./types";
+import { ThemeV1, ThemeSeedV1 } from "./types";
 
 const defaultFontScaleFactor = 14;
 
@@ -19,7 +19,7 @@ const overlay = (baseString: string, layerString: string): string => {
  * Turn a ThemeSeed (bare basics for defining a theme) into a fully usable
  * theme
  */
-export const themeFactory = (seed: ThemeSeed): Theme => {
+export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
   const bgOpaquePrimary = overlay(seed.colors.wallpaper, seed.colors.backgroundPrimary);
   const bgOpaqueSecondary = overlay(seed.colors.wallpaper, seed.colors.backgroundSecondary);
 

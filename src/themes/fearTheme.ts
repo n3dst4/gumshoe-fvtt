@@ -1,9 +1,9 @@
 import { css } from "@emotion/react";
 import { systemName } from "../constants";
 import { themeFactory } from "./functions";
-import { Theme } from "./types";
+import { ThemeV1 } from "./types";
 
-export const fearTheme: Theme = themeFactory({
+export const fearTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Nothing To Fear",
   global: css`

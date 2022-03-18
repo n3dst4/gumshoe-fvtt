@@ -1,11 +1,11 @@
 import { css } from "@emotion/react";
 import { systemName } from "../constants";
 import { themeFactory } from "./functions";
-import { Theme } from "./types";
+import { ThemeV1 } from "./types";
 
 const glow = "#fda994";
 
-export const olderThanMemoryTheme: Theme = themeFactory({
+export const olderThanMemoryTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Older Than Memory",
   global: css`

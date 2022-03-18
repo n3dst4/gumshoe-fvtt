@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { Theme } from "../types";
+import { ThemeV1 } from "../types";
 import { CSSReset, CSSResetMode } from "../../components/CSSReset";
 
 type ThemeSwatchProps = {
-  theme: Theme,
+  theme: ThemeV1,
 };
 
 export const ThemeSwatch: React.FC<ThemeSwatchProps> = ({

@@ -1,6 +1,7 @@
 import { TokenData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
 import * as constants from "./constants";
-import { Theme } from "./themes/types";
+import { themeFactory } from "./themes/functions";
+import { ThemeV1 } from "./themes/types";
 export type AbilityType = typeof constants.investigativeAbility | typeof constants.generalAbility;
 
 export type MWDifficulty =
@@ -373,8 +374,9 @@ declare global {
   interface CONFIG {
     Investigator?: {
       themes: {
-        [name: string]: Theme,
+        [name: string]: ThemeV1,
       },
+      themeFactory: typeof themeFactory,
     };
   }
 }
