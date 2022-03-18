@@ -443,7 +443,7 @@ Hooks.on(
         console.log("PACK", packId);
         const content = await (game.packs?.find((p: any) => p.collection === packId)?.getDocuments());
         const datas = content?.map((item) => {
-          // XXX clunk cast here because there doesn't seem to be a sane way to
+          // clunky cast here because there doesn't seem to be a sane way to
           // check the type of something coming out of a compendium pack.
           const { data: { name, img, data, type } } = item as InvestigatorItem;
           return {
@@ -456,14 +456,13 @@ Hooks.on(
         console.log("datas", datas);
         await (actor as any).createEmbeddedDocuments("Item", datas);
       }
-      console.log("COMPLETED");
     }
 
     if (actor.data.type === npc) {
       for (const packId of getNewNPCPacks()) {
         assertGame(game);
         console.log("PACK", packId);
-        const content = await (game.packs?.find((p) => p.metadata.entity === "Item" && p.collection === packId)?.getDocuments());
+        const content = await (game.packs?.find((p) => p.documentName === "Item" && p.collection === packId)?.getDocuments());
         const datas = (content as InvestigatorItem[])?.map(({ data: { name, img, data, type } }) => ({
           name,
           img,
@@ -473,7 +472,6 @@ Hooks.on(
         console.log("datas", datas);
         await (actor as any).createEmbeddedDocuments("Item", datas);
       }
-      console.log("COMPLETED");
     }
   },
 );

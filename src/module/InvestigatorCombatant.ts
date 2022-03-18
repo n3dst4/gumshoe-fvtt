@@ -1,6 +1,7 @@
 import * as constants from "../constants";
 import { InvestigatorItem } from "./InvestigatorItem";
 import { assertActiveCharacterDataSource } from "../types";
+import { getCombatAbilities } from "../settingsHelpers";
 /**
  * Override base Combatant class to override the initiative formula.
  * XXX what's i'd like to do is block it from doing a "roll" at all.
@@ -8,7 +9,7 @@ import { assertActiveCharacterDataSource } from "../types";
 export class InvestigatorCombatant extends Combatant {
   _getInitiativeFormula () {
     assertActiveCharacterDataSource(this.actor?.data);
-    const abilityName = this.actor?.data.data.initiativeAbility;
+    const abilityName = this.actor?.data.data.initiativeAbility || getCombatAbilities().sort()[0] || "";
     const ability = this.actor.items.find(
       (item: InvestigatorItem) => item.type === constants.generalAbility && item.name === abilityName,
     );
