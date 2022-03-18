@@ -8,7 +8,7 @@ import { deltaGroovyTheme } from "./deltaGroovyTheme";
 import { greenTriangleTheme } from "./greenTriangleTheme";
 import { antiquarianTheme } from "./antiquarianTheme";
 import { olderThanMemoryTheme } from "./olderThanMemoryTheme";
-import { ThemeV1 } from "./types";
+import { ThemeV1 } from "investigator-fvtt-types";
 
 export const baseThemes: {[themeName: string]: ThemeV1} = {
   tealTheme,

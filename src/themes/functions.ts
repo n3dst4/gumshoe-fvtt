@@ -1,5 +1,5 @@
 import Irid from "irid";
-import { ThemeV1, ThemeSeedV1 } from "./types";
+import { ThemeV1, ThemeSeedV1 } from "investigator-fvtt-types";
 
 const defaultFontScaleFactor = 14;
 

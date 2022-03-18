@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import Irid from "irid";
 import { themeFactory } from "./functions";
-import { ThemeV1 } from "./types";
+import { ThemeV1 } from "investigator-fvtt-types";
 
 const white = Irid("white");
 const black = Irid("black");

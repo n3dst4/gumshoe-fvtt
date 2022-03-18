@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { systemName } from "../constants";
 import { createStarburstGradient, themeFactory } from "./functions";
-import { ThemeV1 } from "./types";
+import { ThemeV1 } from "investigator-fvtt-types";
 
 const colors = [
   // "#f4e83f", // this is a bright yellow, dropping it for now

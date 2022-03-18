@@ -11,7 +11,8 @@
 		"jsx": "react",
     "types": [
 			// "react",
-			"@league-of-foundry-developers/foundry-vtt-types"
+			"@league-of-foundry-developers/foundry-vtt-types",
+			"investigator-fvtt-types"
 		],
 		"esModuleInterop": true,
 		"resolveJsonModule": true,

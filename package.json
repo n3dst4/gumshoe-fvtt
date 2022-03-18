@@ -76,6 +76,7 @@
     "case": "^1.6.3",
     "file-system-access": "^1.0.1",
     "html-escaper": "^3.0.3",
+    "investigator-fvtt-types": "gitlab:n3dst4/investigator-fvtt-types",
     "irid": "^2.0.2",
     "lodash": "^4.17.20",
     "marked": "^4.0.3",

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { Global, jsx } from "@emotion/react";
 import React, { ReactNode, useEffect, useRef } from "react";
-import { ThemeV1 } from "../themes/types";
+import { ThemeV1 } from "investigator-fvtt-types";
 import { css } from "@emotion/css";
 import { ThemeContext } from "../themes/ThemeContext";
 

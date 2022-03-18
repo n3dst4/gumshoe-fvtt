@@ -1,7 +1,7 @@
 import * as c from "../constants";
 import { assertGame, getThemes, mapValues } from "../functions";
 import { pathOfCthulhuPreset } from "../systemPresets";
-import { ThemeV1 } from "../themes/types";
+import { ThemeV1 } from "investigator-fvtt-types";
 import { InvestigatorSettingsClass } from "../module/InvestigatorSettingsClass";
 
 // any of these could have an `onChange` added if we wanted to

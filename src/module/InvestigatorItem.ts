@@ -1,5 +1,5 @@
 import { assertGame, fixLength, getThemes } from "../functions";
-import { ThemeV1 } from "../themes/types";
+import { ThemeV1 } from "investigator-fvtt-types";
 import { InvestigatorActor } from "./InvestigatorActor";
 import { getDefaultThemeName } from "../settingsHelpers";
 import {
