@@ -1,3 +1,4 @@
+import { TokenData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
 import * as constants from "./constants";
 export type AbilityType = typeof constants.investigativeAbility | typeof constants.generalAbility;
 
@@ -17,6 +18,7 @@ export type DataSource<TType extends string, TData> = {
   name: string,
   data: TData,
   img: string,
+  token: TokenData,
 };
 
 // NOTES
@@ -100,7 +102,7 @@ export type PCDataSource = DataSource<typeof constants.pc, PCDataSourceData>;
 type NPCDataSource = DataSource<typeof constants.npc, NPCDataSourceData>;
 type PartyDataSource = DataSource<typeof constants.party, PartyDataSourceData>;
 
-type InvestigatorActorDataSource =
+export type InvestigatorActorDataSource =
   | PCDataSource
   | NPCDataSource
   | PartyDataSource

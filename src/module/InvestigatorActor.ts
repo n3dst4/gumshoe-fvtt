@@ -1,6 +1,6 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat, MwInjuryStatus } from "../types";
+import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat, MwInjuryStatus, InvestigatorActorDataSource } from "../types";
 import { themes } from "../themes/themes";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { Theme } from "../themes/types";
@@ -475,3 +475,13 @@ Hooks.on(
     }
   },
 );
+
+Hooks.on("preUpdateActor", (actor: Actor, diff: DeepPartial<InvestigatorActorDataSource>, options: any, userId: string) => {
+  assertGame(game);
+  if (game.userId !== userId) return;
+
+  if (diff.img && !diff.token?.img) {
+    diff.token = diff.token || {};
+    diff.token.img = diff.img;
+  }
+});
