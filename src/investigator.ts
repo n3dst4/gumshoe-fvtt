@@ -17,6 +17,9 @@ import { installRenderSettingsHandler } from "./startup/installRenderSettingsHan
 import { installDropActorSheetDataHandler } from "./startup/installDropActorSheetDataHandler";
 import { registerDevModeDebugFlag } from "./startup/registerDevModeDebugFlag";
 import { installActorImageHookHandler } from "./startup/installActorImageHookHandler";
+import { injectGlobalHelper } from "./startup/injectGlobalHelper";
+
+injectGlobalHelper();
 
 // Initialize system
 Hooks.once("init", async function () {

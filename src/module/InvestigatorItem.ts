@@ -1,5 +1,4 @@
-import { assertGame, fixLength } from "../functions";
-import { themes } from "../themes/themes";
+import { assertGame, fixLength, getThemes } from "../functions";
 import { Theme } from "../themes/types";
 import { InvestigatorActor } from "./InvestigatorActor";
 import { getDefaultThemeName } from "../settingsHelpers";
@@ -385,7 +384,7 @@ export class InvestigatorItem extends Item {
 
   getTheme (): Theme {
     const themeName = this.getThemeName();
-    const theme = themes[themeName];
+    const theme = getThemes()[themeName];
     return theme;
   }
 

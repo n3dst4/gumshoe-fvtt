@@ -1,5 +1,6 @@
 import { TokenData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
 import * as constants from "./constants";
+import { Theme } from "./themes/types";
 export type AbilityType = typeof constants.investigativeAbility | typeof constants.generalAbility;
 
 export type MWDifficulty =
@@ -361,6 +362,22 @@ export function assertMwItemDataSource (data: InvestigatorItemDataSource): asser
 //     }
 //   }
 // }
+
+// #############################################################################
+// #############################################################################
+// CONFIG
+// #############################################################################
+// #############################################################################
+
+declare global {
+  interface CONFIG {
+    Investigator?: {
+      themes: {
+        [name: string]: Theme,
+      },
+    };
+  }
+}
 
 // #############################################################################
 // #############################################################################

@@ -1,7 +1,6 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
-import { assertGame, confirmADoodleDo } from "../functions";
+import { assertGame, confirmADoodleDo, getThemes } from "../functions";
 import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat, MwInjuryStatus, InvestigatorActorDataSource } from "../types";
-import { themes } from "../themes/themes";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { Theme } from "../themes/types";
 import { InvestigatorItem } from "./InvestigatorItem";
@@ -210,6 +209,7 @@ export class InvestigatorActor extends Actor {
   }
 
   getSheetTheme (): Theme {
+    const themes = getThemes();
     const themeName = this.getSheetThemeName() || getDefaultThemeName();
     const theme = themes[themeName];
     if (theme !== undefined) {

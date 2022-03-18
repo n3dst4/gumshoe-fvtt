@@ -1,10 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext } from "react";
-import { assertGame, getDevMode, getTranslated } from "../../functions";
+import { assertGame, getDevMode, getThemes, getTranslated } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { themes } from "../../themes/themes";
 import { assertPCDataSource, NoteFormat } from "../../types";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
@@ -28,6 +27,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
   const theme = useContext(ThemeContext);
 
   const isDevMode = getDevMode();
+  const themes = getThemes();
 
   return (
     <Fragment>

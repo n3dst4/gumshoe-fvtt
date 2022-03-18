@@ -1,7 +1,6 @@
 import * as c from "../constants";
-import { assertGame, mapValues } from "../functions";
+import { assertGame, getThemes, mapValues } from "../functions";
 import { pathOfCthulhuPreset } from "../systemPresets";
-import { themes } from "../themes/themes";
 import { Theme } from "../themes/types";
 import { InvestigatorSettingsClass } from "../module/InvestigatorSettingsClass";
 
@@ -32,7 +31,7 @@ export const registerSettings = function () {
     name: "Default sheet theme",
     scope: "world",
     config: false,
-    choices: mapValues((theme: Theme) => (theme.displayName), themes),
+    choices: mapValues((theme: Theme) => (theme.displayName), getThemes()),
     default: pathOfCthulhuPreset.defaultTheme,
     type: String,
   });

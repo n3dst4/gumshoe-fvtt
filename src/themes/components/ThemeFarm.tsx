@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ReactNode } from "react";
-import { themes } from "../themes";
+import { getThemes } from "../../functions";
 import { ThemeSwatch } from "./ThemeSwatch";
 
 type ThemeFarmProps = {
@@ -11,6 +11,7 @@ type ThemeFarmProps = {
 export const ThemeFarm: React.FC<ThemeFarmProps> = ({
   foundryApplication,
 }: ThemeFarmProps) => {
+  const themes = getThemes();
   return (
     <div
       css={{

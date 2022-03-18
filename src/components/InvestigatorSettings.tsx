@@ -3,10 +3,9 @@ import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
 import React, { useCallback, useEffect, useState } from "react";
 import { customSystem } from "../constants";
-import { assertGame, getDevMode } from "../functions";
+import { assertGame, getDevMode, getThemes } from "../functions";
 import * as settings from "../settingsHelpers";
 import { systemPresets } from "../systemPresets";
-import { themes } from "../themes/themes";
 import { tealTheme } from "../themes/tealTheme";
 import { CSSReset, CSSResetMode } from "./CSSReset";
 import { IdContext } from "./IdContext";
@@ -156,6 +155,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setMwUseAlternativeItemTypes,
     ],
   );
+
+  const themes = getThemes();
 
   const theme = themes[defaultTheme] || tealTheme;
 
