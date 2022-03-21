@@ -167,3 +167,9 @@ export const confirmADoodleDo = ({
 export function getThemes () {
   return CONFIG.Investigator?.themes || baseThemes;
 }
+
+export function assertNotNull<T> (t: T|undefined): asserts t is T {
+  if (t === undefined) {
+    throw new Error("t was undefined");
+  }
+}
