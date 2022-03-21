@@ -1,7 +1,7 @@
 {
     "label": "パス・オブ・クトゥルー技能",
     "mapping": {
-        "category": "カテゴリ"
+        "category": "data.category"
     },
     "entries": {
         "Anthropology": {
