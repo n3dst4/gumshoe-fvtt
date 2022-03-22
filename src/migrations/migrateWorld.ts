@@ -35,7 +35,7 @@ export const migrateWorld = async function () {
         console.log(`Migrating Actor entity ${a.name}`);
         await a.update(updateData, { enforceTypes: false });
       }
-    } catch (err) {
+    } catch (err: any) {
       err.message = `Failed ${title} system migration for Actor ${a.name}: ${err.message}`;
       console.error(err);
     }
@@ -49,7 +49,7 @@ export const migrateWorld = async function () {
         console.log(`Migrating Item entity ${i.name}`);
         await i.update(updateData, { enforceTypes: false });
       }
-    } catch (err) {
+    } catch (err: any) {
       err.message = `Failed ${title} system migration for Item ${i.name}: ${err.message}`;
       console.error(err);
     }
@@ -63,7 +63,7 @@ export const migrateWorld = async function () {
         console.log(`Migrating Scene entity ${s.name}`);
         await s.update(updateData, { enforceTypes: false });
       }
-    } catch (err) {
+    } catch (err: any) {
       err.message = `Failed {title} system migration for Scene ${s.name}: ${err.message}`;
       console.error(err);
     }

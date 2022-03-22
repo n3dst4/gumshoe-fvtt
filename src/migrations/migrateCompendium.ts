@@ -41,7 +41,7 @@ export const migrateCompendium = async function (pack: any) {
       updateData._id = ent.id;
       await ent.update(updateData);
       console.log(`Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
-    } catch (err) {
+    } catch (err: any) {
       // Handle migration failures
       err.message = `Failed ${system.title} system migration for entity ${ent.name} in pack ${pack.collection}: ${err.message}`;
       console.error(err);
