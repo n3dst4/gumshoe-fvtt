@@ -8,7 +8,6 @@
 		],
 		"moduleResolution": "node",
 		"module": "esnext",
-		"jsx": "react",
     "types": [
 			// "react",
 			"@league-of-foundry-developers/foundry-vtt-types",
@@ -17,6 +16,8 @@
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 		"strict": true,
+		"jsx": "react-jsx",
+		"jsxImportSource": "@emotion/react"
 	},
 	"exclude": ["**/node_modules", "**/.*/"],
 	"include": ["src"]
