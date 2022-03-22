@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+// import { css } from "@emotion/react";
 import { systemName } from "../constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "investigator-fvtt-types";
@@ -6,7 +6,7 @@ import { ThemeV1 } from "investigator-fvtt-types";
 export const antiquarianTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Antiquarian",
-  global: css`
+  global: `
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');
   `,
