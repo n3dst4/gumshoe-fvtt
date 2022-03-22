@@ -21,7 +21,7 @@ type InvestigatorSettingsProps = {
   foundryApplication: Application,
 };
 
-const useStateWithPreset = <T extends any>(initial: T, also: () => void) => {
+const useStateWithPreset = <T, >(initial: T, also: () => void) => {
   const [state, setState] = useState(initial);
   const setter = useCallback(
     (value: T) => {
