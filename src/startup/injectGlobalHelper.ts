@@ -1,4 +1,4 @@
-import { ThemeSeedV1 } from "investigator-fvtt-types";
+import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
 import { assertNotNull } from "../functions";
 import { baseThemes } from "../themes/baseThemes";
 import { themeFactory } from "../themes/functions";

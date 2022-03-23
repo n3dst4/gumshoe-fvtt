@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import Irid from "irid";
 import { systemName } from "../constants";
 import { themeFactory } from "./functions";
-import { ThemeV1 } from "investigator-fvtt-types";
+import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 
 const pallidBlur = "5px";
 const pallidOffset = "3px";

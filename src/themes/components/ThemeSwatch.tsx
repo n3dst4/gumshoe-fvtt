@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { ThemeV1 } from "investigator-fvtt-types";
+import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 import { CSSReset, CSSResetMode } from "../../components/CSSReset";
 
 type ThemeSwatchProps = {
