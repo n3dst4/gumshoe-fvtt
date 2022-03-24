@@ -5,6 +5,7 @@ import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsH
 import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 import { InvestigatorItem } from "./InvestigatorItem";
 import { convertNotes } from "../textFunctions";
+import { tealTheme } from "../themes/tealTheme";
 
 export class InvestigatorActor extends Actor {
   /**
@@ -214,8 +215,10 @@ export class InvestigatorActor extends Actor {
     const theme = themes[themeName];
     if (theme !== undefined) {
       return theme;
-    } else {
+    } else if (themes[getDefaultThemeName()] !== undefined) {
       return themes[getDefaultThemeName()];
+    } else {
+      return tealTheme;
     }
   }
 
