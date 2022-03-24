@@ -1,0 +1,30 @@
+{
+    "label": "Habilitats dels oponents",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Athletics": {
+            "name": "Atlètiques",
+            "category": "Generals"
+        },
+        "Health": {
+            "name": "Salut",
+            "category": "Generals"
+        },
+        "Melee Attack": {
+            "name": "Atac de melé"
+        },
+        "Ranged Attack": {
+            "name": "Atac a distància"
+        },
+        "Scuffling": {
+            "name": "Scuffling",
+            "category": "Generals"
+        },
+        "Shooting": {
+            "name": "Disparar",
+            "category": "Generals"
+        }
+    }
+}

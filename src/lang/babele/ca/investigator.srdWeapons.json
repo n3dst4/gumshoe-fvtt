@@ -1,0 +1,35 @@
+{
+    "label": "SRD Armes",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Firearm (heavy)": {
+            "name": "Arma de foc (pesada)"
+        },
+        "Firearm (light)": {
+            "name": "Arma de foc (lleugera)"
+        },
+        "Fist/kick": {
+            "name": "Cop de puny/puntada de peu"
+        },
+        "Heavy club": {
+            "name": "Porra"
+        },
+        "Knife": {
+            "name": "Ganivet"
+        },
+        "Machete": {
+            "name": "Matxet"
+        },
+        "Police Baton": {
+            "name": "Porra policial"
+        },
+        "Small improvised weapon": {
+            "name": "Petita arma improvitzada"
+        },
+        "Sword": {
+            "name": "Espasa"
+        }
+    }
+}
