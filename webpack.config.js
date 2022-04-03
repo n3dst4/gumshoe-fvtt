@@ -1,16 +1,19 @@
-const path = require("path");
-const webpack = require("webpack");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
+import path from "path";
+import webpack from "webpack";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import TerserPlugin from "terser-webpack-plugin";
+import { fileURLToPath } from "url";
 
 const isProduction =
   (process.env.NODE_ENV || "").toLowerCase() === "production";
 
-module.exports = {
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default {
   mode: isProduction ? "production" : "development",
   entry: "./src/investigator.ts",
   output: {
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "build"),
     filename: "investigator.js",
     // this is needed so we can reset __webpack_public_path__ at runtime
     publicPath: "",
