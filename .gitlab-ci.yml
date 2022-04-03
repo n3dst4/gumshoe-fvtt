@@ -2,7 +2,7 @@
 image: node:16
 
 variables:
-  PACKAGE_NAME: "${CI_PROJECT_NAME}"
+  PACKAGE_NAME: "investigator"
   MANIFEST_NAME: "system.json"
   MANIFEST_PATH: "src/${MANIFEST_NAME}"
   ZIP_FILE_NAME: "${PACKAGE_NAME}.zip"
