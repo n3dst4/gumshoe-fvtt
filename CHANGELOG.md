@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 4.9.7 (2022--04-04)
+
+* There was a bug in the way initiative order was being set that made it sometimes look as if it didn't work at all. Fixed now.
+* Setting the actor icon sets the default token icon.
+* Updated ES and CA translations (thank you!)
+* New JA translations (thank you!!)
+
 ## 4.9.1 (2022-03-04)
 
 * Minor fixes
