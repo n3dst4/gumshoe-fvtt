@@ -13,13 +13,19 @@ import webpackConfig from "./webpack.config.js";
 /// /////////////////////////////////////////////////////////////////////////////
 // Config
 
-const manifestName = "system.json";
 const srcPath = "src";
-const manifestPath = path.join(srcPath, manifestName);
-const buildFolder = "build";
+const manifestPath = path.join(srcPath, "system.json");
+const buildPath = "build";
 const staticPaths = [
-  manifestName,
+  "lang",
+  "fonts",
   "assets",
+  "templates",
+  "module.json",
+  "system.json",
+  "template.json",
+  "packs",
+  "babele-es",
 ];
 
 /// /////////////////////////////////////////////////////////////////////////////
@@ -41,7 +47,7 @@ if (config?.dataPath) {
  * while ignoring source files
  */
 export function clean () {
-  const distPath = path.join(__dirname, buildFolder);
+  const distPath = path.join(__dirname, buildPath);
   return new Promise((resolve, reject) => {
     rimraf(distPath, (err) => {
       if (err) {
@@ -56,12 +62,6 @@ export function clean () {
 /**
  * Build TypeScript
  */
-// export function buildCode () {
-//   const tsProject = ts.createProject("tsconfig.json");
-//   const tsResult = tsProject.src().pipe(tsProject());
-//   return tsResult.js.pipe(gulp.dest("build"));
-// }
-
 export function buildCode () {
   return new Promise((resolve, reject) => {
     webpack(webpackConfig, (err, stats) => {
@@ -75,7 +75,7 @@ export function buildCode () {
 }
 
 export function buildLess () {
-  return gulp.src("src/*.less").pipe(less()).pipe(gulp.dest("dist"));
+  return gulp.src(path.join(srcPath, "/*.less")).pipe(less()).pipe(gulp.dest(buildPath));
 }
 
 /**
@@ -84,8 +84,8 @@ export function buildLess () {
 export async function copyFiles () {
   for (const staticPath of staticPaths) {
     await fs.copy(
-      path.join("src", staticPath),
-      path.join("build", staticPath),
+      path.join(srcPath, staticPath),
+      path.join(buildPath, staticPath),
     );
   }
 }
@@ -95,12 +95,12 @@ export async function copyFiles () {
  */
 export function watch () {
   gulp.watch(
-    staticPaths.map(x => path.join("src", x)),
+    staticPaths.map(x => path.join(srcPath, x)),
     { ignoreInitial: false },
     copyFiles,
   );
   gulp.watch(
-    ["src", "tsconfig.json"],
+    [srcPath, "tsconfig.json"],
     { ignoreInitial: false },
     buildCode,
   );
@@ -130,7 +130,7 @@ export async function link () {
     console.log(
       chalk.green(`Linking dist to ${chalk.blueBright(linkDir)}`),
     );
-    return fs.symlink(path.resolve(buildFolder), linkDir);
+    return fs.symlink(path.resolve(buildPath), linkDir);
   } else {
     console.log(
       chalk.magenta(`${chalk.blueBright(linkDir)} already exists`),
@@ -186,7 +186,7 @@ export async function bundlePackage () {
       });
       zip.pipe(zipFile);
       // Add the directory with the final code
-      zip.directory("build/", manifest.name);
+      zip.directory(buildPath, manifest.name);
       zip.finalize();
     } catch (err) {
       return reject(err);
