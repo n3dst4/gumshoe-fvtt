@@ -4,7 +4,6 @@ import fs from "fs-extra";
 import path from "path";
 import archiver from "archiver";
 import rimraf from "rimraf";
-// import ts from "gulp-typescript";
 import { fileURLToPath } from "url";
 import less from "gulp-less";
 import webpack from "webpack";
@@ -14,18 +13,16 @@ import webpackConfig from "./webpack.config.js";
 // Config
 
 const srcPath = "src";
-const manifestPath = path.join(srcPath, "system.json");
+const manifestName = "system.json";
+const manifestPath = path.join(srcPath, manifestName);
 const buildPath = "build";
 const staticPaths = [
+  manifestName,
   "lang",
-  "fonts",
   "assets",
   "templates",
-  "module.json",
-  "system.json",
   "template.json",
   "packs",
-  "babele-es",
 ];
 
 /// /////////////////////////////////////////////////////////////////////////////
