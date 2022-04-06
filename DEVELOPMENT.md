@@ -14,7 +14,6 @@
   - [Adding system settings](#adding-system-settings)
   - [Using the "Developer mode" module](#using-the-developer-mode-module)
   - [Release process](#release-process)
-    - [Why do we have a separate `release` branch?](#why-do-we-have-a-separate-release-branch)
 
 ## Development & general hacking
 
@@ -140,23 +139,28 @@ What this enables (list subject to change):
 
 ## Release process
 
-We have a "release" branch. Its job is to hold a manifest version that points to the right release download.
+*The innocuous-looking 4.9.7 release represented a change in how we do releases. We used to have a `release` branch which pointed to the most recent release, with attachment links pasted into `system.json` for the download. For the forseeable future we wiill need to fast-forward `release` to `main` when releasing so make sure we catch slow updaters*
 
-To perform a release from `master`: 
+To perform a release: 
 
 1. Update the version in `package.json` and `system.json`.
 2. Update the `CHANGELOG`.
-3. Run `npm run package`.
-4. Add the downloadable package .zip to an existing tag, e.g. https://gitlab.com/n3dst4/investigator-fvtt/-/tags/v4.0.0
-5. Get the download URL for the asset.
-6. Paste it into the `download` field of `system.json`.
-7. Commit and push.
-8. On GitLab, create a tag matching the new version.
-9. FF the `release` branch to to `master`.
-10. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
+3. Commit and push:
 
-Now, anyone who installs or upgrades, will see the new manifest, and the new download.
+    ```
+    v=v$(jq .version src/system.json -r) && git commit -am $v && git push
+    ```
 
-### Why do we have a separate `release` branch?
+4. Create and push a new tag with the version from `system.json` prepended with a "v":
 
-To keep control. The manifest on `master` can be unstable, broken, experimental, whatever and we know that users will be safely looking at the `release` version.
+    ```
+    v=v$(jq .version src/system.json -r) && git tag $v && git push origin $v 
+    ```
+
+5. Fast-forward `release` to master (yes this is a funky use of `fetch`):
+
+    ```
+    git fetch . main:release
+    ```
+
+5. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
