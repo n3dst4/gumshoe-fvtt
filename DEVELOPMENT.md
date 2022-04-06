@@ -13,6 +13,7 @@
   - [Adding Actor or Item data fields](#adding-actor-or-item-data-fields)
   - [Adding system settings](#adding-system-settings)
   - [Using the "Developer mode" module](#using-the-developer-mode-module)
+  - [Development flow](#development-flow)
   - [Release process](#release-process)
 
 ## Development & general hacking
@@ -137,6 +138,21 @@ What this enables (list subject to change):
 * "Debug translations" option available in INVESTIGATOR System Settings.
 
 
+## Development flow
+
+* We develop on main, with occasional feature branches or forks as needed and wanted.
+* We deliver both the public-facing manifest and the downloadable zip package using [GitLab Generic Packages][gl-generic-packages].
+* The manifest in VCS points to the "latest package" of the manifest and the download.
+* To do a release, we push a tag.
+* The CI kicks in and:
+  * Checks that the tag matches the version in the manifest. Barfs if not right.
+  * Works out the release asset URL and set the `download` path.
+  * Runs the build.
+  * Uploads a "latest package" of the manifest.
+  * Uploads a "latest package" of the actual package.
+  * Creates a release with linked assets for the above.
+
+
 ## Release process
 
 *The innocuous-looking 4.9.7 release represented a change in how we do releases. We used to have a `release` branch which pointed to the most recent release, with attachment links pasted into `system.json` for the download. For the forseeable future we wiill need to fast-forward `release` to `main` when releasing so make sure we catch slow updaters*
@@ -164,3 +180,7 @@ To perform a release:
     ```
 
 5. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
+
+
+
+[gl-generic-packages]: https://docs.gitlab.com/ee/user/packages/generic_packages/
