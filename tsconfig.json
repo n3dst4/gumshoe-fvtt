@@ -11,7 +11,8 @@
     "types": [
 			// "react",
 			"@league-of-foundry-developers/foundry-vtt-types",
-			"@lumphammer/investigator-fvtt-types"
+			"@lumphammer/investigator-fvtt-types",
+			"@types/jest"
 		],
 		"esModuleInterop": true,
 		"resolveJsonModule": true,

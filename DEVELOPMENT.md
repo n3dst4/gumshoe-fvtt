@@ -182,5 +182,4 @@ To perform a release:
 5. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
 
 
-
 [gl-generic-packages]: https://docs.gitlab.com/ee/user/packages/generic_packages/
