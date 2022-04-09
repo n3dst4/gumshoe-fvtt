@@ -18,6 +18,7 @@ import { installDropActorSheetDataHandler } from "./startup/installDropActorShee
 import { registerDevModeDebugFlag } from "./startup/registerDevModeDebugFlag";
 import { installActorImageHookHandler } from "./startup/installActorImageHookHandler";
 import { injectGlobalHelper } from "./startup/injectGlobalHelper";
+import { loadCustomThemes } from "./startup/loadCustomThemes";
 
 injectGlobalHelper();
 
@@ -57,3 +58,4 @@ installCompendiumExportButton();
 initializePackGenerators();
 installAbilityCardChatWrangler();
 installFathom();
+loadCustomThemes();

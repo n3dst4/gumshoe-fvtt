@@ -3,6 +3,7 @@ import { assertGame, getThemes, mapValues } from "../functions";
 import { pathOfCthulhuPreset } from "../systemPresets";
 import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 import { InvestigatorSettingsClass } from "../module/InvestigatorSettingsClass";
+import { defaultCustomThemePath } from "../constants";
 
 // any of these could have an `onChange` added if we wanted to
 
@@ -169,7 +170,7 @@ export const registerSettings = function () {
     hint: "",
     scope: "world",
     config: false,
-    default: "investigator_themes",
+    default: defaultCustomThemePath,
     type: String,
   });
 

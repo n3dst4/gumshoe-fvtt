@@ -96,3 +96,4 @@ export const htmlDataMwPool = "data-mw-pool" as const;
 // other?
 export const mwWallopCost = 5;
 export const mwNegateCost = 3;
+export const defaultCustomThemePath = "investigator_themes";
