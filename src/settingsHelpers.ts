@@ -24,6 +24,7 @@ export const getNewNPCPacks = getSetting<string[]>(constants.newNPCPacks);
 export const getSystemPreset = getSetting<string>(constants.systemPreset);
 export const getUseBoost = getSetting<boolean>(constants.useBoost);
 export const getDebugTranslations = getSetting<boolean>(constants.debugTranslations);
+export const getCustomThemePath = getSetting<string>(constants.customThemePath);
 
 export const getUseMwStyleAbilities = getSetting<boolean>(constants.useMwStyleAbilities);
 export const getMwHiddenShortNotes = getSetting<string[]>(constants.mwHiddenShortNotes);
@@ -43,6 +44,7 @@ export const setNewNPCPacks = setSetting<string[]>(constants.newNPCPacks);
 export const setSystemPreset = setSetting<string>(constants.systemPreset);
 export const setUseBoost = setSetting<boolean>(constants.useBoost);
 export const setDebugTranslations = setSetting<boolean>(constants.debugTranslations);
+export const setCustomThemePath = setSetting<string>(constants.customThemePath);
 
 export const setUseMwStyleAbilities = setSetting<boolean>(constants.useMwStyleAbilities);
 export const setMwHiddenShortNotes = setSetting<string[]>(constants.mwHiddenShortNotes);

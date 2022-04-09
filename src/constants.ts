@@ -31,6 +31,7 @@ export const newPCPacks = "newPCPacks" as const;
 export const newNPCPacks = "newNPCPacks" as const;
 export const useBoost = "useBoost" as const;
 export const debugTranslations = "debugTranslations" as const;
+export const customThemePath = "customThemePath" as const;
 
 // settings for MW-specific settings
 export const mwHiddenShortNotes = "mwHiddenShortNotes" as const;

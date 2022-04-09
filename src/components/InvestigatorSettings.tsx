@@ -90,6 +90,10 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     settings.getDebugTranslations(),
     resetPreset,
   );
+  const [customThemePath, setCustomThemePath] = useStateWithPreset(
+    settings.getCustomThemePath(),
+    resetPreset,
+  );
 
   const [useMwStyleAbilities, setUseMwStyleAbilities] = useStateWithPreset(
     settings.getUseMwStyleAbilities(),
@@ -196,6 +200,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         settings.setUseBoost(useBoost),
         settings.setSystemPreset(systemPreset),
         settings.setDebugTranslations(debugTranslations),
+        settings.setCustomThemePath(customThemePath),
         settings.setUseMwStyleAbilities(useMwStyleAbilities),
         settings.setMwHiddenShortNotes(mwHiddenShortNotes),
         settings.setMwUseAlternativeItemTypes(mwUseAlternativeItemTypes),
@@ -216,6 +221,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       useBoost,
       systemPreset,
       debugTranslations,
+      customThemePath,
       useMwStyleAbilities,
       mwHiddenShortNotes,
       mwUseAlternativeItemTypes,
@@ -463,6 +469,12 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
           </SettingsGridField>
           <SettingsGridField label="Can abilities be boosted?" index={idx++}>
             <Checkbox checked={useBoost} onChange={setUseBoost} />
+          </SettingsGridField>
+          <SettingsGridField label="Custom themes path" index={idx++}>
+            <AsyncTextInput
+              onChange={setCustomThemePath}
+              value={customThemePath}
+            />
           </SettingsGridField>
           {
             isDevMode &&
