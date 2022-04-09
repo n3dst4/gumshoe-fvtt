@@ -118,7 +118,7 @@ To keep the translation imports running sweetly, you will need to update `.tx/co
 ## Adding system settings
 
 1. Add a constant to [`src/constants.ts`]().
-2. Add an entry to [`src/module/registerSettings.ts`]().
+2. Add an entry to [`src/startup/registerSettings.ts`]().
 3. Add helper functions to [`src/settingsHelpers.ts`]().
 4. In [`src/components/InvestigatorSettings.tsx`]():
    1. Add a `useStateWithPreset` thing for the new setting.
