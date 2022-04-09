@@ -36,7 +36,8 @@ try {
   console.log(chalk.magenta("foundryconfig.json not found - assuming CI"));
 }
 if (config?.dataPath) {
-  linkDir = path.join(config.dataPath, "Data", "modules", manifest.name);
+  const linkRoot = manifestName === "system.json" ? "systems" : "modules";
+  linkDir = path.join(config.dataPath, "Data", linkRoot, manifest.name);
 }
 
 /**
