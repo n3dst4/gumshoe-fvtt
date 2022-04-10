@@ -9,6 +9,7 @@ import { assertGame } from "../functions";
 export function loadCustomThemes () {
   const jsonRe = /\.(?:json|json5)$/;
   const yamlRe = /\.(?:yaml|yml)$/;
+  const schemaRe = /^v(?:1)/;
 
   Hooks.on("setup", async () => {
     assertGame(game);
@@ -55,6 +56,9 @@ export function loadCustomThemes () {
         }
         if (!blob.schemaVersion) {
           throw new Error("No schemaVersion");
+        }
+        if (!schemaRe.test(blob.schemaVersion)) {
+          throw new Error(`schemaVersion "${blob.schemaVersion}" not recognised`);
         }
         const seed: ThemeSeedV1 = {
           colors: {
