@@ -3,11 +3,6 @@
 - [Development notes](#development-notes)
   - [Development & general hacking](#development--general-hacking)
   - [Migrations](#migrations)
-  - [Games supported/future plans](#games-supportedfuture-plans)
-    - [GUMSHOE Games that I have, and want to support:](#gumshoe-games-that-i-have-and-want-to-support)
-    - [GUMSHOE Games that I don't have yet, but would like to support:](#gumshoe-games-that-i-dont-have-yet-but-would-like-to-support)
-    - [Games that I have, and could be bribed to focus on:](#games-that-i-have-and-could-be-bribed-to-focus-on)
-    - [Other games:](#other-games)
   - [Generating Compendium packs](#generating-compendium-packs)
   - [Translations](#translations)
   - [Adding Actor or Item data fields](#adding-actor-or-item-data-fields)
@@ -37,49 +32,6 @@ If you want to force migrations to run, try this:
 ```ts
 game.settings.set("investigator","systemMigrationVersion", "1.0.0")
 ```
-
-
-## Games supported/future plans
-
-### GUMSHOE Games that I have, and want to support:
-
-* [x] Trail of Cthulhu
-  * [x] Categorized investigating abilities
-  * [x] General Abilities
-  * [x] Health, Sanity, Stability, Magic
-* [x] Night's Black Agents
-  * [x] Categorized investigating abilities
-  * [x] General Abilities
-  * [x] Health & Stability
-* [x] Fear Itself 2nd ed.
-  * [x] Categorized investigating abilities
-  * [x] General Abilities
-  * [x] *Psychic Powers*
-  * [x] ~~*No trackers*~~ Not accurate - the standard character sheet doesn't have trackers, but the system has health and stability.
-* [x] Ashen Stars
-  * [x] Categorized investigating abilities
-  * [x] General Abilities
-  * [x] *Special (Vas Mal)*
-  * [x] *"Boost"*
-  * [ ] Spaceships?
-* [ ] The Fall of Delta Green
-* [ ] The Yellow King
-* [ ] Cthulhu Confidential (is 1-to-1)
-
-### GUMSHOE Games that I don't have yet, but would like to support:
-
-* [x] Casting The Runes (aka "The M.R. James one")
-* [ ] Mutant City Blues (2nd ed.)
-
-### Games that I have, and could be bribed to focus on:
-
-* [ ] Timewatch
-* [ ] The Gaean Reach
-
-### Other games:
-
-* [ ] Esoterrorists
-* [ ] Bubblegumshoe
 
 
 ## Generating Compendium packs
