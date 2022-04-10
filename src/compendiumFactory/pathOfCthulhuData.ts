@@ -3,7 +3,7 @@ import { GeneralAbilitiesData, InvestigativeAbilitiesData } from "./types";
 export const investigativeAbilities: InvestigativeAbilitiesData = {
   Academic: [
     { name: "Anthropology" },
-    { name: "Archeology" },
+    { name: "Archaeology" },
     { name: "Architecture" },
     { name: "Art History" },
     { name: "Cryptography" },
