@@ -21,6 +21,7 @@ export default {
   devtool: isProduction ? undefined : "source-map",
   module: {
     rules: [
+      { test: /\.js$/, type: "javascript/auto" },
       {
         test: /\.[jt]sx?$/,
         exclude: [

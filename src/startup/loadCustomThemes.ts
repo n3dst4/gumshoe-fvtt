@@ -1,14 +1,21 @@
 import { defaultCustomThemePath } from "../constants";
 import { getCustomThemePath } from "../settingsHelpers";
-// import YAML from "yaml";
+import YAML from "yaml";
 import JSON5 from "json5";
+import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
+import { highContrastTheme } from "../themes/highContrastTheme";
+import { assertGame } from "../functions";
+// import { getDevMode } from "../functions";
 
 export function loadCustomThemes () {
+  // const isDevMode = getDevMode();
   const jsonRe = /\.(?:json|json5)$/;
-  // const yamlRe = /\.(?:yaml|yml)$/;
+  const yamlRe = /\.(?:yaml|yml)$/;
 
   Hooks.on("setup", async () => {
+    assertGame(game);
     const customThemePath = getCustomThemePath();
+    logger.log({ customThemePath });
     let files: string[] = [];
 
     try {
@@ -18,19 +25,63 @@ export function loadCustomThemes () {
       // probably the folder doesn't exist. if this is the case and the user has
       // modified the setting, warn them about it
       if (customThemePath !== defaultCustomThemePath) {
-        ui.notifications?.error(`Custom theme path "${customThemePath}" does not exist.`, {});
+        if (game?.user?.isGM) {
+          ui.notifications?.error(`Custom theme path "${customThemePath}" does not exist.`, {});
+        }
         return;
       }
     }
+    logger.log({ files });
     for (const filename of files) {
-      // const blob: any = null;
-      if (jsonRe.test(filename)) {
-        // const url = `${customThemePath}/${filename}`;
-        // logger.log({ url });
-        const text = await (await fetch(filename)).text();
-        logger.log({ text });
-        const blob = JSON5.parse(text);
+      let blob: any = null;
+      try {
+        const getText = async () => await (await fetch(filename)).text();
+        if (jsonRe.test(filename)) {
+          const text = await getText();
+          blob = JSON5.parse(text);
+        } else if (yamlRe.test(filename)) {
+          const text = await getText();
+          blob = YAML.parse(text);
+        } else {
+          continue;
+        }
         logger.log({ blob });
+        if (!blob) {
+          throw new Error("Could not parse");
+        }
+        if (!blob.displayName) {
+          throw new Error("No displayName");
+        }
+        if (!blob.schemaVersion) {
+          throw new Error("No schemaVersion");
+        }
+        const seed: ThemeSeedV1 = {
+          colors: {
+            ...highContrastTheme.colors,
+            ...blob.colors,
+          },
+          displayName: blob.displayName,
+          largeSheetRootStyle: blob.largeSheetRootStyle ?? {},
+          logo: {
+            backdropStyle: blob.logo?.largeSheetRootStyle ?? highContrastTheme.logo.backdropStyle,
+            frontTextElementStyle: blob.logo?.frontTextElementStyle ?? highContrastTheme.logo.frontTextElementStyle,
+            rearTextElementStyle: blob.logo?.rearTextElementStyle ?? highContrastTheme.logo.rearTextElementStyle,
+            textElementsStyle: blob.logo?.textElementsStyle ?? highContrastTheme.logo.textElementsStyle,
+            fontScaleFactor: blob.logo?.fontScaleFactor ?? highContrastTheme.logo.fontScaleFactor,
+          },
+          schemaVersion: blob.schemaVersion,
+          appWindowStyle: blob.appWindowStyle ?? {},
+          bodyFont: blob.bodyFont ?? highContrastTheme.bodyFont,
+          displayFont: blob.displayFont ?? highContrastTheme.displayFont,
+          global: blob.global ?? highContrastTheme.global,
+          smallSheetRootStyle: blob.smallSheetRootStyle ?? {},
+        };
+        logger.log({ seed });
+        CONFIG.Investigator?.installTheme(filename, seed);
+      } catch (e: any) {
+        if (game?.user?.isGM) {
+          ui.notifications?.error(`Problem with custom theme "${filename}": ${e?.message}.`, {});
+        }
       }
     }
   });
