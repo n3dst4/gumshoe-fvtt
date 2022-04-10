@@ -5,10 +5,8 @@ import JSON5 from "json5";
 import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
 import { highContrastTheme } from "../themes/highContrastTheme";
 import { assertGame } from "../functions";
-// import { getDevMode } from "../functions";
 
 export function loadCustomThemes () {
-  // const isDevMode = getDevMode();
   const jsonRe = /\.(?:json|json5)$/;
   const yamlRe = /\.(?:yaml|yml)$/;
 
@@ -26,7 +24,10 @@ export function loadCustomThemes () {
       // modified the setting, warn them about it
       if (customThemePath !== defaultCustomThemePath) {
         if (game?.user?.isGM) {
-          ui.notifications?.error(`Custom theme path "${customThemePath}" does not exist.`, {});
+          ui.notifications?.error(
+            `Custom theme path "${customThemePath}" does not exist.`,
+            {},
+          );
         }
         return;
       }
@@ -57,17 +58,32 @@ export function loadCustomThemes () {
         }
         const seed: ThemeSeedV1 = {
           colors: {
-            ...highContrastTheme.colors,
+            accent: highContrastTheme.colors.accent,
+            accentContrast: highContrastTheme.colors.accentContrast,
+            glow: highContrastTheme.colors.glow,
+            wallpaper: highContrastTheme.colors.wallpaper,
+            text: highContrastTheme.colors.text,
+            backgroundButton: highContrastTheme.colors.backgroundButton,
+            backgroundPrimary: highContrastTheme.colors.backgroundPrimary,
+            backgroundSecondary: highContrastTheme.colors.backgroundSecondary,
             ...blob.colors,
           },
           displayName: blob.displayName,
           largeSheetRootStyle: blob.largeSheetRootStyle ?? {},
           logo: {
-            backdropStyle: blob.logo?.largeSheetRootStyle ?? highContrastTheme.logo.backdropStyle,
-            frontTextElementStyle: blob.logo?.frontTextElementStyle ?? highContrastTheme.logo.frontTextElementStyle,
-            rearTextElementStyle: blob.logo?.rearTextElementStyle ?? highContrastTheme.logo.rearTextElementStyle,
-            textElementsStyle: blob.logo?.textElementsStyle ?? highContrastTheme.logo.textElementsStyle,
-            fontScaleFactor: blob.logo?.fontScaleFactor ?? highContrastTheme.logo.fontScaleFactor,
+            backdropStyle:
+              blob.logo?.backdropStyle ??
+              highContrastTheme.logo.backdropStyle,
+            frontTextElementStyle:
+              blob.logo?.frontTextElementStyle ??
+              highContrastTheme.logo.frontTextElementStyle,
+            rearTextElementStyle:
+              blob.logo?.rearTextElementStyle ??
+              highContrastTheme.logo.rearTextElementStyle,
+            textElementsStyle:
+              blob.logo?.textElementsStyle ??
+              highContrastTheme.logo.textElementsStyle,
+            fontScaleFactor: blob.logo?.fontScaleFactor,
           },
           schemaVersion: blob.schemaVersion,
           appWindowStyle: blob.appWindowStyle ?? {},
@@ -80,7 +96,10 @@ export function loadCustomThemes () {
         CONFIG.Investigator?.installTheme(filename, seed);
       } catch (e: any) {
         if (game?.user?.isGM) {
-          ui.notifications?.error(`Problem with custom theme "${filename}": ${e?.message}.`, {});
+          ui.notifications?.error(
+            `Problem with custom theme "${filename}": ${e?.message}.`,
+            {},
+          );
         }
       }
     }
