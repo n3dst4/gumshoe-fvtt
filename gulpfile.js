@@ -92,15 +92,22 @@ export async function copyFiles () {
  * Watch for changes for each build step
  */
 export function watch () {
+  webpack(webpackConfig).watch({
+    aggregateTimeout: 300,
+    poll: undefined,
+  }, (err, stats) => {
+    console.log(stats.toString({
+      colors: true,
+    }));
+    if (err) {
+      console.error(err);
+    }
+  });
+  gulp.watch("src/**/*.less", { ignoreInitial: false }, buildLess);
   gulp.watch(
     staticPaths.map(x => path.join(srcPath, x)),
     { ignoreInitial: false },
     copyFiles,
-  );
-  gulp.watch(
-    [srcPath, "tsconfig.json"],
-    { ignoreInitial: false },
-    buildCode,
   );
 }
 
