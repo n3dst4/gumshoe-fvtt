@@ -116,7 +116,7 @@
   "gridDistance": 1,
   "gridUnits": "",
   "minimumCoreVersion": "0.8.8",
-  "compatibleCoreVersion": "9.266",
+  "compatibleCoreVersion": "10.260",
   "initiative": "1d6",
   "url": "https://gitlab.com/n3dst4/investigator-fvtt",
   "manifest": "https://gitlab.com/api/v4/projects/n3dst4%2Finvestigator-fvtt/packages/generic/investigator/latest/system.json",
