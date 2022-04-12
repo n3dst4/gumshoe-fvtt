@@ -3,9 +3,8 @@ import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
 import React, { useCallback, useEffect, useState } from "react";
 import { customSystem } from "../constants";
-import { assertGame, getDevMode, getThemes } from "../functions";
+import { assertGame, getDevMode } from "../functions";
 import * as settings from "../settingsHelpers";
-import { systemPresets } from "../systemPresets";
 import { tealTheme } from "../themes/tealTheme";
 import { CSSReset, CSSResetMode } from "./CSSReset";
 import { IdContext } from "./IdContext";
@@ -16,6 +15,7 @@ import { InputGrid } from "./inputs/InputGrid";
 import { ListEdit } from "./inputs/ListEdit";
 import { SettingsGridField } from "./inputs/SettingsGridField";
 import { Translate } from "./Translate";
+import { runtimeConfig } from "../runtime";
 
 type InvestigatorSettingsProps = {
   foundryApplication: Application,
@@ -38,6 +38,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
   foundryApplication,
 }) => {
   assertGame(game);
+  const presets = runtimeConfig.presets;
   // there is also abilityCategories which is legacy and may be lying around for compat purposes
   const systemMigrationVersion = settings.getSystemMigrationVersion();
   const [systemPreset, setSystemPreset] = useState(settings.getSystemPreset());
@@ -115,14 +116,12 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
 
   const onSelectPreset = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const presetId = e.currentTarget.value as
-        | keyof typeof systemPresets
-        | typeof customSystem;
+      const presetId = e.currentTarget.value;
       if (presetId === customSystem) {
         setSystemPreset(presetId);
         return;
       }
-      const preset = systemPresets[presetId];
+      const preset = presets[presetId];
       if (!preset) {
         throw new Error(
           "Somehow ended up picking a preset which doesnae exist",
@@ -144,6 +143,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setSystemPreset(presetId);
     },
     [
+      presets,
       setDefaultTheme,
       setInvestigativeAbilityCategories,
       setGeneralAbilityCategories,
@@ -160,9 +160,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     ],
   );
 
-  const themes = getThemes();
-
-  const theme = themes[defaultTheme] || tealTheme;
+  const theme = runtimeConfig.themes[defaultTheme] || tealTheme;
 
   const [showJSON, setShowJSON] = useState(false);
 
@@ -258,10 +256,10 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       >
         <GridField label="System Preset">
           <select value={systemPreset} onChange={onSelectPreset}>
-            {Object.keys(systemPresets).map<JSX.Element>((presetId: string) => (
+            {Object.keys(presets).map<JSX.Element>((presetId: string) => (
               <option key={presetId} value={presetId}>
                 {
-                  systemPresets[presetId as keyof typeof systemPresets]
+                  presets[presetId]
                     .displayName
                 }
               </option>
@@ -324,9 +322,9 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
                 setDefaultTheme(e.currentTarget.value);
               }}
             >
-              {Object.keys(themes).map<JSX.Element>((themeName: string) => (
+              {Object.keys(runtimeConfig.themes).map<JSX.Element>((themeName: string) => (
                 <option key={themeName} value={themeName}>
-                  {themes[themeName].displayName}
+                  {runtimeConfig.themes[themeName].displayName}
                 </option>
               ))}
             </select>

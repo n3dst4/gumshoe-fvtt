@@ -1,9 +1,10 @@
 import * as c from "../constants";
-import { assertGame, getThemes, mapValues } from "../functions";
-import { pathOfCthulhuPreset } from "../systemPresets";
+import { assertGame, mapValues } from "../functions";
+import { pathOfCthulhuPreset } from "../presets";
 import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 import { InvestigatorSettingsClass } from "../module/InvestigatorSettingsClass";
 import { defaultCustomThemePath } from "../constants";
+import { runtimeConfig } from "../runtime";
 
 // any of these could have an `onChange` added if we wanted to
 
@@ -32,7 +33,7 @@ export const registerSettings = function () {
     name: "Default sheet theme",
     scope: "world",
     config: false,
-    choices: mapValues((theme: ThemeV1) => (theme.displayName), getThemes()),
+    choices: mapValues((theme: ThemeV1) => (theme.displayName), runtimeConfig.themes),
     default: pathOfCthulhuPreset.defaultTheme,
     type: String,
   });

@@ -1,14 +1,17 @@
-import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
+import { PresetV1, ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
 import { assertNotNull } from "../functions";
-import { baseThemes } from "../themes/baseThemes";
+import { runtimeConfig } from "../runtime";
 import { themeFactory } from "../themes/functions";
 
 export const injectGlobalHelper = () => {
   CONFIG.Investigator = {
-    themes: { ...baseThemes },
     installTheme: (id: string, seed: ThemeSeedV1) => {
       assertNotNull(CONFIG.Investigator);
-      CONFIG.Investigator.themes[id] = themeFactory(seed);
+      runtimeConfig.themes[id] = themeFactory(seed);
+    },
+    installPreset: (id: string, preset: PresetV1) => {
+      assertNotNull(CONFIG.Investigator);
+      runtimeConfig.presets[id] = preset;
     },
   };
 };

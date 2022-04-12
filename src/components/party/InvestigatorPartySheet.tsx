@@ -2,9 +2,10 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useState } from "react";
 import * as constants from "../../constants";
-import { assertGame, getThemes, sortEntitiesByName } from "../../functions";
+import { assertGame, sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { runtimeConfig } from "../../runtime";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { AbilityDataSource, assertPartyDataSource, isAbilityDataSource } from "../../types";
 import { CSSReset, CSSResetMode } from "../CSSReset";
@@ -27,8 +28,7 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
   foundryApplication,
   party,
 }) => {
-  const themes = getThemes();
-  const theme = themes[getDefaultThemeName()] || themes.tealTheme;
+  const theme = runtimeConfig.themes[getDefaultThemeName()] || runtimeConfig.themes.tealTheme;
   const [abilities, setAbilities] = useState<AbilityDataSource[]>([]);
   const [actors, setActors] = useState<InvestigatorActor[]>([]);
   const [rowData, setRowData] = useState<RowData[]>([]);

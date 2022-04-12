@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext } from "react";
-import { assertGame, getDevMode, getThemes, getTranslated } from "../../functions";
+import { assertGame, getDevMode, getTranslated } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { runtimeConfig } from "../../runtime";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertPCDataSource, NoteFormat } from "../../types";
 import { GridField } from "../inputs/GridField";
@@ -23,11 +24,8 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
     const themeName = (value === "default" ? null : value);
     actor.setSheetTheme(themeName);
   }, [actor]);
-
   const theme = useContext(ThemeContext);
-
   const isDevMode = getDevMode();
-  const themes = getThemes();
 
   return (
     <Fragment>
@@ -35,8 +33,8 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
       <InputGrid>
         <GridField label="Theme">
           <select onChange={onSetTheme} value={actor.getSheetThemeName() || "default"}>
-            {Object.keys(themes).map<JSX.Element>((themeName) => (
-              <option key={themeName} value={themeName}>{themes[themeName].displayName}</option>
+            {Object.keys(runtimeConfig.themes).map<JSX.Element>((themeName) => (
+              <option key={themeName} value={themeName}>{runtimeConfig.themes[themeName].displayName}</option>
             ))}
             <option value="default">
               {getTranslated("UseSystemDefault")}

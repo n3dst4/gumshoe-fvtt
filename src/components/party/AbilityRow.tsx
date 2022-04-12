@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment } from "react";
-import { confirmADoodleDo, getThemes } from "../../functions";
+import { confirmADoodleDo } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { runtimeConfig } from "../../runtime";
 import { getDefaultThemeName } from "../../settingsHelpers";
 import { AbilityRowData } from "./types";
 
@@ -17,8 +18,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
   index,
   actors,
 }) => {
-  const themes = getThemes();
-  const theme = themes[getDefaultThemeName()] || themes.tealTheme;
+  const theme = runtimeConfig.themes[getDefaultThemeName()] || runtimeConfig.themes.tealTheme;
 
   const zero = abilityRowData.total === 0;
   const odd = index % 2 === 0;

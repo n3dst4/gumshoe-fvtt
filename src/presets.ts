@@ -1,25 +1,8 @@
+import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
 import { packNames, systemName, npcPackName } from "./constants";
 
-export interface SystemPreset {
-  displayName: string;
-  defaultTheme: string;
-  investigativeAbilityCategories: string[];
-  generalAbilityCategories: string[];
-  combatAbilities: string[];
-  occupationLabel: string;
-  shortNotes: string[];
-  longNotes: string[];
-  newPCPacks: string[];
-  newNPCPacks: string[];
-  useBoost: boolean;
-
-  useMwStyleAbilities: boolean;
-
-  mwHiddenShortNotes?: string[];
-  mwUseAlternativeItemTypes: boolean;
-}
-
-export const pathOfCthulhuPreset: SystemPreset = {
+export const pathOfCthulhuPreset: PresetV1 = {
+  schemaVersion: "v1",
   displayName: "Path of Cthulhu",
   defaultTheme: "tealTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
@@ -35,7 +18,8 @@ export const pathOfCthulhuPreset: SystemPreset = {
   mwUseAlternativeItemTypes: false,
 };
 
-export const niceBlackAgentsPreset: SystemPreset = {
+export const niceBlackAgentsPreset: PresetV1 = {
+  schemaVersion: "v1",
   displayName: "Nice Black Agents",
   defaultTheme: "niceTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
@@ -51,7 +35,8 @@ export const niceBlackAgentsPreset: SystemPreset = {
   mwUseAlternativeItemTypes: false,
 };
 
-export const nothingToFearPreset: SystemPreset = {
+export const nothingToFearPreset: PresetV1 = {
+  schemaVersion: "v1",
   displayName: "Nothing to Fear",
   defaultTheme: "fearTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical", "Psychic Powers"],
@@ -67,7 +52,8 @@ export const nothingToFearPreset: SystemPreset = {
   mwUseAlternativeItemTypes: false,
 };
 
-export const pallidStarsPreset: SystemPreset = {
+export const pallidStarsPreset: PresetV1 = {
+  schemaVersion: "v1",
   displayName: "Pallid Stars",
   defaultTheme: "pallidTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical", "Special"],
@@ -83,7 +69,8 @@ export const pallidStarsPreset: SystemPreset = {
   mwUseAlternativeItemTypes: false,
 };
 
-export const castingTheRunesPreset: SystemPreset = {
+export const castingTheRunesPreset: PresetV1 = {
+  schemaVersion: "v1",
   displayName: "Casting the Runes",
   defaultTheme: "antiquarianTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
@@ -99,7 +86,8 @@ export const castingTheRunesPreset: SystemPreset = {
   mwUseAlternativeItemTypes: false,
 };
 
-export const moribundWorldPreset: SystemPreset = {
+export const moribundWorldPreset: PresetV1 = {
+  schemaVersion: "v1",
   displayName: "Moribund World",
   defaultTheme: "olderThanMemoryTheme",
   investigativeAbilityCategories: [],
@@ -116,7 +104,7 @@ export const moribundWorldPreset: SystemPreset = {
   mwHiddenShortNotes: ["Sympathy points"],
 };
 
-export const systemPresets = {
+export const basePresets = {
   pathOfCthulhuPreset,
   niceBlackAgentsPreset,
   nothingToFearPreset,

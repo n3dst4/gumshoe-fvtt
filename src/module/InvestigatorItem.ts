@@ -1,4 +1,4 @@
-import { assertGame, fixLength, getThemes } from "../functions";
+import { assertGame, fixLength } from "../functions";
 import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 import { InvestigatorActor } from "./InvestigatorActor";
 import { getDefaultThemeName } from "../settingsHelpers";
@@ -14,6 +14,7 @@ import {
   RangeTuple,
 } from "../types";
 import * as constants from "../constants";
+import { runtimeConfig } from "../runtime";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -384,7 +385,7 @@ export class InvestigatorItem extends Item {
 
   getTheme (): ThemeV1 {
     const themeName = this.getThemeName();
-    const theme = getThemes()[themeName];
+    const theme = runtimeConfig.themes[themeName];
     return theme;
   }
 

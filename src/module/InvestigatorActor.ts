@@ -1,11 +1,12 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
-import { assertGame, confirmADoodleDo, getThemes } from "../functions";
+import { assertGame, confirmADoodleDo } from "../functions";
 import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat, MwInjuryStatus, InvestigatorActorDataSource } from "../types";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 import { InvestigatorItem } from "./InvestigatorItem";
 import { convertNotes } from "../textFunctions";
 import { tealTheme } from "../themes/tealTheme";
+import { runtimeConfig } from "../runtime";
 
 export class InvestigatorActor extends Actor {
   /**
@@ -210,13 +211,12 @@ export class InvestigatorActor extends Actor {
   }
 
   getSheetTheme (): ThemeV1 {
-    const themes = getThemes();
     const themeName = this.getSheetThemeName() || getDefaultThemeName();
-    const theme = themes[themeName];
+    const theme = runtimeConfig.themes[themeName];
     if (theme !== undefined) {
       return theme;
-    } else if (themes[getDefaultThemeName()] !== undefined) {
-      return themes[getDefaultThemeName()];
+    } else if (runtimeConfig.themes[getDefaultThemeName()] !== undefined) {
+      return runtimeConfig.themes[getDefaultThemeName()];
     } else {
       return tealTheme;
     }

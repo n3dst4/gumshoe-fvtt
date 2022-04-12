@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { ReactNode } from "react";
-import { getThemes } from "../../functions";
+import { runtimeConfig } from "../../runtime";
 import { ThemeSwatch } from "./ThemeSwatch";
 
 type ThemeFarmProps = {
@@ -11,7 +11,6 @@ type ThemeFarmProps = {
 export const ThemeFarm: React.FC<ThemeFarmProps> = ({
   foundryApplication,
 }: ThemeFarmProps) => {
-  const themes = getThemes();
   return (
     <div
       css={{
@@ -37,8 +36,8 @@ export const ThemeFarm: React.FC<ThemeFarmProps> = ({
         }}
       >
         {
-          Object.keys(themes).map<ReactNode>((id) => (
-            <ThemeSwatch key={id} theme={themes[id]} />
+          Object.keys(runtimeConfig.themes).map<ReactNode>((id) => (
+            <ThemeSwatch key={id} theme={runtimeConfig.themes[id]} />
           ))
         }
       </div>

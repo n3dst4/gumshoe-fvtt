@@ -2,7 +2,6 @@ import { systemName } from "./constants";
 import Case from "case";
 import { Dictionary } from "lodash";
 import { getDebugTranslations } from "./settingsHelpers";
-import { baseThemes } from "./themes/baseThemes";
 
 interface NameHaver {
   name: string|null;
@@ -163,10 +162,6 @@ export const confirmADoodleDo = ({
   });
   return promise;
 };
-
-export function getThemes () {
-  return CONFIG.Investigator?.themes || baseThemes;
-}
 
 export function assertNotNull<T> (t: T|undefined): asserts t is T {
   if (t === undefined) {
