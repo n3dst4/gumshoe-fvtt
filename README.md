@@ -22,6 +22,7 @@ Includes 7 character sheet themes plus an extra high-contrast accessible theme.
   - [Party Tracker](#party-tracker)
   - [Bug reports and contact](#bug-reports-and-contact)
   - [Development & general hacking](#development--general-hacking)
+  - [Custom themes](#custom-themes)
   - [Credits](#credits)
     - [GUMSHOE SRD Creative Commons](#gumshoe-srd-creative-commons)
 
@@ -172,6 +173,14 @@ Otherwise you can email me at `neil at lumphammer.com`, or hit me up on Discord 
 ## Development & general hacking
 
 Contributions, bug fixes, pull requests all welcome! Please see [DEVELOPMENT.md](DEVELOPMENT.md).
+
+
+## Custom themes
+
+You can create new themes for INVESTIGATOR in two ways:
+
+* [By writing a Foundry VTT module which uses INVESTIGATOR's API to inject a new theme](https://gitlab.com/n3dst4/investigator-fvtt/-/wikis/Adding-new-themes-from-third-party-code) (this is intended for developers and module authors.)
+* [By dropping a JSON file in a folder in your local data](https://gitlab.com/n3dst4/investigator-fvtt/-/wikis/Adding-new-themes-from-local-data) (this is intended for technical users who are not authoring modules.)
 
 
 ## Credits

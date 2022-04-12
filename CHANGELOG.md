@@ -1,6 +1,14 @@
 # CHANGELOG
 
-## 4.9.7 (2022--04-04)
+## 4.10.0 (2022-04-12)
+
+* Basic testing against Foundry VTT v10. Seems okay to me so far?
+* Character sheet themes are now decoupled from the main system, so you can:
+  * Write Foundry modules that add themes to INVESTIGATOR, or
+  * Throw some JSON in a folder in your local Foundry data to create a local theme!
+* **Bug fix** The SRD ability "archaeology" was spelled "archeology" in the "Path of Cthulhu" compendium.
+
+## 4.9.7 (2022-04-04)
 
 * There was a bug in the way initiative order was being set that made it sometimes look as if it didn't work at all. Fixed now.
 * Setting the actor icon sets the default token icon.
