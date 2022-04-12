@@ -1,3 +1,6 @@
+import { assertGame } from "../functions";
+import { version } from "../constants";
+
 /**
  * install a script tag for fathom analytics - see https://usefathom.com/ .
  * fathom is a privacy-first, GDPR-compliant tracker. it just gives us some clue
@@ -16,5 +19,18 @@ export function installFathom () {
     scriptEl.setAttribute("data-site", "HXDZGAVA");
     scriptEl.setAttribute("defer", "defer");
     document.body.appendChild(scriptEl);
+  }
+  Hooks.on("ready", () => {
+    assertGame(game);
+    window.fathom?.trackGoal("371LNPLT", version);
+    window.fathom?.trackGoal("4NLLMFEW", game.version);
+  });
+}
+
+declare global {
+  interface Window {
+    fathom?: {
+      trackGoal(key: string, value: any): void,
+    };
   }
 }

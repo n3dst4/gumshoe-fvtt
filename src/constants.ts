@@ -1,6 +1,7 @@
 import system from "./system.json";
 
 export const systemName = system.name;
+export const version = system.version;
 export const defaultMigratedSystemVersion = "0.0.0" as const;
 export const defaultSystemPreset = "pathOfCthulhuPreset";
 export const templatesPath = `systems/${systemName}/templates` as const;
