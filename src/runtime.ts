@@ -12,6 +12,6 @@ export interface RuntimeConfig {
 }
 
 export const runtimeConfig: RuntimeConfig = {
-  presets: basePresets,
-  themes: baseThemes,
+  themes: { ...baseThemes },
+  presets: { ...basePresets },
 };
