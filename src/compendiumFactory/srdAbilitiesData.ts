@@ -106,8 +106,8 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Infiltration" },
     { name: "Piloting" },
     { name: "Riding" },
-    { name: "Scuffling", refreshesDaily: true },
-    { name: "Shooting", refreshesDaily: true, goesFirstInCombat: true },
+    { name: "Scuffling", refreshesDaily: true, useForCombat: true },
+    { name: "Shooting", refreshesDaily: true, goesFirstInCombat: true, useForCombat: true },
   ],
   Focus: [
     { name: "Battlefield" },

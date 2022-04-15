@@ -50,9 +50,9 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Medic" },
     { name: "Preparedness" },
     { name: "Public Relations" },
-    { name: "Scuffling", refreshesDaily: true },
+    { name: "Scuffling", refreshesDaily: true, useForCombat: true },
     { name: "Sense Trouble" },
-    { name: "Shooting", refreshesDaily: true, goesFirstInCombat: true },
+    { name: "Shooting", refreshesDaily: true, goesFirstInCombat: true, useForCombat: true },
     { name: "Surveillance" },
   ],
 };
