@@ -64,6 +64,7 @@ const generalTemplate: GeneralAbilityTemplate = {
   excludeFromGeneralRefresh: false,
   goesFirstInCombat: false,
   hideIfZeroRated: false,
+  useForCombat: false,
 };
 
 export const emptyPack = async (pack: CompendiumCollection<CompendiumCollection.Metadata>) => {

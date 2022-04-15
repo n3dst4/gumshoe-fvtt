@@ -11,6 +11,7 @@ type GridFieldProps = {
   children?: any,
   noLabel?: boolean,
   noTranslate?: boolean,
+  indent?: boolean|number,
 };
 
 export const GridField: React.FC<GridFieldProps> = ({
@@ -19,8 +20,11 @@ export const GridField: React.FC<GridFieldProps> = ({
   children,
   noLabel = false,
   noTranslate = false,
+  indent = 0,
 }) => {
   const id = useMemo(() => nanoid(), []);
+  const indentWidth =
+  `${indent === false ? 0 : indent === true ? 1 : indent}em`;
   return (
     <IdContext.Provider value={id}>
       <label
@@ -29,6 +33,7 @@ export const GridField: React.FC<GridFieldProps> = ({
           gridColumn: "label",
           paddingTop: "0.3em",
           paddingRight: "0.5em",
+          paddingLeft: indentWidth,
         }}
         className={className}
       >

@@ -248,6 +248,16 @@ export class InvestigatorItem extends Item {
     this.update({ data: { refreshesDaily } });
   }
 
+  getUseForCombat = () => {
+    assertGeneralAbilityDataSource(this.data);
+    return this.data.data.useForCombat;
+  }
+
+  setUseForCombat = (useForCombat: boolean) => {
+    assertAbilityDataSource(this.data);
+    this.update({ data: { useForCombat } });
+  }
+
   getGoesFirstInCombat = () => {
     assertGeneralAbilityDataSource(this.data);
     return this.data.data.goesFirstInCombat;

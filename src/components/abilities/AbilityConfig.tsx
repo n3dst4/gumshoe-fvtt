@@ -175,7 +175,17 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
       </GridField>
       {
         isGeneralAbilityDataSource(ability.data) &&
-          <GridField label="Goes first in combat?">
+          <GridField label="Use for combat?">
+            <AsyncCheckbox
+              checked={ability.data.data.useForCombat}
+              onChange={ability.setUseForCombat}
+            />
+          </GridField>
+      }
+      {
+        isGeneralAbilityDataSource(ability.data) &&
+          ability.data.data.useForCombat &&
+          <GridField indent label="Goes first in combat?">
             <AsyncCheckbox
               checked={ability.data.data.goesFirstInCombat}
               onChange={ability.setGoesFirstInCombat}

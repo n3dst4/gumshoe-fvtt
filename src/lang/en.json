@@ -115,5 +115,6 @@
     "investigator.Weapon": "Weapon",
     "investigator.Weapons": "Weapons",
     "investigator.WhoopsNo": "Whoops, No!",
-    "investigator.YesPlease": "Yes please!"
+    "investigator.YesPlease": "Yes please!",
+    "investigator.UseForCombat": "Use for combat?"
 }

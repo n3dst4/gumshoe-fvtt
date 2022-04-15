@@ -14,7 +14,6 @@ export function loadCustomThemes () {
   Hooks.on("setup", async () => {
     assertGame(game);
     const customThemePath = getCustomThemePath();
-    logger.log({ customThemePath });
     let files: string[] = [];
 
     try {
@@ -47,7 +46,6 @@ export function loadCustomThemes () {
         } else {
           continue;
         }
-        logger.log({ blob });
         if (!blob) {
           throw new Error("Could not parse");
         }
@@ -96,7 +94,6 @@ export function loadCustomThemes () {
           global: blob.global ?? highContrastTheme.global,
           smallSheetRootStyle: blob.smallSheetRootStyle ?? {},
         };
-        logger.log({ seed });
         CONFIG.Investigator?.installTheme(filename, seed);
       } catch (e: any) {
         if (game?.user?.isGM) {

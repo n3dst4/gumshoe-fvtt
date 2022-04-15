@@ -104,6 +104,7 @@
       "canBeInvestigative": false,
       "goesFirstInCombat": false,
       "hideIfZeroRated": false,
+      "useForCombat": false,
       "mwTrumps": "",
       "mwTrumpedBy": "",
       "mwRefreshGroup": 2

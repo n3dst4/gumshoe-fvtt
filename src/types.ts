@@ -230,6 +230,7 @@ export type MwRefreshGroup = 2|4|8;
 export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData {
   canBeInvestigative: boolean;
   goesFirstInCombat: boolean;
+  useForCombat: boolean;
   // MW-specific fields
   mwTrumps: string;
   mwTrumpedBy: string;
