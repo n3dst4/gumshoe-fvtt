@@ -8,7 +8,6 @@ import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "../inputs/TextInput";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { WeaponRange } from "./WeaponRangeConfig";
-import { getCombatAbilities } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { assertWeaponDataSource } from "../../types";
@@ -47,7 +46,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
     });
   }, [weapon]);
 
-  const abilities = getCombatAbilities();
+  const abilities = (weapon.actor?.getCombatAbilities() ?? []).map((ability) => (ability.name ?? ""));
 
   return (
     <InputGrid

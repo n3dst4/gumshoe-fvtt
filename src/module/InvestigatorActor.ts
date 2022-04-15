@@ -1,6 +1,6 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat, MwInjuryStatus, InvestigatorActorDataSource } from "../types";
+import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat, MwInjuryStatus, InvestigatorActorDataSource, isGeneralAbilityDataSource } from "../types";
 import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 import { InvestigatorItem } from "./InvestigatorItem";
@@ -159,6 +159,10 @@ export class InvestigatorActor extends Actor {
 
   getAbilities () {
     return this.items.filter((item) => isAbilityDataSource(item.data));
+  }
+
+  getCombatAbilities () {
+    return this.getAbilities().filter((ability) => isGeneralAbilityDataSource(ability.data) && ability.data.data.useForCombat);
   }
 
   getMwItems () {

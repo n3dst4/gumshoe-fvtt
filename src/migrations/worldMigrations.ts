@@ -27,7 +27,7 @@ export const crappySplit = (orig: string|null|undefined): string[] => {
 export const migrateToArrays = async () => {
   const toUpdate = [constants.investigativeAbilityCategories,
     constants.generalAbilityCategories,
-    constants.combatAbilities,
+    // constants.combatAbilities,
     constants.shortNotes,
     constants.longNotes];
 

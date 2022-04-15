@@ -7,7 +7,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
-import { getCombatAbilities, getUseMwStyleAbilities, getUseBoost } from "../../settingsHelpers";
+import { getUseMwStyleAbilities, getUseBoost } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveCharacterDataSource, ActiveCharacterDataSource } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
@@ -27,8 +27,6 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
   }, [ability]);
 
   const useBoost = getUseBoost();
-
-  const isCombatAbility = getCombatAbilities().includes(ability.data.name);
 
   const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
     isActiveCharacterDataSource(ability?.actor?.data) && ability?.actor?.data.data.initiativeAbility,
@@ -137,7 +135,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
         </GridField>
       }
 
-      {isCombatAbility &&
+      {ability.getUseForCombat() &&
         <GridField label="Combat order">
           {isAbilityUsed
             ? (

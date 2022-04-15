@@ -59,10 +59,10 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     );
   const [generalAbilityCategories, setGeneralAbilityCategories] =
     useStateWithPreset(settings.getGeneralAbilityCategories(), resetPreset);
-  const [combatAbilities, setCombatAbilities] = useStateWithPreset(
-    settings.getCombatAbilities(),
-    resetPreset,
-  );
+  // const [combatAbilities, setCombatAbilities] = useStateWithPreset(
+  //   settings.getCombatAbilities(),
+  //   resetPreset,
+  // );
   const [occupationLabel, setOccupationLabel] = useStateWithPreset(
     settings.getOccupationlabel(),
     resetPreset,
@@ -130,7 +130,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setDefaultTheme(preset.defaultTheme);
       setInvestigativeAbilityCategories(preset.investigativeAbilityCategories);
       setGeneralAbilityCategories(preset.generalAbilityCategories);
-      setCombatAbilities(preset.combatAbilities);
+      // setCombatAbilities(preset.combatAbilities);
       setOccupationLabel(preset.occupationLabel);
       setShortNotes(preset.shortNotes);
       setLongNotes(preset.longNotes);
@@ -147,7 +147,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setDefaultTheme,
       setInvestigativeAbilityCategories,
       setGeneralAbilityCategories,
-      setCombatAbilities,
+      // setCombatAbilities,
       setOccupationLabel,
       setShortNotes,
       setLongNotes,
@@ -189,7 +189,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
           investigativeAbilityCategories,
         ),
         settings.setGeneralAbilityCategories(generalAbilityCategories),
-        settings.setCombatAbilities(combatAbilities),
+        // settings.setCombatAbilities(combatAbilities),
         settings.setOccupationLabel(occupationLabel),
         settings.setShortNotes(shortNotes),
         settings.setLongNotes(longNotes),
@@ -211,7 +211,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       defaultTheme,
       investigativeAbilityCategories,
       generalAbilityCategories,
-      combatAbilities,
+      // combatAbilities,
       occupationLabel,
       shortNotes,
       longNotes,
@@ -286,9 +286,9 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
           <SettingsGridField label="generalAbilityCategories" index={idx++}>
             <pre>{JSON.stringify(generalAbilityCategories, null, 2)}</pre>
           </SettingsGridField>
-          <SettingsGridField label="combatAbilities" index={idx++}>
+          {/* <SettingsGridField label="combatAbilities" index={idx++}>
             <pre>{JSON.stringify(combatAbilities, null, 2)}</pre>
-          </SettingsGridField>
+          </SettingsGridField> */}
           <SettingsGridField label="occupationLabel" index={idx++}>
             <pre>{JSON.stringify(occupationLabel, null, 2)}</pre>
           </SettingsGridField>
@@ -451,9 +451,9 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
               onChange={setGeneralAbilityCategories}
             />
           </SettingsGridField>
-          <SettingsGridField label="Combat Abilities" index={idx++}>
+          {/* <SettingsGridField label="Combat Abilities" index={idx++}>
             <ListEdit value={combatAbilities} onChange={setCombatAbilities} />
-          </SettingsGridField>
+          </SettingsGridField> */}
           <SettingsGridField label="Occupation Label" index={idx++}>
             <AsyncTextInput
               value={occupationLabel}
