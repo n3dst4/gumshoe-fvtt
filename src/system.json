@@ -13,63 +13,63 @@
       "label": "Path of Cthulhu Abilities",
       "system": "investigator",
       "path": "./packs/pathOfCthulhuAbilities.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "niceBlackAgentsAbilities",
       "label": "Nice Black Agents Abilities",
       "system": "investigator",
       "path": "./packs/niceBlackAgentsAbilities.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "nothingToFearAbilities",
       "label": "Nothing to Fear Abilities",
       "system": "investigator",
       "path": "./packs/nothingToFearAbilities.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "pallidStarsAbilities",
       "label": "Pallid Stars Abilities",
       "system": "investigator",
       "path": "./packs/pallidStarsAbilities.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "missingAbilitiesNote",
       "label": "MISSING ABILITIES? READ THIS!",
       "system": "investigator",
       "path": "./packs/missingAbilitiesNote.db",
-      "entity": "JournalEntry"
+      "type": "JournalEntry"
     },
     {
       "name": "opponentAbilities",
       "label": "Opponent Abilities",
       "system": "investigator",
       "path": "./packs/opponentAbilities.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "srdWeapons",
       "label": "SRD Weapons",
       "system": "investigator",
       "path": "./packs/srdWeapons.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "srdAbilities",
       "label": "SRD Abilities",
       "system": "investigator",
       "path": "./packs/srdAbilities.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "castingTheRunesAbilities",
       "label": "Casting the Runes Abilities",
       "system": "investigator",
       "path": "./packs/castingTheRunesAbilities.db",
-      "entity": "Item"
+      "type": "Item"
     }
   ],
   "languages": [

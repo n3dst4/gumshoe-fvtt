@@ -14,7 +14,7 @@ export const installCompendiumExportButton = () => {
   Hooks.on(
     "renderCompendium",
     (app: Compendium<CompendiumCollection.Metadata>, jQ: JQuery, data: any) => {
-      const entity = app.collection.metadata.entity;
+      const entity = app.collection.metadata.type;
       if (!(entity === "Item" || entity === "Actor")) {
         return;
       }
