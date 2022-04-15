@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
 import React, { useCallback, useEffect, useState } from "react";
-import { customSystem } from "../constants";
+import { customSystem, settingsSaved } from "../constants";
 import { assertGame, getDevMode } from "../functions";
 import * as settings from "../settingsHelpers";
 import { tealTheme } from "../themes/tealTheme";
@@ -205,6 +205,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         settings.setUseMwInjuryStatus(useMwInjuryStatus),
       ]);
       foundryApplication.close();
+      Hooks.call(settingsSaved);
     },
     [
       defaultTheme,

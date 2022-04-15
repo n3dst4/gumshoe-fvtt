@@ -19,18 +19,12 @@ import { registerDevModeDebugFlag } from "./startup/registerDevModeDebugFlag";
 import { installActorImageHookHandler } from "./startup/installActorImageHookHandler";
 import { injectGlobalHelper } from "./startup/injectGlobalHelper";
 import { loadCustomThemes } from "./startup/loadCustomThemes";
+import { handleMwItemType } from "./startup/disableMwItemType";
 
 injectGlobalHelper();
 
 // Initialize system
 Hooks.once("init", async function () {
-  // this is how we could delete an item type, if we felt like it:
-  // assertGame(game);
-  // delete CONFIG.Item.typeLabels.generalAbility;
-  // game.system.entityTypes.Item.splice(
-  //   game.system.entityTypes.Item.indexOf("generalAbility"),
-  //   1
-  // );
   logger.log(`${systemName} | Initializing system`);
   registerSettings();
   await preloadTemplates();
@@ -59,3 +53,4 @@ initializePackGenerators();
 installAbilityCardChatWrangler();
 installFathom();
 loadCustomThemes();
+handleMwItemType();
