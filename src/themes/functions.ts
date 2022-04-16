@@ -42,6 +42,28 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
       ...seed.largeSheetRootStyle,
     },
     smallSheetRootStyle: seed.smallSheetRootStyle ?? seed.largeSheetRootStyle,
+    tabActiveStyle: seed.tabActiveStyle || {
+      background: seed.colors.backgroundPrimary,
+      ":hover": {
+        textShadow: "none",
+      },
+    },
+    tabStyle: seed.tabStyle || {
+      flex: 1,
+      padding: "0.3em",
+      display: "inline-block",
+      textAlign: "center",
+      fontSize: "1.4em",
+      background: seed.colors.backgroundSecondary,
+      borderRadius: "0.2em 0.2em 0 0",
+      color: seed.colors.accent,
+      ":hover": {
+        textShadow: `0 0 0.3em ${seed.colors.glow}`,
+      },
+    },
+    panelStyle: seed.panelStyle || {
+
+    },
     colors: {
       ...seed.colors,
       bgOpaquePrimary,

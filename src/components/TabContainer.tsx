@@ -31,7 +31,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
 
   const theme = useContext(ThemeContext);
 
-  const radioGroup = useMemo(() => nanoid(), []);
+  const radioGroup = useMemo(nanoid, []);
 
   return (
     <div
@@ -51,29 +51,8 @@ export const TabContainer: React.FC<TabContainerProps> = ({
         },
         "input[type=radio]": {
           display: "none",
-          "+label": {
-            flex: 1,
-            padding: "0.3em",
-            display: "inline-block",
-            textAlign: "center",
-            fontSize: "1.4em",
-            background: theme.colors.backgroundSecondary,
-            borderRadius: "0.2em 0.2em 0 0",
-            color: theme.colors.accent,
-
-            ":hover": {
-              textShadow: `0 0 0.3em ${theme.colors.glow}`,
-            },
-          },
-          "&:checked+label": {
-            // background: "grey",
-            // border: "2px inset white",
-            // backgroundColor: "rgba(255,111,18,0.2)",
-            background: theme.colors.backgroundPrimary,
-            ":hover": {
-              textShadow: "none",
-            },
-          },
+          "+label": theme.tabStyle,
+          "&:checked+label": theme.tabActiveStyle,
           "&[disabled]+label": {
             opacity: 0.3,
             ":hover": {
