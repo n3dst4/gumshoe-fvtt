@@ -105,8 +105,8 @@ export const InvestigatorPCSheet = ({
           css={{
             gridArea: "stats",
             padding: "0.5em",
-            backgroundColor: theme.colors.backgroundSecondary,
             position: "relative",
+            ...theme.panelStyleSecondary,
           }}
         >
           <InputGrid>
@@ -154,7 +154,7 @@ export const InvestigatorPCSheet = ({
             overflowX: "visible",
             overflowY: "auto",
             padding: "0.5em",
-            background: theme.colors.backgroundPrimary,
+            ...theme.panelStylePrimary,
           }}
           >
             {getUseMwStyleAbilities() &&

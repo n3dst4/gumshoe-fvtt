@@ -61,8 +61,11 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
         textShadow: `0 0 0.3em ${seed.colors.glow}`,
       },
     },
-    panelStyle: seed.panelStyle || {
-
+    panelStylePrimary: seed.panelStylePrimary || {
+      backgroundColor: seed.colors.backgroundPrimary,
+    },
+    panelStyleSecondary: seed.panelStyleSecondary || seed.panelStylePrimary || {
+      backgroundColor: seed.colors.backgroundSecondary,
     },
     colors: {
       ...seed.colors,

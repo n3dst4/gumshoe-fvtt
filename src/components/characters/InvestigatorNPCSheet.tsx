@@ -97,8 +97,8 @@ export const InvestigatorNPCSheet = ({
           css={{
             gridArea: "notes",
             padding: "0.5em",
-            backgroundColor: theme.colors.backgroundSecondary,
             position: "relative",
+            ...theme.panelStyleSecondary,
             // height: "12em",
           }}
         >
@@ -140,7 +140,7 @@ export const InvestigatorNPCSheet = ({
             overflowX: "visible",
             overflowY: "auto",
             padding: "1em",
-            background: theme.colors.backgroundPrimary,
+            ...theme.panelStylePrimary,
           }}
         >
             <TrackersArea actor={actor} />
@@ -158,12 +158,12 @@ export const InvestigatorNPCSheet = ({
           css={{
             gridArea: "stats",
             position: "relative",
-            background: theme.colors.backgroundPrimary,
             padding: "0.5em",
             display: "grid",
             gridTemplateColumns: "1fr max-content",
             gridAutoRows: "min-content",
             columnGap: "0.5em",
+            ...theme.panelStylePrimary,
           }}
         >
           <button
@@ -252,7 +252,6 @@ export const InvestigatorNPCSheet = ({
           css={{
             gridArea: "body",
             position: "relative",
-            background: theme.colors.backgroundPrimary,
             padding: "0.5em",
             overflow: "auto",
           }}

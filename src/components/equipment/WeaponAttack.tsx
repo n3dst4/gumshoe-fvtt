@@ -130,10 +130,9 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     <div css={{ ...absoluteCover, display: "flex", flexDirection: "column" }}>
       <InputGrid
         css={{
-          border: `1px solid ${theme.colors.text}`,
           padding: "1em",
           marginBottom: "0.5em",
-          background: theme.colors.backgroundSecondary,
+          ...theme.panelStyleSecondary,
         }}
       >
         <GridField label="Spend">

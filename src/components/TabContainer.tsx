@@ -93,8 +93,8 @@ export const TabContainer: React.FC<TabContainerProps> = ({
           flex: 1,
           position: "relative",
           overflow: "auto",
-          background: theme.colors.backgroundPrimary,
           padding: "0.5em",
+          ...theme.panelStylePrimary,
         }}
       >
         {activeTabDef?.content}
