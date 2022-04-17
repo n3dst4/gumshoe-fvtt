@@ -129,6 +129,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   return (
     <div css={{ ...absoluteCover, display: "flex", flexDirection: "column" }}>
       <InputGrid
+        className={theme.panelClass}
         css={{
           padding: "1em",
           marginBottom: "0.5em",

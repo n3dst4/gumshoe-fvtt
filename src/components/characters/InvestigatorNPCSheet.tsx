@@ -94,6 +94,7 @@ export const InvestigatorNPCSheet = ({
           />
         </div>
         <div
+          className={theme.panelClass}
           css={{
             gridArea: "notes",
             padding: "0.5em",
@@ -134,6 +135,7 @@ export const InvestigatorNPCSheet = ({
         />
 
         <div
+          className={theme.panelClass}
           css={{
             gridArea: "pools",
             position: "relative",
@@ -155,6 +157,7 @@ export const InvestigatorNPCSheet = ({
         </div>
 
         <div
+          className={theme.panelClass}
           css={{
             gridArea: "stats",
             position: "relative",

@@ -48,6 +48,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
 
   return (
     <InputGrid
+      className={theme.panelClass}
       css={{
         padding: "1em",
         marginBottom: "1em",

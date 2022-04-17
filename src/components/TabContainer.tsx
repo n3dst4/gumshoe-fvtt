@@ -78,7 +78,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
                 checked={id === selected}
                 onChange={onChange}
               />
-              <label htmlFor={htmlId} tabIndex={0}>
+              <label htmlFor={htmlId} tabIndex={0} className={theme.tabClass}>
                 {typeof label === "string"
                   ? <Translate>{label}</Translate>
                   : label
@@ -89,6 +89,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
         })}
       </div>
       <div
+        className={theme.panelClass}
         css={{
           flex: 1,
           position: "relative",

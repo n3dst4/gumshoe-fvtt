@@ -102,6 +102,7 @@ export const InvestigatorPCSheet = ({
         />
 
         <div
+          className={theme.panelClass}
           css={{
             gridArea: "stats",
             padding: "0.5em",
@@ -148,6 +149,7 @@ export const InvestigatorPCSheet = ({
         </div>
 
         <div
+          className={theme.panelClass}
           css={{
             gridArea: "pools",
             position: "relative",
