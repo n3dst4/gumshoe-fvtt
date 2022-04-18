@@ -3,6 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { Fragment } from "react";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { getShowEmptyInvestigativeCategories } from "../../settingsHelpers";
 import { assertActiveCharacterDataSource } from "../../types";
 import { AbilitySlugPlay } from "./AbilitySlugPlay";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
@@ -19,6 +20,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
 }) => {
   assertActiveCharacterDataSource(actor.data);
   const { investigativeAbilities, generalAbilities } = useAbilities(actor, true);
+  const showEmpty = getShowEmptyInvestigativeCategories();
 
   return (
     <Fragment>
@@ -43,17 +45,19 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
           }}
         >
           {Object.keys(investigativeAbilities).map<JSX.Element>((cat) => (
-            <Fragment
-              key={cat}
-            >
-              <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
-              {
-                sortEntitiesByName(investigativeAbilities[cat]).map<JSX.Element>((ability) => (
-                  <AbilitySlugPlay key={ability.id} ability={ability}/>
-                ))
-              }
-              {investigativeAbilities[cat].length === 0 && <NoAbilitiesNote />}
-            </Fragment>
+            (showEmpty || investigativeAbilities[cat].length > 0)
+              ? <Fragment
+                key={cat}
+              >
+                <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
+                {
+                  sortEntitiesByName(investigativeAbilities[cat]).map<JSX.Element>((ability) => (
+                    <AbilitySlugPlay key={ability.id} ability={ability}/>
+                  ))
+                }
+                {investigativeAbilities[cat].length === 0 && <NoAbilitiesNote />}
+              </Fragment>
+              : <span/>
           ))}
         </div>
         <div

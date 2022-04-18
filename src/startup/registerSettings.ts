@@ -175,6 +175,24 @@ export const registerSettings = function () {
     type: String,
   });
 
+  game.settings.register(c.systemName, c.genericOccupation, {
+    name: "Generic occupation",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: "Investigator",
+    type: String,
+  });
+
+  game.settings.register(c.systemName, c.showEmptyInvestigativeCategories, {
+    name: "Show empty investigative categories?",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: true,
+    type: Boolean,
+  });
+
   // Define a settings submenu which handles advanced configuration needs
   game.settings.registerMenu(c.systemName, "investigatorSettingsMenu", {
     name: "INVESTIGATOR Settings",

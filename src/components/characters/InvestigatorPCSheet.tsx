@@ -16,7 +16,7 @@ import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
-import { getMwHiddenShortNotes, getUseMwStyleAbilities, getOccupationlabel, getShortNotes, getMwUseAlternativeItemTypes, getUseMwInjuryStatus } from "../../settingsHelpers";
+import { getMwHiddenShortNotes, getUseMwStyleAbilities, getOccupationlabel, getShortNotes, getMwUseAlternativeItemTypes, getUseMwInjuryStatus, getGenericOccupation } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertPCDataSource, isPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -87,7 +87,7 @@ export const InvestigatorPCSheet = ({
           <LogoEditable
             mainText={actor.data.name}
             subText={actor.data.data.occupation}
-            defaultSubText="Investigator"
+            defaultSubText={getGenericOccupation()}
             onChangeMainText={actor.setName}
             onChangeSubText={actor.setOccupation}
           />

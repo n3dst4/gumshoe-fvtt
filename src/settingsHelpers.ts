@@ -25,6 +25,8 @@ export const getSystemPreset = getSetting<string>(constants.systemPreset);
 export const getUseBoost = getSetting<boolean>(constants.useBoost);
 export const getDebugTranslations = getSetting<boolean>(constants.debugTranslations);
 export const getCustomThemePath = getSetting<string>(constants.customThemePath);
+export const getGenericOccupation = getSetting<string>(constants.genericOccupation);
+export const getShowEmptyInvestigativeCategories = getSetting<boolean>(constants.showEmptyInvestigativeCategories);
 
 export const getUseMwStyleAbilities = getSetting<boolean>(constants.useMwStyleAbilities);
 export const getMwHiddenShortNotes = getSetting<string[]>(constants.mwHiddenShortNotes);
@@ -45,6 +47,8 @@ export const setSystemPreset = setSetting<string>(constants.systemPreset);
 export const setUseBoost = setSetting<boolean>(constants.useBoost);
 export const setDebugTranslations = setSetting<boolean>(constants.debugTranslations);
 export const setCustomThemePath = setSetting<string>(constants.customThemePath);
+export const setGenericOccupation = setSetting<string>(constants.genericOccupation);
+export const setShowEmptyInvestigativeCategories = setSetting<boolean>(constants.showEmptyInvestigativeCategories);
 
 export const setUseMwStyleAbilities = setSetting<boolean>(constants.useMwStyleAbilities);
 export const setMwHiddenShortNotes = setSetting<string[]>(constants.mwHiddenShortNotes);

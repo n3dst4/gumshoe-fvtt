@@ -115,5 +115,7 @@
     "investigator.Weapon": "Weapon",
     "investigator.Weapons": "Weapons",
     "investigator.WhoopsNo": "Whoops, No!",
-    "investigator.YesPlease": "Yes please!"
+    "investigator.YesPlease": "Yes please!",
+    "investigator.GenericOccupation": "Generic occupation",
+    "investigator.ShowEmptyInvestigativeCategories": "Show empty investigative categories?"
 }

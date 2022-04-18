@@ -16,6 +16,7 @@ import { ListEdit } from "./inputs/ListEdit";
 import { SettingsGridField } from "./inputs/SettingsGridField";
 import { Translate } from "./Translate";
 import { runtimeConfig } from "../runtime";
+import * as constants from "../constants";
 
 type InvestigatorSettingsProps = {
   foundryApplication: Application,
@@ -95,6 +96,14 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     settings.getCustomThemePath(),
     resetPreset,
   );
+  const [genericOccupation, setGenericOccupation] = useStateWithPreset(
+    settings.getGenericOccupation(),
+    resetPreset,
+  );
+  const [showEmptyInvestigativeCategories, setShowEmptyInvestigativeCategories] = useStateWithPreset(
+    settings.getShowEmptyInvestigativeCategories(),
+    resetPreset,
+  );
 
   const [useMwStyleAbilities, setUseMwStyleAbilities] = useStateWithPreset(
     settings.getUseMwStyleAbilities(),
@@ -116,6 +125,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
 
   const onSelectPreset = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
+      assertGame(game);
       const presetId = e.currentTarget.value;
       if (presetId === customSystem) {
         setSystemPreset(presetId);
@@ -141,6 +151,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setMwHiddenShortNotes(preset.mwHiddenShortNotes ?? []);
       setMwUseAlternativeItemTypes(preset.mwUseAlternativeItemTypes);
       setSystemPreset(presetId);
+      setGenericOccupation(preset.genericOccupation ?? constants.genericOccupationDefault);
+      setShowEmptyInvestigativeCategories(preset.showEmptyInvestigativeCategories ?? constants.showEmptyInvestigativeCategoriesDefault);
     },
     [
       presets,
@@ -157,6 +169,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setUseMwStyleAbilities,
       setMwHiddenShortNotes,
       setMwUseAlternativeItemTypes,
+      setShowEmptyInvestigativeCategories,
+      setGenericOccupation,
     ],
   );
 
@@ -199,6 +213,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         settings.setSystemPreset(systemPreset),
         settings.setDebugTranslations(debugTranslations),
         settings.setCustomThemePath(customThemePath),
+        settings.setGenericOccupation(genericOccupation),
+        settings.setShowEmptyInvestigativeCategories(showEmptyInvestigativeCategories),
         settings.setUseMwStyleAbilities(useMwStyleAbilities),
         settings.setMwHiddenShortNotes(mwHiddenShortNotes),
         settings.setMwUseAlternativeItemTypes(mwUseAlternativeItemTypes),
@@ -226,6 +242,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       mwUseAlternativeItemTypes,
       foundryApplication,
       useMwInjuryStatus,
+      genericOccupation,
+      showEmptyInvestigativeCategories,
     ],
   );
 
@@ -466,7 +484,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
           <SettingsGridField label="Long Notes Fields" index={idx++}>
             <ListEdit value={longNotes} onChange={setLongNotes} />
           </SettingsGridField>
-          <SettingsGridField label="Can abilities be boosted?" index={idx++}>
+          <SettingsGridField label="Can Abilities be Boosted?" index={idx++}>
             <Checkbox checked={useBoost} onChange={setUseBoost} />
           </SettingsGridField>
           <SettingsGridField label="Custom themes path" index={idx++}>
@@ -475,6 +493,16 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
               value={customThemePath}
             />
           </SettingsGridField>
+          <SettingsGridField label="Generic Occupation" index={idx++}>
+            <AsyncTextInput
+              onChange={setGenericOccupation}
+              value={genericOccupation}
+            />
+          </SettingsGridField>
+          <SettingsGridField label="Show empty Investigative categories?" index={idx++}>
+            <Checkbox checked={showEmptyInvestigativeCategories} onChange={setShowEmptyInvestigativeCategories} />
+          </SettingsGridField>
+
           {
             isDevMode &&
               <SettingsGridField label="Debug translations?" index={idx++}>

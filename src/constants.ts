@@ -33,6 +33,10 @@ export const newNPCPacks = "newNPCPacks" as const;
 export const useBoost = "useBoost" as const;
 export const debugTranslations = "debugTranslations" as const;
 export const customThemePath = "customThemePath" as const;
+export const genericOccupation = "genricOccupation" as const;
+export const genericOccupationDefault = "Investigator";
+export const showEmptyInvestigativeCategories = "showEmptyInvestigativeCategories" as const;
+export const showEmptyInvestigativeCategoriesDefault = true;
 
 // settings for MW-specific settings
 export const mwHiddenShortNotes = "mwHiddenShortNotes" as const;
