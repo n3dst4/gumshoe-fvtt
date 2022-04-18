@@ -68,7 +68,7 @@ export const InvestigatorNPCSheet = ({
           bottom: 0,
           left: 0,
           display: "grid",
-          gridTemplateRows: "min-content 1fr min-content 1.5fr",
+          gridTemplateRows: "min-content minmax(10em, 1fr) min-content 1.5fr",
           gridTemplateColumns: "max-content 1fr 10em",
           gap: "0.5em",
           gridTemplateAreas:
@@ -97,7 +97,6 @@ export const InvestigatorNPCSheet = ({
           className={theme.panelClass}
           css={{
             gridArea: "notes",
-            padding: "0.5em",
             position: "relative",
             ...theme.panelStyleSecondary,
             // height: "12em",
@@ -107,6 +106,7 @@ export const InvestigatorNPCSheet = ({
             css={{
               ...absoluteCover,
               gridTemplateRows: "1fr",
+              padding: "0.5em",
             }}
           >
             <NotesEditorWithControls
