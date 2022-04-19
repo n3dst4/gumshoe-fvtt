@@ -17,6 +17,7 @@ interface TextEditorWithControlsProps {
   allowChangeFormat: boolean;
   index?: number;
   title?: string;
+  h2?: boolean;
 }
 
 export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
@@ -28,6 +29,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   allowChangeFormat,
   index,
   title,
+  h2 = false,
 }: TextEditorWithControlsProps) => {
   assertGame(game);
   const [editMode, setEditMode] = useState(false);
@@ -95,19 +97,32 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
       }}
     >
       <div css={{ display: "flex", flexDirection: "row" }}>
-        <h1
-          css={{
-            "&&": {
-              marginTop: 0,
-            },
-            flex: 1,
-          }}
-        >
-          {title === undefined
-            ? <Translate>Notes</Translate>
-            : title
+        {h2
+          ? <h2
+              css={{
+                "&&": {
+                  marginTop: 0,
+                },
+                flex: 1,
+              }}
+            >
+            {title === undefined
+              ? <Translate>Notes</Translate>
+              : title
+            }
+          </h2>
+          : <h3
+              css={{
+                flex: 1,
+              }}
+            >
+              {title === undefined
+                ? <Translate>Notes</Translate>
+                : title
+              }
+            </h3>
           }
-        </h1>
+
         <div>
           {
             isDebugging &&

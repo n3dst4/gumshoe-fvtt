@@ -43,6 +43,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
       css={{
         paddingBottom: "1em",
         display: "grid",
+        gap: "0.3em",
         height: "100%",
         position: "relative",
         gridTemplateColumns: "auto 1fr auto",

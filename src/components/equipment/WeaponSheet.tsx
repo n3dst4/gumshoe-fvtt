@@ -35,6 +35,7 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
           "\"image slug     cog\" " +
           "\"image headline headline\" " +
           "\"body  body     body\" ",
+        gap: "0.3em",
       }}
     >
       {/* Slug */}

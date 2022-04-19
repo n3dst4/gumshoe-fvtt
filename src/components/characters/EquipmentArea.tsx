@@ -31,7 +31,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
           flexDirection: "row",
         }}
       >
-        <h1
+        <h2
           css={{
             flex: 1,
             "&&": {
@@ -40,7 +40,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
           }}
         >
           <Translate>Equipment</Translate>
-        </h1>
+        </h2>
         <button
           css={{
             flexBasis: "max-content",
