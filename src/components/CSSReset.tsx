@@ -41,6 +41,8 @@ export const CSSReset: React.FC<CSSResetProps> = ({
     }
   }, [noStyleAppWindow, theme.appWindowStyle]);
 
+  const rootStyle = (mode === CSSResetMode.large ? theme.largeSheetRootStyle : theme.smallSheetRootStyle);
+
   return (
     <ThemeContext.Provider value={theme}>
       <Global styles={theme.global} />
@@ -54,8 +56,6 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           backgroundColor: theme.colors.wallpaper,
           height: "100%",
           accentColor: theme.colors.accent,
-          ...(mode === CSSResetMode.large ? theme.largeSheetRootStyle : theme.smallSheetRootStyle),
-
           "*": {
             // all: "initial",
             scrollbarWidth: "thin",
@@ -153,6 +153,8 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           hr: {
             borderColor: theme.colors.controlBorder,
           },
+          ...rootStyle,
+
         }}
       >
         {children}

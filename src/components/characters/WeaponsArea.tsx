@@ -17,36 +17,41 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
   const items = actor.getWeapons();
   return (
     <div>
-      <div>
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
         <h1
           css={{
-            display: "inline",
+            flex: 1,
+            "&&": {
+              margin: "0 0 0 0",
+            },
           }}
         >
           <Translate>Weapons</Translate>
         </h1>
         <button
           css={{
-            float: "right",
-            width: "auto",
+            flexBasis: "max-content",
+            alignSelf: "flex-start",
           }}
           onClick={async () => {
-            await actor.createEmbeddedDocuments(
-              "Item",
-              [
-                {
-                  type: weapon,
-                  name: "New weapon",
-                },
-              ],
-              {
-                renderSheet: true,
-              });
+            await actor.createEmbeddedDocuments("Item", [{
+              type: weapon,
+              name: "New weapon",
+            }], {
+              renderSheet: true,
+            });
+            // newItem.sheet.render(true);
           }}
         >
           <i className="fa fa-plus"/><Translate>Add Weapon</Translate>
         </button>
       </div>
+
       {items.length === 0 &&
         <i
           css={{

@@ -25,18 +25,26 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
   const items = actor.getEquipment();
   return (
     <div>
-      <div>
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
         <h1
           css={{
-            display: "inline",
+            flex: 1,
+            "&&": {
+              margin: "0 0 0 0",
+            },
           }}
         >
           <Translate>Equipment</Translate>
         </h1>
         <button
           css={{
-            float: "right",
-            width: "auto",
+            flexBasis: "max-content",
+            alignSelf: "flex-start",
           }}
           onClick={async () => {
             await actor.createEmbeddedDocuments("Item", [{
