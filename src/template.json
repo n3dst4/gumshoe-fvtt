@@ -5,6 +5,9 @@
       "activeCharacter": {
         "initiativeAbility": "",
         "hitThreshold": 3,
+        "stats": {
+          "hitThreshold": 3
+        },
         "hideZeroRated": false,
         "mwInjuryStatus": "uninjured",
         "resources": {
