@@ -95,13 +95,19 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
       }}
     >
       <div css={{ display: "flex", flexDirection: "row" }}>
-        <label>
+        <h1
+          css={{
+            "&&": {
+              marginTop: 0,
+            },
+            flex: 1,
+          }}
+        >
           {title === undefined
             ? <Translate>Notes</Translate>
             : title
           }
-        </label>
-        <span css={{ flex: 1 }}/>
+        </h1>
         <div>
           {
             isDebugging &&
