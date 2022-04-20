@@ -7,6 +7,8 @@ export const defaultSystemPreset = "pathOfCthulhuPreset";
 export const templatesPath = `systems/${systemName}/templates` as const;
 export const reactTemplatePath = `${templatesPath}/react-application.hbs` as const;
 export const customSystem = "customSystem" as const;
+export const genericOccupationDefault = "Investigator";
+export const showEmptyInvestigativeCategoriesDefault = true;
 
 // item types
 export const investigativeAbility = "investigativeAbility" as const;
@@ -34,9 +36,7 @@ export const useBoost = "useBoost" as const;
 export const debugTranslations = "debugTranslations" as const;
 export const customThemePath = "customThemePath" as const;
 export const genericOccupation = "genricOccupation" as const;
-export const genericOccupationDefault = "Investigator";
 export const showEmptyInvestigativeCategories = "showEmptyInvestigativeCategories" as const;
-export const showEmptyInvestigativeCategoriesDefault = true;
 
 // settings for MW-specific settings
 export const mwHiddenShortNotes = "mwHiddenShortNotes" as const;

@@ -1,6 +1,6 @@
 import "./startup/setWebkitPublicPath";
 import { systemName } from "./constants";
-import { registerSettings } from "./startup/registerSettings";
+import { registerSettingsMenu } from "./startup/registerSettings";
 import { preloadTemplates } from "./startup/preloadTemplates";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { installCompendiumExportButton } from "./startup/installCompendiumExportButton";
@@ -26,7 +26,7 @@ injectGlobalHelper();
 // Initialize system
 Hooks.once("init", async function () {
   logger.log(`${systemName} | Initializing system`);
-  registerSettings();
+  registerSettingsMenu();
   await preloadTemplates();
   registerSheetsAndClasses();
   registerBabele();

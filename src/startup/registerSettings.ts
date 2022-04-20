@@ -3,195 +3,194 @@ import { assertGame, mapValues } from "../functions";
 import { pathOfCthulhuPreset } from "../presets";
 import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 import { InvestigatorSettingsClass } from "../module/InvestigatorSettingsClass";
-import { defaultCustomThemePath } from "../constants";
+import { defaultCustomThemePath, systemName } from "../constants";
 import { runtimeConfig } from "../runtime";
 
 // any of these could have an `onChange` added if we wanted to
 
-export const registerSettings = function () {
+interface SettingFactoryArgs<T> {
+  key: string;
+  name: string;
+  scope?: "world"|"local";
+  config?: boolean;
+  choices?: Record<string, string>;
+  default: T;
+  onChange?: (newVal: T) => void;
+}
+
+const getSetting = <T = string>(key: string) => (): T => {
   assertGame(game);
+  return game.settings.get(systemName, key) as T;
+};
 
-  // this is legacy
-  game.settings.register(c.systemName, c.abilityCategories, {
+const setSetting = <T = string>(key: string) => (value: T) => {
+  assertGame(game);
+  return game.settings.set(systemName, key, value);
+};
+
+const createSetting = <T>(
+  {
+    default: _default,
+    key,
+    name,
+    config = false,
+    scope = "world",
+    choices,
+    onChange,
+  }: SettingFactoryArgs<T>,
+  type: any,
+) => {
+  Hooks.once("init", () => {
+    assertGame(game);
+    game.settings.register(c.systemName, key, {
+      name,
+      scope,
+      config,
+      default: _default,
+      type,
+      choices,
+      onChange,
+    });
+  });
+  return ({
+    key: key,
+    get: getSetting<string>(key),
+    set: setSetting<string>(key),
+  });
+};
+
+const createSettingString = (args: SettingFactoryArgs<string>) => (
+  createSetting(args, String)
+);
+
+const createSettingArray = (args: SettingFactoryArgs<any[]>) => (
+  createSetting(args, Array)
+);
+
+const createSettingBoolean = (args: SettingFactoryArgs<boolean>) => (
+  createSetting(args, Boolean)
+);
+
+const createSettingObject = (args: SettingFactoryArgs<object>) => (
+  createSetting(args, Object)
+);
+
+export const settings = {
+  abilityCategories: createSettingString({
+    key: "abilityCategories",
     name: "Ability categories",
-    hint: "Comma-separated (DNU)",
-    scope: "world",
-    config: false,
     default: "Academic,Interpersonal,Technical",
-    type: String,
-  });
-
-  game.settings.register(c.systemName, c.systemMigrationVersion, {
+  }),
+  systemMigrationVersion: createSettingString({
+    key: "systemMigrationVersion",
     name: "System migration version",
-    hint: "",
-    scope: "world",
-    config: false,
     default: c.defaultMigratedSystemVersion,
-    type: String,
-  });
-  game.settings.register(c.systemName, c.defaultThemeName, {
+  }),
+  defaultThemeName: createSettingString({
+    key: "defaultThemeName",
     name: "Default sheet theme",
-    scope: "world",
-    config: false,
-    choices: mapValues((theme: ThemeV1) => (theme.displayName), runtimeConfig.themes),
     default: pathOfCthulhuPreset.defaultTheme,
-    type: String,
-  });
-
-  game.settings.register(c.systemName, c.investigativeAbilityCategories, {
+    choices: mapValues((theme: ThemeV1) => (theme.displayName), runtimeConfig.themes),
+  }),
+  investigativeAbilityCategories: createSettingObject({
+    key: "investigativeAbilityCategories",
     name: "Investigative ability categories",
-    scope: "world",
-    config: false,
     default: pathOfCthulhuPreset.investigativeAbilityCategories,
-    type: Object,
-  });
-  game.settings.register(c.systemName, c.generalAbilityCategories, {
+  }),
+  generalAbilityCategories: createSettingObject({
+    key: "generalAbilityCategories",
     name: "General ability categories",
-    scope: "world",
-    config: false,
     default: pathOfCthulhuPreset.generalAbilityCategories,
-    type: Object,
-  });
-  game.settings.register(c.systemName, c.combatAbilities, {
+  }),
+  combatAbilities: createSettingObject({
+    key: "combatAbilities",
     name: "Combat abilities",
-    scope: "world",
-    config: false,
     default: pathOfCthulhuPreset.combatAbilities,
-    type: Object,
-  });
-  game.settings.register(c.systemName, c.occupationLabel, {
+  }),
+  occupationLabel: createSettingString({
+    key: "occupationLabel",
     name: "What do we call \"Occupation\"?",
-    scope: "world",
-    config: false,
     default: pathOfCthulhuPreset.occupationLabel,
-    type: String,
-  });
-  game.settings.register(c.systemName, c.shortNotes, {
+  }),
+  shortNotes: createSettingObject({
+    key: "shortNotes",
     name: "Short Notes",
-    scope: "world",
-    config: false,
     default: pathOfCthulhuPreset.shortNotes,
-    type: Object,
-  });
-  game.settings.register(c.systemName, c.longNotes, {
+  }),
+  longNotes: createSettingObject({
+    key: "longNotes",
     name: "Long Notes",
-    scope: "world",
-    config: false,
     default: pathOfCthulhuPreset.longNotes,
-    type: Object,
-  });
-
-  game.settings.register(c.systemName, c.newPCPacks, {
+  }),
+  newPCPacks: createSettingArray({
+    key: "newPCPacks",
     name: "Compendium packs for new PCs",
-    scope: "world",
-    config: false,
     default: pathOfCthulhuPreset.newPCPacks,
-    type: Array,
-    onChange: (newPacks: string[]) => {
-      Hooks.call(c.newPCPacksUpdated, newPacks);
-    },
-  });
-
-  game.settings.register(c.systemName, c.newNPCPacks, {
+  }),
+  newNPCPacks: createSettingArray({
+    key: "newNPCPacks",
     name: "Compendium packs for new NPCs",
-    scope: "world",
-    config: false,
     default: pathOfCthulhuPreset.newNPCPacks,
-    type: Array,
     onChange: (newPacks: string[]) => {
       Hooks.call(c.newNPCPacksUpdated, newPacks);
     },
-  });
-
-  game.settings.register(c.systemName, c.systemPreset, {
+  }),
+  systemPreset: createSettingString({
+    key: "systemPreset",
     name: "System preset",
-    hint: "",
-    scope: "world",
-    config: false,
     default: "pathOfCthulhuPreset",
-    type: String,
-  });
-
-  game.settings.register(c.systemName, c.useBoost, {
+  }),
+  useBoost: createSettingBoolean({
+    key: "useBoost",
     name: "Use Boost",
-    hint: "",
-    scope: "world",
-    config: false,
     default: pathOfCthulhuPreset.useBoost,
-    type: Boolean,
-  });
-
-  game.settings.register(c.systemName, c.debugTranslations, {
+  }),
+  debugTranslations: createSettingBoolean({
+    key: "debugTranslations",
     name: "Debug translations?",
-    hint: "",
-    scope: "local",
-    config: false,
     default: false,
-    type: Boolean,
-  });
-
-  game.settings.register(c.systemName, c.useMwStyleAbilities, {
+  }),
+  useMwStyleAbilities: createSettingBoolean({
+    key: "useMwStyleAbilities",
     name: "Use Moribund World-style abilities",
-    hint: "",
-    scope: "world",
-    config: false,
     default: false,
-    type: Boolean,
-  });
-
-  game.settings.register(c.systemName, c.mwHiddenShortNotes, {
+  }),
+  mwHiddenShortNotes: createSettingObject({
+    key: "mwHiddenShortNotes",
     name: "Hidden short notes",
-    hint: "",
-    scope: "world",
-    config: false,
     default: [],
-    type: Object,
-  });
-
-  game.settings.register(c.systemName, c.mwUseAlternativeItemTypes, {
+  }),
+  mwUseAlternativeItemTypes: createSettingBoolean({
+    key: "mwUseAlternativeItemTypes",
     name: "Use alternative item types",
-    hint: "",
-    scope: "world",
-    config: false,
     default: false,
-    type: Boolean,
-  });
-
-  game.settings.register(c.systemName, c.useMwInjuryStatus, {
+  }),
+  useMwInjuryStatus: createSettingBoolean({
+    key: "useMwInjuryStatus",
     name: "Use injury status",
-    hint: "",
-    scope: "world",
-    config: false,
     default: false,
-    type: Boolean,
-  });
-
-  game.settings.register(c.systemName, c.customThemePath, {
+  }),
+  customThemePath: createSettingString({
+    key: "customThemePath",
     name: "Custom theme path",
-    hint: "",
-    scope: "world",
-    config: false,
     default: defaultCustomThemePath,
-    type: String,
-  });
-
-  game.settings.register(c.systemName, c.genericOccupation, {
+  }),
+  genericOccupation: createSettingString({
+    key: "genericOccupation",
     name: "Generic occupation",
-    hint: "",
-    scope: "world",
-    config: false,
     default: "Investigator",
-    type: String,
-  });
-
-  game.settings.register(c.systemName, c.showEmptyInvestigativeCategories, {
+  }),
+  showEmptyInvestigativeCategories: createSettingBoolean({
+    key: "showEmptyInvestigativeCategories",
     name: "Show empty investigative categories?",
-    hint: "",
-    scope: "world",
-    config: false,
     default: true,
-    type: Boolean,
-  });
+  }),
+};
+
+// -----------------------------------------------------------------------------
+
+export const registerSettingsMenu = function () {
+  assertGame(game);
 
   // Define a settings submenu which handles advanced configuration needs
   game.settings.registerMenu(c.systemName, "investigatorSettingsMenu", {
