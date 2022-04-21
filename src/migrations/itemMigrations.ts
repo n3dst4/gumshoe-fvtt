@@ -1,9 +1,8 @@
 import { generalAbility, generalAbilityIcon, investigativeAbilityIcon } from "../constants";
 import { isNullOrEmptyString } from "../functions";
-import { getDefaultGeneralAbilityCategory } from "../settingsHelpers";
 import { escape } from "html-escaper";
 import { isAbilityDataSource, isGeneralAbilityDataSource } from "../types";
-import { settings } from "../settings";
+import { getDefaultGeneralAbilityCategory, settings } from "../settings";
 
 export const addCategoryToGeneralAbilities = (data: any, updateData: any) => {
   if (data.type === generalAbility && isNullOrEmptyString(data.data?.category)) {

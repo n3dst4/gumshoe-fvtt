@@ -1,5 +1,5 @@
 import { assertGame, isNullOrEmptyString } from "../functions";
-import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory } from "../settingsHelpers";
+import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory } from "../settings";
 import { isAbilityDataSource, isGeneralAbilityDataSource } from "../types";
 
 export const installAbilityCategoryHookHandler = () => {
