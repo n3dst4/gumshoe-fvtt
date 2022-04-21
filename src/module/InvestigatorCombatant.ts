@@ -2,7 +2,7 @@ import * as constants from "../constants";
 import { InvestigatorItem } from "./InvestigatorItem";
 import { assertActiveCharacterDataSource } from "../types";
 import { isNullOrEmptyString } from "../functions";
-import { settings } from "../startup/registerSettings";
+import { settings } from "../settings";
 /**
  * Override base Combatant class to override the initiative formula.
  * XXX what i'd like to do is block it from doing a "roll" at all.

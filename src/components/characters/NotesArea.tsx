@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 import { assertPCDataSource } from "../../types";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";

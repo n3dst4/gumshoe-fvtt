@@ -1,6 +1,6 @@
 import { generalAbility, investigativeAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 import { isAbilityDataSource } from "../../types";
 
 export const useAbilities = (actor: Actor, hideZeroRated: boolean) => {

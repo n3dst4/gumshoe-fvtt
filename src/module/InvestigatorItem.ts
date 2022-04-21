@@ -14,7 +14,7 @@ import {
 } from "../types";
 import * as constants from "../constants";
 import { runtimeConfig } from "../runtime";
-import { settings } from "../startup/registerSettings";
+import { settings } from "../settings";
 
 /**
  * Extend the basic Item with some very simple modifications.

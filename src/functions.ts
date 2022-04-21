@@ -1,7 +1,7 @@
 import { systemName } from "./constants";
 import Case from "case";
 import { Dictionary } from "lodash";
-import { settings } from "./startup/registerSettings";
+import { settings } from "./settings";
 
 interface NameHaver {
   name: string|null;

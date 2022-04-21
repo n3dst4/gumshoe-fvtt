@@ -25,7 +25,7 @@ import { AbilitiesAreaMW } from "./MoribundWorld/AbilitiesAreaMW";
 import { MwItemArea } from "./MoribundWorld/MwItemArea";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 
 type InvestigatorPCSheetProps = {
   actor: InvestigatorActor,

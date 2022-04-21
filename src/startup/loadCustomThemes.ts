@@ -4,7 +4,7 @@ import JSON5 from "json5";
 import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
 import { highContrastTheme } from "../themes/highContrastTheme";
 import { assertGame } from "../functions";
-import { settings } from "./registerSettings";
+import { settings } from "../settings";
 
 export function loadCustomThemes () {
   const jsonRe = /\.(?:json|json5)$/;

@@ -1,10 +1,10 @@
-import * as c from "../constants";
-import { assertGame, mapValues } from "../functions";
-import { pathOfCthulhuPreset } from "../presets";
+import * as c from "./constants";
+import { assertGame, mapValues } from "./functions";
+import { pathOfCthulhuPreset } from "./presets";
 import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
-import { InvestigatorSettingsClass } from "../module/InvestigatorSettingsClass";
-import { defaultCustomThemePath, systemName } from "../constants";
-import { runtimeConfig } from "../runtime";
+import { InvestigatorSettingsClass } from "./module/InvestigatorSettingsClass";
+import { defaultCustomThemePath, systemName } from "./constants";
+import { runtimeConfig } from "./runtime";
 
 // any of these could have an `onChange` added if we wanted to
 

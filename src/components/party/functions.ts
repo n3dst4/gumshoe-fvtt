@@ -3,7 +3,7 @@ import { abilityRowkey, ActorAbilityInfo, categoryHeaderKey, RowData, typeHeader
 import * as constants from "../../constants";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertGame } from "../../functions";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 
 /**
  * get a sorted list of ability tuples

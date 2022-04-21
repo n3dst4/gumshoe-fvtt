@@ -6,7 +6,7 @@ import { migrateItemData } from "./migrateItemData";
 import { migrateSceneData } from "./migrateSceneData";
 import { assertGame } from "../functions";
 import * as constants from "../constants";
-import { settings } from "../startup/registerSettings";
+import { settings } from "../settings";
 
 const title = system.title;
 

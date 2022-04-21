@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 import { confirmADoodleDo } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { runtimeConfig } from "../../runtime";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 import { AbilityRowData } from "./types";
 
 type AbilityRowProps = {

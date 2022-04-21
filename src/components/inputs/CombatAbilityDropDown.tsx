@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 
 type CombatAbilityDropDownProps = {
   value: string,

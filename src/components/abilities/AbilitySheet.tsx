@@ -11,7 +11,7 @@ import { ImagePickle } from "../ImagePickle";
 import { AbilityTestMW } from "./AbilityTestMW";
 import { AbilityMwExtraFields } from "./AbilityMwExtraFields";
 import { isGeneralAbilityDataSource } from "../../types";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 
 type AbilitySheetProps = {
   ability: InvestigatorItem,

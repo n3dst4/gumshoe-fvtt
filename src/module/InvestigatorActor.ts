@@ -6,7 +6,7 @@ import { InvestigatorItem } from "./InvestigatorItem";
 import { convertNotes } from "../textFunctions";
 import { tealTheme } from "../themes/tealTheme";
 import { runtimeConfig } from "../runtime";
-import { settings } from "../startup/registerSettings";
+import { settings } from "../settings";
 
 export class InvestigatorActor extends Actor {
   /**

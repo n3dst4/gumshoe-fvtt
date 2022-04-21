@@ -1,6 +1,6 @@
 import "./startup/setWebkitPublicPath";
 import { systemName } from "./constants";
-import { registerSettingsMenu } from "./startup/registerSettings";
+import { registerSettingsMenu } from "./settings";
 import { preloadTemplates } from "./startup/preloadTemplates";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { installCompendiumExportButton } from "./startup/installCompendiumExportButton";

@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useContext } from "react";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertActiveCharacterDataSource } from "../../types";
 import { AbilitySlugEdit } from "./AbilitySlugEdit";

@@ -16,7 +16,7 @@ import { SettingsGridField } from "./inputs/SettingsGridField";
 import { Translate } from "./Translate";
 import { runtimeConfig } from "../runtime";
 import * as constants from "../constants";
-import { settings } from "../startup/registerSettings";
+import { settings } from "../settings";
 
 type InvestigatorSettingsProps = {
   foundryApplication: Application,

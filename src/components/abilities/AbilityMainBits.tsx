@@ -11,7 +11,7 @@ import { Translate } from "../Translate";
 import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveCharacterDataSource, ActiveCharacterDataSource } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 
 type AbilityMainBitsProps = {
   ability: InvestigatorItem,

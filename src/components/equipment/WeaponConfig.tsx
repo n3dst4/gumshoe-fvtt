@@ -14,7 +14,7 @@ import { assertWeaponDataSource } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { absoluteCover } from "../absoluteCover";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 
 type WeaponConfigProps = {
   weapon: InvestigatorItem,

@@ -10,7 +10,7 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, isGeneralAbilityDataSource, MwRefreshGroup } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 
 type AbilityConfigProps = {
   ability: InvestigatorItem,

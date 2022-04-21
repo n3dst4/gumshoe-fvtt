@@ -2,7 +2,7 @@ import { defaultMigratedSystemVersion } from "../constants";
 import { assertGame } from "../functions";
 import system from "../system.json";
 import { migrateWorld } from "../migrations/migrateWorld";
-import { settings } from "./registerSettings";
+import { settings } from "../settings";
 
 export const migrateWorldIfNeeded = async () => {
   assertGame(game);

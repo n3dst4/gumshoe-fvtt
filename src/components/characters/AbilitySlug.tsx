@@ -4,7 +4,7 @@ import { jsx } from "@emotion/react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 
 type AbilitySlugProps = {
   ability: InvestigatorItem,

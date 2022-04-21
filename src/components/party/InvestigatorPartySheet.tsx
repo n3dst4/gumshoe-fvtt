@@ -6,7 +6,7 @@ import { assertGame, sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { runtimeConfig } from "../../runtime";
-import { settings } from "../../startup/registerSettings";
+import { settings } from "../../settings";
 import { AbilityDataSource, assertPartyDataSource, isAbilityDataSource } from "../../types";
 import { CSSReset, CSSResetMode } from "../CSSReset";
 import { ActorSheetAppContext } from "../FoundryAppContext";

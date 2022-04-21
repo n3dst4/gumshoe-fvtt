@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import Case from "case";
 import { systemName } from "../constants";
 import { assertGame, getDevMode } from "../functions";
-import { settings } from "../startup/registerSettings";
+import { settings } from "../settings";
 
 type TranslateProps = {
   children: string,
