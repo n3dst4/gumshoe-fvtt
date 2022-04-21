@@ -7,10 +7,10 @@ import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { getGeneralAbilityCategories, getInvestigativeAbilityCategories, getUseMwStyleAbilities } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, isGeneralAbilityDataSource, MwRefreshGroup } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
+import { settings } from "../../startup/registerSettings";
 
 type AbilityConfigProps = {
   ability: InvestigatorItem,
@@ -42,7 +42,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
     });
   }, [ability]);
 
-  const categories = isGeneral ? getGeneralAbilityCategories() : getInvestigativeAbilityCategories();
+  const categories = isGeneral ? settings.generalAbilityCategories.get() : settings.investigativeAbilityCategories.get();
 
   const isRealCategory = categories.includes(ability.data.data.category);
   const [showCustomField, setShowCustomField] = useState(!isRealCategory);
@@ -183,7 +183,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
           </GridField>
       }
       {
-        getUseMwStyleAbilities() && isGeneralAbilityDataSource(ability.data) &&
+        settings.useMwStyleAbilities.get() && isGeneralAbilityDataSource(ability.data) &&
           <GridField label="Refresh group">
             <select
               value={ability.data.data.mwRefreshGroup}

@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { getLongNotes } from "../../settingsHelpers";
+import { settings } from "../../startup/registerSettings";
 import { assertPCDataSource } from "../../types";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
@@ -14,7 +14,7 @@ type NotesAreaProps = {
 export const NotesArea: React.FC<NotesAreaProps> = ({
   actor,
 }) => {
-  const longNotesNames = getLongNotes();
+  const longNotesNames = settings.longNotes.get();
 
   const updateLongNote = useCallback((value, index) => {
     actor.setLongNote(index, value);

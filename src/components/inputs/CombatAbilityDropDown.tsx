@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
-import { getCombatAbilities } from "../../settingsHelpers";
+import { settings } from "../../startup/registerSettings";
 
 type CombatAbilityDropDownProps = {
   value: string,
@@ -12,7 +12,7 @@ export const CombatAbilityDropDown: React.FC<CombatAbilityDropDownProps> = ({
   value,
   onChange: onChangeOrig,
 }) => {
-  const combatAbilities = getCombatAbilities().sort();
+  const combatAbilities = settings.combatAbilities.get().sort();
 
   const onSelectInitiativeAbility = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {

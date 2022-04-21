@@ -1,12 +1,12 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
 import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat, MwInjuryStatus, InvestigatorActorDataSource } from "../types";
-import { getDefaultThemeName, getNewPCPacks, getNewNPCPacks } from "../settingsHelpers";
 import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 import { InvestigatorItem } from "./InvestigatorItem";
 import { convertNotes } from "../textFunctions";
 import { tealTheme } from "../themes/tealTheme";
 import { runtimeConfig } from "../runtime";
+import { settings } from "../startup/registerSettings";
 
 export class InvestigatorActor extends Actor {
   /**
@@ -211,12 +211,12 @@ export class InvestigatorActor extends Actor {
   }
 
   getSheetTheme (): ThemeV1 {
-    const themeName = this.getSheetThemeName() || getDefaultThemeName();
+    const themeName = this.getSheetThemeName() || settings.defaultThemeName.get();
     const theme = runtimeConfig.themes[themeName];
     if (theme !== undefined) {
       return theme;
-    } else if (runtimeConfig.themes[getDefaultThemeName()] !== undefined) {
-      return runtimeConfig.themes[getDefaultThemeName()];
+    } else if (runtimeConfig.themes[settings.defaultThemeName.get()] !== undefined) {
+      return runtimeConfig.themes[settings.defaultThemeName.get()];
     } else {
       return tealTheme;
     }
@@ -441,7 +441,7 @@ Hooks.on(
       // this used to be done in parallel with Promise.all but I was seeing some
       // weird behaviour (duplicated or missing abilities, or weird reference
       // errors) so I have switched it to serial to see if that helps
-      for (const packId of getNewPCPacks()) {
+      for (const packId of settings.newPCPacks.get()) {
         assertGame(game);
         console.log("PACK", packId);
         const content = await (game.packs?.find((p: any) => p.collection === packId)?.getDocuments());
@@ -462,7 +462,7 @@ Hooks.on(
     }
 
     if (actor.data.type === npc) {
-      for (const packId of getNewNPCPacks()) {
+      for (const packId of settings.newNPCPacks.get()) {
         assertGame(game);
         console.log("PACK", packId);
         const content = await (game.packs?.find((p) => p.documentName === "Item" && p.collection === packId)?.getDocuments());

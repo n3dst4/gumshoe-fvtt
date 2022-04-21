@@ -54,8 +54,8 @@ const createSetting = <T>(
   });
   return ({
     key: key,
-    get: getSetting<string>(key),
-    set: setSetting<string>(key),
+    get: getSetting<T>(key),
+    set: setSetting<T>(key),
   });
 };
 
@@ -63,7 +63,7 @@ const createSettingString = (args: SettingFactoryArgs<string>) => (
   createSetting(args, String)
 );
 
-const createSettingArray = (args: SettingFactoryArgs<any[]>) => (
+const createSettingArray = <T>(args: SettingFactoryArgs<T>) => (
   createSetting(args, Array)
 );
 
@@ -71,8 +71,8 @@ const createSettingBoolean = (args: SettingFactoryArgs<boolean>) => (
   createSetting(args, Boolean)
 );
 
-const createSettingObject = (args: SettingFactoryArgs<object>) => (
-  createSetting(args, Object)
+const createSettingObject = <T>(args: SettingFactoryArgs<T>) => (
+  createSetting<T>(args, Object)
 );
 
 export const settings = {
@@ -155,7 +155,7 @@ export const settings = {
     name: "Use Moribund World-style abilities",
     default: false,
   }),
-  mwHiddenShortNotes: createSettingObject({
+  mwHiddenShortNotes: createSettingObject<string[]>({
     key: "mwHiddenShortNotes",
     name: "Hidden short notes",
     default: [],

@@ -20,8 +20,8 @@ import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { InputGrid } from "../inputs/InputGrid";
 import { absoluteCover } from "../absoluteCover";
-import { getUseMwInjuryStatus } from "../../settingsHelpers";
 import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
+import { settings } from "../../startup/registerSettings";
 
 type InvestigatorNPCSheetProps = {
   actor: InvestigatorActor,
@@ -175,7 +175,7 @@ export const InvestigatorNPCSheet = ({
           >
             <Translate>Full Refresh</Translate>
           </button>
-          {getUseMwInjuryStatus() &&
+          {settings.useMwInjuryStatus.get() &&
             <div css={{ gridColumn: "1/3" }}>
               <MwInjuryStatusWidget
                 status={actor.getMwInjuryStatus()}

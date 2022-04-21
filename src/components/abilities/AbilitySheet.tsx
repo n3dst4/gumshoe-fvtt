@@ -8,10 +8,10 @@ import { AbilityMainBits } from "./AbilityMainBits";
 import { AbilityConfig } from "./AbilityConfig";
 import { Translate } from "../Translate";
 import { ImagePickle } from "../ImagePickle";
-import { getUseMwStyleAbilities } from "../../settingsHelpers";
 import { AbilityTestMW } from "./AbilityTestMW";
 import { AbilityMwExtraFields } from "./AbilityMwExtraFields";
 import { isGeneralAbilityDataSource } from "../../types";
+import { settings } from "../../startup/registerSettings";
 
 type AbilitySheetProps = {
   ability: InvestigatorItem,
@@ -36,7 +36,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
     onInput: onInputName,
   } = useAsyncUpdate(ability.data.name, ability.setName);
 
-  const useMwStyleAbilities = getUseMwStyleAbilities();
+  const useMwStyleAbilities = settings.useMwStyleAbilities.get();
 
   return (
     <div
@@ -116,7 +116,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
                 ? <AbilityTestMW ability={ability} />
                 : <AbilityTest ability={ability} />}
               <AbilityMainBits ability={ability} />
-              {getUseMwStyleAbilities() &&
+              {settings.useMwStyleAbilities.get() &&
                 <AbilityMwExtraFields ability={ability} />
               }
             </Fragment>

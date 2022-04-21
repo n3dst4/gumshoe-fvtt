@@ -4,9 +4,9 @@ import { migrateActorData } from "./migrateActorData";
 import { migrateCompendium } from "./migrateCompendium";
 import { migrateItemData } from "./migrateItemData";
 import { migrateSceneData } from "./migrateSceneData";
-import { setSystemMigrationVersion } from "../settingsHelpers";
 import { assertGame } from "../functions";
 import * as constants from "../constants";
+import { settings } from "../startup/registerSettings";
 
 const title = system.title;
 
@@ -78,7 +78,7 @@ export const migrateWorld = async function () {
   }
 
   // Set the migration as complete
-  setSystemMigrationVersion(system.version);
+  settings.systemMigrationVersion.set(system.version);
   ui.notifications?.info(`${system.title} system migration to version ${system.version} completed!`, { permanent: true });
 };
 

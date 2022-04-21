@@ -16,7 +16,6 @@ import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
-import { getMwHiddenShortNotes, getUseMwStyleAbilities, getOccupationlabel, getShortNotes, getMwUseAlternativeItemTypes, getUseMwInjuryStatus, getGenericOccupation } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertPCDataSource, isPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -26,6 +25,7 @@ import { AbilitiesAreaMW } from "./MoribundWorld/AbilitiesAreaMW";
 import { MwItemArea } from "./MoribundWorld/MwItemArea";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
+import { settings } from "../../startup/registerSettings";
 
 type InvestigatorPCSheetProps = {
   actor: InvestigatorActor,
@@ -52,9 +52,9 @@ export const InvestigatorPCSheet = ({
   }, [actor]);
 
   const theme = actor.getSheetTheme();
-  const shortNotesNames = getShortNotes();
-  const shortHiddenNotesNames = getMwHiddenShortNotes();
-  const occupationLabel = getOccupationlabel();
+  const shortNotesNames = settings.shortNotes.get();
+  const shortHiddenNotesNames = settings.mwHiddenShortNotes.get();
+  const occupationLabel = settings.occupationLabel.get();
 
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
@@ -87,7 +87,7 @@ export const InvestigatorPCSheet = ({
           <LogoEditable
             mainText={actor.data.name}
             subText={actor.data.data.occupation}
-            defaultSubText={getGenericOccupation()}
+            defaultSubText={settings.genericOccupation.get()}
             onChangeMainText={actor.setName}
             onChangeSubText={actor.setOccupation}
           />
@@ -159,7 +159,7 @@ export const InvestigatorPCSheet = ({
             ...theme.panelStylePrimary,
           }}
           >
-            {getUseMwStyleAbilities() &&
+            {settings.useMwStyleAbilities.get() &&
               <Fragment>
               <button onClick={actor.confirmMw2Refresh}>
                 <Translate>2h Refresh</Translate>
@@ -179,7 +179,7 @@ export const InvestigatorPCSheet = ({
               <Translate>Full Refresh</Translate>
             </button>
             <hr/>
-            {getUseMwStyleAbilities() ||
+            {settings.useMwStyleAbilities.get() ||
               <Fragment>
                 <button onClick={actor.confirm24hRefresh}>
                   <Translate>24h Refresh</Translate>
@@ -187,7 +187,7 @@ export const InvestigatorPCSheet = ({
                 <hr/>
               </Fragment>
             }
-            {getUseMwInjuryStatus() &&
+            {settings.useMwInjuryStatus.get() &&
               <Fragment>
                 <MwInjuryStatusWidget
                   status={actor.getMwInjuryStatus()}
@@ -229,9 +229,9 @@ export const InvestigatorPCSheet = ({
               {
                 id: "abilities",
                 label: "Abilities",
-                content: getUseMwStyleAbilities() ? <AbilitiesAreaMW actor={actor}/> : <AbilitiesAreaPlay actor={actor}/>,
+                content: settings.useMwStyleAbilities.get() ? <AbilitiesAreaMW actor={actor}/> : <AbilitiesAreaPlay actor={actor}/>,
               },
-              getMwUseAlternativeItemTypes()
+              settings.mwUseAlternativeItemTypes.get()
                 ? {
                     id: "items",
                     label: "MWItems",

@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import React, { Fragment } from "react";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { getShowEmptyInvestigativeCategories } from "../../settingsHelpers";
+import { settings } from "../../startup/registerSettings";
 import { assertActiveCharacterDataSource } from "../../types";
 import { AbilitySlugPlay } from "./AbilitySlugPlay";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
@@ -20,7 +20,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
 }) => {
   assertActiveCharacterDataSource(actor.data);
   const { investigativeAbilities, generalAbilities } = useAbilities(actor, true);
-  const showEmpty = getShowEmptyInvestigativeCategories();
+  const showEmpty = settings.showEmptyInvestigativeCategories.get();
 
   return (
     <Fragment>

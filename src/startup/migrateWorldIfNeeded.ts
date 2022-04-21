@@ -1,15 +1,15 @@
 import { defaultMigratedSystemVersion } from "../constants";
 import { assertGame } from "../functions";
-import { getSystemMigrationVersion } from "../settingsHelpers";
 import system from "../system.json";
 import { migrateWorld } from "../migrations/migrateWorld";
+import { settings } from "./registerSettings";
 
 export const migrateWorldIfNeeded = async () => {
   assertGame(game);
   if (!game.user?.isGM) {
     return;
   }
-  const currentVersion = getSystemMigrationVersion();
+  const currentVersion = settings.systemMigrationVersion.get();
   // newest version that needs a migration (make this the current version when
   // you introduce a new migration)
   const NEEDS_MIGRATION_VERSION = "4.8.0";

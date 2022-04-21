@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 import { confirmADoodleDo } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { runtimeConfig } from "../../runtime";
-import { getDefaultThemeName } from "../../settingsHelpers";
+import { settings } from "../../startup/registerSettings";
 import { AbilityRowData } from "./types";
 
 type AbilityRowProps = {
@@ -18,7 +18,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
   index,
   actors,
 }) => {
-  const theme = runtimeConfig.themes[getDefaultThemeName()] || runtimeConfig.themes.tealTheme;
+  const theme = runtimeConfig.themes[settings.defaultThemeName.get()] || runtimeConfig.themes.tealTheme;
 
   const zero = abilityRowData.total === 0;
   const odd = index % 2 === 0;

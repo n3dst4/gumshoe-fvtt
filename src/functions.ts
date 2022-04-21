@@ -1,7 +1,7 @@
 import { systemName } from "./constants";
 import Case from "case";
 import { Dictionary } from "lodash";
-import { getDebugTranslations } from "./settingsHelpers";
+import { settings } from "./startup/registerSettings";
 
 interface NameHaver {
   name: string|null;
@@ -96,7 +96,7 @@ export const getTranslated = (
   values: Dictionary<string|number> = {},
 ) => {
   assertGame(game);
-  const debug = getDebugTranslations() && getDevMode();
+  const debug = settings.debugTranslations.get() && getDevMode();
   const pascal = Case.pascal(text);
   const prefixed = `${systemName}.${pascal}`;
   const local = game.i18n.format(prefixed, values);

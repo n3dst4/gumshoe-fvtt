@@ -1,62 +1,64 @@
-import * as constants from "./constants";
-import { assertGame } from "./functions";
+// import * as constants from "./constants";
+// import { assertGame } from "./functions";
 
-const getSetting = <T = string>(key: string) => (): T => {
-  assertGame(game);
-  return game.settings.get(constants.systemName, key) as T;
-};
+import { settings } from "./startup/registerSettings";
 
-const setSetting = <T = string>(key: string) => (value: T) => {
-  assertGame(game);
-  return game.settings.set(constants.systemName, key, value);
-};
+// const getSetting = <T = string>(key: string) => (): T => {
+//   assertGame(game);
+//   return game.settings.get(constants.systemName, key) as T;
+// };
 
-export const getSystemMigrationVersion = getSetting(constants.systemMigrationVersion);
-export const getDefaultThemeName = getSetting(constants.defaultThemeName);
-export const getInvestigativeAbilityCategories = getSetting<string[]>(constants.investigativeAbilityCategories);
-export const getGeneralAbilityCategories = getSetting<string[]>(constants.generalAbilityCategories);
-export const getCombatAbilities = getSetting<string[]>(constants.combatAbilities);
-export const getOccupationlabel = getSetting<string>(constants.occupationLabel);
-export const getShortNotes = getSetting<string[]>(constants.shortNotes);
-export const getLongNotes = getSetting<string[]>(constants.longNotes);
-export const getNewPCPacks = getSetting<string[]>(constants.newPCPacks);
-export const getNewNPCPacks = getSetting<string[]>(constants.newNPCPacks);
-export const getSystemPreset = getSetting<string>(constants.systemPreset);
-export const getUseBoost = getSetting<boolean>(constants.useBoost);
-export const getDebugTranslations = getSetting<boolean>(constants.debugTranslations);
-export const getCustomThemePath = getSetting<string>(constants.customThemePath);
-export const getGenericOccupation = getSetting<string>(constants.genericOccupation);
-export const getShowEmptyInvestigativeCategories = getSetting<boolean>(constants.showEmptyInvestigativeCategories);
+// const setSetting = <T = string>(key: string) => (value: T) => {
+//   assertGame(game);
+//   return game.settings.set(constants.systemName, key, value);
+// };
 
-export const getUseMwStyleAbilities = getSetting<boolean>(constants.useMwStyleAbilities);
-export const getMwHiddenShortNotes = getSetting<string[]>(constants.mwHiddenShortNotes);
-export const getMwUseAlternativeItemTypes = getSetting<boolean>(constants.mwUseAlternativeItemTypes);
-export const getUseMwInjuryStatus = getSetting<boolean>(constants.useMwInjuryStatus);
+// export const getSystemMigrationVersion = getSetting(constants.systemMigrationVersion);
+// export const getDefaultThemeName = getSetting(constants.defaultThemeName);
+// export const getInvestigativeAbilityCategories = getSetting<string[]>(constants.investigativeAbilityCategories);
+// export const getGeneralAbilityCategories = getSetting<string[]>(constants.generalAbilityCategories);
+// export const getCombatAbilities = getSetting<string[]>(constants.combatAbilities);
+// export const getOccupationlabel = getSetting<string>(constants.occupationLabel);
+// export const getShortNotes = getSetting<string[]>(constants.shortNotes);
+// export const getLongNotes = getSetting<string[]>(constants.longNotes);
+// export const getNewPCPacks = getSetting<string[]>(constants.newPCPacks);
+// export const getNewNPCPacks = getSetting<string[]>(constants.newNPCPacks);
+// export const getSystemPreset = getSetting<string>(constants.systemPreset);
+// export const getUseBoost = getSetting<boolean>(constants.useBoost);
+// export const getDebugTranslations = getSetting<boolean>(constants.debugTranslations);
+// export const getCustomThemePath = getSetting<string>(constants.customThemePath);
+// export const getGenericOccupation = getSetting<string>(constants.genericOccupation);
+// export const getShowEmptyInvestigativeCategories = getSetting<boolean>(constants.showEmptyInvestigativeCategories);
 
-export const setSystemMigrationVersion = setSetting(constants.systemMigrationVersion);
-export const setDefaultThemeName = setSetting(constants.defaultThemeName);
-export const setInvestigativeAbilityCategories = setSetting<string[]>(constants.investigativeAbilityCategories);
-export const setGeneralAbilityCategories = setSetting<string[]>(constants.generalAbilityCategories);
-export const setCombatAbilities = setSetting<string[]>(constants.combatAbilities);
-export const setOccupationLabel = setSetting<string>(constants.occupationLabel);
-export const setShortNotes = setSetting<string[]>(constants.shortNotes);
-export const setLongNotes = setSetting<string[]>(constants.longNotes);
-export const setNewPCPacks = setSetting<string[]>(constants.newPCPacks);
-export const setNewNPCPacks = setSetting<string[]>(constants.newNPCPacks);
-export const setSystemPreset = setSetting<string>(constants.systemPreset);
-export const setUseBoost = setSetting<boolean>(constants.useBoost);
-export const setDebugTranslations = setSetting<boolean>(constants.debugTranslations);
-export const setCustomThemePath = setSetting<string>(constants.customThemePath);
-export const setGenericOccupation = setSetting<string>(constants.genericOccupation);
-export const setShowEmptyInvestigativeCategories = setSetting<boolean>(constants.showEmptyInvestigativeCategories);
+// export const getUseMwStyleAbilities = getSetting<boolean>(constants.useMwStyleAbilities);
+// export const getMwHiddenShortNotes = getSetting<string[]>(constants.mwHiddenShortNotes);
+// export const getMwUseAlternativeItemTypes = getSetting<boolean>(constants.mwUseAlternativeItemTypes);
+// export const getUseMwInjuryStatus = getSetting<boolean>(constants.useMwInjuryStatus);
 
-export const setUseMwStyleAbilities = setSetting<boolean>(constants.useMwStyleAbilities);
-export const setMwHiddenShortNotes = setSetting<string[]>(constants.mwHiddenShortNotes);
-export const setMwUseAlternativeItemTypes = setSetting<boolean>(constants.mwUseAlternativeItemTypes);
-export const setUseMwInjuryStatus = setSetting<boolean>(constants.useMwInjuryStatus);
+// export const setSystemMigrationVersion = setSetting(constants.systemMigrationVersion);
+// export const setDefaultThemeName = setSetting(constants.defaultThemeName);
+// export const setInvestigativeAbilityCategories = setSetting<string[]>(constants.investigativeAbilityCategories);
+// export const setGeneralAbilityCategories = setSetting<string[]>(constants.generalAbilityCategories);
+// export const setCombatAbilities = setSetting<string[]>(constants.combatAbilities);
+// export const setOccupationLabel = setSetting<string>(constants.occupationLabel);
+// export const setShortNotes = setSetting<string[]>(constants.shortNotes);
+// export const setLongNotes = setSetting<string[]>(constants.longNotes);
+// export const setNewPCPacks = setSetting<string[]>(constants.newPCPacks);
+// export const setNewNPCPacks = setSetting<string[]>(constants.newNPCPacks);
+// export const setSystemPreset = setSetting<string>(constants.systemPreset);
+// export const setUseBoost = setSetting<boolean>(constants.useBoost);
+// export const setDebugTranslations = setSetting<boolean>(constants.debugTranslations);
+// export const setCustomThemePath = setSetting<string>(constants.customThemePath);
+// export const setGenericOccupation = setSetting<string>(constants.genericOccupation);
+// export const setShowEmptyInvestigativeCategories = setSetting<boolean>(constants.showEmptyInvestigativeCategories);
+
+// export const setUseMwStyleAbilities = setSetting<boolean>(constants.useMwStyleAbilities);
+// export const setMwHiddenShortNotes = setSetting<string[]>(constants.mwHiddenShortNotes);
+// export const setMwUseAlternativeItemTypes = setSetting<boolean>(constants.mwUseAlternativeItemTypes);
+// export const setUseMwInjuryStatus = setSetting<boolean>(constants.useMwInjuryStatus);
 
 export const getDefaultGeneralAbilityCategory = () => {
-  const cat = getGeneralAbilityCategories()[0];
+  const cat = settings.generalAbilityCategories.get()[0];
   if (!cat) {
     throw new Error("No general ability categories found in system settings");
   }
@@ -64,7 +66,7 @@ export const getDefaultGeneralAbilityCategory = () => {
 };
 
 export const getDefaultInvestigativeAbilityCategory = () => {
-  const cat = getInvestigativeAbilityCategories()[0];
+  const cat = settings.investigativeAbilityCategories.get()[0];
   if (!cat) {
     throw new Error("No investigative ability categories found in system settings");
   }

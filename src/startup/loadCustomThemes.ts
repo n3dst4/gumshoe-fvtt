@@ -1,10 +1,10 @@
 import { defaultCustomThemePath } from "../constants";
-import { getCustomThemePath } from "../settingsHelpers";
 import YAML from "yaml";
 import JSON5 from "json5";
 import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
 import { highContrastTheme } from "../themes/highContrastTheme";
 import { assertGame } from "../functions";
+import { settings } from "./registerSettings";
 
 export function loadCustomThemes () {
   const jsonRe = /\.(?:json|json5)$/;
@@ -13,7 +13,7 @@ export function loadCustomThemes () {
 
   Hooks.on("setup", async () => {
     assertGame(game);
-    const customThemePath = getCustomThemePath();
+    const customThemePath = settings.customThemePath.get();
     logger.log({ customThemePath });
     let files: string[] = [];
 

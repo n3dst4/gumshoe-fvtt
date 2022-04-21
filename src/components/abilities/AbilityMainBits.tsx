@@ -7,11 +7,11 @@ import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
-import { getCombatAbilities, getUseMwStyleAbilities, getUseBoost } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveCharacterDataSource, ActiveCharacterDataSource } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { settings } from "../../startup/registerSettings";
 
 type AbilityMainBitsProps = {
   ability: InvestigatorItem,
@@ -26,9 +26,9 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     ability.refreshPool();
   }, [ability]);
 
-  const useBoost = getUseBoost();
+  const useBoost = settings.useBoost.get();
 
-  const isCombatAbility = getCombatAbilities().includes(ability.data.name);
+  const isCombatAbility = settings.combatAbilities.get().includes(ability.data.name);
 
   const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
     isActiveCharacterDataSource(ability?.actor?.data) && ability?.actor?.data.data.initiativeAbility,
@@ -59,7 +59,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     [ability?.actor, ability.data.name],
   );
 
-  const useMwStyleAbilities = getUseMwStyleAbilities();
+  const useMwStyleAbilities = settings.useMwStyleAbilities.get();
 
   return (
     <InputGrid

@@ -8,13 +8,13 @@ import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "../inputs/TextInput";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { WeaponRange } from "./WeaponRangeConfig";
-import { getCombatAbilities } from "../../settingsHelpers";
 import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { assertWeaponDataSource } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { absoluteCover } from "../absoluteCover";
+import { settings } from "../../startup/registerSettings";
 
 type WeaponConfigProps = {
   weapon: InvestigatorItem,
@@ -47,7 +47,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
     });
   }, [weapon]);
 
-  const abilities = getCombatAbilities();
+  const abilities = settings.combatAbilities.get();
 
   return (
     <InputGrid

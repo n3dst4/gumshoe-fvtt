@@ -1,9 +1,9 @@
-import { getNewPCPacks } from "../../settingsHelpers";
 import { AbilityDataSource, AbilityType, isAbilityDataSource } from "../../types";
 import { abilityRowkey, ActorAbilityInfo, categoryHeaderKey, RowData, typeHeaderKey } from "./types";
 import * as constants from "../../constants";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertGame } from "../../functions";
+import { settings } from "../../startup/registerSettings";
 
 /**
  * get a sorted list of ability tuples
@@ -11,7 +11,7 @@ import { assertGame } from "../../functions";
  * with information from actors
  */
 export const getSystemAbilities = async (): Promise<AbilityDataSource[]> => {
-  const proms = getNewPCPacks().map(async (packId) => {
+  const proms = settings.newPCPacks.get().map(async (packId) => {
     assertGame(game);
     // getting pack content is slow
     const pack = game.packs.find((p: any) => p.metadata.entity === "Item" && p.collection === packId);

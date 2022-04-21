@@ -1,7 +1,6 @@
 import { assertGame, fixLength } from "../functions";
 import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 import { InvestigatorActor } from "./InvestigatorActor";
-import { getDefaultThemeName } from "../settingsHelpers";
 import {
   assertAbilityDataSource,
   assertGeneralAbilityDataSource,
@@ -15,6 +14,7 @@ import {
 } from "../types";
 import * as constants from "../constants";
 import { runtimeConfig } from "../runtime";
+import { settings } from "../startup/registerSettings";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -390,7 +390,7 @@ export class InvestigatorItem extends Item {
   }
 
   getThemeName (): string {
-    const systemThemeName = getDefaultThemeName();
+    const systemThemeName = settings.defaultThemeName.get();
     if (this.isOwned) {
       return (this.actor as InvestigatorActor).getSheetThemeName() || systemThemeName;
     } else {

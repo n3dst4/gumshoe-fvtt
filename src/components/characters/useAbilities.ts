@@ -1,13 +1,13 @@
 import { generalAbility, investigativeAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { getGeneralAbilityCategories, getInvestigativeAbilityCategories } from "../../settingsHelpers";
+import { settings } from "../../startup/registerSettings";
 import { isAbilityDataSource } from "../../types";
 
 export const useAbilities = (actor: Actor, hideZeroRated: boolean) => {
   const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
   const generalAbilities: { [category: string]: InvestigatorItem[] } = {};
-  const systemInvestigativeCats = getInvestigativeAbilityCategories();
-  const systemGeneralCats = getGeneralAbilityCategories();
+  const systemInvestigativeCats = settings.investigativeAbilityCategories.get();
+  const systemGeneralCats = settings.generalAbilityCategories.get();
   for (const cat of systemInvestigativeCats) {
     investigativeAbilities[cat] = [];
   }

@@ -4,7 +4,6 @@ import { nanoid } from "nanoid";
 import React, { useCallback, useEffect, useState } from "react";
 import { customSystem, settingsSaved } from "../constants";
 import { assertGame, getDevMode } from "../functions";
-import * as settings from "../settingsHelpers";
 import { tealTheme } from "../themes/tealTheme";
 import { CSSReset, CSSResetMode } from "./CSSReset";
 import { IdContext } from "./IdContext";
@@ -17,6 +16,7 @@ import { SettingsGridField } from "./inputs/SettingsGridField";
 import { Translate } from "./Translate";
 import { runtimeConfig } from "../runtime";
 import * as constants from "../constants";
+import { settings } from "../startup/registerSettings";
 
 type InvestigatorSettingsProps = {
   foundryApplication: Application,
@@ -41,8 +41,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
   assertGame(game);
   const presets = runtimeConfig.presets;
   // there is also abilityCategories which is legacy and may be lying around for compat purposes
-  const systemMigrationVersion = settings.getSystemMigrationVersion();
-  const [systemPreset, setSystemPreset] = useState(settings.getSystemPreset());
+  const systemMigrationVersion = settings.systemMigrationVersion.get();
+  const [systemPreset, setSystemPreset] = useState(settings.systemPreset.get());
 
   const resetPreset = useCallback(() => {
     console.log("resetting the presetting");
@@ -50,76 +50,76 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
   }, []);
 
   const [defaultTheme, setDefaultTheme] = useStateWithPreset(
-    settings.getDefaultThemeName(),
+    settings.defaultThemeName.get(),
     resetPreset,
   );
   const [investigativeAbilityCategories, setInvestigativeAbilityCategories] =
     useStateWithPreset(
-      settings.getInvestigativeAbilityCategories(),
+      settings.investigativeAbilityCategories.get(),
       resetPreset,
     );
   const [generalAbilityCategories, setGeneralAbilityCategories] =
-    useStateWithPreset(settings.getGeneralAbilityCategories(), resetPreset);
+    useStateWithPreset(settings.generalAbilityCategories.get(), resetPreset);
   const [combatAbilities, setCombatAbilities] = useStateWithPreset(
-    settings.getCombatAbilities(),
+    settings.combatAbilities.get(),
     resetPreset,
   );
   const [occupationLabel, setOccupationLabel] = useStateWithPreset(
-    settings.getOccupationlabel(),
+    settings.occupationLabel.get(),
     resetPreset,
   );
   const [shortNotes, setShortNotes] = useStateWithPreset(
-    settings.getShortNotes(),
+    settings.shortNotes.get(),
     resetPreset,
   );
   const [longNotes, setLongNotes] = useStateWithPreset(
-    settings.getLongNotes(),
+    settings.longNotes.get(),
     resetPreset,
   );
   const [newPCPacks, setNewPCPacks] = useStateWithPreset(
-    settings.getNewPCPacks(),
+    settings.newPCPacks.get(),
     resetPreset,
   );
   const [newNPCPacks, setNewNPCPacks] = useStateWithPreset(
-    settings.getNewNPCPacks(),
+    settings.newNPCPacks.get(),
     resetPreset,
   );
   const [useBoost, setUseBoost] = useStateWithPreset(
-    settings.getUseBoost(),
+    settings.useBoost.get(),
     resetPreset,
   );
   const [debugTranslations, setDebugTranslations] = useStateWithPreset(
-    settings.getDebugTranslations(),
+    settings.debugTranslations.get(),
     resetPreset,
   );
   const [customThemePath, setCustomThemePath] = useStateWithPreset(
-    settings.getCustomThemePath(),
+    settings.customThemePath.get(),
     resetPreset,
   );
   const [genericOccupation, setGenericOccupation] = useStateWithPreset(
-    settings.getGenericOccupation(),
+    settings.genericOccupation.get(),
     resetPreset,
   );
   const [showEmptyInvestigativeCategories, setShowEmptyInvestigativeCategories] = useStateWithPreset(
-    settings.getShowEmptyInvestigativeCategories(),
+    settings.showEmptyInvestigativeCategories.get(),
     resetPreset,
   );
 
   const [useMwStyleAbilities, setUseMwStyleAbilities] = useStateWithPreset(
-    settings.getUseMwStyleAbilities(),
+    settings.useMwStyleAbilities.get(),
     resetPreset,
   );
   const [mwHiddenShortNotes, setMwHiddenShortNotes] = useStateWithPreset(
-    settings.getMwHiddenShortNotes(),
+    settings.mwHiddenShortNotes.get(),
     resetPreset,
   );
   const [mwUseAlternativeItemTypes, setMwUseAlternativeItemTypes] = useStateWithPreset(
-    settings.getMwUseAlternativeItemTypes(),
+    settings.mwUseAlternativeItemTypes.get(),
     resetPreset,
   );
 
   const [useMwInjuryStatus, setUseMwInjuryStatus] = useStateWithPreset(
-    settings.getUseMwInjuryStatus(),
+    settings.useMwInjuryStatus.get(),
     resetPreset,
   );
 
@@ -198,27 +198,27 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       e.preventDefault();
 
       await Promise.all<unknown>([
-        settings.setDefaultThemeName(defaultTheme),
-        settings.setInvestigativeAbilityCategories(
+        settings.defaultThemeName.set(defaultTheme),
+        settings.investigativeAbilityCategories.set(
           investigativeAbilityCategories,
         ),
-        settings.setGeneralAbilityCategories(generalAbilityCategories),
-        settings.setCombatAbilities(combatAbilities),
-        settings.setOccupationLabel(occupationLabel),
-        settings.setShortNotes(shortNotes),
-        settings.setLongNotes(longNotes),
-        settings.setNewPCPacks(newPCPacks),
-        settings.setNewNPCPacks(newNPCPacks),
-        settings.setUseBoost(useBoost),
-        settings.setSystemPreset(systemPreset),
-        settings.setDebugTranslations(debugTranslations),
-        settings.setCustomThemePath(customThemePath),
-        settings.setGenericOccupation(genericOccupation),
-        settings.setShowEmptyInvestigativeCategories(showEmptyInvestigativeCategories),
-        settings.setUseMwStyleAbilities(useMwStyleAbilities),
-        settings.setMwHiddenShortNotes(mwHiddenShortNotes),
-        settings.setMwUseAlternativeItemTypes(mwUseAlternativeItemTypes),
-        settings.setUseMwInjuryStatus(useMwInjuryStatus),
+        settings.generalAbilityCategories.set(generalAbilityCategories),
+        settings.combatAbilities.set(combatAbilities),
+        settings.occupationLabel.set(occupationLabel),
+        settings.shortNotes.set(shortNotes),
+        settings.longNotes.set(longNotes),
+        settings.newPCPacks.set(newPCPacks),
+        settings.newNPCPacks.set(newNPCPacks),
+        settings.useBoost.set(useBoost),
+        settings.systemPreset.set(systemPreset),
+        settings.debugTranslations.set(debugTranslations),
+        settings.customThemePath.set(customThemePath),
+        settings.genericOccupation.set(genericOccupation),
+        settings.showEmptyInvestigativeCategories.set(showEmptyInvestigativeCategories),
+        settings.useMwStyleAbilities.set(useMwStyleAbilities),
+        settings.mwHiddenShortNotes.set(mwHiddenShortNotes),
+        settings.mwUseAlternativeItemTypes.set(mwUseAlternativeItemTypes),
+        settings.useMwInjuryStatus.set(useMwInjuryStatus),
       ]);
       foundryApplication.close();
       Hooks.call(settingsSaved);

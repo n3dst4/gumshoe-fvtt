@@ -3,8 +3,8 @@ import { jsx } from "@emotion/react";
 import React, { useMemo } from "react";
 import Case from "case";
 import { systemName } from "../constants";
-import { getDebugTranslations } from "../settingsHelpers";
 import { assertGame, getDevMode } from "../functions";
+import { settings } from "../startup/registerSettings";
 
 type TranslateProps = {
   children: string,
@@ -16,7 +16,7 @@ export const Translate: React.FC<TranslateProps> = ({
   values,
 }) => {
   assertGame(game);
-  const debug = getDebugTranslations() && getDevMode();
+  const debug = settings.debugTranslations.get() && getDevMode();
   const pascal = useMemo(() => Case.pascal(children), [children]);
   const prefixed = `${systemName}.${pascal}`;
   const local = useMemo(() => {

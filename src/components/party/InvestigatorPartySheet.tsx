@@ -6,7 +6,7 @@ import { assertGame, sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { runtimeConfig } from "../../runtime";
-import { getDefaultThemeName } from "../../settingsHelpers";
+import { settings } from "../../startup/registerSettings";
 import { AbilityDataSource, assertPartyDataSource, isAbilityDataSource } from "../../types";
 import { CSSReset, CSSResetMode } from "../CSSReset";
 import { ActorSheetAppContext } from "../FoundryAppContext";
@@ -28,7 +28,7 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
   foundryApplication,
   party,
 }) => {
-  const theme = runtimeConfig.themes[getDefaultThemeName()] || runtimeConfig.themes.tealTheme;
+  const theme = runtimeConfig.themes[settings.defaultThemeName.get()] || runtimeConfig.themes.tealTheme;
   const [abilities, setAbilities] = useState<AbilityDataSource[]>([]);
   const [actors, setActors] = useState<InvestigatorActor[]>([]);
   const [rowData, setRowData] = useState<RowData[]>([]);

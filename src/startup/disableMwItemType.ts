@@ -1,6 +1,6 @@
 import { settingsSaved } from "../constants";
 import { assertGame } from "../functions";
-import { getMwUseAlternativeItemTypes } from "../settingsHelpers";
+import { settings } from "./registerSettings";
 
 let oldMwItemTypelabel: string|null = null;
 let oldMwItemIndex: number|null = null;
@@ -10,7 +10,7 @@ let oldMwItemIndex: number|null = null;
  */
 function mwItemOnOrOff () {
   assertGame(game);
-  if (getMwUseAlternativeItemTypes()) {
+  if (settings.mwUseAlternativeItemTypes.get()) {
     if (oldMwItemTypelabel !== null && oldMwItemIndex !== null) {
       CONFIG.Item.typeLabels.mwItem = oldMwItemTypelabel;
       game.system.documentTypes.Item.splice(oldMwItemIndex, 0, "mwItem");

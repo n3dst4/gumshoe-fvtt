@@ -3,8 +3,8 @@ import React, { useCallback, useContext } from "react";
 import { jsx } from "@emotion/react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
-import { getUseBoost } from "../../settingsHelpers";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";
+import { settings } from "../../startup/registerSettings";
 
 type AbilitySlugProps = {
   ability: InvestigatorItem,
@@ -18,7 +18,7 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
       (app as any)._onDragStart(e);
     }
   }, [app]);
-  const boost = getUseBoost() && ability.getBoost();
+  const boost = settings.useBoost.get() && ability.getBoost();
 
   return (
     <a
