@@ -129,6 +129,9 @@ export const settings = {
     key: "newPCPacks",
     name: "Compendium packs for new PCs",
     default: pathOfCthulhuPreset.newPCPacks,
+    onChange: (newPacks: string[]) => {
+      Hooks.call(c.newPCPacksUpdated, newPacks);
+    },
   }),
   newNPCPacks: createSettingArray({
     key: "newNPCPacks",

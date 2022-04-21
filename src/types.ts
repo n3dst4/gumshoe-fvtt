@@ -19,6 +19,7 @@ export type DataSource<TType extends string, TData> = {
   data: TData,
   img: string,
   token: TokenData,
+  _id: string,
 };
 
 // NOTES
