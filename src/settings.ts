@@ -184,7 +184,7 @@ export const settings = {
   genericOccupation: createSettingString({
     key: "genericOccupation",
     name: "Generic occupation",
-    default: "Investigator",
+    default: pathOfCthulhuPreset.genericOccupation,
   }),
   showEmptyInvestigativeCategories: createSettingBoolean({
     key: "showEmptyInvestigativeCategories",

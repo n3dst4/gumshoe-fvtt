@@ -16,6 +16,7 @@ export const pathOfCthulhuPreset: PresetV1 = {
   useBoost: false,
   useMwStyleAbilities: false,
   mwUseAlternativeItemTypes: false,
+  genericOccupation: "Investigator",
 };
 
 export const niceBlackAgentsPreset: PresetV1 = {
@@ -33,6 +34,7 @@ export const niceBlackAgentsPreset: PresetV1 = {
   useBoost: false,
   useMwStyleAbilities: false,
   mwUseAlternativeItemTypes: false,
+  genericOccupation: "Investigator",
 };
 
 export const nothingToFearPreset: PresetV1 = {
@@ -50,6 +52,7 @@ export const nothingToFearPreset: PresetV1 = {
   useBoost: false,
   useMwStyleAbilities: false,
   mwUseAlternativeItemTypes: false,
+  genericOccupation: "Investigator",
 };
 
 export const pallidStarsPreset: PresetV1 = {
@@ -67,6 +70,7 @@ export const pallidStarsPreset: PresetV1 = {
   useBoost: true,
   useMwStyleAbilities: false,
   mwUseAlternativeItemTypes: false,
+  genericOccupation: "Investigator",
 };
 
 export const castingTheRunesPreset: PresetV1 = {
@@ -84,6 +88,7 @@ export const castingTheRunesPreset: PresetV1 = {
   useBoost: false,
   useMwStyleAbilities: false,
   mwUseAlternativeItemTypes: false,
+  genericOccupation: "Investigator",
 };
 
 export const moribundWorldPreset: PresetV1 = {
@@ -102,6 +107,7 @@ export const moribundWorldPreset: PresetV1 = {
   useMwStyleAbilities: true,
   mwUseAlternativeItemTypes: true,
   mwHiddenShortNotes: ["Sympathy points"],
+  genericOccupation: "Character",
 };
 
 export const basePresets = {
