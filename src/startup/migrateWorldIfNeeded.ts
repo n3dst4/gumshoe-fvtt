@@ -14,7 +14,7 @@ export const migrateWorldIfNeeded = async () => {
   // you introduce a new migration)
   const NEEDS_MIGRATION_VERSION = "4.8.0";
   // oldest version which can be migrated reliably
-  const COMPATIBLE_MIGRATION_VERSION = "1.0.0";
+  const COMPATIBLE_MIGRATION_VERSION = "3.0.0";
   const needsMigration = isNewerVersion(
     NEEDS_MIGRATION_VERSION,
     currentVersion,

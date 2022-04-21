@@ -1,6 +1,7 @@
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import * as constants from "../../constants";
 import { assertGame } from "../../functions";
+import { settings } from "../../settings";
 
 type PerformAttackArgs1 = {
   spend: number,
@@ -31,7 +32,7 @@ export const performAttack = ({
   if (weapon.actor === null) { return; }
   const damage = weapon.getDamage();
 
-  const useBoost = game.settings.get(constants.systemName, constants.useBoost);
+  const useBoost = settings.useBoost.get();
   const isBoosted = useBoost && (ability !== undefined) && ability.getBoost();
   const boost = isBoosted ? 1 : 0;
   const hitRoll = isBoosted

@@ -20,35 +20,6 @@ export const npc = "npc" as const;
 export const party = "party" as const;
 export const mwItem = "mwItem" as const;
 
-// settings keys
-export const defaultThemeName = "defaultThemeName" as const;
-export const systemMigrationVersion = "systemMigrationVersion" as const;
-export const systemPreset = "systemPreset" as const;
-export const investigativeAbilityCategories = "investigativeAbilityCategories" as const;
-export const generalAbilityCategories = "generalAbilityCategories" as const;
-export const combatAbilities = "combatAbilities" as const;
-export const occupationLabel = "occupationLabel" as const;
-export const shortNotes = "shortNotes" as const;
-export const longNotes = "longNotes" as const;
-export const newPCPacks = "newPCPacks" as const;
-export const newNPCPacks = "newNPCPacks" as const;
-export const useBoost = "useBoost" as const;
-export const debugTranslations = "debugTranslations" as const;
-export const customThemePath = "customThemePath" as const;
-export const genericOccupation = "genricOccupation" as const;
-export const showEmptyInvestigativeCategories = "showEmptyInvestigativeCategories" as const;
-
-// settings for MW-specific settings
-export const mwHiddenShortNotes = "mwHiddenShortNotes" as const;
-export const useMwStyleAbilities = "useMwStyleAbilities" as const;
-export const mwUseAlternativeItemTypes = "mwUseAlternativeItemTypes" as const;
-export const useMwInjuryStatus = "useMwInjuryStatus" as const;
-
-/**
- * @deprecated use investigativeAbilityCategories and generalAbilityCategories instead
- */
-export const abilityCategories = "abilityCategories" as const;
-
 // assets
 export const investigativeAbilityIcon = `/systems/${systemName}/assets/icons/magnifying-glass.webp` as const;
 export const generalAbilityIcon = `/systems/${systemName}/assets/icons/fist.webp` as const;
@@ -73,13 +44,11 @@ export const packNames = {
 export const npcPackName = "opponentAbilities" as const;
 
 // hooks
-
 export const newPCPacksUpdated = `${systemName}:newPCPacksUpdated` as const;
 export const newNPCPacksUpdated = `${systemName}:newNPCPacksUpdated` as const;
 export const settingsSaved = `${systemName}:settingsSaved` as const;
 
 // css classes
-
 export const abilityChatMessageClassName = "investigator-ability-test" as const;
 export const htmlDataItemId = "data-item-id" as const;
 export const htmlDataActorId = "data-actor-id" as const;

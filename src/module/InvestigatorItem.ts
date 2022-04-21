@@ -29,7 +29,7 @@ export class InvestigatorItem extends Item {
     assertGame(game);
     assertAbilityDataSource(this.data);
     if (this.actor === null) { return; }
-    const useBoost = game.settings.get(constants.systemName, constants.useBoost);
+    const useBoost = settings.useBoost.get();
     const isBoosted = useBoost && this.getBoost();
     const boost = isBoosted ? 1 : 0;
     const roll = isBoosted

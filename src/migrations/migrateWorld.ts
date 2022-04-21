@@ -1,5 +1,4 @@
 import system from "../system.json";
-import { migrateAbilityCategories, migrateToArrays } from "./worldMigrations";
 import { migrateActorData } from "./migrateActorData";
 import { migrateCompendium } from "./migrateCompendium";
 import { migrateItemData } from "./migrateItemData";
@@ -23,8 +22,7 @@ export const migrateWorld = async function () {
     { permanent: true },
   );
 
-  await migrateAbilityCategories();
-  await migrateToArrays();
+  // you could do world migrations here if you had any
 
   assertGame(game);
   // Migrate World Actors

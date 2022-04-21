@@ -76,6 +76,9 @@ const createSettingObject = <T>(args: SettingFactoryArgs<T>) => (
 );
 
 export const settings = {
+  /**
+   * deprecated
+   */
   abilityCategories: createSettingString({
     key: "abilityCategories",
     name: "Ability categories",
