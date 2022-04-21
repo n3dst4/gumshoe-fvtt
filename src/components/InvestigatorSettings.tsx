@@ -128,6 +128,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       assertGame(game);
       const presetId = e.currentTarget.value;
       if (presetId === customSystem) {
+        console.log("custom was selected");
         setSystemPreset(presetId);
         return;
       }
@@ -150,9 +151,10 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       setUseMwStyleAbilities(preset.useMwStyleAbilities);
       setMwHiddenShortNotes(preset.mwHiddenShortNotes ?? []);
       setMwUseAlternativeItemTypes(preset.mwUseAlternativeItemTypes);
-      setSystemPreset(presetId);
       setGenericOccupation(preset.genericOccupation ?? constants.genericOccupationDefault);
       setShowEmptyInvestigativeCategories(preset.showEmptyInvestigativeCategories ?? constants.showEmptyInvestigativeCategoriesDefault);
+      // do this last
+      setSystemPreset(presetId);
     },
     [
       presets,
@@ -250,6 +252,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
   let idx = 0;
 
   const isDevMode = getDevMode();
+
+  console.log({ systemPreset, presets });
 
   return (
     <CSSReset
