@@ -92,7 +92,7 @@ export const settings = {
   defaultThemeName: createSettingString({
     key: "defaultThemeName",
     name: "Default sheet theme",
-    default: pathOfCthulhuPreset.defaultTheme,
+    default: pathOfCthulhuPreset.defaultThemeName,
     choices: mapValues((theme: ThemeV1) => (theme.displayName), runtimeConfig.themes),
   }),
   investigativeAbilityCategories: createSettingObject({
@@ -224,3 +224,9 @@ export const getDefaultInvestigativeAbilityCategory = () => {
   }
   return cat;
 };
+
+export type SettingsDict = { [Property in keyof typeof settings]: ReturnType<(typeof settings)[Property]["get"]> };
+
+export const getSettingsDict = () => (
+  mapValues((x) => x.get(), settings) as SettingsDict
+);

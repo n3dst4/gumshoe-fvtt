@@ -4,7 +4,7 @@ import { packNames, systemName, npcPackName } from "./constants";
 export const pathOfCthulhuPreset: PresetV1 = {
   schemaVersion: "v1",
   displayName: "Path of Cthulhu",
-  defaultTheme: "tealTheme",
+  defaultThemeName: "tealTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Weapons", "Firearms", "Athletics"],
@@ -22,7 +22,7 @@ export const pathOfCthulhuPreset: PresetV1 = {
 export const niceBlackAgentsPreset: PresetV1 = {
   schemaVersion: "v1",
   displayName: "Nice Black Agents",
-  defaultTheme: "niceTheme",
+  defaultThemeName: "niceTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Hand-to-Hand", "Weapons", "Shooting", "Athletics"],
@@ -40,7 +40,7 @@ export const niceBlackAgentsPreset: PresetV1 = {
 export const nothingToFearPreset: PresetV1 = {
   schemaVersion: "v1",
   displayName: "Nothing to Fear",
-  defaultTheme: "fearTheme",
+  defaultThemeName: "fearTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical", "Psychic Powers"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Shooting", "Athletics"],
@@ -58,7 +58,7 @@ export const nothingToFearPreset: PresetV1 = {
 export const pallidStarsPreset: PresetV1 = {
   schemaVersion: "v1",
   displayName: "Pallid Stars",
-  defaultTheme: "pallidTheme",
+  defaultThemeName: "pallidTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical", "Special"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Shooting"],
@@ -76,7 +76,7 @@ export const pallidStarsPreset: PresetV1 = {
 export const castingTheRunesPreset: PresetV1 = {
   schemaVersion: "v1",
   displayName: "Casting the Runes",
-  defaultTheme: "antiquarianTheme",
+  defaultThemeName: "antiquarianTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Weapons"],
@@ -94,7 +94,7 @@ export const castingTheRunesPreset: PresetV1 = {
 export const moribundWorldPreset: PresetV1 = {
   schemaVersion: "v1",
   displayName: "Moribund World",
-  defaultTheme: "olderThanMemoryTheme",
+  defaultThemeName: "olderThanMemoryTheme",
   investigativeAbilityCategories: [],
   generalAbilityCategories: ["Persuade", "Rebuff", "Attack", "Defense", "Resist", "Magic", "Health", "General"],
   combatAbilities: ["Strength", "Speed", "Finesse", "Cunning", "Ferocity", "Caution"],
