@@ -84,82 +84,46 @@ export const settings = {
     name: "Ability categories",
     default: "Academic,Interpersonal,Technical",
   }),
-  systemMigrationVersion: createSettingString({
-    key: "systemMigrationVersion",
-    name: "System migration version",
-    default: c.defaultMigratedSystemVersion,
-  }),
-  defaultThemeName: createSettingString({
-    key: "defaultThemeName",
-    name: "Default sheet theme",
-    default: pathOfCthulhuPreset.defaultThemeName,
-    choices: mapValues((theme: ThemeV1) => (theme.displayName), runtimeConfig.themes),
-  }),
-  investigativeAbilityCategories: createSettingObject({
-    key: "investigativeAbilityCategories",
-    name: "Investigative ability categories",
-    default: pathOfCthulhuPreset.investigativeAbilityCategories,
-  }),
-  generalAbilityCategories: createSettingObject({
-    key: "generalAbilityCategories",
-    name: "General ability categories",
-    default: pathOfCthulhuPreset.generalAbilityCategories,
-  }),
   combatAbilities: createSettingObject({
     key: "combatAbilities",
     name: "Combat abilities",
     default: pathOfCthulhuPreset.combatAbilities,
   }),
-  occupationLabel: createSettingString({
-    key: "occupationLabel",
-    name: "What do we call \"Occupation\"?",
-    default: pathOfCthulhuPreset.occupationLabel,
-  }),
-  shortNotes: createSettingObject({
-    key: "shortNotes",
-    name: "Short Notes",
-    default: pathOfCthulhuPreset.shortNotes,
-  }),
-  longNotes: createSettingObject({
-    key: "longNotes",
-    name: "Long Notes",
-    default: pathOfCthulhuPreset.longNotes,
-  }),
-  newPCPacks: createSettingArray({
-    key: "newPCPacks",
-    name: "Compendium packs for new PCs",
-    default: pathOfCthulhuPreset.newPCPacks,
-    onChange: (newPacks: string[]) => {
-      Hooks.call(c.newPCPacksUpdated, newPacks);
-    },
-  }),
-  newNPCPacks: createSettingArray({
-    key: "newNPCPacks",
-    name: "Compendium packs for new NPCs",
-    default: pathOfCthulhuPreset.newNPCPacks,
-    onChange: (newPacks: string[]) => {
-      Hooks.call(c.newNPCPacksUpdated, newPacks);
-    },
-  }),
-  systemPreset: createSettingString({
-    key: "systemPreset",
-    name: "System preset",
-    default: "pathOfCthulhuPreset",
-  }),
-  useBoost: createSettingBoolean({
-    key: "useBoost",
-    name: "Use Boost",
-    default: pathOfCthulhuPreset.useBoost,
+  customThemePath: createSettingString({
+    key: "customThemePath",
+    name: "Custom theme path",
+    default: defaultCustomThemePath,
   }),
   debugTranslations: createSettingBoolean({
     key: "debugTranslations",
     name: "Debug translations?",
     default: false,
   }),
-  useMwStyleAbilities: createSettingBoolean({
-    key: "useMwStyleAbilities",
-    name: "Use Moribund World-style abilities",
-    default: false,
+  defaultThemeName: createSettingString({
+    key: "defaultThemeName",
+    name: "Default sheet theme",
+    default: pathOfCthulhuPreset.defaultThemeName,
+    choices: mapValues((theme: ThemeV1) => theme.displayName, runtimeConfig.themes),
+  }),
+  generalAbilityCategories: createSettingObject({
+    key: "generalAbilityCategories",
+    name: "General ability categories",
+    default: pathOfCthulhuPreset.generalAbilityCategories,
+  }),
+  genericOccupation: createSettingString({
+    key: "genericOccupation",
+    name: "Generic occupation",
+    default: pathOfCthulhuPreset.genericOccupation,
+  }),
+  investigativeAbilityCategories: createSettingObject({
+    key: "investigativeAbilityCategories",
+    name: "Investigative ability categories",
+    default: pathOfCthulhuPreset.investigativeAbilityCategories,
+  }),
+  longNotes: createSettingObject({
+    key: "longNotes",
+    name: "Long Notes",
+    default: pathOfCthulhuPreset.longNotes,
   }),
   mwHiddenShortNotes: createSettingObject<string[]>({
     key: "mwHiddenShortNotes",
@@ -171,25 +135,61 @@ export const settings = {
     name: "Use alternative item types",
     default: false,
   }),
-  useMwInjuryStatus: createSettingBoolean({
-    key: "useMwInjuryStatus",
-    name: "Use injury status",
-    default: false,
+  newNPCPacks: createSettingArray({
+    key: "newNPCPacks",
+    name: "Compendium packs for new NPCs",
+    default: pathOfCthulhuPreset.newNPCPacks,
+    onChange: (newPacks: string[]) => {
+      Hooks.call(c.newNPCPacksUpdated, newPacks);
+    },
   }),
-  customThemePath: createSettingString({
-    key: "customThemePath",
-    name: "Custom theme path",
-    default: defaultCustomThemePath,
+  newPCPacks: createSettingArray({
+    key: "newPCPacks",
+    name: "Compendium packs for new PCs",
+    default: pathOfCthulhuPreset.newPCPacks,
+    onChange: (newPacks: string[]) => {
+      Hooks.call(c.newPCPacksUpdated, newPacks);
+    },
   }),
-  genericOccupation: createSettingString({
-    key: "genericOccupation",
-    name: "Generic occupation",
-    default: pathOfCthulhuPreset.genericOccupation,
+  occupationLabel: createSettingString({
+    key: "occupationLabel",
+    name: "What do we call \"Occupation\"?",
+    default: pathOfCthulhuPreset.occupationLabel,
+  }),
+  shortNotes: createSettingObject({
+    key: "shortNotes",
+    name: "Short Notes",
+    default: pathOfCthulhuPreset.shortNotes,
   }),
   showEmptyInvestigativeCategories: createSettingBoolean({
     key: "showEmptyInvestigativeCategories",
     name: "Show empty investigative categories?",
     default: true,
+  }),
+  systemMigrationVersion: createSettingString({
+    key: "systemMigrationVersion",
+    name: "System migration version",
+    default: c.defaultMigratedSystemVersion,
+  }),
+  systemPreset: createSettingString({
+    key: "systemPreset",
+    name: "System preset",
+    default: "pathOfCthulhuPreset",
+  }),
+  useBoost: createSettingBoolean({
+    key: "useBoost",
+    name: "Use Boost",
+    default: pathOfCthulhuPreset.useBoost,
+  }),
+  useMwInjuryStatus: createSettingBoolean({
+    key: "useMwInjuryStatus",
+    name: "Use injury status",
+    default: false,
+  }),
+  useMwStyleAbilities: createSettingBoolean({
+    key: "useMwStyleAbilities",
+    name: "Use Moribund World-style abilities",
+    default: false,
   }),
 };
 
