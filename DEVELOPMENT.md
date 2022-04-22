@@ -69,14 +69,10 @@ To keep the translation imports running sweetly, you will need to update `.tx/co
 
 ## Adding system settings
 
-1. Add a constant to [`src/constants.ts`]().
-2. Add an entry to [`src/startup/registerSettings.ts`]().
-3. Add helper functions to [`src/settingsHelpers.ts`]().
-4. In [`src/components/InvestigatorSettings.tsx`]():
-   1. Add a `useStateWithPreset` thing for the new setting.
-   2. Add it to `onClickSave`.
-   3. Add it to the JSX somewhere - see the existing examples.
-5. You will probably need to add a translation string to [`src/lang/en.json`]() or maybe [`src/lang/moribundWorld/en.json`]() for MW stuffs.
+1. Add an entry to [`src/settings.ts`]().
+2. In [`src/components/InvestigatorSettings.tsx`](), add it to the JSX somewhere - see the existing examples. `tempSettings` will contain the value and `setters` will have the setter.
+3. You will probably need to add a translation string to [`src/lang/en.json`]() or maybe [`src/lang/moribundWorld/en.json`]() for MW stuffs.
+4. If it's a setting that caan be controlled by system presets, also add it to the `PresetV1` type in @lumphammer/investigator-fvtt-types and publish a new version.
 
 
 ## Using the "Developer mode" module
