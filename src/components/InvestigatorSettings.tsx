@@ -16,6 +16,7 @@ import { SettingsGridField } from "./inputs/SettingsGridField";
 import { Translate } from "./Translate";
 import { runtimeConfig } from "../runtime";
 import { settings, getSettingsDict, SettingsDict } from "../settings";
+import { pathOfCthulhuPreset } from "../presets";
 
 type InvestigatorSettingsProps = {
   foundryApplication: Application,
@@ -71,8 +72,15 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         );
       }
       setTempSettings({
+        // we start with a safe default (this is typed as Required<> so it will
+        // always one-of-everything)
+        ...pathOfCthulhuPreset,
+        // layer on top the current temp settings - this way we keep any values
+        // not in the preset
         ...tempSettingsRef.current,
+        // now the preset
         ...preset,
+        // and finally, set the actual preset id
         systemPreset: presetId,
       });
     },
@@ -93,7 +101,8 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       const proms = Object.keys(settings).map(async (k) => {
-        // @ts-expect-error Too much work to explain to TS that these guys really do match up
+        // @ts-expect-error Too much work to explain to TS that these guys
+        // really do match up
         settings[k].set(tempSettingsRef.current[k]);
       });
       await Promise.all(proms);
@@ -156,11 +165,13 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
               setters.defaultThemeName(e.currentTarget.value);
             }}
           >
-            {Object.keys(runtimeConfig.themes).map<JSX.Element>((themeName: string) => (
-              <option key={themeName} value={themeName}>
-                {runtimeConfig.themes[themeName].displayName}
-              </option>
-            ))}
+            {Object.keys(runtimeConfig.themes).map<JSX.Element>(
+              (themeName: string) => (
+                <option key={themeName} value={themeName}>
+                  {runtimeConfig.themes[themeName].displayName}
+                </option>
+              ),
+            )}
           </select>
         </SettingsGridField>
         <SettingsGridField

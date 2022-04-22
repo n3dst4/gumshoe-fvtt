@@ -1,7 +1,7 @@
 import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
 import { packNames, systemName, npcPackName } from "./constants";
 
-export const pathOfCthulhuPreset: PresetV1 = {
+export const pathOfCthulhuPreset: Required<PresetV1> = {
   schemaVersion: "v1",
   displayName: "Path of Cthulhu",
   defaultThemeName: "tealTheme",
@@ -16,7 +16,10 @@ export const pathOfCthulhuPreset: PresetV1 = {
   useBoost: false,
   useMwStyleAbilities: false,
   mwUseAlternativeItemTypes: false,
+  useMwInjuryStatus: false,
   genericOccupation: "Investigator",
+  mwHiddenShortNotes: [],
+  showEmptyInvestigativeCategories: false,
 };
 
 export const niceBlackAgentsPreset: PresetV1 = {
@@ -34,6 +37,7 @@ export const niceBlackAgentsPreset: PresetV1 = {
   useBoost: false,
   useMwStyleAbilities: false,
   mwUseAlternativeItemTypes: false,
+  useMwInjuryStatus: false,
   genericOccupation: "Investigator",
 };
 
@@ -52,6 +56,7 @@ export const nothingToFearPreset: PresetV1 = {
   useBoost: false,
   useMwStyleAbilities: false,
   mwUseAlternativeItemTypes: false,
+  useMwInjuryStatus: false,
   genericOccupation: "Investigator",
 };
 
@@ -70,6 +75,7 @@ export const pallidStarsPreset: PresetV1 = {
   useBoost: true,
   useMwStyleAbilities: false,
   mwUseAlternativeItemTypes: false,
+  useMwInjuryStatus: false,
   genericOccupation: "Investigator",
 };
 
@@ -88,6 +94,7 @@ export const castingTheRunesPreset: PresetV1 = {
   useBoost: false,
   useMwStyleAbilities: false,
   mwUseAlternativeItemTypes: false,
+  useMwInjuryStatus: false,
   genericOccupation: "Investigator",
 };
 
@@ -107,6 +114,7 @@ export const moribundWorldPreset: PresetV1 = {
   useMwStyleAbilities: true,
   mwUseAlternativeItemTypes: true,
   mwHiddenShortNotes: ["Sympathy points"],
+  useMwInjuryStatus: true,
   genericOccupation: "Character",
 };
 
