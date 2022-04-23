@@ -17,6 +17,7 @@ import { Translate } from "./Translate";
 import { runtimeConfig } from "../runtime";
 import { settings, getSettingsDict, SettingsDict } from "../settings";
 import { pathOfCthulhuPreset } from "../presets";
+import { StatsSettingsEditor } from "./inputs/StatsSettingsEditor";
 
 type InvestigatorSettingsProps = {
   foundryApplication: Application,
@@ -309,6 +310,12 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         </SettingsGridField>
         <SettingsGridField label="Long Notes Fields" index={idx++}>
           <ListEdit value={tempSettings.longNotes} onChange={setters.longNotes} />
+        </SettingsGridField>
+        <SettingsGridField label="PC Stats" index={idx++}>
+          <StatsSettingsEditor pcOrNpc="pc" />
+        </SettingsGridField>
+        <SettingsGridField label="NPC Stats" index={idx++}>
+          <StatsSettingsEditor pcOrNpc="npc"/>
         </SettingsGridField>
         <SettingsGridField label="Can Abilities be Boosted?" index={idx++}>
           <Checkbox checked={tempSettings.useBoost} onChange={setters.useBoost} />

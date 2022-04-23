@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import { Stat } from "@lumphammer/investigator-fvtt-types";
 import React, { Fragment, useCallback } from "react";
-import { assertActiveCharacterDataSource, assertPCDataSource } from "../../types";
+import { assertActiveCharacterDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 interface StatFieldProps {
