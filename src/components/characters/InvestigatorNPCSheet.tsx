@@ -68,14 +68,13 @@ export const InvestigatorNPCSheet = ({
           bottom: 0,
           left: 0,
           display: "grid",
-          gridTemplateRows: "min-content minmax(10em, 1fr) min-content 1.5fr",
+          gridTemplateRows: "min-content minmax(10em, 1fr) 1.5fr",
           gridTemplateColumns: "max-content 1fr 10em",
           gap: "0.5em",
           gridTemplateAreas:
             "\"title title image\" " +
             "\"notes notes image\" " +
-            "\"stats body body\" " +
-            "\"pools body  body\" ",
+            "\"sidebar body  body\" ",
         }}
       >
         <div
@@ -134,38 +133,15 @@ export const InvestigatorNPCSheet = ({
           }}
         />
 
+        {/* SIDEBAR */}
         <div
           className={theme.panelClass}
           css={{
-            gridArea: "pools",
-            position: "relative",
-            overflowX: "visible",
-            overflowY: "auto",
-            padding: "1em",
-            ...theme.panelStylePrimary,
-          }}
-        >
-            <TrackersArea actor={actor} />
-            <hr/>
-            <h4 css={{ width: "8em" }}>
-              <Translate>Combat Order</Translate>
-            </h4>
-            <CombatAbilityDropDown
-              value={actor.getInitiativeAbility()}
-              onChange={actor.setInitiativeAbility}
-            />
-        </div>
-
-        <div
-          className={theme.panelClass}
-          css={{
-            gridArea: "stats",
+            gridArea: "sidebar",
             position: "relative",
             padding: "0.5em",
-            display: "grid",
-            gridTemplateColumns: "1fr max-content",
-            gridAutoRows: "min-content",
-            columnGap: "0.5em",
+            overflowX: "visible",
+            overflowY: "auto",
             ...theme.panelStylePrimary,
           }}
         >
@@ -175,6 +151,7 @@ export const InvestigatorNPCSheet = ({
           >
             <Translate>Full Refresh</Translate>
           </button>
+
           {settings.useMwInjuryStatus.get() &&
             <div css={{ gridColumn: "1/3" }}>
               <MwInjuryStatusWidget
@@ -183,8 +160,16 @@ export const InvestigatorNPCSheet = ({
                 />
             </div>
           }
-          <hr/>
-          <Fragment>
+
+          {/* Stats */}
+          <div
+            css={{
+              display: "grid",
+              gridTemplateColumns: "max-content max-content",
+              gridAutoRows: "min-content",
+              columnGap: "0.5em",
+            }}
+          >
             <h3 css={{ gridColumn: "1" }}><Translate>Hit Threshold</Translate></h3>
             <AsyncNumberInput
               min={0}
@@ -196,8 +181,6 @@ export const InvestigatorNPCSheet = ({
                 gridColumn: "2",
               }}
             />
-          </Fragment>
-          <Fragment>
             <h3 css={{ gridColumn: "1" }}><Translate>Armor</Translate></h3>
             <AsyncNumberInput
               min={-10}
@@ -209,8 +192,6 @@ export const InvestigatorNPCSheet = ({
                 gridColumn: "2",
               }}
             />
-          </Fragment>
-          <Fragment>
             <h3 css={{ gridColumn: "1" }}><Translate>Alertness Modifier</Translate></h3>
             <AsyncNumberInput
               min={-10}
@@ -222,8 +203,6 @@ export const InvestigatorNPCSheet = ({
                 gridColumn: "2",
               }}
             />
-          </Fragment>
-          <Fragment>
             <h3 css={{ gridColumn: "1" }}><Translate>Stealth Modifier</Translate></h3>
             <AsyncNumberInput
               min={-10}
@@ -235,8 +214,6 @@ export const InvestigatorNPCSheet = ({
                 gridColumn: "2",
               }}
             />
-          </Fragment>
-          <Fragment>
             <h3 css={{ gridColumn: "1" }}><Translate>Stability Loss</Translate></h3>
             <AsyncNumberInput
               min={-10}
@@ -248,7 +225,18 @@ export const InvestigatorNPCSheet = ({
                 gridColumn: "2",
               }}
             />
-          </Fragment>
+          </div>
+
+          <hr/>
+          <TrackersArea actor={actor} />
+          <hr/>
+          <h4 css={{ width: "8em" }}>
+            <Translate>Combat Order</Translate>
+          </h4>
+          <CombatAbilityDropDown
+            value={actor.getInitiativeAbility()}
+            onChange={actor.setInitiativeAbility}
+          />
         </div>
 
         <div
