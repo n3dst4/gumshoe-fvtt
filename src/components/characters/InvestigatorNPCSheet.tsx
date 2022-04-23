@@ -147,13 +147,13 @@ export const InvestigatorNPCSheet = ({
         >
           <button
             onClick={actor.confirmRefresh}
-            css={{ gridColumn: "1 / span 2" }}
+            css={{ marginBottom: "0.5em" }}
           >
             <Translate>Full Refresh</Translate>
           </button>
 
           {settings.useMwInjuryStatus.get() &&
-            <div css={{ gridColumn: "1/3" }}>
+            <div css={{ marginBottom: "0.5em" }}>
               <MwInjuryStatusWidget
                 status={actor.getMwInjuryStatus()}
                 setStatus={actor.setMwInjuryStatus}
@@ -170,17 +170,22 @@ export const InvestigatorNPCSheet = ({
               columnGap: "0.5em",
             }}
           >
-            <h3 css={{ gridColumn: "1" }}><Translate>Hit Threshold</Translate></h3>
-            <AsyncNumberInput
-              min={0}
-              value={actor.data.data.hitThreshold}
-              onChange={updateHitThreshold}
-              noPlusMinus={true}
-              css={{
-                width: "2em",
-                gridColumn: "2",
-              }}
-            />
+          {
+            true &&
+            <Fragment>
+              <h3 css={{ gridColumn: "1" }}><Translate>Hit Threshold</Translate></h3>
+              <AsyncNumberInput
+                min={0}
+                value={actor.data.data.hitThreshold}
+                onChange={updateHitThreshold}
+                noPlusMinus={true}
+                css={{
+                  width: "2em",
+                  gridColumn: "2",
+                }}
+              />
+            </Fragment>
+          }
             <h3 css={{ gridColumn: "1" }}><Translate>Armor</Translate></h3>
             <AsyncNumberInput
               min={-10}

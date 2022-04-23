@@ -198,14 +198,19 @@ export const InvestigatorPCSheet = ({
             }
             <TrackersArea actor={actor} />
             <hr/>
-            <h3 css={{ gridColumn: "start / end" }}>
-              <Translate>Hit Threshold</Translate>
-            </h3>
-            <AsyncNumberInput
-              min={0}
-              value={actor.data.data.hitThreshold}
-              onChange={updateHitThreshold}
-            />
+            {
+              settings.useHitThreshold.get() &&
+                <Fragment>
+                  <h3 css={{ gridColumn: "start / end" }}>
+                    <Translate>Hit Threshold</Translate>
+                  </h3>
+                  <AsyncNumberInput
+                    min={0}
+                    value={actor.data.data.hitThreshold}
+                    onChange={updateHitThreshold}
+                  />
+                </Fragment>
+            }
             <hr/>
             <h3 css={{ gridColumn: "start / end" }}>
               <Translate>Combat Order</Translate>

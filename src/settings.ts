@@ -181,6 +181,11 @@ export const settings = {
     name: "Use Boost",
     default: pathOfCthulhuPreset.useBoost,
   }),
+  useHitThreshold: createSettingBoolean({
+    key: "useHitThreshold",
+    name: "Use hit threshold?",
+    default: pathOfCthulhuPreset.useHitThreshold,
+  }),
   useMwInjuryStatus: createSettingBoolean({
     key: "useMwInjuryStatus",
     name: "Use injury status",
