@@ -197,7 +197,7 @@ export const InvestigatorPCSheet = ({
             <hr/>
             {
               Object.keys(stats).map<ReactNode>((key) => {
-                return (<StatField key={key} actor={actor} stat={stats[key]} />);
+                return (<StatField key={key} id={key} actor={actor} stat={stats[key]} />);
               })
             }
             {/* {

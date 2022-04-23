@@ -8,19 +8,19 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 interface StatFieldProps {
   stat: Stat;
   actor: Actor;
-  key: string;
+  id: string;
 }
 
 export const StatField: React.FC<StatFieldProps> = ({
   stat,
   actor,
-  key,
+  id,
 }: StatFieldProps) => {
   assertPCDataSource(actor.data);
   const onChange = useCallback((newVal: number) => {
     assertPCDataSource(actor.data);
-    actor.update({ data: { stats: { ...actor.data.data.stats, [key]: newVal } } });
-  }, [actor, key]);
+    actor.update({ data: { stats: { ...actor.data.data.stats, [id]: newVal } } });
+  }, [actor, id]);
 
   return (
     <Fragment>
@@ -30,7 +30,7 @@ export const StatField: React.FC<StatFieldProps> = ({
     <AsyncNumberInput
       min={stat.min ?? 0}
       max={stat.max}
-      value={actor.data.data.stats[key] ?? stat.default}
+      value={actor.data.data.stats[id] ?? stat.default}
       onChange={onChange}
     />
   </Fragment>
