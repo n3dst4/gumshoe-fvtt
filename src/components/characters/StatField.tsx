@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import { Stat } from "@lumphammer/investigator-fvtt-types";
 import React, { Fragment, useCallback } from "react";
-import { assertPCDataSource } from "../../types";
+import { assertActiveCharacterDataSource, assertPCDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 interface StatFieldProps {
@@ -16,7 +16,7 @@ export const StatField: React.FC<StatFieldProps> = ({
   actor,
   id,
 }: StatFieldProps) => {
-  assertPCDataSource(actor.data);
+  assertActiveCharacterDataSource(actor.data);
   const onChange = useCallback((newVal: number) => {
     assertPCDataSource(actor.data);
     actor.update({ data: { stats: { ...actor.data.data.stats, [id]: newVal } } });

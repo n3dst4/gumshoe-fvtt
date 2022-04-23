@@ -1,10 +1,8 @@
 /** @jsx jsx */
-import { Fragment, useCallback } from "react";
+import { Fragment, ReactNode } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { jsx } from "@emotion/react";
 import { CSSReset, CSSResetMode } from "../CSSReset";
-// import { AsyncTextArea } from "../inputs/AsyncTextArea";
-import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { TabContainer } from "../TabContainer";
 import { LogoEditable } from "./LogoEditable";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
@@ -22,6 +20,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { absoluteCover } from "../absoluteCover";
 import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 import { settings } from "../../settings";
+import { StatField } from "./StatField";
 
 type InvestigatorNPCSheetProps = {
   actor: InvestigatorActor,
@@ -34,27 +33,8 @@ export const InvestigatorNPCSheet = ({
 }: InvestigatorNPCSheetProps) => {
   assertNPCDataSource(actor.data);
 
-  const updateHitThreshold = useCallback((newThreshold) => {
-    return actor.update({ data: { hitThreshold: newThreshold } });
-  }, [actor]);
-
-  const updateArmor = useCallback((newArmor) => {
-    return actor.update({ data: { armor: newArmor } });
-  }, [actor]);
-
-  const updateAlertness = useCallback((newAlertness) => {
-    return actor.update({ data: { alertness: newAlertness } });
-  }, [actor]);
-
-  const updateStealth = useCallback((newStealth) => {
-    return actor.update({ data: { stealth: newStealth } });
-  }, [actor]);
-
-  const updateStabilityLoss = useCallback((newStabilityLoss) => {
-    return actor.update({ data: { stabilityLoss: newStabilityLoss } });
-  }, [actor]);
-
   const theme = actor.getSheetTheme();
+  const stats = settings.npcStats.get();
 
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
@@ -162,75 +142,12 @@ export const InvestigatorNPCSheet = ({
           }
 
           {/* Stats */}
-          <div
-            css={{
-              display: "grid",
-              gridTemplateColumns: "max-content max-content",
-              gridAutoRows: "min-content",
-              columnGap: "0.5em",
-            }}
-          >
-          {
-            true &&
-            <Fragment>
-              <h3 css={{ gridColumn: "1" }}><Translate>Hit Threshold</Translate></h3>
-              <AsyncNumberInput
-                min={0}
-                value={actor.data.data.hitThreshold}
-                onChange={updateHitThreshold}
-                noPlusMinus={true}
-                css={{
-                  width: "2em",
-                  gridColumn: "2",
-                }}
-              />
-            </Fragment>
-          }
-            <h3 css={{ gridColumn: "1" }}><Translate>Armor</Translate></h3>
-            <AsyncNumberInput
-              min={-10}
-              value={actor.data.data.armor}
-              onChange={updateArmor}
-              noPlusMinus={true}
-              css={{
-                width: "2em",
-                gridColumn: "2",
-              }}
-            />
-            <h3 css={{ gridColumn: "1" }}><Translate>Alertness Modifier</Translate></h3>
-            <AsyncNumberInput
-              min={-10}
-              value={actor.data.data.alertness}
-              onChange={updateAlertness}
-              noPlusMinus={true}
-              css={{
-                width: "2em",
-                gridColumn: "2",
-              }}
-            />
-            <h3 css={{ gridColumn: "1" }}><Translate>Stealth Modifier</Translate></h3>
-            <AsyncNumberInput
-              min={-10}
-              value={actor.data.data.stealth}
-              onChange={updateStealth}
-              noPlusMinus={true}
-              css={{
-                width: "2em",
-                gridColumn: "2",
-              }}
-            />
-            <h3 css={{ gridColumn: "1" }}><Translate>Stability Loss</Translate></h3>
-            <AsyncNumberInput
-              min={-10}
-              value={actor.data.data.stabilityLoss}
-              onChange={updateStabilityLoss}
-              noPlusMinus={true}
-              css={{
-                width: "2em",
-                gridColumn: "2",
-              }}
-            />
-          </div>
+          <hr/>
+            {
+              Object.keys(stats).map<ReactNode>((key) => {
+                return (<StatField key={key} id={key} actor={actor} stat={stats[key]} />);
+              })
+            }
 
           <hr/>
           <TrackersArea actor={actor} />
