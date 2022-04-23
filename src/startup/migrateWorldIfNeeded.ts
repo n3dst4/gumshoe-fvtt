@@ -12,7 +12,7 @@ export const migrateWorldIfNeeded = async () => {
   const currentVersion = settings.systemMigrationVersion.get();
   // newest version that needs a migration (make this the current version when
   // you introduce a new migration)
-  const NEEDS_MIGRATION_VERSION = "4.8.0";
+  const NEEDS_MIGRATION_VERSION = "4.11.0";
   // oldest version which can be migrated reliably
   const COMPATIBLE_MIGRATION_VERSION = "3.0.0";
   const needsMigration = isNewerVersion(

@@ -1,5 +1,5 @@
 import { migrateItemData } from "./migrateItemData";
-import { moveOldNotesToNewNoteSlots, upgradeLongNotesToRichText } from "./actorMigrations";
+import { moveOldNotesToNewNoteSlots, moveStats, upgradeLongNotesToRichText } from "./actorMigrations";
 
 /**
  * Migrate a single Actor entity to incorporate latest data model changes
@@ -15,6 +15,7 @@ export const migrateActorData = function (actorData: any) {
   // _migrateActorSenses(actor, updateData);
   moveOldNotesToNewNoteSlots(actorData, updateData);
   upgradeLongNotesToRichText(actorData, updateData);
+  moveStats(actorData, updateData);
 
   // Migrate Owned Items
   if (!actorData.items) return updateData;

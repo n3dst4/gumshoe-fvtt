@@ -4,7 +4,7 @@
     "templates": {
       "activeCharacter": {
         "initiativeAbility": "",
-        "hitThreshold": 3,
+        "hitThreshold": -1000000000,
         "stats": {
           "hitThreshold": 3
         },

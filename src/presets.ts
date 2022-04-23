@@ -21,6 +21,35 @@ export const pathOfCthulhuPreset: Required<PresetV1> = {
   mwHiddenShortNotes: [],
   showEmptyInvestigativeCategories: false,
   useHitThreshold: true,
+  pcStats: {
+    hitThreshold: {
+      name: "Hit threshold",
+      default: 3,
+    },
+  },
+  npcStats: {
+    hitThreshold: {
+      name: "Hit threshold",
+      default: 3,
+    },
+    armor: {
+      name: "Armor",
+      default: 0,
+    },
+    alertness: {
+      name: "Alertness",
+      default: 0,
+    },
+    stealth: {
+      name: "Stealth",
+      default: 0,
+    },
+    stabilityLoss: {
+      name: "Stability Loss",
+      default: 0,
+    },
+
+  },
 };
 
 export const niceBlackAgentsPreset: PresetV1 = {
@@ -40,6 +69,8 @@ export const niceBlackAgentsPreset: PresetV1 = {
   mwUseAlternativeItemTypes: false,
   useMwInjuryStatus: false,
   genericOccupation: "Investigator",
+  pcStats: pathOfCthulhuPreset.pcStats,
+  npcStats: pathOfCthulhuPreset.npcStats,
 };
 
 export const nothingToFearPreset: PresetV1 = {
@@ -59,6 +90,8 @@ export const nothingToFearPreset: PresetV1 = {
   mwUseAlternativeItemTypes: false,
   useMwInjuryStatus: false,
   genericOccupation: "Investigator",
+  pcStats: pathOfCthulhuPreset.pcStats,
+  npcStats: pathOfCthulhuPreset.npcStats,
 };
 
 export const pallidStarsPreset: PresetV1 = {
@@ -78,6 +111,8 @@ export const pallidStarsPreset: PresetV1 = {
   mwUseAlternativeItemTypes: false,
   useMwInjuryStatus: false,
   genericOccupation: "Investigator",
+  pcStats: pathOfCthulhuPreset.pcStats,
+  npcStats: pathOfCthulhuPreset.npcStats,
 };
 
 export const castingTheRunesPreset: PresetV1 = {
@@ -97,6 +132,8 @@ export const castingTheRunesPreset: PresetV1 = {
   mwUseAlternativeItemTypes: false,
   useMwInjuryStatus: false,
   genericOccupation: "Investigator",
+  pcStats: pathOfCthulhuPreset.pcStats,
+  npcStats: pathOfCthulhuPreset.npcStats,
 };
 
 export const moribundWorldPreset: PresetV1 = {
@@ -117,6 +154,8 @@ export const moribundWorldPreset: PresetV1 = {
   mwHiddenShortNotes: ["Sympathy points"],
   useMwInjuryStatus: true,
   genericOccupation: "Character",
+  pcStats: pathOfCthulhuPreset.pcStats,
+  npcStats: pathOfCthulhuPreset.npcStats,
 };
 
 export const basePresets = {
