@@ -181,11 +181,6 @@ export const settings = {
     name: "Use Boost",
     default: pathOfCthulhuPreset.useBoost,
   }),
-  useHitThreshold: createSettingBoolean({
-    key: "useHitThreshold",
-    name: "Use hit threshold?",
-    default: pathOfCthulhuPreset.useHitThreshold,
-  }),
   useMwInjuryStatus: createSettingBoolean({
     key: "useMwInjuryStatus",
     name: "Use injury status",
@@ -195,6 +190,16 @@ export const settings = {
     key: "useMwStyleAbilities",
     name: "Use Moribund World-style abilities",
     default: false,
+  }),
+  pcStats: createSettingObject({
+    key: "pcStats",
+    name: "What stats should PCs have?",
+    default: pathOfCthulhuPreset.pcStats,
+  }),
+  npcStats: createSettingObject({
+    key: "npcStats",
+    name: "What stats should NPCs have?",
+    default: pathOfCthulhuPreset.npcStats,
   }),
 };
 

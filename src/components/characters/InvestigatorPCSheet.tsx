@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Fragment, useCallback } from "react";
+import { Fragment, ReactNode, useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { jsx } from "@emotion/react";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
@@ -18,7 +18,6 @@ import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
 import { assertPCDataSource, isPCDataSource } from "../../types";
-import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { ImagePickle } from "../ImagePickle";
 import { assertGame } from "../../functions";
 import { AbilitiesAreaMW } from "./MoribundWorld/AbilitiesAreaMW";
@@ -26,6 +25,7 @@ import { MwItemArea } from "./MoribundWorld/MwItemArea";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 import { settings } from "../../settings";
+import { StatField } from "./StatField";
 
 type InvestigatorPCSheetProps = {
   actor: InvestigatorActor,
@@ -47,14 +47,11 @@ export const InvestigatorPCSheet = ({
     actor.setMwHiddenShortNote(index, value);
   }, [actor]);
 
-  const updateHitThreshold = useCallback((newThreshold) => {
-    actor.setHitThreshold(newThreshold);
-  }, [actor]);
-
   const theme = actor.getSheetTheme();
   const shortNotesNames = settings.shortNotes.get();
   const shortHiddenNotesNames = settings.mwHiddenShortNotes.get();
   const occupationLabel = settings.occupationLabel.get();
+  const stats = settings.pcStats.get();
 
   return (
     <ActorSheetAppContext.Provider value={foundryApplication}>
@@ -199,6 +196,11 @@ export const InvestigatorPCSheet = ({
             <TrackersArea actor={actor} />
             <hr/>
             {
+              Object.keys(stats).map<ReactNode>((key) => {
+                return (<StatField key={key} actor={actor} stat={stats[key]} />);
+              })
+            }
+            {/* {
               settings.useHitThreshold.get() &&
                 <Fragment>
                   <h3 css={{ gridColumn: "start / end" }}>
@@ -210,7 +212,7 @@ export const InvestigatorPCSheet = ({
                     onChange={updateHitThreshold}
                   />
                 </Fragment>
-            }
+            } */}
             <hr/>
             <h3 css={{ gridColumn: "start / end" }}>
               <Translate>Combat Order</Translate>

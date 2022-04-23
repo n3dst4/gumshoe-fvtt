@@ -328,9 +328,9 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         <SettingsGridField label="Show empty Investigative categories?" index={idx++}>
           <Checkbox checked={tempSettings.showEmptyInvestigativeCategories} onChange={setters.showEmptyInvestigativeCategories} />
         </SettingsGridField>
-        <SettingsGridField label="Show hit threshold counter?" index={idx++}>
+        {/* <SettingsGridField label="Show hit threshold counter?" index={idx++}>
           <Checkbox checked={tempSettings.useHitThreshold} onChange={setters.useHitThreshold} />
-        </SettingsGridField>
+        </SettingsGridField> */}
 
         {
           isDevMode &&

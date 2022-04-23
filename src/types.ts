@@ -64,6 +64,7 @@ interface PCDataSourceData {
   initiativeAbility: string;
   hideZeroRated: boolean;
   sheetTheme: string|null;
+  /** deprecated */
   hitThreshold: number;
   mwInjuryStatus: MwInjuryStatus;
   resources: {
@@ -72,6 +73,7 @@ interface PCDataSourceData {
     stability: Resource,
     magic: Resource,
   };
+  stats: Record<string, number>;
 }
 
 interface NPCDataSourceData {
@@ -79,10 +81,15 @@ interface NPCDataSourceData {
   initiativeAbility: string;
   hideZeroRated: boolean;
   sheetTheme: string|null;
+  /** deprecated */
   hitThreshold: number;
+  /** deprecated */
   armor: number;
+  /** deprecated */
   alertness: number;
+  /** deprecated */
   stealth: number;
+  /** deprecated */
   stabilityLoss: number;
   mwInjuryStatus: MwInjuryStatus;
   resources: {
@@ -91,6 +98,7 @@ interface NPCDataSourceData {
     stability: Resource,
     magic: Resource,
   };
+  stats: Record<string, number>;
 }
 
 interface PartyDataSourceData {
