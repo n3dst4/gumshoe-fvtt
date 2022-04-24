@@ -7,11 +7,13 @@ import { StatSettingsRow } from "./StatSettingsRow";
 interface StatsSettingsEditorProps {
   stats: Record<string, Stat>;
   onChange: (stat: Stat, id: string) => void;
+  onChangeId: (oldId: string, newId: string) => void;
 }
 
 export const StatsSettingsEditor: React.FC<StatsSettingsEditorProps> = ({
   stats,
   onChange,
+  onChangeId,
 }: StatsSettingsEditorProps) => {
   return (
     <div>
@@ -24,6 +26,7 @@ export const StatsSettingsEditor: React.FC<StatsSettingsEditorProps> = ({
               id={key}
               index={i + 2}
               onChange={onChange}
+              onChangeId={onChangeId}
             />
           );
         })

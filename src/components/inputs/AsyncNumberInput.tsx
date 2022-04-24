@@ -84,11 +84,13 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
     onFocus,
   } = useAsyncUpdate((value || 0).toString(), onChangeString);
 
-  const onClickInc = useCallback(() => {
+  const onClickInc = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
     onChange(adjust(display, +1, min, max));
   }, [display, max, min, onChange]);
 
-  const onClickDec = useCallback(() => {
+  const onClickDec = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
     onChange(adjust(display, -1, min, max));
   }, [display, max, min, onChange]);
 

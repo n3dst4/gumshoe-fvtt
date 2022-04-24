@@ -13,6 +13,7 @@ interface StatSettingsRowProps {
   stat: Stat;
   index: number;
   onChange: (stat: Stat, id: string) => void;
+  onChangeId: (oldId: string, newId: string) => void;
 }
 
 export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
@@ -20,6 +21,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
   stat,
   index,
   onChange,
+  onChangeId,
 }: StatSettingsRowProps) => {
   const isEven = index % 2 === 0;
   const theme = useContext(ThemeContext);
@@ -75,6 +77,17 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
     }, idRef.current);
   }, [onChange, statRef, idRef]);
 
+  const onChangeIdCallback = useCallback((newId: string) => {
+    onChangeId(idRef.current, newId);
+  }, [idRef, onChangeId]);
+
+  const onChangeName = useCallback((name:string) => {
+    onChange({
+      ...statRef.current,
+      name,
+    }, idRef.current);
+  }, [onChange, statRef, idRef]);
+
   return (
     <div
       css={{
@@ -99,12 +112,12 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
       >
         <AsyncTextInput
           css={{ flex: 1 }}
-          onChange={() => {}}
+          onChange={onChangeIdCallback}
           value={id}
         />
         <AsyncTextInput
           css={{ flex: 1 }}
-          onChange={() => {}}
+          onChange={onChangeName}
           value={stat.name}
         />
       </div>

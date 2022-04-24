@@ -124,6 +124,22 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       [id]: stat,
     });
   }, [setters, tempSettingsRef]);
+  const onChangePCStatId = useCallback((oldId: string, newId: string) => {
+    const result = {
+      ...tempSettingsRef.current.pcStats,
+      [newId]: tempSettingsRef.current.pcStats[oldId],
+    };
+    delete result[oldId];
+    setters.pcStats(result);
+  }, [setters, tempSettingsRef]);
+  const onChangeNPCStatId = useCallback((oldId: string, newId: string) => {
+    const result = {
+      ...tempSettingsRef.current.npcStats,
+      [newId]: tempSettingsRef.current.npcStats[oldId],
+    };
+    delete result[oldId];
+    setters.npcStats(result);
+  }, [setters, tempSettingsRef]);
 
   let idx = 0;
   const isDevMode = getDevMode();
@@ -324,10 +340,18 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
           <ListEdit value={tempSettings.longNotes} onChange={setters.longNotes} />
         </SettingsGridField>
         <SettingsGridField label="PC Stats" index={idx++}>
-          <StatsSettingsEditor stats={tempSettings.pcStats} onChange={onChangePCStat} />
+          <StatsSettingsEditor
+            stats={tempSettings.pcStats}
+            onChange={onChangePCStat}
+            onChangeId={onChangePCStatId}
+          />
         </SettingsGridField>
         <SettingsGridField label="NPC Stats" index={idx++}>
-          <StatsSettingsEditor stats={tempSettings.npcStats} onChange={onChangeNPCStat}/>
+          <StatsSettingsEditor
+            stats={tempSettings.npcStats}
+            onChange={onChangeNPCStat}
+            onChangeId={onChangeNPCStatId}
+          />
         </SettingsGridField>
         <SettingsGridField label="Can Abilities be Boosted?" index={idx++}>
           <Checkbox checked={tempSettings.useBoost} onChange={setters.useBoost} />
