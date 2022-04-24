@@ -148,6 +148,8 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
           <AsyncNumberInput
             onChange={onChangeDefault}
             value={stat.default}
+            min={stat.min}
+            max={stat.max}
             css={{
               flex: 1,
             }}
@@ -157,6 +159,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
           ? <AsyncNumberInput
             onChange={onChangeMin}
             value={stat.min}
+            max={stat.max}
             css={{
               flex: 1,
             }}
@@ -167,6 +170,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
           ? <AsyncNumberInput
             onChange={onChangeMax}
             value={stat.max}
+            min={stat.min}
             css={{
               flex: 1,
             }}
