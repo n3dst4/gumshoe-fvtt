@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { customSystem, settingsSaved } from "../constants";
 import { assertGame, getDevMode } from "../functions";
 import { tealTheme } from "../themes/tealTheme";
@@ -18,6 +18,8 @@ import { runtimeConfig } from "../runtime";
 import { settings, getSettingsDict, SettingsDict } from "../settings";
 import { pathOfCthulhuPreset } from "../presets";
 import { StatsSettingsEditor } from "./inputs/StatsSettingsEditor";
+import { Stat } from "@lumphammer/investigator-fvtt-types";
+import { useRefStash } from "../hooks/useRefStash";
 
 type InvestigatorSettingsProps = {
   foundryApplication: Application,
@@ -28,10 +30,7 @@ type Setters = { [k in keyof SettingsDict]: ((newVal: SettingsDict[k]) => void)}
 const useTempSettings = () => {
   const initial = useMemo(getSettingsDict, []);
   const [tempSettings, setTempSettings] = useState(initial);
-  const tempSettingsRef = useRef(tempSettings);
-  useEffect(() => {
-    tempSettingsRef.current = tempSettings;
-  }, [tempSettings]);
+  const tempSettingsRef = useRefStash(tempSettings);
   const setters = useMemo(() => {
     const setters: Record<string, any> = {};
     for (const k of Object.keys(initial)) {
@@ -112,6 +111,19 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     },
     [foundryApplication, tempSettingsRef],
   );
+
+  const onChangePCStat = useCallback((stat: Stat, id: string) => {
+    setters.pcStats({
+      ...tempSettingsRef.current.pcStats,
+      [id]: stat,
+    });
+  }, [setters, tempSettingsRef]);
+  const onChangeNPCStat = useCallback((stat: Stat, id: string) => {
+    setters.npcStats({
+      ...tempSettingsRef.current.npcStats,
+      [id]: stat,
+    });
+  }, [setters, tempSettingsRef]);
 
   let idx = 0;
   const isDevMode = getDevMode();
@@ -312,10 +324,10 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
           <ListEdit value={tempSettings.longNotes} onChange={setters.longNotes} />
         </SettingsGridField>
         <SettingsGridField label="PC Stats" index={idx++}>
-          <StatsSettingsEditor pcOrNpc="pc" />
+          <StatsSettingsEditor stats={tempSettings.pcStats} onChange={onChangePCStat} />
         </SettingsGridField>
         <SettingsGridField label="NPC Stats" index={idx++}>
-          <StatsSettingsEditor pcOrNpc="npc"/>
+          <StatsSettingsEditor stats={tempSettings.npcStats} onChange={onChangeNPCStat}/>
         </SettingsGridField>
         <SettingsGridField label="Can Abilities be Boosted?" index={idx++}>
           <Checkbox checked={tempSettings.useBoost} onChange={setters.useBoost} />

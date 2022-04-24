@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
+import { useRefStash } from "./useRefStash";
 
 /**
  * Like useState, but returns a third item, a getter. This is a shortcut for the
@@ -12,12 +13,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
  */
 export function useStateWithGetter<T> (initial: T) {
   const [value, setValue] = useState(initial);
-  const ref = useRef(initial);
-  useEffect(function () {
-    ref.current = value;
-  }, [value]);
+  const ref = useRefStash(value);
   const getValue = useCallback(function () {
     return ref.current;
-  }, []);
+  }, [ref]);
   return [getValue, setValue, value] as const; // as const makes it a tuple
 }
