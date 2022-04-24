@@ -40,7 +40,7 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
   const onDelete = useCallback((index: number) => {
     assertAbilityDataSource(ability.data);
     const unlocks = [...ability.data.data.unlocks];
-    delete unlocks[index];
+    unlocks.splice(index, 1);
     ability.update({
       data: { unlocks },
     });
