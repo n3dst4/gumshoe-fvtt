@@ -3,7 +3,7 @@ import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
 import React, { useCallback, useMemo, useState } from "react";
 import { customSystem, settingsSaved } from "../constants";
-import { assertGame, getDevMode } from "../functions";
+import { assertGame, getDevMode, renameProperty } from "../functions";
 import { tealTheme } from "../themes/tealTheme";
 import { CSSReset, CSSResetMode } from "./CSSReset";
 import { IdContext } from "./IdContext";
@@ -125,19 +125,11 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
     });
   }, [setters, tempSettingsRef]);
   const onChangePCStatId = useCallback((oldId: string, newId: string) => {
-    const result = {
-      ...tempSettingsRef.current.pcStats,
-      [newId]: tempSettingsRef.current.pcStats[oldId],
-    };
-    delete result[oldId];
+    const result = renameProperty(oldId, newId, tempSettingsRef.current.pcStats);
     setters.pcStats(result);
   }, [setters, tempSettingsRef]);
   const onChangeNPCStatId = useCallback((oldId: string, newId: string) => {
-    const result = {
-      ...tempSettingsRef.current.npcStats,
-      [newId]: tempSettingsRef.current.npcStats[oldId],
-    };
-    delete result[oldId];
+    const result = renameProperty(oldId, newId, tempSettingsRef.current.npcStats);
     setters.npcStats(result);
   }, [setters, tempSettingsRef]);
 

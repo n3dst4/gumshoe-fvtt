@@ -168,3 +168,15 @@ export function assertNotNull<T> (t: T|undefined): asserts t is T {
     throw new Error("t was undefined");
   }
 }
+
+export function renameProperty <T> (oldProp: string, newProp: string, subject: Record<string, T>) {
+  const result: Record<string, T> = {};
+  for (const p in subject) {
+    if (p === oldProp) {
+      result[newProp] = subject[oldProp];
+    } else {
+      result[p] = subject[p];
+    }
+  }
+  return result;
+}
