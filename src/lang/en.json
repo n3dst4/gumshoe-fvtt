@@ -118,5 +118,7 @@
     "investigator.YesPlease": "Yes please!",
     "investigator.GenericOccupation": "Generic occupation",
     "investigator.ShowEmptyInvestigativeCategories": "Show empty investigative categories?",
-    "investigator.ShowHitThresholdCounter": "Show hit threshold counter?"
+    "investigator.ShowHitThresholdCounter": "Show hit threshold counter?",
+    "investigator.PCStats": "PC Stats",
+    "investigator.NPCStats": "NPC Stats"
 }

@@ -16,9 +16,9 @@ export const StatsSettingsEditor: React.FC<StatsSettingsEditorProps> = ({
   return (
     <div
       css={{
-        display: "grid",
-        gridTemplateColumns: "[name] 1fr [defaul] 1fr [min] 1fr [max] 1fr [end]",
-        gridAutoRows: "max-content",
+        // display: "grid",
+        // gridTemplateColumns: "[name] 1fr [defaul] 1fr [min] 1fr [max] 1fr [end]",
+        // gridAutoRows: "max-content",
       }}
     >
       {
