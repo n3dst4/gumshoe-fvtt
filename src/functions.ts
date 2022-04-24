@@ -169,6 +169,11 @@ export function assertNotNull<T> (t: T|undefined): asserts t is T {
   }
 }
 
+/**
+ * create a new object with a key "renamed" in the same order
+ * this keeps the renamed key in the same relative order, if you're relying on
+ * JS's object key order being stable
+ */
 export function renameProperty <T> (oldProp: string, newProp: string, subject: Record<string, T>) {
   const result: Record<string, T> = {};
   for (const p in subject) {
