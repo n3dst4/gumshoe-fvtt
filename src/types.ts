@@ -208,6 +208,11 @@ interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
   };
 }
 
+export interface Unlock {
+  rank: number;
+  description: string;
+}
+
 /** data.data for either type of ability */
 export interface BaseAbilityDataSourceData {
   rating: number;
@@ -226,6 +231,7 @@ export interface BaseAbilityDataSourceData {
   // this is defined separately for gen/inv in template.json so they have
   // different defaults but it's the same property
   hideIfZeroRated: boolean;
+  unlocks: Unlock[];
 }
 
 /** data.data for investigative abilities */

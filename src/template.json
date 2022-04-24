@@ -95,7 +95,8 @@
         "showTracker": false,
         "boost":  false,
         "excludeFromGeneralRefresh": false,
-        "refreshesDaily": false
+        "refreshesDaily": false,
+        "unlocks": []
       }
     },
     "investigativeAbility": {

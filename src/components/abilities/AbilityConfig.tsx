@@ -11,6 +11,7 @@ import { Translate } from "../Translate";
 import { assertAbilityDataSource, isGeneralAbilityDataSource, MwRefreshGroup } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { settings } from "../../settings";
+import { UnlocksEditor } from "./UnlocksEditor";
 
 type AbilityConfigProps = {
   ability: InvestigatorItem,
@@ -194,7 +195,10 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
               <option value="8">{getTranslated("XHours", { x: "8" })}</option>
             </select>
           </GridField>
-  }
+      }
+      <GridField label="Unlocks">
+        <UnlocksEditor ability={ability} />
+      </GridField>
       <GridField label="Delete ability">
         <button onClick={onClickDelete}><Translate>Delete</Translate></button>
       </GridField>

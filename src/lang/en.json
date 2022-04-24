@@ -120,5 +120,7 @@
     "investigator.ShowEmptyInvestigativeCategories": "Show empty investigative categories?",
     "investigator.ShowHitThresholdCounter": "Show hit threshold counter?",
     "investigator.PCStats": "PC Stats",
-    "investigator.NPCStats": "NPC Stats"
+    "investigator.NPCStats": "NPC Stats",
+    "investigator.Unlocks": "Unlocks"
+
 }
