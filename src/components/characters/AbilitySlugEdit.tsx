@@ -7,6 +7,7 @@ import { assertAbilityDataSource } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { SpecialityList } from "../abilities/SpecialityList";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
+import { UnlockBadges } from "../abilities/UnlockBadges";
 
 type AbilitySlugEditProps = {
   ability: InvestigatorItem,
@@ -61,6 +62,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability, showO
           css={{ width: "2em" }}
         />
       </div>
+      <UnlockBadges ability={ability} css={{ gridColumn: "1/-1" }}/>
       {ability.getHasSpecialities() && (ability.data.data.rating > 0) && (
         <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
           <SpecialityList ability={ability} />

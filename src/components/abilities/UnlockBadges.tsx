@@ -26,7 +26,7 @@ export const UnlockBadges: React.FC<UnlockBadgesProps> = ({
         justifyContent: "center",
       }}
     >
-      {unlocks.map<ReactNode>(({ description, rating: targetRating }, i) => {
+      {unlocks.map<ReactNode>(({ description }, i) => {
         return (
           <span
             key={i}
@@ -40,7 +40,7 @@ export const UnlockBadges: React.FC<UnlockBadgesProps> = ({
               margin: "0 0.25em",
             }}
           >
-            {targetRating}: {description}
+            {description}
           </span>
         );
       })}
