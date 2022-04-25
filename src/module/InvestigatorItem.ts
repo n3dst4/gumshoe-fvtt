@@ -610,6 +610,16 @@ export class InvestigatorItem extends Item {
     assertGeneralAbilityDataSource(this.data);
     this.update({ data: { mwRefreshGroup } });
   }
+
+  getActiveUnlocks = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.unlocks.filter(
+      ({ rating: targetRating }) => {
+        assertAbilityDataSource(this.data);
+        return (this.data.data.rating >= targetRating);
+      },
+    );
+  }
 }
 
 declare global {

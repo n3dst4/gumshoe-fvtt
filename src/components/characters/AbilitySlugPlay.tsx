@@ -4,6 +4,7 @@ import React, { Fragment, useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { assertAbilityDataSource, isGeneralAbilityDataSource, isInvestigativeAbilityDataSource } from "../../types";
+import { UnlockBadges } from "../abilities/UnlockBadges";
 
 type AbilitySlugPlayProps = {
   ability: InvestigatorItem,
@@ -19,6 +20,7 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
   }, [app]);
 
   const [spend, setSpend] = useState(0);
+  // const unlocks = ability.getActiveUnlocks();
 
   const onTest = useCallback(() => {
     ability.testAbility(spend);
@@ -99,8 +101,14 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
           </button>
         )}
       </div>
-      {
-      }
+      <UnlockBadges ability={ability} css={{ gridColumn: "1/-1" }}/>
+      {ability.data.data.hasSpecialities && (
+        <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
+          {(ability.data.data.specialities || []).map<JSX.Element>((x: string, i: number) => (
+            <div key={i}>{x.trim()}</div>
+          ))}
+        </div>
+      )}
       {ability.data.data.hasSpecialities && (
         <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
           {(ability.data.data.specialities || []).map<JSX.Element>((x: string, i: number) => (
