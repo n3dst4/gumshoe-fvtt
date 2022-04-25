@@ -62,12 +62,6 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
 
   const selectedCat = selectCustomOption ? "" : ability.data.data.category;
 
-  // useEffect(() => {
-  //   if (selectedCat === "") {
-  //     setShowCustomField(true);
-  //   }
-  // }, [selectedCat]);
-
   return (
     <InputGrid>
       <GridField label="Name">

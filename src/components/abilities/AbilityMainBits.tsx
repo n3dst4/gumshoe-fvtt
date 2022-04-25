@@ -12,6 +12,7 @@ import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveChara
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { settings } from "../../settings";
+import { UnlockBadges } from "./UnlockBadges";
 
 type AbilityMainBitsProps = {
   ability: InvestigatorItem,
@@ -65,7 +66,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     <InputGrid
       css={{
         flex: 1,
-        gridTemplateRows: "auto auto 1fr",
+        gridTemplateRows: "auto auto min-content 1fr",
       }}
     >
       <GridField label="Pool">
@@ -103,6 +104,12 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
           onChange={ability.setRating}
         />
       </GridField>
+      <UnlockBadges
+        css={{
+          gridColumn: "1 / 4",
+        }}
+        ability={ability}
+      />
       <NotesEditorWithControls
         source={ability.getNotes().source}
         format={ability.getNotes().format}
