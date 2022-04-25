@@ -58,8 +58,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability, showO
           min={0}
           value={ability.data.data.rating}
           onChange={updateRating}
-          noPlusMinus={true}
-          css={{ width: "2em" }}
+          smallButtons
         />
       </div>
       <UnlockBadges ability={ability} css={{ gridColumn: "1/-1" }}/>
