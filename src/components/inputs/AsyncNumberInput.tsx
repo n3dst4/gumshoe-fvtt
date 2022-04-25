@@ -103,9 +103,6 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
       css={{
         display: "flex",
         flexDirection: "row",
-        "i.fa": {
-          margin: 0,
-        },
         button: {
           lineHeight: "inherit",
           flexBasis: "min-content",

@@ -153,6 +153,9 @@ export const CSSReset: React.FC<CSSResetProps> = ({
           hr: {
             borderColor: theme.colors.controlBorder,
           },
+          "i.fa:last-child": {
+            margin: 0,
+          },
           ...rootStyle,
 
         }}
