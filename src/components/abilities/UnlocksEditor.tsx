@@ -17,7 +17,7 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
     assertAbilityDataSource(ability.data);
     ability.update({
       data: {
-        unlocks: [...ability.data.data.unlocks, { rank: 8, description: "" }],
+        unlocks: [...ability.data.data.unlocks, { rating: 8, description: "" }],
       },
     });
   }, [ability]);
@@ -29,10 +29,10 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
       data: { unlocks },
     });
   }, [ability]);
-  const onChangeRank = useCallback((index: number, rank: number) => {
+  const onChangeRating = useCallback((index: number, rating: number) => {
     assertAbilityDataSource(ability.data);
     const unlocks = [...ability.data.data.unlocks];
-    unlocks[index].rank = rank;
+    unlocks[index].rating = rating;
     ability.update({
       data: { unlocks },
     });
@@ -58,7 +58,7 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
             index={i}
             unlock={unlock}
             onChangeDescription={onChangeDescription}
-            onChangeRank={onChangeRank}
+            onChangeRating={onChangeRating}
             onDelete={onDelete}
           />
         );

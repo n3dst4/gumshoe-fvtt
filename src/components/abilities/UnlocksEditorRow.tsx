@@ -8,21 +8,21 @@ import { AsyncTextInput } from "../inputs/AsyncTextInput";
 interface UnlocksEditorRowProps {
   unlock: Unlock;
   index: number;
-  onChangeRank: (index: number, rank: number) => void;
+  onChangeRating: (index: number, rating: number) => void;
   onChangeDescription: (index: number, description: string) => void;
   onDelete: (index: number) => void;
 }
 
 export const UnlocksEditorRow: React.FC<UnlocksEditorRowProps> = ({
-  unlock: { rank, description },
+  unlock: { rating, description },
   index,
-  onChangeRank,
+  onChangeRating,
   onChangeDescription,
   onDelete,
 }: UnlocksEditorRowProps) => {
-  const onChangeRankCallback = useCallback((newVal) => {
-    onChangeRank(index, newVal);
-  }, [index, onChangeRank]);
+  const onChangeRatingCallback = useCallback((newVal) => {
+    onChangeRating(index, newVal);
+  }, [index, onChangeRating]);
   const onChangeDescriptionCallback = useCallback((newDescription) => {
     onChangeDescription(index, newDescription);
   }, [index, onChangeDescription]);
@@ -43,8 +43,8 @@ export const UnlocksEditorRow: React.FC<UnlocksEditorRowProps> = ({
           css={{
             flex: 1,
           }}
-          value={rank}
-          onChange={onChangeRankCallback}
+          value={rating}
+          onChange={onChangeRatingCallback}
         />
         <button
           css={{

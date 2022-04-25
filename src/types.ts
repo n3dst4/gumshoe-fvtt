@@ -209,7 +209,7 @@ interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
 }
 
 export interface Unlock {
-  rank: number;
+  rating: number;
   description: string;
 }
 
