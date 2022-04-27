@@ -99,6 +99,8 @@ interface NPCDataSourceData {
     magic: Resource,
   };
   stats: Record<string, number>;
+  combatBonus: number;
+  damageBonus: number;
 }
 
 interface PartyDataSourceData {
@@ -249,6 +251,8 @@ export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData 
   mwTrumps: string;
   mwTrumpedBy: string;
   mwRefreshGroup: MwRefreshGroup;
+  combatBonus: number;
+  damageBonus: number;
 }
 
 export type MwType = "tweak"|"spell"|"cantrap"|"enchantedItem"|"meleeWeapon"|"missileWeapon"|"manse"|"sandestin"|"retainer";
