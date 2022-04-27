@@ -2,6 +2,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import * as constants from "../../constants";
 import { assertGame } from "../../functions";
 import { settings } from "../../settings";
+import { isGeneralAbilityDataSource, isNPCDataSource } from "../../types";
 
 type PerformAttackArgs1 = {
   spend: number,
@@ -35,9 +36,28 @@ export const performAttack = ({
   const useBoost = settings.useBoost.get();
   const isBoosted = useBoost && (ability !== undefined) && ability.getBoost();
   const boost = isBoosted ? 1 : 0;
-  const hitRoll = isBoosted
-    ? new Roll("1d6 + @spend + @boost", { spend, boost })
-    : new Roll("1d6 + @spend", { spend });
+
+  let hitTerm = "1d6 + @spend";
+  const hitParams: { [name: string]: number } = { spend };
+  if (isBoosted) {
+    hitTerm += " + @boost";
+    hitParams.boost = boost;
+  }
+
+  if (
+    settings.useNpcCombatBonuses.get() &&
+    ability?.isOwned &&
+    ability.parent &&
+    isNPCDataSource(ability.parent.data) &&
+    isGeneralAbilityDataSource(ability.data)
+  ) {
+    hitTerm += " + @npcCombatBonus";
+    hitParams.npcCombatBonus = ability.parent.data.data.combatBonus;
+    hitTerm += " + @abilityCombatBonus";
+    hitParams.abilityCombatBonus = ability.data.data.combatBonus;
+  }
+  const hitRoll = new Roll(hitTerm, hitParams);
+
   await hitRoll.evaluate({ async: true });
   hitRoll.dice[0].options.rollOrder = 1;
 
