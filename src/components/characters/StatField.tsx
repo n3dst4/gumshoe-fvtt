@@ -24,15 +24,15 @@ export const StatField: React.FC<StatFieldProps> = ({
 
   return (
     <Fragment>
-    <h3 css={{ gridColumn: "start / end" }}>
-      {stat.name}
-    </h3>
-    <AsyncNumberInput
-      min={stat.min ?? 0}
-      max={stat.max}
-      value={actor.data.data.stats[id] ?? stat.default}
-      onChange={onChange}
-    />
-  </Fragment>
+      <h3 css={{ gridColumn: "start / end" }}>
+        {stat.name}
+      </h3>
+      <AsyncNumberInput
+        min={stat.min ?? 0}
+        max={stat.max}
+        value={actor.data.data.stats[id] ?? stat.default}
+        onChange={onChange}
+      />
+    </Fragment>
   );
 };

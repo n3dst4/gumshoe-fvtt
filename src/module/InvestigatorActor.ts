@@ -326,6 +326,16 @@ export class InvestigatorActor extends Actor {
     }
   }
 
+  setCombatBonus = async (combatBonus: number) => {
+    assertNPCDataSource(this.data);
+    await this.update({ data: { combatBonus } });
+  }
+
+  setDamageBonus = async (damageBonus: number) => {
+    assertNPCDataSource(this.data);
+    await this.update({ data: { damageBonus } });
+  }
+
   // ###########################################################################
   // Moribund World stuff
   getMwInjuryStatus = () => {

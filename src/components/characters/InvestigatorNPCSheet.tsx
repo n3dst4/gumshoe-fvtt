@@ -12,7 +12,7 @@ import { WeaponsAreaEdit } from "./WeaponsAreaEdit";
 import { ActorSheetAppContext } from "../FoundryAppContext";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
-import { assertNPCDataSource } from "../../types";
+import { assertNPCDataSource, isNPCDataSource } from "../../types";
 import { ImagePickle } from "../ImagePickle";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
@@ -21,6 +21,7 @@ import { absoluteCover } from "../absoluteCover";
 import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 import { settings } from "../../settings";
 import { StatField } from "./StatField";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 type InvestigatorNPCSheetProps = {
   actor: InvestigatorActor,
@@ -143,6 +144,19 @@ export const InvestigatorNPCSheet = ({
 
           {/* Stats */}
           <hr/>
+            {/* SotS NPC Combat bonus */}
+            {
+              settings.useNpcCombatBonuses.get() && isNPCDataSource(actor.data) &&
+              <Fragment>
+                <h3 css={{ gridColumn: "start / end" }}>
+                  <Translate>Combat bonus</Translate>
+                </h3>
+                <AsyncNumberInput
+                  value={actor.data.data.combatBonus}
+                  onChange={actor.setCombatBonus}
+                />
+              </Fragment>
+            }
             {
               Object.keys(stats).map<ReactNode>((key) => {
                 return (<StatField key={key} id={key} actor={actor} stat={stats[key]} />);

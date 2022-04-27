@@ -122,5 +122,7 @@
     "investigator.PCStats": "PC Stats",
     "investigator.NPCStats": "NPC Stats",
     "investigator.Unlocks": "Unlocks",
-    "investigator.UseNPCCombatBonuses": "Use NPC Combat bonuses?"
+    "investigator.UseNPCCombatBonuses": "Use NPC Combat bonuses?",
+    "investigator.CombatBonus": "Combat bonus",
+    "investigator.DamageBonus": "Damage bonus"
 }
