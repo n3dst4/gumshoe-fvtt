@@ -366,6 +366,9 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         {/* <SettingsGridField label="Show hit threshold counter?" index={idx++}>
           <Checkbox checked={tempSettings.useHitThreshold} onChange={setters.useHitThreshold} />
         </SettingsGridField> */}
+        <SettingsGridField label="Use NPC Combat bonuses?" index={idx++}>
+          <Checkbox checked={tempSettings.useNpcCombatBonuses} onChange={setters.useNpcCombatBonuses} />
+        </SettingsGridField>
 
         {
           isDevMode &&

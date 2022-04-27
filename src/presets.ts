@@ -48,8 +48,8 @@ export const pathOfCthulhuPreset: Required<PresetV1> = {
       name: "Stability Loss",
       default: 0,
     },
-
   },
+  useNpcCombatBonuses: false,
 };
 
 export const niceBlackAgentsPreset: PresetV1 = {

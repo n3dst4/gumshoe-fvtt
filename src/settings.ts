@@ -201,6 +201,11 @@ export const settings = {
     name: "What stats should NPCs have?",
     default: pathOfCthulhuPreset.npcStats,
   }),
+  useNpcCombatBonuses: createSettingBoolean({
+    key: "useNpcCombatBonuses",
+    name: "Use NPC Combat Bonuses?",
+    default: pathOfCthulhuPreset.useNpcCombatBonuses,
+  }),
 };
 
 // -----------------------------------------------------------------------------
