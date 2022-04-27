@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { ChangeEvent, useCallback, useState } from "react";
+import React, { ChangeEvent, Fragment, useCallback, useState } from "react";
 import { assertGame, confirmADoodleDo, getTranslated } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -122,6 +122,23 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
           onChange={ability.setMax}
         />
       </GridField>
+      {
+        settings.useNpcCombatBonuses.get() && isGeneralAbilityDataSource(ability.data) &&
+        <Fragment>
+          <GridField label="Combat bonus">
+            <AsyncNumberInput
+              value={ability.data.data.combatBonus}
+              onChange={ability.setCombatBonus}
+            />
+          </GridField>
+          <GridField label="Damage bonus">
+            <AsyncNumberInput
+              value={ability.data.data.damageBonus}
+              onChange={ability.setDamageBonus}
+            />
+          </GridField>
+        </Fragment>
+      }
       <GridField label="Has Specialities?">
         <AsyncCheckbox
           checked={ability.data.data.hasSpecialities}

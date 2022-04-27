@@ -620,6 +620,16 @@ export class InvestigatorItem extends Item {
       },
     );
   }
+
+  setCombatBonus = async (combatBonus: number) => {
+    assertGeneralAbilityDataSource(this.data);
+    await this.update({ data: { combatBonus } });
+  }
+
+  setDamageBonus = async (damageBonus: number) => {
+    assertGeneralAbilityDataSource(this.data);
+    await this.update({ data: { damageBonus } });
+  }
 }
 
 declare global {

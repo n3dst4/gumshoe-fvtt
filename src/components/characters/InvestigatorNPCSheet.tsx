@@ -155,6 +155,13 @@ export const InvestigatorNPCSheet = ({
                   value={actor.data.data.combatBonus}
                   onChange={actor.setCombatBonus}
                 />
+                <h3 css={{ gridColumn: "start / end" }}>
+                  <Translate>Damage bonus</Translate>
+                </h3>
+                <AsyncNumberInput
+                  value={actor.data.data.damageBonus}
+                  onChange={actor.setDamageBonus}
+                />
               </Fragment>
             }
             {
