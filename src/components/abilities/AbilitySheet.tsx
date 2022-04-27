@@ -105,6 +105,8 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
           gridArea: "body",
           display: "flex",
           flexDirection: "column",
+          overflowY: "auto",
+          position: "relative",
         }}
       >
         {configMode

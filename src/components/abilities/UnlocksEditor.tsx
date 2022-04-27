@@ -65,7 +65,10 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
       })}
       <button
         onClick={onClickAdd}
-      >
+        css={{
+          margin: 0,
+        }}
+    >
         <i className="fas fa-plus"/> <Translate>Add item</Translate>
       </button>
 

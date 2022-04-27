@@ -194,7 +194,14 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
         <UnlocksEditor ability={ability} />
       </GridField>
       <GridField label="Delete ability">
-        <button onClick={onClickDelete}><Translate>Delete</Translate></button>
+        <button
+          onClick={onClickDelete}
+          css={{
+            margin: 0,
+          }}
+        >
+          <Translate>Delete</Translate>
+        </button>
       </GridField>
     </InputGrid>
   );
