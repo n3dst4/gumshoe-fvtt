@@ -44,13 +44,13 @@ export const performAttack = ({
     hitParams.boost = boost;
   }
 
-  if (
-    settings.useNpcCombatBonuses.get() &&
+  const useNpcBonuses = settings.useNpcCombatBonuses.get() &&
     ability?.isOwned &&
     ability.parent &&
     isNPCDataSource(ability.parent.data) &&
-    isGeneralAbilityDataSource(ability.data)
-  ) {
+    isGeneralAbilityDataSource(ability.data);
+
+  if (useNpcBonuses) {
     hitTerm += " + @npcCombatBonus";
     hitParams.npcCombatBonus = ability.parent.data.data.combatBonus;
     hitTerm += " + @abilityCombatBonus";
@@ -61,11 +61,16 @@ export const performAttack = ({
   await hitRoll.evaluate({ async: true });
   hitRoll.dice[0].options.rollOrder = 1;
 
-  const damageRoll = new Roll("1d6 + @damage + @rangeDamage", {
-    spend,
-    damage,
-    rangeDamage,
-  });
+  let damageTerm = "1d6 + @damage + @rangeDamage";
+  const damageParams: { [name: string]: number } = { damage, rangeDamage };
+  if (useNpcBonuses) {
+    damageTerm += " + @npcDamageBonus";
+    damageParams.npcDamageBonus = ability.parent.data.data.damageBonus;
+    damageTerm += " + @abilityDamageBonus";
+    damageParams.abilityDamageBonus = ability.data.data.damageBonus;
+  }
+
+  const damageRoll = new Roll(damageTerm, damageParams);
   await damageRoll.evaluate({ async: true });
   damageRoll.dice[0].options.rollOrder = 2;
 
