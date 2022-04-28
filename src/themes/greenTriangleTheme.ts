@@ -1,7 +1,8 @@
 import { css } from "@emotion/react";
 import { systemName } from "../constants";
 import { themeFactory } from "./functions";
-import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
+import { ThemeV1 } from "./types";
+// import { ThemeV1 } from "./types";
 
 export const greenTriangleTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
