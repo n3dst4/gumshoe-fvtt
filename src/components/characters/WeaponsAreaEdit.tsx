@@ -17,10 +17,15 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
   const items = actor.getWeapons();
   return (
     <div>
-      <div>
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
         <h1
           css={{
-            display: "inline",
+            flex: 1,
           }}
         >
           <Translate>Weapons</Translate>
