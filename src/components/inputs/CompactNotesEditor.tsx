@@ -63,7 +63,6 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
       className={className}
       css={{
         whiteSpace: "normal",
-        margin: "0 0 0.5em 0em",
         position: "relative",
       }}
     >

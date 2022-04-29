@@ -218,7 +218,6 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         css={{
           gridColumn: "notes / -1",
           gridRow: gridRow + 1,
-          margin: "0 0.5em 0.5em 0",
         }}
         note={weapon.getNotes()}
         onChange={weapon.setNotes}
