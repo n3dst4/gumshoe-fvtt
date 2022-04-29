@@ -1,12 +1,12 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
 import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat, MwInjuryStatus, InvestigatorActorDataSource } from "../types";
-import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 import { InvestigatorItem } from "./InvestigatorItem";
 import { convertNotes } from "../textFunctions";
 import { tealTheme } from "../themes/tealTheme";
 import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
+import { ThemeV1 } from "../themes/types";
 
 export class InvestigatorActor extends Actor {
   /**

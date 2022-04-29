@@ -1,5 +1,6 @@
 import Irid from "irid";
-import { ThemeV1, ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
+import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
+import { ThemeV1 } from "./types";
 
 const defaultFontScaleFactor = 14;
 

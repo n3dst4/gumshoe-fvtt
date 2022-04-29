@@ -1,5 +1,4 @@
 import { assertGame, fixLength } from "../functions";
-import { ThemeV1 } from "@lumphammer/investigator-fvtt-types";
 import { InvestigatorActor } from "./InvestigatorActor";
 import {
   assertAbilityDataSource,
@@ -15,6 +14,7 @@ import {
 import * as constants from "../constants";
 import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
+import { ThemeV1 } from "../themes/types";
 
 /**
  * Extend the basic Item with some very simple modifications.
