@@ -197,20 +197,20 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           </label>
         </div>
         {weapon.getUsesAmmo() &&
-          <div>
+          <Fragment>
+            Current
             <AsyncNumberInput
-              // css={{ display: "block" }}
               min={0}
               value={weapon.getAmmo()}
               onChange={weapon.setAmmo}
             />
+            Maximum
             <AsyncNumberInput
-              // css={{ display: "block" }}
               min={0}
               value={weapon.getAmmoMax()}
               onChange={weapon.setAmmoMax}
             />
-          </div>
+          </Fragment>
         }
       </div>
 
