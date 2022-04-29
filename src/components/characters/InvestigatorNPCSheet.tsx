@@ -150,6 +150,7 @@ export const InvestigatorNPCSheet = ({
           />
         </div>
 
+        {/* MAIN TABS AREA */}
         <div
           css={{
             gridArea: "main",
