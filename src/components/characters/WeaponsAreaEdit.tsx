@@ -85,7 +85,8 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
             css={{
               gridColumn: "name",
               alignSelf: "end",
-              gridRow: 1,
+              gridRow: 2,
+              textAlign: "center",
             }}
           >
             <Translate>Name</Translate>
@@ -96,6 +97,8 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
               gridColumn: "base / span 6",
               alignSelf: "end",
               gridRow: 1,
+              borderBottom: "1px solid currentColor",
+              textAlign: "center",
             }}
           >
             <Translate>Damage</Translate>

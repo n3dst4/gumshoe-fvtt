@@ -146,14 +146,14 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         }}
       >
         <button
-          css={{ width: "1em", padding: "0" }}
+          css={{ width: "1em", padding: "0.2em 0.1em" }}
           onClick={weaponRangeReduce}
         >
           <i className="fa fa-chevron-left"/>
         </button>
         {weapon.getIsLongRange() ||
           <button
-            css={{ width: "1em", padding: "0" }}
+            css={{ width: "1em", padding: "0.2em 0.1em" }}
             onClick={weaponRangeExpand}
           >
             <i className="fa fa-chevron-right"/>
@@ -167,8 +167,8 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           gridColumn: "delete",
           gridRow,
           width: "1.6em",
-          padding: "0",
-          margin: "0.5em 0.5em 0 0",
+          padding: "0.2em 0.1em",
+          // margin: "0.5em 0.5em 0 0",
         }}
         onClick={onClickDelete}
       >

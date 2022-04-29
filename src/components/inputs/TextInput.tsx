@@ -12,7 +12,6 @@ type TextInputProps = {
   onBlur?: () => void,
   disabled?: boolean,
   placeholder?: string,
-
 };
 
 export const TextInput: React.FC<TextInputProps> = ({
