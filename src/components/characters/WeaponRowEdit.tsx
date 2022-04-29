@@ -62,7 +62,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
     });
   }, [weapon]);
 
-  const gridRow = ((index) * 3) + 2;
+  const gridRow = ((index) * 3) + 3;
 
   return (
     <Fragment>
@@ -71,7 +71,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           gridColumn: "1/-1",
           gridRow: `${gridRow}/${gridRow + 2}`,
           background: theme.colors.backgroundButton,
-          // margin: "0.5em",
+          margin: "-0.5em",
         }}
       />
       <div
@@ -81,112 +81,90 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           height: "0.5em",
         }}
       />
+
+      {/* NAME */}
       <AsyncTextInput
         css={{
-          gridColumn: 1,
+          gridColumn: "name",
           gridRow,
-          margin: "0.5em 0.5em 0 0.5em",
         }}
         value={weapon.name ?? ""}
         onChange={weapon.setName}
       />
+      <AsyncNumberInput
+        value={weapon.getDamage()}
+        onChange={weapon.setDamage}
+        noPlusMinus
+        css={{ gridColumn: "base", gridRow }}
+      />
+      { weapon.getIsPointBlank() && (
+        <AsyncNumberInput
+          value={weapon.getPointBlankDamage()}
+          onChange={weapon.setPointBlankDamage}
+          noPlusMinus
+          css={{ gridColumn: "pb", gridRow }}
+        />
+      )}
+      { weapon.getIsCloseRange() && (
+        <AsyncNumberInput
+          value={weapon.getCloseRangeDamage()}
+          onChange={weapon.setCloseRangeDamage}
+          noPlusMinus
+          css={{ gridColumn: "cr", gridRow }}
+        />
+      )}
+      { weapon.getIsNearRange() && (
+        <AsyncNumberInput
+          value={weapon.getNearRangeDamage()}
+          onChange={weapon.setNearRangeDamage}
+          noPlusMinus
+          css={{ gridColumn: "nr", gridRow }}
+        />
+      )}
+      { weapon.getIsLongRange() && (
+        <AsyncNumberInput
+          value={weapon.getLongRangeDamage()}
+          onChange={weapon.setLongRangeDamage}
+          noPlusMinus
+          css={{ gridColumn: "lr", gridRow }}
+        />
+      )}
+
+      {/* left/right arrows */}
       <div
         css={{
-          gridColumn: 2,
+          gridColumn: weapon.getIsLongRange()
+            ? "back"
+            : weapon.getIsNearRange()
+              ? "lr"
+              : weapon.getIsCloseRange()
+                ? "nr"
+                : weapon.getIsPointBlank()
+                  ? "cr"
+                  : "pb",
           gridRow,
-          display: "flex",
-          margin: "0.5em 0 0 0",
         }}
       >
-        <AsyncNumberInput
-          value={weapon.getDamage()}
-          onChange={weapon.setDamage}
-          noPlusMinus={true}
-          css={{ width: "2.3em", paddingRight: "0.3em" }}
-        />
         <button
           css={{ width: "1em", padding: "0" }}
           onClick={weaponRangeReduce}
         >
-        <i className="fa fa-chevron-left"/>
+          <i className="fa fa-chevron-left"/>
         </button>
-        { weapon.getIsPointBlank() && (
-          <AsyncNumberInput
-            value={weapon.getPointBlankDamage()}
-            onChange={weapon.setPointBlankDamage}
-            noPlusMinus={true}
-            css={{ width: "1.5em" }}
-          />
-        )}
-        { weapon.getIsCloseRange() && "/" }
-        { weapon.getIsCloseRange() && (
-          <AsyncNumberInput
-            value={weapon.getCloseRangeDamage()}
-            onChange={weapon.setCloseRangeDamage}
-            noPlusMinus={true}
-            css={{ width: "1.5em" }}
-          />
-        )}
-        { weapon.getIsNearRange() && "/" }
-        { weapon.getIsNearRange() && (
-          <AsyncNumberInput
-            value={weapon.getNearRangeDamage()}
-            onChange={weapon.setNearRangeDamage}
-            noPlusMinus={true}
-            css={{ width: "1.5em" }}
-          />
-        )}
-        { weapon.getIsLongRange() && "/" }
-        { weapon.getIsLongRange() && (
-          <AsyncNumberInput
-            value={weapon.getLongRangeDamage()}
-            onChange={weapon.setLongRangeDamage}
-            noPlusMinus={true}
-            css={{ width: "1.5em" }}
-          />
-        )}
-        <button
-          css={{ width: "1em", padding: "0" }}
-          onClick={weaponRangeExpand}
-        >
-        <i className="fa fa-chevron-right"/>
-        </button>
+        {weapon.getIsLongRange() ||
+          <button
+            css={{ width: "1em", padding: "0" }}
+            onClick={weaponRangeExpand}
+          >
+            <i className="fa fa-chevron-right"/>
+          </button>
+        }
       </div>
-      <div
-        css={{
-          gridColumn: 3,
-          display: "flex",
-          gridRow,
-          margin: "0.5em 0 0 0",
-        }}
-      >
-        <AsyncCheckbox
-          checked={weapon.getUsesAmmo()}
-          onChange={weapon.setUsesAmmo}
-        />
-        {weapon.getUsesAmmo() && (
-          <span css={{ display: "flex" }}>
-            <AsyncNumberInput
-              min={0}
-              value={weapon.getAmmo()}
-              onChange={weapon.setAmmo}
-              noPlusMinus={true}
-              css={{ width: "2em" }}
-            />
-            {"/"}
-            <AsyncNumberInput
-              min={0}
-              value={weapon.getAmmoMax()}
-              onChange={weapon.setAmmoMax}
-              noPlusMinus={true}
-              css={{ width: "2em" }}
-            />
-          </span>
-        )}
-      </div>
+
+      {/* delete */}
       <button
         css={{
-          gridColumn: 4,
+          gridColumn: "delete",
           gridRow,
           width: "1.6em",
           padding: "0",
@@ -196,22 +174,49 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
       >
         <i className="fa fa-trash"/>
       </button>
-      <span
+
+      {/* SIDEBAR */}
+      <div
         css={{
-          gridColumn: 1,
+          gridColumn: "ammo",
           gridRow: gridRow + 1,
-          // margin: "0 0 1em 0em",
-          margin: "0 0 0.5em 0.5em",
         }}
       >
         <CombatAbilityDropDown
           value={weapon.data.data.ability}
           onChange={(e) => weapon.setAbility(e)}
+          css={{ display: "block" }}
         />
-      </span>
+        <div>
+          <label>
+            Use ammo?
+            <AsyncCheckbox
+              checked={weapon.getUsesAmmo()}
+              onChange={weapon.setUsesAmmo}
+            />
+          </label>
+        </div>
+        {weapon.getUsesAmmo() &&
+          <div>
+            <AsyncNumberInput
+              // css={{ display: "block" }}
+              min={0}
+              value={weapon.getAmmo()}
+              onChange={weapon.setAmmo}
+            />
+            <AsyncNumberInput
+              // css={{ display: "block" }}
+              min={0}
+              value={weapon.getAmmoMax()}
+              onChange={weapon.setAmmoMax}
+            />
+          </div>
+        }
+      </div>
+
       <CompactNotesEditor
         css={{
-          gridColumn: "2 / -1",
+          gridColumn: "notes / -1",
           gridRow: gridRow + 1,
           margin: "0 0.5em 0.5em 0",
         }}

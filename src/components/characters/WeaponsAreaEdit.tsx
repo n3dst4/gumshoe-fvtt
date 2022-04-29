@@ -68,33 +68,84 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
         <div
           css={{
             display: "grid",
-            gridTemplateColumns: "10em 1fr max-content min-content",
+            gridTemplateColumns: "10em repeat(5, 1fr) 2em 2em",
+            gridTemplateAreas:
+              "\"name base  pb    cr    nr    lr    back  delete\" " +
+              "\"ammo notes notes notes notes notes notes notes\"",
             gridAutoRows: "min-content",
-            columnGap: "0.5em",
+            gap: "0.5em",
             whiteSpace: "nowrap",
             ".header": {
               fontWeight: "bold",
             },
           }}
         >
-          <div className="header" css={{ gridColumn: 1, alignSelf: "end", gridRow: 1 }}>
-            <Translate>Weapon</Translate>
+          <div
+            className="header"
+            css={{
+              gridColumn: "name",
+              alignSelf: "end",
+              gridRow: 1,
+            }}
+          >
+            <Translate>Name</Translate>
           </div>
-          <div className="header" css={{ gridColumn: 2, alignSelf: "end", gridRow: 1 }}>
-            <div
-              css={{
-                // borderWidth: "1px 1px 0 1px",
-                // borderRadius: "1em",
-                // borderStyle: "solid",
-              }}
-            >
-              <Translate>Damage</Translate>
-            </div>
-            <div><Translate>Base PB/CR/NR/LR</Translate></div>
+          <div
+            className="header"
+            css={{
+              gridColumn: "base / span 6",
+              alignSelf: "end",
+              gridRow: 1,
+            }}
+          >
+            <Translate>Damage</Translate>
           </div>
-          <div className="header" css={{ gridColumn: 3, alignSelf: "end", gridRow: 1 }}>
-            <Translate>Ammo</Translate>
+
+          <div
+            css={{
+              gridColumn: "base",
+              gridRow: 2,
+            }}
+          >
+            <Translate>Base </Translate>
           </div>
+
+          <div
+            css={{
+              gridColumn: "pb",
+              gridRow: 2,
+            }}
+          >
+            <Translate>PB</Translate>
+          </div>
+
+          <div
+            css={{
+              gridColumn: "cr",
+              gridRow: 2,
+            }}
+          >
+            <Translate>CR</Translate>
+          </div>
+
+          <div
+            css={{
+              gridColumn: "nr",
+              gridRow: 2,
+            }}
+          >
+            <Translate>NR</Translate>
+          </div>
+
+          <div
+            css={{
+              gridColumn: "lr",
+              gridRow: 2,
+            }}
+          >
+            <Translate>LR</Translate>
+          </div>
+
           {
             sortEntitiesByName(items).map<JSX.Element>((item, index) => (
               <WeaponRowEdit key={item.id} weapon={item} index={index}/>

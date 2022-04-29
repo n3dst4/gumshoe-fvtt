@@ -13,7 +13,6 @@
     "investigator.AmmoPerAttack": "Ammo per attack",
     "investigator.Armor": "Armor",
     "investigator.BaseDamage": "Base damage",
-    "investigator.BasePBCRNRLR": "Base PB/CR/NR/LR",
     "investigator.BonusPool": "Bonus pool",
     "investigator.Boost": "Boost?",
     "investigator.CanAbilitiesBeBoosted": "Can abilities be boosted",
@@ -124,5 +123,10 @@
     "investigator.Unlocks": "Unlocks",
     "investigator.UseNPCCombatBonuses": "Use NPC Combat bonuses?",
     "investigator.CombatBonus": "Combat bonus",
-    "investigator.DamageBonus": "Damage bonus"
+    "investigator.DamageBonus": "Damage bonus",
+    "investigator.Base": "Base",
+    "investigator.Pb": "PB",
+    "investigator.Cr": "CR",
+    "investigator.Nr": "NR",
+    "investigator.Lr": "LR"
 }

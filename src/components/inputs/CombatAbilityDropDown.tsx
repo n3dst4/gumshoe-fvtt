@@ -6,11 +6,13 @@ import { settings } from "../../settings";
 type CombatAbilityDropDownProps = {
   value: string,
   onChange: (newValue: string) => void,
+  className?: string,
 };
 
 export const CombatAbilityDropDown: React.FC<CombatAbilityDropDownProps> = ({
   value,
   onChange: onChangeOrig,
+  className,
 }) => {
   const combatAbilities = settings.combatAbilities.get().sort();
 
@@ -26,6 +28,7 @@ export const CombatAbilityDropDown: React.FC<CombatAbilityDropDownProps> = ({
       value={value}
       onChange={onSelectInitiativeAbility}
       css={{ width: "8.5em" }}
+      className={className}
     >
       {combatAbilities.map<JSX.Element>((ability) => (
         <option key={ability} value={ability}>{ability}</option>
