@@ -49,13 +49,12 @@ export const InvestigatorNPCSheet = ({
           bottom: 0,
           left: 0,
           display: "grid",
-          gridTemplateRows: "min-content minmax(10em, 1fr) 1.5fr",
-          gridTemplateColumns: "max-content 1fr 10em",
+          gridTemplateRows: "min-content 1fr",
+          gridTemplateColumns: "max-content 1fr 6em",
           gap: "0.5em",
           gridTemplateAreas:
-            "\"title title image\" " +
-            "\"notes notes image\" " +
-            "\"sidebar body  body\" ",
+            "\"sidebar title image\" " +
+            "\"sidebar main main\" ",
         }}
       >
         <div
@@ -72,37 +71,6 @@ export const InvestigatorNPCSheet = ({
               fontSize: "0.66em",
             }}
           />
-        </div>
-        <div
-          className={theme.panelClass}
-          css={{
-            gridArea: "notes",
-            position: "relative",
-            ...theme.panelStyleSecondary,
-            // height: "12em",
-          }}
-        >
-          <InputGrid
-            css={{
-              ...absoluteCover,
-              gridTemplateRows: "1fr",
-              padding: "0.5em",
-            }}
-          >
-            <NotesEditorWithControls
-              allowChangeFormat
-              format={actor.getNotes().format}
-              html={actor.getNotes().html}
-              source={actor.getNotes().source}
-              onSave={actor.setNotes}
-              css={{
-                height: "100%",
-                "&&": {
-                  resize: "none",
-                },
-              }}
-            />
-          </InputGrid>
         </div>
 
         <ImagePickle
@@ -184,7 +152,7 @@ export const InvestigatorNPCSheet = ({
 
         <div
           css={{
-            gridArea: "body",
+            gridArea: "main",
             position: "relative",
             padding: "0.5em",
             overflow: "auto",
@@ -219,6 +187,32 @@ export const InvestigatorNPCSheet = ({
                       showOcc={false}
                     />
                   </Fragment>,
+              },
+              {
+                id: "notes",
+                label: "Notes",
+                content:
+                  <InputGrid
+                    css={{
+                      ...absoluteCover,
+                      gridTemplateRows: "1fr",
+                      padding: "0.5em",
+                    }}
+                  >
+                    <NotesEditorWithControls
+                      allowChangeFormat
+                      format={actor.getNotes().format}
+                      html={actor.getNotes().html}
+                      source={actor.getNotes().source}
+                      onSave={actor.setNotes}
+                      css={{
+                        height: "100%",
+                        "&&": {
+                          resize: "none",
+                        },
+                      }}
+                    />
+                  </InputGrid>,
               },
             ]}
           />
