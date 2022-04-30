@@ -2,6 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { ReactNode, useEffect, useState } from "react";
 import { InvestigatorCombatTrackerBase } from "../../module/InvestigatorCombatTracker";
+import { TextInput } from "../inputs/TextInput";
 
 interface CombatTrackerProps {
   app: InvestigatorCombatTrackerBase;
@@ -19,6 +20,8 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     })();
   }, [app]);
 
+  const [x, setX] = useState("");
+
   return (
     <div>
       Combat Tracker
@@ -27,6 +30,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
           return <div key={c.data._id}>{c.actor?.data.name}</div>;
         })
       }
+      <TextInput value={x} onChange={setX} />
     </div>
   );
 };

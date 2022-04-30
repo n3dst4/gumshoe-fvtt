@@ -15,6 +15,14 @@ type Render<T> = (t: T extends Constructor<infer T2> ? T2 : T) => JSX.Element;
 
 const log = console.log.bind(console, "[mixin] ");
 
+export interface ReactApplicationMixinOptions {
+  callReplaceHtml?: boolean;
+}
+
+const defaults: Required<ReactApplicationMixinOptions> = {
+  callReplaceHtml: false,
+};
+
 /**
  * Wrap an existing Foundry Application class in this Mixin to override the
  * normal rednering behaviour and and use React instead.
@@ -28,8 +36,10 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
    * return some JSX.
    * */
   render: Render<TBase>,
-  callReplaceHtml = false,
+  options: ReactApplicationMixinOptions = {},
 ) {
+  const fullOptions = { ...defaults, ...options };
+
   return class Reactified extends Base {
     /**
      * Override _replaceHTML to stop FVTT's standard template lifecycle coming in
@@ -42,8 +52,9 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
       // the rest of the window.
       // super._replaceHTML(element, html);
       log("_replaceHTML");
-      if (callReplaceHtml) {
+      if (fullOptions.callReplaceHtml && !this.layoutInitialized) {
         super._replaceHTML(element, html);
+        this.layoutInitialized = true;
       }
       element.find(".window-title").text(this.title);
     }

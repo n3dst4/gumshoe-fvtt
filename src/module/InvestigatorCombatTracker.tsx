@@ -27,5 +27,5 @@ const render = (sheet: InvestigatorCombatTrackerBase) => {
 export const InvestigatorCombatTracker = ReactApplicationMixin(
   InvestigatorCombatTrackerBase,
   render,
-  true,
+  { callReplaceHtml: true },
 );
