@@ -2,15 +2,20 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import { CombatTrackerDisplay } from "../components/combat/CombatTrackerDisplay";
-import { reactTemplatePath } from "../constants";
+import { reactifiedSidebarTemplatePath, reactTemplatePath } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 export class InvestigatorCombatTrackerBase extends CombatTracker {
+  constructor () {
+    console.log("InvestigatorCombatTrackerBase");
+    super();
+  }
+
   /** @override */
   static get defaultOptions () {
     return {
       ...super.defaultOptions,
-      template: reactTemplatePath,
+      template: reactifiedSidebarTemplatePath,
       resizable: true,
     };
   }

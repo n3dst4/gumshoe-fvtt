@@ -6,6 +6,7 @@ export const defaultMigratedSystemVersion = "0.0.0" as const;
 export const defaultSystemPreset = "pathOfCthulhuPreset";
 export const templatesPath = `systems/${systemName}/templates` as const;
 export const reactTemplatePath = `${templatesPath}/react-application.hbs` as const;
+export const reactifiedSidebarTemplatePath = `${templatesPath}/reactified-sidebar-tab.hbs` as const;
 export const customSystem = "customSystem" as const;
 export const genericOccupationDefault = "Investigator";
 export const showEmptyInvestigativeCategoriesDefault = true;
