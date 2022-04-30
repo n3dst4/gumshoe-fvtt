@@ -13,6 +13,8 @@ type ApplicationConstuctor = Constructor<Application>;
 // a T2, i.e. the type of the thing the constructor constructs.
 type Render<T> = (t: T extends Constructor<infer T2> ? T2 : T) => JSX.Element;
 
+const log = console.log.bind(console, "[mixin] ");
+
 /**
  * Wrap an existing Foundry Application class in this Mixin to override the
  * normal rednering behaviour and and use React instead.
@@ -26,6 +28,7 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
    * return some JSX.
    * */
   render: Render<TBase>,
+  callReplaceHtml = false,
 ) {
   return class Reactified extends Base {
     /**
@@ -37,7 +40,17 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
     _replaceHTML (element: JQuery, html: JQuery) {
       // this is the only thing we need to do here - react deals with updating
       // the rest of the window.
+      // super._replaceHTML(element, html);
+      log("_replaceHTML");
+      if (callReplaceHtml) {
+        super._replaceHTML(element, html);
+      }
       element.find(".window-title").text(this.title);
+    }
+
+    render (force?: boolean, options?: Application.RenderOptions) {
+      log("render");
+      super.render(force, options);
     }
 
     layoutInitialized = false;
@@ -52,6 +65,7 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
     activateListeners (html: JQuery) {
       super.activateListeners(html);
 
+      log("activateListeners");
       const target = $(this.element).find(".react-target");
       const parent = target.closest(".window-content");
       if (this.options.resizable) {

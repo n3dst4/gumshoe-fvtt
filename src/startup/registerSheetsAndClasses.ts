@@ -2,6 +2,7 @@ import * as constants from "../constants";
 import { InvestigatorActor } from "../module/InvestigatorActor";
 import { InvestigatorCombat } from "../module/InvestigatorCombat";
 import { InvestigatorCombatant } from "../module/InvestigatorCombatant";
+import { InvestigatorCombatTracker } from "../module/InvestigatorCombatTracker";
 import { InvestigatorItem } from "../module/InvestigatorItem";
 import { InvestigatorAbilitySheetClass, InvestigatorEquipmentSheetClass, InvestigatorMwItemSheetClass } from "../module/InvestigatorItemSheetClass";
 import { InvestigatorNPCSheetClass } from "../module/InvestigatorNPCSheetClass";
@@ -15,6 +16,7 @@ export const registerSheetsAndClasses = () => {
   CONFIG.Combatant.documentClass = InvestigatorCombatant;
   CONFIG.Combat.documentClass = InvestigatorCombat;
   // CONFIG.ChatMessage.documentClass = InvestigatorChatMessage;
+  CONFIG.ui.combat = InvestigatorCombatTracker;
 
   // Register custom sheets (if any)
   // Actors.unregisterSheet("core", ActorSheet);
