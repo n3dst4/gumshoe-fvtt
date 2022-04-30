@@ -48,11 +48,6 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
       element.find(".window-title").text(this.title);
     }
 
-    render (force?: boolean, options?: Application.RenderOptions) {
-      log("render");
-      super.render(force, options);
-    }
-
     layoutInitialized = false;
 
     /**

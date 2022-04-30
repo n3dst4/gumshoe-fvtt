@@ -6,11 +6,6 @@ import { reactifiedSidebarTemplatePath, reactTemplatePath } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 export class InvestigatorCombatTrackerBase extends CombatTracker {
-  constructor () {
-    console.log("InvestigatorCombatTrackerBase");
-    super();
-  }
-
   /** @override */
   static get defaultOptions () {
     return {
@@ -24,8 +19,7 @@ export class InvestigatorCombatTrackerBase extends CombatTracker {
 const render = (sheet: InvestigatorCombatTrackerBase) => {
   return (
     <CombatTrackerDisplay
-      // item={sheet.document}
-      foundryApplication={sheet}
+      app={sheet}
     />
   );
 };
@@ -35,5 +29,3 @@ export const InvestigatorCombatTracker = ReactApplicationMixin(
   render,
   true,
 );
-
-// export const InvestigatorCombatTracker = InvestigatorCombatTrackerBase;
