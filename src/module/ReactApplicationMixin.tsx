@@ -52,14 +52,14 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
       // the rest of the window.
       // super._replaceHTML(element, html);
       log("_replaceHTML");
-      if (fullOptions.callReplaceHtml && !this.layoutInitialized) {
+      if (fullOptions.callReplaceHtml && !this.initialized) {
         super._replaceHTML(element, html);
-        this.layoutInitialized = true;
+        this.initialized = true;
       }
       element.find(".window-title").text(this.title);
     }
 
-    layoutInitialized = false;
+    initialized = false;
 
     /**
      * We need to pick somewhere to activate and render React. It would have
