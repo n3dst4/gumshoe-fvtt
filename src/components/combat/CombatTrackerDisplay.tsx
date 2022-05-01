@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { Fragment, ReactNode, useEffect, useState } from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { InvestigatorCombatTrackerBase } from "../../module/InvestigatorCombatTracker";
-import { TextInput } from "../inputs/TextInput";
 
 interface CombatTrackerProps {
   app: InvestigatorCombatTrackerBase;
@@ -16,7 +14,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   assertGame(game);
   const user = game.user;
   assertNotNull(user);
-  const [data, setData] = useState<CombatTracker.Data|null>(null);
+  const [data, setData] = useState<CombatTracker.Data | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -24,8 +22,6 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
       setData(data);
     })();
   }, [app]);
-
-  const [x, setX] = useState("");
 
   const localize = game.i18n.localize.bind(game.i18n);
 
@@ -35,186 +31,276 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
 
   return (
     <Fragment>
-          <header id="combat-round">
-              {user.isGM &&
-                <nav className="encounters flexrow">
-                    <a className="combat-create" title={localize("COMBAT.Create")}>
-                        <i className="fas fa-plus"></i>
-                    </a>
-                    {data?.combatCount &&
-                      <Fragment>
-                      <a
-                        className="combat-cycle"
-                        title="{{localize 'COMBAT.EncounterPrevious'}}"
-                        {... data.previousId ? { "data-combat-id": data.previousId } : { disabled: true }}
-                      >
-                          <i className="fas fa-caret-left"></i>
-                      </a>
-                      <h4
-                        className="encounter"
-                      >
-                        {localize("COMBAT.Encounter")} {data.currentIndex} / {data.combatCount}
-                      </h4>
-                      <a
-                        className="combat-cycle"
-                        title="{{localize 'COMBAT.EncounterNext'}}"
-                        {... data.nextId ? { "data-combat-id": data.nextId } : { disabled: true }}
-                      >
-                        <i className="fas fa-caret-right"></i>
-                      </a>
-                      </Fragment>
-                    }
-                    <a
-                      className="combat-control"
-                      title="{{localize 'COMBAT.Delete'}}"
-                      data-control="endCombat"
-                      // @ts-expect-error foundry uses non-standard "disabled"
-                      disabled={!data.combatCount}
-                    >
-                        <i className="fas fa-trash"></i>
-                    </a>
-
-                </nav>
-              }
-
-              <nav className="encounters flexrow {{#if hasCombat}}combat{{/if}}">
-                  {user.isGM &&
-                    <Fragment>
-                      <a
-                        className="combat-control"
-                        title="{{localize 'COMBAT.RollAll'}}"
-                        data-control="rollAll"
-                        // @ts-expect-error foundry uses non-standard "disabled"
-                        disabled={!data.turns}
-                      >
-                          <i className="fas fa-users"></i>
-                      </a>
-                      <a
-                        className="combat-control"
-                        title="{{localize 'COMBAT.RollNPC'}}"
-                        data-control="rollNPC"
-                        // @ts-expect-error foundry uses non-standard "disabled"
-                        disabled={!data.turns}
-                      >
-                          <i className="fas fa-users-cog"></i>
-                      </a>
-                    </Fragment>
-                  }
-
-                  {data.combatCount
-                    ? <Fragment>
-                        {data?.combat?.data.round
-                          ? <h3 className="encounter-title">{localize("COMBAT.Round")} {data.combat.data.round}</h3>
-                          : <h3 className="encounter-title">{localize("COMBAT.NotStarted")}</h3>
-                        }
-                      </Fragment>
-                    : <h3 className="encounter-title">{localize("COMBAT.None")}</h3>
-                  }
-
-                  {user.isGM &&
-                    <Fragment>
-                      <a
-                        className="combat-control"
-                        title="{{localize 'COMBAT.InitiativeReset'}}"
-                        data-control="resetAll"
-                        // @ts-expect-error foundry uses non-standard "disabled"
-                        disabled={!data.hasCombat}
-                      >
-                          <a>sdfsd</a>
-                          <i className="fas fa-undo"></i>
-                      </a>
-                      <a className="combat-control" title="{{labels.scope}}"
-                          data-control="toggleSceneLink"
-                          // @ts-expect-error foundry uses non-standard "disabled"
-                          disabled={!data.hasCombat}
-                      >
-                        <i className="fas fa-{{#unless linked}}un{{/unless}}link"></i>
-                      </a>
-                      <a
-                        className="combat-settings"
-                        title="{{localize 'COMBAT.Settings'}}"
-                        data-control="trackerSettings"
-                      >
-                          <i className="fas fa-cog"></i>
-                      </a>
-                    </Fragment>
-                  }
-              </nav>
-          </header>
-
-          <ol id="combat-tracker" className="directory-list">
-              {data.turns.map<ReactNode>((turn, i) => (
-              <li key={i} className="combatant actor directory-item flexrow {{this.css}}" data-combatant-id="{{this.id}}">
-                  <img className="token-image" data-src={turn.img} title={turn.name}/>
-                  <div className="token-name flexcol">
-                      <h4>{turn.name}</h4>
-                      <div className="combatant-controls flexrow">
-                          {user.isGM &&
-                            <Fragment>
-                              <a
-                                className="combatant-control {{#if this.hidden}}active{{/if}}"
-                                title="{{localize 'COMBAT.ToggleVis'}}"
-                                data-control="toggleHidden"
-                              >
-                                <i className="fas fa-eye-slash"></i>
-                              </a>
-                              <a className="combatant-control {{#if this.defeated}}active{{/if}}"
-                                title="{{localize 'COMBAT.ToggleDead'}}"
-                                data-control="toggleDefeated"
-                              >
-                                <i className="fas fa-skull"></i>
-                              </a>
-                            </Fragment>
-                          }
-                          <div className="token-effects">
-                              {Array.from(turn.effects).map<ReactNode>((effect, i) => (
-                                <img key={i} className="token-effect" src={effect}/>
-                              ))}
-                          </div>
-                      </div>
-                  </div>
-
-                  {turn.hasResource &&
-                  <div className="token-resource">
-                      {/* ressource compiles but wtf?? */}
-                      <span className="resource">{turn.ressource}</span>
-                  </div>
-                  }
-
-                  <div className="token-initiative">
-                      {turn.hasRolled
-                        ? <span className="initiative">{turn.initiative}</span>
-                        : <a className="combatant-control roll" title="{{localize 'COMBAT.InitiativeRoll'}}" data-control="rollInitiative"></a>
-                      }
-                  </div>
-              </li>
-              ))}
-          </ol>
-
-          <nav id="combat-controls" className="directory-footer flexrow">
-          {data.hasCombat &&
-              (user.isGM
-                ? <Fragment>
-                    {data.round
-                      ? <Fragment>
-                        <a className="combat-control" title="{{localize 'COMBAT.RoundPrev'}}" data-control="previousRound"><i className="fas fa-step-backward"></i></a>
-                        <a className="combat-control" title="{{localize 'COMBAT.TurnPrev'}}" data-control="previousTurn"><i className="fas fa-arrow-left"></i></a>
-                        <a className="combat-control center" title="{{localize 'COMBAT.End'}}" data-control="endCombat">{localize("COMBAT.End")}</a>
-                        <a className="combat-control" title="{{localize 'COMBAT.TurnNext'}}" data-control="nextTurn"><i className="fas fa-arrow-right"></i></a>
-                        <a className="combat-control" title="{{localize 'COMBAT.RoundNext'}}" data-control="nextRound"><i className="fas fa-step-forward"></i></a>
-                      </Fragment>
-                      : <a className="combat-control center" title="{{localize 'COMBAT.Begin'}}" data-control="startCombat">{localize("COMBAT.Begin")}</a>
-                    }
-                  </Fragment>
-                : data.control &&
-                <Fragment>
-                  <a className="combat-control" title="{{localize 'COMBAT.TurnPrev'}}" data-control="previousTurn"><i className="fas fa-arrow-left"></i></a>
-                  <a className="combat-control center" title="{{localize 'COMBAT.TurnEnd'}}" data-control="nextTurn">{localize("COMBAT.TurnEnd")}</a>
-                  <a className="combat-control" title="{{localize 'COMBAT.TurnNext'}}" data-control="nextTurn"><i className="fas fa-arrow-right"></i></a>
-                </Fragment>
-              )
-          }
+      <header id="combat-round">
+        {user.isGM && (
+          <nav className="encounters flexrow">
+            <a className="combat-create" title={localize("COMBAT.Create")}>
+              <i className="fas fa-plus"></i>
+            </a>
+            {data?.combatCount && (
+              <Fragment>
+                <a
+                  className="combat-cycle"
+                  title="{{localize 'COMBAT.EncounterPrevious'}}"
+                  {...(data.previousId
+                    ? { "data-combat-id": data.previousId }
+                    : { disabled: true })}
+                >
+                  <i className="fas fa-caret-left"></i>
+                </a>
+                <h4 className="encounter">
+                  {localize("COMBAT.Encounter")} {data.currentIndex} /{" "}
+                  {data.combatCount}
+                </h4>
+                <a
+                  className="combat-cycle"
+                  title="{{localize 'COMBAT.EncounterNext'}}"
+                  {...(data.nextId
+                    ? { "data-combat-id": data.nextId }
+                    : { disabled: true })}
+                >
+                  <i className="fas fa-caret-right"></i>
+                </a>
+              </Fragment>
+            )}
+            <a
+              className="combat-control"
+              title="{{localize 'COMBAT.Delete'}}"
+              data-control="endCombat"
+              // @ts-expect-error foundry uses non-standard "disabled"
+              disabled={!data.combatCount}
+            >
+              <i className="fas fa-trash"></i>
+            </a>
           </nav>
+        )}
+
+        <nav className="encounters flexrow {{#if hasCombat}}combat{{/if}}">
+          {user.isGM && (
+            <Fragment>
+              <a
+                className="combat-control"
+                title="{{localize 'COMBAT.RollAll'}}"
+                data-control="rollAll"
+                // @ts-expect-error foundry uses non-standard "disabled"
+                disabled={!data.turns}
+              >
+                <i className="fas fa-users"></i>
+              </a>
+              <a
+                className="combat-control"
+                title="{{localize 'COMBAT.RollNPC'}}"
+                data-control="rollNPC"
+                // @ts-expect-error foundry uses non-standard "disabled"
+                disabled={!data.turns}
+              >
+                <i className="fas fa-users-cog"></i>
+              </a>
+            </Fragment>
+          )}
+
+          {data.combatCount
+            ? (
+            <Fragment>
+              {data?.combat?.data.round
+                ? (
+                <h3 className="encounter-title">
+                  {localize("COMBAT.Round")} {data.combat.data.round}
+                </h3>
+                  )
+                : (
+                <h3 className="encounter-title">
+                  {localize("COMBAT.NotStarted")}
+                </h3>
+                  )}
+            </Fragment>
+              )
+            : (
+            <h3 className="encounter-title">{localize("COMBAT.None")}</h3>
+              )}
+
+          {user.isGM && (
+            <Fragment>
+              <a
+                className="combat-control"
+                title="{{localize 'COMBAT.InitiativeReset'}}"
+                data-control="resetAll"
+                // @ts-expect-error foundry uses non-standard "disabled"
+                disabled={!data.hasCombat}
+              >
+                <a>sdfsd</a>
+                <i className="fas fa-undo"></i>
+              </a>
+              <a
+                className="combat-control"
+                title="{{labels.scope}}"
+                data-control="toggleSceneLink"
+                // @ts-expect-error foundry uses non-standard "disabled"
+                disabled={!data.hasCombat}
+              >
+                <i className="fas fa-{{#unless linked}}un{{/unless}}link"></i>
+              </a>
+              <a
+                className="combat-settings"
+                title="{{localize 'COMBAT.Settings'}}"
+                data-control="trackerSettings"
+              >
+                <i className="fas fa-cog"></i>
+              </a>
+            </Fragment>
+          )}
+        </nav>
+      </header>
+
+      <ol id="combat-tracker" className="directory-list">
+        {data.turns.map<ReactNode>((turn, i) => (
+          <li
+            key={i}
+            className="combatant actor directory-item flexrow {{this.css}}"
+            data-combatant-id="{{this.id}}"
+          >
+            <img
+              className="token-image"
+              data-src={turn.img}
+              title={turn.name}
+            />
+            <div className="token-name flexcol">
+              <h4>{turn.name}</h4>
+              <div className="combatant-controls flexrow">
+                {user.isGM && (
+                  <Fragment>
+                    <a
+                      className="combatant-control {{#if this.hidden}}active{{/if}}"
+                      title="{{localize 'COMBAT.ToggleVis'}}"
+                      data-control="toggleHidden"
+                    >
+                      <i className="fas fa-eye-slash"></i>
+                    </a>
+                    <a
+                      className="combatant-control {{#if this.defeated}}active{{/if}}"
+                      title="{{localize 'COMBAT.ToggleDead'}}"
+                      data-control="toggleDefeated"
+                    >
+                      <i className="fas fa-skull"></i>
+                    </a>
+                  </Fragment>
+                )}
+                <div className="token-effects">
+                  {Array.from(turn.effects).map<ReactNode>((effect, i) => (
+                    <img key={i} className="token-effect" src={effect} />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {turn.hasResource && (
+              <div className="token-resource">
+                {/* ressource compiles but wtf?? */}
+                <span className="resource">{turn.ressource}</span>
+              </div>
+            )}
+
+            <div className="token-initiative">
+              {turn.hasRolled
+                ? (
+                <span className="initiative">{turn.initiative}</span>
+                  )
+                : (
+                <a
+                  className="combatant-control roll"
+                  title="{{localize 'COMBAT.InitiativeRoll'}}"
+                  data-control="rollInitiative"
+                ></a>
+                  )}
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <nav id="combat-controls" className="directory-footer flexrow">
+        {data.hasCombat &&
+          (user.isGM
+            ? (
+            <Fragment>
+              {data.round
+                ? (
+                <Fragment>
+                  <a
+                    className="combat-control"
+                    title="{{localize 'COMBAT.RoundPrev'}}"
+                    data-control="previousRound"
+                  >
+                    <i className="fas fa-step-backward"></i>
+                  </a>
+                  <a
+                    className="combat-control"
+                    title="{{localize 'COMBAT.TurnPrev'}}"
+                    data-control="previousTurn"
+                  >
+                    <i className="fas fa-arrow-left"></i>
+                  </a>
+                  <a
+                    className="combat-control center"
+                    title="{{localize 'COMBAT.End'}}"
+                    data-control="endCombat"
+                  >
+                    {localize("COMBAT.End")}
+                  </a>
+                  <a
+                    className="combat-control"
+                    title="{{localize 'COMBAT.TurnNext'}}"
+                    data-control="nextTurn"
+                  >
+                    <i className="fas fa-arrow-right"></i>
+                  </a>
+                  <a
+                    className="combat-control"
+                    title="{{localize 'COMBAT.RoundNext'}}"
+                    data-control="nextRound"
+                  >
+                    <i className="fas fa-step-forward"></i>
+                  </a>
+                </Fragment>
+                  )
+                : (
+                <a
+                  className="combat-control center"
+                  title="{{localize 'COMBAT.Begin'}}"
+                  data-control="startCombat"
+                >
+                  {localize("COMBAT.Begin")}
+                </a>
+                  )}
+            </Fragment>
+              )
+            : (
+                data.control && (
+              <Fragment>
+                <a
+                  className="combat-control"
+                  title="{{localize 'COMBAT.TurnPrev'}}"
+                  data-control="previousTurn"
+                >
+                  <i className="fas fa-arrow-left"></i>
+                </a>
+                <a
+                  className="combat-control center"
+                  title="{{localize 'COMBAT.TurnEnd'}}"
+                  data-control="nextTurn"
+                >
+                  {localize("COMBAT.TurnEnd")}
+                </a>
+                <a
+                  className="combat-control"
+                  title="{{localize 'COMBAT.TurnNext'}}"
+                  data-control="nextTurn"
+                >
+                  <i className="fas fa-arrow-right"></i>
+                </a>
+              </Fragment>
+                )
+              ))}
+      </nav>
     </Fragment>
   );
 };
