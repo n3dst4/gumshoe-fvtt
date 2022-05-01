@@ -29,6 +29,10 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
 
   const localize = game.i18n.localize.bind(game.i18n);
 
+  if (data === null) {
+    return null;
+  }
+
   return (
     <Fragment>
           <header id="combat-round">
@@ -64,7 +68,8 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                       className="combat-control"
                       title="{{localize 'COMBAT.Delete'}}"
                       data-control="endCombat"
-                      // enabled={!!(data?.combatCount)}
+                      // @ts-expect-error foundry uses non-standard "disabled"
+                      disabled={!data.combatCount}
                     >
                         <i className="fas fa-trash"></i>
                     </a>
@@ -72,40 +77,69 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 </nav>
               }
 
-              {/* <nav className="encounters flexrow {{#if hasCombat}}combat{{/if}}">
-                  {{#if user.isGM}}
-                  <a className="combat-control" title="{{localize 'COMBAT.RollAll'}}" data-control="rollAll" {{#unless turns}}disabled{{/unless}}>
-                      <i className="fas fa-users"></i>
-                  </a>
-                  <a className="combat-control" title="{{localize 'COMBAT.RollNPC'}}" data-control="rollNPC" {{#unless turns}}disabled{{/unless}}>
-                      <i className="fas fa-users-cog"></i>
-                  </a>
-                  {{/if}}
+              <nav className="encounters flexrow {{#if hasCombat}}combat{{/if}}">
+                  {user.isGM &&
+                    <Fragment>
+                      <a
+                        className="combat-control"
+                        title="{{localize 'COMBAT.RollAll'}}"
+                        data-control="rollAll"
+                        // @ts-expect-error foundry uses non-standard "disabled"
+                        disabled={!data.turns}
+                      >
+                          <i className="fas fa-users"></i>
+                      </a>
+                      <a
+                        className="combat-control"
+                        title="{{localize 'COMBAT.RollNPC'}}"
+                        data-control="rollNPC"
+                        // @ts-expect-error foundry uses non-standard "disabled"
+                        disabled={!data.turns}
+                      >
+                          <i className="fas fa-users-cog"></i>
+                      </a>
+                    </Fragment>
+                  }
 
-                  {{#if combatCount}}
-                  {{#if combat.data.round}}
-                  <h3 className="encounter-title">{{localize 'COMBAT.Round'}} {{combat.data.round}}</h3>
-                  {{else}}
-                  <h3 className="encounter-title">{{localize 'COMBAT.NotStarted'}}</h3>
-                  {{/if}}
-                  {{else}}
-                  <h3 className="encounter-title">{{localize "COMBAT.None"}}</h3>
-                  {{/if}}
+                  {data.combatCount
+                    ? <Fragment>
+                        {data?.combat?.data.round
+                          ? <h3 className="encounter-title">{localize("COMBAT.Round")} {data.combat.data.round}</h3>
+                          : <h3 className="encounter-title">{localize("COMBAT.NotStarted")}</h3>
+                        }
+                      </Fragment>
+                    : <h3 className="encounter-title">{localize("COMBAT.None")}</h3>
+                  }
 
-                  {{#if user.isGM}}
-                  <a className="combat-control" title="{{localize 'COMBAT.InitiativeReset'}}" data-control="resetAll"
-                      {{#unless hasCombat}}disabled{{/unless}}>
-                      <i className="fas fa-undo"></i>
-                  </a>
-                  <a className="combat-control" title="{{labels.scope}}"
-                      data-control="toggleSceneLink" {{#unless hasCombat}}disabled{{/unless}}>
-                      <i className="fas fa-{{#unless linked}}un{{/unless}}link"></i>
-                  </a>
-                  <a className="combat-settings" title="{{localize 'COMBAT.Settings'}}" data-control="trackerSettings">
-                      <i className="fas fa-cog"></i>
-                  </a>
-                  {{/if}}
-              </nav> */}
+                  {user.isGM &&
+                    <Fragment>
+                      <a
+                        className="combat-control"
+                        title="{{localize 'COMBAT.InitiativeReset'}}"
+                        data-control="resetAll"
+                        // @ts-expect-error foundry uses non-standard "disabled"
+                        disabled={!data.hasCombat}
+                      >
+                          <a>sdfsd</a>
+                          <i className="fas fa-undo"></i>
+                      </a>
+                      <a className="combat-control" title="{{labels.scope}}"
+                          data-control="toggleSceneLink"
+                          // @ts-expect-error foundry uses non-standard "disabled"
+                          disabled={!data.hasCombat}
+                      >
+                        <i className="fas fa-{{#unless linked}}un{{/unless}}link"></i>
+                      </a>
+                      <a
+                        className="combat-settings"
+                        title="{{localize 'COMBAT.Settings'}}"
+                        data-control="trackerSettings"
+                      >
+                          <i className="fas fa-cog"></i>
+                      </a>
+                    </Fragment>
+                  }
+              </nav>
           </header>
 
           {/* <ol id="combat-tracker" className="directory-list">
