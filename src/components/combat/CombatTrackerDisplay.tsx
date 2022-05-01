@@ -191,25 +191,30 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
               ))}
           </ol>
 
-          {/* <nav id="combat-controls" className="directory-footer flexrow">
-          {{#if hasCombat}}
-              {{#if user.isGM}}
-                  {{#if round}}
-                  <a className="combat-control" title="{{localize 'COMBAT.RoundPrev'}}" data-control="previousRound"><i className="fas fa-step-backward"></i></a>
+          <nav id="combat-controls" className="directory-footer flexrow">
+          {data.hasCombat &&
+              (user.isGM
+                ? <Fragment>
+                    {data.round
+                      ? <Fragment>
+                        <a className="combat-control" title="{{localize 'COMBAT.RoundPrev'}}" data-control="previousRound"><i className="fas fa-step-backward"></i></a>
+                        <a className="combat-control" title="{{localize 'COMBAT.TurnPrev'}}" data-control="previousTurn"><i className="fas fa-arrow-left"></i></a>
+                        <a className="combat-control center" title="{{localize 'COMBAT.End'}}" data-control="endCombat">{localize("COMBAT.End")}</a>
+                        <a className="combat-control" title="{{localize 'COMBAT.TurnNext'}}" data-control="nextTurn"><i className="fas fa-arrow-right"></i></a>
+                        <a className="combat-control" title="{{localize 'COMBAT.RoundNext'}}" data-control="nextRound"><i className="fas fa-step-forward"></i></a>
+                      </Fragment>
+                      : <a className="combat-control center" title="{{localize 'COMBAT.Begin'}}" data-control="startCombat">{localize("COMBAT.Begin")}</a>
+                    }
+                  </Fragment>
+                : data.control &&
+                <Fragment>
                   <a className="combat-control" title="{{localize 'COMBAT.TurnPrev'}}" data-control="previousTurn"><i className="fas fa-arrow-left"></i></a>
-                  <a className="combat-control center" title="{{localize 'COMBAT.End'}}" data-control="endCombat">{{localize 'COMBAT.End'}}</a>
+                  <a className="combat-control center" title="{{localize 'COMBAT.TurnEnd'}}" data-control="nextTurn">{localize("COMBAT.TurnEnd")}</a>
                   <a className="combat-control" title="{{localize 'COMBAT.TurnNext'}}" data-control="nextTurn"><i className="fas fa-arrow-right"></i></a>
-                  <a className="combat-control" title="{{localize 'COMBAT.RoundNext'}}" data-control="nextRound"><i className="fas fa-step-forward"></i></a>
-                  {{else}}
-                  <a className="combat-control center" title="{{localize 'COMBAT.Begin'}}" data-control="startCombat">{{localize 'COMBAT.Begin'}}</a>
-                  {{/if}}
-              {{else if control}}
-              <a className="combat-control" title="{{localize 'COMBAT.TurnPrev'}}" data-control="previousTurn"><i className="fas fa-arrow-left"></i></a>
-              <a className="combat-control center" title="{{localize 'COMBAT.TurnEnd'}}" data-control="nextTurn">{{localize 'COMBAT.TurnEnd'}}</a>
-              <a className="combat-control" title="{{localize 'COMBAT.TurnNext'}}" data-control="nextTurn"><i className="fas fa-arrow-right"></i></a>
-              {{/if}}
-          {{/if}}
-          </nav> */}
+                </Fragment>
+              )
+          }
+          </nav>
     </Fragment>
   );
 };
