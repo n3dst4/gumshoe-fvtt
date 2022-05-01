@@ -142,43 +142,54 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
               </nav>
           </header>
 
-          {/* <ol id="combat-tracker" className="directory-list">
-              {{#each turns}}
-              <li className="combatant actor directory-item flexrow {{this.css}}" data-combatant-id="{{this.id}}">
-                  <img className="token-image" data-src="{{this.img}}" title="{{this.name}}"/>
+          <ol id="combat-tracker" className="directory-list">
+              {data.turns.map<ReactNode>((turn, i) => (
+              <li key={i} className="combatant actor directory-item flexrow {{this.css}}" data-combatant-id="{{this.id}}">
+                  <img className="token-image" data-src={turn.img} title={turn.name}/>
                   <div className="token-name flexcol">
-                      <h4>{{this.name}}</h4>
+                      <h4>{turn.name}</h4>
                       <div className="combatant-controls flexrow">
-                          {{#if ../user.isGM}}
-                          <a className="combatant-control {{#if this.hidden}}active{{/if}}" title="{{localize 'COMBAT.ToggleVis'}}" data-control="toggleHidden">
-                              <i className="fas fa-eye-slash"></i></a>
-                          <a className="combatant-control {{#if this.defeated}}active{{/if}}" title="{{localize 'COMBAT.ToggleDead'}}" data-control="toggleDefeated">
-                              <i className="fas fa-skull"></i></a>
-                          {{/if}}
+                          {user.isGM &&
+                            <Fragment>
+                              <a
+                                className="combatant-control {{#if this.hidden}}active{{/if}}"
+                                title="{{localize 'COMBAT.ToggleVis'}}"
+                                data-control="toggleHidden"
+                              >
+                                <i className="fas fa-eye-slash"></i>
+                              </a>
+                              <a className="combatant-control {{#if this.defeated}}active{{/if}}"
+                                title="{{localize 'COMBAT.ToggleDead'}}"
+                                data-control="toggleDefeated"
+                              >
+                                <i className="fas fa-skull"></i>
+                              </a>
+                            </Fragment>
+                          }
                           <div className="token-effects">
-                              {{#each this.effects}}
-                              <img className="token-effect" src="{{this}}"/>
-                              {{/each}}
+                              {Array.from(turn.effects).map<ReactNode>((effect, i) => (
+                                <img key={i} className="token-effect" src={effect}/>
+                              ))}
                           </div>
                       </div>
                   </div>
 
-                  {{#if this.hasResource}}
+                  {turn.hasResource &&
                   <div className="token-resource">
-                      <span className="resource">{{this.resource}}</span>
+                      {/* ressource compiles but wtf?? */}
+                      <span className="resource">{turn.ressource}</span>
                   </div>
-                  {{/if}}
+                  }
 
                   <div className="token-initiative">
-                      {{#if this.hasRolled}}
-                      <span className="initiative">{{this.initiative}}</span>
-                      {{else if this.owner}}
-                      <a className="combatant-control roll" title="{{localize 'COMBAT.InitiativeRoll'}}" data-control="rollInitiative"></a>
-                      {{/if}}
+                      {turn.hasRolled
+                        ? <span className="initiative">{turn.initiative}</span>
+                        : <a className="combatant-control roll" title="{{localize 'COMBAT.InitiativeRoll'}}" data-control="rollInitiative"></a>
+                      }
                   </div>
               </li>
-              {{/each}}
-          </ol> */}
+              ))}
+          </ol>
 
           {/* <nav id="combat-controls" className="directory-footer flexrow">
           {{#if hasCombat}}
