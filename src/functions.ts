@@ -163,7 +163,7 @@ export const confirmADoodleDo = ({
   return promise;
 };
 
-export function assertNotNull<T> (t: T|undefined): asserts t is T {
+export function assertNotNull<T> (t: T|undefined|null): asserts t is T {
   if (t === undefined) {
     throw new Error("t was undefined");
   }

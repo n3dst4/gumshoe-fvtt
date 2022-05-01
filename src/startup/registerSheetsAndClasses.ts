@@ -2,6 +2,7 @@ import * as constants from "../constants";
 import { InvestigatorActor } from "../module/InvestigatorActor";
 import { InvestigatorCombat } from "../module/InvestigatorCombat";
 import { InvestigatorCombatant } from "../module/InvestigatorCombatant";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { InvestigatorCombatTracker } from "../module/InvestigatorCombatTracker";
 import { InvestigatorItem } from "../module/InvestigatorItem";
 import { InvestigatorAbilitySheetClass, InvestigatorEquipmentSheetClass, InvestigatorMwItemSheetClass } from "../module/InvestigatorItemSheetClass";
