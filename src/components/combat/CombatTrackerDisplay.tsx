@@ -3,6 +3,7 @@ import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
 import React, { Fragment, MouseEvent, ReactNode, useCallback, useEffect, useState } from "react";
 import { assertGame, assertNotNull } from "../../functions";
+import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombatTrackerBase } from "../../module/InvestigatorCombatTracker";
 
 interface CombatTrackerProps {
@@ -18,6 +19,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   const user = game.user;
   assertNotNull(user);
   const [data, setData] = useState<CombatTracker.Data | null>(null);
+  const dataRef = useRefStash(data);
 
   // shenangigans with serial number to get a hint from foundry that it's time
   // to fetch new data. getData is async so it's hard to actually use it to
@@ -52,6 +54,19 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     if (!combat) return;
     await combat.activate({ render: false });
   }, []);
+
+  const _onCombatControl = useCallback(async (event: MouseEvent) => {
+    event.preventDefault();
+    const combat = dataRef.current?.combat;
+    const ctrl = event.currentTarget;
+    if (ctrl.getAttribute("disabled")) return;
+    // @ts-expect-error wtf
+    else ctrl.setAttribute("disabled", true);
+    // @ts-expect-error this is waaay too funky
+    const fn = combat?.[ctrl.dataset.control ?? ""];
+    if (fn) await fn.bind(combat)();
+    ctrl.removeAttribute("disabled");
+  }, [dataRef]);
 
   const localize = game.i18n.localize.bind(game.i18n);
 
@@ -105,6 +120,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
               data-control="endCombat"
               // @ts-expect-error foundry uses non-standard "disabled"
               disabled={!data.combatCount}
+              onClick={_onCombatControl}
             >
               <i className="fas fa-trash"></i>
             </a>
@@ -120,6 +136,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 data-control="rollAll"
                 // @ts-expect-error foundry uses non-standard "disabled"
                 disabled={!data.turns}
+                onClick={_onCombatControl}
               >
                 <i className="fas fa-users"></i>
               </a>
@@ -129,6 +146,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 data-control="rollNPC"
                 // @ts-expect-error foundry uses non-standard "disabled"
                 disabled={!data.turns}
+                onClick={_onCombatControl}
               >
                 <i className="fas fa-users-cog"></i>
               </a>
@@ -163,6 +181,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 data-control="resetAll"
                 // @ts-expect-error foundry uses non-standard "disabled"
                 disabled={!data.hasCombat}
+                onClick={_onCombatControl}
               >
                 <i className="fas fa-undo"></i>
               </a>
@@ -173,6 +192,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 data-control="toggleSceneLink"
                 // @ts-expect-error foundry uses non-standard "disabled"
                 disabled={!data.hasCombat}
+                onClick={_onCombatControl}
               >
                 <i
                   className={cx({
@@ -278,6 +298,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                     className="combat-control"
                     title={localize("COMBAT.RoundPrev")}
                     data-control="previousRound"
+                    onClick={_onCombatControl}
                   >
                     <i className="fas fa-step-backward"></i>
                   </a>
@@ -285,6 +306,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                     className="combat-control"
                     title={localize("COMBAT.TurnPrev")}
                     data-control="previousTurn"
+                    onClick={_onCombatControl}
                   >
                     <i className="fas fa-arrow-left"></i>
                   </a>
@@ -292,6 +314,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                     className="combat-control center"
                     title={localize("COMBAT.End")}
                     data-control="endCombat"
+                    onClick={_onCombatControl}
                   >
                     {localize("COMBAT.End")}
                   </a>
@@ -299,6 +322,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                     className="combat-control"
                     title={localize("COMBAT.TurnNext")}
                     data-control="nextTurn"
+                    onClick={_onCombatControl}
                   >
                     <i className="fas fa-arrow-right"></i>
                   </a>
@@ -306,6 +330,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                     className="combat-control"
                     title={localize("COMBAT.RoundNext")}
                     data-control="nextRound"
+                    onClick={_onCombatControl}
                   >
                     <i className="fas fa-step-forward"></i>
                   </a>
@@ -316,6 +341,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   className="combat-control center"
                   title={localize("COMBAT.Begin")}
                   data-control="startCombat"
+                  onClick={_onCombatControl}
                 >
                   {localize("COMBAT.Begin")}
                 </a>
@@ -329,6 +355,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   className="combat-control"
                   title={localize("COMBAT.TurnPrev")}
                   data-control="previousTurn"
+                  onClick={_onCombatControl}
                 >
                   <i className="fas fa-arrow-left"></i>
                 </a>
@@ -336,6 +363,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   className="combat-control center"
                   title={localize("COMBAT.TurnEnd")}
                   data-control="nextTurn"
+                  onClick={_onCombatControl}
                 >
                   {localize("COMBAT.TurnEnd")}
                 </a>
@@ -343,6 +371,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   className="combat-control"
                   title={localize("COMBAT.TurnNext")}
                   data-control="nextTurn"
+                  onClick={_onCombatControl}
                 >
                   <i className="fas fa-arrow-right"></i>
                 </a>
