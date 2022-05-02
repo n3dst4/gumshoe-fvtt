@@ -38,6 +38,21 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     await combat?.activate({ render: false });
   }, []);
 
+  const showConfig = useCallback((ev: MouseEvent) => {
+    ev.preventDefault();
+    // @ts-expect-error CombatTrackerConfig is fine with no args
+    new CombatTrackerConfig().render(true);
+  }, []);
+
+  const _onCombatCycle = useCallback(async (event) => {
+    assertGame(game);
+    event.preventDefault();
+    const btn = event.currentTarget;
+    const combat = game.combats?.get(btn.dataset.combatId);
+    if (!combat) return;
+    await combat.activate({ render: false });
+  }, []);
+
   const localize = game.i18n.localize.bind(game.i18n);
 
   if (data === null) {
@@ -64,6 +79,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   {...(data.previousId
                     ? { "data-combat-id": data.previousId }
                     : { disabled: true })}
+                  onClick={_onCombatCycle}
                 >
                   <i className="fas fa-caret-left"></i>
                 </a>
@@ -77,6 +93,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   {...(data.nextId
                     ? { "data-combat-id": data.nextId }
                     : { disabled: true })}
+                    onClick={_onCombatCycle}
                 >
                   <i className="fas fa-caret-right"></i>
                 </a>
@@ -169,6 +186,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 className="combat-settings"
                 title={localize("COMBAT.Settings")}
                 data-control="trackerSettings"
+                onClick={showConfig}
               >
                 <i className="fas fa-cog"></i>
               </a>
