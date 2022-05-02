@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
-import React, { Fragment, ReactNode, useEffect, useState } from "react";
+import React, { Fragment, MouseEvent, ReactNode, useCallback, useEffect, useState } from "react";
 import { assertGame, assertNotNull } from "../../functions";
+import { useWhyDidYouUpdate } from "../../hooks/useWhyDidYouUpdate";
 import { InvestigatorCombatTrackerBase } from "../../module/InvestigatorCombatTracker";
 
 interface CombatTrackerProps {
@@ -24,6 +25,17 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     })();
   }, [app]);
 
+  useWhyDidYouUpdate("helloe", [app]);
+
+  const _onCombatCreate = useCallback(async (event: MouseEvent) => {
+    assertGame(game);
+    event.preventDefault();
+    const scene = game.scenes?.current;
+    const cls = getDocumentClass("Combat");
+    const combat = await cls.create({ scene: scene?.id });
+    await combat?.activate({ render: false });
+  }, []);
+
   const localize = game.i18n.localize.bind(game.i18n);
 
   if (data === null) {
@@ -35,7 +47,11 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
       <header id="combat-round">
         {user.isGM && (
           <nav className="encounters flexrow">
-            <a className="combat-create" title={localize("COMBAT.Create")}>
+            <a
+              className="combat-create"
+              title={localize("COMBAT.Create")}
+              onClick={_onCombatCreate}
+            >
               <i className="fas fa-plus"></i>
             </a>
             {data?.combatCount && (
