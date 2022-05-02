@@ -11,7 +11,7 @@ type ApplicationConstuctor = Constructor<Application>;
 
 // Render<T> T is a Constructor<T2>. It then expects its actual argument to be
 // a T2, i.e. the type of the thing the constructor constructs.
-type Render<T> = (t: T extends Constructor<infer T2> ? T2 : T) => JSX.Element;
+type Render<T> = (t: T extends Constructor<infer T2> ? T2 : T, serial: number) => JSX.Element;
 
 const log = console.log.bind(console, "[mixin] ");
 
@@ -61,6 +61,8 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
 
     initialized = false;
 
+    serial = 0;
+
     /**
      * We need to pick somewhere to activate and render React. It would have
      * been nice to do this from `render` & friends but they happen before
@@ -84,8 +86,10 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
       if (el) {
         const content = render(
           this as TBase extends Constructor<infer T2> ? T2 : TBase,
+          this.serial,
         );
         ReactDOM.render(content, el);
+        this.serial += 1;
       }
     }
   };

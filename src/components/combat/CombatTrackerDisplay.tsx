@@ -3,29 +3,31 @@ import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
 import React, { Fragment, MouseEvent, ReactNode, useCallback, useEffect, useState } from "react";
 import { assertGame, assertNotNull } from "../../functions";
-import { useWhyDidYouUpdate } from "../../hooks/useWhyDidYouUpdate";
 import { InvestigatorCombatTrackerBase } from "../../module/InvestigatorCombatTracker";
 
 interface CombatTrackerProps {
   app: InvestigatorCombatTrackerBase;
+  serial: number;
 }
 
 export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   app,
+  serial,
 }: CombatTrackerProps) => {
   assertGame(game);
   const user = game.user;
   assertNotNull(user);
   const [data, setData] = useState<CombatTracker.Data | null>(null);
 
+  // shenangigans with serial number to get a hint from foundry that it's time
+  // to fetch new data. getData is async so it's hard to actually use it to
+  // trigger renders. See InvestigatorCombatTracker and ReactApplicationMixin.
   useEffect(() => {
     (async () => {
       const data = await app.getData();
       setData(data);
     })();
-  }, [app]);
-
-  useWhyDidYouUpdate("helloe", [app]);
+  }, [app, serial]);
 
   const _onCombatCreate = useCallback(async (event: MouseEvent) => {
     assertGame(game);

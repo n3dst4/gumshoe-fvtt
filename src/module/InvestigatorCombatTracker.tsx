@@ -11,18 +11,17 @@ export class InvestigatorCombatTrackerBase extends CombatTracker {
     return {
       ...super.defaultOptions,
       template: reactifiedSidebarTemplatePath,
-      // resizable: true,
+      resizable: true,
     };
   }
 }
 
-const render = (sheet: InvestigatorCombatTrackerBase) => {
-  return (
-    <CombatTrackerDisplay
-      app={sheet}
-    />
-  );
-};
+const render = (sheet: InvestigatorCombatTrackerBase, serial: number) => (
+  <CombatTrackerDisplay
+    app={sheet}
+    serial={serial}
+  />
+);
 
 export const InvestigatorCombatTracker = ReactApplicationMixin(
   InvestigatorCombatTrackerBase,
