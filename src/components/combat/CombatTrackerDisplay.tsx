@@ -68,6 +68,50 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     ctrl.removeAttribute("disabled");
   }, [dataRef]);
 
+  const _onToggleDefeatedStatus = useCallback(async (combatant: Combatant) => {
+    const isDefeated = !combatant.isDefeated;
+    await combatant.update({ defeated: isDefeated });
+    const token = combatant.token;
+    if (!token) return;
+    // Push the defeated status to the token
+    const status = CONFIG.statusEffects.find(e => e.id === CONFIG.Combat.defeatedStatusId);
+    if (!status && !token.object) return;
+    const effect = token.actor && status ? status : CONFIG.controlIcons.defeated;
+    // @ts-expect-error not sure if fvtt-types is wrong or what
+    if (token.object) await token.object.toggleEffect(effect, { overlay: true, active: isDefeated });
+    // @ts-expect-error not sure if fvtt-types is wrong or what
+    else await token.toggleActiveEffect(effect, { overlay: true, active: isDefeated });
+  }, []);
+
+  const _onCombatantControl = useCallback(async (event: MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const btn = event.currentTarget;
+    const li = btn.closest(".combatant");
+    const combat = dataRef.current?.combat;
+    // @ts-expect-error wtf
+    const combatantId = li?.dataset.combatantId;
+    const combatant = combat?.combatants.get(combatantId);
+
+    // Switch control action
+    // @ts-expect-error wtf
+    switch (btn?.dataset.control) {
+      // Toggle combatant visibility
+      case "toggleHidden":
+        return combatant?.update({ hidden: !combatant?.hidden });
+
+      // Toggle combatant defeated flag
+      case "toggleDefeated":
+        if (combatant) {
+          return _onToggleDefeatedStatus(combatant);
+        }
+        break;
+      // Roll combatant initiative
+      case "rollInitiative":
+        return combat?.rollInitiative([combatant?.id ?? ""]);
+    }
+  }, [_onToggleDefeatedStatus, dataRef]);
+
   const localize = game.i18n.localize.bind(game.i18n);
 
   if (data === null) {
@@ -220,7 +264,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
           <li
             key={i}
             className={`combatant actor directory-item flexrow ${turn.css}`}
-            data-combatant-id="{{this.id}}"
+            data-combatant-id={turn.id}
           >
             <img
               className="token-image"
@@ -239,6 +283,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                       })}
                       title={localize("COMBAT.ToggleVis")}
                       data-control="toggleHidden"
+                      onClick={_onCombatantControl}
                     >
                       <i className="fas fa-eye-slash"></i>
                     </a>
@@ -249,6 +294,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                       })}
                       title={localize("COMBAT.ToggleDead")}
                       data-control="toggleDefeated"
+                      onClick={_onCombatantControl}
                     >
                       <i className="fas fa-skull"></i>
                     </a>
@@ -279,6 +325,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   className="combatant-control roll"
                   title={localize("COMBAT.InitiativeRoll")}
                   data-control="rollInitiative"
+                  onClick={_onCombatantControl}
                 />
                   )}
             </div>
