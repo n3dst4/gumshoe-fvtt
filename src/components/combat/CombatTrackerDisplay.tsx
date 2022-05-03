@@ -112,6 +112,35 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     }
   }, [_onToggleDefeatedStatus, dataRef]);
 
+  const _onCombatantHoverIn = useCallback((event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    if (!canvas?.ready) return;
+    const li = event.currentTarget;
+    const combatant = app.viewed?.combatants.get(li.dataset.combatantId ?? "");
+    const token = combatant?.token?.object;
+    // @ts-expect-error isVisible is legit?
+    if (token?.isVisible) {
+      // @ts-expect-error privacy means nothing
+      if (!token._controlled) token._onHoverIn(event);
+      // @ts-expect-error privacy means nothing
+      app._highlighted = token;
+    }
+  }, [app]);
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle mouse-unhover events for a combatant in the tracker
+   * @private
+   */
+  const _onCombatantHoverOut = useCallback((event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    // @ts-expect-error privacy means nothing
+    if (app._highlighted) app._highlighted._onHoverOut(event);
+    // @ts-expect-error privacy means nothing
+    app._highlighted = null;
+  }, [app]);
+
   const localize = game.i18n.localize.bind(game.i18n);
 
   if (data === null) {
@@ -120,6 +149,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
 
   return (
     <Fragment>
+      {/* TOP ROW: + < Encounter 2/3 > X */}
       <header id="combat-round">
         {user.isGM && (
           <nav className="encounters flexrow">
@@ -171,6 +201,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
           </nav>
         )}
 
+        {/* SECOND ROW: Roll all, roll npcs, RoUnD 4, do-over, link, cog */}
         <nav className="encounters flexrow {{#if hasCombat}}combat{{/if}}">
           {user.isGM && (
             <Fragment>
@@ -259,12 +290,15 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
         </nav>
       </header>
 
+      {/* ACTUAL COMBATANTS, or "turns" in early-medieval foundry-speak */}
       <ol id="combat-tracker" className="directory-list">
         {data.turns.map<ReactNode>((turn, i) => (
           <li
             key={i}
             className={`combatant actor directory-item flexrow ${turn.css}`}
             data-combatant-id={turn.id}
+            onMouseEnter={_onCombatantHoverIn}
+            onMouseLeave={_onCombatantHoverOut}
           >
             <img
               className="token-image"
@@ -333,6 +367,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
         ))}
       </ol>
 
+      {/* BOTTOM BITS: |< < End combat > >| */}
       <nav id="combat-controls" className="directory-footer flexrow">
         {data.hasCombat &&
           (user.isGM
