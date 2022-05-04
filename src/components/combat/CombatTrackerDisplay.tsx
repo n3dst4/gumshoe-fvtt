@@ -6,6 +6,8 @@ import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombatTrackerBase } from "../../module/InvestigatorCombatTracker";
 
+const log = console.log.bind(console, "[CombatTrackerDisplay] ");
+
 interface CombatTrackerProps {
   app: InvestigatorCombatTrackerBase;
   serial: number;
@@ -127,12 +129,6 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     }
   }, [app]);
 
-  /* -------------------------------------------- */
-
-  /**
-   * Handle mouse-unhover events for a combatant in the tracker
-   * @private
-   */
   const _onCombatantHoverOut = useCallback((event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
     // @ts-expect-error privacy means nothing
@@ -140,6 +136,81 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     // @ts-expect-error privacy means nothing
     app._highlighted = null;
   }, [app]);
+
+  const _onConfigureCombatant = useCallback((li: JQuery<HTMLLIElement>) => {
+    const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
+    if (!combatant) return;
+    new CombatantConfig(combatant, {
+      top: Math.min(li[0].offsetTop, window.innerHeight - 350),
+      left: window.innerWidth - 720,
+      width: 400,
+    }).render(true);
+  }, [dataRef]);
+
+  const appRef = useRefStash(app);
+
+  useEffect(() => {
+    assertGame(game);
+    if (!game.user?.isGM) {
+      return;
+    }
+    const menuOptions = [
+      {
+        name: "COMBAT.CombatantUpdate",
+        icon: '<i class="fas fa-edit"></i>',
+        callback: _onConfigureCombatant,
+      },
+      {
+        name: "COMBAT.CombatantClear",
+        icon: '<i class="fas fa-undo"></i>',
+        condition: (li: JQuery<HTMLLIElement>) => {
+          const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
+          return Number.isNumeric(combatant?.data?.initiative);
+        },
+        callback: (li: JQuery<HTMLLIElement>) => {
+          const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
+          if (combatant) return combatant.update({ initiative: null });
+        },
+      },
+      {
+        name: "COMBAT.CombatantReroll",
+        icon: '<i class="fas fa-dice-d20"></i>',
+        callback: (li: JQuery<HTMLLIElement>) => {
+          const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
+          if (combatant) return dataRef.current?.combat?.rollInitiative([combatant.id ?? ""]);
+        },
+      },
+      {
+        name: "COMBAT.CombatantRemove",
+        icon: '<i class="fas fa-trash"></i>',
+        callback: (li: JQuery<HTMLLIElement>) => {
+          const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
+          if (combatant) return combatant.delete();
+        },
+      },
+      {
+        name: "COMBAT.CombatantRemove",
+        icon: '<i class="fas fa-trash"></i>',
+        callback: (li: JQuery<HTMLLIElement>) => {
+          const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
+          if (combatant) return combatant.delete();
+        },
+      },
+      {
+        name: "COMBAT.CombatantRemove",
+        icon: '<i class="fas fa-trash"></i>',
+        callback: (li: JQuery<HTMLLIElement>) => {
+          const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
+          if (combatant) return combatant.delete();
+        },
+      },
+    ];
+    log("Creating context menu");
+    // @ts-expect-error ContextMenu.create does exist
+    ContextMenu.create(
+      appRef.current, appRef.current.element, ".directory-item", menuOptions,
+    );
+  }, [_onConfigureCombatant, appRef, dataRef]);
 
   const localize = game.i18n.localize.bind(game.i18n);
 
