@@ -188,22 +188,6 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
           if (combatant) return combatant.delete();
         },
       },
-      {
-        name: "COMBAT.CombatantRemove",
-        icon: '<i class="fas fa-trash"></i>',
-        callback: (li: JQuery<HTMLLIElement>) => {
-          const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
-          if (combatant) return combatant.delete();
-        },
-      },
-      {
-        name: "COMBAT.CombatantRemove",
-        icon: '<i class="fas fa-trash"></i>',
-        callback: (li: JQuery<HTMLLIElement>) => {
-          const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
-          if (combatant) return combatant.delete();
-        },
-      },
     ];
     log("Creating context menu");
     // @ts-expect-error ContextMenu.create does exist
@@ -362,7 +346,10 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
       </header>
 
       {/* ACTUAL COMBATANTS, or "turns" in early-medieval foundry-speak */}
-      <ol id="combat-tracker" className="directory-list">
+      <ol
+        id="combat-tracker"
+        className="directory-list"
+      >
         {data.turns.map<ReactNode>((turn, i) => (
           <li
             key={i}
