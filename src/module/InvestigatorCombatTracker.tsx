@@ -5,7 +5,7 @@ import { CombatTrackerDisplay } from "../components/combat/CombatTrackerDisplay"
 import { reactifiedSidebarTemplatePath, reactTemplatePath } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
-export class InvestigatorCombatTrackerBase extends CombatTracker {
+export class InvestigatorCombatTrackerBase extends SidebarTab {
   /** @override */
   static get defaultOptions () {
     return {

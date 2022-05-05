@@ -20,18 +20,20 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   assertGame(game);
   const user = game.user;
   assertNotNull(user);
-  const [data, setData] = useState<CombatTracker.Data | null>(null);
-  const dataRef = useRefStash(data);
 
-  // shenangigans with serial number to get a hint from foundry that it's time
-  // to fetch new data. getData is async so it's hard to actually use it to
-  // trigger renders. See InvestigatorCombatTracker and ReactApplicationMixin.
-  useEffect(() => {
-    (async () => {
-      const data = await app.getData();
-      setData(data);
-    })();
-  }, [app, serial]);
+  const [combatId, setCombatId] = useState(game.combats?.combats[0].data._id ?? null);
+
+  const combat = combatId ? game.combats?.get(combatId) : null;
+  const combatRef = useRefStash(combat);
+  const combatCount = game.combats?.combats.length ?? 0;
+
+  const combatIndex = combatId ? game.combats?.combats.findIndex((c) => c.data._id === combatId) : undefined;
+  const previousId = (combatIndex !== undefined && combatIndex > 1)
+    ? game.combats?.combats[combatIndex - 1].data._id
+    : null;
+  const nextId = (combatIndex !== undefined && combatIndex < (combatCount - 1))
+    ? game.combats?.combats[combatIndex + 1].data._id
+    : null;
 
   const _onCombatCreate = useCallback(async (event: MouseEvent) => {
     assertGame(game);
@@ -59,7 +61,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
 
   const _onCombatControl = useCallback(async (event: MouseEvent) => {
     event.preventDefault();
-    const combat = dataRef.current?.combat;
+    const combat = combatRef.current;
     const ctrl = event.currentTarget;
     if (ctrl.getAttribute("disabled")) return;
     // @ts-expect-error wtf
@@ -68,7 +70,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     const fn = combat?.[ctrl.dataset.control ?? ""];
     if (fn) await fn.bind(combat)();
     ctrl.removeAttribute("disabled");
-  }, [dataRef]);
+  }, [combatRef]);
 
   const _onToggleDefeatedStatus = useCallback(async (combatant: Combatant) => {
     const isDefeated = !combatant.isDefeated;
@@ -90,7 +92,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     event.stopPropagation();
     const btn = event.currentTarget;
     const li = btn.closest(".combatant");
-    const combat = dataRef.current?.combat;
+    const combat = combatRef.current;
     // @ts-expect-error wtf
     const combatantId = li?.dataset.combatantId;
     const combatant = combat?.combatants.get(combatantId);
@@ -112,13 +114,13 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
       case "rollInitiative":
         return combat?.rollInitiative([combatant?.id ?? ""]);
     }
-  }, [_onToggleDefeatedStatus, dataRef]);
+  }, [_onToggleDefeatedStatus, combatRef]);
 
   const _onCombatantHoverIn = useCallback((event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
     if (!canvas?.ready) return;
     const li = event.currentTarget;
-    const combatant = app.viewed?.combatants.get(li.dataset.combatantId ?? "");
+    const combatant = combatRef.current?.combatants.get(li.dataset.combatantId ?? "");
     const token = combatant?.token?.object;
     // @ts-expect-error isVisible is legit?
     if (token?.isVisible) {
@@ -138,14 +140,14 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   }, [app]);
 
   const _onConfigureCombatant = useCallback((li: JQuery<HTMLLIElement>) => {
-    const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
+    const combatant = combatRef.current?.combatants.get(li.data("combatant-id"));
     if (!combatant) return;
     new CombatantConfig(combatant, {
       top: Math.min(li[0].offsetTop, window.innerHeight - 350),
       left: window.innerWidth - 720,
       width: 400,
     }).render(true);
-  }, [dataRef]);
+  }, [combatRef]);
 
   const appRef = useRefStash(app);
 
@@ -164,11 +166,11 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
         name: "COMBAT.CombatantClear",
         icon: '<i class="fas fa-undo"></i>',
         condition: (li: JQuery<HTMLLIElement>) => {
-          const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
+          const combatant = combatRef.current?.combatants.get(li.data("combatant-id"));
           return Number.isNumeric(combatant?.data?.initiative);
         },
         callback: (li: JQuery<HTMLLIElement>) => {
-          const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
+          const combatant = combatRef.current?.combatants.get(li.data("combatant-id"));
           if (combatant) return combatant.update({ initiative: null });
         },
       },
@@ -176,15 +178,15 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
         name: "COMBAT.CombatantReroll",
         icon: '<i class="fas fa-dice-d20"></i>',
         callback: (li: JQuery<HTMLLIElement>) => {
-          const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
-          if (combatant) return dataRef.current?.combat?.rollInitiative([combatant.id ?? ""]);
+          const combatant = combatRef.current?.combatants.get(li.data("combatant-id"));
+          if (combatant) return combatRef.current?.rollInitiative([combatant.id ?? ""]);
         },
       },
       {
         name: "COMBAT.CombatantRemove",
         icon: '<i class="fas fa-trash"></i>',
         callback: (li: JQuery<HTMLLIElement>) => {
-          const combatant = dataRef.current?.combat?.combatants.get(li.data("combatant-id"));
+          const combatant = combatRef.current?.combatants.get(li.data("combatant-id"));
           if (combatant) return combatant.delete();
         },
       },
@@ -194,11 +196,11 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     ContextMenu.create(
       appRef.current, appRef.current.element, ".directory-item", menuOptions,
     );
-  }, [_onConfigureCombatant, appRef, dataRef]);
+  }, [_onConfigureCombatant, appRef, combatRef]);
 
   const localize = game.i18n.localize.bind(game.i18n);
 
-  if (data === null) {
+  if (combat === null) {
     return null;
   }
 
@@ -215,27 +217,27 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
             >
               <i className="fas fa-plus"></i>
             </a>
-            {data?.combatCount && (
+            {combatCount > 0 && (
               <Fragment>
                 <a
                   className="combat-cycle"
                   title={localize("COMBAT.EncounterPrevious")}
-                  {...(data.previousId
-                    ? { "data-combat-id": data.previousId }
+                  {...(previousId
+                    ? { "data-combat-id": previousId }
                     : { disabled: true })}
                   onClick={_onCombatCycle}
                 >
                   <i className="fas fa-caret-left"></i>
                 </a>
                 <h4 className="encounter">
-                  {localize("COMBAT.Encounter")} {data.currentIndex} /{" "}
-                  {data.combatCount}
+                  {localize("COMBAT.Encounter")} {combatIndex} /{" "}
+                  {combatCount}
                 </h4>
                 <a
                   className="combat-cycle"
                   title={localize("COMBAT.EncounterNext")}
-                  {...(data.nextId
-                    ? { "data-combat-id": data.nextId }
+                  {...(nextId
+                    ? { "data-combat-id": nextId }
                     : { disabled: true })}
                     onClick={_onCombatCycle}
                 >
