@@ -38,8 +38,8 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     : null;
 
   const linked = combat?.data.scene !== null;
-
   const turns = combat ? getTurns(combat) : [];
+  const hasCombat = !!combat;
 
   // CALLBACKS
 
@@ -437,11 +437,11 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
 
       {/* BOTTOM BITS: |< < End combat > >| */}
       <nav id="combat-controls" className="directory-footer flexrow">
-        {data.hasCombat &&
+        {hasCombat &&
           (user.isGM
             ? (
             <Fragment>
-              {data.round
+              {combat.data.round
                 ? (
                 <Fragment>
                   <a
@@ -499,7 +499,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
             </Fragment>
               )
             : (
-                data.control && (
+                game.user && combat.combatant?.players?.includes(game.user) && (
               <Fragment>
                 <a
                   className="combat-control"
