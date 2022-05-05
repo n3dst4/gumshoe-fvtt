@@ -5,6 +5,7 @@ import React, { Fragment, MouseEvent, ReactNode, useCallback, useEffect, useStat
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombatTrackerBase } from "../../module/InvestigatorCombatTracker";
+import { getTurns } from "./getTurns";
 
 const log = console.log.bind(console, "[CombatTrackerDisplay] ");
 
@@ -21,6 +22,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   const user = game.user;
   assertNotNull(user);
 
+  // STATE & DERIVED DATA
   const [combatId, setCombatId] = useState(game.combats?.combats[0].data._id ?? null);
 
   const combat = combatId ? game.combats?.get(combatId) : null;
@@ -34,6 +36,12 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   const nextId = (combatIndex !== undefined && combatIndex < (combatCount - 1))
     ? game.combats?.combats[combatIndex + 1].data._id
     : null;
+
+  const linked = combat?.data.scene !== null;
+
+  const turns = combat ? getTurns(combat) : [];
+
+  // CALLBACKS
 
   const _onCombatCreate = useCallback(async (event: MouseEvent) => {
     assertGame(game);
@@ -129,7 +137,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
       // @ts-expect-error privacy means nothing
       app._highlighted = token;
     }
-  }, [app]);
+  }, [app, combatRef]);
 
   const _onCombatantHoverOut = useCallback((event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
@@ -285,13 +293,13 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
             </Fragment>
           )}
 
-          {data.combatCount
+          {combatCount
             ? (
             <Fragment>
-              {data?.combat?.data.round
+              {combat?.data.round
                 ? (
                 <h3 className="encounter-title">
-                  {localize("COMBAT.Round")} {data.combat.data.round}
+                  {localize("COMBAT.Round")} {combat.data.round}
                 </h3>
                   )
                 : (
@@ -329,8 +337,8 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 <i
                   className={cx({
                     fas: true,
-                    "fa-link": !data.linked,
-                    "fa-unlink": data.linked,
+                    "fa-link": !linked,
+                    "fa-unlink": linked,
                   })}
                 />
               </a>
@@ -352,7 +360,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
         id="combat-tracker"
         className="directory-list"
       >
-        {data.turns.map<ReactNode>((turn, i) => (
+        {turns.map<ReactNode>((turn, i) => (
           <li
             key={i}
             className={`combatant actor directory-item flexrow ${turn.css}`}
