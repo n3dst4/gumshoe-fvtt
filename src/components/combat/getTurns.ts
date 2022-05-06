@@ -37,8 +37,13 @@ export function getTurns (combat: Combat) {
     if (VideoHelper.hasVideoExtension(turn.img)) {
       // @ts-expect-error combatant._thumb is a thing
       if (combatant._thumb) turn.img = combatant._thumb;
-      // @ts-expect-error combatant._thumb is a thing
-      else turn.img = combatant._thumb = await game.video.createThumbnail(combatant.img, { width: 100, height: 100 });
+      else {
+        // @ts-expect-error game.video is a thing
+        game.video.createThumbnail(combatant.img, { width: 100, height: 100 }).then((img) => {
+          // @ts-expect-error combatant._thumb is a thing
+          turn.img = combatant._thumb = img;
+        });
+      }
     }
 
     // Actor and Token status effects

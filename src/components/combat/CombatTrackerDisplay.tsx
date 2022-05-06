@@ -23,6 +23,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   assertNotNull(user);
 
   // STATE & DERIVED DATA
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [combatId, setCombatId] = useState(game.combats?.combats[0].data._id ?? null);
 
   const combat = combatId ? game.combats?.get(combatId) : null;
@@ -40,6 +41,8 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   const linked = combat?.data.scene !== null;
   const turns = combat ? getTurns(combat) : [];
   const hasCombat = !!combat;
+
+  const scopeLabel = game.i18n.localize(`COMBAT.${linked ? "Linked" : "Unlinked"}`);
 
   // CALLBACKS
 
@@ -238,7 +241,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   <i className="fas fa-caret-left"></i>
                 </a>
                 <h4 className="encounter">
-                  {localize("COMBAT.Encounter")} {combatIndex} /{" "}
+                  {localize("COMBAT.Encounter")} {(combatIndex ?? 0) + 1} /{" "}
                   {combatCount}
                 </h4>
                 <a
@@ -258,7 +261,9 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
               title={localize("COMBAT.Delete")}
               data-control="endCombat"
               // @ts-expect-error foundry uses non-standard "disabled"
-              disabled={!data.combatCount}
+              disabled={
+                combatCount
+              }
               onClick={_onCombatControl}
             >
               <i className="fas fa-trash"></i>
@@ -275,7 +280,9 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 title={localize("COMBAT.RollAll")}
                 data-control="rollAll"
                 // @ts-expect-error foundry uses non-standard "disabled"
-                disabled={!data.turns}
+                disabled={
+                  !turns
+                }
                 onClick={_onCombatControl}
               >
                 <i className="fas fa-users"></i>
@@ -285,7 +292,9 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 title={localize("COMBAT.RollNPC")}
                 data-control="rollNPC"
                 // @ts-expect-error foundry uses non-standard "disabled"
-                disabled={!data.turns}
+                disabled={
+                  !turns
+                }
                 onClick={_onCombatControl}
               >
                 <i className="fas fa-users-cog"></i>
@@ -320,18 +329,22 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 title={localize("COMBAT.InitiativeReset")}
                 data-control="resetAll"
                 // @ts-expect-error foundry uses non-standard "disabled"
-                disabled={!data.hasCombat}
+                disabled={
+                  !hasCombat
+                }
                 onClick={_onCombatControl}
               >
                 <i className="fas fa-undo"></i>
               </a>
               <a
                 className="combat-control"
-                // @ts-expect-error it's scope not scoped
-                title={data.labels.scope}
+                // ts-expect-error it's scope not scoped
+                title={scopeLabel}
                 data-control="toggleSceneLink"
                 // @ts-expect-error foundry uses non-standard "disabled"
-                disabled={!data.hasCombat}
+                disabled={
+                  !hasCombat
+                }
                 onClick={_onCombatControl}
               >
                 <i
