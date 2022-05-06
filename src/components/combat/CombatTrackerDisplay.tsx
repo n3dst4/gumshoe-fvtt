@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
-import React, { Fragment, MouseEvent, ReactNode, useCallback, useEffect, useState } from "react";
+import React, { Fragment, MouseEvent, ReactNode, useCallback, useEffect } from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombatTrackerBase } from "../../module/InvestigatorCombatTracker";
@@ -24,9 +24,10 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
 
   // STATE & DERIVED DATA
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [combatId, setCombatId] = useState(game.combats?.combats[0].data._id ?? null);
 
-  const combat = combatId ? game.combats?.get(combatId) : null;
+  const combat = game.combats?.active;
+  const combatId = combat?.data._id;
+
   const combatRef = useRefStash(combat);
   const combatCount = game.combats?.combats.length ?? 0;
 
@@ -66,7 +67,6 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     event.preventDefault();
     const btn = event.currentTarget;
     const combat = game.combats?.get(btn.dataset.combatId);
-    setCombatId(btn.dataset.combatId);
     if (!combat) return;
     await combat.activate({ render: false });
   }, []);
@@ -263,7 +263,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
               data-control="endCombat"
               // @ts-expect-error foundry uses non-standard "disabled"
               disabled={
-                combatCount
+                !combatCount
               }
               onClick={_onCombatControl}
             >
