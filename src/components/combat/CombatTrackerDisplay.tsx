@@ -31,7 +31,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   const combatCount = game.combats?.combats.length ?? 0;
 
   const combatIndex = combatId ? game.combats?.combats.findIndex((c) => c.data._id === combatId) : undefined;
-  const previousId = (combatIndex !== undefined && combatIndex > 1)
+  const previousId = (combatIndex !== undefined && combatIndex > 0)
     ? game.combats?.combats[combatIndex - 1].data._id
     : null;
   const nextId = (combatIndex !== undefined && combatIndex < (combatCount - 1))
@@ -66,6 +66,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     event.preventDefault();
     const btn = event.currentTarget;
     const combat = game.combats?.get(btn.dataset.combatId);
+    setCombatId(btn.dataset.combatId);
     if (!combat) return;
     await combat.activate({ render: false });
   }, []);
