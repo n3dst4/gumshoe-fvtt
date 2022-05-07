@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
-import React, { Fragment, MouseEvent, ReactNode, useCallback, useEffect } from "react";
+import { ConfiguredObjectClassForName } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
+import React, { Fragment, MouseEvent, ReactNode, useCallback, useEffect, useRef } from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombatTrackerBase } from "../../module/InvestigatorCombatTracker";
@@ -11,19 +12,16 @@ const log = console.log.bind(console, "[CombatTrackerDisplay] ");
 
 interface CombatTrackerProps {
   app: InvestigatorCombatTrackerBase;
-  serial: number;
 }
 
 export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   app,
-  serial,
 }: CombatTrackerProps) => {
   assertGame(game);
   const user = game.user;
   assertNotNull(user);
 
   // STATE & DERIVED DATA
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
   const combat = game.combats?.active;
   const combatId = combat?.data._id;
@@ -44,6 +42,8 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   const hasCombat = !!combat;
 
   const scopeLabel = game.i18n.localize(`COMBAT.${linked ? "Linked" : "Unlinked"}`);
+
+  const hoveredToken = useRef<ConfiguredObjectClassForName<"Token"> | null>(null);
 
   // CALLBACKS
 
@@ -137,19 +137,22 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     // @ts-expect-error isVisible is legit?
     if (token?.isVisible) {
       // @ts-expect-error privacy means nothing
-      if (!token._controlled) token._onHoverIn(event);
-      // @ts-expect-error privacy means nothing
-      app._highlighted = token;
+      if (!token._controlled) {
+        // @ts-expect-error privacy means nothing
+        token._onHoverIn(event);
+      }
+      hoveredToken.current = token as unknown as ConfiguredObjectClassForName<"Token">;
     }
-  }, [app, combatRef]);
+  }, [combatRef]);
 
   const _onCombatantHoverOut = useCallback((event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    // @ts-expect-error privacy means nothing
-    if (app._highlighted) app._highlighted._onHoverOut(event);
-    // @ts-expect-error privacy means nothing
-    app._highlighted = null;
-  }, [app]);
+    if (hoveredToken.current) {
+      // @ts-expect-error privacy means nothing
+      hoveredToken.current?._onHoverOut(event);
+    }
+    hoveredToken.current = null;
+  }, []);
 
   const _onConfigureCombatant = useCallback((li: JQuery<HTMLLIElement>) => {
     const combatant = combatRef.current?.combatants.get(li.data("combatant-id"));

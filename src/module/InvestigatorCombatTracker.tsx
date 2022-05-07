@@ -16,10 +16,9 @@ export class InvestigatorCombatTrackerBase extends CombatTracker {
   }
 }
 
-const render = (sheet: InvestigatorCombatTrackerBase, serial: number) => (
+const render = (sheet: InvestigatorCombatTrackerBase) => (
   <CombatTrackerDisplay
     app={sheet}
-    serial={serial}
   />
 );
 
