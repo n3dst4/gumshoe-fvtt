@@ -351,8 +351,8 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 <i
                   className={cx({
                     fas: true,
-                    "fa-link": !linked,
-                    "fa-unlink": linked,
+                    "fa-link": linked,
+                    "fa-unlink": !linked,
                   })}
                 />
               </a>
