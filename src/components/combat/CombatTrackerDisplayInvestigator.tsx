@@ -1,17 +1,16 @@
 /** @jsx jsx */
 import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
-import { ConfiguredObjectClassForName } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
 import React, {
   Fragment,
   MouseEvent,
   ReactNode,
   useCallback,
   useEffect,
-  useRef,
 } from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
+import { CombatantDisplay } from "./CombatantDisplay";
 import { getTurns } from "./getTurns";
 
 interface CombatTrackerDisplayInvestigatorProps {
@@ -25,8 +24,7 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
   app,
 }: CombatTrackerDisplayInvestigatorProps) => {
   assertGame(game);
-  const user = game.user;
-  assertNotNull(user);
+  assertNotNull(game.user);
 
   // STATE & DERIVED DATA
 
@@ -56,10 +54,6 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
     `COMBAT.${linked ? "Linked" : "Unlinked"}`,
   );
 
-  const hoveredToken = useRef<ConfiguredObjectClassForName<"Token"> | null>(
-    null,
-  );
-
   // CALLBACKS
 
   const onCombatCreate = useCallback(async (event: MouseEvent) => {
@@ -86,112 +80,51 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
     await combat.activate({ render: false });
   }, []);
 
-  const onCombatControl = useCallback(
+  const onDeleteCombat = useCallback(
     async (event: MouseEvent) => {
       event.preventDefault();
-      const combat = combatRef.current;
-      const ctrl = event.currentTarget;
-      if (ctrl.getAttribute("disabled")) return;
-      // @ts-expect-error wtf
-      else ctrl.setAttribute("disabled", true);
-      // @ts-expect-error this is waaay too funky
-      const fn = combat?.[ctrl.dataset.control ?? ""];
-      if (fn) await fn.bind(combat)();
-      ctrl.removeAttribute("disabled");
+      combatRef.current?.delete();
     },
     [combatRef],
   );
 
-  const onToggleDefeatedStatus = useCallback(async (combatant: Combatant) => {
-    const isDefeated = !combatant.isDefeated;
-    await combatant.update({ defeated: isDefeated });
-    const token = combatant.token;
-    if (!token) return;
-    // Push the defeated status to the token
-    const status = CONFIG.statusEffects.find(
-      (e) => e.id === CONFIG.Combat.defeatedStatusId,
-    );
-    if (!status && !token.object) return;
-    const effect =
-      token.actor && status ? status : CONFIG.controlIcons.defeated;
-    if (token.object) {
-      // @ts-expect-error not sure if fvtt-types is wrong or what
-      await token.object.toggleEffect(effect, {
-        overlay: true,
-        active: isDefeated,
-      });
-    } else {
-      // @ts-expect-error not sure if fvtt-types is wrong or what
-      await token.toggleActiveEffect(effect, {
-        overlay: true,
-        active: isDefeated,
-      });
-    }
-  }, []);
-
-  const onCombatantControl = useCallback(
+  const onToggleSceneLink = useCallback(
     async (event: MouseEvent) => {
       event.preventDefault();
-      event.stopPropagation();
-      const btn = event.currentTarget;
-      const li = btn.closest(".combatant");
-      const combat = combatRef.current;
-      // @ts-expect-error wtf
-      const combatantId = li?.dataset.combatantId;
-      const combatant = combat?.combatants.get(combatantId);
-
-      // Switch control action
-      // @ts-expect-error wtf
-      switch (btn?.dataset.control) {
-        // Toggle combatant visibility
-        case "toggleHidden":
-          return combatant?.update({ hidden: !combatant?.hidden });
-
-        // Toggle combatant defeated flag
-        case "toggleDefeated":
-          if (combatant) {
-            return onToggleDefeatedStatus(combatant);
-          }
-          break;
-        // Roll combatant initiative
-        case "rollInitiative":
-          return combat?.rollInitiative([combatant?.id ?? ""]);
-      }
-    },
-    [onToggleDefeatedStatus, combatRef],
-  );
-
-  const onCombatantHoverIn = useCallback(
-    (event: MouseEvent<HTMLElement>) => {
-      event.preventDefault();
-      if (!canvas?.ready) return;
-      const li = event.currentTarget;
-      const combatant = combatRef.current?.combatants.get(
-        li.dataset.combatantId ?? "",
-      );
-      const token = combatant?.token?.object;
-      // @ts-expect-error isVisible is legit?
-      if (token?.isVisible) {
-        // @ts-expect-error privacy means nothing
-        if (!token._controlled) {
-          // @ts-expect-error privacy means nothing
-          token._onHoverIn(event);
-        }
-        hoveredToken.current =
-          token as unknown as ConfiguredObjectClassForName<"Token">;
-      }
+      combatRef.current?.toggleSceneLink();
     },
     [combatRef],
   );
 
-  const onCombatantHoverOut = useCallback((event: MouseEvent<HTMLElement>) => {
+  const onPreviousRound = useCallback((event: MouseEvent) => {
     event.preventDefault();
-    if (hoveredToken.current) {
-      // @ts-expect-error privacy means nothing
-      hoveredToken.current?._onHoverOut(event);
-    }
-    hoveredToken.current = null;
-  }, []);
+    combatRef.current?.previousRound();
+  }, [combatRef]);
+
+  const onPreviousTurn = useCallback((event: MouseEvent) => {
+    event.preventDefault();
+    combatRef.current?.previousTurn();
+  }, [combatRef]);
+
+  const onEndCombat = useCallback((event: MouseEvent) => {
+    event.preventDefault();
+    combatRef.current?.endCombat();
+  }, [combatRef]);
+
+  const onNextTurn = useCallback((event: MouseEvent) => {
+    event.preventDefault();
+    combatRef.current?.nextTurn();
+  }, [combatRef]);
+
+  const onNextRound = useCallback((event: MouseEvent) => {
+    event.preventDefault();
+    combatRef.current?.nextRound();
+  }, [combatRef]);
+
+  const onStartCombat = useCallback((event: MouseEvent) => {
+    event.preventDefault();
+    combatRef.current?.startCombat();
+  }, [combatRef]);
 
   const onConfigureCombatant = useCallback(
     (li: JQuery<HTMLLIElement>) => {
@@ -267,7 +200,7 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
     <Fragment>
       {/* TOP ROW: + < Encounter 2/3 > X */}
       <header id="combat-round">
-        {user.isGM && (
+        {game.user.isGM && (
           <nav className="encounters flexrow">
             <a
               className="combat-create"
@@ -298,22 +231,22 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
                   {...(nextId
                     ? { "data-combat-id": nextId }
                     : { disabled: true })}
-                  onClick={onCombatCycle}
-                >
+                    onClick={onCombatCycle}
+                    >
                   <i className="fas fa-caret-right"></i>
                 </a>
               </Fragment>
             )}
-            <a
-              className="combat-control"
-              title={localize("COMBAT.Delete")}
-              data-control="endCombat"
-              // @ts-expect-error foundry uses non-standard "disabled"
-              disabled={!combatCount}
-              onClick={onCombatControl}
-            >
-              <i className="fas fa-trash"></i>
-            </a>
+            {
+              combatCount > 0 &&
+              <a
+                className="combat-control"
+                title={localize("COMBAT.Delete")}
+                onClick={onDeleteCombat}
+              >
+                <i className="fas fa-trash"></i>
+              </a>
+            }
           </nav>
         )}
 
@@ -339,28 +272,27 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
             <h3 className="encounter-title">{localize("COMBAT.None")}</h3>
               )}
 
-          {user.isGM && (
+          {game.user.isGM && (
             <Fragment>
-              <a
-                className="combat-control"
-                title={scopeLabel}
-                data-control="toggleSceneLink"
-                // @ts-expect-error foundry uses non-standard "disabled"
-                disabled={!hasCombat}
-                onClick={onCombatControl}
-              >
-                <i
-                  className={cx({
-                    fas: true,
-                    "fa-link": linked,
-                    "fa-unlink": !linked,
-                  })}
-                />
-              </a>
+              {hasCombat &&
+                <a
+                  className="combat-control"
+                  title={scopeLabel}
+                  onClick={onToggleSceneLink}
+                >
+                  <i
+                    className={cx({
+                      fas: true,
+                      "fa-link": linked,
+                      "fa-unlink": !linked,
+                    })}
+                  />
+                </a>
+              }
               <a
                 className="combat-settings"
                 title={localize("COMBAT.Settings")}
-                data-control="trackerSettings"
+                // data-control="trackerSettings"
                 onClick={showConfig}
               >
                 <i className="fas fa-cog"></i>
@@ -373,95 +305,14 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
       {/* ACTUAL COMBATANTS, or "turns" in early-medieval foundry-speak */}
       <ol id="combat-tracker" className="directory-list">
         {turns.map<ReactNode>((turn, i) => (
-          <li
-            key={i}
-            className={`combatant actor directory-item flexrow ${turn.css}`}
-            data-combatant-id={turn.id}
-            onMouseEnter={onCombatantHoverIn}
-            onMouseLeave={onCombatantHoverOut}
-          >
-            <img
-              className="token-image"
-              // the foundry original does some crazy stuff with
-              // IntersectionObserver to load images on demand
-              src={turn.img}
-              title={turn.name}
-            />
-            <div className="token-name flexcol">
-              <h4>{turn.name}</h4>
-              <div className="combatant-controls flexrow">
-                {user.isGM && (
-                  <Fragment>
-                    <a
-                      className={cx({
-                        "combatant-control": true,
-                        active: turn.hidden,
-                      })}
-                      title={localize("COMBAT.ToggleVis")}
-                      data-control="toggleHidden"
-                      onClick={onCombatantControl}
-                    >
-                      <i className="fas fa-eye-slash"></i>
-                    </a>
-                    <a
-                      className={cx({
-                        "combatant-control": true,
-                        active: turn.defeated,
-                      })}
-                      title={localize("COMBAT.ToggleDead")}
-                      data-control="toggleDefeated"
-                      onClick={onCombatantControl}
-                    >
-                      <i className="fas fa-skull"></i>
-                    </a>
-                  </Fragment>
-                )}
-                <div className="token-effects">
-                  {Array.from(turn.effects).map<ReactNode>((effect, i) => (
-                    <img key={i} className="token-effect" src={effect} />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {turn.hasResource && (
-              <div className="token-resource">
-                {/* @ts-expect-error resource not ressource */}
-                <span className="resource">{turn.resource}</span>
-              </div>
-            )}
-
-            <div className="token-initiative">
-              {turn.hasRolled
-                ? (
-                <span className="initiative">{turn.initiative}</span>
-                  )
-                : (
-                <a
-                  className="combatant-control"
-                  css={{
-                    display: "block",
-                    width: "40px",
-                    height: "var(--sidebar-item-height)",
-                    fontSize: "calc(var(--sidebar-item-height) - 20px)",
-                    margin: "0 0.5em",
-                  }}
-                  title={localize("COMBAT.InitiativeRoll")}
-                  data-control="rollInitiative"
-                  onClick={onCombatantControl}
-                >
-                  <i className="fas fa-dice-d6"/>
-                </a>
-                  )}
-            </div>
-          </li>
+          <CombatantDisplay key={i} turn={turn} combat={combat} />
         ))}
       </ol>
 
       {/* BOTTOM BITS: |< < End combat > >| */}
       <nav id="combat-controls" className="directory-footer flexrow">
         {hasCombat &&
-          (user.isGM
+          (game.user.isGM
             ? (
             <Fragment>
               {combat.data.round
@@ -470,40 +321,35 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
                   <a
                     className="combat-control"
                     title={localize("COMBAT.RoundPrev")}
-                    data-control="previousRound"
-                    onClick={onCombatControl}
+                    onClick={onPreviousRound}
                   >
                     <i className="fas fa-step-backward"></i>
                   </a>
                   <a
                     className="combat-control"
                     title={localize("COMBAT.TurnPrev")}
-                    data-control="previousTurn"
-                    onClick={onCombatControl}
+                    onClick={onPreviousTurn}
                   >
                     <i className="fas fa-arrow-left"></i>
                   </a>
                   <a
                     className="combat-control center"
                     title={localize("COMBAT.End")}
-                    data-control="endCombat"
-                    onClick={onCombatControl}
+                    onClick={onEndCombat}
                   >
                     {localize("COMBAT.End")}
                   </a>
                   <a
                     className="combat-control"
                     title={localize("COMBAT.TurnNext")}
-                    data-control="nextTurn"
-                    onClick={onCombatControl}
+                    onClick={onNextTurn}
                   >
                     <i className="fas fa-arrow-right"></i>
                   </a>
                   <a
                     className="combat-control"
                     title={localize("COMBAT.RoundNext")}
-                    data-control="nextRound"
-                    onClick={onCombatControl}
+                    onClick={onNextRound}
                   >
                     <i className="fas fa-step-forward"></i>
                   </a>
@@ -513,8 +359,7 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
                 <a
                   className="combat-control center"
                   title={localize("COMBAT.Begin")}
-                  data-control="startCombat"
-                  onClick={onCombatControl}
+                  onClick={onStartCombat}
                 >
                   {localize("COMBAT.Begin")}
                 </a>
@@ -528,24 +373,21 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
                 <a
                   className="combat-control"
                   title={localize("COMBAT.TurnPrev")}
-                  data-control="previousTurn"
-                  onClick={onCombatControl}
+                  onClick={onPreviousTurn}
                 >
                   <i className="fas fa-arrow-left"></i>
                 </a>
                 <a
                   className="combat-control center"
                   title={localize("COMBAT.TurnEnd")}
-                  data-control="nextTurn"
-                  onClick={onCombatControl}
+                  onClick={onNextTurn}
                 >
                   {localize("COMBAT.TurnEnd")}
                 </a>
                 <a
                   className="combat-control"
                   title={localize("COMBAT.TurnNext")}
-                  data-control="nextTurn"
-                  onClick={onCombatControl}
+                  onClick={onNextTurn}
                 >
                   <i className="fas fa-arrow-right"></i>
                 </a>
