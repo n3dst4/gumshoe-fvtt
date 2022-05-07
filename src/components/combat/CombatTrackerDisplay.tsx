@@ -2,7 +2,14 @@
 import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
 import { ConfiguredObjectClassForName } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
-import React, { Fragment, MouseEvent, ReactNode, useCallback, useEffect, useRef } from "react";
+import React, {
+  Fragment,
+  MouseEvent,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombatTrackerBase } from "../../module/InvestigatorCombatTracker";
@@ -29,21 +36,29 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   const combatRef = useRefStash(combat);
   const combatCount = game.combats?.combats.length ?? 0;
 
-  const combatIndex = combatId ? game.combats?.combats.findIndex((c) => c.data._id === combatId) : undefined;
-  const previousId = (combatIndex !== undefined && combatIndex > 0)
-    ? game.combats?.combats[combatIndex - 1].data._id
-    : null;
-  const nextId = (combatIndex !== undefined && combatIndex < (combatCount - 1))
-    ? game.combats?.combats[combatIndex + 1].data._id
-    : null;
+  const combatIndex = combatId
+    ? game.combats?.combats.findIndex((c) => c.data._id === combatId)
+    : undefined;
+  const previousId =
+    combatIndex !== undefined && combatIndex > 0
+      ? game.combats?.combats[combatIndex - 1].data._id
+      : null;
+  const nextId =
+    combatIndex !== undefined && combatIndex < combatCount - 1
+      ? game.combats?.combats[combatIndex + 1].data._id
+      : null;
 
   const linked = combat?.data.scene !== null;
   const turns = combat ? getTurns(combat) : [];
   const hasCombat = !!combat;
 
-  const scopeLabel = game.i18n.localize(`COMBAT.${linked ? "Linked" : "Unlinked"}`);
+  const scopeLabel = game.i18n.localize(
+    `COMBAT.${linked ? "Linked" : "Unlinked"}`,
+  );
 
-  const hoveredToken = useRef<ConfiguredObjectClassForName<"Token"> | null>(null);
+  const hoveredToken = useRef<ConfiguredObjectClassForName<"Token"> | null>(
+    null,
+  );
 
   // CALLBACKS
 
@@ -71,18 +86,21 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     await combat.activate({ render: false });
   }, []);
 
-  const onCombatControl = useCallback(async (event: MouseEvent) => {
-    event.preventDefault();
-    const combat = combatRef.current;
-    const ctrl = event.currentTarget;
-    if (ctrl.getAttribute("disabled")) return;
-    // @ts-expect-error wtf
-    else ctrl.setAttribute("disabled", true);
-    // @ts-expect-error this is waaay too funky
-    const fn = combat?.[ctrl.dataset.control ?? ""];
-    if (fn) await fn.bind(combat)();
-    ctrl.removeAttribute("disabled");
-  }, [combatRef]);
+  const onCombatControl = useCallback(
+    async (event: MouseEvent) => {
+      event.preventDefault();
+      const combat = combatRef.current;
+      const ctrl = event.currentTarget;
+      if (ctrl.getAttribute("disabled")) return;
+      // @ts-expect-error wtf
+      else ctrl.setAttribute("disabled", true);
+      // @ts-expect-error this is waaay too funky
+      const fn = combat?.[ctrl.dataset.control ?? ""];
+      if (fn) await fn.bind(combat)();
+      ctrl.removeAttribute("disabled");
+    },
+    [combatRef],
+  );
 
   const onToggleDefeatedStatus = useCallback(async (combatant: Combatant) => {
     const isDefeated = !combatant.isDefeated;
@@ -90,60 +108,81 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     const token = combatant.token;
     if (!token) return;
     // Push the defeated status to the token
-    const status = CONFIG.statusEffects.find(e => e.id === CONFIG.Combat.defeatedStatusId);
+    const status = CONFIG.statusEffects.find(
+      (e) => e.id === CONFIG.Combat.defeatedStatusId,
+    );
     if (!status && !token.object) return;
-    const effect = token.actor && status ? status : CONFIG.controlIcons.defeated;
-    // @ts-expect-error not sure if fvtt-types is wrong or what
-    if (token.object) await token.object.toggleEffect(effect, { overlay: true, active: isDefeated });
-    // @ts-expect-error not sure if fvtt-types is wrong or what
-    else await token.toggleActiveEffect(effect, { overlay: true, active: isDefeated });
+    const effect =
+      token.actor && status ? status : CONFIG.controlIcons.defeated;
+    if (token.object) {
+      // @ts-expect-error not sure if fvtt-types is wrong or what
+      await token.object.toggleEffect(effect, {
+        overlay: true,
+        active: isDefeated,
+      });
+    } else {
+      // @ts-expect-error not sure if fvtt-types is wrong or what
+      await token.toggleActiveEffect(effect, {
+        overlay: true,
+        active: isDefeated,
+      });
+    }
   }, []);
 
-  const onCombatantControl = useCallback(async (event: MouseEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const btn = event.currentTarget;
-    const li = btn.closest(".combatant");
-    const combat = combatRef.current;
-    // @ts-expect-error wtf
-    const combatantId = li?.dataset.combatantId;
-    const combatant = combat?.combatants.get(combatantId);
+  const onCombatantControl = useCallback(
+    async (event: MouseEvent) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const btn = event.currentTarget;
+      const li = btn.closest(".combatant");
+      const combat = combatRef.current;
+      // @ts-expect-error wtf
+      const combatantId = li?.dataset.combatantId;
+      const combatant = combat?.combatants.get(combatantId);
 
-    // Switch control action
-    // @ts-expect-error wtf
-    switch (btn?.dataset.control) {
-      // Toggle combatant visibility
-      case "toggleHidden":
-        return combatant?.update({ hidden: !combatant?.hidden });
+      // Switch control action
+      // @ts-expect-error wtf
+      switch (btn?.dataset.control) {
+        // Toggle combatant visibility
+        case "toggleHidden":
+          return combatant?.update({ hidden: !combatant?.hidden });
 
-      // Toggle combatant defeated flag
-      case "toggleDefeated":
-        if (combatant) {
-          return onToggleDefeatedStatus(combatant);
-        }
-        break;
-      // Roll combatant initiative
-      case "rollInitiative":
-        return combat?.rollInitiative([combatant?.id ?? ""]);
-    }
-  }, [onToggleDefeatedStatus, combatRef]);
-
-  const onCombatantHoverIn = useCallback((event: MouseEvent<HTMLElement>) => {
-    event.preventDefault();
-    if (!canvas?.ready) return;
-    const li = event.currentTarget;
-    const combatant = combatRef.current?.combatants.get(li.dataset.combatantId ?? "");
-    const token = combatant?.token?.object;
-    // @ts-expect-error isVisible is legit?
-    if (token?.isVisible) {
-      // @ts-expect-error privacy means nothing
-      if (!token._controlled) {
-        // @ts-expect-error privacy means nothing
-        token._onHoverIn(event);
+        // Toggle combatant defeated flag
+        case "toggleDefeated":
+          if (combatant) {
+            return onToggleDefeatedStatus(combatant);
+          }
+          break;
+        // Roll combatant initiative
+        case "rollInitiative":
+          return combat?.rollInitiative([combatant?.id ?? ""]);
       }
-      hoveredToken.current = token as unknown as ConfiguredObjectClassForName<"Token">;
-    }
-  }, [combatRef]);
+    },
+    [onToggleDefeatedStatus, combatRef],
+  );
+
+  const onCombatantHoverIn = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      event.preventDefault();
+      if (!canvas?.ready) return;
+      const li = event.currentTarget;
+      const combatant = combatRef.current?.combatants.get(
+        li.dataset.combatantId ?? "",
+      );
+      const token = combatant?.token?.object;
+      // @ts-expect-error isVisible is legit?
+      if (token?.isVisible) {
+        // @ts-expect-error privacy means nothing
+        if (!token._controlled) {
+          // @ts-expect-error privacy means nothing
+          token._onHoverIn(event);
+        }
+        hoveredToken.current =
+          token as unknown as ConfiguredObjectClassForName<"Token">;
+      }
+    },
+    [combatRef],
+  );
 
   const onCombatantHoverOut = useCallback((event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
@@ -154,15 +193,20 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     hoveredToken.current = null;
   }, []);
 
-  const onConfigureCombatant = useCallback((li: JQuery<HTMLLIElement>) => {
-    const combatant = combatRef.current?.combatants.get(li.data("combatant-id"));
-    if (!combatant) return;
-    new CombatantConfig(combatant, {
-      top: Math.min(li[0].offsetTop, window.innerHeight - 350),
-      left: window.innerWidth - 720,
-      width: 400,
-    }).render(true);
-  }, [combatRef]);
+  const onConfigureCombatant = useCallback(
+    (li: JQuery<HTMLLIElement>) => {
+      const combatant = combatRef.current?.combatants.get(
+        li.data("combatant-id"),
+      );
+      if (!combatant) return;
+      new CombatantConfig(combatant, {
+        top: Math.min(li[0].offsetTop, window.innerHeight - 350),
+        left: window.innerWidth - 720,
+        width: 400,
+      }).render(true);
+    },
+    [combatRef],
+  );
 
   const appRef = useRefStash(app);
 
@@ -181,11 +225,15 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
         name: "COMBAT.CombatantClear",
         icon: '<i class="fas fa-undo"></i>',
         condition: (li: JQuery<HTMLLIElement>) => {
-          const combatant = combatRef.current?.combatants.get(li.data("combatant-id"));
+          const combatant = combatRef.current?.combatants.get(
+            li.data("combatant-id"),
+          );
           return Number.isNumeric(combatant?.data?.initiative);
         },
         callback: (li: JQuery<HTMLLIElement>) => {
-          const combatant = combatRef.current?.combatants.get(li.data("combatant-id"));
+          const combatant = combatRef.current?.combatants.get(
+            li.data("combatant-id"),
+          );
           if (combatant) return combatant.update({ initiative: null });
         },
       },
@@ -193,22 +241,29 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
         name: "COMBAT.CombatantReroll",
         icon: '<i class="fas fa-dice-d20"></i>',
         callback: (li: JQuery<HTMLLIElement>) => {
-          const combatant = combatRef.current?.combatants.get(li.data("combatant-id"));
-          if (combatant) return combatRef.current?.rollInitiative([combatant.id ?? ""]);
+          const combatant = combatRef.current?.combatants.get(
+            li.data("combatant-id"),
+          );
+          if (combatant) { return combatRef.current?.rollInitiative([combatant.id ?? ""]); }
         },
       },
       {
         name: "COMBAT.CombatantRemove",
         icon: '<i class="fas fa-trash"></i>',
         callback: (li: JQuery<HTMLLIElement>) => {
-          const combatant = combatRef.current?.combatants.get(li.data("combatant-id"));
+          const combatant = combatRef.current?.combatants.get(
+            li.data("combatant-id"),
+          );
           if (combatant) return combatant.delete();
         },
       },
     ];
     // @ts-expect-error ContextMenu.create does exist
     ContextMenu.create(
-      appRef.current, appRef.current.element, ".directory-item", menuOptions,
+      appRef.current,
+      appRef.current.element,
+      ".directory-item",
+      menuOptions,
     );
   }, [onConfigureCombatant, appRef, combatRef]);
 
@@ -253,7 +308,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   {...(nextId
                     ? { "data-combat-id": nextId }
                     : { disabled: true })}
-                    onClick={onCombatCycle}
+                  onClick={onCombatCycle}
                 >
                   <i className="fas fa-caret-right"></i>
                 </a>
@@ -264,9 +319,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
               title={localize("COMBAT.Delete")}
               data-control="endCombat"
               // @ts-expect-error foundry uses non-standard "disabled"
-              disabled={
-                !combatCount
-              }
+              disabled={!combatCount}
               onClick={onCombatControl}
             >
               <i className="fas fa-trash"></i>
@@ -283,9 +336,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 title={localize("COMBAT.RollAll")}
                 data-control="rollAll"
                 // @ts-expect-error foundry uses non-standard "disabled"
-                disabled={
-                  !turns
-                }
+                disabled={!turns}
                 onClick={onCombatControl}
               >
                 <i className="fas fa-users"></i>
@@ -295,9 +346,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 title={localize("COMBAT.RollNPC")}
                 data-control="rollNPC"
                 // @ts-expect-error foundry uses non-standard "disabled"
-                disabled={
-                  !turns
-                }
+                disabled={!turns}
                 onClick={onCombatControl}
               >
                 <i className="fas fa-users-cog"></i>
@@ -332,9 +381,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 title={localize("COMBAT.InitiativeReset")}
                 data-control="resetAll"
                 // @ts-expect-error foundry uses non-standard "disabled"
-                disabled={
-                  !hasCombat
-                }
+                disabled={!hasCombat}
                 onClick={onCombatControl}
               >
                 <i className="fas fa-undo"></i>
@@ -344,9 +391,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 title={scopeLabel}
                 data-control="toggleSceneLink"
                 // @ts-expect-error foundry uses non-standard "disabled"
-                disabled={
-                  !hasCombat
-                }
+                disabled={!hasCombat}
                 onClick={onCombatControl}
               >
                 <i
@@ -371,10 +416,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
       </header>
 
       {/* ACTUAL COMBATANTS, or "turns" in early-medieval foundry-speak */}
-      <ol
-        id="combat-tracker"
-        className="directory-list"
-      >
+      <ol id="combat-tracker" className="directory-list">
         {turns.map<ReactNode>((turn, i) => (
           <li
             key={i}
@@ -514,7 +556,8 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
             </Fragment>
               )
             : (
-                game.user && combat.combatant?.players?.includes(game.user) && (
+                game.user &&
+            combat.combatant?.players?.includes(game.user) && (
               <Fragment>
                 <a
                   className="combat-control"
