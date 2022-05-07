@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import { CombatTrackerDisplayClassic } from "../components/combat/CombatTrackerDisplayClassic";
-import { reactifiedSidebarTemplatePath, reactTemplatePath } from "../constants";
+import { CombatTrackerDisplayInvestigator } from "../components/combat/CombatTrackerDisplayInvestigator";
+import { reactifiedSidebarTemplatePath } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 export class InvestigatorCombatTrackerBase extends CombatTracker {
@@ -17,7 +16,7 @@ export class InvestigatorCombatTrackerBase extends CombatTracker {
 }
 
 const render = (sheet: InvestigatorCombatTrackerBase) => (
-  <CombatTrackerDisplayClassic
+  <CombatTrackerDisplayInvestigator
     app={sheet}
   />
 );
