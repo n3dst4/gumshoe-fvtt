@@ -12,15 +12,18 @@ import React, {
 } from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
-import { InvestigatorCombatTrackerBase } from "../../module/InvestigatorCombatTracker";
 import { getTurns } from "./getTurns";
 
-// const log = console.log.bind(console, "[CombatTrackerDisplay] ");
-
 interface CombatTrackerProps {
-  app: InvestigatorCombatTrackerBase;
+  app: Application;
 }
 
+/**
+ * React component to replicate foundry's own CombatTracker. If stuff looks a
+ * little wonky in here it's because we've ported over some very "foundry"
+ * ways of doing things, like overloaded callbacks that read data-* items and
+ * use them as method accessors.
+ */
 export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
   app,
 }: CombatTrackerProps) => {
@@ -427,7 +430,9 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
           >
             <img
               className="token-image"
-              data-src={turn.img}
+              // the foundry original does some crazy stuff with
+              // IntersectionObserver to load images on demand
+              src={turn.img}
               title={turn.name}
             />
             <div className="token-name flexcol">
