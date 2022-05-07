@@ -14,7 +14,7 @@ import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { getTurns } from "./getTurns";
 
-interface CombatTrackerProps {
+interface CombatTrackerDisplayClassicProps {
   app: Application;
 }
 
@@ -24,9 +24,9 @@ interface CombatTrackerProps {
  * ways of doing things, like overloaded callbacks that read data-* items and
  * use them as method accessors.
  */
-export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
+export const CombatTrackerDisplayClassic: React.FC<CombatTrackerDisplayClassicProps> = ({
   app,
-}: CombatTrackerProps) => {
+}: CombatTrackerDisplayClassicProps) => {
   assertGame(game);
   const user = game.user;
   assertNotNull(user);
