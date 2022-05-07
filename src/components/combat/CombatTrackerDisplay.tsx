@@ -8,7 +8,7 @@ import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombatTrackerBase } from "../../module/InvestigatorCombatTracker";
 import { getTurns } from "./getTurns";
 
-const log = console.log.bind(console, "[CombatTrackerDisplay] ");
+// const log = console.log.bind(console, "[CombatTrackerDisplay] ");
 
 interface CombatTrackerProps {
   app: InvestigatorCombatTrackerBase;
@@ -47,7 +47,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
 
   // CALLBACKS
 
-  const _onCombatCreate = useCallback(async (event: MouseEvent) => {
+  const onCombatCreate = useCallback(async (event: MouseEvent) => {
     assertGame(game);
     event.preventDefault();
     const scene = game.scenes?.current;
@@ -62,7 +62,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     new CombatTrackerConfig().render(true);
   }, []);
 
-  const _onCombatCycle = useCallback(async (event) => {
+  const onCombatCycle = useCallback(async (event) => {
     assertGame(game);
     event.preventDefault();
     const btn = event.currentTarget;
@@ -71,7 +71,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     await combat.activate({ render: false });
   }, []);
 
-  const _onCombatControl = useCallback(async (event: MouseEvent) => {
+  const onCombatControl = useCallback(async (event: MouseEvent) => {
     event.preventDefault();
     const combat = combatRef.current;
     const ctrl = event.currentTarget;
@@ -84,7 +84,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     ctrl.removeAttribute("disabled");
   }, [combatRef]);
 
-  const _onToggleDefeatedStatus = useCallback(async (combatant: Combatant) => {
+  const onToggleDefeatedStatus = useCallback(async (combatant: Combatant) => {
     const isDefeated = !combatant.isDefeated;
     await combatant.update({ defeated: isDefeated });
     const token = combatant.token;
@@ -99,7 +99,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     else await token.toggleActiveEffect(effect, { overlay: true, active: isDefeated });
   }, []);
 
-  const _onCombatantControl = useCallback(async (event: MouseEvent) => {
+  const onCombatantControl = useCallback(async (event: MouseEvent) => {
     event.preventDefault();
     event.stopPropagation();
     const btn = event.currentTarget;
@@ -119,16 +119,16 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
       // Toggle combatant defeated flag
       case "toggleDefeated":
         if (combatant) {
-          return _onToggleDefeatedStatus(combatant);
+          return onToggleDefeatedStatus(combatant);
         }
         break;
       // Roll combatant initiative
       case "rollInitiative":
         return combat?.rollInitiative([combatant?.id ?? ""]);
     }
-  }, [_onToggleDefeatedStatus, combatRef]);
+  }, [onToggleDefeatedStatus, combatRef]);
 
-  const _onCombatantHoverIn = useCallback((event: MouseEvent<HTMLElement>) => {
+  const onCombatantHoverIn = useCallback((event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
     if (!canvas?.ready) return;
     const li = event.currentTarget;
@@ -145,7 +145,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     }
   }, [combatRef]);
 
-  const _onCombatantHoverOut = useCallback((event: MouseEvent<HTMLElement>) => {
+  const onCombatantHoverOut = useCallback((event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
     if (hoveredToken.current) {
       // @ts-expect-error privacy means nothing
@@ -154,7 +154,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
     hoveredToken.current = null;
   }, []);
 
-  const _onConfigureCombatant = useCallback((li: JQuery<HTMLLIElement>) => {
+  const onConfigureCombatant = useCallback((li: JQuery<HTMLLIElement>) => {
     const combatant = combatRef.current?.combatants.get(li.data("combatant-id"));
     if (!combatant) return;
     new CombatantConfig(combatant, {
@@ -175,7 +175,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
       {
         name: "COMBAT.CombatantUpdate",
         icon: '<i class="fas fa-edit"></i>',
-        callback: _onConfigureCombatant,
+        callback: onConfigureCombatant,
       },
       {
         name: "COMBAT.CombatantClear",
@@ -206,12 +206,11 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
         },
       },
     ];
-    log("Creating context menu");
     // @ts-expect-error ContextMenu.create does exist
     ContextMenu.create(
       appRef.current, appRef.current.element, ".directory-item", menuOptions,
     );
-  }, [_onConfigureCombatant, appRef, combatRef]);
+  }, [onConfigureCombatant, appRef, combatRef]);
 
   const localize = game.i18n.localize.bind(game.i18n);
 
@@ -228,7 +227,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
             <a
               className="combat-create"
               title={localize("COMBAT.Create")}
-              onClick={_onCombatCreate}
+              onClick={onCombatCreate}
             >
               <i className="fas fa-plus"></i>
             </a>
@@ -240,7 +239,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   {...(previousId
                     ? { "data-combat-id": previousId }
                     : { disabled: true })}
-                  onClick={_onCombatCycle}
+                  onClick={onCombatCycle}
                 >
                   <i className="fas fa-caret-left"></i>
                 </a>
@@ -254,7 +253,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   {...(nextId
                     ? { "data-combat-id": nextId }
                     : { disabled: true })}
-                    onClick={_onCombatCycle}
+                    onClick={onCombatCycle}
                 >
                   <i className="fas fa-caret-right"></i>
                 </a>
@@ -268,7 +267,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
               disabled={
                 !combatCount
               }
-              onClick={_onCombatControl}
+              onClick={onCombatControl}
             >
               <i className="fas fa-trash"></i>
             </a>
@@ -287,7 +286,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 disabled={
                   !turns
                 }
-                onClick={_onCombatControl}
+                onClick={onCombatControl}
               >
                 <i className="fas fa-users"></i>
               </a>
@@ -299,7 +298,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 disabled={
                   !turns
                 }
-                onClick={_onCombatControl}
+                onClick={onCombatControl}
               >
                 <i className="fas fa-users-cog"></i>
               </a>
@@ -336,20 +335,19 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                 disabled={
                   !hasCombat
                 }
-                onClick={_onCombatControl}
+                onClick={onCombatControl}
               >
                 <i className="fas fa-undo"></i>
               </a>
               <a
                 className="combat-control"
-                // ts-expect-error it's scope not scoped
                 title={scopeLabel}
                 data-control="toggleSceneLink"
                 // @ts-expect-error foundry uses non-standard "disabled"
                 disabled={
                   !hasCombat
                 }
-                onClick={_onCombatControl}
+                onClick={onCombatControl}
               >
                 <i
                   className={cx({
@@ -382,8 +380,8 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
             key={i}
             className={`combatant actor directory-item flexrow ${turn.css}`}
             data-combatant-id={turn.id}
-            onMouseEnter={_onCombatantHoverIn}
-            onMouseLeave={_onCombatantHoverOut}
+            onMouseEnter={onCombatantHoverIn}
+            onMouseLeave={onCombatantHoverOut}
           >
             <img
               className="token-image"
@@ -402,7 +400,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                       })}
                       title={localize("COMBAT.ToggleVis")}
                       data-control="toggleHidden"
-                      onClick={_onCombatantControl}
+                      onClick={onCombatantControl}
                     >
                       <i className="fas fa-eye-slash"></i>
                     </a>
@@ -413,7 +411,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                       })}
                       title={localize("COMBAT.ToggleDead")}
                       data-control="toggleDefeated"
-                      onClick={_onCombatantControl}
+                      onClick={onCombatantControl}
                     >
                       <i className="fas fa-skull"></i>
                     </a>
@@ -444,7 +442,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   className="combatant-control roll"
                   title={localize("COMBAT.InitiativeRoll")}
                   data-control="rollInitiative"
-                  onClick={_onCombatantControl}
+                  onClick={onCombatantControl}
                 />
                   )}
             </div>
@@ -465,7 +463,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                     className="combat-control"
                     title={localize("COMBAT.RoundPrev")}
                     data-control="previousRound"
-                    onClick={_onCombatControl}
+                    onClick={onCombatControl}
                   >
                     <i className="fas fa-step-backward"></i>
                   </a>
@@ -473,7 +471,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                     className="combat-control"
                     title={localize("COMBAT.TurnPrev")}
                     data-control="previousTurn"
-                    onClick={_onCombatControl}
+                    onClick={onCombatControl}
                   >
                     <i className="fas fa-arrow-left"></i>
                   </a>
@@ -481,7 +479,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                     className="combat-control center"
                     title={localize("COMBAT.End")}
                     data-control="endCombat"
-                    onClick={_onCombatControl}
+                    onClick={onCombatControl}
                   >
                     {localize("COMBAT.End")}
                   </a>
@@ -489,7 +487,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                     className="combat-control"
                     title={localize("COMBAT.TurnNext")}
                     data-control="nextTurn"
-                    onClick={_onCombatControl}
+                    onClick={onCombatControl}
                   >
                     <i className="fas fa-arrow-right"></i>
                   </a>
@@ -497,7 +495,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                     className="combat-control"
                     title={localize("COMBAT.RoundNext")}
                     data-control="nextRound"
-                    onClick={_onCombatControl}
+                    onClick={onCombatControl}
                   >
                     <i className="fas fa-step-forward"></i>
                   </a>
@@ -508,7 +506,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   className="combat-control center"
                   title={localize("COMBAT.Begin")}
                   data-control="startCombat"
-                  onClick={_onCombatControl}
+                  onClick={onCombatControl}
                 >
                   {localize("COMBAT.Begin")}
                 </a>
@@ -522,7 +520,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   className="combat-control"
                   title={localize("COMBAT.TurnPrev")}
                   data-control="previousTurn"
-                  onClick={_onCombatControl}
+                  onClick={onCombatControl}
                 >
                   <i className="fas fa-arrow-left"></i>
                 </a>
@@ -530,7 +528,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   className="combat-control center"
                   title={localize("COMBAT.TurnEnd")}
                   data-control="nextTurn"
-                  onClick={_onCombatControl}
+                  onClick={onCombatControl}
                 >
                   {localize("COMBAT.TurnEnd")}
                 </a>
@@ -538,7 +536,7 @@ export const CombatTrackerDisplay: React.FC<CombatTrackerProps> = ({
                   className="combat-control"
                   title={localize("COMBAT.TurnNext")}
                   data-control="nextTurn"
-                  onClick={_onCombatControl}
+                  onClick={onCombatControl}
                 >
                   <i className="fas fa-arrow-right"></i>
                 </a>
