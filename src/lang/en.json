@@ -128,5 +128,6 @@
     "investigator.Pb": "PB",
     "investigator.Cr": "CR",
     "investigator.Nr": "NR",
-    "investigator.Lr": "LR"
+    "investigator.Lr": "LR",
+    "investigator.RefreshInitiative": "Refresh Initiative"
 }

@@ -156,7 +156,7 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
       },
       {
         name: "COMBAT.CombatantClear",
-        icon: '<i class="fas fa-undo"></i>',
+        icon: '<i class="fas fa-eraser"></i>',
         condition: (li: JQuery<HTMLLIElement>) => {
           const combatant = combatRef.current?.combatants.get(
             li.data("combatant-id"),
@@ -168,6 +168,16 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
             li.data("combatant-id"),
           );
           if (combatant) return combatant.update({ initiative: null });
+        },
+      },
+      {
+        name: "INVESTIGATOR.RefreshInitiative",
+        icon: '<i class="fas fa-recycle"></i>',
+        callback: (li: JQuery<HTMLLIElement>) => {
+          const combatant = combatRef.current?.combatants.get(
+            li.data("combatant-id"),
+          );
+          if (combatant) return combatant.doGumshoeInitiative();
         },
       },
       {
