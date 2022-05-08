@@ -4,37 +4,12 @@ import { assertActiveCharacterDataSource } from "../types";
 import { isNullOrEmptyString } from "../functions";
 import { settings } from "../settings";
 
-const log = console.log.bind(console, "[InvestigatorCombatant] ");
-
 /**
  * Override base Combatant class to override the initiative formula.
- * XXX what i'd like to do is block it from doing a "roll" at all.
  */
 export class InvestigatorCombatant extends Combatant {
-  constructor (
-    data: ConstructorParameters<typeof foundry.documents.BaseCombatant>[0],
-    context: ConstructorParameters<typeof foundry.documents.BaseCombatant>[1],
-  ) {
-    // yeah yeah, commented code is bad, whatever. i just wanted to leave you an
-    // example of how to construct this object with the right initiative in one
-    // go rather than having to do an async update afterwards. this way, there's
-    // no unsightly flash of "not-yet-rolled-initiative" when adding a
-    // combatant. however i think we can all agree that it's fugly as fug.
-
-    // assertGame(game);
-    // const scene = (data?.sceneId) ? game.scenes?.get(data.sceneId as string) : context?.parent?.scene;
-    // const token = data?.tokenId ? scene?.tokens.get(data?.tokenId as string) : null;
-    // const actor = (token) ? token.actor : (data?.actorId) ? game.actors?.get(data?.actorId as string) : null;
-    // const initiative = (actor) ? InvestigatorCombatant.getGumshoeInitiative(actor) : 0;
-    // const newData: typeof data = {
-    //   ...data,
-    //   initiative,
-    // };
-    // super(newData, context);
-
-    super(data, context);
-    log("constructing combatant", { data, context, this: this });
-    if (this.data._id && this.data.initiative === undefined) {
+  doGumshoeInitiative = () => {
+    if (this.data._id) {
       const initiative = this.actor
         ? InvestigatorCombatant.getGumshoeInitiative(this.actor)
         : 0;

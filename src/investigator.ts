@@ -20,6 +20,7 @@ import { installActorImageHookHandler } from "./startup/installActorImageHookHan
 import { injectGlobalHelper } from "./startup/injectGlobalHelper";
 import { loadCustomThemes } from "./startup/loadCustomThemes";
 import { handleMwItemType } from "./startup/disableMwItemType";
+import { installInitiativeUpdateHookHandler } from "./startup/installInitiativeUpdateHookHandler";
 
 injectGlobalHelper();
 
@@ -54,3 +55,4 @@ installAbilityCardChatWrangler();
 installFathom();
 loadCustomThemes();
 handleMwItemType();
+installInitiativeUpdateHookHandler();
