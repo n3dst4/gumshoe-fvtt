@@ -4,6 +4,7 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { jsx } from "@emotion/react";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
+import { BuildPointArea } from "./BuildPointArea";
 import { CSSReset, CSSResetMode } from "../CSSReset";
 import { LogoEditable } from "./LogoEditable";
 import { InputGrid } from "../inputs/InputGrid";
@@ -254,7 +255,11 @@ export const InvestigatorPCSheet = ({
               {
                 id: "abilities-edit",
                 label: "Edit",
-                content: <AbilitiesAreaEdit actor={actor}/>,
+                content:
+                  <Fragment>
+                    <BuildPointArea actor={actor}/>
+                    <AbilitiesAreaEdit actor={actor}/>
+                  </Fragment>,
               },
               {
                 id: "settings",
