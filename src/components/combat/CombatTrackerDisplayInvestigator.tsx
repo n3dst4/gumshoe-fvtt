@@ -6,7 +6,6 @@ import React, {
   MouseEvent,
   ReactNode,
   useCallback,
-  useEffect,
 } from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
@@ -30,7 +29,6 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
 
   const combat = game.combats?.active;
   const combatId = combat?.data._id;
-
   const combatRef = useRefStash(combat);
   const combatCount = game.combats?.combats.length ?? 0;
 
@@ -125,80 +123,6 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
     event.preventDefault();
     combatRef.current?.startCombat();
   }, [combatRef]);
-
-  const onConfigureCombatant = useCallback(
-    (li: JQuery<HTMLLIElement>) => {
-      const combatant = combatRef.current?.combatants.get(
-        li.data("combatant-id"),
-      );
-      if (!combatant) return;
-      new CombatantConfig(combatant, {
-        top: Math.min(li[0].offsetTop, window.innerHeight - 350),
-        left: window.innerWidth - 720,
-        width: 400,
-      }).render(true);
-    },
-    [combatRef],
-  );
-
-  const appRef = useRefStash(app);
-
-  useEffect(() => {
-    assertGame(game);
-    if (!game.user?.isGM) {
-      return;
-    }
-    const menuOptions = [
-      {
-        name: "COMBAT.CombatantUpdate",
-        icon: '<i class="fas fa-edit"></i>',
-        callback: onConfigureCombatant,
-      },
-      {
-        name: "COMBAT.CombatantClear",
-        icon: '<i class="fas fa-eraser"></i>',
-        condition: (li: JQuery<HTMLLIElement>) => {
-          const combatant = combatRef.current?.combatants.get(
-            li.data("combatant-id"),
-          );
-          return Number.isNumeric(combatant?.data?.initiative);
-        },
-        callback: (li: JQuery<HTMLLIElement>) => {
-          const combatant = combatRef.current?.combatants.get(
-            li.data("combatant-id"),
-          );
-          if (combatant) return combatant.update({ initiative: null });
-        },
-      },
-      {
-        name: "INVESTIGATOR.RefreshInitiative",
-        icon: '<i class="fas fa-recycle"></i>',
-        callback: (li: JQuery<HTMLLIElement>) => {
-          const combatant = combatRef.current?.combatants.get(
-            li.data("combatant-id"),
-          );
-          if (combatant) return combatant.doGumshoeInitiative();
-        },
-      },
-      {
-        name: "COMBAT.CombatantRemove",
-        icon: '<i class="fas fa-trash"></i>',
-        callback: (li: JQuery<HTMLLIElement>) => {
-          const combatant = combatRef.current?.combatants.get(
-            li.data("combatant-id"),
-          );
-          if (combatant) return combatant.delete();
-        },
-      },
-    ];
-    // @ts-expect-error ContextMenu.create does exist
-    ContextMenu.create(
-      appRef.current,
-      appRef.current.element,
-      ".directory-item",
-      menuOptions,
-    );
-  }, [onConfigureCombatant, appRef, combatRef]);
 
   const localize = game.i18n.localize.bind(game.i18n);
 
