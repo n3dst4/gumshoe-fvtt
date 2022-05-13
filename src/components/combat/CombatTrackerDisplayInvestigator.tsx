@@ -185,7 +185,10 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
         )}
 
         {/* SECOND ROW: RoUnD 4, link, cog */}
-        <nav className="encounters flexrow {{#if hasCombat}}combat{{/if}}">
+        <nav
+          className={cx({ encounters: true, flexrow: true, combat: hasCombat })}
+        >
+          <a className="combat-control"/>
           {combatCount
             ? (
             <Fragment>
@@ -208,21 +211,21 @@ export const CombatTrackerDisplayInvestigator: React.FC<CombatTrackerDisplayInve
 
           {game.user.isGM && (
             <Fragment>
-              {hasCombat &&
-                <a
-                  className="combat-control"
-                  title={scopeLabel}
-                  onClick={onToggleSceneLink}
-                >
-                  <i
-                    className={cx({
-                      fas: true,
-                      "fa-link": linked,
-                      "fa-unlink": !linked,
-                    })}
-                  />
-                </a>
-              }
+              <a
+                className="combat-control"
+                // @ts-expect-error foundry uses non-standard "disabled"
+                disabled={!hasCombat}
+                title={scopeLabel}
+                onClick={onToggleSceneLink}
+              >
+                <i
+                  className={cx({
+                    fas: true,
+                    "fa-link": linked,
+                    "fa-unlink": !linked,
+                  })}
+                />
+              </a>
               <a
                 className="combat-settings"
                 title={localize("COMBAT.Settings")}
