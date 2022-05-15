@@ -11,17 +11,17 @@ import { Dropdown } from "../inputs/Dropdown";
 import { Menu, MenuItem } from "../inputs/Menu";
 import { InvestigatorTurn } from "./getTurns";
 
-interface CombatantDisplayProps {
+interface StandardCombatantRowProps {
   turn: InvestigatorTurn;
   combat: StoredDocument<InvestigatorCombat> | undefined;
 }
 
-export const CombatantDisplay: React.FC<
-  CombatantDisplayProps
+export const StandardCombatantRow: React.FC<
+  StandardCombatantRowProps
 > = ({
   turn,
   combat,
-}: CombatantDisplayProps) => {
+}: StandardCombatantRowProps) => {
   assertGame(game);
   const combatRef = useRefStash(combat);
 

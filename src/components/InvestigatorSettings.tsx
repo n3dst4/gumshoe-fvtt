@@ -73,7 +73,7 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
       }
       setTempSettings({
         // we start with a safe default (this is typed as Required<> so it will
-        // always one-of-everything)
+        // always contain one-of-everything)
         ...pathOfCthulhuPreset,
         // layer on top the current temp settings - this way we keep any values
         // not in the preset
@@ -368,6 +368,10 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
         </SettingsGridField> */}
         <SettingsGridField label="Use NPC Combat bonuses?" index={idx++}>
           <Checkbox checked={tempSettings.useNpcCombatBonuses} onChange={setters.useNpcCombatBonuses} />
+        </SettingsGridField>
+
+        <SettingsGridField label="Use turn-passing initiative?" index={idx++}>
+          <Checkbox checked={tempSettings.useTurnPassingInitiative} onChange={setters.useTurnPassingInitiative} />
         </SettingsGridField>
 
         {

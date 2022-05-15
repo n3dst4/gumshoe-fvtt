@@ -206,6 +206,11 @@ export const settings = {
     name: "Use NPC Combat Bonuses?",
     default: pathOfCthulhuPreset.useNpcCombatBonuses,
   }),
+  useTurnPassingInitiative: createSettingBoolean({
+    key: "useTurnPassingInitiative",
+    name: "Use turn-passing initiative?",
+    default: pathOfCthulhuPreset.useNpcCombatBonuses,
+  }),
 };
 
 // -----------------------------------------------------------------------------

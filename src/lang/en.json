@@ -129,5 +129,6 @@
     "investigator.Cr": "CR",
     "investigator.Nr": "NR",
     "investigator.Lr": "LR",
-    "investigator.RefreshInitiative": "Refresh Initiative"
+    "investigator.RefreshInitiative": "Refresh Initiative",
+    "investigator.UseTurnPassingInitiative": "Use turn-passing initiative?"
 }

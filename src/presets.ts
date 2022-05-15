@@ -50,6 +50,7 @@ export const pathOfCthulhuPreset: Required<PresetV1> = {
     },
   },
   useNpcCombatBonuses: false,
+  useTurnPassingInitiative: false,
 };
 
 export const niceBlackAgentsPreset: PresetV1 = {

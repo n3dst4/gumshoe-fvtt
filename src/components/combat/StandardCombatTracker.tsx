@@ -9,13 +9,13 @@ import React, {
 } from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
-import { CombatantDisplay } from "./CombatantDisplay";
+import { StandardCombatantRow } from "./StandardCombatantRow";
 import { getTurns } from "./getTurns";
 
 /**
  * React component for standard Investigator combat tracker.
  */
-export const CombatTrackerDisplayPopcorn: React.FC = () => {
+export const StandardCombatTracker: React.FC = () => {
   assertGame(game);
   assertNotNull(game.user);
 
@@ -236,7 +236,7 @@ export const CombatTrackerDisplayPopcorn: React.FC = () => {
       {/* ACTUAL COMBATANTS, or "turns" in early-medieval foundry-speak */}
       <ol id="combat-tracker" className="directory-list">
         {turns.map<ReactNode>((turn, i) => (
-          <CombatantDisplay key={i} turn={turn} combat={combat} />
+          <StandardCombatantRow key={i} turn={turn} combat={combat} />
         ))}
       </ol>
 
