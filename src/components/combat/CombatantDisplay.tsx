@@ -3,7 +3,7 @@ import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
 import { ConfiguredObjectClassForName } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
 import React, { Fragment, useCallback, MouseEvent, useRef, ReactNode } from "react";
-import { FaEdit, FaEraser, FaRecycle, FaTrash } from "react-icons/fa";
+import { FaEdit, FaEllipsisH, FaEraser, FaRecycle, FaTrash } from "react-icons/fa";
 import { assertGame } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
@@ -239,56 +239,44 @@ export const CombatantDisplay: React.FC<
             )}
       </div>
 
-      <Dropdown
-        css={{
-          flex: 0,
-        }}
-      >
-        {
-          <Menu>
-            <MenuItem
-              icon={<FaEdit/>}
-              onClick={onConfigureCombatant}
-            >
-              {localize("COMBAT.CombatantUpdate")}
-            </MenuItem>
-            <MenuItem
-              icon={<FaEraser/>}
-              onClick={onClearInitiative}
-            >
-              {localize("COMBAT.CombatantClear")}
-            </MenuItem>
-            <MenuItem
-              icon={<FaRecycle/>}
-              onClick={onRefreshInitiative}
-            >
-              {localize("investigator.RefreshInitiative")}
-            </MenuItem>
-            <MenuItem
-              icon={<FaTrash/>}
-              onClick={onRemoveCombatant}
-            >
-              {localize("COMBAT.CombatantRemove")}
-            </MenuItem>
-          </Menu>
-        }
-      </Dropdown>
-
-      {/* <a
-        css={{
-          display: "block",
-          // width: "40px",
-          flex: 0,
-          // height: "var(--sidebar-item-height)",
-          // fontSize: "calc(var(--sidebar-item-height) - 20px)",
-          // margin: "0 0.5em",
-        }}
-        title={localize("COMBAT.InitiativeRoll")}
-        data-control="rollInitiative"
-        onClick={onCombatantControl}
-      >
-        <i className="fas fa-caret-square-down" />
-      </a> */}
+      {(game.user?.isGM) &&
+        <Dropdown
+          showArrow={false}
+          label={<FaEllipsisH />}
+          css={{
+            flex: 0,
+          }}
+        >
+          {
+            <Menu>
+              <MenuItem
+                icon={<FaEdit/>}
+                onClick={onConfigureCombatant}
+              >
+                {localize("COMBAT.CombatantUpdate")}
+              </MenuItem>
+              <MenuItem
+                icon={<FaEraser/>}
+                onClick={onClearInitiative}
+              >
+                {localize("COMBAT.CombatantClear")}
+              </MenuItem>
+              <MenuItem
+                icon={<FaRecycle/>}
+                onClick={onRefreshInitiative}
+              >
+                {localize("investigator.RefreshInitiative")}
+              </MenuItem>
+              <MenuItem
+                icon={<FaTrash/>}
+                onClick={onRemoveCombatant}
+              >
+                {localize("COMBAT.CombatantRemove")}
+              </MenuItem>
+            </Menu>
+          }
+        </Dropdown>
+      }
     </li>
   );
 };
