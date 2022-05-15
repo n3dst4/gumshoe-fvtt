@@ -5,7 +5,7 @@ import { settings } from "../../settings";
 import { StandardCombatTracker } from "./StandardCombatTracker";
 import { TurnPassingCombatTracker } from "./TurnPassingCombatTracker";
 
-export const CombatTrackerMain: React.FC = () => {
+export const CombatTrackerSwitch: React.FC = () => {
   const turnPassing = settings.useTurnPassingInitiative.get();
   return (
     turnPassing

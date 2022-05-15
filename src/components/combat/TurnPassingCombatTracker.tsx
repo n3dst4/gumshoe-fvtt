@@ -150,7 +150,7 @@ export const TurnPassingCombatTracker: React.FC = () => {
                   <i className="fas fa-caret-left"></i>
                 </a>
                 <h4 className="encounter">
-                  {localize("COMBAT.Encounter")} {(combatIndex ?? 0) + 1} /{" "}
+                  TP! {localize("COMBAT.Encounter")} {(combatIndex ?? 0) + 1} /{" "}
                   {combatCount}
                 </h4>
                 <a
