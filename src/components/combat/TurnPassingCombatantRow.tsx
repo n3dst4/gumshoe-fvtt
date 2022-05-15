@@ -11,31 +11,28 @@ import { Dropdown } from "../inputs/Dropdown";
 import { Menu, MenuItem } from "../inputs/Menu";
 import { InvestigatorTurn } from "./getTurns";
 
-interface StandardCombatantRowProps {
+interface TurnPassingCombatantRowProps {
   turn: InvestigatorTurn;
   combat: StoredDocument<InvestigatorCombat> | undefined;
 }
 
-export const StandardCombatantRow: React.FC<
-  StandardCombatantRowProps
+export const TurnPassingCombatantRow: React.FC<
+  TurnPassingCombatantRowProps
 > = ({
   turn,
   combat,
-}: StandardCombatantRowProps) => {
+}: TurnPassingCombatantRowProps) => {
   assertGame(game);
-  const combatStash = useRefStash(combat);
-  const combatant = combat?.combatants.get(turn.id);
-  const combatantStash = useRefStash(combatant);
+  const combatRef = useRefStash(combat);
 
   const hoveredToken = useRef<ConfiguredObjectClassForName<"Token"> | null>(
     null,
   );
 
-  const onToggleDefeatedStatus = useCallback(async () => {
-    if (combatantStash.current === undefined) return;
-    const isDefeated = !combatantStash.current.isDefeated;
-    await combatantStash.current.update({ defeated: isDefeated });
-    const token = combatantStash.current.token;
+  const onToggleDefeatedStatus = useCallback(async (combatant: Combatant) => {
+    const isDefeated = !combatant.isDefeated;
+    await combatant.update({ defeated: isDefeated });
+    const token = combatant.token;
     if (!token) return;
     // Push the defeated status to the token
     const status = CONFIG.statusEffects.find(
@@ -45,7 +42,8 @@ export const StandardCombatantRow: React.FC<
     const effect =
       token.actor && status ? status : CONFIG.controlIcons.defeated;
     if (token.object) {
-      await (token.object as Token).toggleEffect(effect, {
+      // @ts-expect-error not sure if fvtt-types is wrong or what
+      await token.object.toggleEffect(effect, {
         overlay: true,
         active: isDefeated,
       });
@@ -56,22 +54,46 @@ export const StandardCombatantRow: React.FC<
         active: isDefeated,
       });
     }
-  }, [combatantStash]);
+  }, []);
 
-  const onToggleHidden = () => {
-    return combatant?.update({ hidden: !combatant?.hidden });
-  };
+  const onCombatantControl = useCallback(
+    async (event: MouseEvent) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const btn = event.currentTarget;
+      const li = btn.closest(".combatant");
+      const combat = combatRef.current;
+      // @ts-expect-error wtf
+      const combatantId = li?.dataset.combatantId;
+      const combatant = combat?.combatants.get(combatantId);
 
-  const onDoInitiative = () => {
-    combatant?.doGumshoeInitiative();
-  };
+      // Switch control action
+      // @ts-expect-error wtf
+      switch (btn?.dataset.control) {
+        // Toggle combatant visibility
+        case "toggleHidden":
+          return combatant?.update({ hidden: !combatant?.hidden });
+
+        // Toggle combatant defeated flag
+        case "toggleDefeated":
+          if (combatant) {
+            return onToggleDefeatedStatus(combatant);
+          }
+          break;
+        // Roll combatant initiative
+        case "rollInitiative":
+          return combat?.rollInitiative([combatant?.id ?? ""]);
+      }
+    },
+    [onToggleDefeatedStatus, combatRef],
+  );
 
   const onCombatantHoverIn = useCallback(
     (event: MouseEvent<HTMLElement>) => {
       event.preventDefault();
       if (!canvas?.ready) return;
       const li = event.currentTarget;
-      const combatant = combatStash.current?.combatants.get(
+      const combatant = combatRef.current?.combatants.get(
         li.dataset.combatantId ?? "",
       );
       const token = combatant?.token?.object;
@@ -86,7 +108,7 @@ export const StandardCombatantRow: React.FC<
           token as unknown as ConfiguredObjectClassForName<"Token">;
       }
     },
-    [combatStash],
+    [combatRef],
   );
 
   const onCombatantHoverOut = useCallback((event: MouseEvent<HTMLElement>) => {
@@ -100,7 +122,7 @@ export const StandardCombatantRow: React.FC<
 
   const onConfigureCombatant = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      const combatant = combatStash.current?.combatants.get(
+      const combatant = combatRef.current?.combatants.get(
         turn.id,
       );
       if (!combatant) return;
@@ -111,23 +133,23 @@ export const StandardCombatantRow: React.FC<
         width: 400,
       }).render(true);
     },
-    [combatStash, turn.id],
+    [combatRef, turn.id],
   );
 
   const onClearInitiative = useCallback(() => {
-    const combatant = combatStash.current?.combatants.get(turn.id);
+    const combatant = combatRef.current?.combatants.get(turn.id);
     combatant?.update({ initiative: null });
-  }, [combatStash, turn.id]);
+  }, [combatRef, turn.id]);
 
   const onRefreshInitiative = useCallback(() => {
-    const combatant = combatStash.current?.combatants.get(turn.id);
+    const combatant = combatRef.current?.combatants.get(turn.id);
     combatant?.doGumshoeInitiative();
-  }, [combatStash, turn.id]);
+  }, [combatRef, turn.id]);
 
   const onRemoveCombatant = useCallback(() => {
-    const combatant = combatStash.current?.combatants.get(turn.id);
+    const combatant = combatRef.current?.combatants.get(turn.id);
     combatant?.delete();
-  }, [combatStash, turn.id]);
+  }, [combatRef, turn.id]);
 
   const localize = game.i18n.localize.bind(game.i18n);
 
@@ -156,7 +178,8 @@ export const StandardCombatantRow: React.FC<
                   active: turn.hidden,
                 })}
                 title={localize("COMBAT.ToggleVis")}
-                onClick={onToggleHidden}
+                data-control="toggleHidden"
+                onClick={onCombatantControl}
               >
                 <i className="fas fa-eye-slash"></i>
               </a>
@@ -166,7 +189,8 @@ export const StandardCombatantRow: React.FC<
                   active: turn.defeated,
                 })}
                 title={localize("COMBAT.ToggleDead")}
-                onClick={onToggleDefeatedStatus}
+                data-control="toggleDefeated"
+                onClick={onCombatantControl}
               >
                 <i className="fas fa-skull"></i>
               </a>
@@ -207,7 +231,8 @@ export const StandardCombatantRow: React.FC<
               margin: "0 0.5em",
             }}
             title={localize("COMBAT.InitiativeRoll")}
-            onClick={onDoInitiative}
+            data-control="rollInitiative"
+            onClick={onCombatantControl}
           >
             <i className="fas fa-dice-d6" />
           </a>
