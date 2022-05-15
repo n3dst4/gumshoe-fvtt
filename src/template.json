@@ -31,7 +31,8 @@
             "max": 12,
             "value": 0
           }
-        }
+        },
+        "initiativePassingTurns": 1
       }
     },
     "pc": {

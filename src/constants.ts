@@ -73,3 +73,8 @@ export const htmlDataMwPool = "data-mw-pool" as const;
 export const mwWallopCost = 5;
 export const mwNegateCost = 3;
 export const defaultCustomThemePath = "investigator_themes";
+
+// flags
+
+export const passingTurnsRemaining = "passingTurnsRemaining";
+export const extraPassingTurns = "extraPassingTurns";

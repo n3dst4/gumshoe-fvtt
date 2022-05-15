@@ -74,6 +74,7 @@ interface PCDataSourceData {
     magic: Resource,
   };
   stats: Record<string, number>;
+  initiativePassingTurns: number;
 }
 
 interface NPCDataSourceData {
@@ -101,6 +102,7 @@ interface NPCDataSourceData {
   stats: Record<string, number>;
   combatBonus: number;
   damageBonus: number;
+  initiativePassingTurns: number;
 }
 
 interface PartyDataSourceData {

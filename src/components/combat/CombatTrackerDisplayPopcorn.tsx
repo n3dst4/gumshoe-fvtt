@@ -15,7 +15,7 @@ import { getTurns } from "./getTurns";
 /**
  * React component for standard Investigator combat tracker.
  */
-export const CombatTrackerDisplayInvestigator: React.FC = () => {
+export const CombatTrackerDisplayPopcorn: React.FC = () => {
   assertGame(game);
   assertNotNull(game.user);
 

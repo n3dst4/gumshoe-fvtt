@@ -474,7 +474,6 @@ export const CombatTrackerDisplayClassic: React.FC<CombatTrackerDisplayClassicPr
 
             {turn.hasResource && (
               <div className="token-resource">
-                {/* @ts-expect-error resource not ressource */}
                 <span className="resource">{turn.resource}</span>
               </div>
             )}

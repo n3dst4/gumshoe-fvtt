@@ -9,9 +9,10 @@ import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 import { Dropdown } from "../inputs/Dropdown";
 import { Menu, MenuItem } from "../inputs/Menu";
+import { InvestigatorTurn } from "./getTurns";
 
 interface CombatantDisplayProps {
-  turn: CombatTracker.Turn;
+  turn: InvestigatorTurn;
   combat: StoredDocument<InvestigatorCombat> | undefined;
 }
 
@@ -205,7 +206,6 @@ export const CombatantDisplay: React.FC<
 
       {turn.hasResource && (
         <div className="token-resource">
-          {/* @ts-expect-error resource not ressource */}
           <span className="resource">{turn.resource}</span>
         </div>
       )}

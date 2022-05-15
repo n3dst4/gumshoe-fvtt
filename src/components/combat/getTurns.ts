@@ -1,5 +1,15 @@
+import { isActiveCharacterDataSource } from "../../types";
+
+export interface InvestigatorTurn extends Omit<CombatTracker.Turn, "ressource"> {
+  passingTurnsRemaining: number;
+  totalPassingTurns: number;
+  resource: CombatTracker.Turn["ressource"];
+}
+
+// adapted from foundry's CombatTracker, so there's some mutable data and
+// weird imperative stuff
 export function getTurns (combat: Combat) {
-  const turns: CombatTracker.Turn[] = [];
+  const turns: InvestigatorTurn[] = [];
   let hasDecimals = false;
 
   for (const [i, combatant] of combat.turns.entries()) {
@@ -12,52 +22,68 @@ export function getTurns (combat: Combat) {
       continue;
     }
 
-    const turn: CombatTracker.Turn = {
-      id: combatant.id,
-      name: combatant.name,
-      img: combatant.img,
-      active: i === combat.turn,
-      owner: combatant.isOwner,
-      defeated: combatant.data.defeated,
-      hidden: combatant.hidden,
-      initiative: combatant.initiative,
-      hasRolled: combatant.initiative !== null,
-      hasResource: resource !== null,
-      // @ts-expect-error "resource" is correct
-      resource: resource,
-    };
-    if ((turn.initiative !== null) && !Number.isInteger(turn.initiative)) hasDecimals = true;
-    turn.css = [
-      turn.active ? "active" : "",
-      turn.hidden ? "hidden" : "",
-      turn.defeated ? "defeated" : "",
+    const active = i === combat.turn;
+    const owner = combatant.isOwner;
+    let defeated = combatant.data.defeated;
+    const hidden = combatant.hidden;
+    const initiative = combatant.initiative;
+    const hasRolled = combatant.initiative !== null;
+    const hasResource = resource !== null;
+    hasDecimals ||= ((initiative !== null) && !Number.isInteger(initiative));
+
+    const css = [
+      active ? "active" : "",
+      hidden ? "hidden" : "",
+      defeated ? "defeated" : "",
     ].join(" ").trim();
 
+    let img = combatant.img;
     // Cached thumbnail image for video tokens
-    if (VideoHelper.hasVideoExtension(turn.img)) {
+    if (VideoHelper.hasVideoExtension(img)) {
       // @ts-expect-error combatant._thumb is a thing
-      if (combatant._thumb) turn.img = combatant._thumb;
+      if (combatant._thumb) img = combatant._thumb;
       else {
         // @ts-expect-error game.video is a thing
         game.video.createThumbnail(combatant.img, { width: 100, height: 100 }).then((img) => {
           // @ts-expect-error combatant._thumb is a thing
-          turn.img = combatant._thumb = img;
+          img = combatant._thumb = img;
         });
       }
     }
 
     // Actor and Token status effects
-    turn.effects = new Set();
+    const effects = new Set<string>();
     if (combatant.token) {
-      combatant.token.data.effects.forEach(e => turn.effects.add(e));
-      if (combatant.token.data.overlayEffect) turn.effects.add(combatant.token.data.overlayEffect);
+      combatant.token.data.effects.forEach(e => effects.add(e));
+      if (combatant.token.data.overlayEffect) effects.add(combatant.token.data.overlayEffect);
     }
     if (combatant.actor) {
       combatant.actor.temporaryEffects.forEach(e => {
-        if (e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId) turn.defeated = true;
-        else if (e.data.icon) turn.effects.add(e.data.icon);
+        if (e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId) defeated = true;
+        else if (e.data.icon) effects.add(e.data.icon);
       });
     }
+
+    const totalPassingTurns = isActiveCharacterDataSource(combatant.actor?.data) ? combatant.actor?.data.data.initiativePassingTurns ?? 1 : 1;
+
+    const turn: InvestigatorTurn = {
+      id: combatant.id,
+      name: combatant.name,
+      img,
+      active,
+      owner,
+      defeated,
+      hidden,
+      initiative,
+      hasRolled,
+      hasResource,
+      resource: resource,
+      css,
+      effects,
+      passingTurnsRemaining: 0,
+      totalPassingTurns,
+    };
+
     turns.push(turn);
   }
   const precision = CONFIG.Combat.initiative.decimals;

@@ -15,10 +15,8 @@ export class InvestigatorCombatTrackerBase extends CombatTracker {
   }
 }
 
-const render = (sheet: InvestigatorCombatTrackerBase) => (
-  <CombatTrackerDisplayInvestigator
-    app={sheet}
-  />
+const render = () => (
+  <CombatTrackerDisplayInvestigator />
 );
 
 export const InvestigatorCombatTracker = ReactApplicationMixin(
