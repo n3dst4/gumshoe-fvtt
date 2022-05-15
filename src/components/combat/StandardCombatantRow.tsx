@@ -23,9 +23,7 @@ export const StandardCombatantRow: React.FC<
   combat,
 }: StandardCombatantRowProps) => {
   assertGame(game);
-  const combatStash = useRefStash(combat);
-  const combatant = combat?.combatants.get(turn.id);
-  const combatantStash = useRefStash(combatant);
+  const combatantStash = useRefStash(combat?.combatants.get(turn.id));
 
   const hoveredToken = useRef<ConfiguredObjectClassForName<"Token"> | null>(
     null,
@@ -59,22 +57,18 @@ export const StandardCombatantRow: React.FC<
   }, [combatantStash]);
 
   const onToggleHidden = () => {
-    return combatant?.update({ hidden: !combatant?.hidden });
+    return combatantStash.current?.update({ hidden: !combatantStash.current?.hidden });
   };
 
   const onDoInitiative = () => {
-    combatant?.doGumshoeInitiative();
+    combatantStash.current?.doGumshoeInitiative();
   };
 
   const onCombatantHoverIn = useCallback(
     (event: MouseEvent<HTMLElement>) => {
       event.preventDefault();
       if (!canvas?.ready) return;
-      const li = event.currentTarget;
-      const combatant = combatStash.current?.combatants.get(
-        li.dataset.combatantId ?? "",
-      );
-      const token = combatant?.token?.object;
+      const token = combatantStash.current?.token?.object;
       // @ts-expect-error isVisible is legit?
       if (token?.isVisible) {
         // @ts-expect-error privacy means nothing
@@ -86,7 +80,7 @@ export const StandardCombatantRow: React.FC<
           token as unknown as ConfiguredObjectClassForName<"Token">;
       }
     },
-    [combatStash],
+    [combatantStash],
   );
 
   const onCombatantHoverOut = useCallback((event: MouseEvent<HTMLElement>) => {
@@ -100,34 +94,28 @@ export const StandardCombatantRow: React.FC<
 
   const onConfigureCombatant = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      const combatant = combatStash.current?.combatants.get(
-        turn.id,
-      );
-      if (!combatant) return;
+      if (combatantStash.current === undefined) return;
       const rect = event.currentTarget.getBoundingClientRect();
-      new CombatantConfig(combatant, {
+      new CombatantConfig(combatantStash.current, {
         top: Math.min(rect.top, window.innerHeight - 350),
         left: window.innerWidth - 720,
         width: 400,
       }).render(true);
     },
-    [combatStash, turn.id],
+    [combatantStash],
   );
 
   const onClearInitiative = useCallback(() => {
-    const combatant = combatStash.current?.combatants.get(turn.id);
-    combatant?.update({ initiative: null });
-  }, [combatStash, turn.id]);
+    combatantStash.current?.update({ initiative: null });
+  }, [combatantStash]);
 
   const onRefreshInitiative = useCallback(() => {
-    const combatant = combatStash.current?.combatants.get(turn.id);
-    combatant?.doGumshoeInitiative();
-  }, [combatStash, turn.id]);
+    combatantStash.current?.doGumshoeInitiative();
+  }, [combatantStash]);
 
   const onRemoveCombatant = useCallback(() => {
-    const combatant = combatStash.current?.combatants.get(turn.id);
-    combatant?.delete();
-  }, [combatStash, turn.id]);
+    combatantStash.current?.delete();
+  }, [combatantStash]);
 
   const localize = game.i18n.localize.bind(game.i18n);
 
