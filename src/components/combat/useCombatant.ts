@@ -4,7 +4,10 @@ import { assertGame } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 
-export const useCombatant = (combat: InvestigatorCombat|undefined, id: string) => {
+export const useCombatant = (
+  combat: InvestigatorCombat | undefined,
+  id: string,
+) => {
   assertGame(game);
   const combatantStash = useRefStash(combat?.combatants.get(id));
 
@@ -40,7 +43,9 @@ export const useCombatant = (combat: InvestigatorCombat|undefined, id: string) =
   }, [combatantStash]);
 
   const onToggleHidden = () => {
-    return combatantStash.current?.update({ hidden: !combatantStash.current?.hidden });
+    return combatantStash.current?.update({
+      hidden: !combatantStash.current?.hidden,
+    });
   };
 
   const onDoInitiative = () => {
@@ -66,14 +71,17 @@ export const useCombatant = (combat: InvestigatorCombat|undefined, id: string) =
     [combatantStash],
   );
 
-  const onCombatantHoverOut = useCallback((event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
-    if (hoveredToken.current) {
-      // @ts-expect-error privacy means nothing
-      hoveredToken.current?._onHoverOut(event);
-    }
-    hoveredToken.current = null;
-  }, []);
+  const onCombatantHoverOut = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      event.preventDefault();
+      if (hoveredToken.current) {
+        // @ts-expect-error privacy means nothing
+        hoveredToken.current?._onHoverOut(event);
+      }
+      hoveredToken.current = null;
+    },
+    [],
+  );
 
   const onConfigureCombatant = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {

@@ -2,7 +2,13 @@
 import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
 import React, { Fragment, ReactNode } from "react";
-import { FaEdit, FaEllipsisH, FaEraser, FaRecycle, FaTrash } from "react-icons/fa";
+import {
+  FaEdit,
+  FaEllipsisH,
+  FaEraser,
+  FaRecycle,
+  FaTrash,
+} from "react-icons/fa";
 import { assertGame } from "../../functions";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 import { Dropdown } from "../inputs/Dropdown";
@@ -15,9 +21,7 @@ interface StandardCombatantRowProps {
   combat: StoredDocument<InvestigatorCombat> | undefined;
 }
 
-export const StandardCombatantRow: React.FC<
-  StandardCombatantRowProps
-> = ({
+export const StandardCombatantRow: React.FC<StandardCombatantRowProps> = ({
   turn,
   combat,
 }: StandardCombatantRowProps) => {
@@ -98,27 +102,28 @@ export const StandardCombatantRow: React.FC<
       >
         {turn.hasRolled
           ? (
-          <span className="initiative">{turn.initiative}</span>
+            <span className="initiative">{turn.initiative}</span>
             )
           : (
-          <a
-            className="combatant-control"
-            css={{
-              display: "block",
-              // width: "40px",
-              height: "var(--sidebar-item-height)",
-              fontSize: "calc(var(--sidebar-item-height) - 20px)",
-              margin: "0 0.5em",
-            }}
-            title={localize("COMBAT.InitiativeRoll")}
-            onClick={onDoInitiative}
-          >
-            <i className="fas fa-dice-d6" />
-          </a>
-            )}
+            <a
+              className="combatant-control"
+              css={{
+                display: "block",
+                // width: "40px",
+                height: "var(--sidebar-item-height)",
+                fontSize: "calc(var(--sidebar-item-height) - 20px)",
+                margin: "0 0.5em",
+              }}
+              title={localize("COMBAT.InitiativeRoll")}
+              onClick={onDoInitiative}
+            >
+              <i className="fas fa-dice-d6" />
+            </a>
+            )
+        }
       </div>
 
-      {(game.user?.isGM) &&
+      {game.user?.isGM && (
         <Dropdown
           showArrow={false}
           label={<FaEllipsisH />}
@@ -128,34 +133,22 @@ export const StandardCombatantRow: React.FC<
         >
           {
             <Menu>
-              <MenuItem
-                icon={<FaEdit/>}
-                onClick={onConfigureCombatant}
-              >
+              <MenuItem icon={<FaEdit />} onClick={onConfigureCombatant}>
                 {localize("COMBAT.CombatantUpdate")}
               </MenuItem>
-              <MenuItem
-                icon={<FaEraser/>}
-                onClick={onClearInitiative}
-              >
+              <MenuItem icon={<FaEraser />} onClick={onClearInitiative}>
                 {localize("COMBAT.CombatantClear")}
               </MenuItem>
-              <MenuItem
-                icon={<FaRecycle/>}
-                onClick={onRefreshInitiative}
-              >
+              <MenuItem icon={<FaRecycle />} onClick={onRefreshInitiative}>
                 {localize("investigator.RefreshInitiative")}
               </MenuItem>
-              <MenuItem
-                icon={<FaTrash/>}
-                onClick={onRemoveCombatant}
-              >
+              <MenuItem icon={<FaTrash />} onClick={onRemoveCombatant}>
                 {localize("COMBAT.CombatantRemove")}
               </MenuItem>
             </Menu>
           }
         </Dropdown>
-      }
+      )}
     </li>
   );
 };
