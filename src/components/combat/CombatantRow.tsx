@@ -1,22 +1,23 @@
 /** @jsx jsx */
 import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
-import React, { Fragment, PropsWithChildren, ReactNode } from "react";
+import React, { Fragment, ReactNode } from "react";
 import { assertGame } from "../../functions";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
+import { settings } from "../../settings";
 import { InvestigatorTurn } from "./getTurns";
+import { StandardInitiative } from "./StandardInitiative";
 import { useCombatant } from "./useCombatant";
 
 interface CombatantRowProps {
   turn: InvestigatorTurn;
-  combat: StoredDocument<InvestigatorCombat> | undefined;
+  combat: StoredDocument<InvestigatorCombat>;
 }
 
-export const CombatantRow: React.FC<PropsWithChildren<CombatantRowProps>> = ({
+export const CombatantRow: React.FC<CombatantRowProps> = ({
   turn,
   combat,
-  children,
-}: PropsWithChildren<CombatantRowProps>) => {
+}: CombatantRowProps) => {
   assertGame(game);
   const {
     onToggleDefeatedStatus,
@@ -25,6 +26,8 @@ export const CombatantRow: React.FC<PropsWithChildren<CombatantRowProps>> = ({
     onCombatantHoverOut,
     localize,
   } = useCombatant(combat, turn.id);
+
+  const turnPassing = settings.useTurnPassingInitiative.get();
 
   return (
     <li
@@ -81,7 +84,9 @@ export const CombatantRow: React.FC<PropsWithChildren<CombatantRowProps>> = ({
         </div>
       )}
 
-      {children}
+      {turnPassing
+        ? <StandardInitiative turn={turn} combat={combat}/>
+        : <StandardInitiative turn={turn} combat={combat}/>}
     </li>
   );
 };
