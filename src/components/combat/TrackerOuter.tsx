@@ -5,13 +5,13 @@ import React, { Fragment, useCallback, MouseEvent, ReactNode } from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 
-interface CombatTrackerOuterProps {
+interface TrackerOuterProps {
   children: ReactNode;
 }
 
-export const CombatTrackerOuter: React.FC<CombatTrackerOuterProps> = ({
+export const TrackerOuter: React.FC<TrackerOuterProps> = ({
   children,
-}: CombatTrackerOuterProps) => {
+}: TrackerOuterProps) => {
   assertGame(game);
   assertNotNull(game.user);
 

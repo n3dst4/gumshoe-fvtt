@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import { CombatTrackerSwitch } from "../components/combat/CombatTrackerSwitch";
+import { Tracker as ReactCombatTracker } from "../components/combat/Tracker";
 import { reactifiedSidebarTemplatePath } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
@@ -16,7 +16,7 @@ export class InvestigatorCombatTrackerBase extends CombatTracker {
 }
 
 const render = () => (
-  <CombatTrackerSwitch />
+  <ReactCombatTracker />
 );
 
 export const InvestigatorCombatTracker = ReactApplicationMixin(

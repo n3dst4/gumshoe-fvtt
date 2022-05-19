@@ -48,10 +48,6 @@ export const useCombatant = (
     });
   };
 
-  const onDoInitiative = () => {
-    combatantStash.current?.doGumshoeInitiative();
-  };
-
   const onCombatantHoverIn = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       event.preventDefault();
@@ -83,43 +79,13 @@ export const useCombatant = (
     [],
   );
 
-  const onConfigureCombatant = useCallback(
-    (event: React.MouseEvent<HTMLElement>) => {
-      if (combatantStash.current === undefined) return;
-      const rect = event.currentTarget.getBoundingClientRect();
-      new CombatantConfig(combatantStash.current, {
-        top: Math.min(rect.top, window.innerHeight - 350),
-        left: window.innerWidth - 720,
-        width: 400,
-      }).render(true);
-    },
-    [combatantStash],
-  );
-
-  const onClearInitiative = useCallback(() => {
-    combatantStash.current?.update({ initiative: null });
-  }, [combatantStash]);
-
-  const onRefreshInitiative = useCallback(() => {
-    combatantStash.current?.doGumshoeInitiative();
-  }, [combatantStash]);
-
-  const onRemoveCombatant = useCallback(() => {
-    combatantStash.current?.delete();
-  }, [combatantStash]);
-
   const localize = game.i18n.localize.bind(game.i18n);
 
   return {
     onToggleDefeatedStatus,
     onToggleHidden,
-    onDoInitiative,
     onCombatantHoverIn,
     onCombatantHoverOut,
-    onConfigureCombatant,
-    onClearInitiative,
-    onRefreshInitiative,
-    onRemoveCombatant,
     localize,
   };
 };
