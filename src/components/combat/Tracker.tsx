@@ -115,6 +115,9 @@ export const Tracker: React.FC = () => {
     return null;
   }
 
+  // foundry's native combat tracker uses these things called "turns" which are
+  // kinda pre-baked data for the rows in the tracker - each one corresponds to
+  // a combatant in the combat
   const turns = combat ? getTurns(combat) : [];
 
   if (combat === null || combat === undefined) {

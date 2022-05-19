@@ -20,7 +20,7 @@ interface StandardInitiativeProps {
   combat: InvestigatorCombat;
 }
 
-export const StandardInitiative: React.FC<StandardInitiativeProps> = ({
+export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
   turn,
   combat,
 }: StandardInitiativeProps) => {
@@ -44,21 +44,21 @@ export const StandardInitiative: React.FC<StandardInitiativeProps> = ({
       >
         {turn.hasRolled
           ? (
-          <span className="initiative">{turn.initiative}</span>
+            <span className="initiative">{turn.initiative}</span>
             )
           : (
-          <a
-            css={{
-              display: "block",
-              height: "var(--sidebar-item-height)",
-              fontSize: "calc(var(--sidebar-item-height) - 20px)",
-              margin: "0 0.5em",
-            }}
-            title={localize("COMBAT.InitiativeRoll")}
-            onClick={onDoInitiative}
-          >
-            <i className="fas fa-dice-d6" />
-          </a>
+            <a
+              css={{
+                display: "block",
+                height: "var(--sidebar-item-height)",
+                fontSize: "calc(var(--sidebar-item-height) - 20px)",
+                margin: "0 0.5em",
+              }}
+              title={localize("COMBAT.InitiativeRoll")}
+              onClick={onDoInitiative}
+            >
+              <i className="fas fa-dice-d6" />
+            </a>
             )}
       </div>
 

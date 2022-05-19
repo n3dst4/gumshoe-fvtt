@@ -7,6 +7,7 @@ import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 import { settings } from "../../settings";
 import { InvestigatorTurn } from "./getTurns";
 import { StandardInitiative } from "./StandardInitiative";
+import { TurnPassingInitiative } from "./TurnPassingInitiative";
 import { useCombatant } from "./useCombatant";
 
 interface CombatantRowProps {
@@ -85,7 +86,7 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
       )}
 
       {turnPassing
-        ? <StandardInitiative turn={turn} combat={combat}/>
+        ? <TurnPassingInitiative turn={turn} combat={combat}/>
         : <StandardInitiative turn={turn} combat={combat}/>}
     </li>
   );
