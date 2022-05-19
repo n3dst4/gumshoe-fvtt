@@ -2,14 +2,14 @@
 import { jsx } from "@emotion/react";
 import React, { ReactNode } from "react";
 import { assertGame, assertNotNull } from "../../functions";
-import { StandardCombatantRow } from "./StandardCombatantRow";
+import { CombatantRow } from "./CombatantRow";
 import { getTurns } from "./getTurns";
 import { CombatTrackerOuter } from "./CombatTrackerOuter";
 
 /**
  * React component for standard Investigator combat tracker.
  */
-export const StandardCombatTracker: React.FC = () => {
+export const StandardTracker: React.FC = () => {
   assertGame(game);
   assertNotNull(game.user);
 
@@ -25,7 +25,7 @@ export const StandardCombatTracker: React.FC = () => {
       {/* ACTUAL COMBATANTS, or "turns" in early-medieval foundry-speak */}
       <ol id="combat-tracker" className="directory-list">
         {turns.map<ReactNode>((turn, i) => (
-          <StandardCombatantRow key={i} turn={turn} combat={combat} />
+          <CombatantRow key={i} turn={turn} combat={combat} />
         ))}
       </ol>
     </CombatTrackerOuter>

@@ -10,9 +10,9 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-import { assertGame, assertNotNull } from "../../functions";
-import { useRefStash } from "../../hooks/useRefStash";
-import { getTurns } from "./getTurns";
+import { assertGame, assertNotNull } from "../../../functions";
+import { useRefStash } from "../../../hooks/useRefStash";
+import { getTurns } from "../getTurns";
 
 interface ClassicCombatTrackerProps {
   app: Application;

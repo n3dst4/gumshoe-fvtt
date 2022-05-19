@@ -16,15 +16,15 @@ import { Menu, MenuItem } from "../inputs/Menu";
 import { InvestigatorTurn } from "./getTurns";
 import { useCombatant } from "./useCombatant";
 
-interface StandardCombatantRowProps {
+interface CombatantRowProps {
   turn: InvestigatorTurn;
   combat: StoredDocument<InvestigatorCombat> | undefined;
 }
 
-export const StandardCombatantRow: React.FC<StandardCombatantRowProps> = ({
+export const CombatantRow: React.FC<CombatantRowProps> = ({
   turn,
   combat,
-}: StandardCombatantRowProps) => {
+}: CombatantRowProps) => {
   assertGame(game);
   const {
     onToggleDefeatedStatus,
