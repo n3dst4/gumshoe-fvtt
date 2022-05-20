@@ -4,6 +4,7 @@ import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, MouseEvent, ReactNode } from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
+import { settings } from "../../settings";
 import { CombatantRow } from "./CombatantRow";
 import { getTurns } from "./getTurns";
 
@@ -36,6 +37,8 @@ export const Tracker: React.FC = () => {
   const scopeLabel = game.i18n.localize(
     `COMBAT.${linked ? "Linked" : "Unlinked"}`,
   );
+
+  const isTurnPassing = settings.useTurnPassingInitiative.get();
 
   // CALLBACKS
 
@@ -252,35 +255,33 @@ export const Tracker: React.FC = () => {
                 ? (
                 <Fragment>
                   <a
-                    className="combat-control"
                     title={localize("COMBAT.RoundPrev")}
                     onClick={onPreviousRound}
                   >
                     <i className="fas fa-step-backward"></i>
                   </a>
+                  {isTurnPassing &&
+                    <a
+                      title={localize("COMBAT.TurnPrev")}
+                      onClick={onPreviousTurn}
+                    >
+                      <i className="fas fa-arrow-left"></i>
+                    </a>
+                  }
                   <a
-                    className="combat-control"
-                    title={localize("COMBAT.TurnPrev")}
-                    onClick={onPreviousTurn}
-                  >
-                    <i className="fas fa-arrow-left"></i>
-                  </a>
-                  <a
-                    className="combat-control center"
+                    className="center"
                     title={localize("COMBAT.End")}
                     onClick={onEndCombat}
                   >
                     {localize("COMBAT.End")}
                   </a>
                   <a
-                    className="combat-control"
                     title={localize("COMBAT.TurnNext")}
                     onClick={onNextTurn}
                   >
                     <i className="fas fa-arrow-right"></i>
                   </a>
                   <a
-                    className="combat-control"
                     title={localize("COMBAT.RoundNext")}
                     onClick={onNextRound}
                   >

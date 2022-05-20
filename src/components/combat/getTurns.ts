@@ -13,19 +13,17 @@ export function getTurns (combat: Combat) {
   let hasDecimals = false;
 
   for (const [i, combatant] of combat.turns.entries()) {
-    if (!combatant.visible) continue;
+    if (!combatant.visible || combatant.id === null) {
+      continue;
+    }
 
     // Prepare turn data
     const resource = combatant.permission >= CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER ? combatant.resource : null;
 
-    if (combatant.id === null) {
-      continue;
-    }
-
     const active = i === combat.turn;
-    const owner = combatant.isOwner;
-    let defeated = combatant.data.defeated;
     const hidden = combatant.hidden;
+    let defeated = combatant.data.defeated;
+    const owner = combatant.isOwner;
     const initiative = combatant.initiative;
     const hasRolled = combatant.initiative !== null;
     const hasResource = resource !== null;
@@ -64,7 +62,9 @@ export function getTurns (combat: Combat) {
       });
     }
 
-    const totalPassingTurns = isActiveCharacterDataSource(combatant.actor?.data) ? combatant.actor?.data.data.initiativePassingTurns ?? 1 : 1;
+    const totalPassingTurns = isActiveCharacterDataSource(combatant.actor?.data)
+      ? combatant.actor?.data.data.initiativePassingTurns ?? 1
+      : 1;
 
     const turn: InvestigatorTurn = {
       id: combatant.id,

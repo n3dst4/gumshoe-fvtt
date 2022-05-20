@@ -1,14 +1,12 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
+import { jsx, keyframes } from "@emotion/react";
 import React, { Fragment } from "react";
 import {
   FaEdit,
   FaEllipsisH,
-  FaEraser,
-  FaRecycle,
   FaTrash,
 } from "react-icons/fa";
-import { assertGame } from "../../functions";
+import { assertGame, getTranslated } from "../../functions";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 import { Dropdown } from "../inputs/Dropdown";
 import { Menu, MenuItem } from "../inputs/Menu";
@@ -20,46 +18,80 @@ interface StandardInitiativeProps {
   combat: InvestigatorCombat;
 }
 
+const scrollBg = keyframes({
+  "0%": {
+    backgroundPositionX: "0em",
+  },
+  "100%": {
+    backgroundPositionX: "0.5em",
+  },
+});
+
 export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
   turn,
   combat,
 }: StandardInitiativeProps) => {
   assertGame(game);
   const {
-    onDoInitiative,
+    onTakeTurn,
     onConfigureCombatant,
-    onClearInitiative,
-    onRefreshInitiative,
     onRemoveCombatant,
     localize,
   } = useInititative(combat, turn.id);
 
+  const isActive = combat.activeTurnPassingCombatant === turn.id;
+  const depleted = turn.passingTurnsRemaining <= 0;
+
   return (
     <Fragment>
-      <div
-        className="token-initiative"
-        css={{
-          flex: 0,
-        }}
-      >
-        {turn.hasRolled
-          ? (
-            <span className="initiative">{turn.initiative}</span>
-            )
-          : (
-            <a
+      <div css={{ flex: 0 }}>
+        {turn.passingTurnsRemaining}/{turn.totalPassingTurns}
+      </div>
+
+      <div css={{ flex: 0 }}>
+        <a
+          css={{
+            display: "block",
+            height: "var(--sidebar-item-height)",
+            fontSize: "calc(var(--sidebar-item-height) - 20px)",
+            margin: "0 0.5em",
+          }}
+          title={getTranslated("Turn")}
+          onClick={onTakeTurn}
+        >
+          {isActive &&
+            <i
+              className="fas fa-play"
               css={{
-                display: "block",
-                height: "var(--sidebar-item-height)",
-                fontSize: "calc(var(--sidebar-item-height) - 20px)",
-                margin: "0 0.5em",
+                color: "transparent",
+                backgroundImage: "repeating-linear-gradient(90deg, #0f0, #000 50%, #0f0 100%)",
+                backgroundSize: "0.5em",
+                backgroundPositionX: 0,
+                backgroundPositionY: 0,
+                backgroundClip: "text",
+                animation: `${scrollBg} 1200ms infinite`,
+                animationTimingFunction: "linear",
+                textShadow: "0 0 0.5em #0f0",
               }}
-              title={localize("COMBAT.InitiativeRoll")}
-              onClick={onDoInitiative}
-            >
-              <i className="fas fa-dice-d6" />
-            </a>
-            )}
+            />
+          }
+          {!isActive && !depleted &&
+            <i
+              className="fas fa-play"
+              css={{
+                color: "#070",
+              }}
+            />
+          }
+          {!isActive && depleted &&
+            <i
+              className="fas fa-play"
+              css={{
+                color: "#333",
+              }}
+            />
+          }
+        </a>
       </div>
 
       {game.user?.isGM && (
@@ -74,12 +106,6 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
             <Menu>
               <MenuItem icon={<FaEdit />} onClick={onConfigureCombatant}>
                 {localize("COMBAT.CombatantUpdate")}
-              </MenuItem>
-              <MenuItem icon={<FaEraser />} onClick={onClearInitiative}>
-                {localize("COMBAT.CombatantClear")}
-              </MenuItem>
-              <MenuItem icon={<FaRecycle />} onClick={onRefreshInitiative}>
-                {localize("investigator.RefreshInitiative")}
               </MenuItem>
               <MenuItem icon={<FaTrash />} onClick={onRemoveCombatant}>
                 {localize("COMBAT.CombatantRemove")}

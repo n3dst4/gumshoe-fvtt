@@ -49,6 +49,21 @@ export class InvestigatorCombat extends Combat {
       }
     }
   }
+
+  get activeTurnPassingCombatant () {
+    return this.getFlag(
+      constants.systemName,
+      "activeTurnPassingCombatant",
+    ) as string|null;
+  }
+
+  set activeTurnPassingCombatant (id: string|null) {
+    this.setFlag(
+      constants.systemName,
+      "activeTurnPassingCombatant",
+      id,
+    );
+  }
 }
 
 declare global {

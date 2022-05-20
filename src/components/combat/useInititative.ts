@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { assertGame } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
+import { assertActiveCharacterDataSource } from "../../types";
 
 export const useInititative = (
   combat: InvestigatorCombat | undefined,
@@ -41,12 +42,23 @@ export const useInititative = (
 
   const localize = game.i18n.localize.bind(game.i18n);
 
+  const onTakeTurn = useCallback(() => {
+    const combatant = combatantStash.current;
+    const actor = combatant?.actor;
+    if (actor && combat && combatant && combatant.passingTurnsRemaining > 0 && combat.activeTurnPassingCombatant !== combatant.data._id) {
+      assertActiveCharacterDataSource(actor?.data);
+      combat.activeTurnPassingCombatant = combatant.data._id;
+      combatant.passingTurnsRemaining -= 1;
+    }
+  }, [combat, combatantStash]);
+
   return {
     onDoInitiative,
     onConfigureCombatant,
     onClearInitiative,
     onRefreshInitiative,
     onRemoveCombatant,
+    onTakeTurn,
     localize,
   };
 };

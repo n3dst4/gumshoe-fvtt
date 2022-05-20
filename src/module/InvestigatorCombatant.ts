@@ -48,8 +48,8 @@ export class InvestigatorCombatant extends Combatant {
       : "0";
   }
 
-  get passingTurnsRemaining () {
-    const maxPassingTurns = isActiveCharacterDataSource(this.actor?.data)
+  get passingTurnsRemaining (): number {
+    const maxPassingTurns = (this.actor && isActiveCharacterDataSource(this.actor?.data))
       ? this.actor?.data.data.initiativePassingTurns
       : 1;
     const tagValue = this.getFlag(
@@ -64,7 +64,15 @@ export class InvestigatorCombatant extends Combatant {
       );
       return maxPassingTurns;
     }
-    return tagValue;
+    return Number(tagValue);
+  }
+
+  set passingTurnsRemaining (turns: number) {
+    this.setFlag(
+      constants.systemName,
+      "passingTurnsRemaining",
+      turns,
+    );
   }
 }
 
