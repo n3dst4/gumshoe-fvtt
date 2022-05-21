@@ -1,5 +1,6 @@
 import { ConfiguredDocumentClass } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
 import * as constants from "../constants";
+import { settings } from "../settings";
 import { isGeneralAbilityDataSource, isActiveCharacterDataSource } from "../types";
 import { InvestigatorItem } from "./InvestigatorItem";
 
@@ -7,6 +8,19 @@ import { InvestigatorItem } from "./InvestigatorItem";
  * Override base Combat so we can do custom GUMSHOE-style initiative
  */
 export class InvestigatorCombat extends Combat {
+  override _onCreate (data: this["data"]["_source"], options:any, userId:string) {
+    super._onCreate(data, options, userId);
+    if (settings.useTurnPassingInitiative.get()) {
+      this.update({
+        round: 1,
+      });
+    }
+  }
+
+  override get started () {
+    return true;
+  }
+
   protected _sortCombatants (
     a: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
     b: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,

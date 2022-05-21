@@ -123,9 +123,9 @@ export const Tracker: React.FC = () => {
   // a combatant in the combat
   const turns = combat ? getTurns(combat) : [];
 
-  if (combat === null || combat === undefined) {
-    return null;
-  }
+  // if (combat === null || combat === undefined) {
+  //   return null;
+  // }
 
   return (
     <Fragment>
@@ -240,95 +240,96 @@ export const Tracker: React.FC = () => {
       <ol id="combat-tracker" className="directory-list">
         {
           turns.map<ReactNode>((turn, i) => (
-            <CombatantRow key={i} turn={turn} combat={combat} />
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            <CombatantRow key={i} turn={turn} combat={combat!} />
           ))
         }
       </ol>
 
       {/* BOTTOM BITS: |< < End combat > >| */}
-      <nav id="combat-controls" className="directory-footer flexrow">
-        {hasCombat &&
-          (game.user.isGM
-            ? (
-            <Fragment>
-              {combat.data.round
-                ? (
-                <Fragment>
-                  <a
-                    title={localize("COMBAT.RoundPrev")}
-                    onClick={onPreviousRound}
-                  >
-                    <i className="fas fa-step-backward"></i>
-                  </a>
-                  {isTurnPassing &&
+      {!isTurnPassing &&
+        <nav id="combat-controls" className="directory-footer flexrow">
+          {(hasCombat && !isTurnPassing) &&
+            (game.user.isGM
+              ? (
+              <Fragment>
+                {combat.data.round
+                  ? (
+                  <Fragment>
+                    <a
+                      title={localize("COMBAT.RoundPrev")}
+                      onClick={onPreviousRound}
+                    >
+                      <i className="fas fa-step-backward"></i>
+                    </a>
                     <a
                       title={localize("COMBAT.TurnPrev")}
                       onClick={onPreviousTurn}
                     >
                       <i className="fas fa-arrow-left"></i>
                     </a>
-                  }
+                    <a
+                      className="center"
+                      title={localize("COMBAT.End")}
+                      onClick={onEndCombat}
+                    >
+                      {localize("COMBAT.End")}
+                    </a>
+                    <a
+                      title={localize("COMBAT.TurnNext")}
+                      onClick={onNextTurn}
+                    >
+                      <i className="fas fa-arrow-right"></i>
+                    </a>
+                    <a
+                      title={localize("COMBAT.RoundNext")}
+                      onClick={onNextRound}
+                    >
+                      <i className="fas fa-step-forward"></i>
+                    </a>
+                  </Fragment>
+                    )
+                  : (
                   <a
-                    className="center"
-                    title={localize("COMBAT.End")}
-                    onClick={onEndCombat}
+                    className="combat-control center"
+                    title={localize("COMBAT.Begin")}
+                    onClick={onStartCombat}
                   >
-                    {localize("COMBAT.End")}
+                    {localize("COMBAT.Begin")}
+                  </a>
+                    )}
+              </Fragment>
+                )
+              : (
+                  game.user &&
+              combat.combatant?.players?.includes(game.user) && (
+                <Fragment>
+                  <a
+                    className="combat-control"
+                    title={localize("COMBAT.TurnPrev")}
+                    onClick={onPreviousTurn}
+                  >
+                    <i className="fas fa-arrow-left"></i>
                   </a>
                   <a
+                    className="combat-control center"
+                    title={localize("COMBAT.TurnEnd")}
+                    onClick={onNextTurn}
+                  >
+                    {localize("COMBAT.TurnEnd")}
+                  </a>
+                  <a
+                    className="combat-control"
                     title={localize("COMBAT.TurnNext")}
                     onClick={onNextTurn}
                   >
                     <i className="fas fa-arrow-right"></i>
                   </a>
-                  <a
-                    title={localize("COMBAT.RoundNext")}
-                    onClick={onNextRound}
-                  >
-                    <i className="fas fa-step-forward"></i>
-                  </a>
                 </Fragment>
                   )
-                : (
-                <a
-                  className="combat-control center"
-                  title={localize("COMBAT.Begin")}
-                  onClick={onStartCombat}
-                >
-                  {localize("COMBAT.Begin")}
-                </a>
-                  )}
-            </Fragment>
-              )
-            : (
-                game.user &&
-            combat.combatant?.players?.includes(game.user) && (
-              <Fragment>
-                <a
-                  className="combat-control"
-                  title={localize("COMBAT.TurnPrev")}
-                  onClick={onPreviousTurn}
-                >
-                  <i className="fas fa-arrow-left"></i>
-                </a>
-                <a
-                  className="combat-control center"
-                  title={localize("COMBAT.TurnEnd")}
-                  onClick={onNextTurn}
-                >
-                  {localize("COMBAT.TurnEnd")}
-                </a>
-                <a
-                  className="combat-control"
-                  title={localize("COMBAT.TurnNext")}
-                  onClick={onNextTurn}
-                >
-                  <i className="fas fa-arrow-right"></i>
-                </a>
-              </Fragment>
-                )
-              ))}
-      </nav>
+                ))}
+        </nav>
+      }
     </Fragment>
   );
 };
