@@ -9,5 +9,6 @@ export function installInitiativeUpdateHookHandler () {
       return;
     }
     combatant.doGumshoeInitiative();
+    combatant.resetPassingTurns();
   });
 }

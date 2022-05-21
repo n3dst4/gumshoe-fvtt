@@ -17,6 +17,10 @@ export class InvestigatorCombatant extends Combatant {
     }
   };
 
+  resetPassingTurns () {
+    this.passingTurnsRemaining = 1;
+  }
+
   static getGumshoeInitiative (actor: Actor) {
     assertActiveCharacterDataSource(actor?.data);
     // get the ability name, and if not set, use the first one on the system
@@ -57,11 +61,7 @@ export class InvestigatorCombatant extends Combatant {
       "passingTurnsRemaining",
     );
     if (tagValue === undefined) {
-      this.setFlag(
-        constants.systemName,
-        "passingTurnsRemaining",
-        maxPassingTurns,
-      );
+      this.passingTurnsRemaining = maxPassingTurns;
       return maxPassingTurns;
     }
     return Number(tagValue);

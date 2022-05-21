@@ -80,7 +80,7 @@ export function getTurns (combat: Combat) {
       resource: resource,
       css,
       effects,
-      passingTurnsRemaining: 0,
+      passingTurnsRemaining: combatant.passingTurnsRemaining,
       totalPassingTurns,
     };
 

@@ -29,7 +29,6 @@ export const StandardInitiative: React.FC<StandardInitiativeProps> = ({
     onDoInitiative,
     onConfigureCombatant,
     onClearInitiative,
-    onRefreshInitiative,
     onRemoveCombatant,
     localize,
   } = useInititative(combat, turn.id);
@@ -78,7 +77,7 @@ export const StandardInitiative: React.FC<StandardInitiativeProps> = ({
               <MenuItem icon={<FaEraser />} onClick={onClearInitiative}>
                 {localize("COMBAT.CombatantClear")}
               </MenuItem>
-              <MenuItem icon={<FaRecycle />} onClick={onRefreshInitiative}>
+              <MenuItem icon={<FaRecycle />} onClick={onDoInitiative}>
                 {localize("investigator.RefreshInitiative")}
               </MenuItem>
               <MenuItem icon={<FaTrash />} onClick={onRemoveCombatant}>

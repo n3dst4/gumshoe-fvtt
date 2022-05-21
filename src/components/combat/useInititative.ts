@@ -11,10 +11,6 @@ export const useInititative = (
   assertGame(game);
   const combatantStash = useRefStash(combat?.combatants.get(id));
 
-  const onDoInitiative = () => {
-    combatantStash.current?.doGumshoeInitiative();
-  };
-
   const onConfigureCombatant = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       if (combatantStash.current === undefined) return;
@@ -32,7 +28,7 @@ export const useInititative = (
     combatantStash.current?.update({ initiative: null });
   }, [combatantStash]);
 
-  const onRefreshInitiative = useCallback(() => {
+  const onDoInitiative = useCallback(() => {
     combatantStash.current?.doGumshoeInitiative();
   }, [combatantStash]);
 
@@ -56,7 +52,6 @@ export const useInititative = (
     onDoInitiative,
     onConfigureCombatant,
     onClearInitiative,
-    onRefreshInitiative,
     onRemoveCombatant,
     onTakeTurn,
     localize,
