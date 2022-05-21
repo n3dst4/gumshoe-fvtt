@@ -21,7 +21,39 @@ export class InvestigatorCombat extends Combat {
     return true;
   }
 
-  protected _sortCombatants (
+  protected _sortCombatants = (
+    a: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
+    b: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
+  ): number => {
+    if (settings.useTurnPassingInitiative.get()) {
+      return this._sortCombatantsPassing(a, b);
+    } else {
+      return this._sortCombatantsStandard(a, b);
+    }
+  }
+
+  protected _sortCombatantsPassing (
+    a: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
+    b: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
+  ): number {
+    const active = this.activeTurnPassingCombatant;
+    if (a.id === active) {
+      return -1;
+    } else if (b.id === active) {
+      return 1;
+    } else if (a.passingTurnsRemaining < b.passingTurnsRemaining) {
+      return -1;
+    } else if (a.passingTurnsRemaining > b.passingTurnsRemaining) {
+      return 1;
+    } else if (a.name < b.name) {
+      return -1;
+    } else if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  }
+
+  protected _sortCombatantsStandard (
     a: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
     b: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
   ): number {

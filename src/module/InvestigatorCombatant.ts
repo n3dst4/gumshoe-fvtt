@@ -18,7 +18,9 @@ export class InvestigatorCombatant extends Combatant {
   };
 
   resetPassingTurns () {
-    this.passingTurnsRemaining = 1;
+    this.passingTurnsRemaining = isActiveCharacterDataSource(this.actor?.data)
+      ? (this.actor?.data.data.initiativePassingTurns ?? 1)
+      : 1;
   }
 
   static getGumshoeInitiative (actor: Actor) {
