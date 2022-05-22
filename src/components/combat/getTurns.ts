@@ -1,6 +1,6 @@
 import { isActiveCharacterDataSource } from "../../types";
 
-export interface InvestigatorTurn extends Omit<CombatTracker.Turn, "ressource"> {
+export interface InvestigatorTurn extends Omit<CombatTracker.Turn, "ressource"|"css"> {
   passingTurnsRemaining: number;
   totalPassingTurns: number;
   resource: CombatTracker.Turn["ressource"];
@@ -28,12 +28,6 @@ export function getTurns (combat: Combat) {
     const hasRolled = combatant.initiative !== null;
     const hasResource = resource !== null;
     hasDecimals ||= ((initiative !== null) && !Number.isInteger(initiative));
-
-    const css = [
-      active ? "active" : "",
-      hidden ? "hidden" : "",
-      defeated ? "defeated" : "",
-    ].join(" ").trim();
 
     let img = combatant.img;
     // Cached thumbnail image for video tokens
@@ -78,7 +72,6 @@ export function getTurns (combat: Combat) {
       hasRolled,
       hasResource,
       resource: resource,
-      css,
       effects,
       passingTurnsRemaining: combatant.passingTurnsRemaining,
       totalPassingTurns,

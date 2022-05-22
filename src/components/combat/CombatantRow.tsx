@@ -32,10 +32,22 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
 
   return (
     <li
-      className={`combatant actor directory-item flexrow ${turn.css}`}
+      className={cx({
+        combatant: true,
+        actor: true,
+        "directory-item": true,
+        flexrow: true,
+        active: turn.active && !turnPassing,
+        hidden: turn.hidden,
+        defeated: turn.defeated,
+      })}
       data-combatant-id={turn.id}
       onMouseEnter={onCombatantHoverIn}
       onMouseLeave={onCombatantHoverOut}
+      // css={{
+      //   borderBottom: "2px dashed #9f77",
+      //   backgroundColor: "#9f73",
+      // }}
     >
       <img
         className="token-image"

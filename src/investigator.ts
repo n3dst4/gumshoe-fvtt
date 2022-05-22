@@ -21,6 +21,7 @@ import { injectGlobalHelper } from "./startup/injectGlobalHelper";
 import { loadCustomThemes } from "./startup/loadCustomThemes";
 import { handleMwItemType } from "./startup/disableMwItemType";
 import { installInitiativeUpdateHookHandler } from "./startup/installInitiativeUpdateHookHandler";
+import { assertGame } from "./functions";
 
 injectGlobalHelper();
 
@@ -41,6 +42,11 @@ Hooks.once("setup", function () {
 Hooks.once("ready", () => {
   migrateWorldIfNeeded();
   installDSNFix();
+
+  assertGame(game);
+  for (const combat of game.combats?.values() ?? []) {
+    combat.setupTurns();
+  }
 });
 
 installAbilityCategoryHookHandler();
