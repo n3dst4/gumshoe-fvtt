@@ -72,6 +72,7 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
                 animation: `${scrollBg} 1200ms infinite`,
                 animationTimingFunction: "linear",
                 textShadow: "0 0 0.5em #0f0",
+                "-webkit-text-stroke": "1px #9f7",
               }}
             />
           }
