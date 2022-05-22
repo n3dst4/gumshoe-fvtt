@@ -61,7 +61,7 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
         >
           {isActive &&
             <i
-              className="fas fa-forward"
+              className="fas fa-play"
               css={{
                 color: "transparent",
                 backgroundImage: "repeating-linear-gradient(90deg, #0f0, #000 50%, #0f0 100%)",
@@ -78,17 +78,19 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
           }
           {!isActive && !depleted &&
             <i
-              className="fas fa-play"
+              className="fas fa-pause"
               css={{
-                color: "#070",
+                color: "#f90",
+                "-webkit-text-stroke": "1px #ff9",
               }}
             />
           }
           {!isActive && depleted &&
             <i
-              className="fas fa-pause"
+              className="fas fa-check"
               css={{
-                color: "#999",
+                color: "#ccf",
+                "-webkit-text-stroke": "1px #fff",
               }}
             />
           }
