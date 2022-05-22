@@ -29,6 +29,8 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
   } = useCombatant(combat, turn.id);
 
   const turnPassing = settings.useTurnPassingInitiative.get();
+  const active = combat.activeTurnPassingCombatant === turn.id;
+  const depleted = turn.passingTurnsRemaining <= 0;
 
   return (
     <li
@@ -44,10 +46,11 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
       data-combatant-id={turn.id}
       onMouseEnter={onCombatantHoverIn}
       onMouseLeave={onCombatantHoverOut}
-      // css={{
-      //   borderBottom: "2px dashed #9f77",
-      //   backgroundColor: "#9f73",
-      // }}
+      css={{
+        boxShadow: active ? "0 0 0.5em 0 #7f7 inset" : undefined,
+        backgroundColor: active ? "#9f72" : undefined,
+        opacity: (depleted && (!active)) ? 0.5 : 1,
+      }}
     >
       <img
         className="token-image"
