@@ -423,7 +423,12 @@ export const ClassicCombatTracker: React.FC<ClassicCombatTrackerProps> = ({
         {turns.map<ReactNode>((turn, i) => (
           <li
             key={i}
-            className={`combatant actor directory-item flexrow ${turn.css}`}
+            className={"combatant actor directory-item flexrow"}
+            css={cx({
+              active: turn.active,
+              hidden: turn.hidden,
+              defeated: turn.defeated,
+            })}
             data-combatant-id={turn.id}
             onMouseEnter={onCombatantHoverIn}
             onMouseLeave={onCombatantHoverOut}
