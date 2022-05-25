@@ -194,12 +194,20 @@ export const Tracker: React.FC = () => {
                 <h3 className="encounter-title">
                   {localize("COMBAT.Round")} {combat.data.round}
                   {isTurnPassing &&
-                    <a
+                    <button
                       title={localize("COMBAT.RoundNext")}
                       onClick={onNextRound}
+                      css={{
+                        display: "inline",
+                        width: "auto",
+                        lineHeight: 1,
+                        marginLeft: "1em",
+                      }}
                     >
-                      <i className="fas fa-step-forward"></i>
-                    </a>
+                      {localize("COMBAT.RoundNext")}
+                      &nbsp;
+                      <i className="fas fa-arrow-right"></i>
+                    </button>
                   }
                 </h3>
                   )
