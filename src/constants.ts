@@ -48,6 +48,7 @@ export const npcPackName = "opponentAbilities" as const;
 export const newPCPacksUpdated = `${systemName}:newPCPacksUpdated` as const;
 export const newNPCPacksUpdated = `${systemName}:newNPCPacksUpdated` as const;
 export const settingsSaved = `${systemName}:settingsSaved` as const;
+export const requestTurnPass = `${systemName}:requestTurnPass` as const;
 
 // css classes
 export const abilityChatMessageClassName = "investigator-ability-test" as const;

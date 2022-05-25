@@ -2,6 +2,11 @@ import { TokenData } from "@league-of-foundry-developers/foundry-vtt-types/src/f
 import * as constants from "./constants";
 export type AbilityType = typeof constants.investigativeAbility | typeof constants.generalAbility;
 
+export interface RequestTurnPassArgs {
+  combatantId: string;
+  userId: string;
+}
+
 export type MWDifficulty =
   | "easy"
   | number;

@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { assertGame } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
-import { assertActiveCharacterDataSource } from "../../types";
+import * as constants from "../../constants";
 
 export const useInititative = (
   combat: InvestigatorCombat | undefined,
@@ -39,14 +39,13 @@ export const useInititative = (
   const localize = game.i18n.localize.bind(game.i18n);
 
   const onTakeTurn = useCallback(() => {
-    const combatant = combatantStash.current;
-    const actor = combatant?.actor;
-    if (actor && combat && combatant && combatant.passingTurnsRemaining > 0 && combat.activeTurnPassingCombatant !== combatant.data._id) {
-      assertActiveCharacterDataSource(actor?.data);
-      combat.activeTurnPassingCombatant = combatant.data._id;
-      combatant.passingTurnsRemaining -= 1;
-    }
-  }, [combat, combatantStash]);
+    assertGame(game);
+    logger.log("turnPassingHandler - calling hook");
+    Hooks.call(constants.requestTurnPass, {
+      combatantId: combatantStash.current?.id,
+      userId: game.userId,
+    });
+  }, [combatantStash]);
 
   return {
     onDoInitiative,

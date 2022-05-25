@@ -3,26 +3,17 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { isActiveCharacterDataSource, isGeneralAbilityDataSource } from "../../types";
 import * as constants from "../../constants";
 
+const compare = <T>(a: T, b: T) => (a < b) ? -1 : (a > b) ? 1 : 0;
+const compareInv = <T>(a: T, b: T) => compare(a, b) * -1;
+
 export const compareCombatantsPassing = (active: string|null) => (
   a: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
   b: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
 ): number => {
-  if (a.id === active) {
-    return -1;
-  } else if (b.id === active) {
-    return 1;
-  } else if (a.passingTurnsRemaining > b.passingTurnsRemaining) {
-    return -1;
-  } else if (a.passingTurnsRemaining < b.passingTurnsRemaining) {
-    return 1;
-  } else if (a.name < b.name) {
-    return -1;
-  } else if (a.name > b.name) {
-    return 1;
-  } else {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return a.id! > b.id! ? 1 : -1;
-  }
+  return compareInv(a.id === active, b.id === active) ||
+    compareInv(a.passingTurnsRemaining, b.passingTurnsRemaining) ||
+    compare(a.name, b.name) ||
+    compare(a.id, b.id);
 };
 
 export function compareCombatantsStandard (

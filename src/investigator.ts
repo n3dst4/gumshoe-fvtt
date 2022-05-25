@@ -22,6 +22,7 @@ import { loadCustomThemes } from "./startup/loadCustomThemes";
 import { handleMwItemType } from "./startup/disableMwItemType";
 import { installInitiativeUpdateHookHandler } from "./startup/installInitiativeUpdateHookHandler";
 import { assertGame } from "./functions";
+import { installTurnPassingHandler } from "./startup/installTurnPassingHandler";
 
 injectGlobalHelper();
 
@@ -62,3 +63,4 @@ installFathom();
 loadCustomThemes();
 handleMwItemType();
 installInitiativeUpdateHookHandler();
+installTurnPassingHandler();
