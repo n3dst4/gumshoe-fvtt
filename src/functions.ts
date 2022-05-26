@@ -3,6 +3,7 @@ import Case from "case";
 import { Dictionary } from "lodash";
 import { settings } from "./settings";
 import * as constants from "./constants";
+import { SocketHookAction } from "./types";
 
 interface NameHaver {
   name: string|null;
@@ -187,11 +188,12 @@ export function renameProperty <T> (oldProp: string, newProp: string, subject: R
   return result;
 }
 
-export function broadcastHook (hook: string, payload: unknown) {
+export function broadcastHook<T> (hook: string, payload: T) {
   assertGame(game);
-  game.socket?.emit(constants.socketScope, {
-    type: hook,
+  const socketHookAction: SocketHookAction<T> = {
+    hook,
     payload,
-  });
+  };
+  game.socket?.emit(constants.socketScope, socketHookAction);
   Hooks.call(hook, payload);
 }

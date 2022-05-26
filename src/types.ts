@@ -3,13 +3,13 @@ import * as constants from "./constants";
 import { hasOwnProperty } from "./functions";
 export type AbilityType = typeof constants.investigativeAbility | typeof constants.generalAbility;
 
-export interface SocketAction<T> {
-  type: string;
+export interface SocketHookAction<T> {
+  hook: string;
   payload: T;
 }
 
-export function isSocketAction<T> (x: SocketAction<T>|unknown): x is SocketAction<T> {
-  return hasOwnProperty(x, "type") && hasOwnProperty(x, "payload");
+export function isSocketHookAction<T> (x: SocketHookAction<T>|unknown): x is SocketHookAction<T> {
+  return hasOwnProperty(x, "hook") && hasOwnProperty(x, "payload");
 }
 
 export interface RequestTurnPassArgs {
