@@ -23,6 +23,7 @@ import { handleMwItemType } from "./startup/disableMwItemType";
 import { installInitiativeUpdateHookHandler } from "./startup/installInitiativeUpdateHookHandler";
 import { assertGame } from "./functions";
 import { installTurnPassingHandler } from "./startup/installTurnPassingHandler";
+import { installSocketActionHandler } from "./startup/installSocketActionHandler";
 
 injectGlobalHelper();
 
@@ -64,3 +65,4 @@ loadCustomThemes();
 handleMwItemType();
 installInitiativeUpdateHookHandler();
 installTurnPassingHandler();
+installSocketActionHandler();

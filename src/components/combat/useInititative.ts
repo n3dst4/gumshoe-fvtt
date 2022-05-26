@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { assertGame } from "../../functions";
+import { assertGame, broadcastHook } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 import * as constants from "../../constants";
@@ -41,10 +41,10 @@ export const useInititative = (
   const onTakeTurn = useCallback(() => {
     assertGame(game);
     logger.log("turnPassingHandler - calling hook");
-    Hooks.call(constants.requestTurnPass, {
+    const payload = {
       combatantId: combatantStash.current?.id,
-      userId: game.userId,
-    });
+    };
+    broadcastHook(constants.requestTurnPass, payload);
   }, [combatantStash]);
 
   return {

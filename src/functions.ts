@@ -2,6 +2,7 @@ import { systemName } from "./constants";
 import Case from "case";
 import { Dictionary } from "lodash";
 import { settings } from "./settings";
+import * as constants from "./constants";
 
 interface NameHaver {
   name: string|null;
@@ -184,4 +185,13 @@ export function renameProperty <T> (oldProp: string, newProp: string, subject: R
     }
   }
   return result;
+}
+
+export function broadcastHook (hook: string, payload: unknown) {
+  assertGame(game);
+  game.socket?.emit(constants.socketScope, {
+    type: hook,
+    payload,
+  });
+  Hooks.call(hook, payload);
 }

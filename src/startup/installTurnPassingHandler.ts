@@ -7,8 +7,9 @@ export function installTurnPassingHandler () {
     assertGame(game);
     if (game.user?.isGM) {
       logger.log("turnPassingHandler - installing handler");
-      Hooks.on(constants.requestTurnPass, ({ combatantId, userId }: RequestTurnPassArgs) => {
-        logger.log({ combatantId, userId });
+      console.log(">>>>>>>>", game.socket);
+      Hooks.on(constants.requestTurnPass, ({ combatantId }: RequestTurnPassArgs) => {
+        logger.log({ combatantId });
         assertGame(game);
         const combat = game.combat;
         const combatant = combat?.combatants.get(combatantId);
