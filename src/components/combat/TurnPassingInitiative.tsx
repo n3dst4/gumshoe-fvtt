@@ -64,12 +64,12 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
               className="fas fa-play"
               css={{
                 color: "transparent",
-                backgroundImage: "repeating-linear-gradient(90deg, #0f0, #000 50%, #0f0 100%)",
+                backgroundImage: "repeating-linear-gradient(90deg, #3f3, #161 50%, #0f0 100%)",
                 backgroundSize: "0.5em",
                 backgroundPositionX: 0,
                 backgroundPositionY: 0,
                 backgroundClip: "text",
-                animation: `${scrollBg} 1200ms infinite`,
+                animation: `${scrollBg} 2400ms infinite`,
                 animationTimingFunction: "linear",
                 textShadow: "0 0 0.5em #0f0",
                 "-webkit-text-stroke": "1px #9f7",
