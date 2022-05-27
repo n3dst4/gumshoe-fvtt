@@ -193,7 +193,7 @@ export const Tracker: React.FC = () => {
                 ? (
                 <h3 className="encounter-title">
                   {localize("COMBAT.Round")} {combat.data.round}
-                  {isTurnPassing &&
+                  {isTurnPassing && game.user.isGM &&
                     <button
                       title={localize("COMBAT.RoundNext")}
                       onClick={onNextRound}
