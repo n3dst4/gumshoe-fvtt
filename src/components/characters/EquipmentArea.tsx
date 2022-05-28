@@ -4,7 +4,7 @@ import React, { useCallback, useContext } from "react";
 import { equipment } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { ActorSheetAppContext } from "../FoundryAppContext";
+import { FoundryAppContext } from "../FoundryAppContext";
 import { Translate } from "../Translate";
 
 type EquipmentAreaProps = {
@@ -14,7 +14,7 @@ type EquipmentAreaProps = {
 export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
   actor,
 }) => {
-  const app = useContext(ActorSheetAppContext);
+  const app = useContext(FoundryAppContext);
 
   const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
     if (app !== null) {

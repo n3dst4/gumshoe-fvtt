@@ -7,7 +7,6 @@ import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
 import { WeaponSheet } from "./equipment/WeaponSheet";
 import { CSSReset, CSSResetMode } from "./CSSReset";
-import { ItemSheetAppContext } from "./FoundryAppContext";
 import { isAbilityDataSource, isMwItemDataSource } from "../types";
 import { MwItemSheet } from "./equipment/MwItemSheet";
 
@@ -39,23 +38,21 @@ export const InvestigatorItemSheet: React.FC<InvestigatorItemSheetProps> = ({
       };
 
   return (
-    <ItemSheetAppContext.Provider value={foundryApplication}>
-      <CSSReset
-        theme={theme}
-        mode={CSSResetMode.small}
-        css={style}
-      >
-        {isAbilityDataSource(item.data)
-          ? <AbilitySheet ability={item} application={foundryApplication} />
-          : item.type === equipment
-            ? <EquipmentSheet equipment={item} application={foundryApplication} />
-            : item.type === weapon
-              ? <WeaponSheet weapon={item} application={foundryApplication} />
-              : item.type === mwItem
-                ? <MwItemSheet item={item} application={foundryApplication} />
-                : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
-        }
-      </CSSReset>
-    </ItemSheetAppContext.Provider>
+    <CSSReset
+      theme={theme}
+      mode={CSSResetMode.small}
+      css={style}
+    >
+      {isAbilityDataSource(item.data)
+        ? <AbilitySheet ability={item} application={foundryApplication} />
+        : item.type === equipment
+          ? <EquipmentSheet equipment={item} application={foundryApplication} />
+          : item.type === weapon
+            ? <WeaponSheet weapon={item} application={foundryApplication} />
+            : item.type === mwItem
+              ? <MwItemSheet item={item} application={foundryApplication} />
+              : <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
+      }
+    </CSSReset>
   );
 };
