@@ -57,7 +57,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
                 }
                 {investigativeAbilities[cat].length === 0 && <NoAbilitiesNote />}
               </Fragment>
-              : <span/>
+              : <span key={cat}/>
           ))}
         </div>
         <div
