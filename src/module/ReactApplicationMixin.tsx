@@ -1,4 +1,6 @@
+import React from "react";
 import ReactDOM from "react-dom";
+import { CSSResetDOMNodeContext } from "../components/CSSReset";
 
 // type shenanigans to allow us to work backwards from a Class type to the type
 // of the objects which it constructs
@@ -62,8 +64,10 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
       const el = target.get(0);
 
       if (el) {
-        const content = render(
-          this as TBase extends Constructor<infer T2> ? T2 : TBase,
+        const content = (
+          <CSSResetDOMNodeContext.Provider value={el}>
+            {render(this as TBase extends Constructor<infer T2> ? T2 : TBase)}
+          </CSSResetDOMNodeContext.Provider>
         );
         ReactDOM.render(content, el);
       }
