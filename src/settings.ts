@@ -11,9 +11,9 @@ import { ThemeV1 } from "./themes/types";
 interface SettingFactoryArgs<T> {
   key: string;
   name: string;
-  scope?: "world"|"local";
+  scope?: "world"|"client";
   config?: boolean;
-  choices?: Record<string, string>;
+  choices?: (T extends number | string ? Record<T, string> : never) | undefined;
   default: T;
   onChange?: (newVal: T) => void;
 }

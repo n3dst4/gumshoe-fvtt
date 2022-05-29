@@ -28,7 +28,7 @@
     "@babel/preset-typescript": "^7.12.7",
     "@emotion/css": "^11.7.1",
     "@emotion/react": "^11.8.2",
-    "@league-of-foundry-developers/foundry-vtt-types": "^9.249.4",
+    "@league-of-foundry-developers/foundry-vtt-types": "^9.269.0",
     "@lumphammer/investigator-fvtt-types": "^1.4.0",
     "@types/d3-ease": "^3.0.0",
     "@types/dompurify": "^2.3.1",

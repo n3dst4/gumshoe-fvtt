@@ -54,7 +54,6 @@ export const Tracker: React.FC = () => {
 
   const showConfig = useCallback((ev: MouseEvent) => {
     ev.preventDefault();
-    // @ts-expect-error CombatTrackerConfig is fine with no args
     new CombatTrackerConfig().render(true);
   }, []);
 
