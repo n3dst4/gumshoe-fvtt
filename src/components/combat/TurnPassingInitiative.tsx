@@ -4,7 +4,9 @@ import React, { Fragment } from "react";
 import {
   FaEdit,
   FaEllipsisH,
+  FaPlus,
   FaTrash,
+  FaMinus,
 } from "react-icons/fa";
 import { assertGame, getTranslated } from "../../functions";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
@@ -37,6 +39,8 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
     onConfigureCombatant,
     onRemoveCombatant,
     localize,
+    onAddTurn,
+    onRemoveTurn,
   } = useInititative(combat, turn.id);
 
   const isActive = combat.activeTurnPassingCombatant === turn.id;
@@ -109,6 +113,12 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
             <Menu>
               <MenuItem icon={<FaEdit />} onClick={onConfigureCombatant}>
                 {localize("COMBAT.CombatantUpdate")}
+              </MenuItem>
+              <MenuItem icon={<FaPlus />} onClick={onAddTurn}>
+                {localize("investigator.AddTurn")}
+              </MenuItem>
+              <MenuItem icon={<FaMinus />} onClick={onRemoveTurn}>
+                {localize("investigator.RemoveTurn")}
               </MenuItem>
               <MenuItem icon={<FaTrash />} onClick={onRemoveCombatant}>
                 {localize("COMBAT.CombatantRemove")}

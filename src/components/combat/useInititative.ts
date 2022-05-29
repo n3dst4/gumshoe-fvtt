@@ -47,6 +47,14 @@ export const useInititative = (
     broadcastHook(constants.requestTurnPass, payload);
   }, [combatantStash]);
 
+  const onAddTurn = useCallback(() => {
+    combatantStash.current?.addPassingTurn();
+  }, [combatantStash]);
+
+  const onRemoveTurn = useCallback(() => {
+    combatantStash.current?.removePassingTurn();
+  }, [combatantStash]);
+
   return {
     onDoInitiative,
     onConfigureCombatant,
@@ -54,5 +62,7 @@ export const useInititative = (
     onRemoveCombatant,
     onTakeTurn,
     localize,
+    onAddTurn,
+    onRemoveTurn,
   };
 };

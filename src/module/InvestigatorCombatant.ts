@@ -23,6 +23,14 @@ export class InvestigatorCombatant extends Combatant {
       : 1;
   }
 
+  addPassingTurn () {
+    this.passingTurnsRemaining += 1;
+  }
+
+  removePassingTurn () {
+    this.passingTurnsRemaining = Math.max(0, this.passingTurnsRemaining - 1);
+  }
+
   static getGumshoeInitiative (actor: Actor) {
     assertActiveCharacterDataSource(actor?.data);
     // get the ability name, and if not set, use the first one on the system
