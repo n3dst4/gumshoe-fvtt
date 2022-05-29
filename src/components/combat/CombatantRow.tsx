@@ -13,11 +13,13 @@ import { useCombatant } from "./useCombatant";
 interface CombatantRowProps {
   turn: InvestigatorTurn;
   combat: StoredDocument<InvestigatorCombat>;
+  index: number;
 }
 
 export const CombatantRow: React.FC<CombatantRowProps> = ({
   turn,
   combat,
+  index,
 }: CombatantRowProps) => {
   assertGame(game);
   const {
@@ -47,6 +49,13 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
       onMouseEnter={onCombatantHoverIn}
       onMouseLeave={onCombatantHoverOut}
       css={{
+        height: "4em",
+        position: "absolute",
+        top: `${index * 4}em`,
+        left: 0,
+        width: "100%",
+        // transform: `translateY(${index * 4}em)`,
+        transition: "transform 1000ms, top 1000ms",
         boxShadow: active ? "0 0 0.5em 0 #7f7 inset" : undefined,
         backgroundColor: active ? "#9f72" : undefined,
         opacity: (depleted && (!active)) ? 0.5 : 1,
@@ -60,7 +69,7 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
         title={turn.name}
       />
       <div className="token-name flexcol">
-        <h4>{turn.name}</h4>
+        <h4>{turn.id}</h4>
         <div className="combatant-controls flexrow">
           {game.user?.isGM && (
             <Fragment>

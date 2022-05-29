@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
+import { sortBy } from "lodash";
 import React, { Fragment, useCallback, MouseEvent, ReactNode } from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
@@ -254,11 +255,25 @@ export const Tracker: React.FC = () => {
       </header>
 
       {/* ACTUAL COMBATANTS, or "turns" in early-medieval foundry-speak */}
-      <ol id="combat-tracker" className="directory-list">
+      <ol
+        id="combat-tracker"
+        className="directory-list"
+        css={{
+          position: "relative",
+        }}
+      >
         {
-          turns.map<ReactNode>((turn, i) => (
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            <CombatantRow key={i} turn={turn} combat={combat!} />
+          // combatant sorting is done in "Combat" but for rendering stability
+          // we need to un-sort the combatants and then tell each row where it
+          // used to exist in the order
+          sortBy(turns, "id").map<ReactNode>((turn, i) => (
+            <CombatantRow
+              key={turn.id}
+              index={turns.findIndex((x) => x.id === turn.id)}
+              turn={turn}
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              combat={combat!}
+            />
           ))
         }
       </ol>
