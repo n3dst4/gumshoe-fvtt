@@ -4,8 +4,10 @@ import React, { Fragment, useCallback, useContext } from "react";
 import { assertGame, getDevMode, getTranslated } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { runtimeConfig } from "../../runtime";
+import { settings } from "../../settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertPCDataSource, NoteFormat } from "../../types";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
@@ -54,6 +56,17 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
             <option value={NoteFormat.richText}>{getTranslated("RichText")}</option>
           </select>
         </GridField>
+
+        {settings.useTurnPassingInitiative.get() &&
+          <GridField label="Number of turns">
+            <AsyncNumberInput
+              value={actor.data.data.initiativePassingTurns}
+              onChange={(newVal: number) => {
+                actor.update({ data: { initiativePassingTurns: newVal } });
+              }}
+            />
+          </GridField>
+        }
 
         {isDevMode &&
           <GridField label="Nuke">
