@@ -336,6 +336,11 @@ export class InvestigatorActor extends Actor {
     await this.update({ data: { damageBonus } });
   }
 
+  setPassingTurns = async (initiativePassingTurns: number) => {
+    assertActiveCharacterDataSource(this.data);
+    await this.update({ data: { initiativePassingTurns } });
+  }
+
   // ###########################################################################
   // Moribund World stuff
   getMwInjuryStatus = () => {

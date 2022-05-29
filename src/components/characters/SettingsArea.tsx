@@ -61,9 +61,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
           <GridField label="Number of turns">
             <AsyncNumberInput
               value={actor.data.data.initiativePassingTurns}
-              onChange={(newVal: number) => {
-                actor.update({ data: { initiativePassingTurns: newVal } });
-              }}
+              onChange={actor.setPassingTurns}
             />
           </GridField>
         }

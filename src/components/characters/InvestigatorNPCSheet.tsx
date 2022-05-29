@@ -146,6 +146,18 @@ export const InvestigatorNPCSheet = ({
           value={actor.getInitiativeAbility()}
           onChange={actor.setInitiativeAbility}
         />
+        {settings.useTurnPassingInitiative.get() &&
+          <Fragment>
+            <h4 css={{ width: "8em" }}>
+              <Translate>Number of turns</Translate>
+            </h4>
+            <AsyncNumberInput
+              value={actor.data.data.initiativePassingTurns}
+              onChange={actor.setPassingTurns}
+            />
+          </Fragment>
+        }
+
       </div>
 
       {/* MAIN TABS AREA */}
