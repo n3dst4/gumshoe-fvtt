@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { useCallback, useContext } from "react";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
-import { ActorSheetAppContext } from "../../FoundryAppContext";
+import { FoundryAppContext } from "../../FoundryAppContext";
 import { MwItemGroup } from "./MwItemGroup";
 
 type MwItemAreaProps = {
@@ -12,7 +12,7 @@ type MwItemAreaProps = {
 export const MwItemArea: React.FC<MwItemAreaProps> = ({
   actor,
 }) => {
-  const app = useContext(ActorSheetAppContext);
+  const app = useContext(FoundryAppContext);
 
   const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
     if (app !== null) {

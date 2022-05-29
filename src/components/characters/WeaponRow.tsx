@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useState, useMemo } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { ActorSheetAppContext } from "../FoundryAppContext";
+import { FoundryAppContext } from "../FoundryAppContext";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { generalAbility } from "../../constants";
 import { assertWeaponDataSource, isAbilityDataSource } from "../../types";
@@ -17,7 +17,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
 }) => {
   assertWeaponDataSource(weapon.data);
 
-  const app = useContext(ActorSheetAppContext);
+  const app = useContext(FoundryAppContext);
   const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
     if (app !== null) {
       (app as any)._onDragStart(e);

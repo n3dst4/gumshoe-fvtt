@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { ActorSheetAppContext } from "../FoundryAppContext";
+import { FoundryAppContext } from "../FoundryAppContext";
 import { assertAbilityDataSource, isGeneralAbilityDataSource, isInvestigativeAbilityDataSource } from "../../types";
 import { UnlockBadges } from "../abilities/UnlockBadges";
 
@@ -12,7 +12,7 @@ type AbilitySlugPlayProps = {
 
 export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => {
   assertAbilityDataSource(ability.data);
-  const app = useContext(ActorSheetAppContext);
+  const app = useContext(FoundryAppContext);
   const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
     if (app !== null) {
       (app as any)._onDragStart(e);
