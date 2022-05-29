@@ -1,13 +1,15 @@
+#! env node
+
 import chalk from "chalk";
-import gulp from "gulp";
 import fs from "fs-extra";
 import path from "path";
 import archiver from "archiver";
 import rimraf from "rimraf";
 import { fileURLToPath } from "url";
-import less from "gulp-less";
 import webpack from "webpack";
 import webpackConfig from "./webpack.config.js";
+import less from "less";
+import { readFile, writeFile } from "fs/promises";
 
 /// /////////////////////////////////////////////////////////////////////////////
 // Config
@@ -72,8 +74,10 @@ export function buildCode () {
   });
 }
 
-export function buildLess () {
-  return gulp.src(path.join(srcPath, "/*.less")).pipe(less()).pipe(gulp.dest(buildPath));
+export async function buildLess () {
+  const src = await readFile("./src/investigator.less");
+  const result = await less.render(src.toString());
+  await writeFile(path.join(buildPath, "investigator.css"), result.css);
 }
 
 /**
@@ -103,12 +107,13 @@ export function watch () {
       console.error(err);
     }
   });
-  gulp.watch("src/**/*.less", { ignoreInitial: false }, buildLess);
-  gulp.watch(
-    staticPaths.map(x => path.join(srcPath, x)),
-    { ignoreInitial: false },
-    copyFiles,
-  );
+  // XXX
+  // gulp.watch("src/**/*.less", { ignoreInitial: false }, buildLess);
+  // gulp.watch(
+  //   staticPaths.map(x => path.join(srcPath, x)),
+  //   { ignoreInitial: false },
+  //   copyFiles,
+  // );
 }
 
 /**
@@ -199,13 +204,13 @@ export async function bundlePackage () {
   });
 }
 
-function setProd () {
-  process.env.NODE_ENV = "production";
-  return Promise.resolve();
-}
+// function setProd () {
+//   process.env.NODE_ENV = "production";
+//   return Promise.resolve();
+// }
 
-const buildAll = gulp.parallel(buildCode, buildLess, copyFiles);
-
-export const build = gulp.series(clean, buildAll);
-export const packidge = gulp.series([setProd, clean, buildAll, bundlePackage]);
-export default build;
+// XXX
+// const buildAll = gulp.parallel(buildCode, buildLess, copyFiles);
+// export const build = gulp.series(clean, buildAll);
+// export const packidge = gulp.series([setProd, clean, buildAll, bundlePackage]);
+// export default build;
