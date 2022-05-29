@@ -103,7 +103,7 @@ What this enables (list subject to change):
 
 ## Release process
 
-*The innocuous-looking 4.9.7 release represented a change in how we do releases. We used to have a `release` branch which pointed to the most recent release, with attachment links pasted into `system.json` for the download. For the forseeable future we wiill need to fast-forward `release` to `main` when releasing so make sure we catch slow updaters*
+*The innocuous-looking 4.9.7 release represented a change in how we do releases. We used to have a `release` branch which pointed to the most recent release, with attachment links pasted into `system.json` for the download. For the forseeable future we wiill need to fast-forward `release` to `main` when releasing to make sure we catch slow updaters*
 
 To perform a release: 
 
