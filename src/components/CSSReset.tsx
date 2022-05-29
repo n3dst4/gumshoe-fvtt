@@ -48,14 +48,21 @@ export const CSSReset: React.FC<CSSResetProps> = ({
   const [head, setHead] = useState(app?.element.get(0)?.closest("head"));
 
   useEffect(() => {
-    const handler = (poppedApp: Application, newWindow: Window) => {
+    const popoutHandler = (poppedApp: Application, newWindow: Window) => {
       if (poppedApp.appId === app?.appId) {
         setHead(newWindow.document.head);
       }
     };
-    Hooks.on("PopOut:popout", handler);
+    const dialogHandler = (dialoggedApp: Application, info: PopOut.DialogHookInfo) => {
+      if (dialoggedApp.appId === app?.appId) {
+        setHead(info.window.document.head);
+      }
+    };
+    Hooks.on("PopOut:popout", popoutHandler);
+    Hooks.on("PopOut:dialog", dialogHandler);
     return () => {
-      Hooks.off("PopOut:popout", handler);
+      Hooks.off("PopOut:popout", popoutHandler);
+      Hooks.off("PopOut:dialog", dialogHandler);
     };
   }, [app?.appId]);
 
