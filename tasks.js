@@ -10,6 +10,21 @@ import webpack from "webpack";
 import webpackConfig from "./webpack.config.js";
 import less from "less";
 import { readFile, writeFile } from "fs/promises";
+import chokidar from "chokidar";
+import globWithCallback from "glob";
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
+
+// promisified version of glob
+function glob (pattern, options) {
+  return new Promise((resolve, reject) => {
+    globWithCallback(pattern, options, (err, files) => {
+      if (err) { reject(err); } else { resolve(files); }
+    });
+  });
+}
+
+const log = console.log.bind(console, chalk.green("[task] "));
 
 /// /////////////////////////////////////////////////////////////////////////////
 // Config
@@ -26,6 +41,7 @@ const staticPaths = [
   "template.json",
   "packs",
 ];
+const lessGlob = `${srcPath}/**/*.less`;
 
 /// /////////////////////////////////////////////////////////////////////////////
 // Startup
@@ -40,6 +56,11 @@ try {
 if (config?.dataPath) {
   const linkRoot = manifestName === "system.json" ? "systems" : "modules";
   linkDir = path.join(config.dataPath, "Data", linkRoot, manifest.name);
+}
+
+function srcToBuild (inPath) {
+  const outPath = path.join(buildPath, path.relative(srcPath, inPath));
+  return outPath;
 }
 
 /**
@@ -74,21 +95,30 @@ export function buildCode () {
   });
 }
 
-export async function buildLess () {
-  const src = await readFile("./src/investigator.less");
-  const result = await less.render(src.toString());
-  await writeFile(path.join(buildPath, "investigator.css"), result.css);
+export async function buildLess (paths) {
+  if (paths === undefined) {
+    paths = await glob(lessGlob);
+  }
+  return await Promise.all(paths.map(async (inPath) => {
+    const src = await readFile(inPath);
+    const result = await less.render(src.toString());
+    const outPath = srcToBuild(inPath).replace(/\.less$/i, ".css");
+    log("Building LESS from", chalk.cyan(inPath), "to", chalk.cyan(outPath));
+    await writeFile(outPath, result.css);
+  }));
 }
 
 /**
  * Copy static files
  */
-export async function copyFiles () {
-  for (const staticPath of staticPaths) {
-    await fs.copy(
-      path.join(srcPath, staticPath),
-      path.join(buildPath, staticPath),
-    );
+export async function copyFiles (paths) {
+  if (paths === undefined) {
+    paths = staticPaths.map(p => path.join(srcPath, p));
+  }
+  for (const fromPath of paths) {
+    const toPath = srcToBuild(fromPath);
+    log("Copying", chalk.cyan(fromPath), "to", chalk.cyan(toPath));
+    await fs.copy(fromPath, toPath);
   }
 }
 
@@ -107,13 +137,15 @@ export function watch () {
       console.error(err);
     }
   });
-  // XXX
-  // gulp.watch("src/**/*.less", { ignoreInitial: false }, buildLess);
-  // gulp.watch(
-  //   staticPaths.map(x => path.join(srcPath, x)),
-  //   { ignoreInitial: false },
-  //   copyFiles,
-  // );
+
+  chokidar.watch("src/**/*.less").on("add", (path) => {
+    buildLess([path]);
+  }).on("change", (path) => {
+    buildLess([path]);
+  });
+  chokidar.watch(staticPaths.map(x => path.join(srcPath, x)))
+    .on("add", path => copyFiles([path]))
+    .on("change", path => copyFiles([path]));
 }
 
 /**
@@ -204,13 +236,39 @@ export async function bundlePackage () {
   });
 }
 
-// function setProd () {
-//   process.env.NODE_ENV = "production";
-//   return Promise.resolve();
-// }
+function setProd () {
+  process.env.NODE_ENV = "production";
+  return Promise.resolve();
+}
 
-// XXX
-// const buildAll = gulp.parallel(buildCode, buildLess, copyFiles);
-// export const build = gulp.series(clean, buildAll);
-// export const packidge = gulp.series([setProd, clean, buildAll, bundlePackage]);
-// export default build;
+async function buildAll () {
+  await Promise.all([
+    buildCode(), buildLess(), copyFiles(),
+  ]);
+}
+
+async function build () {
+  await clean();
+  await buildAll();
+}
+
+async function packidge () {
+  await setProd();
+  await clean();
+  await buildAll();
+  await bundlePackage();
+}
+
+yargs(hideBin(process.argv))
+  .command("buildLess", "Build LESS files", () => {}, buildLess)
+  .command("buildCode", "Build Typescript", () => {}, buildCode)
+  .command("bundlePackage", "Create package .zip", () => {}, bundlePackage)
+  .command("packidge", "", () => {}, packidge)
+  .command("build", "", () => {}, build)
+  .command("link", "", () => {}, link)
+  .command("watch", "", () => {}, watch)
+  .command("clean", "", () => {}, clean)
+  .command("groomTranslations", "", () => {}, groomTranslations)
+  .command("extractPackTranslationTemplates", "", () => {}, extractPackTranslationTemplates)
+  .demandCommand(1)
+  .parse();
