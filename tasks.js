@@ -67,9 +67,10 @@ function srcToBuild (inPath) {
  * Remove built files from `build` folder
  * while ignoring source files
  */
-export function clean () {
+async function clean () {
   const distPath = path.join(__dirname, buildPath);
-  return new Promise((resolve, reject) => {
+  log("Cleaning...");
+  await new Promise((resolve, reject) => {
     rimraf(distPath, (err) => {
       if (err) {
         reject(err);
@@ -78,13 +79,15 @@ export function clean () {
       }
     });
   });
+  log("Done.");
 }
 
 /**
  * Build TypeScript
  */
-export function buildCode () {
-  return new Promise((resolve, reject) => {
+async function buildCode () {
+  log("Building Typescript...");
+  await new Promise((resolve, reject) => {
     webpack(webpackConfig, (err, stats) => {
       if (err || stats.hasErrors()) {
         reject(err || stats.toString());
@@ -93,9 +96,10 @@ export function buildCode () {
       }
     });
   });
+  log("Finished building Typescript.");
 }
 
-export async function buildLess (paths) {
+async function buildLess (paths) {
   if (paths === undefined) {
     paths = await glob(lessGlob);
   }
@@ -111,7 +115,7 @@ export async function buildLess (paths) {
 /**
  * Copy static files
  */
-export async function copyFiles (paths) {
+async function copyFiles (paths) {
   if (paths === undefined) {
     paths = staticPaths.map(p => path.join(srcPath, p));
   }
@@ -125,7 +129,7 @@ export async function copyFiles (paths) {
 /**
  * Watch for changes for each build step
  */
-export function watch () {
+function watch () {
   webpack(webpackConfig).watch({
     aggregateTimeout: 300,
     poll: undefined,
@@ -206,11 +210,11 @@ async function extractPackTranslationTemplates () {
 /**
  * Remove the link to foundrydata
  */
-export async function unlink () {
+async function unlink () {
   if (!linkDir) {
     throw new Error("linkDir not set");
   }
-  console.log(
+  log(
     chalk.yellow(`Removing build link from ${chalk.blueBright(linkDir)}`),
   );
   return fs.remove(linkDir);
@@ -219,17 +223,15 @@ export async function unlink () {
 /**
  * Link build to foundrydata
  */
-export async function link () {
+async function link () {
   if (!linkDir) {
     throw new Error("linkDir not set");
   }
   if (!fs.existsSync(linkDir)) {
-    console.log(
-      chalk.green(`Linking dist to ${chalk.blueBright(linkDir)}`),
-    );
+    log(`Linking ${buildPath} to ${chalk.blueBright(linkDir)}`);
     return fs.symlink(path.resolve(buildPath), linkDir);
   } else {
-    console.log(
+    log(
       chalk.magenta(`${chalk.blueBright(linkDir)} already exists`),
     );
   }
@@ -245,7 +247,7 @@ const stripInitialv = (subject) => (
 /**
  * Update the manifest in CI
  */
-export async function updateManifestFromCITagPush () {
+async function updateManifestFromCITagPush () {
   const tag = process.env.CI_COMMIT_TAG;
   const path = process.env.CI_PROJECT_PATH;
   if (!tag) {
@@ -262,7 +264,7 @@ export async function updateManifestFromCITagPush () {
 /**
  * Package build
  */
-export async function bundlePackage () {
+async function bundlePackage () {
   return new Promise((resolve, reject) => {
     try {
       // Ensure there is a directory to hold all the packaged versions
@@ -315,14 +317,16 @@ async function packidge () {
 }
 
 yargs(hideBin(process.argv))
-  .command("buildLess", "Build LESS files", () => {}, buildLess)
-  .command("buildCode", "Build Typescript", () => {}, buildCode)
-  .command("bundlePackage", "Create package .zip", () => {}, bundlePackage)
-  .command("packidge", "", () => {}, packidge)
-  .command("build", "", () => {}, build)
-  .command("link", "", () => {}, link)
-  .command("watch", "", () => {}, watch)
-  .command("clean", "", () => {}, clean)
-  .command("extractPackTranslationTemplates", "", () => {}, extractPackTranslationTemplates)
+  .command("link", "Create link to your Foundry install", () => {}, () => link())
+  .command("unlink", "Remove link to your Foundry install", () => {}, () => unlink())
+  .command("buildLess", "Build LESS files", () => {}, () => buildLess())
+  .command("buildCode", "Build Typescript", () => {}, () => buildCode())
+  .command("clean", "Remove all generated files", () => {}, () => clean())
+  .command("build", "Build everything into output folder", () => {}, () => build())
+  .command("bundlePackage", "Create package .zip", () => {}, () => bundlePackage())
+  .command("packidge", "Build package file from scratch", () => {}, () => packidge())
+  .command("watch", "Build-on-chnage mode", () => {}, () => watch())
+  .command("buildPackTranslations", "Generate translation files for packs", () => {}, () => extractPackTranslationTemplates())
+  .command("updateManifestFromCITagPush", "", () => {}, () => updateManifestFromCITagPush())
   .demandCommand(1)
   .parse();
