@@ -149,6 +149,61 @@ export function watch () {
 }
 
 /**
+ * go though the compendium packs, and for each one, emit an untranslated
+ * template file. once comitted and pushed, this will be picked up by transifex
+ * and update the translation list.
+ */
+async function extractPackTranslationTemplates () {
+  // ===========================================================================
+  // requires
+  // ===========================================================================
+  const system = await import("./src/system.json");
+  const Datastore = await import("nedb-promises");
+
+  // ===========================================================================
+  // constants
+  // ===========================================================================
+  const mapping = {
+    category: "data.category",
+  };
+
+  // ===========================================================================
+  // actual code
+  // ===========================================================================
+  const parts = path.parse(__filename);
+  const srcDir = path.join(parts.dir, "src");
+  const itemPacks = system.packs.filter((p) => p.entity === "Item");
+
+  for (const pack of itemPacks) {
+    log(`Processing ${chalk.green(pack.label)}... `);
+    const entries = {};
+    const store = Datastore.create({
+      filename: path.join(srcDir, pack.path),
+      autoload: true,
+    });
+    const docs = await store.find({});
+    docs.sort((a, b) => a.name.localeCompare(b.name));
+    for (const doc of docs) {
+      entries[doc.name] = {
+        name: doc.name,
+        category: doc.data.category,
+      };
+    }
+    const numEntries = Object.keys(entries).length;
+    log(`found ${numEntries} entries\n`);
+    const babeleData = {
+      label: pack.label,
+      mapping,
+      entries,
+    };
+    const outFileName = `${system.name}.${path.basename(pack.path, ".db")}.json`;
+    const outFilePath = path.join(srcDir, "lang", "babele-sources", outFileName);
+    const json = JSON.stringify(babeleData, null, 4);
+    await writeFile(outFilePath, json);
+  }
+}
+
+/**
  * Remove the link to foundrydata
  */
 export async function unlink () {
@@ -268,7 +323,6 @@ yargs(hideBin(process.argv))
   .command("link", "", () => {}, link)
   .command("watch", "", () => {}, watch)
   .command("clean", "", () => {}, clean)
-  .command("groomTranslations", "", () => {}, groomTranslations)
   .command("extractPackTranslationTemplates", "", () => {}, extractPackTranslationTemplates)
   .demandCommand(1)
   .parse();
