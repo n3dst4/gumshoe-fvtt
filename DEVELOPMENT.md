@@ -88,7 +88,7 @@ What this enables (list subject to change):
 
 ## Development flow
 
-* We develop on main, with occasional feature branches or forks as needed and wanted.
+* We develop on `main`, with occasional feature branches or forks as needed and wanted.
 * We deliver both the public-facing manifest and the downloadable zip package using [GitLab Generic Packages][gl-generic-packages].
 * The manifest in VCS points to the "latest package" of the manifest and the download.
 * To do a release, we push a tag.
@@ -121,7 +121,7 @@ To perform a release:
     v=v$(jq .version src/system.json -r) && git tag $v && git push origin $v 
     ```
 
-5. Fast-forward `release` to master (yes this is a funky use of `fetch`):
+5. Fast-forward `release` to `main` (yes this is a funky use of `fetch`):
 
     ```
     git fetch . main:release
