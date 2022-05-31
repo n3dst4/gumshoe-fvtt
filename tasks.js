@@ -187,7 +187,7 @@ function watch () {
 async function buildPackTranslations () {
   log("Building pack translations");
   // load nedb async to avoid slowing unrelated tasks tasks
-  const { default: Datastore } = await import("nedb-promises");
+  const { default: Datastore } = await import("@seald-io/nedb");
 
   const mapping = {
     category: "data.category",
@@ -198,10 +198,12 @@ async function buildPackTranslations () {
   for (const pack of itemPacks) {
     log(`Processing ${chalk.green(pack.label)}... `);
     const entries = {};
-    const store = Datastore.create({
+
+    const store = new Datastore({
       filename: path.join(srcPath, pack.path),
       autoload: true,
     });
+
     const docs = await store.find({});
     docs.sort((a, b) => a.name.localeCompare(b.name));
     for (const doc of docs) {
