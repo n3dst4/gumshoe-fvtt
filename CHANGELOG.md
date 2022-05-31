@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 4.11.0 (2022-05-31)
+
+* Presets, like themes, are now decoupled from the core system, so we can write modules which add support for new games.
+* Numeric trackers can now be configured (instead of just having hard-coded hit threshold etc.) This is important for games which use other numeric counters which are not full abilities.
+* The text shown when you don't have an occupation can now be configured. It used to be hard-coded as "Investigator" but can be anything, e.g. "Hero".
+* The NPC sheet has a new layout.
+* Unlockable talents - when you have more than a given number of ranks in an ability, show a badge indicating that a special talent has been unlocked.
+* QoL tweaks to the "Edit" tab.
+* New initiative tracker! No longer will you have to click an irrelevant d20 to "roll" initiative in Gumshoe.
+* New *alternative* turn-passing combat tracker, for games which use "Popcorn"-style initiative.
+* Various deprecation fixes.
+* **Bug fix** Sheets now look right in Pop-Out (probably; this is the second time this has come up)
+
 ## 4.10.0 (2022-04-12)
 
 * Basic testing against Foundry VTT v10. Seems okay to me so far?
