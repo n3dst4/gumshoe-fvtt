@@ -42,7 +42,11 @@ const lessGlobPattern = `${srcPath}/**/*.less`;
 function glob (pattern, options) {
   return new Promise((resolve, reject) => {
     globWithCallback(pattern, options, (err, files) => {
-      if (err) { reject(err); } else { resolve(files); }
+      if (err) {
+        reject(err);
+      } else {
+        resolve(files);
+      }
     });
   });
 }
@@ -51,12 +55,8 @@ function glob (pattern, options) {
 const log = console.log.bind(console, chalk.green("[task] "));
 
 // if subject is a semver string beginning with a v, remove the v
-const stripInitialv = (subject) => (
-  subject.replace(
-    /^v(\d+\.\d+\.\d+.*)/i,
-    (_, ...[match]) => match,
-  )
-);
+const stripInitialv = (subject) =>
+  subject.replace(/^v(\d+\.\d+\.\d+.*)/i, (_, ...[match]) => match);
 
 // given a path in the src folder, map it to the equivalent build folder path
 function srcToBuild (inPath) {
@@ -119,13 +119,15 @@ async function buildLess (paths) {
   if (paths === undefined) {
     paths = await glob(lessGlobPattern);
   }
-  return await Promise.all(paths.map(async (inPath) => {
-    const src = await readFile(inPath);
-    const result = await less.render(src.toString());
-    const outPath = srcToBuild(inPath).replace(/\.less$/i, ".css");
-    log("Building LESS from", chalk.cyan(inPath), "to", chalk.cyan(outPath));
-    await writeFile(outPath, result.css);
-  }));
+  return await Promise.all(
+    paths.map(async (inPath) => {
+      const src = await readFile(inPath);
+      const result = await less.render(src.toString());
+      const outPath = srcToBuild(inPath).replace(/\.less$/i, ".css");
+      log("Building LESS from", chalk.cyan(inPath), "to", chalk.cyan(outPath));
+      await writeFile(outPath, result.css);
+    }),
+  );
 }
 
 /**
@@ -133,7 +135,7 @@ async function buildLess (paths) {
  */
 async function copyFiles (paths) {
   if (paths === undefined) {
-    paths = staticPaths.map(p => path.join(srcPath, p));
+    paths = staticPaths.map((p) => path.join(srcPath, p));
   }
   for (const fromPath of paths) {
     const toPath = srcToBuild(fromPath);
@@ -146,26 +148,34 @@ async function copyFiles (paths) {
  * Watch for changes for each build step
  */
 function watch () {
-  webpack(webpackConfig).watch({
-    aggregateTimeout: 300,
-    poll: undefined,
-  }, (err, stats) => {
-    console.log(stats.toString({
-      colors: true,
-    }));
-    if (err) {
-      console.error(err);
-    }
-  });
-
-  chokidar.watch("src/**/*.less").on("add", (path) => {
-    buildLess([path]);
-  }).on("change", (path) => {
-    buildLess([path]);
-  });
-  chokidar.watch(staticPaths.map(x => path.join(srcPath, x)))
-    .on("add", path => copyFiles([path]))
-    .on("change", path => copyFiles([path]));
+  webpack(webpackConfig).watch(
+    {
+      aggregateTimeout: 300,
+      poll: undefined,
+    },
+    (err, stats) => {
+      console.log(
+        stats.toString({
+          colors: true,
+        }),
+      );
+      if (err) {
+        console.error(err);
+      }
+    },
+  );
+  chokidar
+    .watch("src/**/*.less")
+    .on("add", (path) => {
+      buildLess([path]);
+    })
+    .on("change", (path) => {
+      buildLess([path]);
+    });
+  chokidar
+    .watch(staticPaths.map((x) => path.join(srcPath, x)))
+    .on("add", (path) => copyFiles([path]))
+    .on("change", (path) => copyFiles([path]));
 }
 
 /**
@@ -206,8 +216,16 @@ async function buildPackTranslations () {
       mapping,
       entries,
     };
-    const outFileName = `${manifest.name}.${path.basename(pack.path, ".db")}.json`;
-    const outFilePath = path.join(srcPath, "lang", "babele-sources", outFileName);
+    const outFileName = `${manifest.name}.${path.basename(
+      pack.path,
+      ".db",
+    )}.json`;
+    const outFilePath = path.join(
+      srcPath,
+      "lang",
+      "babele-sources",
+      outFileName,
+    );
     const json = JSON.stringify(babeleData, null, 4);
     await writeFile(outFilePath, json);
   }
@@ -220,9 +238,7 @@ async function unlink () {
   if (!linkDir) {
     throw new Error("linkDir not set");
   }
-  log(
-    chalk.yellow(`Removing build link from ${chalk.blueBright(linkDir)}`),
-  );
+  log(chalk.yellow(`Removing build link from ${chalk.blueBright(linkDir)}`));
   return fs.remove(linkDir);
 }
 
@@ -237,9 +253,7 @@ async function link () {
     log(`Linking ${buildPath} to ${chalk.blueBright(linkDir)}`);
     return fs.symlink(path.resolve(buildPath), linkDir);
   } else {
-    log(
-      chalk.magenta(`${chalk.blueBright(linkDir)} already exists`),
-    );
+    log(chalk.magenta(`${chalk.blueBright(linkDir)} already exists`));
   }
 }
 
@@ -250,12 +264,20 @@ async function updateManifestFromCITagPush () {
   const tag = process.env.CI_COMMIT_TAG;
   const path = process.env.CI_PROJECT_PATH;
   if (!tag) {
-    throw new Error("This task should only be run from a CI tag push, but $CI_COMMIT_TAG was empty or undefined");
+    throw new Error(
+      "This task should only be run from a CI tag push, but $CI_COMMIT_TAG was empty or undefined",
+    );
   }
   if (stripInitialv(tag) !== manifest.version) {
-    throw new Error(`Manifest version (${manifest.version}) does not match tag (${tag})`);
+    throw new Error(
+      `Manifest version (${manifest.version}) does not match tag (${tag})`,
+    );
   }
-  manifest.download = `${process.env.CI_API_V4_URL}/projects/${encodeURIComponent(path)}/packages/generic/${manifest.name}/${tag}/${manifest.name}.zip`;
+  manifest.download = `${
+    process.env.CI_API_V4_URL
+  }/projects/${encodeURIComponent(path)}/packages/generic/${
+    manifest.name
+  }/${tag}/${manifest.name}.zip`;
   console.log({ tag, path, manifest });
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 }
@@ -274,9 +296,7 @@ async function bundlePackage () {
       const zip = archiver("zip", { zlib: { level: 9 } });
       zipFile.on("close", () => {
         console.log(chalk.green(zip.pointer() + " total bytes"));
-        console.log(
-          chalk.green(`Zip file ${zipName} has been written`),
-        );
+        console.log(chalk.green(`Zip file ${zipName} has been written`));
         return resolve();
       });
       zip.on("error", (err) => {
@@ -298,9 +318,7 @@ async function setProd () {
 }
 
 async function buildAll () {
-  await Promise.all([
-    buildCode(), buildLess(), copyFiles(),
-  ]);
+  await Promise.all([buildCode(), buildLess(), copyFiles()]);
 }
 
 async function build () {
@@ -316,17 +334,72 @@ async function packidge () {
 }
 
 yargs(hideBin(process.argv))
-  .command("link", "Create link to your Foundry install", () => {}, () => link())
-  .command("unlink", "Remove link to your Foundry install", () => {}, () => unlink())
-  .command("buildLess", "Build LESS files", () => {}, () => buildLess())
-  .command("buildCode", "Build Typescript", () => {}, () => buildCode())
-  .command("clean", "Remove all generated files", () => {}, () => clean())
-  .command("build", "Build everything into output folder", () => {}, () => build())
-  .command("bundlePackage", "Create package .zip", () => {}, () => bundlePackage())
-  .command("packidge", "Build package file from scratch", () => {}, () => packidge())
-  .command("watch", "Build-on-chnage mode", () => {}, () => watch())
-  .command("buildPackTranslations", "Generate translation files for packs", () => {}, () => buildPackTranslations())
-  .command("updateManifestFromCITagPush", "", () => {}, () => updateManifestFromCITagPush())
+  .command(
+    "link",
+    "Create link to your Foundry install",
+    () => {},
+    () => link(),
+  )
+  .command(
+    "unlink",
+    "Remove link to your Foundry install",
+    () => {},
+    () => unlink(),
+  )
+  .command(
+    "buildLess",
+    "Build LESS files",
+    () => {},
+    () => buildLess(),
+  )
+  .command(
+    "buildCode",
+    "Build Typescript",
+    () => {},
+    () => buildCode(),
+  )
+  .command(
+    "clean",
+    "Remove all generated files",
+    () => {},
+    () => clean(),
+  )
+  .command(
+    "build",
+    "Build everything into output folder",
+    () => {},
+    () => build(),
+  )
+  .command(
+    "bundlePackage",
+    "Create package .zip",
+    () => {},
+    () => bundlePackage(),
+  )
+  .command(
+    "packidge",
+    "Build package file from scratch",
+    () => {},
+    () => packidge(),
+  )
+  .command(
+    "watch",
+    "Build-on-chnage mode",
+    () => {},
+    () => watch(),
+  )
+  .command(
+    "buildPackTranslations",
+    "Generate translation files for packs",
+    () => {},
+    () => buildPackTranslations(),
+  )
+  .command(
+    "updateManifestFromCITagPush",
+    "",
+    () => {},
+    () => updateManifestFromCITagPush(),
+  )
   .completion()
   .demandCommand(1)
   .parse();
