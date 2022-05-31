@@ -109,22 +109,16 @@ To perform a release:
 
 1. Update the version in `package.json` and `system.json`.
 2. Update the `CHANGELOG`.
-3. Commit and push:
+3. Commit and push, and create a new tag and push it also, with this one handy command:
 
     ```
-    v=v$(jq .version src/system.json -r) && git commit -am $v && git push
+    scripts/do-release.sh
     ```
 
-4. Create and push a new tag with the version from `system.json` prepended with a "v":
+4. Fast-forward `release` to `main` (yes this is a funky use of `fetch`):
 
     ```
-    v=v$(jq .version src/system.json -r) && git tag $v && git push origin $v 
-    ```
-
-5. Fast-forward `release` to `main` (yes this is a funky use of `fetch`):
-
-    ```
-    git fetch . main:release
+    scripts/update-legacy-release-branch.sh
     ```
 
 5. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
