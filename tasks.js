@@ -53,6 +53,7 @@ function glob (pattern, options) {
 
 // logging function
 const log = console.log.bind(console, chalk.green("[task] "));
+const error = console.log.bind(console, chalk.red("[error] "));
 
 // if subject is a semver string beginning with a v, remove the v
 const stripInitialv = (subject) =>
@@ -72,7 +73,7 @@ let config, linkDir;
 try {
   config = await fs.readJSON("foundryconfig.json");
 } catch (e) {
-  console.log(chalk.magenta("foundryconfig.json not found - assuming CI"));
+  log(chalk.magenta("foundryconfig.json not found - assuming CI"));
 }
 if (config?.dataPath) {
   const linkRoot = manifestName === "system.json" ? "systems" : "modules";
@@ -154,13 +155,13 @@ function watch () {
       poll: undefined,
     },
     (err, stats) => {
-      console.log(
+      log(
         stats.toString({
           colors: true,
         }),
       );
       if (err) {
-        console.error(err);
+        error(err);
       }
     },
   );
@@ -278,7 +279,7 @@ async function updateManifestFromCITagPush () {
   }/projects/${encodeURIComponent(path)}/packages/generic/${
     manifest.name
   }/${tag}/${manifest.name}.zip`;
-  console.log({ tag, path, manifest });
+  log({ tag, path, manifest });
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 }
 
@@ -295,8 +296,8 @@ async function bundlePackage () {
       const zipFile = fs.createWriteStream(path.join("package", zipName));
       const zip = archiver("zip", { zlib: { level: 9 } });
       zipFile.on("close", () => {
-        console.log(chalk.green(zip.pointer() + " total bytes"));
-        console.log(chalk.green(`Zip file ${zipName} has been written`));
+        log(chalk.green(zip.pointer() + " total bytes"));
+        log(chalk.green(`Zip file ${zipName} has been written`));
         return resolve();
       });
       zip.on("error", (err) => {
@@ -312,27 +313,32 @@ async function bundlePackage () {
   });
 }
 
+/**
+ * go into production mode
+ */
 async function setProd () {
   process.env.NODE_ENV = "production";
-  return Promise.resolve();
 }
 
-async function buildAll () {
+/**
+ * cleand and then build
+ */
+async function build () {
+  await clean();
   await Promise.all([buildCode(), buildLess(), copyFiles()]);
 }
 
-async function build () {
-  await clean();
-  await buildAll();
-}
-
+/**
+ * create a releasable package
+ * (package is a reserved word)
+ */
 async function packidge () {
   await setProd();
-  await clean();
-  await buildAll();
+  await build();
   await bundlePackage();
 }
 
+// yargs turns this into a usable script
 yargs(hideBin(process.argv))
   .command(
     "link",
