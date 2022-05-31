@@ -157,32 +157,22 @@ function watch () {
  * template file. once comitted and pushed, this will be picked up by transifex
  * and update the translation list.
  */
-async function extractPackTranslationTemplates () {
-  // ===========================================================================
-  // requires
-  // ===========================================================================
-  const system = await import("./src/system.json");
-  const Datastore = await import("nedb-promises");
+async function buildPackTranslations () {
+  log("Building pack translations");
+  // load nedb async to avoid slowing unrelated tasks tasks
+  const { default: Datastore } = await import("nedb-promises");
 
-  // ===========================================================================
-  // constants
-  // ===========================================================================
   const mapping = {
     category: "data.category",
   };
 
-  // ===========================================================================
-  // actual code
-  // ===========================================================================
-  const parts = path.parse(__filename);
-  const srcDir = path.join(parts.dir, "src");
-  const itemPacks = system.packs.filter((p) => p.entity === "Item");
+  const itemPacks = manifest.packs.filter((p) => p.type === "Item");
 
   for (const pack of itemPacks) {
     log(`Processing ${chalk.green(pack.label)}... `);
     const entries = {};
     const store = Datastore.create({
-      filename: path.join(srcDir, pack.path),
+      filename: path.join(srcPath, pack.path),
       autoload: true,
     });
     const docs = await store.find({});
@@ -200,8 +190,8 @@ async function extractPackTranslationTemplates () {
       mapping,
       entries,
     };
-    const outFileName = `${system.name}.${path.basename(pack.path, ".db")}.json`;
-    const outFilePath = path.join(srcDir, "lang", "babele-sources", outFileName);
+    const outFileName = `${manifest.name}.${path.basename(pack.path, ".db")}.json`;
+    const outFilePath = path.join(srcPath, "lang", "babele-sources", outFileName);
     const json = JSON.stringify(babeleData, null, 4);
     await writeFile(outFilePath, json);
   }
@@ -326,7 +316,7 @@ yargs(hideBin(process.argv))
   .command("bundlePackage", "Create package .zip", () => {}, () => bundlePackage())
   .command("packidge", "Build package file from scratch", () => {}, () => packidge())
   .command("watch", "Build-on-chnage mode", () => {}, () => watch())
-  .command("buildPackTranslations", "Generate translation files for packs", () => {}, () => extractPackTranslationTemplates())
+  .command("buildPackTranslations", "Generate translation files for packs", () => {}, () => buildPackTranslations())
   .command("updateManifestFromCITagPush", "", () => {}, () => updateManifestFromCITagPush())
   .demandCommand(1)
   .parse();
