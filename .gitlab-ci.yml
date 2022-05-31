@@ -29,8 +29,8 @@ build:
   script:
     - export
     - npm i
-    - npx gulp updateManifestFromCITagPush
-    - npx gulp packidge
+    - ./tasks.js updateManifestFromCITagPush
+    - ./tasks.js packidge
     - ls -l
     - ls -l package
   artifacts:
