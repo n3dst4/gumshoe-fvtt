@@ -15,20 +15,12 @@ import globWithCallback from "glob";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-// promisified version of glob
-function glob (pattern, options) {
-  return new Promise((resolve, reject) => {
-    globWithCallback(pattern, options, (err, files) => {
-      if (err) { reject(err); } else { resolve(files); }
-    });
-  });
-}
-
-const log = console.log.bind(console, chalk.green("[task] "));
+// This file replaces gulp/grunk/jake/whatever and just provides a place to put
+// little build-related chunks of code and way to run them from the command
+// line.
 
 /// /////////////////////////////////////////////////////////////////////////////
 // Config
-
 const srcPath = "src";
 const manifestName = "system.json";
 const manifestPath = path.join(srcPath, manifestName);
@@ -41,7 +33,36 @@ const staticPaths = [
   "template.json",
   "packs",
 ];
-const lessGlob = `${srcPath}/**/*.less`;
+const lessGlobPattern = `${srcPath}/**/*.less`;
+
+/// ////////////////////////////////////////////////////////////////////////////
+// Utilities
+
+// promisified version of glob
+function glob (pattern, options) {
+  return new Promise((resolve, reject) => {
+    globWithCallback(pattern, options, (err, files) => {
+      if (err) { reject(err); } else { resolve(files); }
+    });
+  });
+}
+
+// logging function
+const log = console.log.bind(console, chalk.green("[task] "));
+
+// if subject is a semver string beginning with a v, remove the v
+const stripInitialv = (subject) => (
+  subject.replace(
+    /^v(\d+\.\d+\.\d+.*)/i,
+    (_, ...[match]) => match,
+  )
+);
+
+// given a path in the src folder, map it to the equivalent build folder path
+function srcToBuild (inPath) {
+  const outPath = path.join(buildPath, path.relative(srcPath, inPath));
+  return outPath;
+}
 
 /// /////////////////////////////////////////////////////////////////////////////
 // Startup
@@ -56,11 +77,6 @@ try {
 if (config?.dataPath) {
   const linkRoot = manifestName === "system.json" ? "systems" : "modules";
   linkDir = path.join(config.dataPath, "Data", linkRoot, manifest.name);
-}
-
-function srcToBuild (inPath) {
-  const outPath = path.join(buildPath, path.relative(srcPath, inPath));
-  return outPath;
 }
 
 /**
@@ -101,7 +117,7 @@ async function buildCode () {
 
 async function buildLess (paths) {
   if (paths === undefined) {
-    paths = await glob(lessGlob);
+    paths = await glob(lessGlobPattern);
   }
   return await Promise.all(paths.map(async (inPath) => {
     const src = await readFile(inPath);
@@ -227,13 +243,6 @@ async function link () {
   }
 }
 
-const stripInitialv = (subject) => (
-  subject.replace(
-    /^v(\d+\.\d+\.\d+.*)/i,
-    (_, ...[match]) => match,
-  )
-);
-
 /**
  * Update the manifest in CI
  */
@@ -283,7 +292,7 @@ async function bundlePackage () {
   });
 }
 
-function setProd () {
+async function setProd () {
   process.env.NODE_ENV = "production";
   return Promise.resolve();
 }
@@ -318,5 +327,6 @@ yargs(hideBin(process.argv))
   .command("watch", "Build-on-chnage mode", () => {}, () => watch())
   .command("buildPackTranslations", "Generate translation files for packs", () => {}, () => buildPackTranslations())
   .command("updateManifestFromCITagPush", "", () => {}, () => updateManifestFromCITagPush())
+  .completion()
   .demandCommand(1)
   .parse();
