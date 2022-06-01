@@ -2,6 +2,12 @@
 
 ## 4.11.1 (2022-06-01)
 
+* **Bug fix** New combat tracker show names, not IDs, now.
+* **Bug fix** Ability specialities only show up once.
+* **Bug fix** Double-clicking combatant now opens the actor sheet, like the standard combat tracker does.
+
+## 4.11.1 (2022-06-01)
+
 * **Bug fix** BIG WHOOPS. 4.11.0 incorrectly triggered an old migration which had the effect of wiping out actor notes and text fields. This version does not. Thanks to @Seamonster and Francesco Giorgi for reporting.
 
 ## 4.11.0 (2022-05-31)
