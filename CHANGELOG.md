@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 4.11.1 (2022-06-01)
+
+* **Bug fix** BIG WHOOPS. 4.11.0 incorrectly triggered an old migration which had the effect of wiping out actor notes and text fields. This version does not. Thanks to @Seamonster and Francesco Giorgi for reporting.
+
 ## 4.11.0 (2022-05-31)
 
 * Presets, like themes, are now decoupled from the core system, so we can write modules which add support for new games.

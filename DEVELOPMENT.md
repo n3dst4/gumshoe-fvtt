@@ -107,7 +107,9 @@ What this enables (list subject to change):
 
 To perform a release: 
 
-1. Update the version in `package.json` and `system.json`.
+1. Update the version in
+   * [`package.json`](package.json)
+   * [`system.json`](src/system.json).
 2. Update the `CHANGELOG`.
 3. Commit and push, and create a new tag and push it also, with this one handy command:
 
