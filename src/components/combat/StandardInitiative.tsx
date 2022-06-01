@@ -8,6 +8,9 @@ import {
   FaRecycle,
   FaTrash,
 } from "react-icons/fa";
+import {
+  HiDocumentText,
+} from "react-icons/hi";
 import { assertGame } from "../../functions";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 import { Dropdown } from "../inputs/Dropdown";
@@ -31,6 +34,7 @@ export const StandardInitiative: React.FC<StandardInitiativeProps> = ({
     onClearInitiative,
     onRemoveCombatant,
     localize,
+    openSheet,
   } = useInititative(combat, turn.id);
 
   return (
@@ -79,6 +83,9 @@ export const StandardInitiative: React.FC<StandardInitiativeProps> = ({
               </MenuItem>
               <MenuItem icon={<FaRecycle />} onClick={onDoInitiative}>
                 {localize("investigator.RefreshInitiative")}
+              </MenuItem>
+              <MenuItem icon={<HiDocumentText />} onClick={openSheet}>
+                {localize("investigator.OpenCharacterSheet")}
               </MenuItem>
               <MenuItem icon={<FaTrash />} onClick={onRemoveCombatant}>
                 {localize("COMBAT.CombatantRemove")}

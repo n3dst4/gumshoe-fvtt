@@ -28,6 +28,7 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
     onCombatantHoverIn,
     onCombatantHoverOut,
     localize,
+    onDoubleClick,
   } = useCombatant(combat, turn.id);
 
   const turnPassing = settings.useTurnPassingInitiative.get();
@@ -48,6 +49,7 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
       data-combatant-id={turn.id}
       onMouseEnter={onCombatantHoverIn}
       onMouseLeave={onCombatantHoverOut}
+      onDoubleClick={onDoubleClick}
       css={{
         height: "4em",
         position: "absolute",

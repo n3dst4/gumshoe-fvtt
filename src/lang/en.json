@@ -133,5 +133,6 @@
     "investigator.UseTurnPassingInitiative": "Use turn-passing initiative?",
     "investigator.AddTurn": "Add a turn",
     "investigator.RemoveTurn": "Remove a turn",
-    "investigator.NumberOfTurns": "Number of turns"
+    "investigator.NumberOfTurns": "Number of turns",
+    "investigator.OpenCharacterSheet": "Open character sheet"
 }

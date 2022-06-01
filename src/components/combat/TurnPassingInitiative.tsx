@@ -8,6 +8,9 @@ import {
   FaTrash,
   FaMinus,
 } from "react-icons/fa";
+import {
+  HiDocumentText,
+} from "react-icons/hi";
 import { assertGame, getTranslated } from "../../functions";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 import { Dropdown } from "../inputs/Dropdown";
@@ -41,6 +44,7 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
     localize,
     onAddTurn,
     onRemoveTurn,
+    openSheet,
   } = useInititative(combat, turn.id);
 
   const isActive = combat.activeTurnPassingCombatant === turn.id;
@@ -119,6 +123,9 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
               </MenuItem>
               <MenuItem icon={<FaMinus />} onClick={onRemoveTurn}>
                 {localize("investigator.RemoveTurn")}
+              </MenuItem>
+              <MenuItem icon={<HiDocumentText />} onClick={openSheet}>
+                {localize("investigator.OpenCharacterSheet")}
               </MenuItem>
               <MenuItem icon={<FaTrash />} onClick={onRemoveCombatant}>
                 {localize("COMBAT.CombatantRemove")}

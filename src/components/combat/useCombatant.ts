@@ -79,6 +79,14 @@ export const useCombatant = (
     [],
   );
 
+  const onDoubleClick = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      event.preventDefault();
+      combatantStash.current?.token?.actor?.sheet?.render(true);
+    },
+    [combatantStash],
+  );
+
   const localize = game.i18n.localize.bind(game.i18n);
 
   return {
@@ -87,5 +95,6 @@ export const useCombatant = (
     onCombatantHoverIn,
     onCombatantHoverOut,
     localize,
+    onDoubleClick,
   };
 };
