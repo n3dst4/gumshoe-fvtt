@@ -109,13 +109,6 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
           ))}
         </div>
       )}
-      {ability.data.data.hasSpecialities && (
-        <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
-          {(ability.data.data.specialities || []).map<JSX.Element>((x: string, i: number) => (
-            <div key={i}>{x.trim()}</div>
-          ))}
-        </div>
-      )}
     </Fragment>
   );
 };
