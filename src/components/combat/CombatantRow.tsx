@@ -70,7 +70,7 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
         title={turn.name}
       />
       <div className="token-name flexcol">
-        <h4>{turn.id}</h4>
+        <h4>{turn.name}</h4>
         <div className="combatant-controls flexrow">
           {game.user?.isGM && (
             <Fragment>
