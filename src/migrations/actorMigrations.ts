@@ -9,7 +9,6 @@ export const moveOldNotesToNewNoteSlots = (data: any, updateData: any) => {
       data.data.occupationalBenefits ||
       data.data.pillarsOfSanity ||
       data.data.sourcesOfStability ||
-      data.data.notes ||
       data.data.background
     );
 
@@ -24,14 +23,12 @@ export const moveOldNotesToNewNoteSlots = (data: any, updateData: any) => {
         data.data.occupationalBenefits || "",
         data.data.pillarsOfSanity || "",
         data.data.sourcesOfStability || "",
-        data.data.notes || "",
         data.data.background || "",
       ];
       updateData.data.drive = null;
       updateData.data.occupationalBenefits = null;
       updateData.data.pillarsOfSanity = null;
       updateData.data.sourcesOfStability = null;
-      updateData.data.notes = null;
       updateData.data.background = null;
     }
   }
