@@ -1,0 +1,35 @@
+{
+    "label": "SRD武器",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Firearm (heavy)": {
+            "name": "重火器"
+        },
+        "Firearm (light)": {
+            "name": "軽火器"
+        },
+        "Fist/kick": {
+            "name": "素手"
+        },
+        "Heavy club": {
+            "name": "棍棒"
+        },
+        "Knife": {
+            "name": "ナイフ"
+        },
+        "Machete": {
+            "name": "山刀"
+        },
+        "Police Baton": {
+            "name": "警棒"
+        },
+        "Small improvised weapon": {
+            "name": "小型の即席武器"
+        },
+        "Sword": {
+            "name": "刀剣"
+        }
+    }
+}
