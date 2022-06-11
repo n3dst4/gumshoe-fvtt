@@ -11,7 +11,7 @@
     "start": "NODE_ENV=development ./tasks.js watch",
     "clean": "./tasks.js clean",
     "buildPackTranslations": "./tasks.js buildPackTranslations",
-    "pull-translations": "tx pull",
+    "pull-translations": "tx pull -a",
     "analyze-bundle-dev": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json",
     "analyze-bundle-prod": "NODE_ENV=production npm run analyze-bundle-dev",
     "test": "jest"
