@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 4.12.0 (2022-06-12)
+
+* A small release to include some new translations:
+  * Polish (Core & SRD abilities)
+  * Japanese (Core, SRD weapons, and Path of Cthulhu)
+
 ## 4.11.1 (2022-06-01)
 
 * **Bug fix** New combat tracker show names, not IDs, now.
