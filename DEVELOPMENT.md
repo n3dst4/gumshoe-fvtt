@@ -5,6 +5,7 @@
   - [Migrations](#migrations)
   - [Generating Compendium packs](#generating-compendium-packs)
   - [Translations](#translations)
+    - [Getting set up to pull translations from Transifex](#getting-set-up-to-pull-translations-from-transifex)
   - [Adding Actor or Item data fields](#adding-actor-or-item-data-fields)
   - [Adding system settings](#adding-system-settings)
   - [Using the "Developer mode" module](#using-the-developer-mode-module)
@@ -54,11 +55,20 @@ There are three npm tasks pertaining to translations:
   * populate `src/lang/babele-sources` with template translation files based on the packs.
   * YOU WILL PROBABLY WANT TO UPLOAD THESE TO TRANSIFEX IF THEY CHANGE.
 * `npm run pull-translations` will:
-  * use the Transifex command line tool, [`tx`](https://docs.transifex.com/client/installing-the-client), to pull in the latest translations and overwrite all the JSONs.
+  * use the Transifex command line tool, [`tx`](https://github.com/transifex/cli), to pull in the latest translations and overwrite all the JSONs.
   * THIS WILL CLOBBER ANY JSON MODIFICATIONS WHICH HAVE NOT BEEN UPLOADED TO TRANSIFEX!
 
 To keep the translation imports running sweetly, you will need to update `.tx/config` to map everything to the right places.
 
+### Getting set up to pull translations from Transifex
+
+Install the Transifex commandline utility `tx` from https://github.com/transifex/cli
+
+There is some older documentation somewhere on the Transifes website that talks about their old Python-based cli client - ignore that. You want the new one written in Go, as linked above.
+
+The first time you try to pull translations, it will ask you to log in with an API token. It will give you instructions so I won't repeat them here.
+
+I have a manual download which I keep checked-in with my dotfiles, but the other installation methods listed may be preferable.
 
 ## Adding Actor or Item data fields
 
