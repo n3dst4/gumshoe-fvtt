@@ -1,0 +1,160 @@
+{
+    "label": "Umiejętność brak strachu",
+    "mapping": {
+        "category": "kategorie.danych"
+    },
+    "entries": {
+        "Athletics": {
+            "name": "Wysportowanie",
+            "category": "Ogólne"
+        },
+        "Aura Reading": {
+            "name": "Czytanie aury",
+            "category": "Moce mentalne"
+        },
+        "Bullshit Detector": {
+            "name": "Ocena szczerości",
+            "category": "Interpersonalne"
+        },
+        "Bureaucracy": {
+            "name": "Biurokracja",
+            "category": "Interpersonalne"
+        },
+        "Cop Talk": {
+            "name": "Sprawy policyjne",
+            "category": "Interpersonalne"
+        },
+        "Driving": {
+            "name": "Prowadzenie",
+            "category": "Ogólne"
+        },
+        "Filch": {
+            "name": "Zwinne palce",
+            "category": "Ogólne"
+        },
+        "Flattery": {
+            "name": "Pochlebstwa",
+            "category": "Interpersonalne"
+        },
+        "Fleeing": {
+            "name": "Uciekanie",
+            "category": "Ogólne"
+        },
+        "Flirting": {
+            "name": "Flirtowanie",
+            "category": "Interpersonalne"
+        },
+        "Health": {
+            "name": "Zdrowie",
+            "category": "Ogólne"
+        },
+        "Hiding": {
+            "name": "Ukrywanie ",
+            "category": "Ogólne"
+        },
+        "History": {
+            "name": "Historia",
+            "category": "Naukowe"
+        },
+        "Impersonate": {
+            "name": "Podszywanie się ",
+            "category": "Interpersonalne"
+        },
+        "Infiltration": {
+            "name": "infiltracja",
+            "category": "Ogólne"
+        },
+        "Interrogation": {
+            "name": "integracja",
+            "category": "Interpersonalne"
+        },
+        "Intimidation": {
+            "name": "Zastraszanie",
+            "category": "Interpersonalne"
+        },
+        "Languages": {
+            "name": "Języki",
+            "category": "Naukowe"
+        },
+        "Law": {
+            "name": "Prawo",
+            "category": "Naukowe"
+        },
+        "Mechanics": {
+            "name": "Naprawy mechaniczne",
+            "category": "Ogólne"
+        },
+        "Medic": {
+            "name": "Medycyna",
+            "category": "Ogólne"
+        },
+        "Medicine": {
+            "name": "Medycyna",
+            "category": "Techniczne"
+        },
+        "Negotiation": {
+            "name": "Negocjacje",
+            "category": "Interpersonalne"
+        },
+        "Notice": {
+            "name": "Zauwarzanie",
+            "category": "Techniczne"
+        },
+        "Occult Studies": {
+            "name": "Okultyzm",
+            "category": "Naukowe"
+        },
+        "Outdoor Survival": {
+            "name": "Umiejętności przetrwania",
+            "category": "Techniczne"
+        },
+        "Photography": {
+            "name": "Fotografia",
+            "category": "Techniczne"
+        },
+        "Preparedness": {
+            "name": "Przygotowanie",
+            "category": "Ogólne"
+        },
+        "Reassurance": {
+            "name": "Asekuracja",
+            "category": "Interpersonalne"
+        },
+        "Research": {
+            "name": "Badania",
+            "category": "Naukowe"
+        },
+        "Science!": {
+            "name": "Nauka!",
+            "category": "Techniczne"
+        },
+        "Scuffling": {
+            "name": "przepychanki",
+            "category": "Ogólne"
+        },
+        "Sense Trouble": {
+            "name": "Wyczucie zagrożenia",
+            "category": "Ogólne"
+        },
+        "Shooting": {
+            "name": "Broń palna",
+            "category": "Ogólne"
+        },
+        "Shrink": {
+            "name": "Psychoanaliza",
+            "category": "Ogólne"
+        },
+        "Stability": {
+            "name": "Stabilność",
+            "category": "Ogólne"
+        },
+        "Streetwise": {
+            "name": "Znajomość półświatka",
+            "category": "Interpersonalne"
+        },
+        "Trivia": {
+            "name": "Drobnostki",
+            "category": "Naukowe"
+        }
+    }
+}

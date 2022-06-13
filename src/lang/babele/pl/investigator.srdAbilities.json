@@ -1,0 +1,516 @@
+{
+    "label": "Umiejętności z SRD",
+    "mapping": {
+        "category": "kategorie.danych"
+    },
+    "entries": {
+        "Analytic Taste": {
+            "name": "Zmysł Analityczny",
+            "category": "Egzotyczne"
+        },
+        "Anthropology": {
+            "name": "Antropologia ",
+            "category": "Naukowe"
+        },
+        "Archaeology": {
+            "name": "Archeologia",
+            "category": "Naukowe"
+        },
+        "Architecture": {
+            "name": "Architektura",
+            "category": "Naukowe"
+        },
+        "Art History": {
+            "name": "Historia sztuki",
+            "category": "Naukowe"
+        },
+        "Artillery": {
+            "name": "Altyleria",
+            "category": "Fizyczne"
+        },
+        "Astronomy": {
+            "name": "Astronomia",
+            "category": "Naukowe"
+        },
+        "Athletics": {
+            "name": "Wysportowanie",
+            "category": "Fizyczne"
+        },
+        "Aura Reading": {
+            "name": "Czytanie aury",
+            "category": "Egzotyczne"
+        },
+        "Authority": {
+            "name": "Autorytet",
+            "category": "Interpersonalne"
+        },
+        "Ballistics": {
+            "name": "Balistyka",
+            "category": "Techniczne"
+        },
+        "Battlefield": {
+            "name": "Znajomość pola bitwy",
+            "category": "Skupienie"
+        },
+        "Belle-Lettres": {
+            "name": "Belle-Lettres  ",
+            "category": "Naukowe"
+        },
+        "Bonhomie": {
+            "name": "Dobroduszność",
+            "category": "Interpersonalne"
+        },
+        "Botany": {
+            "name": "Botanika",
+            "category": "Naukowe"
+        },
+        "Bullshit Detector": {
+            "name": "Ocena szczerości",
+            "category": "Interpersonalne"
+        },
+        "Bureaucracy": {
+            "name": "Biurokracja",
+            "category": "Interpersonalne"
+        },
+        "Burglary": {
+            "name": "Włamywanie się ",
+            "category": "Skupienie"
+        },
+        "Business Affairs": {
+            "name": "Sprawy biznesowe",
+            "category": "Prezencja"
+        },
+        "Camping": {
+            "name": "Obozowanie",
+            "category": "Techniczne"
+        },
+        "Charm": {
+            "name": "Urok",
+            "category": "Interpersonalne"
+        },
+        "Chemistry": {
+            "name": "Chemia",
+            "category": "Techniczne"
+        },
+        "Chronal Stability": {
+            "name": "Stabilność czasowa",
+            "category": "Egzotyczne"
+        },
+        "Comparative Religion": {
+            "name": "Teologia",
+            "category": "Naukowe"
+        },
+        "Composure": {
+            "name": "Opanownie",
+            "category": "Prezencja"
+        },
+        "Conceal": {
+            "name": "Ukrywanie się ",
+            "category": "Skupienie"
+        },
+        "Cop Talk": {
+            "name": "Sprawy policyjne",
+            "category": "Interpersonalne"
+        },
+        "Counterinsurgency": {
+            "name": "Przeciwdziałanie rebelii",
+            "category": "Techniczne"
+        },
+        "Craft": {
+            "name": "Rzemiosło",
+            "category": "Techniczne"
+        },
+        "Cryptography": {
+            "name": "Kryptologia",
+            "category": "Techniczne"
+        },
+        "Culture": {
+            "name": "Kultura",
+            "category": "Naukowe"
+        },
+        "Data Retrieval": {
+            "name": "Wyszukiwanie danych",
+            "category": "Techniczne"
+        },
+        "Disguise": {
+            "name": "Przebrania",
+            "category": "Skupienie"
+        },
+        "Document Analysis": {
+            "name": "Korzystanie z Bibliotek",
+            "category": "Techniczne"
+        },
+        "Driving": {
+            "name": "Prowadzenie",
+            "category": "Skupienie"
+        },
+        "Electronic Surveillance": {
+            "name": "Naprawy elektryczne",
+            "category": "Techniczne"
+        },
+        "Evidence Collection": {
+            "name": "Zbieranie dowodów",
+            "category": "Techniczne"
+        },
+        "Explosive Devices": {
+            "name": "urządzenia wybuchowe",
+            "category": "Techniczne"
+        },
+        "Explosives": {
+            "name": "ładunki wybuchowe",
+            "category": "Skupienie"
+        },
+        "Farming": {
+            "name": "Rolnictwo",
+            "category": "Techniczne"
+        },
+        "Fashion": {
+            "name": "Moda",
+            "category": "Naukowe"
+        },
+        "Fighting": {
+            "name": "Bójka",
+            "category": "Fizyczne"
+        },
+        "Filch": {
+            "name": "Zwinne palce",
+            "category": "Skupienie"
+        },
+        "Fingerprinting": {
+            "name": "Zdejmowanie odcisków palców",
+            "category": "Techniczne"
+        },
+        "First Aid": {
+            "name": "Pierwsza pomoc",
+            "category": "Skupienie"
+        },
+        "Flattery": {
+            "name": "Pochlebstwa",
+            "category": "Interpersonalne"
+        },
+        "Fleeing": {
+            "name": "Uciekanie",
+            "category": "Fizyczne"
+        },
+        "Flirting": {
+            "name": "Flirtowanie",
+            "category": "Interpersonalne"
+        },
+        "Forensic Accounting": {
+            "name": "Rachunkowość kryminalistyczna",
+            "category": "Naukowe"
+        },
+        "Forensic Anthropology": {
+            "name": "Antropologia kryminalna",
+            "category": "Techniczne"
+        },
+        "Forensic Entomology": {
+            "name": "Antropologia kryminalna\n ",
+            "category": "Techniczne"
+        },
+        "Forensic Psychology": {
+            "name": "Antropologia kryminalna",
+            "category": "Naukowe"
+        },
+        "Forgery": {
+            "name": "Fałszerstwo",
+            "category": "Techniczne"
+        },
+        "Gambling": {
+            "name": "Hazard",
+            "category": "Prezencja"
+        },
+        "Geology": {
+            "name": "Geologia",
+            "category": "Naukowe"
+        },
+        "Hacking": {
+            "name": "Hakowanie",
+            "category": "Techniczne"
+        },
+        "Health": {
+            "name": "Zdrowie",
+            "category": "Fizyczne"
+        },
+        "High Society": {
+            "name": "Etykieta",
+            "category": "Interpersonalne"
+        },
+        "History": {
+            "name": "Historia",
+            "category": "Naukowe"
+        },
+        "Hunting": {
+            "name": "Polowanie",
+            "category": "Techniczne"
+        },
+        "Hypnosis": {
+            "name": "Hipnoza",
+            "category": "Prezencja"
+        },
+        "Impersonate": {
+            "name": "Podszywanie się ",
+            "category": "Interpersonalne"
+        },
+        "Infiltration": {
+            "name": "infiltracja",
+            "category": "Fizyczne"
+        },
+        "Inspiration": {
+            "name": "inspirowanie",
+            "category": "Interpersonalne"
+        },
+        "Insurgency": {
+            "name": "Powstanie przeciw władzy",
+            "category": "Skupienie"
+        },
+        "Interrogation": {
+            "name": "integracja",
+            "category": "Interpersonalne"
+        },
+        "Intimidation": {
+            "name": "Zastraszanie",
+            "category": "Interpersonalne"
+        },
+        "Intuition": {
+            "name": "Intuicja ",
+            "category": "Techniczne"
+        },
+        "Languages": {
+            "name": "Języki",
+            "category": "Naukowe"
+        },
+        "Law": {
+            "name": "Prawo",
+            "category": "Naukowe"
+        },
+        "Leadership": {
+            "name": "Przywództwo ",
+            "category": "Interpersonalne"
+        },
+        "Linguistics": {
+            "name": "Lingwistyka",
+            "category": "Naukowe"
+        },
+        "Locksmith": {
+            "name": "Otwieranie zamków",
+            "category": "Techniczne"
+        },
+        "Mechanics": {
+            "name": "Naprawy mechaniczne",
+            "category": "Skupienie"
+        },
+        "Medic": {
+            "name": "Medycyna",
+            "category": "Skupienie"
+        },
+        "Medical Expertise": {
+            "name": "Ekspertyza medyczna",
+            "category": "Techniczne"
+        },
+        "Military History": {
+            "name": "Historia wojskowości",
+            "category": "Naukowe"
+        },
+        "Military Tactics": {
+            "name": "Taktyka wojskowa",
+            "category": "Naukowe"
+        },
+        "Morale": {
+            "name": "Morale",
+            "category": "Prezencja"
+        },
+        "Mutant Power: Blood Spray": {
+            "name": "Moc mutantów: oprysk krwi",
+            "category": "Egzotyczne"
+        },
+        "Natural History": {
+            "name": "Historia naturalna",
+            "category": "Naukowe"
+        },
+        "Negotiation": {
+            "name": "Negocjacje",
+            "category": "Interpersonalne"
+        },
+        "Network": {
+            "name": "Powiązania",
+            "category": "Skupienie"
+        },
+        "Notice": {
+            "name": "Zauwarzanie",
+            "category": "Techniczne"
+        },
+        "Occult Studies": {
+            "name": "Okultyzm",
+            "category": "Naukowe"
+        },
+        "Oral History": {
+            "name": "Przekazy ustne",
+            "category": "Interpersonalne"
+        },
+        "Outdoor Survival": {
+            "name": "Umiejętności przetrwania",
+            "category": "Techniczne"
+        },
+        "Painting": {
+            "name": "Malownaie",
+            "category": "Techniczne"
+        },
+        "Paradox Prevention": {
+            "name": "Zapobieganie paradoksom",
+            "category": "Techniczne"
+        },
+        "Pathology": {
+            "name": "Patologia",
+            "category": "Naukowe"
+        },
+        "Pathway Amplification": {
+            "name": "Powstanie przeciw władzy...",
+            "category": "Egzotyczne"
+        },
+        "People Person": {
+            "name": "Osoba z ludu",
+            "category": "Interpersonalne"
+        },
+        "Photography": {
+            "name": "Fotografia",
+            "category": "Techniczne"
+        },
+        "Piloting": {
+            "name": "Sterowanie",
+            "category": "Fizyczne"
+        },
+        "Poetry": {
+            "name": "Poezja",
+            "category": "Naukowe"
+        },
+        "Political Science": {
+            "name": "Politologia",
+            "category": "Naukowe"
+        },
+        "Politics": {
+            "name": "Polityka",
+            "category": "Prezencja"
+        },
+        "Preparedness": {
+            "name": "Przygotowanie",
+            "category": "Prezencja"
+        },
+        "Public Relations": {
+            "name": "Public Relations",
+            "category": "Prezencja"
+        },
+        "Reality Anchor": {
+            "name": "Kotwica rzeczywistości",
+            "category": "Egzotyczne"
+        },
+        "Reassurance": {
+            "name": "Asekuracja",
+            "category": "Interpersonalne"
+        },
+        "Research": {
+            "name": "Badania",
+            "category": "Naukowe"
+        },
+        "Respect": {
+            "name": "Szacunek",
+            "category": "Interpersonalne"
+        },
+        "Riding": {
+            "name": "Jeździectwo",
+            "category": "Fizyczne"
+        },
+        "Salt of the Earth": {
+            "name": "Sól ziemi",
+            "category": "Interpersonalne"
+        },
+        "Science!": {
+            "name": "Nauka!",
+            "category": "Techniczne"
+        },
+        "Scrounging": {
+            "name": "Żebractwo",
+            "category": "Prezencja"
+        },
+        "Scuffling": {
+            "name": "przepychanki",
+            "category": "Fizyczne"
+        },
+        "Sculpture": {
+            "name": "Rzeźbiarstwo",
+            "category": "Techniczne"
+        },
+        "Sense Trouble": {
+            "name": "Wyczucie zagrożenia",
+            "category": "Prezencja"
+        },
+        "Shooting": {
+            "name": "Broń palna",
+            "category": "Fizyczne"
+        },
+        "Shrink": {
+            "name": "Psychoanaliza",
+            "category": "Prezencja"
+        },
+        "Society": {
+            "name": "Wiedza ogólna",
+            "category": "Interpersonalne"
+        },
+        "Spying": {
+            "name": "Śledzenie",
+            "category": "Techniczne"
+        },
+        "Stability": {
+            "name": "Stabilność",
+            "category": "Prezencja"
+        },
+        "Streetwise": {
+            "name": "Znajomość półświatka",
+            "category": "Interpersonalne"
+        },
+        "Surveillance": {
+            "name": "Nadzór",
+            "category": "Skupienie"
+        },
+        "Taunt": {
+            "name": "Kpina",
+            "category": "Interpersonalne"
+        },
+        "Terrain": {
+            "name": "Teren",
+            "category": "Techniczne"
+        },
+        "Textual Analysis": {
+            "name": "Analiza tekstowa",
+            "category": "Naukowe"
+        },
+        "Timecraft": {
+            "name": "Rzemiosło czasu",
+            "category": "Naukowe"
+        },
+        "Tradecraft": {
+            "name": "Rzemiosło",
+            "category": "Interpersonalne"
+        },
+        "Traffic Analysis": {
+            "name": "Analiza ruchu",
+            "category": "Techniczne"
+        },
+        "Traps and Bombs": {
+            "name": "Półapki i bomby",
+            "category": "Skupienie"
+        },
+        "Trivia": {
+            "name": "Drobnostki",
+            "category": "Naukowe"
+        },
+        "Unobtrusiveness": {
+            "name": "Dyskretność",
+            "category": "Skupienie"
+        },
+        "Viroware Enhancement: Dominator": {
+            "name": "Ulepszanie oprogramowania wirusowego: Dominator",
+            "category": "Egzotyczne"
+        }
+    }
+}

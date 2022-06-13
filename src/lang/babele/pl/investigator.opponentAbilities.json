@@ -1,0 +1,30 @@
+{
+    "label": "Umiejętności przeciwnika",
+    "mapping": {
+        "category": "kategorie.danych"
+    },
+    "entries": {
+        "Athletics": {
+            "name": "Wysportowanie",
+            "category": "Ogólne"
+        },
+        "Health": {
+            "name": "Zdrowie",
+            "category": "Ogólne"
+        },
+        "Melee Attack": {
+            "name": "Atak wręcz"
+        },
+        "Ranged Attack": {
+            "name": "Atak na dystans"
+        },
+        "Scuffling": {
+            "name": "przepychanki",
+            "category": "Ogólne"
+        },
+        "Shooting": {
+            "name": "Broń palna",
+            "category": "Ogólne"
+        }
+    }
+}

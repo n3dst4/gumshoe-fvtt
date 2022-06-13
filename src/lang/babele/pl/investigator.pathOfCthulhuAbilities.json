@@ -1,0 +1,168 @@
+{
+    "label": "Scieżka umiejętności Cthulhu",
+    "mapping": {
+        "category": "kategorie.danych"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "Antropologia ",
+            "category": "Naukowe"
+        },
+        "Archeology": {
+            "name": "Archeologia",
+            "category": "Naukowe"
+        },
+        "Architecture": {
+            "name": "Architektura",
+            "category": "Naukowe"
+        },
+        "Art History": {
+            "name": "Historia sztuki",
+            "category": "Naukowe"
+        },
+        "Astronomy": {
+            "name": "Astronomia",
+            "category": "Techniczne"
+        },
+        "Athletics": {
+            "name": "Wysportowanie",
+            "category": "Ogólne"
+        },
+        "Bureaucracy": {
+            "name": "Biurokracja",
+            "category": "Interpersonalne"
+        },
+        "Chemistry": {
+            "name": "Chemia",
+            "category": "Techniczne"
+        },
+        "Conceal": {
+            "name": "Ukrywanie się ",
+            "category": "Ogólne"
+        },
+        "Cop Talk": {
+            "name": "Sprawy policyjne",
+            "category": "Interpersonalne"
+        },
+        "Craft": {
+            "name": "Rzemiosło",
+            "category": "Techniczne"
+        },
+        "Cryptography": {
+            "name": "Kryptologia",
+            "category": "Naukowe"
+        },
+        "Disguise": {
+            "name": "Przebrania",
+            "category": "Ogólne"
+        },
+        "Driving": {
+            "name": "Prowadzenie",
+            "category": "Ogólne"
+        },
+        "Evidence Collection": {
+            "name": "Zbieranie dowodów",
+            "category": "Techniczne"
+        },
+        "Explosives": {
+            "name": "ładunki wybuchowe",
+            "category": "Ogólne"
+        },
+        "Filch": {
+            "name": "Zwinne palce",
+            "category": "Ogólne"
+        },
+        "First Aid": {
+            "name": "Pierwsza pomoc",
+            "category": "Ogólne"
+        },
+        "Flattery": {
+            "name": "Pochlebstwa",
+            "category": "Interpersonalne"
+        },
+        "Fleeing": {
+            "name": "Uciekanie",
+            "category": "Ogólne"
+        },
+        "Geology": {
+            "name": "Geologia",
+            "category": "Naukowe"
+        },
+        "Health": {
+            "name": "Zdrowie",
+            "category": "Ogólne"
+        },
+        "History": {
+            "name": "Historia",
+            "category": "Naukowe"
+        },
+        "Hypnosis": {
+            "name": "Hipnoza",
+            "category": "Ogólne"
+        },
+        "Interrogation": {
+            "name": "integracja",
+            "category": "Interpersonalne"
+        },
+        "Intimidation": {
+            "name": "Zastraszanie",
+            "category": "Interpersonalne"
+        },
+        "Languages": {
+            "name": "Języki",
+            "category": "Naukowe"
+        },
+        "Law": {
+            "name": "Prawo",
+            "category": "Naukowe"
+        },
+        "Locksmith": {
+            "name": "Otwieranie zamków",
+            "category": "Techniczne"
+        },
+        "Mechanics": {
+            "name": "Naprawy mechaniczne",
+            "category": "Ogólne"
+        },
+        "Oral History": {
+            "name": "Przekazy ustne",
+            "category": "Interpersonalne"
+        },
+        "Photography": {
+            "name": "Fotografia",
+            "category": "Techniczne"
+        },
+        "Piloting": {
+            "name": "Sterowanie",
+            "category": "Ogólne"
+        },
+        "Preparedness": {
+            "name": "Przygotowanie",
+            "category": "Ogólne"
+        },
+        "Reassurance": {
+            "name": "Asekuracja",
+            "category": "Interpersonalne"
+        },
+        "Riding": {
+            "name": "Jeździectwo",
+            "category": "Ogólne"
+        },
+        "Scuffling": {
+            "name": "przepychanki",
+            "category": "Ogólne"
+        },
+        "Sense Trouble": {
+            "name": "Wyczucie zagrożenia",
+            "category": "Ogólne"
+        },
+        "Stability": {
+            "name": "Stabilność",
+            "category": "Ogólne"
+        },
+        "Streetwise": {
+            "name": "Znajomość półświatka",
+            "category": "Interpersonalne"
+        }
+    }
+}

@@ -1,0 +1,172 @@
+{
+    "label": "Umiejętności bladych gwiazd",
+    "mapping": {
+        "category": "kategorie.danych"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "Antropologia ",
+            "category": "Naukowe"
+        },
+        "Archaeology": {
+            "name": "Archeologia",
+            "category": "Naukowe"
+        },
+        "Astronomy": {
+            "name": "Astronomia",
+            "category": "Techniczne"
+        },
+        "Athletics": {
+            "name": "Wysportowanie",
+            "category": "Ogólne"
+        },
+        "Botany": {
+            "name": "Botanika",
+            "category": "Naukowe"
+        },
+        "Bullshit Detector": {
+            "name": "Ocena szczerości",
+            "category": "Interpersonalne"
+        },
+        "Bureaucracy": {
+            "name": "Biurokracja",
+            "category": "Interpersonalne"
+        },
+        "Business Affairs": {
+            "name": "Sprawy biznesowe",
+            "category": "Ogólne"
+        },
+        "Chemistry": {
+            "name": "Chemia",
+            "category": "Techniczne"
+        },
+        "Cop Talk": {
+            "name": "Sprawy policyjne",
+            "category": "Interpersonalne"
+        },
+        "Cryptography": {
+            "name": "Kryptologia",
+            "category": "Techniczne"
+        },
+        "Culture": {
+            "name": "Kultura",
+            "category": "Naukowe"
+        },
+        "Data Retrieval": {
+            "name": "Wyszukiwanie danych",
+            "category": "Techniczne"
+        },
+        "Evidence Collection": {
+            "name": "Zbieranie dowodów",
+            "category": "Techniczne"
+        },
+        "Explosive Devices": {
+            "name": "urządzenia wybuchowe",
+            "category": "Techniczne"
+        },
+        "Filch": {
+            "name": "Zwinne palce",
+            "category": "Ogólne"
+        },
+        "Flattery": {
+            "name": "Pochlebstwa",
+            "category": "Interpersonalne"
+        },
+        "Flirting": {
+            "name": "Flirtowanie",
+            "category": "Interpersonalne"
+        },
+        "Forensic Accounting": {
+            "name": "Rachunkowość kryminalistyczna",
+            "category": "Naukowe"
+        },
+        "Forensic Anthropology": {
+            "name": "Antropologia kryminalna",
+            "category": "Techniczne"
+        },
+        "Forensic Psychology": {
+            "name": "Antropologia kryminalna",
+            "category": "Naukowe"
+        },
+        "Geology": {
+            "name": "Geologia",
+            "category": "Naukowe"
+        },
+        "Health": {
+            "name": "Zdrowie",
+            "category": "Ogólne"
+        },
+        "History": {
+            "name": "Historia",
+            "category": "Naukowe"
+        },
+        "Impersonate": {
+            "name": "Podszywanie się ",
+            "category": "Interpersonalne"
+        },
+        "Infiltration": {
+            "name": "infiltracja",
+            "category": "Ogólne"
+        },
+        "Inspiration": {
+            "name": "inspirowanie",
+            "category": "Interpersonalne"
+        },
+        "Interrogation": {
+            "name": "integracja",
+            "category": "Interpersonalne"
+        },
+        "Intimidation": {
+            "name": "Zastraszanie",
+            "category": "Interpersonalne"
+        },
+        "Law": {
+            "name": "Prawo",
+            "category": "Naukowe"
+        },
+        "Linguistics": {
+            "name": "Lingwistyka",
+            "category": "Naukowe"
+        },
+        "Medic": {
+            "name": "Medycyna",
+            "category": "Ogólne"
+        },
+        "Negotiation": {
+            "name": "Negocjacje",
+            "category": "Interpersonalne"
+        },
+        "Preparedness": {
+            "name": "Przygotowanie",
+            "category": "Ogólne"
+        },
+        "Public Relations": {
+            "name": "Public Relations",
+            "category": "Ogólne"
+        },
+        "Reassurance": {
+            "name": "Asekuracja",
+            "category": "Interpersonalne"
+        },
+        "Respect": {
+            "name": "Szacunek",
+            "category": "Interpersonalne"
+        },
+        "Scuffling": {
+            "name": "przepychanki",
+            "category": "Ogólne"
+        },
+        "Sense Trouble": {
+            "name": "Wyczucie zagrożenia",
+            "category": "Ogólne"
+        },
+        "Shooting": {
+            "name": "Broń palna",
+            "category": "Ogólne"
+        },
+        "Surveillance": {
+            "name": "Nadzór",
+            "category": "Ogólne"
+        }
+    }
+}

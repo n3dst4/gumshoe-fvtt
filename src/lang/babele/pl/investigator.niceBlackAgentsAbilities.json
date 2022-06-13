@@ -1,0 +1,208 @@
+{
+    "label": "Umiejętności agenta",
+    "mapping": {
+        "category": "kategorie.danych"
+    },
+    "entries": {
+        "Accounting": {
+            "name": "Księgowość",
+            "category": "Naukowe"
+        },
+        "Archaeology": {
+            "name": "Archeologia",
+            "category": "Naukowe"
+        },
+        "Architecture": {
+            "name": "Architektura",
+            "category": "Naukowe"
+        },
+        "Art History": {
+            "name": "Historia sztuki",
+            "category": "Naukowe"
+        },
+        "Astronomy": {
+            "name": "Astronomia",
+            "category": "Techniczne"
+        },
+        "Athletics": {
+            "name": "Wysportowanie",
+            "category": "Ogólne"
+        },
+        "Bullshit Detector": {
+            "name": "Ocena szczerości",
+            "category": "Interpersonalne"
+        },
+        "Bureaucracy": {
+            "name": "Biurokracja",
+            "category": "Interpersonalne"
+        },
+        "Chemistry": {
+            "name": "Chemia",
+            "category": "Techniczne"
+        },
+        "Conceal": {
+            "name": "Ukrywanie się ",
+            "category": "Ogólne"
+        },
+        "Cop Talk": {
+            "name": "Sprawy policyjne",
+            "category": "Interpersonalne"
+        },
+        "Cryptography": {
+            "name": "Kryptologia",
+            "category": "Techniczne"
+        },
+        "Disguise": {
+            "name": "Przebrania",
+            "category": "Ogólne"
+        },
+        "Driving": {
+            "name": "Prowadzenie",
+            "category": "Ogólne"
+        },
+        "Electronic Surveillance": {
+            "name": "Naprawy elektryczne",
+            "category": "Techniczne"
+        },
+        "Filch": {
+            "name": "Zwinne palce",
+            "category": "Ogólne"
+        },
+        "Flattery": {
+            "name": "Pochlebstwa",
+            "category": "Interpersonalne"
+        },
+        "Flirting": {
+            "name": "Flirtowanie",
+            "category": "Interpersonalne"
+        },
+        "Forgery": {
+            "name": "Fałszerstwo",
+            "category": "Techniczne"
+        },
+        "Gambling": {
+            "name": "Hazard",
+            "category": "Ogólne"
+        },
+        "Hand-to-Hand": {
+            "name": "Ręka w rękę",
+            "category": "Ogólne"
+        },
+        "Health": {
+            "name": "Zdrowie",
+            "category": "Ogólne"
+        },
+        "High Society": {
+            "name": "Etykieta",
+            "category": "Interpersonalne"
+        },
+        "History": {
+            "name": "Historia",
+            "category": "Naukowe"
+        },
+        "Infiltration": {
+            "name": "infiltracja",
+            "category": "Ogólne"
+        },
+        "Interrogation": {
+            "name": "integracja",
+            "category": "Interpersonalne"
+        },
+        "Intimidation": {
+            "name": "Zastraszanie",
+            "category": "Interpersonalne"
+        },
+        "Languages": {
+            "name": "Języki",
+            "category": "Naukowe"
+        },
+        "Law": {
+            "name": "Prawo",
+            "category": "Naukowe"
+        },
+        "Mechanics": {
+            "name": "Naprawy mechaniczne",
+            "category": "Ogólne"
+        },
+        "Medic": {
+            "name": "Medycyna",
+            "category": "Ogólne"
+        },
+        "Military Science": {
+            "name": "Nauka wojskowości",
+            "category": "Naukowe"
+        },
+        "Negotiation": {
+            "name": "Negocjacje",
+            "category": "Interpersonalne"
+        },
+        "Network": {
+            "name": "Powiązania",
+            "category": "Ogólne"
+        },
+        "Notice": {
+            "name": "Zauwarzanie",
+            "category": "Techniczne"
+        },
+        "Occult Studies": {
+            "name": "Okultyzm",
+            "category": "Naukowe"
+        },
+        "Outdoor Survival": {
+            "name": "Umiejętności przetrwania",
+            "category": "Techniczne"
+        },
+        "Photography": {
+            "name": "Fotografia",
+            "category": "Techniczne"
+        },
+        "Piloting": {
+            "name": "Sterowanie",
+            "category": "Ogólne"
+        },
+        "Preparedness": {
+            "name": "Przygotowanie",
+            "category": "Ogólne"
+        },
+        "Reassurance": {
+            "name": "Asekuracja",
+            "category": "Interpersonalne"
+        },
+        "Research": {
+            "name": "Badania",
+            "category": "Naukowe"
+        },
+        "Sense Trouble": {
+            "name": "Wyczucie zagrożenia",
+            "category": "Ogólne"
+        },
+        "Shooting": {
+            "name": "Broń palna",
+            "category": "Ogólne"
+        },
+        "Shrink": {
+            "name": "Psychoanaliza",
+            "category": "Ogólne"
+        },
+        "Stability": {
+            "name": "Stabilność",
+            "category": "Ogólne"
+        },
+        "Streetwise": {
+            "name": "Znajomość półświatka",
+            "category": "Interpersonalne"
+        },
+        "Surveillance": {
+            "name": "Nadzór",
+            "category": "Ogólne"
+        },
+        "Tradecraft": {
+            "name": "Rzemiosło",
+            "category": "Interpersonalne"
+        },
+        "Traffic Analysis": {
+            "name": "Analiza ruchu",
+            "category": "Techniczne"
+        }
+    }
+}
