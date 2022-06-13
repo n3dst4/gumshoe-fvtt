@@ -112,6 +112,11 @@
       "lang": "ja",
       "name": "日本語",
       "path": "lang/ja-JP.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "lang/pl.json"
     }
   ],
   "gridDistance": 1,
