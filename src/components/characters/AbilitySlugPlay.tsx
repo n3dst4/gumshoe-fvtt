@@ -103,7 +103,7 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
       </div>
       <UnlockBadges ability={ability} css={{ gridColumn: "1/-1" }}/>
       {ability.data.data.hasSpecialities && (
-        <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
+        <div css={{ paddingLeft: "1em", gridColumn: "1/-1" }}>
           {(ability.data.data.specialities || []).map<JSX.Element>((x: string, i: number) => (
             <div key={i}>{x.trim()}</div>
           ))}
