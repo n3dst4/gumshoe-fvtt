@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { Unlock } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";

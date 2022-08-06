@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { ReactNode, useCallback } from "react";
 import { assertAbilityDataSource } from "../../types";
 import { Translate } from "../Translate";

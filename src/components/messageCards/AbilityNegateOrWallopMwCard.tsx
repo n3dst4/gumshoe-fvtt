@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { Translate } from "../Translate";
@@ -14,10 +12,10 @@ type WallopNegateMode =
 
 interface AbilityNegateOrWallopMwCardProps {
   msg: ChatMessage;
-  ability: InvestigatorItem|undefined;
+  ability: InvestigatorItem | undefined;
   pool: number;
   mode: WallopNegateMode;
-  name: string|null;
+  name: string | null;
 }
 
 const deets: { [mode in WallopNegateMode]: MWResult } = {
@@ -37,9 +35,18 @@ export const AbilityNegateOrWallopMwCard: React.FC<AbilityNegateOrWallopMwCardPr
       ability?.sheet?.render(true);
     }, [ability?.sheet]);
 
-    const costFactor = mode === constants.htmlDataModeMwNegate
-      ? <span><Translate>Negate</Translate>: -{constants.mwNegateCost}</span>
-      : <span><Translate>Wallop</Translate>: -{constants.mwWallopCost}</span>;
+    const costFactor =
+      mode === constants.htmlDataModeMwNegate
+        ? (
+        <span>
+          <Translate>Negate</Translate>: -{constants.mwNegateCost}
+        </span>
+          )
+        : (
+        <span>
+          <Translate>Wallop</Translate>: -{constants.mwWallopCost}
+        </span>
+          );
 
     return (
       <div
@@ -60,7 +67,9 @@ export const AbilityNegateOrWallopMwCard: React.FC<AbilityNegateOrWallopMwCardPr
           }}
         >
           <b>
-            <a onClick={onClickAbilityName}>{name ?? ability?.data.name ?? "Missing"}</a>
+            <a onClick={onClickAbilityName}>
+              {name ?? ability?.data.name ?? "Missing"}
+            </a>
           </b>
         </div>
         {/* POOL */}
@@ -77,3 +86,5 @@ export const AbilityNegateOrWallopMwCard: React.FC<AbilityNegateOrWallopMwCardPr
       </div>
     );
   });
+
+AbilityNegateOrWallopMwCard.displayName = "AbilityNegateOrWallopMwCard";

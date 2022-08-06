@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { CSSObject, jsx } from "@emotion/react";
+import { CSSObject } from "@emotion/react";
 import React from "react";
 import { equipment, mwItem, weapon } from "../constants";
 import { InvestigatorItem } from "../module/InvestigatorItem";

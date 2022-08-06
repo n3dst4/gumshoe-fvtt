@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import { sortEntitiesByName } from "../../../functions";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";

@@ -1,7 +1,5 @@
-/** @jsx jsx */
-import { Fragment, ReactNode, useCallback } from "react";
+import React, { Fragment, ReactNode, useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { jsx } from "@emotion/react";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
 import { CSSReset, CSSResetMode } from "../CSSReset";

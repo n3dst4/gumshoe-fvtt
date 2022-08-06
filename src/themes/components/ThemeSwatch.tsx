@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import { CSSReset, CSSResetMode } from "../../components/CSSReset";
 import { ThemeV1 } from "../types";

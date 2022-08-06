@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import { Stat } from "@lumphammer/investigator-fvtt-types";
 import React, { Fragment, useCallback } from "react";
 import { assertActiveCharacterDataSource } from "../../types";

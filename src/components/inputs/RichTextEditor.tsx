@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useEffect, useRef, useState } from "react";
 import { absoluteCover } from "../absoluteCover";
 type RichTextEditorProps = {

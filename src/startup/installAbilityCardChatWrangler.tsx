@@ -1,7 +1,3 @@
-/** @jsx jsx */
-import {
-  jsx,
-} from "@emotion/react";
 import ReactDOM from "react-dom";
 import {
   assertGame,
@@ -13,6 +9,7 @@ import { AttackCard } from "../components/messageCards/AttackCard";
 import { AbilityTestMwCard } from "../components/messageCards/AbilityTestMwCard";
 import { MWDifficulty } from "../types";
 import { AbilityNegateOrWallopMwCard } from "../components/messageCards/AbilityNegateOrWallopMwCard";
+import React from "react";
 
 export const installAbilityCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {

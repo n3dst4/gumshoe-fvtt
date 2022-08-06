@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";

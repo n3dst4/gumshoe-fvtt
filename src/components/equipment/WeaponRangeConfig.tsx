@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";

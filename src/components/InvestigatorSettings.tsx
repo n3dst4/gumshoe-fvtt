@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
 import React, { useCallback, useMemo, useState } from "react";
 import { customSystem, settingsSaved } from "../constants";

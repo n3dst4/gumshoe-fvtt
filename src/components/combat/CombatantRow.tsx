@@ -1,6 +1,4 @@
-/** @jsx jsx */
 import { cx } from "@emotion/css";
-import { jsx } from "@emotion/react";
 import React, { Fragment, ReactNode } from "react";
 import { assertGame } from "../../functions";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";

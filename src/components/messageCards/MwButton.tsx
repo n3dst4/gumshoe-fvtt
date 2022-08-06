@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { CSSObject, jsx } from "@emotion/react";
+import { CSSObject } from "@emotion/react";
 import React, { Fragment } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useHover } from "../../hooks/useHover";

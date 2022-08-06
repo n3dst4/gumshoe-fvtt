@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AbilitySlugPlayMw } from "./AbilitySlugPlayMw";

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { settings } from "../../settings";
 

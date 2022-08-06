@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { generalAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";

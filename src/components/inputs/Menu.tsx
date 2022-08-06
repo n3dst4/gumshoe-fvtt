@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { PropsWithChildren, ReactNode, useContext } from "react";
 import { CloseContext } from "./Dropdown";
 

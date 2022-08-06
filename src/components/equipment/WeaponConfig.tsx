@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { GridField } from "../inputs/GridField";

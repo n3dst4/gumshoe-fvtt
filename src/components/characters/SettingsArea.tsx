@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext } from "react";
 import { assertGame, getDevMode, getTranslated } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";

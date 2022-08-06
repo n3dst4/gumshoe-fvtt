@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { ChangeEvent, useCallback, useContext, useRef } from "react";
 import { assertGame } from "../../functions";
 import { IdContext } from "../IdContext";

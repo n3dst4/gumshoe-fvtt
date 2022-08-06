@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useCallback, useContext } from "react";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { FoundryAppContext } from "../../FoundryAppContext";

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
 import React, { ReactNode, useMemo } from "react";
 import { IdContext } from "../IdContext";

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { DiceTerms } from "./DiceTerms";
@@ -118,3 +116,5 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(({
     </div>
   );
 });
+
+AbilityTestMwCard.displayName = "AbilityTestMwCard";

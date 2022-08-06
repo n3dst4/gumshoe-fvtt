@@ -1,7 +1,3 @@
-/** @jsx jsx */
-import {
-  jsx,
-} from "@emotion/react";
 import React, { useCallback, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { CSSTransition } from "react-transition-group";
@@ -149,3 +145,5 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(({
     </div>
   );
 });
+
+AttackCard.displayName = "AttackCard";

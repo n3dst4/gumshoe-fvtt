@@ -1,7 +1,5 @@
-/** @jsx jsx */
-import { Fragment, ReactNode } from "react";
+import React, { Fragment, ReactNode } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { jsx } from "@emotion/react";
 import { CSSReset, CSSResetMode } from "../CSSReset";
 import { TabContainer } from "../TabContainer";
 import { LogoEditable } from "./LogoEditable";

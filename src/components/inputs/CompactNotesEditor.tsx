@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useCallback, useState } from "react";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 import { toHtml } from "../../textFunctions";

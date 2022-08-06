@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import { nanoid } from "nanoid";
 import React, { ChangeEvent, Fragment, useCallback, useContext, useMemo, useState } from "react";
 import { ThemeContext } from "../themes/ThemeContext";
@@ -66,7 +64,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
       {["foo", "bar"].map<JSX.Element>((x) => <span key={x}/>)}
 
       <div className="tab-strip">
-        {tabs.map<jsx.JSX.Element>(({ id, label }) => {
+        {tabs.map<JSX.Element>(({ id, label }) => {
           const htmlId = nanoid();
           return (
             <Fragment key={id}>

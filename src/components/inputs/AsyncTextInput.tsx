@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "./TextInput";

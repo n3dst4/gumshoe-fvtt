@@ -1,6 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
-
 import React, { useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityDataSource, isAbilityDataSource } from "../../types";

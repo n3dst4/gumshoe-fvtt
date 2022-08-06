@@ -1,6 +1,4 @@
-/** @jsx jsx */
 import { cx } from "@emotion/css";
-import { jsx } from "@emotion/react";
 import { sortBy } from "lodash";
 import React, { Fragment, useCallback, MouseEvent, ReactNode } from "react";
 import { assertGame, assertNotNull } from "../../functions";

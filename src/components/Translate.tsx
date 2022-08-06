@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useMemo } from "react";
 import Case from "case";
 import { systemName } from "../constants";

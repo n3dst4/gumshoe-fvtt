@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext, useMemo } from "react";
 import { nanoid } from "nanoid";
 import { ThemeContext } from "../../themes/ThemeContext";

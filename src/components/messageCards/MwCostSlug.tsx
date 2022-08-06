@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 type MwCostSlugProps = {
   children: ReactNode,
 };

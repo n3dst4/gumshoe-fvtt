@@ -1,6 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextArea } from "./TextArea";

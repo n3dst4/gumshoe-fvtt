@@ -1,6 +1,4 @@
-/** @jsx jsx */
 import React, { useCallback, useContext } from "react";
-import { jsx } from "@emotion/react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { FoundryAppContext } from "../FoundryAppContext";
 import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../types";

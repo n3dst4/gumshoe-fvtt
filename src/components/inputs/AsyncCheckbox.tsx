@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { Checkbox } from "./Checkbox";
 

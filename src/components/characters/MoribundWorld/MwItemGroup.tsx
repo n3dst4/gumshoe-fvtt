@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useContext } from "react";
 import { mwItem } from "../../../constants";
 import { sortEntitiesByName } from "../../../functions";

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { Fragment, useCallback, useContext } from "react";
 import { generalAbility, investigativeAbility } from "../../constants";
 import { sortEntitiesByName } from "../../functions";

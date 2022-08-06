@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { ReactNode, useContext } from "react";
 import { assertGame } from "../../functions";
 import { ThemeContext } from "../../themes/ThemeContext";

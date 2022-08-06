@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { CacheProvider as EmotionCacheProvider, Global, jsx } from "@emotion/react";
+import { CacheProvider as EmotionCacheProvider, Global } from "@emotion/react";
 import React, { ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { css } from "@emotion/css";
 import { ThemeContext } from "../themes/ThemeContext";

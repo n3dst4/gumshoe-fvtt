@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { ReactNode } from "react";
 import { runtimeConfig } from "../../runtime";
 import { ThemeSwatch } from "./ThemeSwatch";

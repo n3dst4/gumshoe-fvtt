@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, keyframes } from "@emotion/react";
+import { keyframes } from "@emotion/react";
 import React, { Fragment } from "react";
 import {
   FaEdit,

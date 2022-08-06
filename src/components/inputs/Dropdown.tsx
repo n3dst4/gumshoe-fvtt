@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useState, useCallback, CSSProperties, useContext, useRef, RefObject, useEffect, Fragment, PropsWithChildren } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import ReactDOM from "react-dom";
