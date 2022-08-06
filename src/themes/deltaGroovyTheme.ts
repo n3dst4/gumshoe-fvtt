@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import { systemName } from "../constants";
 import { createStarburstGradient, themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
@@ -19,7 +18,7 @@ const starburstGradientOffset = createStarburstGradient(colors, 10, "10%", "10%"
 export const deltaGroovyTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Delta Groovy",
-  global: css`
+  global: `
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');    
   `,

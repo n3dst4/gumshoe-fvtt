@@ -67,11 +67,9 @@ export const CSSReset: React.FC<CSSResetProps> = ({
 
   const cache = useMemo(
     () => {
-      logger.log("generating cache", head);
       return createCache({
-        key: "hello",
+        key: "investigator",
         container: head ?? undefined,
-        // prepend: true,
       });
     },
     [head],

@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import Irid from "irid";
 import { systemName } from "../constants";
 import { themeFactory } from "./functions";
@@ -13,7 +12,7 @@ const pallidComplement = Irid("#aff2f2");
 export const pallidTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Aching Stars",
-  global: css`
+  global: `
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
   `,

@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import { systemName } from "../constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
@@ -6,7 +5,7 @@ import { ThemeV1 } from "./types";
 export const niceThemeDark: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Nice Dark Red Agents",
-  global: css`
+  global: `
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,

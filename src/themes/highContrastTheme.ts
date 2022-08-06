@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import Irid from "irid";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
@@ -9,8 +8,7 @@ const black = Irid("black");
 export const highContrastTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "High Contrast",
-  global: css`
-  `,
+  global: "",
   largeSheetRootStyle: {
   },
   bodyFont: "1.1em sans-serif",
