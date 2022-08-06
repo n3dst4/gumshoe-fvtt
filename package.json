@@ -73,6 +73,7 @@
     "yargs-parser": ">=5.0.0-security.0"
   },
   "dependencies": {
+    "@lumphammer/fvtt-visitor-counter-client": "^1.0.4",
     "@types/html-escaper": "^3.0.0",
     "case": "^1.6.3",
     "d3-ease": "^3.0.1",

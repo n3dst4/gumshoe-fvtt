@@ -24,6 +24,7 @@ import { installInitiativeUpdateHookHandler } from "./startup/installInitiativeU
 import { assertGame } from "./functions";
 import { installTurnPassingHandler } from "./startup/installTurnPassingHandler";
 import { installSocketActionHandler } from "./startup/installSocketActionHandler";
+import { installVisitorCounter } from "./startup/installVisitorCounter";
 
 injectGlobalHelper();
 
@@ -66,3 +67,4 @@ handleMwItemType();
 installInitiativeUpdateHookHandler();
 installTurnPassingHandler();
 installSocketActionHandler();
+installVisitorCounter();
