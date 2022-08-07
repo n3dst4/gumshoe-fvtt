@@ -9,7 +9,7 @@ export class InvestigatorCombatTrackerBase extends CombatTracker {
     return {
       ...super.defaultOptions,
       template: reactifiedCombatSidebarTemplatePath,
-      resizable: true,
+      resizable: false,
     };
   }
 }
