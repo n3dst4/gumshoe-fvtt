@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 5.0.1  (2022-08-08)
+
+* Typo in `minimumCoreVersion` 🤣
+
 ## 5.0.0 (2022-08-08)
 
 * Drop support for FVTT 0.8.x.

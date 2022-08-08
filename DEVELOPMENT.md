@@ -133,7 +133,13 @@ To perform a release:
     scripts/update-legacy-release-branch.sh
     ```
 
-5. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
+5. Head over to the [CI page][ci] and wait for the pipeline to finish.
 
+6. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
+
+7. Go and barf forth glad tidings on the [Pelgrane's Virtual Tabletops Discord channel][pelgrane-discord] and the [Foundry Package Releases channel][fprd].
 
 [gl-generic-packages]: https://docs.gitlab.com/ee/user/packages/generic_packages/
+[ci]: https://gitlab.com/n3dst4/investigator-fvtt/-/pipelines
+[pelgrane-discord]: https://discord.com/channels/692113540210753568/720741108937916518
+[fprd]: https://discord.com/channels/170995199584108546/648215359895240715
