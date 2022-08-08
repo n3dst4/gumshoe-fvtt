@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 5.0.0 (2022-08-08)
+
+* Drop support for FVTT 0.8.x.
+* Various FVTT v10 compatibility fixes:
+  * The combat tracker now looks right in FVTT v10.
+  * Dropping actors onto the party sheets works in FVTT v10.
+* Specialities with more than one word no longer get bunched up on the left.
+
 ## 4.12.0 (2022-06-12)
 
 * A small release to include some new translations:
