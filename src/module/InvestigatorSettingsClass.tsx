@@ -1,5 +1,5 @@
 import React from "react";
-import { InvestigatorSettings } from "../components/InvestigatorSettings";
+import { Settings } from "../components/Settings";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 import { reactTemplatePath, systemName } from "../constants";
 
@@ -27,7 +27,7 @@ export class InvestigatorSettingsClassBase extends FormApplication<FormApplicati
 const render = (sheet: InvestigatorSettingsClassBase) => {
   $(sheet.element).find(".header-button.close").hide();
   return (
-    <InvestigatorSettings
+    <Settings
       foundryApplication={sheet}
     />
   );

@@ -19,7 +19,7 @@ import { StatsSettingsEditor } from "./inputs/StatsSettingsEditor";
 import { Stat } from "@lumphammer/investigator-fvtt-types";
 import { useRefStash } from "../hooks/useRefStash";
 
-type InvestigatorSettingsProps = {
+type SettingsProps = {
   foundryApplication: Application,
 };
 
@@ -45,7 +45,7 @@ const useTempSettings = () => {
   return { tempSettings, setters, setTempSettings, tempSettingsRef };
 };
 
-export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
+export const Settings: React.FC<SettingsProps> = ({
   foundryApplication,
 }) => {
   assertGame(game);
