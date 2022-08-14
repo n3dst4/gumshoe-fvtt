@@ -1,6 +1,6 @@
 // import ReactDOM from "react-dom";
 import React from "react";
-import { InvestigatorNPCSheet } from "../components/characters/InvestigatorNPCSheet";
+import { NPCSheet } from "../components/characters/NPCSheet";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
@@ -22,7 +22,7 @@ class InvestigatorNPCSheetClassBase extends ActorSheet {
 
 const render = (sheet: InvestigatorNPCSheetClassBase) => {
   return (
-    <InvestigatorNPCSheet
+    <NPCSheet
       actor={sheet.document}
       foundryApplication={sheet}
     />

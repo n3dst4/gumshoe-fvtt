@@ -1,6 +1,6 @@
 // import ReactDOM from "react-dom";
 import React from "react";
-import { InvestigatorPCSheet } from "../components/characters/InvestigatorPCSheet";
+import { PCSheet } from "../components/characters/PCSheet";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
@@ -22,7 +22,7 @@ class InvestigatorPCSheetClassBase extends ActorSheet {
 
 const render = (sheet: InvestigatorPCSheetClassBase) => {
   return (
-    <InvestigatorPCSheet
+    <PCSheet
       actor={sheet.document}
       foundryApplication={sheet}
     />

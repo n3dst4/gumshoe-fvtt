@@ -9,7 +9,7 @@ import { CSSReset, CSSResetMode } from "./CSSReset";
 import { isAbilityDataSource, isMwItemDataSource } from "../types";
 import { MwItemSheet } from "./equipment/MwItemSheet";
 
-type InvestigatorItemSheetProps = {
+type ItemSheetProps = {
   item: InvestigatorItem,
   foundryApplication: ItemSheet,
 };
@@ -18,7 +18,7 @@ type InvestigatorItemSheetProps = {
  * We only register one "Item" sheet with foundry and then dispatch based on
  * type here.
  */
-export const InvestigatorItemSheet: React.FC<InvestigatorItemSheetProps> = ({
+export const ItemSheet: React.FC<ItemSheetProps> = ({
   item,
   foundryApplication,
 }) => {

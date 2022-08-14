@@ -24,15 +24,15 @@ import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 import { settings } from "../../settings";
 import { StatField } from "./StatField";
 
-type InvestigatorPCSheetProps = {
+type PCSheetProps = {
   actor: InvestigatorActor,
   foundryApplication: ActorSheet,
 }
 
-export const InvestigatorPCSheet = ({
+export const PCSheet = ({
   actor,
   foundryApplication,
-}: InvestigatorPCSheetProps) => {
+}: PCSheetProps) => {
   assertGame(game);
   assertPCDataSource(actor.data);
 
@@ -265,3 +265,5 @@ export const InvestigatorPCSheet = ({
     </CSSReset>
   );
 };
+
+PCSheet.displayName = "PCSheet";

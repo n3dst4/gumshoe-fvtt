@@ -20,15 +20,15 @@ import { settings } from "../../settings";
 import { StatField } from "./StatField";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
-type InvestigatorNPCSheetProps = {
+type NPCSheetProps = {
   actor: InvestigatorActor,
   foundryApplication: ActorSheet,
 }
 
-export const InvestigatorNPCSheet = ({
+export const NPCSheet = ({
   actor,
   foundryApplication,
-}: InvestigatorNPCSheetProps) => {
+}: NPCSheetProps) => {
   assertNPCDataSource(actor.data);
 
   const theme = actor.getSheetTheme();
@@ -229,3 +229,5 @@ export const InvestigatorNPCSheet = ({
     </CSSReset>
   );
 };
+
+NPCSheet.displayName = "NPCSheet";

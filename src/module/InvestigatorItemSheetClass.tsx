@@ -1,6 +1,6 @@
 // import ReactDOM from "react-dom";
 import React from "react";
-import { InvestigatorItemSheet } from "../components/InvestigatorItemSheet";
+import { ItemSheet } from "../components/ItemSheet";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
@@ -24,7 +24,7 @@ class InvestigatorEquipmentSheetClassBase extends ItemSheet {
 
 const render = (sheet: InvestigatorEquipmentSheetClassBase) => {
   return (
-    <InvestigatorItemSheet
+    <ItemSheet
       item={sheet.document}
       foundryApplication={sheet}
     />
