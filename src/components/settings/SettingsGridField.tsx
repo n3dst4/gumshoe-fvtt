@@ -1,6 +1,6 @@
 import React, { ComponentProps, useContext } from "react";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { GridField } from "./GridField";
+import { GridField } from "../inputs/GridField";
 
 type SettingsGridFieldProps = ComponentProps<typeof GridField> & {
   index?: number,

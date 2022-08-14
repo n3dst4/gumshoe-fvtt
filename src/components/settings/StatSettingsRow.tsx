@@ -2,9 +2,9 @@ import { Stat } from "@lumphammer/investigator-fvtt-types";
 import React, { useCallback, useContext } from "react";
 import { useRefStash } from "../../hooks/useRefStash";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { AsyncNumberInput } from "./AsyncNumberInput";
-import { AsyncTextInput } from "./AsyncTextInput";
-import { Checkbox } from "./Checkbox";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { Checkbox } from "../inputs/Checkbox";
 
 interface StatSettingsRowProps {
   id: string;

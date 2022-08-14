@@ -1,5 +1,5 @@
 import React from "react";
-import { Settings } from "../components/Settings";
+import { Settings } from "../components/settings/Settings";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 import { reactTemplatePath, systemName } from "../constants";
 
