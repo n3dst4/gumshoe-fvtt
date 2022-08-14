@@ -12,6 +12,7 @@ interface StatSettingsRowProps {
   index: number;
   onChange: (stat: Stat, id: string) => void;
   onChangeId: (oldId: string, newId: string) => void;
+  onDelete: (id: string) => void;
 }
 
 export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
@@ -20,6 +21,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
   index,
   onChange,
   onChangeId,
+  onDelete,
 }: StatSettingsRowProps) => {
   const isEven = index % 2 === 0;
   const theme = useContext(ThemeContext);
@@ -86,62 +88,59 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
     }, idRef.current);
   }, [onChange, statRef, idRef]);
 
+  const onDeleteHandler = useCallback((ev: React.MouseEvent<HTMLButtonElement>) => {
+    ev.preventDefault();
+    onDelete(idRef.current);
+  }, [onDelete, idRef]);
+
   return (
     <div
       css={{
         backgroundColor: isEven ? theme.colors.backgroundPrimary : undefined,
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 2em",
+        gridTemplateRows: "max-content",
+        gridTemplateAreas: `
+          "idLabel      idLabel      idLabel  nameLabel nameLabel nameLabel delete"
+          "id           id           id       name      name      name      delete" 
+          "defaultLabel defaultLabel minLabel minLabel  maxLabel  maxLabel  delete"
+          "def      def      min      min       max       max       delete"
+        `,
+        gap: "0.3em",
         padding: "0.5em",
-        ".flexRow": {
-          display: "flex",
-          flexDirection: "row",
-          gap: "0.5em",
-        },
       }}
     >
-      <div
-        className="flexRow"
-        css={{ lineHeight: 1 }}
-      >
-        <span css={{ flex: 1 }}>id</span>
-        <span css={{ flex: 1 }}>Name</span>
-      </div>
-      <div
-        className="flexRow"
-      >
+      <span css={{ gridArea: "idLabel" }}>id</span>
+      <span css={{ gridArea: "nameLabel" }}>Name</span>
         <AsyncTextInput
-          css={{ flex: 1 }}
+          css={{ gridArea: "id" }}
           onChange={onChangeIdCallback}
           value={id}
         />
         <AsyncTextInput
-          css={{ flex: 1 }}
+          css={{ gridArea: "name" }}
           onChange={onChangeName}
           value={stat.name}
         />
-      </div>
-      <div
-        className="flexRow"
-        css={{ lineHeight: 1 }}
-      >
-        <span css={{ flex: 1 }}>Default</span>
-        <span css={{ flex: 1 }}>
+
+        <span css={{ gridArea: "defaultLabel" }}>Default</span>
+
+        <span css={{ gridArea: "minLabel" }}>
           Min
           <Checkbox
             checked={stat.min !== undefined}
             onChange={onChangeMinCheckbox}
           />
         </span>
-        <span css={{ flex: 1 }}>
+
+        <span css={{ gridArea: "maxLabel" }}>
           Max
           <Checkbox
             checked={stat.max !== undefined}
             onChange={onChangeMaxCheckbox}
           />
         </span>
-      </div>
-      <div
-        className="flexRow"
-      >
+
         {stat.default !== undefined &&
           <AsyncNumberInput
             onChange={onChangeDefault}
@@ -149,7 +148,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
             min={stat.min}
             max={stat.max}
             css={{
-              flex: 1,
+              gridArea: "def",
             }}
           />
         }
@@ -159,10 +158,10 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
             value={stat.min}
             max={stat.max}
             css={{
-              flex: 1,
+              gridArea: "min",
             }}
           />
-          : <span css={{ flex: 1 }} />
+          : <span css={{ gridArea: "min" }} />
         }
         {stat.max !== undefined
           ? <AsyncNumberInput
@@ -170,12 +169,17 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
             value={stat.max}
             min={stat.min}
             css={{
-              flex: 1,
+              gridArea: "max",
             }}
           />
-          : <span css={{ flex: 1 }} />
+          : <span css={{ gridArea: "max" }} />
         }
-      </div>
+        <button
+          css={{ gridArea: "delete" }}
+          onClick={onDeleteHandler}
+        >
+          <i className="fas fa-trash" />
+        </button>
     </div>
   );
 };

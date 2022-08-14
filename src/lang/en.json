@@ -7,6 +7,7 @@
     "investigator.AddEquipment": "Add equipment",
     "investigator.AddItem": "Add item",
     "investigator.AddWeapon": "Add Weapon",
+    "investigator.AddStat": "Add Stat",
     "investigator.AlertnessModifier": "Alertness",
     "investigator.Ammo": "Ammo",
     "investigator.AmmoCapacity": "Ammo capacity",
@@ -138,5 +139,5 @@
     "investigator.OpenCharacterSheet": "Open character sheet",
     "investigator.Core": "Core",
     "investigator.Stats": "Stats",
-    "investigator.Misc": "Misc"
+    "investigator.Misc": "Misc."
 }

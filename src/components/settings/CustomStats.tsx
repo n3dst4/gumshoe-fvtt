@@ -54,6 +54,42 @@ export const CustomStats: React.FC<{
     [setters, tempSettingsRef],
   );
 
+  const onDeletePCStat = useCallback((id: string) => {
+    const result = {
+      ...tempSettingsRef.current.pcStats,
+    };
+    delete result[id];
+    setters.pcStats(result);
+  }, [setters, tempSettingsRef]);
+
+  const onDeleteNPCStat = useCallback((id: string) => {
+    const result = {
+      ...tempSettingsRef.current.npcStats,
+    };
+    delete result[id];
+    setters.npcStats(result);
+  }, [setters, tempSettingsRef]);
+
+  const onAddPCStat = useCallback(() => {
+    setters.pcStats({
+      ...tempSettingsRef.current.pcStats,
+      [`stat${Object.keys(tempSettingsRef.current.pcStats).length}`]: {
+        name: "",
+        default: 0,
+      },
+    });
+  }, [setters, tempSettingsRef]);
+
+  const onAddNPCStat = useCallback(() => {
+    setters.npcStats({
+      ...tempSettingsRef.current.npcStats,
+      [`stat${Object.keys(tempSettingsRef.current.npcStats).length}`]: {
+        name: "",
+        default: 0,
+      },
+    });
+  }, [setters, tempSettingsRef]);
+
   let idx = 0;
 
   return (
@@ -69,6 +105,8 @@ export const CustomStats: React.FC<{
             stats={tempSettings.pcStats}
             onChange={onChangePCStat}
             onChangeId={onChangePCStatId}
+            onDelete={onDeletePCStat}
+            onAdd={onAddPCStat}
           />
         </SettingsGridField>
         <SettingsGridField label="NPC Stats" index={idx++}>
@@ -76,6 +114,8 @@ export const CustomStats: React.FC<{
             stats={tempSettings.npcStats}
             onChange={onChangeNPCStat}
             onChangeId={onChangeNPCStatId}
+            onDelete={onDeleteNPCStat}
+            onAdd={onAddNPCStat}
           />
         </SettingsGridField>
       </InputGrid>
