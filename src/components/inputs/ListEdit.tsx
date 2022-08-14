@@ -33,6 +33,9 @@ export const ListEdit: React.FC<ListEditProps> = ({
 
   return (
     <div>
+      {value.length === 0 && (
+        (<i><Translate>Empty List</Translate></i>)
+      )}
       {value.map<JSX.Element>((s, i) => (
         <div
           key={i}
@@ -66,7 +69,6 @@ export const ListEdit: React.FC<ListEditProps> = ({
             <button
               data-index={i}
               onClick={onClickDelete}
-              disabled={value.length < 2}
             >
               <i className="fas fa-trash"/>
             </button>

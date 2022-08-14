@@ -38,6 +38,7 @@
     "investigator.DeleteTheAbilityNameAbility": "Delete the \"{AbilityName}\" ability?",
     "investigator.Description": "Description",
     "investigator.Edit": "Edit",
+    "investigator.EmptyList": "Empty list",
     "investigator.Equipment": "Equipment",
     "investigator.ExcludeFromGeneralRefresh": "Exclude from full refresh?",
     "investigator.FullRefresh": "Full Refresh",
