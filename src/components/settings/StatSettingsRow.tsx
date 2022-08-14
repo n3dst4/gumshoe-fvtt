@@ -101,17 +101,17 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
         gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 2em",
         gridTemplateRows: "max-content",
         gridTemplateAreas: `
-          "idLabel      idLabel      idLabel  nameLabel nameLabel nameLabel delete"
-          "id           id           id       name      name      name      delete" 
-          "defaultLabel defaultLabel minLabel minLabel  maxLabel  maxLabel  delete"
-          "def      def      min      min       max       max       delete"
+          "idLbl  idLbl  idLbl  nameLbl nameLbl nameLbl delete"
+          "id     id     id     name    name    name    delete" 
+          "defLbl defLbl minLbl minLbl  maxLbl  maxLbl  delete"
+          "def    def    min    min     max     max     delete"
         `,
         gap: "0.3em",
         padding: "0.5em",
       }}
     >
-      <span css={{ gridArea: "idLabel" }}>id</span>
-      <span css={{ gridArea: "nameLabel" }}>Name</span>
+      <span css={{ gridArea: "idLbl" }}>id</span>
+      <span css={{ gridArea: "nameLbl" }}>Name</span>
         <AsyncTextInput
           css={{ gridArea: "id" }}
           onChange={onChangeIdCallback}
@@ -123,9 +123,9 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
           value={stat.name}
         />
 
-        <span css={{ gridArea: "defaultLabel" }}>Default</span>
+        <span css={{ gridArea: "defLbl" }}>Default</span>
 
-        <span css={{ gridArea: "minLabel" }}>
+        <span css={{ gridArea: "minLbl" }}>
           Min
           <Checkbox
             checked={stat.min !== undefined}
@@ -133,7 +133,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
           />
         </span>
 
-        <span css={{ gridArea: "maxLabel" }}>
+        <span css={{ gridArea: "maxLbl" }}>
           Max
           <Checkbox
             checked={stat.max !== undefined}
