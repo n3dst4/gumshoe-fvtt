@@ -135,5 +135,8 @@
     "investigator.AddTurn": "Add a turn",
     "investigator.RemoveTurn": "Remove a turn",
     "investigator.NumberOfTurns": "Number of turns",
-    "investigator.OpenCharacterSheet": "Open character sheet"
+    "investigator.OpenCharacterSheet": "Open character sheet",
+    "investigator.Core": "Core",
+    "investigator.Stats": "Stats",
+    "investigator.Misc": "Misc"
 }

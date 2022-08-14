@@ -1,12 +1,11 @@
 import React from "react";
-import { assertGame, getDevMode } from "../../functions";
+import { assertGame } from "../../functions";
 import { SettingsDict } from "../../settings";
 import { InputGrid } from "../inputs/InputGrid";
 import { Setters } from "./Settings";
 import { SettingsGridField } from "./SettingsGridField";
 import { IdContext } from "../IdContext";
 import { ListEdit } from "../inputs/ListEdit";
-import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
 import { nanoid } from "nanoid";
@@ -21,7 +20,6 @@ export const AbilitySettings: React.FC<{
 }> = ({ tempSettings, setters, setTempSettings, tempSettingsRef, theme }) => {
   assertGame(game);
 
-  const isDevMode = getDevMode();
   let idx = 0;
 
   return (
@@ -185,35 +183,8 @@ export const AbilitySettings: React.FC<{
           nonempty
         />
       </SettingsGridField>
-      <SettingsGridField label="Occupation Label" index={idx++}>
-        <AsyncTextInput
-          value={tempSettings.occupationLabel}
-          onChange={setters.occupationLabel}
-        />
-      </SettingsGridField>
-      <SettingsGridField label="Short Notes Fields" index={idx++}>
-        <ListEdit
-          value={tempSettings.shortNotes}
-          onChange={setters.shortNotes}
-        />
-      </SettingsGridField>
-      <SettingsGridField label="Long Notes Fields" index={idx++}>
-        <ListEdit value={tempSettings.longNotes} onChange={setters.longNotes} />
-      </SettingsGridField>
       <SettingsGridField label="Can Abilities be Boosted?" index={idx++}>
         <Checkbox checked={tempSettings.useBoost} onChange={setters.useBoost} />
-      </SettingsGridField>
-      <SettingsGridField label="Custom themes path" index={idx++}>
-        <AsyncTextInput
-          onChange={setters.customThemePath}
-          value={tempSettings.customThemePath}
-        />
-      </SettingsGridField>
-      <SettingsGridField label="Generic Occupation" index={idx++}>
-        <AsyncTextInput
-          onChange={setters.genericOccupation}
-          value={tempSettings.genericOccupation}
-        />
       </SettingsGridField>
       <SettingsGridField
         label="Show empty Investigative categories?"
@@ -224,9 +195,6 @@ export const AbilitySettings: React.FC<{
           onChange={setters.showEmptyInvestigativeCategories}
         />
       </SettingsGridField>
-      {/* <SettingsGridField label="Show hit threshold counter?" index={idx++}>
-          <Checkbox checked={tempSettings.useHitThreshold} onChange={setters.useHitThreshold} />
-        </SettingsGridField> */}
       <SettingsGridField label="Use NPC Combat bonuses?" index={idx++}>
         <Checkbox
           checked={tempSettings.useNpcCombatBonuses}
@@ -234,57 +202,6 @@ export const AbilitySettings: React.FC<{
         />
       </SettingsGridField>
 
-      <SettingsGridField label="Use turn-passing initiative?" index={idx++}>
-        <Checkbox
-          checked={tempSettings.useTurnPassingInitiative}
-          onChange={setters.useTurnPassingInitiative}
-        />
-      </SettingsGridField>
-
-      {isDevMode && (
-        <SettingsGridField label="Debug translations?" index={idx++}>
-          <Checkbox
-            checked={tempSettings.debugTranslations}
-            onChange={setters.debugTranslations}
-          />
-        </SettingsGridField>
-      )}
-
-      {/* ####################################################################
-          MORIBUND WORLD STUFF BELOW HERE
-        #################################################################### */}
-
-      <hr css={{ gridColumn: "label / end" }} />
-      <h2 css={{ gridColumn: "label / end" }}>
-        <Translate>Settings for Moribund World users</Translate>
-      </h2>
-      <SettingsGridField
-        label="Use Moribund World-style abilities"
-        index={idx++}
-      >
-        <Checkbox
-          checked={tempSettings.useMwStyleAbilities}
-          onChange={setters.useMwStyleAbilities}
-        />
-      </SettingsGridField>
-      <SettingsGridField label="Use alternative item types" index={idx++}>
-        <Checkbox
-          checked={tempSettings.mwUseAlternativeItemTypes}
-          onChange={setters.mwUseAlternativeItemTypes}
-        />
-      </SettingsGridField>
-      <SettingsGridField label="Hidden Short Notes Fields" index={idx++}>
-        <ListEdit
-          value={tempSettings.mwHiddenShortNotes}
-          onChange={setters.mwHiddenShortNotes}
-        />
-      </SettingsGridField>
-      <SettingsGridField label="Use injury status" index={idx++}>
-        <Checkbox
-          checked={tempSettings.useMwInjuryStatus}
-          onChange={setters.useMwInjuryStatus}
-        />
-      </SettingsGridField>
     </InputGrid>
   );
 };

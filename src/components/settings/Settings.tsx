@@ -12,6 +12,7 @@ import { TabContainer } from "../TabContainer";
 import { CoreSettings } from "./CoreSettings";
 import { AbilitySettings } from "./AbilitySettings";
 import { CustomStats } from "./CustomStats";
+import { MiscSettings } from "./MiscSettings";
 
 type SettingsProps = {
   foundryApplication: Application,
@@ -111,8 +112,18 @@ export const Settings: React.FC<SettingsProps> = ({
             },
             {
               id: "stats",
-              label: "Custom Stats",
+              label: "Stats",
               content: <CustomStats
+                setTempSettings={setTempSettings}
+                tempSettings={tempSettings}
+                setters={setters}
+                tempSettingsRef={tempSettingsRef}
+              />,
+            },
+            {
+              id: "misc",
+              label: "Misc",
+              content: <MiscSettings
                 setTempSettings={setTempSettings}
                 tempSettings={tempSettings}
                 setters={setters}

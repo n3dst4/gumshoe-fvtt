@@ -7,6 +7,8 @@ import { Setters } from "./Settings";
 import { SettingsGridField } from "./SettingsGridField";
 import { pathOfCthulhuPreset } from "../../presets";
 import { runtimeConfig } from "../../runtime";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { ListEdit } from "../inputs/ListEdit";
 
 export const CoreSettings: React.FC<{
   tempSettings: SettingsDict,
@@ -83,6 +85,29 @@ export const CoreSettings: React.FC<{
           )}
         </select>
       </SettingsGridField>
+      <SettingsGridField label="Occupation Label" index={idx++}>
+        <AsyncTextInput
+          value={tempSettings.occupationLabel}
+          onChange={setters.occupationLabel}
+        />
+      </SettingsGridField>
+      <SettingsGridField label="Short Notes Fields" index={idx++}>
+        <ListEdit
+          value={tempSettings.shortNotes}
+          onChange={setters.shortNotes}
+        />
+      </SettingsGridField>
+      <SettingsGridField label="Long Notes Fields" index={idx++}>
+        <ListEdit value={tempSettings.longNotes} onChange={setters.longNotes} />
+      </SettingsGridField>
+
+      <SettingsGridField label="Generic Occupation" index={idx++}>
+        <AsyncTextInput
+          onChange={setters.genericOccupation}
+          value={tempSettings.genericOccupation}
+        />
+      </SettingsGridField>
+
     </InputGrid>
   );
 };
