@@ -15,7 +15,7 @@ import globWithCallback from "glob";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-// This file replaces gulp/grunk/jake/whatever and just provides a place to put
+// This file replaces gulp/grunt/jake/whatever and just provides a place to put
 // little build-related chunks of code and way to run them from the command
 // line.
 
