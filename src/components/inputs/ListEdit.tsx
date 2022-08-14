@@ -4,11 +4,13 @@ import { Translate } from "../Translate";
 type ListEditProps = {
   value: string[],
   onChange: (value: string[]) => void,
+  nonempty?: boolean,
 };
 
 export const ListEdit: React.FC<ListEditProps> = ({
   value,
   onChange,
+  nonempty = false,
 }) => {
   const onInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.currentTarget.dataset.index) { return; }
@@ -69,6 +71,7 @@ export const ListEdit: React.FC<ListEditProps> = ({
             <button
               data-index={i}
               onClick={onClickDelete}
+              disabled={value.length < 2 && nonempty}
             >
               <i className="fas fa-trash"/>
             </button>

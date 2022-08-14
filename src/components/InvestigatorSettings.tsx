@@ -306,16 +306,22 @@ export const InvestigatorSettings: React.FC<InvestigatorSettingsProps> = ({
           <ListEdit
             value={tempSettings.investigativeAbilityCategories}
             onChange={setters.investigativeAbilityCategories}
+            nonempty
           />
         </SettingsGridField>
         <SettingsGridField label="General Ability Categories" index={idx++}>
           <ListEdit
             value={tempSettings.generalAbilityCategories}
             onChange={setters.generalAbilityCategories}
+            nonempty
           />
         </SettingsGridField>
         <SettingsGridField label="Combat Abilities" index={idx++}>
-          <ListEdit value={tempSettings.combatAbilities} onChange={setters.combatAbilities} />
+          <ListEdit
+            value={tempSettings.combatAbilities}
+            onChange={setters.combatAbilities}
+            nonempty
+          />
         </SettingsGridField>
         <SettingsGridField label="Occupation Label" index={idx++}>
           <AsyncTextInput
