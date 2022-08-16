@@ -1,6 +1,12 @@
 # CHANGELOG
 
-## 5.0.1  (2022-08-08)
+## 5.1.0 (2022-08-16)
+
+* You can now remove the last item from all lists in settings except ability categories and combat abilities.
+* You can now add and remove custom stats!
+* The settings window has been given a small glow-up and now has tabs, which gives us more room to work with.
+
+## 5.0.1 (2022-08-08)
 
 * Typo in `minimumCoreVersion` 🤣
 
