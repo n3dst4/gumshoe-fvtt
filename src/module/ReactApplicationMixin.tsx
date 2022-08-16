@@ -15,8 +15,6 @@ type ApplicationConstuctor = Constructor<Application>;
 // a T2, i.e. the type of the thing the constructor constructs.
 type Render<T> = (t: T extends Constructor<infer T2> ? T2 : T, serial: number) => JSX.Element;
 
-const log = console.log.bind(console, "[mixin] ");
-
 export interface ReactApplicationMixinOptions {
   callReplaceHtml?: boolean;
 }
@@ -52,8 +50,6 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
     _replaceHTML (element: JQuery, html: JQuery) {
       // this is the only thing we need to do here - react deals with updating
       // the rest of the window.
-      // super._replaceHTML(element, html);
-      log("_replaceHTML");
       if (fullOptions.callReplaceHtml && !this.initialized) {
         super._replaceHTML(element, html);
         this.initialized = true;
@@ -75,8 +71,6 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
     activateListeners (html: JQuery) {
       // we were previously calling super.activateListeners(html) here
       // leaving this comment in case it help with future debugging.
-
-      log("activateListeners");
       const target = $(this.element).find(".react-target");
       const parent = target.closest(".window-content");
       if (this.options.resizable) {
