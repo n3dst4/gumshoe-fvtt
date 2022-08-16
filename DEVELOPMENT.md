@@ -11,6 +11,7 @@
   - [Using the "Developer mode" module](#using-the-developer-mode-module)
   - [Development flow](#development-flow)
   - [Release process](#release-process)
+    - [What happend if the CI pipeline fails?](#what-happend-if-the-ci-pipeline-fails)
 
 ## Development & general hacking
 
@@ -138,6 +139,19 @@ To perform a release:
 6. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
 
 7. Go and barf forth glad tidings on the [Pelgrane's Virtual Tabletops Discord channel][pelgrane-discord] and the [Foundry Package Releases channel][fprd].
+
+### What happend if the CI pipeline fails?
+
+1. Delete the `vX.Y.Z` tag from local and remote:
+
+    ```sh
+    git tag -d vX.Y.Z
+    git push origin :refs/tags/vX.Y.Z
+    ```
+
+2. Fix the problem, commit.
+3. Run `do-release.sh` again.
+
 
 [gl-generic-packages]: https://docs.gitlab.com/ee/user/packages/generic_packages/
 [ci]: https://gitlab.com/n3dst4/investigator-fvtt/-/pipelines
