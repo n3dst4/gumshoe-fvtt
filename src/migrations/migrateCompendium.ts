@@ -1,7 +1,7 @@
 import { migrateActorData } from "./migrateActorData";
 import { migrateItemData } from "./migrateItemData";
 import { migrateSceneData } from "./migrateSceneData";
-import system from "../system.json";
+import system from "../../public/system.json";
 
 /**
  * Apply migration rules to all Entities within a single Compendium pack

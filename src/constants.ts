@@ -1,4 +1,4 @@
-import system from "./system.json";
+import system from "../public/system.json";
 
 export const systemName = system.name;
 export const version = system.version;

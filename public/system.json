@@ -5,7 +5,7 @@
   "version": "5.1.0",
   "author": "Neil de Carteret",
   "scripts": [],
-  "esmodules": ["investigator.js"],
+  "esmodules": ["index.js"],
   "styles": ["investigator.css"],
   "socket": true,
   "packs": [
@@ -134,7 +134,7 @@
   "media": [
     {
       "type": "cover",
-      "url": "https://gitlab.com/n3dst4/investigator-fvtt/-/raw/main/cover.webp"
+      "url": "https://gitlab.com/n3dst4/investigator-fvtt/-/raw/main/assets/cover.webp"
     }
   ]
 }

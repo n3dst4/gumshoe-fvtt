@@ -22,8 +22,9 @@ import { hideBin } from "yargs/helpers";
 /// /////////////////////////////////////////////////////////////////////////////
 // Config
 const srcPath = "src";
+const publicPath = "public";
 const manifestName = "system.json";
-const manifestPath = path.join(srcPath, manifestName);
+const manifestPath = path.join(publicPath, manifestName);
 const buildPath = "build";
 const staticPaths = [
   manifestName,
@@ -61,7 +62,7 @@ const stripInitialv = (subject) =>
 
 // given a path in the src folder, map it to the equivalent build folder path
 function srcToBuild (inPath) {
-  const outPath = path.join(buildPath, path.relative(srcPath, inPath));
+  const outPath = path.join(buildPath, path.relative(publicPath, inPath));
   return outPath;
 }
 
@@ -136,7 +137,7 @@ async function buildLess (paths) {
  */
 async function copyFiles (paths) {
   if (paths === undefined) {
-    paths = staticPaths.map((p) => path.join(srcPath, p));
+    paths = staticPaths.map((p) => path.join(publicPath, p));
   }
   for (const fromPath of paths) {
     const toPath = srcToBuild(fromPath);
