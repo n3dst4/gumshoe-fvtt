@@ -5,6 +5,9 @@ import { ThemeContext } from "../themes/ThemeContext";
 import { ThemeV1 } from "../themes/types";
 import { FoundryAppContext } from "./FoundryAppContext";
 import createCache from "@emotion/cache";
+import { makeLogger } from "../functions";
+
+const log = makeLogger("CSSReset");
 
 export enum CSSResetMode {
   large="large",
@@ -45,6 +48,8 @@ export const CSSReset: React.FC<CSSResetProps> = ({
   const app = useContext(FoundryAppContext);
 
   const [head, setHead] = useState(app?.element.get(0)?.closest("head"));
+
+  log("head", head);
 
   useEffect(() => {
     const popoutHandler = (poppedApp: Application, newWindow: Window) => {

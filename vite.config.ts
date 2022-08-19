@@ -42,12 +42,7 @@ const config: UserConfig = {
     outDir: path.resolve(__dirname, "build"),
     emptyOutDir: true,
     sourcemap: true,
-    // brotliSize: true,
-    // terserOptions: {
-    //   mangle: false,
-    //   keep_classnames: true,
-    //   keep_fnames: true,
-    // },
+    minify: false,
     lib: {
       name,
       entry: `${name}.ts`,
