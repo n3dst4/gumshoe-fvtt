@@ -53,7 +53,7 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
     document.body;
 
   useEffect(() => {
-    if (process.env.NODE_ENV === "development") {
+    if (import.meta.env.MODE === "development") {
       const containerStyle = window.getComputedStyle(container);
       if (containerStyle.position === "static") {
         logger.warn("Dropdown container element has static positioning! " +

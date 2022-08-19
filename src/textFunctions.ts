@@ -2,7 +2,9 @@ import { escape as escapeText } from "html-escaper";
 import { marked } from "marked";
 import TurndownService from "turndown";
 import { NoteFormat } from "./types";
-import sanitizeHtml from "sanitize-html";
+// import sanitizeHtml from "sanitize-html/";
+
+const sanitizeHtml = (x: string) => x;
 /**
  * Override TurndownService to prevent escaping
  */

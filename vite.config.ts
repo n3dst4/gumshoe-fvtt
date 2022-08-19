@@ -6,6 +6,8 @@ const log = console.log.bind(console, "[vite config]");
 const publicDir = path.join(__dirname, "public");
 log(`publicDir: ${publicDir}`);
 
+// guide to using Vite for Foundry from the Lancer guys:
+// https://foundryvtt.wiki/en/development/guides/vite
 const config: UserConfig = {
   root: "src/",
   publicDir,
@@ -20,6 +22,14 @@ const config: UserConfig = {
         ws: true,
       },
     },
+  },
+  // vite's correct way to get env vars is through import.meta.env.
+  // however lots of code relies on process.meta.env, so we'll just
+  // fake that in here.
+  // https://vitejs.dev/guide/env-and-mode.html
+  // https://github.com/vitejs/vite/issues/1973#issuecomment-787571499
+  define: {
+    "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
   },
   build: {
     outDir: path.resolve(__dirname, "build"),
