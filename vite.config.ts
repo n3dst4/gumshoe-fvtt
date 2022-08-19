@@ -1,17 +1,14 @@
 import type { UserConfig } from "vite";
-import { name } from "./public/system.json";
+import { visualizer } from "rollup-plugin-visualizer";
+import checker from "vite-plugin-checker";
 import path from "path";
+import { name } from "./public/system.json";
+import react from "@vitejs/plugin-react";
 
-const log = console.log.bind(console, "[vite config]");
-const publicDir = path.join(__dirname, "public");
-log(`publicDir: ${publicDir}`);
-
-// guide to using Vite for Foundry from the Lancer guys:
-// https://foundryvtt.wiki/en/development/guides/vite
 const config: UserConfig = {
   root: "src/",
-  publicDir,
   base: `/systems/${name}/`,
+  publicDir: path.resolve(__dirname, "public"),
   server: {
     port: 40009,
     open: "http://localhost:40009",
@@ -23,18 +20,34 @@ const config: UserConfig = {
       },
     },
   },
-  // vite's correct way to get env vars is through import.meta.env.
-  // however lots of code relies on process.meta.env, so we'll just
-  // fake that in here.
-  // https://vitejs.dev/guide/env-and-mode.html
-  // https://github.com/vitejs/vite/issues/1973#issuecomment-787571499
+  // resolve: {
+  //   alias: [
+  //     {
+  //       find: "./runtimeConfig",
+  //       replacement: "./runtimeConfig.browser",
+  //     },
+  //   ],
+  // },
+  // optimizeDeps: {
+  //   // machine-mind triggers https://github.com/evanw/esbuild/issues/1433
+  //   exclude: ["machine-mind"],
+  //   // machine-mind's cjs dependencies
+  //   include: ["lancer-data", "jszip", "axios", "readonly-proxy"],
+  // },
   define: {
     "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
   },
+
   build: {
     outDir: path.resolve(__dirname, "build"),
     emptyOutDir: true,
     sourcemap: true,
+    // brotliSize: true,
+    // terserOptions: {
+    //   mangle: false,
+    //   keep_classnames: true,
+    //   keep_fnames: true,
+    // },
     lib: {
       name,
       entry: `${name}.ts`,
@@ -42,6 +55,16 @@ const config: UserConfig = {
       fileName: name,
     },
   },
+  plugins: [
+    react(),
+    checker({
+      typescript: true,
+    }),
+    visualizer({
+      gzipSize: true,
+      template: "treemap",
+    }),
+  ],
 };
 
 export default config;
