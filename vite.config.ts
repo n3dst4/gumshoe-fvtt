@@ -1,7 +1,4 @@
-import type {
-  HttpProxy,
-  UserConfig,
-} from "vite";
+import type { HttpProxy, UserConfig } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
 import checker from "vite-plugin-checker";
 import path from "path";
@@ -61,7 +58,6 @@ const config: UserConfig = {
       },
       [`^(?!/systems/${name})`]: {
         target: `http://localhost:${foundryPort}/`,
-
       },
       "/socket.io": {
         target: `ws://localhost:${foundryPort}`,
@@ -95,7 +91,9 @@ const config: UserConfig = {
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === "style.css") { return `${name}.css`; }
+          if (assetInfo.name === "style.css") {
+            return `${name}.css`;
+          }
           return assetInfo.name ?? "";
         },
       },
