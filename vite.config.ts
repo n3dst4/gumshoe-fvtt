@@ -23,6 +23,10 @@ const config: UserConfig = {
       },
     },
   },
+  css: {
+
+  },
+
   // resolve: {
   //   alias: [
   //     {
@@ -52,6 +56,14 @@ const config: UserConfig = {
     emptyOutDir: true,
     sourcemap: true,
     minify: process.env.NODE_ENV === "production",
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === "style.css") { return `${name}.css`; }
+          return assetInfo.name ?? "";
+        },
+      },
+    },
     lib: {
       name,
       entry: `${name}.ts`,
