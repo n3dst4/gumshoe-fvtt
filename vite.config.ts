@@ -5,6 +5,9 @@ import path from "path";
 import { name } from "./public/system.json";
 import react from "@vitejs/plugin-react";
 
+// guide to using Vite for Foundry from the Lancer guys:
+// https://foundryvtt.wiki/en/development/guides/vite
+
 const config: UserConfig = {
   root: "src/",
   base: `/systems/${name}/`,
@@ -34,6 +37,12 @@ const config: UserConfig = {
   //   // machine-mind's cjs dependencies
   //   include: ["lancer-data", "jszip", "axios", "readonly-proxy"],
   // },
+
+  // vite's correct way to get env vars is through import.meta.env.
+  // however lots of code relies on process.meta.env, so we'll just
+  // fake that in here.
+  // https://vitejs.dev/guide/env-and-mode.html
+  // https://github.com/vitejs/vite/issues/1973#issuecomment-787571499
   define: {
     "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
   },
@@ -42,7 +51,7 @@ const config: UserConfig = {
     outDir: path.resolve(__dirname, "build"),
     emptyOutDir: true,
     sourcemap: true,
-    minify: false,
+    minify: process.env.NODE_ENV === "production",
     lib: {
       name,
       entry: `${name}.ts`,
@@ -51,9 +60,17 @@ const config: UserConfig = {
     },
   },
   plugins: [
-    react(),
+    react({
+      jsxImportSource: "@emotion/react",
+      babel: {
+        plugins: ["@emotion/babel-plugin"],
+      },
+    }),
     checker({
       typescript: true,
+      eslint: {
+        lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
+      },
     }),
     visualizer({
       gzipSize: true,

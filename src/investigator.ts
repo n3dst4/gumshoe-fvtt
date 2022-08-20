@@ -1,4 +1,5 @@
 // import "./startup/setWebkitPublicPath";
+import "./investigator.less";
 import { systemName } from "./constants";
 import { registerSettingsMenu } from "./settings";
 import { preloadTemplates } from "./startup/preloadTemplates";
