@@ -1,41 +1,35 @@
 import type {
   HttpProxy,
-  // ServerOptions,
   UserConfig,
 } from "vite";
-// import { createServer as createViteServer } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
 import checker from "vite-plugin-checker";
 import path from "path";
 import { name } from "./public/system.json";
 import react from "@vitejs/plugin-react";
-// import { JSDOM } from "jsdom";
 
 // guide to using Vite for Foundry from the Lancer guys:
 // https://foundryvtt.wiki/en/development/guides/vite
-
-// export const viteServer = await createViteServer({
-//   server: { middlewareMode: true },
-//   // plugins: [
-//   //   react({
-//   //     jsxImportSource: "@emotion/react",
-//   //     babel: {
-//   //       plugins: ["@emotion/babel-plugin"],
-//   //     },
-//   //   }),
-//   // ],
-//   appType: "custom",
-// });
 
 const config: UserConfig = {
   root: "src/",
   base: `/systems/${name}/`,
   publicDir: path.resolve(__dirname, "public"),
+
   server: {
     port: 40009,
     open: "http://localhost:40009",
     proxy: {
+      // In dev mode, plugin-react needs a preamble inserted in the head. When
+      // you run a "normal" vite app, each plugin gets a chance to transform the
+      // `index.html`, so the react plugin can add the preamble. But when you
+      // run a Foundry app, the `index.html` comes direct from Foundry itself
+      // and the React plugin doesn't get a chance to transform it. So we need
+      // to add the preamble ourselves. We do this by singling out the proxy
+      // rule for /game, using `configure` to add some hooks to manually insert
+      // the proxy ourselves.
       "/game": {
+        // see https://github.com/http-party/node-http-proxy#modify-response
         selfHandleResponse: true,
         target: "http://localhost:30009",
         configure: (proxy: HttpProxy.Server) => {
@@ -46,20 +40,18 @@ const config: UserConfig = {
             });
             proxyRes.on("end", async function () {
               const html = Buffer.concat(body).toString();
-              // const fixedHtml = html;// await viteServer.transformIndexHtml(req.url, html);
-              const chunk = '<script type="module">\n' +
-                `import RefreshRuntime from "/systems/${name}/@react-refresh";\n` +
-                "RefreshRuntime.injectIntoGlobalHook(window);\n" +
-                "window.$RefreshReg$ = () => {};\n" +
-                "window.$RefreshSig$ = () => (type) => type;\n" +
-                "window.__vite_plugin_react_preamble_installed__ = true;\n" +
-                "</script>\n";
-
-              const fixedHtml = html.replace("<head>", `<head>\n${chunk}`);
-              console.log("res from proxied server:", fixedHtml);
+              // this is the most future-proof way to get the preambnle code.
+              const preambleHtml =
+                '<script type="module">\n' +
+                react.preambleCode.replace("__BASE__", `/systems/${name}/`) +
+                "\n</script>\n";
+              const fixedHtml = html.replace(
+                "<head>",
+                `<head>\n${preambleHtml}`,
+              );
               res.statusCode = proxyRes.statusCode;
               res.headers = proxyRes.headers;
-              res.end(html);
+              res.end(fixedHtml);
             });
           });
         },
@@ -74,21 +66,6 @@ const config: UserConfig = {
       },
     },
   },
-
-  // resolve: {
-  //   alias: [
-  //     {
-  //       find: "./runtimeConfig",
-  //       replacement: "./runtimeConfig.browser",
-  //     },
-  //   ],
-  // },
-  // optimizeDeps: {
-  //   // machine-mind triggers https://github.com/evanw/esbuild/issues/1433
-  //   exclude: ["machine-mind"],
-  //   // machine-mind's cjs dependencies
-  //   include: ["lancer-data", "jszip", "axios", "readonly-proxy"],
-  // },
 
   // vite's correct way to get env vars is through import.meta.env.
   // however lots of code relies on process.meta.env, so we'll just
@@ -127,6 +104,7 @@ const config: UserConfig = {
       fileName: name,
     },
   },
+
   plugins: [
     react({
       jsxImportSource: "@emotion/react",
