@@ -99,6 +99,14 @@ const config: UserConfig = {
     "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
   },
 
+  // see https://github.com/vitejs/vite/issues/8644#issuecomment-1159308803
+  // see also https://github.com/vitejs/vite/pull/8674 (this PR should have
+  // fixed it, but maybe it's not in the version we're using?)
+  // discussion: https://github.com/vitejs/vite/discussions/8640?sort=old
+  esbuild: {
+    logOverride: { "this-is-undefined-in-esm": "silent" },
+  },
+
   build: {
     outDir: path.resolve(__dirname, "build"),
     emptyOutDir: true,
