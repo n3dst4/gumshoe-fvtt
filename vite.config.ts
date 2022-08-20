@@ -1,12 +1,31 @@
-import type { UserConfig } from "vite";
+import type {
+  HttpProxy,
+  // ServerOptions,
+  UserConfig,
+} from "vite";
+// import { createServer as createViteServer } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
 import checker from "vite-plugin-checker";
 import path from "path";
 import { name } from "./public/system.json";
 import react from "@vitejs/plugin-react";
+// import { JSDOM } from "jsdom";
 
 // guide to using Vite for Foundry from the Lancer guys:
 // https://foundryvtt.wiki/en/development/guides/vite
+
+// export const viteServer = await createViteServer({
+//   server: { middlewareMode: true },
+//   // plugins: [
+//   //   react({
+//   //     jsxImportSource: "@emotion/react",
+//   //     babel: {
+//   //       plugins: ["@emotion/babel-plugin"],
+//   //     },
+//   //   }),
+//   // ],
+//   appType: "custom",
+// });
 
 const config: UserConfig = {
   root: "src/",
@@ -16,15 +35,44 @@ const config: UserConfig = {
     port: 40009,
     open: "http://localhost:40009",
     proxy: {
-      [`^(?!/systems/${name})`]: "http://localhost:30009/",
+      "/game": {
+        selfHandleResponse: true,
+        target: "http://localhost:30009",
+        configure: (proxy: HttpProxy.Server) => {
+          proxy.on("proxyRes", function (proxyRes, req, res) {
+            const body: Uint8Array[] = [];
+            proxyRes.on("data", function (chunk) {
+              body.push(chunk);
+            });
+            proxyRes.on("end", async function () {
+              const html = Buffer.concat(body).toString();
+              // const fixedHtml = html;// await viteServer.transformIndexHtml(req.url, html);
+              const chunk = '<script type="module">\n' +
+                `import RefreshRuntime from "/systems/${name}/@react-refresh";\n` +
+                "RefreshRuntime.injectIntoGlobalHook(window);\n" +
+                "window.$RefreshReg$ = () => {};\n" +
+                "window.$RefreshSig$ = () => (type) => type;\n" +
+                "window.__vite_plugin_react_preamble_installed__ = true;\n" +
+                "</script>\n";
+
+              const fixedHtml = html.replace("<head>", `<head>\n${chunk}`);
+              console.log("res from proxied server:", fixedHtml);
+              res.statusCode = proxyRes.statusCode;
+              res.headers = proxyRes.headers;
+              res.end(html);
+            });
+          });
+        },
+      },
+      [`^(?!/systems/${name})`]: {
+        target: "http://localhost:30009/",
+
+      },
       "/socket.io": {
         target: "ws://localhost:30009",
         ws: true,
       },
     },
-  },
-  css: {
-
   },
 
   // resolve: {
@@ -81,7 +129,7 @@ const config: UserConfig = {
     checker({
       typescript: true,
       eslint: {
-        lintCommand: "eslint src",
+        lintCommand: `eslint "${path.join(__dirname, "/src/**/*.{ts,tsx}")}"`,
       },
     }),
     visualizer({
