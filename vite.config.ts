@@ -11,14 +11,17 @@ import react from "@vitejs/plugin-react";
 // guide to using Vite for Foundry from the Lancer guys:
 // https://foundryvtt.wiki/en/development/guides/vite
 
+const port = 40000;
+const foundryPort = 30009;
+
 const config: UserConfig = {
   root: "src/",
   base: `/systems/${name}/`,
   publicDir: path.resolve(__dirname, "public"),
 
   server: {
-    port: 40009,
-    open: "http://localhost:40009",
+    port,
+    open: `http://localhost:${port}`,
     proxy: {
       // In dev mode, plugin-react needs a preamble inserted in the head. When
       // you run a "normal" vite app, each plugin gets a chance to transform the
@@ -31,7 +34,7 @@ const config: UserConfig = {
       "/game": {
         // see https://github.com/http-party/node-http-proxy#modify-response
         selfHandleResponse: true,
-        target: "http://localhost:30009",
+        target: `http://localhost:${foundryPort}`,
         configure: (proxy: HttpProxy.Server) => {
           proxy.on("proxyRes", function (proxyRes, req, res) {
             const body: Uint8Array[] = [];
@@ -57,11 +60,11 @@ const config: UserConfig = {
         },
       },
       [`^(?!/systems/${name})`]: {
-        target: "http://localhost:30009/",
+        target: `http://localhost:${foundryPort}/`,
 
       },
       "/socket.io": {
-        target: "ws://localhost:30009",
+        target: `ws://localhost:${foundryPort}`,
         ws: true,
       },
     },
