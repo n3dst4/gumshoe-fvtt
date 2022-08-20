@@ -28,7 +28,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
       : "Delete the \"{AbilityName}\" ability?";
 
     confirmADoodleDo({
-      message: message,
+      message,
       confirmText: "Delete",
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",

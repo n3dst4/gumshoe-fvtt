@@ -23,15 +23,15 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
 
   const bg = zero
     ? odd
-        ? theme.colors.bgTransDangerPrimary
-        : theme.colors.bgTransDangerSecondary
+      ? theme.colors.bgTransDangerPrimary
+      : theme.colors.bgTransDangerSecondary
     : odd
       ? theme.colors.backgroundPrimary
       : theme.colors.backgroundSecondary;
   const headerBg = zero
     ? odd
-        ? theme.colors.bgOpaqueDangerPrimary
-        : theme.colors.bgOpaqueDangerSecondary
+      ? theme.colors.bgOpaqueDangerPrimary
+      : theme.colors.bgOpaqueDangerSecondary
     : odd
       ? theme.colors.bgOpaquePrimary
       : theme.colors.bgOpaqueSecondary;

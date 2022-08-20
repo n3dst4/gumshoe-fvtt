@@ -81,7 +81,7 @@ const config: UserConfig = {
     checker({
       typescript: true,
       eslint: {
-        lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
+        lintCommand: "eslint src",
       },
     }),
     visualizer({

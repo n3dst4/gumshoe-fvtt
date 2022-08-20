@@ -48,9 +48,9 @@ export class InvestigatorActor extends Actor {
     };
   }
 
-  confirmMw2Refresh = this.confirmMwRefresh(2)
-  confirmMw4Refresh = this.confirmMwRefresh(4)
-  confirmMw8Refresh = this.confirmMwRefresh(8)
+  confirmMw2Refresh = this.confirmMwRefresh(2);
+  confirmMw4Refresh = this.confirmMwRefresh(4);
+  confirmMw8Refresh = this.confirmMwRefresh(8);
 
   refresh = () => {
     const updates = Array.from(this.items).flatMap((item) => {
@@ -203,12 +203,12 @@ export class InvestigatorActor extends Actor {
   getOccupation = () => {
     assertPCDataSource(this.data);
     return this.data.data.occupation;
-  }
+  };
 
   setOccupation = (occupation: string) => {
     assertPCDataSource(this.data);
     this.update({ data: { occupation } });
-  }
+  };
 
   getSheetTheme (): ThemeV1 {
     const themeName = this.getSheetThemeName() || settings.defaultThemeName.get();
@@ -232,12 +232,12 @@ export class InvestigatorActor extends Actor {
   getNotes = () => {
     assertNPCDataSource(this.data);
     return this.data.data.notes;
-  }
+  };
 
   setNotes = (notes: NoteWithFormat) => {
     assertNPCDataSource(this.data);
     this.update({ data: { notes } });
-  }
+  };
 
   getLongNote = (i: number) => {
     assertPCDataSource(this.data);
@@ -267,7 +267,7 @@ export class InvestigatorActor extends Actor {
       };
     });
     this.update({ data: { longNotes, longNotesFormat } });
-  }
+  };
 
   getShortNote = (i: number) => {
     assertPCDataSource(this.data);
@@ -304,17 +304,17 @@ export class InvestigatorActor extends Actor {
   getHitThreshold = () => {
     assertActiveCharacterDataSource(this.data);
     return this.data.data.hitThreshold;
-  }
+  };
 
   setHitThreshold = (hitThreshold: number) => {
     assertActiveCharacterDataSource(this.data);
     return this.update({ data: { hitThreshold } });
-  }
+  };
 
   getInitiativeAbility = () => {
     assertActiveCharacterDataSource(this.data);
     return this.data.data.initiativeAbility;
-  }
+  };
 
   setInitiativeAbility = async (initiativeAbility: string) => {
     assertGame(game);
@@ -324,34 +324,34 @@ export class InvestigatorActor extends Actor {
     if (isInCombat) {
       await this.rollInitiative({ rerollInitiative: true });
     }
-  }
+  };
 
   setCombatBonus = async (combatBonus: number) => {
     assertNPCDataSource(this.data);
     await this.update({ data: { combatBonus } });
-  }
+  };
 
   setDamageBonus = async (damageBonus: number) => {
     assertNPCDataSource(this.data);
     await this.update({ data: { damageBonus } });
-  }
+  };
 
   setPassingTurns = async (initiativePassingTurns: number) => {
     assertActiveCharacterDataSource(this.data);
     await this.update({ data: { initiativePassingTurns } });
-  }
+  };
 
   // ###########################################################################
   // Moribund World stuff
   getMwInjuryStatus = () => {
     assertActiveCharacterDataSource(this.data);
     return this.data.data.mwInjuryStatus;
-  }
+  };
 
   setMwInjuryStatus = async (mwInjuryStatus: MwInjuryStatus) => {
     assertActiveCharacterDataSource(this.data);
     await this.update({ data: { mwInjuryStatus } });
-  }
+  };
 
   // ###########################################################################
   // For the party sheet

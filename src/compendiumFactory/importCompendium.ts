@@ -52,8 +52,8 @@ export const importCompendium = async (candidate: unknown) => {
     {},
   );
   const maker = {
-    Actor: Actor,
-    Item: Item,
+    Actor,
+    Item,
   }[verified.entity];
 
   const entities = await maker.create(verified.contents as any, { temporary: true });

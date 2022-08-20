@@ -53,7 +53,7 @@ const createSetting = <T>(
     });
   });
   return ({
-    key: key,
+    key,
     get: getSetting<T>(key),
     set: setSetting<T>(key),
   });
