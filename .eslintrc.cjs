@@ -17,10 +17,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: [
-    "react",
-    "@typescript-eslint",
-  ],
+  plugins: ["react", "@typescript-eslint"],
   rules: {
     quotes: ["error", "double", { avoidEscape: true }],
     semi: ["error", "always"],
@@ -29,32 +26,42 @@ module.exports = {
     "comma-dangle": ["error", "always-multiline"],
     "@typescript-eslint/no-explicit-any": ["off"],
     "@typescript-eslint/explicit-module-boundary-types": ["off"],
-    "@typescript-eslint/no-unused-vars": ["error", { args: "none", ignoreRestSiblings: true }],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { args: "none", ignoreRestSiblings: true },
+    ],
     "react/prop-types": ["off"],
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-namespace": ["warn", { allowDeclarations: true }],
-    "@typescript-eslint/member-delimiter-style": ["error", {
-      multiline: {
-        delimiter: "comma",
-        requireLast: true,
-      },
-      singleline: {
-        delimiter: "comma",
-        requireLast: false,
-      },
-      overrides: {
-        interface: {
-          multiline: {
-            delimiter: "semi",
-            requireLast: true,
-          },
-          singleline: {
-            delimiter: "semi",
-            requireLast: true,
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+        multiline: {
+          delimiter: "comma",
+          requireLast: true,
+        },
+        singleline: {
+          delimiter: "comma",
+          requireLast: false,
+        },
+        overrides: {
+          interface: {
+            multiline: {
+              delimiter: "semi",
+              requireLast: true,
+            },
+            singleline: {
+              delimiter: "semi",
+              requireLast: true,
+            },
           },
         },
       },
-    }],
+    ],
+    // need to replace this with @typescript-eslint/no-restricted-imports so we
+    // can allow type imports from lodash but this willr equire some eslint etc
+    // version bumps
+    // "no-restricted-imports": ["error", "lodash"],
   },
   overrides: [
     {
