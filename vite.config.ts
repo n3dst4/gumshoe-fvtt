@@ -127,6 +127,17 @@ const config = defineConfig(({ command, mode, ssrBuild }) => {
       visualizer({
         gzipSize: true,
         template: "treemap",
+        filename: "stats/treemap.html",
+      }),
+      visualizer({
+        gzipSize: true,
+        template: "sunburst",
+        filename: "stats/sunburst.html",
+      }),
+      visualizer({
+        gzipSize: true,
+        template: "network",
+        filename: "stats/network.html",
       }),
     ],
   };
