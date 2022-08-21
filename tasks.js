@@ -139,7 +139,7 @@ async function link () {
     throw new Error("linkDir not set");
   }
   if (!fs.existsSync(linkDir)) {
-    log(`Linking ${buildPath} to ${chalk.blueBright(linkDir)}`);
+    log(`Linking ${chalk.blueBright(buildPath)} to ${chalk.blueBright(linkDir)}`);
     return fs.symlink(path.resolve(buildPath), linkDir);
   } else {
     log(chalk.magenta(`${chalk.blueBright(linkDir)} already exists`));
@@ -228,12 +228,6 @@ yargs(hideBin(process.argv))
     () => {},
     () => packidge(),
   )
-  // .command(
-  //   "watch",
-  //   "Build-on-chnage mode",
-  //   () => {},
-  //   () => watch(),
-  // )
   .command(
     "buildPackTranslations",
     "Generate translation files for packs",
