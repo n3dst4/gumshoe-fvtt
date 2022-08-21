@@ -21,7 +21,7 @@
   "author": "",
   "license": "",
   "devDependencies": {
-    "@emotion/babel-preset-css-prop": "^11.10.0",
+    "@emotion/babel-plugin": "^11.10.0",
     "@emotion/cache": "^11.10.1",
     "@emotion/css": "^11.10.0",
     "@emotion/react": "^11.10.0",
@@ -85,8 +85,8 @@
     "react-icons": "^4.2.0",
     "react-move": "^6.5.0",
     "react-transition-group": "^4.4.2",
-    "sanitize-html": "^2.7.0",
     "turndown": "^7.1.1",
+    "xss": "^1.0.14",
     "yaml": "^1.10.0"
   }
 }
