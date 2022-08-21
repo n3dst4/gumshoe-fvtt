@@ -1,10 +1,10 @@
 import { defaultCustomThemePath } from "../constants";
-import YAML from "yaml";
 import JSON5 from "json5";
 import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
 import { highContrastTheme } from "../themes/highContrastTheme";
 import { assertGame } from "../functions";
 import { settings } from "../settings";
+import yaml from "yamljs";
 
 export function loadCustomThemes () {
   const jsonRe = /\.(?:json|json5)$/;
@@ -43,7 +43,9 @@ export function loadCustomThemes () {
           blob = JSON5.parse(text);
         } else if (yamlRe.test(filename)) {
           const text = await getText();
-          blob = YAML.parse(text);
+          // blob = YAML.parse(text);
+          // blob = {};
+          blob = yaml.parse(text);
         } else {
           continue;
         }

@@ -39,6 +39,7 @@
     "@types/react-transition-group": "^4.4.4",
     "@types/sanitize-html": "^2.6.2",
     "@types/turndown": "^5.0.1",
+    "@types/yamljs": "^0.2.31",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
     "@vitejs/plugin-react": "^2.0.1",
@@ -87,6 +88,6 @@
     "react-transition-group": "^4.4.2",
     "turndown": "^7.1.1",
     "xss": "^1.0.14",
-    "yaml": "^1.10.0"
+    "yamljs": "^0.3.0"
   }
 }
