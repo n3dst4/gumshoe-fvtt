@@ -91,7 +91,7 @@ const config = defineConfig(({ command, mode, ssrBuild }) => {
     build: {
       outDir: path.resolve(__dirname, "build"),
       emptyOutDir: true,
-      sourcemap: true,
+      sourcemap: mode !== "production",
       minify: mode === "production",
       rollupOptions: {
         output: {
