@@ -82,7 +82,7 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
 
       if (el) {
         const content = (
-          <FoundryAppContext.Provider value={this}>
+          <FoundryAppContext.Provider value={this} key={"FoundryAppContextProvider"}>
             {render(
               this as TBase extends Constructor<infer T2> ? T2 : TBase,
               this.serial,

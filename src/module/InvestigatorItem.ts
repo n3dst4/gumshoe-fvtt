@@ -171,97 +171,97 @@ export class InvestigatorItem extends Item {
   getCategory = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.category;
-  }
+  };
 
   setCategory = (category: string) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { category } });
-  }
+  };
 
   getMin = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.min;
-  }
+  };
 
   setMin = (min: number) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { min } });
-  }
+  };
 
   getMax = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.max;
-  }
+  };
 
   setMax = (max: number) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { max } });
-  }
+  };
 
   getOccupational = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.occupational;
-  }
+  };
 
   setOccupational = (occupational: boolean) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { occupational } });
-  }
+  };
 
   getCanBeInvestigative = () => {
     assertGeneralAbilityDataSource(this.data);
     return this.data.data.canBeInvestigative;
-  }
+  };
 
   setCanBeInvestigative = (canBeInvestigative: boolean) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { canBeInvestigative } });
-  }
+  };
 
   getShowTracker = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.showTracker;
-  }
+  };
 
   setShowTracker = (showTracker: boolean) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { showTracker } });
-  }
+  };
 
   getExcludeFromGeneralRefresh = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.excludeFromGeneralRefresh;
-  }
+  };
 
   setExcludeFromGeneralRefresh = (excludeFromGeneralRefresh: boolean) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { excludeFromGeneralRefresh } });
-  }
+  };
 
   getRefreshesDaily = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.refreshesDaily;
-  }
+  };
 
   setRefreshesDaily = (refreshesDaily: boolean) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { refreshesDaily } });
-  }
+  };
 
   getGoesFirstInCombat = () => {
     assertGeneralAbilityDataSource(this.data);
     return this.data.data.goesFirstInCombat;
-  }
+  };
 
   setGoesFirstInCombat = (goesFirstInCombat: boolean) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { goesFirstInCombat } });
-  }
+  };
 
   getSpecialities = () => {
     assertAbilityDataSource(this.data);
     return fixLength(this.data.data.specialities, this.data.data.rating, "");
-  }
+  };
 
   setSpecialities = (newSpecs: string[]) => {
     assertAbilityDataSource(this.data);
@@ -270,12 +270,12 @@ export class InvestigatorItem extends Item {
         specialities: fixLength(newSpecs, this.data.data.rating, ""),
       },
     });
-  }
+  };
 
   getRating = (): number => {
     assertAbilityDataSource(this.data);
     return this.data.data.rating ?? 0;
-  }
+  };
 
   setRating = (newRating: number) => {
     assertAbilityDataSource(this.data);
@@ -285,7 +285,7 @@ export class InvestigatorItem extends Item {
         specialities: fixLength(this.data.data.specialities, newRating, ""),
       },
     });
-  }
+  };
 
   setRatingRefresh = (newRating: number) => {
     assertAbilityDataSource(this.data);
@@ -296,12 +296,12 @@ export class InvestigatorItem extends Item {
         specialities: fixLength(this.data.data.specialities, newRating, ""),
       },
     });
-  }
+  };
 
   getHasSpecialities = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.hasSpecialities ?? false;
-  }
+  };
 
   setHasSpecialities = (hasSpecialities: boolean) => {
     assertAbilityDataSource(this.data);
@@ -310,13 +310,13 @@ export class InvestigatorItem extends Item {
         hasSpecialities,
       },
     });
-  }
+  };
 
   setName = (name: string) => {
     this.update({
       name,
     });
-  }
+  };
 
   setAmmoMax = (max: number) => {
     this.update({
@@ -326,12 +326,12 @@ export class InvestigatorItem extends Item {
         },
       },
     });
-  }
+  };
 
   getAmmoMax = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.ammo?.max || 0;
-  }
+  };
 
   setAmmo = (value: number) => {
     this.update({
@@ -341,12 +341,12 @@ export class InvestigatorItem extends Item {
         },
       },
     });
-  }
+  };
 
   getAmmo = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.ammo?.value || 0;
-  }
+  };
 
   reload = () => {
     assertWeaponDataSource(this.data);
@@ -357,31 +357,31 @@ export class InvestigatorItem extends Item {
         },
       },
     });
-  }
+  };
 
   getAmmoPerShot = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.ammoPerShot ?? 1;
-  }
+  };
 
   setAmmoPerShot = (ammoPerShot: number) => {
     assertWeaponDataSource(this.data);
     this.update({
       data: { ammoPerShot },
     });
-  }
+  };
 
   getUsesAmmo = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.usesAmmo ?? false;
-  }
+  };
 
   setUsesAmmo = (usesAmmo: boolean) => {
     assertWeaponDataSource(this.data);
     this.update({
       data: { usesAmmo },
     });
-  }
+  };
 
   getTheme (): ThemeV1 {
     const themeName = this.getThemeName();
@@ -400,141 +400,141 @@ export class InvestigatorItem extends Item {
 
   getNotes = () => {
     return this.data.data.notes ?? "";
-  }
+  };
 
   setNotes = async (newNotes: NoteWithFormat) => {
     await this.update({ data: { notes: newNotes } });
-  }
+  };
 
   getAbility = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.ability ?? "";
-  }
+  };
 
   setAbility = (ability: string) => {
     assertWeaponDataSource(this.data);
     this.update({ data: { ability } });
-  }
+  };
 
   getPool = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.pool ?? 0;
-  }
+  };
 
   setPool = (pool: number) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { pool } });
-  }
+  };
 
   getBoost = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.boost ?? 0;
-  }
+  };
 
   setBoost = (boost: boolean) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { boost } });
-  }
+  };
 
   getDamage = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.damage ?? 0;
-  }
+  };
 
   setDamage = (damage: number) => {
     assertWeaponDataSource(this.data);
     this.update({ data: { damage } });
-  }
+  };
 
   getPointBlankDamage = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.pointBlankDamage ?? 0;
-  }
+  };
 
   setPointBlankDamage = (pointBlankDamage: number) => {
     assertWeaponDataSource(this.data);
     this.update({ data: { pointBlankDamage } });
-  }
+  };
 
   getCloseRangeDamage = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.closeRangeDamage ?? 0;
-  }
+  };
 
   setCloseRangeDamage = (closeRangeDamage: number) => {
     assertWeaponDataSource(this.data);
     this.update({ data: { closeRangeDamage } });
-  }
+  };
 
   getNearRangeDamage = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.nearRangeDamage ?? 0;
-  }
+  };
 
   setNearRangeDamage = (nearRangeDamage: number) => {
     assertWeaponDataSource(this.data);
     this.update({ data: { nearRangeDamage } });
-  }
+  };
 
   getLongRangeDamage = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.longRangeDamage ?? 0;
-  }
+  };
 
   setLongRangeDamage = (longRangeDamage: number) => {
     assertWeaponDataSource(this.data);
     this.update({ data: { longRangeDamage } });
-  }
+  };
 
   getIsPointBlank = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.isPointBlank;
-  }
+  };
 
   setIsPointBlank = (isPointBlank: boolean) => {
     assertWeaponDataSource(this.data);
     this.update({ data: { isPointBlank } });
-  }
+  };
 
   getIsCloseRange = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.isCloseRange;
-  }
+  };
 
   setIsCloseRange = (isCloseRange: boolean) => {
     assertWeaponDataSource(this.data);
     this.update({ data: { isCloseRange } });
-  }
+  };
 
   getIsNearRange = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.isNearRange;
-  }
+  };
 
   setIsNearRange = (isNearRange: boolean) => {
     assertWeaponDataSource(this.data);
     this.update({ data: { isNearRange } });
-  }
+  };
 
   getIsLongRange = () => {
     assertWeaponDataSource(this.data);
     return this.data.data.isLongRange;
-  }
+  };
 
   setIsLongRange = (isLongRange: boolean) => {
     assertWeaponDataSource(this.data);
     this.update({ data: { isLongRange } });
-  }
+  };
 
   getHideIfZeroRated = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.hideIfZeroRated;
-  }
+  };
 
   setHideIfZeroRated = (hideIfZeroRated: boolean) => {
     assertAbilityDataSource(this.data);
     this.update({ data: { hideIfZeroRated } });
-  }
+  };
 
   // ---------------------------------------------------------------------------
   // MW specific fields
@@ -542,74 +542,74 @@ export class InvestigatorItem extends Item {
   getMwTrumps = () => {
     assertGeneralAbilityDataSource(this.data);
     return this.data.data.mwTrumps;
-  }
+  };
 
   setMwTrumps = (mwTrumps: string) => {
     assertGeneralAbilityDataSource(this.data);
     this.update({ data: { mwTrumps } });
-  }
+  };
 
   getMwTrumpedBy = () => {
     assertGeneralAbilityDataSource(this.data);
     return this.data.data.mwTrumpedBy;
-  }
+  };
 
   setMwTrumpedBy = (mwTrumpedBy: string) => {
     assertGeneralAbilityDataSource(this.data);
     this.update({ data: { mwTrumpedBy } });
-  }
+  };
 
   getMwType = () => {
     assertMwItemDataSource(this.data);
     return this.data.data.mwType;
-  }
+  };
 
   setMwType = (mwType: MwType) => {
     assertMwItemDataSource(this.data);
     this.update({ data: { mwType } });
-  }
+  };
 
   getCharges = () => {
     assertMwItemDataSource(this.data);
     return this.data.data.charges;
-  }
+  };
 
   setCharges = (charges: number) => {
     assertMwItemDataSource(this.data);
     this.update({ data: { charges } });
-  }
+  };
 
   getRanges = () => {
     assertMwItemDataSource(this.data);
     return this.data.data.ranges;
-  }
+  };
 
   getRange = (range: 0|1|2|3) => {
     assertMwItemDataSource(this.data);
     return this.data.data.ranges[range];
-  }
+  };
 
   setRanges = (ranges: [number, number, number, number]) => {
     assertMwItemDataSource(this.data);
     this.update({ data: { ranges } });
-  }
+  };
 
   setRange = (range: 0|1|2|3) => (value: number) => {
     assertMwItemDataSource(this.data);
     const ranges = [...this.data.data.ranges] as RangeTuple;
     ranges[range] = value;
     this.update({ data: { ranges } });
-  }
+  };
 
-  getMwRefreshGroup= () => {
+  getMwRefreshGroup = () => {
     assertGeneralAbilityDataSource(this.data);
     return this.data.data.mwRefreshGroup;
-  }
+  };
 
   setMwRefreshGroup = (mwRefreshGroup: MwRefreshGroup) => {
     assertGeneralAbilityDataSource(this.data);
     this.update({ data: { mwRefreshGroup } });
-  }
+  };
 
   getActiveUnlocks = () => {
     assertAbilityDataSource(this.data);
@@ -619,17 +619,17 @@ export class InvestigatorItem extends Item {
         return (this.data.data.rating >= targetRating);
       },
     );
-  }
+  };
 
   setCombatBonus = async (combatBonus: number) => {
     assertGeneralAbilityDataSource(this.data);
     await this.update({ data: { combatBonus } });
-  }
+  };
 
   setDamageBonus = async (damageBonus: number) => {
     assertGeneralAbilityDataSource(this.data);
     await this.update({ data: { damageBonus } });
-  }
+  };
 }
 
 declare global {

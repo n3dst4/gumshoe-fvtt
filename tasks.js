@@ -6,12 +6,7 @@ import path from "path";
 import archiver from "archiver";
 import rimraf from "rimraf";
 import { fileURLToPath } from "url";
-import webpack from "webpack";
-import webpackConfig from "./webpack.config.js";
-import less from "less";
-import { readFile, writeFile } from "fs/promises";
-import chokidar from "chokidar";
-import globWithCallback from "glob";
+import { writeFile } from "fs/promises";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
@@ -21,49 +16,20 @@ import { hideBin } from "yargs/helpers";
 
 /// /////////////////////////////////////////////////////////////////////////////
 // Config
-const srcPath = "src";
+const publicPath = "public";
 const manifestName = "system.json";
-const manifestPath = path.join(srcPath, manifestName);
+const manifestPath = path.join(publicPath, manifestName);
 const buildPath = "build";
-const staticPaths = [
-  manifestName,
-  "lang",
-  "assets",
-  "templates",
-  "template.json",
-  "packs",
-];
-const lessGlobPattern = `${srcPath}/**/*.less`;
 
 /// ////////////////////////////////////////////////////////////////////////////
 // Utilities
 
-// promisified version of glob
-function glob (pattern, options) {
-  return new Promise((resolve, reject) => {
-    globWithCallback(pattern, options, (err, files) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(files);
-      }
-    });
-  });
-}
-
 // logging function
 const log = console.log.bind(console, chalk.green("[task] "));
-const error = console.log.bind(console, chalk.red("[error] "));
 
 // if subject is a semver string beginning with a v, remove the v
 const stripInitialv = (subject) =>
   subject.replace(/^v(\d+\.\d+\.\d+.*)/i, (_, ...[match]) => match);
-
-// given a path in the src folder, map it to the equivalent build folder path
-function srcToBuild (inPath) {
-  const outPath = path.join(buildPath, path.relative(srcPath, inPath));
-  return outPath;
-}
 
 /// /////////////////////////////////////////////////////////////////////////////
 // Startup
@@ -100,93 +66,13 @@ async function clean () {
 }
 
 /**
- * Build TypeScript
- */
-async function buildCode () {
-  log("Building Typescript...");
-  await new Promise((resolve, reject) => {
-    webpack(webpackConfig, (err, stats) => {
-      if (err || stats.hasErrors()) {
-        reject(err || stats.toString());
-      } else {
-        resolve();
-      }
-    });
-  });
-  log("Finished building Typescript.");
-}
-
-async function buildLess (paths) {
-  if (paths === undefined) {
-    paths = await glob(lessGlobPattern);
-  }
-  return await Promise.all(
-    paths.map(async (inPath) => {
-      const src = await readFile(inPath);
-      const result = await less.render(src.toString());
-      const outPath = srcToBuild(inPath).replace(/\.less$/i, ".css");
-      log("Building LESS from", chalk.cyan(inPath), "to", chalk.cyan(outPath));
-      await writeFile(outPath, result.css);
-    }),
-  );
-}
-
-/**
- * Copy static files
- */
-async function copyFiles (paths) {
-  if (paths === undefined) {
-    paths = staticPaths.map((p) => path.join(srcPath, p));
-  }
-  for (const fromPath of paths) {
-    const toPath = srcToBuild(fromPath);
-    log("Copying", chalk.cyan(fromPath), "to", chalk.cyan(toPath));
-    await fs.copy(fromPath, toPath);
-  }
-}
-
-/**
- * Watch for changes for each build step
- */
-function watch () {
-  webpack(webpackConfig).watch(
-    {
-      aggregateTimeout: 300,
-      poll: undefined,
-    },
-    (err, stats) => {
-      log(
-        stats.toString({
-          colors: true,
-        }),
-      );
-      if (err) {
-        error(err);
-      }
-    },
-  );
-  chokidar
-    .watch("src/**/*.less")
-    .on("add", (path) => {
-      buildLess([path]);
-    })
-    .on("change", (path) => {
-      buildLess([path]);
-    });
-  chokidar
-    .watch(staticPaths.map((x) => path.join(srcPath, x)))
-    .on("add", (path) => copyFiles([path]))
-    .on("change", (path) => copyFiles([path]));
-}
-
-/**
  * go though the compendium packs, and for each one, emit an untranslated
  * template file. once comitted and pushed, this will be picked up by transifex
  * and update the translation list.
  */
 async function buildPackTranslations () {
   log("Building pack translations");
-  // load nedb async to avoid slowing unrelated tasks tasks
+  // load nedb async to avoid slowing unrelated tasks
   const { default: Datastore } = await import("@seald-io/nedb");
 
   const mapping = {
@@ -200,7 +86,7 @@ async function buildPackTranslations () {
     const entries = {};
 
     const store = new Datastore({
-      filename: path.join(srcPath, pack.path),
+      filename: path.join(publicPath, pack.path),
       autoload: true,
     });
 
@@ -224,7 +110,7 @@ async function buildPackTranslations () {
       ".db",
     )}.json`;
     const outFilePath = path.join(
-      srcPath,
+      publicPath,
       "lang",
       "babele-sources",
       outFileName,
@@ -253,7 +139,7 @@ async function link () {
     throw new Error("linkDir not set");
   }
   if (!fs.existsSync(linkDir)) {
-    log(`Linking ${buildPath} to ${chalk.blueBright(linkDir)}`);
+    log(`Linking ${chalk.blueBright(buildPath)} to ${chalk.blueBright(linkDir)}`);
     return fs.symlink(path.resolve(buildPath), linkDir);
   } else {
     log(chalk.magenta(`${chalk.blueBright(linkDir)} already exists`));
@@ -286,9 +172,10 @@ async function updateManifestFromCITagPush () {
 }
 
 /**
- * Package build
+ * create a releasable package
+ * (package is a reserved word)
  */
-async function bundlePackage () {
+async function packidge () {
   return new Promise((resolve, reject) => {
     try {
       // Ensure there is a directory to hold all the packaged versions
@@ -315,31 +202,6 @@ async function bundlePackage () {
   });
 }
 
-/**
- * go into production mode
- */
-async function setProd () {
-  process.env.NODE_ENV = "production";
-}
-
-/**
- * cleand and then build
- */
-async function build () {
-  await clean();
-  await Promise.all([buildCode(), buildLess(), copyFiles()]);
-}
-
-/**
- * create a releasable package
- * (package is a reserved word)
- */
-async function packidge () {
-  await setProd();
-  await build();
-  await bundlePackage();
-}
-
 // yargs turns this into a usable script
 yargs(hideBin(process.argv))
   .command(
@@ -355,46 +217,16 @@ yargs(hideBin(process.argv))
     () => unlink(),
   )
   .command(
-    "buildLess",
-    "Build LESS files",
-    () => {},
-    () => buildLess(),
-  )
-  .command(
-    "buildCode",
-    "Build Typescript",
-    () => {},
-    () => buildCode(),
-  )
-  .command(
     "clean",
     "Remove all generated files",
     () => {},
     () => clean(),
   )
   .command(
-    "build",
-    "Build everything into output folder",
-    () => {},
-    () => build(),
-  )
-  .command(
-    "bundlePackage",
-    "Create package .zip",
-    () => {},
-    () => bundlePackage(),
-  )
-  .command(
     "packidge",
     "Build package file from scratch",
     () => {},
     () => packidge(),
-  )
-  .command(
-    "watch",
-    "Build-on-chnage mode",
-    () => {},
-    () => watch(),
   )
   .command(
     "buildPackTranslations",

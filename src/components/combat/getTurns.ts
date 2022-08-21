@@ -71,7 +71,7 @@ export function getTurns (combat: Combat) {
       initiative,
       hasRolled,
       hasResource,
-      resource: resource,
+      resource,
       effects,
       passingTurnsRemaining: combatant.passingTurnsRemaining,
       totalPassingTurns,

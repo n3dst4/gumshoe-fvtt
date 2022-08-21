@@ -50,10 +50,10 @@ export const installDropActorSheetDataHandler = () => {
           ? [id]
           : dropData.type === "Folder"
             ? getFolderDescendants(game.folders?.get(id))
-                .filter((actor) => {
-                  return (actor as any).data.type === pc;
-                })
-                .map((actor) => (actor as any).id)
+              .filter((actor) => {
+                return (actor as any).data.type === pc;
+              })
+              .map((actor) => (actor as any).id)
             : [];
 
       targetActor.addActorIds(actorIds);

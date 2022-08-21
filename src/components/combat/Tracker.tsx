@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css";
-import { sortBy } from "lodash";
+import sortBy from "lodash/sortBy";
 import React, { Fragment, useCallback, MouseEvent, ReactNode } from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";

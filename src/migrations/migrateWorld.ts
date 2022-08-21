@@ -1,4 +1,4 @@
-import system from "../system.json";
+import system from "../../public/system.json";
 import { migrateActorData } from "./migrateActorData";
 import { migrateCompendium } from "./migrateCompendium";
 import { migrateItemData } from "./migrateItemData";

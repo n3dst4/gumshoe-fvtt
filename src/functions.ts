@@ -197,3 +197,6 @@ export function broadcastHook<T> (hook: string, payload: T) {
   game.socket?.emit(constants.socketScope, socketHookAction);
   Hooks.call(hook, payload);
 }
+
+export const makeLogger = (name: string) =>
+  console.log.bind(console, `[${name}]`);

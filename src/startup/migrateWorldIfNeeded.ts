@@ -1,6 +1,6 @@
 import { defaultMigratedSystemVersion } from "../constants";
 import { assertGame } from "../functions";
-import system from "../system.json";
+import system from "../../public/system.json";
 import { migrateWorld } from "../migrations/migrateWorld";
 import { settings } from "../settings";
 
