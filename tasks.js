@@ -16,7 +16,6 @@ import { hideBin } from "yargs/helpers";
 
 /// /////////////////////////////////////////////////////////////////////////////
 // Config
-const srcPath = "src";
 const publicPath = "public";
 const manifestName = "system.json";
 const manifestPath = path.join(publicPath, manifestName);
@@ -73,7 +72,7 @@ async function clean () {
  */
 async function buildPackTranslations () {
   log("Building pack translations");
-  // load nedb async to avoid slowing unrelated tasks tasks
+  // load nedb async to avoid slowing unrelated tasks
   const { default: Datastore } = await import("@seald-io/nedb");
 
   const mapping = {
@@ -87,7 +86,7 @@ async function buildPackTranslations () {
     const entries = {};
 
     const store = new Datastore({
-      filename: path.join(srcPath, pack.path),
+      filename: path.join(publicPath, pack.path),
       autoload: true,
     });
 
@@ -111,7 +110,7 @@ async function buildPackTranslations () {
       ".db",
     )}.json`;
     const outFilePath = path.join(
-      srcPath,
+      publicPath,
       "lang",
       "babele-sources",
       outFileName,
