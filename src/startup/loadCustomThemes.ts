@@ -1,10 +1,8 @@
 import { defaultCustomThemePath } from "../constants";
-import JSON5 from "json5";
 import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
 import { highContrastTheme } from "../themes/highContrastTheme";
 import { assertGame } from "../functions";
 import { settings } from "../settings";
-import yaml from "yamljs";
 
 export function loadCustomThemes () {
   const jsonRe = /\.(?:json|json5)$/;
@@ -39,12 +37,16 @@ export function loadCustomThemes () {
       try {
         const getText = async () => await (await fetch(filename)).text();
         if (jsonRe.test(filename)) {
-          const text = await getText();
+          // JSON5 does something weird when imported dynamically, so we need to
+          // grab the `default` property manually.
+          // https://github.com/json5/json5/issues/287
+          const [text, { default: JSON5 }] = await Promise.all([
+            getText(),
+            import("json5"),
+          ]);
           blob = JSON5.parse(text);
         } else if (yamlRe.test(filename)) {
-          const text = await getText();
-          // blob = YAML.parse(text);
-          // blob = {};
+          const [text, yaml] = await Promise.all([getText(), import("yamljs")]);
           blob = yaml.parse(text);
         } else {
           continue;
