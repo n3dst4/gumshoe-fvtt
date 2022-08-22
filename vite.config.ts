@@ -4,13 +4,21 @@ import { visualizer } from "rollup-plugin-visualizer";
 import checker from "vite-plugin-checker";
 import path from "path";
 import { name } from "./public/system.json";
+import { url as foundryUrl } from "./foundryconfig.json";
 import react from "@vitejs/plugin-react";
 
 // guide to using Vite for Foundry from the Lancer guys:
 // https://foundryvtt.wiki/en/development/guides/vite
 
 const port = 40000;
-const foundryPort = 30009;
+
+const preambleJS = react.preambleCode.replace(
+  "__BASE__",
+`/systems/${name}/`,
+);
+const preambleHtml =
+'\n<script type="module">\n' + preambleJS + "\n</script>\n";
+const headTag = "<head>";
 
 const config = defineConfig(({ command, mode, ssrBuild }) => {
   console.log(mode);
@@ -34,7 +42,7 @@ const config = defineConfig(({ command, mode, ssrBuild }) => {
         "/game": {
         // see https://github.com/http-party/node-http-proxy#modify-response
           selfHandleResponse: true,
-          target: `http://localhost:${foundryPort}`,
+          target: foundryUrl,
           configure: (proxy: HttpProxy.Server) => {
             proxy.on("proxyRes", function (proxyRes, req, res) {
               const body: Uint8Array[] = [];
@@ -44,13 +52,6 @@ const config = defineConfig(({ command, mode, ssrBuild }) => {
               proxyRes.on("end", async function () {
                 const html = Buffer.concat(body).toString();
                 // this is the most future-proof way to get the preamble code.
-                const preambleJS = react.preambleCode.replace(
-                  "__BASE__",
-                `/systems/${name}/`,
-                );
-                const preambleHtml =
-                '\n<script type="module">\n' + preambleJS + "\n</script>\n";
-                const headTag = "<head>";
                 const fixedHtml = html.replace(
                   headTag,
                 `${headTag}${preambleHtml}`,
@@ -63,10 +64,10 @@ const config = defineConfig(({ command, mode, ssrBuild }) => {
           },
         },
         [`^(?!/systems/${name})`]: {
-          target: `http://localhost:${foundryPort}/`,
+          target: foundryUrl,
         },
         "/socket.io": {
-          target: `ws://localhost:${foundryPort}`,
+          target: foundryUrl.replace(/^https?/, "ws"),
           ws: true,
         },
       },

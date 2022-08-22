@@ -1,5 +1,4 @@
 {
   "dataPath": "/home/user/foundrydata",
-  "repository": "",
-  "rawURL": ""
+  "url": "http://localhost:30000/"
 }
