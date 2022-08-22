@@ -1,8 +1,14 @@
 // import ReactDOM from "react-dom";
 import React from "react";
-import { ItemSheet as InvestigatorItemSheet } from "../components/ItemSheet";
+import { Suspense } from "../components/Suspense";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
+
+const InvestigatorItemSheet = React.lazy(() =>
+  import("../components/ItemSheet").then(({ ItemSheet }) => ({
+    default: ItemSheet,
+  })),
+);
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -24,10 +30,12 @@ class InvestigatorEquipmentSheetClassBase extends ItemSheet {
 
 const render = (sheet: InvestigatorEquipmentSheetClassBase) => {
   return (
-    <InvestigatorItemSheet
-      item={sheet.document}
-      foundryApplication={sheet}
-    />
+    <Suspense>
+      <InvestigatorItemSheet
+        item={sheet.document}
+        foundryApplication={sheet}
+      />
+    </Suspense>
   );
 };
 

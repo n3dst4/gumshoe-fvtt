@@ -1,8 +1,13 @@
-// import ReactDOM from "react-dom";
 import React from "react";
-import { NPCSheet } from "../components/characters/NPCSheet";
+import { Suspense } from "../components/Suspense";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
+
+const NPCSheet = React.lazy(() =>
+  import("../components/characters/NPCSheet").then(({ NPCSheet }) => ({
+    default: NPCSheet,
+  })),
+);
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -22,10 +27,9 @@ class InvestigatorNPCSheetClassBase extends ActorSheet {
 
 const render = (sheet: InvestigatorNPCSheetClassBase) => {
   return (
-    <NPCSheet
-      actor={sheet.document}
-      foundryApplication={sheet}
-    />
+    <Suspense>
+      <NPCSheet actor={sheet.document} foundryApplication={sheet} />
+    </Suspense>
   );
 };
 

@@ -1,8 +1,15 @@
-// import ReactDOM from "react-dom";
 import React from "react";
-import { InvestigatorPartySheet } from "../components/party/InvestigatorPartySheet";
+import { Suspense } from "../components/Suspense";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
+
+const InvestigatorPartySheet = React.lazy(() =>
+  import("../components/party/InvestigatorPartySheet").then(
+    ({ InvestigatorPartySheet }) => ({
+      default: InvestigatorPartySheet,
+    }),
+  ),
+);
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -22,10 +29,12 @@ class InvestigatorPartySheetClassBase extends ActorSheet {
 
 const render = (sheet: InvestigatorPartySheetClassBase) => {
   return (
-    <InvestigatorPartySheet
-      party={sheet.document}
-      foundryApplication={sheet}
-    />
+    <Suspense>
+      <InvestigatorPartySheet
+        party={sheet.document}
+        foundryApplication={sheet}
+      />
+    </Suspense>
   );
 };
 

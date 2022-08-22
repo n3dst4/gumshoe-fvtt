@@ -24,15 +24,13 @@ import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 import { settings } from "../../settings";
 import { StatField } from "./StatField";
 
-type PCSheetProps = {
+export const PCSheet: React.FC<{
   actor: InvestigatorActor,
   foundryApplication: ActorSheet,
-}
-
-export const PCSheet = ({
+}> = ({
   actor,
   foundryApplication,
-}: PCSheetProps) => {
+}) => {
   assertGame(game);
   assertPCDataSource(actor.data);
 
@@ -267,3 +265,5 @@ export const PCSheet = ({
 };
 
 PCSheet.displayName = "PCSheet";
+
+// export default PCSheet;

@@ -1,8 +1,13 @@
-// import ReactDOM from "react-dom";
 import React from "react";
-import { PCSheet } from "../components/characters/PCSheet";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
+import { PCSheet } from "../components/characters/PCSheet";
+
+// const PCSheet = React.lazy(() =>
+//   import("../components/characters/PCSheet").then(({ PCSheet }) => ({
+//     default: PCSheet,
+//   })),
+// );
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -22,10 +27,7 @@ class InvestigatorPCSheetClassBase extends ActorSheet {
 
 const render = (sheet: InvestigatorPCSheetClassBase) => {
   return (
-    <PCSheet
-      actor={sheet.document}
-      foundryApplication={sheet}
-    />
+    <PCSheet actor={sheet.document} foundryApplication={sheet} />
   );
 };
 

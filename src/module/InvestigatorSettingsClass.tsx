@@ -1,11 +1,21 @@
 import React from "react";
-import { Settings } from "../components/settings/Settings";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 import { reactTemplatePath, systemName } from "../constants";
+import { Suspense } from "../components/Suspense";
+
+const Settings = React.lazy(() =>
+  import("../components/settings/Settings").then(({ Settings }) => ({
+    default: Settings,
+  })),
+);
 
 // eslint doesn't like object, but it's what foundry-vtt-types wants
 // eslint-disable-next-line @typescript-eslint/ban-types
-export class InvestigatorSettingsClassBase extends FormApplication<FormApplicationOptions, object, undefined> {
+export class InvestigatorSettingsClassBase extends FormApplication<
+  FormApplicationOptions,
+  object,
+  undefined
+> {
   // /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
@@ -27,9 +37,9 @@ export class InvestigatorSettingsClassBase extends FormApplication<FormApplicati
 const render = (sheet: InvestigatorSettingsClassBase) => {
   $(sheet.element).find(".header-button.close").hide();
   return (
-    <Settings
-      foundryApplication={sheet}
-    />
+    <Suspense>
+      <Settings foundryApplication={sheet} />
+    </Suspense>
   );
 };
 
@@ -38,4 +48,7 @@ export const InvestigatorSettingsClass = ReactApplicationMixin(
   render,
 );
 
-export const investigatorSettingsClassInstance = new InvestigatorSettingsClass(undefined, {});
+export const investigatorSettingsClassInstance = new InvestigatorSettingsClass(
+  undefined,
+  {},
+);
