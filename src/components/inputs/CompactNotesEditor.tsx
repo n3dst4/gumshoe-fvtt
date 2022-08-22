@@ -27,7 +27,7 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
   const onChange = useCallback(
     async (source: string) => {
       const format = note.format;
-      const html = toHtml(note.format, source);
+      const html = await toHtml(note.format, source);
       await onSave({
         format,
         html,

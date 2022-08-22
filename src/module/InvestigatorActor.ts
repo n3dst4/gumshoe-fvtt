@@ -256,16 +256,17 @@ export class InvestigatorActor extends Actor {
     this.update({ data: { longNotes } });
   };
 
-  setLongNotesFormat = (longNotesFormat: NoteFormat) => {
+  setLongNotesFormat = async (longNotesFormat: NoteFormat) => {
     assertPCDataSource(this.data);
-    const longNotes = (this.data.data.longNotes || []).map<BaseNote>((note) => {
+    const longNotesPromises = (this.data.data.longNotes || []).map<Promise<BaseNote>>(async (note) => {
       assertPCDataSource(this.data);
-      const { newHtml, newSource } = convertNotes(this.data.data.longNotesFormat, longNotesFormat, note.source);
+      const { newHtml, newSource } = await convertNotes(this.data.data.longNotesFormat, longNotesFormat, note.source);
       return {
         html: newHtml,
         source: newSource,
       };
     });
+    const longNotes = await Promise.all(longNotesPromises);
     this.update({ data: { longNotes, longNotesFormat } });
   };
 

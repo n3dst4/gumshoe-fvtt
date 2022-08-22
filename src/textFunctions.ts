@@ -1,5 +1,4 @@
 import { escape as escapeText } from "html-escaper";
-import { marked } from "marked";
 import TurndownService from "turndown";
 import { NoteFormat } from "./types";
 import xss from "xss";
@@ -32,7 +31,8 @@ export function plainTextToHtml (source: string) {
   return escapeText(source).replace(/\n/g, "<br/>");
 }
 
-function markdownToHtml (markdown: string) {
+async function markdownToHtml (markdown: string) {
+  const { marked } = await import("marked");
   return marked(markdown);
 }
 
@@ -50,7 +50,7 @@ export function htmlToPlaintext (html: string) {
   return htmlToMarkdown(html);
 }
 
-export function convertNotes (oldFormat: NoteFormat, newFormat: NoteFormat, oldSource: string) {
+export async function convertNotes (oldFormat: NoteFormat, newFormat: NoteFormat, oldSource: string) {
   let newSource = "";
   let unsafeNewHtml = "";
   if (newFormat === NoteFormat.plain) {
@@ -66,12 +66,12 @@ export function convertNotes (oldFormat: NoteFormat, newFormat: NoteFormat, oldS
     } else if (oldFormat === NoteFormat.richText) {
       newSource = htmlToMarkdown(oldSource);
     }
-    unsafeNewHtml = markdownToHtml(newSource);
+    unsafeNewHtml = await markdownToHtml(newSource);
   } else if (newFormat === NoteFormat.richText) {
     if (oldFormat === NoteFormat.plain) {
       newSource = plainTextToHtml(oldSource);
     } else if (oldFormat === NoteFormat.markdown) {
-      newSource = markdownToHtml(oldSource);
+      newSource = await markdownToHtml(oldSource);
     } else if (oldFormat === NoteFormat.richText) {
       newSource = oldSource;
     }
@@ -81,12 +81,12 @@ export function convertNotes (oldFormat: NoteFormat, newFormat: NoteFormat, oldS
   return { newSource, newHtml };
 }
 
-export function toHtml (format: NoteFormat, source: string) {
+export async function toHtml (format: NoteFormat, source: string) {
   let newHtml = "";
   if (format === NoteFormat.plain) {
     newHtml = plainTextToHtml(source);
   } else if (format === NoteFormat.markdown) {
-    newHtml = markdownToHtml(source);
+    newHtml = await markdownToHtml(source);
   } else if (format === NoteFormat.richText) {
     newHtml = source;
   }

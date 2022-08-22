@@ -40,9 +40,9 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   const [dirty, setDirty] = useState(false);
   const isDebugging = getDevMode();
 
-  const onEdit = useCallback((newSource: string) => {
+  const onEdit = useCallback(async (newSource: string) => {
     setLiveSource(newSource);
-    setLiveHtml(toHtml(liveFormat, newSource));
+    setLiveHtml(await toHtml(liveFormat, newSource));
     setDirty(true);
   }, [liveFormat, setLiveHtml, setLiveSource]);
 
@@ -78,7 +78,7 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
 
   const onChangeFormat = useCallback(async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newFormat = e.currentTarget.value as NoteFormat;
-    const { newHtml, newSource } = convertNotes(liveFormat, newFormat, liveSource);
+    const { newHtml, newSource } = await convertNotes(liveFormat, newFormat, liveSource);
     setLiveFormat(newFormat);
     setLiveSource(newSource);
     setLiveHtml(newHtml);
