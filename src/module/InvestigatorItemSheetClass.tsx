@@ -14,7 +14,7 @@ const InvestigatorItemSheet = React.lazy(() =>
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-class InvestigatorEquipmentSheetClassBase extends ItemSheet {
+class EquipmentSheetClassBase extends ItemSheet {
   /** @override */
   static get defaultOptions () {
     return {
@@ -28,7 +28,7 @@ class InvestigatorEquipmentSheetClassBase extends ItemSheet {
   }
 }
 
-const render = (sheet: InvestigatorEquipmentSheetClassBase) => {
+const render = (sheet: EquipmentSheetClassBase) => {
   return (
     <Suspense>
       <InvestigatorItemSheet
@@ -39,12 +39,12 @@ const render = (sheet: InvestigatorEquipmentSheetClassBase) => {
   );
 };
 
-export const InvestigatorEquipmentSheetClass = ReactApplicationMixin(
-  InvestigatorEquipmentSheetClassBase,
+export const EquipmentSheetClass = ReactApplicationMixin(
+  EquipmentSheetClassBase,
   render,
 );
 
-class InvestigatorAbilitySheetClassBase extends ItemSheet {
+class AbilitySheetClassBase extends ItemSheet {
   /** @override */
   static get defaultOptions () {
     return {
@@ -58,12 +58,12 @@ class InvestigatorAbilitySheetClassBase extends ItemSheet {
   }
 }
 
-export const InvestigatorAbilitySheetClass = ReactApplicationMixin(
-  InvestigatorAbilitySheetClassBase,
+export const AbilitySheetClass = ReactApplicationMixin(
+  AbilitySheetClassBase,
   render,
 );
 
-class InvestigatorMwItemSheetClassBase extends ItemSheet {
+class MwItemSheetClassBase extends ItemSheet {
   /** @override */
   static get defaultOptions () {
     return {
@@ -77,7 +77,7 @@ class InvestigatorMwItemSheetClassBase extends ItemSheet {
   }
 }
 
-export const InvestigatorMwItemSheetClass = ReactApplicationMixin(
-  InvestigatorMwItemSheetClassBase,
+export const MwItemSheetClass = ReactApplicationMixin(
+  MwItemSheetClassBase,
   render,
 );

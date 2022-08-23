@@ -16,12 +16,10 @@ import { AbilityRow } from "./AbilityRow";
 import { buildRowData, getSystemAbilities } from "./functions";
 import { isCategoryHeader, isTypeHeader, RowData } from "./types";
 
-type InvestigatorPartySheetProps = {
+export const PartySheet: React.FC<{
   party: InvestigatorActor,
   foundryApplication: ActorSheet,
-};
-
-export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
+}> = ({
   foundryApplication,
   party,
 }) => {
@@ -365,3 +363,5 @@ export const InvestigatorPartySheet: React.FC<InvestigatorPartySheetProps> = ({
     </CSSReset>
   );
 };
+
+PartySheet.displayName = "PartySheet";

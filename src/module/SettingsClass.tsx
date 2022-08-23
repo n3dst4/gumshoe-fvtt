@@ -11,7 +11,7 @@ const Settings = React.lazy(() =>
 
 // eslint doesn't like object, but it's what foundry-vtt-types wants
 // eslint-disable-next-line @typescript-eslint/ban-types
-export class InvestigatorSettingsClassBase extends FormApplication<
+export class SettingsClassBase extends FormApplication<
   FormApplicationOptions,
   object,
   undefined
@@ -34,7 +34,7 @@ export class InvestigatorSettingsClassBase extends FormApplication<
   }
 }
 
-const render = (sheet: InvestigatorSettingsClassBase) => {
+const render = (sheet: SettingsClassBase) => {
   $(sheet.element).find(".header-button.close").hide();
   return (
     <Suspense>
@@ -43,12 +43,12 @@ const render = (sheet: InvestigatorSettingsClassBase) => {
   );
 };
 
-export const InvestigatorSettingsClass = ReactApplicationMixin(
-  InvestigatorSettingsClassBase,
+export const SettingsClass = ReactApplicationMixin(
+  SettingsClassBase,
   render,
 );
 
-export const investigatorSettingsClassInstance = new InvestigatorSettingsClass(
+export const investigatorSettingsClassInstance = new SettingsClass(
   undefined,
   {},
 );

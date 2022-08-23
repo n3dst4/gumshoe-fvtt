@@ -1,7 +1,7 @@
 import * as c from "./constants";
 import { assertGame, mapValues } from "./functions";
 import { pathOfCthulhuPreset } from "./presets";
-import { InvestigatorSettingsClass } from "./module/InvestigatorSettingsClass";
+import { SettingsClass } from "./module/SettingsClass";
 import { defaultCustomThemePath, systemName } from "./constants";
 import { runtimeConfig } from "./runtime";
 import { ThemeV1 } from "./themes/types";
@@ -224,7 +224,7 @@ export const registerSettingsMenu = function () {
     label: "Open INVESTIGATOR System Settings", // The text label used in the button
     // hint: "A description of what will occur in the submenu dialog.",
     icon: "fas fa-search", // A Font Awesome icon used in the submenu button
-    type: InvestigatorSettingsClass, // A FormApplication subclass which should be created
+    type: SettingsClass, // A FormApplication subclass which should be created
     restricted: true, // Restrict this submenu to gamemaster only?
   });
 };

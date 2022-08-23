@@ -5,10 +5,10 @@ import { InvestigatorCombatant } from "../module/InvestigatorCombatant";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { InvestigatorCombatTracker } from "../module/InvestigatorCombatTracker";
 import { InvestigatorItem } from "../module/InvestigatorItem";
-import { InvestigatorAbilitySheetClass, InvestigatorEquipmentSheetClass, InvestigatorMwItemSheetClass } from "../module/InvestigatorItemSheetClass";
-import { InvestigatorNPCSheetClass } from "../module/InvestigatorNPCSheetClass";
-import { InvestigatorPartySheetClass } from "../module/InvestigatorPartySheetClass";
-import { InvestigatorPCSheetClass } from "../module/InvestigatorPCSheetClass";
+import { AbilitySheetClass, EquipmentSheetClass, MwItemSheetClass } from "../module/InvestigatorItemSheetClass";
+import { NPCSheetClass } from "../module/NPCSheetClass";
+import { PartySheetClass } from "../module/PartySheetClass";
+import { PCSheetClass } from "../module/PCSheetClass";
 
 export const registerSheetsAndClasses = () => {
   // XXX TS needs going over here
@@ -21,28 +21,28 @@ export const registerSheetsAndClasses = () => {
 
   // Register custom sheets (if any)
   // Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet(constants.systemName, InvestigatorPCSheetClass, {
+  Actors.registerSheet(constants.systemName, PCSheetClass, {
     makeDefault: true,
     types: [constants.pc],
   });
-  Actors.registerSheet(constants.systemName, InvestigatorNPCSheetClass, {
+  Actors.registerSheet(constants.systemName, NPCSheetClass, {
     makeDefault: true,
     types: [constants.npc],
   });
-  Actors.registerSheet(constants.systemName, InvestigatorPartySheetClass, {
+  Actors.registerSheet(constants.systemName, PartySheetClass, {
     makeDefault: true,
     types: [constants.party],
   });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet(constants.systemName, InvestigatorEquipmentSheetClass, {
+  Items.registerSheet(constants.systemName, EquipmentSheetClass, {
     makeDefault: true,
     types: [constants.weapon, constants.equipment],
   });
-  Items.registerSheet(constants.systemName, InvestigatorAbilitySheetClass, {
+  Items.registerSheet(constants.systemName, AbilitySheetClass, {
     makeDefault: true,
     types: [constants.investigativeAbility, constants.generalAbility],
   });
-  Items.registerSheet(constants.systemName, InvestigatorMwItemSheetClass, {
+  Items.registerSheet(constants.systemName, MwItemSheetClass, {
     makeDefault: true,
     types: [constants.mwItem],
   });

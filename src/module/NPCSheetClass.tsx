@@ -3,42 +3,37 @@ import { Suspense } from "../components/Suspense";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
-const InvestigatorPartySheet = React.lazy(() =>
-  import("../components/party/InvestigatorPartySheet").then(
-    ({ InvestigatorPartySheet }) => ({
-      default: InvestigatorPartySheet,
-    }),
-  ),
+const NPCSheet = React.lazy(() =>
+  import("../components/characters/NPCSheet").then(({ NPCSheet }) => ({
+    default: NPCSheet,
+  })),
 );
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-class InvestigatorPartySheetClassBase extends ActorSheet {
+class NPCSheetClassBase extends ActorSheet {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "actor"],
       template: reactTemplatePath,
-      width: 660,
-      height: 900,
+      width: 700,
+      height: 660,
     });
   }
 }
 
-const render = (sheet: InvestigatorPartySheetClassBase) => {
+const render = (sheet: NPCSheetClassBase) => {
   return (
     <Suspense>
-      <InvestigatorPartySheet
-        party={sheet.document}
-        foundryApplication={sheet}
-      />
+      <NPCSheet actor={sheet.document} foundryApplication={sheet} />
     </Suspense>
   );
 };
 
-export const InvestigatorPartySheetClass = ReactApplicationMixin(
-  InvestigatorPartySheetClassBase,
+export const NPCSheetClass = ReactApplicationMixin(
+  NPCSheetClassBase,
   render,
 );

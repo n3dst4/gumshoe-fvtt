@@ -1,5 +1,5 @@
 import { assertGame, getTranslated } from "../functions";
-import { investigatorSettingsClassInstance } from "../module/InvestigatorSettingsClass";
+import { investigatorSettingsClassInstance } from "../module/SettingsClass";
 
 export const installRenderSettingsHandler = () => {
   Hooks.on("renderSettings", (app: Application, html: JQuery) => {
