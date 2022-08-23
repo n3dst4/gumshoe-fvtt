@@ -3,13 +3,12 @@ import { Suspense } from "../components/Suspense";
 import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
-const PartySheet = React.lazy(() =>
-  import("../components/party/PartySheet").then(
-    ({ PartySheet }) => ({
-      default: PartySheet,
-    }),
-  ),
-);
+const PartySheet = React.lazy(async () => {
+  const { PartySheet } = await import("../components/party/PartySheet");
+  return {
+    default: PartySheet,
+  };
+});
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
