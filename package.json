@@ -75,7 +75,6 @@
     "@types/html-escaper": "^3.0.0",
     "case": "^1.6.3",
     "d3-ease": "^3.0.1",
-    "file-system-access": "^1.0.1",
     "html-escaper": "^3.0.3",
     "irid": "^3.0.0",
     "json5": "^2.2.1",

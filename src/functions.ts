@@ -200,3 +200,41 @@ export function broadcastHook<T> (hook: string, payload: T) {
 
 export const makeLogger = (name: string) =>
   console.log.bind(console, `[${name}]`);
+
+/**
+ * Get a file from the user's computer and return it as a string.
+ * Nicked off from various sources:
+ * https://code-boxx.com/read-files-javascript/
+ * https://github.com/GoogleChromeLabs/text-editor/blob/e3a33c2c0b1832ecdb7221f17d7f8a1b23e1ad19/src/inline-scripts/fallback.js#L28
+ * https://stackoverflow.com/questions/26754486/how-to-convert-arraybuffer-to-string
+ */
+export async function getUserFile (accept: string): Promise<string> {
+  const filePicker = document.createElement("input");
+  filePicker.type = "file";
+  filePicker.accept = accept;
+  const file = await new Promise<File>((resolve, reject) => {
+    filePicker.onchange = (e) => {
+      const file = filePicker.files?.[0];
+      if (file) {
+        resolve(file);
+        return;
+      }
+      reject(new Error("Aborted"));
+    };
+    filePicker.click();
+  });
+  const reader = new FileReader();
+  const textPromise = new Promise<string>((resolve, reject) => {
+    reader.addEventListener("loadend", () => {
+      const text =
+        reader.result === null
+          ? ""
+          : typeof reader.result === "string"
+            ? reader.result
+            : new TextDecoder("utf-8").decode(new Uint8Array(reader.result));
+      resolve(text);
+    });
+  });
+  reader.readAsText(file);
+  return textPromise;
+}
