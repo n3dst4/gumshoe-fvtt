@@ -6,7 +6,7 @@ import * as constants from "./constants";
 import { SocketHookAction } from "./types";
 
 interface NameHaver {
-  name: string|null;
+  name: string | null;
 }
 
 export const sortEntitiesByName = <T extends NameHaver>(ents: T[]) => {
@@ -37,9 +37,9 @@ export const fixLength = <T>(
 
 export const mapValues = <V1, V2>(
   mapper: (v: V1) => V2,
-  subject: {[k: string]: V1},
-): {[k: string]: V2} => {
-  const result: {[k: string]: V2} = {};
+  subject: { [k: string]: V1 },
+): { [k: string]: V2 } => {
+  const result: { [k: string]: V2 } = {};
   for (const k in subject) {
     result[k] = mapper(subject[k]);
   }
@@ -85,9 +85,9 @@ export function assertGame (game: any): asserts game is Game {
  */
 export function getDevMode () {
   assertGame(game);
-  return !!((game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(
+  return !!(game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(
     systemName,
-  ));
+  );
 }
 
 /**
@@ -95,7 +95,7 @@ export function getDevMode () {
  */
 export const getTranslated = (
   text: string,
-  values: Dictionary<string|number> = {},
+  values: Dictionary<string | number> = {},
 ) => {
   assertGame(game);
   const debug = settings.debugTranslations.get() && getDevMode();
@@ -111,7 +111,7 @@ interface confirmADoodleDoArgs {
   confirmText: string;
   cancelText: string;
   confirmIconClass: string;
-  values?: Dictionary<string|number>;
+  values?: Dictionary<string | number>;
   resolveFalseOnCancel?: boolean;
 }
 
@@ -165,7 +165,7 @@ export const confirmADoodleDo = ({
   return promise;
 };
 
-export function assertNotNull<T> (t: T|undefined|null): asserts t is T {
+export function assertNotNull<T> (t: T | undefined | null): asserts t is T {
   if (t === undefined) {
     throw new Error("t was undefined");
   }
@@ -176,7 +176,11 @@ export function assertNotNull<T> (t: T|undefined|null): asserts t is T {
  * this keeps the renamed key in the same relative order, if you're relying on
  * JS's object key order being stable
  */
-export function renameProperty <T> (oldProp: string, newProp: string, subject: Record<string, T>) {
+export function renameProperty<T> (
+  oldProp: string,
+  newProp: string,
+  subject: Record<string, T>,
+) {
   const result: Record<string, T> = {};
   for (const p in subject) {
     if (p === oldProp) {
@@ -213,13 +217,13 @@ export async function getUserFile (accept: string): Promise<string> {
   filePicker.type = "file";
   filePicker.accept = accept;
   const file = await new Promise<File>((resolve, reject) => {
-    filePicker.onchange = (e) => {
+    filePicker.onchange = () => {
       const file = filePicker.files?.[0];
       if (file) {
         resolve(file);
-        return;
+      } else {
+        reject(new Error("Aborted"));
       }
-      reject(new Error("Aborted"));
     };
     filePicker.click();
   });
