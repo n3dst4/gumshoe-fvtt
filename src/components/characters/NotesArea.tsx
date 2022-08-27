@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings";
 import { assertPCDataSource } from "../../types";
+import { absoluteCover } from "../absoluteCover";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 
@@ -21,14 +22,17 @@ export const NotesArea: React.FC<NotesAreaProps> = ({
   return (
     <div
       css={{
+        ...absoluteCover,
         paddingTop: "1em",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       {
         longNotesNames.map<JSX.Element>((name: string, i: number) => {
           assertPCDataSource(actor.data);
           return (
-            <InputGrid key={`${name}--${i}`} css={{ height: "12em" }}>
+            <InputGrid key={`${name}--${i}`} css={{ flex: 1, minHeight: "12em" }}>
               <NotesEditorWithControls
                 title={name}
                 index={i}
