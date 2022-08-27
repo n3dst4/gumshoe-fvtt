@@ -9,7 +9,7 @@ if [ "$branch" != "main" ]; then
   exit 1
 fi
 
-v=v$(jq .version src/system.json -r)
+v=v$(jq .version public/system.json -r)
 git commit -am $v --allow-empty
 git push
 git tag $v

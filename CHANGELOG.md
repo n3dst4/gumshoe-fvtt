@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 5.1.1 (2022-08-27)
+
+* Fix a bug that stripped out custom fonts, if you're using the "Custom Fonts" module.
+* Move the build and dev process to Vite. Gigantic thanks to the Lancer system devs for their write-up on this.
+
 ## 5.1.0 (2022-08-16)
 
 * You can now remove the last item from all lists in settings except ability categories and combat abilities.

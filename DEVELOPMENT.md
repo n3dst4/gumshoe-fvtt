@@ -120,9 +120,9 @@ To perform a release:
 
 1. Update the version in
    * [`package.json`](package.json)
-   * [`system.json`](src/system.json).
+   * [`system.json`](public/system.json).
 2. Update the `CHANGELOG`.
-3. Commit and push, and create a new tag and push it also, with this one handy command:
+3. Run this one handy command, which will commit, push, and create a new tag and push it also:
 
     ```
     scripts/do-release.sh
