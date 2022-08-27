@@ -4,11 +4,13 @@ import { visualizer } from "rollup-plugin-visualizer";
 import checker from "vite-plugin-checker";
 import path from "path";
 import { name } from "./public/system.json";
-import { url as foundryUrl } from "./foundryconfig.json";
+// import { url as foundryUrl } from "./foundryconfig.json";
 import react from "@vitejs/plugin-react";
 
 // guide to using Vite for Foundry from the Lancer guys:
 // https://foundryvtt.wiki/en/development/guides/vite
+
+const foundryUrl = "http://localhost:30009";
 
 const port = 40000;
 
@@ -56,7 +58,9 @@ const config = defineConfig(({ command, mode, ssrBuild }) => {
                   headTag,
                 `${headTag}${preambleHtml}`,
                 );
+                // @ts-expect-error huh
                 res.statusCode = proxyRes.statusCode;
+                // @ts-expect-error huh
                 res.headers = proxyRes.headers;
                 res.end(fixedHtml);
               });
