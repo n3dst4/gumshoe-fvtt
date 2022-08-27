@@ -30,7 +30,7 @@ build:
     - export
     - npm i
     - ./tasks.js updateManifestFromCITagPush
-    - ./tasks.js packidge
+    - npm run package
     - ls -l
     - ls -l package
   artifacts:
