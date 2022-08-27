@@ -1,6 +1,6 @@
 import { escape as escapeText } from "html-escaper";
 import { NoteFormat } from "./types";
-import xss from "xss";
+import { FilterXSS, whiteList as defaultXssWhitelist } from "xss";
 import memoize from "lodash/memoize";
 
 const makeTurndownService = memoize(async () => {
@@ -20,6 +20,20 @@ const makeTurndownService = memoize(async () => {
   // actual turndownservice object for later use
   const turndownService = new SafeTurndownService();
   return turndownService;
+});
+
+// build a custom shitelist for xss that adds "style" to the allowed attributes
+// for everything
+const newWhitelist = Object.fromEntries(
+  Object.entries(defaultXssWhitelist).map(([tag, attrList = []]) => [
+    tag,
+    [...attrList, "style"],
+  ]),
+);
+
+// custom xss using our new whitelist
+const xss = new FilterXSS({
+  whiteList: newWhitelist,
 });
 
 // /////////////////////////////////////////////////////////////////////////////
@@ -77,7 +91,7 @@ export async function convertNotes (oldFormat: NoteFormat, newFormat: NoteFormat
     }
     unsafeNewHtml = newSource;
   }
-  const newHtml = TextEditor.enrichHTML(xss(unsafeNewHtml));
+  const newHtml = TextEditor.enrichHTML(xss.process(unsafeNewHtml));
   return { newSource, newHtml };
 }
 
@@ -90,6 +104,6 @@ export async function toHtml (format: NoteFormat, source: string) {
   } else if (format === NoteFormat.richText) {
     newHtml = source;
   }
-  const html = TextEditor.enrichHTML(xss(newHtml));
+  const html = TextEditor.enrichHTML(xss.process(newHtml));
   return html;
 }
