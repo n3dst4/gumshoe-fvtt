@@ -4,7 +4,7 @@ image: node:16
 variables:
   PACKAGE_NAME: "investigator"
   MANIFEST_NAME: "system.json"
-  MANIFEST_PATH: "src/${MANIFEST_NAME}"
+  MANIFEST_PATH: "public/${MANIFEST_NAME}"
   ZIP_FILE_NAME: "${PACKAGE_NAME}.zip"
   PACKAGE_BASE: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${PACKAGE_NAME}"
   PACKAGE_LATEST_BASE: "${PACKAGE_BASE}/latest"
