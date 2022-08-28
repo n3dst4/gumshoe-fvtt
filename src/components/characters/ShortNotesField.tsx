@@ -1,4 +1,5 @@
 import React, { useCallback, useContext } from "react";
+import { assertGame } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { isPCDataSource } from "../../types";
@@ -22,30 +23,48 @@ export const ShortNotesField: React.FC<{
   );
 
   const onDragEnter = useCallback((e: React.DragEvent) => {
-    console.log("Enter", e);
-    // const data = JSON.parse(e.dataTransfer.getData("text/plain"));
-    // if ((!data?.id) || data?.type !== "JournalEntry") {
-    //   console.log("Not a JournalEntry");
-    //   return;
-    // }
-
+    // console.log("Enter", e);
+    const data = JSON.parse(e.dataTransfer.getData("text/plain"));
+    if ((!data?.id) || data?.type !== "JournalEntry") {
+      console.log("Not a JournalEntry");
+      return;
+    }
     setHovering(true);
     e.preventDefault();
     e.stopPropagation();
   }, []);
 
   const onDragEnd = useCallback((e: React.DragEvent) => {
-    console.log("End");
+    // console.log("End");
     setHovering(false);
     e.preventDefault();
     e.stopPropagation();
   }, []);
 
-  const onDrop = useCallback((e: React.DragEvent) => {
-    console.log("Drop");
+  const onDrop = useCallback(async (e: React.DragEvent) => {
+    // console.log("Drop");
+    const data = JSON.parse(e.dataTransfer.getData("text/plain"));
+    if ((!data?.id) || data?.type !== "JournalEntry") {
+      console.log("Not a JournalEntry");
+      return;
+    }
     setHovering(false);
     e.preventDefault();
     e.stopPropagation();
+
+    // Case 1 - Document from Compendium Pack
+    let name = "";
+    if (data.pack) {
+      assertGame(game);
+      const pack = game.packs.get(data.pack);
+      if (!pack) return;
+      const document = await pack.getDocument(data.id);
+      name = document?.name ?? "Unknown";
+    } else if (data.type) {
+      // Case 2 - Document from World
+      name = (CONFIG.JournalEntry.collection as any)?.instance?.get(data.id).name ?? "Unknown";
+    }
+    console.log("name", name);
   }, []);
 
   const value = isPCDataSource(actor.data)
