@@ -76,7 +76,14 @@
     }
   },
   "Item": {
-    "types": ["investigativeAbility", "generalAbility", "equipment", "weapon", "mwItem"],
+    "types": [
+      "investigativeAbility",
+      "generalAbility",
+      "equipment",
+      "weapon",
+      "mwItem",
+      "personalDetail"
+    ],
     "templates": {
       "notes": {
         "notes": {
@@ -95,7 +102,7 @@
         "occupational": false,
         "category": "",
         "showTracker": false,
-        "boost":  false,
+        "boost": false,
         "excludeFromGeneralRefresh": false,
         "refreshesDaily": false,
         "unlocks": []
@@ -145,7 +152,11 @@
       "templates": ["notes"],
       "mwType": "tweak",
       "charges": 0,
-      "ranges": [0,0,0,0]
+      "ranges": [0, 0, 0, 0]
+    },
+    "personalDetail": {
+      "templates": ["notes"],
+      "index": 0
     }
   }
 }
