@@ -10,8 +10,9 @@ type GridFieldProps = {
   noLabel?: boolean,
   noTranslate?: boolean,
   labelTitle?: string,
-  onDragStart?: DragEventHandler<HTMLElement>,
-  onDragEnd?: () => void,
+  onDragOver?: DragEventHandler<HTMLElement>,
+  onDragEnd?: DragEventHandler<HTMLElement>,
+  onDrop?: DragEventHandler<HTMLElement>,
 };
 
 export const GridField: React.FC<GridFieldProps> = ({
@@ -21,8 +22,9 @@ export const GridField: React.FC<GridFieldProps> = ({
   noLabel = false,
   noTranslate = false,
   labelTitle,
-  onDragStart,
+  onDragOver,
   onDragEnd,
+  onDrop,
 }) => {
   const id = useMemo(() => nanoid(), []);
   return (
@@ -36,11 +38,11 @@ export const GridField: React.FC<GridFieldProps> = ({
           paddingRight: "0.5em",
         }}
         className={className}
-        onDragOver={onDragStart}
-        onMouseOut={onDragEnd}
+        // drag handlers
+        onDragOver={onDragOver}
         onDragLeave={onDragEnd}
-        onMouseUp={onDragEnd}
-        onMouseUpCapture={onDragEnd}
+        onDragEnd={onDragEnd}
+        onDrop={onDrop}
       >
         {label &&
           (noTranslate || typeof label !== "string" ? (
@@ -54,11 +56,11 @@ export const GridField: React.FC<GridFieldProps> = ({
         css={{
           gridColumn: "control",
         }}
-        onDragOver={onDragStart}
-        onMouseOut={onDragEnd}
+        // drag handlers
+        onDragOver={onDragOver}
         onDragLeave={onDragEnd}
-        onMouseUp={onDragEnd}
-        onMouseUpCapture={onDragEnd}
+        onDragEnd={onDragEnd}
+        onDrop={onDrop}
       >
         {children}
       </div>

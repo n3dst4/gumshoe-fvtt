@@ -12,6 +12,8 @@ export const ShortNotesField: React.FC<{
   name: string,
   index: number,
 }> = ({ actor, name, index }) => {
+  const [hovering, setHovering] = React.useState(false);
+
   const updateShortNote = useCallback(
     (value: string) => {
       actor.setShortNote(index, value);
@@ -19,7 +21,32 @@ export const ShortNotesField: React.FC<{
     [actor, index],
   );
 
-  const [hovering, setHovering] = React.useState(false);
+  const onDragEnter = useCallback((e: React.DragEvent) => {
+    console.log("Enter", e);
+    // const data = JSON.parse(e.dataTransfer.getData("text/plain"));
+    // if ((!data?.id) || data?.type !== "JournalEntry") {
+    //   console.log("Not a JournalEntry");
+    //   return;
+    // }
+
+    setHovering(true);
+    e.preventDefault();
+    e.stopPropagation();
+  }, []);
+
+  const onDragEnd = useCallback((e: React.DragEvent) => {
+    console.log("End");
+    setHovering(false);
+    e.preventDefault();
+    e.stopPropagation();
+  }, []);
+
+  const onDrop = useCallback((e: React.DragEvent) => {
+    console.log("Drop");
+    setHovering(false);
+    e.preventDefault();
+    e.stopPropagation();
+  }, []);
 
   const value = isPCDataSource(actor.data)
     ? actor.data.data.shortNotes[index]
@@ -34,8 +61,9 @@ export const ShortNotesField: React.FC<{
       css={{
         position: "relative",
       }}
-      onDragStart={(e) => { setHovering(true); e.preventDefault(); }}
-      onDragEnd={() => { setHovering(false); }}
+      onDragOver={onDragEnter}
+      onDragEnd={onDragEnd}
+      onDrop={onDrop}
     >
       {hovering &&
         <div
@@ -47,7 +75,6 @@ export const ShortNotesField: React.FC<{
         >
           <div
             css={{
-              // ...absoluteCover,
               position: "absolute",
               top: "50%",
               left: "50%",
