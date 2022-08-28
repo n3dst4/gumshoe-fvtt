@@ -58,9 +58,7 @@ const config = defineConfig(({ command, mode, ssrBuild }) => {
                   headTag,
                 `${headTag}${preambleHtml}`,
                 );
-                // @ts-expect-error huh
                 res.statusCode = proxyRes.statusCode;
-                // @ts-expect-error huh
                 res.headers = proxyRes.headers;
                 res.end(fixedHtml);
               });
