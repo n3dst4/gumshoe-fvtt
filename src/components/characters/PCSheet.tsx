@@ -23,6 +23,7 @@ import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 import { settings } from "../../settings";
 import { StatField } from "./StatField";
+import { ShortNotesField } from "./ShortNotesField";
 
 export const PCSheet: React.FC<{
   actor: InvestigatorActor;
@@ -31,19 +32,9 @@ export const PCSheet: React.FC<{
   assertGame(game);
   assertPCDataSource(actor.data);
 
-  const updateShortNote = useCallback(
-    (value, index) => {
-      actor.setShortNote(index, value);
-    },
-    [actor],
-  );
-
-  const updateMwHiddenShortNote = useCallback(
-    (value, index) => {
-      actor.setMwHiddenShortNote(index, value);
-    },
-    [actor],
-  );
+  const updateMwHiddenShortNote = useCallback((value, index) => {
+    actor.setMwHiddenShortNote(index, value);
+  }, [actor]);
 
   const theme = actor.getSheetTheme();
   const shortNotesNames = settings.shortNotes.get();
@@ -114,28 +105,21 @@ export const PCSheet: React.FC<{
               onChange={actor.setOccupation}
             />
           </GridField>
-          {shortNotesNames.map((name: string, i: number) => (
-            <GridField noTranslate key={`${name}--${i}`} label={name}>
-              <AsyncTextInput
-                value={
-                  isPCDataSource(actor.data)
-                    ? actor.data.data.shortNotes[i]
-                    : ""
-                }
-                onChange={updateShortNote}
+          {
+            shortNotesNames.map((name: string, i: number) => (
+              <ShortNotesField
+                key={`${name}--${i}`}
+                name={name}
+                actor={actor}
                 index={i}
               />
-            </GridField>
-          ))}
-          {game.user?.isGM &&
-            shortHiddenNotesNames.map((name: string, i: number) => (
+            ))
+          }
+          {
+            game.user?.isGM && shortHiddenNotesNames.map((name: string, i: number) => (
               <GridField noTranslate key={`${name}--${i}`} label={name}>
                 <AsyncTextInput
-                  value={
-                    isPCDataSource(actor.data)
-                      ? actor.data.data.hiddenShortNotes[i]
-                      : ""
-                  }
+                  value={isPCDataSource(actor.data) ? actor.data.data.hiddenShortNotes[i] : ""}
                   onChange={updateMwHiddenShortNote}
                   index={i}
                 />
