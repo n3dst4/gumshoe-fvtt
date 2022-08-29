@@ -72,11 +72,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
             flexDirection: "row",
           }}
         >
-          <div
-            css={{
-              // flex: 1,
-            }}
-          >
+          <div>
             <select
               value={selectedCat}
               onChange={onChangeCategory}
