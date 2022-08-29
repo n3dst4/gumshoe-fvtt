@@ -4,13 +4,17 @@ import { visualizer } from "rollup-plugin-visualizer";
 import checker from "vite-plugin-checker";
 import path from "path";
 import { name } from "./public/system.json";
-// import { url as foundryUrl } from "./foundryconfig.json";
 import react from "@vitejs/plugin-react";
 
 // guide to using Vite for Foundry from the Lancer guys:
 // https://foundryvtt.wiki/en/development/guides/vite
 
-const foundryUrl = "http://localhost:30009";
+let foundryUrl = "http://localhost:30009";
+try {
+  foundryUrl = (await import("./foundryconfig.json")).url;
+} catch (e) {
+  console.log("No foundryconfig.json found, we're probably in CI");
+}
 
 const port = 40000;
 
