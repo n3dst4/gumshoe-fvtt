@@ -199,10 +199,10 @@ interface BaseEquipmentDataSourceData {
 }
 
 /**
- * data.data for equipment (currently the same as BaseEquipmentDataSourceData)
+ * data.data for equipment
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface EquipmentDataSourceData extends BaseEquipmentDataSourceData {
+  category: string;
 }
 
 /** data.data for weapons */
@@ -355,6 +355,16 @@ export function isWeaponDataSource (data: InvestigatorItemDataSource): data is W
 
 export function isEquipmentDataSource (data: InvestigatorItemDataSource): data is EquipmentDataSource {
   return data.type === constants.equipment;
+}
+
+export function isEquipmentOrAbilityDataSource (data: InvestigatorItemDataSource): data is EquipmentDataSource | AbilityDataSource {
+  return !isEquipmentDataSource(data) && !isAbilityDataSource(data);
+}
+
+export function assertIsEquipmentOrAbilityDataSource (data: InvestigatorItemDataSource): asserts data is EquipmentDataSource | AbilityDataSource {
+  if (!isEquipmentOrAbilityDataSource(data)) {
+    throw new Error("Not an equipment or ability");
+  }
 }
 
 /** assert that a data is a weapon */
