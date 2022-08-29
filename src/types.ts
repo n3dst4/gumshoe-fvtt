@@ -358,7 +358,7 @@ export function isEquipmentDataSource (data: InvestigatorItemDataSource): data i
 }
 
 export function isEquipmentOrAbilityDataSource (data: InvestigatorItemDataSource): data is EquipmentDataSource | AbilityDataSource {
-  return !isEquipmentDataSource(data) && !isAbilityDataSource(data);
+  return isEquipmentDataSource(data) || isAbilityDataSource(data);
 }
 
 export function assertEquimentDataSource (data: InvestigatorItemDataSource): asserts data is EquipmentDataSource {
