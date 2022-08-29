@@ -109,6 +109,14 @@ export const CoreSettings: React.FC<{
         />
       </SettingsGridField>
 
+      <SettingsGridField label="Equipment Categories" index={idx++}>
+        <ListEdit
+          value={tempSettings.equipmentCategories}
+          onChange={setters.equipmentCategories}
+          nonempty
+        />
+      </SettingsGridField>
+
     </InputGrid>
   );
 };

@@ -139,5 +139,6 @@
     "investigator.OpenCharacterSheet": "Open character sheet",
     "investigator.Core": "Core",
     "investigator.Stats": "Stats",
-    "investigator.Misc": "Misc."
+    "investigator.Misc": "Misc.",
+    "investigator.EquipmentCategories": "Equipment Categories"
 }

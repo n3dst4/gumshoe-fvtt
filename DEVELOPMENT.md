@@ -83,8 +83,8 @@ I have a manual download which I keep checked-in with my dotfiles, but the other
 1. Add an entry to [`src/settings.ts`]().
 2. Add it to the `PresetV1` type in `@lumphammer/investrigator-fvvt-type`, publish, and update the package version here. We haven't got as far as new `PresetV*` types yet, so make sure you add it as an optional property.
 3. Add a sensible default to `pathOfCthulhuPreset` in `src/settings.ts`, and add values to the other presets if they need them.
-4. In [`src/components/InvestigatorSettings.tsx`](), add it to the JSX somewhere - see the existing examples. `tempSettings` will contain the value and `setters` will have the setter.
-5. You will probably need to add a translation string to [`src/lang/en.json`]() or maybe [`src/lang/moribundWorld/en.json`]() for MW stuffs.
+4. In [`src/components/settings/`](), add it to the JSX somewhere - see the existing examples. `tempSettings` will contain the value and `setters` will have the setter.
+5. You will probably need to add a translation string to [`public/lang/en.json`]() or maybe [`public/lang/moribundWorld/en.json`]() for MW stuffs.
 6. If it's a setting that caan be controlled by system presets, also add it to the `PresetV1` type in @lumphammer/investigator-fvtt-types and publish a new version.
 
 
@@ -158,4 +158,4 @@ To perform a release:
 [gl-generic-packages]: https://docs.gitlab.com/ee/user/packages/generic_packages/
 [ci]: https://gitlab.com/n3dst4/investigator-fvtt/-/pipelines
 [pelgrane-discord]: https://discord.com/channels/692113540210753568/720741108937916518
-[fprd]: https://discord.com/channels/170995199584108546/648215359895240715
+[fprd]: https://discord.com/channels/170995199584108546/64821535989524071
