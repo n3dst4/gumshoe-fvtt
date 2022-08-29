@@ -361,7 +361,13 @@ export function isEquipmentOrAbilityDataSource (data: InvestigatorItemDataSource
   return !isEquipmentDataSource(data) && !isAbilityDataSource(data);
 }
 
-export function assertIsEquipmentOrAbilityDataSource (data: InvestigatorItemDataSource): asserts data is EquipmentDataSource | AbilityDataSource {
+export function assertEquimentDataSource (data: InvestigatorItemDataSource): asserts data is EquipmentDataSource {
+  if (!isEquipmentDataSource(data)) {
+    throw new Error("Not an equipment");
+  }
+}
+
+export function assertEquipmentOrAbilityDataSource (data: InvestigatorItemDataSource): asserts data is EquipmentDataSource | AbilityDataSource {
   if (!isEquipmentOrAbilityDataSource(data)) {
     throw new Error("Not an equipment or ability");
   }

@@ -3,7 +3,7 @@ import { InvestigatorActor } from "./InvestigatorActor";
 import {
   assertAbilityDataSource,
   assertGeneralAbilityDataSource,
-  assertIsEquipmentOrAbilityDataSource,
+  assertEquipmentOrAbilityDataSource,
   assertMwItemDataSource,
   assertWeaponDataSource,
   MWDifficulty,
@@ -170,12 +170,12 @@ export class InvestigatorItem extends Item {
   // ###########################################################################
 
   getCategory = () => {
-    assertIsEquipmentOrAbilityDataSource(this.data);
+    assertEquipmentOrAbilityDataSource(this.data);
     return this.data.data.category;
   };
 
   setCategory = (category: string) => {
-    assertIsEquipmentOrAbilityDataSource(this.data);
+    assertEquipmentOrAbilityDataSource(this.data);
     this.update({ data: { category } });
   };
 
