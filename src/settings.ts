@@ -211,6 +211,12 @@ export const settings = {
     name: "Use turn-passing initiative?",
     default: pathOfCthulhuPreset.useNpcCombatBonuses,
   }),
+  equipmentCategories: createSettingObject({
+    key: "equipmentCategories",
+    name: "Equipment categories",
+    default: pathOfCthulhuPreset.equipmentCategories,
+  }),
+
 };
 
 // -----------------------------------------------------------------------------

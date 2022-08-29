@@ -81,9 +81,11 @@ I have a manual download which I keep checked-in with my dotfiles, but the other
 ## Adding system settings
 
 1. Add an entry to [`src/settings.ts`]().
-2. In [`src/components/InvestigatorSettings.tsx`](), add it to the JSX somewhere - see the existing examples. `tempSettings` will contain the value and `setters` will have the setter.
-3. You will probably need to add a translation string to [`src/lang/en.json`]() or maybe [`src/lang/moribundWorld/en.json`]() for MW stuffs.
-4. If it's a setting that caan be controlled by system presets, also add it to the `PresetV1` type in @lumphammer/investigator-fvtt-types and publish a new version.
+2. Add it to the `PresetV1` type in `@lumphammer/investrigator-fvvt-type`, publish, and update the package version here. We haven't got as far as new `PresetV*` types yet, so make sure you add it as an optional property.
+3. Add a sensible default to `pathOfCthulhuPreset` in `src/settings.ts`, and add values to the other presets if they need them.
+4. In [`src/components/InvestigatorSettings.tsx`](), add it to the JSX somewhere - see the existing examples. `tempSettings` will contain the value and `setters` will have the setter.
+5. You will probably need to add a translation string to [`src/lang/en.json`]() or maybe [`src/lang/moribundWorld/en.json`]() for MW stuffs.
+6. If it's a setting that caan be controlled by system presets, also add it to the `PresetV1` type in @lumphammer/investigator-fvtt-types and publish a new version.
 
 
 ## Using the "Developer mode" module

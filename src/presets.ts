@@ -51,6 +51,7 @@ export const pathOfCthulhuPreset: Required<PresetV1> = {
   },
   useNpcCombatBonuses: false,
   useTurnPassingInitiative: false,
+  equipmentCategories: ["General", "Spells", "Tomes"],
 };
 
 export const niceBlackAgentsPreset: PresetV1 = {
@@ -72,6 +73,7 @@ export const niceBlackAgentsPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
+  equipmentCategories: ["General"],
 };
 
 export const nothingToFearPreset: PresetV1 = {
@@ -93,6 +95,7 @@ export const nothingToFearPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
+  equipmentCategories: ["General"],
 };
 
 export const pallidStarsPreset: PresetV1 = {
@@ -114,6 +117,7 @@ export const pallidStarsPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
+  equipmentCategories: ["Gear", "Cybernetics", "Virusware"],
 };
 
 export const castingTheRunesPreset: PresetV1 = {
@@ -135,6 +139,7 @@ export const castingTheRunesPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
+  equipmentCategories: ["General"],
 };
 
 export const moribundWorldPreset: PresetV1 = {
