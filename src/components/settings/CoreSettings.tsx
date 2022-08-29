@@ -33,13 +33,14 @@ export const CoreSettings: React.FC<{
         );
       }
       setTempSettings({
-        // we start with a safe default (this is typed as Required<> so it will
-        // always contain one-of-everything)
-        ...pathOfCthulhuPreset,
-        // layer on top the current temp settings - this way we keep any values
-        // not in the preset
+        // start with the current temp settings - this way we keep any values
+        // not handled by the presets
         ...tempSettingsRef.current,
-        // now the preset
+        // now we layer in a safe default. This is typed as Required<> so it
+        // will always contain one of everything that can be controlled by a
+        // preset.
+        ...pathOfCthulhuPreset,
+        // now layer in the actual preset
         ...preset,
         // and finally, set the actual preset id
         systemPreset: presetId,
