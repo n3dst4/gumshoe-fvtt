@@ -109,6 +109,16 @@ export const Settings: React.FC<SettingsProps> = ({
                 tempSettingsRef={tempSettingsRef}
                 theme={theme}
               />,
+            }, {
+              id: "equipment",
+              label: "Equipment",
+              content: <AbilitySettings
+                setTempSettings={setTempSettings}
+                tempSettings={tempSettings}
+                setters={setters}
+                tempSettingsRef={tempSettingsRef}
+                theme={theme}
+              />,
             },
             {
               id: "stats",

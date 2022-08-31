@@ -10,7 +10,7 @@ import { ImagePickle } from "../ImagePickle";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { absoluteCover } from "../absoluteCover";
 import { settings } from "../../settings";
-import { assertEquimentDataSource } from "../../types";
+import { assertEquipmentDataSource } from "../../types";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 // import { AsyncTextInput } from "../inputs/AsyncTextInput";
 
@@ -23,7 +23,8 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   equipment,
   application,
 }) => {
-  assertEquimentDataSource(equipment.data);
+  const data = equipment.data;
+  assertEquipmentDataSource(data);
   const name = useAsyncUpdate(equipment.name || "", equipment.setName);
 
   const onClickDelete = useCallback(() => {
@@ -48,7 +49,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
 
   const categories = settings.equipmentCategories.get();
 
-  const isRealCategory = categories.includes(equipment.data.data.category);
+  const isRealCategory = categories.some(c => c.name === data.data.category);
   const [showCustomField, setShowCustomField] = useState(!isRealCategory);
   const [selectCustomOption, setSelectCustomOption] = useState(!isRealCategory);
 
@@ -66,7 +67,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
     [equipment],
   );
 
-  const selectedCat = selectCustomOption ? "" : equipment.data.data.category;
+  const selectedCat = selectCustomOption ? "" : data.data.category;
 
   return (
     <div
@@ -151,8 +152,8 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
                   height: "inherit",
                 }}
               >
-                {categories.map<JSX.Element>((cat: string) => (
-                  <option key={cat}>{cat}</option>
+                {categories.map<JSX.Element>((cat) => (
+                  <option key={cat.name}>{cat.name}</option>
                 ))}
                 <option value="">Custom</option>
               </select>
@@ -164,7 +165,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
             >
               {showCustomField &&
                 <AsyncTextInput
-                  value={equipment.data.data.category}
+                  value={data.data.category}
                   onChange={equipment.setCategory}
                 />
               }
