@@ -3,7 +3,7 @@ import { SettingsDict } from "../../settings";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
-import { Setters } from "./Settings";
+import { Setters } from "./types";
 
 interface EquipmentCategoryProps {
   setters: Setters;

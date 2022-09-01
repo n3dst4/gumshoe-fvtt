@@ -6,7 +6,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings";
 import { AbilityDataSource, assertPartyDataSource, isAbilityDataSource } from "../../types";
-import { CSSReset, CSSResetMode } from "../CSSReset";
+import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
@@ -113,7 +113,7 @@ export const PartySheet: React.FC<{
   assertPartyDataSource(party.data);
   return (
     <CSSReset
-      mode={CSSResetMode.small}
+      mode="small"
       theme={theme}
       css={{
         position: "absolute",

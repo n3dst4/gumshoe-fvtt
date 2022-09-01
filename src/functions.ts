@@ -1,6 +1,6 @@
-import { systemName } from "./constants";
 import Case from "case";
 import { Dictionary } from "lodash";
+
 import { settings } from "./settings";
 import * as constants from "./constants";
 import { SocketHookAction } from "./types";
@@ -86,7 +86,7 @@ export function assertGame (game: any): asserts game is Game {
 export function getDevMode () {
   assertGame(game);
   return !!(game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(
-    systemName,
+    constants.systemName,
   );
 }
 
@@ -100,7 +100,7 @@ export const getTranslated = (
   assertGame(game);
   const debug = settings.debugTranslations.get() && getDevMode();
   const pascal = Case.pascal(text);
-  const prefixed = `${systemName}.${pascal}`;
+  const prefixed = `${constants.systemName}.${pascal}`;
   const local = game.i18n.format(prefixed, values);
   const has = game.i18n.has(prefixed, false);
   return `${debug ? (has ? "✔ " : "❌ ") : ""}${local}`;

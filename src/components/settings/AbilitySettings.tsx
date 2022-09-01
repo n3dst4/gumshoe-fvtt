@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { assertGame } from "../../functions";
 import { SettingsDict } from "../../settings";
 import { InputGrid } from "../inputs/InputGrid";
-import { Setters } from "./Settings";
+import { Setters } from "./types";
 import { SettingsGridField } from "./SettingsGridField";
 import { IdContext } from "../IdContext";
 import { ListEdit } from "../inputs/ListEdit";

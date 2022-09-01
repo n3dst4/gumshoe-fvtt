@@ -2,10 +2,10 @@ import React, { useCallback, useMemo, useState } from "react";
 import { customSystem, settingsSaved } from "../../constants";
 import { assertGame } from "../../functions";
 import { tealTheme } from "../../themes/tealTheme";
-import { CSSReset, CSSResetMode } from "../CSSReset";
+import { CSSReset } from "../CSSReset";
 import { Translate } from "../Translate";
 import { runtimeConfig } from "../../runtime";
-import { settings, getSettingsDict, SettingsDict } from "../../settings";
+import { settings, getSettingsDict } from "../../settings";
 import { useRefStash } from "../../hooks/useRefStash";
 import { absoluteCover } from "../absoluteCover";
 import { TabContainer } from "../TabContainer";
@@ -14,12 +14,11 @@ import { AbilitySettings } from "./AbilitySettings";
 import { CustomStats } from "./CustomStats";
 import { MiscSettings } from "./MiscSettings";
 import { EquipmentSettings } from "./EquipmentSettings";
+import { Setters } from "./types";
 
 type SettingsProps = {
   foundryApplication: Application,
 };
-
-export type Setters = { [k in keyof SettingsDict]: ((newVal: SettingsDict[k]) => void)};
 
 const useTempSettings = () => {
   const initial = useMemo(getSettingsDict, []);
@@ -77,7 +76,7 @@ export const Settings: React.FC<SettingsProps> = ({
 
   return (
     <CSSReset
-      mode={CSSResetMode.small}
+      mode="small"
       theme={theme}
       css={{
         ...absoluteCover,

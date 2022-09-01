@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { renameProperty } from "../../functions";
 import { SettingsDict } from "../../settings";
 import { InputGrid } from "../inputs/InputGrid";
-import { Setters } from "./Settings";
+import { Setters } from "./types";
 import { SettingsGridField } from "./SettingsGridField";
 import { StatsSettingsEditor } from "./StatsSettingsEditor";
 import { Stat } from "@lumphammer/investigator-fvtt-types";

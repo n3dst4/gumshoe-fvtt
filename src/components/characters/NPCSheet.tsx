@@ -1,6 +1,6 @@
 import React, { Fragment, ReactNode } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { CSSReset, CSSResetMode } from "../CSSReset";
+import { CSSReset } from "../CSSReset";
 import { TabContainer } from "../TabContainer";
 import { LogoEditable } from "./LogoEditable";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
@@ -37,7 +37,7 @@ export const NPCSheet = ({
   return (
     <CSSReset
       theme={theme}
-      mode={CSSResetMode.large}
+      mode="large"
       css={{
         position: "absolute",
         top: 0,

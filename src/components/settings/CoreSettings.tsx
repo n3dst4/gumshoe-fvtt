@@ -3,7 +3,7 @@ import * as constants from "../../constants";
 import { assertGame } from "../../functions";
 import { SettingsDict } from "../../settings";
 import { InputGrid } from "../inputs/InputGrid";
-import { Setters } from "./Settings";
+import { Setters } from "./types";
 import { SettingsGridField } from "./SettingsGridField";
 import { pathOfCthulhuPreset } from "../../presets";
 import { runtimeConfig } from "../../runtime";

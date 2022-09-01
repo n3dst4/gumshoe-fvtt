@@ -3,7 +3,7 @@ import { assertGame } from "../../functions";
 import { SettingsDict } from "../../settings";
 import { InputGrid } from "../inputs/InputGrid";
 import { EquipmentCategory } from "./EquipmentCategory";
-import { Setters } from "./Settings";
+import { Setters } from "./types";
 
 export const EquipmentSettings: React.FC<{
   tempSettings: SettingsDict,

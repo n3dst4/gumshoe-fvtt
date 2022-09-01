@@ -2,7 +2,7 @@ import React from "react";
 import { getDevMode } from "../../functions";
 import { SettingsDict } from "../../settings";
 import { InputGrid } from "../inputs/InputGrid";
-import { Setters } from "./Settings";
+import { Setters } from "./types";
 import { SettingsGridField } from "./SettingsGridField";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { Checkbox } from "../inputs/Checkbox";

@@ -1,5 +1,5 @@
 import React from "react";
-import { CSSReset, CSSResetMode } from "../../components/CSSReset";
+import { CSSReset } from "../../components/CSSReset";
 import { ThemeV1 } from "../types";
 
 type ThemeSwatchProps = {
@@ -19,7 +19,7 @@ export const ThemeSwatch: React.FC<ThemeSwatchProps> = ({
     >
       <CSSReset
         noStyleAppWindow
-        mode={CSSResetMode.small}
+        mode="small"
         theme={theme}
         css={{
           display: "flex",
