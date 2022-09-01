@@ -1,7 +1,7 @@
 // import "./startup/setWebkitPublicPath";
 import "./investigator.less";
 import { systemName } from "./constants";
-import { registerSettingsMenu } from "./settings";
+import { registerSettingsMenu } from "./startup/registerSettingsMenu";
 import { preloadTemplates } from "./startup/preloadTemplates";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { installCompendiumExportButton } from "./startup/installCompendiumExportButton";
