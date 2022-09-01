@@ -12,9 +12,7 @@ import { ListEdit } from "../inputs/ListEdit";
 export const MiscSettings: React.FC<{
   tempSettings: SettingsDict,
   setters: Setters,
-  setTempSettings: (settings: SettingsDict) => void,
-  tempSettingsRef: React.MutableRefObject<SettingsDict>,
-}> = ({ tempSettings, setters, setTempSettings, tempSettingsRef }) => {
+}> = ({ tempSettings, setters }) => {
   const isDevMode = getDevMode();
 
   let idx = 0;

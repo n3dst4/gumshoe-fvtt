@@ -13,6 +13,7 @@ import { CoreSettings } from "./CoreSettings";
 import { AbilitySettings } from "./AbilitySettings";
 import { CustomStats } from "./CustomStats";
 import { MiscSettings } from "./MiscSettings";
+import { EquipmentSettings } from "./EquipmentSettings";
 
 type SettingsProps = {
   foundryApplication: Application,
@@ -103,28 +104,22 @@ export const Settings: React.FC<SettingsProps> = ({
               id: "abilities",
               label: "Abilities",
               content: <AbilitySettings
-                setTempSettings={setTempSettings}
                 tempSettings={tempSettings}
                 setters={setters}
-                tempSettingsRef={tempSettingsRef}
-                theme={theme}
               />,
             }, {
               id: "equipment",
               label: "Equipment",
-              content: <AbilitySettings
-                setTempSettings={setTempSettings}
+              content: <EquipmentSettings
                 tempSettings={tempSettings}
                 setters={setters}
                 tempSettingsRef={tempSettingsRef}
-                theme={theme}
               />,
             },
             {
               id: "stats",
               label: "Stats",
               content: <CustomStats
-                setTempSettings={setTempSettings}
                 tempSettings={tempSettings}
                 setters={setters}
                 tempSettingsRef={tempSettingsRef}
@@ -134,10 +129,8 @@ export const Settings: React.FC<SettingsProps> = ({
               id: "misc",
               label: "Misc",
               content: <MiscSettings
-                setTempSettings={setTempSettings}
                 tempSettings={tempSettings}
                 setters={setters}
-                tempSettingsRef={tempSettingsRef}
               />,
             },
           ]}

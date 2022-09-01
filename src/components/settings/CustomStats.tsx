@@ -10,9 +10,8 @@ import { Stat } from "@lumphammer/investigator-fvtt-types";
 export const CustomStats: React.FC<{
   tempSettings: SettingsDict,
   setters: Setters,
-  setTempSettings: (settings: SettingsDict) => void,
   tempSettingsRef: React.MutableRefObject<SettingsDict>,
-}> = ({ tempSettings, setters, setTempSettings, tempSettingsRef }) => {
+}> = ({ tempSettings, setters, tempSettingsRef }) => {
   const onChangePCStat = useCallback(
     (stat: Stat, id: string) => {
       setters.pcStats({

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { assertGame } from "../../functions";
 import { SettingsDict } from "../../settings";
 import { InputGrid } from "../inputs/InputGrid";
@@ -9,18 +9,17 @@ import { ListEdit } from "../inputs/ListEdit";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
 import { nanoid } from "nanoid";
-import { ThemeV1 } from "../../themes/types";
+import { ThemeContext } from "../../themes/ThemeContext";
 
 export const AbilitySettings: React.FC<{
   tempSettings: SettingsDict,
   setters: Setters,
-  setTempSettings: (settings: SettingsDict) => void,
-  tempSettingsRef: React.MutableRefObject<SettingsDict>,
-  theme: ThemeV1,
-}> = ({ tempSettings, setters, setTempSettings, tempSettingsRef, theme }) => {
+}> = ({ tempSettings, setters }) => {
   assertGame(game);
 
   let idx = 0;
+
+  const theme = useContext(ThemeContext);
 
   return (
     <InputGrid
