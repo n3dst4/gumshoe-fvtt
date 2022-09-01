@@ -1,6 +1,6 @@
 import { ConfiguredDocumentClass } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { isActiveCharacterDataSource, isGeneralAbilityDataSource } from "../../types";
+import { isActiveCharacterDataSource, isGeneralAbilityDataSource } from "../../typeAssertions";
 import * as constants from "../../constants";
 
 const compare = <T>(a: T, b: T) => (a < b) ? -1 : (a > b) ? 1 : 0;

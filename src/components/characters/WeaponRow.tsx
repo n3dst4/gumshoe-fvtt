@@ -3,7 +3,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { FoundryAppContext } from "../FoundryAppContext";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { generalAbility } from "../../constants";
-import { assertWeaponDataSource, isAbilityDataSource } from "../../types";
+import { assertWeaponDataSource, isAbilityDataSource } from "../../typeAssertions";
 import { performAttack } from "../equipment/performAttack";
 
 type WeaponRowProps = {

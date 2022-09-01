@@ -1,6 +1,6 @@
 import * as constants from "../constants";
 import { InvestigatorItem } from "./InvestigatorItem";
-import { assertActiveCharacterDataSource, isActiveCharacterDataSource } from "../types";
+import { assertActiveCharacterDataSource, isActiveCharacterDataSource } from "../typeAssertions";
 import { isNullOrEmptyString } from "../functions";
 import { settings } from "../settings";
 

@@ -2,7 +2,7 @@ import { ConfiguredDocumentClass } from "@league-of-foundry-developers/foundry-v
 import { compareCombatantsPassing, compareCombatantsStandard } from "../components/combat/functions";
 import * as constants from "../constants";
 import { settings } from "../settings";
-import { isActiveCharacterDataSource } from "../types";
+import { isActiveCharacterDataSource } from "../typeAssertions";
 
 /**
  * Override base Combat so we can do custom GUMSHOE-style initiative

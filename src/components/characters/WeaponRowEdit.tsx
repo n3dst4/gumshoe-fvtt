@@ -5,7 +5,7 @@ import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { CompactNotesEditor } from "../inputs/CompactNotesEditor";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { assertGame, confirmADoodleDo } from "../../functions";
-import { assertWeaponDataSource } from "../../types";
+import { assertWeaponDataSource } from "../../typeAssertions";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { ThemeContext } from "../../themes/ThemeContext";
 

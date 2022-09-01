@@ -6,7 +6,7 @@ import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
 import { WeaponSheet } from "./equipment/WeaponSheet";
 import { CSSReset } from "./CSSReset";
-import { isAbilityDataSource, isMwItemDataSource } from "../types";
+import { isAbilityDataSource, isMwItemDataSource } from "../typeAssertions";
 import { MwItemSheet } from "./equipment/MwItemSheet";
 
 type ItemSheetProps = {

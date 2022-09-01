@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings";
-import { assertActiveCharacterDataSource } from "../../types";
+import { assertActiveCharacterDataSource } from "../../typeAssertions";
 import { AbilitySlugPlay } from "./AbilitySlugPlay";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
 import { useAbilities } from "./useAbilities";

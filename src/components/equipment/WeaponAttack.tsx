@@ -2,7 +2,8 @@ import React, { useCallback, useContext, useEffect, useMemo, useState } from "re
 import { generalAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { assertWeaponDataSource, isAbilityDataSource, isPCDataSource, PCDataSource } from "../../types";
+import { PCDataSource } from "../../types";
+import { assertWeaponDataSource, isAbilityDataSource, isPCDataSource } from "../../typeAssertions";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";

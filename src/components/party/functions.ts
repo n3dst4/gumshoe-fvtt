@@ -1,4 +1,5 @@
-import { AbilityDataSource, AbilityType, isAbilityDataSource } from "../../types";
+import { AbilityDataSource, AbilityType } from "../../types";
+import { isAbilityDataSource } from "../../typeAssertions";
 import { abilityRowkey, ActorAbilityInfo, categoryHeaderKey, RowData, typeHeaderKey } from "./types";
 import * as constants from "../../constants";
 import { InvestigatorActor } from "../../module/InvestigatorActor";

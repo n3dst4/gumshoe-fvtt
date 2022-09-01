@@ -9,7 +9,7 @@ import { WeaponsArea } from "./WeaponsArea";
 import { WeaponsAreaEdit } from "./WeaponsAreaEdit";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
-import { assertNPCDataSource, isNPCDataSource } from "../../types";
+import { assertNPCDataSource, isNPCDataSource } from "../../typeAssertions";
 import { ImagePickle } from "../ImagePickle";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";

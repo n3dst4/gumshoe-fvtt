@@ -1,5 +1,5 @@
 import React, { ReactNode, useCallback } from "react";
-import { assertAbilityDataSource } from "../../types";
+import { assertAbilityDataSource } from "../../typeAssertions";
 import { Translate } from "../Translate";
 import { UnlocksEditorRow } from "./UnlocksEditorRow";
 

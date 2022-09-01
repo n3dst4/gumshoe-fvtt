@@ -14,7 +14,7 @@ import { WeaponsArea } from "./WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
-import { assertPCDataSource, isPCDataSource } from "../../types";
+import { assertPCDataSource, isPCDataSource } from "../../typeAssertions";
 import { ImagePickle } from "../ImagePickle";
 import { assertGame } from "../../functions";
 import { AbilitiesAreaMW } from "./MoribundWorld/AbilitiesAreaMW";

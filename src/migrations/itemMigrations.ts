@@ -1,7 +1,7 @@
 import { generalAbility, generalAbilityIcon, investigativeAbilityIcon } from "../constants";
 import { isNullOrEmptyString } from "../functions";
 import { escape } from "html-escaper";
-import { isAbilityDataSource, isGeneralAbilityDataSource } from "../types";
+import { isAbilityDataSource, isGeneralAbilityDataSource } from "../typeAssertions";
 import { getDefaultGeneralAbilityCategory, settings } from "../settings";
 
 export const addCategoryToGeneralAbilities = (data: any, updateData: any) => {

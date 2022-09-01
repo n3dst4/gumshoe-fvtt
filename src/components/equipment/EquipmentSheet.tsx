@@ -10,7 +10,7 @@ import { ImagePickle } from "../ImagePickle";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { absoluteCover } from "../absoluteCover";
 import { settings } from "../../settings";
-import { assertEquipmentDataSource } from "../../types";
+import { assertEquipmentDataSource } from "../../typeAssertions";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 // import { AsyncTextInput } from "../inputs/AsyncTextInput";
 

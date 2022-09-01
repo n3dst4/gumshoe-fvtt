@@ -1,6 +1,26 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat, MwInjuryStatus, InvestigatorActorDataSource } from "../types";
+import {
+  RecursivePartial,
+  AbilityType,
+  InvestigativeAbilityDataSource,
+  MwType,
+  MwRefreshGroup,
+  NoteWithFormat,
+  BaseNote,
+  NoteFormat,
+  MwInjuryStatus,
+  InvestigatorActorDataSource,
+} from "../types";
+import {
+  assertPCDataSource,
+  assertActiveCharacterDataSource,
+  assertPartyDataSource,
+  isAbilityDataSource,
+  isMwItemDataSource,
+  assertMwItemDataSource,
+  assertNPCDataSource,
+} from "../typeAssertions";
 import { InvestigatorItem } from "./InvestigatorItem";
 import { convertNotes } from "../textFunctions";
 import { tealTheme } from "../themes/tealTheme";

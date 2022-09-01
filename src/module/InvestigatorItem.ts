@@ -6,6 +6,8 @@ import {
   assertEquipmentOrAbilityDataSource,
   assertMwItemDataSource,
   assertWeaponDataSource,
+} from "../typeAssertions";
+import {
   MWDifficulty,
   MwRefreshGroup,
   MwType,
