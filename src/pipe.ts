@@ -4,14 +4,14 @@
 export type Fn<A, B> = (a: A) => B;
 
 /**
- * Given two pure functions with compatible out/in types, chaint hem together
- * and return a new function with is the product of the two.
+ * Given two pure functions with compatible out/in types, chain them together
+ * and return a new function which is the product of the two.
  */
 export const pipe = <A, B, C>(
-  ab: Fn<A, B>,
-  bc: Fn<B, C>,
+  fab: Fn<A, B>,
+  fbc: Fn<B, C>,
 ): Fn<A, C> =>
-    (a: A) => bc(ab(a));
+    (a: A) => fbc(fab(a));
 
 /**
  * A simple function of A -> B which also has callable member `pipe`, which can
@@ -30,7 +30,12 @@ export const chainPipe = <A, B, C>(
   ab: ((a: A) => B),
   bc: ((b: B) => C),
 ): PipeableFn<A, C> => {
-  const fn = ((a: A) => bc(ab(a))) as PipeableFn<A, C>;
+  // using `function` here so we can assign `.pipe` to it
+  // see https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-1.html#properties-declarations-on-functions
+  // and thanks to https://stackoverflow.com/questions/12766528/build-a-function-object-with-properties-in-typescript
+  function fn (a: A) {
+    return bc(ab(a));
+  }
   fn.pipe = function<D> (cd: Fn<C, D>) {
     return chainPipe(fn, cd);
   };
