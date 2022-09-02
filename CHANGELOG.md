@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 5.1.2 (2022-09-02)
+
+* Re-fix the combat sidebar in v10.
+
 ## 5.1.1 (2022-08-27)
 
 * Fix a bug that stripped out custom fonts, if you're using the "Custom Fonts" module.
