@@ -128,11 +128,11 @@ export const Tracker: React.FC = () => {
   return (
     <Fragment>
       {/* TOP ROW: + < Encounter 2/3 > X */}
-      <header id="combat-round">
+      <header className="combat-tracker-header">
         {game.user.isGM && (
           <nav className="encounters flexrow">
             <a
-              className="combat-create"
+              className="combat-button combat-create"
               title={localize("COMBAT.Create")}
               onClick={onCombatCreate}
             >
@@ -141,7 +141,7 @@ export const Tracker: React.FC = () => {
             {combatCount > 0 && (
               <Fragment>
                 <a
-                  className="combat-cycle"
+                  className="combat-button combat-cycle"
                   title={localize("COMBAT.EncounterPrevious")}
                   {...(previousId
                     ? { "data-combat-id": previousId }
@@ -155,7 +155,7 @@ export const Tracker: React.FC = () => {
                   {combatCount}
                 </h4>
                 <a
-                  className="combat-cycle"
+                  className="combat-button combat-cycle"
                   title={localize("COMBAT.EncounterNext")}
                   {...(nextId
                     ? { "data-combat-id": nextId }
@@ -169,7 +169,7 @@ export const Tracker: React.FC = () => {
             {
               combatCount > 0 &&
               <a
-                className="combat-control"
+                className="combat-button combat-control"
                 title={localize("COMBAT.Delete")}
                 onClick={onDeleteCombat}
               >
@@ -180,16 +180,16 @@ export const Tracker: React.FC = () => {
         )}
 
         {/* SECOND ROW: RoUnD 4, link, cog */}
-        <nav
-          className={cx({ encounters: true, flexrow: true, combat: hasCombat })}
+        <div
+          className={cx({ "encounter-controls": true, flexrow: true, combat: hasCombat })}
         >
-          <a className="combat-control"/>
+          <a className="combat-button combat-control"/>
           {combatCount
             ? (
             <Fragment>
               {combat?.data.round
                 ? (
-                <h3 className="encounter-title">
+                <h3 className="encounter-title noborder">
                   {localize("COMBAT.Round")} {combat.data.round}
                   {isTurnPassing && game.user.isGM &&
                     <button
@@ -218,13 +218,14 @@ export const Tracker: React.FC = () => {
             </Fragment>
               )
             : (
-            <h3 className="encounter-title">{localize("COMBAT.None")}</h3>
+              // encounter-title noborder
+            <h3 className="encounter-title noborder">{localize("COMBAT.None")}</h3>
               )}
 
           {game.user.isGM && (
             <Fragment>
               <a
-                className="combat-control"
+                className="combat-button combat-control"
                 // @ts-expect-error foundry uses non-standard "disabled"
                 disabled={!hasCombat}
                 title={scopeLabel}
@@ -239,7 +240,7 @@ export const Tracker: React.FC = () => {
                 />
               </a>
               <a
-                className="combat-settings"
+                className="combat-button combat-settings"
                 title={localize("COMBAT.Settings")}
                 // data-control="trackerSettings"
                 onClick={showConfig}
@@ -248,7 +249,7 @@ export const Tracker: React.FC = () => {
               </a>
             </Fragment>
           )}
-        </nav>
+        </div>
       </header>
 
       {/* ACTUAL COMBATANTS, or "turns" in early-medieval foundry-speak */}
