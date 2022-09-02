@@ -210,7 +210,7 @@ export const Tracker: React.FC = () => {
                 </h3>
                   )
                 : (
-                <h3 className="encounter-title">
+                <h3 className="encounter-title noborder">
                   {localize("COMBAT.NotStarted")}
                 </h3>
                   )
