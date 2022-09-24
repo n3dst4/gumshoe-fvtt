@@ -11,9 +11,9 @@ import { absoluteCover } from "../absoluteCover";
 import { TabContainer } from "../TabContainer";
 import { CoreSettings } from "./CoreSettings";
 import { AbilitySettings } from "./AbilitySettings";
-import { CustomStats } from "./CustomStats";
+import { StatsSettings } from "./StatsSettings";
 import { MiscSettings } from "./MiscSettings";
-import { EquipmentSettings } from "./EquipmentSettings";
+import { EquipmentSettings } from "./Equipment/EquipmentSettings";
 import { Setters } from "./types";
 
 type SettingsProps = {
@@ -118,7 +118,7 @@ export const Settings: React.FC<SettingsProps> = ({
             {
               id: "stats",
               label: "Stats",
-              content: <CustomStats
+              content: <StatsSettings
                 tempSettings={tempSettings}
                 setters={setters}
                 tempSettingsRef={tempSettingsRef}

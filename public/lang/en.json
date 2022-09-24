@@ -140,5 +140,6 @@
     "investigator.Core": "Core",
     "investigator.Stats": "Stats",
     "investigator.Misc": "Misc.",
-    "investigator.EquipmentCategories": "Equipment Categories"
+    "investigator.EquipmentCategories": "Equipment Categories",
+    "investigator.Fields": "Fields"
 }

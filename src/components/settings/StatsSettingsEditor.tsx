@@ -18,7 +18,7 @@ export const StatsSettingsEditor: React.FC<StatsSettingsEditorProps> = ({
   onDelete,
   onAdd,
 }: StatsSettingsEditorProps) => {
-  const onAddHandler = useCallback((ev: React.MouseEvent<HTMLButtonElement>) => {
+  const handleAdd = useCallback((ev: React.MouseEvent<HTMLButtonElement>) => {
     ev.preventDefault();
     onAdd();
   }, [onAdd]);
@@ -41,7 +41,7 @@ export const StatsSettingsEditor: React.FC<StatsSettingsEditorProps> = ({
         })
       }
       <button
-        onClick={onAddHandler}
+        onClick={handleAdd}
       >
         <i className="fas fa-plus" />
         <Translate>Add Stat</Translate>

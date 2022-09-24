@@ -7,7 +7,7 @@ import { SettingsGridField } from "./SettingsGridField";
 import { StatsSettingsEditor } from "./StatsSettingsEditor";
 import { Stat } from "@lumphammer/investigator-fvtt-types";
 
-export const CustomStats: React.FC<{
+export const StatsSettings: React.FC<{
   tempSettings: SettingsDict,
   setters: Setters,
   tempSettingsRef: React.MutableRefObject<SettingsDict>,
@@ -122,4 +122,4 @@ export const CustomStats: React.FC<{
   );
 };
 
-CustomStats.displayName = "CustomStats";
+StatsSettings.displayName = "CustomStats";
