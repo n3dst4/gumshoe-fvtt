@@ -141,5 +141,8 @@
     "investigator.Stats": "Stats",
     "investigator.Misc": "Misc.",
     "investigator.EquipmentCategories": "Equipment Categories",
-    "investigator.Fields": "Fields"
+    "investigator.Fields": "Fields",
+    "investigator.AddCategory": "Add category",
+    "investigator.AddField": "Add field",
+    "investigator.DeleteCategory": "Delete category?"
 }
