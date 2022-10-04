@@ -10,12 +10,19 @@ import { runtimeConfig } from "../../runtime";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { ListEdit } from "../inputs/ListEdit";
 
-export const CoreSettings: React.FC<{
-  tempSettings: SettingsDict,
-  setters: Setters,
-  setTempSettings: (settings: SettingsDict) => void,
-  tempSettingsRef: React.MutableRefObject<SettingsDict>,
-}> = ({ tempSettings, setters, setTempSettings, tempSettingsRef }) => {
+interface CoreSettingsProps {
+  tempSettings: SettingsDict;
+  setters: Setters;
+  setTempSettings: (settings: SettingsDict) => void;
+  tempSettingsRef: React.MutableRefObject<SettingsDict>;
+}
+
+export const CoreSettings: React.FC<CoreSettingsProps> = ({
+  tempSettings,
+  setters,
+  setTempSettings,
+  tempSettingsRef,
+}) => {
   const presets = runtimeConfig.presets;
 
   const onSelectPreset = useCallback(

@@ -1,33 +1,28 @@
 import { SettingsDict } from "../../settings";
 
-// type Action =
-//   | { type: "addCategory" }
-//   | { type: "deleteCategory", payload: {idx: number} }
-//   | { type: "addField", payload: {categoryIdx: number} }
-//   | { type: "deleteField", payload: {categoryIdx: number, fieldIdx: number} }
-
 type AnyAction = {
   type: string,
   payload?: unknown,
 }
 
-function createAction<T = void> (type: string) {
-  const f = (payload: T) => ({ type, payload });
-  function match (action: AnyAction): action is { type: string, payload: T } {
-    return action.type === type;
-  }
-  f.match = match;
-  return f;
+function createAction<P = void> (type: string) {
+  const create = (payload: P) => ({ type, payload });
+  const match = (action: AnyAction): action is { type: string, payload: P } =>
+    action.type === type;
+  return { create, match };
 }
 
-const addCategory = createAction("addCategory");
-const deleteCategory = createAction<{idx: number}>("deleteCategory");
-// const addField = createAction<{categoryIdx: number}>("addField");
-// const deleteField = createAction<{categoryIdx: number, fieldIdx: number}>("deleteField");
+export const addCategory = createAction("addCategory");
+export const deleteCategory = createAction<{idx: number}>("deleteCategory");
+export const addField = createAction<{categoryIdx: number}>("addField");
+export const deleteField = createAction<{categoryIdx: number, fieldIdx: number}>("deleteField");
+export const setAll = createAction<{newSettings: SettingsDict}>("setAll");
 
 export const reducer = (state: SettingsDict, action: AnyAction): SettingsDict => {
   const newState = { ...state };
-  if (addCategory.match(action)) {
+  if (setAll.match(action)) {
+    return action.payload.newSettings;
+  } else if (addCategory.match(action)) {
     newState.equipmentCategories = [
       ...state.equipmentCategories,
       { name: "", fields: [] },
@@ -36,22 +31,19 @@ export const reducer = (state: SettingsDict, action: AnyAction): SettingsDict =>
     const newCats = [...state.equipmentCategories];
     newCats.splice(action.payload.idx, 1);
     newState.equipmentCategories = newCats;
+  } else if (addField.match(action)) {
+    const newCats = [...state.equipmentCategories];
+    newCats[action.payload.categoryIdx].fields =
+      newCats[action.payload.categoryIdx].fields === undefined
+        ? []
+        : newCats[action.payload.categoryIdx].fields;
+    newCats[action.payload.categoryIdx].fields?.push({ name: "", type: "string", default: "" });
+    newState.equipmentCategories = newCats;
+  } else if (deleteField.match(action)) {
+    const newCats = [...state.equipmentCategories];
+    newCats[action.payload.categoryIdx].fields?.splice(action.payload.fieldIdx, 1);
+    newState.equipmentCategories = newCats;
   }
 
-  // switch (action.type) {
-  //   case "addCategory": {
-  //     newState.equipmentCategories = [
-  //       ...state.equipmentCategories,
-  //       { name: "", fields: [] },
-  //     ];
-  //     break;
-  //   }
-  //   case "deleteCategory": {
-  //     const newCats = [...state.equipmentCategories];
-  //     newCats.splice(action.payload.idx, 1);
-  //     newState.equipmentCategories = newCats;
-  //     break;
-  //   }
-  // }
   return newState;
 };
