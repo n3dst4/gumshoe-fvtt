@@ -9,7 +9,7 @@ export const Field: React.FC<FieldProps> = ({
   field,
 }) => {
   return (
-    <div>{field.name}</div>
+    <div>Field: {field.name}</div>
   );
 };
 

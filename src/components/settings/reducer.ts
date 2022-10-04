@@ -17,6 +17,7 @@ export const deleteCategory = createAction<{idx: number}>("deleteCategory");
 export const addField = createAction<{categoryIdx: number}>("addField");
 export const deleteField = createAction<{categoryIdx: number, fieldIdx: number}>("deleteField");
 export const setAll = createAction<{newSettings: SettingsDict}>("setAll");
+export const renameCategory = createAction<{idx: number, newName: string}>("renameCategory");
 
 export const reducer = (state: SettingsDict, action: AnyAction): SettingsDict => {
   const newState = { ...state };
@@ -30,6 +31,10 @@ export const reducer = (state: SettingsDict, action: AnyAction): SettingsDict =>
   } else if (deleteCategory.match(action)) {
     const newCats = [...state.equipmentCategories];
     newCats.splice(action.payload.idx, 1);
+    newState.equipmentCategories = newCats;
+  } else if (renameCategory.match(action)) {
+    const newCats = [...state.equipmentCategories];
+    newCats[action.payload.idx].name = action.payload.newName;
     newState.equipmentCategories = newCats;
   } else if (addField.match(action)) {
     const newCats = [...state.equipmentCategories];

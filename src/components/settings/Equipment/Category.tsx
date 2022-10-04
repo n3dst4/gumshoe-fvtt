@@ -1,40 +1,34 @@
-import React, { useCallback } from "react";
+import React, { MouseEventHandler, useCallback, useContext } from "react";
 import { FaEllipsisH, FaTrash } from "react-icons/fa";
 import { confirmADoodleDo, getTranslated } from "../../../functions";
-import { SettingsDict } from "../../../settings";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Dropdown } from "../../inputs/Dropdown";
 import { GridField } from "../../inputs/GridField";
 import { InputGrid } from "../../inputs/InputGrid";
 import { Menu, MenuItem } from "../../inputs/Menu";
 import { Translate } from "../../Translate";
-import { Setters } from "../types";
+import { DispatchContext, SettingsContext } from "../contexts";
+import { addField, deleteCategory, renameCategory } from "../reducer";
 import { Field } from "./Field";
 
-interface CategoryProps {
-  setters: Setters;
-  tempSettingsRef: React.MutableRefObject<SettingsDict>;
+interface EquipmentCategoryProps {
   idx: number;
 }
-//
-export const EquipmentCategory: React.FC<CategoryProps> = ({
-  setters,
-  tempSettingsRef,
+
+export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
   idx,
 }) => {
-  const handleNameChange = useCallback((newVal: string) => {
-    const newCats = [...tempSettingsRef.current.equipmentCategories];
-    newCats[idx] = {
-      ...newCats[idx],
-      name: newVal,
-    };
-    setters.equipmentCategories(newCats);
-  }, [idx, setters, tempSettingsRef]);
+  const dispatch = useContext(DispatchContext);
+  const settings = useContext(SettingsContext);
 
-  const handleAdd = useCallback(() => {
-    const newCats = [...tempSettingsRef.current.equipmentCategories, { name: "", fields: [] }];
-    setters.equipmentCategories(newCats);
-  }, [setters, tempSettingsRef]);
+  const handleNameChange = useCallback((newName: string) => {
+    dispatch(renameCategory.create({ idx, newName }));
+  }, [dispatch, idx]);
+
+  const handleAdd: MouseEventHandler = useCallback((e) => {
+    e.preventDefault();
+    dispatch(addField.create({ categoryIdx: idx }));
+  }, [dispatch, idx]);
 
   const handleDelete = useCallback(async () => {
     const aye = await confirmADoodleDo({
@@ -45,11 +39,9 @@ export const EquipmentCategory: React.FC<CategoryProps> = ({
       resolveFalseOnCancel: true,
     });
     if (aye) {
-      const newCats = [...tempSettingsRef.current.equipmentCategories];
-      newCats.splice(idx, 1);
-      setters.equipmentCategories(newCats);
+      dispatch(deleteCategory.create({ idx }));
     }
-  }, [idx, setters, tempSettingsRef]);
+  }, [dispatch, idx]);
 
   return (
     <>
@@ -63,7 +55,7 @@ export const EquipmentCategory: React.FC<CategoryProps> = ({
         >
           <AsyncTextInput
             css={{ flex: 1 }}
-            value={"tempSettings.equipmentCategories[idx].name"}
+            value={settings.equipmentCategories[idx].name}
             onChange={handleNameChange}
           />
         <Dropdown
@@ -83,7 +75,7 @@ export const EquipmentCategory: React.FC<CategoryProps> = ({
         </Dropdown>
         </GridField>
         <GridField label="Fields">
-          {tempSettingsRef.current.equipmentCategories[idx].fields?.map(
+          {settings.equipmentCategories[idx].fields?.map(
             (field, idx) => {
               return <Field key={idx} field={field} />;
             },

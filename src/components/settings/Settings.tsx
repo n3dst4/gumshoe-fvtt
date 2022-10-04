@@ -13,7 +13,7 @@ import { AbilitySettings } from "./AbilitySettings";
 import { StatsSettings } from "./StatsSettings";
 import { MiscSettings } from "./MiscSettings";
 import { EquipmentSettings } from "./Equipment/EquipmentSettings";
-import { DispatchContext } from "./contexts";
+import { DispatchContext, SettingsContext } from "./contexts";
 import { useTempSettings } from "./hooks";
 
 type SettingsProps = {
@@ -56,96 +56,95 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
 
   return (
     <DispatchContext.Provider value={dispatch}>
-      <CSSReset
-        mode="small"
-        theme={theme}
-        css={{
-          ...absoluteCover,
-          display: "flex",
-          flexDirection: "column",
-          padding: 0,
-        }}
-      >
-        <div css={{ flex: 1, overflow: "auto", position: "relative" }}>
-          <TabContainer
-            defaultTab="core"
-            tabs={[
-              {
-                id: "core",
-                label: "Core",
-                content: (
-                  <CoreSettings
-                    setTempSettings={setTempSettings}
-                    tempSettings={tempSettings}
-                    setters={setters}
-                    tempSettingsRef={tempSettingsRef}
-                  />
-                ),
-              },
-              {
-                id: "abilities",
-                label: "Abilities",
-                content: (
-                  <AbilitySettings
-                    tempSettings={tempSettings}
-                    setters={setters}
-                  />
-                ),
-              },
-              {
-                id: "equipment",
-                label: "Equipment",
-                content: (
-                  <EquipmentSettings
-                    tempSettings={tempSettings}
-                    setters={setters}
-                    tempSettingsRef={tempSettingsRef}
-                  />
-                ),
-              },
-              {
-                id: "stats",
-                label: "Stats",
-                content: (
-                  <StatsSettings
-                    tempSettings={tempSettings}
-                    setters={setters}
-                    tempSettingsRef={tempSettingsRef}
-                  />
-                ),
-              },
-              {
-                id: "misc",
-                label: "Misc",
-                content: (
-                  <MiscSettings tempSettings={tempSettings} setters={setters} />
-                ),
-              },
-            ]}
-          />
-        </div>
-        <div
+      <SettingsContext.Provider value={tempSettings}>
+        <CSSReset
+          mode="small"
+          theme={theme}
           css={{
+            ...absoluteCover,
             display: "flex",
-            flexDirection: "row",
-            padding: "0.5em",
-            background: theme.colors.backgroundSecondary,
+            flexDirection: "column",
+            padding: 0,
           }}
         >
-          <button
-            css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
-            onClick={onClickClose}
+          <div css={{ flex: 1, overflow: "auto", position: "relative" }}>
+            <TabContainer
+              defaultTab="core"
+              tabs={[
+                {
+                  id: "core",
+                  label: "Core",
+                  content: (
+                    <CoreSettings
+                      setTempSettings={setTempSettings}
+                      tempSettings={tempSettings}
+                      setters={setters}
+                      tempSettingsRef={tempSettingsRef}
+                    />
+                  ),
+                },
+                {
+                  id: "abilities",
+                  label: "Abilities",
+                  content: (
+                    <AbilitySettings
+                      tempSettings={tempSettings}
+                      setters={setters}
+                    />
+                  ),
+                },
+                {
+                  id: "equipment",
+                  label: "Equipment",
+                  content: (<EquipmentSettings />),
+                },
+                {
+                  id: "stats",
+                  label: "Stats",
+                  content: (
+                    <StatsSettings
+                      tempSettings={tempSettings}
+                      setters={setters}
+                      tempSettingsRef={tempSettingsRef}
+                    />
+                  ),
+                },
+                {
+                  id: "misc",
+                  label: "Misc",
+                  content: (
+                    <MiscSettings
+                      tempSettings={tempSettings}
+                      setters={setters}
+                    />
+                  ),
+                },
+              ]}
+            />
+          </div>
+          <div
+            css={{
+              display: "flex",
+              flexDirection: "row",
+              padding: "0.5em",
+              background: theme.colors.backgroundSecondary,
+            }}
           >
-            <i className="fas fa-times" /> <Translate>Cancel</Translate>
-          </button>
-          <button
-            css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
-            onClick={onClickSave}
-          >
-            <i className="fas fa-save" /> <Translate>Save Changes</Translate>
-          </button>
-        </div>
-      </CSSReset>
+            <button
+              css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
+              onClick={onClickClose}
+            >
+              <i className="fas fa-times" /> <Translate>Cancel</Translate>
+            </button>
+            <button
+              css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
+              onClick={onClickSave}
+            >
+              <i className="fas fa-save" /> <Translate>Save Changes</Translate>
+            </button>
+          </div>
+        </CSSReset>
+      </SettingsContext.Provider>
     </DispatchContext.Provider>
   );
 };

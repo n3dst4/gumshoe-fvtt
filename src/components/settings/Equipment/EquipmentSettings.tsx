@@ -1,48 +1,31 @@
-import React, { MouseEventHandler, useCallback } from "react";
+import React, { MouseEventHandler, useCallback, useContext } from "react";
 import { assertGame } from "../../../functions";
-import { SettingsDict } from "../../../settings";
 import { InputGrid } from "../../inputs/InputGrid";
 import { EquipmentCategory } from "./Category";
-import { Setters } from "../types";
 import { GridFieldStacked } from "../../inputs/GridFieldStacked";
 import { Translate } from "../../Translate";
+import { DispatchContext, SettingsContext } from "../contexts";
+import { addCategory } from "../reducer";
 
-interface EquipmentSettingsProps {
-  tempSettings: SettingsDict;
-  setters: Setters;
-  tempSettingsRef: React.MutableRefObject<SettingsDict>;
-}
-
-export const EquipmentSettings: React.FC<EquipmentSettingsProps> = ({
-  tempSettings,
-  setters,
-  tempSettingsRef,
-}) => {
+export const EquipmentSettings: React.FC = () => {
   assertGame(game);
-
-  const handleAdd: MouseEventHandler = useCallback(
-    (e) => {
-      e.preventDefault();
-      const newCats = [
-        ...tempSettingsRef.current.equipmentCategories,
-        { name: "", fields: [] },
-      ];
-      setters.equipmentCategories(newCats);
-    },
-    [setters, tempSettingsRef],
+  const dispatch = useContext(DispatchContext);
+  const handleAdd: MouseEventHandler = useCallback((e) => {
+    e.preventDefault();
+    dispatch(addCategory.create());
+  },
+  [dispatch],
   );
-  // let idx = 0;
+  const settings = useContext(SettingsContext);
 
   return (
     <>
       <h2>Categories</h2>
-      {tempSettings.equipmentCategories.map(({ name, fields }, idx) => {
+      {settings.equipmentCategories.map(({ name, fields }, idx) => {
         return (
           <EquipmentCategory
             key={idx}
             idx={idx}
-            setters={setters}
-            tempSettingsRef={tempSettingsRef}
           />
         );
       })}
