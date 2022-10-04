@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { settingsSaved } from "../../constants";
-import { assertGame } from "../../functions";
+import { assertGame, confirmADoodleDo } from "../../functions";
 import { tealTheme } from "../../themes/tealTheme";
 import { CSSReset } from "../CSSReset";
 import { Translate } from "../Translate";
@@ -22,7 +22,7 @@ type SettingsProps = {
 
 export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
   assertGame(game);
-  const { tempSettings, setters, setTempSettings, tempSettingsRef, dispatch } =
+  const { tempSettings, setters, setTempSettings, tempSettingsRef, dispatch, isDirty } =
     useTempSettings();
 
   // ###########################################################################
@@ -34,9 +34,18 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
   const onClickClose = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-      foundryApplication.close();
+      const aye = !isDirty() || await confirmADoodleDo({
+        message: "You have unsaved changes. Are you sure you want to close?",
+        confirmText: "Yes, discard my changes",
+        cancelText: "Whoops, No!",
+        confirmIconClass: "fas fa-times",
+        resolveFalseOnCancel: true,
+      });
+      if (aye) {
+        foundryApplication.close();
+      }
     },
-    [foundryApplication],
+    [foundryApplication, isDirty],
   );
 
   const onClickSave = useCallback(

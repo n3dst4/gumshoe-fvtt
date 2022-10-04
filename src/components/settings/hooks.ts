@@ -29,5 +29,8 @@ export const useTempSettings = () => {
   const setTempSettings = useCallback((newSettings: SettingsDict) => {
     dispatch(setAll.create({ newSettings }));
   }, []);
-  return { tempSettings, setters, tempSettingsRef, setTempSettings, dispatch };
+  const isDirty = useCallback(() => {
+    return JSON.stringify(tempSettingsRef.current) !== JSON.stringify(initial);
+  }, [initial, tempSettingsRef]);
+  return { tempSettings, setters, tempSettingsRef, setTempSettings, dispatch, isDirty };
 };

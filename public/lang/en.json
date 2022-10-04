@@ -144,5 +144,7 @@
     "investigator.Fields": "Fields",
     "investigator.AddCategory": "Add category",
     "investigator.AddField": "Add field",
-    "investigator.DeleteCategory": "Delete category?"
+    "investigator.DeleteCategory": "Delete category?",
+    "investigator.YouHaveUnsavedChangesAreYouSureYouWantToClose": "You have unsaved changes. Are you sure you want to close?",
+    "investigator.YesDiscardMyChanges": "Yes, discard my changes"
 }
