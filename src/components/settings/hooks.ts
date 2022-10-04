@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useReducer } from "react";
 import { customSystem } from "../../constants";
 import { useRefStash } from "../../hooks/useRefStash";
-import { getSettingsDict, SettingsDict } from "../../settings";
+import { getSettingsDict } from "../../settings";
 import { reducer, setAll } from "./reducer";
 import { Setters } from "./types";
 
@@ -26,11 +26,8 @@ export const useTempSettings = () => {
     }
     return setters as Setters;
   }, [initial, tempSettingsRef]);
-  const setTempSettings = useCallback((newSettings: SettingsDict) => {
-    dispatch(setAll.create({ newSettings }));
-  }, []);
   const isDirty = useCallback(() => {
     return JSON.stringify(tempSettingsRef.current) !== JSON.stringify(initial);
   }, [initial, tempSettingsRef]);
-  return { tempSettings, setters, tempSettingsRef, setTempSettings, dispatch, isDirty };
+  return { tempSettings, setters, tempSettingsRef, dispatch, isDirty };
 };

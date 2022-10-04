@@ -22,7 +22,7 @@ type SettingsProps = {
 
 export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
   assertGame(game);
-  const { tempSettings, setters, setTempSettings, tempSettingsRef, dispatch, isDirty } =
+  const { tempSettings, setters, tempSettingsRef, dispatch, isDirty } =
     useTempSettings();
 
   // ###########################################################################
@@ -84,12 +84,7 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                   id: "core",
                   label: "Core",
                   content: (
-                    <CoreSettings
-                      setTempSettings={setTempSettings}
-                      tempSettings={tempSettings}
-                      setters={setters}
-                      tempSettingsRef={tempSettingsRef}
-                    />
+                    <CoreSettings setters={setters} />
                   ),
                 },
                 {

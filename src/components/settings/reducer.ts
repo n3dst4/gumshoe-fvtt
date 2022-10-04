@@ -1,3 +1,5 @@
+import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
+import { pathOfCthulhuPreset } from "../../presets";
 import { SettingsDict } from "../../settings";
 
 type AnyAction = {
@@ -18,11 +20,26 @@ export const addField = createAction<{categoryIdx: number}>("addField");
 export const deleteField = createAction<{categoryIdx: number, fieldIdx: number}>("deleteField");
 export const setAll = createAction<{newSettings: SettingsDict}>("setAll");
 export const renameCategory = createAction<{idx: number, newName: string}>("renameCategory");
+export const applyPreset = createAction<{preset: PresetV1, presetId: string}>("applyPreset");
 
 export const reducer = (state: SettingsDict, action: AnyAction): SettingsDict => {
   const newState = { ...state };
   if (setAll.match(action)) {
     return action.payload.newSettings;
+  } else if (applyPreset.match(action)) {
+    return {
+      // start with the current temp settings - this way we keep any values
+      // not handled by the presets
+      ...state,
+      // now we layer in a safe default. This is typed as Required<> so it
+      // will always contain one of everything that can be controlled by a
+      // preset.
+      ...pathOfCthulhuPreset,
+      // now layer in the actual preset
+      ...action.payload.preset,
+      // and finally, set the actual preset id
+      systemPreset: action.payload.presetId,
+    };
   } else if (addCategory.match(action)) {
     newState.equipmentCategories = [
       ...state.equipmentCategories,

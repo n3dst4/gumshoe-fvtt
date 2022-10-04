@@ -1,29 +1,25 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import * as constants from "../../constants";
 import { assertGame } from "../../functions";
-import { SettingsDict } from "../../settings";
 import { InputGrid } from "../inputs/InputGrid";
 import { Setters } from "./types";
 import { SettingsGridField } from "./SettingsGridField";
-import { pathOfCthulhuPreset } from "../../presets";
 import { runtimeConfig } from "../../runtime";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { ListEdit } from "../inputs/ListEdit";
+import { DispatchContext, SettingsContext } from "./contexts";
+import { applyPreset } from "./reducer";
 
 interface CoreSettingsProps {
-  tempSettings: SettingsDict;
   setters: Setters;
-  setTempSettings: (settings: SettingsDict) => void;
-  tempSettingsRef: React.MutableRefObject<SettingsDict>;
 }
 
 export const CoreSettings: React.FC<CoreSettingsProps> = ({
-  tempSettings,
   setters,
-  setTempSettings,
-  tempSettingsRef,
 }) => {
   const presets = runtimeConfig.presets;
+  const settings = useContext(SettingsContext);
+  const dispatch = useContext(DispatchContext);
 
   const onSelectPreset = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -39,21 +35,9 @@ export const CoreSettings: React.FC<CoreSettingsProps> = ({
           "Somehow ended up picking a preset which doesnae exist",
         );
       }
-      setTempSettings({
-        // start with the current temp settings - this way we keep any values
-        // not handled by the presets
-        ...tempSettingsRef.current,
-        // now we layer in a safe default. This is typed as Required<> so it
-        // will always contain one of everything that can be controlled by a
-        // preset.
-        ...pathOfCthulhuPreset,
-        // now layer in the actual preset
-        ...preset,
-        // and finally, set the actual preset id
-        systemPreset: presetId,
-      });
+      dispatch(applyPreset.create({ preset, presetId }));
     },
-    [presets, setTempSettings, setters, tempSettingsRef],
+    [dispatch, presets, setters],
   );
 
   let idx = 0;
@@ -66,20 +50,20 @@ export const CoreSettings: React.FC<CoreSettingsProps> = ({
       }}
     >
       <SettingsGridField label="System Preset">
-        <select value={tempSettings.systemPreset} onChange={onSelectPreset}>
+        <select value={settings.systemPreset} onChange={onSelectPreset}>
           {Object.keys(presets).map<JSX.Element>((presetId: string) => (
             <option key={presetId} value={presetId}>
               {presets[presetId].displayName}
             </option>
           ))}
-          {tempSettings.systemPreset === constants.customSystem && (
+          {settings.systemPreset === constants.customSystem && (
             <option value={constants.customSystem}>Custom</option>
           )}
         </select>
       </SettingsGridField>
       <SettingsGridField label="Visual Theme" index={idx++}>
         <select
-          value={tempSettings.defaultThemeName}
+          value={settings.defaultThemeName}
           onChange={(e) => {
             setters.defaultThemeName(e.currentTarget.value);
           }}
@@ -95,24 +79,24 @@ export const CoreSettings: React.FC<CoreSettingsProps> = ({
       </SettingsGridField>
       <SettingsGridField label="Occupation Label" index={idx++}>
         <AsyncTextInput
-          value={tempSettings.occupationLabel}
+          value={settings.occupationLabel}
           onChange={setters.occupationLabel}
         />
       </SettingsGridField>
       <SettingsGridField label="Short Notes Fields" index={idx++}>
         <ListEdit
-          value={tempSettings.shortNotes}
+          value={settings.shortNotes}
           onChange={setters.shortNotes}
         />
       </SettingsGridField>
       <SettingsGridField label="Long Notes Fields" index={idx++}>
-        <ListEdit value={tempSettings.longNotes} onChange={setters.longNotes} />
+        <ListEdit value={settings.longNotes} onChange={setters.longNotes} />
       </SettingsGridField>
 
       <SettingsGridField label="Generic Occupation" index={idx++}>
         <AsyncTextInput
           onChange={setters.genericOccupation}
-          value={tempSettings.genericOccupation}
+          value={settings.genericOccupation}
         />
       </SettingsGridField>
 
