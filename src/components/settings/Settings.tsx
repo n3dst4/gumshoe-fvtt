@@ -91,10 +91,7 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                   id: "abilities",
                   label: "Abilities",
                   content: (
-                    <AbilitySettings
-                      tempSettings={tempSettings}
-                      setters={setters}
-                    />
+                    <AbilitySettings setters={setters} />
                   ),
                 },
                 {
@@ -107,7 +104,6 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                   label: "Stats",
                   content: (
                     <StatsSettings
-                      tempSettings={tempSettings}
                       setters={setters}
                       tempSettingsRef={tempSettingsRef}
                     />

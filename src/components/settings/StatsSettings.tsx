@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { renameProperty } from "../../functions";
 import { SettingsDict } from "../../settings";
 import { InputGrid } from "../inputs/InputGrid";
@@ -6,12 +6,13 @@ import { Setters } from "./types";
 import { SettingsGridField } from "./SettingsGridField";
 import { StatsSettingsEditor } from "./StatsSettingsEditor";
 import { Stat } from "@lumphammer/investigator-fvtt-types";
+import { SettingsContext } from "./contexts";
 
 export const StatsSettings: React.FC<{
-  tempSettings: SettingsDict,
   setters: Setters,
   tempSettingsRef: React.MutableRefObject<SettingsDict>,
-}> = ({ tempSettings, setters, tempSettingsRef }) => {
+}> = ({ setters, tempSettingsRef }) => {
+  const settings = useContext(SettingsContext);
   const onChangePCStat = useCallback(
     (stat: Stat, id: string) => {
       setters.pcStats({
@@ -101,7 +102,7 @@ export const StatsSettings: React.FC<{
       >
         <SettingsGridField label="PC Stats" index={idx++}>
           <StatsSettingsEditor
-            stats={tempSettings.pcStats}
+            stats={settings.pcStats}
             onChange={onChangePCStat}
             onChangeId={onChangePCStatId}
             onDelete={onDeletePCStat}
@@ -110,7 +111,7 @@ export const StatsSettings: React.FC<{
         </SettingsGridField>
         <SettingsGridField label="NPC Stats" index={idx++}>
           <StatsSettingsEditor
-            stats={tempSettings.npcStats}
+            stats={settings.npcStats}
             onChange={onChangeNPCStat}
             onChangeId={onChangeNPCStatId}
             onDelete={onDeleteNPCStat}
