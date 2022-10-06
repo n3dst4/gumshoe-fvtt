@@ -9,13 +9,13 @@ import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
 import { nanoid } from "nanoid";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { SettingsContext } from "./contexts";
+import { StateContext } from "./contexts";
 
 export const AbilitySettings: React.FC<{
   setters: Setters,
 }> = ({ setters }) => {
   assertGame(game);
-  const settings = useContext(SettingsContext);
+  const settings = useContext(StateContext);
   const theme = useContext(ThemeContext);
 
   let idx = 0;

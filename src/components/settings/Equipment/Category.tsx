@@ -7,7 +7,7 @@ import { GridField } from "../../inputs/GridField";
 import { InputGrid } from "../../inputs/InputGrid";
 import { Menu, MenuItem } from "../../inputs/Menu";
 import { Translate } from "../../Translate";
-import { DispatchContext, SettingsContext } from "../contexts";
+import { DispatchContext, StateContext } from "../contexts";
 import { addField, deleteCategory, renameCategory } from "../reducer";
 import { Field } from "./Field";
 
@@ -19,7 +19,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
   idx,
 }) => {
   const dispatch = useContext(DispatchContext);
-  const settings = useContext(SettingsContext);
+  const settings = useContext(StateContext);
 
   const handleNameChange = useCallback((newName: string) => {
     dispatch(renameCategory.create({ idx, newName }));

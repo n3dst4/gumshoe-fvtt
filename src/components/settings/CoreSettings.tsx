@@ -7,7 +7,7 @@ import { SettingsGridField } from "./SettingsGridField";
 import { runtimeConfig } from "../../runtime";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { ListEdit } from "../inputs/ListEdit";
-import { DispatchContext, SettingsContext } from "./contexts";
+import { DispatchContext, StateContext } from "./contexts";
 import { applyPreset } from "./reducer";
 
 interface CoreSettingsProps {
@@ -18,7 +18,7 @@ export const CoreSettings: React.FC<CoreSettingsProps> = ({
   setters,
 }) => {
   const presets = runtimeConfig.presets;
-  const settings = useContext(SettingsContext);
+  const settings = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
 
   const onSelectPreset = useCallback(

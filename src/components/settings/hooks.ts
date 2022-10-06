@@ -7,8 +7,8 @@ import { Setters } from "./types";
 
 export const useTempSettings = () => {
   const initial = useMemo(getSettingsDict, []);
-  const [tempSettings, dispatch] = useReducer(reducer, initial);
-  const tempSettingsRef = useRefStash(tempSettings);
+  const [tempSettings, dispatch] = useReducer(reducer, { settings: initial });
+  const tempStateRef = useRefStash(tempSettings);
   const setters = useMemo(() => {
     const setters: Record<string, any> = {};
     for (const k of Object.keys(initial)) {
@@ -16,7 +16,7 @@ export const useTempSettings = () => {
         dispatch(
           setAll.create({
             newSettings: {
-              ...tempSettingsRef.current,
+              ...tempStateRef.current.settings,
               [k]: newVal,
               systemPreset: customSystem,
             },
@@ -25,9 +25,9 @@ export const useTempSettings = () => {
       };
     }
     return setters as Setters;
-  }, [initial, tempSettingsRef]);
+  }, [initial, tempStateRef]);
   const isDirty = useCallback(() => {
-    return JSON.stringify(tempSettingsRef.current) !== JSON.stringify(initial);
-  }, [initial, tempSettingsRef]);
-  return { tempSettings, setters, tempSettingsRef, dispatch, isDirty };
+    return JSON.stringify(tempStateRef.current) !== JSON.stringify(initial);
+  }, [initial, tempStateRef]);
+  return { tempState: tempSettings, setters, tempSettingsRef: tempStateRef, dispatch, isDirty };
 };

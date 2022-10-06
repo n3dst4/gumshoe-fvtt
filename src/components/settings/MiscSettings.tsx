@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
 import { getDevMode } from "../../functions";
-import { SettingsDict } from "../../settings";
 import { InputGrid } from "../inputs/InputGrid";
 import { Setters } from "./types";
 import { SettingsGridField } from "./SettingsGridField";
@@ -8,14 +7,16 @@ import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
 import { ListEdit } from "../inputs/ListEdit";
+import { StateContext } from "./contexts";
 
 export const MiscSettings: React.FC<{
-  tempSettings: SettingsDict,
   setters: Setters,
-}> = ({ tempSettings, setters }) => {
+}> = ({ setters }) => {
   const isDevMode = getDevMode();
 
   let idx = 0;
+
+  const { settings } = useContext(StateContext);
 
   return (
     <InputGrid
@@ -27,12 +28,12 @@ export const MiscSettings: React.FC<{
       <SettingsGridField label="Custom themes path" index={idx++}>
         <AsyncTextInput
           onChange={setters.customThemePath}
-          value={tempSettings.customThemePath}
+          value={settings.customThemePath}
         />
       </SettingsGridField>
       <SettingsGridField label="Use turn-passing initiative?" index={idx++}>
         <Checkbox
-          checked={tempSettings.useTurnPassingInitiative}
+          checked={settings.useTurnPassingInitiative}
           onChange={setters.useTurnPassingInitiative}
         />
       </SettingsGridField>
@@ -40,7 +41,7 @@ export const MiscSettings: React.FC<{
       {isDevMode && (
         <SettingsGridField label="Debug translations?" index={idx++}>
           <Checkbox
-            checked={tempSettings.debugTranslations}
+            checked={settings.debugTranslations}
             onChange={setters.debugTranslations}
           />
         </SettingsGridField>
@@ -58,25 +59,25 @@ export const MiscSettings: React.FC<{
         index={idx++}
       >
         <Checkbox
-          checked={tempSettings.useMwStyleAbilities}
+          checked={settings.useMwStyleAbilities}
           onChange={setters.useMwStyleAbilities}
         />
       </SettingsGridField>
       <SettingsGridField label="Use alternative item types" index={idx++}>
         <Checkbox
-          checked={tempSettings.mwUseAlternativeItemTypes}
+          checked={settings.mwUseAlternativeItemTypes}
           onChange={setters.mwUseAlternativeItemTypes}
         />
       </SettingsGridField>
       <SettingsGridField label="Hidden Short Notes Fields" index={idx++}>
         <ListEdit
-          value={tempSettings.mwHiddenShortNotes}
+          value={settings.mwHiddenShortNotes}
           onChange={setters.mwHiddenShortNotes}
         />
       </SettingsGridField>
       <SettingsGridField label="Use injury status" index={idx++}>
         <Checkbox
-          checked={tempSettings.useMwInjuryStatus}
+          checked={settings.useMwInjuryStatus}
           onChange={setters.useMwInjuryStatus}
         />
       </SettingsGridField>

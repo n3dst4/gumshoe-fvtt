@@ -10,10 +10,10 @@ import { absoluteCover } from "../absoluteCover";
 import { TabContainer } from "../TabContainer";
 import { CoreSettings } from "./CoreSettings";
 import { AbilitySettings } from "./AbilitySettings";
-import { StatsSettings } from "./StatsSettings";
+import { StatsSettings } from "./Stats/StatsSettings";
 import { MiscSettings } from "./MiscSettings";
 import { EquipmentSettings } from "./Equipment/EquipmentSettings";
-import { DispatchContext, SettingsContext } from "./contexts";
+import { DispatchContext, StateContext } from "./contexts";
 import { useTempSettings } from "./hooks";
 
 type SettingsProps = {
@@ -22,14 +22,14 @@ type SettingsProps = {
 
 export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
   assertGame(game);
-  const { tempSettings, setters, tempSettingsRef, dispatch, isDirty } =
+  const { tempState, setters, tempSettingsRef, dispatch, isDirty } =
     useTempSettings();
 
   // ###########################################################################
   // other hooks
 
   const theme =
-    runtimeConfig.themes[tempSettings.defaultThemeName] || tealTheme;
+    runtimeConfig.themes[tempState.settings.defaultThemeName] || tealTheme;
 
   const onClickClose = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -65,7 +65,7 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
 
   return (
     <DispatchContext.Provider value={dispatch}>
-      <SettingsContext.Provider value={tempSettings}>
+      <StateContext.Provider value={tempState}>
         <CSSReset
           mode="small"
           theme={theme}
@@ -103,10 +103,7 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                   id: "stats",
                   label: "Stats",
                   content: (
-                    <StatsSettings
-                      setters={setters}
-                      tempSettingsRef={tempSettingsRef}
-                    />
+                    <StatsSettings />
                   ),
                 },
                 {
@@ -114,7 +111,6 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                   label: "Misc",
                   content: (
                     <MiscSettings
-                      tempSettings={tempSettings}
                       setters={setters}
                     />
                   ),
@@ -144,7 +140,7 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
             </button>
           </div>
         </CSSReset>
-      </SettingsContext.Provider>
+      </StateContext.Provider>
     </DispatchContext.Provider>
   );
 };

@@ -4,7 +4,7 @@ import { InputGrid } from "../../inputs/InputGrid";
 import { EquipmentCategory } from "./Category";
 import { GridFieldStacked } from "../../inputs/GridFieldStacked";
 import { Translate } from "../../Translate";
-import { DispatchContext, SettingsContext } from "../contexts";
+import { DispatchContext, StateContext } from "../contexts";
 import { addCategory } from "../reducer";
 
 export const EquipmentSettings: React.FC = () => {
@@ -16,7 +16,7 @@ export const EquipmentSettings: React.FC = () => {
   },
   [dispatch],
   );
-  const settings = useContext(SettingsContext);
+  const settings = useContext(StateContext);
 
   return (
     <>
