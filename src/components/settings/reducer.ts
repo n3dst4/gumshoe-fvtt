@@ -1,9 +1,8 @@
 import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
 import { pathOfCthulhuPreset } from "../../presets";
 import { SettingsDict } from "../../settings";
-import { PcOrNpc } from "./Stats/types";
 import produce from "immer";
-import { State } from "./types";
+import { State, PcOrNpc } from "./types";
 import { renameProperty } from "../../functions";
 
 type AnyAction = {

@@ -7,7 +7,7 @@ import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Checkbox } from "../../inputs/Checkbox";
 import { DispatchContext } from "../contexts";
 import { deleteStat, setStatDefault, setStatId, setStatMax, setStatMin, setStatName } from "../reducer";
-import { PcOrNpc } from "./types";
+import { PcOrNpc } from "../types";
 
 interface StatSettingsRowProps {
   index: number;

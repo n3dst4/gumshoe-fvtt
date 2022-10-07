@@ -5,3 +5,5 @@ export type Setters = { [k in keyof SettingsDict]: ((newVal: SettingsDict[k]) =>
 export interface State {
   settings: SettingsDict;
 }
+
+export type PcOrNpc = "pcStats" | "npcStats";

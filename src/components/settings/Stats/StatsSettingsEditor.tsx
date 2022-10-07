@@ -3,7 +3,7 @@ import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
 import { addStat } from "../reducer";
 import { StatSettingsRow } from "./StatSettingsRow";
-import { PcOrNpc } from "./types";
+import { PcOrNpc } from "../types";
 
 interface StatsSettingsEditorProps {
   which: PcOrNpc;
