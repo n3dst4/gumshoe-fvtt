@@ -25,7 +25,8 @@ export const StatsSettingsEditor: React.FC<StatsSettingsEditorProps> = ({
         Object.keys(stats).map<ReactNode>((key, i) => {
           return (
             <StatSettingsRow
-              key={key}
+              // we use i not key because key can be changed
+              key={i}
               stat={stats[key]}
               id={key}
               index={i + 2}

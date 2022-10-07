@@ -16,6 +16,7 @@ function createAction<S, P = void> (type: string, reducer?: (state: S, payload: 
     action.type === type;
   const apply = (state: S, action: AnyAction) => {
     if (match(action)) {
+      console.log("Applying action", type, "with payload", action.payload);
       return reducer ? reducer(state, action.payload) : state;
     }
     return state;
@@ -106,21 +107,21 @@ export const setStatMin = createAction(
 );
 
 export const setStatMax = createAction(
-  "setStatMin",
+  "setStatMax",
   (draft: State, { which, id, value }: {which: PcOrNpc, id: string, value: number|undefined}) => {
-    draft.settings[which][id].min = value;
+    draft.settings[which][id].max = value;
   },
 );
 
 export const setStatDefault = createAction(
-  "setStatMin",
+  "setStatDefault",
   (draft: State, { which, id, value }: {which: PcOrNpc, id: string, value: number}) => {
     draft.settings[which][id].default = value;
   },
 );
 
 export const setStatName = createAction(
-  "setStatMin",
+  "setStatName",
   (draft: State, { which, id, name }: {which: PcOrNpc, id: string, name: string}) => {
     draft.settings[which][id].name = name;
   },
@@ -136,7 +137,7 @@ export const deleteStat = createAction(
 export const setStatId = createAction(
   "setStatId",
   (draft: State, { which, oldId, newId }: {which: PcOrNpc, oldId: string, newId: string}) => {
-    renameProperty(oldId, newId, draft.settings[which]);
+    draft.settings[which] = renameProperty(oldId, newId, draft.settings[which]);
   },
 );
 
@@ -217,6 +218,14 @@ export const reducer = (state: State, action: AnyAction): State => {
     deleteField.apply(draft, action);
     renameCategory.apply(draft, action);
     applyPreset.apply(draft, action);
+    addStat.apply(draft, action);
+    setStatMin.apply(draft, action);
+    setStatMax.apply(draft, action);
+    setStatDefault.apply(draft, action);
+    setStatName.apply(draft, action);
+    deleteStat.apply(draft, action);
+    setStatId.apply(draft, action);
   });
+  console.log(newState);
   return newState;
 };
