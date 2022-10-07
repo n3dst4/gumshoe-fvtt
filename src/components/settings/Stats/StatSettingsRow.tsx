@@ -32,7 +32,6 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
     const value = checked
       ? Math.min(statRef.current.default, statRef.current.max ?? 0)
       : undefined;
-    console.log("handleChangeMinCheckbox", value);
     dispatch(setStatMin.create({ which, id: idRef.current, value }));
   }, [dispatch, which, idRef, statRef]);
 
@@ -40,7 +39,6 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
     const value = checked
       ? Math.max(statRef.current.default, statRef.current.min ?? 0)
       : undefined;
-    console.log("handleChangeMaxCheckbox", value);
     dispatch(setStatMax.create({ which, id: idRef.current, value }));
   }, [statRef, dispatch, which, idRef]);
 

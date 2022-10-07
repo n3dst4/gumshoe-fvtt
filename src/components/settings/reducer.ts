@@ -1,9 +1,10 @@
 import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
 import { pathOfCthulhuPreset } from "../../presets";
-import { SettingsDict } from "../../settings";
+import { getSettingsDict, SettingsDict } from "../../settings";
 import produce from "immer";
 import { State, PcOrNpc } from "./types";
 import { renameProperty } from "../../functions";
+import { diff } from "just-diff";
 
 type AnyAction = {
   type: string,
@@ -16,13 +17,33 @@ function createAction<S, P = void> (type: string, reducer?: (state: S, payload: 
     action.type === type;
   const apply = (state: S, action: AnyAction) => {
     if (match(action)) {
-      console.log("Applying action", type, "with payload", action.payload);
+      logger.log("Reducer", type, action.payload);
       return reducer ? reducer(state, action.payload) : state;
     }
     return state;
   };
   return { create, match, apply, reducer: reducer ?? ((state: S) => state) };
 }
+
+// type SliceActionOf<S, T> = T extends
+
+function createSlice<S, C extends { [key: string]: (state: S, payload: any) => void }> (initialState: S, reducers: C) {
+  // type R = {[key in keyof C]: ReturnType<typeof createAction<S, C[key] extends ((state: infer S1, payload: infer P1) => void) ? P1 : never>>}
+  const actions: {[key in keyof C]: ReturnType<typeof createAction<S, C[key] extends ((state: infer S1, payload: infer P1) => void) ? P1 : never>>} = Object.fromEntries(Object.entries(reducers).map(([key, reducer]) => {
+    const action = createAction(key, reducer);
+    return [key, action];
+  })) as {[key in keyof C]: ReturnType<typeof createAction<S, C[key] extends ((state: infer S1, payload: infer P1) => void) ? P1 : never>>};
+  return actions;
+}
+
+const slice = createSlice(
+  { settings: getSettingsDict() },
+  {
+    setAll: (draft: State, payload: {newSettings: SettingsDict}) => {
+      draft.settings = payload.newSettings;
+    },
+  },
+);
 
 export const setAll = createAction(
   "setAll",
@@ -141,74 +162,6 @@ export const setStatId = createAction(
   },
 );
 
-// export const changePCStat = createAction(
-//   "changePCStat",
-//   (state: SettingsDict, stat: Stat, id: string) => {
-//     setters.pcStats({
-//       ...tempSettingsRef.current.pcStats,
-//       [id]: stat,
-//     });
-//   },
-//   [setters, tempSettingsRef],
-// );
-// const onChangeNPCStat = useCallback(
-//   (stat: Stat, id: string) => {
-//     setters.npcStats({
-//       ...tempSettingsRef.current.npcStats,
-//       [id]: stat,
-//     });
-//   },
-//   [setters, tempSettingsRef],
-// );
-// const onChangePCStatId = useCallback(
-//   (oldId: string, newId: string) => {
-//     const result = renameProperty(
-//       oldId,
-//       newId,
-//       tempSettingsRef.current.pcStats,
-//     );
-//     setters.pcStats(result);
-//   },
-//   [setters, tempSettingsRef],
-// );
-// const onChangeNPCStatId = useCallback(
-//   (oldId: string, newId: string) => {
-//     const result = renameProperty(
-//       oldId,
-//       newId,
-//       tempSettingsRef.current.npcStats,
-//     );
-//     setters.npcStats(result);
-//   },
-//   [setters, tempSettingsRef],
-// );
-
-// const onDeletePCStat = useCallback((id: string) => {
-//   const result = {
-//     ...tempSettingsRef.current.pcStats,
-//   };
-//   delete result[id];
-//   setters.pcStats(result);
-// }, [setters, tempSettingsRef]);
-
-// const onDeleteNPCStat = useCallback((id: string) => {
-//   const result = {
-//     ...tempSettingsRef.current.npcStats,
-//   };
-//   delete result[id];
-//   setters.npcStats(result);
-// }, [setters, tempSettingsRef]);
-
-// const onAddNPCStat = useCallback(() => {
-//   setters.npcStats({
-//     ...tempSettingsRef.current.npcStats,
-//     [`stat${Object.keys(tempSettingsRef.current.npcStats).length}`]: {
-//       name: "",
-//       default: 0,
-//     },
-//   });
-// }, [setters, tempSettingsRef]);
-
 export const reducer = (state: State, action: AnyAction): State => {
   const newState = produce(state, (draft) => {
     setAll.apply(draft, action);
@@ -226,6 +179,7 @@ export const reducer = (state: State, action: AnyAction): State => {
     deleteStat.apply(draft, action);
     setStatId.apply(draft, action);
   });
-  console.log(newState);
+  const diffs = diff(state, newState);
+  console.log(diffs);
   return newState;
 };
