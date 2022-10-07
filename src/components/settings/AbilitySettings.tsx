@@ -15,7 +15,7 @@ export const AbilitySettings: React.FC<{
   setters: Setters,
 }> = ({ setters }) => {
   assertGame(game);
-  const settings = useContext(StateContext);
+  const { settings } = useContext(StateContext);
   const theme = useContext(ThemeContext);
 
   let idx = 0;

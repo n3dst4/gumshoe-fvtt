@@ -16,7 +16,7 @@ export const EquipmentSettings: React.FC = () => {
   },
   [dispatch],
   );
-  const settings = useContext(StateContext);
+  const { settings } = useContext(StateContext);
 
   return (
     <>

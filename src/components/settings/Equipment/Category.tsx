@@ -19,7 +19,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
   idx,
 }) => {
   const dispatch = useContext(DispatchContext);
-  const settings = useContext(StateContext);
+  const { settings } = useContext(StateContext);
 
   const handleNameChange = useCallback((newName: string) => {
     dispatch(renameCategory.create({ idx, newName }));

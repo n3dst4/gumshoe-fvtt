@@ -18,7 +18,7 @@ export const CoreSettings: React.FC<CoreSettingsProps> = ({
   setters,
 }) => {
   const presets = runtimeConfig.presets;
-  const settings = useContext(StateContext);
+  const { settings } = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
 
   const onSelectPreset = useCallback(
