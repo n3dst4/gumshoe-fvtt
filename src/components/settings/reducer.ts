@@ -22,7 +22,9 @@ type AnyAction = {
  * Given a unique string (danger will robinson!) and a reducer function, returns
  * an object with
  *
- *  * a `create` method that returns an action object, and an `apply`
+ *  * a `create` method that returns an action object
+ *  * an `apply` function, which take a state and an action and applies the
+ *    relevant reducer if the action matches the case
  */
 function createCase<S, P = void> (
   type: string,
