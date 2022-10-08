@@ -6,14 +6,27 @@ import { State, PcOrNpc } from "./types";
 import { renameProperty } from "../../functions";
 import { diff } from "just-diff";
 
+/**
+ * A minimal case for all actions - there will always be a `type` and a
+ * `payload` property, but the payload may be `undefined`.
+ */
 type AnyAction = {
   type: string,
   payload?: unknown,
 };
 
+/**
+ * A minimal reimplementation of the `createAction` function from
+ * `@reduxjs/toolkit`.
+ *
+ * Given a unique string (danger will robinson!) and a reducer function, returns
+ * an object with
+ *
+ *  * a `create` method that returns an action object, and an `apply`
+ */
 function createCase<S, P = void> (
   type: string,
-  reducer?: (draft: S, payload: P) => void,
+  reducer: (draft: S, payload: P) => void,
 ) {
   const create = (payload: P) => ({ type, payload });
   const match = (action: AnyAction): action is { type: string, payload: P } =>
@@ -25,9 +38,21 @@ function createCase<S, P = void> (
     }
     return state;
   };
-  return { create, match, apply, reducer: reducer ?? ((state: S) => state) };
+  return {
+    /** Create an action (to be dispatched with `dispatch` from `useReducer` */
+    create,
+    /**
+     * given a mutable draft object of S, and action, mutate the draft if the
+     * action is from this slice.
+     */
+    apply,
+  };
 }
 
+/**
+ * A minimal reimplementation of the `createSlice` function from
+ * `@reduxjs/toolkit`.
+ */
 function createSlice<
   S extends object,
   C extends { [key: string]: (state: Draft<S>, payload?: any) => void }
@@ -61,7 +86,16 @@ function createSlice<
     return newState;
   };
 
-  return { creators, reducer };
+  return {
+    /**
+     * A dictionary of action creators, keyed by the name of the case.
+     */
+    creators,
+    /**
+     * The reducer function for this slice.
+     */
+    reducer,
+  };
 }
 
 export const slice = createSlice(
