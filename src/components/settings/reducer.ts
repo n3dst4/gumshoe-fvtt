@@ -1,6 +1,6 @@
 import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
 import { pathOfCthulhuPreset } from "../../presets";
-import { getSettingsDict, SettingsDict } from "../../settings";
+import { SettingsDict } from "../../settings";
 import produce, { Draft } from "immer";
 import { State, PcOrNpc } from "./types";
 import { renameProperty } from "../../functions";
@@ -50,13 +50,15 @@ function createCase<S, P = void> (
 }
 
 /**
- * A minimal reimplementation of the `createSlice` function from
+ * A minimal reimagination of the `createSlice` function from
  * `@reduxjs/toolkit`.
  */
-function createSlice<
+const createSlice = <
+  // curried so that we can specify S but allow C to be inferred
   S extends object,
+>() => <
   C extends { [key: string]: (state: Draft<S>, payload?: any) => void }
->(initialState: S, reducers: C) {
+>(reducers: C) => {
   const sliceCases = Object.entries(reducers).map(([key, reducer]) => {
     const action = createCase(key, reducer);
     return [key, action] as const;
@@ -75,7 +77,9 @@ function createSlice<
       >
     >["create"];
   };
-  const reducer = (state: S = initialState, action: AnyAction) => {
+  // `useDispatch` takes the initial state as an argument, so we don't need to
+  // provide a default argument for `state` here.
+  const reducer = (state: S, action: AnyAction) => {
     const newState = produce(state, (draft) => {
       for (const [, sliceCase] of sliceCases) {
         sliceCase.apply(draft, action);
@@ -96,10 +100,9 @@ function createSlice<
      */
     reducer,
   };
-}
+};
 
-export const slice = createSlice(
-  { settings: getSettingsDict() },
+export const slice = createSlice<State>()(
   {
     setAll: (draft, payload: { newSettings: SettingsDict }) => {
       draft.settings = payload.newSettings;
