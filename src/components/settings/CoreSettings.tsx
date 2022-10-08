@@ -8,7 +8,7 @@ import { runtimeConfig } from "../../runtime";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { ListEdit } from "../inputs/ListEdit";
 import { DispatchContext, StateContext } from "./contexts";
-import { applyPreset } from "./reducer";
+import { slice } from "./reducer";
 
 interface CoreSettingsProps {
   setters: Setters;
@@ -35,7 +35,7 @@ export const CoreSettings: React.FC<CoreSettingsProps> = ({
           "Somehow ended up picking a preset which doesnae exist",
         );
       }
-      dispatch(applyPreset.create({ preset, presetId }));
+      dispatch(slice.creators.applyPreset({ preset, presetId }));
     },
     [dispatch, presets, setters],
   );

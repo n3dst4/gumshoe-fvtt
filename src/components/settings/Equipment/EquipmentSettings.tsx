@@ -5,14 +5,14 @@ import { EquipmentCategory } from "./Category";
 import { GridFieldStacked } from "../../inputs/GridFieldStacked";
 import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
-import { addCategory } from "../reducer";
+import { slice } from "../reducer";
 
 export const EquipmentSettings: React.FC = () => {
   assertGame(game);
   const dispatch = useContext(DispatchContext);
   const handleAdd: MouseEventHandler = useCallback((e) => {
     e.preventDefault();
-    dispatch(addCategory.create());
+    dispatch(slice.creators.addCategory());
   },
   [dispatch],
   );

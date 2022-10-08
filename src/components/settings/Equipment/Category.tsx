@@ -8,7 +8,7 @@ import { InputGrid } from "../../inputs/InputGrid";
 import { Menu, MenuItem } from "../../inputs/Menu";
 import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
-import { addField, deleteCategory, renameCategory } from "../reducer";
+import { slice } from "../reducer";
 import { Field } from "./Field";
 
 interface EquipmentCategoryProps {
@@ -22,12 +22,12 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
   const { settings } = useContext(StateContext);
 
   const handleNameChange = useCallback((newName: string) => {
-    dispatch(renameCategory.create({ idx, newName }));
+    dispatch(slice.creators.renameCategory({ idx, newName }));
   }, [dispatch, idx]);
 
   const handleAdd: MouseEventHandler = useCallback((e) => {
     e.preventDefault();
-    dispatch(addField.create({ categoryIdx: idx }));
+    dispatch(slice.creators.addField({ categoryIdx: idx }));
   }, [dispatch, idx]);
 
   const handleDelete = useCallback(async () => {
@@ -39,7 +39,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
       resolveFalseOnCancel: true,
     });
     if (aye) {
-      dispatch(deleteCategory.create({ idx }));
+      dispatch(slice.creators.deleteCategory({ idx }));
     }
   }, [dispatch, idx]);
 

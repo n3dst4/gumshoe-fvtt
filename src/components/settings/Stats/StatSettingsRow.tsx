@@ -6,7 +6,7 @@ import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Checkbox } from "../../inputs/Checkbox";
 import { DispatchContext } from "../contexts";
-import { deleteStat, setStatDefault, setStatId, setStatMax, setStatMin, setStatName } from "../reducer";
+import { slice } from "../reducer";
 import { PcOrNpc } from "../types";
 
 interface StatSettingsRowProps {
@@ -32,39 +32,39 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
     const value = checked
       ? Math.min(statRef.current.default, statRef.current.max ?? 0)
       : undefined;
-    dispatch(setStatMin.create({ which, id: idRef.current, value }));
+    dispatch(slice.creators.setStatMin({ which, id: idRef.current, value }));
   }, [dispatch, which, idRef, statRef]);
 
   const handleChangeMaxCheckbox = useCallback((checked: boolean) => {
     const value = checked
       ? Math.max(statRef.current.default, statRef.current.min ?? 0)
       : undefined;
-    dispatch(setStatMax.create({ which, id: idRef.current, value }));
+    dispatch(slice.creators.setStatMax({ which, id: idRef.current, value }));
   }, [statRef, dispatch, which, idRef]);
 
   const handleChangeDefault = useCallback((value: number) => {
-    dispatch(setStatDefault.create({ which, id: idRef.current, value }));
+    dispatch(slice.creators.setStatDefault({ which, id: idRef.current, value }));
   }, [dispatch, which, idRef]);
 
   const handleChangeMin = useCallback((value: number) => {
-    dispatch(setStatMin.create({ which, id: idRef.current, value }));
+    dispatch(slice.creators.setStatMin({ which, id: idRef.current, value }));
   }, [dispatch, which, idRef]);
 
   const handleChangeMax = useCallback((value: number) => {
-    dispatch(setStatMax.create({ which, id: idRef.current, value }));
+    dispatch(slice.creators.setStatMax({ which, id: idRef.current, value }));
   }, [dispatch, which, idRef]);
 
   const handleChangeIdCallback = useCallback((newId: string) => {
-    dispatch(setStatId.create({ which, oldId: idRef.current, newId }));
+    dispatch(slice.creators.setStatId({ which, oldId: idRef.current, newId }));
   }, [dispatch, idRef, which]);
 
   const handleChangeName = useCallback((name:string) => {
-    dispatch(setStatName.create({ which, id: idRef.current, name }));
+    dispatch(slice.creators.setStatName({ which, id: idRef.current, name }));
   }, [dispatch, idRef, which]);
 
   const handleDelete = useCallback((ev: React.MouseEvent<HTMLButtonElement>) => {
     ev.preventDefault();
-    dispatch(deleteStat.create({ which, id: idRef.current }));
+    dispatch(slice.creators.deleteStat({ which, id: idRef.current }));
   }, [dispatch, which, idRef]);
 
   return (

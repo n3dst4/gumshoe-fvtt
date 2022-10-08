@@ -1,9 +1,9 @@
 import React, { MouseEventHandler, ReactNode, useCallback, useContext } from "react";
 import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
-import { addStat } from "../reducer";
 import { StatSettingsRow } from "./StatSettingsRow";
 import { PcOrNpc } from "../types";
+import { slice } from "../reducer";
 
 interface StatsSettingsEditorProps {
   which: PcOrNpc;
@@ -16,7 +16,7 @@ export const StatsSettingsEditor: React.FC<StatsSettingsEditorProps> = ({
   const dispatch = useContext(DispatchContext);
   const handleAdd: MouseEventHandler = useCallback((e) => {
     e.preventDefault();
-    dispatch(addStat.create({ which }));
+    dispatch(slice.creators.addStat({ which }));
   }, [dispatch, which]);
 
   return (
