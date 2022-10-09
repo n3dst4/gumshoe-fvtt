@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useCallback, useContext } from "react";
-import { ThemeContext } from "../../themes/ThemeContext";
 import { IdContext } from "../IdContext";
 
 type TextInputProps = {
@@ -28,8 +27,6 @@ export const TextInput: React.FC<TextInputProps> = ({
   const onChangeCb = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.currentTarget.value);
   }, [onChange]);
-
-  const theme = useContext(ThemeContext);
 
   return (
     <input

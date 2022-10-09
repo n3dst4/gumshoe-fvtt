@@ -258,11 +258,11 @@ export const slice = createSlice<State>()({
   },
   moveFieldUp: (
     { settings: { equipmentCategories: cats } }: State,
-    { catIdx, fieldIdx }: { catIdx: number, fieldIdx: number },
+    { categoryIdx, fieldIdx }: { categoryIdx: number, fieldIdx: number },
   ) => {
-    const fields = cats[catIdx].fields;
+    const fields = cats[categoryIdx].fields;
     if (fields === undefined) {
-      throw new Error(`No fields in category ${catIdx}`);
+      throw new Error(`No fields in category ${categoryIdx}`);
     }
     if (fieldIdx === 0) {
       throw new Error("Cannot move field up from index 0");
@@ -276,11 +276,11 @@ export const slice = createSlice<State>()({
   },
   moveFieldDown: (
     { settings: { equipmentCategories: cats } }: State,
-    { catIdx, fieldIdx }: { catIdx: number, fieldIdx: number },
+    { categoryIdx, fieldIdx }: { categoryIdx: number, fieldIdx: number },
   ) => {
-    const fields = cats[catIdx].fields;
+    const fields = cats[categoryIdx].fields;
     if (fields === undefined) {
-      throw new Error(`No fields in category ${catIdx}`);
+      throw new Error(`No fields in category ${categoryIdx}`);
     }
     if (fieldIdx === fields.length - 1) {
       throw new Error("Cannot move field down from last index");
