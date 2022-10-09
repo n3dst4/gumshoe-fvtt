@@ -9,6 +9,8 @@ import { FaArrowDown, FaArrowUp, FaEllipsisH, FaTrash } from "react-icons/fa";
 import { Menu, MenuItem } from "../../inputs/Menu";
 import { getTranslated } from "../../../functions";
 import { NumberFieldSettings } from "./NumberFieldSettings";
+import { StringFieldSettings } from "./StringFieldSettings";
+import { CheckboxFieldSettings } from "./CheckboxFieldSettings";
 
 interface FieldProps {
   field: EquipmentFieldMetadata;
@@ -112,6 +114,12 @@ export const Field: React.FC<FieldProps> = ({
       </div>
       {field.type === "number" && (
         <NumberFieldSettings field={field} categoryIdx={categoryIdx} fieldIdx={fieldIdx} />
+      )}
+      {field.type === "string" && (
+        <StringFieldSettings field={field} categoryIdx={categoryIdx} fieldIdx={fieldIdx} />
+      )}
+      {field.type === "checkbox" && (
+        <CheckboxFieldSettings field={field} categoryIdx={categoryIdx} fieldIdx={fieldIdx} />
       )}
     </div>
   );
