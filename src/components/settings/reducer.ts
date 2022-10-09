@@ -8,6 +8,7 @@ import produce, { Draft } from "immer";
 import { State, PcOrNpc } from "./types";
 import { renameProperty } from "../../functions";
 import { diff } from "just-diff";
+import { EquipmentFieldType } from "../../types";
 
 /**
  * A minimal case for all actions - there will always be a `type` and a
@@ -205,7 +206,7 @@ export const slice = createSlice<State>()({
   },
   setFieldType: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryIdx: number, fieldIdx: number, newType: "string" | "number" | "checkbox" },
+    payload: { categoryIdx: number, fieldIdx: number, newType: EquipmentFieldType },
   ) => {
     const field = cats[payload.categoryIdx].fields?.[payload.fieldIdx];
     if (field === undefined) {

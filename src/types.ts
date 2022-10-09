@@ -1,4 +1,5 @@
 import { TokenData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
+import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import * as constants from "./constants";
 export type AbilityType = typeof constants.investigativeAbility | typeof constants.generalAbility;
 
@@ -319,3 +320,19 @@ export type RecursivePartial<T> = {
   ? RecursivePartial<T[P]>
   : T[P];
 };
+
+export type EquipmentFieldType = Pick<EquipmentFieldMetadata, "type">["type"];
+
+export function isEquipmentFieldType (
+  type: string,
+): type is EquipmentFieldType {
+  return type === "string" || type === "number" || type === "checkbox";
+}
+
+export function assertIsEquipmentFieldType (
+  type: string,
+): asserts type is EquipmentFieldType {
+  if (!isEquipmentFieldType(type)) {
+    throw new Error(`Invalid equipment field type: ${type}`);
+  }
+}

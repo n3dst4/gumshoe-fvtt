@@ -96,8 +96,15 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
         </GridField>
         <GridField label="Fields">
           {settings.equipmentCategories[idx].fields?.map(
-            (field, idx) => {
-              return <Field key={idx} field={field} />;
+            (field, fieldIdx) => {
+              return (
+                <Field
+                  key={fieldIdx}
+                  field={field}
+                  categoryIdx={idx}
+                  fieldIdx={fieldIdx}
+                />
+              );
             },
           )}
           <button

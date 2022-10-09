@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useCallback, useContext } from "react";
+import { ThemeContext } from "../../themes/ThemeContext";
 import { IdContext } from "../IdContext";
 
 type TextInputProps = {
@@ -28,6 +29,8 @@ export const TextInput: React.FC<TextInputProps> = ({
     onChange?.(e.currentTarget.value);
   }, [onChange]);
 
+  const theme = useContext(ThemeContext);
+
   return (
     <input
       size={3}
@@ -35,7 +38,10 @@ export const TextInput: React.FC<TextInputProps> = ({
       css={{
         flex: 1,
         width: "100%",
-        // minWidth: "8em",
+        "::placeholder": {
+          opacity: 0.5,
+          fontStyle: "italic",
+        },
       }}
       className={className}
       data-lpignore="true"
