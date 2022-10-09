@@ -101,7 +101,12 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
           }
         </Dropdown>
         </GridField>
-        <GridField label="Fields">
+        <GridField
+          label="Fields"
+          css={{
+            margin: "0.5em 2em 0.5em 0",
+          }}
+        >
           {settings.equipmentCategories[idx].fields?.map(
             (field, fieldIdx) => {
               return (

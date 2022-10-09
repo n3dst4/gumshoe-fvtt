@@ -34,20 +34,14 @@ export const CheckboxFieldSettings: React.FC<CheckboxFieldSettingsProps> = ({
   return (
     <div
       css={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr",
-        gridGap: "0.5rem",
-        gridTemplateAreas: `
-            "defaultLbl minLbl maxLbl"
-            "default    min    max"
-          `,
+        display: "flex",
       }}
     >
-      <div css={{ gridArea: "defaultLbl" }}>
+      <div css={{ flex: 0, paddingRight: "1em" }}>
         <Translate>Default</Translate>
       </div>
       <AsyncCheckbox
-        css={{ gridArea: "default" }}
+        css={{ flex: 1 }}
         checked={field.default}
         onChange={handleChangeDefault}
       />

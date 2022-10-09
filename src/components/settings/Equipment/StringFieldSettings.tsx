@@ -37,7 +37,7 @@ export const StringFieldSettings: React.FC<StringFieldSettingsProps> = ({
         display: "flex",
       }}
     >
-      <div css={{ flex: 0 }}>
+      <div css={{ flex: 0, paddingRight: "1em" }}>
         <Translate>Default</Translate>
       </div>
       <AsyncTextInput

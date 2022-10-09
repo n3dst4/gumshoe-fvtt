@@ -61,9 +61,9 @@ export const Field: React.FC<FieldProps> = ({
   return (
     <div
       css={{
-        padding: "1em",
+        padding: "0.5em",
         borderWidth: "1px",
-        margin: "0.5em 2em 0.5em 0",
+        margin: "0.5em 0 0.5em 0",
         borderStyle: "solid",
         borderColor: theme.colors.controlBorder,
         backgroundColor: theme.colors.backgroundPrimary,
@@ -74,6 +74,7 @@ export const Field: React.FC<FieldProps> = ({
         css={{
           display: "flex",
           gap: "1em",
+          marginBottom: "0.5em",
         }}
       >
         <AsyncTextInput
@@ -100,6 +101,8 @@ export const Field: React.FC<FieldProps> = ({
           label={<FaEllipsisH />}
           css={{
             flex: 0,
+            paddingRight: "1em",
+            paddingLeft: "1em",
           }}
         >
           {
