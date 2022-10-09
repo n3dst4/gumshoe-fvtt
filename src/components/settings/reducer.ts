@@ -1,4 +1,7 @@
-import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
+import {
+  EquipmentFieldMetadata,
+  PresetV1,
+} from "@lumphammer/investigator-fvtt-types";
 import { pathOfCthulhuPreset } from "../../presets";
 import { SettingsDict } from "../../settings";
 import produce, { Draft } from "immer";
@@ -55,165 +58,301 @@ function createCase<S, P = void> (
  * A minimal reimagination of the `createSlice` function from
  * `@reduxjs/toolkit`.
  */
-const createSlice = <
-  // curried so that we can specify S but allow C to be inferred
-  S extends object,
->() => <
-  C extends { [key: string]: (state: Draft<S>, payload?: any) => void }
->(reducers: C) => {
-  const sliceCases = Object.entries(reducers).map(([key, reducer]) => {
-    const action = createCase(key, reducer);
-    return [key, action] as const;
-  });
-  const creators = Object.fromEntries(
-    sliceCases.map(([key, action]) => [key, action.create]),
-  ) as {
-    [key in keyof C]: ReturnType<
-      typeof createCase<
-        S,
-        C[key] extends (state: infer S1) => void
-          ? void
-          : C[key] extends (state: infer S1, payload: infer P1) => void
-          ? P1
-          : never
-      >
-    >["create"];
-  };
-  // `useDispatch` takes the initial state as an argument, so we don't need to
-  // provide a default argument for `state` here.
-  const reducer = (state: S, action: AnyAction) => {
-    const newState = produce(state, (draft) => {
-      for (const [, sliceCase] of sliceCases) {
-        sliceCase.apply(draft, action);
-      }
+const createSlice =
+  <
+    // curried so that we can specify S but allow C to be inferred
+    S extends object
+  >() =>
+  <C extends { [key: string]: (state: Draft<S>, payload?: any) => void }>(
+      reducers: C,
+    ) => {
+    const sliceCases = Object.entries(reducers).map(([key, reducer]) => {
+      const action = createCase(key, reducer);
+      return [key, action] as const;
     });
-    const diffs = diff(state, newState);
-    console.log(diffs);
-    return newState;
-  };
-
-  return {
-    /**
-     * A dictionary of action creators, keyed by the name of the case.
-     */
-    creators,
-    /**
-     * The reducer function for this slice.
-     */
-    reducer,
-  };
-};
-
-export const slice = createSlice<State>()(
-  {
-    setAll: (draft, payload: { newSettings: SettingsDict }) => {
-      draft.settings = payload.newSettings;
-    },
-    setSome: (draft, payload: { newSettings: Partial<SettingsDict> }) => {
-      Object.assign(draft.settings, payload.newSettings);
-    },
-    addCategory: (draft: State) => {
-      draft.settings.equipmentCategories.push({ name: "", fields: [] });
-    },
-
-    deleteCategory: (draft: State, payload: { idx: number }) => {
-      draft.settings.equipmentCategories.splice(payload.idx, 1);
-    },
-    addField: (
-      { settings: { equipmentCategories: cats } }: State,
-      payload: { categoryIdx: number },
-    ) => {
-      cats[payload.categoryIdx].fields ||= [];
-      const fields = cats[payload.categoryIdx].fields || [];
-      fields.push({
-        name: "",
-        type: "string",
-        default: "",
+    const creators = Object.fromEntries(
+      sliceCases.map(([key, action]) => [key, action.create]),
+    ) as {
+      [key in keyof C]: ReturnType<
+        typeof createCase<
+          S,
+          C[key] extends (state: infer S1) => void
+            ? void
+            : C[key] extends (state: infer S1, payload: infer P1) => void
+            ? P1
+            : never
+        >
+      >["create"];
+    };
+    // `useDispatch` takes the initial state as an argument, so we don't need to
+    // provide a default argument for `state` here.
+    const reducer = (state: S, action: AnyAction) => {
+      const newState = produce(state, (draft) => {
+        for (const [, sliceCase] of sliceCases) {
+          sliceCase.apply(draft, action);
+        }
       });
-      cats[payload.categoryIdx].fields = fields;
-    },
-    deleteField: (
-      { settings: { equipmentCategories: cats } }: State,
-      payload: { categoryIdx: number, fieldIdx: number },
-    ) => {
-      cats[payload.categoryIdx].fields?.splice(payload.fieldIdx, 1);
-    },
-    renameCategory: (
-      { settings: { equipmentCategories: cats } }: State,
-      payload: { idx: number, newName: string },
-    ) => {
-      cats[payload.idx].name = payload.newName;
-    },
-    applyPreset: (
-      draft: State,
-      payload: { preset: PresetV1, presetId: string },
-    ) => {
-      draft.settings = {
-        // start with the current temp settings - this way we keep any values
-        // not handled by the presets
-        ...draft.settings,
-        // now we layer in a safe default. This is typed as Required<> so it
-        // will always contain one of everything that can be controlled by a
-        // preset.
-        ...pathOfCthulhuPreset,
-        // now layer in the actual preset
-        ...payload.preset,
-        // and finally, set the actual preset id
-        systemPreset: payload.presetId,
-      };
-    },
-    addStat: (draft: State, { which }: { which: PcOrNpc }) => {
-      // const whichKey = payload.which === "pc" ? "pcStats" : "npcStats";
-      const newId = `stat${Object.keys(draft.settings[which]).length}`;
-      draft.settings[which][newId] = { name: "", default: 0 };
-    },
-    setStatMin: (
-      draft: State,
-      {
-        which,
-        id,
-        value,
-      }: { which: PcOrNpc, id: string, value: number | undefined },
-    ) => {
-      draft.settings[which][id].min = value;
-    },
-    setStatMax: (
-      draft: State,
-      {
-        which,
-        id,
-        value,
-      }: { which: PcOrNpc, id: string, value: number | undefined },
-    ) => {
-      draft.settings[which][id].max = value;
-    },
-    setStatDefault: (
-      draft: State,
-      { which, id, value }: { which: PcOrNpc, id: string, value: number },
-    ) => {
-      draft.settings[which][id].default = value;
-    },
-    setStatName: (
-      draft: State,
-      { which, id, name }: { which: PcOrNpc, id: string, name: string },
-    ) => {
-      draft.settings[which][id].name = name;
-    },
-    deleteStat: (
-      draft: State,
-      { which, id }: { which: PcOrNpc, id: string },
-    ) => {
-      delete draft.settings[which][id];
-    },
-    setStatId: (
-      draft: State,
-      { which, oldId, newId }: { which: PcOrNpc, oldId: string, newId: string },
-    ) => {
-      draft.settings[which] = renameProperty(
-        oldId,
-        newId,
-        draft.settings[which],
-      );
-    },
+      const diffs = diff(state, newState);
+      console.log(diffs);
+      return newState;
+    };
+
+    return {
+      /**
+       * A dictionary of action creators, keyed by the name of the case.
+       */
+      creators,
+      /**
+       * The reducer function for this slice.
+       */
+      reducer,
+    };
+  };
+
+function assertNumericFieldOkayness (
+  field: EquipmentFieldMetadata | undefined,
+  index: number,
+  value: unknown,
+): asserts field is Extract<EquipmentFieldMetadata, { type: "number" }> {
+  if (field === undefined) {
+    throw new Error(`No field at index ${index}`);
+  }
+  if (field.type !== "number") {
+    throw new Error(`Cannot set min/max on field type ${field.type}`);
+  }
+  if (typeof value !== "number") {
+    throw new Error(
+      `Invalid value ${value} for field ${field.name} (must be a number)`,
+    );
+  }
+}
+
+export const slice = createSlice<State>()({
+  setAll: (draft, payload: { newSettings: SettingsDict }) => {
+    draft.settings = payload.newSettings;
   },
-);
+  setSome: (draft, payload: { newSettings: Partial<SettingsDict> }) => {
+    Object.assign(draft.settings, payload.newSettings);
+  },
+  addCategory: (draft: State) => {
+    draft.settings.equipmentCategories.push({ name: "", fields: [] });
+  },
+
+  deleteCategory: (draft: State, payload: { idx: number }) => {
+    draft.settings.equipmentCategories.splice(payload.idx, 1);
+  },
+  renameCategory: (
+    { settings: { equipmentCategories: cats } }: State,
+    payload: { idx: number, newName: string },
+  ) => {
+    cats[payload.idx].name = payload.newName;
+  },
+  moveCategoryUp: (
+    { settings: { equipmentCategories: cats } }: State,
+    { idx }: { idx: number },
+  ) => {
+    if (idx === 0) {
+      throw new Error(`Cannot move category up from index ${idx}`);
+    }
+    if (idx >= cats.length || idx < 0) {
+      throw new Error(`No category at index ${idx}`);
+    }
+    const cat = cats[idx];
+    cats.splice(idx, 1);
+    cats.splice(idx - 1, 0, cat);
+  },
+  moveCategoryDown: (
+    { settings: { equipmentCategories: cats } }: State,
+    { idx }: { idx: number },
+  ) => {
+    if (idx === cats.length - 1) {
+      throw new Error("Cannot move category down from last index");
+    }
+    if (idx >= cats.length || idx < 0) {
+      throw new Error(`No category at index ${idx}`);
+    }
+    const cat = cats[idx];
+    cats.splice(idx, 1);
+    cats.splice(idx + 1, 0, cat);
+  },
+  addField: (
+    { settings: { equipmentCategories: cats } }: State,
+    payload: { categoryIdx: number },
+  ) => {
+    cats[payload.categoryIdx].fields ||= [];
+    const fields = cats[payload.categoryIdx].fields || [];
+    fields.push({
+      name: "",
+      type: "string",
+      default: "",
+    });
+    cats[payload.categoryIdx].fields = fields;
+  },
+  deleteField: (
+    { settings: { equipmentCategories: cats } }: State,
+    payload: { categoryIdx: number, fieldIdx: number },
+  ) => {
+    cats[payload.categoryIdx].fields?.splice(payload.fieldIdx, 1);
+  },
+  renameField: (
+    { settings: { equipmentCategories: cats } }: State,
+    payload: { categoryIdx: number, fieldIdx: number, newName: string },
+  ) => {
+    const fields = cats[payload.categoryIdx].fields;
+    if (fields?.[payload.fieldIdx]) {
+      fields[payload.fieldIdx].name = payload.newName;
+    }
+  },
+  setFieldType: (
+    { settings: { equipmentCategories: cats } }: State,
+    payload: { categoryIdx: number, fieldIdx: number, newType: "string" | "number" | "checkbox" },
+  ) => {
+    const field = cats[payload.categoryIdx].fields?.[payload.fieldIdx];
+    if (field === undefined) {
+      throw new Error(`No field at index ${payload.fieldIdx}`);
+    }
+    field.type = payload.newType;
+    if (payload.newType === "number") {
+      field.default = 0;
+    } else if (payload.newType === "checkbox") {
+      field.default = false;
+    } else if (payload.newType === "string") {
+      field.default = "";
+    }
+  },
+  setFieldDefault: (
+    { settings: { equipmentCategories: cats } }: State,
+    payload: { categoryIdx: number, fieldIdx: number, newDefault: string },
+  ) => {
+    const field = cats[payload.categoryIdx].fields?.[payload.fieldIdx];
+    if (field === undefined) {
+      throw new Error(`No field at index ${payload.fieldIdx}`);
+    }
+    if (
+      (field.type === "string" && typeof payload.newDefault !== "string") ||
+      (field.type === "number" && typeof payload.newDefault !== "number") ||
+      (field.type === "checkbox" && typeof payload.newDefault !== "boolean")
+    ) {
+      throw new Error(
+        `Invalid default value ${payload.newDefault} for field type ${field.type}`,
+      );
+    }
+    field.default = payload.newDefault;
+  },
+  setFieldMin: (
+    { settings: { equipmentCategories: cats } }: State,
+    payload: { categoryIdx: number, fieldIdx: number, newMin: number },
+  ) => {
+    const field = cats[payload.categoryIdx].fields?.[payload.fieldIdx];
+    assertNumericFieldOkayness(field, payload.fieldIdx, payload.newMin);
+    field.min = payload.newMin;
+  },
+  setFieldMax: (
+    { settings: { equipmentCategories: cats } }: State,
+    payload: { categoryIdx: number, fieldIdx: number, newMax: number },
+  ) => {
+    const field = cats[payload.categoryIdx].fields?.[payload.fieldIdx];
+    assertNumericFieldOkayness(field, payload.fieldIdx, payload.newMax);
+    field.min = payload.newMax;
+  },
+  moveFieldUp: (
+    { settings: { equipmentCategories: cats } }: State,
+    { catIdx, fieldIdx }: { catIdx: number, fieldIdx: number },
+  ) => {
+    const fields = cats[catIdx].fields;
+    if (fields === undefined) {
+      throw new Error(`No fields in category ${catIdx}`);
+    }
+    if (fieldIdx === 0) {
+      throw new Error("Cannot move field up from index 0");
+    }
+    if (fieldIdx >= fields.length || fieldIdx < 0) {
+      throw new Error(`No field at index ${fieldIdx}`);
+    }
+    const field = fields[fieldIdx];
+    fields.splice(fieldIdx, 1);
+    fields.splice(fieldIdx - 1, 0, field);
+  },
+  moveFieldDown: (
+    { settings: { equipmentCategories: cats } }: State,
+    { catIdx, fieldIdx }: { catIdx: number, fieldIdx: number },
+  ) => {
+    const fields = cats[catIdx].fields;
+    if (fields === undefined) {
+      throw new Error(`No fields in category ${catIdx}`);
+    }
+    if (fieldIdx === fields.length - 1) {
+      throw new Error("Cannot move field down from last index");
+    }
+    if (fieldIdx >= fields.length || fieldIdx < 0) {
+      throw new Error(`No field at index ${fieldIdx}`);
+    }
+    const field = fields[fieldIdx];
+    fields.splice(fieldIdx, 1);
+    fields.splice(fieldIdx + 1, 0, field);
+  },
+  applyPreset: (
+    draft: State,
+    payload: { preset: PresetV1, presetId: string },
+  ) => {
+    draft.settings = {
+      // start with the current temp settings - this way we keep any values
+      // not handled by the presets
+      ...draft.settings,
+      // now we layer in a safe default. This is typed as Required<> so it
+      // will always contain one of everything that can be controlled by a
+      // preset.
+      ...pathOfCthulhuPreset,
+      // now layer in the actual preset
+      ...payload.preset,
+      // and finally, set the actual preset id
+      systemPreset: payload.presetId,
+    };
+  },
+  addStat: (draft: State, { which }: { which: PcOrNpc }) => {
+    // const whichKey = payload.which === "pc" ? "pcStats" : "npcStats";
+    const newId = `stat${Object.keys(draft.settings[which]).length}`;
+    draft.settings[which][newId] = { name: "", default: 0 };
+  },
+  setStatMin: (
+    draft: State,
+    {
+      which,
+      id,
+      value,
+    }: { which: PcOrNpc, id: string, value: number | undefined },
+  ) => {
+    draft.settings[which][id].min = value;
+  },
+  setStatMax: (
+    draft: State,
+    {
+      which,
+      id,
+      value,
+    }: { which: PcOrNpc, id: string, value: number | undefined },
+  ) => {
+    draft.settings[which][id].max = value;
+  },
+  setStatDefault: (
+    draft: State,
+    { which, id, value }: { which: PcOrNpc, id: string, value: number },
+  ) => {
+    draft.settings[which][id].default = value;
+  },
+  setStatName: (
+    draft: State,
+    { which, id, name }: { which: PcOrNpc, id: string, name: string },
+  ) => {
+    draft.settings[which][id].name = name;
+  },
+  deleteStat: (draft: State, { which, id }: { which: PcOrNpc, id: string }) => {
+    delete draft.settings[which][id];
+  },
+  setStatId: (
+    draft: State,
+    { which, oldId, newId }: { which: PcOrNpc, oldId: string, newId: string },
+  ) => {
+    draft.settings[which] = renameProperty(oldId, newId, draft.settings[which]);
+  },
+});

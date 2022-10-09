@@ -22,7 +22,7 @@ type SettingsProps = {
 
 export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
   assertGame(game);
-  const { tempState, setters, tempSettingsRef, dispatch, isDirty } =
+  const { tempState, setters, tempStateRef, dispatch, isDirty } =
     useTempSettings();
 
   // ###########################################################################
@@ -54,13 +54,13 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
       const proms = Object.keys(settings).map(async (k) => {
         // @ts-expect-error Too much work to explain to TS that these guys
         // really do match up
-        settings[k].set(tempSettingsRef.current[k]);
+        settings[k].set(tempStateRef.current.settings[k]);
       });
       await Promise.all(proms);
       foundryApplication.close();
       Hooks.call(settingsSaved);
     },
-    [foundryApplication, tempSettingsRef],
+    [foundryApplication, tempStateRef],
   );
 
   return (
