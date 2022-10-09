@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, useCallback, useContext } from "react";
-import { FaEllipsisH, FaTrash } from "react-icons/fa";
+import { FaEllipsisH, FaTrash, FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { confirmADoodleDo, getTranslated } from "../../../functions";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Dropdown } from "../../inputs/Dropdown";
@@ -25,9 +25,19 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
     dispatch(slice.creators.renameCategory({ idx, newName }));
   }, [dispatch, idx]);
 
-  const handleAdd: MouseEventHandler = useCallback((e) => {
+  const handleAddField: MouseEventHandler = useCallback((e) => {
     e.preventDefault();
     dispatch(slice.creators.addField({ categoryIdx: idx }));
+  }, [dispatch, idx]);
+
+  const handleUp: MouseEventHandler = useCallback((e) => {
+    e.preventDefault();
+    dispatch(slice.creators.moveCategoryUp({ idx }));
+  }, [dispatch, idx]);
+
+  const handleDown: MouseEventHandler = useCallback((e) => {
+    e.preventDefault();
+    dispatch(slice.creators.moveCategoryDown({ idx }));
   }, [dispatch, idx]);
 
   const handleDelete = useCallback(async () => {
@@ -67,6 +77,16 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
         >
           {
             <Menu>
+              {idx > 0 && (
+                <MenuItem icon={<FaArrowUp />} onClick={handleUp}>
+                  {getTranslated("Move up")}
+                </MenuItem>
+              )}
+              {idx < settings.equipmentCategories.length - 1 && (
+                <MenuItem icon={<FaArrowDown />} onClick={handleDown}>
+                  {getTranslated("Move down")}
+                </MenuItem>
+              )}
               <MenuItem icon={<FaTrash />} onClick={handleDelete}>
                 {getTranslated("Delete")}
               </MenuItem>
@@ -81,7 +101,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
             },
           )}
           <button
-            onClick={handleAdd}
+            onClick={handleAddField}
           >
             <i className="fas fa-plus" />
             <Translate>Add Field</Translate>
