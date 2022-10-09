@@ -8,6 +8,7 @@ import { Dropdown } from "../../inputs/Dropdown";
 import { FaArrowDown, FaArrowUp, FaEllipsisH, FaTrash } from "react-icons/fa";
 import { Menu, MenuItem } from "../../inputs/Menu";
 import { getTranslated } from "../../../functions";
+import { NumberFieldSettings } from "./NumberFieldSettings";
 
 interface FieldProps {
   field: EquipmentFieldMetadata;
@@ -109,13 +110,9 @@ export const Field: React.FC<FieldProps> = ({
           }
         </Dropdown>
       </div>
-      <div
-        css={{
-          // display: "grid",
-        }}
-      >
-        Field: {field.name}
-      </div>
+      {field.type === "number" && (
+        <NumberFieldSettings field={field} categoryIdx={categoryIdx} fieldIdx={fieldIdx} />
+      )}
     </div>
   );
 };

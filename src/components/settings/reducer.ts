@@ -113,7 +113,7 @@ const createSlice =
 function assertNumericFieldOkayness (
   field: EquipmentFieldMetadata | undefined,
   index: number,
-  value: unknown,
+  value: unknown|undefined,
 ): asserts field is Extract<EquipmentFieldMetadata, { type: "number" }> {
   if (field === undefined) {
     throw new Error(`No field at index ${index}`);
@@ -121,7 +121,7 @@ function assertNumericFieldOkayness (
   if (field.type !== "number") {
     throw new Error(`Cannot set min/max on field type ${field.type}`);
   }
-  if (typeof value !== "number") {
+  if (typeof value !== "number" && value !== undefined) {
     throw new Error(
       `Invalid value ${value} for field ${field.name} (must be a number)`,
     );
@@ -223,7 +223,7 @@ export const slice = createSlice<State>()({
   },
   setFieldDefault: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryIdx: number, fieldIdx: number, newDefault: string },
+    payload: { categoryIdx: number, fieldIdx: number, newDefault: string|number|boolean },
   ) => {
     const field = cats[payload.categoryIdx].fields?.[payload.fieldIdx];
     if (field === undefined) {
@@ -242,7 +242,7 @@ export const slice = createSlice<State>()({
   },
   setFieldMin: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryIdx: number, fieldIdx: number, newMin: number },
+    payload: { categoryIdx: number, fieldIdx: number, newMin: number|undefined },
   ) => {
     const field = cats[payload.categoryIdx].fields?.[payload.fieldIdx];
     assertNumericFieldOkayness(field, payload.fieldIdx, payload.newMin);
@@ -250,11 +250,11 @@ export const slice = createSlice<State>()({
   },
   setFieldMax: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryIdx: number, fieldIdx: number, newMax: number },
+    payload: { categoryIdx: number, fieldIdx: number, newMax: number|undefined },
   ) => {
     const field = cats[payload.categoryIdx].fields?.[payload.fieldIdx];
     assertNumericFieldOkayness(field, payload.fieldIdx, payload.newMax);
-    field.min = payload.newMax;
+    field.max = payload.newMax;
   },
   moveFieldUp: (
     { settings: { equipmentCategories: cats } }: State,

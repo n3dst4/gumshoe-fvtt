@@ -5,6 +5,7 @@ import { ThemeContext } from "../../../themes/ThemeContext";
 import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Checkbox } from "../../inputs/Checkbox";
+import { Translate } from "../../Translate";
 import { DispatchContext } from "../contexts";
 import { slice } from "../reducer";
 import { PcOrNpc } from "../types";
@@ -86,7 +87,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
       }}
     >
       <span css={{ gridArea: "idLbl" }}>id</span>
-      <span css={{ gridArea: "nameLbl" }}>Name</span>
+      <span css={{ gridArea: "nameLbl" }}><Translate>name</Translate></span>
         <AsyncTextInput
           css={{ gridArea: "id" }}
           onChange={handleChangeIdCallback}
@@ -98,10 +99,12 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
           value={stat.name}
         />
 
-        <span css={{ gridArea: "defLbl" }}>Default</span>
+        <span css={{ gridArea: "defLbl" }}><Translate>Default</Translate></span>
 
         <span css={{ gridArea: "minLbl" }}>
-          Min
+          <Translate>
+            Min
+          </Translate>
           <Checkbox
             checked={stat.min !== undefined}
             onChange={handleChangeMinCheckbox}
@@ -109,7 +112,9 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
         </span>
 
         <span css={{ gridArea: "maxLbl" }}>
-          Max
+          <Translate>
+            Max
+          </Translate>
           <Checkbox
             checked={stat.max !== undefined}
             onChange={handleChangeMaxCheckbox}

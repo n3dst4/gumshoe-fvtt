@@ -148,5 +148,6 @@
     "investigator.YouHaveUnsavedChangesAreYouSureYouWantToClose": "You have unsaved changes. Are you sure you want to close?",
     "investigator.YesDiscardMyChanges": "Yes, discard my changes",
     "investigator.MoveUp": "Move up",
-    "investigator.MoveDown": "Move down"
+    "investigator.MoveDown": "Move down",
+    "investigator.Default": "Default"
 }
