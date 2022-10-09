@@ -34,20 +34,14 @@ export const StringFieldSettings: React.FC<StringFieldSettingsProps> = ({
   return (
     <div
       css={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr",
-        gridGap: "0.5rem",
-        gridTemplateAreas: `
-            "defaultLbl minLbl maxLbl"
-            "default    min    max"
-          `,
+        display: "flex",
       }}
     >
-      <div css={{ gridArea: "defaultLbl" }}>
+      <div css={{ flex: 0 }}>
         <Translate>Default</Translate>
       </div>
       <AsyncTextInput
-        css={{ gridArea: "default" }}
+        css={{ flex: 1 }}
         value={field.default}
         onChange={handleChangeDefault}
       />

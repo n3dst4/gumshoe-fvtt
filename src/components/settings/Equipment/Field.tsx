@@ -11,6 +11,7 @@ import { getTranslated } from "../../../functions";
 import { NumberFieldSettings } from "./NumberFieldSettings";
 import { StringFieldSettings } from "./StringFieldSettings";
 import { CheckboxFieldSettings } from "./CheckboxFieldSettings";
+import { ThemeContext } from "../../../themes/ThemeContext";
 
 interface FieldProps {
   field: EquipmentFieldMetadata;
@@ -23,6 +24,7 @@ export const Field: React.FC<FieldProps> = ({
   categoryIdx,
   fieldIdx,
 }) => {
+  const theme = useContext(ThemeContext);
   const dispatch = useContext(DispatchContext);
   const { settings: { equipmentCategories } } = useContext(StateContext);
   const fieldsLength = equipmentCategories[categoryIdx].fields?.length ?? 0;
@@ -59,12 +61,19 @@ export const Field: React.FC<FieldProps> = ({
   return (
     <div
       css={{
+        padding: "1em",
+        borderWidth: "1px",
+        margin: "0.5em 2em 0.5em 0",
+        borderStyle: "solid",
+        borderColor: theme.colors.controlBorder,
+        backgroundColor: theme.colors.backgroundPrimary,
         // display: "grid"
       }}
     >
       <div
         css={{
           display: "flex",
+          gap: "1em",
         }}
       >
         <AsyncTextInput

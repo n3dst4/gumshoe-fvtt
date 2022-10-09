@@ -55,11 +55,16 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
 
   return (
     <>
-      <InputGrid>
+      <InputGrid
+        css={{
+          paddingTop: "0.5em",
+        }}
+      >
         <GridField
           label="Name"
           css={{
             display: "flex",
+            gap: "1em",
             flexDirection: "row",
           }}
         >
@@ -73,6 +78,8 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
           label={<FaEllipsisH />}
           css={{
             flex: 0,
+            paddingLeft: "1em",
+            paddingRight: "1em",
           }}
         >
           {
@@ -116,7 +123,11 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
 
         </GridField>
       </InputGrid>
-      <hr />
+      <hr
+        css={{
+          margin: "1em 0 2em 0",
+        }}
+      />
     </>
   );
 };
