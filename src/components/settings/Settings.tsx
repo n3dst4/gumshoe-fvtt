@@ -14,7 +14,7 @@ import { StatsSettings } from "./Stats/StatsSettings";
 import { MiscSettings } from "./MiscSettings";
 import { EquipmentSettings } from "./Equipment/EquipmentSettings";
 import { DispatchContext, StateContext } from "./contexts";
-import { useTempSettings } from "./hooks";
+import { useSettingsState } from "./hooks";
 
 type SettingsProps = {
   foundryApplication: Application,
@@ -23,15 +23,11 @@ type SettingsProps = {
 export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
   assertGame(game);
   const { tempState, setters, tempStateRef, dispatch, isDirty } =
-    useTempSettings();
-
-  // ###########################################################################
-  // other hooks
-
+    useSettingsState();
   const theme =
     runtimeConfig.themes[tempState.settings.defaultThemeName] || tealTheme;
 
-  const onClickClose = useCallback(
+  const handleClickClose = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       const aye = !isDirty() || await confirmADoodleDo({
@@ -48,7 +44,7 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
     [foundryApplication, isDirty],
   );
 
-  const onClickSave = useCallback(
+  const handleClickSave = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       const proms = Object.keys(settings).map(async (k) => {
@@ -128,13 +124,13 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
           >
             <button
               css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
-              onClick={onClickClose}
+              onClick={handleClickClose}
             >
               <i className="fas fa-times" /> <Translate>Cancel</Translate>
             </button>
             <button
               css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
-              onClick={onClickSave}
+              onClick={handleClickSave}
             >
               <i className="fas fa-save" /> <Translate>Save Changes</Translate>
             </button>

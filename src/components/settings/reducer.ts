@@ -183,7 +183,7 @@ export const slice = createSlice<State>()({
     cats[payload.categoryIdx].fields ||= [];
     const fields = cats[payload.categoryIdx].fields || [];
     fields.push({
-      name: "",
+      name: `Field ${fields.length + 1}`,
       type: "string",
       default: "",
     });

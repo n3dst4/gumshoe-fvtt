@@ -4,10 +4,10 @@ import { getSettingsDict } from "../../settings";
 import { slice } from "./reducer";
 import { Setters } from "./types";
 
-export const useTempSettings = () => {
+export const useSettingsState = () => {
   const initialState = useMemo(() => ({ settings: getSettingsDict() }), []);
-  const [tempSettings, dispatch] = useReducer(slice.reducer, initialState);
-  const tempStateRef = useRefStash(tempSettings);
+  const [tempState, dispatch] = useReducer(slice.reducer, initialState);
+  const tempStateRef = useRefStash(tempState);
   const setters = useMemo(() => {
     const setters: Partial<Setters> = {};
     for (const k of Object.keys(initialState.settings) as (keyof typeof initialState["settings"])[]) {
@@ -23,9 +23,9 @@ export const useTempSettings = () => {
     );
   }, [initialState, tempStateRef]);
   return {
-    tempState: tempSettings,
-    setters,
+    tempState,
     tempStateRef,
+    setters,
     dispatch,
     isDirty,
   };
