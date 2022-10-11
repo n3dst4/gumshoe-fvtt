@@ -51,26 +51,26 @@ export const pathOfCthulhuPreset: Required<PresetV1> = {
   },
   useNpcCombatBonuses: false,
   useTurnPassingInitiative: false,
-  equipmentCategories: [
-    {
+  equipmentCategories: {
+    jl8gu9_z3kb_6uaj76fh2: {
       name: "General",
-      fields: [],
+      fields: {},
     },
-    {
+    jqx7v_b6gq$agk440wrca: {
       name: "Spells",
-      fields: [
-        {
+      fields: {
+        ctgl8__c9bqkyecw9bnra: {
           name: "Type",
           type: "string",
           default: "",
         },
-      ],
+      },
     },
-    {
+    q5_505vww9i1bok$i4od8: {
       name: "Tomes",
-      fields: [],
+      fields: {},
     },
-  ],
+  },
 };
 
 export const niceBlackAgentsPreset: PresetV1 = {
@@ -92,7 +92,7 @@ export const niceBlackAgentsPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
-  equipmentCategories: [{ name: "General" }],
+  equipmentCategories: { i_qjh2lnp0tg51vmej1$h: { name: "General" } },
 };
 
 export const nothingToFearPreset: PresetV1 = {
@@ -114,7 +114,7 @@ export const nothingToFearPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
-  equipmentCategories: [{ name: "General" }],
+  equipmentCategories: { yecf0pvevztiaaaww18s9: { name: "General" } },
 };
 
 export const pallidStarsPreset: PresetV1 = {
@@ -136,33 +136,33 @@ export const pallidStarsPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
-  equipmentCategories: [
-    {
+  equipmentCategories: {
+    t9PAxHlaMlZgtzukPgP91: {
       name: "Gear",
     },
-    {
+    I5ujOaf_930T5m6XF59w0: {
       name: "Cybernetics",
-      fields: [
-        {
+      fields: {
+        achu_d$31aq461l3pn1zs: {
           name: "Upkeep",
           type: "number",
           default: 0,
           min: 0,
         },
-      ],
+      },
     },
-    {
+    omvQkNoORdSNhVgI42hYi: {
       name: "Virusware",
-      fields: [
-        {
+      fields: {
+        YdjIcb6lTZpa07DynCO1C: {
           name: "Upkeep",
           type: "number",
           default: 0,
           min: 0,
         },
-      ],
+      },
     },
-  ],
+  },
 
 };
 
@@ -185,7 +185,7 @@ export const castingTheRunesPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
-  equipmentCategories: [{ name: "General" }],
+  equipmentCategories: { "6i0fsm5o9ymgb5fegfr35": { name: "General" } },
 };
 
 export const moribundWorldPreset: PresetV1 = {

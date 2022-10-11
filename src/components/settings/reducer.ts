@@ -9,6 +9,7 @@ import { State, PcOrNpc } from "./types";
 import { renameProperty } from "../../functions";
 import { diff } from "just-diff";
 import { EquipmentFieldType } from "../../types";
+import { nanoid } from "nanoid";
 
 /**
  * A minimal case for all actions - there will always be a `type` and a
@@ -180,20 +181,20 @@ export const slice = createSlice<State>()({
     { settings: { equipmentCategories: cats } }: State,
     payload: { categoryIdx: number },
   ) => {
-    cats[payload.categoryIdx].fields ||= [];
-    const fields = cats[payload.categoryIdx].fields || [];
-    fields.push({
-      name: `Field ${fields.length + 1}`,
+    cats[payload.categoryIdx].fields ||= {};
+    const fields = cats[payload.categoryIdx].fields || {};
+    fields[nanoid()] = {
+      name: "New Field",
       type: "string",
       default: "",
-    });
+    };
     cats[payload.categoryIdx].fields = fields;
   },
   deleteField: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryIdx: number, fieldIdx: number },
+    payload: { categoryId: string, fieldId: string },
   ) => {
-    cats[payload.categoryIdx].fields?.splice(payload.fieldIdx, 1);
+    delete cats[payload.categoryId].fields?[payload.fieldId];
   },
   renameField: (
     { settings: { equipmentCategories: cats } }: State,

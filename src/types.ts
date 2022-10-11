@@ -313,13 +313,27 @@ export type PickByType<T, P> = Omit<
 /**
  * Like Partial<T>, but recursive.
  */
-export type RecursivePartial<T> = {
-  [P in keyof T]?: T[P] extends (infer U)[]
-  ? RecursivePartial<U>[]
-  : T[P] extends Record<string, unknown>
-  ? RecursivePartial<T[P]>
-  : T[P];
-};
+// export type RecursivePartial<T> = {
+//   [P in keyof T]?: T[P] extends (infer U)[]
+//   ? RecursivePartial<U>[]
+//   : T[P] extends Record<string, unknown>
+//   ? RecursivePartial<T[P]>
+//   : T[P];
+// };
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type RecursivePartial<T> = T extends Function
+  ? T
+  :{
+    [P in keyof T]?: RecursivePartial<T[P]>;
+  };
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type RecursiveRequired<T> = T extends Function
+  ? T
+  : {
+    [P in keyof T]-?: RecursiveRequired<T[P]>;
+  };
 
 export type EquipmentFieldType = Pick<EquipmentFieldMetadata, "type">["type"];
 
