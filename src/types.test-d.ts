@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RecursivePartial, RecursiveRequired } from "./types";
 import { expectAssignable, expectNotAssignable } from "tsd";
 
+// -----------------------------------------------------------------------------
 // simple types to play with
 
 type Basic = {
