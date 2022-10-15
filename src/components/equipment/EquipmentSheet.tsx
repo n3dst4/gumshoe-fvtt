@@ -12,6 +12,7 @@ import { absoluteCover } from "../absoluteCover";
 import { settings } from "../../settings";
 import { assertEquipmentDataSource } from "../../typeAssertions";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { EquipmentField } from "./EquipmentField";
 
 type EquipmentSheetProps = {
   equipment: InvestigatorItem,
@@ -47,8 +48,8 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   }, [equipment]);
 
   const categories = settings.equipmentCategories.get();
-
-  const isRealCategory = categories[data.data.category] !== undefined;
+  const categoryMetadata = categories[data.data.category];
+  const isRealCategory = categoryMetadata !== undefined;
   const [category, setCategory] = useState(data.data.category);
   const [isCustom, setIsCustom] = useState(!isRealCategory);
   useEffect(() => {
@@ -72,6 +73,8 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   );
 
   const selectedCat = isCustom ? "" : data.data.category;
+
+  const fieldsLength = Object.keys(categoryMetadata?.fields ?? {}).length + 2;
 
   return (
     <div
@@ -133,7 +136,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
         css={{
           gridArea: "body",
           position: "relative",
-          gridTemplateRows: "auto auto 1fr",
+          gridTemplateRows: `repeat(${fieldsLength}, auto) 1fr`,
         }}
       >
         <GridField label="Name">
@@ -177,6 +180,17 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
 
           </div>
         </GridField>
+
+        {Object.entries(categoryMetadata?.fields ?? {}).map(([fieldId, fieldMetadata]) => {
+          return (
+            <EquipmentField
+              key={fieldId}
+              fieldId={fieldId}
+              fieldMetadata={fieldMetadata}
+              value={data.data.fields?.[fieldId]}
+            />
+          );
+        })}
 
         <NotesEditorWithControls
           allowChangeFormat

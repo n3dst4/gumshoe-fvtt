@@ -159,6 +159,7 @@ interface BaseEquipmentDataSourceData {
  */
 interface EquipmentDataSourceData extends BaseEquipmentDataSourceData {
   category: string;
+  fields: Record<string, string|number|boolean>;
 }
 
 /** data.data for weapons */

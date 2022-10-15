@@ -118,7 +118,8 @@
     },
     "equipment": {
       "templates": ["notes"],
-      "category": ""
+      "category": "",
+      "fields": {}
     },
     "weapon": {
       "templates": ["notes"],
