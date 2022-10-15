@@ -26,6 +26,7 @@ import { assertGame } from "./functions";
 import { installTurnPassingHandler } from "./startup/installTurnPassingHandler";
 import { installSocketActionHandler } from "./startup/installSocketActionHandler";
 import { installVisitorCounter } from "./startup/installVisitorCounter";
+import { installEquipmentCategoryHookHandler } from "./startup/installEquipmentCategoryHookHandler";
 
 injectGlobalHelper();
 
@@ -69,3 +70,4 @@ installInitiativeUpdateHookHandler();
 installTurnPassingHandler();
 installSocketActionHandler();
 installVisitorCounter();
+installEquipmentCategoryHookHandler();

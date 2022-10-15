@@ -1,18 +1,17 @@
-import React, { ChangeEvent, useCallback, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "../inputs/TextInput";
 import { Translate } from "../Translate";
-import { assertGame, confirmADoodleDo } from "../../functions";
+import { assertGame, confirmADoodleDo, getTranslated } from "../../functions";
 import { ImagePickle } from "../ImagePickle";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { absoluteCover } from "../absoluteCover";
 import { settings } from "../../settings";
 import { assertEquipmentDataSource } from "../../typeAssertions";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
-// import { AsyncTextInput } from "../inputs/AsyncTextInput";
 
 type EquipmentSheetProps = {
   equipment: InvestigatorItem,
@@ -50,24 +49,29 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   const categories = settings.equipmentCategories.get();
 
   const isRealCategory = categories[data.data.category] !== undefined;
-  const [showCustomField, setShowCustomField] = useState(!isRealCategory);
-  const [selectCustomOption, setSelectCustomOption] = useState(!isRealCategory);
+  const [category, setCategory] = useState(data.data.category);
+  const [isCustom, setIsCustom] = useState(!isRealCategory);
+  useEffect(() => {
+    if (data.data.category !== category) {
+      equipment.setCategory(category);
+    }
+  }, [category, data.data.category, equipment]);
 
   const onChangeCategory = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
       const value = e.currentTarget.value;
       if (value === "") {
-        setShowCustomField(true);
-        setSelectCustomOption(true);
+        setIsCustom(true);
+        setCategory("");
       } else {
-        setSelectCustomOption(false);
-        equipment.setCategory(e.currentTarget.value);
+        setIsCustom(false);
+        setCategory(e.currentTarget.value);
       }
     },
-    [equipment],
+    [],
   );
 
-  const selectedCat = selectCustomOption ? "" : data.data.category;
+  const selectedCat = isCustom ? "" : data.data.category;
 
   return (
     <div
@@ -153,9 +157,9 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
                 }}
               >
                 {Object.entries(categories).map<JSX.Element>(([id, cat]) => (
-                  <option key={id}>{cat.name}</option>
+                  <option key={id} value={id}>{cat.name}</option>
                 ))}
-                <option value="">Custom</option>
+                <option value="">{getTranslated("Custom category")}</option>
               </select>
             </div>
             <div
@@ -163,10 +167,10 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
                 flex: 1,
               }}
             >
-              {showCustomField &&
+              {isCustom &&
                 <AsyncTextInput
-                  value={data.data.category}
-                  onChange={equipment.setCategory}
+                  value={category}
+                  onChange={setCategory}
                 />
               }
             </div>

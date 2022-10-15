@@ -149,5 +149,6 @@
     "investigator.YesDiscardMyChanges": "Yes, discard my changes",
     "investigator.MoveUp": "Move up",
     "investigator.MoveDown": "Move down",
-    "investigator.Default": "Default"
+    "investigator.Default": "Default",
+    "investigator.CustomCategory": "Custom category"
 }
