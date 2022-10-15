@@ -32,12 +32,14 @@ export const fixLength = <T>(
 };
 
 export const mapValues = <V1, V2>(
-  mapper: (v: V1) => V2,
+  mapper: (v: V1, k: string, i: number) => V2,
   subject: { [k: string]: V1 },
 ): { [k: string]: V2 } => {
   const result: { [k: string]: V2 } = {};
+  let i = 0;
   for (const k in subject) {
-    result[k] = mapper(subject[k]);
+    result[k] = mapper(subject[k], k, i);
+    i += 1;
   }
   return result;
 };
@@ -162,4 +164,44 @@ export async function getUserFile (accept: string): Promise<string> {
   });
   reader.readAsText(file);
   return textPromise;
+}
+
+export const mapObject =
+  <T, U>(fn: (val: T, key: string, i: number) => U) =>
+    (obj: Record<string, T>): Record<string, U> => {
+      return Object.fromEntries(
+        Object.entries(obj).map(([key, val], i) => [key, fn(val, key, i)]),
+      );
+    };
+
+export function moveKeyUp <V> (obj: Record<string, V>, key: string): Record<string, V> {
+  const entries = Object.entries(obj);
+  const index = entries.findIndex(([k]) => k === key);
+  if (index === 0) {
+    throw new Error(`Cannot move up from index ${index}`);
+  }
+  if (index >= entries.length || index < 0) {
+    throw new Error(`Index ${index} out of range`);
+  }
+  const item = entries[index];
+  entries.splice(index, 1);
+  entries.splice(index - 1, 0, item);
+  const result = Object.fromEntries(entries);
+  return result;
+}
+
+export function moveKeyDown <V> (obj: Record<string, V>, key: string): Record<string, V> {
+  const entries = Object.entries(obj);
+  const index = entries.findIndex(([k]) => k === key);
+  if (index === entries.length - 1) {
+    throw new Error("Cannot move down from last index");
+  }
+  if (index >= entries.length || index < 0) {
+    throw new Error(`Index ${index} out of range`);
+  }
+  const cat = entries[index];
+  entries.splice(index, 1);
+  entries.splice(index + 1, 0, cat);
+  const result = Object.fromEntries(entries);
+  return result;
 }

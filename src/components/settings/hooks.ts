@@ -1,8 +1,9 @@
-import { useCallback, useMemo, useReducer } from "react";
+import { useCallback, useContext, useMemo, useReducer } from "react";
 import { useRefStash } from "../../hooks/useRefStash";
 import { getSettingsDict } from "../../settings";
+import { StateContext } from "./contexts";
 import { slice } from "./reducer";
-import { Setters } from "./types";
+import { Setters, State } from "./types";
 
 export const useSettingsState = () => {
   const initialState = useMemo(() => ({ settings: getSettingsDict() }), []);
@@ -29,4 +30,12 @@ export const useSettingsState = () => {
     dispatch,
     isDirty,
   };
+};
+
+export const useSettingsStateSelector = <T>(
+  selector: (state: State) => T,
+) => {
+  const state = useContext(StateContext);
+  const t = selector(state);
+  return t;
 };

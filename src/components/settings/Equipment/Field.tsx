@@ -3,7 +3,6 @@ import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { DispatchContext, StateContext } from "../contexts";
 import { slice } from "../reducer";
-import { assertIsEquipmentFieldType } from "../../../types";
 import { Dropdown } from "../../inputs/Dropdown";
 import { FaArrowDown, FaArrowUp, FaEllipsisH, FaTrash } from "react-icons/fa";
 import { Menu, MenuItem } from "../../inputs/Menu";
@@ -14,15 +13,15 @@ import { CheckboxFieldSettings } from "./CheckboxFieldSettings";
 import { ThemeContext } from "../../../themes/ThemeContext";
 
 interface FieldProps {
-  field: EquipmentFieldMetadata;
-  categoryIdx: number;
-  fieldIdx: number;
+  // field: EquipmentFieldMetadata;
+  categoryId: string;
+  fieldId: string;
 }
 
 export const Field: React.FC<FieldProps> = ({
-  field,
-  categoryIdx,
-  fieldIdx,
+  // field,
+  categoryId,
+  fieldId,
 }) => {
   const theme = useContext(ThemeContext);
   const dispatch = useContext(DispatchContext);
@@ -30,7 +29,7 @@ export const Field: React.FC<FieldProps> = ({
   const fieldsLength = equipmentCategories[categoryIdx].fields?.length ?? 0;
 
   const handleNameChange = useCallback((newName: string) => {
-    dispatch(slice.creators.renameField({ categoryIdx, fieldIdx, newName }));
+    dispatch(slice.creators.renameField({ categoryId, fieldId, newName }));
   }, [dispatch, categoryIdx, fieldIdx]);
 
   const handleTypeChange: ChangeEventHandler<HTMLSelectElement> = useCallback((e) => {

@@ -1,6 +1,6 @@
 import * as constants from "./constants";
 import { hasOwnProperty } from "./functions";
-import { AbilityDataSource, ActiveCharacterDataSource, EquipmentDataSource, GeneralAbilityDataSource, InvestigativeAbilityDataSource, InvestigatorActorDataSource, InvestigatorItemDataSource, MwItemDataSource, NPCDataSource, PartyDataSource, PCDataSource, SocketHookAction, WeaponDataSource, WeaponOrEquipmentDataSource } from "./types";
+import { AbilityDataSource, ActiveCharacterDataSource, EquipmentDataSource, EquipmentFieldType, GeneralAbilityDataSource, InvestigativeAbilityDataSource, InvestigatorActorDataSource, InvestigatorItemDataSource, MwItemDataSource, NPCDataSource, PartyDataSource, PCDataSource, SocketHookAction, WeaponDataSource, WeaponOrEquipmentDataSource } from "./types";
 
 export function isSocketHookAction<T> (x: SocketHookAction<T>|unknown): x is SocketHookAction<T> {
   return hasOwnProperty(x, "hook") && hasOwnProperty(x, "payload");
@@ -123,5 +123,19 @@ export function assertMwItemDataSource (data: InvestigatorItemDataSource): asser
   const isMwItem = isMwItemDataSource(data);
   if (!isMwItem) {
     throw new Error("Not a MW Item");
+  }
+}
+
+export function isEquipmentFieldType (
+  type: string,
+): type is EquipmentFieldType {
+  return type === "string" || type === "number" || type === "checkbox";
+}
+
+export function assertIsEquipmentFieldType (
+  type: string,
+): asserts type is EquipmentFieldType {
+  if (!isEquipmentFieldType(type)) {
+    throw new Error(`Invalid equipment field type: ${type}`);
   }
 }

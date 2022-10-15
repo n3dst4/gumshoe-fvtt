@@ -336,17 +336,3 @@ export type RecursiveRequired<T> = T extends Function
   };
 
 export type EquipmentFieldType = Pick<EquipmentFieldMetadata, "type">["type"];
-
-export function isEquipmentFieldType (
-  type: string,
-): type is EquipmentFieldType {
-  return type === "string" || type === "number" || type === "checkbox";
-}
-
-export function assertIsEquipmentFieldType (
-  type: string,
-): asserts type is EquipmentFieldType {
-  if (!isEquipmentFieldType(type)) {
-    throw new Error(`Invalid equipment field type: ${type}`);
-  }
-}
