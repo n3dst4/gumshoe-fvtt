@@ -9,14 +9,14 @@ import { slice } from "../reducer";
 
 interface NumberFieldSettingsProps {
   field: EquipmentFieldMetadata & { type: "number" };
-  categoryIdx: number;
-  fieldIdx: number;
+  categoryId: string;
+  fieldId: string;
 }
 
 export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
   field,
-  categoryIdx,
-  fieldIdx,
+  categoryId,
+  fieldId,
 }) => {
   const dispatch = useContext(DispatchContext);
   const fieldStash = useRefStash(field);
@@ -25,39 +25,39 @@ export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
     (newDefault: number) => {
       dispatch(
         slice.creators.setFieldDefault({
-          categoryIdx,
-          fieldIdx,
+          categoryId,
+          fieldId,
           newDefault,
         }),
       );
     },
-    [categoryIdx, dispatch, fieldIdx],
+    [categoryId, dispatch, fieldId],
   );
 
   const handleChangeMin = useCallback(
     (newMin: number) => {
       dispatch(
         slice.creators.setFieldMin({
-          categoryIdx,
-          fieldIdx,
+          categoryId,
+          fieldId,
           newMin,
         }),
       );
     },
-    [categoryIdx, dispatch, fieldIdx],
+    [categoryId, dispatch, fieldId],
   );
 
   const handleChangeMax = useCallback(
     (newMax: number) => {
       dispatch(
         slice.creators.setFieldMax({
-          categoryIdx,
-          fieldIdx,
+          categoryId,
+          fieldId,
           newMax,
         }),
       );
     },
-    [categoryIdx, dispatch, fieldIdx],
+    [categoryId, dispatch, fieldId],
   );
 
   const handleToggleMin = useCallback(
@@ -67,13 +67,13 @@ export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
         : undefined;
       dispatch(
         slice.creators.setFieldMin({
-          categoryIdx,
-          fieldIdx,
+          categoryId,
+          fieldId,
           newMin,
         }),
       );
     },
-    [categoryIdx, dispatch, fieldIdx, fieldStash],
+    [categoryId, dispatch, fieldId, fieldStash],
   );
 
   const handleToggleMax = useCallback(
@@ -83,13 +83,13 @@ export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
         : undefined;
       dispatch(
         slice.creators.setFieldMax({
-          categoryIdx,
-          fieldIdx,
+          categoryId,
+          fieldId,
           newMax,
         }),
       );
     },
-    [categoryIdx, dispatch, fieldIdx, fieldStash],
+    [categoryId, dispatch, fieldId, fieldStash],
   );
 
   return (

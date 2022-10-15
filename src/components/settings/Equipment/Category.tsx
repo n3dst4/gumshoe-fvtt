@@ -12,33 +12,35 @@ import { slice } from "../reducer";
 import { Field } from "./Field";
 
 interface EquipmentCategoryProps {
+  id: string;
   idx: number;
 }
 
 export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
+  id,
   idx,
 }) => {
   const dispatch = useContext(DispatchContext);
   const { settings } = useContext(StateContext);
 
   const handleNameChange = useCallback((newName: string) => {
-    dispatch(slice.creators.renameCategory({ idx, newName }));
-  }, [dispatch, idx]);
+    dispatch(slice.creators.renameCategory({ id, newName }));
+  }, [dispatch, id]);
 
   const handleAddField: MouseEventHandler = useCallback((e) => {
     e.preventDefault();
-    dispatch(slice.creators.addField({ categoryIdx: idx }));
-  }, [dispatch, idx]);
+    dispatch(slice.creators.addField({ categoryId: id }));
+  }, [dispatch, id]);
 
   const handleUp: MouseEventHandler = useCallback((e) => {
     e.preventDefault();
-    dispatch(slice.creators.moveCategoryUp({ idx }));
-  }, [dispatch, idx]);
+    dispatch(slice.creators.moveCategoryUp({ id }));
+  }, [dispatch, id]);
 
   const handleDown: MouseEventHandler = useCallback((e) => {
     e.preventDefault();
-    dispatch(slice.creators.moveCategoryDown({ idx }));
-  }, [dispatch, idx]);
+    dispatch(slice.creators.moveCategoryDown({ id }));
+  }, [dispatch, id]);
 
   const handleDelete = useCallback(async () => {
     const aye = await confirmADoodleDo({
@@ -49,9 +51,9 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
       resolveFalseOnCancel: true,
     });
     if (aye) {
-      dispatch(slice.creators.deleteCategory({ idx }));
+      dispatch(slice.creators.deleteCategory({ id }));
     }
-  }, [dispatch, idx]);
+  }, [dispatch, id]);
 
   return (
     <>
@@ -70,7 +72,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
         >
           <AsyncTextInput
             css={{ flex: 1 }}
-            value={settings.equipmentCategories[idx].name}
+            value={settings.equipmentCategories[id].name}
             onChange={handleNameChange}
           />
         <Dropdown
@@ -89,7 +91,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
                   {getTranslated("Move up")}
                 </MenuItem>
               )}
-              {idx < settings.equipmentCategories.length - 1 && (
+              {idx < Object.keys(settings.equipmentCategories).length - 1 && (
                 <MenuItem icon={<FaArrowDown />} onClick={handleDown}>
                   {getTranslated("Move down")}
                 </MenuItem>
@@ -107,14 +109,15 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
             margin: "0.5em 2em 0.5em 0",
           }}
         >
-          {settings.equipmentCategories[idx].fields?.map(
-            (field, fieldIdx) => {
+          {Object.entries(settings.equipmentCategories[idx].fields).map(
+            ([fieldId, field], idx) => {
               return (
                 <Field
-                  key={fieldIdx}
+                  key={fieldId}
+                  fieldId={fieldId}
                   field={field}
-                  categoryIdx={idx}
-                  fieldIdx={fieldIdx}
+                  categoryId={id}
+                  idx={idx}
                 />
               );
             },

@@ -92,7 +92,7 @@ export const niceBlackAgentsPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
-  equipmentCategories: { i_qjh2lnp0tg51vmej1$h: { name: "General" } },
+  equipmentCategories: { i_qjh2lnp0tg51vmej1$h: { name: "General", fields: {} } },
 };
 
 export const nothingToFearPreset: PresetV1 = {
@@ -114,7 +114,7 @@ export const nothingToFearPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
-  equipmentCategories: { yecf0pvevztiaaaww18s9: { name: "General" } },
+  equipmentCategories: { yecf0pvevztiaaaww18s9: { name: "General", fields: {} } },
 };
 
 export const pallidStarsPreset: PresetV1 = {
@@ -139,6 +139,7 @@ export const pallidStarsPreset: PresetV1 = {
   equipmentCategories: {
     t9PAxHlaMlZgtzukPgP91: {
       name: "Gear",
+      fields: {},
     },
     I5ujOaf_930T5m6XF59w0: {
       name: "Cybernetics",
@@ -185,7 +186,7 @@ export const castingTheRunesPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
-  equipmentCategories: { "6i0fsm5o9ymgb5fegfr35": { name: "General" } },
+  equipmentCategories: { "6i0fsm5o9ymgb5fegfr35": { name: "General", fields: {} } },
 };
 
 export const moribundWorldPreset: PresetV1 = {

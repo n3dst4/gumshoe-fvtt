@@ -7,14 +7,14 @@ import { slice } from "../reducer";
 
 interface CheckboxFieldSettingsProps {
   field: EquipmentFieldMetadata & { type: "checkbox" };
-  categoryIdx: number;
-  fieldIdx: number;
+  categoryId: string;
+  fieldId: string;
 }
 
 export const CheckboxFieldSettings: React.FC<CheckboxFieldSettingsProps> = ({
   field,
-  categoryIdx,
-  fieldIdx,
+  categoryId,
+  fieldId,
 }) => {
   const dispatch = useContext(DispatchContext);
 
@@ -22,13 +22,13 @@ export const CheckboxFieldSettings: React.FC<CheckboxFieldSettingsProps> = ({
     (newDefault: boolean) => {
       dispatch(
         slice.creators.setFieldDefault({
-          categoryIdx,
-          fieldIdx,
+          categoryId,
+          fieldId,
           newDefault,
         }),
       );
     },
-    [categoryIdx, dispatch, fieldIdx],
+    [categoryId, dispatch, fieldId],
   );
 
   return (

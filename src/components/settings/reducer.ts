@@ -3,10 +3,10 @@ import {
   PresetV1,
 } from "@lumphammer/investigator-fvtt-types";
 import { pathOfCthulhuPreset } from "../../presets";
-import { CookedEquipmentCategory, CookedFieldMetadata, cookPresetEquipmentCategories, SettingsDict } from "../../settings";
+import { SettingsDict } from "../../settings";
 import produce, { Draft } from "immer";
 import { State, PcOrNpc } from "./types";
-import { renameProperty } from "../../functions";
+import { moveKeyDown, moveKeyUp, renameProperty } from "../../functions";
 import { diff } from "just-diff";
 import { EquipmentFieldType } from "../../types";
 import { nanoid } from "nanoid";
@@ -113,11 +113,11 @@ const createSlice =
 
 function assertNumericFieldOkayness (
   field: EquipmentFieldMetadata | undefined,
-  index: number,
+  id: string,
   value: unknown|undefined,
 ): asserts field is Extract<EquipmentFieldMetadata, { type: "number" }> {
   if (field === undefined) {
-    throw new Error(`No field at index ${index}`);
+    throw new Error(`No field with id ${id}`);
   }
   if (field.type !== "number") {
     throw new Error(`Cannot set min/max on field type ${field.type}`);
@@ -138,93 +138,58 @@ export const slice = createSlice<State>()({
   },
   addCategory: (draft: State) => {
     draft.settings.equipmentCategories[nanoid()] = {
-      name: "",
-      displayOrder: (Object.keys(draft.settings.equipmentCategories).length + 1) * 10,
+      name: "New field",
       fields: {},
     };
   },
-  deleteCategory: (draft: State, payload: { idx: number }) => {
-    draft.settings.equipmentCategories.splice(payload.idx, 1);
+  deleteCategory: ({ settings: { equipmentCategories } }: State, { id }: { id: string }) => {
+    delete equipmentCategories[id];
   },
   renameCategory: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { idx: number, newName: string },
+    payload: { id: string, newName: string },
   ) => {
-    cats[payload.idx].name = payload.newName;
+    cats[payload.id].name = payload.newName;
   },
   moveCategoryUp: (
-    { settings: { equipmentCategories: cats } }: State,
+    { settings }: State,
     { id }: { id: string },
   ) => {
-    
-    if (idx === 0) {
-      throw new Error(`Cannot move category up from index ${idx}`);
-    }
-    if (idx >= cats.length || idx < 0) {
-      throw new Error(`No category at index ${idx}`);
-    }
-    const cat = cats[idx];
-    cats.splice(idx, 1);
-    cats.splice(idx - 1, 0, cat);
+    settings.equipmentCategories = moveKeyUp(settings.equipmentCategories, id);
   },
   moveCategoryDown: (
-    { settings: { equipmentCategories: cats } }: State,
-    { idx }: { idx: number },
+    { settings }: State,
+    { id }: { id: string },
   ) => {
-    if (idx === cats.length - 1) {
-      throw new Error("Cannot move category down from last index");
-    }
-    if (idx >= cats.length || idx < 0) {
-      throw new Error(`No category at index ${idx}`);
-    }
-    const cat = cats[idx];
-    cats.splice(idx, 1);
-    cats.splice(idx + 1, 0, cat);
+    settings.equipmentCategories = moveKeyDown(settings.equipmentCategories, id);
   },
   addField: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryIdx: number },
+    payload: { categoryId: string },
   ) => {
-    // cats[payload.categoryIdx].fields ||= {};
-    const fields = cats[payload.categoryIdx].fields;
-    fields.push({
-      id: nanoid(),
+    cats[payload.categoryId].fields[nanoid()] = {
       name: "New Field",
       type: "string",
       default: "",
-    });
-    cats[payload.categoryIdx].fields = fields;
+    };
   },
   deleteField: (
     { settings: { equipmentCategories: cats } }: State,
     payload: { categoryId: string, fieldId: string },
   ) => {
-    const cat = cats.find((c) => c.id === payload.categoryId);
-    const fieldIdx = cat?.fields.findIndex(
-      (f) => f.id === payload.fieldId,
-    );
-    if (fieldIdx !== undefined && fieldIdx > -1) {
-      cat?.fields.splice(fieldIdx, 1);
-    }
+    delete cats[payload.categoryId].fields[payload.fieldId];
   },
   renameField: (
-    state: State,
+    { settings }: State,
     payload: { categoryId: string, fieldId: string, newName: string },
   ) => {
-    selectField(cats, payload.categoryId, payload.fieldId).name =
-    const fields = cats[payload.categoryIdx].fields;
-    if (fields?.[payload.fieldIdx]) {
-      fields[payload.fieldIdx].name = payload.newName;
-    }
+    settings.equipmentCategories[payload.categoryId].fields[payload.fieldId].name = payload.newName;
   },
   setFieldType: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryIdx: number, fieldIdx: number, newType: EquipmentFieldType },
+    payload: { categoryId: string, fieldId: string, newType: EquipmentFieldType },
   ) => {
-    const field = cats[payload.categoryIdx].fields?.[payload.fieldIdx];
-    if (field === undefined) {
-      throw new Error(`No field at index ${payload.fieldIdx}`);
-    }
+    const field = cats[payload.categoryId].fields[payload.fieldId];
     field.type = payload.newType;
     if (payload.newType === "number") {
       field.default = 0;
@@ -236,12 +201,9 @@ export const slice = createSlice<State>()({
   },
   setFieldDefault: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryIdx: number, fieldIdx: number, newDefault: string|number|boolean },
+    payload: { categoryId: string, fieldId: string, newDefault: string|number|boolean },
   ) => {
-    const field = cats[payload.categoryIdx].fields?.[payload.fieldIdx];
-    if (field === undefined) {
-      throw new Error(`No field at index ${payload.fieldIdx}`);
-    }
+    const field = cats[payload.categoryId].fields[payload.fieldId];
     if (
       (field.type === "string" && typeof payload.newDefault !== "string") ||
       (field.type === "number" && typeof payload.newDefault !== "number") ||
@@ -255,57 +217,31 @@ export const slice = createSlice<State>()({
   },
   setFieldMin: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryIdx: number, fieldIdx: number, newMin: number|undefined },
+    payload: { categoryId: string, fieldId: string, newMin: number|undefined },
   ) => {
-    const field = cats[payload.categoryIdx].fields?.[payload.fieldIdx];
-    assertNumericFieldOkayness(field, payload.fieldIdx, payload.newMin);
+    const field = cats[payload.categoryId].fields[payload.fieldId];
+    assertNumericFieldOkayness(field, payload.fieldId, payload.newMin);
     field.min = payload.newMin;
   },
   setFieldMax: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryIdx: number, fieldIdx: number, newMax: number|undefined },
+    payload: { categoryId: string, fieldId: string, newMax: number|undefined },
   ) => {
-    const field = cats[payload.categoryIdx].fields?.[payload.fieldIdx];
-    assertNumericFieldOkayness(field, payload.fieldIdx, payload.newMax);
+    const field = cats[payload.categoryId].fields[payload.fieldId];
+    assertNumericFieldOkayness(field, payload.fieldId, payload.newMax);
     field.max = payload.newMax;
   },
   moveFieldUp: (
     { settings: { equipmentCategories: cats } }: State,
     { categoryId, fieldId }: { categoryId: string, fieldId: string },
   ) => {
-    const categoryIdx = cats.findIndex((c) => c.id === categoryId);
-    const fields = cats[categoryIdx].fields;
-    const fieldIdx = fields.findIndex((f) => f.id === fieldId);
-    if (fields === undefined) {
-      throw new Error(`No fields in category ${categoryIdx}`);
-    }
-    if (fieldIdx === 0) {
-      throw new Error("Cannot move field up from index 0");
-    }
-    if (fieldIdx >= fields.length || fieldIdx < 0) {
-      throw new Error(`No field at index ${fieldIdx}`);
-    }
-    const field = fields[fieldIdx];
-    fields.splice(fieldIdx, 1);
-    fields.splice(fieldIdx - 1, 0, field);
+    cats[categoryId].fields = moveKeyUp(cats[categoryId].fields, fieldId);
   },
   moveFieldDown: (
     { settings: { equipmentCategories: cats } }: State,
-    { categoryIdx, fieldIdx }: { categoryIdx: number, fieldIdx: number },
+    { categoryId, fieldId }: { categoryId: string, fieldId: string },
   ) => {
-    const fields = cats[categoryIdx].fields;
-    if (fields === undefined) {
-      throw new Error(`No fields in category ${categoryIdx}`);
-    }
-    if (fieldIdx === fields.length - 1) {
-      throw new Error("Cannot move field down from last index");
-    }
-    if (fieldIdx >= fields.length || fieldIdx < 0) {
-      throw new Error(`No field at index ${fieldIdx}`);
-    }
-    const field = fields[fieldIdx];
-    fields.splice(fieldIdx, 1);
-    fields.splice(fieldIdx + 1, 0, field);
+    cats[categoryId].fields = moveKeyDown(cats[categoryId].fields, fieldId);
   },
   applyPreset: (
     draft: State,
@@ -323,8 +259,6 @@ export const slice = createSlice<State>()({
       ...payload.preset,
       // and finally, set the actual preset id
       systemPreset: payload.presetId,
-      // we treat equipment categories special
-      equipmentCategories: cookPresetEquipmentCategories(payload.preset.equipmentCategories),
     };
   },
   addStat: (draft: State, { which }: { which: PcOrNpc }) => {
@@ -374,4 +308,3 @@ export const slice = createSlice<State>()({
     draft.settings[which] = renameProperty(oldId, newId, draft.settings[which]);
   },
 });
-

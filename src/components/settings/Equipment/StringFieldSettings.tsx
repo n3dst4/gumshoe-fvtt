@@ -7,14 +7,14 @@ import { slice } from "../reducer";
 
 interface StringFieldSettingsProps {
   field: EquipmentFieldMetadata & { type: "string" };
-  categoryIdx: number;
-  fieldIdx: number;
+  categoryId: string;
+  fieldId: string;
 }
 
 export const StringFieldSettings: React.FC<StringFieldSettingsProps> = ({
   field,
-  categoryIdx,
-  fieldIdx,
+  categoryId,
+  fieldId,
 }) => {
   const dispatch = useContext(DispatchContext);
 
@@ -22,13 +22,13 @@ export const StringFieldSettings: React.FC<StringFieldSettingsProps> = ({
     (newDefault: string) => {
       dispatch(
         slice.creators.setFieldDefault({
-          categoryIdx,
-          fieldIdx,
+          categoryId,
+          fieldId,
           newDefault,
         }),
       );
     },
-    [categoryIdx, dispatch, fieldIdx],
+    [categoryId, dispatch, fieldId],
   );
 
   return (

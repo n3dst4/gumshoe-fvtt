@@ -21,10 +21,11 @@ export const EquipmentSettings: React.FC = () => {
   return (
     <>
       <h2>Categories</h2>
-      {settings.equipmentCategories.map(({ name, fields }, idx) => {
+      {Object.entries(settings.equipmentCategories).map(([id, { name, fields }], idx) => {
         return (
           <EquipmentCategory
-            key={idx}
+            key={id}
+            id={id}
             idx={idx}
           />
         );

@@ -11,26 +11,29 @@ import { NumberFieldSettings } from "./NumberFieldSettings";
 import { StringFieldSettings } from "./StringFieldSettings";
 import { CheckboxFieldSettings } from "./CheckboxFieldSettings";
 import { ThemeContext } from "../../../themes/ThemeContext";
+import { assertIsEquipmentFieldType } from "../../../typeAssertions";
 
 interface FieldProps {
-  // field: EquipmentFieldMetadata;
+  field: EquipmentFieldMetadata;
   categoryId: string;
   fieldId: string;
+  idx: number;
 }
 
 export const Field: React.FC<FieldProps> = ({
-  // field,
+  field,
   categoryId,
   fieldId,
+  idx,
 }) => {
   const theme = useContext(ThemeContext);
   const dispatch = useContext(DispatchContext);
   const { settings: { equipmentCategories } } = useContext(StateContext);
-  const fieldsLength = equipmentCategories[categoryIdx].fields?.length ?? 0;
+  const fieldsLength = Object.keys(equipmentCategories[categoryId].fields).length;
 
   const handleNameChange = useCallback((newName: string) => {
     dispatch(slice.creators.renameField({ categoryId, fieldId, newName }));
-  }, [dispatch, categoryIdx, fieldIdx]);
+  }, [dispatch, categoryId, fieldId]);
 
   const handleTypeChange: ChangeEventHandler<HTMLSelectElement> = useCallback((e) => {
     e.preventDefault();
@@ -39,23 +42,23 @@ export const Field: React.FC<FieldProps> = ({
       throw new Error("Invalid field type");
     }
     assertIsEquipmentFieldType(newType);
-    dispatch(slice.creators.setFieldType({ categoryIdx, fieldIdx, newType }));
-  }, [dispatch, categoryIdx, fieldIdx]);
+    dispatch(slice.creators.setFieldType({ categoryId, fieldId, newType }));
+  }, [dispatch, categoryId, fieldId]);
 
   const handleUp = useCallback(() => {
-    dispatch(slice.creators.moveFieldUp({ categoryIdx, fieldIdx }));
-  }, [dispatch, categoryIdx, fieldIdx]);
+    dispatch(slice.creators.moveFieldUp({ categoryId, fieldId }));
+  }, [dispatch, categoryId, fieldId]);
 
   const handleDown = useCallback(() => {
-    dispatch(slice.creators.moveFieldDown({ categoryIdx, fieldIdx }));
-  }, [dispatch, categoryIdx, fieldIdx]);
+    dispatch(slice.creators.moveFieldDown({ categoryId, fieldId }));
+  }, [dispatch, categoryId, fieldId]);
 
   const handleDelete = useCallback(async () => {
     const aye = await getTranslated("Delete Field");
     if (aye) {
-      dispatch(slice.creators.deleteField({ categoryIdx, fieldIdx }));
+      dispatch(slice.creators.deleteField({ categoryId, fieldId }));
     }
-  }, [dispatch, categoryIdx, fieldIdx]);
+  }, [dispatch, categoryId, fieldId]);
 
   return (
     <div
@@ -106,12 +109,12 @@ export const Field: React.FC<FieldProps> = ({
         >
           {
             <Menu>
-              {fieldIdx > 0 && (
+              {idx > 0 && (
                 <MenuItem icon={<FaArrowUp />} onClick={handleUp}>
                   {getTranslated("Move up")}
                 </MenuItem>
               )}
-              {fieldIdx < fieldsLength - 1 && (
+              {idx < fieldsLength - 1 && (
                 <MenuItem icon={<FaArrowDown />} onClick={handleDown}>
                   {getTranslated("Move down")}
                 </MenuItem>
@@ -124,13 +127,13 @@ export const Field: React.FC<FieldProps> = ({
         </Dropdown>
       </div>
       {field.type === "number" && (
-        <NumberFieldSettings field={field} categoryIdx={categoryIdx} fieldIdx={fieldIdx} />
+        <NumberFieldSettings field={field} categoryId={categoryId} fieldId={fieldId} />
       )}
       {field.type === "string" && (
-        <StringFieldSettings field={field} categoryIdx={categoryIdx} fieldIdx={fieldIdx} />
+        <StringFieldSettings field={field} categoryId={categoryId} fieldId={fieldId} />
       )}
       {field.type === "checkbox" && (
-        <CheckboxFieldSettings field={field} categoryIdx={categoryIdx} fieldIdx={fieldIdx} />
+        <CheckboxFieldSettings field={field} categoryId={categoryId} fieldId={fieldId} />
       )}
     </div>
   );

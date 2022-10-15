@@ -1,10 +1,9 @@
 import * as c from "./constants";
-import { assertGame, mapObject, mapValues } from "./functions/functionsThatDontUseSettings";
+import { assertGame, mapValues } from "./functions/functionsThatDontUseSettings";
 import { pathOfCthulhuPreset } from "./presets";
 import { defaultCustomThemePath, systemName } from "./constants";
 import { runtimeConfig } from "./runtime";
 import { ThemeV1 } from "./themes/types";
-import { EquipmentCategory, EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 
 // any of these could have an `onChange` added if we wanted to
 
@@ -74,40 +73,6 @@ const createSettingBoolean = (args: SettingFactoryArgs<boolean>) => (
 const createSettingObject = <T>(args: SettingFactoryArgs<T>) => (
   createSetting<T>(args, Object)
 );
-
-export type CookedFieldMetadata = EquipmentFieldMetadata & {
-  displayOrder: number,
-}
-
-export type CookedEquipmentCategory = Omit<EquipmentCategory, "fields"> & {
-  displayOrder: number,
-  fields: Record<string, CookedFieldMetadata>,
-}
-
-function cookField (
-  field: EquipmentFieldMetadata,
-  _: string,
-  i: number,
-): CookedFieldMetadata {
-  return {
-    ...field,
-    displayOrder: (i + 1) * 10,
-  };
-}
-
-function cookCategory (
-  category: EquipmentCategory,
-  _: string,
-  i: number,
-): CookedEquipmentCategory {
-  return {
-    ...category,
-    fields: mapObject(cookField)(category.fields ?? {}),
-    displayOrder: (i + 1) * 10,
-  };
-}
-
-export const cookPresetEquipmentCategories = mapObject(cookCategory);
 
 export const settings = {
   /**
@@ -248,7 +213,7 @@ export const settings = {
   equipmentCategories: createSettingObject({
     key: "equipmentCategories",
     name: "Equipment categories",
-    default: cookPresetEquipmentCategories(pathOfCthulhuPreset.equipmentCategories),
+    default: pathOfCthulhuPreset.equipmentCategories,
   }),
 };
 
