@@ -109,15 +109,15 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
             margin: "0.5em 2em 0.5em 0",
           }}
         >
-          {Object.entries(settings.equipmentCategories[idx].fields).map(
-            ([fieldId, field], idx) => {
+          {Object.entries(settings.equipmentCategories[id].fields).map(
+            ([fieldId, field], fieldIdx) => {
               return (
                 <Field
                   key={fieldId}
                   fieldId={fieldId}
                   field={field}
                   categoryId={id}
-                  idx={idx}
+                  idx={fieldIdx}//
                 />
               );
             },

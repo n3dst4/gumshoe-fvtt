@@ -89,14 +89,21 @@ const createSlice =
     // `useDispatch` takes the initial state as an argument, so we don't need to
     // provide a default argument for `state` here.
     const reducer = (state: S, action: AnyAction) => {
-      const newState = produce(state, (draft) => {
-        for (const [, sliceCase] of sliceCases) {
-          sliceCase.apply(draft, action);
-        }
-      });
-      const diffs = diff(state, newState);
-      console.log(diffs);
-      return newState;
+      try {
+        const newState = produce(state, (draft) => {
+          for (const [, sliceCase] of sliceCases) {
+            sliceCase.apply(draft, action);
+          }
+        });
+        const diffs = diff(state, newState);
+        console.log(diffs);
+        return newState;
+      } catch (e) {
+        logger.error("Reducer error", e);
+        // eslint-disable-next-line no-debugger
+        debugger;
+        return state;
+      }
     };
 
     return {

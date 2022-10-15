@@ -49,7 +49,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
 
   const categories = settings.equipmentCategories.get();
 
-  const isRealCategory = categories.some(c => c.name === data.data.category);
+  const isRealCategory = categories[data.data.category] !== undefined;
   const [showCustomField, setShowCustomField] = useState(!isRealCategory);
   const [selectCustomOption, setSelectCustomOption] = useState(!isRealCategory);
 
@@ -152,8 +152,8 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
                   height: "inherit",
                 }}
               >
-                {categories.map<JSX.Element>((cat) => (
-                  <option key={cat.name}>{cat.name}</option>
+                {Object.entries(categories).map<JSX.Element>(([id, cat]) => (
+                  <option key={id}>{cat.name}</option>
                 ))}
                 <option value="">Custom</option>
               </select>
