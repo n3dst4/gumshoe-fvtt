@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import React, { ChangeEvent, useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
@@ -11,7 +11,6 @@ import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { absoluteCover } from "../absoluteCover";
 import { settings } from "../../settings";
 import { assertEquipmentDataSource } from "../../typeAssertions";
-import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { EquipmentField } from "./EquipmentField";
 
 type EquipmentSheetProps = {
@@ -50,29 +49,28 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   const categories = settings.equipmentCategories.get();
   const categoryMetadata = categories[data.data.category];
   const isRealCategory = categoryMetadata !== undefined;
-  const [category, setCategory] = useState(data.data.category);
-  const [isCustom, setIsCustom] = useState(!isRealCategory);
-  useEffect(() => {
-    if (data.data.category !== category) {
-      equipment.setCategory(category);
-    }
-  }, [category, data.data.category, equipment]);
+  // const [isUncategorized, setIsUncategorized] = useState(!isRealCategory);
+  // useEffect(() => {
+  //   if (data.data.category !== category) {
+  //     equipment.setCategory(category);
+  //   }
+  // }, [category, data.data.category, equipment]);
 
   const onChangeCategory = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
       const value = e.currentTarget.value;
       if (value === "") {
-        setIsCustom(true);
-        setCategory("");
+        // setIsUncategorized(true);
+        equipment.setCategory("");
       } else {
-        setIsCustom(false);
-        setCategory(e.currentTarget.value);
+        // setIsUncategorized(false);
+        equipment.setCategory(e.currentTarget.value);
       }
     },
-    [],
+    [equipment],
   );
 
-  const selectedCat = isCustom ? "" : data.data.category;
+  const selectedCat = isRealCategory ? data.data.category : "";
 
   const fieldsLength = Object.keys(categoryMetadata?.fields ?? {}).length + 2;
 
@@ -162,22 +160,9 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
                 {Object.entries(categories).map<JSX.Element>(([id, cat]) => (
                   <option key={id} value={id}>{cat.name}</option>
                 ))}
-                <option value="">{getTranslated("Custom category")}</option>
+                <option value="">{getTranslated("Uncategorized")}</option>
               </select>
             </div>
-            <div
-              css={{
-                flex: 1,
-              }}
-            >
-              {isCustom &&
-                <AsyncTextInput
-                  value={category}
-                  onChange={setCategory}
-                />
-              }
-            </div>
-
           </div>
         </GridField>
 
@@ -188,6 +173,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
               fieldId={fieldId}
               fieldMetadata={fieldMetadata}
               value={data.data.fields?.[fieldId]}
+              equipment={equipment}
             />
           );
         })}

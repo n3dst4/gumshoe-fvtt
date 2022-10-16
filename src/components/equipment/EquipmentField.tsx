@@ -1,5 +1,6 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import React, { useCallback } from "react";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { Checkbox } from "../inputs/Checkbox";
@@ -9,15 +10,18 @@ interface EquipmentFieldProps {
   fieldId: string;
   fieldMetadata: EquipmentFieldMetadata;
   value: string|number|boolean;
+  equipment: InvestigatorItem;
 }
 
 export const EquipmentField: React.FC<EquipmentFieldProps> = ({
   fieldId,
   fieldMetadata,
   value,
+  equipment,
 }) => {
   const onChange = useCallback((newValue: string|number|boolean) => {
-  }, []);
+    equipment.setField(fieldId, newValue);
+  }, [equipment, fieldId]);
 
   return (
     <GridField noTranslate key={fieldId} label={fieldMetadata.name}>

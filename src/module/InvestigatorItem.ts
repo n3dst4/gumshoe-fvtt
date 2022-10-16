@@ -181,6 +181,11 @@ export class InvestigatorItem extends Item {
     this.update({ data: { category } });
   };
 
+  setField = (field: string, value: string|number|boolean) => {
+    assertEquipmentOrAbilityDataSource(this.data);
+    this.update({ data: { fields: { [field]: value } } });
+  };
+
   getMin = () => {
     assertAbilityDataSource(this.data);
     return this.data.data.min;
