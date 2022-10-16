@@ -4,6 +4,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import * as constants from "../../constants";
 import { Translate } from "../Translate";
 import { sortEntitiesByName } from "../../functions";
+import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 
 interface EquipmentCategoryProps {
   categoryId: string;
@@ -12,6 +13,7 @@ interface EquipmentCategoryProps {
   name: string;
   actor: InvestigatorActor;
   app: Application<ApplicationOptions>|null;
+  fields: Record<string, EquipmentFieldMetadata>;
 }
 
 export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
@@ -20,6 +22,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
   name,
   actor,
   app,
+  fields,
 }) => {
   const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
     if (app !== null) {
@@ -28,19 +31,36 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
   }, [app]);
 
   return (
-    <>
+    <div
+      css={{
+        display: "grid",
+        gridTemplateColumns: `1fr repeat(${Math.max(1, Object.keys(fields).length)}, 1fr)`,
+        gridTemplateRows: "[hr] auto [title] auto [headers] auto [items] auto",
+      }}
+    >
       <div
         css={{
+          gridColumn: "1 / -1",
+          gridRow: "hr",
+        }}
+      >
+        <hr />
+      </div>
+      {/* Top row */}
+      <div
+        css={{
+          gridColumn: "1/-1",
+          gridRow: "title",
           display: "flex",
           flexDirection: "row",
+          "&&": {
+            margin: "0 0 0 0",
+          },
         }}
       >
         <h2
           css={{
             flex: 1,
-            "&&": {
-              margin: "0 0 0 0",
-            },
           }}
         >
           {name}
@@ -48,7 +68,6 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
         <button
           css={{
             flexBasis: "max-content",
-            alignSelf: "flex-start",
           }}
           onClick={async () => {
             await actor.createEmbeddedDocuments(
@@ -72,10 +91,21 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
           <Translate>Add Equipment</Translate>
         </button>
       </div>
+
+      {/* Headers */}
+      <div css={{ gridColumn: "1", gridRow: "headers" }}>
+        <Translate>Name</Translate>
+      </div>
+      {Object.entries(fields).map<JSX.Element>(([fieldId, field], i) => {
+        return <div key={fieldId} css={{ gridColumn: i + 2, gridRow: "headers" }}>{field.name}</div>;
+      })}
+
+      {/* Nothing */}
       {items.length === 0 && (
         <i
           css={{
-            display: "block",
+            gridColumn: "1 / -1",
+            gridRow: "items",
             fontSize: "1.2em",
           }}
         >
@@ -83,28 +113,23 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
         </i>
       )}
 
-      <div
-        css={{
-          columns: "auto 12em",
-        }}
-      >
-        {sortEntitiesByName(items).map<JSX.Element>((item) => (
-          <a
-            key={item.id}
-            css={{
-              display: "block",
-              position: "relative",
-            }}
-            onClick={() => item.sheet?.render(true)}
-            data-item-id={item.id}
-            onDragStart={onDragStart}
-            draggable="true"
-          >
-            {item.name}
-          </a>
-        ))}
-      </div>
-    </>
+      {/* Items */}
+      {sortEntitiesByName(items).map<JSX.Element>((item, i) => (
+        <a
+          key={item.id}
+          css={{
+            gridColumn: "1",
+            gridRow: i + 4,
+          }}
+          onClick={() => item.sheet?.render(true)}
+          data-item-id={item.id}
+          onDragStart={onDragStart}
+          draggable="true"
+        >
+          {item.name}
+        </a>
+      ))}
+    </div>
   );
 };
 

@@ -31,6 +31,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
             name={category.name}
             key={categoryId}
             app={app}
+            fields={category.fields}
           />
         );
       })}
@@ -40,6 +41,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
         items={uncategorizedItems}
         name={getTranslated("Uncategorized equipment")}
         app={app}
+        fields={{}}
       />
 
       {/* <div
