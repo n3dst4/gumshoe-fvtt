@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { getTranslated } from "../../functions";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { settings } from "../../settings";
-import { isEquipmentDataSource } from "../../typeAssertions";
-import { FoundryAppContext } from "../FoundryAppContext";
+import { getTranslated } from "../../../functions";
+import { InvestigatorActor } from "../../../module/InvestigatorActor";
+import { settings } from "../../../settings";
+import { isEquipmentDataSource } from "../../../typeAssertions";
+import { FoundryAppContext } from "../../FoundryAppContext";
 import { EquipmentCategory } from "./EquipmentCategory";
 
 type EquipmentAreaProps = {
