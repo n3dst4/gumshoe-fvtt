@@ -160,7 +160,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
                 {Object.entries(categories).map<JSX.Element>(([id, cat]) => (
                   <option key={id} value={id}>{cat.name}</option>
                 ))}
-                <option value="">{getTranslated("Uncategorized")}</option>
+                <option value="">{getTranslated("Uncategorized equipment")}</option>
               </select>
             </div>
           </div>
