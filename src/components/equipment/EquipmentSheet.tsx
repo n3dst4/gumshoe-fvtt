@@ -49,12 +49,6 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   const categories = settings.equipmentCategories.get();
   const categoryMetadata = categories[data.data.category];
   const isRealCategory = categoryMetadata !== undefined;
-  // const [isUncategorized, setIsUncategorized] = useState(!isRealCategory);
-  // useEffect(() => {
-  //   if (data.data.category !== category) {
-  //     equipment.setCategory(category);
-  //   }
-  // }, [category, data.data.category, equipment]);
 
   const onChangeCategory = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
