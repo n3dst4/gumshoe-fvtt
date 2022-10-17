@@ -77,7 +77,7 @@ export const EquipmentItemRow: React.FC<EquipmentItemRowProps> = ({
               <CheckOrCross checked={!!item.data.data.fields?.[fieldId]} />
                 )
               : (
-              <span>item.data.data.fields?.[fieldId]</span>
+              <span>{item.data.data.fields?.[fieldId]}</span>
                 )}
           </a>
         );
