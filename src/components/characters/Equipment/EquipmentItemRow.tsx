@@ -1,5 +1,5 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { ThemeContext } from "../../../themes/ThemeContext";
@@ -19,16 +19,25 @@ export const EquipmentItemRow: React.FC<EquipmentItemRowProps> = ({
   fields,
 }) => {
   const theme = useContext(ThemeContext);
+  const [hover, setHover] = React.useState(false);
+  const handleMouseOver = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    setHover(true);
+  }, []);
+  const handleMouseOut = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    setHover(false);
+  }, []);
 
   return (
     <>
+      {/* hover bar */}
       <div
         css={{
           gridColumn: "1/-1",
           gridRow,
-          ":hover": {
-            backgroundColor: theme.colors.backgroundButton,
-          },
+          backgroundColor: hover ? theme.colors.backgroundButton : undefined,
+          // padding: "0.5em",
+          // ":hover": {
+          // },
         }}
       />
       <a
@@ -36,26 +45,33 @@ export const EquipmentItemRow: React.FC<EquipmentItemRowProps> = ({
         css={{
           gridColumn: "1",
           gridRow,
-          mouseEvents: "none",
+          // mouseEvents: "none",
+          // pointerEvents: "",
+          cursor: "pointer",
         }}
         onClick={() => item.sheet?.render(true)}
         data-item-id={item.id}
         onDragStart={onDragStart}
         draggable="true"
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
       >
         {item.name}
       </a>
       {Object.entries(fields).map<JSX.Element>(([fieldId, field], j) => {
         assertEquipmentDataSource(item.data);
         return (
-          <div
+          <a
             key={fieldId}
             css={{
               gridColumn: j + 2,
               gridRow,
               mouseEvents: "none",
             }}
-          >
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+            onClick={() => item.sheet?.render(true)}
+            >
             {field.type === "checkbox"
               ? (
                   item.data.data.fields?.[fieldId]
@@ -69,7 +85,7 @@ export const EquipmentItemRow: React.FC<EquipmentItemRowProps> = ({
               : (
                   item.data.data.fields?.[fieldId]
                 )}
-          </div>
+          </a>
         );
       })}
     </>

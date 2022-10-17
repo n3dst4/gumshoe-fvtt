@@ -40,10 +40,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
     <div
       css={{
         display: "grid",
-        gridTemplateColumns: `1fr repeat(${Math.max(
-          1,
-          Object.keys(fields).length,
-        )}, 1fr)`,
+        gridTemplateColumns: `1fr repeat(${Object.keys(fields).length}, 1fr)`,
         gridTemplateRows: "[title] auto [headers] auto [items] auto",
         // gap: "0.5em",
       }}
