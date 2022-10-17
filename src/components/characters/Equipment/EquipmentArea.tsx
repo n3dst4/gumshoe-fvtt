@@ -10,15 +10,17 @@ type EquipmentAreaProps = {
   actor: InvestigatorActor,
 };
 
-export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
-  actor,
-}) => {
+export const EquipmentArea: React.FC<EquipmentAreaProps> = ({ actor }) => {
   const app = useContext(FoundryAppContext);
 
   const items = actor.getEquipment();
   const categories = settings.equipmentCategories.get();
 
-  const uncategorizedItems = items.filter((item) => isEquipmentDataSource(item.data) && Object.keys(categories).indexOf(item.data.data.category) === -1);
+  const uncategorizedItems = items.filter(
+    (item) =>
+      isEquipmentDataSource(item.data) &&
+      Object.keys(categories).indexOf(item.data.data.category) === -1,
+  );
 
   return (
     <div>
@@ -27,7 +29,11 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({
           <EquipmentCategory
             actor={actor}
             categoryId={categoryId}
-            items={items.filter((item) => isEquipmentDataSource(item.data) && item.data.data.category === categoryId)}
+            items={items.filter(
+              (item) =>
+                isEquipmentDataSource(item.data) &&
+                item.data.data.category === categoryId,
+            )}
             name={category.name}
             key={categoryId}
             app={app}

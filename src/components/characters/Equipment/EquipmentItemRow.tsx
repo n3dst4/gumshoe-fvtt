@@ -1,9 +1,9 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import React, { useCallback, useContext } from "react";
-import { FaCheck, FaTimes } from "react-icons/fa";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { assertEquipmentDataSource } from "../../../typeAssertions";
+import { CheckOrCross } from "./CheckOrCross";
 
 interface EquipmentItemRowProps {
   item: InvestigatorItem;
@@ -71,19 +71,13 @@ export const EquipmentItemRow: React.FC<EquipmentItemRowProps> = ({
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
             onClick={() => item.sheet?.render(true)}
-            >
+          >
             {field.type === "checkbox"
               ? (
-                  item.data.data.fields?.[fieldId]
-                    ? (
-                <FaCheck />
-                      )
-                    : (
-                <FaTimes />
-                      )
+              <CheckOrCross checked={!!item.data.data.fields?.[fieldId]} />
                 )
               : (
-                  item.data.data.fields?.[fieldId]
+              <span>item.data.data.fields?.[fieldId]</span>
                 )}
           </a>
         );
