@@ -164,7 +164,6 @@ export const pallidStarsPreset: PresetV1 = {
       },
     },
   },
-
 };
 
 export const castingTheRunesPreset: PresetV1 = {

@@ -3,6 +3,7 @@ import { isNullOrEmptyString } from "../functions";
 import { escape } from "html-escaper";
 import { isAbilityDataSource, isGeneralAbilityDataSource } from "../typeAssertions";
 import { getDefaultGeneralAbilityCategory, settings } from "../settings";
+import { niceBlackAgentsPreset } from "../presets";
 
 export const addCategoryToGeneralAbilities = (data: any, updateData: any) => {
   if (data.type === generalAbility && isNullOrEmptyString(data.data?.category)) {
@@ -52,6 +53,22 @@ export const upgradeNotesToRichText = (data: any, updateData: any) => {
       source: data.data.notes,
       html: escape(data.data.notes),
     };
+  }
+  return updateData;
+};
+
+export const setEquipmentCategory = (data: any, updateData: any) => {
+  const categories = settings.equipmentCategories.get();
+  // we are only proceeding if we have default categories, so it's either a brave new world, or we're migrating
+  if (JSON.stringify(categories) === JSON.stringify(niceBlackAgentsPreset.equipmentCategories)) {
+    /// XXX WIP
+  }
+
+  if (data.type === "equipment" && isNullOrEmptyString(data.data?.category)) {
+    if (!updateData.data) {
+      updateData.data = {};
+    }
+    updateData.data.category = "Other";
   }
   return updateData;
 };

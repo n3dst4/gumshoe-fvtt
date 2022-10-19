@@ -1,9 +1,10 @@
 import * as c from "./constants";
 import { assertGame, mapValues } from "./functions/functionsThatDontUseSettings";
-import { pathOfCthulhuPreset } from "./presets";
+import { niceBlackAgentsPreset, pathOfCthulhuPreset } from "./presets";
 import { defaultCustomThemePath, systemName } from "./constants";
 import { runtimeConfig } from "./runtime";
 import { ThemeV1 } from "./themes/types";
+import { flaggedMigrations } from "./migrations/flaggedMigrations";
 
 // any of these could have an `onChange` added if we wanted to
 
@@ -213,7 +214,7 @@ export const settings = {
   equipmentCategories: createSettingObject({
     key: "equipmentCategories",
     name: "Equipment categories",
-    default: pathOfCthulhuPreset.equipmentCategories,
+    default: niceBlackAgentsPreset.equipmentCategories,
   }),
 };
 
