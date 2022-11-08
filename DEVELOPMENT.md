@@ -11,7 +11,7 @@
   - [Using the "Developer mode" module](#using-the-developer-mode-module)
   - [Development flow](#development-flow)
   - [Release process](#release-process)
-    - [What happend if the CI pipeline fails?](#what-happend-if-the-ci-pipeline-fails)
+    - [What happens if the CI pipeline fails?](#what-happens-if-the-ci-pipeline-fails)
 
 ## Development & general hacking
 
@@ -140,7 +140,7 @@ To perform a release:
 
 7. Go and barf forth glad tidings on the [Pelgrane's Virtual Tabletops Discord channel][pelgrane-discord] and the [Foundry Package Releases channel][fprd].
 
-### What happend if the CI pipeline fails?
+### What happens if the CI pipeline fails?
 
 1. Delete the `vX.Y.Z` tag from local and remote:
 
