@@ -128,7 +128,7 @@ export const Tracker: React.FC = () => {
   return (
     <Fragment>
       {/* TOP ROW: + < Encounter 2/3 > X */}
-      <header className="combat-tracker-header">
+      <header id="combat-round" className="combat-tracker-header">
         {game.user.isGM && (
           <nav className="encounters flexrow">
             <a
@@ -180,8 +180,10 @@ export const Tracker: React.FC = () => {
         )}
 
         {/* SECOND ROW: RoUnD 4, link, cog */}
+        {/* This used to be a <nav> in v9 but leaving as div doesn't seem to
+        break v9 */}
         <div
-          className={cx({ "encounter-controls": true, flexrow: true, combat: hasCombat })}
+          className={cx({ encounters: true, "encounter-controls": true, flexrow: true, combat: hasCombat })}
         >
           <a className="combat-button combat-control"/>
           {combatCount
