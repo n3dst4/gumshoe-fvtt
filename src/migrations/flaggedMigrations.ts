@@ -1,0 +1,20 @@
+import { generalAbility } from "../constants";
+import { isNullOrEmptyString } from "../functions";
+import { getDefaultGeneralAbilityCategory } from "../settings";
+
+export const flaggedMigrations = {
+  item: {
+    setCategory: (data: any, updateData: any) => {
+      if (data.type === generalAbility && isNullOrEmptyString(data.data?.category)) {
+        const cat = getDefaultGeneralAbilityCategory();
+        if (!updateData.data) {
+          updateData.data = {};
+        }
+        updateData.data.category = cat;
+      }
+      return updateData;
+    },
+  },
+  actor: {},
+  world: {},
+};

@@ -52,24 +52,24 @@ export const pathOfCthulhuPreset: Required<PresetV1> = {
   useNpcCombatBonuses: false,
   useTurnPassingInitiative: false,
   equipmentCategories: {
-    jl8gu9_z3kb_6uaj76fh2: {
+    general: {
       name: "General",
       fields: {},
     },
-    jqx7v_b6gq$agk440wrca: {
-      name: "Spells",
-      fields: {
-        ctgl8__c9bqkyecw9bnra: {
-          name: "Type",
-          type: "string",
-          default: "",
-        },
-      },
-    },
-    q5_505vww9i1bok$i4od8: {
-      name: "Tomes",
-      fields: {},
-    },
+    // jqx7v_b6gq$agk440wrca: {
+    //   name: "Spells",
+    //   fields: {
+    //     ctgl8__c9bqkyecw9bnra: {
+    //       name: "Type",
+    //       type: "string",
+    //       default: "",
+    //     },
+    //   },
+    // },
+    // q5_505vww9i1bok$i4od8: {
+    //   name: "Tomes",
+    //   fields: {},
+    // },
   },
 };
 
@@ -92,7 +92,7 @@ export const niceBlackAgentsPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
-  equipmentCategories: { i_qjh2lnp0tg51vmej1$h: { name: "General", fields: {} } },
+  equipmentCategories: { general: { name: "General", fields: {} } },
 };
 
 export const nothingToFearPreset: PresetV1 = {
@@ -114,7 +114,7 @@ export const nothingToFearPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
-  equipmentCategories: { yecf0pvevztiaaaww18s9: { name: "General", fields: {} } },
+  equipmentCategories: { general: { name: "General", fields: {} } },
 };
 
 export const pallidStarsPreset: PresetV1 = {
@@ -137,7 +137,7 @@ export const pallidStarsPreset: PresetV1 = {
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
   equipmentCategories: {
-    t9PAxHlaMlZgtzukPgP91: {
+    general: {
       name: "Gear",
       fields: {},
     },
@@ -185,7 +185,7 @@ export const castingTheRunesPreset: PresetV1 = {
   genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
-  equipmentCategories: { "6i0fsm5o9ymgb5fegfr35": { name: "General", fields: {} } },
+  equipmentCategories: { general: { name: "General", fields: {} } },
 };
 
 export const moribundWorldPreset: PresetV1 = {

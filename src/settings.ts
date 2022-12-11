@@ -4,7 +4,7 @@ import { niceBlackAgentsPreset, pathOfCthulhuPreset } from "./presets";
 import { defaultCustomThemePath, systemName } from "./constants";
 import { runtimeConfig } from "./runtime";
 import { ThemeV1 } from "./themes/types";
-import { flaggedMigrations } from "./migrations/flaggedMigrations";
+import { MigrationFlags } from "./migrations/types";
 
 // any of these could have an `onChange` added if we wanted to
 
@@ -215,6 +215,21 @@ export const settings = {
     key: "equipmentCategories",
     name: "Equipment categories",
     default: niceBlackAgentsPreset.equipmentCategories,
+  }),
+  migrationFlags: createSettingObject<MigrationFlags>({
+    key: "migrationFlags",
+    name: "Migration flags",
+    default: {
+      actor: {},
+      item: {},
+      compendium: {},
+      journal: {},
+      macro: {},
+      scene: {},
+      rollTable: {},
+      playlist: {},
+      world: {},
+    },
   }),
 };
 
