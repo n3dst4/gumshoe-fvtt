@@ -9,3 +9,10 @@ export interface MigrationFlags {
   playlist: Record<string, boolean>;
   world: Record<string, boolean>;
 }
+
+export type FlaggedMigrations = {
+  [k in keyof MigrationFlags]: Record<
+    string,
+    (data: any, updateData: any) => any
+  >;
+};

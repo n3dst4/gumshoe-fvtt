@@ -1,8 +1,11 @@
 import { generalAbility } from "../constants";
 import { isNullOrEmptyString } from "../functions";
 import { getDefaultGeneralAbilityCategory } from "../settings";
+import { MigrationFlags } from "./types";
 
-export const flaggedMigrations = {
+type FlaggedMigrations = { [k in keyof MigrationFlags]: { [k: string]: (data: any, updateData: any) => any } };
+
+export const flaggedMigrations: FlaggedMigrations = {
   item: {
     setCategory: (data: any, updateData: any) => {
       if (data.type === generalAbility && isNullOrEmptyString(data.data?.category)) {
@@ -17,4 +20,10 @@ export const flaggedMigrations = {
   },
   actor: {},
   world: {},
+  compendium: {},
+  journal: {},
+  macro: {},
+  scene: {},
+  rollTable: {},
+  playlist: {},
 };

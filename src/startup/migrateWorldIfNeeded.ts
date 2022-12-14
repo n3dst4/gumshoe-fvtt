@@ -27,9 +27,8 @@ export const migrateWorldIfNeeded = async () => {
       currentVersion !== defaultMigratedSystemVersion &&
       isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)
   ) {
-    const warning = `Your ${system.title} system data is from too old a version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
-    (ui as any)/* oh fuck off */.notifications
-      .error(warning, { permanent: true });
+    const notificationText = `Your ${system.title} system data is from too old a version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
+    (ui as any).notifications.error(notificationText, { permanent: true });
   }
   // Perform the migration
   migrateWorld();
