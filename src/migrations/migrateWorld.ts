@@ -6,6 +6,7 @@ import { migrateSceneData } from "./migrateSceneData";
 import { assertGame } from "../functions";
 import * as constants from "../constants";
 import { settings } from "../settings";
+import { FlaggedMigrations } from "./types";
 
 const title = system.title;
 
@@ -14,7 +15,7 @@ const title = system.title;
  * Actors, Items, and Compendium packs
  * @return {Promise}      A Promise which resolves once the migration is completed
  */
-export const migrateWorld = async function () {
+export const migrateWorld = async function (flaggedMigrations: FlaggedMigrations) {
   assertGame(game);
   (ui as any).notifications.info(
     `Applying ${title} System Migration for version ${game.system.data.version}. 

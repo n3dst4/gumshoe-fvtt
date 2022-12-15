@@ -1,6 +1,6 @@
 import * as c from "./constants";
-import { assertGame, mapValues } from "./functions/functionsThatDontUseSettings";
-import { niceBlackAgentsPreset, pathOfCthulhuPreset } from "./presets";
+import { assertGame, mapValues } from "./functions";
+import { pathOfCthulhuPreset } from "./presets";
 import { defaultCustomThemePath, systemName } from "./constants";
 import { runtimeConfig } from "./runtime";
 import { ThemeV1 } from "./themes/types";
@@ -214,7 +214,7 @@ export const settings = {
   equipmentCategories: createSettingObject({
     key: "equipmentCategories",
     name: "Equipment categories",
-    default: niceBlackAgentsPreset.equipmentCategories,
+    default: pathOfCthulhuPreset.equipmentCategories,
   }),
   migrationFlags: createSettingObject<MigrationFlags>({
     key: "migrationFlags",

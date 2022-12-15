@@ -1,18 +1,26 @@
-export interface MigrationFlags {
-  actor: Record<string, boolean>;
-  item: Record<string, boolean>;
-  scene: Record<string, boolean>;
-  journal: Record<string, boolean>;
-  macro: Record<string, boolean>;
-  rollTable: Record<string, boolean>;
-  compendium: Record<string, boolean>;
-  playlist: Record<string, boolean>;
-  world: Record<string, boolean>;
-}
+export type MigrationTypes =
+  | "actor"
+  | "compendium"
+  | "item"
+  | "journal"
+  | "macro"
+  | "playlist"
+  | "rollTable"
+  | "scene"
+  | "world";
+
+export type MigrationFlagsForType = { [migrationName: string]: boolean }
+
+export type MigrationFlags = {
+  [migrationType in MigrationTypes]: MigrationFlagsForType;
+};
+
+export type MigrationFunction = (data: any, updateData: any) => any;
+
+export type MigrationFunctionsForType = {
+  [migrationName: string]: MigrationFunction,
+};
 
 export type FlaggedMigrations = {
-  [k in keyof MigrationFlags]: Record<
-    string,
-    (data: any, updateData: any) => any
-  >;
+  [migrationType in MigrationTypes]: MigrationFunctionsForType;
 };

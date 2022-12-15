@@ -31,17 +31,17 @@ export const fixLength = <T>(
   return result;
 };
 
-export const mapValues = <V1, V2>(
-  mapper: (v: V1, k: string, i: number) => V2,
-  subject: { [k: string]: V1 },
-): { [k: string]: V2 } => {
+export const mapValues = <V1, V2, K extends string=string>(
+  mapper: (v: V1, k: K, i: number) => V2,
+  subject: { [k in K]: V1 },
+): { [k in K]: V2 } => {
   const result: { [k: string]: V2 } = {};
   let i = 0;
   for (const k in subject) {
     result[k] = mapper(subject[k], k, i);
     i += 1;
   }
-  return result;
+  return result as { [k in K]: V2 };
 };
 
 export const isNullOrEmptyString = (x: any) => {

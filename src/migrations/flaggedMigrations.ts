@@ -1,9 +1,7 @@
 import { generalAbility } from "../constants";
 import { isNullOrEmptyString } from "../functions";
 import { getDefaultGeneralAbilityCategory } from "../settings";
-import { MigrationFlags } from "./types";
-
-type FlaggedMigrations = { [k in keyof MigrationFlags]: { [k: string]: (data: any, updateData: any) => any } };
+import { FlaggedMigrations } from "./types";
 
 export const flaggedMigrations: FlaggedMigrations = {
   item: {

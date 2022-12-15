@@ -18,7 +18,8 @@ export const installEquipmentCategoryHookHandler = () => {
       if (
         isEquipmentDataSource(item.data)
       ) {
-        const category = Object.keys(settings.equipmentCategories.get())[0];
+        const equipmentCategories = settings.equipmentCategories.get();
+        const category = Object.keys(equipmentCategories)[0];
         item.data.update({
           data: {
             category,
