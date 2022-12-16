@@ -23,9 +23,11 @@ export const migrateWorld = async function (flaggedMigrations: FlaggedMigrations
     { permanent: true },
   );
 
-  // you could do world migrations here if you had any
+  // apply flagged world migrations
+  for (const worldMigration in flaggedMigrations.world) {
+    await flaggedMigrations.world[worldMigration](null, null);
+  }
 
-  assertGame(game);
   // Migrate World Actors
   for (const a of game.actors?.contents ?? []) {
     try {

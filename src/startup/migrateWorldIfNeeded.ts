@@ -15,7 +15,7 @@ export const migrateWorldIfNeeded = async () => {
     return;
   }
   const migrationFlags = settings.migrationFlags.get();
-  const [needsMigrationBasedOnFlags, filteredMigrations] =
+  const [needsMigrationBasedOnFlags, filteredMigrations, newMigrationFlags] =
     getFlaggedMigrations(migrationFlags, flaggedMigrations);
 
   // Perform the migration
@@ -24,5 +24,6 @@ export const migrateWorldIfNeeded = async () => {
     needsMigrationBasedOnFlags
   ) {
     migrateWorld(filteredMigrations);
+    settings.migrationFlags.set(newMigrationFlags);
   }
 };

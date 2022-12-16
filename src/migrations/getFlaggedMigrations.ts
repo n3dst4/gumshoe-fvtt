@@ -1,11 +1,20 @@
 import { mapValues } from "../functions";
-import { FlaggedMigrations, MigrationFlags, MigrationFunctionsForType, MigrationTypes } from "./types";
+import {
+  FlaggedMigrations,
+  MigrationFlags,
+  MigrationFlagsForType,
+  MigrationFunctionsForType,
+  MigrationTypes,
+} from "./types";
 
 /**
  * This is the new migration system, based on flags which indicate when a
  * particular migration has been run.
  */
-export function getFlaggedMigrations (migrationFlags: MigrationFlags, flaggedMigrations: FlaggedMigrations) {
+export function getFlaggedMigrations (
+  migrationFlags: MigrationFlags,
+  flaggedMigrations: FlaggedMigrations,
+) {
   const filteredMigrations = mapValues<
     MigrationFunctionsForType,
     MigrationFunctionsForType,
@@ -25,5 +34,17 @@ export function getFlaggedMigrations (migrationFlags: MigrationFlags, flaggedMig
   const needsMigrationBasedOnFlags =
     Object.values(filteredMigrations).flatMap(Object.values).length > 0;
 
-  return [needsMigrationBasedOnFlags, filteredMigrations] as const;
+  const newMigrationFlags = mapValues<
+    MigrationFunctionsForType,
+    MigrationFlagsForType,
+    MigrationTypes
+  >((migrations, type) => {
+    return mapValues(() => true, migrations);
+  }, flaggedMigrations);
+
+  return [
+    needsMigrationBasedOnFlags,
+    filteredMigrations,
+    newMigrationFlags,
+  ] as const;
 }
