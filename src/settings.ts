@@ -11,22 +11,26 @@ import { MigrationFlags } from "./migrations/types";
 interface SettingFactoryArgs<T> {
   key: string;
   name: string;
-  scope?: "world"|"client";
+  scope?: "world" | "client";
   config?: boolean;
   choices?: (T extends number | string ? Record<T, string> : never) | undefined;
   default: T;
   onChange?: (newVal: T) => void;
 }
 
-const getSetting = <T = string>(key: string) => (): T => {
-  assertGame(game);
-  return game.settings.get(systemName, key) as T;
-};
+const getSetting =
+  <T = string>(key: string) =>
+    (): T => {
+      assertGame(game);
+      return game.settings.get(systemName, key) as T;
+    };
 
-const setSetting = <T = string>(key: string) => (value: T) => {
-  assertGame(game);
-  return game.settings.set(systemName, key, value);
-};
+const setSetting =
+  <T = string>(key: string) =>
+    (value: T) => {
+      assertGame(game);
+      return game.settings.set(systemName, key, value);
+    };
 
 const createSetting = <T>(
   {
@@ -52,28 +56,24 @@ const createSetting = <T>(
       onChange,
     });
   });
-  return ({
+  return {
     key,
     get: getSetting<T>(key),
     set: setSetting<T>(key),
-  });
+  };
 };
 
-const createSettingString = (args: SettingFactoryArgs<string>) => (
-  createSetting(args, String)
-);
+const createSettingString = (args: SettingFactoryArgs<string>) =>
+  createSetting(args, String);
 
-const createSettingArray = <T>(args: SettingFactoryArgs<T>) => (
-  createSetting(args, Array)
-);
+const createSettingArray = <T>(args: SettingFactoryArgs<T>) =>
+  createSetting(args, Array);
 
-const createSettingBoolean = (args: SettingFactoryArgs<boolean>) => (
-  createSetting(args, Boolean)
-);
+const createSettingBoolean = (args: SettingFactoryArgs<boolean>) =>
+  createSetting(args, Boolean);
 
-const createSettingObject = <T>(args: SettingFactoryArgs<T>) => (
-  createSetting<T>(args, Object)
-);
+const createSettingObject = <T>(args: SettingFactoryArgs<T>) =>
+  createSetting<T>(args, Object);
 
 export const settings = {
   /**
@@ -103,7 +103,10 @@ export const settings = {
     key: "defaultThemeName",
     name: "Default sheet theme",
     default: pathOfCthulhuPreset.defaultThemeName,
-    choices: mapValues((theme: ThemeV1) => theme.displayName, runtimeConfig.themes),
+    choices: mapValues(
+      (theme: ThemeV1) => theme.displayName,
+      runtimeConfig.themes,
+    ),
   }),
   generalAbilityCategories: createSettingObject({
     key: "generalAbilityCategories",
@@ -153,7 +156,7 @@ export const settings = {
   }),
   occupationLabel: createSettingString({
     key: "occupationLabel",
-    name: "What do we call \"Occupation\"?",
+    name: 'What do we call "Occupation"?',
     default: pathOfCthulhuPreset.occupationLabel,
   }),
   shortNotes: createSettingObject({
@@ -246,13 +249,18 @@ export const getDefaultGeneralAbilityCategory = () => {
 export const getDefaultInvestigativeAbilityCategory = () => {
   const cat = settings.investigativeAbilityCategories.get()[0];
   if (!cat) {
-    throw new Error("No investigative ability categories found in system settings");
+    throw new Error(
+      "No investigative ability categories found in system settings",
+    );
   }
   return cat;
 };
 
-export type SettingsDict = { [Property in keyof typeof settings]: ReturnType<(typeof settings)[Property]["get"]> };
+export type SettingsDict = {
+  [Property in keyof typeof settings]: ReturnType<
+    typeof settings[Property]["get"]
+  >;
+};
 
-export const getSettingsDict = () => (
-  mapValues((x) => x.get(), settings) as SettingsDict
-);
+export const getSettingsDict = () =>
+  mapValues((x) => x.get(), settings) as SettingsDict;
