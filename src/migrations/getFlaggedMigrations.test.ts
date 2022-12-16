@@ -13,6 +13,111 @@ const emptyFlaggedMigrations: FlaggedMigrations = {
   playlist: {},
 };
 
+const sampleFlaggedMigrations: FlaggedMigrations = {
+  item: {
+    itemMigration1: () => {},
+    itemMigration2: () => {},
+  },
+  actor: {
+    actorMigration1: () => {},
+    actorMigration2: () => {},
+  },
+  world: {
+    worldMigration1: () => {},
+    worldMigration2: () => {},
+  },
+  compendium: {},
+  journal: {},
+  macro: {},
+  scene: {},
+  rollTable: {},
+  playlist: {},
+};
+
+const sampleMigrationFlags1: MigrationFlags = {
+  item: {
+    itemMigration1: true,
+    itemMigration2: false,
+  },
+  actor: {
+    actorMigration1: true,
+    actorMigration2: false,
+  },
+  world: {
+    worldMigration1: true,
+    worldMigration2: false,
+  },
+  compendium: {},
+  journal: {},
+  macro: {},
+  scene: {},
+  rollTable: {},
+  playlist: {},
+};
+
+const result1: [boolean, FlaggedMigrations] = [
+  true,
+  {
+    item: {
+      itemMigration2: sampleFlaggedMigrations.item.itemMigration2,
+    },
+    actor: {
+      actorMigration2: sampleFlaggedMigrations.actor.actorMigration2,
+    },
+    world: {
+      worldMigration2: sampleFlaggedMigrations.world.worldMigration2,
+    },
+    compendium: {},
+    journal: {},
+    macro: {},
+    scene: {},
+    rollTable: {},
+    playlist: {},
+  },
+];
+
+const sampleMigrationFlags2: MigrationFlags = {
+  item: {
+    itemMigration1: false,
+    itemMigration2: false,
+  },
+  actor: {
+    actorMigration1: false,
+    actorMigration2: false,
+  },
+  world: {
+    worldMigration1: false,
+    worldMigration2: false,
+  },
+  compendium: {},
+  journal: {},
+  macro: {},
+  scene: {},
+  rollTable: {},
+  playlist: {},
+};
+
+const sampleMigrationFlags3: MigrationFlags = {
+  item: {
+    itemMigration1: true,
+    itemMigration2: true,
+  },
+  actor: {
+    actorMigration1: true,
+    actorMigration2: true,
+  },
+  world: {
+    worldMigration1: true,
+    worldMigration2: true,
+  },
+  compendium: {},
+  journal: {},
+  macro: {},
+  scene: {},
+  rollTable: {},
+  playlist: {},
+};
+
 const emptyMigrationFlags: MigrationFlags = {
   item: {},
   actor: {},
@@ -26,15 +131,39 @@ const emptyMigrationFlags: MigrationFlags = {
 };
 
 describe("getFlaggedMigrations", () => {
-  test("empty", () => {
-    expect(3).toEqual(3);
-  });
-  test.each<[MigrationFlags, FlaggedMigrations, [boolean, FlaggedMigrations]]>([
-    [emptyMigrationFlags, emptyFlaggedMigrations, [false, emptyFlaggedMigrations]],
-  ])("getFlaggedMigrations(%s)", (migrationFlags, flaggedMigrations, expected) => {
-    const result = getFlaggedMigrations(migrationFlags, flaggedMigrations);
-    expect(result).toEqual(
-      expected,
-    );
-  });
+  test.each<
+    [string, MigrationFlags, FlaggedMigrations, [boolean, FlaggedMigrations]]
+  >([
+    [
+      "Empty everything",
+      emptyMigrationFlags,
+      emptyFlaggedMigrations,
+      [false, emptyFlaggedMigrations],
+    ],
+    [
+      "No flags set",
+      emptyMigrationFlags,
+      sampleFlaggedMigrations,
+      [true, sampleFlaggedMigrations],
+    ],
+    ["Some flagged", sampleMigrationFlags1, sampleFlaggedMigrations, result1],
+    [
+      "All flags false",
+      sampleMigrationFlags2,
+      sampleFlaggedMigrations,
+      [true, sampleFlaggedMigrations],
+    ],
+    [
+      "All flags true",
+      sampleMigrationFlags3,
+      sampleFlaggedMigrations,
+      [false, emptyFlaggedMigrations],
+    ],
+  ])(
+    "getFlaggedMigrations(%s)",
+    (_, migrationFlags, flaggedMigrations, expected) => {
+      const result = getFlaggedMigrations(migrationFlags, flaggedMigrations);
+      expect(result).toEqual(expected);
+    },
+  );
 });
