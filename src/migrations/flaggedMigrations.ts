@@ -1,17 +1,27 @@
-import { generalAbility } from "../constants";
+import * as c from "../constants";
 import { isNullOrEmptyString } from "../functions";
-import { getDefaultGeneralAbilityCategory } from "../settings";
+import { pathOfCthulhuPreset } from "../presets";
 import { FlaggedMigrations } from "./types";
 
 export const flaggedMigrations: FlaggedMigrations = {
   item: {
-    setCategory: (data: any, updateData: any) => {
-      if (data.type === generalAbility && isNullOrEmptyString(data.data?.category)) {
-        const cat = getDefaultGeneralAbilityCategory();
+    /**
+     * If you launch a world the predates the concept of equipment categories,
+     * your category list will be initialised to the default value, which is a
+     * single category called "general". This migration will set the category
+     * field on any existing equipment.
+     */
+    setEquipmentCategory: (data: any, updateData: any) => {
+      if (
+        data.type === c.equipment &&
+        isNullOrEmptyString(data.data?.category)
+      ) {
         if (!updateData.data) {
           updateData.data = {};
         }
-        updateData.data.category = cat;
+        updateData.data.category = Object.keys(
+          pathOfCthulhuPreset.equipmentCategories,
+        )[0];
       }
       return updateData;
     },
