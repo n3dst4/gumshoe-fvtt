@@ -1,4 +1,4 @@
-import { mapValues } from "../functions/mapValues";
+import { mapValues } from "../functions";
 import { FlaggedMigrations, MigrationFlags, MigrationFunctionsForType, MigrationTypes } from "./types";
 
 /**
