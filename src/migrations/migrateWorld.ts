@@ -16,7 +16,9 @@ const title = system.title;
  * Actors, Items, and Compendium packs
  * @return {Promise}      A Promise which resolves once the migration is completed
  */
-export const migrateWorld = async function (flaggedMigrations: FlaggedMigrations) {
+export const migrateWorld = async function (
+  flaggedMigrations: FlaggedMigrations,
+) {
   assertGame(game);
   (ui as any).notifications.info(
     `Applying ${title} System Migration for version ${game.system.data.version}. 
@@ -72,7 +74,7 @@ export const migrateWorld = async function (flaggedMigrations: FlaggedMigrations
 
   // Migrate World Compendium Packs
   // XXX another any
-  for (const p of (game.packs as any)) {
+  for (const p of game.packs as any) {
     if (p.metadata.package !== "world") continue;
     if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
     await migrateCompendium(p, flaggedMigrations);
@@ -80,12 +82,15 @@ export const migrateWorld = async function (flaggedMigrations: FlaggedMigrations
 
   // Set the migration as complete
   settings.systemMigrationVersion.set(system.version);
-  ui.notifications?.info(`${system.title} system migration to version ${system.version} completed!`, { permanent: true });
+  ui.notifications?.info(
+    `${system.title} system migration to version ${system.version} completed!`,
+    { permanent: true },
+  );
 };
 
 (window as any).migrateSystemCompendiums = async () => {
   assertGame(game);
-  for (const p of (game.packs as any)) {
+  for (const p of game.packs as any) {
     if (p.metadata.package !== constants.systemName) continue;
     if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
     await migrateCompendium(p, flaggedMigrations);

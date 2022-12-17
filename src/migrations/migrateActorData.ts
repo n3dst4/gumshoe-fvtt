@@ -1,5 +1,9 @@
 import { migrateItemData } from "./migrateItemData";
-import { moveOldNotesToNewNoteSlots, moveStats, upgradeLongNotesToRichText } from "./actorMigrations";
+import {
+  moveOldNotesToNewNoteSlots,
+  moveStats,
+  upgradeLongNotesToRichText,
+} from "./actorMigrations";
 import { FlaggedMigrations } from "./types";
 
 /**
@@ -8,7 +12,10 @@ import { FlaggedMigrations } from "./types";
  * @param {object} actor    The actor data object to update
  * @return {Object}         The updateData to apply
  */
-export const migrateActorData = function (actorData: any, flaggedMigrations: FlaggedMigrations) {
+export const migrateActorData = function (
+  actorData: any,
+  flaggedMigrations: FlaggedMigrations,
+) {
   const updateData: any = {};
 
   // Actor Data Updates
@@ -24,22 +31,27 @@ export const migrateActorData = function (actorData: any, flaggedMigrations: Fla
 
   // Migrate Owned Items
   if (!actorData.items) return updateData;
-  const items = Array.from(actorData.items.entries()).flatMap(([_, item]: any) => {
-    const itemData = item instanceof CONFIG.Item.documentClass ? item.toObject() : item;
+  const items = Array.from(actorData.items.entries()).flatMap(
+    ([_, item]: any) => {
+      const itemData =
+        item instanceof CONFIG.Item.documentClass ? item.toObject() : item;
 
-    // Migrate the Owned Item
-    const itemUpdate = migrateItemData(itemData, flaggedMigrations);
+      // Migrate the Owned Item
+      const itemUpdate = migrateItemData(itemData, flaggedMigrations);
 
-    // Update the Owned Item
-    if (!isObjectEmpty(itemUpdate)) {
-      return [{
-        _id: itemData._id,
-        ...itemUpdate,
-      }];
-    } else {
-      return [];
-    }
-  });
+      // Update the Owned Item
+      if (!isObjectEmpty(itemUpdate)) {
+        return [
+          {
+            _id: itemData._id,
+            ...itemUpdate,
+          },
+        ];
+      } else {
+        return [];
+      }
+    },
+  );
   if (items.length > 0) updateData.items = items;
   return updateData;
 };
