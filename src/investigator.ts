@@ -7,7 +7,6 @@ import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { installCompendiumExportButton } from "./startup/installCompendiumExportButton";
 import { installShowThemeFarmHack } from "./startup/installShowThemeFarmHack";
 import { installAbilityCardChatWrangler } from "./startup/installAbilityCardChatWrangler";
-import { installFathom } from "./startup/installFathom";
 import { migrateWorldIfNeeded } from "./startup/migrateWorldIfNeeded";
 import { installAbilityCategoryHookHandler } from "./startup/installAbilityCategoryHookHandler";
 import { installItemImageHookHandler } from "./startup/installItemImageHookHandler";
@@ -25,7 +24,6 @@ import { installInitiativeUpdateHookHandler } from "./startup/installInitiativeU
 import { assertGame } from "./functions";
 import { installTurnPassingHandler } from "./startup/installTurnPassingHandler";
 import { installSocketActionHandler } from "./startup/installSocketActionHandler";
-import { installVisitorCounter } from "./startup/installVisitorCounter";
 import { installEquipmentCategoryHookHandler } from "./startup/installEquipmentCategoryHookHandler";
 
 injectGlobalHelper();
@@ -63,11 +61,9 @@ installActorImageHookHandler();
 installCompendiumExportButton();
 initializePackGenerators();
 installAbilityCardChatWrangler();
-installFathom();
 loadCustomThemes();
 handleMwItemType();
 installInitiativeUpdateHookHandler();
 installTurnPassingHandler();
 installSocketActionHandler();
-installVisitorCounter();
 installEquipmentCategoryHookHandler();

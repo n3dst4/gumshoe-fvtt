@@ -11,7 +11,7 @@
   - [Using the "Developer mode" module](#using-the-developer-mode-module)
   - [Development flow](#development-flow)
   - [Release process](#release-process)
-    - [What happend if the CI pipeline fails?](#what-happend-if-the-ci-pipeline-fails)
+    - [What happens if the CI pipeline fails?](#what-happens-if-the-ci-pipeline-fails)
 
 ## Development & general hacking
 
@@ -116,7 +116,7 @@ What this enables (list subject to change):
 
 ## Release process
 
-*The innocuous-looking 4.9.7 release represented a change in how we do releases. We used to have a `release` branch which pointed to the most recent release, with attachment links pasted into `system.json` for the download. For the forseeable future we wiill need to fast-forward `release` to `main` when releasing to make sure we catch slow updaters*
+*The innocuous-looking 4.9.7 release represented a change in how we do releases. We used to have a `release` branch which pointed to the most recent release, with attachment links pasted into `system.json` for the download. For the foreseeable future we will need to fast-forward `release` to `main` when releasing to make sure we catch slow updaters*
 
 To perform a release: 
 
@@ -142,7 +142,7 @@ To perform a release:
 
 7. Go and barf forth glad tidings on the [Pelgrane's Virtual Tabletops Discord channel][pelgrane-discord] and the [Foundry Package Releases channel][fprd].
 
-### What happend if the CI pipeline fails?
+### What happens if the CI pipeline fails?
 
 1. Delete the `vX.Y.Z` tag from local and remote:
 

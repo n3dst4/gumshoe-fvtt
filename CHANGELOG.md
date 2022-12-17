@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 5.1.3 (2022-11-08)
+
+* Fix #142 - the combat tracker should now be okay in v9 and v10. That thing is the absolute bane of my life.
+
 ## 5.1.2 (2022-09-02)
 
 * Re-fix the combat sidebar in v10.
