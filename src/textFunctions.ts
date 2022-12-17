@@ -27,11 +27,13 @@ const makeTurndownService = memoize(async () => {
 const newWhitelist = Object.fromEntries(
   Object.entries(defaultXssWhitelist).map(([tag, attrList = []]) => [
     tag,
-    [...attrList, "style"],
+    [...attrList,
+      "style",
+    ],
   ]),
 );
 
-// ooh, copilot said this:
+// copilot said this but it does not work
 // newWhitelist["*"] = ["style"];
 
 // custom xss to allow style attributes and allow images with src attributes.
