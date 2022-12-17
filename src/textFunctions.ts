@@ -1,6 +1,6 @@
 import { escape as escapeText } from "html-escaper";
 import { NoteFormat } from "./types";
-import { FilterXSS, whiteList as defaultXssWhitelist } from "xss";
+import { FilterXSS, whiteList as defaultXssWhitelist, escapeAttrValue } from "xss";
 import memoize from "lodash/memoize";
 
 const makeTurndownService = memoize(async () => {
@@ -31,9 +31,20 @@ const newWhitelist = Object.fromEntries(
   ]),
 );
 
-// custom xss using our new whitelist
+// ooh, copilot said this:
+// newWhitelist["*"] = ["style"];
+
+// custom xss to allow style attributes and allow images with src attributes.
+// Yes, it's not ideal XSS, but then again this is a collaborative, trusted
+// environment.
 const xss = new FilterXSS({
   whiteList: newWhitelist,
+  onTagAttr: function (tag, name, value, isWhiteAttr) {
+    if (tag === "img" && name === "src") {
+      // escape its value using built-in escapeAttrValue function
+      return name + '="' + escapeAttrValue(value) + '"';
+    }
+  },
 });
 
 // /////////////////////////////////////////////////////////////////////////////
@@ -104,6 +115,7 @@ export async function toHtml (format: NoteFormat, source: string) {
   } else if (format === NoteFormat.richText) {
     newHtml = source;
   }
-  const html = TextEditor.enrichHTML(xss.process(newHtml));
+  const xssed = xss.process(newHtml);
+  const html = TextEditor.enrichHTML(xssed);
   return html;
 }
