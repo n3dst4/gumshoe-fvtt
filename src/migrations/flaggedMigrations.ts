@@ -16,6 +16,7 @@ export const flaggedMigrations: FlaggedMigrations = {
         data.type === c.equipment &&
         isNullOrEmptyString(data.data?.category)
       ) {
+        logger.info(`Migrating item ${data.name} to set category`);
         if (!updateData.data) {
           updateData.data = {};
         }

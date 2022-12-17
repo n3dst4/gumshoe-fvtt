@@ -7,6 +7,7 @@ import { assertGame } from "../functions";
 import * as constants from "../constants";
 import { settings } from "../settings";
 import { FlaggedMigrations } from "./types";
+import { flaggedMigrations } from "./flaggedMigrations";
 
 const title = system.title;
 
@@ -31,9 +32,8 @@ export const migrateWorld = async function (flaggedMigrations: FlaggedMigrations
   // Migrate World Actors
   for (const a of game.actors?.contents ?? []) {
     try {
-      const updateData = migrateActorData(a.data);
+      const updateData = migrateActorData(a.data, flaggedMigrations);
       if (!isObjectEmpty(updateData)) {
-        console.log(`Migrating Actor entity ${a.name}`);
         await a.update(updateData, { enforceTypes: false });
       }
     } catch (err: any) {
@@ -45,7 +45,7 @@ export const migrateWorld = async function (flaggedMigrations: FlaggedMigrations
   // Migrate World Items
   for (const i of game.items?.contents ?? []) {
     try {
-      const updateData = migrateItemData(i.data);
+      const updateData = migrateItemData(i.data, flaggedMigrations);
       if (!isObjectEmpty(updateData)) {
         console.log(`Migrating Item entity ${i.name}`);
         await i.update(updateData, { enforceTypes: false });
@@ -59,7 +59,7 @@ export const migrateWorld = async function (flaggedMigrations: FlaggedMigrations
   // Migrate Actor Override Tokens
   for (const s of game.scenes?.contents ?? []) {
     try {
-      const updateData = migrateSceneData(s.data);
+      const updateData = migrateSceneData(s.data, flaggedMigrations);
       if (!isObjectEmpty(updateData)) {
         console.log(`Migrating Scene entity ${s.name}`);
         await s.update(updateData, { enforceTypes: false });
@@ -75,7 +75,7 @@ export const migrateWorld = async function (flaggedMigrations: FlaggedMigrations
   for (const p of (game.packs as any)) {
     if (p.metadata.package !== "world") continue;
     if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
-    await migrateCompendium(p);
+    await migrateCompendium(p, flaggedMigrations);
   }
 
   // Set the migration as complete
@@ -88,6 +88,6 @@ export const migrateWorld = async function (flaggedMigrations: FlaggedMigrations
   for (const p of (game.packs as any)) {
     if (p.metadata.package !== constants.systemName) continue;
     if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
-    await migrateCompendium(p);
+    await migrateCompendium(p, flaggedMigrations);
   }
 };

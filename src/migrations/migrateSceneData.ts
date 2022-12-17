@@ -1,4 +1,5 @@
 import { migrateActorData } from "./migrateActorData";
+import { FlaggedMigrations } from "./types";
 
 /**
  * Migrate a single Scene entity to incorporate changes to the data model of it's actor data overrides
@@ -8,7 +9,7 @@ import { migrateActorData } from "./migrateActorData";
  *
  * XXX the current Scene type isn't up to scratch
  */
-export const migrateSceneData = function (scene: any) {
+export const migrateSceneData = function (scene: any, flaggedMigrations: FlaggedMigrations) {
   const tokens = duplicate(scene.tokens);
   return {
     tokens: tokens.map((t: any) => {
@@ -21,7 +22,7 @@ export const migrateSceneData = function (scene: any) {
         t.actorId = null;
         t.actorData = {};
       } else if (!t.actorLink) {
-        const updateData = migrateActorData(token.data.actorData);
+        const updateData = migrateActorData(token.data.actorData, flaggedMigrations);
         t.actorData = mergeObject(token.data.actorData, updateData);
       }
       return t;

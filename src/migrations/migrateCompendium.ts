@@ -2,14 +2,20 @@ import { migrateActorData } from "./migrateActorData";
 import { migrateItemData } from "./migrateItemData";
 import { migrateSceneData } from "./migrateSceneData";
 import system from "../../public/system.json";
+import { FlaggedMigrations } from "./types";
 
 /**
  * Apply migration rules to all Entities within a single Compendium pack
  * @param pack
  * @return {Promise}
  */
-export const migrateCompendium = async function (pack: any) {
+export const migrateCompendium = async function (pack: any, flaggedMigrations: FlaggedMigrations) {
   const entity = pack.metadata.entity;
+
+  for (const packMigration in flaggedMigrations.compendium) {
+    flaggedMigrations.compendium[packMigration](pack, entity);
+  }
+
   if (!["Actor", "Item", "Scene"].includes(entity)) return;
 
   // Unlock the pack for editing
@@ -26,13 +32,13 @@ export const migrateCompendium = async function (pack: any) {
     try {
       switch (entity) {
         case "Actor":
-          updateData = migrateActorData(ent.data);
+          updateData = migrateActorData(ent.data, flaggedMigrations);
           break;
         case "Item":
-          updateData = migrateItemData(ent.data);
+          updateData = migrateItemData(ent.data, flaggedMigrations);
           break;
         case "Scene":
-          updateData = migrateSceneData(ent.data);
+          updateData = migrateSceneData(ent.data, flaggedMigrations);
           break;
       }
       if (isObjectEmpty(updateData)) continue;
