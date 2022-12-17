@@ -24,24 +24,22 @@ export const migrateActorData = function (actorData: any, flaggedMigrations: Fla
 
   // Migrate Owned Items
   if (!actorData.items) return updateData;
-  let hasItemUpdates = false;
-  const items = actorData.items.map((i: any) => {
+  const items = Array.from(actorData.items.entries()).flatMap(([_, item]: any) => {
+    const itemData = item instanceof CONFIG.Item.documentClass ? item.toObject() : item;
+
     // Migrate the Owned Item
-    const itemUpdate = migrateItemData(i.data, flaggedMigrations);
+    const itemUpdate = migrateItemData(itemData, flaggedMigrations);
 
     // Update the Owned Item
     if (!isObjectEmpty(itemUpdate)) {
-      hasItemUpdates = true;
-      return itemUpdate;
-      // return {
-      //   ...i.data,
-      //   ...itemUpdate,
-      // };
+      return [{
+        _id: itemData._id,
+        ...itemUpdate,
+      }];
     } else {
-      return {};
-      // return i.data;
+      return [];
     }
   });
-  if (hasItemUpdates) updateData.items = items;
+  if (items.length > 0) updateData.items = items;
   return updateData;
 };
