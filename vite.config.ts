@@ -26,7 +26,7 @@ const preambleHtml =
 '\n<script type="module">\n' + preambleJS + "\n</script>\n";
 const headTag = "<head>";
 
-const config = defineConfig(({ command, mode, ssrBuild }) => {
+const config = defineConfig(({ mode }) => {
   console.log(mode);
   return {
     root: "src/",
@@ -100,7 +100,11 @@ const config = defineConfig(({ command, mode, ssrBuild }) => {
       emptyOutDir: true,
       sourcemap: mode !== "production",
       minify: mode === "production",
+      // commonjsOptions: {
+      //   defaultIsModuleExports: "auto",
+      // },
       rollupOptions: {
+        // shimMissingExports: true,
         output: {
           assetFileNames: (assetInfo) => {
             if (assetInfo.name === "style.css") {
