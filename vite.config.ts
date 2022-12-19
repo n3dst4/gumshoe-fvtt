@@ -1,6 +1,6 @@
 import type { HttpProxy } from "vite";
 import { defineConfig } from "vite";
-import { visualizer } from "rollup-plugin-visualizer";
+// import { visualizer } from "rollup-plugin-visualizer";
 import checker from "vite-plugin-checker";
 import path from "path";
 import { name } from "./public/system.json";
@@ -131,21 +131,21 @@ const config = defineConfig(({ command, mode, ssrBuild }) => {
           lintCommand: `eslint "${path.join(__dirname, "/src/**/*.{ts,tsx}")}"`,
         },
       }),
-      visualizer({
-        gzipSize: true,
-        template: "treemap",
-        filename: "stats/treemap.html",
-      }),
-      visualizer({
-        gzipSize: true,
-        template: "sunburst",
-        filename: "stats/sunburst.html",
-      }),
-      visualizer({
-        gzipSize: true,
-        template: "network",
-        filename: "stats/network.html",
-      }),
+      // visualizer({
+      //   gzipSize: true,
+      //   template: "treemap",
+      //   filename: "stats/treemap.html",
+      // }),
+      // visualizer({
+      //   gzipSize: true,
+      //   template: "sunburst",
+      //   filename: "stats/sunburst.html",
+      // }),
+      // visualizer({
+      //   gzipSize: true,
+      //   template: "network",
+      //   filename: "stats/network.html",
+      // }),
     ],
   };
 });
