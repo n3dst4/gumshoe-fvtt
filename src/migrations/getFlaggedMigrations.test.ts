@@ -55,27 +55,6 @@ const sampleMigrationFlags1: MigrationFlags = {
   playlist: {},
 };
 
-const result1: [boolean, FlaggedMigrations] = [
-  true,
-  {
-    item: {
-      itemMigration2: sampleFlaggedMigrations.item.itemMigration2,
-    },
-    actor: {
-      actorMigration2: sampleFlaggedMigrations.actor.actorMigration2,
-    },
-    world: {
-      worldMigration2: sampleFlaggedMigrations.world.worldMigration2,
-    },
-    compendium: {},
-    journal: {},
-    macro: {},
-    scene: {},
-    rollTable: {},
-    playlist: {},
-  },
-];
-
 const sampleMigrationFlags2: MigrationFlags = {
   item: {
     itemMigration1: false,
@@ -118,6 +97,28 @@ const sampleMigrationFlags3: MigrationFlags = {
   playlist: {},
 };
 
+const result1: [boolean, FlaggedMigrations, MigrationFlags] = [
+  true,
+  {
+    item: {
+      itemMigration2: sampleFlaggedMigrations.item.itemMigration2,
+    },
+    actor: {
+      actorMigration2: sampleFlaggedMigrations.actor.actorMigration2,
+    },
+    world: {
+      worldMigration2: sampleFlaggedMigrations.world.worldMigration2,
+    },
+    compendium: {},
+    journal: {},
+    macro: {},
+    scene: {},
+    rollTable: {},
+    playlist: {},
+  },
+  sampleMigrationFlags3,
+];
+
 const emptyMigrationFlags: MigrationFlags = {
   item: {},
   actor: {},
@@ -132,35 +133,35 @@ const emptyMigrationFlags: MigrationFlags = {
 
 describe("getFlaggedMigrations", () => {
   test.each<
-    [string, MigrationFlags, FlaggedMigrations, [boolean, FlaggedMigrations]]
+    [string, MigrationFlags, FlaggedMigrations, [boolean, FlaggedMigrations, MigrationFlags]]
   >([
     [
       "Empty everything",
       emptyMigrationFlags,
       emptyFlaggedMigrations,
-      [false, emptyFlaggedMigrations],
+      [false, emptyFlaggedMigrations, emptyMigrationFlags],
     ],
     [
       "No flags set",
       emptyMigrationFlags,
       sampleFlaggedMigrations,
-      [true, sampleFlaggedMigrations],
+      [true, sampleFlaggedMigrations, sampleMigrationFlags3],
     ],
     ["Some flagged", sampleMigrationFlags1, sampleFlaggedMigrations, result1],
     [
       "All flags false",
       sampleMigrationFlags2,
       sampleFlaggedMigrations,
-      [true, sampleFlaggedMigrations],
+      [true, sampleFlaggedMigrations, sampleMigrationFlags3],
     ],
     [
       "All flags true",
       sampleMigrationFlags3,
       sampleFlaggedMigrations,
-      [false, emptyFlaggedMigrations],
+      [false, emptyFlaggedMigrations, sampleMigrationFlags3],
     ],
   ])(
-    "getFlaggedMigrations(%s)",
+    "getFlaggedMigrations (%s)",
     (_, migrationFlags, flaggedMigrations, expected) => {
       const result = getFlaggedMigrations(migrationFlags, flaggedMigrations);
       expect(result).toEqual(expected);
