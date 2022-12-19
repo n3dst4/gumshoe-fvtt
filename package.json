@@ -61,7 +61,7 @@
     "json-stringify-pretty-compact": "^2.0.0",
     "less": "^4.1.2",
     "rimraf": "^3.0.2",
-    "rollup-plugin-visualizer": "^5.7.1",
+    "rollup-plugin-visualizer": "^5.8.3",
     "sass": "^1.32.2",
     "ts-jest": "^27.1.4",
     "tsd": "^0.24.1",
