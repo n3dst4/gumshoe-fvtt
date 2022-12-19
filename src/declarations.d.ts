@@ -20,7 +20,8 @@ declare module "irid" {
     hue(): number;
     hue(h: number): Irid;
   }
-  export default Irid;
+  const defaultExport: { default: (from: Iridable) => Irid };
+  export default defaultExport;
 }
 
 declare const Babele: any;
