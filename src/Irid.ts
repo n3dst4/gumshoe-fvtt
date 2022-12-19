@@ -1,3 +1,3 @@
 import irid from "irid";
 
-export const Irid = irid.default;
+export const Irid = irid;
