@@ -145,7 +145,7 @@ export const slice = createSlice<State>()({
   },
   addCategory: (draft: State) => {
     draft.settings.equipmentCategories[nanoid()] = {
-      name: "New field",
+      name: "New category",
       fields: {},
     };
   },
