@@ -18,12 +18,13 @@ export const GridField: React.FC<GridFieldProps> = ({
   children,
   noLabel = false,
   noTranslate = false,
-  labelTitle = "???",
+  labelTitle,
 }) => {
   const id = useMemo(() => nanoid(), []);
   return (
     <IdContext.Provider value={id}>
       <label
+        title={labelTitle}
         htmlFor={noLabel ? undefined : id}
         css={{
           gridColumn: "label",

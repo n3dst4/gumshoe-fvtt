@@ -24,7 +24,7 @@ export const EquipmentField: React.FC<EquipmentFieldProps> = ({
   }, [equipment, fieldId]);
 
   return (
-    <GridField noTranslate key={fieldId} label={fieldMetadata.name}>
+    <GridField noTranslate key={fieldId} label={fieldMetadata.name} labelTitle={`Field ID: ${fieldId}`}>
       {fieldMetadata.type === "string" && (
         <AsyncTextInput value={value as string} onChange={onChange} />
       )}
