@@ -63,7 +63,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
         }}
       >
         <GridField
-          label="Name"
+          label="Category Name"
           css={{
             display: "flex",
             gap: "1em",
@@ -75,38 +75,38 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
             value={settings.equipmentCategories[id].name}
             onChange={handleNameChange}
           />
-        <Dropdown
-          showArrow={false}
-          label={<FaEllipsisH />}
-          css={{
-            flex: 0,
-            paddingLeft: "1em",
-            paddingRight: "1em",
-          }}
-        >
-          {
-            <Menu>
-              {idx > 0 && (
-                <MenuItem icon={<FaArrowUp />} onClick={handleUp}>
-                  {getTranslated("Move up")}
+          <Dropdown
+            showArrow={false}
+            label={<FaEllipsisH />}
+            css={{
+              flex: 0,
+              paddingLeft: "1em",
+              paddingRight: "1em",
+            }}
+          >
+            {
+              <Menu>
+                {idx > 0 && (
+                  <MenuItem icon={<FaArrowUp />} onClick={handleUp}>
+                    {getTranslated("Move up")}
+                  </MenuItem>
+                )}
+                {idx < Object.keys(settings.equipmentCategories).length - 1 && (
+                  <MenuItem icon={<FaArrowDown />} onClick={handleDown}>
+                    {getTranslated("Move down")}
+                  </MenuItem>
+                )}
+                <MenuItem icon={<FaTrash />} onClick={handleDelete}>
+                  {getTranslated("Delete")}
                 </MenuItem>
-              )}
-              {idx < Object.keys(settings.equipmentCategories).length - 1 && (
-                <MenuItem icon={<FaArrowDown />} onClick={handleDown}>
-                  {getTranslated("Move down")}
-                </MenuItem>
-              )}
-              <MenuItem icon={<FaTrash />} onClick={handleDelete}>
-                {getTranslated("Delete")}
-              </MenuItem>
-            </Menu>
-          }
-        </Dropdown>
+              </Menu>
+            }
+          </Dropdown>
         </GridField>
         <GridField
           label="Fields"
           css={{
-            margin: "0.5em 2em 0.5em 0",
+            // margin: "0.5em 2em 0.5em 0",
           }}
         >
           {Object.entries(settings.equipmentCategories[id].fields).map(

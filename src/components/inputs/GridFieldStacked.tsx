@@ -14,7 +14,7 @@ export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({
   label,
   className,
   children,
-  noTranslate,
+  noTranslate = false,
 }) => {
   const htmlId = useMemo(() => nanoid(), []);
   return (
@@ -26,7 +26,7 @@ export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({
           display: "flex",
           flexDirection: "column",
         }}
-        className={className}
+
       >
         <label
           htmlFor={htmlId}
@@ -40,6 +40,7 @@ export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({
             position: "relative",
             flex: 1,
           }}
+          className={className}
         >
           {children}
         </div>

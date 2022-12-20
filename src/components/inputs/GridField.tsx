@@ -30,7 +30,7 @@ export const GridField: React.FC<GridFieldProps> = ({
         }}
         className={className}
       >
-        {label && (noTranslate ? label : <Translate>{label}</Translate>)}
+        {label && ((noTranslate || typeof label !== "string") ? label : <Translate>{label}</Translate>)}
       </label>
       <div
         className={className}

@@ -20,7 +20,6 @@ export const EquipmentSettings: React.FC = () => {
 
   return (
     <>
-      <h2>Categories</h2>
       {Object.entries(settings.equipmentCategories).map(([id, { name, fields }], idx) => {
         return (
           <EquipmentCategory

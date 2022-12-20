@@ -150,5 +150,6 @@
     "investigator.MoveUp": "Move up",
     "investigator.MoveDown": "Move down",
     "investigator.Default": "Default",
-    "investigator.UncategorizedEquipment": "Uncategorized equipment"
+    "investigator.UncategorizedEquipment": "Uncategorized equipment",
+    "investigator.CategoryName": "Category Name"
 }
