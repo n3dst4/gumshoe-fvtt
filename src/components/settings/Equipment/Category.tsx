@@ -1,5 +1,11 @@
 import React, { MouseEventHandler, useCallback, useContext } from "react";
-import { FaEllipsisH, FaTrash, FaArrowUp, FaArrowDown, FaCode } from "react-icons/fa";
+import {
+  FaEllipsisH,
+  FaTrash,
+  FaArrowUp,
+  FaArrowDown,
+  FaCode,
+} from "react-icons/fa";
 import { confirmADoodleDo, getTranslated } from "../../../functions";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Dropdown } from "../../inputs/Dropdown";
@@ -67,20 +73,16 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
     }
   }, [dispatch, id]);
 
-  // const
-
-  const [showId, setShowId] = React.useState(false);
-
-  const toggleShowId = useCallback(() => {
-    setShowId((showId) => !showId);
-  }, []);
-
-  const handleIdChange = useCallback(
-    (newId: string) => {
+  const handleClickEditId = useCallback(() => {
+    const newId = prompt(
+      `Change ID string for "${settings.equipmentCategories[id].name}"\n\n` +
+        "⚠️ Careful! This will remove category information from any equipment using the current ID.",
+      id,
+    );
+    if (newId) {
       dispatch(slice.creators.changeCategoryId({ id, newId }));
-    },
-    [dispatch, id],
-  );
+    }
+  }, [dispatch, id, settings.equipmentCategories]);
 
   return (
     <>
@@ -123,10 +125,8 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
                     {getTranslated("Move down")}
                   </MenuItem>
                 )}
-                <MenuItem icon={<FaCode />} onClick={toggleShowId}>
-                  <Translate>
-                    {showId ? "Hide ID" : "Show ID"}
-                  </Translate>
+                <MenuItem icon={<FaCode />} onClick={handleClickEditId}>
+                  <Translate>View/change ID</Translate>
                 </MenuItem>
                 <MenuItem icon={<FaTrash />} onClick={handleDelete}>
                   {getTranslated("Delete")}
@@ -135,15 +135,6 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
             }
           </Dropdown>
         </GridField>
-        {showId && (
-          <GridField label="Category ID">
-            <AsyncTextInput
-              css={{ flex: 1 }}
-              value={id}
-              onChange={handleIdChange}
-            />
-          </GridField>
-        )}
         <GridField label="Fields">
           {Object.entries(settings.equipmentCategories[id].fields).map(
             ([fieldId, field], fieldIdx) => {

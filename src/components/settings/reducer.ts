@@ -159,11 +159,18 @@ export const slice = createSlice<State>()({
     cats[payload.id].name = payload.newName;
   },
   changeCategoryId: (
-    { settings: { equipmentCategories: cats } }: State,
+    { settings }: State,
     payload: { id: string, newId: string },
   ) => {
-    cats[payload.newId] = cats[payload.id];
-    delete cats[payload.id];
+    const newCats: typeof settings.equipmentCategories = {};
+    for (const [id, category] of Object.entries(settings.equipmentCategories)) {
+      if (id === payload.id) {
+        newCats[payload.newId] = category;
+      } else {
+        newCats[id] = category;
+      }
+    }
+    settings.equipmentCategories = newCats;
   },
   moveCategoryUp: (
     { settings }: State,

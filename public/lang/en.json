@@ -152,6 +152,5 @@
     "investigator.Default": "Default",
     "investigator.UncategorizedEquipment": "Uncategorized equipment",
     "investigator.CategoryName": "Category Name",
-    "investigator.ShowID": "Show ID",
-    "investigator.HideID": "Hide ID"
+    "investigator.ViewChangeID": "View/change ID"
 }
