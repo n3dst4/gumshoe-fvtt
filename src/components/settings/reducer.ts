@@ -158,6 +158,13 @@ export const slice = createSlice<State>()({
   ) => {
     cats[payload.id].name = payload.newName;
   },
+  changeCategoryId: (
+    { settings: { equipmentCategories: cats } }: State,
+    payload: { id: string, newId: string },
+  ) => {
+    cats[payload.newId] = cats[payload.id];
+    delete cats[payload.id];
+  },
   moveCategoryUp: (
     { settings }: State,
     { id }: { id: string },

@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, useCallback, useContext } from "react";
-import { FaEllipsisH, FaTrash, FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { FaEllipsisH, FaTrash, FaArrowUp, FaArrowDown, FaCode } from "react-icons/fa";
 import { confirmADoodleDo, getTranslated } from "../../../functions";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Dropdown } from "../../inputs/Dropdown";
@@ -67,6 +67,21 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
     }
   }, [dispatch, id]);
 
+  // const
+
+  const [showId, setShowId] = React.useState(false);
+
+  const toggleShowId = useCallback(() => {
+    setShowId((showId) => !showId);
+  }, []);
+
+  const handleIdChange = useCallback(
+    (newId: string) => {
+      dispatch(slice.creators.changeCategoryId({ id, newId }));
+    },
+    [dispatch, id],
+  );
+
   return (
     <>
       <InputGrid
@@ -108,6 +123,11 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
                     {getTranslated("Move down")}
                   </MenuItem>
                 )}
+                <MenuItem icon={<FaCode />} onClick={toggleShowId}>
+                  <Translate>
+                    {showId ? "Hide ID" : "Show ID"}
+                  </Translate>
+                </MenuItem>
                 <MenuItem icon={<FaTrash />} onClick={handleDelete}>
                   {getTranslated("Delete")}
                 </MenuItem>
@@ -115,6 +135,15 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
             }
           </Dropdown>
         </GridField>
+        {showId && (
+          <GridField label="Category ID">
+            <AsyncTextInput
+              css={{ flex: 1 }}
+              value={id}
+              onChange={handleIdChange}
+            />
+          </GridField>
+        )}
         <GridField label="Fields">
           {Object.entries(settings.equipmentCategories[id].fields).map(
             ([fieldId, field], fieldIdx) => {
