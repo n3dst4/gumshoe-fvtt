@@ -135,7 +135,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
 
-        <GridField label="Category">
+        <GridField label="Category" labelTitle={`Category ID: ${data.data.category}`}>
           <div
             css={{
               display: "flex",
