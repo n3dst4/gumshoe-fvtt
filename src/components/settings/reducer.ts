@@ -206,6 +206,21 @@ export const slice = createSlice<State>()({
   ) => {
     settings.equipmentCategories[payload.categoryId].fields[payload.fieldId].name = payload.newName;
   },
+  changeFieldId: (
+    { settings: { equipmentCategories: cats } }: State,
+    payload: { categoryId: string, fieldId: string, newFieldId: string },
+  ) => {
+    const newFields: Record<string, EquipmentFieldMetadata> = {};
+    for (const [id, field] of Object.entries(cats[payload.categoryId].fields)) {
+      if (id === payload.fieldId) {
+        newFields[payload.newFieldId] = field;
+      } else {
+        newFields[payload.fieldId] = field;
+      }
+    }
+    cats[payload.categoryId].fields = newFields;
+  },
+
   setFieldType: (
     { settings: { equipmentCategories: cats } }: State,
     payload: { categoryId: string, fieldId: string, newType: EquipmentFieldType },

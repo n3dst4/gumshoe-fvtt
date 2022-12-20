@@ -4,7 +4,7 @@ import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { DispatchContext, StateContext } from "../contexts";
 import { slice } from "../reducer";
 import { Dropdown } from "../../inputs/Dropdown";
-import { FaArrowDown, FaArrowUp, FaEllipsisH, FaTrash } from "react-icons/fa";
+import { FaArrowDown, FaArrowUp, FaCode, FaEllipsisH, FaTrash } from "react-icons/fa";
 import { Menu, MenuItem } from "../../inputs/Menu";
 import { getTranslated } from "../../../functions";
 import { NumberFieldSettings } from "./NumberFieldSettings";
@@ -12,6 +12,7 @@ import { StringFieldSettings } from "./StringFieldSettings";
 import { CheckboxFieldSettings } from "./CheckboxFieldSettings";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { assertIsEquipmentFieldType } from "../../../typeAssertions";
+import { Translate } from "../../Translate";
 
 interface FieldProps {
   field: EquipmentFieldMetadata;
@@ -74,6 +75,17 @@ export const Field: React.FC<FieldProps> = ({
     }
   }, [dispatch, categoryId, fieldId]);
 
+  const handleClickEditId = useCallback(() => {
+    const newFieldId = prompt(
+      `Change ID string for "${field.name}"\n\n` +
+        "⚠️ Careful! This will remove field information from any equipment using the current ID.",
+      fieldId,
+    );
+    if (newFieldId) {
+      dispatch(slice.creators.changeFieldId({ categoryId, fieldId, newFieldId }));
+    }
+  }, [categoryId, dispatch, field.name, fieldId]);
+
   return (
     <div
       css={{
@@ -133,6 +145,9 @@ export const Field: React.FC<FieldProps> = ({
                   {getTranslated("Move down")}
                 </MenuItem>
               )}
+              <MenuItem icon={<FaCode />} onClick={handleClickEditId}>
+                <Translate>View/change ID</Translate>
+              </MenuItem>
               <MenuItem icon={<FaTrash />} onClick={handleDelete}>
                 {getTranslated("Delete")}
               </MenuItem>
