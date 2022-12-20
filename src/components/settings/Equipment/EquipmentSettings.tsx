@@ -10,25 +10,22 @@ import { slice } from "../reducer";
 export const EquipmentSettings: React.FC = () => {
   assertGame(game);
   const dispatch = useContext(DispatchContext);
-  const handleAdd: MouseEventHandler = useCallback((e) => {
-    e.preventDefault();
-    dispatch(slice.creators.addCategory());
-  },
-  [dispatch],
+  const handleAdd: MouseEventHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(slice.creators.addCategory());
+    },
+    [dispatch],
   );
   const { settings } = useContext(StateContext);
 
   return (
     <>
-      {Object.entries(settings.equipmentCategories).map(([id, { name, fields }], idx) => {
-        return (
-          <EquipmentCategory
-            key={id}
-            id={id}
-            idx={idx}
-          />
-        );
-      })}
+      {Object.entries(settings.equipmentCategories).map(
+        ([id, { name, fields }], idx) => {
+          return <EquipmentCategory key={id} id={id} idx={idx} />;
+        },
+      )}
       <InputGrid
         css={{
           flex: 1,

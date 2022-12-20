@@ -23,24 +23,36 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
   const dispatch = useContext(DispatchContext);
   const { settings } = useContext(StateContext);
 
-  const handleNameChange = useCallback((newName: string) => {
-    dispatch(slice.creators.renameCategory({ id, newName }));
-  }, [dispatch, id]);
+  const handleNameChange = useCallback(
+    (newName: string) => {
+      dispatch(slice.creators.renameCategory({ id, newName }));
+    },
+    [dispatch, id],
+  );
 
-  const handleAddField: MouseEventHandler = useCallback((e) => {
-    e.preventDefault();
-    dispatch(slice.creators.addField({ categoryId: id }));
-  }, [dispatch, id]);
+  const handleAddField: MouseEventHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(slice.creators.addField({ categoryId: id }));
+    },
+    [dispatch, id],
+  );
 
-  const handleUp: MouseEventHandler = useCallback((e) => {
-    e.preventDefault();
-    dispatch(slice.creators.moveCategoryUp({ id }));
-  }, [dispatch, id]);
+  const handleUp: MouseEventHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(slice.creators.moveCategoryUp({ id }));
+    },
+    [dispatch, id],
+  );
 
-  const handleDown: MouseEventHandler = useCallback((e) => {
-    e.preventDefault();
-    dispatch(slice.creators.moveCategoryDown({ id }));
-  }, [dispatch, id]);
+  const handleDown: MouseEventHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(slice.creators.moveCategoryDown({ id }));
+    },
+    [dispatch, id],
+  );
 
   const handleDelete = useCallback(async () => {
     const aye = await confirmADoodleDo({
@@ -103,12 +115,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
             }
           </Dropdown>
         </GridField>
-        <GridField
-          label="Fields"
-          css={{
-            // margin: "0.5em 2em 0.5em 0",
-          }}
-        >
+        <GridField label="Fields">
           {Object.entries(settings.equipmentCategories[id].fields).map(
             ([fieldId, field], fieldIdx) => {
               return (
@@ -117,18 +124,15 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
                   fieldId={fieldId}
                   field={field}
                   categoryId={id}
-                  idx={fieldIdx}//
+                  idx={fieldIdx} //
                 />
               );
             },
           )}
-          <button
-            onClick={handleAddField}
-          >
+          <button onClick={handleAddField}>
             <i className="fas fa-plus" />
             <Translate>Add Field</Translate>
           </button>
-
         </GridField>
       </InputGrid>
       <hr

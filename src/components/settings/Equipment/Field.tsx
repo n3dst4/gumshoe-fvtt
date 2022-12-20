@@ -28,22 +28,36 @@ export const Field: React.FC<FieldProps> = ({
 }) => {
   const theme = useContext(ThemeContext);
   const dispatch = useContext(DispatchContext);
-  const { settings: { equipmentCategories } } = useContext(StateContext);
-  const fieldsLength = Object.keys(equipmentCategories[categoryId].fields).length;
+  const {
+    settings: { equipmentCategories },
+  } = useContext(StateContext);
+  const fieldsLength = Object.keys(
+    equipmentCategories[categoryId].fields,
+  ).length;
 
-  const handleNameChange = useCallback((newName: string) => {
-    dispatch(slice.creators.renameField({ categoryId, fieldId, newName }));
-  }, [dispatch, categoryId, fieldId]);
+  const handleNameChange = useCallback(
+    (newName: string) => {
+      dispatch(slice.creators.renameField({ categoryId, fieldId, newName }));
+    },
+    [dispatch, categoryId, fieldId],
+  );
 
-  const handleTypeChange: ChangeEventHandler<HTMLSelectElement> = useCallback((e) => {
-    e.preventDefault();
-    const newType = e.currentTarget.value;
-    if (newType !== "text" && newType !== "number" && newType !== "checkbox") {
-      throw new Error("Invalid field type");
-    }
-    assertIsEquipmentFieldType(newType);
-    dispatch(slice.creators.setFieldType({ categoryId, fieldId, newType }));
-  }, [dispatch, categoryId, fieldId]);
+  const handleTypeChange: ChangeEventHandler<HTMLSelectElement> = useCallback(
+    (e) => {
+      e.preventDefault();
+      const newType = e.currentTarget.value;
+      if (
+        newType !== "text" &&
+        newType !== "number" &&
+        newType !== "checkbox"
+      ) {
+        throw new Error("Invalid field type");
+      }
+      assertIsEquipmentFieldType(newType);
+      dispatch(slice.creators.setFieldType({ categoryId, fieldId, newType }));
+    },
+    [dispatch, categoryId, fieldId],
+  );
 
   const handleUp = useCallback(() => {
     dispatch(slice.creators.moveFieldUp({ categoryId, fieldId }));
@@ -127,13 +141,25 @@ export const Field: React.FC<FieldProps> = ({
         </Dropdown>
       </div>
       {field.type === "number" && (
-        <NumberFieldSettings field={field} categoryId={categoryId} fieldId={fieldId} />
+        <NumberFieldSettings
+          field={field}
+          categoryId={categoryId}
+          fieldId={fieldId}
+        />
       )}
       {field.type === "string" && (
-        <StringFieldSettings field={field} categoryId={categoryId} fieldId={fieldId} />
+        <StringFieldSettings
+          field={field}
+          categoryId={categoryId}
+          fieldId={fieldId}
+        />
       )}
       {field.type === "checkbox" && (
-        <CheckboxFieldSettings field={field} categoryId={categoryId} fieldId={fieldId} />
+        <CheckboxFieldSettings
+          field={field}
+          categoryId={categoryId}
+          fieldId={fieldId}
+        />
       )}
     </div>
   );
