@@ -1,6 +1,7 @@
 import { assertGame } from "../functions";
 import { settings } from "../settings";
 import { isEquipmentDataSource } from "../typeAssertions";
+import { EquipmentDataSource } from "../types";
 
 export const installEquipmentCategoryHookHandler = () => {
   Hooks.on(
@@ -14,17 +15,19 @@ export const installEquipmentCategoryHookHandler = () => {
       assertGame(game);
       if (game.userId !== userId) return;
 
-      // set image
+      // set category and fields
       if (
         isEquipmentDataSource(item.data)
       ) {
         const equipmentCategories = settings.equipmentCategories.get();
         const category = Object.keys(equipmentCategories)[0];
-        item.data.update({
-          data: {
-            category,
-          },
-        });
+        const updateData: Pick<EquipmentDataSource["data"], "category"|"fields"> = { category, fields: {} };
+        const fields = equipmentCategories[category].fields;
+        for (const field in fields) {
+          updateData.fields[field] = fields[field].default;
+        }
+        // @ts-expect-error "V10 api"
+        item.updateSource({ system: updateData });
       }
     },
   );
