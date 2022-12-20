@@ -8,6 +8,7 @@ import {
   assertWeaponDataSource,
 } from "../typeAssertions";
 import {
+  EquipmentDataSource,
   MWDifficulty,
   MwRefreshGroup,
   MwType,
@@ -178,7 +179,14 @@ export class InvestigatorItem extends Item {
 
   setCategory = (category: string) => {
     assertEquipmentOrAbilityDataSource(this.data);
-    this.update({ data: { category } });
+    const updateData: Pick<EquipmentDataSource["data"], "category"|"fields"> = { category, fields: {} };
+    if (this.data.type === "equipment") {
+      const fields = settings.equipmentCategories.get()[category].fields;
+      for (const field in fields) {
+        updateData.fields[field] = this.data.data.fields[field] ?? fields[field].default;
+      }
+    }
+    this.update({ data: updateData });
   };
 
   setField = (field: string, value: string|number|boolean) => {
