@@ -50,7 +50,7 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
       const proms = Object.keys(settings).map(async (k) => {
         // @ts-expect-error Too much work to explain to TS that these guys
         // really do match up
-        settings[k].set(tempStateRef.current.settings[k]);
+        await settings[k].set(tempStateRef.current.settings[k]);
       });
       await Promise.all(proms);
       foundryApplication.close();
