@@ -6,6 +6,7 @@ import {
   assertEquipmentOrAbilityDataSource,
   assertMwItemDataSource,
   assertWeaponDataSource,
+  isEquipmentDataSource,
 } from "../typeAssertions";
 import {
   EquipmentDataSource,
@@ -180,7 +181,7 @@ export class InvestigatorItem extends Item {
   setCategory = (category: string) => {
     assertEquipmentOrAbilityDataSource(this.data);
     const updateData: Pick<EquipmentDataSource["data"], "category"|"fields"> = { category, fields: {} };
-    if (this.data.type === "equipment") {
+    if (isEquipmentDataSource(this.data)) {
       const fields = settings.equipmentCategories.get()[category].fields;
       for (const field in fields) {
         updateData.fields[field] = this.data.data.fields[field] ?? fields[field].default;
