@@ -20,11 +20,14 @@ export const installEquipmentCategoryHookHandler = () => {
         isEquipmentDataSource(item.data)
       ) {
         const equipmentCategories = settings.equipmentCategories.get();
-        const category = Object.keys(equipmentCategories)[0];
-        const updateData: Pick<EquipmentDataSource["data"], "category"|"fields"> = { category, fields: {} };
-        const fields = equipmentCategories[category].fields;
+        const defaultCategoryId = Object.keys(equipmentCategories)[0];
+        const updateData: Pick<EquipmentDataSource["data"], "category"|"fields"> = {
+          category: item.data.data.category || defaultCategoryId,
+          fields: item.data.data.fields || {},
+        };
+        const fields = equipmentCategories[defaultCategoryId].fields;
         for (const field in fields) {
-          updateData.fields[field] = fields[field].default;
+          updateData.fields[field] ||= fields[field].default;
         }
         // @ts-expect-error "V10 api"
         item.updateSource({ system: updateData });
