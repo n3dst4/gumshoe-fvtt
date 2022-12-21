@@ -1,4 +1,4 @@
-import { isActiveCharacterDataSource } from "../../types";
+import { isActiveCharacterDataSource } from "../../typeAssertions";
 
 export interface InvestigatorTurn extends Omit<CombatTracker.Turn, "ressource"|"css"> {
   passingTurnsRemaining: number;

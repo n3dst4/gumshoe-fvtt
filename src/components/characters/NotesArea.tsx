@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings";
-import { assertPCDataSource } from "../../types";
+import { assertPCDataSource } from "../../typeAssertions";
 import { absoluteCover } from "../absoluteCover";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";

@@ -5,8 +5,8 @@ import { InvestigatorItem } from "../module/InvestigatorItem";
 import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
 import { WeaponSheet } from "./equipment/WeaponSheet";
-import { CSSReset, CSSResetMode } from "./CSSReset";
-import { isAbilityDataSource, isMwItemDataSource } from "../types";
+import { CSSReset } from "./CSSReset";
+import { isAbilityDataSource, isMwItemDataSource } from "../typeAssertions";
 import { MwItemSheet } from "./equipment/MwItemSheet";
 
 type ItemSheetProps = {
@@ -39,7 +39,7 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({
   return (
     <CSSReset
       theme={theme}
-      mode={CSSResetMode.small}
+      mode="small"
       css={style}
     >
       {isAbilityDataSource(item.data)

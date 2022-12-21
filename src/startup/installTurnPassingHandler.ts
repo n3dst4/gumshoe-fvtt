@@ -1,6 +1,7 @@
 import { assertGame } from "../functions";
 import * as constants from "../constants";
-import { assertActiveCharacterDataSource, RequestTurnPassArgs } from "../types";
+import { RequestTurnPassArgs } from "../types";
+import { assertActiveCharacterDataSource } from "../typeAssertions";
 
 export function installTurnPassingHandler () {
   Hooks.once("ready", () => {

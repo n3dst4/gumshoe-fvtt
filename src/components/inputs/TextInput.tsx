@@ -35,7 +35,10 @@ export const TextInput: React.FC<TextInputProps> = ({
       css={{
         flex: 1,
         width: "100%",
-        // minWidth: "8em",
+        "::placeholder": {
+          opacity: 0.5,
+          fontStyle: "italic",
+        },
       }}
       className={className}
       data-lpignore="true"

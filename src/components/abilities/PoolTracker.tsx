@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { assertAbilityDataSource, isAbilityDataSource } from "../../types";
+import { assertAbilityDataSource, isAbilityDataSource } from "../../typeAssertions";
 import { PoolCheckbox } from "./PoolCheckbox";
 
 const range = (from: number, to: number): number[] => {

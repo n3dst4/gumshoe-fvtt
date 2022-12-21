@@ -3,8 +3,13 @@ import { InvestigatorActor } from "./InvestigatorActor";
 import {
   assertAbilityDataSource,
   assertGeneralAbilityDataSource,
+  assertEquipmentOrAbilityDataSource,
   assertMwItemDataSource,
   assertWeaponDataSource,
+  isEquipmentDataSource,
+} from "../typeAssertions";
+import {
+  EquipmentDataSource,
   MWDifficulty,
   MwRefreshGroup,
   MwType,
@@ -169,13 +174,25 @@ export class InvestigatorItem extends Item {
   // ###########################################################################
 
   getCategory = () => {
-    assertAbilityDataSource(this.data);
+    assertEquipmentOrAbilityDataSource(this.data);
     return this.data.data.category;
   };
 
   setCategory = (category: string) => {
-    assertAbilityDataSource(this.data);
-    this.update({ data: { category } });
+    assertEquipmentOrAbilityDataSource(this.data);
+    const updateData: Pick<EquipmentDataSource["data"], "category"|"fields"> = { category, fields: {} };
+    if (isEquipmentDataSource(this.data)) {
+      const fields = settings.equipmentCategories.get()[category].fields;
+      for (const field in fields) {
+        updateData.fields[field] = this.data.data.fields[field] ?? fields[field].default;
+      }
+    }
+    this.update({ data: updateData });
+  };
+
+  setField = (field: string, value: string|number|boolean) => {
+    assertEquipmentOrAbilityDataSource(this.data);
+    this.update({ data: { fields: { [field]: value } } });
   };
 
   getMin = () => {

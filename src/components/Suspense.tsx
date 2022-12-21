@@ -2,12 +2,12 @@ import React from "react";
 import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
 import { absoluteCover } from "./absoluteCover";
-import { CSSReset, CSSResetMode } from "./CSSReset";
+import { CSSReset } from "./CSSReset";
 
 const Fallback: React.FC = () => {
   const theme = runtimeConfig.themes[settings.defaultThemeName.get()] || runtimeConfig.themes.tealTheme;
   return (
-    <CSSReset theme={theme} mode={CSSResetMode.large}
+    <CSSReset theme={theme} mode="large"
       css={{
         ...absoluteCover,
         backgroundColor: theme.colors.backgroundPrimary,

@@ -1,6 +1,6 @@
 import { assertGame } from "../functions";
 import * as constants from "../constants";
-import { isSocketHookAction } from "../types";
+import { isSocketHookAction } from "../typeAssertions";
 
 export function installSocketActionHandler () {
   Hooks.on("ready", () => {

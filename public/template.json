@@ -117,7 +117,9 @@
       "damageBonus": 0
     },
     "equipment": {
-      "templates": ["notes"]
+      "templates": ["notes"],
+      "category": "",
+      "fields": {}
     },
     "weapon": {
       "templates": ["notes"],

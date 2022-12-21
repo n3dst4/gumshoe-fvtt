@@ -1,5 +1,5 @@
-import Irid from "irid";
 import { systemName } from "../constants";
+import { Irid } from "../Irid";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 

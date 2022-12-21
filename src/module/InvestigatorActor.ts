@@ -1,7 +1,27 @@
 import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
-import { RecursivePartial, AbilityType, assertPCDataSource, assertActiveCharacterDataSource, assertPartyDataSource, InvestigativeAbilityDataSource, isAbilityDataSource, isMwItemDataSource, MwType, assertMwItemDataSource, MwRefreshGroup, assertNPCDataSource, NoteWithFormat, BaseNote, NoteFormat, MwInjuryStatus, InvestigatorActorDataSource } from "../types";
-import { InvestigatorItem } from "./InvestigatorItem";
+import {
+  RecursivePartial,
+  AbilityType,
+  InvestigativeAbilityDataSource,
+  MwType,
+  MwRefreshGroup,
+  NoteWithFormat,
+  BaseNote,
+  NoteFormat,
+  MwInjuryStatus,
+  InvestigatorActorDataSource,
+} from "../types";
+import {
+  assertPCDataSource,
+  assertActiveCharacterDataSource,
+  assertPartyDataSource,
+  isAbilityDataSource,
+  isMwItemDataSource,
+  assertMwItemDataSource,
+  assertNPCDataSource,
+} from "../typeAssertions";
+// import { InvestigatorItem } from "./InvestigatorItem";
 import { convertNotes } from "../textFunctions";
 import { tealTheme } from "../themes/tealTheme";
 import { runtimeConfig } from "../runtime";
@@ -464,7 +484,8 @@ Hooks.on(
         const datas = content?.map((item) => {
           // clunky cast here because there doesn't seem to be a sane way to
           // check the type of something coming out of a compendium pack.
-          const { data: { name, img, data, type } } = item as InvestigatorItem;
+          // XXX if we cast as InvestigatorItem, we have a circular dependency
+          const { data: { name, img, data, type } } = item as any;
           return {
             name,
             img,
@@ -482,7 +503,9 @@ Hooks.on(
         assertGame(game);
         console.log("PACK", packId);
         const content = await (game.packs?.find((p) => p.documentName === "Item" && p.collection === packId)?.getDocuments());
-        const datas = (content as InvestigatorItem[])?.map(({ data: { name, img, data, type } }) => ({
+        // XXX eurgh - same as elsewhere - if we cast ast InvestigatorItem, we
+        // have a circular dependency
+        const datas = (content as any[])?.map(({ data: { name, img, data, type } }) => ({
           name,
           img,
           data,

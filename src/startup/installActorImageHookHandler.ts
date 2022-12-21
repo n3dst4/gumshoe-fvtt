@@ -1,6 +1,6 @@
 import { npcIcon, partyIcon, pcIcon } from "../constants";
 import { assertGame, isNullOrEmptyString } from "../functions";
-import { isNPCDataSource, isPartyDataSource, isPCDataSource } from "../types";
+import { isNPCDataSource, isPartyDataSource, isPCDataSource } from "../typeAssertions";
 
 export const installActorImageHookHandler = () => {
   Hooks.on(

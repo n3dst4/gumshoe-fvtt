@@ -1,9 +1,5 @@
-import { systemName } from "./constants";
-import Case from "case";
-import { Dictionary } from "lodash";
-import { settings } from "./settings";
-import * as constants from "./constants";
-import { SocketHookAction } from "./types";
+import * as constants from "../constants";
+import { SocketHookAction } from "../types";
 
 interface NameHaver {
   name: string | null;
@@ -35,15 +31,17 @@ export const fixLength = <T>(
   return result;
 };
 
-export const mapValues = <V1, V2>(
-  mapper: (v: V1) => V2,
-  subject: { [k: string]: V1 },
-): { [k: string]: V2 } => {
+export const mapValues = <V1, V2, K extends string=string>(
+  mapper: (v: V1, k: K, i: number) => V2,
+  subject: { [k in K]: V1 },
+): { [k in K]: V2 } => {
   const result: { [k: string]: V2 } = {};
+  let i = 0;
   for (const k in subject) {
-    result[k] = mapper(subject[k]);
+    result[k] = mapper(subject[k], k, i);
+    i += 1;
   }
-  return result;
+  return result as { [k in K]: V2 };
 };
 
 export const isNullOrEmptyString = (x: any) => {
@@ -86,84 +84,9 @@ export function assertGame (game: any): asserts game is Game {
 export function getDevMode () {
   assertGame(game);
   return !!(game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(
-    systemName,
+    constants.systemName,
   );
 }
-
-/**
- * convenience method to grab a translated string
- */
-export const getTranslated = (
-  text: string,
-  values: Dictionary<string | number> = {},
-) => {
-  assertGame(game);
-  const debug = settings.debugTranslations.get() && getDevMode();
-  const pascal = Case.pascal(text);
-  const prefixed = `${systemName}.${pascal}`;
-  const local = game.i18n.format(prefixed, values);
-  const has = game.i18n.has(prefixed, false);
-  return `${debug ? (has ? "✔ " : "❌ ") : ""}${local}`;
-};
-
-interface confirmADoodleDoArgs {
-  message: string;
-  confirmText: string;
-  cancelText: string;
-  confirmIconClass: string;
-  values?: Dictionary<string | number>;
-  resolveFalseOnCancel?: boolean;
-}
-
-/**
- * Pop up a foundry confirmation box. Returns a promise that resolves `true`
- * when the user clicks the confirm button.
- * The default behaviour is to not resolve at all if the user clicks `cancel`,
- * sine most commonly you want to just do nothing, but if you specify
- * `resolveFalseOnCancel: true` it will resolve `false` in that case.
- */
-export const confirmADoodleDo = ({
-  message,
-  confirmText,
-  cancelText,
-  confirmIconClass,
-  values = {},
-  resolveFalseOnCancel = false,
-}: confirmADoodleDoArgs) => {
-  assertGame(game);
-  const tlMessage = getTranslated(message, values);
-  const tlConfirmText = getTranslated(confirmText, values);
-  const tlCancelText = getTranslated(cancelText, values);
-  const promise = new Promise<boolean>((resolve) => {
-    const onConfirm = () => {
-      resolve(true);
-    };
-    const onCancel = () => {
-      if (resolveFalseOnCancel) {
-        resolve(false);
-      }
-    };
-    const d = new Dialog({
-      title: "Confirm",
-      content: `<p>${tlMessage}</p>`,
-      buttons: {
-        cancel: {
-          icon: '<i class="fas fa-ban"></i>',
-          label: tlCancelText,
-          callback: onCancel,
-        },
-        confirm: {
-          icon: `<i class="fas ${confirmIconClass}"></i>`,
-          label: tlConfirmText,
-          callback: onConfirm,
-        },
-      },
-      default: "cancel",
-    });
-    d.render(true);
-  });
-  return promise;
-};
 
 export function assertNotNull<T> (t: T | undefined | null): asserts t is T {
   if (t === undefined) {
@@ -241,4 +164,44 @@ export async function getUserFile (accept: string): Promise<string> {
   });
   reader.readAsText(file);
   return textPromise;
+}
+
+export const mapObject =
+  <T, U>(fn: (val: T, key: string, i: number) => U) =>
+    (obj: Record<string, T>): Record<string, U> => {
+      return Object.fromEntries(
+        Object.entries(obj).map(([key, val], i) => [key, fn(val, key, i)]),
+      );
+    };
+
+export function moveKeyUp <V> (obj: Record<string, V>, key: string): Record<string, V> {
+  const entries = Object.entries(obj);
+  const index = entries.findIndex(([k]) => k === key);
+  if (index === 0) {
+    throw new Error(`Cannot move up from index ${index}`);
+  }
+  if (index >= entries.length || index < 0) {
+    throw new Error(`Index ${index} out of range`);
+  }
+  const item = entries[index];
+  entries.splice(index, 1);
+  entries.splice(index - 1, 0, item);
+  const result = Object.fromEntries(entries);
+  return result;
+}
+
+export function moveKeyDown <V> (obj: Record<string, V>, key: string): Record<string, V> {
+  const entries = Object.entries(obj);
+  const index = entries.findIndex(([k]) => k === key);
+  if (index === entries.length - 1) {
+    throw new Error("Cannot move down from last index");
+  }
+  if (index >= entries.length || index < 0) {
+    throw new Error(`Index ${index} out of range`);
+  }
+  const cat = entries[index];
+  entries.splice(index, 1);
+  entries.splice(index + 1, 0, cat);
+  const result = Object.fromEntries(entries);
+  return result;
 }

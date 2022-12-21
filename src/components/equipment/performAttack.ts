@@ -2,7 +2,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import * as constants from "../../constants";
 import { assertGame } from "../../functions";
 import { settings } from "../../settings";
-import { isGeneralAbilityDataSource, isNPCDataSource } from "../../types";
+import { isGeneralAbilityDataSource, isNPCDataSource } from "../../typeAssertions";
 
 type PerformAttackArgs1 = {
   spend: number,

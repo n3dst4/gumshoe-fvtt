@@ -1,6 +1,6 @@
 import { Stat } from "@lumphammer/investigator-fvtt-types";
 import React, { Fragment, useCallback } from "react";
-import { assertActiveCharacterDataSource } from "../../types";
+import { assertActiveCharacterDataSource } from "../../typeAssertions";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 interface StatFieldProps {

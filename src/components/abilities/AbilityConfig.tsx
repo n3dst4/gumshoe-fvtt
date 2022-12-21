@@ -6,7 +6,8 @@ import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Translate } from "../Translate";
-import { assertAbilityDataSource, isGeneralAbilityDataSource, MwRefreshGroup } from "../../types";
+import { MwRefreshGroup } from "../../types";
+import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../typeAssertions";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { settings } from "../../settings";
 import { UnlocksEditor } from "./UnlocksEditor";
@@ -72,11 +73,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
             flexDirection: "row",
           }}
         >
-          <div
-            css={{
-              // flex: 1,
-            }}
-          >
+          <div>
             <select
               value={selectedCat}
               onChange={onChangeCategory}

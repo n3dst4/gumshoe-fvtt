@@ -1,15 +1,11 @@
 import { TokenData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
+import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import * as constants from "./constants";
-import { hasOwnProperty } from "./functions";
 export type AbilityType = typeof constants.investigativeAbility | typeof constants.generalAbility;
 
 export interface SocketHookAction<T> {
   hook: string;
   payload: T;
-}
-
-export function isSocketHookAction<T> (x: SocketHookAction<T>|unknown): x is SocketHookAction<T> {
-  return hasOwnProperty(x, "hook") && hasOwnProperty(x, "payload");
 }
 
 export interface RequestTurnPassArgs {
@@ -126,8 +122,8 @@ interface PartyDataSourceData {
 }
 
 export type PCDataSource = DataSource<typeof constants.pc, PCDataSourceData>;
-type NPCDataSource = DataSource<typeof constants.npc, NPCDataSourceData>;
-type PartyDataSource = DataSource<typeof constants.party, PartyDataSourceData>;
+export type NPCDataSource = DataSource<typeof constants.npc, NPCDataSourceData>;
+export type PartyDataSource = DataSource<typeof constants.party, PartyDataSourceData>;
 
 export type InvestigatorActorDataSource =
   | PCDataSource
@@ -147,46 +143,6 @@ declare global {
   }
 }
 
-export function isPCDataSource (data: InvestigatorActorDataSource | undefined | null): data is PCDataSource {
-  return (data ? data.type === constants.pc : false);
-}
-
-export function assertPCDataSource (data: InvestigatorActorDataSource | undefined | null): asserts data is PCDataSource {
-  if (!isPCDataSource(data)) {
-    throw new Error("Not a PC");
-  }
-}
-
-export function isNPCDataSource (data: InvestigatorActorDataSource | undefined | null): data is NPCDataSource {
-  return (data ? data.type === constants.npc : false);
-}
-
-export function assertNPCDataSource (data: InvestigatorActorDataSource | undefined | null): asserts data is NPCDataSource {
-  if (!isNPCDataSource(data)) {
-    throw new Error("Not an NPC");
-  }
-}
-
-export function isActiveCharacterDataSource (data: InvestigatorActorDataSource | undefined | null): data is ActiveCharacterDataSource {
-  return (data ? (data.type === constants.pc || data.type === constants.npc) : false);
-}
-
-export function assertActiveCharacterDataSource (data: InvestigatorActorDataSource | undefined | null): asserts data is ActiveCharacterDataSource {
-  if (!isActiveCharacterDataSource(data)) {
-    throw new Error("Not a PC or NPC");
-  }
-}
-
-export function isPartyDataSource (data: InvestigatorActorDataSource): data is PartyDataSource {
-  return (data.type === constants.party);
-}
-
-export function assertPartyDataSource (data: InvestigatorActorDataSource): asserts data is PartyDataSource {
-  if (!isPartyDataSource(data)) {
-    throw new Error("Not a Party");
-  }
-}
-
 // #############################################################################
 // #############################################################################
 // Item stuff
@@ -199,10 +155,11 @@ interface BaseEquipmentDataSourceData {
 }
 
 /**
- * data.data for equipment (currently the same as BaseEquipmentDataSourceData)
+ * data.data for equipment
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface EquipmentDataSourceData extends BaseEquipmentDataSourceData {
+  category: string;
+  fields: Record<string, string|number|boolean>;
 }
 
 /** data.data for weapons */
@@ -323,66 +280,6 @@ declare global {
   }
 }
 
-export function isGeneralAbilityDataSource (data: InvestigatorItemDataSource): data is GeneralAbilityDataSource {
-  return data.type === constants.generalAbility;
-}
-
-export function isInvestigativeAbilityDataSource (data: InvestigatorItemDataSource): data is InvestigativeAbilityDataSource {
-  return data.type === constants.investigativeAbility;
-}
-
-export function isAbilityDataSource (data: any): data is AbilityDataSource {
-  return isGeneralAbilityDataSource(data) || isInvestigativeAbilityDataSource(data);
-}
-
-/** assert that a data is some kind of ability */
-export function assertAbilityDataSource (data: InvestigatorItemDataSource): asserts data is AbilityDataSource {
-  if (!isAbilityDataSource(data)) {
-    throw new Error("Not an ability");
-  }
-}
-
-/** assert that a data is a general ability */
-export function assertGeneralAbilityDataSource (data: InvestigatorItemDataSource): asserts data is GeneralAbilityDataSource {
-  if (!isGeneralAbilityDataSource(data)) {
-    throw new Error("Not an ability");
-  }
-}
-
-export function isWeaponDataSource (data: InvestigatorItemDataSource): data is WeaponDataSource {
-  return data.type === constants.weapon;
-}
-
-export function isEquipmentDataSource (data: InvestigatorItemDataSource): data is EquipmentDataSource {
-  return data.type === constants.equipment;
-}
-
-/** assert that a data is a weapon */
-export function assertWeaponDataSource (data: InvestigatorItemDataSource): asserts data is WeaponDataSource {
-  const isWeapon = isWeaponDataSource(data);
-  if (!isWeapon) {
-    throw new Error("Not a weapon");
-  }
-}
-
-export function assertWeaponOrEquipmentDataSource (data: InvestigatorItemDataSource): asserts data is WeaponOrEquipmentDataSource {
-  const isWeaponOrEquipmentDataSource = data.type === constants.weapon || data.type === constants.equipment;
-  if (!isWeaponOrEquipmentDataSource) {
-    throw new Error("Not a weapon or equipment");
-  }
-}
-
-export function isMwItemDataSource (data: InvestigatorItemDataSource): data is MwItemDataSource {
-  return data.type === constants.mwItem;
-}
-
-export function assertMwItemDataSource (data: InvestigatorItemDataSource): asserts data is MwItemDataSource {
-  const isMwItem = isMwItemDataSource(data);
-  if (!isMwItem) {
-    throw new Error("Not a MW Item");
-  }
-}
-
 // #############################################################################
 // #############################################################################
 // SETTINGS
@@ -417,10 +314,26 @@ export type PickByType<T, P> = Omit<
 /**
  * Like Partial<T>, but recursive.
  */
-export type RecursivePartial<T> = {
-  [P in keyof T]?: T[P] extends (infer U)[]
-  ? RecursivePartial<U>[]
-  : T[P] extends Record<string, unknown>
-  ? RecursivePartial<T[P]>
-  : T[P];
-};
+// export type RecursivePartial<T> = {
+//   [P in keyof T]?: T[P] extends (infer U)[]
+//   ? RecursivePartial<U>[]
+//   : T[P] extends Record<string, unknown>
+//   ? RecursivePartial<T[P]>
+//   : T[P];
+// };
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type RecursivePartial<T> = T extends Function
+  ? T
+  :{
+    [P in keyof T]?: RecursivePartial<T[P]>;
+  };
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type RecursiveRequired<T> = T extends Function
+  ? T
+  : {
+    [P in keyof T]-?: RecursiveRequired<T[P]>;
+  };
+
+export type EquipmentFieldType = Pick<EquipmentFieldMetadata, "type">["type"];

@@ -1,7 +1,7 @@
 import React from "react";
 import { sortEntitiesByName } from "../../../functions";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
-import { assertActiveCharacterDataSource } from "../../../types";
+import { assertActiveCharacterDataSource } from "../../../typeAssertions";
 import { AbilitiesColumnMW } from "../AbilitiesColumnMW";
 import { useAbilities } from "../useAbilities";
 

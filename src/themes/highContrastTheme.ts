@@ -1,4 +1,4 @@
-import Irid from "irid";
+import { Irid } from "../Irid";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 

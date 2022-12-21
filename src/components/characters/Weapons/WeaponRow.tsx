@@ -1,10 +1,10 @@
 import React, { Fragment, useCallback, useContext, useState, useMemo } from "react";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { FoundryAppContext } from "../FoundryAppContext";
-import { CheckButtons } from "../inputs/CheckButtons";
-import { generalAbility } from "../../constants";
-import { assertWeaponDataSource, isAbilityDataSource } from "../../types";
-import { performAttack } from "../equipment/performAttack";
+import { InvestigatorItem } from "../../../module/InvestigatorItem";
+import { FoundryAppContext } from "../../FoundryAppContext";
+import { CheckButtons } from "../../inputs/CheckButtons";
+import { generalAbility } from "../../../constants";
+import { assertWeaponDataSource, isAbilityDataSource } from "../../../typeAssertions";
+import { performAttack } from "../../equipment/performAttack";
 
 type WeaponRowProps = {
   weapon: InvestigatorItem,
