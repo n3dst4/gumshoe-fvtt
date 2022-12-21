@@ -6,7 +6,12 @@ import { pathOfCthulhuPreset } from "../../presets";
 import { SettingsDict } from "../../settings";
 import produce, { Draft } from "immer";
 import { State, PcOrNpc } from "./types";
-import { moveKeyDown, moveKeyUp, renameProperty } from "../../functions";
+import {
+  getDevMode,
+  moveKeyDown,
+  moveKeyUp,
+  renameProperty,
+} from "../../functions";
 import { diff } from "just-diff";
 import { EquipmentFieldType } from "../../types";
 import { nanoid } from "nanoid";
@@ -40,7 +45,7 @@ function createCase<S, P = void> (
     action.type === type;
   const apply = (state: S, action: AnyAction) => {
     if (match(action)) {
-      logger.log("Reducer", type, action.payload);
+      logger.log("Reducer apply", type, action.payload);
       return reducer ? reducer(state, action.payload) : state;
     }
     return state;
@@ -56,38 +61,43 @@ function createCase<S, P = void> (
   };
 }
 
+type Reducers<S> = { [key: string]: (state: Draft<S>, payload?: any) => void };
+
 /**
  * A minimal reimagination of the `createSlice` function from
  * `@reduxjs/toolkit`.
+ * This function is curried so that we can specify S (state) but allow R
+ * (reducers) to be inferred.
  */
 const createSlice =
-  <
-    // curried so that we can specify S but allow C to be inferred
-    S extends object
-  >() =>
-  <C extends { [key: string]: (state: Draft<S>, payload?: any) => void }>(
-      reducers: C,
-    ) => {
+  <S extends object>() =>
+  <R extends Reducers<S>>(reducers: R) => {
+    // turn all the reducers into cases (so they can be created and applied)
     const sliceCases = Object.entries(reducers).map(([key, reducer]) => {
       const action = createCase(key, reducer);
       return [key, action] as const;
     });
+    // turn those cases back into an object o creators.
     const creators = Object.fromEntries(
       sliceCases.map(([key, action]) => [key, action.create]),
     ) as {
-      [key in keyof C]: ReturnType<
+      // we need this mad cast because `map` can't give us accurate types.
+      // we're just knitting together the `typeof createCase<...>["create"]`
+      // and working out the payload type using inference.
+      [key in keyof R]: ReturnType<
         typeof createCase<
           S,
-          C[key] extends (state: infer S1) => void
+          R[key] extends (state: infer S1) => void
             ? void
-            : C[key] extends (state: infer S1, payload: infer P1) => void
+            : R[key] extends (state: infer S1, payload: infer P1) => void
             ? P1
             : never
         >
       >["create"];
     };
     // `useDispatch` takes the initial state as an argument, so we don't need to
-    // provide a default argument for `state` here.
+    // provide a default argument for `state` here (unlike e.g. a Redux
+    // reducer).
     const reducer = (state: S, action: AnyAction) => {
       try {
         const newState = produce(state, (draft) => {
@@ -95,13 +105,16 @@ const createSlice =
             sliceCase.apply(draft, action);
           }
         });
-        const diffs = diff(state, newState);
-        console.log(diffs);
+        if (getDevMode()) {
+          const diffs = diff(state, newState);
+          logger.log("Reducer diffs", diffs);
+        }
         return newState;
       } catch (e) {
+        // in the event of an error, we will try to keep going rather than just
+        // exploding
         logger.error("Reducer error", e);
-        // eslint-disable-next-line no-debugger
-        debugger;
+        ui.notifications?.error(`Settings error: ${e}`, { permanent: true });
         return state;
       }
     };
@@ -121,7 +134,7 @@ const createSlice =
 function assertNumericFieldOkayness (
   field: EquipmentFieldMetadata | undefined,
   id: string,
-  value: unknown|undefined,
+  value: unknown | undefined,
 ): asserts field is Extract<EquipmentFieldMetadata, { type: "number" }> {
   if (field === undefined) {
     throw new Error(`No field with id ${id}`);
@@ -149,7 +162,10 @@ export const slice = createSlice<State>()({
       fields: {},
     };
   },
-  deleteCategory: ({ settings: { equipmentCategories } }: State, { id }: { id: string }) => {
+  deleteCategory: (
+    { settings: { equipmentCategories } }: State,
+    { id }: { id: string },
+  ) => {
     delete equipmentCategories[id];
   },
   renameCategory: (
@@ -172,17 +188,14 @@ export const slice = createSlice<State>()({
     }
     settings.equipmentCategories = newCats;
   },
-  moveCategoryUp: (
-    { settings }: State,
-    { id }: { id: string },
-  ) => {
+  moveCategoryUp: ({ settings }: State, { id }: { id: string }) => {
     settings.equipmentCategories = moveKeyUp(settings.equipmentCategories, id);
   },
-  moveCategoryDown: (
-    { settings }: State,
-    { id }: { id: string },
-  ) => {
-    settings.equipmentCategories = moveKeyDown(settings.equipmentCategories, id);
+  moveCategoryDown: ({ settings }: State, { id }: { id: string }) => {
+    settings.equipmentCategories = moveKeyDown(
+      settings.equipmentCategories,
+      id,
+    );
   },
   addField: (
     { settings: { equipmentCategories: cats } }: State,
@@ -204,7 +217,9 @@ export const slice = createSlice<State>()({
     { settings }: State,
     payload: { categoryId: string, fieldId: string, newName: string },
   ) => {
-    settings.equipmentCategories[payload.categoryId].fields[payload.fieldId].name = payload.newName;
+    settings.equipmentCategories[payload.categoryId].fields[
+      payload.fieldId
+    ].name = payload.newName;
   },
   changeFieldId: (
     { settings: { equipmentCategories: cats } }: State,
@@ -223,7 +238,11 @@ export const slice = createSlice<State>()({
 
   setFieldType: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryId: string, fieldId: string, newType: EquipmentFieldType },
+    payload: {
+      categoryId: string,
+      fieldId: string,
+      newType: EquipmentFieldType,
+    },
   ) => {
     const field = cats[payload.categoryId].fields[payload.fieldId];
     field.type = payload.newType;
@@ -237,7 +256,11 @@ export const slice = createSlice<State>()({
   },
   setFieldDefault: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryId: string, fieldId: string, newDefault: string|number|boolean },
+    payload: {
+      categoryId: string,
+      fieldId: string,
+      newDefault: string | number | boolean,
+    },
   ) => {
     const field = cats[payload.categoryId].fields[payload.fieldId];
     if (
@@ -253,7 +276,7 @@ export const slice = createSlice<State>()({
   },
   setFieldMin: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryId: string, fieldId: string, newMin: number|undefined },
+    payload: { categoryId: string, fieldId: string, newMin: number | undefined },
   ) => {
     const field = cats[payload.categoryId].fields[payload.fieldId];
     assertNumericFieldOkayness(field, payload.fieldId, payload.newMin);
@@ -261,7 +284,7 @@ export const slice = createSlice<State>()({
   },
   setFieldMax: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryId: string, fieldId: string, newMax: number|undefined },
+    payload: { categoryId: string, fieldId: string, newMax: number | undefined },
   ) => {
     const field = cats[payload.categoryId].fields[payload.fieldId];
     assertNumericFieldOkayness(field, payload.fieldId, payload.newMax);
