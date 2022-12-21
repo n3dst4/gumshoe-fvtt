@@ -17,12 +17,12 @@ import { DispatchContext, StateContext } from "../contexts";
 import { slice } from "../reducer";
 import { Field } from "./Field";
 
-interface EquipmentCategoryProps {
+interface CategoryProps {
   id: string;
   idx: number;
 }
 
-export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
+export const Category: React.FC<CategoryProps> = ({
   id,
   idx,
 }) => {

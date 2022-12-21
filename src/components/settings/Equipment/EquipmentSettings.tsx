@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, useCallback, useContext } from "react";
 import { assertGame } from "../../../functions";
 import { InputGrid } from "../../inputs/InputGrid";
-import { EquipmentCategory } from "./Category";
+import { Category } from "./Category";
 import { GridFieldStacked } from "../../inputs/GridFieldStacked";
 import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
@@ -23,7 +23,7 @@ export const EquipmentSettings: React.FC = () => {
     <>
       {Object.entries(settings.equipmentCategories).map(
         ([id, { name, fields }], idx) => {
-          return <EquipmentCategory key={id} id={id} idx={idx} />;
+          return <Category key={id} id={id} idx={idx} />;
         },
       )}
       <InputGrid
