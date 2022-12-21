@@ -45,3 +45,5 @@ export const StatsSettingsEditor: React.FC<StatsSettingsEditorProps> = ({
     </div>
   );
 };
+
+StatsSettingsEditor.displayName = "StatsSettingsEditor";
