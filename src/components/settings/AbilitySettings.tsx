@@ -1,24 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { assertGame } from "../../functions";
-import { SettingsDict } from "../../settings";
 import { InputGrid } from "../inputs/InputGrid";
-import { Setters } from "./Settings";
+import { Setters } from "./types";
 import { SettingsGridField } from "./SettingsGridField";
 import { IdContext } from "../IdContext";
 import { ListEdit } from "../inputs/ListEdit";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
 import { nanoid } from "nanoid";
-import { ThemeV1 } from "../../themes/types";
+import { ThemeContext } from "../../themes/ThemeContext";
+import { StateContext } from "./contexts";
 
 export const AbilitySettings: React.FC<{
-  tempSettings: SettingsDict,
   setters: Setters,
-  setTempSettings: (settings: SettingsDict) => void,
-  tempSettingsRef: React.MutableRefObject<SettingsDict>,
-  theme: ThemeV1,
-}> = ({ tempSettings, setters, setTempSettings, tempSettingsRef, theme }) => {
+}> = ({ setters }) => {
   assertGame(game);
+  const { settings } = useContext(StateContext);
+  const theme = useContext(ThemeContext);
 
   let idx = 0;
 
@@ -79,10 +77,10 @@ export const AbilitySettings: React.FC<{
                 pack: CompendiumCollection<CompendiumCollection.Metadata>,
                 i,
               ) => {
-                const pcSelected = tempSettings.newPCPacks.includes(
+                const pcSelected = settings.newPCPacks.includes(
                   pack.collection,
                 );
-                const npcSelected = tempSettings.newNPCPacks.includes(
+                const npcSelected = settings.newNPCPacks.includes(
                   pack.collection,
                 );
                 const id = nanoid();
@@ -107,12 +105,12 @@ export const AbilitySettings: React.FC<{
                       onChange={(checked) => {
                         if (checked) {
                           setters.newPCPacks([
-                            ...tempSettings.newPCPacks,
+                            ...settings.newPCPacks,
                             pack.collection,
                           ]);
                         } else {
                           setters.newPCPacks(
-                            tempSettings.newPCPacks.filter(
+                            settings.newPCPacks.filter(
                               (x) => x !== pack.collection,
                             ),
                           );
@@ -129,12 +127,12 @@ export const AbilitySettings: React.FC<{
                       onChange={(checked) => {
                         if (checked) {
                           setters.newNPCPacks([
-                            ...tempSettings.newNPCPacks,
+                            ...settings.newNPCPacks,
                             pack.collection,
                           ]);
                         } else {
                           setters.newNPCPacks(
-                            tempSettings.newNPCPacks.filter(
+                            settings.newNPCPacks.filter(
                               (x) => x !== pack.collection,
                             ),
                           );
@@ -164,40 +162,40 @@ export const AbilitySettings: React.FC<{
       </SettingsGridField>
       <SettingsGridField label="Investigative Ability Categories" index={idx++}>
         <ListEdit
-          value={tempSettings.investigativeAbilityCategories}
+          value={settings.investigativeAbilityCategories}
           onChange={setters.investigativeAbilityCategories}
           nonempty
         />
       </SettingsGridField>
       <SettingsGridField label="General Ability Categories" index={idx++}>
         <ListEdit
-          value={tempSettings.generalAbilityCategories}
+          value={settings.generalAbilityCategories}
           onChange={setters.generalAbilityCategories}
           nonempty
         />
       </SettingsGridField>
       <SettingsGridField label="Combat Abilities" index={idx++}>
         <ListEdit
-          value={tempSettings.combatAbilities}
+          value={settings.combatAbilities}
           onChange={setters.combatAbilities}
           nonempty
         />
       </SettingsGridField>
       <SettingsGridField label="Can Abilities be Boosted?" index={idx++}>
-        <Checkbox checked={tempSettings.useBoost} onChange={setters.useBoost} />
+        <Checkbox checked={settings.useBoost} onChange={setters.useBoost} />
       </SettingsGridField>
       <SettingsGridField
         label="Show empty Investigative categories?"
         index={idx++}
       >
         <Checkbox
-          checked={tempSettings.showEmptyInvestigativeCategories}
+          checked={settings.showEmptyInvestigativeCategories}
           onChange={setters.showEmptyInvestigativeCategories}
         />
       </SettingsGridField>
       <SettingsGridField label="Use NPC Combat bonuses?" index={idx++}>
         <Checkbox
-          checked={tempSettings.useNpcCombatBonuses}
+          checked={settings.useNpcCombatBonuses}
           onChange={setters.useNpcCombatBonuses}
         />
       </SettingsGridField>
@@ -206,4 +204,4 @@ export const AbilitySettings: React.FC<{
   );
 };
 
-AbilitySettings.displayName = "CoreSettings";
+AbilitySettings.displayName = "AbilitySettings";

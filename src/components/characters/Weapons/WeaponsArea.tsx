@@ -1,8 +1,8 @@
 import React from "react";
-import { weapon } from "../../constants";
-import { sortEntitiesByName } from "../../functions";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { Translate } from "../Translate";
+import { weapon } from "../../../constants";
+import { sortEntitiesByName } from "../../../functions";
+import { InvestigatorActor } from "../../../module/InvestigatorActor";
+import { Translate } from "../../Translate";
 import { WeaponRow } from "./WeaponRow";
 
 type WeaponsAreaProps = {

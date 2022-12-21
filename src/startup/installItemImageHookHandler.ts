@@ -1,6 +1,6 @@
 import { equipmentIcon, generalAbilityIcon, investigativeAbilityIcon, weaponIcon } from "../constants";
 import { assertGame, isNullOrEmptyString } from "../functions";
-import { isWeaponDataSource, isGeneralAbilityDataSource, isEquipmentDataSource } from "../types";
+import { isWeaponDataSource, isGeneralAbilityDataSource, isEquipmentDataSource } from "../typeAssertions";
 
 export const installItemImageHookHandler = () => {
   Hooks.on(

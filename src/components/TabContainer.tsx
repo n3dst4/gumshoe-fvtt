@@ -76,7 +76,16 @@ export const TabContainer: React.FC<TabContainerProps> = ({
                 checked={id === selected}
                 onChange={onChange}
               />
-              <label htmlFor={htmlId} tabIndex={0} className={theme.tabClass}>
+              <label
+                htmlFor={htmlId}
+                tabIndex={0}
+                className={theme.tabClass}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
                 {typeof label === "string"
                   ? <Translate>{label}</Translate>
                   : label

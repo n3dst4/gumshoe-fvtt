@@ -1,6 +1,6 @@
 import type { HttpProxy } from "vite";
 import { defineConfig } from "vite";
-import { visualizer } from "rollup-plugin-visualizer";
+// import { visualizer } from "rollup-plugin-visualizer";
 import checker from "vite-plugin-checker";
 import path from "path";
 import { name } from "./public/system.json";
@@ -26,7 +26,7 @@ const preambleHtml =
 '\n<script type="module">\n' + preambleJS + "\n</script>\n";
 const headTag = "<head>";
 
-const config = defineConfig(({ command, mode, ssrBuild }) => {
+const config = defineConfig(({ mode }) => {
   console.log(mode);
   return {
     root: "src/",
@@ -100,7 +100,11 @@ const config = defineConfig(({ command, mode, ssrBuild }) => {
       emptyOutDir: true,
       sourcemap: mode !== "production",
       minify: mode === "production",
+      // commonjsOptions: {
+      //   defaultIsModuleExports: "auto",
+      // },
       rollupOptions: {
+        // shimMissingExports: true,
         output: {
           assetFileNames: (assetInfo) => {
             if (assetInfo.name === "style.css") {
@@ -131,21 +135,21 @@ const config = defineConfig(({ command, mode, ssrBuild }) => {
           lintCommand: `eslint "${path.join(__dirname, "/src/**/*.{ts,tsx}")}"`,
         },
       }),
-      visualizer({
-        gzipSize: true,
-        template: "treemap",
-        filename: "stats/treemap.html",
-      }),
-      visualizer({
-        gzipSize: true,
-        template: "sunburst",
-        filename: "stats/sunburst.html",
-      }),
-      visualizer({
-        gzipSize: true,
-        template: "network",
-        filename: "stats/network.html",
-      }),
+      // visualizer({
+      //   gzipSize: true,
+      //   template: "treemap",
+      //   filename: "stats/treemap.html",
+      // }),
+      // visualizer({
+      //   gzipSize: true,
+      //   template: "sunburst",
+      //   filename: "stats/sunburst.html",
+      // }),
+      // visualizer({
+      //   gzipSize: true,
+      //   template: "network",
+      //   filename: "stats/network.html",
+      // }),
     ],
   };
 });

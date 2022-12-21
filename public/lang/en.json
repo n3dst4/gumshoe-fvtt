@@ -139,5 +139,17 @@
     "investigator.OpenCharacterSheet": "Open character sheet",
     "investigator.Core": "Core",
     "investigator.Stats": "Stats",
-    "investigator.Misc": "Misc."
+    "investigator.Misc": "Misc.",
+    "investigator.Fields": "Fields",
+    "investigator.AddCategory": "Add a new equipment category",
+    "investigator.AddField": "Add a new field to this category",
+    "investigator.DeleteCategory": "Delete category?",
+    "investigator.YouHaveUnsavedChangesAreYouSureYouWantToClose": "You have unsaved changes. Are you sure you want to close?",
+    "investigator.YesDiscardMyChanges": "Yes, discard my changes",
+    "investigator.MoveUp": "Move up",
+    "investigator.MoveDown": "Move down",
+    "investigator.Default": "Default",
+    "investigator.UncategorizedEquipment": "Uncategorized equipment",
+    "investigator.CategoryName": "Category Name",
+    "investigator.ViewChangeID": "View/change ID"
 }

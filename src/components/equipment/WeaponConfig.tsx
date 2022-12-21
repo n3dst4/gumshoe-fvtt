@@ -8,7 +8,7 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { WeaponRange } from "./WeaponRangeConfig";
 import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
-import { assertWeaponDataSource } from "../../types";
+import { assertWeaponDataSource } from "../../typeAssertions";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { absoluteCover } from "../absoluteCover";

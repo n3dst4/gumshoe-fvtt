@@ -43,7 +43,13 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
       close();
     }
   }, [close]);
-  const toggle = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      setIsOpen((isOpen) => !isOpen);
+    },
+    [],
+  );
 
   // we will always assume that the container
   // 1. is a parent of the current element
@@ -77,7 +83,7 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
       <button
         role={role}
         ref={buttonRef}
-        onClick={toggle}
+        onClick={handleClick}
         style={style}
         className={className}
         css={{

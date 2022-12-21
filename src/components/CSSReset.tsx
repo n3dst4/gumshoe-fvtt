@@ -5,20 +5,12 @@ import { ThemeContext } from "../themes/ThemeContext";
 import { ThemeV1 } from "../themes/types";
 import { FoundryAppContext } from "./FoundryAppContext";
 import createCache from "@emotion/cache";
-import { makeLogger } from "../functions";
-
-const log = makeLogger("CSSReset");
-
-export enum CSSResetMode {
-  large="large",
-  small="small"
-}
 
 type CSSResetProps = {
   children: ReactNode,
   className?: string,
   theme: ThemeV1,
-  mode: CSSResetMode,
+  mode: "large" | "small",
   noStyleAppWindow?: boolean,
 };
 
@@ -49,8 +41,6 @@ export const CSSReset: React.FC<CSSResetProps> = ({
 
   const [head, setHead] = useState(app?.element.get(0)?.closest("head"));
 
-  log("head", head);
-
   useEffect(() => {
     const popoutHandler = (poppedApp: Application, newWindow: Window) => {
       if (poppedApp.appId === app?.appId) {
@@ -80,7 +70,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
     [head],
   );
 
-  const rootStyle = (mode === CSSResetMode.large ? theme.largeSheetRootStyle : theme.smallSheetRootStyle);
+  const rootStyle = (mode === "large" ? theme.largeSheetRootStyle : theme.smallSheetRootStyle);
 
   return (
     <EmotionCacheProvider value={cache}>

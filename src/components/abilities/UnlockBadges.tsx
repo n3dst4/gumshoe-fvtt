@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { assertAbilityDataSource } from "../../types";
+import { assertAbilityDataSource } from "../../typeAssertions";
 
 interface UnlockBadgesProps {
   ability: InvestigatorItem;

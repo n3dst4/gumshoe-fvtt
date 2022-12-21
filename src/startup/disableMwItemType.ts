@@ -18,10 +18,14 @@ function mwItemOnOrOff () {
       oldMwItemIndex = null;
     }
   } else {
-    oldMwItemTypelabel = CONFIG.Item.typeLabels.mwItem;
-    delete CONFIG.Item.typeLabels.mwItem;
-    oldMwItemIndex = game.system.documentTypes.Item.indexOf("mwItem");
-    game.system.documentTypes.Item.splice(oldMwItemIndex, 1);
+    const label = CONFIG.Item.typeLabels.mwItem;
+    const index = game.system.documentTypes.Item.indexOf("mwItem");
+    if (index !== -1) {
+      oldMwItemTypelabel = label;
+      delete CONFIG.Item.typeLabels.mwItem;
+      oldMwItemIndex = index;
+      game.system.documentTypes.Item.splice(index, 1);
+    }
   }
 }
 

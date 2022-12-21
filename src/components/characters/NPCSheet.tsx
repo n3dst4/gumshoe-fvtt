@@ -1,15 +1,15 @@
 import React, { Fragment, ReactNode } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { CSSReset, CSSResetMode } from "../CSSReset";
+import { CSSReset } from "../CSSReset";
 import { TabContainer } from "../TabContainer";
 import { LogoEditable } from "./LogoEditable";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
-import { WeaponsArea } from "./WeaponsArea";
-import { WeaponsAreaEdit } from "./WeaponsAreaEdit";
+import { WeaponsArea } from "./Weapons/WeaponsArea";
+import { WeaponsAreaEdit } from "./Weapons/WeaponsAreaEdit";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
-import { assertNPCDataSource, isNPCDataSource } from "../../types";
+import { assertNPCDataSource, isNPCDataSource } from "../../typeAssertions";
 import { ImagePickle } from "../ImagePickle";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
@@ -37,7 +37,7 @@ export const NPCSheet = ({
   return (
     <CSSReset
       theme={theme}
-      mode={CSSResetMode.large}
+      mode="large"
       css={{
         position: "absolute",
         top: 0,

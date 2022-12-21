@@ -1,7 +1,7 @@
 import { generalAbility, investigativeAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";
-import { isAbilityDataSource } from "../../types";
+import { isAbilityDataSource } from "../../typeAssertions";
 
 export const useAbilities = (actor: Actor, hideZeroRated: boolean) => {
   const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};

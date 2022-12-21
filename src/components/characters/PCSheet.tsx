@@ -2,19 +2,19 @@ import React, { Fragment, ReactNode, useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
-import { CSSReset, CSSResetMode } from "../CSSReset";
+import { CSSReset } from "../CSSReset";
 import { LogoEditable } from "./LogoEditable";
 import { InputGrid } from "../inputs/InputGrid";
 import { GridField } from "../inputs/GridField";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { TabContainer } from "../TabContainer";
-import { EquipmentArea } from "./EquipmentArea";
+import { EquipmentArea } from "./Equipment/EquipmentArea";
 import { NotesArea } from "./NotesArea";
-import { WeaponsArea } from "./WeaponsArea";
+import { WeaponsArea } from "./Weapons/WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
-import { assertPCDataSource, isPCDataSource } from "../../types";
+import { assertPCDataSource, isPCDataSource } from "../../typeAssertions";
 import { ImagePickle } from "../ImagePickle";
 import { assertGame } from "../../functions";
 import { AbilitiesAreaMW } from "./MoribundWorld/AbilitiesAreaMW";
@@ -51,7 +51,7 @@ export const PCSheet: React.FC<{
   return (
     <CSSReset
       theme={theme}
-      mode={CSSResetMode.large}
+      mode="large"
       css={{
         position: "absolute",
         top: 0,

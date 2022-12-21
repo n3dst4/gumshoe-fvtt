@@ -1,14 +1,17 @@
-import React, { useCallback } from "react";
+import React, { ChangeEvent, useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "../inputs/TextInput";
 import { Translate } from "../Translate";
-import { assertGame, confirmADoodleDo } from "../../functions";
+import { assertGame, confirmADoodleDo, getTranslated } from "../../functions";
 import { ImagePickle } from "../ImagePickle";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { absoluteCover } from "../absoluteCover";
+import { settings } from "../../settings";
+import { assertEquipmentDataSource } from "../../typeAssertions";
+import { EquipmentField } from "./EquipmentField";
 
 type EquipmentSheetProps = {
   equipment: InvestigatorItem,
@@ -19,6 +22,8 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   equipment,
   application,
 }) => {
+  const data = equipment.data;
+  assertEquipmentDataSource(data);
   const name = useAsyncUpdate(equipment.name || "", equipment.setName);
 
   const onClickDelete = useCallback(() => {
@@ -41,6 +46,28 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
     });
   }, [equipment]);
 
+  const categories = settings.equipmentCategories.get();
+  const categoryMetadata = categories[data.data.category];
+  const isRealCategory = categoryMetadata !== undefined;
+
+  const onChangeCategory = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      const value = e.currentTarget.value;
+      if (value === "") {
+        // setIsUncategorized(true);
+        equipment.setCategory("");
+      } else {
+        // setIsUncategorized(false);
+        equipment.setCategory(e.currentTarget.value);
+      }
+    },
+    [equipment],
+  );
+
+  const selectedCat = isRealCategory ? data.data.category : "";
+
+  const fieldsLength = Object.keys(categoryMetadata?.fields ?? {}).length + 2;
+
   return (
     <div
       css={{
@@ -51,9 +78,9 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
         gridTemplateColumns: "auto 1fr auto",
         gridTemplateRows: "auto auto 1fr",
         gridTemplateAreas:
-          "\"image slug     trash\" " +
-          "\"image headline headline\" " +
-          "\"body  body     body\" ",
+          '"image slug     trash" ' +
+          '"image headline headline" ' +
+          '"body  body     body" ',
       }}
     >
       {/* Slug */}
@@ -93,18 +120,58 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
           onClickDelete();
         }}
       >
-        <i className={"fa fa-trash"}/>
+        <i className={"fa fa-trash"} />
       </a>
 
       {/* Body */}
-      <InputGrid css={{
-        gridArea: "body",
-        position: "relative",
-        gridTemplateRows: "auto 1fr",
-      }}>
+      <InputGrid
+        css={{
+          gridArea: "body",
+          position: "relative",
+          gridTemplateRows: `repeat(${fieldsLength}, auto) 1fr`,
+        }}
+      >
         <GridField label="Name">
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
+
+        <GridField label="Category" labelTitle={`Category ID: ${data.data.category}`}>
+          <div
+            css={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <div>
+              <select
+                value={selectedCat}
+                onChange={onChangeCategory}
+                css={{
+                  lineHeight: "inherit",
+                  height: "inherit",
+                }}
+              >
+                {Object.entries(categories).map<JSX.Element>(([id, cat]) => (
+                  <option key={id} value={id}>{cat.name}</option>
+                ))}
+                <option value="">{getTranslated("Uncategorized equipment")}</option>
+              </select>
+            </div>
+          </div>
+        </GridField>
+
+        {Object.entries(categoryMetadata?.fields ?? {}).map(([fieldId, fieldMetadata]) => {
+          return (
+            <EquipmentField
+              key={fieldId}
+              fieldId={fieldId}
+              fieldMetadata={fieldMetadata}
+              value={data.data.fields?.[fieldId]}
+              equipment={equipment}
+            />
+          );
+        })}
+
         <NotesEditorWithControls
           allowChangeFormat
           format={equipment.data.data.notes.format}

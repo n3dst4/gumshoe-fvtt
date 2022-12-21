@@ -1,7 +1,7 @@
 // import "./startup/setWebkitPublicPath";
 import "./investigator.less";
 import { systemName } from "./constants";
-import { registerSettingsMenu } from "./settings";
+import { registerSettingsMenu } from "./startup/registerSettingsMenu";
 import { preloadTemplates } from "./startup/preloadTemplates";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { installCompendiumExportButton } from "./startup/installCompendiumExportButton";
@@ -24,6 +24,7 @@ import { installInitiativeUpdateHookHandler } from "./startup/installInitiativeU
 import { assertGame } from "./functions";
 import { installTurnPassingHandler } from "./startup/installTurnPassingHandler";
 import { installSocketActionHandler } from "./startup/installSocketActionHandler";
+import { installEquipmentCategoryHookHandler } from "./startup/installEquipmentCategoryHookHandler";
 
 injectGlobalHelper();
 
@@ -65,3 +66,4 @@ handleMwItemType();
 installInitiativeUpdateHookHandler();
 installTurnPassingHandler();
 installSocketActionHandler();
+installEquipmentCategoryHookHandler();
