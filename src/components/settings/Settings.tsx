@@ -92,7 +92,7 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                 },
                 {
                   id: "equipment",
-                  label: "Equipment Categories",
+                  label: "Equipment",
                   content: (<EquipmentSettings />),
                 },
                 {
