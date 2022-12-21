@@ -30,13 +30,15 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
   const handleClickClose = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-      const aye = !isDirty() || await confirmADoodleDo({
-        message: "You have unsaved changes. Are you sure you want to close?",
-        confirmText: "Yes, discard my changes",
-        cancelText: "Whoops, No!",
-        confirmIconClass: "fas fa-times",
-        resolveFalseOnCancel: true,
-      });
+      const aye =
+        !isDirty() ||
+        (await confirmADoodleDo({
+          message: "You have unsaved changes. Are you sure you want to close?",
+          confirmText: "Yes, discard my changes",
+          cancelText: "Whoops, No!",
+          confirmIconClass: "fas fa-times",
+          resolveFalseOnCancel: true,
+        }));
       if (aye) {
         foundryApplication.close();
       }
@@ -79,37 +81,27 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                 {
                   id: "core",
                   label: "Core",
-                  content: (
-                    <CoreSettings setters={setters} />
-                  ),
+                  content: <CoreSettings setters={setters} />,
                 },
                 {
                   id: "abilities",
                   label: "Abilities",
-                  content: (
-                    <AbilitySettings setters={setters} />
-                  ),
+                  content: <AbilitySettings setters={setters} />,
                 },
                 {
                   id: "equipment",
                   label: "Equipment",
-                  content: (<EquipmentSettings />),
+                  content: <EquipmentSettings />,
                 },
                 {
                   id: "stats",
                   label: "Stats",
-                  content: (
-                    <StatsSettings />
-                  ),
+                  content: <StatsSettings />,
                 },
                 {
                   id: "misc",
                   label: "Misc",
-                  content: (
-                    <MiscSettings
-                      setters={setters}
-                    />
-                  ),
+                  content: <MiscSettings setters={setters} />,
                 },
               ]}
             />
