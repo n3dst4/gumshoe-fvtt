@@ -43,4 +43,4 @@ export const EquipmentSettings: React.FC = () => {
   );
 };
 
-EquipmentSettings.displayName = "CoreSettings";
+EquipmentSettings.displayName = "EquipmentSettings";

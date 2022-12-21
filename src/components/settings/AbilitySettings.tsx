@@ -204,4 +204,4 @@ export const AbilitySettings: React.FC<{
   );
 };
 
-AbilitySettings.displayName = "CoreSettings";
+AbilitySettings.displayName = "AbilitySettings";

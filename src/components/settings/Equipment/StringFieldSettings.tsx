@@ -49,4 +49,4 @@ export const StringFieldSettings: React.FC<StringFieldSettingsProps> = ({
   );
 };
 
-StringFieldSettings.displayName = "NumberFieldSettings";
+StringFieldSettings.displayName = "StringFieldSettings";

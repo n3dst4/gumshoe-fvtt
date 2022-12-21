@@ -23,3 +23,5 @@ export const SettingsGridField: React.FC<SettingsGridFieldProps> = ({
     />
   );
 };
+
+SettingsGridField.displayName = "SettingsGridField";

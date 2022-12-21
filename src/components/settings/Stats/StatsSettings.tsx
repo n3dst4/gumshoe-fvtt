@@ -25,4 +25,4 @@ export const StatsSettings: React.FC = () => {
   );
 };
 
-StatsSettings.displayName = "CustomStats";
+StatsSettings.displayName = "StatsSettings";

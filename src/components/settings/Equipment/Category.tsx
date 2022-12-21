@@ -164,4 +164,4 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
   );
 };
 
-EquipmentCategory.displayName = "EquipmentCategory";
+Category.displayName = "Category";

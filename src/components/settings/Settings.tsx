@@ -132,3 +132,5 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
     </DispatchContext.Provider>
   );
 };
+
+Settings.displayName = "Settings";

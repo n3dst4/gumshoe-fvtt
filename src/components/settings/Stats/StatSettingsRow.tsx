@@ -163,3 +163,5 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
     </div>
   );
 };
+
+StatSettingsRow.displayName = "StatSettingsRow";
