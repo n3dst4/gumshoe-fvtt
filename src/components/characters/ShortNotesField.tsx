@@ -2,7 +2,7 @@ import React, { useCallback, useContext } from "react";
 import { assertGame } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { isPCDataSource } from "../../types";
+import { isPCDataSource } from "../../typeAssertions";
 import { absoluteCover } from "../absoluteCover";
 // import { absoluteCover } from "../absoluteCover";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";

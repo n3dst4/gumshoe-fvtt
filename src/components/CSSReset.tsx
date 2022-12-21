@@ -12,17 +12,12 @@ import { ThemeContext } from "../themes/ThemeContext";
 import { ThemeV1 } from "../themes/types";
 import { FoundryAppContext } from "./FoundryAppContext";
 import createCache from "@emotion/cache";
-import { makeLogger } from "../functions";
 
-export enum CSSResetMode {
-  large="large",
-  small="small"
-}
 type CSSResetProps = {
   children: ReactNode,
   className?: string,
   theme: ThemeV1,
-  mode: CSSResetMode,
+  mode: "large"|"small",
   noStyleAppWindow?: boolean,
 };
 
