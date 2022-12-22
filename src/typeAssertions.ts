@@ -1,22 +1,6 @@
 import * as constants from "./constants";
 import { hasOwnProperty } from "./functions";
-import {
-  AbilityDataSource,
-  ActiveCharacterDataSource,
-  EquipmentDataSource,
-  EquipmentFieldType,
-  GeneralAbilityDataSource,
-  InvestigativeAbilityDataSource,
-  InvestigatorActorDataSource,
-  InvestigatorItemDataSource,
-  MwItemDataSource,
-  NPCDataSource,
-  PartyDataSource,
-  PCDataSource,
-  SocketHookAction,
-  WeaponDataSource,
-  WeaponOrEquipmentDataSource,
-} from "./types";
+import { AbilityDataSource, ActiveCharacterDataSource, EquipmentDataSource, EquipmentFieldType, GeneralAbilityDataSource, InvestigativeAbilityDataSource, InvestigatorActorDataSource, InvestigatorItemDataSource, MwItemDataSource, NPCDataSource, PartyDataSource, PCDataSource, PersonalDetailDataSource, SocketHookAction, WeaponDataSource, WeaponOrEquipmentDataSource } from "./types";
 
 export function isSocketHookAction<T>(
   x: SocketHookAction<T> | unknown,
@@ -201,4 +185,8 @@ export function assertIsEquipmentFieldType(
   if (!isEquipmentFieldType(type)) {
     throw new Error(`Invalid equipment field type: ${type}`);
   }
+}
+
+export function isPersonalDetailDataSource (data: InvestigatorItemDataSource): data is PersonalDetailDataSource {
+  return data.type === constants.personalDetail;
 }

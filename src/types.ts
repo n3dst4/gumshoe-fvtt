@@ -250,6 +250,12 @@ export interface MwItemDataSourceData {
   ranges: RangeTuple;
 }
 
+/** data.data for personal details */
+export interface PersonalDetailSourceData {
+  notes: NoteWithFormat;
+  index: number;
+}
+
 /** data for equipment */
 export type EquipmentDataSource = DataSource<
   typeof constants.equipment,
@@ -280,6 +286,9 @@ export type MwItemDataSource = DataSource<
   MwItemDataSourceData
 >;
 
+/** data for personal details */
+export type PersonalDetailDataSource = DataSource<typeof constants.personalDetail, PersonalDetailSourceData>;
+
 /** data for weapon OR equipment (rn this basically means "notes") */
 export type WeaponOrEquipmentDataSource =
   | WeaponDataSource
@@ -294,7 +303,8 @@ export type AbilityDataSource =
 export type InvestigatorItemDataSource =
   | WeaponOrEquipmentDataSource
   | AbilityDataSource
-  | MwItemDataSource;
+  | MwItemDataSource
+  | PersonalDetailDataSource;
 
 // now we crowbar this into the global type system using declaration merging
 declare global {
