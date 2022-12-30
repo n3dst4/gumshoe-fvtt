@@ -20,12 +20,12 @@ export const installEquipmentCategoryHookHandler = () => {
         isEquipmentDataSource(item.data)
       ) {
         const equipmentCategories = settings.equipmentCategories.get();
-        const defaultCategoryId = Object.keys(equipmentCategories)[0];
+        const categoryId = item.data.data.category || Object.keys(equipmentCategories)[0];
         const updateData: Pick<EquipmentDataSource["data"], "category"|"fields"> = {
-          category: item.data.data.category || defaultCategoryId,
+          category: item.data.data.category || categoryId,
           fields: item.data.data.fields || {},
         };
-        const fields = equipmentCategories[defaultCategoryId].fields;
+        const fields = equipmentCategories[categoryId].fields;
         for (const field in fields) {
           updateData.fields[field] ||= fields[field].default;
         }
