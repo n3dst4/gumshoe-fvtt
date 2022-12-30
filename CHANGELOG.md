@@ -2,6 +2,10 @@
 
 ## 6.0.0-beta-2 (2022-12-30)
 
+* Bug fixes on equipment categories
+
+## 6.0.0-beta-2 (2022-12-30)
+
 * Updates minimum core Foundry version to 10.291
 
 ## 6.0.0-beta-1 (2022-12-30)
