@@ -64,31 +64,33 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
         >
           {name}
         </h2>
-        <button
-          css={{
-            flexBasis: "max-content",
-          }}
-          onClick={async () => {
-            await actor.createEmbeddedDocuments(
-              "Item",
-              [
-                {
-                  type: constants.equipment,
-                  name: "New item",
-                  data: {
-                    category: categoryId,
+        {categoryId !== undefined && categoryId !== "" && (
+          <button
+            css={{
+              flexBasis: "max-content",
+            }}
+            onClick={async () => {
+              await actor.createEmbeddedDocuments(
+                "Item",
+                [
+                  {
+                    type: constants.equipment,
+                    name: "New item",
+                    data: {
+                      category: categoryId,
+                    },
                   },
+                ],
+                {
+                  renderSheet: true,
                 },
-              ],
-              {
-                renderSheet: true,
-              },
-            );
-          }}
-        >
-          <i className="fa fa-plus" />
-          <Translate>Add Equipment</Translate>
-        </button>
+              );
+            }}
+          >
+            <i className="fa fa-plus" />
+            <Translate>Add Equipment</Translate>
+          </button>
+        )}
       </div>
 
       {/* Headers */}
