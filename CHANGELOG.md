@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 6.0.0-beta-1 (2022-12-30)
+
+* Equipment categories! The GM can now define "types" of equipment and named custom fields to be present for each type. For example, you might define "treasure" as a category, with a "value" field, and "tomes" with a "sanity cost". Tickets #128 and #64, in a pleasant binary rhyme.
+* Bug fix: Images inserted in the rich text editor now show up correctly when the text is saved. Ticket #144.
+
+
 ## 5.1.3 (2022-11-08)
 
 * Fix #142 - the combat tracker should now be okay in v9 and v10. That thing is the absolute bane of my life.
