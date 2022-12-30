@@ -12,7 +12,8 @@ export const CombatAbilityDropDown: React.FC<CombatAbilityDropDownProps> = ({
   onChange: onChangeOrig,
   className,
 }) => {
-  const combatAbilities = settings.combatAbilities.get().sort();
+  // spread here because settings are read-only and .sort() mutates the array
+  const combatAbilities = [...settings.combatAbilities.get()].sort();
 
   const onSelectInitiativeAbility = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
