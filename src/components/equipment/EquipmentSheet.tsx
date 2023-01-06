@@ -135,7 +135,14 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
           <TextInput value={name.display} onChange={name.onChange} />
         </GridField>
 
-        <GridField label="Category" labelTitle={`Category ID: ${data.data.category}`}>
+        <GridField
+          label="Category"
+          labelTitle={`Category ID: ${data.data.category}\nClick to copy to clipboard.`}
+          onClickLabel={async () => {
+            await navigator.clipboard.writeText(data.data.category);
+            ui.notifications?.info(`Copied category ID "${data.data.category}" to clipboard`);
+          }}
+        >
           <div
             css={{
               display: "flex",
