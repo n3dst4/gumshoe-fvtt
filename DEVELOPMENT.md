@@ -38,10 +38,10 @@ game.settings.set("investigator","systemMigrationVersion", "1.0.0")
 
 ## Generating Compendium packs
 
-1. In your **Items** tab, delete the "Trail of Cthulhu Abilies" folder
+1. In your **Items** tab, delete the "Trail of Cthulhu Abilities" folder
 2. In the **Compendium Packs** tab, make sure the edit lock is toggled off for the pack (right click and `Toggle edit lock` if you see a padlock.) 
 3. Open the browser console (F12) and type `generateTrailAbilitiesData()`
-4. Check the compenium packs if you like
+4. Check the compendium packs if you like
 5. Copy the `packs/*.db` files back from `dist/` into `src/`
 
 ## Translations
@@ -63,9 +63,9 @@ To keep the translation imports running sweetly, you will need to update `.tx/co
 
 ### Getting set up to pull translations from Transifex
 
-Install the Transifex commandline utility `tx` from https://github.com/transifex/cli
+Install the Transifex command-line utility `tx` from https://github.com/transifex/cli
 
-There is some older documentation somewhere on the Transifes website that talks about their old Python-based cli client - ignore that. You want the new one written in Go, as linked above.
+There is some older documentation somewhere on the Transifex website that talks about their old Python-based cli client - ignore that. You want the new one written in Go, as linked above.
 
 The first time you try to pull translations, it will ask you to log in with an API token. It will give you instructions so I won't repeat them here.
 
@@ -81,11 +81,11 @@ I have a manual download which I keep checked-in with my dotfiles, but the other
 ## Adding system settings
 
 1. Add an entry to [`src/settings.ts`]().
-2. Add it to the `PresetV1` type in `@lumphammer/investrigator-fvvt-type`, publish, and update the package version here. We haven't got as far as new `PresetV*` types yet, so make sure you add it as an optional property.
+2. Add it to the `PresetV1` type in `@lumphammer/investigator-fvtt-type`, publish, and update the package version here. We haven't got as far as new `PresetV*` types yet, so make sure you add it as an optional property.
 3. Add a sensible default to `pathOfCthulhuPreset` in `src/settings.ts`, and add values to the other presets if they need them.
 4. In [`src/components/settings/`](), add it to the JSX somewhere - see the existing examples. `tempSettings` will contain the value and `setters` will have the setter.
 5. You will probably need to add a translation string to [`public/lang/en.json`]() or maybe [`public/lang/moribundWorld/en.json`]() for MW stuffs.
-6. If it's a setting that caan be controlled by system presets, also add it to the `PresetV1` type in @lumphammer/investigator-fvtt-types and publish a new version.
+6. If it's a setting that can be controlled by system presets, also add it to the `PresetV1` type in @lumphammer/investigator-fvtt-types and publish a new version.
 
 
 ## Using the "Developer mode" module
