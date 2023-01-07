@@ -10,7 +10,6 @@ type GridFieldProps = {
   noLabel?: boolean,
   noTranslate?: boolean,
   labelTitle?: string,
-  onClickLabel?: () => unknown,
 };
 
 export const GridField: React.FC<GridFieldProps> = ({
@@ -20,7 +19,6 @@ export const GridField: React.FC<GridFieldProps> = ({
   noLabel = false,
   noTranslate = false,
   labelTitle,
-  onClickLabel,
 }) => {
   const id = useMemo(() => nanoid(), []);
   return (
@@ -34,10 +32,6 @@ export const GridField: React.FC<GridFieldProps> = ({
           paddingRight: "0.5em",
         }}
         className={className}
-        onClick={(e) => {
-          e.stopPropagation();
-          onClickLabel?.();
-        }}
       >
         {label && ((noTranslate || typeof label !== "string") ? label : <Translate title={labelTitle}>{label}</Translate>)}
       </label>

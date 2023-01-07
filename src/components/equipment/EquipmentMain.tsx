@@ -57,16 +57,7 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
         <TextInput value={name} onChange={onChangeName} />
       </GridField>
 
-      <GridField
-        label="Category"
-        labelTitle={`Category ID: ${data.data.category}.\nClick to copy to clipboard.`}
-        onClickLabel={async () => {
-          await navigator.clipboard.writeText(data.data.category);
-          ui.notifications?.info(
-            `Copied category ID "${data.data.category}" to clipboard`,
-          );
-        }}
-      >
+      <GridField label="Category">
         <div
           css={{
             display: "flex",
