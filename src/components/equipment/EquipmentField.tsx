@@ -24,7 +24,17 @@ export const EquipmentField: React.FC<EquipmentFieldProps> = ({
   }, [equipment, fieldId]);
 
   return (
-    <GridField noTranslate key={fieldId} label={fieldMetadata.name} labelTitle={`Field ID: ${fieldId}`}>
+    <GridField
+      noTranslate
+      key={fieldId}
+      label={fieldMetadata.name}
+      labelTitle={`Field ID: ${fieldId}\nClick to copy to clipboard.`}
+      onClickLabel={async () => {
+        await navigator.clipboard.writeText(fieldId);
+        ui.notifications?.info(`Copied field ID "${fieldId}" to clipboard`);
+      }}
+
+    >
       {fieldMetadata.type === "string" && (
         <AsyncTextInput value={value as string} onChange={onChange} />
       )}
