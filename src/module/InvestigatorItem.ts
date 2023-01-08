@@ -7,6 +7,7 @@ import {
   assertMwItemDataSource,
   assertWeaponDataSource,
   isEquipmentDataSource,
+  assertEquipmentDataSource,
 } from "../typeAssertions";
 import {
   EquipmentDataSource,
@@ -182,7 +183,7 @@ export class InvestigatorItem extends Item {
     assertEquipmentOrAbilityDataSource(this.data);
     const updateData: Pick<EquipmentDataSource["data"], "category"|"fields"> = { category, fields: {} };
     if (isEquipmentDataSource(this.data)) {
-      const fields = settings.equipmentCategories.get()[category].fields;
+      const fields = settings.equipmentCategories.get()[category]?.fields ?? {};
       for (const field in fields) {
         updateData.fields[field] = this.data.data.fields[field] ?? fields[field].default;
       }
@@ -191,8 +192,13 @@ export class InvestigatorItem extends Item {
   };
 
   setField = (field: string, value: string|number|boolean) => {
-    assertEquipmentOrAbilityDataSource(this.data);
+    assertEquipmentDataSource(this.data);
     this.update({ data: { fields: { [field]: value } } });
+  };
+
+  deleteField = (field: string) => {
+    assertEquipmentDataSource(this.data);
+    this.update({ [`data.fields.-=${field}`]: null });
   };
 
   getMin = () => {

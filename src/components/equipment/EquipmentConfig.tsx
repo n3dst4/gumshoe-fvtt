@@ -1,14 +1,18 @@
-import React, { useCallback } from "react";
+import React, { Fragment, useCallback } from "react";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { settings } from "../../settings";
 import { assertEquipmentDataSource } from "../../typeAssertions";
 import { GridField } from "../inputs/GridField";
+import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 
 interface EquipmentConfigProps {
   equipment: InvestigatorItem;
 }
+
+const gridRowsPerField = 3;
 
 export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
   equipment,
@@ -35,14 +39,22 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
     });
   }, [equipment]);
 
+  const allFields = equipment.data.data.fields;
+  const knownFieldIds = Object.keys(
+    settings.equipmentCategories.get()[equipment.data.data.category]?.fields ??
+      {},
+  );
+  const unknownFields = Object.keys(allFields).filter(
+    (fieldId) => !knownFieldIds.includes(fieldId),
+  );
+
   return (
     <InputGrid>
-      <GridField label="Category Id" noTranslate>
+      <GridField label="Category Id">
         <code
           css={{
             display: "inline-block",
             margin: "0.3em 1em 0.3em 0",
-
           }}
         >
           {equipment.data.data.category}
@@ -62,6 +74,95 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
           <i className={"fa fa-copy"} />
         </a>
       </GridField>
+      <GridFieldStacked
+        label="Orphaned fields"
+        css={{
+          display: "grid",
+          gridTemplateColumns: "auto auto auto auto",
+          gridAutoRows: "auto",
+        }}
+      >
+        {unknownFields.length === 0 && (
+          <i css={{ margin: "1em" }}>
+            <Translate>No Orphaned Fields</Translate>
+          </i>
+        )}
+        {unknownFields.map((fieldId, index) => (
+          <Fragment key={fieldId}>
+            <div
+              css={{
+                gridColumn: "1",
+                gridRow: index * gridRowsPerField + 1,
+              }}
+            >
+              Id
+            </div>
+            <code
+              css={{
+                gridColumn: 2,
+                gridRow: index * gridRowsPerField + 1,
+              }}
+            >
+              {fieldId}
+            </code>
+            <a
+              css={{
+                gridColumn: 3,
+                gridRow: index * gridRowsPerField + 1,
+              }}
+              onClick={() => {
+                navigator.clipboard.writeText(fieldId);
+                ui.notifications?.info(
+                  `Copied field ID "${fieldId}" to clipboard`,
+                );
+              }}
+            >
+              <i className={"fa fa-copy"} />
+            </a>
+            <div
+              css={{
+                gridColumn: "1",
+                gridRow: index * gridRowsPerField + 2,
+              }}
+            >
+              Value
+            </div>
+            <code
+              css={{
+                gridColumn: 2,
+                gridRow: index * gridRowsPerField + 2,
+              }}
+            >
+              {allFields[fieldId]}
+            </code>
+            <a
+              css={{
+                gridColumn: 3,
+                gridRow: index * gridRowsPerField + 2,
+              }}
+              onClick={() => {
+                navigator.clipboard.writeText(String(allFields[fieldId]));
+                ui.notifications?.info("Copied value to clipboard");
+              }}
+            >
+              <i className={"fa fa-copy"} />
+            </a>
+            <button
+              css={{
+                gridColumn: 4,
+                gridRow: `${index * gridRowsPerField + 1} / ${
+                  index * gridRowsPerField + 3
+                }`,
+              }}
+              onClick={() => {
+                equipment.deleteField(fieldId);
+              }}
+            >
+              <Translate>Delete</Translate>
+            </button>
+          </Fragment>
+        ))}
+      </GridFieldStacked>
 
       <GridField label="Delete">
         <button onClick={onClickDelete}>
