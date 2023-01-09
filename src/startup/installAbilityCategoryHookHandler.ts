@@ -1,13 +1,19 @@
 import { assertGame, isNullOrEmptyString } from "../functions";
-import { getDefaultGeneralAbilityCategory, getDefaultInvestigativeAbilityCategory } from "../settings";
-import { isAbilityDataSource, isGeneralAbilityDataSource } from "../typeAssertions";
+import {
+  getDefaultGeneralAbilityCategory,
+  getDefaultInvestigativeAbilityCategory,
+} from "../settings";
+import {
+  isAbilityDataSource,
+  isGeneralAbilityDataSource,
+} from "../typeAssertions";
 
 export const installAbilityCategoryHookHandler = () => {
   Hooks.on(
     "preCreateItem",
     (
       item: Item,
-      createData: { name: string, type: string, data?: any, img?: string },
+      createData: { name: string; type: string; data?: any; img?: string },
       options: any,
       userId: string,
     ) => {

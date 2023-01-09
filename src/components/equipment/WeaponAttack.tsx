@@ -1,9 +1,19 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { generalAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { PCDataSource } from "../../types";
-import { assertWeaponDataSource, isAbilityDataSource, isPCDataSource } from "../../typeAssertions";
+import {
+  assertWeaponDataSource,
+  isAbilityDataSource,
+  isPCDataSource,
+} from "../../typeAssertions";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";
@@ -15,7 +25,7 @@ import { Translate } from "../Translate";
 import { performAttack } from "./performAttack";
 
 type WeaponAttackProps = {
-  weapon: InvestigatorItem,
+  weapon: InvestigatorItem;
 };
 
 const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
@@ -31,17 +41,18 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
 
   const abilityName = weapon.data.data.ability;
 
-  const ability: InvestigatorItem|undefined = weapon.actor?.items.find((item: InvestigatorItem) => {
-    return (
-      item.type === generalAbility && item.name === abilityName
-    );
-  });
+  const ability: InvestigatorItem | undefined = weapon.actor?.items.find(
+    (item: InvestigatorItem) => {
+      return item.type === generalAbility && item.name === abilityName;
+    },
+  );
 
-  const pool = ability && isAbilityDataSource(ability.data) ? ability.data.data.pool : 0;
+  const pool =
+    ability && isAbilityDataSource(ability.data) ? ability.data.data.pool : 0;
 
   const spendOptions = defaultSpendOptions.map((option) => ({
     ...option,
-    enabled: option.value <= (pool + bonusPool),
+    enabled: option.value <= pool + bonusPool,
   }));
 
   const basePerformAttack = useMemo(() => {
@@ -96,11 +107,18 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   );
 
   useEffect(() => {
-    const callback = (actor: Actor, diff: {_id: string, data: DeepPartial<PCDataSource>}, options: unknown, id: string) => {
+    const callback = (
+      actor: Actor,
+      diff: { _id: string; data: DeepPartial<PCDataSource> },
+      options: unknown,
+      id: string,
+    ) => {
       if (actor.data._id === weaponActorData?._id) {
-        setActorInitiativeAbility(weaponActorData && isPCDataSource(weaponActorData)
-          ? weaponActorData.data.initiativeAbility
-          : "");
+        setActorInitiativeAbility(
+          weaponActorData && isPCDataSource(weaponActorData)
+            ? weaponActorData.data.initiativeAbility
+            : "",
+        );
       }
     };
     Hooks.on("updateActor", callback);
@@ -150,23 +168,22 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
               position: "relative",
             }}
           >
-            {
-              ammoFail &&
-                <div
-                  css={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    fontSize: "1.2em",
-                    backgroundColor: theme.colors.accentContrast,
-                    color: theme.colors.accent,
-                    padding: "0 1em",
-                  }}
-                >
-                  <Translate>Out of ammo</Translate>
-                </div>
-            }
+            {ammoFail && (
+              <div
+                css={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  fontSize: "1.2em",
+                  backgroundColor: theme.colors.accentContrast,
+                  color: theme.colors.accent,
+                  padding: "0 1em",
+                }}
+              >
+                <Translate>Out of ammo</Translate>
+              </div>
+            )}
             <button
               css={{ lineHeight: 1, flex: 1 }}
               disabled={ammoFail || !weapon.data.data.isPointBlank}
@@ -204,34 +221,34 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
           gridTemplateRows: `${weapon.data.data.usesAmmo ? "auto " : ""}1fr`,
         }}
       >
-        {weapon.data.data.usesAmmo &&
-            <GridField label="Ammo">
-              <div
+        {weapon.data.data.usesAmmo && (
+          <GridField label="Ammo">
+            <div
+              css={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <button
                 css={{
-                  display: "flex",
-                  flexDirection: "row",
+                  flexBasis: "min-content",
+                  flex: 0,
+                  lineHeight: "inherit",
                 }}
+                onClick={weapon.reload}
               >
-                <button
-                  css={{
-                    flexBasis: "min-content",
-                    flex: 0,
-                    lineHeight: "inherit",
-                  }}
-                  onClick={weapon.reload}
-                >
-                  <Translate>Reload</Translate>
-                </button>
-                <AsyncNumberInput
-                  css={{ flex: 1 }}
-                  min={0}
-                  max={weapon.getAmmoMax()}
-                  value={weapon.getAmmo()}
-                  onChange={weapon.setAmmo}
-                />
-              </div>
-            </GridField>
-        }
+                <Translate>Reload</Translate>
+              </button>
+              <AsyncNumberInput
+                css={{ flex: 1 }}
+                min={0}
+                max={weapon.getAmmoMax()}
+                value={weapon.getAmmo()}
+                onChange={weapon.setAmmo}
+              />
+            </div>
+          </GridField>
+        )}
 
         <NotesEditorWithControls
           allowChangeFormat
@@ -251,43 +268,36 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
         </GridField>
         <GridField noTranslate label={abilityName}>
           <a onClick={() => ability?.sheet?.render(true)}>
-            <Translate
-              values={{ AbilityName: ability?.name ?? "" }}
-            >
+            <Translate values={{ AbilityName: ability?.name ?? "" }}>
               Open (ability name) ability
             </Translate>
           </a>
         </GridField>
         <GridField label="">
-          {isAbilityUsed
-            ? (
+          {isAbilityUsed ? (
             <i>
-              <Translate>This ability is currently being used for combat ordering</Translate>
+              <Translate>
+                This ability is currently being used for combat ordering
+              </Translate>
             </i>
-              )
-            : (
+          ) : (
             <span>
               <a onClick={onClickUseForInitiative}>
-                <Translate
-                  values={{ AbilityName: ability?.name ?? "" }}
-                >
+                <Translate values={{ AbilityName: ability?.name ?? "" }}>
                   Use (ability name) for combat ordering
                 </Translate>
-
               </a>{" "}
               (
-                {
-                  actorInitiativeAbility
-                    ? <Translate
-                        values={{ AbilityName: actorInitiativeAbility }}
-                      >
-                        Currently using (ability name)
-                      </Translate>
-                    : <Translate>Currently using nothing</Translate>
-                }
+              {actorInitiativeAbility ? (
+                <Translate values={{ AbilityName: actorInitiativeAbility }}>
+                  Currently using (ability name)
+                </Translate>
+              ) : (
+                <Translate>Currently using nothing</Translate>
+              )}
               )
             </span>
-              )}
+          )}
         </GridField>
       </InputGrid>
     </div>

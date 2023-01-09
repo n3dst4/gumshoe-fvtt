@@ -31,7 +31,7 @@ export const fixLength = <T>(
   return result;
 };
 
-export const mapValues = <V1, V2, K extends string=string>(
+export const mapValues = <V1, V2, K extends string = string>(
   mapper: (v: V1, k: K, i: number) => V2,
   subject: { [k in K]: V1 },
 ): { [k in K]: V2 } => {
@@ -61,7 +61,7 @@ export const hasOwnProperty = (x: any, y: string) =>
 /**
  * Check that `game` has been initialised
  */
-export function isGame (game: any): game is Game {
+export function isGame(game: any): game is Game {
   return game instanceof Game;
 }
 
@@ -70,7 +70,7 @@ export function isGame (game: any): game is Game {
  * but technically possible during a calamitous upfuckage to TS keeps us honest
  * and requires a check.
  */
-export function assertGame (game: any): asserts game is Game {
+export function assertGame(game: any): asserts game is Game {
   if (!isGame(game)) {
     throw new Error("game used before init hook");
   }
@@ -81,14 +81,14 @@ export function assertGame (game: any): asserts game is Game {
  * This is just a convenience function to get the curent value of the debug flag
  * for INVESTIGATOR.
  */
-export function getDevMode () {
+export function getDevMode() {
   assertGame(game);
   return !!(game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(
     constants.systemName,
   );
 }
 
-export function assertNotNull<T> (t: T | undefined | null): asserts t is T {
+export function assertNotNull<T>(t: T | undefined | null): asserts t is T {
   if (t === undefined) {
     throw new Error("t was undefined");
   }
@@ -99,7 +99,7 @@ export function assertNotNull<T> (t: T | undefined | null): asserts t is T {
  * this keeps the renamed key in the same relative order, if you're relying on
  * JS's object key order being stable
  */
-export function renameProperty<T> (
+export function renameProperty<T>(
   oldProp: string,
   newProp: string,
   subject: Record<string, T>,
@@ -115,7 +115,7 @@ export function renameProperty<T> (
   return result;
 }
 
-export function broadcastHook<T> (hook: string, payload: T) {
+export function broadcastHook<T>(hook: string, payload: T) {
   assertGame(game);
   const socketHookAction: SocketHookAction<T> = {
     hook,
@@ -135,7 +135,7 @@ export const makeLogger = (name: string) =>
  * https://github.com/GoogleChromeLabs/text-editor/blob/e3a33c2c0b1832ecdb7221f17d7f8a1b23e1ad19/src/inline-scripts/fallback.js#L28
  * https://stackoverflow.com/questions/26754486/how-to-convert-arraybuffer-to-string
  */
-export async function getUserFile (accept: string): Promise<string> {
+export async function getUserFile(accept: string): Promise<string> {
   const filePicker = document.createElement("input");
   filePicker.type = "file";
   filePicker.accept = accept;
@@ -157,8 +157,8 @@ export async function getUserFile (accept: string): Promise<string> {
         reader.result === null
           ? ""
           : typeof reader.result === "string"
-            ? reader.result
-            : new TextDecoder("utf-8").decode(new Uint8Array(reader.result));
+          ? reader.result
+          : new TextDecoder("utf-8").decode(new Uint8Array(reader.result));
       resolve(text);
     });
   });
@@ -168,13 +168,16 @@ export async function getUserFile (accept: string): Promise<string> {
 
 export const mapObject =
   <T, U>(fn: (val: T, key: string, i: number) => U) =>
-    (obj: Record<string, T>): Record<string, U> => {
-      return Object.fromEntries(
-        Object.entries(obj).map(([key, val], i) => [key, fn(val, key, i)]),
-      );
-    };
+  (obj: Record<string, T>): Record<string, U> => {
+    return Object.fromEntries(
+      Object.entries(obj).map(([key, val], i) => [key, fn(val, key, i)]),
+    );
+  };
 
-export function moveKeyUp <V> (obj: Record<string, V>, key: string): Record<string, V> {
+export function moveKeyUp<V>(
+  obj: Record<string, V>,
+  key: string,
+): Record<string, V> {
   const entries = Object.entries(obj);
   const index = entries.findIndex(([k]) => k === key);
   if (index === 0) {
@@ -190,7 +193,10 @@ export function moveKeyUp <V> (obj: Record<string, V>, key: string): Record<stri
   return result;
 }
 
-export function moveKeyDown <V> (obj: Record<string, V>, key: string): Record<string, V> {
+export function moveKeyDown<V>(
+  obj: Record<string, V>,
+  key: string,
+): Record<string, V> {
   const entries = Object.entries(obj);
   const index = entries.findIndex(([k]) => k === key);
   if (index === entries.length - 1) {

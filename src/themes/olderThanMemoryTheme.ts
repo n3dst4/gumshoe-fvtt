@@ -45,10 +45,7 @@ export const olderThanMemoryTheme: ThemeV1 = themeFactory({
       // display: "none",
       border: `2px solid ${glow}`,
       borderRadius: "3em",
-      boxShadow: [
-        `0 0 0.5em 0 inset ${glow}`,
-        `0 0 0.5em 0 ${glow}`,
-      ].join(","),
+      boxShadow: [`0 0 0.5em 0 inset ${glow}`, `0 0 0.5em 0 ${glow}`].join(","),
       backgroundImage: [
         `radial-gradient(closest-side, ${glow}77 0%, ${glow}00 100%)`,
         "linear-gradient(to bottom, #6667, #0007)",
@@ -60,9 +57,7 @@ export const olderThanMemoryTheme: ThemeV1 = themeFactory({
       transform: "scale(0.6)",
       fontWeight: "bold",
     },
-    backdropStyle: {
-
-    },
+    backdropStyle: {},
   },
   colors: {
     accent: "#fdbd8e",

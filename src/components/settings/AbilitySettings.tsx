@@ -12,7 +12,7 @@ import { ThemeContext } from "../../themes/ThemeContext";
 import { StateContext } from "./contexts";
 
 export const AbilitySettings: React.FC<{
-  setters: Setters,
+  setters: Setters;
 }> = ({ setters }) => {
   assertGame(game);
   const { settings } = useContext(StateContext);
@@ -199,7 +199,6 @@ export const AbilitySettings: React.FC<{
           onChange={setters.useNpcCombatBonuses}
         />
       </SettingsGridField>
-
     </InputGrid>
   );
 };

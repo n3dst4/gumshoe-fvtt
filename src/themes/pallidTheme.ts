@@ -23,7 +23,8 @@ export const pallidTheme: ThemeV1 = themeFactory({
   displayFont: "bold small-caps normal 1.1em 'Nova Square', serif",
   logo: {
     frontTextElementStyle: {
-      background: "linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(108,108,108,1) 24%, rgba(148,148,148,1) 34%, rgba(106,106,106,1) 44%, rgba(0,0,0,1) 87%, rgba(143,143,143,1) 100%)",
+      background:
+        "linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(108,108,108,1) 24%, rgba(148,148,148,1) 34%, rgba(106,106,106,1) 44%, rgba(0,0,0,1) 87%, rgba(143,143,143,1) 100%)",
       backgroundClip: "text",
     },
     rearTextElementStyle: {

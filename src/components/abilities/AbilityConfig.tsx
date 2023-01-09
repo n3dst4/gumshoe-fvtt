@@ -7,26 +7,27 @@ import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Translate } from "../Translate";
 import { MwRefreshGroup } from "../../types";
-import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../typeAssertions";
+import {
+  assertAbilityDataSource,
+  isGeneralAbilityDataSource,
+} from "../../typeAssertions";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { settings } from "../../settings";
 import { UnlocksEditor } from "./UnlocksEditor";
 
 type AbilityConfigProps = {
-  ability: InvestigatorItem,
+  ability: InvestigatorItem;
 };
 
-export const AbilityConfig: React.FC<AbilityConfigProps> = ({
-  ability,
-}) => {
+export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
   assertGame(game);
   assertAbilityDataSource(ability.data);
   const isGeneral = isGeneralAbilityDataSource(ability.data);
 
   const onClickDelete = useCallback(() => {
     const message = ability.actor
-      ? "Delete {ActorName}'s \"{AbilityName}\" ability?"
-      : "Delete the \"{AbilityName}\" ability?";
+      ? 'Delete {ActorName}\'s "{AbilityName}" ability?'
+      : 'Delete the "{AbilityName}" ability?';
 
     confirmADoodleDo({
       message,
@@ -42,22 +43,27 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
     });
   }, [ability]);
 
-  const categories = isGeneral ? settings.generalAbilityCategories.get() : settings.investigativeAbilityCategories.get();
+  const categories = isGeneral
+    ? settings.generalAbilityCategories.get()
+    : settings.investigativeAbilityCategories.get();
 
   const isRealCategory = categories.includes(ability.data.data.category);
   const [showCustomField, setShowCustomField] = useState(!isRealCategory);
   const [selectCustomOption, setSelectCustomOption] = useState(!isRealCategory);
 
-  const onChangeCategory = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-    const value = e.currentTarget.value;
-    if (value === "") {
-      setShowCustomField(true);
-      setSelectCustomOption(true);
-    } else {
-      setSelectCustomOption(false);
-      ability.setCategory(e.currentTarget.value);
-    }
-  }, [ability]);
+  const onChangeCategory = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      const value = e.currentTarget.value;
+      if (value === "") {
+        setShowCustomField(true);
+        setSelectCustomOption(true);
+      } else {
+        setSelectCustomOption(false);
+        ability.setCategory(e.currentTarget.value);
+      }
+    },
+    [ability],
+  );
 
   const selectedCat = selectCustomOption ? "" : ability.data.data.category;
 
@@ -93,14 +99,13 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
               flex: 1,
             }}
           >
-            {showCustomField &&
+            {showCustomField && (
               <AsyncTextInput
                 value={ability.data.data.category}
                 onChange={ability.setCategory}
               />
-            }
+            )}
           </div>
-
         </div>
       </GridField>
       <GridField label="Min">
@@ -117,23 +122,23 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
           onChange={ability.setMax}
         />
       </GridField>
-      {
-        settings.useNpcCombatBonuses.get() && isGeneralAbilityDataSource(ability.data) &&
-        <Fragment>
-          <GridField label="Combat bonus">
-            <AsyncNumberInput
-              value={ability.data.data.combatBonus}
-              onChange={ability.setCombatBonus}
-            />
-          </GridField>
-          <GridField label="Damage bonus">
-            <AsyncNumberInput
-              value={ability.data.data.damageBonus}
-              onChange={ability.setDamageBonus}
-            />
-          </GridField>
-        </Fragment>
-      }
+      {settings.useNpcCombatBonuses.get() &&
+        isGeneralAbilityDataSource(ability.data) && (
+          <Fragment>
+            <GridField label="Combat bonus">
+              <AsyncNumberInput
+                value={ability.data.data.combatBonus}
+                onChange={ability.setCombatBonus}
+              />
+            </GridField>
+            <GridField label="Damage bonus">
+              <AsyncNumberInput
+                value={ability.data.data.damageBonus}
+                onChange={ability.setDamageBonus}
+              />
+            </GridField>
+          </Fragment>
+        )}
       <GridField label="Has Specialities?">
         <AsyncCheckbox
           checked={ability.data.data.hasSpecialities}
@@ -180,28 +185,31 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({
           onChange={ability.setHideIfZeroRated}
         />
       </GridField>
-      {
-        isGeneralAbilityDataSource(ability.data) &&
-          <GridField label="Goes first in combat?">
-            <AsyncCheckbox
-              checked={ability.data.data.goesFirstInCombat}
-              onChange={ability.setGoesFirstInCombat}
-            />
-          </GridField>
-      }
-      {
-        settings.useMwStyleAbilities.get() && isGeneralAbilityDataSource(ability.data) &&
+      {isGeneralAbilityDataSource(ability.data) && (
+        <GridField label="Goes first in combat?">
+          <AsyncCheckbox
+            checked={ability.data.data.goesFirstInCombat}
+            onChange={ability.setGoesFirstInCombat}
+          />
+        </GridField>
+      )}
+      {settings.useMwStyleAbilities.get() &&
+        isGeneralAbilityDataSource(ability.data) && (
           <GridField label="Refresh group">
             <select
               value={ability.data.data.mwRefreshGroup}
-              onChange={(e) => { ability.setMwRefreshGroup(Number(e.currentTarget.value) as MwRefreshGroup); }}
+              onChange={(e) => {
+                ability.setMwRefreshGroup(
+                  Number(e.currentTarget.value) as MwRefreshGroup,
+                );
+              }}
             >
               <option value="2">{getTranslated("XHours", { x: "2" })}</option>
               <option value="4">{getTranslated("XHours", { x: "4" })}</option>
               <option value="8">{getTranslated("XHours", { x: "8" })}</option>
             </select>
           </GridField>
-      }
+        )}
       <GridField label="Unlocks">
         <UnlocksEditor ability={ability} />
       </GridField>

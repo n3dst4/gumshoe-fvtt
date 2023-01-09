@@ -3,12 +3,12 @@ import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "./TextInput";
 
 type AsyncTextInputProps = {
-  value: undefined|string,
-  onChange: (newValue: string, index?: number) => void,
-  index?: number,
-  className?: string,
-  disabled?: boolean,
-  placeholder?: string,
+  value: undefined | string;
+  onChange: (newValue: string, index?: number) => void;
+  index?: number;
+  className?: string;
+  disabled?: boolean;
+  placeholder?: string;
 };
 
 export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
@@ -19,12 +19,11 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
   placeholder,
   index,
 }) => {
-  const {
-    onChange,
-    onFocus,
-    onBlur,
-    display,
-  } = useAsyncUpdate(value, onChangeOrig, index);
+  const { onChange, onFocus, onBlur, display } = useAsyncUpdate(
+    value,
+    onChangeOrig,
+    index,
+  );
 
   return (
     <TextInput

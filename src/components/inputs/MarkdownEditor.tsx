@@ -17,10 +17,6 @@ export const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   className,
 }: MarkdownEditorProps) => {
   return (
-    <AsyncTextArea
-      value={value}
-      onChange={onChange}
-      className={className}
-    />
+    <AsyncTextArea value={value} onChange={onChange} className={className} />
   );
 };

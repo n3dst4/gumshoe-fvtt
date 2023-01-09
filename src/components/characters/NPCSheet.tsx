@@ -21,14 +21,11 @@ import { StatField } from "./StatField";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 type NPCSheetProps = {
-  actor: InvestigatorActor,
-  foundryApplication: ActorSheet,
-}
+  actor: InvestigatorActor;
+  foundryApplication: ActorSheet;
+};
 
-export const NPCSheet = ({
-  actor,
-  foundryApplication,
-}: NPCSheetProps) => {
+export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
   assertNPCDataSource(actor.data);
 
   const theme = actor.getSheetTheme();
@@ -48,9 +45,7 @@ export const NPCSheet = ({
         gridTemplateRows: "min-content 1fr",
         gridTemplateColumns: "max-content 1fr 6em",
         gap: "0.5em",
-        gridTemplateAreas:
-          "\"sidebar title image\" " +
-          "\"sidebar main main\" ",
+        gridTemplateAreas: '"sidebar title image" ' + '"sidebar main main" ',
       }}
     >
       <div
@@ -90,53 +85,49 @@ export const NPCSheet = ({
           ...theme.panelStylePrimary,
         }}
       >
-        <button
-          onClick={actor.confirmRefresh}
-          css={{ marginBottom: "0.5em" }}
-        >
+        <button onClick={actor.confirmRefresh} css={{ marginBottom: "0.5em" }}>
           <Translate>Full Refresh</Translate>
         </button>
 
-        {settings.useMwInjuryStatus.get() &&
+        {settings.useMwInjuryStatus.get() && (
           <div css={{ marginBottom: "0.5em" }}>
             <MwInjuryStatusWidget
               status={actor.getMwInjuryStatus()}
               setStatus={actor.setMwInjuryStatus}
-              />
+            />
           </div>
-        }
+        )}
 
         {/* Stats */}
-        <hr/>
-          {/* SotS NPC Combat bonus */}
-          {
-            settings.useNpcCombatBonuses.get() && isNPCDataSource(actor.data) &&
-            <Fragment>
-              <h3 css={{ gridColumn: "start / end" }}>
-                <Translate>Combat bonus</Translate>
-              </h3>
-              <AsyncNumberInput
-                value={actor.data.data.combatBonus}
-                onChange={actor.setCombatBonus}
-              />
-              <h3 css={{ gridColumn: "start / end" }}>
-                <Translate>Damage bonus</Translate>
-              </h3>
-              <AsyncNumberInput
-                value={actor.data.data.damageBonus}
-                onChange={actor.setDamageBonus}
-              />
-            </Fragment>
-          }
-          {
-            Object.keys(stats).map<ReactNode>((key) => {
-              return (<StatField key={key} id={key} actor={actor} stat={stats[key]} />);
-            })
-          }
+        <hr />
+        {/* SotS NPC Combat bonus */}
+        {settings.useNpcCombatBonuses.get() && isNPCDataSource(actor.data) && (
+          <Fragment>
+            <h3 css={{ gridColumn: "start / end" }}>
+              <Translate>Combat bonus</Translate>
+            </h3>
+            <AsyncNumberInput
+              value={actor.data.data.combatBonus}
+              onChange={actor.setCombatBonus}
+            />
+            <h3 css={{ gridColumn: "start / end" }}>
+              <Translate>Damage bonus</Translate>
+            </h3>
+            <AsyncNumberInput
+              value={actor.data.data.damageBonus}
+              onChange={actor.setDamageBonus}
+            />
+          </Fragment>
+        )}
+        {Object.keys(stats).map<ReactNode>((key) => {
+          return (
+            <StatField key={key} id={key} actor={actor} stat={stats[key]} />
+          );
+        })}
 
-        <hr/>
+        <hr />
         <TrackersArea actor={actor} />
-        <hr/>
+        <hr />
         <h4 css={{ width: "8em" }}>
           <Translate>Combat Order</Translate>
         </h4>
@@ -144,7 +135,7 @@ export const NPCSheet = ({
           value={actor.getInitiativeAbility()}
           onChange={actor.setInitiativeAbility}
         />
-        {settings.useTurnPassingInitiative.get() &&
+        {settings.useTurnPassingInitiative.get() && (
           <Fragment>
             <h4 css={{ width: "8em" }}>
               <Translate>Number of turns</Translate>
@@ -154,8 +145,7 @@ export const NPCSheet = ({
               onChange={actor.setPassingTurns}
             />
           </Fragment>
-        }
-
+        )}
       </div>
 
       {/* MAIN TABS AREA */}
@@ -173,34 +163,33 @@ export const NPCSheet = ({
             {
               id: "play",
               label: "Play",
-              content:
+              content: (
                 <Fragment>
                   <WeaponsArea actor={actor} />
-                  <div css={{ height: "1em" }}/>
-                  <AbilitiesAreaPlay
-                    actor={actor}
-                    flipLeftRight={true}
-                  />
-                </Fragment>,
+                  <div css={{ height: "1em" }} />
+                  <AbilitiesAreaPlay actor={actor} flipLeftRight={true} />
+                </Fragment>
+              ),
             },
             {
               id: "edit",
               label: "Edit",
-              content:
+              content: (
                 <Fragment>
                   <WeaponsAreaEdit actor={actor} />
-                  <div css={{ height: "1em" }}/>
+                  <div css={{ height: "1em" }} />
                   <AbilitiesAreaEdit
                     actor={actor}
                     flipLeftRight={true}
                     showOcc={false}
                   />
-                </Fragment>,
+                </Fragment>
+              ),
             },
             {
               id: "notes",
               label: "Notes",
-              content:
+              content: (
                 <InputGrid
                   css={{
                     ...absoluteCover,
@@ -221,7 +210,8 @@ export const NPCSheet = ({
                       },
                     }}
                   />
-                </InputGrid>,
+                </InputGrid>
+              ),
             },
           ]}
         />

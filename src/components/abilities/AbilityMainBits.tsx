@@ -7,14 +7,18 @@ import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
 import { Translate } from "../Translate";
 import { ActiveCharacterDataSource } from "../../types";
-import { assertAbilityDataSource, assertActiveCharacterDataSource, isActiveCharacterDataSource } from "../../typeAssertions";
+import {
+  assertAbilityDataSource,
+  assertActiveCharacterDataSource,
+  isActiveCharacterDataSource,
+} from "../../typeAssertions";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { settings } from "../../settings";
 import { UnlockBadges } from "./UnlockBadges";
 
 type AbilityMainBitsProps = {
-  ability: InvestigatorItem,
+  ability: InvestigatorItem;
 };
 
 export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
@@ -28,16 +32,27 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
 
   const useBoost = settings.useBoost.get();
 
-  const isCombatAbility = settings.combatAbilities.get().includes(ability.data.name);
+  const isCombatAbility = settings.combatAbilities
+    .get()
+    .includes(ability.data.name);
 
   const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
-    isActiveCharacterDataSource(ability?.actor?.data) && ability?.actor?.data.data.initiativeAbility,
+    isActiveCharacterDataSource(ability?.actor?.data) &&
+      ability?.actor?.data.data.initiativeAbility,
   );
 
   useEffect(() => {
-    const callback = (actor: Actor, diff: {_id: string, data: DeepPartial<ActiveCharacterDataSource>}, options: unknown, id: string) => {
+    const callback = (
+      actor: Actor,
+      diff: { _id: string; data: DeepPartial<ActiveCharacterDataSource> },
+      options: unknown,
+      id: string,
+    ) => {
       if (actor.data._id === ability?.actor?.data?._id) {
-        setActorInitiativeAbility(isActiveCharacterDataSource(ability?.actor?.data) && ability?.actor?.data.data.initiativeAbility);
+        setActorInitiativeAbility(
+          isActiveCharacterDataSource(ability?.actor?.data) &&
+            ability?.actor?.data.data.initiativeAbility,
+        );
       }
     };
     Hooks.on("updateActor", callback);
@@ -121,12 +136,17 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
           height: "100%",
           "&&": {
             resize: "none",
-
           },
         }}
       />
-      {ability.getHasSpecialities() &&
-        <GridFieldStacked label={ability.getSpecialities().length === 1 ? "Speciality" : "Specialities"}>
+      {ability.getHasSpecialities() && (
+        <GridFieldStacked
+          label={
+            ability.getSpecialities().length === 1
+              ? "Speciality"
+              : "Specialities"
+          }
+        >
           <div
             css={{
               display: "flex",
@@ -136,45 +156,44 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
             <SpecialityList ability={ability} />
           </div>
         </GridFieldStacked>
-      }
-      {useBoost &&
+      )}
+      {useBoost && (
         <GridField label="Boost?">
-          <AsyncCheckbox checked={ability.getBoost()} onChange={ability.setBoost}/>
+          <AsyncCheckbox
+            checked={ability.getBoost()}
+            onChange={ability.setBoost}
+          />
         </GridField>
-      }
+      )}
 
-      {isCombatAbility &&
+      {isCombatAbility && (
         <GridField label="Combat order">
-          {isAbilityUsed
-            ? (
+          {isAbilityUsed ? (
             <i>
-              <Translate>This ability is currently being used for combat ordering</Translate>
+              <Translate>
+                This ability is currently being used for combat ordering
+              </Translate>
             </i>
-              )
-            : (
+          ) : (
             <span>
               <a onClick={onClickUseForInitiative}>
-                <Translate
-                  values={{ AbilityName: ability?.name ?? "" }}
-                >
+                <Translate values={{ AbilityName: ability?.name ?? "" }}>
                   Use (ability name) for combat ordering
                 </Translate>
               </a>{" "}
               (
-                {
-                  actorInitiativeAbility
-                    ? <Translate
-                        values={{ AbilityName: actorInitiativeAbility }}
-                      >
-                        Currently using (ability name)
-                      </Translate>
-                    : <Translate>Currently using nothing</Translate>
-                }
+              {actorInitiativeAbility ? (
+                <Translate values={{ AbilityName: actorInitiativeAbility }}>
+                  Currently using (ability name)
+                </Translate>
+              ) : (
+                <Translate>Currently using nothing</Translate>
+              )}
               )
             </span>
-              )}
+          )}
         </GridField>
-      }
+      )}
     </InputGrid>
   );
 };

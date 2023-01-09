@@ -3,7 +3,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { SpecListItem } from "./SpecListItem";
 
 type SpecialityListProps = {
-  ability: InvestigatorItem,
+  ability: InvestigatorItem;
 };
 
 export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
@@ -37,8 +37,9 @@ export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
           disabled={!ability.getHasSpecialities()}
         />
       ))}
-      {ability.getRating() === 0 &&
-        <i>Rating must be at least 1 to add specialities</i>}
+      {ability.getRating() === 0 && (
+        <i>Rating must be at least 1 to add specialities</i>
+      )}
     </div>
   );
 };

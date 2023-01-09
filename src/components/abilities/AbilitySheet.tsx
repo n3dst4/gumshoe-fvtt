@@ -12,8 +12,8 @@ import { isGeneralAbilityDataSource } from "../../typeAssertions";
 import { settings } from "../../settings";
 
 type AbilitySheetProps = {
-  ability: InvestigatorItem,
-  application: ItemSheet,
+  ability: InvestigatorItem;
+  application: ItemSheet;
 };
 
 export const AbilitySheet: React.FC<AbilitySheetProps> = ({
@@ -47,14 +47,16 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
         gridTemplateColumns: "auto 1fr auto",
         gridTemplateRows: "auto auto 1fr",
         gridTemplateAreas:
-          "\"image slug     cog\" " +
-          "\"image headline headline\" " +
-          "\"body  body     body\" ",
+          '"image slug     cog" ' +
+          '"image headline headline" ' +
+          '"body  body     body" ',
       }}
     >
       {/* Slug */}
       <div css={{ gridArea: "slug" }}>
-        <Translate>{isGeneral ? "General ability" : "Investigative ability"}</Translate>
+        <Translate>
+          {isGeneral ? "General ability" : "Investigative ability"}
+        </Translate>
         {ability.actor && <span> ({ability.actor.data.name})</span>}
       </div>
 
@@ -95,7 +97,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
           setConfigMode((mode) => !mode);
         }}
       >
-        <i className={`fa fa-${configMode ? "check" : "cog"}`}/>
+        <i className={`fa fa-${configMode ? "check" : "cog"}`} />
       </a>
       {/* regular editing stuff */}
       <div
@@ -107,20 +109,22 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
           position: "relative",
         }}
       >
-        {configMode
-          ? <AbilityConfig ability={ability}/>
-          : <Fragment>
-              {/* Spending/testing area */}
-              {ability.isOwned &&
-                useMwStyleAbilities
-                ? <AbilityTestMW ability={ability} />
-                : <AbilityTest ability={ability} />}
-              <AbilityMainBits ability={ability} />
-              {settings.useMwStyleAbilities.get() &&
-                <AbilityMwExtraFields ability={ability} />
-              }
-            </Fragment>
-        }
+        {configMode ? (
+          <AbilityConfig ability={ability} />
+        ) : (
+          <Fragment>
+            {/* Spending/testing area */}
+            {ability.isOwned && useMwStyleAbilities ? (
+              <AbilityTestMW ability={ability} />
+            ) : (
+              <AbilityTest ability={ability} />
+            )}
+            <AbilityMainBits ability={ability} />
+            {settings.useMwStyleAbilities.get() && (
+              <AbilityMwExtraFields ability={ability} />
+            )}
+          </Fragment>
+        )}
       </div>
     </div>
   );

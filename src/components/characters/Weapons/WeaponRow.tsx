@@ -1,57 +1,99 @@
-import React, { Fragment, useCallback, useContext, useState, useMemo } from "react";
+import React, {
+  Fragment,
+  useCallback,
+  useContext,
+  useState,
+  useMemo,
+} from "react";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { FoundryAppContext } from "../../FoundryAppContext";
 import { CheckButtons } from "../../inputs/CheckButtons";
 import { generalAbility } from "../../../constants";
-import { assertWeaponDataSource, isAbilityDataSource } from "../../../typeAssertions";
+import {
+  assertWeaponDataSource,
+  isAbilityDataSource,
+} from "../../../typeAssertions";
 import { performAttack } from "../../equipment/performAttack";
 
 type WeaponRowProps = {
-  weapon: InvestigatorItem,
+  weapon: InvestigatorItem;
 };
 
-export const WeaponRow: React.FC<WeaponRowProps> = ({
-  weapon,
-}) => {
+export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
   assertWeaponDataSource(weapon.data);
 
   const app = useContext(FoundryAppContext);
-  const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
-    if (app !== null) {
-      (app as any)._onDragStart(e);
-    }
-  }, [app]);
+  const onDragStart = useCallback(
+    (e: React.DragEvent<HTMLAnchorElement>) => {
+      if (app !== null) {
+        (app as any)._onDragStart(e);
+      }
+    },
+    [app],
+  );
   const [hover, setHover] = useState(false);
-  const onMouseOver = useCallback(() => { setHover(true); }, []);
-  const onMouseOut = useCallback(() => { setHover(false); }, []);
-  const makeRangeOption = (isRange: boolean, rangeDamage: number, id:number, hover: string) => {
+  const onMouseOver = useCallback(() => {
+    setHover(true);
+  }, []);
+  const onMouseOut = useCallback(() => {
+    setHover(false);
+  }, []);
+  const makeRangeOption = (
+    isRange: boolean,
+    rangeDamage: number,
+    id: number,
+    hover: string,
+  ) => {
     const totalDamage = weapon.getDamage() + rangeDamage;
-    const label = isRange ? (totalDamage >= 0 ? "+" : "") + totalDamage.toString() : "-";
+    const label = isRange
+      ? (totalDamage >= 0 ? "+" : "") + totalDamage.toString()
+      : "-";
     return { label, value: id, enabled: isRange, rangeDamage, hover };
   };
   const rangeInfo = [
-    makeRangeOption(weapon.getIsPointBlank(), weapon.getPointBlankDamage(), 0, "Point Blank"),
-    makeRangeOption(weapon.getIsCloseRange(), weapon.getCloseRangeDamage(), 1, "Close Range"),
-    makeRangeOption(weapon.getIsNearRange(), weapon.getNearRangeDamage(), 2, "Near Range"),
-    makeRangeOption(weapon.getIsLongRange(), weapon.getLongRangeDamage(), 3, "Long Range"),
+    makeRangeOption(
+      weapon.getIsPointBlank(),
+      weapon.getPointBlankDamage(),
+      0,
+      "Point Blank",
+    ),
+    makeRangeOption(
+      weapon.getIsCloseRange(),
+      weapon.getCloseRangeDamage(),
+      1,
+      "Close Range",
+    ),
+    makeRangeOption(
+      weapon.getIsNearRange(),
+      weapon.getNearRangeDamage(),
+      2,
+      "Near Range",
+    ),
+    makeRangeOption(
+      weapon.getIsLongRange(),
+      weapon.getLongRangeDamage(),
+      3,
+      "Long Range",
+    ),
   ];
   const [rangeSelected, setRangeSelected] = useState(0);
   const ammoFail = weapon.getUsesAmmo() && weapon.getAmmo() <= 0;
 
   const abilityName = weapon.data.data.ability;
-  const ability: InvestigatorItem|undefined = weapon.actor?.items.find((item: InvestigatorItem) => {
-    return (
-      item.type === generalAbility && item.name === abilityName
-    );
-  });
-  const pool = ability && isAbilityDataSource(ability.data) ? ability.data.data.pool : 0;
+  const ability: InvestigatorItem | undefined = weapon.actor?.items.find(
+    (item: InvestigatorItem) => {
+      return item.type === generalAbility && item.name === abilityName;
+    },
+  );
+  const pool =
+    ability && isAbilityDataSource(ability.data) ? ability.data.data.pool : 0;
   const [spend, setSpend] = useState(0);
   const [bonusPool, setBonusPool] = useState(0);
   const onClickInc = useCallback(() => {
-    setSpend(s => s + 1);
+    setSpend((s) => s + 1);
   }, []);
   const onClickDec = useCallback(() => {
-    setSpend(s => s - 1);
+    setSpend((s) => s - 1);
   }, []);
 
   const basePerformAttack = useMemo(() => {
@@ -89,20 +131,21 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({
       >
         {weapon.name}
       </a>
-      {weapon.getUsesAmmo()
-        ? <div css={{ gridColumn: 2 }}>
-            <button
-              css={{ width: "1.5em", padding: "0" }}
-              onClick={weapon.reload}
-            >
-              <i className="fa fa-redo fa-xs"/>
-            </button>
-            &nbsp;
-            {weapon.getAmmo()}/{weapon.getAmmoMax()}
-          </div>
-        : <div
-          css={{ gridColumn: 2, textAlign: "center" }}>&mdash;</div>}
-      <div css={{ gridColumn: 3 }} >
+      {weapon.getUsesAmmo() ? (
+        <div css={{ gridColumn: 2 }}>
+          <button
+            css={{ width: "1.5em", padding: "0" }}
+            onClick={weapon.reload}
+          >
+            <i className="fa fa-redo fa-xs" />
+          </button>
+          &nbsp;
+          {weapon.getAmmo()}/{weapon.getAmmoMax()}
+        </div>
+      ) : (
+        <div css={{ gridColumn: 2, textAlign: "center" }}>&mdash;</div>
+      )}
+      <div css={{ gridColumn: 3 }}>
         <CheckButtons
           onChange={setRangeSelected}
           selected={rangeSelected}

@@ -5,9 +5,13 @@ import { absoluteCover } from "./absoluteCover";
 import { CSSReset } from "./CSSReset";
 
 const Fallback: React.FC = () => {
-  const theme = runtimeConfig.themes[settings.defaultThemeName.get()] || runtimeConfig.themes.tealTheme;
+  const theme =
+    runtimeConfig.themes[settings.defaultThemeName.get()] ||
+    runtimeConfig.themes.tealTheme;
   return (
-    <CSSReset theme={theme} mode="large"
+    <CSSReset
+      theme={theme}
+      mode="large"
       css={{
         ...absoluteCover,
         backgroundColor: theme.colors.backgroundPrimary,
@@ -29,5 +33,5 @@ const Fallback: React.FC = () => {
 };
 
 export const Suspense: React.FC = ({ children }) => (
-  <React.Suspense fallback={<Fallback/>}>{children}</React.Suspense>
+  <React.Suspense fallback={<Fallback />}>{children}</React.Suspense>
 );

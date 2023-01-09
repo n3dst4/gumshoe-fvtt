@@ -23,8 +23,11 @@ type DropData = DropDataV9 | DropDataV10;
 
 // fuckiness reaching critical levels here, but we do know for now that we will
 // have either an id or a uuid.
-function getIdFromDropData (dropData: DropData): string {
-  return (dropData as DropDataV9).id || (dropData as DropDataV10).uuid.replace(/^[\w]+\./, "");
+function getIdFromDropData(dropData: DropData): string {
+  return (
+    (dropData as DropDataV9).id ||
+    (dropData as DropDataV10).uuid.replace(/^[\w]+\./, "")
+  );
 }
 
 export const installDropActorSheetDataHandler = () => {
@@ -49,12 +52,12 @@ export const installDropActorSheetDataHandler = () => {
         dropData.type === "Actor"
           ? [id]
           : dropData.type === "Folder"
-            ? getFolderDescendants(game.folders?.get(id))
+          ? getFolderDescendants(game.folders?.get(id))
               .filter((actor) => {
                 return (actor as any).data.type === pc;
               })
               .map((actor) => (actor as any).id)
-            : [];
+          : [];
 
       targetActor.addActorIds(actorIds);
     },

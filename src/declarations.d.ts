@@ -1,6 +1,6 @@
 declare module "irid" {
-  type HSLA = { h: number, s: number, l: number, a?: number };
-  type RGBA = { r: number, g: number, b: number, a?: number };
+  type HSLA = { h: number; s: number; l: number; a?: number };
+  type RGBA = { r: number; g: number; b: number; a?: number };
   type Iridable = Irid | string | HSLA | RGBA;
   export const Irid: (from: Iridable) => Irid;
   export interface Irid {
@@ -49,12 +49,12 @@ declare namespace PopOut {
     minimized: boolean;
     node: HTMLElement;
     position: {
-      width: number,
-      height: number,
-      left: number,
-      scale: number,
-      top: number,
-      zIndex: number,
+      width: number;
+      height: number;
+      left: number;
+      scale: number;
+      top: number;
+      zIndex: number;
     };
     /** unknown - signature probably wrong */
     render: () => void;

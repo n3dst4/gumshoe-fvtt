@@ -4,7 +4,13 @@ import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { DispatchContext, StateContext } from "../contexts";
 import { slice } from "../reducer";
 import { Dropdown } from "../../inputs/Dropdown";
-import { FaArrowDown, FaArrowUp, FaCode, FaEllipsisH, FaTrash } from "react-icons/fa";
+import {
+  FaArrowDown,
+  FaArrowUp,
+  FaCode,
+  FaEllipsisH,
+  FaTrash,
+} from "react-icons/fa";
 import { Menu, MenuItem } from "../../inputs/Menu";
 import { getTranslated } from "../../../functions";
 import { NumberFieldSettings } from "./NumberFieldSettings";
@@ -82,7 +88,9 @@ export const Field: React.FC<FieldProps> = ({
       fieldId,
     );
     if (newFieldId) {
-      dispatch(slice.creators.changeFieldId({ categoryId, fieldId, newFieldId }));
+      dispatch(
+        slice.creators.changeFieldId({ categoryId, fieldId, newFieldId }),
+      );
     }
   }, [categoryId, dispatch, field.name, fieldId]);
 

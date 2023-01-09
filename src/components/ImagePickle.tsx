@@ -13,9 +13,9 @@ const cover = {
 const transitionTime = "0.3s";
 
 type ImagePickleProps = {
-  subject: Actor | Item,
-  application: DocumentSheet,
-  className?: string,
+  subject: Actor | Item;
+  application: DocumentSheet;
+  className?: string;
 };
 
 export const ImagePickle: React.FC<ImagePickleProps> = ({
@@ -55,18 +55,21 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
     setShowOverlay(false);
   }, []);
 
-  const onClickImage = useCallback((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    event.stopPropagation();
-    setShowOverlay(true);
-    const clickListener = () => {
-      setShowOverlay(false);
-    };
-    document.addEventListener("click", clickListener);
+  const onClickImage = useCallback(
+    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      event.stopPropagation();
+      setShowOverlay(true);
+      const clickListener = () => {
+        setShowOverlay(false);
+      };
+      document.addEventListener("click", clickListener);
 
-    return () => {
-      document.removeEventListener("click", clickListener);
-    };
-  }, []);
+      return () => {
+        document.removeEventListener("click", clickListener);
+      };
+    },
+    [],
+  );
 
   return (
     <div
@@ -108,19 +111,13 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
           alignItems: "center",
         }}
       >
-        {showOverlay &&
+        {showOverlay && (
           <Fragment>
-            <ImagePickerLink onClick={onClickShow}>
-              Show
-            </ImagePickerLink>
-            <ImagePickerLink onClick={onClickEdit}>
-              Edit
-            </ImagePickerLink>
-            <ImagePickerLink onClick={onClickCancel}>
-              Cancel
-            </ImagePickerLink>
+            <ImagePickerLink onClick={onClickShow}>Show</ImagePickerLink>
+            <ImagePickerLink onClick={onClickEdit}>Edit</ImagePickerLink>
+            <ImagePickerLink onClick={onClickCancel}>Cancel</ImagePickerLink>
           </Fragment>
-        }
+        )}
       </div>
     </div>
   );

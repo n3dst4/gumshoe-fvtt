@@ -133,7 +133,12 @@ const emptyMigrationFlags: MigrationFlags = {
 
 describe("getFlaggedMigrations", () => {
   test.each<
-    [string, MigrationFlags, FlaggedMigrations, [boolean, FlaggedMigrations, MigrationFlags]]
+    [
+      string,
+      MigrationFlags,
+      FlaggedMigrations,
+      [boolean, FlaggedMigrations, MigrationFlags],
+    ]
   >([
     [
       "Empty everything",

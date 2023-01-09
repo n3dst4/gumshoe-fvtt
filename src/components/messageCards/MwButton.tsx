@@ -7,8 +7,8 @@ import { fadeInOutClasses } from "./transitions";
 import { MWResult } from "./types";
 
 type MwButtonProps = {
-  deets: MWResult,
-  onClick?: () => void,
+  deets: MWResult;
+  onClick?: () => void;
 };
 
 const basicShadow = "0 0 0.5em 0 #0007";
@@ -86,8 +86,7 @@ export const MwButton: React.FC<MwButtonProps> = ({
     </Fragment>
   );
 
-  return onClickProp
-    ? (
+  return onClickProp ? (
     <button
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -96,8 +95,7 @@ export const MwButton: React.FC<MwButtonProps> = ({
     >
       {content}
     </button>
-      )
-    : (
+  ) : (
     <div css={style}>{content}</div>
-      );
+  );
 };

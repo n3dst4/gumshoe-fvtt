@@ -11,7 +11,7 @@ import {
  * This is the new migration system, based on flags which indicate when a
  * particular migration has been run.
  */
-export function getFlaggedMigrations (
+export function getFlaggedMigrations(
   migrationFlags: MigrationFlags,
   flaggedMigrations: FlaggedMigrations,
 ) {

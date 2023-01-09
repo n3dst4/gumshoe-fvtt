@@ -11,7 +11,7 @@ export const Menu: React.FC<PropsWithChildren<MenuProps>> = ({
 }: PropsWithChildren<MenuProps>) => {
   return (
     <div
-    className={`menu-outer ${className}`}
+      className={`menu-outer ${className}`}
       css={{
         background: "#123",
         color: "#abc",

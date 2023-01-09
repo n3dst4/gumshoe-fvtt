@@ -13,7 +13,12 @@ const colors = [
 ];
 
 const starburstGradient = createStarburstGradient(colors, 5, "50%", "50%");
-const starburstGradientOffset = createStarburstGradient(colors, 10, "10%", "10%");
+const starburstGradientOffset = createStarburstGradient(
+  colors,
+  10,
+  "10%",
+  "10%",
+);
 
 export const deltaGroovyTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
@@ -51,16 +56,15 @@ export const deltaGroovyTheme: ThemeV1 = themeFactory({
     },
     rearTextElementStyle: {
       textShadow:
-      // "0 0 0.3em #fff, " +
-      "-0.01em -0.01em 0 #000, " +
-      "0.01em 0.01em 0 #000, " +
-      "0.1em  0.1em  0 #d22fe5ff, " +
-      "0.11em 0.11em 0 #000, " +
-      "0.2em 0.2em 0 #e5762fff, " +
-      "0.21em 0.21em 0 #000 " +
-      // "0.3em 0.3em 0 #a9c47c" +
-      ""
-      ,
+        // "0 0 0.3em #fff, " +
+        "-0.01em -0.01em 0 #000, " +
+        "0.01em 0.01em 0 #000, " +
+        "0.1em  0.1em  0 #d22fe5ff, " +
+        "0.11em 0.11em 0 #000, " +
+        "0.2em 0.2em 0 #e5762fff, " +
+        "0.21em 0.21em 0 #000 " +
+        // "0.3em 0.3em 0 #a9c47c" +
+        "",
     },
     textElementsStyle: {
       transform: "translateY(-0.1em)",

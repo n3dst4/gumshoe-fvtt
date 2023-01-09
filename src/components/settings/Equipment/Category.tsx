@@ -22,10 +22,7 @@ interface CategoryProps {
   idx: number;
 }
 
-export const Category: React.FC<CategoryProps> = ({
-  id,
-  idx,
-}) => {
+export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
   const dispatch = useContext(DispatchContext);
   const { settings } = useContext(StateContext);
 

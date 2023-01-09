@@ -14,7 +14,7 @@
  * @param {CombatantData} [data={}]    Initial data provided to construct the Combatant document
  * @param {Combat|documents.Item} parent   The parent document to which this Combatant belongs
  */
- class Combatant extends ClientDocumentMixin(foundry.documents.BaseCombatant) {
+class Combatant extends ClientDocumentMixin(foundry.documents.BaseCombatant) {
   constructor(data, context) {
     super(data, context);
 
@@ -44,7 +44,12 @@
    * @type {string}
    */
   get img() {
-    return this.data.img || this.token?.data.img || this.actor?.img || CONST.DEFAULT_TOKEN;
+    return (
+      this.data.img ||
+      this.token?.data.img ||
+      this.actor?.img ||
+      CONST.DEFAULT_TOKEN
+    );
   }
 
   /* -------------------------------------------- */
@@ -54,7 +59,9 @@
    * @type {number|null}
    */
   get initiative() {
-    return Number.isNumeric(this.data.initiative) ? Number(this.data.initiative) : null;
+    return Number.isNumeric(this.data.initiative)
+      ? Number(this.data.initiative)
+      : null;
   }
 
   /* -------------------------------------------- */
@@ -98,7 +105,12 @@
    * @type {string}
    */
   get name() {
-    return this.data.name || this.token?.name || this.actor?.name || game.i18n.localize("COMBAT.UnknownCombatant");
+    return (
+      this.data.name ||
+      this.token?.name ||
+      this.actor?.name ||
+      game.i18n.localize("COMBAT.UnknownCombatant")
+    );
   }
 
   /* -------------------------------------------- */
@@ -108,7 +120,7 @@
    * @type {Actor|null}
    */
   get actor() {
-    if ( this.token ) return this.token.actor;
+    if (this.token) return this.token.actor;
     return game.actors.get(this.data.actorId) || null;
   }
 
@@ -119,7 +131,9 @@
    * @type {TokenDocument|null}
    */
   get token() {
-    const scene = this.data.sceneId ? game.scenes.get(this.data.sceneId) : this.parent.scene;
+    const scene = this.data.sceneId
+      ? game.scenes.get(this.data.sceneId)
+      : this.parent.scene;
     return scene?.tokens.get(this.data.tokenId) || null;
   }
 
@@ -131,9 +145,9 @@
    */
   get players() {
     const playerOwners = [];
-    for ( let u of game.users ) {
-      if ( u.isGM ) continue;
-      if ( this.testUserPermission(u, "OWNER") ) playerOwners.push(u);
+    for (let u of game.users) {
+      if (u.isGM) continue;
+      if (this.testUserPermission(u, "OWNER")) playerOwners.push(u);
     }
     return playerOwners;
   }
@@ -145,8 +159,12 @@
    * @type {boolean}
    */
   get isDefeated() {
-    return this.data.defeated
-      || this.actor?.effects.some(e => e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId);
+    return (
+      this.data.defeated ||
+      this.actor?.effects.some(
+        (e) => e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId,
+      )
+    );
   }
 
   /* -------------------------------------------- */
@@ -154,7 +172,7 @@
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  testUserPermission(user, permission, {exact=false}={}) {
+  testUserPermission(user, permission, { exact = false } = {}) {
     // Combatants should be controlled by anyone who can update the Actor they represent
     return this.actor?.canUserModify(user, "update") || false;
   }
@@ -181,15 +199,15 @@
    */
   async rollInitiative(formula) {
     const roll = this.getInitiativeRoll(formula);
-    await roll.evaluate({async: true});
-    return this.update({initiative: roll.total});
+    await roll.evaluate({ async: true });
+    return this.update({ initiative: roll.total });
   }
 
   /* -------------------------------------------- */
 
   /** @override */
   prepareDerivedData() {
-    if ( !this.parent.data ) return;
+    if (!this.parent.data) return;
     this.updateResource();
   }
 
@@ -200,8 +218,12 @@
    * @returns {null|object}
    */
   updateResource() {
-    if ( !this.actor ) return this.resource = null;
-    return this.resource = foundry.utils.getProperty(this.actor.data.data, this.parent.settings.resource) || null;
+    if (!this.actor) return (this.resource = null);
+    return (this.resource =
+      foundry.utils.getProperty(
+        this.actor.data.data,
+        this.parent.settings.resource,
+      ) || null);
   }
 
   /* -------------------------------------------- */
@@ -213,7 +235,9 @@
    * @protected
    */
   _getInitiativeFormula() {
-    return String(CONFIG.Combat.initiative.formula || game.system.data.initiative);
+    return String(
+      CONFIG.Combat.initiative.formula || game.system.data.initiative,
+    );
   }
 
   /* -------------------------------------------- */
@@ -223,7 +247,9 @@
    * @ignore
    */
   get isVisible() {
-    console.warn("Combatant#isVisible is deprecated in favor of Combatant#visible, support will be removed in v10.");
+    console.warn(
+      "Combatant#isVisible is deprecated in favor of Combatant#visible, support will be removed in v10.",
+    );
     return this.visible;
   }
 }

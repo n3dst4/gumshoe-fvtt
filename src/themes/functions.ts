@@ -21,17 +21,35 @@ const overlay = (baseString: string, layerString: string): string => {
  * theme
  */
 export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
-  const bgOpaquePrimary = overlay(seed.colors.wallpaper, seed.colors.backgroundPrimary);
-  const bgOpaqueSecondary = overlay(seed.colors.wallpaper, seed.colors.backgroundSecondary);
+  const bgOpaquePrimary = overlay(
+    seed.colors.wallpaper,
+    seed.colors.backgroundPrimary,
+  );
+  const bgOpaqueSecondary = overlay(
+    seed.colors.wallpaper,
+    seed.colors.backgroundSecondary,
+  );
 
   const bgTransPrimary = Irid(seed.colors.backgroundPrimary);
   const bgTransSecondary = Irid(seed.colors.backgroundSecondary);
   const danger = Irid(seed.colors.danger ?? "red");
 
-  const bgTransDangerPrimary = bgTransPrimary.blend(danger, 0.5).opacity(bgTransPrimary.opacity()).toRGBString();
-  const bgTransDangerSecondary = bgTransSecondary.blend(danger, 0.5).opacity(bgTransSecondary.opacity()).toRGBString();
-  const bgOpaqueDangerPrimary = overlay(seed.colors.wallpaper, bgTransDangerPrimary);
-  const bgOpaqueDangerSecondary = overlay(seed.colors.wallpaper, bgTransDangerSecondary);
+  const bgTransDangerPrimary = bgTransPrimary
+    .blend(danger, 0.5)
+    .opacity(bgTransPrimary.opacity())
+    .toRGBString();
+  const bgTransDangerSecondary = bgTransSecondary
+    .blend(danger, 0.5)
+    .opacity(bgTransSecondary.opacity())
+    .toRGBString();
+  const bgOpaqueDangerPrimary = overlay(
+    seed.colors.wallpaper,
+    bgTransDangerPrimary,
+  );
+  const bgOpaqueDangerSecondary = overlay(
+    seed.colors.wallpaper,
+    bgTransDangerSecondary,
+  );
 
   const controlBorder = seed.colors.controlBorder ?? seed.colors.text;
 
@@ -65,9 +83,10 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
     panelStylePrimary: seed.panelStylePrimary || {
       backgroundColor: seed.colors.backgroundPrimary,
     },
-    panelStyleSecondary: seed.panelStyleSecondary || seed.panelStylePrimary || {
-      backgroundColor: seed.colors.backgroundSecondary,
-    },
+    panelStyleSecondary: seed.panelStyleSecondary ||
+      seed.panelStylePrimary || {
+        backgroundColor: seed.colors.backgroundSecondary,
+      },
     colors: {
       ...seed.colors,
       bgOpaquePrimary,
@@ -94,7 +113,9 @@ export const createStarburstGradient = (
   const numColors = colors.length;
   const wedgeAngle = 360 / (numRepeats * numColors);
   const gradientParts = colors
-    .map((color, i) => `${color} ${wedgeAngle * i}deg ${wedgeAngle * (i + 1)}deg`)
+    .map(
+      (color, i) => `${color} ${wedgeAngle * i}deg ${wedgeAngle * (i + 1)}deg`,
+    )
     .join(", ");
   const starburstGradient = `repeating-conic-gradient(from 0deg at ${xPos} ${yPos}, ${gradientParts})`;
 

@@ -34,19 +34,25 @@ export const useAsyncUpdate = (
     return throttle(onChangeOrig, 500);
   }, [onChangeOrig]);
 
-  const onChange = useCallback((value: string) => {
-    setDisplay(value);
-    onChangeThrottled(value, index);
-  }, [index, onChangeThrottled]);
+  const onChange = useCallback(
+    (value: string) => {
+      setDisplay(value);
+      onChangeThrottled(value, index);
+    },
+    [index, onChangeThrottled],
+  );
 
   // stuff for handling content-editable - first, a ref to attach to the element
-  const contentEditableRef = useRef<HTMLDivElement|null>(null);
+  const contentEditableRef = useRef<HTMLDivElement | null>(null);
 
   // a callback for whe edits happen
-  const onInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
-    const text = e.currentTarget.innerText;
-    onChange(text);
-  }, [onChange]);
+  const onInput = useCallback(
+    (e: React.FormEvent<HTMLInputElement>) => {
+      const text = e.currentTarget.innerText;
+      onChange(text);
+    },
+    [onChange],
+  );
 
   // update the display text when the value changes, but only if we're not
   // focused.

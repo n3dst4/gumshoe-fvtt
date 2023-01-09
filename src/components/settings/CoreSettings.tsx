@@ -14,9 +14,7 @@ interface CoreSettingsProps {
   setters: Setters;
 }
 
-export const CoreSettings: React.FC<CoreSettingsProps> = ({
-  setters,
-}) => {
+export const CoreSettings: React.FC<CoreSettingsProps> = ({ setters }) => {
   const presets = runtimeConfig.presets;
   const { settings } = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
@@ -84,10 +82,7 @@ export const CoreSettings: React.FC<CoreSettingsProps> = ({
         />
       </SettingsGridField>
       <SettingsGridField label="Short Notes Fields" index={idx++}>
-        <ListEdit
-          value={settings.shortNotes}
-          onChange={setters.shortNotes}
-        />
+        <ListEdit value={settings.shortNotes} onChange={setters.shortNotes} />
       </SettingsGridField>
       <SettingsGridField label="Long Notes Fields" index={idx++}>
         <ListEdit value={settings.longNotes} onChange={setters.longNotes} />
@@ -99,7 +94,6 @@ export const CoreSettings: React.FC<CoreSettingsProps> = ({
           value={settings.genericOccupation}
         />
       </SettingsGridField>
-
     </InputGrid>
   );
 };

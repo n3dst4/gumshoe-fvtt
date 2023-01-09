@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 type MwCostSlugProps = {
-  children: ReactNode,
+  children: ReactNode;
 };
 
 export const MwCostSlug: React.FC<MwCostSlugProps> = ({

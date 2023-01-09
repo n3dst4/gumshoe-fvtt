@@ -5,14 +5,13 @@
 
 @font-face {
   font-family: "Longdon Decorative Regular";
-  src: url(assets/fonts/LongdonDecorative.woff2) format('woff2');
+  src: url(assets/fonts/LongdonDecorative.woff2) format("woff2");
 }
 
 .window-content.non-resizable {
   padding: 0;
   position: relative;
 }
-
 
 .window-content.resizable {
   position: relative;
@@ -27,7 +26,9 @@
   }
 }
 
-a.entity-link, a.content-link, a.inline-roll {
+a.entity-link,
+a.content-link,
+a.inline-roll {
   background: unset;
   border-style: dashed;
   border-width: 1px;
@@ -37,14 +38,14 @@ a.entity-link, a.content-link, a.inline-roll {
   flex: 1;
 }
 
-.window-app, 
-#sidebar, 
-.main-controls li, 
-.sub-controls li, 
-#players, 
+.window-app,
+#sidebar,
+.main-controls li,
+.sub-controls li,
+#players,
 #hotbar > *,
 #navigation a,
-#navigation li { 
+#navigation li {
   backdrop-filter: blur(10px);
   background-image: linear-gradient(to bottom, #000b 0%, #0006 100%);
 }

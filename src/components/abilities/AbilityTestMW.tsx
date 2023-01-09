@@ -9,7 +9,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 
 type AbilityTestMWProps = {
-  ability: InvestigatorItem,
+  ability: InvestigatorItem;
 };
 
 export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
@@ -89,10 +89,18 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
           flexDirection: "row",
         }}
       >
-        <button disabled={ability.data.data.pool < mwNegateCost} css={{ flex: "1" }} onClick={onNegateIllustrious}>
+        <button
+          disabled={ability.data.data.pool < mwNegateCost}
+          css={{ flex: "1" }}
+          onClick={onNegateIllustrious}
+        >
           <Translate>Negate</Translate>
         </button>
-        <button disabled={ability.data.data.pool < mwWallopCost} css={{ flex: "1" }} onClick={onWallop}>
+        <button
+          disabled={ability.data.data.pool < mwWallopCost}
+          css={{ flex: "1" }}
+          onClick={onWallop}
+        >
           <Translate>Wallop</Translate>
         </button>
         <button css={{ flex: "2" }} onClick={onTest}>

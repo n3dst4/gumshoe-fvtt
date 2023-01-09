@@ -9,7 +9,7 @@ import { GridField } from "../inputs/GridField";
 interface EquipmentFieldProps {
   fieldId: string;
   fieldMetadata: EquipmentFieldMetadata;
-  value: string|number|boolean;
+  value: string | number | boolean;
   equipment: InvestigatorItem;
 }
 
@@ -19,9 +19,12 @@ export const EquipmentField: React.FC<EquipmentFieldProps> = ({
   value,
   equipment,
 }) => {
-  const onChange = useCallback((newValue: string|number|boolean) => {
-    equipment.setField(fieldId, newValue);
-  }, [equipment, fieldId]);
+  const onChange = useCallback(
+    (newValue: string | number | boolean) => {
+      equipment.setField(fieldId, newValue);
+    },
+    [equipment, fieldId],
+  );
 
   return (
     <GridField

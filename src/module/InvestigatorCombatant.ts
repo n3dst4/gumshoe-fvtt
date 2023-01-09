@@ -1,6 +1,9 @@
 import * as constants from "../constants";
 import { InvestigatorItem } from "./InvestigatorItem";
-import { assertActiveCharacterDataSource, isActiveCharacterDataSource } from "../typeAssertions";
+import {
+  assertActiveCharacterDataSource,
+  isActiveCharacterDataSource,
+} from "../typeAssertions";
 import { isNullOrEmptyString } from "../functions";
 import { settings } from "../settings";
 
@@ -17,21 +20,21 @@ export class InvestigatorCombatant extends Combatant {
     }
   };
 
-  resetPassingTurns () {
+  resetPassingTurns() {
     this.passingTurnsRemaining = isActiveCharacterDataSource(this.actor?.data)
-      ? (this.actor?.data.data.initiativePassingTurns ?? 1)
+      ? this.actor?.data.data.initiativePassingTurns ?? 1
       : 1;
   }
 
-  addPassingTurn () {
+  addPassingTurn() {
     this.passingTurnsRemaining += 1;
   }
 
-  removePassingTurn () {
+  removePassingTurn() {
     this.passingTurnsRemaining = Math.max(0, this.passingTurnsRemaining - 1);
   }
 
-  static getGumshoeInitiative (actor: Actor) {
+  static getGumshoeInitiative(actor: Actor) {
     assertActiveCharacterDataSource(actor?.data);
     // get the ability name, and if not set, use the first one on the system
     // config (we had a bug where some chars were getting created without an
@@ -56,16 +59,17 @@ export class InvestigatorCombatant extends Combatant {
     }
   }
 
-  _getInitiativeFormula () {
+  _getInitiativeFormula() {
     return this.actor
       ? InvestigatorCombatant.getGumshoeInitiative(this.actor).toString()
       : "0";
   }
 
-  get passingTurnsRemaining (): number {
-    const maxPassingTurns = (this.actor && isActiveCharacterDataSource(this.actor?.data))
-      ? this.actor?.data.data.initiativePassingTurns
-      : 1;
+  get passingTurnsRemaining(): number {
+    const maxPassingTurns =
+      this.actor && isActiveCharacterDataSource(this.actor?.data)
+        ? this.actor?.data.data.initiativePassingTurns
+        : 1;
     const tagValue = this.getFlag(
       constants.systemName,
       "passingTurnsRemaining",
@@ -77,12 +81,8 @@ export class InvestigatorCombatant extends Combatant {
     return Number(tagValue);
   }
 
-  set passingTurnsRemaining (turns: number) {
-    this.setFlag(
-      constants.systemName,
-      "passingTurnsRemaining",
-      turns,
-    );
+  set passingTurnsRemaining(turns: number) {
+    this.setFlag(constants.systemName, "passingTurnsRemaining", turns);
   }
 }
 

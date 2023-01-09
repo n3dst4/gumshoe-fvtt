@@ -9,7 +9,10 @@ import { FlaggedMigrations } from "./types";
  * @param pack
  * @return {Promise}
  */
-export const migrateCompendium = async function (pack: any, flaggedMigrations: FlaggedMigrations) {
+export const migrateCompendium = async function (
+  pack: any,
+  flaggedMigrations: FlaggedMigrations,
+) {
   const entity = pack.metadata.entity;
 
   for (const packMigration in flaggedMigrations.compendium) {
@@ -46,7 +49,9 @@ export const migrateCompendium = async function (pack: any, flaggedMigrations: F
       // Save the entry, if data was changed
       updateData._id = ent.id;
       await ent.update(updateData);
-      console.log(`Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
+      console.log(
+        `Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`,
+      );
     } catch (err: any) {
       // Handle migration failures
       err.message = `Failed ${system.title} system migration for entity ${ent.name} in pack ${pack.collection}: ${err.message}`;
@@ -56,5 +61,7 @@ export const migrateCompendium = async function (pack: any, flaggedMigrations: F
 
   // Apply the original locked status for the pack
   pack.configure({ locked: wasLocked });
-  console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
+  console.log(
+    `Migrated all ${entity} entities from Compendium ${pack.collection}`,
+  );
 };

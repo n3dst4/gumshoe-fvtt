@@ -90,10 +90,7 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Terrain" },
     { name: "Traffic Analysis" },
   ],
-  Exotic: [
-    { name: "Analytic Taste" },
-    { name: "Aura Reading" },
-  ],
+  Exotic: [{ name: "Analytic Taste" }, { name: "Aura Reading" }],
 };
 
 export const generalAbilities: GeneralAbilitiesData = {

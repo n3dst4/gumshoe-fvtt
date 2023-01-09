@@ -15,8 +15,8 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 
 type MwItemSheetProps = {
-  item: InvestigatorItem,
-  application: ItemSheet,
+  item: InvestigatorItem;
+  application: ItemSheet;
 };
 
 export const MwItemSheet: React.FC<MwItemSheetProps> = ({
@@ -48,9 +48,12 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
     });
   }, [item]);
 
-  const onChangeType = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    item.setMwType(e.currentTarget.value as MwType);
-  }, [item]);
+  const onChangeType = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      item.setMwType(e.currentTarget.value as MwType);
+    },
+    [item],
+  );
 
   return (
     <div
@@ -61,9 +64,9 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
         gridTemplateColumns: "auto 1fr auto",
         gridTemplateRows: "auto auto 1fr",
         gridTemplateAreas:
-          "\"image  slug      trash\" " +
-          "\"image  headline  headline\" " +
-          "\"body   body      body\" ",
+          '"image  slug      trash" ' +
+          '"image  headline  headline" ' +
+          '"body   body      body" ',
       }}
     >
       {/* Slug */}
@@ -103,7 +106,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
           onClickDelete();
         }}
       >
-        <i className={"fa fa-trash"}/>
+        <i className={"fa fa-trash"} />
       </a>
 
       {/* Body */}
@@ -167,8 +170,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
             }}
           />
         </GridFieldStacked> */}
-        {
-          item.data.data.mwType === "enchantedItem" &&
+        {item.data.data.mwType === "enchantedItem" && (
           <GridField label="Charges">
             <AsyncNumberInput
               onChange={item.setCharges}
@@ -176,9 +178,8 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
               min={0}
             />
           </GridField>
-        }
-        {
-          item.data.data.mwType === "missileWeapon" &&
+        )}
+        {item.data.data.mwType === "missileWeapon" && (
           <GridFieldStacked label="Ranges">
             <div
               css={{
@@ -223,7 +224,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
               </GridFieldStacked>
             </div>
           </GridFieldStacked>
-        }
+        )}
       </InputGrid>
     </div>
   );

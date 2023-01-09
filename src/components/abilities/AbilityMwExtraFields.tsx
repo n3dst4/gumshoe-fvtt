@@ -6,7 +6,7 @@ import { assertGeneralAbilityDataSource } from "../../typeAssertions";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 
 type AbilityMwExtraFieldsProps = {
-  ability: InvestigatorItem,
+  ability: InvestigatorItem;
 };
 
 export const AbilityMwExtraFields: React.FC<AbilityMwExtraFieldsProps> = ({
@@ -21,16 +21,16 @@ export const AbilityMwExtraFields: React.FC<AbilityMwExtraFieldsProps> = ({
       }}
     >
       <GridField label="Trumps">
-          <AsyncTextInput
-            value={ability.data.data.mwTrumps}
-            onChange={ability.setMwTrumps}
-          />
+        <AsyncTextInput
+          value={ability.data.data.mwTrumps}
+          onChange={ability.setMwTrumps}
+        />
       </GridField>
       <GridField label="Trumped by">
-          <AsyncTextInput
-            value={ability.data.data.mwTrumpedBy}
-            onChange={ability.setMwTrumpedBy}
-          />
+        <AsyncTextInput
+          value={ability.data.data.mwTrumpedBy}
+          onChange={ability.setMwTrumpedBy}
+        />
       </GridField>
     </InputGrid>
   );

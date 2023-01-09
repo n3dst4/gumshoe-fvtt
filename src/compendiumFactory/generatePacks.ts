@@ -9,7 +9,14 @@ import * as nothingToFearData from "./nothingToFearData";
 import * as pallidStarsData from "./pallidStarsData";
 import * as srdAbilitiesData from "./srdAbilitiesData";
 import * as moribundWorldData from "./moribundWorldData";
-import { generalAbility, generalAbilityIcon, investigativeAbility, investigativeAbilityIcon, packNames, systemName } from "../constants";
+import {
+  generalAbility,
+  generalAbilityIcon,
+  investigativeAbility,
+  investigativeAbilityIcon,
+  packNames,
+  systemName,
+} from "../constants";
 import { assertGame } from "../functions";
 
 /*
@@ -66,7 +73,9 @@ const generalTemplate: GeneralAbilityTemplate = {
   hideIfZeroRated: false,
 };
 
-export const emptyPack = async (pack: CompendiumCollection<CompendiumCollection.Metadata>) => {
+export const emptyPack = async (
+  pack: CompendiumCollection<CompendiumCollection.Metadata>,
+) => {
   const content = await pack.getDocuments();
   content.forEach((item) => {
     item.delete();
@@ -82,7 +91,7 @@ export const findPack = (packName: string) => {
 };
 
 export const generatePacks = async <
-  T extends InvestigativeAbilityTemplate | GeneralAbilityTemplate
+  T extends InvestigativeAbilityTemplate | GeneralAbilityTemplate,
 >(
   abilityData: BaseAbilityDump<T>,
   template: T,
@@ -228,12 +237,12 @@ export const initializePackGenerators = () => {
 declare global {
   interface Window {
     generatePacks: {
-      pathOfCthulhu(): Promise<void>,
-      niceBlackAgents(): Promise<void>,
-      nothingToFear(): Promise<void>,
-      pallidStars(): Promise<void>,
-      srdAbilities(): Promise<void>,
-      moribundWorldAbilities(): Promise<void>,
+      pathOfCthulhu(): Promise<void>;
+      niceBlackAgents(): Promise<void>;
+      nothingToFear(): Promise<void>;
+      pallidStars(): Promise<void>;
+      srdAbilities(): Promise<void>;
+      moribundWorldAbilities(): Promise<void>;
     };
   }
 }

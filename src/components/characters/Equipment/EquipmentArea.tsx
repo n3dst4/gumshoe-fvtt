@@ -7,7 +7,7 @@ import { FoundryAppContext } from "../../FoundryAppContext";
 import { EquipmentCategory } from "./EquipmentCategory";
 
 type EquipmentAreaProps = {
-  actor: InvestigatorActor,
+  actor: InvestigatorActor;
 };
 
 export const EquipmentArea: React.FC<EquipmentAreaProps> = ({ actor }) => {

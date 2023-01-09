@@ -4,11 +4,11 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridField } from "../inputs/GridField";
 
 type WeaponRangeProps = {
-  label: string,
-  damage: number,
-  enabled: boolean,
-  setDamage: (value: number) => void,
-  setEnabled: (enabled: boolean) => void,
+  label: string;
+  damage: number;
+  enabled: boolean;
+  setDamage: (value: number) => void;
+  setEnabled: (enabled: boolean) => void;
 };
 
 export const WeaponRange: React.FC<WeaponRangeProps> = ({
@@ -26,10 +26,7 @@ export const WeaponRange: React.FC<WeaponRangeProps> = ({
           flexDirection: "row",
         }}
       >
-        <AsyncCheckbox
-          checked={enabled}
-          onChange={setEnabled}
-        />
+        <AsyncCheckbox checked={enabled} onChange={setEnabled} />
         <AsyncNumberInput
           css={{ flex: 1 }}
           disabled={!enabled}

@@ -16,7 +16,7 @@
  * @param {data.CombatData} [data={}]         Initial data provided to construct the Combat document
  */
 class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
-  constructor (data, context) {
+  constructor(data, context) {
     super(data, context);
 
     /**
@@ -71,7 +71,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Get the Combatant who has the current turn.
    * @type {Combatant}
    */
-  get combatant () {
+  get combatant() {
     return this.turns[this.data.turn];
   }
 
@@ -81,7 +81,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * The numeric round of the Combat encounter
    * @type {number}
    */
-  get round () {
+  get round() {
     return Math.max(this.data.round, 0);
   }
 
@@ -92,7 +92,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * If a specific Scene is not set in the Combat Data, the currently viewed scene is assumed instead.
    * @type {Scene}
    */
-  get scene () {
+  get scene() {
     return game.scenes.get(this.data.scene) || game.scenes.current || undefined;
   }
 
@@ -102,7 +102,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Return the object of settings which modify the Combat Tracker behavior
    * @return {object}
    */
-  get settings () {
+  get settings() {
     return CombatEncounters.settings;
   }
 
@@ -112,8 +112,8 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Has this combat encounter been started?
    * @type {boolean}
    */
-  get started () {
-    return (this.turns.length > 0) && (this.round > 0);
+  get started() {
+    return this.turns.length > 0 && this.round > 0;
   }
 
   /* -------------------------------------------- */
@@ -122,7 +122,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * The numeric turn of the combat round in the Combat encounter
    * @type {number|null}
    */
-  get turn () {
+  get turn() {
     if (this.data.turn === null) return null;
     return Math.max(this.data.turn, 0);
   }
@@ -130,7 +130,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  get visible () {
+  get visible() {
     return true;
   }
 
@@ -140,8 +140,9 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Is this combat active in the current scene?
    * @type {boolean}
    */
-  get isActive () {
-    const inScene = (this.data.scene === null) || (this.data.scene === game.scenes.current?.id);
+  get isActive() {
+    const inScene =
+      this.data.scene === null || this.data.scene === game.scenes.current?.id;
     return inScene && this.data.active;
   }
 
@@ -155,7 +156,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * @param {object} [options] Additional context to customize the update workflow
    * @return {Promise<Combat>}
    */
-  async activate (options) {
+  async activate(options) {
     const updates = this.collection.reduce((arr, c) => {
       if (c.isActive) arr.push({ _id: c.data._id, active: false });
       return arr;
@@ -170,7 +171,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Display a dialog querying the GM whether they wish to end the combat encounter and empty the tracker
    * @return {Promise<Combat>}
    */
-  async endCombat () {
+  async endCombat() {
     return Dialog.confirm({
       title: game.i18n.localize("COMBAT.EndTitle"),
       content: `<p>${game.i18n.localize("COMBAT.EndConfirmation")}</p>`,
@@ -185,8 +186,8 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * @param {string} tokenId   The id of the Token for which to acquire the combatant
    * @return {Combatant}
    */
-  getCombatantByToken (tokenId) {
-    return this.combatants.find(c => c.data.tokenId === tokenId);
+  getCombatantByToken(tokenId) {
+    return this.combatants.find((c) => c.data.tokenId === tokenId);
   }
 
   /* -------------------------------------------- */
@@ -196,8 +197,8 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * @param {string} actorId The id of the Actor for which to acquire the combatant
    * @return {Combatant}
    */
-  getCombatantByActor (actorId) {
-    return this.combatants.find(c => c.data.actorId === actorId);
+  getCombatantByActor(actorId) {
+    return this.combatants.find((c) => c.data.actorId === actorId);
   }
 
   /* -------------------------------------------- */
@@ -206,16 +207,18 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Advance the combat to the next round
    * @return {Promise<Combat>}
    */
-  async nextRound () {
+  async nextRound() {
     let turn = this.data.turn === null ? null : 0; // Preserve the fact that it's no-one's turn currently.
-    if (this.settings.skipDefeated && (turn !== null)) {
-      turn = this.turns.findIndex(t => !t.isDefeated);
+    if (this.settings.skipDefeated && turn !== null) {
+      turn = this.turns.findIndex((t) => !t.isDefeated);
       if (turn === -1) {
         ui.notifications.warn("COMBAT.NoneRemaining", { localize: true });
         turn = 0;
       }
     }
-    let advanceTime = Math.max(this.turns.length - (this.data.turn || 0), 0) * CONFIG.time.turnTime;
+    let advanceTime =
+      Math.max(this.turns.length - (this.data.turn || 0), 0) *
+      CONFIG.time.turnTime;
     advanceTime += CONFIG.time.roundTime;
     return this.update({ round: this.round + 1, turn }, { advanceTime });
   }
@@ -226,7 +229,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Advance the combat to the next turn
    * @return {Promise<Combat>}
    */
-  async nextTurn () {
+  async nextTurn() {
     const turn = this.turn ?? -1;
     const skip = this.settings.skipDefeated;
 
@@ -243,7 +246,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
 
     // Maybe advance to the next round
     const round = this.round;
-    if ((this.round === 0) || (next === null) || (next >= this.turns.length)) {
+    if (this.round === 0 || next === null || next >= this.turns.length) {
       return this.nextRound();
     }
 
@@ -255,7 +258,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
   /* -------------------------------------------- */
 
   /** @override */
-  prepareDerivedData () {
+  prepareDerivedData() {
     if (this.combatants.size && !this.turns?.length) this.setupTurns();
   }
 
@@ -265,8 +268,8 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Rewind the combat to the previous round
    * @return {Promise<Combat>}
    */
-  async previousRound () {
-    let turn = (this.round === 0) ? 0 : Math.max(this.turns.length - 1, 0);
+  async previousRound() {
+    let turn = this.round === 0 ? 0 : Math.max(this.turns.length - 1, 0);
     if (this.data.turn === null) turn = null;
     const round = Math.max(this.round - 1, 0);
     let advanceTime = -1 * (this.data.turn || 0) * CONFIG.time.turnTime;
@@ -280,11 +283,14 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Rewind the combat to the previous turn
    * @return {Promise<Combat>}
    */
-  async previousTurn () {
-    if ((this.turn === 0) && (this.round === 0)) return this;
-    else if ((this.turn <= 0) && (this.turn !== null)) return this.previousRound();
+  async previousTurn() {
+    if (this.turn === 0 && this.round === 0) return this;
+    else if (this.turn <= 0 && this.turn !== null) return this.previousRound();
     const advanceTime = -1 * CONFIG.time.turnTime;
-    return this.update({ turn: (this.turn ?? this.turns.length) - 1 }, { advanceTime });
+    return this.update(
+      { turn: (this.turn ?? this.turns.length) - 1 },
+      { advanceTime },
+    );
   }
 
   /* -------------------------------------------- */
@@ -293,7 +299,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Toggle whether this combat is linked to the scene or globally available.
    * @returns {Promise<Combat>}
    */
-  async toggleSceneLink () {
+  async toggleSceneLink() {
     const scene = this.data.scene === null ? game.scenes.current?.id : null;
     if (scene === undefined) return this;
     return this.update({ scene });
@@ -305,11 +311,14 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Reset all combatant initiative scores, setting the turn back to zero
    * @return {Promise<Combat>}
    */
-  async resetAll () {
+  async resetAll() {
     for (const c of this.combatants) {
       c.data.update({ initiative: null });
     }
-    return this.update({ turn: 0, combatants: this.combatants.toObject() }, { diff: false });
+    return this.update(
+      { turn: 0, combatants: this.combatants.toObject() },
+      { diff: false },
+    );
   }
 
   /* -------------------------------------------- */
@@ -323,7 +332,10 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * @param {object} [options.messageOptions={}]    Additional options with which to customize created Chat Messages
    * @return {Promise<Combat>}        A promise which resolves to the updated Combat document once updates are complete.
    */
-  async rollInitiative (ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
+  async rollInitiative(
+    ids,
+    { formula = null, updateTurn = true, messageOptions = {} } = {},
+  ) {
     // Structure input data
     ids = typeof ids === "string" ? [ids] : ids;
     const currentId = this.combatant?.id;
@@ -343,21 +355,29 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
       updates.push({ _id: id, initiative: roll.total });
 
       // Construct chat message data
-      const messageData = foundry.utils.mergeObject({
-        speaker: ChatMessage.getSpeaker({
-          actor: combatant.actor,
-          token: combatant.token,
-          alias: combatant.name,
-        }),
-        flavor: game.i18n.format("COMBAT.RollsInitiative", { name: combatant.name }),
-        flags: { "core.initiativeRoll": true },
-      }, messageOptions);
+      const messageData = foundry.utils.mergeObject(
+        {
+          speaker: ChatMessage.getSpeaker({
+            actor: combatant.actor,
+            token: combatant.token,
+            alias: combatant.name,
+          }),
+          flavor: game.i18n.format("COMBAT.RollsInitiative", {
+            name: combatant.name,
+          }),
+          flags: { "core.initiativeRoll": true },
+        },
+        messageOptions,
+      );
       const chatData = await roll.toMessage(messageData, { create: false });
 
       // If the combatant is hidden, use a private roll unless an alternative rollMode was explicitly requested
-      chatData.rollMode = "rollMode" in messageOptions
-        ? messageOptions.rollMode
-        : (combatant.hidden ? CONST.DICE_ROLL_MODES.PRIVATE : chatRollMode);
+      chatData.rollMode =
+        "rollMode" in messageOptions
+          ? messageOptions.rollMode
+          : combatant.hidden
+          ? CONST.DICE_ROLL_MODES.PRIVATE
+          : chatRollMode;
 
       // Play 1 sound for the whole rolled set
       if (i > 0) chatData.sound = null;
@@ -370,7 +390,9 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
 
     // Ensure the turn order remains with the same combatant
     if (updateTurn && currentId) {
-      await this.update({ turn: this.turns.findIndex(t => t.id === currentId) });
+      await this.update({
+        turn: this.turns.findIndex((t) => t.id === currentId),
+      });
     }
 
     // Create multiple chat messages
@@ -384,9 +406,9 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Roll initiative for all combatants which have not already rolled
    * @param {object} [options={}]   Additional options forwarded to the Combat.rollInitiative method
    */
-  async rollAll (options) {
+  async rollAll(options) {
     const ids = this.combatants.reduce((ids, c) => {
-      if (c.isOwner && (c.initiative === null)) ids.push(c.id);
+      if (c.isOwner && c.initiative === null) ids.push(c.id);
       return ids;
     }, []);
     return this.rollInitiative(ids, options);
@@ -398,9 +420,9 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Roll initiative for all non-player actors who have not already rolled
    * @param {object} [options={}]   Additional options forwarded to the Combat.rollInitiative method
    */
-  async rollNPC (options = {}) {
+  async rollNPC(options = {}) {
     const ids = this.combatants.reduce((ids, c) => {
-      if (c.isOwner && c.isNPC && (c.initiative === null)) ids.push(c.id);
+      if (c.isOwner && c.isNPC && c.initiative === null) ids.push(c.id);
       return ids;
     }, []);
     return this.rollInitiative(ids, options);
@@ -414,7 +436,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * @param {string} id         The combatant ID for which to set initiative
    * @param {number} value      A specific initiative value to set
    */
-  async setInitiative (id, value) {
+  async setInitiative(id, value) {
     const combatant = this.combatants.get(id, { strict: true });
     await combatant.update({ initiative: value });
   }
@@ -425,12 +447,13 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Return the Array of combatants sorted into initiative order, breaking ties alphabetically by name.
    * @return {Combatant[]}
    */
-  setupTurns () {
+  setupTurns() {
     // Determine the turn order and the current turn
     const turns = this.combatants.contents.sort(this._sortCombatants);
-    if (this.turn !== null) this.data.turn = Math.clamped(this.data.turn, 0, turns.length - 1);
+    if (this.turn !== null)
+      this.data.turn = Math.clamped(this.data.turn, 0, turns.length - 1);
 
-	  // Update state tracking
+    // Update state tracking
     const c = turns[this.data.turn];
     this.current = {
       round: this.data.round,
@@ -438,7 +461,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
       combatantId: c ? c.id : null,
       tokenId: c ? c.data.tokenId : null,
     };
-    return this.turns = turns;
+    return (this.turns = turns);
   }
 
   /* -------------------------------------------- */
@@ -447,7 +470,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * Begin the combat encounter, advancing to round 1 and turn 1
    * @return {Promise<Combat>}
    */
-  async startCombat () {
+  async startCombat() {
     return this.update({ round: 1, turn: 0 });
   }
 
@@ -459,7 +482,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
    * By default sort by initiative, next falling back to name, lastly tie-breaking by combatant id.
    * @private
    */
-  _sortCombatants (a, b) {
+  _sortCombatants(a, b) {
     const ia = Number.isNumeric(a.initiative) ? a.initiative : -9999;
     const ib = Number.isNumeric(b.initiative) ? b.initiative : -9999;
     const ci = ib - ia;
@@ -472,19 +495,20 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _onCreate (data, options, userId) {
+  _onCreate(data, options, userId) {
     super._onCreate(data, options, userId);
-    if (!this.collection.viewed) ui.combat.initialize({ combat: this, render: false });
+    if (!this.collection.viewed)
+      ui.combat.initialize({ combat: this, render: false });
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _onUpdate (data, options, userId) {
-	  super._onUpdate(data, options, userId);
+  _onUpdate(data, options, userId) {
+    super._onUpdate(data, options, userId);
 
     // Set up turn data
-    if (["combatants", "round", "turn"].some(k => data.hasOwnProperty(k))) {
+    if (["combatants", "round", "turn"].some((k) => data.hasOwnProperty(k))) {
       if (data.combatants) this.setupTurns();
       else {
         const c = this.combatant;
@@ -501,23 +525,25 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
     }
 
     // Render the sidebar
-    if ((data.active === true) && this.isActive) ui.combat.initialize({ combat: this });
+    if (data.active === true && this.isActive)
+      ui.combat.initialize({ combat: this });
     else if ("scene" in data) ui.combat.initialize();
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _onDelete (options, userId) {
+  _onDelete(options, userId) {
     super._onDelete(options, userId);
-    if (this.collection.viewed === this) ui.combat.initialize({ render: false });
+    if (this.collection.viewed === this)
+      ui.combat.initialize({ render: false });
     if (userId === game.userId) this.collection.viewed?.activate();
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _onCreateEmbeddedDocuments (type, documents, result, options, userId) {
+  _onCreateEmbeddedDocuments(type, documents, result, options, userId) {
     super._onCreateEmbeddedDocuments(type, documents, result, options, userId);
 
     // Update the turn order and adjust the combat to keep the combatant the same
@@ -526,35 +552,52 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
 
     // Keep the current Combatant the same after adding new Combatants to the Combat
     if (current) {
-      const turn = Math.max(this.turns.findIndex(t => t.id === current.id), 0);
+      const turn = Math.max(
+        this.turns.findIndex((t) => t.id === current.id),
+        0,
+      );
       if (game.user.id === userId) this.update({ turn });
       else this.data.update({ turn });
     }
 
     // Render the collection
-    if (this.data.active && (options.render !== false)) this.collection.render();
+    if (this.data.active && options.render !== false) this.collection.render();
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _onUpdateEmbeddedDocuments (embeddedName, documents, result, options, userId) {
-    super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+  _onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
+    super._onUpdateEmbeddedDocuments(
+      embeddedName,
+      documents,
+      result,
+      options,
+      userId,
+    );
     const current = this.combatant;
     this.setupTurns();
-    const turn = current ? this.turns.findIndex(t => t.id === current.id) : this.turn;
+    const turn = current
+      ? this.turns.findIndex((t) => t.id === current.id)
+      : this.turn;
     if (turn !== this.turn) {
       if (game.user.id === userId) this.update({ turn });
       else this.data.update({ turn });
     }
-    if (this.data.active && (options.render !== false)) this.collection.render();
+    if (this.data.active && options.render !== false) this.collection.render();
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _onDeleteEmbeddedDocuments (embeddedName, documents, result, options, userId) {
-    super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
+  _onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId) {
+    super._onDeleteEmbeddedDocuments(
+      embeddedName,
+      documents,
+      result,
+      options,
+      userId,
+    );
 
     // Update the turn order and adjust the combat to keep the combatant the same (unless they were deleted)
     const current = this.combatant;
@@ -563,7 +606,7 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
       if (this.settings.skipDefeated) valid &&= !t.isDefeated;
       if (!valid) return obj;
       if (i < this.turn) obj.prevSurvivor = t;
-      if (!obj.nextSurvivor && (i >= this.turn)) obj.nextSurvivor = t;
+      if (!obj.nextSurvivor && i >= this.turn) obj.nextSurvivor = t;
       return obj;
     }, {});
     this.setupTurns();
@@ -572,11 +615,11 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
     let turn = this.data.turn;
     if (result.includes(current?.id)) {
       const survivor = nextSurvivor || prevSurvivor;
-      if (survivor) turn = this.turns.findIndex(t => t.id === survivor.id);
+      if (survivor) turn = this.turns.findIndex((t) => t.id === survivor.id);
     }
 
     // Otherwise keep the combatant the same
-    else turn = this.turns.findIndex(t => t.id === current?.id);
+    else turn = this.turns.findIndex((t) => t.id === current?.id);
 
     // Update database or perform a local override
     turn = Math.max(turn, 0);
@@ -586,6 +629,6 @@ class Combat extends ClientDocumentMixin(foundry.documents.BaseCombat) {
     }
 
     // Render the collection
-    if (this.data.active && (options.render !== false)) this.collection.render();
+    if (this.data.active && options.render !== false) this.collection.render();
   }
 }

@@ -4,10 +4,10 @@ import { IdContext } from "../IdContext";
 import { Translate } from "../Translate";
 
 type GridFieldStackedProps = {
-  label?: string|ReactNode,
-  className?: string,
-  children: any,
-  noTranslate?: boolean,
+  label?: string | ReactNode;
+  className?: string;
+  children: any;
+  noTranslate?: boolean;
 };
 
 export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({
@@ -26,14 +26,14 @@ export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({
           display: "flex",
           flexDirection: "column",
         }}
-
       >
-        <label
-          htmlFor={htmlId}
-          css={{
-          }}
-        >
-          {label && ((noTranslate || typeof label !== "string") ? label : <Translate>{label}</Translate>)}
+        <label htmlFor={htmlId} css={{}}>
+          {label &&
+            (noTranslate || typeof label !== "string" ? (
+              label
+            ) : (
+              <Translate>{label}</Translate>
+            ))}
         </label>
         <div
           css={{

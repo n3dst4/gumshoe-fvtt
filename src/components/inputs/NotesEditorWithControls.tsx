@@ -1,5 +1,10 @@
 import React, { Fragment, useCallback, useState } from "react";
-import { assertGame, confirmADoodleDo, getDevMode, getTranslated } from "../../functions";
+import {
+  assertGame,
+  confirmADoodleDo,
+  getDevMode,
+  getTranslated,
+} from "../../functions";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { Translate } from "../Translate";
 import { NotesEditor } from "./NotesEditor";
@@ -33,18 +38,23 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   const [editMode, setEditMode] = useState(false);
   const [showSource, setShowSource] = useState(false);
 
-  const [getLiveSource, setLiveSource, liveSource] = useStateWithGetter(origSource);
+  const [getLiveSource, setLiveSource, liveSource] =
+    useStateWithGetter(origSource);
   const [getLiveHtml, setLiveHtml, liveHtml] = useStateWithGetter(origHtml);
-  const [getLiveFormat, setLiveFormat, liveFormat] = useStateWithGetter(origFormat);
+  const [getLiveFormat, setLiveFormat, liveFormat] =
+    useStateWithGetter(origFormat);
 
   const [dirty, setDirty] = useState(false);
   const isDebugging = getDevMode();
 
-  const onEdit = useCallback(async (newSource: string) => {
-    setLiveSource(newSource);
-    setLiveHtml(await toHtml(liveFormat, newSource));
-    setDirty(true);
-  }, [liveFormat, setLiveHtml, setLiveSource]);
+  const onEdit = useCallback(
+    async (newSource: string) => {
+      setLiveSource(newSource);
+      setLiveHtml(await toHtml(liveFormat, newSource));
+      setDirty(true);
+    },
+    [liveFormat, setLiveHtml, setLiveSource],
+  );
 
   const onClickEdit = useCallback(() => {
     setLiveSource(origSource);
@@ -53,11 +63,14 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   }, [origSource, setLiveSource]);
 
   const onClickSave = useCallback(() => {
-    onSave({
-      format: getLiveFormat(),
-      html: getLiveHtml(),
-      source: getLiveSource(),
-    }, index);
+    onSave(
+      {
+        format: getLiveFormat(),
+        html: getLiveHtml(),
+        source: getLiveSource(),
+      },
+      index,
+    );
     setEditMode(false);
     setDirty(false);
   }, [getLiveFormat, getLiveHtml, getLiveSource, index, onSave]);
@@ -76,14 +89,21 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
     setDirty(false);
   }, [dirty, origSource, setLiveSource]);
 
-  const onChangeFormat = useCallback(async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newFormat = e.currentTarget.value as NoteFormat;
-    const { newHtml, newSource } = await convertNotes(liveFormat, newFormat, liveSource);
-    setLiveFormat(newFormat);
-    setLiveSource(newSource);
-    setLiveHtml(newHtml);
-    setDirty(true);
-  }, [liveFormat, liveSource, setLiveFormat, setLiveHtml, setLiveSource]);
+  const onChangeFormat = useCallback(
+    async (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const newFormat = e.currentTarget.value as NoteFormat;
+      const { newHtml, newSource } = await convertNotes(
+        liveFormat,
+        newFormat,
+        liveSource,
+      );
+      setLiveFormat(newFormat);
+      setLiveSource(newSource);
+      setLiveHtml(newHtml);
+      setDirty(true);
+    },
+    [liveFormat, liveSource, setLiveFormat, setLiveHtml, setLiveSource],
+  );
 
   return (
     <div
@@ -95,95 +115,91 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
       }}
     >
       <div css={{ display: "flex", flexDirection: "row" }}>
-        {h2
-          ? <h2
-              css={{
-                "&&": {
-                  marginTop: 0,
-                },
-                flex: 1,
-              }}
-            >
-            {title === undefined
-              ? <Translate>Notes</Translate>
-              : title
-            }
+        {h2 ? (
+          <h2
+            css={{
+              "&&": {
+                marginTop: 0,
+              },
+              flex: 1,
+            }}
+          >
+            {title === undefined ? <Translate>Notes</Translate> : title}
           </h2>
-          : <h3
-              css={{
-                flex: 1,
-              }}
-            >
-              {title === undefined
-                ? <Translate>Notes</Translate>
-                : title
-              }
-            </h3>
-          }
+        ) : (
+          <h3
+            css={{
+              flex: 1,
+            }}
+          >
+            {title === undefined ? <Translate>Notes</Translate> : title}
+          </h3>
+        )}
 
         <div>
-          {
-            isDebugging &&
+          {isDebugging && (
+            <button
+              css={{
+                width: "auto",
+                marginRight: "0.5em",
+              }}
+              onClick={() => setShowSource((e) => !e)}
+            >
+              <i
+                className={showSource ? "fas fa-window-close" : "fas fa-code"}
+              />
+            </button>
+          )}
+
+          {!editMode && !showSource && (
+            <button
+              css={{
+                width: "auto",
+                marginRight: "0.5em",
+              }}
+              onClick={onClickEdit}
+            >
+              <i className="fas fa-edit" />
+              <Translate>Edit</Translate>
+            </button>
+          )}
+
+          {editMode && !showSource && (
+            <Fragment>
               <button
                 css={{
                   width: "auto",
                   marginRight: "0.5em",
                 }}
-                onClick={() => setShowSource((e) => !e)}
+                onClick={onClickSave}
               >
-                <i className={showSource ? "fas fa-window-close" : "fas fa-code"}/>
+                <i className="fas fa-download" />
+                <Translate>Save</Translate>
               </button>
-          }
-
-          {
-            (!editMode && !showSource) &&
               <button
                 css={{
                   width: "auto",
                   marginRight: "0.5em",
                 }}
-                onClick={onClickEdit}
+                onClick={onClickCancel}
               >
-                <i className="fas fa-edit"/>
-                <Translate>Edit</Translate>
+                <i className="fas fa-ban" />
+                <Translate>Cancel</Translate>
               </button>
-          }
+            </Fragment>
+          )}
 
-          {
-            (editMode && !showSource) &&
-              <Fragment>
-                <button
-                  css={{
-                    width: "auto",
-                    marginRight: "0.5em",
-                  }}
-                  onClick={onClickSave}
-                >
-                  <i className="fas fa-download"/>
-                  <Translate>Save</Translate>
-                </button>
-                <button
-                  css={{
-                    width: "auto",
-                    marginRight: "0.5em",
-                  }}
-                  onClick={onClickCancel}
-                >
-                  <i className="fas fa-ban"/>
-                  <Translate>Cancel</Translate>
-                </button>
-              </Fragment>
-          }
-
-          {
-            allowChangeFormat && editMode && !showSource && (
-              <select value={liveFormat} onChange={onChangeFormat}>
-                <option value={NoteFormat.plain}>{getTranslated("Plain")}</option>
-                <option value={NoteFormat.markdown}>{getTranslated("Markdown")}</option>
-                <option value={NoteFormat.richText}>{getTranslated("RichText")}</option>
-              </select>
-            )
-          }
+          {allowChangeFormat && editMode && !showSource && (
+            <select value={liveFormat} onChange={onChangeFormat}>
+              <option value={NoteFormat.plain}>{getTranslated("Plain")}</option>
+              <option value={NoteFormat.markdown}>
+                {getTranslated("Markdown")}
+              </option>
+              <option value={NoteFormat.richText}>
+                {getTranslated("RichText")}
+              </option>
+            </select>
+          )}
         </div>
       </div>
       <div

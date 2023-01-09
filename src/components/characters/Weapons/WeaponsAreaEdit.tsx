@@ -6,12 +6,10 @@ import { Translate } from "../../Translate";
 import { WeaponRowEdit } from "./WeaponRowEdit";
 
 type WeaponsAreaEditProps = {
-  actor: InvestigatorActor,
+  actor: InvestigatorActor;
 };
 
-export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
-  actor,
-}) => {
+export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({ actor }) => {
   const items = actor.getWeapons();
   return (
     <div>
@@ -34,25 +32,24 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
             width: "auto",
           }}
           onClick={async () => {
-            await actor.createEmbeddedDocuments(
-              "Item",
-              [
-                {
-                  type: weapon,
-                  name: "A new weapon",
-                  data: {
-                    notes: {
-                      format: "plain",
-                    },
+            await actor.createEmbeddedDocuments("Item", [
+              {
+                type: weapon,
+                name: "A new weapon",
+                data: {
+                  notes: {
+                    format: "plain",
                   },
                 },
-              ]);
+              },
+            ]);
           }}
         >
-          <i className="fa fa-plus"/><Translate>Add Weapon</Translate>
+          <i className="fa fa-plus" />
+          <Translate>Add Weapon</Translate>
         </button>
       </div>
-      {items.length === 0 &&
+      {items.length === 0 && (
         <i
           css={{
             display: "block",
@@ -61,15 +58,15 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
         >
           <Translate>No weapons yet!</Translate>
         </i>
-      }
-      {items.length > 0 &&
+      )}
+      {items.length > 0 && (
         <div
           css={{
             display: "grid",
             gridTemplateColumns: "10em repeat(5, 1fr) 2em 2em",
             gridTemplateAreas:
-              "\"name base  pb    cr    nr    lr    back  delete\" " +
-              "\"ammo notes notes notes notes notes notes notes\"",
+              '"name base  pb    cr    nr    lr    back  delete" ' +
+              '"ammo notes notes notes notes notes notes notes"',
             gridAutoRows: "min-content",
             gap: "0.5em",
             whiteSpace: "nowrap",
@@ -147,13 +144,11 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({
             <Translate>LR</Translate>
           </div>
 
-          {
-            sortEntitiesByName(items).map<JSX.Element>((item, index) => (
-              <WeaponRowEdit key={item.id} weapon={item} index={index}/>
-            ))
-          }
+          {sortEntitiesByName(items).map<JSX.Element>((item, index) => (
+            <WeaponRowEdit key={item.id} weapon={item} index={index} />
+          ))}
         </div>
-      }
+      )}
     </div>
   );
 };

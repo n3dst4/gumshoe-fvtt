@@ -2,13 +2,13 @@ import { settingsSaved } from "../constants";
 import { assertGame } from "../functions";
 import { settings } from "../settings";
 
-let oldMwItemTypelabel: string|null = null;
-let oldMwItemIndex: number|null = null;
+let oldMwItemTypelabel: string | null = null;
+let oldMwItemIndex: number | null = null;
 
 /**
  * Remove or add the moribund-world-specific item type
  */
-function mwItemOnOrOff () {
+function mwItemOnOrOff() {
   assertGame(game);
   if (settings.mwUseAlternativeItemTypes.get()) {
     if (oldMwItemTypelabel !== null && oldMwItemIndex !== null) {
@@ -35,6 +35,10 @@ export const handleMwItemType = () => {
   // behaviour for the "on" registration. This can be fixed by wrapping the
   // handler in an anon function. technically you'd only need to do this to one
   // or the other.
-  Hooks.once("ready", () => { mwItemOnOrOff(); });
-  Hooks.on(settingsSaved, () => { mwItemOnOrOff(); });
+  Hooks.once("ready", () => {
+    mwItemOnOrOff();
+  });
+  Hooks.on(settingsSaved, () => {
+    mwItemOnOrOff();
+  });
 };

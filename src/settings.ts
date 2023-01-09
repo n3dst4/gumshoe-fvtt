@@ -20,17 +20,17 @@ interface SettingFactoryArgs<T> {
 
 const getSetting =
   <T = string>(key: string) =>
-    (): T => {
-      assertGame(game);
-      return game.settings.get(systemName, key) as T;
-    };
+  (): T => {
+    assertGame(game);
+    return game.settings.get(systemName, key) as T;
+  };
 
 const setSetting =
   <T = string>(key: string) =>
-    (value: T) => {
-      assertGame(game);
-      return game.settings.set(systemName, key, value);
-    };
+  (value: T) => {
+    assertGame(game);
+    return game.settings.set(systemName, key, value);
+  };
 
 const createSetting = <T>(
   {
@@ -258,7 +258,7 @@ export const getDefaultInvestigativeAbilityCategory = () => {
 
 export type SettingsDict = {
   [Property in keyof typeof settings]: ReturnType<
-    typeof settings[Property]["get"]
+    (typeof settings)[Property]["get"]
   >;
 };
 

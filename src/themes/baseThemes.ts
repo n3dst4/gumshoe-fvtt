@@ -10,7 +10,7 @@ import { antiquarianTheme } from "./antiquarianTheme";
 import { olderThanMemoryTheme } from "./olderThanMemoryTheme";
 import { ThemeV1 } from "./types";
 
-export const baseThemes: {[themeName: string]: ThemeV1} = {
+export const baseThemes: { [themeName: string]: ThemeV1 } = {
   tealTheme,
   niceTheme,
   niceThemeDark,

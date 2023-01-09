@@ -9,8 +9,7 @@ export const highContrastTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "High Contrast",
   global: "",
-  largeSheetRootStyle: {
-  },
+  largeSheetRootStyle: {},
   bodyFont: "1.1em sans-serif",
   displayFont: "1.1em sans-serif",
   logo: {
