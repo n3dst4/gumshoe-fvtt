@@ -28,11 +28,7 @@ export const EquipmentField: React.FC<EquipmentFieldProps> = ({
       noTranslate
       key={fieldId}
       label={fieldMetadata.name}
-      labelTitle={`Field ID: ${fieldId}\nClick to copy to clipboard.`}
-      // onClickLabel={async () => {
-      //   await navigator.clipboard.writeText(fieldId);
-      //   ui.notifications?.info(`Copied field ID "${fieldId}" to clipboard`);
-      // }}
+      labelTitle={fieldMetadata.name}
     >
       {fieldMetadata.type === "string" && (
         <AsyncTextInput value={value as string} onChange={onChange} />

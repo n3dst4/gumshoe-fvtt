@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback } from "react";
+import React, { useCallback } from "react";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";
@@ -7,12 +7,11 @@ import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
+import { OrphanedField } from "./OrphanedField";
 
 interface EquipmentConfigProps {
   equipment: InvestigatorItem;
 }
-
-const gridRowsPerField = 3;
 
 export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
   equipment,
@@ -90,98 +89,23 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
           </i>
         )}
         {unknownFields.map((fieldId, index) => (
-          <Fragment key={fieldId}>
-            <div
-              css={{
-                gridColumn: "1",
-                gridRow: index * gridRowsPerField + 1,
-              }}
-            >
-              Id
-            </div>
-            <code
-              css={{
-                gridColumn: 2,
-                gridRow: index * gridRowsPerField + 1,
-              }}
-            >
-              {fieldId}
-            </code>
-            <a
-              title="Copy field ID to clipboard"
-              css={{
-                gridColumn: 3,
-                gridRow: index * gridRowsPerField + 1,
-              }}
-              onClick={() => {
-                navigator.clipboard.writeText(fieldId);
-                ui.notifications?.info(
-                  `Copied field ID "${fieldId}" to clipboard`,
-                );
-              }}
-            >
-              <i className={"fa fa-copy"} />
-            </a>
-            <div
-              css={{
-                gridColumn: "1",
-                gridRow: index * gridRowsPerField + 2,
-              }}
-            >
-              Value
-            </div>
-            <code
-              css={{
-                gridColumn: 2,
-                gridRow: index * gridRowsPerField + 2,
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {allFields[fieldId]}
-            </code>
-            <a
-              title="Copy field value to clipboard"
-              css={{
-                gridColumn: 3,
-                gridRow: index * gridRowsPerField + 2,
-              }}
-              onClick={() => {
-                navigator.clipboard.writeText(String(allFields[fieldId]));
-                ui.notifications?.info("Copied value to clipboard");
-              }}
-            >
-              <i className={"fa fa-copy"} />
-            </a>
-            <button
-              css={{
-                gridColumn: 4,
-                gridRow: `${index * gridRowsPerField + 1} / ${
-                  index * gridRowsPerField + 3
-                }`,
-              }}
-              onClick={() => {
-                equipment.deleteField(fieldId);
-              }}
-            >
-              <Translate>Delete</Translate>
-            </button>
-            <hr
-              css={{
-                gridColumn: "1 / -1",
-                gridRow: index * gridRowsPerField + 3,
-              }}
-            />
-          </Fragment>
+          <OrphanedField
+            key={index}
+            fieldId={fieldId}
+            fieldValue={allFields[fieldId]}
+            index={index}
+            onDelete={(id) => {
+              equipment.deleteField(id);
+            }}
+          />
         ))}
       </GridFieldStacked>
 
-      <GridField label="Delete">
+      <GridFieldStacked label="Delete">
         <button onClick={onClickDelete}>
-          <Translate>Delete</Translate>
+          <Translate>Delete Item</Translate>
         </button>
-      </GridField>
+      </GridFieldStacked>
     </InputGrid>
   );
 };

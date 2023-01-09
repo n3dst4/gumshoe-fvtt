@@ -154,5 +154,6 @@
     "investigator.ViewChangeID": "View/change ID",
     "investigator.CategoryId": "Category ID",
     "investigator.OrphanedFields": "Orphaned fields",
-    "investigator.NoOrphanedFields": "No orphaned fields"
+    "investigator.NoOrphanedFields": "No orphaned fields",
+    "investigator.DeleteItem": "Delete item"
 }
