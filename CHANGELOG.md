@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 6.0.0 (2023-01-08)
+
+* Equipment categories! The GM can now define "types" of equipment and named custom fields to be present for each type. For example, you might define "treasure" as a category, with a "value" field, and "tomes" with a "sanity cost". Tickets #128 and #64, in a pleasant binary rhyme. See the wiki at https://gitlab.com/n3dst4/investigator-fvtt/-/wikis/How-equipment-categories-work for full details, or come and say Hi in the Pelgrane discord server: https://discord.com/channels/692113540210753568/720741108937916518
+* Bug fix: Images inserted in the rich text editor now show up correctly when the text is saved. Ticket #144.
+
+
 ## 6.0.0-beta-2 (2022-12-30)
 
 * Bug fixes on equipment categories
