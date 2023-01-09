@@ -80,7 +80,7 @@ export const Category: React.FC<CategoryProps> = ({
       id,
     );
     if (newId) {
-      dispatch(slice.creators.changeCategoryId({ id, newId }));
+      dispatch(slice.creators.changeCategoryId({ oldId: id, newId }));
     }
   }, [dispatch, id, settings.equipmentCategories]);
 

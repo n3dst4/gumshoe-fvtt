@@ -176,11 +176,16 @@ export const slice = createSlice<State>()({
   },
   changeCategoryId: (
     { settings }: State,
-    payload: { id: string, newId: string },
+    payload: { oldId: string, newId: string },
   ) => {
     const newCats: typeof settings.equipmentCategories = {};
+    if (settings.equipmentCategories[payload.newId]) {
+      throw new Error(
+        `Cannot change category id to "${payload.newId}" - already exists`,
+      );
+    }
     for (const [id, category] of Object.entries(settings.equipmentCategories)) {
-      if (id === payload.id) {
+      if (id === payload.oldId) {
         newCats[payload.newId] = category;
       } else {
         newCats[id] = category;
@@ -226,6 +231,11 @@ export const slice = createSlice<State>()({
     payload: { categoryId: string, fieldId: string, newFieldId: string },
   ) => {
     const newFields: Record<string, EquipmentFieldMetadata> = {};
+    if (cats[payload.categoryId].fields[payload.newFieldId]) {
+      throw new Error(
+        `Cannot change field id to "${payload.newFieldId}" - already exists`,
+      );
+    }
     for (const [id, field] of Object.entries(cats[payload.categoryId].fields)) {
       if (id === payload.fieldId) {
         newFields[payload.newFieldId] = field;
