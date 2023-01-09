@@ -8,6 +8,7 @@ import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { settings } from "../../settings";
 import { EquipmentField } from "./EquipmentField";
 import { assertEquipmentDataSource } from "../../typeAssertions";
+import { absoluteCover } from "../absoluteCover";
 
 interface EquipmentMainProps {
   equipment: InvestigatorItem;
@@ -48,9 +49,8 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
   return (
     <InputGrid
       css={{
-        gridArea: "body",
-        position: "relative",
         gridTemplateRows: `repeat(${fieldsLength}, auto) 1fr`,
+        ...absoluteCover,
       }}
     >
       <GridField label="Name">

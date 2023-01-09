@@ -80,6 +80,8 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
           display: "grid",
           gridTemplateColumns: "auto auto auto auto",
           gridAutoRows: "auto",
+          maxWidth: "100%",
+          gap: "0.2em 2em",
         }}
       >
         {unknownFields.length === 0 && (
@@ -106,6 +108,7 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
               {fieldId}
             </code>
             <a
+              title="Copy field ID to clipboard"
               css={{
                 gridColumn: 3,
                 gridRow: index * gridRowsPerField + 1,
@@ -131,11 +134,15 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
               css={{
                 gridColumn: 2,
                 gridRow: index * gridRowsPerField + 2,
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
               }}
             >
               {allFields[fieldId]}
             </code>
             <a
+              title="Copy field value to clipboard"
               css={{
                 gridColumn: 3,
                 gridRow: index * gridRowsPerField + 2,
@@ -160,6 +167,12 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
             >
               <Translate>Delete</Translate>
             </button>
+            <hr
+              css={{
+                gridColumn: "1 / -1",
+                gridRow: index * gridRowsPerField + 3,
+              }}
+            />
           </Fragment>
         ))}
       </GridFieldStacked>

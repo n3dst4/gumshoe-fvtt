@@ -82,6 +82,7 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
       <div
         css={{
           gridArea: "body",
+          position: "relative",
         }}
       >
         {configMode
