@@ -5,7 +5,7 @@ import { ThemeFarm } from "../themes/components/ThemeFarm";
 
 class ThemeFarmClassBase extends FormApplication {
   /** @override */
-  static get defaultOptions () {
+  static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "item", "dialog"],
       template: reactTemplatePath,
@@ -19,22 +19,15 @@ class ThemeFarmClassBase extends FormApplication {
   }
 
   // this is here to satisfy foundry-vtt-types
-  _updateObject (event: Event, formData?: any) {
+  _updateObject(event: Event, formData?: any) {
     return Promise.resolve();
   }
 }
 
 const render = (sheet: ThemeFarmClassBase) => {
-  return (
-    <ThemeFarm
-      foundryApplication={sheet}
-    />
-  );
+  return <ThemeFarm foundryApplication={sheet} />;
 };
 
-export const ThemeFarmClass = ReactApplicationMixin(
-  ThemeFarmClassBase,
-  render,
-);
+export const ThemeFarmClass = ReactApplicationMixin(ThemeFarmClassBase, render);
 
 export const themeFarmClassInstance = new ThemeFarmClass({}, {});

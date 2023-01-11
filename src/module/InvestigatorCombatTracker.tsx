@@ -5,7 +5,7 @@ import React from "react";
 
 export class InvestigatorCombatTrackerBase extends CombatTracker {
   /** @override */
-  static get defaultOptions () {
+  static get defaultOptions() {
     return {
       ...super.defaultOptions,
       template: reactifiedCombatSidebarTemplatePath,
@@ -14,9 +14,7 @@ export class InvestigatorCombatTrackerBase extends CombatTracker {
   }
 }
 
-const render = () => (
-  <ReactCombatTracker />
-);
+const render = () => <ReactCombatTracker />;
 
 export const InvestigatorCombatTracker = ReactApplicationMixin(
   InvestigatorCombatTrackerBase,

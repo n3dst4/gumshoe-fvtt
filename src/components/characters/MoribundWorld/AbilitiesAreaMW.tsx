@@ -6,12 +6,10 @@ import { AbilitiesColumnMW } from "../AbilitiesColumnMW";
 import { useAbilities } from "../useAbilities";
 
 type AbilitiesAreaMWProps = {
-  actor: InvestigatorActor,
+  actor: InvestigatorActor;
 };
 
-export const AbilitiesAreaMW: React.FC<AbilitiesAreaMWProps> = ({
-  actor,
-}) => {
+export const AbilitiesAreaMW: React.FC<AbilitiesAreaMWProps> = ({ actor }) => {
   assertActiveCharacterDataSource(actor.data);
   const { generalAbilities } = useAbilities(actor, true);
 
@@ -44,19 +42,13 @@ export const AbilitiesAreaMW: React.FC<AbilitiesAreaMWProps> = ({
               }}
             >
               <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
-              <AbilitiesColumnMW
-                abilities={part1}
-              />
-              <AbilitiesColumnMW
-                abilities={part2}
-              />
+              <AbilitiesColumnMW abilities={part1} />
+              <AbilitiesColumnMW abilities={part2} />
             </div>
           );
         } else {
           return (
-            <div
-              key={cat}
-            >
+            <div key={cat}>
               <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
               <AbilitiesColumnMW
                 abilities={sortEntitiesByName(generalAbilities[cat])}

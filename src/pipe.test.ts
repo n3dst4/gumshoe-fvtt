@@ -1,10 +1,20 @@
 import { pipe, chainPipe } from "./pipe";
 
-interface V1 { member1: number; }
-interface V2 { member2: number; }
-interface V3 { member3: number; }
-interface V4 { member4: number; }
-interface V5 { member5: number; }
+interface V1 {
+  member1: number;
+}
+interface V2 {
+  member2: number;
+}
+interface V3 {
+  member3: number;
+}
+interface V4 {
+  member4: number;
+}
+interface V5 {
+  member5: number;
+}
 
 const v1: V1 = { member1: 1 };
 const v2: V2 = { member2: 2 };

@@ -4,12 +4,12 @@ import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { ThemeContext } from "../../themes/ThemeContext";
 
 type LogoEditableProps = {
-  className?: string,
-  mainText: string,
-  subText?: string,
-  defaultSubText?: string,
-  onChangeMainText: (newValue: string) => void,
-  onChangeSubText?: (newValue: string) => void,
+  className?: string;
+  mainText: string;
+  subText?: string;
+  defaultSubText?: string;
+  onChangeMainText: (newValue: string) => void;
+  onChangeSubText?: (newValue: string) => void;
 };
 
 const subtextSyle: CSSObject = {
@@ -68,7 +68,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     display: displayText,
   } = useAsyncUpdate(mainText, onChangeMainText);
 
-  const hasSubtext = (onChangeSubText !== undefined);
+  const hasSubtext = onChangeSubText !== undefined;
 
   const {
     onInput: onInputSubtext,
@@ -76,8 +76,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     onBlur: onBlurSubtext,
     contentEditableRef: contentEditableRefSubtext,
     display: displaySubtext,
-  } = useAsyncUpdate(subText || defaultSubText,
-    onChangeSubText || (() => {}));
+  } = useAsyncUpdate(subText || defaultSubText, onChangeSubText || (() => {}));
 
   return (
     // outer - set the transform origin
@@ -139,7 +138,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           >
             {displayText}
           </div>
-          {hasSubtext &&
+          {hasSubtext && (
             <div
               css={{
                 ...subtextSyle,
@@ -147,7 +146,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
             >
               {displaySubtext}
             </div>
-          }
+          )}
         </div>
 
         {/* front element, aka the gradient-bearer (on themes that have text
@@ -161,9 +160,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           FF92 hits mainline, it will be safe to come back and unwrap this div
           and just apply textBearerStyle on the gradient-bearer div.
           */}
-        <div
-          css={textBearerStyle}
-        >
+        <div css={textBearerStyle}>
           <div
             className="front-text-element gradient-bearer"
             css={{
@@ -171,7 +168,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
               // ...textBearerStyle,
               ...theme.logo.frontTextElementStyle,
             }}
-            >
+          >
             <div
               css={{
                 ...textStyle,
@@ -181,19 +178,19 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
               onInput={onInputText}
               onFocus={onFocusText}
               onBlur={onBlurText}
-              />
-            {hasSubtext &&
+            />
+            {hasSubtext && (
               <div
-              css={{
-                ...subtextSyle,
-              }}
-              contentEditable
-              ref={contentEditableRefSubtext}
-              onInput={onInputSubtext}
-              onFocus={onFocusSubtext}
-              onBlur={onBlurSubtext}
+                css={{
+                  ...subtextSyle,
+                }}
+                contentEditable
+                ref={contentEditableRefSubtext}
+                onInput={onInputSubtext}
+                onFocus={onFocusSubtext}
+                onBlur={onBlurSubtext}
               />
-            }
+            )}
           </div>
         </div>
       </div>

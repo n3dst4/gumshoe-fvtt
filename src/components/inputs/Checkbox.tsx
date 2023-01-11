@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { IdContext } from "../IdContext";
 
 type CheckboxProps = {
-  checked: boolean,
-  onChange: (checked: boolean) => void,
-  className?: string,
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  className?: string;
 };
 
 export const Checkbox: React.FC<CheckboxProps> = ({

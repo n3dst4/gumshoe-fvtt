@@ -2,9 +2,9 @@ import React, { useCallback } from "react";
 import { settings } from "../../settings";
 
 type CombatAbilityDropDownProps = {
-  value: string,
-  onChange: (newValue: string) => void,
-  className?: string,
+  value: string;
+  onChange: (newValue: string) => void;
+  className?: string;
 };
 
 export const CombatAbilityDropDown: React.FC<CombatAbilityDropDownProps> = ({
@@ -30,7 +30,9 @@ export const CombatAbilityDropDown: React.FC<CombatAbilityDropDownProps> = ({
       className={className}
     >
       {combatAbilities.map<JSX.Element>((ability) => (
-        <option key={ability} value={ability}>{ability}</option>
+        <option key={ability} value={ability}>
+          {ability}
+        </option>
       ))}
     </select>
   );

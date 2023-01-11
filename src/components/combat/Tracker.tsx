@@ -80,35 +80,53 @@ export const Tracker: React.FC = () => {
     [combatRef],
   );
 
-  const onPreviousRound = useCallback((event: MouseEvent) => {
-    event.preventDefault();
-    combatRef.current?.previousRound();
-  }, [combatRef]);
+  const onPreviousRound = useCallback(
+    (event: MouseEvent) => {
+      event.preventDefault();
+      combatRef.current?.previousRound();
+    },
+    [combatRef],
+  );
 
-  const onPreviousTurn = useCallback((event: MouseEvent) => {
-    event.preventDefault();
-    combatRef.current?.previousTurn();
-  }, [combatRef]);
+  const onPreviousTurn = useCallback(
+    (event: MouseEvent) => {
+      event.preventDefault();
+      combatRef.current?.previousTurn();
+    },
+    [combatRef],
+  );
 
-  const onEndCombat = useCallback((event: MouseEvent) => {
-    event.preventDefault();
-    combatRef.current?.endCombat();
-  }, [combatRef]);
+  const onEndCombat = useCallback(
+    (event: MouseEvent) => {
+      event.preventDefault();
+      combatRef.current?.endCombat();
+    },
+    [combatRef],
+  );
 
-  const onNextTurn = useCallback((event: MouseEvent) => {
-    event.preventDefault();
-    combatRef.current?.nextTurn();
-  }, [combatRef]);
+  const onNextTurn = useCallback(
+    (event: MouseEvent) => {
+      event.preventDefault();
+      combatRef.current?.nextTurn();
+    },
+    [combatRef],
+  );
 
-  const onNextRound = useCallback((event: MouseEvent) => {
-    event.preventDefault();
-    combatRef.current?.nextRound();
-  }, [combatRef]);
+  const onNextRound = useCallback(
+    (event: MouseEvent) => {
+      event.preventDefault();
+      combatRef.current?.nextRound();
+    },
+    [combatRef],
+  );
 
-  const onStartCombat = useCallback((event: MouseEvent) => {
-    event.preventDefault();
-    combatRef.current?.startCombat();
-  }, [combatRef]);
+  const onStartCombat = useCallback(
+    (event: MouseEvent) => {
+      event.preventDefault();
+      combatRef.current?.startCombat();
+    },
+    [combatRef],
+  );
 
   const localize = game.i18n.localize.bind(game.i18n);
 
@@ -160,14 +178,13 @@ export const Tracker: React.FC = () => {
                   {...(nextId
                     ? { "data-combat-id": nextId }
                     : { disabled: true })}
-                    onClick={onCombatCycle}
-                    >
+                  onClick={onCombatCycle}
+                >
                   <i className="fas fa-caret-right"></i>
                 </a>
               </Fragment>
             )}
-            {
-              combatCount > 0 &&
+            {combatCount > 0 && (
               <a
                 className="combat-button combat-control"
                 title={localize("COMBAT.Delete")}
@@ -175,7 +192,7 @@ export const Tracker: React.FC = () => {
               >
                 <i className="fas fa-trash"></i>
               </a>
-            }
+            )}
           </nav>
         )}
 
@@ -183,17 +200,20 @@ export const Tracker: React.FC = () => {
         {/* This used to be a <nav> in v9 but leaving as div doesn't seem to
         break v9 */}
         <div
-          className={cx({ encounters: true, "encounter-controls": true, flexrow: true, combat: hasCombat })}
+          className={cx({
+            encounters: true,
+            "encounter-controls": true,
+            flexrow: true,
+            combat: hasCombat,
+          })}
         >
-          <a className="combat-button combat-control"/>
-          {combatCount
-            ? (
+          <a className="combat-button combat-control" />
+          {combatCount ? (
             <Fragment>
-              {combat?.data.round
-                ? (
+              {combat?.data.round ? (
                 <h3 className="encounter-title noborder">
                   {localize("COMBAT.Round")} {combat.data.round}
-                  {isTurnPassing && game.user.isGM &&
+                  {isTurnPassing && game.user.isGM && (
                     <button
                       title={localize("COMBAT.RoundNext")}
                       onClick={onNextRound}
@@ -208,21 +228,20 @@ export const Tracker: React.FC = () => {
                       &nbsp;
                       <i className="fas fa-arrow-right"></i>
                     </button>
-                  }
+                  )}
                 </h3>
-                  )
-                : (
+              ) : (
                 <h3 className="encounter-title noborder">
                   {localize("COMBAT.NotStarted")}
                 </h3>
-                  )
-              }
-            </Fragment>
-              )
-            : (
-              // encounter-title noborder
-            <h3 className="encounter-title noborder">{localize("COMBAT.None")}</h3>
               )}
+            </Fragment>
+          ) : (
+            // encounter-title noborder
+            <h3 className="encounter-title noborder">
+              {localize("COMBAT.None")}
+            </h3>
+          )}
 
           {game.user.isGM && (
             <Fragment>
@@ -279,14 +298,13 @@ export const Tracker: React.FC = () => {
       </ol>
 
       {/* BOTTOM BITS: |< < End combat > >| */}
-      {!isTurnPassing &&
+      {!isTurnPassing && (
         <nav id="combat-controls" className="directory-footer flexrow">
-          {(hasCombat && !isTurnPassing) &&
-            (game.user.isGM
-              ? (
+          {hasCombat &&
+            !isTurnPassing &&
+            (game.user.isGM ? (
               <Fragment>
-                {combat.data.round
-                  ? (
+                {combat.data.round ? (
                   <Fragment>
                     <a
                       title={localize("COMBAT.RoundPrev")}
@@ -307,10 +325,7 @@ export const Tracker: React.FC = () => {
                     >
                       {localize("COMBAT.End")}
                     </a>
-                    <a
-                      title={localize("COMBAT.TurnNext")}
-                      onClick={onNextTurn}
-                    >
+                    <a title={localize("COMBAT.TurnNext")} onClick={onNextTurn}>
                       <i className="fas fa-arrow-right"></i>
                     </a>
                     <a
@@ -320,8 +335,7 @@ export const Tracker: React.FC = () => {
                       <i className="fas fa-step-forward"></i>
                     </a>
                   </Fragment>
-                    )
-                  : (
+                ) : (
                   <a
                     className="combat-control center"
                     title={localize("COMBAT.Begin")}
@@ -329,11 +343,10 @@ export const Tracker: React.FC = () => {
                   >
                     {localize("COMBAT.Begin")}
                   </a>
-                    )}
+                )}
               </Fragment>
-                )
-              : (
-                  game.user &&
+            ) : (
+              game.user &&
               combat.combatant?.players?.includes(game.user) && (
                 <Fragment>
                   <a
@@ -358,10 +371,10 @@ export const Tracker: React.FC = () => {
                     <i className="fas fa-arrow-right"></i>
                   </a>
                 </Fragment>
-                  )
-                ))}
+              )
+            ))}
         </nav>
-      }
+      )}
     </Fragment>
   );
 };

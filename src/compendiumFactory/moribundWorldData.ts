@@ -1,7 +1,6 @@
 import { GeneralAbilitiesData, InvestigativeAbilitiesData } from "./types";
 
-export const investigativeAbilities: InvestigativeAbilitiesData = {
-};
+export const investigativeAbilities: InvestigativeAbilitiesData = {};
 
 export const generalAbilities: GeneralAbilitiesData = {
   Persuade: [

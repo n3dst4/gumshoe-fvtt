@@ -5,7 +5,11 @@ export const installDSNFix = () => {
   // turn off simultaneous rolls for DSN
   // simone's version from the docs:
   try {
-    game.settings.set("dice-so-nice", "enabledSimultaneousRollForMessage", false);
+    game.settings.set(
+      "dice-so-nice",
+      "enabledSimultaneousRollForMessage",
+      false,
+    );
   } catch {
     // do nothing
   }

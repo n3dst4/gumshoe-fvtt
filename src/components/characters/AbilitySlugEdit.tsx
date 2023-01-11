@@ -8,19 +8,30 @@ import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { UnlockBadges } from "../abilities/UnlockBadges";
 
 type AbilitySlugEditProps = {
-  ability: InvestigatorItem,
-  showOcc?: boolean,
+  ability: InvestigatorItem;
+  showOcc?: boolean;
 };
 
-export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability, showOcc = true }) => {
+export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
+  ability,
+  showOcc = true,
+}) => {
   assertAbilityDataSource(ability.data);
   const app = useContext(FoundryAppContext);
-  const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
-    if (app !== null) {
-      (app as any)._onDragStart(e);
-    }
-  }, [app]);
-  const updateRating = useCallback((rating) => { ability.setRatingRefresh(rating); }, [ability]);
+  const onDragStart = useCallback(
+    (e: React.DragEvent<HTMLAnchorElement>) => {
+      if (app !== null) {
+        (app as any)._onDragStart(e);
+      }
+    },
+    [app],
+  );
+  const updateRating = useCallback(
+    (rating) => {
+      ability.setRatingRefresh(rating);
+    },
+    [ability],
+  );
 
   // const [occupational, setOccupational] = useState(ability.data.data.occupational);
   // useEffect(() => {
@@ -29,11 +40,9 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability, showO
   // }, [ability.data, ability.data.data.occupational]);
 
   return (
-    <Fragment
-      key={ability.id}
-    >
-      { showOcc && (
-        <div css={{ gridColumn: "isocc", justifySelf: "center" }} >
+    <Fragment key={ability.id}>
+      {showOcc && (
+        <div css={{ gridColumn: "isocc", justifySelf: "center" }}>
           <AsyncCheckbox
             checked={ability.data.data.occupational}
             onChange={ability.setOccupational}
@@ -51,7 +60,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability, showO
       >
         {ability.name}
       </a>
-      <div css={{ gridColumn: "rating", justifySelf: "center" }} >
+      <div css={{ gridColumn: "rating", justifySelf: "center" }}>
         <AsyncNumberInput
           min={0}
           value={ability.data.data.rating}
@@ -59,8 +68,8 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({ ability, showO
           smallButtons
         />
       </div>
-      <UnlockBadges ability={ability} css={{ gridColumn: "1/-1" }}/>
-      {ability.getHasSpecialities() && (ability.data.data.rating > 0) && (
+      <UnlockBadges ability={ability} css={{ gridColumn: "1/-1" }} />
+      {ability.getHasSpecialities() && ability.data.data.rating > 0 && (
         <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
           <SpecialityList ability={ability} />
         </div>

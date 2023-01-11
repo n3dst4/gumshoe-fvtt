@@ -29,9 +29,7 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Photography" },
     { name: "Science!" },
   ],
-  "Psychic Powers": [
-    { name: "Aura Reading" },
-  ],
+  "Psychic Powers": [{ name: "Aura Reading" }],
 };
 
 export const generalAbilities: GeneralAbilitiesData = {

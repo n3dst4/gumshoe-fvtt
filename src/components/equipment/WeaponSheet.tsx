@@ -8,8 +8,8 @@ import { ImagePickle } from "../ImagePickle";
 import { absoluteCover } from "../absoluteCover";
 
 type WeaponSheetProps = {
-  weapon: InvestigatorItem,
-  application: ItemSheet,
+  weapon: InvestigatorItem;
+  application: ItemSheet;
 };
 
 export const WeaponSheet: React.FC<WeaponSheetProps> = ({
@@ -30,9 +30,9 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
         gridTemplateColumns: "auto 1fr auto",
         gridTemplateRows: "auto auto 1fr",
         gridTemplateAreas:
-          "\"image slug     cog\" " +
-          "\"image headline headline\" " +
-          "\"body  body     body\" ",
+          '"image slug     cog" ' +
+          '"image headline headline" ' +
+          '"body  body     body" ',
         gap: "0.3em",
       }}
     >
@@ -79,14 +79,11 @@ export const WeaponSheet: React.FC<WeaponSheetProps> = ({
       />
 
       <div css={{ gridArea: "body", position: "relative" }}>
-        {configMode || !weapon.isOwned
-          ? (
+        {configMode || !weapon.isOwned ? (
           <WeaponConfig weapon={weapon} />
-            )
-          : (
+        ) : (
           <WeaponAttack weapon={weapon} />
-            )
-        }
+        )}
       </div>
     </div>
   );

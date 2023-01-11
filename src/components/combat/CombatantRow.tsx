@@ -59,7 +59,7 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
         transition: "transform 1000ms",
         boxShadow: active ? "0 0 0.5em 0 #7f7 inset" : undefined,
         backgroundColor: active ? "#9f72" : undefined,
-        opacity: (depleted && (!active)) ? 0.5 : 1,
+        opacity: depleted && !active ? 0.5 : 1,
       }}
     >
       <img
@@ -110,9 +110,11 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
         </div>
       )}
 
-      {turnPassing
-        ? <TurnPassingInitiative turn={turn} combat={combat}/>
-        : <StandardInitiative turn={turn} combat={combat}/>}
+      {turnPassing ? (
+        <TurnPassingInitiative turn={turn} combat={combat} />
+      ) : (
+        <StandardInitiative turn={turn} combat={combat} />
+      )}
     </li>
   );
 };

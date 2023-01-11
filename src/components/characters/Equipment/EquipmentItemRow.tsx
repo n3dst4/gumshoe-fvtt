@@ -72,13 +72,11 @@ export const EquipmentItemRow: React.FC<EquipmentItemRowProps> = ({
             onMouseOut={handleMouseOut}
             onClick={() => item.sheet?.render(true)}
           >
-            {field.type === "checkbox"
-              ? (
+            {field.type === "checkbox" ? (
               <CheckOrCross checked={!!item.data.data.fields?.[fieldId]} />
-                )
-              : (
+            ) : (
               <span>{item.data.data.fields?.[fieldId]}</span>
-                )}
+            )}
           </a>
         );
       })}

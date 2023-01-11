@@ -3,7 +3,7 @@ import { CSSReset } from "../../components/CSSReset";
 import { ThemeV1 } from "../types";
 
 type ThemeSwatchProps = {
-  theme: ThemeV1,
+  theme: ThemeV1;
 };
 
 export const ThemeSwatch: React.FC<ThemeSwatchProps> = ({
@@ -33,7 +33,8 @@ export const ThemeSwatch: React.FC<ThemeSwatchProps> = ({
             backgroundColor: "transparent",
           }}
         >
-          {theme.displayName}<br/>
+          {theme.displayName}
+          <br />
           transparent
         </div>
         <div
@@ -42,7 +43,8 @@ export const ThemeSwatch: React.FC<ThemeSwatchProps> = ({
             backgroundColor: theme.colors.backgroundPrimary,
           }}
         >
-          {theme.displayName}<br/>
+          {theme.displayName}
+          <br />
           bgTransPrimary
         </div>
         <div
@@ -51,7 +53,8 @@ export const ThemeSwatch: React.FC<ThemeSwatchProps> = ({
             backgroundColor: theme.colors.backgroundSecondary,
           }}
         >
-          {theme.displayName}<br/>
+          {theme.displayName}
+          <br />
           bgTransSecondary
         </div>
       </CSSReset>

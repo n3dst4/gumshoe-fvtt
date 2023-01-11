@@ -19,7 +19,8 @@ export const fearTheme: ThemeV1 = themeFactory({
   displayFont: "normal normal normal 1.1em 'Special Elite', serif",
   logo: {
     frontTextElementStyle: {
-      background: "linear-gradient(90deg, rgba(73, 61, 51, 1.0) 0%, rgba(97, 81, 68, 0.7) 100%)",
+      background:
+        "linear-gradient(90deg, rgba(73, 61, 51, 1.0) 0%, rgba(97, 81, 68, 0.7) 100%)",
       backgroundClip: "text",
     },
     rearTextElementStyle: {
@@ -28,8 +29,7 @@ export const fearTheme: ThemeV1 = themeFactory({
     textElementsStyle: {
       transform: "scale(0.8)",
     },
-    backdropStyle: {
-    },
+    backdropStyle: {},
   },
   colors: {
     accent: "#615144",

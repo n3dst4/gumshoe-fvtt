@@ -1,4 +1,11 @@
-import { equipment, generalAbility, investigativeAbility, pc, npc, weapon } from "../constants";
+import {
+  equipment,
+  generalAbility,
+  investigativeAbility,
+  pc,
+  npc,
+  weapon,
+} from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
 import {
   RecursivePartial,
@@ -48,7 +55,8 @@ export class InvestigatorActor extends Actor {
 
   confirm24hRefresh = () => {
     confirmADoodleDo({
-      message: "Refresh all of (actor name)'s abilities which refresh every 24h?",
+      message:
+        "Refresh all of (actor name)'s abilities which refresh every 24h?",
       confirmText: "Refresh",
       cancelText: "Cancel",
       confirmIconClass: "fa-sync",
@@ -56,10 +64,11 @@ export class InvestigatorActor extends Actor {
     }).then(this.refresh24h);
   };
 
-  confirmMwRefresh (group: MwRefreshGroup) {
+  confirmMwRefresh(group: MwRefreshGroup) {
     return () => {
       confirmADoodleDo({
-        message: "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?",
+        message:
+          "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?",
         confirmText: "Refresh",
         cancelText: "Cancel",
         confirmIconClass: "fa-sync",
@@ -80,12 +89,14 @@ export class InvestigatorActor extends Actor {
         item.data.data.rating !== item.data.data.pool &&
         !item.data.data.excludeFromGeneralRefresh
       ) {
-        return [{
-          _id: item.data._id,
-          data: {
-            pool: item.data.data.rating,
+        return [
+          {
+            _id: item.data._id,
+            data: {
+              pool: item.data.data.rating,
+            },
           },
-        }];
+        ];
       } else {
         return [];
       }
@@ -93,20 +104,22 @@ export class InvestigatorActor extends Actor {
     this.updateEmbeddedDocuments("Item", updates);
   };
 
-  mWrefresh (group: MwRefreshGroup) {
+  mWrefresh(group: MwRefreshGroup) {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
-        (item.data.type === generalAbility) &&
+        item.data.type === generalAbility &&
         // MW refreshes allow you to keep a boon
         item.data.data.rating > item.data.data.pool &&
         item.data.data.mwRefreshGroup === group
       ) {
-        return [{
-          _id: item.data._id,
-          data: {
-            pool: item.data.data.rating,
+        return [
+          {
+            _id: item.data._id,
+            data: {
+              pool: item.data.data.rating,
+            },
           },
-        }];
+        ];
       } else {
         return [];
       }
@@ -124,12 +137,14 @@ export class InvestigatorActor extends Actor {
         item.data.data.rating !== item.data.data.pool &&
         item.data.data.refreshesDaily
       ) {
-        return [{
-          _id: item.data._id,
-          data: {
-            pool: item.data.data.rating,
+        return [
+          {
+            _id: item.data._id,
+            data: {
+              pool: item.data.data.rating,
+            },
           },
-        }];
+        ];
       } else {
         return [];
       }
@@ -158,32 +173,33 @@ export class InvestigatorActor extends Actor {
   // ###########################################################################
   // ITEMS
 
-  getAbilityByName (name: string, type?: AbilityType) {
+  getAbilityByName(name: string, type?: AbilityType) {
     return this.items.find(
       (item) =>
-        (type ? item.data.type === type : isAbilityDataSource(item.data)) && item.name === name,
+        (type ? item.data.type === type : isAbilityDataSource(item.data)) &&
+        item.name === name,
     );
   }
 
-  getAbilityRatingByName (name: string) {
+  getAbilityRatingByName(name: string) {
     return this.getAbilityByName(name)?.getRating() ?? 0;
   }
 
-  getEquipment () {
+  getEquipment() {
     return this.items.filter((item) => item.type === equipment);
   }
 
-  getWeapons () {
+  getWeapons() {
     return this.items.filter((item) => item.type === weapon);
   }
 
-  getAbilities () {
+  getAbilities() {
     return this.items.filter((item) => isAbilityDataSource(item.data));
   }
 
-  getMwItems () {
+  getMwItems() {
     const allItems = this.items.filter((item) => isMwItemDataSource(item.data));
-    const items: {[type in MwType]: Item[]} = {
+    const items: { [type in MwType]: Item[] } = {
       tweak: [],
       spell: [],
       cantrap: [],
@@ -201,9 +217,9 @@ export class InvestigatorActor extends Actor {
     return items;
   }
 
-  getTrackerAbilities () {
-    return this.getAbilities().filter((item) =>
-      (isAbilityDataSource(item.data) && item.data.data.showTracker),
+  getTrackerAbilities() {
+    return this.getAbilities().filter(
+      (item) => isAbilityDataSource(item.data) && item.data.data.showTracker,
     );
   }
 
@@ -230,20 +246,25 @@ export class InvestigatorActor extends Actor {
     this.update({ data: { occupation } });
   };
 
-  getSheetTheme (): ThemeV1 {
-    const themeName = this.getSheetThemeName() || settings.defaultThemeName.get();
+  getSheetTheme(): ThemeV1 {
+    const themeName =
+      this.getSheetThemeName() || settings.defaultThemeName.get();
     const theme = runtimeConfig.themes[themeName];
     if (theme !== undefined) {
       return theme;
-    } else if (runtimeConfig.themes[settings.defaultThemeName.get()] !== undefined) {
+    } else if (
+      runtimeConfig.themes[settings.defaultThemeName.get()] !== undefined
+    ) {
       return runtimeConfig.themes[settings.defaultThemeName.get()];
     } else {
       return tealTheme;
     }
   }
 
-  getSheetThemeName (): string | null {
-    return (this.data.type === pc || this.data.type === npc) ? this.data.data.sheetTheme : null;
+  getSheetThemeName(): string | null {
+    return this.data.type === pc || this.data.type === npc
+      ? this.data.data.sheetTheme
+      : null;
   }
 
   setSheetTheme = (sheetTheme: string | null) =>
@@ -278,9 +299,15 @@ export class InvestigatorActor extends Actor {
 
   setLongNotesFormat = async (longNotesFormat: NoteFormat) => {
     assertPCDataSource(this.data);
-    const longNotesPromises = (this.data.data.longNotes || []).map<Promise<BaseNote>>(async (note) => {
+    const longNotesPromises = (this.data.data.longNotes || []).map<
+      Promise<BaseNote>
+    >(async (note) => {
       assertPCDataSource(this.data);
-      const { newHtml, newSource } = await convertNotes(this.data.data.longNotesFormat, longNotesFormat, note.source);
+      const { newHtml, newSource } = await convertNotes(
+        this.data.data.longNotesFormat,
+        longNotesFormat,
+        note.source,
+      );
       return {
         html: newHtml,
         source: newSource,
@@ -341,7 +368,7 @@ export class InvestigatorActor extends Actor {
     assertGame(game);
     assertActiveCharacterDataSource(this.data);
     await this.update({ data: { initiativeAbility } });
-    const isInCombat = !!(this.token?.combatant);
+    const isInCombat = !!this.token?.combatant;
     if (isInCombat) {
       await this.rollInitiative({ rerollInitiative: true });
     }
@@ -428,36 +455,39 @@ declare global {
 /**
  * Keep "special" general abilities in sync with their corresponding resources
  */
-Hooks.on("updateItem", (
-  item: Item,
-  // this seems like a fib, but I can't see what else to type this as
-  diff: RecursivePartial<InvestigativeAbilityDataSource> & { _id: string },
-  options: Record<string, unknown>,
-  userId: string,
-) => {
-  assertGame(game);
-  if (game.userId !== userId || item.actor === undefined) {
-    return;
-  }
+Hooks.on(
+  "updateItem",
+  (
+    item: Item,
+    // this seems like a fib, but I can't see what else to type this as
+    diff: RecursivePartial<InvestigativeAbilityDataSource> & { _id: string },
+    options: Record<string, unknown>,
+    userId: string,
+  ) => {
+    assertGame(game);
+    if (game.userId !== userId || item.actor === undefined) {
+      return;
+    }
 
-  // love 2 sink into a pit of imperative code
-  if (item.data.type === generalAbility) {
-    if (["Sanity", "Stability", "Health", "Magic"].includes(item.data.name)) {
-      if (diff.data?.pool !== undefined || diff.data?.rating !== undefined) {
-        item.actor?.update({
-          data: {
-            resources: {
-              [item.data.name.toLowerCase()]: {
-                value: item.data.data.pool,
-                max: item.data.data.rating,
+    // love 2 sink into a pit of imperative code
+    if (item.data.type === generalAbility) {
+      if (["Sanity", "Stability", "Health", "Magic"].includes(item.data.name)) {
+        if (diff.data?.pool !== undefined || diff.data?.rating !== undefined) {
+          item.actor?.update({
+            data: {
+              resources: {
+                [item.data.name.toLowerCase()]: {
+                  value: item.data.data.pool,
+                  max: item.data.data.rating,
+                },
               },
             },
-          },
-        });
+          });
+        }
       }
     }
-  }
-});
+  },
+);
 
 Hooks.on(
   "createActor",
@@ -480,12 +510,16 @@ Hooks.on(
       for (const packId of settings.newPCPacks.get()) {
         assertGame(game);
         console.log("PACK", packId);
-        const content = await (game.packs?.find((p: any) => p.collection === packId)?.getDocuments());
+        const content = await game.packs
+          ?.find((p: any) => p.collection === packId)
+          ?.getDocuments();
         const datas = content?.map((item) => {
           // clunky cast here because there doesn't seem to be a sane way to
           // check the type of something coming out of a compendium pack.
           // XXX if we cast as InvestigatorItem, we have a circular dependency
-          const { data: { name, img, data, type } } = item as any;
+          const {
+            data: { name, img, data, type },
+          } = item as any;
           return {
             name,
             img,
@@ -502,15 +536,19 @@ Hooks.on(
       for (const packId of settings.newNPCPacks.get()) {
         assertGame(game);
         console.log("PACK", packId);
-        const content = await (game.packs?.find((p) => p.documentName === "Item" && p.collection === packId)?.getDocuments());
+        const content = await game.packs
+          ?.find((p) => p.documentName === "Item" && p.collection === packId)
+          ?.getDocuments();
         // XXX eurgh - same as elsewhere - if we cast ast InvestigatorItem, we
         // have a circular dependency
-        const datas = (content as any[])?.map(({ data: { name, img, data, type } }) => ({
-          name,
-          img,
-          data,
-          type,
-        }));
+        const datas = (content as any[])?.map(
+          ({ data: { name, img, data, type } }) => ({
+            name,
+            img,
+            data,
+            type,
+          }),
+        );
         console.log("datas", datas);
         await (actor as any).createEmbeddedDocuments("Item", datas);
       }
@@ -518,12 +556,20 @@ Hooks.on(
   },
 );
 
-Hooks.on("preUpdateActor", (actor: Actor, diff: DeepPartial<InvestigatorActorDataSource>, options: any, userId: string) => {
-  assertGame(game);
-  if (game.userId !== userId) return;
+Hooks.on(
+  "preUpdateActor",
+  (
+    actor: Actor,
+    diff: DeepPartial<InvestigatorActorDataSource>,
+    options: any,
+    userId: string,
+  ) => {
+    assertGame(game);
+    if (game.userId !== userId) return;
 
-  if (diff.img && !diff.token?.img) {
-    diff.token = diff.token || {};
-    diff.token.img = diff.img;
-  }
-});
+    if (diff.img && !diff.token?.img) {
+      diff.token = diff.token || {};
+      diff.token.img = diff.img;
+    }
+  },
+);

@@ -20,7 +20,8 @@ export const tealTheme: ThemeV1 = themeFactory({
       backgroundClip: "text",
     },
     rearTextElementStyle: {
-      textShadow: "2px 0px 1px black, 6px 0px 4px rgba(0,0,0,0.5), -1px 0px 0px rgba(255,255,255,0.5)",
+      textShadow:
+        "2px 0px 1px black, 6px 0px 4px rgba(0,0,0,0.5), -1px 0px 0px rgba(255,255,255,0.5)",
     },
     textElementsStyle: {
       transform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
@@ -28,7 +29,8 @@ export const tealTheme: ThemeV1 = themeFactory({
     backdropStyle: {
       perspective: "500px",
       perspectiveOrigin: "50% 50%",
-      backgroundImage: "radial-gradient(closest-side, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%)",
+      backgroundImage:
+        "radial-gradient(closest-side, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%)",
     },
   },
   colors: {

@@ -2,7 +2,7 @@ import React, { useCallback, useContext } from "react";
 import { ThemeContext } from "../themes/ThemeContext";
 
 type ImagePickerLinkProps = React.PropsWithChildren<{
-  onClick: () => void,
+  onClick: () => void;
 }>;
 
 export const ImagePickerLink: React.FC<ImagePickerLinkProps> = ({
@@ -11,10 +11,13 @@ export const ImagePickerLink: React.FC<ImagePickerLinkProps> = ({
 }: ImagePickerLinkProps) => {
   const theme = useContext(ThemeContext);
 
-  const onClickCb = useCallback((e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.stopPropagation();
-    onClick();
-  }, [onClick]);
+  const onClickCb = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+      e.stopPropagation();
+      onClick();
+    },
+    [onClick],
+  );
 
   return (
     <a

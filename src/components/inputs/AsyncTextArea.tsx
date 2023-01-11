@@ -4,11 +4,11 @@ import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextArea } from "./TextArea";
 
 type AsyncTextAreaProps = {
-  className?: string,
-  value: string,
-  onChange: (value: string, index?: number) => void,
-  disabled?: boolean,
-  index?: number,
+  className?: string;
+  value: string;
+  onChange: (value: string, index?: number) => void;
+  disabled?: boolean;
+  index?: number;
 };
 
 export const AsyncTextArea: React.FC<AsyncTextAreaProps> = ({
@@ -18,19 +18,17 @@ export const AsyncTextArea: React.FC<AsyncTextAreaProps> = ({
   disabled,
   index,
 }) => {
-  const {
-    onChange,
-    onFocus,
-    onBlur,
-    display,
-  } = useAsyncUpdate(value, onChangeOrig, index);
+  const { onChange, onFocus, onBlur, display } = useAsyncUpdate(
+    value,
+    onChangeOrig,
+    index,
+  );
 
   return (
     <TextArea
       className={className}
       value={display || ""}
       onChange={onChange}
-
       onFocus={onFocus}
       onBlur={onBlur}
       disabled={disabled}

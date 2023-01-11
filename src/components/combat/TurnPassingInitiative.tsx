@@ -1,15 +1,7 @@
 import { keyframes } from "@emotion/react";
 import React, { Fragment } from "react";
-import {
-  FaEdit,
-  FaEllipsisH,
-  FaPlus,
-  FaTrash,
-  FaMinus,
-} from "react-icons/fa";
-import {
-  HiDocumentText,
-} from "react-icons/hi";
+import { FaEdit, FaEllipsisH, FaPlus, FaTrash, FaMinus } from "react-icons/fa";
+import { HiDocumentText } from "react-icons/hi";
 import { assertGame, getTranslated } from "../../functions";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 import { Dropdown } from "../inputs/Dropdown";
@@ -66,12 +58,13 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
           title={getTranslated("Turn")}
           onClick={onTakeTurn}
         >
-          {isActive &&
+          {isActive && (
             <i
               className="fas fa-play"
               css={{
                 color: "transparent",
-                backgroundImage: "repeating-linear-gradient(90deg, #3f3, #161 50%, #0f0 100%)",
+                backgroundImage:
+                  "repeating-linear-gradient(90deg, #3f3, #161 50%, #0f0 100%)",
                 backgroundSize: "0.5em",
                 backgroundPositionX: 0,
                 backgroundPositionY: 0,
@@ -82,8 +75,8 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
                 "-webkit-text-stroke": "1px #9f7",
               }}
             />
-          }
-          {!isActive && !depleted &&
+          )}
+          {!isActive && !depleted && (
             <i
               className="fas fa-pause"
               css={{
@@ -91,8 +84,8 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
                 "-webkit-text-stroke": "1px #ff9",
               }}
             />
-          }
-          {!isActive && depleted &&
+          )}
+          {!isActive && depleted && (
             <i
               className="fas fa-check"
               css={{
@@ -100,7 +93,7 @@ export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
                 "-webkit-text-stroke": "1px #fff",
               }}
             />
-          }
+          )}
         </a>
       </div>
 

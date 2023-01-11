@@ -19,7 +19,11 @@ export const useAbilities = (actor: Actor, hideZeroRated: boolean) => {
     if (!isAbilityDataSource(item.data)) {
       continue;
     }
-    if (hideZeroRated && item.data.data.hideIfZeroRated && item.data.data.rating === 0) {
+    if (
+      hideZeroRated &&
+      item.data.data.hideIfZeroRated &&
+      item.data.data.rating === 0
+    ) {
       continue;
     }
     if (item.data.type === investigativeAbility) {

@@ -5,9 +5,9 @@ import { assertGame, getDevMode } from "../functions";
 import { settings } from "../settings";
 
 type TranslateProps = {
-  children: string,
-  values?: {[key: string]: string},
-  title?: string,
+  children: string;
+  values?: { [key: string]: string };
+  title?: string;
 };
 
 export const Translate: React.FC<TranslateProps> = ({

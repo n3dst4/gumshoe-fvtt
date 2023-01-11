@@ -3,15 +3,15 @@ import { assertGame } from "../functions";
 import { RecursivePartial } from "../types";
 
 export type ExportedCompendium = {
-  name: string,
-  label: string,
-  entity: "Item" | "Actor",
-  contents: any[],
+  name: string;
+  label: string;
+  entity: "Item" | "Actor";
+  contents: any[];
 };
 
 export type ImportCandidate = RecursivePartial<ExportedCompendium>;
 
-function assertIsImportCandidate (
+function assertIsImportCandidate(
   candidate: unknown,
 ): asserts candidate is ImportCandidate {
   if (!(typeof candidate === "object") || candidate === null) {
@@ -39,7 +39,9 @@ export const importCompendium = async (candidate: unknown) => {
   }
   const verified = candidate as ExportedCompendium;
   const name = `${verified.name}-${nanoid()}`;
-  ui.notifications?.info(`Beginning import of compendium pack ${verified.label}`);
+  ui.notifications?.info(
+    `Beginning import of compendium pack ${verified.label}`,
+  );
   const pack = await CompendiumCollection.createCompendium(
     {
       type: verified.entity,
@@ -56,7 +58,9 @@ export const importCompendium = async (candidate: unknown) => {
     Item,
   }[verified.entity];
 
-  const entities = await maker.create(verified.contents as any, { temporary: true });
+  const entities = await maker.create(verified.contents as any, {
+    temporary: true,
+  });
   for (const entity of entities as any) {
     await pack.importDocument(entity);
     logger.log(
@@ -66,5 +70,7 @@ export const importCompendium = async (candidate: unknown) => {
 
   pack.apps.forEach((app) => app.render(true));
 
-  ui.notifications?.info(`Finished importing compendium pack ${verified.label}`);
+  ui.notifications?.info(
+    `Finished importing compendium pack ${verified.label}`,
+  );
 };

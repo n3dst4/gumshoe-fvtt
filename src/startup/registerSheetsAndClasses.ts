@@ -5,7 +5,11 @@ import { InvestigatorCombatant } from "../module/InvestigatorCombatant";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { InvestigatorCombatTracker } from "../module/InvestigatorCombatTracker";
 import { InvestigatorItem } from "../module/InvestigatorItem";
-import { AbilitySheetClass, EquipmentSheetClass, MwItemSheetClass } from "../module/InvestigatorItemSheetClass";
+import {
+  AbilitySheetClass,
+  EquipmentSheetClass,
+  MwItemSheetClass,
+} from "../module/InvestigatorItemSheetClass";
 import { NPCSheetClass } from "../module/NPCSheetClass";
 import { PartySheetClass } from "../module/PartySheetClass";
 import { PCSheetClass } from "../module/PCSheetClass";

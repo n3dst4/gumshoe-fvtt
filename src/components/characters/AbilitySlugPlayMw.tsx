@@ -1,20 +1,28 @@
 import React, { Fragment, useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { FoundryAppContext } from "../FoundryAppContext";
-import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../typeAssertions";
+import {
+  assertAbilityDataSource,
+  isGeneralAbilityDataSource,
+} from "../../typeAssertions";
 
 type AbilitySlugPlayMwProps = {
-  ability: InvestigatorItem,
+  ability: InvestigatorItem;
 };
 
-export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({ ability }) => {
+export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({
+  ability,
+}) => {
   assertAbilityDataSource(ability.data);
   const app = useContext(FoundryAppContext);
-  const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
-    if (app !== null) {
-      (app as any)._onDragStart(e);
-    }
-  }, [app]);
+  const onDragStart = useCallback(
+    (e: React.DragEvent<HTMLAnchorElement>) => {
+      if (app !== null) {
+        (app as any)._onDragStart(e);
+      }
+    },
+    [app],
+  );
 
   const [boonLevy, setBoonlevy] = useState(0);
 
@@ -24,17 +32,15 @@ export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({ ability })
   }, [ability, boonLevy]);
 
   const onClickInc = useCallback(() => {
-    setBoonlevy(s => s + 1);
+    setBoonlevy((s) => s + 1);
   }, []);
 
   const onClickDec = useCallback(() => {
-    setBoonlevy(s => s - 1);
+    setBoonlevy((s) => s - 1);
   }, []);
 
   return (
-    <Fragment
-      key={ability.id}
-    >
+    <Fragment key={ability.id}>
       <a
         onClick={() => {
           ability.sheet?.render(true);
@@ -49,7 +55,7 @@ export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({ ability })
       >
         {ability.name}
       </a>
-      <div css={{ gridColumn: "rating", justifySelf: "right" }} >
+      <div css={{ gridColumn: "rating", justifySelf: "right" }}>
         {ability.data.data.pool}/{ability.data.data.rating}
       </div>
       <div
@@ -83,9 +89,11 @@ export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({ ability })
       </div>
       {ability.data.data.hasSpecialities && (
         <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
-          {(ability.data.data.specialities || []).map<JSX.Element>((x: string, i: number) => (
-            <div key={i}>{x.trim()}</div>
-          ))}
+          {(ability.data.data.specialities || []).map<JSX.Element>(
+            (x: string, i: number) => (
+              <div key={i}>{x.trim()}</div>
+            ),
+          )}
         </div>
       )}
     </Fragment>

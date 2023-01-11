@@ -10,7 +10,10 @@ import { FlaggedMigrations } from "./types";
  * Migrate a single Item entity to incorporate latest data model changes
  * @param item
  */
-export const migrateItemData = function (item: any, flaggedMigrations: FlaggedMigrations): any {
+export const migrateItemData = function (
+  item: any,
+  flaggedMigrations: FlaggedMigrations,
+): any {
   const updateData = {};
   addCategoryToGeneralAbilities(item, updateData);
   setTrackersForPreAlpha4Updates(item, updateData);

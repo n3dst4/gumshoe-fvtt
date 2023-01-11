@@ -5,8 +5,10 @@ export const version = system.version;
 export const defaultMigratedSystemVersion = "0.0.0" as const;
 export const defaultSystemPreset = "pathOfCthulhuPreset";
 export const templatesPath = `systems/${systemName}/templates` as const;
-export const reactTemplatePath = `${templatesPath}/react-application.hbs` as const;
-export const reactifiedCombatSidebarTemplatePath = `${templatesPath}/reactified-combat-sidebar.hbs` as const;
+export const reactTemplatePath =
+  `${templatesPath}/react-application.hbs` as const;
+export const reactifiedCombatSidebarTemplatePath =
+  `${templatesPath}/reactified-combat-sidebar.hbs` as const;
 export const customSystem = "customSystem" as const;
 export const genericOccupationDefault = "Investigator";
 export const showEmptyInvestigativeCategoriesDefault = true;
@@ -22,13 +24,20 @@ export const party = "party" as const;
 export const mwItem = "mwItem" as const;
 
 // assets
-export const investigativeAbilityIcon = `/systems/${systemName}/assets/icons/magnifying-glass.webp` as const;
-export const generalAbilityIcon = `/systems/${systemName}/assets/icons/fist.webp` as const;
-export const weaponIcon = `/systems/${systemName}/assets/icons/trench-knife.webp` as const;
-export const equipmentIcon = `/systems/${systemName}/assets/icons/shopping-bag.webp` as const;
-export const pcIcon = `/systems/${systemName}/assets/icons/sherlock-holmes.webp` as const;
-export const npcIcon = `/systems/${systemName}/assets/icons/cowled.webp` as const;
-export const partyIcon = `/systems/${systemName}/assets/icons/dark-squad.webp` as const;
+export const investigativeAbilityIcon =
+  `/systems/${systemName}/assets/icons/magnifying-glass.webp` as const;
+export const generalAbilityIcon =
+  `/systems/${systemName}/assets/icons/fist.webp` as const;
+export const weaponIcon =
+  `/systems/${systemName}/assets/icons/trench-knife.webp` as const;
+export const equipmentIcon =
+  `/systems/${systemName}/assets/icons/shopping-bag.webp` as const;
+export const pcIcon =
+  `/systems/${systemName}/assets/icons/sherlock-holmes.webp` as const;
+export const npcIcon =
+  `/systems/${systemName}/assets/icons/cowled.webp` as const;
+export const partyIcon =
+  `/systems/${systemName}/assets/icons/dark-squad.webp` as const;
 
 // packs
 

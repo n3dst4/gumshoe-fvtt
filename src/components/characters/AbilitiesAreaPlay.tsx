@@ -8,8 +8,8 @@ import { NoAbilitiesNote } from "./NoAbilitiesNote";
 import { useAbilities } from "./useAbilities";
 
 type AbilitiesAreaPlayProps = {
-  actor: InvestigatorActor,
-  flipLeftRight?: boolean,
+  actor: InvestigatorActor;
+  flipLeftRight?: boolean;
 };
 
 export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
@@ -17,7 +17,10 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
   flipLeftRight,
 }) => {
   assertActiveCharacterDataSource(actor.data);
-  const { investigativeAbilities, generalAbilities } = useAbilities(actor, true);
+  const { investigativeAbilities, generalAbilities } = useAbilities(
+    actor,
+    true,
+  );
   const showEmpty = settings.showEmptyInvestigativeCategories.get();
 
   return (
@@ -26,7 +29,9 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
         css={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gridTemplateAreas: (flipLeftRight) ? "'general investigative'" : "'investigative general'",
+          gridTemplateAreas: flipLeftRight
+            ? "'general investigative'"
+            : "'investigative general'",
           columnGap: "1em",
         }}
       >
@@ -42,21 +47,23 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
             height: "0",
           }}
         >
-          {Object.keys(investigativeAbilities).map<JSX.Element>((cat) => (
-            (showEmpty || investigativeAbilities[cat].length > 0)
-              ? <Fragment
-                key={cat}
-              >
+          {Object.keys(investigativeAbilities).map<JSX.Element>((cat) =>
+            showEmpty || investigativeAbilities[cat].length > 0 ? (
+              <Fragment key={cat}>
                 <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
-                {
-                  sortEntitiesByName(investigativeAbilities[cat]).map<JSX.Element>((ability) => (
-                    <AbilitySlugPlay key={ability.id} ability={ability}/>
-                  ))
-                }
-                {investigativeAbilities[cat].length === 0 && <NoAbilitiesNote />}
+                {sortEntitiesByName(
+                  investigativeAbilities[cat],
+                ).map<JSX.Element>((ability) => (
+                  <AbilitySlugPlay key={ability.id} ability={ability} />
+                ))}
+                {investigativeAbilities[cat].length === 0 && (
+                  <NoAbilitiesNote />
+                )}
               </Fragment>
-              : <span key={cat}/>
-          ))}
+            ) : (
+              <span key={cat} />
+            ),
+          )}
         </div>
         <div
           css={{
@@ -71,17 +78,14 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
           }}
         >
           {Object.keys(generalAbilities).map<JSX.Element>((cat) => (
-            <Fragment
-              key={cat}
-            >
+            <Fragment key={cat}>
               <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
-              {
-                sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>((ability) => (
-                  <AbilitySlugPlay key={ability.id} ability={ability}/>
-                ))
-              }
+              {sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>(
+                (ability) => (
+                  <AbilitySlugPlay key={ability.id} ability={ability} />
+                ),
+              )}
               {generalAbilities[cat].length === 0 && <NoAbilitiesNote />}
-
             </Fragment>
           ))}
         </div>

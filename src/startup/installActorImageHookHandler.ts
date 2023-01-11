@@ -1,13 +1,17 @@
 import { npcIcon, partyIcon, pcIcon } from "../constants";
 import { assertGame, isNullOrEmptyString } from "../functions";
-import { isNPCDataSource, isPartyDataSource, isPCDataSource } from "../typeAssertions";
+import {
+  isNPCDataSource,
+  isPartyDataSource,
+  isPCDataSource,
+} from "../typeAssertions";
 
 export const installActorImageHookHandler = () => {
   Hooks.on(
     "preCreateActor",
     (
       actor: Actor,
-      createData: { name: string, type: string, data?: any, img?: string },
+      createData: { name: string; type: string; data?: any; img?: string },
       options: any,
       userId: string,
     ) => {
@@ -23,10 +27,10 @@ export const installActorImageHookHandler = () => {
           img: isPCDataSource(actor.data)
             ? pcIcon
             : isNPCDataSource(actor.data)
-              ? npcIcon
-              : isPartyDataSource(actor.data)
-                ? partyIcon
-                : undefined,
+            ? npcIcon
+            : isPartyDataSource(actor.data)
+            ? partyIcon
+            : undefined,
         });
       }
     },

@@ -8,7 +8,7 @@ import { settings } from "../settings";
  * needed. This means that all migrations must be idempotent because they will
  * all get re-run every time any migration is needed.
  */
-export function getNeedsMigrationBasedOnLegacyVersionSystem () {
+export function getNeedsMigrationBasedOnLegacyVersionSystem() {
   const currentVersion = settings.systemMigrationVersion.get();
   // newest version that needs a migration (make this the current version when
   // you introduce a new migration)

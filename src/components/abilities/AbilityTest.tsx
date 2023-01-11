@@ -1,7 +1,10 @@
 import React, { useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { assertAbilityDataSource, isGeneralAbilityDataSource } from "../../typeAssertions";
+import {
+  assertAbilityDataSource,
+  isGeneralAbilityDataSource,
+} from "../../typeAssertions";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
@@ -9,8 +12,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 
 type AbilityTestProps = {
-  ability: InvestigatorItem,
-
+  ability: InvestigatorItem;
 };
 
 const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
@@ -18,9 +20,7 @@ const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
   return { label, value: Number(label), enabled: true };
 });
 
-export const AbilityTest: React.FC<AbilityTestProps> = ({
-  ability,
-}) => {
+export const AbilityTest: React.FC<AbilityTestProps> = ({ ability }) => {
   const theme = useContext(ThemeContext);
   const [spend, setSpend] = useState(0);
 
@@ -36,10 +36,10 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({
 
   const spendOptions = defaultSpendOptions.map((option) => {
     assertAbilityDataSource(ability.data);
-    return ({
+    return {
       ...option,
       enabled: option.value <= ability.data.data.pool,
-    });
+    };
   });
 
   const isGeneral = isGeneralAbilityDataSource(ability.data);

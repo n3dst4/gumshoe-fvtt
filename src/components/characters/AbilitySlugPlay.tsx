@@ -1,21 +1,30 @@
 import React, { Fragment, useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { FoundryAppContext } from "../FoundryAppContext";
-import { assertAbilityDataSource, isGeneralAbilityDataSource, isInvestigativeAbilityDataSource } from "../../typeAssertions";
+import {
+  assertAbilityDataSource,
+  isGeneralAbilityDataSource,
+  isInvestigativeAbilityDataSource,
+} from "../../typeAssertions";
 import { UnlockBadges } from "../abilities/UnlockBadges";
 
 type AbilitySlugPlayProps = {
-  ability: InvestigatorItem,
+  ability: InvestigatorItem;
 };
 
-export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => {
+export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
+  ability,
+}) => {
   assertAbilityDataSource(ability.data);
   const app = useContext(FoundryAppContext);
-  const onDragStart = useCallback((e: React.DragEvent<HTMLAnchorElement>) => {
-    if (app !== null) {
-      (app as any)._onDragStart(e);
-    }
-  }, [app]);
+  const onDragStart = useCallback(
+    (e: React.DragEvent<HTMLAnchorElement>) => {
+      if (app !== null) {
+        (app as any)._onDragStart(e);
+      }
+    },
+    [app],
+  );
 
   const [spend, setSpend] = useState(0);
   // const unlocks = ability.getActiveUnlocks();
@@ -31,17 +40,15 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
   }, [ability, spend]);
 
   const onClickInc = useCallback(() => {
-    setSpend(s => s + 1);
+    setSpend((s) => s + 1);
   }, []);
 
   const onClickDec = useCallback(() => {
-    setSpend(s => s - 1);
+    setSpend((s) => s - 1);
   }, []);
 
   return (
-    <Fragment
-      key={ability.id}
-    >
+    <Fragment key={ability.id}>
       <a
         onClick={() => {
           ability.sheet?.render(true);
@@ -56,7 +63,7 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
       >
         {ability.name}
       </a>
-      <div css={{ gridColumn: "rating", justifySelf: "right" }} >
+      <div css={{ gridColumn: "rating", justifySelf: "right" }}>
         {ability.data.data.pool}/{ability.data.data.rating}
       </div>
       <div
@@ -84,7 +91,8 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
       <div css={{ gridColumn: "spend" }}>
         {isInvestigativeAbilityDataSource(ability.data) && (
           <button disabled={spend === 0} onClick={onSpend}>
-            <i className="fa fa-search" title="Spend" />{spend}
+            <i className="fa fa-search" title="Spend" />
+            {spend}
           </button>
         )}
         {isGeneralAbilityDataSource(ability.data) && (
@@ -92,19 +100,25 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({ ability }) => 
             <i className="fa fa-dice" title="Test" />+{spend}
           </button>
         )}
-        { isGeneralAbilityDataSource(ability.data) &&
+        {isGeneralAbilityDataSource(ability.data) &&
           ability.data.data.canBeInvestigative && (
-          <button css={{ width: "2em" }} disabled={spend === 0} onClick={onSpend}>
-            <i className="fa fa-search" title="Spend" />
-          </button>
-        )}
+            <button
+              css={{ width: "2em" }}
+              disabled={spend === 0}
+              onClick={onSpend}
+            >
+              <i className="fa fa-search" title="Spend" />
+            </button>
+          )}
       </div>
-      <UnlockBadges ability={ability} css={{ gridColumn: "1/-1" }}/>
+      <UnlockBadges ability={ability} css={{ gridColumn: "1/-1" }} />
       {ability.data.data.hasSpecialities && (
         <div css={{ paddingLeft: "1em", gridColumn: "1/-1" }}>
-          {(ability.data.data.specialities || []).map<JSX.Element>((x: string, i: number) => (
-            <div key={i}>{x.trim()}</div>
-          ))}
+          {(ability.data.data.specialities || []).map<JSX.Element>(
+            (x: string, i: number) => (
+              <div key={i}>{x.trim()}</div>
+            ),
+          )}
         </div>
       )}
     </Fragment>

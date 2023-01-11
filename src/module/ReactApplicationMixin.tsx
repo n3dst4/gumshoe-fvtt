@@ -13,7 +13,10 @@ type ApplicationConstuctor = Constructor<Application>;
 
 // Render<T> T is a Constructor<T2>. It then expects its actual argument to be
 // a T2, i.e. the type of the thing the constructor constructs.
-type Render<T> = (t: T extends Constructor<infer T2> ? T2 : T, serial: number) => JSX.Element;
+type Render<T> = (
+  t: T extends Constructor<infer T2> ? T2 : T,
+  serial: number,
+) => JSX.Element;
 
 export interface ReactApplicationMixinOptions {
   callReplaceHtml?: boolean;
@@ -27,7 +30,7 @@ const defaults: Required<ReactApplicationMixinOptions> = {
  * Wrap an existing Foundry Application class in this Mixin to override the
  * normal rednering behaviour and and use React instead.
  */
-export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
+export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
   /**
    * The base class.
    */
@@ -47,7 +50,7 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
      * @see {@link Application._replaceHTML}
      * @override
      */
-    _replaceHTML (element: JQuery, html: JQuery) {
+    _replaceHTML(element: JQuery, html: JQuery) {
       // this is the only thing we need to do here - react deals with updating
       // the rest of the window.
       if (fullOptions.callReplaceHtml && !this.initialized) {
@@ -68,7 +71,7 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
      * DOM has been created.
      * @override
      */
-    activateListeners (html: JQuery) {
+    activateListeners(html: JQuery) {
       // we were previously calling super.activateListeners(html) here
       // leaving this comment in case it help with future debugging.
       const target = $(this.element).find(".react-target");
@@ -82,7 +85,10 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor> (
 
       if (el) {
         const content = (
-          <FoundryAppContext.Provider value={this} key={"FoundryAppContextProvider"}>
+          <FoundryAppContext.Provider
+            value={this}
+            key={"FoundryAppContextProvider"}
+          >
             {render(
               this as TBase extends Constructor<infer T2> ? T2 : TBase,
               this.serial,

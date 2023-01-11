@@ -17,7 +17,7 @@ import { DispatchContext, StateContext } from "./contexts";
 import { useSettingsState } from "./hooks";
 
 type SettingsProps = {
-  foundryApplication: Application,
+  foundryApplication: Application;
 };
 
 export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {

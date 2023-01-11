@@ -23,11 +23,9 @@ export const AbilitiesColumnMW: React.FC<AbilitiesColumnMWProps> = ({
         gridColumn: "auto",
       }}
     >
-      {
-        abilities.map<JSX.Element>((ability) => (
-          <AbilitySlugPlayMw key={ability.id} ability={ability}/>
-        ))
-      }
+      {abilities.map<JSX.Element>((ability) => (
+        <AbilitySlugPlayMw key={ability.id} ability={ability} />
+      ))}
       {abilities.length === 0 && <NoAbilitiesNote />}
     </div>
   );

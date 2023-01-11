@@ -11,7 +11,9 @@ export const useSettingsState = () => {
   const tempStateRef = useRefStash(tempState);
   const setters = useMemo(() => {
     const setters: Partial<Setters> = {};
-    for (const k of Object.keys(initialState.settings) as (keyof typeof initialState["settings"])[]) {
+    for (const k of Object.keys(
+      initialState.settings,
+    ) as (keyof (typeof initialState)["settings"])[]) {
       setters[k] = (newVal: any) => {
         dispatch(slice.creators.setSome({ newSettings: { [k]: newVal } }));
       };
@@ -32,9 +34,7 @@ export const useSettingsState = () => {
   };
 };
 
-export const useSettingsStateSelector = <T>(
-  selector: (state: State) => T,
-) => {
+export const useSettingsStateSelector = <T>(selector: (state: State) => T) => {
   const state = useContext(StateContext);
   const t = selector(state);
   return t;

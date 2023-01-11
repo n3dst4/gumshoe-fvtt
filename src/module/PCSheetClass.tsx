@@ -9,7 +9,7 @@ import { PCSheet } from "../components/characters/PCSheet";
  */
 class PCSheetClassBase extends ActorSheet {
   /** @override */
-  static get defaultOptions () {
+  static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "actor"],
       template: reactTemplatePath,
@@ -20,12 +20,7 @@ class PCSheetClassBase extends ActorSheet {
 }
 
 const render = (sheet: PCSheetClassBase) => {
-  return (
-    <PCSheet actor={sheet.document} foundryApplication={sheet} />
-  );
+  return <PCSheet actor={sheet.document} foundryApplication={sheet} />;
 };
 
-export const PCSheetClass = ReactApplicationMixin(
-  PCSheetClassBase,
-  render,
-);
+export const PCSheetClass = ReactApplicationMixin(PCSheetClassBase, render);

@@ -15,7 +15,7 @@ const NPCSheet = React.lazy(() =>
  */
 class NPCSheetClassBase extends ActorSheet {
   /** @override */
-  static get defaultOptions () {
+  static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "actor"],
       template: reactTemplatePath,
@@ -33,7 +33,4 @@ const render = (sheet: NPCSheetClassBase) => {
   );
 };
 
-export const NPCSheetClass = ReactApplicationMixin(
-  NPCSheetClassBase,
-  render,
-);
+export const NPCSheetClass = ReactApplicationMixin(NPCSheetClassBase, render);

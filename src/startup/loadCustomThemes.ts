@@ -4,7 +4,7 @@ import { highContrastTheme } from "../themes/highContrastTheme";
 import { assertGame } from "../functions";
 import { settings } from "../settings";
 
-export function loadCustomThemes () {
+export function loadCustomThemes() {
   const jsonRe = /\.(?:json|json5)$/;
   const yamlRe = /\.(?:yaml|yml)$/;
   const schemaRe = /^v(?:1)/;
@@ -61,7 +61,9 @@ export function loadCustomThemes () {
           throw new Error("No schemaVersion");
         }
         if (!schemaRe.test(blob.schemaVersion)) {
-          throw new Error(`schemaVersion "${blob.schemaVersion}" not recognised`);
+          throw new Error(
+            `schemaVersion "${blob.schemaVersion}" not recognised`,
+          );
         }
         const seed: ThemeSeedV1 = {
           colors: {
@@ -79,8 +81,7 @@ export function loadCustomThemes () {
           largeSheetRootStyle: blob.largeSheetRootStyle ?? {},
           logo: {
             backdropStyle:
-              blob.logo?.backdropStyle ??
-              highContrastTheme.logo.backdropStyle,
+              blob.logo?.backdropStyle ?? highContrastTheme.logo.backdropStyle,
             frontTextElementStyle:
               blob.logo?.frontTextElementStyle ??
               highContrastTheme.logo.frontTextElementStyle,

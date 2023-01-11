@@ -12,34 +12,37 @@ import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 
 type SettingAreaProps = {
-  actor: InvestigatorActor,
+  actor: InvestigatorActor;
 };
 
-export const SettingArea: React.FC<SettingAreaProps> = ({
-  actor,
-}) => {
+export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
   assertGame(game);
   assertPCDataSource(actor.data);
-  const onSetTheme = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.currentTarget.value;
-    const themeName = (value === "default" ? null : value);
-    actor.setSheetTheme(themeName);
-  }, [actor]);
+  const onSetTheme = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const value = e.currentTarget.value;
+      const themeName = value === "default" ? null : value;
+      actor.setSheetTheme(themeName);
+    },
+    [actor],
+  );
   const theme = useContext(ThemeContext);
   const isDevMode = getDevMode();
 
   return (
     <Fragment>
-
       <InputGrid>
         <GridField label="Theme">
-          <select onChange={onSetTheme} value={actor.getSheetThemeName() || "default"}>
+          <select
+            onChange={onSetTheme}
+            value={actor.getSheetThemeName() || "default"}
+          >
             {Object.keys(runtimeConfig.themes).map<JSX.Element>((themeName) => (
-              <option key={themeName} value={themeName}>{runtimeConfig.themes[themeName].displayName}</option>
+              <option key={themeName} value={themeName}>
+                {runtimeConfig.themes[themeName].displayName}
+              </option>
             ))}
-            <option value="default">
-              {getTranslated("UseSystemDefault")}
-            </option>
+            <option value="default">{getTranslated("UseSystemDefault")}</option>
           </select>
         </GridField>
 
@@ -49,29 +52,33 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
             onChange={(e) => {
               actor.setLongNotesFormat(e.currentTarget.value as NoteFormat);
             }}
-            >
+          >
             <option value={NoteFormat.plain}>{getTranslated("Plain")}</option>
-            <option value={NoteFormat.markdown}>{getTranslated("Markdown")}</option>
-            <option value={NoteFormat.richText}>{getTranslated("RichText")}</option>
+            <option value={NoteFormat.markdown}>
+              {getTranslated("Markdown")}
+            </option>
+            <option value={NoteFormat.richText}>
+              {getTranslated("RichText")}
+            </option>
           </select>
         </GridField>
 
-        {settings.useTurnPassingInitiative.get() &&
+        {settings.useTurnPassingInitiative.get() && (
           <GridField label="Number of turns">
             <AsyncNumberInput
               value={actor.data.data.initiativePassingTurns}
               onChange={actor.setPassingTurns}
             />
           </GridField>
-        }
+        )}
 
-        {isDevMode &&
+        {isDevMode && (
           <GridField label="Nuke">
             <button onClick={actor.confirmNuke}>
               <Translate>Nuke</Translate>
             </button>
           </GridField>
-        }
+        )}
       </InputGrid>
 
       <p
@@ -83,7 +90,10 @@ export const SettingArea: React.FC<SettingAreaProps> = ({
           backgroundColor: theme.colors.backgroundSecondary,
         }}
       >
-        <a target="_new" href="https://gitlab.com/n3dst4/investigator-fvtt/-/blob/main/README.md">
+        <a
+          target="_new"
+          href="https://gitlab.com/n3dst4/investigator-fvtt/-/blob/main/README.md"
+        >
           INVESTIGATOR System
         </a>{" "}
         is made by me, Neil de Carteret. Find all my non-work links and ways to

@@ -8,7 +8,7 @@ export const installEquipmentCategoryHookHandler = () => {
     "preCreateItem",
     (
       item: Item,
-      createData: { name: string, type: string, data?: any, img?: string },
+      createData: { name: string; type: string; data?: any; img?: string },
       options: any,
       userId: string,
     ) => {
@@ -16,12 +16,14 @@ export const installEquipmentCategoryHookHandler = () => {
       if (game.userId !== userId) return;
 
       // set category and fields
-      if (
-        isEquipmentDataSource(item.data)
-      ) {
+      if (isEquipmentDataSource(item.data)) {
         const equipmentCategories = settings.equipmentCategories.get();
-        const categoryId = item.data.data.category || Object.keys(equipmentCategories)[0];
-        const updateData: Pick<EquipmentDataSource["data"], "category"|"fields"> = {
+        const categoryId =
+          item.data.data.category || Object.keys(equipmentCategories)[0];
+        const updateData: Pick<
+          EquipmentDataSource["data"],
+          "category" | "fields"
+        > = {
           category: item.data.data.category || categoryId,
           fields: item.data.data.fields || {},
         };
