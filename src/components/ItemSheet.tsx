@@ -8,6 +8,7 @@ import { WeaponSheet } from "./equipment/WeaponSheet";
 import { CSSReset } from "./CSSReset";
 import { isAbilityDataSource, isMwItemDataSource } from "../typeAssertions";
 import { MwItemSheet } from "./equipment/MwItemSheet";
+import { ThrowError } from "./ThrowError";
 
 type ItemSheetProps = {
   item: InvestigatorItem;
@@ -48,7 +49,7 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({
       ) : item.type === mwItem ? (
         <MwItemSheet item={item} application={foundryApplication} />
       ) : (
-        <div>No sheet defined for item type &ldquo;{}&rdquo;</div>
+        <ThrowError message={`No sheet defined for item type ${item.type}`} />
       )}
     </CSSReset>
   );

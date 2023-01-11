@@ -12,6 +12,7 @@ import { ThemeContext } from "../themes/ThemeContext";
 import { ThemeV1 } from "../themes/types";
 import { FoundryAppContext } from "./FoundryAppContext";
 import createCache from "@emotion/cache";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 type CSSResetProps = {
   children: ReactNode;
@@ -81,126 +82,128 @@ export const CSSReset: React.FC<CSSResetProps> = ({
     mode === "large" ? theme.largeSheetRootStyle : theme.smallSheetRootStyle;
 
   return (
-    <EmotionCacheProvider value={cache}>
-      <ThemeContext.Provider value={theme}>
-        <Global styles={theme.global} />
-        <div
-          ref={ref}
-          className={className}
-          css={{
-            font: theme.bodyFont,
-            padding: "0.5em",
-            color: theme.colors.text,
-            backgroundColor: theme.colors.wallpaper,
-            height: "100%",
-            accentColor: theme.colors.accent,
-            "*": {
-              // all: "initial",
-              scrollbarWidth: "thin",
-              userSelect: "auto",
-              boxSizing: "border-box",
-              scrollbarColor: `${theme.colors.accent} ${theme.colors.backgroundButton}`,
-              "&:focus": {
-                textDecoration: "underline",
-              },
-            },
-
-            "h1, h2, h3, h4": {
-              border: "none",
-              margin: "0.3em 0 0 0",
-              padding: 0,
-              fontWeight: "inherit",
-              font: theme.displayFont,
-            },
-            h1: {
-              fontSize: "1.5em",
-            },
-            h2: {
-              fontSize: "1.3em",
-            },
-            h3: {
-              fontSize: "1.1em",
-            },
-            h4: {
-              fontSize: "1em",
-            },
-            button: {
-              font: theme.displayFont,
-              color: theme.colors.accent,
-              "&[disabled]": {
-                opacity: 0.5,
-                color: theme.colors.text,
-                "&:hover": {
-                  boxShadow: "none",
-                  textShadow: "none",
+    <ErrorBoundary>
+      <EmotionCacheProvider value={cache}>
+        <ThemeContext.Provider value={theme}>
+          <Global styles={theme.global} />
+          <div
+            ref={ref}
+            className={className}
+            css={{
+              font: theme.bodyFont,
+              padding: "0.5em",
+              color: theme.colors.text,
+              backgroundColor: theme.colors.wallpaper,
+              height: "100%",
+              accentColor: theme.colors.accent,
+              "*": {
+                // all: "initial",
+                scrollbarWidth: "thin",
+                userSelect: "auto",
+                boxSizing: "border-box",
+                scrollbarColor: `${theme.colors.accent} ${theme.colors.backgroundButton}`,
+                "&:focus": {
+                  textDecoration: "underline",
                 },
               },
-              "&:hover": {
-                boxShadow: `0 0 0.5em ${theme.colors.glow}`,
-                textShadow: `0 0 0.5em ${theme.colors.glow}`,
+
+              "h1, h2, h3, h4": {
+                border: "none",
+                margin: "0.3em 0 0 0",
+                padding: 0,
+                fontWeight: "inherit",
+                font: theme.displayFont,
               },
-              "&:focus": {
-                boxShadow: "none",
+              h1: {
+                fontSize: "1.5em",
               },
-            },
-            label: {
-              font: theme.displayFont,
-            },
-            "a, label.parp": {
-              color: theme.colors.accent,
-            },
-            "a:hover, a.hover, .hover a, label.parp:hover, label.parp.hover, .hover label.parp":
-              {
-                textDecoration: "underline",
-                textShadow: `0 0 0.5em ${theme.colors.glow}`,
+              h2: {
+                fontSize: "1.3em",
               },
-            "input, input[type=text], textarea, select, option": {
-              font: theme.bodyFont,
-              fontVariantLigatures: "none",
-              color: theme.colors.accent,
-              padding: "0.1em 0.3em",
-              borderStyle: "solid",
-              borderWidth: "1px",
-              borderColor: theme.colors.controlBorder,
-              background: theme.colors.backgroundPrimary,
-              resize: "vertical",
-              ":focus": {
-                borderColor: theme.colors.accent,
-                outline: "none",
-                boxShadow: `0 0 0.5em ${theme.colors.glow}`,
+              h3: {
+                fontSize: "1.1em",
               },
-            },
-            select: {
-              color: theme.colors.text,
-              background: theme.colors.backgroundPrimary,
-              option: {
+              h4: {
+                fontSize: "1em",
+              },
+              button: {
+                font: theme.displayFont,
+                color: theme.colors.accent,
+                "&[disabled]": {
+                  opacity: 0.5,
+                  color: theme.colors.text,
+                  "&:hover": {
+                    boxShadow: "none",
+                    textShadow: "none",
+                  },
+                },
+                "&:hover": {
+                  boxShadow: `0 0 0.5em ${theme.colors.glow}`,
+                  textShadow: `0 0 0.5em ${theme.colors.glow}`,
+                },
+                "&:focus": {
+                  boxShadow: "none",
+                },
+              },
+              label: {
+                font: theme.displayFont,
+              },
+              "a, label.parp": {
+                color: theme.colors.accent,
+              },
+              "a:hover, a.hover, .hover a, label.parp:hover, label.parp.hover, .hover label.parp":
+                {
+                  textDecoration: "underline",
+                  textShadow: `0 0 0.5em ${theme.colors.glow}`,
+                },
+              "input, input[type=text], textarea, select, option": {
+                font: theme.bodyFont,
+                fontVariantLigatures: "none",
+                color: theme.colors.accent,
+                padding: "0.1em 0.3em",
+                borderStyle: "solid",
+                borderWidth: "1px",
+                borderColor: theme.colors.controlBorder,
                 background: theme.colors.backgroundPrimary,
+                resize: "vertical",
+                ":focus": {
+                  borderColor: theme.colors.accent,
+                  outline: "none",
+                  boxShadow: `0 0 0.5em ${theme.colors.glow}`,
+                },
               },
-              ":focus": {
-                borderColor: theme.colors.accent,
-                outline: "none",
-                boxShadow: `0 0 0.5em ${theme.colors.glow}`,
+              select: {
+                color: theme.colors.text,
+                background: theme.colors.backgroundPrimary,
+                option: {
+                  background: theme.colors.backgroundPrimary,
+                },
+                ":focus": {
+                  borderColor: theme.colors.accent,
+                  outline: "none",
+                  boxShadow: `0 0 0.5em ${theme.colors.glow}`,
+                },
               },
-            },
-            textarea: {
-              lineHeight: 1,
-            },
-            "button, input[type=button]": {
-              border: `2px groove ${theme.colors.controlBorder}`,
-              background: theme.colors.backgroundButton,
-            },
-            hr: {
-              borderColor: theme.colors.controlBorder,
-            },
-            "i.fa:last-child": {
-              margin: 0,
-            },
-            ...rootStyle,
-          }}
-        >
-          {children}
-        </div>
-      </ThemeContext.Provider>
-    </EmotionCacheProvider>
+              textarea: {
+                lineHeight: 1,
+              },
+              "button, input[type=button]": {
+                border: `2px groove ${theme.colors.controlBorder}`,
+                background: theme.colors.backgroundButton,
+              },
+              hr: {
+                borderColor: theme.colors.controlBorder,
+              },
+              "i.fa:last-child": {
+                margin: 0,
+              },
+              ...rootStyle,
+            }}
+          >
+            {children}
+          </div>
+        </ThemeContext.Provider>
+      </EmotionCacheProvider>
+    </ErrorBoundary>
   );
 };
