@@ -42,7 +42,7 @@ export function getTurns(combat: Combat) {
         // @ts-expect-error game.video is a thing
         game.video
           .createThumbnail(combatant.img, { width: 100, height: 100 })
-          .then((img) => {
+          .then((img: string) => {
             // @ts-expect-error combatant._thumb is a thing
             img = combatant._thumb = img;
           });
