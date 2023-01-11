@@ -9,9 +9,9 @@ import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 
 export const ShortNotesField: React.FC<{
-  actor: InvestigatorActor,
-  name: string,
-  index: number,
+  actor: InvestigatorActor;
+  name: string;
+  index: number;
 }> = ({ actor, name, index }) => {
   const [hovering, setHovering] = React.useState(false);
 
@@ -25,7 +25,7 @@ export const ShortNotesField: React.FC<{
   const onDragEnter = useCallback((e: React.DragEvent) => {
     // console.log("Enter", e);
     const data = JSON.parse(e.dataTransfer.getData("text/plain"));
-    if ((!data?.id) || data?.type !== "JournalEntry") {
+    if (!data?.id || data?.type !== "JournalEntry") {
       console.log("Not a JournalEntry");
       return;
     }
@@ -44,7 +44,7 @@ export const ShortNotesField: React.FC<{
   const onDrop = useCallback(async (e: React.DragEvent) => {
     // console.log("Drop");
     const data = JSON.parse(e.dataTransfer.getData("text/plain"));
-    if ((!data?.id) || data?.type !== "JournalEntry") {
+    if (!data?.id || data?.type !== "JournalEntry") {
       console.log("Not a JournalEntry");
       return;
     }
@@ -62,7 +62,9 @@ export const ShortNotesField: React.FC<{
       name = document?.name ?? "Unknown";
     } else if (data.type) {
       // Case 2 - Document from World
-      name = (CONFIG.JournalEntry.collection as any)?.instance?.get(data.id).name ?? "Unknown";
+      name =
+        (CONFIG.JournalEntry.collection as any)?.instance?.get(data.id).name ??
+        "Unknown";
     }
     console.log("name", name);
   }, []);
@@ -84,7 +86,7 @@ export const ShortNotesField: React.FC<{
       onDragEnd={onDragEnd}
       onDrop={onDrop}
     >
-      {hovering &&
+      {hovering && (
         <div
           css={{
             ...absoluteCover,
@@ -103,7 +105,7 @@ export const ShortNotesField: React.FC<{
             Drop here
           </div>
         </div>
-      }
+      )}
       <AsyncTextInput
         value={value}
         onChange={updateShortNote}

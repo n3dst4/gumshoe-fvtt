@@ -287,7 +287,10 @@ export type MwItemDataSource = DataSource<
 >;
 
 /** data for personal details */
-export type PersonalDetailDataSource = DataSource<typeof constants.personalDetail, PersonalDetailSourceData>;
+export type PersonalDetailDataSource = DataSource<
+  typeof constants.personalDetail,
+  PersonalDetailSourceData
+>;
 
 /** data for weapon OR equipment (rn this basically means "notes") */
 export type WeaponOrEquipmentDataSource =

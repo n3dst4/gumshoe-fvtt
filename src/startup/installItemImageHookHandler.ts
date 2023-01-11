@@ -1,6 +1,17 @@
-import { equipmentIcon, generalAbilityIcon, investigativeAbilityIcon, weaponIcon, personalDetailIcon } from "../constants";
+import {
+  equipmentIcon,
+  generalAbilityIcon,
+  investigativeAbilityIcon,
+  weaponIcon,
+  personalDetailIcon,
+} from "../constants";
 import { assertGame, isNullOrEmptyString } from "../functions";
-import { isWeaponDataSource, isGeneralAbilityDataSource, isEquipmentDataSource, isPersonalDetailDataSource } from "../typeAssertions";
+import {
+  isWeaponDataSource,
+  isGeneralAbilityDataSource,
+  isEquipmentDataSource,
+  isPersonalDetailDataSource,
+} from "../typeAssertions";
 
 export const installItemImageHookHandler = () => {
   Hooks.on(
@@ -23,12 +34,12 @@ export const installItemImageHookHandler = () => {
           img: isWeaponDataSource(item.data)
             ? weaponIcon
             : isEquipmentDataSource(item.data)
-              ? equipmentIcon
-              : isGeneralAbilityDataSource(item.data)
-                ? generalAbilityIcon
-                : isPersonalDetailDataSource(item.data)
-                  ? personalDetailIcon
-                  : investigativeAbilityIcon,
+            ? equipmentIcon
+            : isGeneralAbilityDataSource(item.data)
+            ? generalAbilityIcon
+            : isPersonalDetailDataSource(item.data)
+            ? personalDetailIcon
+            : investigativeAbilityIcon,
         });
       }
     },

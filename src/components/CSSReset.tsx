@@ -14,11 +14,11 @@ import { FoundryAppContext } from "./FoundryAppContext";
 import createCache from "@emotion/cache";
 
 type CSSResetProps = {
-  children: ReactNode,
-  className?: string,
-  theme: ThemeV1,
-  mode: "large"|"small",
-  noStyleAppWindow?: boolean,
+  children: ReactNode;
+  className?: string;
+  theme: ThemeV1;
+  mode: "large" | "small";
+  noStyleAppWindow?: boolean;
 };
 
 export const CSSReset: React.FC<CSSResetProps> = ({

@@ -4,15 +4,15 @@ import { IdContext } from "../IdContext";
 import { Translate } from "../Translate";
 
 type GridFieldProps = {
-  label?: string,
-  className?: string,
-  children?: any,
-  noLabel?: boolean,
-  noTranslate?: boolean,
-  labelTitle?: string,
-  onDragOver?: DragEventHandler<HTMLElement>,
-  onDragEnd?: DragEventHandler<HTMLElement>,
-  onDrop?: DragEventHandler<HTMLElement>,
+  label?: string;
+  className?: string;
+  children?: any;
+  noLabel?: boolean;
+  noTranslate?: boolean;
+  labelTitle?: string;
+  onDragOver?: DragEventHandler<HTMLElement>;
+  onDragEnd?: DragEventHandler<HTMLElement>;
+  onDrop?: DragEventHandler<HTMLElement>;
 };
 
 export const GridField: React.FC<GridFieldProps> = ({
