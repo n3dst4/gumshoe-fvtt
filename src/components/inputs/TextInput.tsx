@@ -2,14 +2,14 @@ import React, { ChangeEvent, useCallback, useContext } from "react";
 import { IdContext } from "../IdContext";
 
 type TextInputProps = {
-  className?: string,
-  value?: string,
-  defaultValue?: string,
-  onChange?: (value: string) => void,
-  onFocus?: () => void,
-  onBlur?: () => void,
-  disabled?: boolean,
-  placeholder?: string,
+  className?: string;
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  disabled?: boolean;
+  placeholder?: string;
 };
 
 export const TextInput: React.FC<TextInputProps> = ({
@@ -24,9 +24,12 @@ export const TextInput: React.FC<TextInputProps> = ({
 }) => {
   const id = useContext(IdContext);
 
-  const onChangeCb = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e.currentTarget.value);
-  }, [onChange]);
+  const onChangeCb = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      onChange?.(e.currentTarget.value);
+    },
+    [onChange],
+  );
 
   return (
     <input

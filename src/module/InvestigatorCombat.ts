@@ -1,5 +1,8 @@
 import { ConfiguredDocumentClass } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
-import { compareCombatantsPassing, compareCombatantsStandard } from "../components/combat/functions";
+import {
+  compareCombatantsPassing,
+  compareCombatantsStandard,
+} from "../components/combat/functions";
 import * as constants from "../constants";
 import { settings } from "../settings";
 import { isActiveCharacterDataSource } from "../typeAssertions";
@@ -8,7 +11,7 @@ import { isActiveCharacterDataSource } from "../typeAssertions";
  * Override base Combat so we can do custom GUMSHOE-style initiative
  */
 export class InvestigatorCombat extends Combat {
-  override _onCreate (
+  override _onCreate(
     data: this["data"]["_source"],
     options: any,
     userId: string,
@@ -21,7 +24,7 @@ export class InvestigatorCombat extends Combat {
     }
   }
 
-  override get started () {
+  override get started() {
     return true;
   }
 
@@ -36,7 +39,7 @@ export class InvestigatorCombat extends Combat {
     }
   };
 
-  override async nextRound () {
+  override async nextRound() {
     this.turns.forEach((combatant) => {
       const actor = combatant.actor;
       const max =
@@ -49,13 +52,13 @@ export class InvestigatorCombat extends Combat {
     return super.nextRound();
   }
 
-  get activeTurnPassingCombatant () {
+  get activeTurnPassingCombatant() {
     return this.getFlag(constants.systemName, "activeTurnPassingCombatant") as
       | string
       | null;
   }
 
-  set activeTurnPassingCombatant (id: string | null) {
+  set activeTurnPassingCombatant(id: string | null) {
     this.setFlag(constants.systemName, "activeTurnPassingCombatant", id);
   }
 }

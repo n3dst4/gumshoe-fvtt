@@ -3,7 +3,7 @@ import { runtimeConfig } from "../../runtime";
 import { ThemeSwatch } from "./ThemeSwatch";
 
 type ThemeFarmProps = {
-  foundryApplication: Application,
+  foundryApplication: Application;
 };
 
 export const ThemeFarm: React.FC<ThemeFarmProps> = ({
@@ -33,11 +33,9 @@ export const ThemeFarm: React.FC<ThemeFarmProps> = ({
           padding: "1em",
         }}
       >
-        {
-          Object.keys(runtimeConfig.themes).map<ReactNode>((id) => (
-            <ThemeSwatch key={id} theme={runtimeConfig.themes[id]} />
-          ))
-        }
+        {Object.keys(runtimeConfig.themes).map<ReactNode>((id) => (
+          <ThemeSwatch key={id} theme={runtimeConfig.themes[id]} />
+        ))}
       </div>
     </div>
   );

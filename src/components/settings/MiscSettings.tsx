@@ -10,7 +10,7 @@ import { ListEdit } from "../inputs/ListEdit";
 import { StateContext } from "./contexts";
 
 export const MiscSettings: React.FC<{
-  setters: Setters,
+  setters: Setters;
 }> = ({ setters }) => {
   const isDevMode = getDevMode();
 

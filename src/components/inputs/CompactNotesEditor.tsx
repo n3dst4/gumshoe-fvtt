@@ -42,15 +42,14 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
   // single item, which probably wouldn't scale very well.
 
   const [richTextEditMode, setRichTextEditMode] = useState(false);
-  const [getRichTextSource, setRichTextSource] = useStateWithGetter(note.source);
-
-  const onSaveRichText = useCallback(
-    async () => {
-      await onChange(getRichTextSource());
-      setRichTextEditMode(false);
-    },
-    [getRichTextSource, onChange],
+  const [getRichTextSource, setRichTextSource] = useStateWithGetter(
+    note.source,
   );
+
+  const onSaveRichText = useCallback(async () => {
+    await onChange(getRichTextSource());
+    setRichTextEditMode(false);
+  }, [getRichTextSource, onChange]);
 
   const goEditMode = useCallback(() => {
     setRichTextEditMode(true);
@@ -71,9 +70,8 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
         <MarkdownEditor onChange={onChange} value={note.source} />
       )}
       {note.format === NoteFormat.richText &&
-        (richTextEditMode
-          ? (
-            <div
+        (richTextEditMode ? (
+          <div
             css={{
               height: "12em",
             }}
@@ -85,8 +83,7 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
               value={note.source}
             />
           </div>
-            )
-          : (
+        ) : (
           <div
             css={{
               maxHeight: "8em",
@@ -96,7 +93,7 @@ export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
           >
             <div dangerouslySetInnerHTML={{ __html: liveHtml }} />
           </div>
-            ))}
+        ))}
     </div>
   );
 };

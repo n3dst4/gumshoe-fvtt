@@ -15,12 +15,10 @@ import { absoluteCover } from "../absoluteCover";
 import { settings } from "../../settings";
 
 type WeaponConfigProps = {
-  weapon: InvestigatorItem,
+  weapon: InvestigatorItem;
 };
 
-export const WeaponConfig: React.FC<WeaponConfigProps> = ({
-  weapon,
-}) => {
+export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
   assertGame(game);
   assertWeaponDataSource(weapon.data);
   const name = useAsyncUpdate(weapon.name || "", weapon.setName);
@@ -72,7 +70,10 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
         </select>
       </GridField>
       <GridField label="Base Damage">
-        <AsyncNumberInput value={weapon.getDamage()} onChange={weapon.setDamage} />
+        <AsyncNumberInput
+          value={weapon.getDamage()}
+          onChange={weapon.setDamage}
+        />
       </GridField>
       <WeaponRange
         label="Point Blank"
@@ -115,7 +116,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
           onChange={weapon.setUsesAmmo}
         />
       </GridField>
-      {weapon.data.data.usesAmmo &&
+      {weapon.data.data.usesAmmo && (
         <Fragment>
           <GridField label="Ammo capacity">
             <AsyncNumberInput
@@ -132,9 +133,11 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({
             />
           </GridField>
         </Fragment>
-      }
+      )}
       <GridField label="Delete">
-        <button onClick={onClickDelete}><Translate>Delete</Translate></button>
+        <button onClick={onClickDelete}>
+          <Translate>Delete</Translate>
+        </button>
       </GridField>
     </InputGrid>
   );

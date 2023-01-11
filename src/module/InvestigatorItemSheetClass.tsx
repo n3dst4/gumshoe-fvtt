@@ -16,7 +16,7 @@ const InvestigatorItemSheet = React.lazy(() =>
  */
 class EquipmentSheetClassBase extends ItemSheet {
   /** @override */
-  static get defaultOptions () {
+  static get defaultOptions() {
     return {
       ...super.defaultOptions,
       classes: [systemName, "sheet", "item"],
@@ -31,10 +31,7 @@ class EquipmentSheetClassBase extends ItemSheet {
 const render = (sheet: EquipmentSheetClassBase) => {
   return (
     <Suspense>
-      <InvestigatorItemSheet
-        item={sheet.document}
-        foundryApplication={sheet}
-      />
+      <InvestigatorItemSheet item={sheet.document} foundryApplication={sheet} />
     </Suspense>
   );
 };
@@ -46,7 +43,7 @@ export const EquipmentSheetClass = ReactApplicationMixin(
 
 class AbilitySheetClassBase extends ItemSheet {
   /** @override */
-  static get defaultOptions () {
+  static get defaultOptions() {
     return {
       ...super.defaultOptions,
       classes: [systemName, "sheet", "item"],
@@ -65,7 +62,7 @@ export const AbilitySheetClass = ReactApplicationMixin(
 
 class MwItemSheetClassBase extends ItemSheet {
   /** @override */
-  static get defaultOptions () {
+  static get defaultOptions() {
     return {
       ...super.defaultOptions,
       classes: [systemName, "sheet", "item"],

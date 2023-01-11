@@ -1,4 +1,11 @@
-import { fixLength, isNullOrEmptyString, moveKeyDown, moveKeyUp, renameProperty, sortEntitiesByName } from "./functionsThatDontUseSettings";
+import {
+  fixLength,
+  isNullOrEmptyString,
+  moveKeyDown,
+  moveKeyUp,
+  renameProperty,
+  sortEntitiesByName,
+} from "./functionsThatDontUseSettings";
 
 const obj = {
   a: 1,
@@ -46,15 +53,32 @@ describe("fixLength", () => {
 
 describe("sortEntitiesByName", () => {
   test.each([
-    [["", ""], ["", ""]],
-    [["a", "b"], ["a", "b"]],
-    [["b", "a"], ["a", "b"]],
-    [["a", "b", "c"], ["a", "b", "c"]],
-    [["c", "b", "a"], ["a", "b", "c"]],
-    [["a", null, "b"], [null, "a", "b"]],
-
+    [
+      ["", ""],
+      ["", ""],
+    ],
+    [
+      ["a", "b"],
+      ["a", "b"],
+    ],
+    [
+      ["b", "a"],
+      ["a", "b"],
+    ],
+    [
+      ["a", "b", "c"],
+      ["a", "b", "c"],
+    ],
+    [
+      ["c", "b", "a"],
+      ["a", "b", "c"],
+    ],
+    [
+      ["a", null, "b"],
+      [null, "a", "b"],
+    ],
   ])("sortEntitiesByName(%s, %s)", (inputStrings, expected) => {
-    const inputObjects = inputStrings.map(name => ({ name }));
+    const inputObjects = inputStrings.map((name) => ({ name }));
     const sorted = sortEntitiesByName(inputObjects);
     const outputStrings = sorted.map(({ name }) => name);
     expect(outputStrings).toEqual(expected);

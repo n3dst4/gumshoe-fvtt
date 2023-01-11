@@ -6,7 +6,10 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings";
 import { AbilityDataSource } from "../../types";
-import { assertPartyDataSource, isAbilityDataSource } from "../../typeAssertions";
+import {
+  assertPartyDataSource,
+  isAbilityDataSource,
+} from "../../typeAssertions";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -18,13 +21,12 @@ import { buildRowData, getSystemAbilities } from "./functions";
 import { isCategoryHeader, isTypeHeader, RowData } from "./types";
 
 export const PartySheet: React.FC<{
-  party: InvestigatorActor,
-  foundryApplication: ActorSheet,
-}> = ({
-  foundryApplication,
-  party,
-}) => {
-  const theme = runtimeConfig.themes[settings.defaultThemeName.get()] || runtimeConfig.themes.tealTheme;
+  party: InvestigatorActor;
+  foundryApplication: ActorSheet;
+}> = ({ foundryApplication, party }) => {
+  const theme =
+    runtimeConfig.themes[settings.defaultThemeName.get()] ||
+    runtimeConfig.themes.tealTheme;
   const [abilities, setAbilities] = useState<AbilityDataSource[]>([]);
   const [actors, setActors] = useState<InvestigatorActor[]>([]);
   const [rowData, setRowData] = useState<RowData[]>([]);
@@ -58,7 +60,11 @@ export const PartySheet: React.FC<{
       useId: string,
     ) => {
       assertPartyDataSource(party.data);
-      if (isAbilityDataSource(item.data) && item.isOwned && party.data.data.actorIds.includes(item.actor?.id ?? "")) {
+      if (
+        isAbilityDataSource(item.data) &&
+        item.isOwned &&
+        party.data.data.actorIds.includes(item.actor?.id ?? "")
+      ) {
         setAbilities(await getSystemAbilities());
       }
     };
@@ -99,17 +105,22 @@ export const PartySheet: React.FC<{
       const actor = game.actors?.get(id);
       return actor ? [actor] : [];
     });
-    setActors(sortEntitiesByName(actors).filter((actor) => actor !== undefined));
+    setActors(
+      sortEntitiesByName(actors).filter((actor) => actor !== undefined),
+    );
   }, [actorIds]);
 
   // callback for removing an actor
-  const onClickRemoveActor = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const actorId = e.currentTarget.dataset.actorId;
-    if (actorId !== undefined) {
-      party.removeActorId(actorId);
-    }
-  }, [party]);
+  const onClickRemoveActor = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      const actorId = e.currentTarget.dataset.actorId;
+      if (actorId !== undefined) {
+        party.removeActorId(actorId);
+      }
+    },
+    [party],
+  );
 
   assertPartyDataSource(party.data);
   return (
@@ -126,7 +137,7 @@ export const PartySheet: React.FC<{
         flexDirection: "column",
       }}
     >
-      {party.data.data.actorIds.length === 0 &&
+      {party.data.data.actorIds.length === 0 && (
         <div
           style={{
             position: "absolute",
@@ -143,9 +154,12 @@ export const PartySheet: React.FC<{
             textAlign: "center",
           }}
         >
-          <Translate>No actors in this party yet! Drag PC actors from the sidebar into this window to add them.</Translate>
+          <Translate>
+            No actors in this party yet! Drag PC actors from the sidebar into
+            this window to add them.
+          </Translate>
         </div>
-      }
+      )}
       {/* Name field */}
       <InputGrid
         css={{
@@ -153,7 +167,10 @@ export const PartySheet: React.FC<{
         }}
       >
         <GridField label="Party Name">
-          <AsyncTextInput value={party.getName() || ""} onChange={party.setName} />
+          <AsyncTextInput
+            value={party.getName() || ""}
+            onChange={party.setName}
+          />
         </GridField>
       </InputGrid>
 
@@ -241,7 +258,7 @@ export const PartySheet: React.FC<{
                 />
                 {actor?.name ?? "Missing"}
               </a>
-              <div css={{ height: "1.5em" }}/>
+              <div css={{ height: "1.5em" }} />
               <div
                 css={{
                   position: "absolute",
@@ -325,9 +342,11 @@ export const PartySheet: React.FC<{
                   },
                 }}
               >
-                {data.abilityType === constants.generalAbility
-                  ? <Translate>General</Translate>
-                  : <Translate>Investigative</Translate>}
+                {data.abilityType === constants.generalAbility ? (
+                  <Translate>General</Translate>
+                ) : (
+                  <Translate>Investigative</Translate>
+                )}
               </h1>
             );
           } else if (isCategoryHeader(data)) {

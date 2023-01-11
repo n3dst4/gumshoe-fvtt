@@ -19,14 +19,16 @@ export const MwInjuryStatusWidget: React.FC<MwInjuryStatusWidgetProps> = ({
     setStatus(display);
   }, [display, setStatus]);
 
-  const color = display === MwInjuryStatus.uninjured
-    ? "#0f07"
-    : display === MwInjuryStatus.hurt
+  const color =
+    display === MwInjuryStatus.uninjured
+      ? "#0f07"
+      : display === MwInjuryStatus.hurt
       ? "#770f"
-      : display === MwInjuryStatus.down || display === MwInjuryStatus.unconscious
-        ? "#950f"
-        // dead
-        : "#f00f";
+      : display === MwInjuryStatus.down ||
+        display === MwInjuryStatus.unconscious
+      ? "#950f"
+      : // dead
+        "#f00f";
 
   return (
     <div
@@ -54,18 +56,12 @@ export const MwInjuryStatusWidget: React.FC<MwInjuryStatusWidgetProps> = ({
         <option value={MwInjuryStatus.uninjured}>
           {getTranslated("Uninjured")}
         </option>
-        <option value={MwInjuryStatus.hurt}>
-          {getTranslated("Hurt")}
-        </option>
-        <option value={MwInjuryStatus.down}>
-          {getTranslated("Down")}
-        </option>
+        <option value={MwInjuryStatus.hurt}>{getTranslated("Hurt")}</option>
+        <option value={MwInjuryStatus.down}>{getTranslated("Down")}</option>
         <option value={MwInjuryStatus.unconscious}>
           {getTranslated("Unconscious")}
         </option>
-        <option value={MwInjuryStatus.dead}>
-          {getTranslated("Dead")}
-        </option>
+        <option value={MwInjuryStatus.dead}>{getTranslated("Dead")}</option>
       </select>
     </div>
   );

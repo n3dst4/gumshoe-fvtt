@@ -1,6 +1,10 @@
 import { escape as escapeText } from "html-escaper";
 import { NoteFormat } from "./types";
-import { FilterXSS, whiteList as defaultXssWhitelist, escapeAttrValue } from "xss";
+import {
+  FilterXSS,
+  whiteList as defaultXssWhitelist,
+  escapeAttrValue,
+} from "xss";
 import memoize from "lodash/memoize";
 
 const makeTurndownService = memoize(async () => {
@@ -13,7 +17,7 @@ const makeTurndownService = memoize(async () => {
     // have that seen as markdown after you convert? Also, it knackers foundry
     // link codes (which can be rectified, admittedly) and when we use turndown to
     // generate "plain text" we certainly don't want anything escaped.
-    escape (text: string) {
+    escape(text: string) {
       return text;
     }
   }
@@ -27,9 +31,7 @@ const makeTurndownService = memoize(async () => {
 const newWhitelist = Object.fromEntries(
   Object.entries(defaultXssWhitelist).map(([tag, attrList = []]) => [
     tag,
-    [...attrList,
-      "style",
-    ],
+    [...attrList, "style"],
   ]),
 );
 
@@ -53,16 +55,16 @@ const xss = new FilterXSS({
 // Converters
 // /////////////////////////////////////////////////////////////////////////////
 
-export function plainTextToHtml (source: string) {
+export function plainTextToHtml(source: string) {
   return escapeText(source).replace(/\n/g, "<br/>");
 }
 
-async function markdownToHtml (markdown: string) {
+async function markdownToHtml(markdown: string) {
   const { marked } = await import("marked");
   return marked(markdown);
 }
 
-export async function htmlToMarkdown (html: string) {
+export async function htmlToMarkdown(html: string) {
   // ever first-time a cool regex and then realise you don't need it, but
   // you're so proud of your ninja regex skills dating back to doing Perl in the
   // 90s that you want to leave it in as a comment? Anyway check this bad boy
@@ -73,11 +75,15 @@ export async function htmlToMarkdown (html: string) {
   return turndownService.turndown(html);
 }
 
-export function htmlToPlaintext (html: string) {
+export function htmlToPlaintext(html: string) {
   return htmlToMarkdown(html);
 }
 
-export async function convertNotes (oldFormat: NoteFormat, newFormat: NoteFormat, oldSource: string) {
+export async function convertNotes(
+  oldFormat: NoteFormat,
+  newFormat: NoteFormat,
+  oldSource: string,
+) {
   let newSource = "";
   let unsafeNewHtml = "";
   if (newFormat === NoteFormat.plain) {
@@ -108,7 +114,7 @@ export async function convertNotes (oldFormat: NoteFormat, newFormat: NoteFormat
   return { newSource, newHtml };
 }
 
-export async function toHtml (format: NoteFormat, source: string) {
+export async function toHtml(format: NoteFormat, source: string) {
   let newHtml = "";
   if (format === NoteFormat.plain) {
     newHtml = plainTextToHtml(source);

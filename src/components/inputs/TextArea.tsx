@@ -3,15 +3,15 @@ import { assertGame } from "../../functions";
 import { IdContext } from "../IdContext";
 
 type TextAreaProps = {
-  className?: string,
-  value?: string,
-  defaultValue?: string,
-  onChange?: (value: string, index?: number) => void,
-  onFocus?: () => void,
-  onBlur?: () => void,
-  disabled?: boolean,
-  placeholder?: string,
-  index?: number,
+  className?: string;
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string, index?: number) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  disabled?: boolean;
+  placeholder?: string;
+  index?: number;
 };
 
 /**
@@ -23,11 +23,13 @@ type TextAreaProps = {
  * do the maths ourselves. So here, I'm using the textarea to insert the text,
  * but setting it back how I found it immediately.
  */
-function squirtTextIntoTextarea (
+function squirtTextIntoTextarea(
   text: string,
-  textarea: HTMLTextAreaElement|null,
+  textarea: HTMLTextAreaElement | null,
 ) {
-  if (textarea === null) { return ""; }
+  if (textarea === null) {
+    return "";
+  }
   const oldValue = textarea.value;
   textarea.setRangeText(text);
   const newValue = textarea.value;
@@ -52,14 +54,19 @@ export const TextArea: React.FC<TextAreaProps> = ({
 }) => {
   const id = useContext(IdContext);
 
-  const onChangeCb = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-    onChange?.(e.currentTarget.value, index);
-  }, [index, onChange]);
+  const onChangeCb = useCallback(
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
+      onChange?.(e.currentTarget.value, index);
+    },
+    [index, onChange],
+  );
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // inspired by _onDropEditorData in foundry.js
-  const onDropEditorData = async (event : React.DragEvent<HTMLTextAreaElement>) => {
+  const onDropEditorData = async (
+    event: React.DragEvent<HTMLTextAreaElement>,
+  ) => {
     event.preventDefault();
     const data = JSON.parse(event.dataTransfer.getData("text/plain"));
     if (!data?.id) return;
@@ -74,7 +81,7 @@ export const TextArea: React.FC<TextAreaProps> = ({
       onChange?.(squirtTextIntoTextarea(link, textareaRef.current), index);
     } else if (data.type) {
       // Case 2 - Document from World
-      const config = CONFIG[data.type as "Actor"|"Item"|"Scene"];
+      const config = CONFIG[data.type as "Actor" | "Item" | "Scene"];
       if (!config) return false;
       const entity = (config.collection as any).instance.get(data.id);
       if (!entity) return false;

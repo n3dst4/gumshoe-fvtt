@@ -1,5 +1,12 @@
 import { CacheProvider as EmotionCacheProvider, Global } from "@emotion/react";
-import React, { ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { css } from "@emotion/css";
 import { ThemeContext } from "../themes/ThemeContext";
 import { ThemeV1 } from "../themes/types";
@@ -7,11 +14,11 @@ import { FoundryAppContext } from "./FoundryAppContext";
 import createCache from "@emotion/cache";
 
 type CSSResetProps = {
-  children: ReactNode,
-  className?: string,
-  theme: ThemeV1,
-  mode: "large" | "small",
-  noStyleAppWindow?: boolean,
+  children: ReactNode;
+  className?: string;
+  theme: ThemeV1;
+  mode: "large" | "small";
+  noStyleAppWindow?: boolean;
 };
 
 export const CSSReset: React.FC<CSSResetProps> = ({
@@ -47,7 +54,10 @@ export const CSSReset: React.FC<CSSResetProps> = ({
         setHead(newWindow.document.head);
       }
     };
-    const dialogHandler = (dialoggedApp: Application, info: PopOut.DialogHookInfo) => {
+    const dialogHandler = (
+      dialoggedApp: Application,
+      info: PopOut.DialogHookInfo,
+    ) => {
       if (dialoggedApp.appId === app?.appId) {
         setHead(info.window.document.head);
       }
@@ -60,17 +70,15 @@ export const CSSReset: React.FC<CSSResetProps> = ({
     };
   }, [app?.appId]);
 
-  const cache = useMemo(
-    () => {
-      return createCache({
-        key: "investigator",
-        container: head ?? undefined,
-      });
-    },
-    [head],
-  );
+  const cache = useMemo(() => {
+    return createCache({
+      key: "investigator",
+      container: head ?? undefined,
+    });
+  }, [head]);
 
-  const rootStyle = (mode === "large" ? theme.largeSheetRootStyle : theme.smallSheetRootStyle);
+  const rootStyle =
+    mode === "large" ? theme.largeSheetRootStyle : theme.smallSheetRootStyle;
 
   return (
     <EmotionCacheProvider value={cache}>
@@ -141,10 +149,11 @@ export const CSSReset: React.FC<CSSResetProps> = ({
             "a, label.parp": {
               color: theme.colors.accent,
             },
-            "a:hover, a.hover, .hover a, label.parp:hover, label.parp.hover, .hover label.parp": {
-              textDecoration: "underline",
-              textShadow: `0 0 0.5em ${theme.colors.glow}`,
-            },
+            "a:hover, a.hover, .hover a, label.parp:hover, label.parp.hover, .hover label.parp":
+              {
+                textDecoration: "underline",
+                textShadow: `0 0 0.5em ${theme.colors.glow}`,
+              },
             "input, input[type=text], textarea, select, option": {
               font: theme.bodyFont,
               fontVariantLigatures: "none",
@@ -187,7 +196,6 @@ export const CSSReset: React.FC<CSSResetProps> = ({
               margin: 0,
             },
             ...rootStyle,
-
           }}
         >
           {children}

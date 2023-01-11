@@ -1,6 +1,7 @@
 import { isActiveCharacterDataSource } from "../../typeAssertions";
 
-export interface InvestigatorTurn extends Omit<CombatTracker.Turn, "ressource"|"css"> {
+export interface InvestigatorTurn
+  extends Omit<CombatTracker.Turn, "ressource" | "css"> {
   passingTurnsRemaining: number;
   totalPassingTurns: number;
   resource: CombatTracker.Turn["ressource"];
@@ -8,7 +9,7 @@ export interface InvestigatorTurn extends Omit<CombatTracker.Turn, "ressource"|"
 
 // adapted from foundry's CombatTracker, so there's some mutable data and
 // weird imperative stuff
-export function getTurns (combat: Combat) {
+export function getTurns(combat: Combat) {
   const turns: InvestigatorTurn[] = [];
   let hasDecimals = false;
 
@@ -18,7 +19,10 @@ export function getTurns (combat: Combat) {
     }
 
     // Prepare turn data
-    const resource = combatant.permission >= CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER ? combatant.resource : null;
+    const resource =
+      combatant.permission >= CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER
+        ? combatant.resource
+        : null;
 
     const active = i === combat.turn;
     const hidden = combatant.hidden;
@@ -27,7 +31,7 @@ export function getTurns (combat: Combat) {
     const initiative = combatant.initiative;
     const hasRolled = combatant.initiative !== null;
     const hasResource = resource !== null;
-    hasDecimals ||= ((initiative !== null) && !Number.isInteger(initiative));
+    hasDecimals ||= initiative !== null && !Number.isInteger(initiative);
 
     let img = combatant.img;
     // Cached thumbnail image for video tokens
@@ -36,22 +40,26 @@ export function getTurns (combat: Combat) {
       if (combatant._thumb) img = combatant._thumb;
       else {
         // @ts-expect-error game.video is a thing
-        game.video.createThumbnail(combatant.img, { width: 100, height: 100 }).then((img) => {
-          // @ts-expect-error combatant._thumb is a thing
-          img = combatant._thumb = img;
-        });
+        game.video
+          .createThumbnail(combatant.img, { width: 100, height: 100 })
+          .then((img: string) => {
+            // @ts-expect-error combatant._thumb is a thing
+            img = combatant._thumb = img;
+          });
       }
     }
 
     // Actor and Token status effects
     const effects = new Set<string>();
     if (combatant.token) {
-      combatant.token.data.effects.forEach(e => effects.add(e));
-      if (combatant.token.data.overlayEffect) effects.add(combatant.token.data.overlayEffect);
+      combatant.token.data.effects.forEach((e) => effects.add(e));
+      if (combatant.token.data.overlayEffect)
+        effects.add(combatant.token.data.overlayEffect);
     }
     if (combatant.actor) {
-      combatant.actor.temporaryEffects.forEach(e => {
-        if (e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId) defeated = true;
+      combatant.actor.temporaryEffects.forEach((e) => {
+        if (e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId)
+          defeated = true;
         else if (e.data.icon) effects.add(e.data.icon);
       });
     }
@@ -80,7 +88,7 @@ export function getTurns (combat: Combat) {
     turns.push(turn);
   }
   const precision = CONFIG.Combat.initiative.decimals;
-  turns.forEach(t => {
+  turns.forEach((t) => {
     if (t.initiative !== null) {
       // @ts-expect-error it's fine. it's fine. it's fine. it's fine. it's fine.
       t.initiative = t.initiative.toFixed(hasDecimals ? precision : 0);

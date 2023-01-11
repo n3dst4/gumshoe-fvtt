@@ -6,9 +6,9 @@ import { expectAssignable, expectNotAssignable } from "tsd";
 
 type Basic = {
   bar: {
-    corge: string,
-  },
-}
+    corge: string;
+  };
+};
 
 type MyFunction = (foo: number) => number;
 
@@ -34,36 +34,66 @@ expectNotAssignable<RecursivePartialOfMyFunction>(() => null);
 // -----------------------------------------------------------------------------
 // now to try and reverse the spell...
 
-type RecursiveRequiredOfRecursivePartialOfBasic = RecursiveRequired<RecursivePartialOfBasic>;
+type RecursiveRequiredOfRecursivePartialOfBasic =
+  RecursiveRequired<RecursivePartialOfBasic>;
 
-expectAssignable<RecursiveRequiredOfRecursivePartialOfBasic>({ bar: { corge: "" } });
+expectAssignable<RecursiveRequiredOfRecursivePartialOfBasic>({
+  bar: { corge: "" },
+});
 expectNotAssignable<RecursiveRequiredOfRecursivePartialOfBasic>({});
 expectNotAssignable<RecursiveRequiredOfRecursivePartialOfBasic>({ bar: {} });
 expectNotAssignable<RecursiveRequiredOfRecursivePartialOfBasic>({ bar: null });
-expectNotAssignable<RecursiveRequiredOfRecursivePartialOfBasic>({ bar: undefined });
+expectNotAssignable<RecursiveRequiredOfRecursivePartialOfBasic>({
+  bar: undefined,
+});
 
 // -----------------------------------------------------------------------------
 // how about an array?
 
-type RecursiveRequiredOfArrayOfRecursivePartialOfBasic = RecursiveRequired<RecursivePartial<Basic>[]>;
+type RecursiveRequiredOfArrayOfRecursivePartialOfBasic = RecursiveRequired<
+  RecursivePartial<Basic>[]
+>;
 
 expectAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([]);
-expectAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([{ bar: { corge: "" } }]);
-expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([{ bar: { } }]);
-expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([{ bar: null }]);
-expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([{ }]);
-expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>(undefined);
+expectAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([
+  { bar: { corge: "" } },
+]);
+expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([
+  { bar: {} },
+]);
+expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([
+  { bar: null },
+]);
+expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([{}]);
+expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>(
+  undefined,
+);
 expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>(null);
 
 // -----------------------------------------------------------------------------
 // we can go deeper...
 
-type RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic = RecursivePartial<RecursiveRequiredOfRecursivePartialOfBasic>;
+type RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic =
+  RecursivePartial<RecursiveRequiredOfRecursivePartialOfBasic>;
 
-expectAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>({});
-expectAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>({ bar: {} });
-expectAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>({ bar: { corge: "" } });
-expectAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>({ bar: undefined });
-expectNotAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(null);
-expectNotAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(undefined);
-expectNotAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>({ bar: null });
+expectAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
+  {},
+);
+expectAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
+  { bar: {} },
+);
+expectAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
+  { bar: { corge: "" } },
+);
+expectAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
+  { bar: undefined },
+);
+expectNotAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
+  null,
+);
+expectNotAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
+  undefined,
+);
+expectNotAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
+  { bar: null },
+);

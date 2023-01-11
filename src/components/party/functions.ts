@@ -1,6 +1,12 @@
 import { AbilityDataSource, AbilityType } from "../../types";
 import { isAbilityDataSource } from "../../typeAssertions";
-import { abilityRowkey, ActorAbilityInfo, categoryHeaderKey, RowData, typeHeaderKey } from "./types";
+import {
+  abilityRowkey,
+  ActorAbilityInfo,
+  categoryHeaderKey,
+  RowData,
+  typeHeaderKey,
+} from "./types";
 import * as constants from "../../constants";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertGame } from "../../functions";
@@ -15,7 +21,9 @@ export const getSystemAbilities = async (): Promise<AbilityDataSource[]> => {
   const proms = settings.newPCPacks.get().map(async (packId) => {
     assertGame(game);
     // getting pack content is slow
-    const pack = game.packs.find((p) => p.metadata.type === "Item" && p.collection === packId);
+    const pack = game.packs.find(
+      (p) => p.metadata.type === "Item" && p.collection === packId,
+    );
     const content = await pack?.getDocuments();
     const tuples: AbilityDataSource[] = (content || [])
       .filter((x) => isAbilityDataSource(x.data))
@@ -33,13 +41,13 @@ const compareTypes = (a: AbilityType, b: AbilityType) =>
   a === constants.investigativeAbility && b === constants.generalAbility
     ? -1
     : a === constants.generalAbility && b === constants.investigativeAbility
-      ? +1
-      : 0;
+    ? +1
+    : 0;
 
 /**
  * case-insensitive string ordering fn
  */
-const compareStrings = (a = "", b = ""): -1|0|1 => {
+const compareStrings = (a = "", b = ""): -1 | 0 | 1 => {
   const a_ = a.toLowerCase();
   const b_ = b.toLowerCase();
   return a_ < b_ ? -1 : a_ > b_ ? +1 : 0;
@@ -51,7 +59,7 @@ const compareStrings = (a = "", b = ""): -1|0|1 => {
 const compareAbilityDataSources = (
   a: AbilityDataSource,
   b: AbilityDataSource,
-): -1|0|1 => {
+): -1 | 0 | 1 => {
   const typeComparison = compareTypes(a.type, b.type);
   if (typeComparison !== 0) {
     return typeComparison;
@@ -80,7 +88,11 @@ export const buildRowData = (
   let lastCategory: string | null = null;
 
   for (const abilityDataSource of sorted) {
-    const { type: abilityType, name, data: { category } } = abilityDataSource;
+    const {
+      type: abilityType,
+      name,
+      data: { category },
+    } = abilityDataSource;
     // const abilityType = ability.type, category, name]
     if (abilityType !== lastType) {
       result.push({ rowType: typeHeaderKey, abilityType });
@@ -106,7 +118,7 @@ export const buildRowData = (
           actorId: actor.id,
           rating,
         };
-        total += (rating ?? 0);
+        total += rating ?? 0;
       }
     }
 

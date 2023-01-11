@@ -29,11 +29,10 @@ Following is a list of all the abilities given in the [GUMSHOE System Reference 
     Occult Studies
     Pathology
     Poetry
-    Political Science 
+    Political Science
     Research
     Textual Analysis
     Trivia
-
 
 ### Interpersonal
 
@@ -61,7 +60,6 @@ Following is a list of all the abilities given in the [GUMSHOE System Reference 
     Streetwise
     Taunt
     Tradecraft
-
 
 ### Technical
 
@@ -97,7 +95,6 @@ Following is a list of all the abilities given in the [GUMSHOE System Reference 
     Terrain
     Traffic Analysis
 
-
 ### Exotic
 
     Analytic Taste
@@ -105,12 +102,11 @@ Following is a list of all the abilities given in the [GUMSHOE System Reference 
     Paradox Prevention (Technical)
     Timecraft (Academic)
 
-
 ## General
 
 ### Physical
 
-    Artillery 
+    Artillery
     Athletics
     Driving
     Fighting
@@ -122,7 +118,6 @@ Following is a list of all the abilities given in the [GUMSHOE System Reference 
     Scuffling
     Shooting
 
-
 ### Focus
 
     Battlefield
@@ -130,7 +125,7 @@ Following is a list of all the abilities given in the [GUMSHOE System Reference 
     Conceal
     Explosives
     Filch
-    Insurgency 
+    Insurgency
     Mechanics
     Medic / First Aid
     Network
@@ -138,26 +133,24 @@ Following is a list of all the abilities given in the [GUMSHOE System Reference 
     Traps and Bombs
     Unobtrusiveness
 
+### Presence
 
-### Presence 
-
-    Business Affairs 
-    Composure / Stability 
+    Business Affairs
+    Composure / Stability
     Business Affairs
     Disguise
     Gambling
     Hypnosis
-    Morale 
-    Politics 
+    Morale
+    Politics
     Preparedness
     Public Relations
-    Scrounging 
+    Scrounging
     Sense Trouble
     Shrink
     Composure / Stability
 
-
-### Exotic 
+### Exotic
 
     Chronal Stability
     Mutant Power: Blood Spray
@@ -165,7 +158,6 @@ Following is a list of all the abilities given in the [GUMSHOE System Reference 
     Reality Anchor
     Viroware Enhancement: Dominator
 
-* Cherries
-
+- Cherries
 
 [srd]: https://site.pelgranepress.com/index.php/the-gumshoe-system-reference-document/

@@ -19,30 +19,39 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
       },
     });
   }, [ability]);
-  const onChangeDescription = useCallback((index: number, description: string) => {
-    assertAbilityDataSource(ability.data);
-    const unlocks = [...ability.data.data.unlocks];
-    unlocks[index].description = description;
-    ability.update({
-      data: { unlocks },
-    });
-  }, [ability]);
-  const onChangeRating = useCallback((index: number, rating: number) => {
-    assertAbilityDataSource(ability.data);
-    const unlocks = [...ability.data.data.unlocks];
-    unlocks[index].rating = rating;
-    ability.update({
-      data: { unlocks },
-    });
-  }, [ability]);
-  const onDelete = useCallback((index: number) => {
-    assertAbilityDataSource(ability.data);
-    const unlocks = [...ability.data.data.unlocks];
-    unlocks.splice(index, 1);
-    ability.update({
-      data: { unlocks },
-    });
-  }, [ability]);
+  const onChangeDescription = useCallback(
+    (index: number, description: string) => {
+      assertAbilityDataSource(ability.data);
+      const unlocks = [...ability.data.data.unlocks];
+      unlocks[index].description = description;
+      ability.update({
+        data: { unlocks },
+      });
+    },
+    [ability],
+  );
+  const onChangeRating = useCallback(
+    (index: number, rating: number) => {
+      assertAbilityDataSource(ability.data);
+      const unlocks = [...ability.data.data.unlocks];
+      unlocks[index].rating = rating;
+      ability.update({
+        data: { unlocks },
+      });
+    },
+    [ability],
+  );
+  const onDelete = useCallback(
+    (index: number) => {
+      assertAbilityDataSource(ability.data);
+      const unlocks = [...ability.data.data.unlocks];
+      unlocks.splice(index, 1);
+      ability.update({
+        data: { unlocks },
+      });
+    },
+    [ability],
+  );
   return (
     <div
       css={{
@@ -66,10 +75,9 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
         css={{
           margin: 0,
         }}
-    >
-        <i className="fas fa-plus"/> <Translate>Add item</Translate>
+      >
+        <i className="fas fa-plus" /> <Translate>Add item</Translate>
       </button>
-
     </div>
   );
 };

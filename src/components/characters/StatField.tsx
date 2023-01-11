@@ -15,16 +15,19 @@ export const StatField: React.FC<StatFieldProps> = ({
   id,
 }: StatFieldProps) => {
   assertActiveCharacterDataSource(actor.data);
-  const onChange = useCallback((newVal: number) => {
-    assertActiveCharacterDataSource(actor.data);
-    actor.update({ data: { stats: { ...actor.data.data.stats, [id]: newVal } } });
-  }, [actor, id]);
+  const onChange = useCallback(
+    (newVal: number) => {
+      assertActiveCharacterDataSource(actor.data);
+      actor.update({
+        data: { stats: { ...actor.data.data.stats, [id]: newVal } },
+      });
+    },
+    [actor, id],
+  );
 
   return (
     <Fragment>
-      <h3 css={{ gridColumn: "start / end" }}>
-        {stat.name}
-      </h3>
+      <h3 css={{ gridColumn: "start / end" }}>{stat.name}</h3>
       <AsyncNumberInput
         min={stat.min ?? 0}
         max={stat.max}

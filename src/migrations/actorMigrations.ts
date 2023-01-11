@@ -16,9 +16,7 @@ export const moveOldNotesToNewNoteSlots = (data: any, updateData: any) => {
       if (!updateData.data) {
         updateData.data = {};
       }
-      updateData.data.shortNotes = [
-        data.data.drive || "",
-      ];
+      updateData.data.shortNotes = [data.data.drive || ""];
       updateData.data.longNotes = [
         data.data.occupationalBenefits || "",
         data.data.pillarsOfSanity || "",

@@ -36,8 +36,7 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Explosive Devices" },
     { name: "Forensic Anthropology" },
   ],
-  Special: [
-  ],
+  Special: [],
 };
 
 export const generalAbilities: GeneralAbilitiesData = {
@@ -45,7 +44,14 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Athletics", refreshesDaily: true },
     { name: "Business Affairs" },
     { name: "Filch" },
-    { name: "Health", max: 15, min: -12, rating: 1, pool: 1, showTracker: true },
+    {
+      name: "Health",
+      max: 15,
+      min: -12,
+      rating: 1,
+      pool: 1,
+      showTracker: true,
+    },
     { name: "Infiltration" },
     { name: "Medic" },
     { name: "Preparedness" },

@@ -1,18 +1,25 @@
 import { nanoid } from "nanoid";
-import React, { ChangeEvent, Fragment, useCallback, useContext, useMemo, useState } from "react";
+import React, {
+  ChangeEvent,
+  Fragment,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import { ThemeContext } from "../themes/ThemeContext";
 import { Translate } from "./Translate";
 // import React, { useMemo, useState } from "react";
 
 type TabDefinition = {
-  id: string,
-  label: string | JSX.Element,
-  content: JSX.Element,
-}
+  id: string;
+  label: string | JSX.Element;
+  content: JSX.Element;
+};
 
 type TabContainerProps = {
-  tabs: TabDefinition[],
-  defaultTab: string,
+  tabs: TabDefinition[];
+  defaultTab: string;
 };
 
 export const TabContainer: React.FC<TabContainerProps> = ({
@@ -21,7 +28,8 @@ export const TabContainer: React.FC<TabContainerProps> = ({
 }) => {
   const [selected, setSelected] = useState(defaultTab);
   const activeTabDef = useMemo(
-    () => tabs.find((t) => t.id === selected), [selected, tabs],
+    () => tabs.find((t) => t.id === selected),
+    [selected, tabs],
   );
   const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value);
@@ -58,10 +66,11 @@ export const TabContainer: React.FC<TabContainerProps> = ({
             },
           },
         },
-
       }}
     >
-      {["foo", "bar"].map<JSX.Element>((x) => <span key={x}/>)}
+      {["foo", "bar"].map<JSX.Element>((x) => (
+        <span key={x} />
+      ))}
 
       <div className="tab-strip">
         {tabs.map<JSX.Element>(({ id, label }) => {
@@ -86,10 +95,11 @@ export const TabContainer: React.FC<TabContainerProps> = ({
                   justifyContent: "center",
                 }}
               >
-                {typeof label === "string"
-                  ? <Translate>{label}</Translate>
-                  : label
-                }
+                {typeof label === "string" ? (
+                  <Translate>{label}</Translate>
+                ) : (
+                  label
+                )}
               </label>
             </Fragment>
           );

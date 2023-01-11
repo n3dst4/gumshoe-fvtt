@@ -10,8 +10,8 @@ import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { ThemeContext } from "../../../themes/ThemeContext";
 
 type WeaponRowEditProps = {
-  weapon: InvestigatorItem,
-  index: number,
+  weapon: InvestigatorItem;
+  index: number;
 };
 
 export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
@@ -60,7 +60,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
     });
   }, [weapon]);
 
-  const gridRow = ((index) * 3) + 3;
+  const gridRow = index * 3 + 3;
 
   return (
     <Fragment>
@@ -95,7 +95,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         noPlusMinus
         css={{ gridColumn: "base", gridRow }}
       />
-      { weapon.getIsPointBlank() && (
+      {weapon.getIsPointBlank() && (
         <AsyncNumberInput
           value={weapon.getPointBlankDamage()}
           onChange={weapon.setPointBlankDamage}
@@ -103,7 +103,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           css={{ gridColumn: "pb", gridRow }}
         />
       )}
-      { weapon.getIsCloseRange() && (
+      {weapon.getIsCloseRange() && (
         <AsyncNumberInput
           value={weapon.getCloseRangeDamage()}
           onChange={weapon.setCloseRangeDamage}
@@ -111,7 +111,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           css={{ gridColumn: "cr", gridRow }}
         />
       )}
-      { weapon.getIsNearRange() && (
+      {weapon.getIsNearRange() && (
         <AsyncNumberInput
           value={weapon.getNearRangeDamage()}
           onChange={weapon.setNearRangeDamage}
@@ -119,7 +119,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           css={{ gridColumn: "nr", gridRow }}
         />
       )}
-      { weapon.getIsLongRange() && (
+      {weapon.getIsLongRange() && (
         <AsyncNumberInput
           value={weapon.getLongRangeDamage()}
           onChange={weapon.setLongRangeDamage}
@@ -134,12 +134,12 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           gridColumn: weapon.getIsLongRange()
             ? "back"
             : weapon.getIsNearRange()
-              ? "lr"
-              : weapon.getIsCloseRange()
-                ? "nr"
-                : weapon.getIsPointBlank()
-                  ? "cr"
-                  : "pb",
+            ? "lr"
+            : weapon.getIsCloseRange()
+            ? "nr"
+            : weapon.getIsPointBlank()
+            ? "cr"
+            : "pb",
           gridRow,
         }}
       >
@@ -147,16 +147,16 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           css={{ width: "1em", padding: "0.2em 0.1em" }}
           onClick={weaponRangeReduce}
         >
-          <i className="fa fa-chevron-left"/>
+          <i className="fa fa-chevron-left" />
         </button>
-        {weapon.getIsLongRange() ||
+        {weapon.getIsLongRange() || (
           <button
             css={{ width: "1em", padding: "0.2em 0.1em" }}
             onClick={weaponRangeExpand}
           >
-            <i className="fa fa-chevron-right"/>
+            <i className="fa fa-chevron-right" />
           </button>
-        }
+        )}
       </div>
 
       {/* delete */}
@@ -170,7 +170,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         }}
         onClick={onClickDelete}
       >
-        <i className="fa fa-trash"/>
+        <i className="fa fa-trash" />
       </button>
 
       {/* SIDEBAR */}
@@ -194,7 +194,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
             />
           </label>
         </div>
-        {weapon.getUsesAmmo() &&
+        {weapon.getUsesAmmo() && (
           <Fragment>
             Current
             <AsyncNumberInput
@@ -209,7 +209,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
               onChange={weapon.setAmmoMax}
             />
           </Fragment>
-        }
+        )}
       </div>
 
       <CompactNotesEditor

@@ -17,7 +17,7 @@ export class SettingsClassBase extends FormApplication<
   undefined
 > {
   // /** @override */
-  static get defaultOptions () {
+  static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: [systemName, "sheet", "item", "dialog"],
       template: reactTemplatePath,
@@ -29,7 +29,7 @@ export class SettingsClassBase extends FormApplication<
   }
 
   // this is here to satisfy foundry-vtt-types
-  _updateObject (event: Event, formData?: any) {
+  _updateObject(event: Event, formData?: any) {
     return Promise.resolve();
   }
 }
@@ -43,10 +43,7 @@ const render = (sheet: SettingsClassBase) => {
   );
 };
 
-export const SettingsClass = ReactApplicationMixin(
-  SettingsClassBase,
-  render,
-);
+export const SettingsClass = ReactApplicationMixin(SettingsClassBase, render);
 
 export const investigatorSettingsClassInstance = new SettingsClass(
   undefined,

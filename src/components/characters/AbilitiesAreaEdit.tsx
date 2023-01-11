@@ -9,9 +9,9 @@ import { NoAbilitiesNote } from "./NoAbilitiesNote";
 import { useAbilities } from "./useAbilities";
 
 type AbilitiesAreaEditProps = {
-  actor: InvestigatorActor,
-  flipLeftRight?: boolean,
-  showOcc?: boolean,
+  actor: InvestigatorActor;
+  flipLeftRight?: boolean;
+  showOcc?: boolean;
 };
 
 export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
@@ -21,9 +21,12 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
 }) => {
   assertActiveCharacterDataSource(actor.data);
   const theme = useContext(ThemeContext);
-  const { investigativeAbilities, generalAbilities } = useAbilities(actor, false);
+  const { investigativeAbilities, generalAbilities } = useAbilities(
+    actor,
+    false,
+  );
   const hideInv = settings.useMwStyleAbilities.get();
-  const showOcc = showOccProp && (!hideInv);
+  const showOcc = showOccProp && !hideInv;
 
   return (
     <Fragment>
@@ -31,13 +34,14 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
         css={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gridTemplateAreas: flipLeftRight || hideInv
-            ? "'general investigative'"
-            : "'investigative general'",
+          gridTemplateAreas:
+            flipLeftRight || hideInv
+              ? "'general investigative'"
+              : "'investigative general'",
           columnGap: "1em",
         }}
       >
-        {!hideInv &&
+        {!hideInv && (
           <div
             css={{
               gridArea: "investigative",
@@ -76,24 +80,25 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
                 Rating
               </i>
             )}
-            {Object.keys(investigativeAbilities)
-              .map<JSX.Element>((cat) => (
-                <Fragment key={cat}>
-                  <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
-                  {sortEntitiesByName(
-                    investigativeAbilities[cat],
-                  ).map<JSX.Element>((ability) => (
-                    <AbilitySlugEdit
-                      key={ability.id}
-                      ability={ability}
-                      showOcc={showOcc}
-                    />
-                  ))}
-                  {investigativeAbilities[cat].length === 0 && <NoAbilitiesNote />}
-                </Fragment>
-              ))}
+            {Object.keys(investigativeAbilities).map<JSX.Element>((cat) => (
+              <Fragment key={cat}>
+                <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
+                {sortEntitiesByName(
+                  investigativeAbilities[cat],
+                ).map<JSX.Element>((ability) => (
+                  <AbilitySlugEdit
+                    key={ability.id}
+                    ability={ability}
+                    showOcc={showOcc}
+                  />
+                ))}
+                {investigativeAbilities[cat].length === 0 && (
+                  <NoAbilitiesNote />
+                )}
+              </Fragment>
+            ))}
           </div>
-        }
+        )}
 
         <div
           css={{
@@ -133,22 +138,21 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
               Rating
             </i>
           )}
-          {Object.keys(generalAbilities)
-            .map<JSX.Element>((cat) => (
-              <Fragment key={cat}>
-                <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
-                {sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>(
-                  (ability) => (
-                    <AbilitySlugEdit
-                      key={ability.id}
-                      ability={ability}
-                      showOcc={showOcc}
-                    />
-                  ),
-                )}
-                {generalAbilities[cat].length === 0 && <NoAbilitiesNote />}
-              </Fragment>
-            ))}
+          {Object.keys(generalAbilities).map<JSX.Element>((cat) => (
+            <Fragment key={cat}>
+              <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
+              {sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>(
+                (ability) => (
+                  <AbilitySlugEdit
+                    key={ability.id}
+                    ability={ability}
+                    showOcc={showOcc}
+                  />
+                ),
+              )}
+              {generalAbilities[cat].length === 0 && <NoAbilitiesNote />}
+            </Fragment>
+          ))}
         </div>
       </div>
     </Fragment>

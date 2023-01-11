@@ -1,7 +1,9 @@
 import { TokenData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import * as constants from "./constants";
-export type AbilityType = typeof constants.investigativeAbility | typeof constants.generalAbility;
+export type AbilityType =
+  | typeof constants.investigativeAbility
+  | typeof constants.generalAbility;
 
 export interface SocketHookAction<T> {
   hook: string;
@@ -12,24 +14,22 @@ export interface RequestTurnPassArgs {
   combatantId: string;
 }
 
-export type MWDifficulty =
-  | "easy"
-  | number;
+export type MWDifficulty = "easy" | number;
 
 export type Resource = {
-  min?: number,
-  max: number,
-  value: number,
-}
+  min?: number;
+  max: number;
+  value: number;
+};
 
 // utility
 export type DataSource<TType extends string, TData> = {
-  type: TType,
-  name: string,
-  data: TData,
-  img: string,
-  token: TokenData,
-  _id: string,
+  type: TType;
+  name: string;
+  data: TData;
+  img: string;
+  token: TokenData;
+  _id: string;
 };
 
 // NOTES
@@ -73,15 +73,15 @@ interface PCDataSourceData {
   hiddenShortNotes: string[];
   initiativeAbility: string;
   hideZeroRated: boolean;
-  sheetTheme: string|null;
+  sheetTheme: string | null;
   /** deprecated */
   hitThreshold: number;
   mwInjuryStatus: MwInjuryStatus;
   resources: {
-    health: Resource,
-    sanity: Resource,
-    stability: Resource,
-    magic: Resource,
+    health: Resource;
+    sanity: Resource;
+    stability: Resource;
+    magic: Resource;
   };
   stats: Record<string, number>;
   initiativePassingTurns: number;
@@ -91,7 +91,7 @@ interface NPCDataSourceData {
   notes: NoteWithFormat;
   initiativeAbility: string;
   hideZeroRated: boolean;
-  sheetTheme: string|null;
+  sheetTheme: string | null;
   /** deprecated */
   hitThreshold: number;
   /** deprecated */
@@ -104,10 +104,10 @@ interface NPCDataSourceData {
   stabilityLoss: number;
   mwInjuryStatus: MwInjuryStatus;
   resources: {
-    health: Resource,
-    sanity: Resource,
-    stability: Resource,
-    magic: Resource,
+    health: Resource;
+    sanity: Resource;
+    stability: Resource;
+    magic: Resource;
   };
   stats: Record<string, number>;
   combatBonus: number;
@@ -123,16 +123,17 @@ interface PartyDataSourceData {
 
 export type PCDataSource = DataSource<typeof constants.pc, PCDataSourceData>;
 export type NPCDataSource = DataSource<typeof constants.npc, NPCDataSourceData>;
-export type PartyDataSource = DataSource<typeof constants.party, PartyDataSourceData>;
+export type PartyDataSource = DataSource<
+  typeof constants.party,
+  PartyDataSourceData
+>;
 
 export type InvestigatorActorDataSource =
   | PCDataSource
   | NPCDataSource
-  | PartyDataSource
+  | PartyDataSource;
 
-export type ActiveCharacterDataSource =
-  | PCDataSource
-  | NPCDataSource
+export type ActiveCharacterDataSource = PCDataSource | NPCDataSource;
 
 declare global {
   interface SourceConfig {
@@ -159,7 +160,7 @@ interface BaseEquipmentDataSourceData {
  */
 interface EquipmentDataSourceData extends BaseEquipmentDataSourceData {
   category: string;
-  fields: Record<string, string|number|boolean>;
+  fields: Record<string, string | number | boolean>;
 }
 
 /** data.data for weapons */
@@ -177,9 +178,9 @@ interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
   usesAmmo: boolean;
   ammoPerShot: number;
   ammo: {
-    min: number,
-    max: number,
-    value: number,
+    min: number;
+    max: number;
+    value: number;
   };
 }
 
@@ -211,13 +212,14 @@ export interface BaseAbilityDataSourceData {
 
 /** data.data for investigative abilities */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface InvestigativeAbilityDataSourceData extends BaseAbilityDataSourceData {
-}
+export interface InvestigativeAbilityDataSourceData
+  extends BaseAbilityDataSourceData {}
 
-export type MwRefreshGroup = 2|4|8;
+export type MwRefreshGroup = 2 | 4 | 8;
 
 /** data.data for general abilities */
-export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData {
+export interface GeneralAbilityDataSourceData
+  extends BaseAbilityDataSourceData {
   canBeInvestigative: boolean;
   goesFirstInCombat: boolean;
   // MW-specific fields
@@ -228,7 +230,16 @@ export interface GeneralAbilityDataSourceData extends BaseAbilityDataSourceData 
   damageBonus: number;
 }
 
-export type MwType = "tweak"|"spell"|"cantrap"|"enchantedItem"|"meleeWeapon"|"missileWeapon"|"manse"|"sandestin"|"retainer";
+export type MwType =
+  | "tweak"
+  | "spell"
+  | "cantrap"
+  | "enchantedItem"
+  | "meleeWeapon"
+  | "missileWeapon"
+  | "manse"
+  | "sandestin"
+  | "retainer";
 export type RangeTuple = [number, number, number, number];
 
 /** data.data for Moribund World stuff */
@@ -240,19 +251,34 @@ export interface MwItemDataSourceData {
 }
 
 /** data for equipment */
-export type EquipmentDataSource = DataSource<typeof constants.equipment, EquipmentDataSourceData>;
+export type EquipmentDataSource = DataSource<
+  typeof constants.equipment,
+  EquipmentDataSourceData
+>;
 
 /** data for weapons */
-export type WeaponDataSource = DataSource<typeof constants.weapon, WeaponDataSourceData>;
+export type WeaponDataSource = DataSource<
+  typeof constants.weapon,
+  WeaponDataSourceData
+>;
 
 /** data for general abilities */
-export type GeneralAbilityDataSource = DataSource<typeof constants.generalAbility, GeneralAbilityDataSourceData>;
+export type GeneralAbilityDataSource = DataSource<
+  typeof constants.generalAbility,
+  GeneralAbilityDataSourceData
+>;
 
 /** data for investigative abilities */
-export type InvestigativeAbilityDataSource = DataSource<typeof constants.investigativeAbility, InvestigativeAbilityDataSourceData>;
+export type InvestigativeAbilityDataSource = DataSource<
+  typeof constants.investigativeAbility,
+  InvestigativeAbilityDataSourceData
+>;
 
 /** data for Moribund World stuff */
-export type MwItemDataSource = DataSource<typeof constants.mwItem, MwItemDataSourceData>;
+export type MwItemDataSource = DataSource<
+  typeof constants.mwItem,
+  MwItemDataSourceData
+>;
 
 /** data for weapon OR equipment (rn this basically means "notes") */
 export type WeaponOrEquipmentDataSource =
@@ -325,15 +351,15 @@ export type PickByType<T, P> = Omit<
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type RecursivePartial<T> = T extends Function
   ? T
-  :{
-    [P in keyof T]?: RecursivePartial<T[P]>;
-  };
+  : {
+      [P in keyof T]?: RecursivePartial<T[P]>;
+    };
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type RecursiveRequired<T> = T extends Function
   ? T
   : {
-    [P in keyof T]-?: RecursiveRequired<T[P]>;
-  };
+      [P in keyof T]-?: RecursiveRequired<T[P]>;
+    };
 
 export type EquipmentFieldType = Pick<EquipmentFieldMetadata, "type">["type"];

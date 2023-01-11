@@ -9,8 +9,8 @@ import { EquipmentMain } from "./EquipmentMain";
 import { EquipmentConfig } from "./EquipmentConfig";
 
 type EquipmentSheetProps = {
-  equipment: InvestigatorItem,
-  application: ItemSheet,
+  equipment: InvestigatorItem;
+  application: ItemSheet;
 };
 
 export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
@@ -85,17 +85,15 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
           position: "relative",
         }}
       >
-        {configMode
-          ? (
+        {configMode ? (
           <EquipmentConfig equipment={equipment} />
-            )
-          : (
+        ) : (
           <EquipmentMain
             equipment={equipment}
             name={name.display}
             onChangeName={name.onChange}
           />
-            )}
+        )}
       </div>
     </div>
   );

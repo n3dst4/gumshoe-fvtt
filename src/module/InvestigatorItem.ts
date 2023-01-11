@@ -31,10 +31,12 @@ export class InvestigatorItem extends Item {
    * classic gumshoe test: spend a number of points from the pool, and add that
    * to a d6
    */
-  async testAbility (spend: number) {
+  async testAbility(spend: number) {
     assertGame(game);
     assertAbilityDataSource(this.data);
-    if (this.actor === null) { return; }
+    if (this.actor === null) {
+      return;
+    }
     const useBoost = settings.useBoost.get();
     const isBoosted = useBoost && this.getBoost();
     const boost = isBoosted ? 1 : 0;
@@ -62,9 +64,11 @@ export class InvestigatorItem extends Item {
    * gumshoe spend - no dice, just spend a number of points in exchange for some
    * goodies
    */
-  async spendAbility (spend: number) {
+  async spendAbility(spend: number) {
     assertAbilityDataSource(this.data);
-    if (this.actor === null) { return; }
+    if (this.actor === null) {
+      return;
+    }
     const roll = new Roll("@spend", { spend });
     await roll.evaluate({ async: true });
     roll.toMessage({
@@ -87,19 +91,32 @@ export class InvestigatorItem extends Item {
    * DERPG/"Moribund World" style roll - d6 +/- a difficulty modifier, with an
    * additional boon or levy on the pool. can be re-rolled for one extra point.
    */
-  async mwTestAbility (difficulty: MWDifficulty, boonLevy: number, reRoll: number | null = null) {
+  async mwTestAbility(
+    difficulty: MWDifficulty,
+    boonLevy: number,
+    reRoll: number | null = null,
+  ) {
     assertGame(game);
     assertAbilityDataSource(this.data);
-    if (this.actor === null) { return; }
-    const diffMod = (difficulty === "easy") ? 0 : difficulty;
+    if (this.actor === null) {
+      return;
+    }
+    const diffMod = difficulty === "easy" ? 0 : difficulty;
     const operator = diffMod < 0 ? "-" : "+";
-    const roll = diffMod === 0
-      ? new Roll("1d6")
-      : new Roll(`1d6 ${operator} @diffMod`, { diffMod: Math.abs(diffMod) });
+    const roll =
+      diffMod === 0
+        ? new Roll("1d6")
+        : new Roll(`1d6 ${operator} @diffMod`, { diffMod: Math.abs(diffMod) });
     await roll.evaluate({ async: true });
     const cost = (reRoll === 1 ? 4 : reRoll === null ? 0 : 1) - boonLevy;
     if (cost > this.data.data.pool) {
-      ui.notifications?.error(`Attempted to ${reRoll ? `re-roll a ${reRoll} with` : "roll"} ${this.data.name} with a levy of ${boonLevy} but pool is currently at ${this.data.data.pool}`);
+      ui.notifications?.error(
+        `Attempted to ${reRoll ? `re-roll a ${reRoll} with` : "roll"} ${
+          this.data.name
+        } with a levy of ${boonLevy} but pool is currently at ${
+          this.data.data.pool
+        }`,
+      );
       return;
     }
     const newPool = Math.max(0, this.data.data.pool - cost);
@@ -121,7 +138,7 @@ export class InvestigatorItem extends Item {
     this.update({ data: { pool: newPool } });
   }
 
-  mWNegateIllustrious () {
+  mWNegateIllustrious() {
     assertAbilityDataSource(this.data);
     const newPool = Math.max(0, this.data.data.pool - constants.mwNegateCost);
     ChatMessage.create({
@@ -138,7 +155,7 @@ export class InvestigatorItem extends Item {
     this.update({ data: { pool: newPool } });
   }
 
-  async mWWallop () {
+  async mWWallop() {
     assertAbilityDataSource(this.data);
     const newPool = Math.max(0, this.data.data.pool - constants.mwWallopCost);
     ChatMessage.create({
@@ -158,7 +175,7 @@ export class InvestigatorItem extends Item {
   /**
    * reset the pool to the rating
    */
-  refreshPool () {
+  refreshPool() {
     assertAbilityDataSource(this.data);
     this.update({
       data: {
@@ -181,17 +198,19 @@ export class InvestigatorItem extends Item {
 
   setCategory = (category: string) => {
     assertEquipmentOrAbilityDataSource(this.data);
-    const updateData: Pick<EquipmentDataSource["data"], "category"|"fields"> = { category, fields: {} };
+    const updateData: Pick<EquipmentDataSource["data"], "category" | "fields"> =
+      { category, fields: {} };
     if (isEquipmentDataSource(this.data)) {
       const fields = settings.equipmentCategories.get()[category]?.fields ?? {};
       for (const field in fields) {
-        updateData.fields[field] = this.data.data.fields[field] ?? fields[field].default;
+        updateData.fields[field] =
+          this.data.data.fields[field] ?? fields[field].default;
       }
     }
     this.update({ data: updateData });
   };
 
-  setField = (field: string, value: string|number|boolean) => {
+  setField = (field: string, value: string | number | boolean) => {
     assertEquipmentDataSource(this.data);
     this.update({ data: { fields: { [field]: value } } });
   };
@@ -406,16 +425,18 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  getTheme (): ThemeV1 {
+  getTheme(): ThemeV1 {
     const themeName = this.getThemeName();
     const theme = runtimeConfig.themes[themeName];
     return theme;
   }
 
-  getThemeName (): string {
+  getThemeName(): string {
     const systemThemeName = settings.defaultThemeName.get();
     if (this.isOwned) {
-      return (this.actor as InvestigatorActor).getSheetThemeName() || systemThemeName;
+      return (
+        (this.actor as InvestigatorActor).getSheetThemeName() || systemThemeName
+      );
     } else {
       return systemThemeName;
     }
@@ -607,7 +628,7 @@ export class InvestigatorItem extends Item {
     return this.data.data.ranges;
   };
 
-  getRange = (range: 0|1|2|3) => {
+  getRange = (range: 0 | 1 | 2 | 3) => {
     assertMwItemDataSource(this.data);
     return this.data.data.ranges[range];
   };
@@ -617,7 +638,7 @@ export class InvestigatorItem extends Item {
     this.update({ data: { ranges } });
   };
 
-  setRange = (range: 0|1|2|3) => (value: number) => {
+  setRange = (range: 0 | 1 | 2 | 3) => (value: number) => {
     assertMwItemDataSource(this.data);
     const ranges = [...this.data.data.ranges] as RangeTuple;
     ranges[range] = value;
@@ -636,12 +657,10 @@ export class InvestigatorItem extends Item {
 
   getActiveUnlocks = () => {
     assertAbilityDataSource(this.data);
-    return this.data.data.unlocks.filter(
-      ({ rating: targetRating }) => {
-        assertAbilityDataSource(this.data);
-        return (this.data.data.rating >= targetRating);
-      },
-    );
+    return this.data.data.unlocks.filter(({ rating: targetRating }) => {
+      assertAbilityDataSource(this.data);
+      return this.data.data.rating >= targetRating;
+    });
   };
 
   setCombatBonus = async (combatBonus: number) => {

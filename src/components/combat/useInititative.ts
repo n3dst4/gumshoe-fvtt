@@ -55,12 +55,9 @@ export const useInititative = (
     combatantStash.current?.removePassingTurn();
   }, [combatantStash]);
 
-  const openSheet = useCallback(
-    () => {
-      combatantStash.current?.token?.actor?.sheet?.render(true);
-    },
-    [combatantStash],
-  );
+  const openSheet = useCallback(() => {
+    combatantStash.current?.token?.actor?.sheet?.render(true);
+  }, [combatantStash]);
 
   return {
     onDoInitiative,

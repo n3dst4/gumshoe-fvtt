@@ -3,7 +3,7 @@ import { ThemeContext } from "../../themes/ThemeContext";
 import { GridField } from "../inputs/GridField";
 
 type SettingsGridFieldProps = ComponentProps<typeof GridField> & {
-  index?: number,
+  index?: number;
 };
 
 export const SettingsGridField: React.FC<SettingsGridFieldProps> = ({
@@ -19,7 +19,6 @@ export const SettingsGridField: React.FC<SettingsGridFieldProps> = ({
         padding: "0.5em",
         background: tint ? theme.colors.backgroundSecondary : "none",
       }}
-
     />
   );
 };

@@ -11,11 +11,14 @@ import { useRefStash } from "./useRefStash";
  *
  * They actually recommend using `dispatch` instead of passing callbacks around.
  */
-export function useStateWithGetter<T> (initial: T) {
+export function useStateWithGetter<T>(initial: T) {
   const [value, setValue] = useState(initial);
   const ref = useRefStash(value);
-  const getValue = useCallback(function () {
-    return ref.current;
-  }, [ref]);
+  const getValue = useCallback(
+    function () {
+      return ref.current;
+    },
+    [ref],
+  );
   return [getValue, setValue, value] as const; // as const makes it a tuple
 }

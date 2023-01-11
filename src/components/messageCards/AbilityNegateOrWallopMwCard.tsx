@@ -36,17 +36,15 @@ export const AbilityNegateOrWallopMwCard: React.FC<AbilityNegateOrWallopMwCardPr
     }, [ability?.sheet]);
 
     const costFactor =
-      mode === constants.htmlDataModeMwNegate
-        ? (
+      mode === constants.htmlDataModeMwNegate ? (
         <span>
           <Translate>Negate</Translate>: -{constants.mwNegateCost}
         </span>
-          )
-        : (
+      ) : (
         <span>
           <Translate>Wallop</Translate>: -{constants.mwWallopCost}
         </span>
-          );
+      );
 
     return (
       <div

@@ -3,21 +3,17 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { PoolTracker } from "../abilities/PoolTracker";
 
 type TrackersAreaProps = {
-  actor: InvestigatorActor,
+  actor: InvestigatorActor;
 };
 
-export const TrackersArea: React.FC<TrackersAreaProps> = ({
-  actor,
-}) => {
+export const TrackersArea: React.FC<TrackersAreaProps> = ({ actor }) => {
   const abs = actor.getTrackerAbilities();
 
   return (
     <Fragment>
-      {
-        abs.map<JSX.Element>((ability, i) => (
-          <PoolTracker key={`${ability.name}-- ${i}`} ability={ability} />
-        ))
-      }
+      {abs.map<JSX.Element>((ability, i) => (
+        <PoolTracker key={`${ability.name}-- ${i}`} ability={ability} />
+      ))}
     </Fragment>
   );
 };

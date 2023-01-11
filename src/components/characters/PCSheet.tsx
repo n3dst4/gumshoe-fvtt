@@ -25,22 +25,25 @@ import { settings } from "../../settings";
 import { StatField } from "./StatField";
 
 export const PCSheet: React.FC<{
-  actor: InvestigatorActor,
-  foundryApplication: ActorSheet,
-}> = ({
-  actor,
-  foundryApplication,
-}) => {
+  actor: InvestigatorActor;
+  foundryApplication: ActorSheet;
+}> = ({ actor, foundryApplication }) => {
   assertGame(game);
   assertPCDataSource(actor.data);
 
-  const updateShortNote = useCallback((value, index) => {
-    actor.setShortNote(index, value);
-  }, [actor]);
+  const updateShortNote = useCallback(
+    (value, index) => {
+      actor.setShortNote(index, value);
+    },
+    [actor],
+  );
 
-  const updateMwHiddenShortNote = useCallback((value, index) => {
-    actor.setMwHiddenShortNote(index, value);
-  }, [actor]);
+  const updateMwHiddenShortNote = useCallback(
+    (value, index) => {
+      actor.setMwHiddenShortNote(index, value);
+    },
+    [actor],
+  );
 
   const theme = actor.getSheetTheme();
   const shortNotesNames = settings.shortNotes.get();
@@ -63,9 +66,9 @@ export const PCSheet: React.FC<{
         gridTemplateColumns: "10em 1fr 10em",
         gap: "0.5em",
         gridTemplateAreas:
-          "\"title title image\" " +
-          "\"pools stats image\" " +
-          "\"pools body  body\" ",
+          '"title title image" ' +
+          '"pools stats image" ' +
+          '"pools body  body" ',
       }}
     >
       <div
@@ -102,11 +105,8 @@ export const PCSheet: React.FC<{
         }}
       >
         <InputGrid>
-        <GridField label="Name">
-            <AsyncTextInput
-              value={actor.data.name}
-              onChange={actor.setName}
-            />
+          <GridField label="Name">
+            <AsyncTextInput value={actor.data.name} onChange={actor.setName} />
           </GridField>
           <GridField noTranslate label={occupationLabel}>
             <AsyncTextInput
@@ -114,28 +114,33 @@ export const PCSheet: React.FC<{
               onChange={actor.setOccupation}
             />
           </GridField>
-          {
-            shortNotesNames.map((name: string, i: number) => (
+          {shortNotesNames.map((name: string, i: number) => (
+            <GridField noTranslate key={`${name}--${i}`} label={name}>
+              <AsyncTextInput
+                value={
+                  isPCDataSource(actor.data)
+                    ? actor.data.data.shortNotes[i]
+                    : ""
+                }
+                onChange={updateShortNote}
+                index={i}
+              />
+            </GridField>
+          ))}
+          {game.user?.isGM &&
+            shortHiddenNotesNames.map((name: string, i: number) => (
               <GridField noTranslate key={`${name}--${i}`} label={name}>
                 <AsyncTextInput
-                  value={isPCDataSource(actor.data) ? actor.data.data.shortNotes[i] : ""}
-                  onChange={updateShortNote}
-                  index={i}
-                />
-              </GridField>
-            ))
-          }
-          {
-            game.user?.isGM && shortHiddenNotesNames.map((name: string, i: number) => (
-              <GridField noTranslate key={`${name}--${i}`} label={name}>
-                <AsyncTextInput
-                  value={isPCDataSource(actor.data) ? actor.data.data.hiddenShortNotes[i] : ""}
+                  value={
+                    isPCDataSource(actor.data)
+                      ? actor.data.data.hiddenShortNotes[i]
+                      : ""
+                  }
                   onChange={updateMwHiddenShortNote}
                   index={i}
                 />
               </GridField>
-            ))
-          }
+            ))}
         </InputGrid>
       </div>
 
@@ -149,59 +154,59 @@ export const PCSheet: React.FC<{
           padding: "0.5em",
           ...theme.panelStylePrimary,
         }}
-        >
-          {settings.useMwStyleAbilities.get() &&
-            <Fragment>
+      >
+        {settings.useMwStyleAbilities.get() && (
+          <Fragment>
             <button onClick={actor.confirmMw2Refresh}>
               <Translate>2h Refresh</Translate>
             </button>
-            <hr/>
+            <hr />
             <button onClick={actor.confirmMw4Refresh}>
               <Translate>4h Refresh</Translate>
             </button>
-            <hr/>
+            <hr />
             <button onClick={actor.confirmMw8Refresh}>
               <Translate>8h Refresh</Translate>
             </button>
-            <hr/>
-            </Fragment>
-          }
-          <button onClick={actor.confirmRefresh}>
-            <Translate>Full Refresh</Translate>
-          </button>
-          <hr/>
-          {settings.useMwStyleAbilities.get() ||
-            <Fragment>
-              <button onClick={actor.confirm24hRefresh}>
-                <Translate>24h Refresh</Translate>
-              </button>
-              <hr/>
-            </Fragment>
-          }
-          {settings.useMwInjuryStatus.get() &&
-            <Fragment>
-              <MwInjuryStatusWidget
-                status={actor.getMwInjuryStatus()}
-                setStatus={actor.setMwInjuryStatus}
-              />
-              <hr/>
-            </Fragment>
-          }
-          <TrackersArea actor={actor} />
-          <hr/>
-          {
-            Object.keys(stats).map<ReactNode>((key) => {
-              return (<StatField key={key} id={key} actor={actor} stat={stats[key]} />);
-            })
-          }
-          <hr/>
-          <h3 css={{ gridColumn: "start / end" }}>
-            <Translate>Combat Order</Translate>
-          </h3>
-          <CombatAbilityDropDown
-            value={actor.getInitiativeAbility()}
-            onChange={actor.setInitiativeAbility}
-          />
+            <hr />
+          </Fragment>
+        )}
+        <button onClick={actor.confirmRefresh}>
+          <Translate>Full Refresh</Translate>
+        </button>
+        <hr />
+        {settings.useMwStyleAbilities.get() || (
+          <Fragment>
+            <button onClick={actor.confirm24hRefresh}>
+              <Translate>24h Refresh</Translate>
+            </button>
+            <hr />
+          </Fragment>
+        )}
+        {settings.useMwInjuryStatus.get() && (
+          <Fragment>
+            <MwInjuryStatusWidget
+              status={actor.getMwInjuryStatus()}
+              setStatus={actor.setMwInjuryStatus}
+            />
+            <hr />
+          </Fragment>
+        )}
+        <TrackersArea actor={actor} />
+        <hr />
+        {Object.keys(stats).map<ReactNode>((key) => {
+          return (
+            <StatField key={key} id={key} actor={actor} stat={stats[key]} />
+          );
+        })}
+        <hr />
+        <h3 css={{ gridColumn: "start / end" }}>
+          <Translate>Combat Order</Translate>
+        </h3>
+        <CombatAbilityDropDown
+          value={actor.getInitiativeAbility()}
+          onChange={actor.setInitiativeAbility}
+        />
       </div>
 
       <div
@@ -217,15 +222,17 @@ export const PCSheet: React.FC<{
             {
               id: "abilities",
               label: "Abilities",
-              content: settings.useMwStyleAbilities.get() ? <AbilitiesAreaMW actor={actor}/> : <AbilitiesAreaPlay actor={actor}/>,
+              content: settings.useMwStyleAbilities.get() ? (
+                <AbilitiesAreaMW actor={actor} />
+              ) : (
+                <AbilitiesAreaPlay actor={actor} />
+              ),
             },
             settings.mwUseAlternativeItemTypes.get()
               ? {
                   id: "items",
                   label: "MWItems",
-                  content: (
-                    <MwItemArea actor={actor} />
-                  ),
+                  content: <MwItemArea actor={actor} />,
                 }
               : {
                   id: "equipment",
@@ -233,7 +240,7 @@ export const PCSheet: React.FC<{
                   content: (
                     <Fragment>
                       <WeaponsArea actor={actor} />
-                      <div css={{ height: "1em" }}/>
+                      <div css={{ height: "1em" }} />
                       <EquipmentArea actor={actor} />
                     </Fragment>
                   ),
@@ -241,21 +248,17 @@ export const PCSheet: React.FC<{
             {
               id: "notes",
               label: "Notes",
-              content: (
-                <NotesArea actor={actor} />
-              ),
+              content: <NotesArea actor={actor} />,
             },
             {
               id: "abilities-edit",
               label: "Edit",
-              content: <AbilitiesAreaEdit actor={actor}/>,
+              content: <AbilitiesAreaEdit actor={actor} />,
             },
             {
               id: "settings",
               label: <i className="fa fa-cog" />,
-              content: (
-                <SettingArea actor={actor} />
-              ),
+              content: <SettingArea actor={actor} />,
             },
           ]}
         />

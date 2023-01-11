@@ -3,10 +3,15 @@ import { nanoid } from "nanoid";
 import { ThemeContext } from "../../themes/ThemeContext";
 
 type CheckButtonsProps = {
-  options: Array<{label: string, value: number, enabled: boolean, hover?: string}>,
-  selected: number,
-  size?: number,
-  onChange: (newValue: number) => void,
+  options: Array<{
+    label: string;
+    value: number;
+    enabled: boolean;
+    hover?: string;
+  }>;
+  selected: number;
+  size?: number;
+  onChange: (newValue: number) => void;
 };
 
 export const CheckButtons: React.FC<CheckButtonsProps> = ({
@@ -16,10 +21,13 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
   onChange: onChangeOrig,
 }) => {
   const theme = useContext(ThemeContext);
-  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = Number(e.currentTarget.value);
-    onChangeOrig(newValue);
-  }, [onChangeOrig]);
+  const onChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = Number(e.currentTarget.value);
+      onChangeOrig(newValue);
+    },
+    [onChangeOrig],
+  );
 
   const radioGroup = useMemo(() => nanoid(), []);
 
@@ -61,27 +69,25 @@ export const CheckButtons: React.FC<CheckButtonsProps> = ({
         },
       }}
     >
-      {
-        options.map<JSX.Element>(({ label, value, enabled, hover }) => {
-          const id = nanoid();
-          return (
-            <Fragment key={value}>
-              <input
-                name={radioGroup}
-                id={id}
-                type="radio"
-                value={value}
-                checked={value === selected}
-                onChange={onChange}
-                disabled={!enabled}//
-              />
-              <label htmlFor={id} tabIndex={0} title={hover}>
-                {label}
-              </label>
-            </Fragment>
-          );
-        })
-      }
+      {options.map<JSX.Element>(({ label, value, enabled, hover }) => {
+        const id = nanoid();
+        return (
+          <Fragment key={value}>
+            <input
+              name={radioGroup}
+              id={id}
+              type="radio"
+              value={value}
+              checked={value === selected}
+              onChange={onChange}
+              disabled={!enabled} //
+            />
+            <label htmlFor={id} tabIndex={0} title={hover}>
+              {label}
+            </label>
+          </Fragment>
+        );
+      })}
     </div>
   );
 };

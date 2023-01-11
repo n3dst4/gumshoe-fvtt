@@ -21,8 +21,8 @@ import { nanoid } from "nanoid";
  * `payload` property, but the payload may be `undefined`.
  */
 type AnyAction = {
-  type: string,
-  payload?: unknown,
+  type: string;
+  payload?: unknown;
 };
 
 /**
@@ -36,12 +36,12 @@ type AnyAction = {
  *  * an `apply` function, which take a state and an action and applies the
  *    relevant reducer if the action matches the case
  */
-function createCase<S, P = void> (
+function createCase<S, P = void>(
   type: string,
   reducer: (draft: S, payload: P) => void,
 ) {
   const create = (payload: P) => ({ type, payload });
-  const match = (action: AnyAction): action is { type: string, payload: P } =>
+  const match = (action: AnyAction): action is { type: string; payload: P } =>
     action.type === type;
   const apply = (state: S, action: AnyAction) => {
     if (match(action)) {
@@ -131,7 +131,7 @@ const createSlice =
     };
   };
 
-function assertNumericFieldOkayness (
+function assertNumericFieldOkayness(
   field: EquipmentFieldMetadata | undefined,
   id: string,
   value: unknown | undefined,
@@ -170,13 +170,13 @@ export const slice = createSlice<State>()({
   },
   renameCategory: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { id: string, newName: string },
+    payload: { id: string; newName: string },
   ) => {
     cats[payload.id].name = payload.newName;
   },
   changeCategoryId: (
     { settings }: State,
-    payload: { oldId: string, newId: string },
+    payload: { oldId: string; newId: string },
   ) => {
     const newCats: typeof settings.equipmentCategories = {};
     if (settings.equipmentCategories[payload.newId]) {
@@ -214,13 +214,13 @@ export const slice = createSlice<State>()({
   },
   deleteField: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryId: string, fieldId: string },
+    payload: { categoryId: string; fieldId: string },
   ) => {
     delete cats[payload.categoryId].fields[payload.fieldId];
   },
   renameField: (
     { settings }: State,
-    payload: { categoryId: string, fieldId: string, newName: string },
+    payload: { categoryId: string; fieldId: string; newName: string },
   ) => {
     settings.equipmentCategories[payload.categoryId].fields[
       payload.fieldId
@@ -228,7 +228,7 @@ export const slice = createSlice<State>()({
   },
   changeFieldId: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryId: string, fieldId: string, newFieldId: string },
+    payload: { categoryId: string; fieldId: string; newFieldId: string },
   ) => {
     const newFields: Record<string, EquipmentFieldMetadata> = {};
     if (cats[payload.categoryId].fields[payload.newFieldId]) {
@@ -249,9 +249,9 @@ export const slice = createSlice<State>()({
   setFieldType: (
     { settings: { equipmentCategories: cats } }: State,
     payload: {
-      categoryId: string,
-      fieldId: string,
-      newType: EquipmentFieldType,
+      categoryId: string;
+      fieldId: string;
+      newType: EquipmentFieldType;
     },
   ) => {
     const field = cats[payload.categoryId].fields[payload.fieldId];
@@ -267,9 +267,9 @@ export const slice = createSlice<State>()({
   setFieldDefault: (
     { settings: { equipmentCategories: cats } }: State,
     payload: {
-      categoryId: string,
-      fieldId: string,
-      newDefault: string | number | boolean,
+      categoryId: string;
+      fieldId: string;
+      newDefault: string | number | boolean;
     },
   ) => {
     const field = cats[payload.categoryId].fields[payload.fieldId];
@@ -286,7 +286,11 @@ export const slice = createSlice<State>()({
   },
   setFieldMin: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryId: string, fieldId: string, newMin: number | undefined },
+    payload: {
+      categoryId: string;
+      fieldId: string;
+      newMin: number | undefined;
+    },
   ) => {
     const field = cats[payload.categoryId].fields[payload.fieldId];
     assertNumericFieldOkayness(field, payload.fieldId, payload.newMin);
@@ -294,7 +298,11 @@ export const slice = createSlice<State>()({
   },
   setFieldMax: (
     { settings: { equipmentCategories: cats } }: State,
-    payload: { categoryId: string, fieldId: string, newMax: number | undefined },
+    payload: {
+      categoryId: string;
+      fieldId: string;
+      newMax: number | undefined;
+    },
   ) => {
     const field = cats[payload.categoryId].fields[payload.fieldId];
     assertNumericFieldOkayness(field, payload.fieldId, payload.newMax);
@@ -302,19 +310,19 @@ export const slice = createSlice<State>()({
   },
   moveFieldUp: (
     { settings: { equipmentCategories: cats } }: State,
-    { categoryId, fieldId }: { categoryId: string, fieldId: string },
+    { categoryId, fieldId }: { categoryId: string; fieldId: string },
   ) => {
     cats[categoryId].fields = moveKeyUp(cats[categoryId].fields, fieldId);
   },
   moveFieldDown: (
     { settings: { equipmentCategories: cats } }: State,
-    { categoryId, fieldId }: { categoryId: string, fieldId: string },
+    { categoryId, fieldId }: { categoryId: string; fieldId: string },
   ) => {
     cats[categoryId].fields = moveKeyDown(cats[categoryId].fields, fieldId);
   },
   applyPreset: (
     draft: State,
-    payload: { preset: PresetV1, presetId: string },
+    payload: { preset: PresetV1; presetId: string },
   ) => {
     draft.settings = {
       // start with the current temp settings - this way we keep any values
@@ -341,7 +349,7 @@ export const slice = createSlice<State>()({
       which,
       id,
       value,
-    }: { which: PcOrNpc, id: string, value: number | undefined },
+    }: { which: PcOrNpc; id: string; value: number | undefined },
   ) => {
     draft.settings[which][id].min = value;
   },
@@ -351,28 +359,28 @@ export const slice = createSlice<State>()({
       which,
       id,
       value,
-    }: { which: PcOrNpc, id: string, value: number | undefined },
+    }: { which: PcOrNpc; id: string; value: number | undefined },
   ) => {
     draft.settings[which][id].max = value;
   },
   setStatDefault: (
     draft: State,
-    { which, id, value }: { which: PcOrNpc, id: string, value: number },
+    { which, id, value }: { which: PcOrNpc; id: string; value: number },
   ) => {
     draft.settings[which][id].default = value;
   },
   setStatName: (
     draft: State,
-    { which, id, name }: { which: PcOrNpc, id: string, name: string },
+    { which, id, name }: { which: PcOrNpc; id: string; name: string },
   ) => {
     draft.settings[which][id].name = name;
   },
-  deleteStat: (draft: State, { which, id }: { which: PcOrNpc, id: string }) => {
+  deleteStat: (draft: State, { which, id }: { which: PcOrNpc; id: string }) => {
     delete draft.settings[which][id];
   },
   setStatId: (
     draft: State,
-    { which, oldId, newId }: { which: PcOrNpc, oldId: string, newId: string },
+    { which, oldId, newId }: { which: PcOrNpc; oldId: string; newId: string },
   ) => {
     draft.settings[which] = renameProperty(oldId, newId, draft.settings[which]);
   },

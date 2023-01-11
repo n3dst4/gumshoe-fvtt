@@ -9,7 +9,7 @@ export type MigrationTypes =
   | "scene"
   | "world";
 
-export type MigrationFlagsForType = { [migrationName: string]: boolean }
+export type MigrationFlagsForType = { [migrationName: string]: boolean };
 
 export type MigrationFlags = {
   [migrationType in MigrationTypes]: MigrationFlagsForType;
@@ -18,7 +18,7 @@ export type MigrationFlags = {
 export type MigrationFunction = (data: any, updateData: any) => any;
 
 export type MigrationFunctionsForType = {
-  [migrationName: string]: MigrationFunction,
+  [migrationName: string]: MigrationFunction;
 };
 
 export type FlaggedMigrations = {

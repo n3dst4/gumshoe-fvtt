@@ -6,12 +6,10 @@ import { Translate } from "../../Translate";
 import { WeaponRow } from "./WeaponRow";
 
 type WeaponsAreaProps = {
-  actor: InvestigatorActor,
+  actor: InvestigatorActor;
 };
 
-export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
-  actor,
-}) => {
+export const WeaponsArea: React.FC<WeaponsAreaProps> = ({ actor }) => {
   const items = actor.getWeapons();
   return (
     <div>
@@ -37,20 +35,27 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
             alignSelf: "flex-start",
           }}
           onClick={async () => {
-            await actor.createEmbeddedDocuments("Item", [{
-              type: weapon,
-              name: "New weapon",
-            }], {
-              renderSheet: true,
-            });
+            await actor.createEmbeddedDocuments(
+              "Item",
+              [
+                {
+                  type: weapon,
+                  name: "New weapon",
+                },
+              ],
+              {
+                renderSheet: true,
+              },
+            );
             // newItem.sheet.render(true);
           }}
         >
-          <i className="fa fa-plus"/><Translate>Add Weapon</Translate>
+          <i className="fa fa-plus" />
+          <Translate>Add Weapon</Translate>
         </button>
       </div>
 
-      {items.length === 0 &&
+      {items.length === 0 && (
         <i
           css={{
             display: "block",
@@ -59,8 +64,8 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
         >
           <Translate>No weapons yet!</Translate>
         </i>
-      }
-      {items.length > 0 &&
+      )}
+      {items.length > 0 && (
         <div
           css={{
             display: "grid",
@@ -74,21 +79,19 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({
           }}
         >
           <div className="header" css={{ gridColumn: 1 }}>
-          <Translate>Weapon</Translate>
+            <Translate>Weapon</Translate>
           </div>
           <div className="header" css={{ gridColumn: 2 }}>
-          <Translate>Ammo</Translate>
+            <Translate>Ammo</Translate>
           </div>
           <div className="header" css={{ gridColumn: 3 }}>
-          <Translate>Damage</Translate>
+            <Translate>Damage</Translate>
           </div>
-          {
-            sortEntitiesByName(items).map<JSX.Element>((item) => (
-              <WeaponRow key={item.id} weapon={item}/>
-            ))
-          }
+          {sortEntitiesByName(items).map<JSX.Element>((item) => (
+            <WeaponRow key={item.id} weapon={item} />
+          ))}
         </div>
-      }
+      )}
     </div>
   );
 };

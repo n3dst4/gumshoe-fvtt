@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
 
 type DiceTermsProps = {
-  terms: RollTerm[]|undefined,
-  className?: string,
-  parp?: DiceTerm,
+  terms: RollTerm[] | undefined;
+  className?: string;
+  parp?: DiceTerm;
 };
 
 export const DiceTerms: React.FC<DiceTermsProps> = ({
@@ -36,7 +36,7 @@ export const DiceTerms: React.FC<DiceTermsProps> = ({
                   borderStyle: "outset",
                   borderColor: "#bbb",
                   marginRight: "0.2em",
-                  transform: `rotate(${(Math.random() * 12) - 6}deg)`,
+                  transform: `rotate(${Math.random() * 12 - 6}deg)`,
                 }}
               >
                 {result.result}
@@ -51,8 +51,7 @@ export const DiceTerms: React.FC<DiceTermsProps> = ({
         } else {
           return null;
         }
-      })
-      }
+      })}
     </span>
   );
 };

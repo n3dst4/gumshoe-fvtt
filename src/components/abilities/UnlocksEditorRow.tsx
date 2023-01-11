@@ -18,12 +18,18 @@ export const UnlocksEditorRow: React.FC<UnlocksEditorRowProps> = ({
   onChangeDescription,
   onDelete,
 }: UnlocksEditorRowProps) => {
-  const onChangeRatingCallback = useCallback((newVal) => {
-    onChangeRating(index, newVal);
-  }, [index, onChangeRating]);
-  const onChangeDescriptionCallback = useCallback((newDescription) => {
-    onChangeDescription(index, newDescription);
-  }, [index, onChangeDescription]);
+  const onChangeRatingCallback = useCallback(
+    (newVal) => {
+      onChangeRating(index, newVal);
+    },
+    [index, onChangeRating],
+  );
+  const onChangeDescriptionCallback = useCallback(
+    (newDescription) => {
+      onChangeDescription(index, newDescription);
+    },
+    [index, onChangeDescription],
+  );
 
   return (
     <div
@@ -48,11 +54,12 @@ export const UnlocksEditorRow: React.FC<UnlocksEditorRowProps> = ({
           css={{
             flexBasis: "min-content",
           }}
-          onClick={() => { onDelete(index); }}
+          onClick={() => {
+            onDelete(index);
+          }}
         >
-          <i className="fas fa-trash"/>
+          <i className="fas fa-trash" />
         </button>
-
       </div>
       <AsyncTextInput
         value={description}

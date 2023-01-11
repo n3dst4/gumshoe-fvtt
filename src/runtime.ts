@@ -5,10 +5,10 @@ import { ThemeV1 } from "./themes/types";
 
 export interface RuntimeConfig {
   themes: {
-    [name: string]: ThemeV1,
+    [name: string]: ThemeV1;
   };
   presets: {
-    [name: string]: PresetV1,
+    [name: string]: PresetV1;
   };
 }
 

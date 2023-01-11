@@ -3,15 +3,18 @@
  */
 export const saveFile = (text: string, filename: string) => {
   const el = document.createElement("a");
-  const uriContent = "data:application/octet-stream," + encodeURIComponent(text);
+  const uriContent =
+    "data:application/octet-stream," + encodeURIComponent(text);
   el.setAttribute("href", uriContent);
   el.setAttribute("download", filename);
   document.body.appendChild(el);
-  el.dispatchEvent(new MouseEvent("click", {
-    view: window,
-    bubbles: false,
-    cancelable: true,
-  }));
+  el.dispatchEvent(
+    new MouseEvent("click", {
+      view: window,
+      bubbles: false,
+      cancelable: true,
+    }),
+  );
   el.remove();
 };
 

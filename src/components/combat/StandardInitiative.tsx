@@ -6,9 +6,7 @@ import {
   FaRecycle,
   FaTrash,
 } from "react-icons/fa";
-import {
-  HiDocumentText,
-} from "react-icons/hi";
+import { HiDocumentText } from "react-icons/hi";
 import { assertGame } from "../../functions";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 import { Dropdown } from "../inputs/Dropdown";
@@ -43,11 +41,9 @@ export const StandardInitiative: React.FC<StandardInitiativeProps> = ({
           flex: 0,
         }}
       >
-        {turn.hasRolled
-          ? (
+        {turn.hasRolled ? (
           <span className="initiative">{turn.initiative}</span>
-            )
-          : (
+        ) : (
           <a
             css={{
               display: "block",
@@ -60,7 +56,7 @@ export const StandardInitiative: React.FC<StandardInitiativeProps> = ({
           >
             <i className="fas fa-dice-d6" />
           </a>
-            )}
+        )}
       </div>
 
       {game.user?.isGM && (

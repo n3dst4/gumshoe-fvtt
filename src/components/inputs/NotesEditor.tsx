@@ -34,28 +34,32 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
   let editor: ReactNode;
 
   if (showSource) {
-    editor = <pre
-      css={{
-        ...absoluteCover,
-        overflow: "auto",
-        background: theme.colors.backgroundPrimary,
-        padding: "0.5em",
-        border: `1px solid ${theme.colors.text}`,
-      }}
-    >
-      {source}
-    </pre>;
+    editor = (
+      <pre
+        css={{
+          ...absoluteCover,
+          overflow: "auto",
+          background: theme.colors.backgroundPrimary,
+          padding: "0.5em",
+          border: `1px solid ${theme.colors.text}`,
+        }}
+      >
+        {source}
+      </pre>
+    );
   } else if (!editMode) {
-    editor = <div
-      css={{
-        ...absoluteCover,
-        overflow: "auto",
-        background: theme.colors.backgroundPrimary,
-        padding: "0.5em",
-        border: `1px solid ${theme.colors.controlBorder}`,
-      }}
-      dangerouslySetInnerHTML={{ __html: html }}
-    />;
+    editor = (
+      <div
+        css={{
+          ...absoluteCover,
+          overflow: "auto",
+          background: theme.colors.backgroundPrimary,
+          padding: "0.5em",
+          border: `1px solid ${theme.colors.controlBorder}`,
+        }}
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+    );
   } else if (format === NoteFormat.plain) {
     editor = (
       <AsyncTextArea

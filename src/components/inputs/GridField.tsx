@@ -4,12 +4,12 @@ import { IdContext } from "../IdContext";
 import { Translate } from "../Translate";
 
 type GridFieldProps = {
-  label?: string,
-  className?: string,
-  children?: any,
-  noLabel?: boolean,
-  noTranslate?: boolean,
-  labelTitle?: string,
+  label?: string;
+  className?: string;
+  children?: any;
+  noLabel?: boolean;
+  noTranslate?: boolean;
+  labelTitle?: string;
 };
 
 export const GridField: React.FC<GridFieldProps> = ({
@@ -33,7 +33,12 @@ export const GridField: React.FC<GridFieldProps> = ({
         }}
         className={className}
       >
-        {label && ((noTranslate || typeof label !== "string") ? label : <Translate title={labelTitle}>{label}</Translate>)}
+        {label &&
+          (noTranslate || typeof label !== "string" ? (
+            label
+          ) : (
+            <Translate title={labelTitle}>{label}</Translate>
+          ))}
       </label>
       <div
         className={className}

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { absoluteCover } from "../absoluteCover";
 type RichTextEditorProps = {
-  value: string,
-  className?: string,
-  onSave: () => void,
-  onChange: (newSource: string) => void,
+  value: string;
+  className?: string;
+  onSave: () => void;
+  onChange: (newSource: string) => void;
 };
 
 /**
@@ -30,11 +30,14 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
   const [initialValue] = useState(value);
   useEffect(() => {
     if (ref.current) {
-      const instancePromise = TextEditor.create({
-        target: ref.current,
-        save_onsavecallback: onSave,
-        height: "100%",
-      } as any, initialValue).then((mce) => {
+      const instancePromise = TextEditor.create(
+        {
+          target: ref.current,
+          save_onsavecallback: onSave,
+          height: "100%",
+        } as any,
+        initialValue,
+      ).then((mce) => {
         mce.on("change", () => {
           const content = mce.getContent();
           onChange(content);
@@ -64,8 +67,8 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
         backgroundColor: "white",
       }}
       className={className}
-      >
-      <textarea ref={ref} css={{ height: "100%" }}/>
+    >
+      <textarea ref={ref} css={{ height: "100%" }} />
     </form>
   );
 };

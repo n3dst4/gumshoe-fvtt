@@ -17,7 +17,8 @@ export const greenTriangleTheme: ThemeV1 = themeFactory({
     backgroundImage: `linear-gradient( to right, #fff9,#fff9), url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
-  displayFont: "900 small-caps normal 1.1em 'Big Shoulders Stencil Text', serif",
+  displayFont:
+    "900 small-caps normal 1.1em 'Big Shoulders Stencil Text', serif",
   logo: {
     frontTextElementStyle: {
       color: "#fff",
@@ -26,14 +27,12 @@ export const greenTriangleTheme: ThemeV1 = themeFactory({
       maskRepeat: "repeat",
     },
     rearTextElementStyle: {
-      textShadow:
-        "0 0 0.2em #cfffc2",
+      textShadow: "0 0 0.2em #cfffc2",
     },
     textElementsStyle: {
       transform: "scale(1.0, 0.8) rotate(-1.5deg)",
     },
-    backdropStyle: {
-    },
+    backdropStyle: {},
   },
   colors: {
     // accent: "#256425",
