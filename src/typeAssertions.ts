@@ -209,3 +209,11 @@ export function isPersonalDetailDataSource(
 ): data is PersonalDetailDataSource {
   return data.type === constants.personalDetail;
 }
+
+export function assertPersonalDetailDataSource(
+  data: InvestigatorItemDataSource,
+): asserts data is PersonalDetailDataSource {
+  if (!isPersonalDetailDataSource(data)) {
+    throw new Error("Not a personal detail");
+  }
+}
