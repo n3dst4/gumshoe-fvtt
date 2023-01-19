@@ -47,7 +47,7 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
       ) : item.type === mwItem ? (
         <MwItemSheet item={item} application={application} />
       ) : item.type === "personalDetail" ? (
-        <PersonalDetailSheet personalDetail={item} />
+        <PersonalDetailSheet personalDetail={item} application={application} />
       ) : (
         <ThrowError message={`No sheet defined for item type ${item.type}`} />
       )}

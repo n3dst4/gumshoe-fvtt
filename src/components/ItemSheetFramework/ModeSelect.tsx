@@ -1,7 +1,8 @@
 import React, { PropsWithChildren } from "react";
 import { ModeContext } from "./modeContext";
+import { ItemSheetMode } from "./types";
 type ModeSelectProps = PropsWithChildren<{
-  mode: string;
+  mode: ItemSheetMode;
 }>;
 
 export const ModeSelect: React.FC<ModeSelectProps> = ({ mode, children }) => {
