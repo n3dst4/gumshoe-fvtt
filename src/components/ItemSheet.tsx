@@ -13,17 +13,14 @@ import { PersonalDetailSheet } from "./personalDetails/PersonalDetailSheet";
 
 type ItemSheetProps = {
   item: InvestigatorItem;
-  foundryApplication: ItemSheet;
+  application: ItemSheet;
 };
 
 /**
  * We only register one "Item" sheet with foundry and then dispatch based on
  * type here.
  */
-export const ItemSheet: React.FC<ItemSheetProps> = ({
-  item,
-  foundryApplication,
-}) => {
+export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
   const theme = item.getTheme();
 
   const style: CSSObject =
@@ -42,13 +39,13 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({
   return (
     <CSSReset theme={theme} mode="small" css={style}>
       {isAbilityDataSource(item.data) ? (
-        <AbilitySheet ability={item} application={foundryApplication} />
+        <AbilitySheet ability={item} application={application} />
       ) : item.type === equipment ? (
-        <EquipmentSheet equipment={item} application={foundryApplication} />
+        <EquipmentSheet equipment={item} application={application} />
       ) : item.type === weapon ? (
-        <WeaponSheet weapon={item} application={foundryApplication} />
+        <WeaponSheet weapon={item} application={application} />
       ) : item.type === mwItem ? (
-        <MwItemSheet item={item} application={foundryApplication} />
+        <MwItemSheet item={item} application={application} />
       ) : item.type === "personalDetail" ? (
         <PersonalDetailSheet personalDetail={item} />
       ) : (

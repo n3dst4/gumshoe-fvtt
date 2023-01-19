@@ -15,7 +15,7 @@ const InvestigatorItemSheet = React.lazy(() =>
 const render = (sheet: ItemSheetClassBase) => {
   return (
     <Suspense>
-      <InvestigatorItemSheet item={sheet.document} foundryApplication={sheet} />
+      <InvestigatorItemSheet item={sheet.document} application={sheet} />
     </Suspense>
   );
 };
