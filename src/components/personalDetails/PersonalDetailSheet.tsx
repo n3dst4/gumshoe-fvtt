@@ -4,6 +4,8 @@ import { assertPersonalDetailDataSource } from "../../typeAssertions";
 import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
 import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";
 import { ItemSheetMode } from "../ItemSheetFramework/types";
+import { PersonalDetailConfig } from "./PersonalDetailConfig";
+import { PersonalDetailMain } from "./PersonalDetailMain";
 interface PersonalDetailSheetProps {
   application: DocumentSheet;
   personalDetail: InvestigatorItem;
@@ -18,10 +20,10 @@ export const PersonalDetailSheet: React.FC<PersonalDetailSheetProps> = ({
   return (
     <ItemSheetFramework application={application} item={personalDetail}>
       <ModeSelect mode={ItemSheetMode.Main}>
-        <div>Personal detail: {personalDetail.name}</div>
+        <PersonalDetailMain item={personalDetail} />
       </ModeSelect>
       <ModeSelect mode={ItemSheetMode.Config}>
-        <div>Config: {personalDetail.name}</div>
+        <PersonalDetailConfig item={personalDetail} />
       </ModeSelect>
     </ItemSheetFramework>
   );

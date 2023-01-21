@@ -155,5 +155,6 @@
     "investigator.CategoryId": "Category ID",
     "investigator.OrphanedFields": "Orphaned fields",
     "investigator.NoOrphanedFields": "No orphaned fields",
-    "investigator.DeleteItem": "Delete item"
+    "investigator.DeleteItem": "Delete item",
+    "investigator.Slot": "Slot"
 }
