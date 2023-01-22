@@ -5,6 +5,7 @@ import {
   pc,
   npc,
   weapon,
+  personalDetail,
 } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
 import {
@@ -195,6 +196,10 @@ export class InvestigatorActor extends Actor {
 
   getAbilities() {
     return this.items.filter((item) => isAbilityDataSource(item.data));
+  }
+
+  getPersonalDetails() {
+    return this.items.filter((item) => item.type === personalDetail);
   }
 
   getMwItems() {
