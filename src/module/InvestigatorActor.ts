@@ -603,16 +603,52 @@ Hooks.on(
   "preUpdateActor",
   (
     actor: Actor,
-    diff: DeepPartial<InvestigatorActorDataSource>,
+    data: DeepPartial<InvestigatorActorDataSource>,
     options: any,
     userId: string,
   ) => {
     assertGame(game);
     if (game.userId !== userId) return;
 
-    if (diff.img && !diff.token?.img) {
-      diff.token = diff.token || {};
-      diff.token.img = diff.img;
+    if (data.img && !data.token?.img) {
+      data.token = data.token || {};
+      data.token.img = data.img;
+    }
+  },
+);
+
+Hooks.on(
+  "preCreateItem",
+  (
+    item: Item,
+    createData: { name: string; type: string; system?: any; img?: string },
+    options: any,
+    userId: string,
+  ) => {
+    assertGame(game);
+    if (
+      !(
+        game.userId === userId &&
+        item.type === personalDetail &&
+        item.isEmbedded
+      )
+    ) {
+      return;
+    }
+    const itemsAlreadyInSlot = item.actor?.items.filter(
+      (i) =>
+        i.data.type === personalDetail &&
+        i.data.data.index === createData.system.index,
+    );
+    if ((itemsAlreadyInSlot?.length ?? 0) > 0) {
+      // TODO this should give an option rather than just kersploding
+      ui.notifications?.error(
+        `There is already a ${
+          settings.shortNotes.get()[createData.system.index]
+        } in this slot`,
+      );
+      return false;
+      // throw new Error("Slot already occupied");
     }
   },
 );
