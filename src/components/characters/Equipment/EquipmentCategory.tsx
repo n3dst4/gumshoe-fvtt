@@ -1,7 +1,6 @@
 import React, { useCallback, useContext } from "react";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
-import * as constants from "../../../constants";
 import { Translate } from "../../Translate";
 import { sortEntitiesByName } from "../../../functions";
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
@@ -70,21 +69,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
               flexBasis: "max-content",
             }}
             onClick={async () => {
-              await actor.createEmbeddedDocuments(
-                "Item",
-                [
-                  {
-                    type: constants.equipment,
-                    name: "New item",
-                    data: {
-                      category: categoryId,
-                    },
-                  },
-                ],
-                {
-                  renderSheet: true,
-                },
-              );
+              await actor.createEquipment(categoryId);
             }}
           >
             <i className="fa fa-plus" />

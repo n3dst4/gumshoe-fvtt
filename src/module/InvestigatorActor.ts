@@ -1,11 +1,11 @@
 import {
-  equipment,
   generalAbility,
   investigativeAbility,
   pc,
   npc,
   weapon,
   personalDetail,
+  equipment,
 } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
 import {
@@ -448,6 +448,44 @@ export class InvestigatorActor extends Actor {
 
   removeActorId = (id: string) => {
     this.setActorIds(this.getActorIds().filter((x) => x !== id));
+  };
+
+  createEquipment = async (categoryId: string) => {
+    await this.createEmbeddedDocuments(
+      "Item",
+      [
+        {
+          type: equipment,
+          name: "New item",
+          data: {
+            category: categoryId,
+          },
+        },
+      ],
+      {
+        renderSheet: true,
+      },
+    );
+  };
+
+  createPersonalDetail = async (slotIndex: number) => {
+    const detailName = settings.shortNotes.get()[slotIndex] ?? "detail";
+    const name = `New ${detailName}`;
+    await this.createEmbeddedDocuments(
+      "Item",
+      [
+        {
+          type: personalDetail,
+          name,
+          data: {
+            index: slotIndex,
+          },
+        },
+      ],
+      {
+        renderSheet: true,
+      },
+    );
   };
 }
 
