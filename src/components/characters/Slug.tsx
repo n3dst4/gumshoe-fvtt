@@ -30,10 +30,10 @@ export const Slug: React.FC<SlugProps> = ({ onClick, item, children }) => {
       onDragStart={onDragStart}
       draggable="true"
       css={{
-        display: "inline-block",
-        borderRadius: "1em",
+        display: "block",
+        borderRadius: "0.7em",
         padding: "0.1em 0.5em",
-        margin: "0.1em",
+        margin: "0.1em 0",
         backgroundColor: theme.colors.backgroundSecondary,
         color: theme.colors.accent,
         lineHeight: "1em",
