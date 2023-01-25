@@ -7,7 +7,7 @@ import {
   personalDetail,
   equipment,
 } from "../constants";
-import { assertGame, confirmADoodleDo } from "../functions";
+import { assertGame, confirmADoodleDo, getTranslated } from "../functions";
 import {
   RecursivePartial,
   AbilityType,
@@ -582,7 +582,7 @@ Hooks.on(
         const content = await game.packs
           ?.find((p) => p.documentName === "Item" && p.collection === packId)
           ?.getDocuments();
-        // XXX eurgh - same as elsewhere - if we cast ast InvestigatorItem, we
+        // XXX eurgh - same as elsewhere - if we cast as InvestigatorItem, we
         // have a circular dependency
         const datas = (content as any[])?.map(
           ({ data: { name, img, data, type } }) => ({
@@ -640,15 +640,50 @@ Hooks.on(
         i.data.type === personalDetail &&
         i.data.data.index === createData.system.index,
     );
-    if ((itemsAlreadyInSlot?.length ?? 0) > 0) {
-      // TODO this should give an option rather than just kersploding
-      ui.notifications?.error(
-        `There is already a ${
-          settings.shortNotes.get()[createData.system.index]
-        } in this slot`,
+    const existingCount = itemsAlreadyInSlot?.length ?? 0;
+    if (existingCount > 0) {
+      const tlMessage = getTranslated(
+        "Replace existing drive with {CreatedName}?",
+        { CreatedName: createData.name },
       );
-      return false;
-      // throw new Error("Slot already occupied");
+      const replaceText = getTranslated("Replace");
+      const addText = getTranslated("Add");
+      const promise = new Promise<boolean>((resolve) => {
+        const onAdd = () => {
+          resolve(true);
+        };
+        const onReplace = () => {
+          const itemIds =
+            itemsAlreadyInSlot?.map((item) => item.id ?? "") ?? [];
+
+          itemsAlreadyInSlot?.[0].actor?.deleteEmbeddedDocuments(
+            "Item",
+            itemIds,
+          );
+        };
+
+        const d = new Dialog({
+          title: "Replace or add?",
+          content: `<p>${tlMessage}</p>`,
+          buttons: {
+            replace: {
+              icon: '<i class="fas fa-eraser"></i>',
+              label: replaceText,
+              callback: onReplace,
+            },
+            add: {
+              icon: '<i class="fas fa-plus"></i>',
+              label: addText,
+              callback: onAdd,
+            },
+          },
+          default: "cancel",
+        });
+        d.render(true);
+        return false;
+        // throw new Error("Slot already occupied");
+      });
+      return promise;
     }
   },
 );
