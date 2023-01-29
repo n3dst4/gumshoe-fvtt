@@ -75,17 +75,17 @@ export class InvestigatorCombatant extends Combatant {
       "passingTurnsRemaining",
     );
     if (tagValue === undefined) {
-      assertGame(game);
-      if (game.user && this.canUserModify(game.user, "update")) {
-        this.passingTurnsRemaining = maxPassingTurns;
-      }
+      this.passingTurnsRemaining = maxPassingTurns;
       return maxPassingTurns;
     }
     return Number(tagValue);
   }
 
   set passingTurnsRemaining(turns: number) {
-    this.setFlag(constants.systemName, "passingTurnsRemaining", turns);
+    assertGame(game);
+    if (game.user && this.canUserModify(game.user, "update")) {
+      this.setFlag(constants.systemName, "passingTurnsRemaining", turns);
+    }
   }
 }
 
