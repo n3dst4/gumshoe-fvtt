@@ -4,7 +4,7 @@ import {
   assertActiveCharacterDataSource,
   isActiveCharacterDataSource,
 } from "../typeAssertions";
-import { isNullOrEmptyString } from "../functions";
+import { assertGame, isNullOrEmptyString } from "../functions";
 import { settings } from "../settings";
 
 /**
@@ -75,7 +75,10 @@ export class InvestigatorCombatant extends Combatant {
       "passingTurnsRemaining",
     );
     if (tagValue === undefined) {
-      this.passingTurnsRemaining = maxPassingTurns;
+      assertGame(game);
+      if (game.user && this.canUserModify(game.user, "update")) {
+        this.passingTurnsRemaining = maxPassingTurns;
+      }
       return maxPassingTurns;
     }
     return Number(tagValue);
