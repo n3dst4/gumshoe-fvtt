@@ -4,7 +4,7 @@ import {
   assertActiveCharacterDataSource,
   isActiveCharacterDataSource,
 } from "../typeAssertions";
-import { isNullOrEmptyString } from "../functions";
+import { assertGame, isNullOrEmptyString } from "../functions";
 import { settings } from "../settings";
 
 /**
@@ -82,7 +82,10 @@ export class InvestigatorCombatant extends Combatant {
   }
 
   set passingTurnsRemaining(turns: number) {
-    this.setFlag(constants.systemName, "passingTurnsRemaining", turns);
+    assertGame(game);
+    if (game.user && this.canUserModify(game.user, "update")) {
+      this.setFlag(constants.systemName, "passingTurnsRemaining", turns);
+    }
   }
 }
 
