@@ -674,11 +674,11 @@ export class InvestigatorItem extends Item {
     await this.update({ data: { damageBonus } });
   };
 
-  setIndex = (value: number) => {
+  setSlotIndex = (slotIndex: number) => {
     assertPersonalDetailDataSource(this.data);
     this.update({
       data: {
-        index: value,
+        slotIndex,
       },
     });
   };

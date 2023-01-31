@@ -25,7 +25,7 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
   const shortNotes = settings.shortNotes.get();
   const options = padLength(
     shortNotes,
-    item.data.data.index + 1,
+    item.data.data.slotIndex + 1,
     (index) => `Slot ${index + 1}`,
   );
   const compendiumPacks = game.packs.filter(
@@ -45,12 +45,12 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
       </GridField>
       <GridField label="Slot">
         <select
-          value={item.data.data.index}
+          value={item.data.data.slotIndex}
           css={{
             width: "100%",
           }}
           onChange={(e) => {
-            item.setIndex(+e.currentTarget.value);
+            item.setSlotIndex(+e.currentTarget.value);
           }}
         >
           <option value={occupationSlotIndex}>

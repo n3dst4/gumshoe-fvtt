@@ -253,7 +253,7 @@ export interface MwItemDataSourceData {
 /** data.data for personal details */
 export interface PersonalDetailSourceData {
   notes: NoteWithFormat;
-  index: number;
+  slotIndex: number;
   compendiumPackId: string | null;
 }
 

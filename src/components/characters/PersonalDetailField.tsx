@@ -8,11 +8,11 @@ import { Slug } from "./Slug";
 export const PersonalDetailField: React.FC<{
   actor: InvestigatorActor;
   name: string;
-  index: number;
-}> = ({ actor, name, index }) => {
+  slotIndex: number;
+}> = ({ actor, name, slotIndex }) => {
   const personalDetailItems = actor.getPersonalDetails().filter((item) => {
     assertPersonalDetailDataSource(item.data);
-    return item.data.data.index === index;
+    return item.data.data.slotIndex === slotIndex;
   });
 
   return (
@@ -29,7 +29,7 @@ export const PersonalDetailField: React.FC<{
       {personalDetailItems.length === 0 && (
         <Slug
           onClick={() => {
-            actor.createPersonalDetail(index); //
+            actor.createPersonalDetail(slotIndex); //
           }}
         >
           Create

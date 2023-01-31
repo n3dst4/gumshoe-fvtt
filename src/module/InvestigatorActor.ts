@@ -484,7 +484,7 @@ export class InvestigatorActor extends Actor {
           type: personalDetail,
           name,
           data: {
-            index: slotIndex,
+            slotIndex,
           },
         },
       ],
@@ -644,15 +644,15 @@ Hooks.on(
     const itemsAlreadyInSlot = item.actor?.items.filter(
       (i) =>
         i.data.type === personalDetail &&
-        i.data.data.index === createData.system.index,
+        i.data.data.slotIndex === createData.system.slotIndex,
     );
     const existingCount = itemsAlreadyInSlot?.length ?? 0;
     if (existingCount > 0) {
       const tlMessage = getTranslated("Replace existing {Thing} with {Name}?", {
         Thing:
-          createData.system.index === occupationSlotIndex
+          createData.system.slotIndex === occupationSlotIndex
             ? settings.occupationLabel.get()
-            : settings.shortNotes.get()[createData.system.index],
+            : settings.shortNotes.get()[createData.system.slotIndex],
         Name: createData.name,
       });
       const replaceText = getTranslated("Replace");

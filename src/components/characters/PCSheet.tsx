@@ -106,14 +106,14 @@ export const PCSheet: React.FC<{
           <PersonalDetailField
             name={occupationLabel}
             actor={actor}
-            index={occupationSlotIndex}
+            slotIndex={occupationSlotIndex}
           />
           {shortNotesNames.map((name: string, i: number) => (
             <PersonalDetailField
               key={`${name}--${i}`}
               name={name}
               actor={actor}
-              index={i}
+              slotIndex={i}
             />
           ))}
           {game.user?.isGM &&
