@@ -7,7 +7,12 @@ import {
   personalDetail,
   equipment,
 } from "../constants";
-import { assertGame, confirmADoodleDo, getTranslated } from "../functions";
+import {
+  assertGame,
+  confirmADoodleDo,
+  getTranslated,
+  isNullOrEmptyString,
+} from "../functions";
 import {
   RecursivePartial,
   AbilityType,
@@ -619,7 +624,7 @@ Hooks.on(
 
 Hooks.on(
   "preCreateItem",
-  (
+  async (
     item: Item,
     createData: { name: string; type: string; system?: any; img?: string },
     options: any,
@@ -642,10 +647,13 @@ Hooks.on(
     );
     const existingCount = itemsAlreadyInSlot?.length ?? 0;
     if (existingCount > 0) {
-      const tlMessage = getTranslated(
-        "Replace existing drive with {CreatedName}?",
-        { CreatedName: createData.name },
-      );
+      const tlMessage = getTranslated("Replace existing {Thing} with {Name}?", {
+        Thing:
+          createData.system.index === -1
+            ? settings.occupationLabel.get()
+            : settings.shortNotes.get()[createData.system.index],
+        Name: createData.name,
+      });
       const replaceText = getTranslated("Replace");
       const addText = getTranslated("Add");
       const promise = new Promise<boolean>((resolve) => {
@@ -660,6 +668,7 @@ Hooks.on(
             "Item",
             itemIds,
           );
+          resolve(true);
         };
 
         const d = new Dialog({
@@ -681,9 +690,49 @@ Hooks.on(
         });
         d.render(true);
         return false;
-        // throw new Error("Slot already occupied");
       });
-      return promise;
+      await promise;
+    }
+
+    // add compendium pack stuff if it's there
+    if (!isNullOrEmptyString(createData.system?.compendiumPackId)) {
+      const pack = game.packs?.find(
+        (p) => p.collection === createData.system?.compendiumPackId,
+      );
+
+      if (pack) {
+        const shouldAdd = await confirmADoodleDo({
+          message: "Add all items from pack {Name}?",
+          cancelText: getTranslated("Cancel"),
+          confirmText: getTranslated("Add"),
+          confirmIconClass: "fas fa-plus",
+          values: {
+            Name: pack.metadata.label, //
+          },
+        });
+
+        assertGame(game);
+
+        if (shouldAdd) {
+          const content = await pack.getDocuments();
+          const datas = content?.map((item) => {
+            // clunky cast here because there doesn't seem to be a sane way to
+            // check the type of something coming out of a compendium pack.
+            // XXX if we cast as InvestigatorItem, we have a circular dependency
+            const {
+              data: { name, img, data, type },
+            } = item as any;
+            return {
+              name,
+              img,
+              data,
+              type,
+            };
+          });
+          console.log("datas", datas);
+          await (item.actor as any).createEmbeddedDocuments("Item", datas);
+        }
+      }
     }
   },
 );

@@ -157,8 +157,9 @@
   "investigator.NoOrphanedFields": "No orphaned fields",
   "investigator.DeleteItem": "Delete item",
   "investigator.Slot": "Slot",
-  "investigator.ReplaceExistingDriveWithCreatedName": "Replace existing drive with {CreatedName}?",
+  "investigator.ReplaceExistingThingWithName": "Replace existing {Thing} with {Name}?",
   "investigator.Replace": "Replace",
   "investigator.Add": "Add",
-  "investigator.CompendiumPack": "Compendium Pack"
+  "investigator.CompendiumPack": "Compendium Pack",
+  "investigator.AddAllItemsFromPackName": "Add all items from pack {Name}?"
 }
