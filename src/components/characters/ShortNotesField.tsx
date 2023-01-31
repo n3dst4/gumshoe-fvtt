@@ -34,11 +34,6 @@ export const ShortNotesField: React.FC<{
         >
           Add
         </Slug>
-        // <AsyncTextInput
-        //   value={value}
-        //   onChange={updateShortNote}
-        //   index={index}
-        // />
       )}
     </GridField>
   );
