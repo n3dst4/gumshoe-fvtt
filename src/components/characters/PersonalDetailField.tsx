@@ -5,7 +5,7 @@ import { GridField } from "../inputs/GridField";
 import { PersonalDetailSlug } from "./PersonalDetailSlug";
 import { Slug } from "./Slug";
 
-export const ShortNotesField: React.FC<{
+export const PersonalDetailField: React.FC<{
   actor: InvestigatorActor;
   name: string;
   index: number;
@@ -32,11 +32,11 @@ export const ShortNotesField: React.FC<{
             actor.createPersonalDetail(index); //
           }}
         >
-          Add
+          Create
         </Slug>
       )}
     </GridField>
   );
 };
 
-ShortNotesField.displayName = "ShortNotesField";
+PersonalDetailField.displayName = "ShortNotesField";

@@ -23,7 +23,7 @@ import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 import { settings } from "../../settings";
 import { StatField } from "./StatField";
-import { ShortNotesField } from "./ShortNotesField";
+import { PersonalDetailField } from "./PersonalDetailField";
 
 export const PCSheet: React.FC<{
   actor: InvestigatorActor;
@@ -102,14 +102,13 @@ export const PCSheet: React.FC<{
           <GridField label="Name">
             <AsyncTextInput value={actor.data.name} onChange={actor.setName} />
           </GridField>
-          <GridField noTranslate label={occupationLabel}>
-            <AsyncTextInput
-              value={actor.data.data.occupation}
-              onChange={actor.setOccupation}
-            />
-          </GridField>
+          <PersonalDetailField
+            name={occupationLabel}
+            actor={actor}
+            index={-1}
+          />
           {shortNotesNames.map((name: string, i: number) => (
-            <ShortNotesField
+            <PersonalDetailField
               key={`${name}--${i}`}
               name={name}
               actor={actor}
