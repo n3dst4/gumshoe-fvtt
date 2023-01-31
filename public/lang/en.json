@@ -159,5 +159,6 @@
   "investigator.Slot": "Slot",
   "investigator.ReplaceExistingDriveWithCreatedName": "Replace existing drive with {CreatedName}?",
   "investigator.Replace": "Replace",
-  "investigator.Add": "Add"
+  "investigator.Add": "Add",
+  "investigator.CompendiumPack": "Compendium Pack"
 }

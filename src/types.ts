@@ -254,6 +254,7 @@ export interface MwItemDataSourceData {
 export interface PersonalDetailSourceData {
   notes: NoteWithFormat;
   index: number;
+  compendiumPackId: string | null;
 }
 
 /** data for equipment */

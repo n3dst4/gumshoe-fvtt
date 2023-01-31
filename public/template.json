@@ -156,7 +156,8 @@
     },
     "personalDetail": {
       "templates": ["notes"],
-      "index": 0
+      "index": 0,
+      "compendiumPackId": null
     }
   }
 }

@@ -682,6 +682,15 @@ export class InvestigatorItem extends Item {
       },
     });
   };
+
+  setCompendiumPack = (id: string | null) => {
+    assertPersonalDetailDataSource(this.data);
+    this.update({
+      data: {
+        compendiumPackId: id,
+      },
+    });
+  };
 }
 
 declare global {

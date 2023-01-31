@@ -58,19 +58,8 @@ export const AbilitySettings: React.FC<{
           </div>
           {game.packs
             .filter(
-              (pack: CompendiumCollection<CompendiumCollection.Metadata>) => {
-                // v0.8/v9 compatibility hack - in v9 pack.metadata.entity is
-                // getter which warns you about deprecation and then returns
-                // pack.metadata.type BUT it's throwing "this.metadata is
-                // undefined" for me, hence this touchy-feeling approach
-                try {
-                  const documentType =
-                    (pack.metadata as any).type ?? pack.metadata.entity;
-                  return documentType === "Item";
-                } catch (e) {
-                  return false;
-                }
-              },
+              (pack: CompendiumCollection<CompendiumCollection.Metadata>) =>
+                pack.metadata.type === "Item",
             )
             .map<JSX.Element>(
               (
