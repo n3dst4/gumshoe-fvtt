@@ -60,7 +60,7 @@ export const flaggedMigrations: FlaggedMigrations = {
                 img: c.personalDetailIcon,
                 name: data.data.occupation,
                 system: {
-                  index: -1,
+                  index: c.occupationSlotIndex,
                 },
               },
             ];

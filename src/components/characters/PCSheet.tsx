@@ -24,6 +24,7 @@ import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 import { settings } from "../../settings";
 import { StatField } from "./StatField";
 import { PersonalDetailField } from "./PersonalDetailField";
+import { occupationSlotIndex } from "../../constants";
 
 export const PCSheet: React.FC<{
   actor: InvestigatorActor;
@@ -105,7 +106,7 @@ export const PCSheet: React.FC<{
           <PersonalDetailField
             name={occupationLabel}
             actor={actor}
-            index={-1}
+            index={occupationSlotIndex}
           />
           {shortNotesNames.map((name: string, i: number) => (
             <PersonalDetailField

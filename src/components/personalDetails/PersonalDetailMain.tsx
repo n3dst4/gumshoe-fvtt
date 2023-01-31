@@ -1,4 +1,5 @@
 import React from "react";
+import { occupationSlotIndex } from "../../constants";
 import { assertGame, padLength } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";
@@ -52,7 +53,9 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
             item.setIndex(+e.currentTarget.value);
           }}
         >
-          <option value={-1}>{settings.occupationLabel.get()}</option>
+          <option value={occupationSlotIndex}>
+            {settings.occupationLabel.get()}
+          </option>
           {options.map<JSX.Element>((option, i) => (
             <option key={option} value={i}>
               {option}

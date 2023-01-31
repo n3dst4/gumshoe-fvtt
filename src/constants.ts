@@ -92,3 +92,7 @@ export const defaultCustomThemePath = "investigator_themes";
 
 export const passingTurnsRemaining = "passingTurnsRemaining";
 export const extraPassingTurns = "extraPassingTurns";
+
+// magic values
+
+export const occupationSlotIndex = -1;

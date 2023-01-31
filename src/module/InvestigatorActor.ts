@@ -6,6 +6,7 @@ import {
   weapon,
   personalDetail,
   equipment,
+  occupationSlotIndex,
 } from "../constants";
 import {
   assertGame,
@@ -649,7 +650,7 @@ Hooks.on(
     if (existingCount > 0) {
       const tlMessage = getTranslated("Replace existing {Thing} with {Name}?", {
         Thing:
-          createData.system.index === -1
+          createData.system.index === occupationSlotIndex
             ? settings.occupationLabel.get()
             : settings.shortNotes.get()[createData.system.index],
         Name: createData.name,
