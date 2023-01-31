@@ -52,7 +52,21 @@ export const flaggedMigrations: FlaggedMigrations = {
             },
           }))
           .filter((item: any) => item.name !== null);
-        updateData.items = (updateData.items ?? []).concat(shortNoteItems);
+        const occupationItem = isNullOrEmptyString(data.data.occupation)
+          ? []
+          : [
+              {
+                type: c.personalDetail,
+                img: c.personalDetailIcon,
+                name: data.data.occupation,
+                system: {
+                  index: -1,
+                },
+              },
+            ];
+        updateData.items = (updateData.items ?? [])
+          .concat(shortNoteItems)
+          .concat(occupationItem);
       }
       return updateData;
     },
