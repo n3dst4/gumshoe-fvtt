@@ -34,6 +34,7 @@ import {
   isMwItemDataSource,
   assertMwItemDataSource,
   assertNPCDataSource,
+  assertAbilityDataSource,
 } from "../typeAssertions";
 // import { InvestigatorItem } from "./InvestigatorItem";
 import { convertNotes } from "../textFunctions";
@@ -41,6 +42,7 @@ import { tealTheme } from "../themes/tealTheme";
 import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
 import { ThemeV1 } from "../themes/types";
+import { InvestigatorItem } from "./InvestigatorItem";
 
 export class InvestigatorActor extends Actor {
   /**
@@ -712,8 +714,6 @@ Hooks.on(
           },
         });
 
-        assertGame(game);
-
         if (shouldAdd) {
           const content = await pack.getDocuments();
           const datas = content?.map((item) => {
@@ -723,6 +723,26 @@ Hooks.on(
             const {
               data: { name, img, data, type },
             } = item as any;
+            // if it's an ability, we need to check if it already exists and
+            // add the ranks together
+            if (isAbilityDataSource(data)) {
+              const existingAbility = (
+                item as InvestigatorItem
+              ).actor?.items.find(
+                (i) => i.data.type === type && i.data.name === name,
+              );
+              if (existingAbility) {
+                const existingData = existingAbility.data;
+                assertAbilityDataSource(existingData);
+                return {
+                  ...existingAbility,
+                  data: {
+                    ...existingAbility.data,
+                    rank: (existingData.data.rating ?? 0) + data.data.rating,
+                  },
+                };
+              }
+            }
             return {
               name,
               img,
