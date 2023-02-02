@@ -7,10 +7,8 @@ import { assertPersonalDetailDataSource } from "../../typeAssertions";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
-// import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
-// import { TextInput } from "../inputs/TextInput";
 
 interface PersonalDetailMainProps {
   item: InvestigatorItem;
