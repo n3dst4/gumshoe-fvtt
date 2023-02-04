@@ -38,8 +38,7 @@ export class InvestigatorItem extends Item {
     if (this.actor === null) {
       return;
     }
-    const useBoost = settings.useBoost.get();
-    const isBoosted = useBoost && this.getBoost();
+    const isBoosted = settings.useBoost.get() && this.getBoost();
     const boost = isBoosted ? 1 : 0;
     const roll = isBoosted
       ? new Roll("1d6 + @spend + @boost", { spend, boost })
@@ -58,7 +57,8 @@ export class InvestigatorItem extends Item {
         />
       `,
     });
-    this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
+    const pool = this.data.data.pool - (Number(spend) || 0);
+    this.update({ data: { pool } });
   }
 
   /**
@@ -85,7 +85,9 @@ export class InvestigatorItem extends Item {
         />
       `,
     });
-    this.update({ data: { pool: this.data.data.pool - Number(spend) || 0 } });
+    const boost = settings.useBoost.get() && this.getBoost() ? 1 : 0;
+    const pool = this.data.data.pool - (Number(spend) || 0) + boost;
+    this.update({ data: { pool } });
   }
 
   /**
