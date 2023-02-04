@@ -34,7 +34,6 @@ import {
   isMwItemDataSource,
   assertMwItemDataSource,
   assertNPCDataSource,
-  assertAbilityDataSource,
 } from "../typeAssertions";
 // import { InvestigatorItem } from "./InvestigatorItem";
 import { convertNotes } from "../textFunctions";
@@ -42,7 +41,6 @@ import { tealTheme } from "../themes/tealTheme";
 import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
 import { ThemeV1 } from "../themes/types";
-import { InvestigatorItem } from "./InvestigatorItem";
 
 export class InvestigatorActor extends Actor {
   /**
@@ -176,7 +174,7 @@ export class InvestigatorActor extends Actor {
       "Item",
       this.items.map((i) => i.id).filter((i) => i !== null) as string[],
     );
-    window.alert("Nuked");
+    ui.notifications?.info(`Nuked ${this.name}.`);
   };
 
   // ###########################################################################
@@ -716,42 +714,43 @@ Hooks.on(
 
         if (shouldAdd) {
           const content = await pack.getDocuments();
-          const datas = content?.map((item) => {
-            // clunky cast here because there doesn't seem to be a sane way to
-            // check the type of something coming out of a compendium pack.
-            // XXX if we cast as InvestigatorItem, we have a circular dependency
-            const {
-              data: { name, img, data, type },
-            } = item as any;
-            // if it's an ability, we need to check if it already exists and
-            // add the ranks together
-            if (isAbilityDataSource(data)) {
-              const existingAbility = (
-                item as InvestigatorItem
-              ).actor?.items.find(
-                (i) => i.data.type === type && i.data.name === name,
-              );
+          // casting to any here because it's easier and more futureproof to
+          // work with `.system` than `.data.data`.
+          const items = content?.map((packItem: any) => {
+            if (
+              packItem.type === generalAbility ||
+              packItem.type === investigativeAbility
+            ) {
+              const existingAbility = item.actor?.items.find(
+                (actorItem) =>
+                  actorItem.type === packItem.type &&
+                  actorItem.name === packItem.name,
+              ) as any;
               if (existingAbility) {
-                const existingData = existingAbility.data;
-                assertAbilityDataSource(existingData);
-                return {
-                  ...existingAbility,
-                  data: {
-                    ...existingAbility.data,
-                    rank: (existingData.data.rating ?? 0) + data.data.rating,
+                const payload = {
+                  _id: existingAbility.id,
+                  type: existingAbility.type,
+                  name: existingAbility.name,
+                  img: existingAbility.img,
+                  system: {
+                    ...existingAbility.system,
+                    rating:
+                      (existingAbility.system.rating ?? 0) +
+                      packItem.system.rating,
                   },
                 };
+                return payload;
               }
             }
             return {
-              name,
-              img,
-              data,
-              type,
+              name: packItem.name,
+              type: packItem.type,
+              img: packItem.img,
+              system: packItem.system,
             };
           });
-          console.log("datas", datas);
-          await (item.actor as any).createEmbeddedDocuments("Item", datas);
+          console.log("items", items);
+          await (item.actor as any).update({ items });
         }
       }
     }
