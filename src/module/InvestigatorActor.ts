@@ -751,6 +751,11 @@ Hooks.on(
           });
           console.log("items", items);
           await (item.actor as any).update({ items });
+          ui.notifications?.info(
+            `Added or updated ${
+              items.length === 1 ? "one item" : `${items.length} items`
+            } from "${pack.metadata.label}"`,
+          );
         }
       }
     }
