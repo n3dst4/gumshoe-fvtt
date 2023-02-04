@@ -22,6 +22,7 @@ export const pc = "pc" as const;
 export const npc = "npc" as const;
 export const party = "party" as const;
 export const mwItem = "mwItem" as const;
+export const personalDetail = "personalDetail" as const;
 
 // assets
 export const investigativeAbilityIcon =
@@ -38,6 +39,8 @@ export const npcIcon =
   `/systems/${systemName}/assets/icons/cowled.webp` as const;
 export const partyIcon =
   `/systems/${systemName}/assets/icons/dark-squad.webp` as const;
+export const personalDetailIcon =
+  `/systems/${systemName}/assets/icons/notebook.webp` as const;
 
 // packs
 
@@ -89,3 +92,7 @@ export const defaultCustomThemePath = "investigator_themes";
 
 export const passingTurnsRemaining = "passingTurnsRemaining";
 export const extraPassingTurns = "extraPassingTurns";
+
+// magic values
+
+export const occupationSlotIndex = -1;

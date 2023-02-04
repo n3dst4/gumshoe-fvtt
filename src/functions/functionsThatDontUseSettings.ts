@@ -13,6 +13,33 @@ export const sortEntitiesByName = <T extends NameHaver>(ents: T[]) => {
   });
 };
 
+function isMapIndexFunction<T>(
+  x: T | ((index: number) => T),
+): x is (index: number) => T {
+  return typeof x === "function";
+}
+
+/**
+ * Given an array (or nullish), a desired length, and a padding element, return
+ * an array which is at least the desired length by padding the original if
+ * necessary.
+ */
+export const padLength = <T>(
+  originalArray: T[] | null | undefined,
+  desiredlength: number,
+  paddingElement: T | ((index: number) => T),
+): T[] => {
+  const originalLength = originalArray?.length ?? 0;
+  const paddingSize = Math.max(0, desiredlength - originalLength);
+  const padding = isMapIndexFunction(paddingElement)
+    ? new Array(paddingSize)
+        .fill(0)
+        .map((_, i) => paddingElement(i + originalLength))
+    : new Array(paddingSize).fill(paddingElement);
+  const result = [...(originalArray || []), ...padding];
+  return result;
+};
+
 /**
  * Given an array (or nullish), a desired length, and a padding element, return
  * an array which is exactly the desired length by either padding or truncating
@@ -23,11 +50,8 @@ export const fixLength = <T>(
   desiredlength: number,
   paddingElement: T,
 ): T[] => {
-  const paddingSize = Math.max(0, desiredlength - (originalArray?.length ?? 0));
-  const result = [
-    ...(originalArray || []),
-    ...new Array(paddingSize).fill(paddingElement),
-  ].slice(0, desiredlength);
+  const padded = padLength(originalArray, desiredlength, paddingElement);
+  const result = padded.slice(0, desiredlength);
   return result;
 };
 

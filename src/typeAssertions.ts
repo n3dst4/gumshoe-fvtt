@@ -13,6 +13,7 @@ import {
   NPCDataSource,
   PartyDataSource,
   PCDataSource,
+  PersonalDetailDataSource,
   SocketHookAction,
   WeaponDataSource,
   WeaponOrEquipmentDataSource,
@@ -200,5 +201,19 @@ export function assertIsEquipmentFieldType(
 ): asserts type is EquipmentFieldType {
   if (!isEquipmentFieldType(type)) {
     throw new Error(`Invalid equipment field type: ${type}`);
+  }
+}
+
+export function isPersonalDetailDataSource(
+  data: InvestigatorItemDataSource,
+): data is PersonalDetailDataSource {
+  return data.type === constants.personalDetail;
+}
+
+export function assertPersonalDetailDataSource(
+  data: InvestigatorItemDataSource,
+): asserts data is PersonalDetailDataSource {
+  if (!isPersonalDetailDataSource(data)) {
+    throw new Error("Not a personal detail");
   }
 }

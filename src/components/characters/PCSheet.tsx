@@ -23,6 +23,8 @@ import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 import { settings } from "../../settings";
 import { StatField } from "./StatField";
+import { PersonalDetailField } from "./PersonalDetailField";
+import { occupationSlotIndex } from "../../constants";
 
 export const PCSheet: React.FC<{
   actor: InvestigatorActor;
@@ -30,13 +32,6 @@ export const PCSheet: React.FC<{
 }> = ({ actor, foundryApplication }) => {
   assertGame(game);
   assertPCDataSource(actor.data);
-
-  const updateShortNote = useCallback(
-    (value, index) => {
-      actor.setShortNote(index, value);
-    },
-    [actor],
-  );
 
   const updateMwHiddenShortNote = useCallback(
     (value, index) => {
@@ -108,24 +103,18 @@ export const PCSheet: React.FC<{
           <GridField label="Name">
             <AsyncTextInput value={actor.data.name} onChange={actor.setName} />
           </GridField>
-          <GridField noTranslate label={occupationLabel}>
-            <AsyncTextInput
-              value={actor.data.data.occupation}
-              onChange={actor.setOccupation}
-            />
-          </GridField>
+          <PersonalDetailField
+            name={occupationLabel}
+            actor={actor}
+            slotIndex={occupationSlotIndex}
+          />
           {shortNotesNames.map((name: string, i: number) => (
-            <GridField noTranslate key={`${name}--${i}`} label={name}>
-              <AsyncTextInput
-                value={
-                  isPCDataSource(actor.data)
-                    ? actor.data.data.shortNotes[i]
-                    : ""
-                }
-                onChange={updateShortNote}
-                index={i}
-              />
-            </GridField>
+            <PersonalDetailField
+              key={`${name}--${i}`}
+              name={name}
+              actor={actor}
+              slotIndex={i}
+            />
           ))}
           {game.user?.isGM &&
             shortHiddenNotesNames.map((name: string, i: number) => (

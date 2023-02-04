@@ -3,12 +3,14 @@ import {
   generalAbilityIcon,
   investigativeAbilityIcon,
   weaponIcon,
+  personalDetailIcon,
 } from "../constants";
 import { assertGame, isNullOrEmptyString } from "../functions";
 import {
   isWeaponDataSource,
   isGeneralAbilityDataSource,
   isEquipmentDataSource,
+  isPersonalDetailDataSource,
 } from "../typeAssertions";
 
 export const installItemImageHookHandler = () => {
@@ -35,6 +37,8 @@ export const installItemImageHookHandler = () => {
             ? equipmentIcon
             : isGeneralAbilityDataSource(item.data)
             ? generalAbilityIcon
+            : isPersonalDetailDataSource(item.data)
+            ? personalDetailIcon
             : investigativeAbilityIcon,
         });
       }

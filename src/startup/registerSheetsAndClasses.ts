@@ -5,11 +5,7 @@ import { InvestigatorCombatant } from "../module/InvestigatorCombatant";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { InvestigatorCombatTracker } from "../module/InvestigatorCombatTracker";
 import { InvestigatorItem } from "../module/InvestigatorItem";
-import {
-  AbilitySheetClass,
-  EquipmentSheetClass,
-  MwItemSheetClass,
-} from "../module/InvestigatorItemSheetClass";
+import { ItemSheetClass } from "../module/InvestigatorItemSheetClass";
 import { NPCSheetClass } from "../module/NPCSheetClass";
 import { PartySheetClass } from "../module/PartySheetClass";
 import { PCSheetClass } from "../module/PCSheetClass";
@@ -38,16 +34,15 @@ export const registerSheetsAndClasses = () => {
     types: [constants.party],
   });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet(constants.systemName, EquipmentSheetClass, {
+  Items.registerSheet(constants.systemName, ItemSheetClass, {
     makeDefault: true,
-    types: [constants.weapon, constants.equipment],
-  });
-  Items.registerSheet(constants.systemName, AbilitySheetClass, {
-    makeDefault: true,
-    types: [constants.investigativeAbility, constants.generalAbility],
-  });
-  Items.registerSheet(constants.systemName, MwItemSheetClass, {
-    makeDefault: true,
-    types: [constants.mwItem],
+    types: [
+      constants.weapon,
+      constants.equipment,
+      constants.investigativeAbility,
+      constants.generalAbility,
+      constants.mwItem,
+      constants.personalDetail,
+    ],
   });
 };

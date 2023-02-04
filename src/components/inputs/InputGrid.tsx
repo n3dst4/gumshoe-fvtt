@@ -13,8 +13,7 @@ export const InputGrid: React.FC<InputGridProps> = ({
       css={{
         display: "grid",
         gridTemplateRows: "auto",
-        gridTemplateColumns:
-          "[label] minmax(min-content, max-content) auto [control] 1fr [end]",
+        gridTemplateColumns: "[label] auto [control] minmax(0, 1fr) [end]",
         gridAutoRows: "auto",
         rowGap: "0.2em",
         maxWidth: "100%",

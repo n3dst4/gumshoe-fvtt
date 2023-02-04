@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { DragEventHandler, useMemo } from "react";
 import { nanoid } from "nanoid";
 import { IdContext } from "../IdContext";
 import { Translate } from "../Translate";
@@ -10,6 +10,9 @@ type GridFieldProps = {
   noLabel?: boolean;
   noTranslate?: boolean;
   labelTitle?: string;
+  onDragOver?: DragEventHandler<HTMLElement>;
+  onDragEnd?: DragEventHandler<HTMLElement>;
+  onDrop?: DragEventHandler<HTMLElement>;
 };
 
 export const GridField: React.FC<GridFieldProps> = ({
@@ -19,6 +22,9 @@ export const GridField: React.FC<GridFieldProps> = ({
   noLabel = false,
   noTranslate = false,
   labelTitle,
+  onDragOver,
+  onDragEnd,
+  onDrop,
 }) => {
   const id = useMemo(() => nanoid(), []);
   return (
@@ -32,6 +38,11 @@ export const GridField: React.FC<GridFieldProps> = ({
           paddingRight: "0.5em",
         }}
         className={className}
+        // drag handlers
+        onDragOver={onDragOver}
+        onDragLeave={onDragEnd}
+        onDragEnd={onDragEnd}
+        onDrop={onDrop}
       >
         {label &&
           (noTranslate || typeof label !== "string" ? (
@@ -45,6 +56,11 @@ export const GridField: React.FC<GridFieldProps> = ({
         css={{
           gridColumn: "control",
         }}
+        // drag handlers
+        onDragOver={onDragOver}
+        onDragLeave={onDragEnd}
+        onDragEnd={onDragEnd}
+        onDrop={onDrop}
       >
         {children}
       </div>
