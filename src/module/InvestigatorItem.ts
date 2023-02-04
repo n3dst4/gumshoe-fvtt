@@ -467,7 +467,7 @@ export class InvestigatorItem extends Item {
 
   setPool = (pool: number) => {
     assertAbilityDataSource(this.data);
-    this.update({ data: { pool } });
+    return this.update({ data: { pool } });
   };
 
   getBoost = () => {
