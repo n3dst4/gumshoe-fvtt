@@ -22,8 +22,8 @@
     "eslint:fix": "eslint src --fix",
     "format:check": "prettier --check src",
     "format:fix": "prettier --write src",
-    "lint:check": "npm run prettier:check && npm run eslint:check",
-    "lint:fix": "npm run prettier:fix && npm run eslint:fix"
+    "lint:check": "npm run format:check && npm run eslint:check",
+    "lint:fix": "npm run format:fix && npm run eslint:fix"
   },
   "author": "",
   "license": "",

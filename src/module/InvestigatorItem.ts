@@ -8,6 +8,7 @@ import {
   assertWeaponDataSource,
   isEquipmentDataSource,
   assertEquipmentDataSource,
+  assertPersonalDetailDataSource,
 } from "../typeAssertions";
 import {
   EquipmentDataSource,
@@ -671,6 +672,24 @@ export class InvestigatorItem extends Item {
   setDamageBonus = async (damageBonus: number) => {
     assertGeneralAbilityDataSource(this.data);
     await this.update({ data: { damageBonus } });
+  };
+
+  setSlotIndex = (slotIndex: number) => {
+    assertPersonalDetailDataSource(this.data);
+    this.update({
+      data: {
+        slotIndex,
+      },
+    });
+  };
+
+  setCompendiumPack = (id: string | null) => {
+    assertPersonalDetailDataSource(this.data);
+    this.update({
+      data: {
+        compendiumPackId: id,
+      },
+    });
   };
 }
 
