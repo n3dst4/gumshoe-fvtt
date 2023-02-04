@@ -27,7 +27,6 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
   );
 
   const [spend, setSpend] = useState(0);
-  // const unlocks = ability.getActiveUnlocks();
 
   const onTest = useCallback(() => {
     ability.testAbility(spend);

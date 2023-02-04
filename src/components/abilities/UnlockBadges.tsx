@@ -24,6 +24,22 @@ export const UnlockBadges: React.FC<UnlockBadgesProps> = ({
         justifyContent: "center",
       }}
     >
+      {ability.data.data.boost && (
+        <span
+          css={{
+            background: theme.colors.accentContrast,
+            color: theme.colors.accent,
+            outline: `1px solid ${theme.colors.accent}`,
+            fontSize: "0.9em",
+            lineHeight: "1",
+            borderRadius: "0.5em",
+            padding: "0 0.5em",
+            margin: "0 0.25em",
+          }}
+        >
+          Boosted
+        </span>
+      )}
       {unlocks.map<ReactNode>(({ description }, i) => {
         return (
           <span
