@@ -102,7 +102,7 @@ export const performAttack =
     const poolHit = Math.max(0, Number(spend) - bonusPool);
     const newPool = Math.max(0, currentPool - poolHit);
     const newBonusPool = Math.max(0, bonusPool - Number(spend));
-    ability?.setPool(newPool);
+    await ability?.setPool(newPool);
     setBonusPool(newBonusPool);
     setSpend(0);
     weapon.setAmmo(Math.max(0, weapon.getAmmo() - weapon.getAmmoPerShot()));

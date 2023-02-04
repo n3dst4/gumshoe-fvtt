@@ -108,7 +108,7 @@ export class InvestigatorActor extends Actor {
         return [];
       }
     });
-    this.updateEmbeddedDocuments("Item", updates);
+    return this.updateEmbeddedDocuments("Item", updates);
   };
 
   mWrefresh(group: MwRefreshGroup) {
@@ -131,7 +131,7 @@ export class InvestigatorActor extends Actor {
         return [];
       }
     });
-    this.updateEmbeddedDocuments("Item", updates);
+    return this.updateEmbeddedDocuments("Item", updates);
   }
 
   // if we end up with even more types of refresh it may be worth factoring out
@@ -244,7 +244,7 @@ export class InvestigatorActor extends Actor {
   getName = () => this.name;
 
   setName = (name: string) => {
-    this.update({ name });
+    return this.update({ name });
   };
 
   getOccupation = () => {
@@ -254,7 +254,7 @@ export class InvestigatorActor extends Actor {
 
   setOccupation = (occupation: string) => {
     assertPCDataSource(this.data);
-    this.update({ data: { occupation } });
+    return this.update({ data: { occupation } });
   };
 
   getSheetTheme(): ThemeV1 {
@@ -288,7 +288,7 @@ export class InvestigatorActor extends Actor {
 
   setNotes = (notes: NoteWithFormat) => {
     assertNPCDataSource(this.data);
-    this.update({ data: { notes } });
+    return this.update({ data: { notes } });
   };
 
   getLongNote = (i: number) => {
@@ -305,7 +305,7 @@ export class InvestigatorActor extends Actor {
     assertPCDataSource(this.data);
     const longNotes = [...(this.data.data.longNotes || [])];
     longNotes[i] = note;
-    this.update({ data: { longNotes } });
+    return this.update({ data: { longNotes } });
   };
 
   setLongNotesFormat = async (longNotesFormat: NoteFormat) => {
@@ -325,7 +325,7 @@ export class InvestigatorActor extends Actor {
       };
     });
     const longNotes = await Promise.all(longNotesPromises);
-    this.update({ data: { longNotes, longNotesFormat } });
+    return this.update({ data: { longNotes, longNotesFormat } });
   };
 
   getShortNote = (i: number) => {
@@ -342,7 +342,7 @@ export class InvestigatorActor extends Actor {
     assertPCDataSource(this.data);
     const newNotes = [...(this.data.data.shortNotes || [])];
     newNotes[i] = text;
-    this.update({
+    return this.update({
       data: {
         shortNotes: newNotes,
       },
@@ -353,7 +353,7 @@ export class InvestigatorActor extends Actor {
     assertPCDataSource(this.data);
     const newNotes = [...(this.data.data.hiddenShortNotes || [])];
     newNotes[i] = text;
-    this.update({
+    return this.update({
       data: {
         hiddenShortNotes: newNotes,
       },
@@ -421,7 +421,7 @@ export class InvestigatorActor extends Actor {
 
   setActorIds = (actorIds: string[]) => {
     assertPartyDataSource(this.data);
-    this.update({ data: { actorIds } });
+    return this.update({ data: { actorIds } });
   };
 
   getActors = () => {
@@ -449,11 +449,11 @@ export class InvestigatorActor extends Actor {
             !currentIds.includes(actor.id),
         ) as Actor[]
     ).map((actor) => actor.id) as string[];
-    this.setActorIds([...currentIds, ...effectiveIds]);
+    return this.setActorIds([...currentIds, ...effectiveIds]);
   };
 
   removeActorId = (id: string) => {
-    this.setActorIds(this.getActorIds().filter((x) => x !== id));
+    return this.setActorIds(this.getActorIds().filter((x) => x !== id));
   };
 
   createEquipment = async (categoryId: string) => {
