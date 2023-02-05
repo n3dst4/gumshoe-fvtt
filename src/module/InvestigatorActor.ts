@@ -9,9 +9,7 @@ import {
 } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
 import {
-  RecursivePartial,
   AbilityType,
-  InvestigativeAbilityDataSource,
   MwType,
   MwRefreshGroup,
   NoteWithFormat,
@@ -28,7 +26,6 @@ import {
   assertMwItemDataSource,
   assertNPCDataSource,
 } from "../typeAssertions";
-// import { InvestigatorItem } from "./InvestigatorItem";
 import { convertNotes } from "../textFunctions";
 import { tealTheme } from "../themes/tealTheme";
 import { runtimeConfig } from "../runtime";
@@ -36,13 +33,6 @@ import { settings } from "../settings";
 import { ThemeV1 } from "../themes/types";
 
 export class InvestigatorActor extends Actor {
-  /**
-   * Augment the basic actor data with additional dynamic data.
-   */
-  // prepareData (): void {
-  //   super.prepareData();
-  // }
-
   confirmRefresh = () => {
     confirmADoodleDo({
       message: "Refresh all of (actor name)'s abilities?",
@@ -493,107 +483,3 @@ declare global {
     Actor: typeof InvestigatorActor;
   }
 }
-
-/**
- * Keep "special" general abilities in sync with their corresponding resources
- */
-Hooks.on(
-  "updateItem",
-  (
-    item: Item,
-    // this seems like a fib, but I can't see what else to type this as
-    diff: RecursivePartial<InvestigativeAbilityDataSource> & { _id: string },
-    options: Record<string, unknown>,
-    userId: string,
-  ) => {
-    assertGame(game);
-    if (game.userId !== userId || item.actor === undefined) {
-      return;
-    }
-
-    // love 2 sink into a pit of imperative code
-    if (item.data.type === generalAbility) {
-      if (["Sanity", "Stability", "Health", "Magic"].includes(item.data.name)) {
-        if (diff.data?.pool !== undefined || diff.data?.rating !== undefined) {
-          item.actor?.update({
-            data: {
-              resources: {
-                [item.data.name.toLowerCase()]: {
-                  value: item.data.data.pool,
-                  max: item.data.data.rating,
-                },
-              },
-            },
-          });
-        }
-      }
-    }
-  },
-);
-
-Hooks.on(
-  "createActor",
-  async (
-    actor: InvestigatorActor,
-    options: Record<string, unknown>,
-    userId: string,
-  ) => {
-    assertGame(game);
-    if (game.userId !== userId) return;
-
-    if (actor.items.size > 0) {
-      return;
-    }
-
-    if (actor.data.type === pc) {
-      // this used to be done in parallel with Promise.all but I was seeing some
-      // weird behaviour (duplicated or missing abilities, or weird reference
-      // errors) so I have switched it to serial to see if that helps
-      for (const packId of settings.newPCPacks.get()) {
-        assertGame(game);
-        console.log("PACK", packId);
-        const content = await game.packs
-          ?.find((p: any) => p.collection === packId)
-          ?.getDocuments();
-        const datas = content?.map((item) => {
-          // clunky cast here because there doesn't seem to be a sane way to
-          // check the type of something coming out of a compendium pack.
-          // XXX if we cast as InvestigatorItem, we have a circular dependency
-          const {
-            data: { name, img, data, type },
-          } = item as any;
-          return {
-            name,
-            img,
-            data,
-            type,
-          };
-        });
-        console.log("datas", datas);
-        await (actor as any).createEmbeddedDocuments("Item", datas);
-      }
-    }
-
-    if (actor.data.type === npc) {
-      for (const packId of settings.newNPCPacks.get()) {
-        assertGame(game);
-        console.log("PACK", packId);
-        const content = await game.packs
-          ?.find((p) => p.documentName === "Item" && p.collection === packId)
-          ?.getDocuments();
-        // XXX eurgh - same as elsewhere - if we cast as InvestigatorItem, we
-        // have a circular dependency
-        const datas = (content as any[])?.map(
-          ({ data: { name, img, data, type } }) => ({
-            name,
-            img,
-            data,
-            type,
-          }),
-        );
-        console.log("datas", datas);
-        await (actor as any).createEmbeddedDocuments("Item", datas);
-      }
-    }
-  },
-);
