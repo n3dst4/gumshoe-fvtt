@@ -48,7 +48,7 @@ export const flaggedMigrations: FlaggedMigrations = {
             img: c.personalDetailIcon,
             name: shortNote,
             system: {
-              index: i,
+              slotIndex: i,
             },
           }))
           .filter((item: any) => item.name !== null);
@@ -60,7 +60,7 @@ export const flaggedMigrations: FlaggedMigrations = {
                 img: c.personalDetailIcon,
                 name: data.data.occupation,
                 system: {
-                  index: c.occupationSlotIndex,
+                  slotIndex: c.occupationSlotIndex,
                 },
               },
             ];
