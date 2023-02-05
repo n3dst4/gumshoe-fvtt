@@ -235,3 +235,7 @@ export function moveKeyDown<V>(
   const result = Object.fromEntries(entries);
   return result;
 }
+
+export async function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

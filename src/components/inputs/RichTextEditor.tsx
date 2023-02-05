@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { wait } from "../../functions";
 import { absoluteCover } from "../absoluteCover";
 type RichTextEditorProps = {
   value: string;
@@ -26,6 +27,14 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
   //   onChange,
   // });
 
+  const myOnSave = useCallback(async () => {
+    // hacky delay to allow the editor to update the content before we try to
+    // save it. I would try harder here but we will almost certainlky end up
+    // using foundry's cool new editor in due course anyway.
+    await wait(500);
+    onSave();
+  }, [onSave]);
+
   const ref = useRef<HTMLTextAreaElement>(null);
   const [initialValue] = useState(value);
   useEffect(() => {
@@ -33,7 +42,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
       const instancePromise = TextEditor.create(
         {
           target: ref.current,
-          save_onsavecallback: onSave,
+          save_onsavecallback: myOnSave,
           height: "100%",
         } as any,
         initialValue,
@@ -50,7 +59,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
         });
       };
     }
-  }, [initialValue, onChange, onSave]);
+  }, [initialValue, myOnSave, onChange]);
 
   // const onSubmit = useCallback((e: any) => {
   //   e.preventDefault();
