@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 6.1.0 (2023-02-05)
+
+Another "building block" release, with a big new feature that will make more sense further down the line.
+
+* Big new feature: Personal Details. These replace the old "short notes" fields, which were just text boxes. "Personal Details" are a fully fledged item type, with images and text, which can be created, shared, put into compendium packs etc. Additionally, they can be linked to a compendium pack so that when you add the personal detail item to an actor, it can automatically add all the items in the compendium pack too! (#127)
+* Small new feature: a visual indicator on the PC sheet when abilities are boosted (#146) Thanks P. Troilus for the idea.
+* Small new feature: Boosted investigative abilities automatically restore 1 point after a spend. (#147) Thanks P. Troilus for the idea again.
+* Bug fix: Regular players no longer see a spurious error message when the GM adds a non-player-controlled token to combat (#149) Thanks Inloy for the bug report.
+* Bug fix: spend on attacks by NPCs without linked actor data now stick (#150) Thanks Rob Bush for the bug report.
+* Bug fix: Using the built-in "save" button on the rich text editor actuall saves the text now (#152) Thanks little old me for the bug report.
+
 ## 6.0.0 (2023-01-08)
 
 * Equipment categories! The GM can now define "types" of equipment and named custom fields to be present for each type. For example, you might define "treasure" as a category, with a "value" field, and "tomes" with a "sanity cost". Tickets #128 and #64, in a pleasant binary rhyme. See the wiki at https://gitlab.com/n3dst4/investigator-fvtt/-/wikis/How-equipment-categories-work for full details, or come and say Hi in the Pelgrane discord server: https://discord.com/channels/692113540210753568/720741108937916518
