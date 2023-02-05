@@ -6,6 +6,7 @@ import {
   weapon,
   personalDetail,
   equipment,
+  occupationSlotIndex,
 } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
 import {
@@ -458,7 +459,10 @@ export class InvestigatorActor extends Actor {
   };
 
   createPersonalDetail = async (slotIndex: number) => {
-    const detailName = settings.shortNotes.get()[slotIndex] ?? "detail";
+    const detailName =
+      slotIndex === occupationSlotIndex
+        ? settings.occupationLabel.get()
+        : settings.shortNotes.get()[slotIndex] ?? "detail";
     const name = `New ${detailName}`;
     await this.createEmbeddedDocuments(
       "Item",
