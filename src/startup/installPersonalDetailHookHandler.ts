@@ -12,6 +12,7 @@ import {
 } from "../functions";
 import { InvestigatorActorDataSource } from "../types";
 import { settings } from "../settings";
+import { isActiveCharacterDataSource } from "../typeAssertions";
 
 export function installPersonalDetailHookHandler() {
   Hooks.on(
@@ -45,7 +46,8 @@ export function installPersonalDetailHookHandler() {
         !(
           game.userId === userId &&
           item.type === personalDetail &&
-          item.isEmbedded
+          item.isEmbedded &&
+          isActiveCharacterDataSource(item.actor?.data)
         )
       ) {
         return;
