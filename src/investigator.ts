@@ -1,4 +1,3 @@
-// import "./startup/setWebkitPublicPath";
 import "./investigator.less";
 import { systemName } from "./constants";
 import { registerSettingsMenu } from "./startup/registerSettingsMenu";
@@ -25,6 +24,9 @@ import { assertGame } from "./functions";
 import { installTurnPassingHandler } from "./startup/installTurnPassingHandler";
 import { installSocketActionHandler } from "./startup/installSocketActionHandler";
 import { installEquipmentCategoryHookHandler } from "./startup/installEquipmentCategoryHookHandler";
+import { installPersonalDetailHookHandler } from "./startup/installPersonalDetailHookHandler";
+import { installResourceUpdateHookHandler } from "./startup/installResourceUpdateHookHandler";
+import { installNewCharacterPacksHookHandler } from "./startup/installNewCharacterPacksHookHandler";
 
 injectGlobalHelper();
 
@@ -67,3 +69,6 @@ installInitiativeUpdateHookHandler();
 installTurnPassingHandler();
 installSocketActionHandler();
 installEquipmentCategoryHookHandler();
+installPersonalDetailHookHandler();
+installResourceUpdateHookHandler();
+installNewCharacterPacksHookHandler();
