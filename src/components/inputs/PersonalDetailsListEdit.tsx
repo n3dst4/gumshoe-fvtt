@@ -1,0 +1,139 @@
+import {
+  PersonalDetail,
+  PersonalDetailType,
+} from "@lumphammer/investigator-fvtt-types";
+import React, { useCallback } from "react";
+import { Translate } from "../Translate";
+
+type PersonalDetailsListEditProps = {
+  personalDetails: PersonalDetail[];
+  onChange: (value: PersonalDetail[]) => void;
+};
+
+export const PersonalDetailsListEdit: React.FC<
+  PersonalDetailsListEditProps
+> = ({ personalDetails, onChange }) => {
+  const handleTextInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!e.currentTarget.dataset.index) {
+        return;
+      }
+      const newList = [...personalDetails];
+      newList[Number(e.currentTarget.dataset.index)] = {
+        ...newList[Number(e.currentTarget.dataset.index)],
+        name: e.currentTarget.value,
+      };
+      onChange(newList);
+    },
+    [onChange, personalDetails],
+  );
+
+  const handleSelectChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      if (!e.currentTarget.dataset.index) {
+        return;
+      }
+      const newList = [...personalDetails];
+      newList[Number(e.currentTarget.dataset.index)] = {
+        ...newList[Number(e.currentTarget.dataset.index)],
+        type: e.currentTarget.value as PersonalDetailType,
+      };
+      onChange(newList);
+    },
+    [onChange, personalDetails],
+  );
+
+  const onClickDelete = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      if (!e.currentTarget.dataset.index) {
+        return;
+      }
+      const newList = [...personalDetails];
+      newList.splice(Number(e.currentTarget.dataset.index), 1);
+      onChange(newList);
+    },
+    [onChange, personalDetails],
+  );
+
+  const onClickAdd = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      const newList: PersonalDetail[] = [
+        ...personalDetails,
+        { name: "", type: "item" },
+      ];
+      onChange(newList);
+    },
+    [onChange, personalDetails],
+  );
+
+  return (
+    <div>
+      {personalDetails.length === 0 && (
+        <i>
+          <Translate>Empty List</Translate>
+        </i>
+      )}
+      {personalDetails.map<JSX.Element>((personalDetail, i) => (
+        <div
+          key={i}
+          css={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <div
+            css={{
+              width: "14em",
+              position: "relative",
+            }}
+          >
+            <input
+              data-index={i}
+              type="text"
+              value={personalDetail.name}
+              onChange={handleTextInputChange}
+              // placeholder="Name"
+            />
+          </div>
+          <div
+            css={{
+              // width: "3em",
+              position: "relative",
+            }}
+          >
+            <select
+              value={personalDetails[i].type}
+              onChange={handleSelectChange}
+            >
+              <option value="string">String</option>
+              <option value="item">Item</option>
+            </select>
+          </div>
+          <div
+            css={{
+              width: "6em",
+              position: "relative",
+            }}
+          >
+            <button data-index={i} onClick={onClickDelete}>
+              <i className="fas fa-trash" />
+            </button>
+          </div>
+        </div>
+      ))}
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "row",
+          width: "18em",
+        }}
+      >
+        <button onClick={onClickAdd}>
+          <i className="fas fa-plus" /> <Translate>Add item</Translate>
+        </button>
+      </div>
+    </div>
+  );
+};

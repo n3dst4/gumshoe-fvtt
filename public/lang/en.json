@@ -55,7 +55,6 @@
   "investigator.Investigative": "Investigative",
   "investigator.InvestigativeAbility": "Investigative ability",
   "investigator.InvestigativeAbilityCategories": "Investigative ability categories",
-  "investigator.LongNotesFields": "Long notes fields",
   "investigator.LongRange": "Long range",
   "investigator.Markdown": "Markdown",
   "investigator.Max": "Max",
@@ -94,7 +93,6 @@
   "investigator.RichText": "Rich Text",
   "investigator.Save": "Save",
   "investigator.SaveChanges": "Save changes",
-  "investigator.ShortNotesFields": "Short notes fields",
   "investigator.ShowTracker": "Show tracker?",
   "investigator.SimpleSpend": "Simple spend",
   "investigator.Specialities": "Specialities",
@@ -161,5 +159,7 @@
   "investigator.Replace": "Replace",
   "investigator.Add": "Add",
   "investigator.CompendiumPack": "Compendium Pack",
-  "investigator.AddAllItemsFromPackName": "Add all items from pack {Name}?"
+  "investigator.AddAllItemsFromPackName": "Add all items from pack {Name}?",
+  "investigator.PersonalDetails": "Personal Details",
+  "investigator.NotesFields": "Notes fields"
 }

@@ -9,6 +9,7 @@ import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { ListEdit } from "../inputs/ListEdit";
 import { DispatchContext, StateContext } from "./contexts";
 import { slice } from "./reducer";
+import { PersonalDetailsListEdit } from "../inputs/PersonalDetailsListEdit";
 
 interface CoreSettingsProps {
   setters: Setters;
@@ -81,10 +82,13 @@ export const CoreSettings: React.FC<CoreSettingsProps> = ({ setters }) => {
           onChange={setters.occupationLabel}
         />
       </SettingsGridField>
-      <SettingsGridField label="Short Notes Fields" index={idx++}>
-        <ListEdit value={settings.shortNotes} onChange={setters.shortNotes} />
+      <SettingsGridField label="Personal details" index={idx++}>
+        <PersonalDetailsListEdit
+          personalDetails={settings.personalDetails}
+          onChange={setters.personalDetails}
+        />
       </SettingsGridField>
-      <SettingsGridField label="Long Notes Fields" index={idx++}>
+      <SettingsGridField label="Notes Fields" index={idx++}>
         <ListEdit value={settings.longNotes} onChange={setters.longNotes} />
       </SettingsGridField>
 
