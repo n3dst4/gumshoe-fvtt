@@ -363,6 +363,14 @@ export class InvestigatorItem extends Item {
     });
   };
 
+  setCost = (cost: number) => {
+    return this.update({
+      data: {
+        cost,
+      },
+    });
+  };
+
   setAmmoMax = (max: number) => {
     return this.update({
       data: {

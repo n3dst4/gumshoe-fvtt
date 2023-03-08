@@ -10,8 +10,6 @@ import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { assertWeaponDataSource } from "../../typeAssertions";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
-import { absoluteCover } from "../absoluteCover";
 import { settings } from "../../settings";
 
 type WeaponConfigProps = {
@@ -46,12 +44,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
   const abilities = settings.combatAbilities.get();
 
   return (
-    <InputGrid
-      css={{
-        ...absoluteCover,
-        gridTemplateRows: "repeat(7, auto) 1fr",
-      }}
-    >
+    <InputGrid>
       <GridField label="Name">
         <TextInput value={name.display} onChange={name.onChange} />
       </GridField>
@@ -102,13 +95,6 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
         enabled={weapon.getIsLongRange()}
         setDamage={weapon.setLongRangeDamage}
         setEnabled={weapon.setIsLongRange}
-      />
-      <NotesEditorWithControls
-        allowChangeFormat
-        format={weapon.data.data.notes.format}
-        html={weapon.data.data.notes.html}
-        source={weapon.data.data.notes.source}
-        onSave={weapon.setNotes}
       />
       <GridField label="Uses ammo?">
         <AsyncCheckbox

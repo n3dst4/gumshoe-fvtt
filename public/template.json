@@ -142,6 +142,7 @@
       "isLongRange": false,
       "usesAmmo": true,
       "ammoPerShot": 1,
+      "cost": 0,
       "ammo": {
         "min": 0,
         "max": 10,

@@ -177,6 +177,7 @@ interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
   isLongRange: boolean;
   usesAmmo: boolean;
   ammoPerShot: number;
+  cost: number;
   ammo: {
     min: number;
     max: number;

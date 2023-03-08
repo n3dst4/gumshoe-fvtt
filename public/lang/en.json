@@ -161,5 +161,6 @@
   "investigator.CompendiumPack": "Compendium Pack",
   "investigator.AddAllItemsFromPackName": "Add all items from pack {Name}?",
   "investigator.PersonalDetails": "Personal Details",
-  "investigator.NotesFields": "Notes fields"
+  "investigator.NotesFields": "Notes fields",
+  "investigator.Cost": "Cost"
 }

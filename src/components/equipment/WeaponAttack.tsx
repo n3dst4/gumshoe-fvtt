@@ -299,6 +299,13 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
             </span>
           )}
         </GridField>
+        <GridField label="Cost">
+          <AsyncNumberInput
+            min={0}
+            value={weapon.data.data.cost}
+            onChange={weapon.setCost}
+          />
+        </GridField>
       </InputGrid>
     </div>
   );
