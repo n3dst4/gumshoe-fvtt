@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 6.2.0 (2023-03-08)
+* A small release to introduce the optional ability to turn personal details back into text fields, like how they used to be.
+
 ## 6.2.0-beta.1 (2023-03-08)
 
 * A small release to introduce the optional ability to turn personal details back into text fields, like how they used to be.

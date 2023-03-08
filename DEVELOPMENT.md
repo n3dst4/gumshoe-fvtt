@@ -132,7 +132,10 @@ To perform a release:
     scripts/do-release.sh
     ```
 
-6. If this is a test release, stop here. Otherwise, continue.
+6. If this is a test release, stop here. You can find the manifest URL to install this test release on https://gitlab.com/n3dst4/investigator-fvtt/-/releases. 
+   
+   Otherwise, continue.
+   
 7. Fast-forward `release` to `main` (yes this is a funky use of `fetch`):
 
     ```
@@ -141,7 +144,7 @@ To perform a release:
 
 8. Head over to the [CI page][ci] and wait for the pipeline to finish.
 
-9. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
+9.  Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
 
 10. Go and barf forth glad tidings on the [Pelgrane's Virtual Tabletops Discord channel][pelgrane-discord] and the [Foundry Package Releases channel][fprd].
 
