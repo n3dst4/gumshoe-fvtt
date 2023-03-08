@@ -9,7 +9,7 @@ export const pathOfCthulhuPreset: Required<PresetV1> = {
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Weapons", "Firearms", "Athletics"],
   occupationLabel: "Occupation",
-  shortNotes: ["Drive"],
+  personalDetails: [{ name: "Drive", type: "item" }],
   longNotes: [
     "Notes, Contacts etc.",
     "Occupational Benefits",
@@ -86,7 +86,10 @@ export const niceBlackAgentsPreset: PresetV1 = {
   generalAbilityCategories: ["General"],
   combatAbilities: ["Hand-to-Hand", "Weapons", "Shooting", "Athletics"],
   occupationLabel: "Background",
-  shortNotes: ["Drive", "Previous Patron"],
+  personalDetails: [
+    { name: "Drive", type: "item" },
+    { name: "Previous Patron", type: "item" },
+  ],
   longNotes: ["Covers", "Network Contacts", "Trust"],
   newPCPacks: [`${systemName}.${packNames.niceBlackAgentsAbilities}`],
   newNPCPacks: [`${systemName}.${npcPackName}`],
@@ -113,7 +116,7 @@ export const nothingToFearPreset: PresetV1 = {
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Shooting", "Athletics"],
   occupationLabel: "Concept",
-  shortNotes: [],
+  personalDetails: [],
   longNotes: ["Risk Factors", "Sources of Stability", "Notes"],
   newPCPacks: [`${systemName}.${packNames.nothingToFearAbilities}`],
   newNPCPacks: [`${systemName}.${npcPackName}`],
@@ -140,7 +143,11 @@ export const pallidStarsPreset: PresetV1 = {
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Shooting"],
   occupationLabel: "Species",
-  shortNotes: ["Drive", "Groundside Post", "Warpside Post"],
+  personalDetails: [
+    { name: "Drive", type: "item" },
+    { name: "Groundside Post", type: "item" },
+    { name: "Warpside Post", type: "item" },
+  ],
   longNotes: [
     "Personal Arc",
     "Cybernetic Enhancements",
@@ -194,7 +201,7 @@ export const castingTheRunesPreset: PresetV1 = {
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Weapons"],
   occupationLabel: "Occupation",
-  shortNotes: ["Drive"],
+  personalDetails: [{ name: "Drive", type: "item" }],
   longNotes: [
     "Income",
     "Contacts",
@@ -238,7 +245,7 @@ export const moribundWorldPreset: PresetV1 = {
     "Caution",
   ],
   occupationLabel: "Précis",
-  shortNotes: ["Series level"],
+  personalDetails: [{ name: "Series level", type: "item" }],
   longNotes: [
     "General",
     "Facial Features",

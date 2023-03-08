@@ -159,10 +159,19 @@ export const settings = {
     name: 'What do we call "Occupation"?',
     default: pathOfCthulhuPreset.occupationLabel,
   }),
+  /**
+   * @deprecated
+   * Use personalDetails instead
+   */
   shortNotes: createSettingObject({
     key: "shortNotes",
     name: "Short Notes",
-    default: pathOfCthulhuPreset.shortNotes,
+    default: [""],
+  }),
+  personalDetails: createSettingObject({
+    key: "personalDetails",
+    name: "Personal details",
+    default: pathOfCthulhuPreset.personalDetails,
   }),
   showEmptyInvestigativeCategories: createSettingBoolean({
     key: "showEmptyInvestigativeCategories",

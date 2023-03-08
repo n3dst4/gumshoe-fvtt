@@ -37,7 +37,7 @@ export const GridField: React.FC<GridFieldProps> = ({
           paddingTop: "0.3em",
           paddingRight: "0.5em",
         }}
-        className={className}
+        // className={className}
         // drag handlers
         onDragOver={onDragOver}
         onDragLeave={onDragEnd}

@@ -1,5 +1,6 @@
+import { PersonalDetail } from "@lumphammer/investigator-fvtt-types";
 import * as c from "../constants";
-import { isNullOrEmptyString } from "../functions";
+import { assertGame, isNullOrEmptyString } from "../functions";
 import { pathOfCthulhuPreset } from "../presets";
 import { FlaggedMigrations } from "./types";
 
@@ -71,7 +72,22 @@ export const flaggedMigrations: FlaggedMigrations = {
       return updateData;
     },
   },
-  world: {},
+  world: {
+    convertShortNotesToPersonalDetails: (data: any, updateData: any) => {
+      assertGame(game);
+      const shortNotes: string[] = game.settings.get(
+        "investigator",
+        "shortNotes",
+      ) as string[];
+      const personalDetails: PersonalDetail[] = shortNotes.map(
+        (shortNote: string, i: number) => ({
+          name: shortNote,
+          type: "item",
+        }),
+      );
+      game.settings.set("investigator", "personalDetails", personalDetails);
+    },
+  },
   compendium: {},
   journal: {},
   macro: {},
