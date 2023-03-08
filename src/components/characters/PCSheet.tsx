@@ -33,6 +33,13 @@ export const PCSheet: React.FC<{
   assertGame(game);
   assertPCDataSource(actor.data);
 
+  const updateShortNote = useCallback(
+    (value, index) => {
+      actor.setShortNote(index, value);
+    },
+    [actor],
+  );
+
   const updateMwHiddenShortNote = useCallback(
     (value, index) => {
       actor.setMwHiddenShortNote(index, value);
@@ -41,7 +48,7 @@ export const PCSheet: React.FC<{
   );
 
   const theme = actor.getSheetTheme();
-  const shortNotesNames = settings.shortNotes.get();
+  const personalDetails = settings.personalDetails.get();
   const shortHiddenNotesNames = settings.mwHiddenShortNotes.get();
   const occupationLabel = settings.occupationLabel.get();
   const stats = settings.pcStats.get();
@@ -108,14 +115,28 @@ export const PCSheet: React.FC<{
             actor={actor}
             slotIndex={occupationSlotIndex}
           />
-          {shortNotesNames.map((name: string, i: number) => (
-            <PersonalDetailField
-              key={`${name}--${i}`}
-              name={name}
-              actor={actor}
-              slotIndex={i}
-            />
-          ))}
+          {personalDetails.map(({ name, type }, i) =>
+            type === "text" ? (
+              <GridField noTranslate key={`${name}--${i}`} label={name}>
+                <AsyncTextInput
+                  value={
+                    isPCDataSource(actor.data)
+                      ? actor.data.data.shortNotes[i]
+                      : ""
+                  }
+                  onChange={updateShortNote}
+                  index={i}
+                />
+              </GridField>
+            ) : (
+              <PersonalDetailField
+                key={`${name}--${i}`}
+                name={name}
+                actor={actor}
+                slotIndex={i}
+              />
+            ),
+          )}
           {game.user?.isGM &&
             shortHiddenNotesNames.map((name: string, i: number) => (
               <GridField noTranslate key={`${name}--${i}`} label={name}>

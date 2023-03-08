@@ -94,12 +94,10 @@ export const PersonalDetailsListEdit: React.FC<
               type="text"
               value={personalDetail.name}
               onChange={handleTextInputChange}
-              // placeholder="Name"
             />
           </div>
           <div
             css={{
-              // width: "3em",
               position: "relative",
             }}
           >
@@ -108,7 +106,7 @@ export const PersonalDetailsListEdit: React.FC<
               value={personalDetails[i].type}
               onChange={handleSelectChange}
             >
-              <option value="string">String</option>
+              <option value="text">Text</option>
               <option value="item">Item</option>
             </select>
           </div>
