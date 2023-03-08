@@ -169,8 +169,8 @@ export const settings = {
     default: [""],
   }),
   personalDetails: createSettingObject({
-    key: "shortNotesAsText",
-    name: "Short Notes as text",
+    key: "personalDetails",
+    name: "Personal details",
     default: pathOfCthulhuPreset.personalDetails,
   }),
   showEmptyInvestigativeCategories: createSettingBoolean({

@@ -21,6 +21,11 @@ export const PersonalDetailField: React.FC<{
       label={name}
       css={{
         position: "relative",
+        display: "flex",
+        flexWrap: "wrap",
+        flexDirection: "row",
+        // alignItems: "center",
+        // justifyContent: "end",
       }}
     >
       {personalDetailItems.map((item) => (

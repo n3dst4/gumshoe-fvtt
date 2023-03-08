@@ -33,17 +33,19 @@ export const Slug: React.FC<SlugProps> = ({ onClick, item, children }) => {
         display: "block",
         borderRadius: "0.7em",
         padding: "0.1em 0.5em",
-        margin: "0.1em 0",
+        margin: "0.1em 0.1em 0.1em 0",
         backgroundColor: theme.colors.backgroundSecondary,
         color: theme.colors.accent,
         lineHeight: "1em",
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
-        width: "100%",
+        // width: "100%",
         borderStyle: "solid",
         borderWidth: "1px",
         borderColor: theme.colors.accent,
+        flex: 1,
+        minWidth: "max-content",
       }}
     >
       {item && (

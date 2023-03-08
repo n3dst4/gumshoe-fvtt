@@ -104,6 +104,7 @@ export const PersonalDetailsListEdit: React.FC<
             }}
           >
             <select
+              data-index={i}
               value={personalDetails[i].type}
               onChange={handleSelectChange}
             >
