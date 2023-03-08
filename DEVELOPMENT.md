@@ -132,7 +132,7 @@ To perform a release:
     scripts/do-release.sh
     ```
 
-6. If this is a test release, stop here. You can find the manifest URL to install this test release on https://gitlab.com/n3dst4/investigator-fvtt/-/releases. 
+6. If this is a test release, stop here. You can find the manifest URL to install this test release on [the GitLab releases page][releases]. 
    
    Otherwise, continue.
    
@@ -144,9 +144,13 @@ To perform a release:
 
 8. Head over to the [CI page][ci] and wait for the pipeline to finish.
 
-9.  Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
+9. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
 
-10. Go and barf forth glad tidings on the [Pelgrane's Virtual Tabletops Discord channel][pelgrane-discord] and the [Foundry Package Releases channel][fprd].
+    You can mostly copy everything from the line before, but **update the version number and the version number in the URLs**. You can also update the compatible Foundry versions as long as you've made the same change in `system.json`.
+
+10. Barf forth glad tidings on the [Pelgrane's Virtual Tabletops Discord channel][pelgrane-discord] and the [Foundry Package Releases channel][fprd].
+
+    Paste in the CHANGELOG entry you just wrote, adding "INVESTIGATOR" in front of the version number to give people context.
 
 ### What happens if the CI pipeline fails?
 
@@ -165,3 +169,4 @@ To perform a release:
 [ci]: https://gitlab.com/n3dst4/investigator-fvtt/-/pipelines
 [pelgrane-discord]: https://discord.com/channels/692113540210753568/720741108937916518
 [fprd]: https://discord.com/channels/170995199584108546/64821535989524071
+[releases]: https://gitlab.com/n3dst4/investigator-fvtt/-/releases
