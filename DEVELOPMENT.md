@@ -120,29 +120,30 @@ What this enables (list subject to change):
 
 To perform a release: 
 
-1. Pick the new version number according to semantic versioning. If you're doing a testing release, use a suffix e.g. `x.y.z-test-1`.
-2. Update the version in
+1. Decide if you're doing a testing release or a real release. DO DO A TESTING RELEASE AND CHECK IT ON A TEST SERVER.
+2. Pick the new version number according to semantic versioning. If you're doing a testing release, use a suffix e.g. `x.y.z-test-1`.
+3. Update the version in
    * [`package.json`](package.json)
    * [`system.json`](public/system.json).
-3. Update the `CHANGELOG`.
-4. Run this one handy command, which will commit, push, and create a new tag and push it also:
+4. Update the `CHANGELOG`.
+5. Run this one handy command, which will commit, push, and create a new tag and push it also:
 
     ```
     scripts/do-release.sh
     ```
 
-5. If this is a test release, stop here. Otherwise, continue.
-6. Fast-forward `release` to `main` (yes this is a funky use of `fetch`):
+6. If this is a test release, stop here. Otherwise, continue.
+7. Fast-forward `release` to `main` (yes this is a funky use of `fetch`):
 
     ```
     scripts/update-legacy-release-branch.sh
     ```
 
-7. Head over to the [CI page][ci] and wait for the pipeline to finish.
+8. Head over to the [CI page][ci] and wait for the pipeline to finish.
 
-8. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
+9. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
 
-9. Go and barf forth glad tidings on the [Pelgrane's Virtual Tabletops Discord channel][pelgrane-discord] and the [Foundry Package Releases channel][fprd].
+10. Go and barf forth glad tidings on the [Pelgrane's Virtual Tabletops Discord channel][pelgrane-discord] and the [Foundry Package Releases channel][fprd].
 
 ### What happens if the CI pipeline fails?
 
