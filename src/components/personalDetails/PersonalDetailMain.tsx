@@ -20,9 +20,11 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
   assertGame(game);
   assertPersonalDetailDataSource(item.data);
   const name = item.name;
-  const shortNotes = settings.shortNotes.get();
+  const personalDetails = settings.personalDetails
+    .get()
+    .map((detail) => detail.name);
   const options = padLength(
-    shortNotes,
+    personalDetails,
     item.data.data.slotIndex + 1,
     (index) => `Slot ${index + 1}`,
   );
