@@ -19,13 +19,13 @@ export const UnlocksEditorRow: React.FC<UnlocksEditorRowProps> = ({
   onDelete,
 }: UnlocksEditorRowProps) => {
   const onChangeRatingCallback = useCallback(
-    (newVal) => {
+    (newVal: number) => {
       onChangeRating(index, newVal);
     },
     [index, onChangeRating],
   );
   const onChangeDescriptionCallback = useCallback(
-    (newDescription) => {
+    (newDescription: string) => {
       onChangeDescription(index, newDescription);
     },
     [index, onChangeDescription],

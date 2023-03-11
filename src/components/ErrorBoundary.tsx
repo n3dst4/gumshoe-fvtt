@@ -1,8 +1,8 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { absoluteCover } from "./absoluteCover";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-type ErrorBoundaryProps = {};
+type ErrorBoundaryProps = PropsWithChildren<{}>;
 
 interface ErrorBoundaryState {
   error?: Error;

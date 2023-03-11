@@ -41,7 +41,7 @@ export const PCSheet: React.FC<{
   );
 
   const updateMwHiddenShortNote = useCallback(
-    (value, index) => {
+    (value: string, index: number) => {
       actor.setMwHiddenShortNote(index, value);
     },
     [actor],

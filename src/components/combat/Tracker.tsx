@@ -1,6 +1,12 @@
 import { cx } from "@emotion/css";
 import sortBy from "lodash/sortBy";
-import React, { Fragment, useCallback, MouseEvent, ReactNode } from "react";
+import React, {
+  Fragment,
+  useCallback,
+  MouseEvent,
+  ReactNode,
+  MouseEventHandler,
+} from "react";
 import { assertGame, assertNotNull } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { settings } from "../../settings";
@@ -55,14 +61,19 @@ export const Tracker: React.FC = () => {
     new CombatTrackerConfig().render(true);
   }, []);
 
-  const onCombatCycle = useCallback(async (event) => {
-    assertGame(game);
-    event.preventDefault();
-    const btn = event.currentTarget;
-    const combat = game.combats?.get(btn.dataset.combatId);
-    if (!combat) return;
-    await combat.activate({ render: false });
-  }, []);
+  const onCombatCycle = useCallback(
+    async (event: MouseEvent<HTMLAnchorElement>) => {
+      assertGame(game);
+      event.preventDefault();
+      const btn = event.currentTarget;
+      const combatId = btn.dataset.combatId;
+      if (combatId === undefined) return;
+      const combat = game.combats?.get(combatId);
+      if (!combat) return;
+      await combat.activate({ render: false });
+    },
+    [],
+  );
 
   const onDeleteCombat = useCallback(
     async (event: MouseEvent) => {

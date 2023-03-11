@@ -11,29 +11,29 @@ import { NotesEditor } from "./NotesEditor";
 import { convertNotes, toHtml } from "../../textFunctions";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 
-interface TextEditorWithControlsProps {
+export interface NotesEditorWithControlsProps {
   source: string;
   html: string;
   format: NoteFormat;
   className?: string;
-  onSave: (note: NoteWithFormat, index?: number) => void;
+  onSave: (note: NoteWithFormat) => void;
   allowChangeFormat: boolean;
-  index?: number;
   title?: string;
   h2?: boolean;
 }
 
-export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
+export const NotesEditorWithControls: React.FC<
+  NotesEditorWithControlsProps
+> = ({
   source: origSource,
   html: origHtml,
   format: origFormat,
   onSave,
   className,
   allowChangeFormat,
-  index,
   title,
   h2 = false,
-}: TextEditorWithControlsProps) => {
+}: NotesEditorWithControlsProps) => {
   assertGame(game);
   const [editMode, setEditMode] = useState(false);
   const [showSource, setShowSource] = useState(false);
@@ -63,17 +63,14 @@ export const NotesEditorWithControls: React.FC<TextEditorWithControlsProps> = ({
   }, [origSource, setLiveSource]);
 
   const onClickSave = useCallback(() => {
-    onSave(
-      {
-        format: getLiveFormat(),
-        html: getLiveHtml(),
-        source: getLiveSource(),
-      },
-      index,
-    );
+    onSave({
+      format: getLiveFormat(),
+      html: getLiveHtml(),
+      source: getLiveSource(),
+    });
     setEditMode(false);
     setDirty(false);
-  }, [getLiveFormat, getLiveHtml, getLiveSource, index, onSave]);
+  }, [getLiveFormat, getLiveHtml, getLiveSource, onSave]);
 
   const onClickCancel = useCallback(async () => {
     if (dirty) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
 import { absoluteCover } from "./absoluteCover";
@@ -32,6 +32,6 @@ const Fallback: React.FC = () => {
   );
 };
 
-export const Suspense: React.FC = ({ children }) => (
+export const Suspense: React.FC<PropsWithChildren> = ({ children }) => (
   <React.Suspense fallback={<Fallback />}>{children}</React.Suspense>
 );

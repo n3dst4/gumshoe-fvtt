@@ -27,7 +27,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
     [app],
   );
   const updateRating = useCallback(
-    (rating) => {
+    (rating: number) => {
       ability.setRatingRefresh(rating);
     },
     [ability],
