@@ -25,6 +25,7 @@ import { settings } from "../../settings";
 import { StatField } from "./StatField";
 import { PersonalDetailField } from "./PersonalDetailField";
 import { occupationSlotIndex } from "../../constants";
+import { IndexedAsyncTextInput } from "../inputs/indexedInputHoc";
 
 export const PCSheet: React.FC<{
   actor: InvestigatorActor;
@@ -34,7 +35,7 @@ export const PCSheet: React.FC<{
   assertPCDataSource(actor.data);
 
   const updateShortNote = useCallback(
-    (value, index) => {
+    (value: string, index: number) => {
       actor.setShortNote(index, value);
     },
     [actor],
@@ -118,7 +119,7 @@ export const PCSheet: React.FC<{
           {personalDetails.map(({ name, type }, i) =>
             type === "text" ? (
               <GridField noTranslate key={`${name}--${i}`} label={name}>
-                <AsyncTextInput
+                <IndexedAsyncTextInput
                   value={
                     isPCDataSource(actor.data)
                       ? actor.data.data.shortNotes[i]
@@ -140,7 +141,7 @@ export const PCSheet: React.FC<{
           {game.user?.isGM &&
             shortHiddenNotesNames.map((name: string, i: number) => (
               <GridField noTranslate key={`${name}--${i}`} label={name}>
-                <AsyncTextInput
+                <IndexedAsyncTextInput
                   value={
                     isPCDataSource(actor.data)
                       ? actor.data.data.hiddenShortNotes[i]

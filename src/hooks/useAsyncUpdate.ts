@@ -8,8 +8,7 @@ import throttle from "lodash/throttle";
  */
 export const useAsyncUpdate = (
   value: string,
-  onChangeOrig: (newValue: string, index?: number) => void,
-  index?: number,
+  onChangeOrig: (newValue: string) => void,
 ) => {
   // many shenanigans to handle slow updates
   // first up, state to handle the actual text we show so we can update it in a
@@ -37,9 +36,9 @@ export const useAsyncUpdate = (
   const onChange = useCallback(
     (value: string) => {
       setDisplay(value);
-      onChangeThrottled(value, index);
+      onChangeThrottled(value);
     },
-    [index, onChangeThrottled],
+    [onChangeThrottled],
   );
 
   // stuff for handling content-editable - first, a ref to attach to the element
