@@ -25,7 +25,7 @@ import { settings } from "../../settings";
 import { StatField } from "./StatField";
 import { PersonalDetailField } from "./PersonalDetailField";
 import { occupationSlotIndex } from "../../constants";
-import { IndexedAsyncTextInput } from "../inputs/indexedInputHoc";
+import { IndexedAsyncTextInput } from "../inputs/IndexedAsyncTextInput";
 
 export const PCSheet: React.FC<{
   actor: InvestigatorActor;
