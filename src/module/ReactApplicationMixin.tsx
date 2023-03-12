@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom";
+import { createRoot, Root } from "react-dom/client";
 import { FoundryAppContext } from "../components/FoundryAppContext";
 import React from "react";
 
@@ -64,6 +64,8 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
 
     serial = 0;
 
+    reactRoot: Root | undefined;
+
     /**
      * We need to pick somewhere to activate and render React. It would have
      * been nice to do this from `render` & friends but they happen before
@@ -95,9 +97,14 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
             )}
           </FoundryAppContext.Provider>
         );
-        ReactDOM.render(content, el);
+        if (!this.reactRoot) {
+          this.reactRoot = createRoot(el);
+        }
+        this.reactRoot.render(content);
         this.serial += 1;
       }
     }
   };
 }
+
+// Module '"react-dom"' has no exported member 'createRoot'.
