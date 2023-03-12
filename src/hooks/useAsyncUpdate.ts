@@ -44,7 +44,7 @@ export const useAsyncUpdate = (
   // stuff for handling content-editable - first, a ref to attach to the element
   const contentEditableRef = useRef<HTMLDivElement | null>(null);
 
-  // a callback for whe edits happen
+  // a callback for when edits happen
   const onInput = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
       const text = e.currentTarget.innerText;
