@@ -11,10 +11,8 @@ import React, {
 } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import ReactDOM from "react-dom";
-import { easeSinOut } from "d3-ease";
-import { Animate } from "react-move";
-
-const fadeDuration = 200;
+import { FadeInOut } from "./FadeInOut";
+import { DropdownBody } from "./DropdownBody";
 
 export const DropdownContainerContext =
   React.createContext<RefObject<HTMLElement> | null>(null);
@@ -42,7 +40,7 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
   className,
 }: PropsWithChildren<DropdownProps>) => {
   const [isOpen, setIsOpen] = useState(false);
-  const close = useCallback(() => setIsOpen(false), []);
+  const handleClose = useCallback(() => setIsOpen(false), []);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const bodyClick = useCallback(
@@ -61,10 +59,10 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
           targetIsButtonElement
         )
       ) {
-        close();
+        handleClose();
       }
     },
-    [close],
+    [handleClose],
   );
   const handleClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -118,43 +116,15 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
       </button>
 
       {ReactDOM.createPortal(
-        <Animate
-          show={isOpen}
-          start={{
-            opacity: 0,
-          }}
-          enter={[
-            {
-              opacity: [1],
-              timing: { duration: fadeDuration, ease: easeSinOut },
-            },
-          ]}
-          leave={[
-            {
-              opacity: [0],
-              timing: { duration: fadeDuration, ease: easeSinOut }, //
-            },
-          ]}
-        >
-          {({ opacity }) => (
-            <div
-              className="dropdown-outer"
-              ref={dropdownRef}
-              style={{
-                opacity,
-                zIndex: 10000,
-                position: "absolute",
-                boxSizing: "border-box",
-                top,
-                right,
-              }}
-            >
-              <CloseContext.Provider value={close}>
+        <FadeInOut>
+          {isOpen && (
+            <CloseContext.Provider value={handleClose}>
+              <DropdownBody top={top} right={right} ref={dropdownRef}>
                 {children}
-              </CloseContext.Provider>
-            </div>
+              </DropdownBody>
+            </CloseContext.Provider>
           )}
-        </Animate>,
+        </FadeInOut>,
         container,
       )}
     </Fragment>
