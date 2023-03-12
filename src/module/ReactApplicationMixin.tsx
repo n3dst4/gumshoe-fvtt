@@ -104,6 +104,14 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
         this.serial += 1;
       }
     }
+
+    async close(options?: Application.CloseOptions) {
+      if (this.reactRoot) {
+        this.reactRoot.unmount();
+        this.reactRoot = undefined;
+      }
+      return super.close(options);
+    }
   };
 }
 
