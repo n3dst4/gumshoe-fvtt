@@ -1,6 +1,6 @@
-import ReactDOM from "react-dom";
+import { createRoot, Root } from "react-dom/client";
 import { FoundryAppContext } from "../components/FoundryAppContext";
-import React from "react";
+import React, { StrictMode } from "react";
 
 // type shenanigans to allow us to work backwards from a Class type to the type
 // of the objects which it constructs
@@ -64,6 +64,8 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
 
     serial = 0;
 
+    reactRoot: Root | undefined;
+
     /**
      * We need to pick somewhere to activate and render React. It would have
      * been nice to do this from `render` & friends but they happen before
@@ -85,19 +87,34 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
 
       if (el) {
         const content = (
-          <FoundryAppContext.Provider
-            value={this}
-            key={"FoundryAppContextProvider"}
-          >
-            {render(
-              this as TBase extends Constructor<infer T2> ? T2 : TBase,
-              this.serial,
-            )}
-          </FoundryAppContext.Provider>
+          <StrictMode>
+            <FoundryAppContext.Provider
+              value={this}
+              key={"FoundryAppContextProvider"}
+            >
+              {render(
+                this as TBase extends Constructor<infer T2> ? T2 : TBase,
+                this.serial,
+              )}
+            </FoundryAppContext.Provider>
+          </StrictMode>
         );
-        ReactDOM.render(content, el);
+        if (!this.reactRoot) {
+          this.reactRoot = createRoot(el);
+        }
+        this.reactRoot.render(content);
         this.serial += 1;
       }
     }
+
+    async close(options?: Application.CloseOptions) {
+      if (this.reactRoot) {
+        this.reactRoot.unmount();
+        this.reactRoot = undefined;
+      }
+      return super.close(options);
+    }
   };
 }
+
+// Module '"react-dom"' has no exported member 'createRoot'.

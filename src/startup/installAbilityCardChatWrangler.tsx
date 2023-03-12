@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { assertGame } from "../functions";
 import * as constants from "../constants";
 import { isAbilityCardMode } from "../components/messageCards/types";
@@ -7,7 +7,7 @@ import { AttackCard } from "../components/messageCards/AttackCard";
 import { AbilityTestMwCard } from "../components/messageCards/AbilityTestMwCard";
 import { MWDifficulty } from "../types";
 import { AbilityNegateOrWallopMwCard } from "../components/messageCards/AbilityNegateOrWallopMwCard";
-import React from "react";
+import React, { StrictMode } from "react";
 
 export const installAbilityCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {
@@ -97,15 +97,17 @@ export const installAbilityCardChatWrangler = () => {
     } else {
       // REGULAR TEST /SPEND
       content = (
-        <AbilityTestCard
-          msg={chatMessage}
-          ability={ability}
-          mode={mode}
-          imageUrl={imageUrl}
-          name={name}
-        />
+        <StrictMode>
+          <AbilityTestCard
+            msg={chatMessage}
+            ability={ability}
+            mode={mode}
+            imageUrl={imageUrl}
+            name={name}
+          />
+        </StrictMode>
       );
     }
-    ReactDOM.render(content, el);
+    createRoot(el).render(content);
   });
 };
