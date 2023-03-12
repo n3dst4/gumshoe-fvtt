@@ -21,7 +21,6 @@ export const AsyncTextArea: React.FC<AsyncTextAreaProps> = ({
   const { onChange, onFocus, onBlur, display } = useAsyncUpdate(
     value,
     onChangeOrig,
-    index,
   );
 
   return (

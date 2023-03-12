@@ -2,7 +2,7 @@ import React from "react";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "./TextInput";
 
-type AsyncTextInputProps = {
+export type AsyncTextInputProps = {
   value: undefined | string;
   onChange: (newValue: string, index?: number) => void;
   index?: number;
@@ -22,7 +22,6 @@ export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
   const { onChange, onFocus, onBlur, display } = useAsyncUpdate(
     value,
     onChangeOrig,
-    index,
   );
 
   return (
