@@ -11,7 +11,7 @@ import React, {
 } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import ReactDOM from "react-dom";
-import { FadeInOut } from "./FadeInOut";
+import { TransitionInOut } from "./TransitionInOut";
 import { DropdownBody } from "./DropdownBody";
 
 export const DropdownContainerContext =
@@ -66,7 +66,13 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
   );
   const handleClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    e.stopPropagation();
     setIsOpen((isOpen) => !isOpen);
+  }, []);
+
+  const handleDoubleClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
   }, []);
 
   // we will always assume that the container
@@ -103,6 +109,7 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
         role={role}
         ref={buttonRef}
         onClick={handleClick}
+        onDoubleClick={handleDoubleClick}
         style={style}
         className={className}
         css={{
@@ -116,7 +123,7 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
       </button>
 
       {ReactDOM.createPortal(
-        <FadeInOut>
+        <TransitionInOut>
           {isOpen && (
             <CloseContext.Provider value={handleClose}>
               <DropdownBody top={top} right={right} ref={dropdownRef}>
@@ -124,7 +131,7 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
               </DropdownBody>
             </CloseContext.Provider>
           )}
-        </FadeInOut>,
+        </TransitionInOut>,
         container,
       )}
     </Fragment>

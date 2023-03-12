@@ -6,26 +6,27 @@ import React, {
 } from "react";
 import { easeSinOut } from "d3-ease";
 
-export const OpacityContext = createContext(0);
+export const TransitionProgressContext = createContext(0);
 
-interface FadeInOutProps {
+interface TransitionInOutProps {
   children: React.ReactNode;
   fadeTime?: number;
   fps?: number;
 }
 
 /**
- * Fade children in and out, like a TransitionGroup.
+ * Transition children in and out, like a TransitionGroup.
  *
- * This is a basic proof of concept, but could be generalised to allow different
- * enter/exit animations.
+ * The transition is provided as a context value, so that the children can do
+ * whatever they like with it. The value is a number between 0 and 1, where 0
+ * means the children are invisible, and 1 means they are fully visible.
  */
-export const FadeInOut: React.FC<FadeInOutProps> = ({
+export const TransitionInOut: React.FC<TransitionInOutProps> = ({
   children,
   fadeTime = 300,
   fps = 30,
 }) => {
-  const [opacity, setOpacity] = React.useState(0);
+  const [progress, setProgress] = React.useState(0);
   const startTransition = useTransition()[1];
   const hasChildren = !!children && React.Children.count(children) > 0;
   const [lastChildren, setLastChildren] = React.useState(children);
@@ -47,24 +48,18 @@ export const FadeInOut: React.FC<FadeInOutProps> = ({
         ? easedProgress
         : 1 - easedProgress;
 
-      console.log("doTick", {
-        elapsed,
-        progress,
-        easedProgress,
-        adaptedEasedProgress,
-      });
       if (elapsed > fadeTime) {
-        console.log("end of transition");
         // end of transition
         clearInterval(interval);
-        if (!hasChildren) {
-          console.log("removing lastChildren");
+        if (hasChildren) {
+          setProgress(1);
+        } else {
+          setProgress(0);
           setLastChildren(null);
         }
       } else {
         startTransition(() => {
-          console.log("setting opacity to", adaptedEasedProgress);
-          setOpacity(adaptedEasedProgress);
+          setProgress(adaptedEasedProgress);
         });
       }
     },
@@ -82,13 +77,13 @@ export const FadeInOut: React.FC<FadeInOutProps> = ({
     return () => {
       clearInterval(interval);
     };
-  }, [doTick, fadeTime, fps, hasChildren, setOpacity, startTransition]);
+  }, [doTick, fadeTime, fps, hasChildren, setProgress, startTransition]);
 
   return (
-    <OpacityContext.Provider value={opacity}>
+    <TransitionProgressContext.Provider value={progress}>
       {lastChildren}
-    </OpacityContext.Provider>
+    </TransitionProgressContext.Provider>
   );
 };
 
-FadeInOut.displayName = "FadeInOut";
+TransitionInOut.displayName = "FadeInOut";

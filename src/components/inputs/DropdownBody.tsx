@@ -1,5 +1,5 @@
 import React, { forwardRef, useContext } from "react";
-import { OpacityContext } from "./FadeInOut";
+import { TransitionProgressContext } from "./TransitionInOut";
 
 interface DropdownBodyProps {
   children: React.ReactNode;
@@ -12,8 +12,7 @@ interface DropdownBodyProps {
  */
 export const DropdownBody = forwardRef<HTMLDivElement, DropdownBodyProps>(
   ({ children, top, right }, ref) => {
-    const opacity = useContext(OpacityContext);
-    console.log("opacity", opacity);
+    const opacity = useContext(TransitionProgressContext);
     return (
       <div
         className="dropdown-outer"
