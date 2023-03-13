@@ -50,7 +50,7 @@ if (config?.dataPath) {
  * Remove built files from `build` folder
  * while ignoring source files
  */
-async function clean () {
+async function clean() {
   const distPath = path.join(__dirname, buildPath);
   log("Cleaning...");
   await new Promise((resolve, reject) => {
@@ -70,7 +70,7 @@ async function clean () {
  * template file. once comitted and pushed, this will be picked up by transifex
  * and update the translation list.
  */
-async function buildPackTranslations () {
+async function buildPackTranslations() {
   log("Building pack translations");
   // load nedb async to avoid slowing unrelated tasks
   const { default: Datastore } = await import("@seald-io/nedb");
@@ -123,7 +123,7 @@ async function buildPackTranslations () {
 /**
  * Remove the link to foundrydata
  */
-async function unlink () {
+async function unlink() {
   if (!linkDir) {
     throw new Error("linkDir not set");
   }
@@ -134,12 +134,14 @@ async function unlink () {
 /**
  * Link build to foundrydata
  */
-async function link () {
+async function link() {
   if (!linkDir) {
     throw new Error("linkDir not set");
   }
   if (!fs.existsSync(linkDir)) {
-    log(`Linking ${chalk.blueBright(buildPath)} to ${chalk.blueBright(linkDir)}`);
+    log(
+      `Linking ${chalk.blueBright(buildPath)} to ${chalk.blueBright(linkDir)}`,
+    );
     return fs.symlink(path.resolve(buildPath), linkDir);
   } else {
     log(chalk.magenta(`${chalk.blueBright(linkDir)} already exists`));
@@ -149,7 +151,7 @@ async function link () {
 /**
  * Update the manifest in CI
  */
-async function updateManifestFromCITagPush () {
+async function updateManifestFromCITagPush() {
   const tag = process.env.CI_COMMIT_TAG;
   const path = process.env.CI_PROJECT_PATH;
   if (!tag) {
@@ -175,7 +177,7 @@ async function updateManifestFromCITagPush () {
  * create a releasable package
  * (package is a reserved word)
  */
-async function packidge () {
+async function packidge() {
   return new Promise((resolve, reject) => {
     try {
       // Ensure there is a directory to hold all the packaged versions
