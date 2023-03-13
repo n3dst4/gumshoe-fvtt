@@ -28,9 +28,10 @@ build:
   stage: build
   script:
     - export
-    - npm i
-    - ./tasks.js updateManifestFromCITagPush
-    - npm run package
+    - corepack enable
+    - pnpm i
+    - if [[ -n $CI_COMMIT_TAG ]]; then ./tasks.js updateManifestFromCITagPush; fi
+    - pnpm package
     - ls -l
     - ls -l package
   artifacts:
@@ -38,8 +39,6 @@ build:
     paths:
       - package
       - $MANIFEST_PATH
-  rules:
-    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+/'
 
 upload-version:
   stage: upload

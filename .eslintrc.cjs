@@ -59,6 +59,7 @@ module.exports = {
         },
       },
     ],
+    "react/no-unknown-property": ["error", { ignore: ["css"] }],
     // need to replace this with @typescript-eslint/no-restricted-imports so we
     // can allow type imports from lodash but this willr equire some eslint etc
     // version bumps
