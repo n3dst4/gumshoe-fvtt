@@ -28,9 +28,9 @@ build:
   stage: build
   script:
     - export
-    - npm i
+    - pnpm i
     - ./tasks.js updateManifestFromCITagPush
-    - npm run package
+    - pnpm package
     - ls -l
     - ls -l package
   artifacts:
