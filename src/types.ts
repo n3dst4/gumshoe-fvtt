@@ -190,6 +190,11 @@ export interface Unlock {
   description: string;
 }
 
+export interface SituationalModifier {
+  situation: string;
+  modifier: number;
+}
+
 /** data.data for either type of ability */
 export interface BaseAbilityDataSourceData {
   rating: number;
@@ -209,6 +214,7 @@ export interface BaseAbilityDataSourceData {
   // different defaults but it's the same property
   hideIfZeroRated: boolean;
   unlocks: Unlock[];
+  situationalModifiers: SituationalModifier[];
 }
 
 /** data.data for investigative abilities */
