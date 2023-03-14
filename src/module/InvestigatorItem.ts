@@ -674,6 +674,45 @@ export class InvestigatorItem extends Item {
     });
   };
 
+  setUnlockDescription = (index: number, description: string) => {
+    assertAbilityDataSource(this.data);
+    const unlocks = [...this.data.data.unlocks];
+    unlocks[index] = {
+      ...unlocks[index],
+      description,
+    };
+    return this.update({ data: { unlocks } });
+  };
+
+  setUnlockRating = (index: number, rating: number) => {
+    assertAbilityDataSource(this.data);
+    const unlocks = [...this.data.data.unlocks];
+    unlocks[index] = {
+      ...unlocks[index],
+      rating,
+    };
+    return this.update({ data: { unlocks } });
+  };
+
+  deleteUnlock = (index: number) => {
+    assertAbilityDataSource(this.data);
+    const unlocks = [...this.data.data.unlocks];
+    unlocks.splice(index, 1);
+    return this.update({ data: { unlocks } });
+  };
+
+  addUnlock = () => {
+    assertAbilityDataSource(this.data);
+    const unlocks = [
+      ...this.data.data.unlocks,
+      {
+        description: "",
+        rating: 0,
+      },
+    ];
+    return this.update({ data: { unlocks } });
+  };
+
   setCombatBonus = async (combatBonus: number) => {
     assertGeneralAbilityDataSource(this.data);
     await this.update({ data: { combatBonus } });
