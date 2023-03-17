@@ -713,6 +713,45 @@ export class InvestigatorItem extends Item {
     return this.update({ data: { unlocks } });
   };
 
+  setSituationalModifierSituation = (index: number, situation: string) => {
+    assertAbilityDataSource(this.data);
+    const situationalModifiers = [...this.data.data.situationalModifiers];
+    situationalModifiers[index] = {
+      ...situationalModifiers[index],
+      situation,
+    };
+    return this.update({ data: { situationalModifiers } });
+  };
+
+  setSituationalModifierModifier = (index: number, modifier: number) => {
+    assertAbilityDataSource(this.data);
+    const situationalModifiers = [...this.data.data.situationalModifiers];
+    situationalModifiers[index] = {
+      ...situationalModifiers[index],
+      modifier,
+    };
+    return this.update({ data: { situationalModifiers } });
+  };
+
+  deleteSituationalModifier = (index: number) => {
+    assertAbilityDataSource(this.data);
+    const situationalModifiers = [...this.data.data.situationalModifiers];
+    situationalModifiers.splice(index, 1);
+    return this.update({ data: { situationalModifiers } });
+  };
+
+  addSituationalModifier = () => {
+    assertAbilityDataSource(this.data);
+    const situationalModifiers = [
+      ...this.data.data.situationalModifiers,
+      {
+        situation: "",
+        modifier: 0,
+      },
+    ];
+    return this.update({ data: { situationalModifiers } });
+  };
+
   setCombatBonus = async (combatBonus: number) => {
     assertGeneralAbilityDataSource(this.data);
     await this.update({ data: { combatBonus } });

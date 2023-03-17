@@ -162,5 +162,6 @@
   "investigator.AddAllItemsFromPackName": "Add all items from pack {Name}?",
   "investigator.PersonalDetails": "Personal Details",
   "investigator.NotesFields": "Notes fields",
-  "investigator.Cost": "Cost"
+  "investigator.Cost": "Cost",
+  "investigator.SituationalModifiers": "Situational Modifiers"
 }

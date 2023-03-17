@@ -24,6 +24,7 @@ export const UnlockBadges: React.FC<UnlockBadgesProps> = ({
         justifyContent: "center",
       }}
     >
+      {/* Boost */}
       {ability.data.data.boost && (
         <span
           css={{
@@ -40,6 +41,7 @@ export const UnlockBadges: React.FC<UnlockBadgesProps> = ({
           Boosted
         </span>
       )}
+      {/* Unlocks */}
       {unlocks.map<ReactNode>(({ description }, i) => {
         return (
           <span
