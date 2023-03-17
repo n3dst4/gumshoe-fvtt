@@ -33,7 +33,7 @@ export const fadeInOutClasses: CSSTransitionClassNames = {
   }),
   enterActive: css({
     opacity: 1,
-    maxHeight,
+    // maxHeight,
     transition: `${opacityTransition} 400ms`,
   }),
   exit: css({

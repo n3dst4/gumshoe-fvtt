@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { forwardRef, useCallback } from "react";
 import { Unlock } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -11,60 +11,71 @@ interface UnlocksEditorRowProps {
   onDelete: (index: number) => void;
 }
 
-export const UnlocksEditorRow: React.FC<UnlocksEditorRowProps> = ({
-  unlock: { rating, description },
-  index,
-  onChangeRating,
-  onChangeDescription,
-  onDelete,
-}: UnlocksEditorRowProps) => {
-  const onChangeRatingCallback = useCallback(
-    (newVal: number) => {
-      onChangeRating(index, newVal);
+export const UnlocksEditorRow = forwardRef<
+  HTMLDivElement,
+  UnlocksEditorRowProps
+>(
+  (
+    {
+      unlock: { rating, description },
+      index,
+      onChangeRating,
+      onChangeDescription,
+      onDelete,
     },
-    [index, onChangeRating],
-  );
-  const onChangeDescriptionCallback = useCallback(
-    (newDescription: string) => {
-      onChangeDescription(index, newDescription);
-    },
-    [index, onChangeDescription],
-  );
+    ref,
+  ) => {
+    const onChangeRatingCallback = useCallback(
+      (newVal: number) => {
+        onChangeRating(index, newVal);
+      },
+      [index, onChangeRating],
+    );
+    const onChangeDescriptionCallback = useCallback(
+      (newDescription: string) => {
+        onChangeDescription(index, newDescription);
+      },
+      [index, onChangeDescription],
+    );
 
-  return (
-    <div
-      css={{
-        marginBottom: "0.5em",
-      }}
-    >
+    return (
       <div
+        ref={ref}
         css={{
-          display: "flex",
-          flexDirection: "row",
+          marginBottom: "0.5em",
         }}
       >
-        <AsyncNumberInput
+        <div
           css={{
-            flex: 1,
-          }}
-          value={rating}
-          onChange={onChangeRatingCallback}
-        />
-        <button
-          css={{
-            flexBasis: "min-content",
-          }}
-          onClick={() => {
-            onDelete(index);
+            display: "flex",
+            flexDirection: "row",
           }}
         >
-          <i className="fas fa-trash" />
-        </button>
+          <AsyncNumberInput
+            css={{
+              flex: 1,
+            }}
+            value={rating}
+            onChange={onChangeRatingCallback}
+          />
+          <button
+            css={{
+              flexBasis: "min-content",
+            }}
+            onClick={() => {
+              onDelete(index);
+            }}
+          >
+            <i className="fas fa-trash" />
+          </button>
+        </div>
+        <AsyncTextInput
+          value={description}
+          onChange={onChangeDescriptionCallback}
+        />
       </div>
-      <AsyncTextInput
-        value={description}
-        onChange={onChangeDescriptionCallback}
-      />
-    </div>
-  );
-};
+    );
+  },
+);
+
+UnlocksEditorRow.displayName = "UnlocksEditorRow";
