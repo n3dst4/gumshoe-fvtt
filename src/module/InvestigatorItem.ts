@@ -17,11 +17,14 @@ import {
   MwType,
   NoteWithFormat,
   RangeTuple,
+  SituationalModifier,
+  Unlock,
 } from "../types";
 import * as constants from "../constants";
 import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
 import { ThemeV1 } from "../themes/types";
+import { nanoid } from "nanoid";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -668,10 +671,12 @@ export class InvestigatorItem extends Item {
 
   getActiveUnlocks = () => {
     assertAbilityDataSource(this.data);
-    return this.data.data.unlocks.filter(({ rating: targetRating }) => {
-      assertAbilityDataSource(this.data);
-      return this.data.data.rating >= targetRating;
-    });
+    return this.data.data.unlocks.filter(
+      ({ rating: targetRating, description }) => {
+        assertAbilityDataSource(this.data);
+        return this.data.data.rating >= targetRating && description !== "";
+      },
+    );
   };
 
   setUnlockDescription = (index: number, description: string) => {
@@ -703,11 +708,12 @@ export class InvestigatorItem extends Item {
 
   addUnlock = () => {
     assertAbilityDataSource(this.data);
-    const unlocks = [
+    const unlocks: Unlock[] = [
       ...this.data.data.unlocks,
       {
         description: "",
         rating: 0,
+        id: nanoid(),
       },
     ];
     return this.update({ data: { unlocks } });
@@ -742,11 +748,12 @@ export class InvestigatorItem extends Item {
 
   addSituationalModifier = () => {
     assertAbilityDataSource(this.data);
-    const situationalModifiers = [
+    const situationalModifiers: SituationalModifier[] = [
       ...this.data.data.situationalModifiers,
       {
         situation: "",
         modifier: 0,
+        id: nanoid(),
       },
     ];
     return this.update({ data: { situationalModifiers } });

@@ -186,11 +186,13 @@ interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
 }
 
 export interface Unlock {
+  id: string;
   rating: number;
   description: string;
 }
 
 export interface SituationalModifier {
+  id: string;
   situation: string;
   modifier: number;
 }

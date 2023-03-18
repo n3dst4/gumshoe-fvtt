@@ -22,10 +22,33 @@ export const flaggedMigrations: FlaggedMigrations = {
           updateData.data = {};
         }
         updateData.data.category = Object.keys(
-          pathOfCthulhuPreset.equipmentCategories,
+          pathOfCthulhuPreset.equipmentCategories, //
         )[0];
       }
       return updateData;
+    },
+    /**
+     * We've added an id to the unlocks array, which makes it easier to do
+     * in/out UI transitions. This migration will add an id to any existing
+     * unlocks.
+     */
+    addIdtoUnlocks: (data: any, updateData: any) => {
+      if (data.type === c.equipment) {
+        const unlocks = data.data?.unlocks ?? [];
+        const updatedUnlocks = unlocks.map((unlock: any) => {
+          if (unlock.id) {
+            return unlock;
+          }
+          return {
+            ...unlock,
+            id: unlock.name,
+          };
+        });
+        updateData.data = {
+          ...updateData.data,
+          unlocks: updatedUnlocks,
+        };
+      }
     },
   },
   actor: {
@@ -73,6 +96,10 @@ export const flaggedMigrations: FlaggedMigrations = {
     },
   },
   world: {
+    /**
+     * Personal details are like short notes 2.0. This migration will take the
+     * old short notes and turn them into personal details.
+     */
     convertShortNotesToPersonalDetails: (data: any, updateData: any) => {
       assertGame(game);
       const shortNotes: string[] = game.settings.get(

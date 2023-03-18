@@ -21,14 +21,14 @@ export const fadeInOutClasses: CSSTransitionClassNames = {
   enterActive: css({
     opacity: 1,
     maxHeight: "100%",
-    transition: `${opacityTransition} ease-in-out`,
+    transition: `${opacityTransition} ease-in`,
   }),
   exit: css({
     opacity: 1,
   }),
   exitActive: css({
     opacity: 0,
-    transition: `${opacityTransition} ease-in-out`,
+    transition: `${opacityTransition} ease-out`,
   }),
 };
 
@@ -53,7 +53,7 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
         {unlocks.map<ReactNode>(({ unlock, ref }, i) => {
           return (
             <CSSTransition
-              key={i}
+              key={unlock.id}
               nodeRef={ref}
               timeout={500}
               classNames={fadeInOutClasses}
