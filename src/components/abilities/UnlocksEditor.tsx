@@ -3,34 +3,12 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityDataSource } from "../../typeAssertions";
 import { Translate } from "../Translate";
 import { UnlocksEditorRow } from "./UnlocksEditorRow";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { css } from "@emotion/css";
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
+import { TransitionGroup } from "react-transition-group";
+import { FadeInOutCSSTransition } from "./FadeInOutCSSTransition";
 
 interface UnlocksEditorProps {
   ability: InvestigatorItem;
 }
-
-export const opacityDuration = 400;
-const opacityTransition = `opacity ${opacityDuration}ms`;
-
-export const fadeInOutClasses: CSSTransitionClassNames = {
-  enter: css({
-    opacity: 0,
-  }),
-  enterActive: css({
-    opacity: 1,
-    maxHeight: "100%",
-    transition: `${opacityTransition} ease-in`,
-  }),
-  exit: css({
-    opacity: 1,
-  }),
-  exitActive: css({
-    opacity: 0,
-    transition: `${opacityTransition} ease-out`,
-  }),
-};
 
 export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
   ability,
@@ -52,12 +30,7 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
       <TransitionGroup>
         {unlocks.map<ReactNode>(({ unlock, ref }, i) => {
           return (
-            <CSSTransition
-              key={unlock.id}
-              nodeRef={ref}
-              timeout={500}
-              classNames={fadeInOutClasses}
-            >
+            <FadeInOutCSSTransition key={unlock.id} nodeRef={ref}>
               <UnlocksEditorRow
                 key={i}
                 ref={ref}
@@ -67,7 +40,7 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
                 onChangeRating={ability.setUnlockRating}
                 onDelete={ability.deleteUnlock}
               />
-            </CSSTransition>
+            </FadeInOutCSSTransition>
           );
         })}
       </TransitionGroup>
