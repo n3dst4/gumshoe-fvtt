@@ -3,6 +3,7 @@
 - [Development notes](#development-notes)
   - [Development \& general hacking](#development--general-hacking)
   - [Migrations](#migrations)
+  - [Flagged migrations](#flagged-migrations)
   - [Generating Compendium packs](#generating-compendium-packs)
   - [Translations](#translations)
     - [Getting set up to pull translations from Transifex](#getting-set-up-to-pull-translations-from-transifex)
@@ -34,6 +35,21 @@ If you want to force migrations to run, try this:
 ```ts
 game.settings.set("investigator","systemMigrationVersion", "1.0.0")
 ```
+
+## Flagged migrations
+
+We have a newer, better system for migrations, which runs each migration once, and then marks it as "complete" so it doesn't run again. This is the "flagged migrations" system. Unlike the old system, it doesn't rely on the version number. Also, the old system has the unpleasant habit of running all the migrations every time it detects a version change, which is not ideal.
+
+To see the current state of flagged migrations, open the console and type 
+
+```js
+console.log(JSON.stringify(game.settings.get("investigator", "migrationFlags"), null,  "  "))
+```
+
+There will be a flag in there for every migration that has been run. If you want to force a migration to run again, you can delete the flag for it. For example, if you want to force the migration to run again that adds the `investigator` field to all actors, you can do this:
+
+
+```js
 
 
 ## Generating Compendium packs
