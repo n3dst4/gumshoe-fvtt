@@ -1,10 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useMemo } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityDataSource } from "../../typeAssertions";
 import { Translate } from "../Translate";
 import { UnlocksEditorRow } from "./UnlocksEditorRow";
-import { TransitionGroup } from "react-transition-group";
-import { FadeInOutCSSTransition } from "./FadeInOutCSSTransition";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { fadeInOutClasses } from "./fadeInOutClasses";
 
 interface UnlocksEditorProps {
   ability: InvestigatorItem;
@@ -14,12 +14,16 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
   ability,
 }: UnlocksEditorProps) => {
   assertAbilityDataSource(ability.data);
-  const unlocks = ability.data.data.unlocks.map((unlock) => {
-    return {
-      unlock,
-      ref: React.createRef<HTMLDivElement>(),
-    };
-  });
+
+  const unlocks = useMemo(() => {
+    assertAbilityDataSource(ability.data);
+    return ability.data.data.unlocks.map((unlock) => {
+      return {
+        unlock,
+        ref: React.createRef<HTMLDivElement>(),
+      };
+    });
+  }, [ability.data]);
 
   return (
     <div
@@ -30,9 +34,13 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
       <TransitionGroup>
         {unlocks.map<ReactNode>(({ unlock, ref }, i) => {
           return (
-            <FadeInOutCSSTransition key={unlock.id} nodeRef={ref}>
+            <CSSTransition
+              key={unlock.id}
+              timeout={500}
+              classNames={fadeInOutClasses}
+              nodeRef={ref}
+            >
               <UnlocksEditorRow
-                key={i}
                 ref={ref}
                 index={i}
                 unlock={unlock}
@@ -40,7 +48,7 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
                 onChangeRating={ability.setUnlockRating}
                 onDelete={ability.deleteUnlock}
               />
-            </FadeInOutCSSTransition>
+            </CSSTransition>
           );
         })}
       </TransitionGroup>
