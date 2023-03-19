@@ -14,6 +14,7 @@ export const UnlockBadges: React.FC<UnlockBadgesProps> = ({
 }: UnlockBadgesProps) => {
   assertAbilityDataSource(ability.data);
   const unlocks = ability.getActiveUnlocks();
+  const situationalModifiers = ability.data.data.situationalModifiers;
   const theme = useContext(ThemeContext);
   return (
     <div
@@ -22,6 +23,7 @@ export const UnlockBadges: React.FC<UnlockBadgesProps> = ({
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
+        flexWrap: "wrap",
       }}
     >
       {/* Boost */}
@@ -57,6 +59,27 @@ export const UnlockBadges: React.FC<UnlockBadgesProps> = ({
             }}
           >
             {description}
+          </span>
+        );
+      })}
+      {/* Situational modifers */}
+      {situationalModifiers.map<ReactNode>(({ situation, modifier }, i) => {
+        return (
+          <span
+            key={i}
+            css={{
+              background: theme.colors.accentContrast,
+              color: theme.colors.accent,
+              border: `1px solid ${theme.colors.accent}`,
+              fontSize: "0.9em",
+              lineHeight: "1",
+              borderRadius: "0.5em",
+              padding: "0 0.5em",
+              margin: "0 0.25em",
+            }}
+          >
+            {situation}: {modifier >= 0 && "+"}
+            {modifier}
           </span>
         );
       })}
