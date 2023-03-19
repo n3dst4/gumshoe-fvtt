@@ -20,6 +20,8 @@ interface TransitionInOutProps {
  * The transition is provided as a context value, so that the children can do
  * whatever they like with it. The value is a number between 0 and 1, where 0
  * means the children are invisible, and 1 means they are fully visible.
+ *
+ * This is curently not used, use useShowHideTransition instead.
  */
 export const TransitionInOut: React.FC<TransitionInOutProps> = ({
   children,

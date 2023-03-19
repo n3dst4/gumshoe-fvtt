@@ -1,5 +1,4 @@
-import React, { forwardRef, useContext } from "react";
-import { TransitionProgressContext } from "./TransitionInOut";
+import React, { forwardRef } from "react";
 
 interface DropdownBodyProps {
   children: React.ReactNode;
@@ -12,13 +11,11 @@ interface DropdownBodyProps {
  */
 export const DropdownBody = forwardRef<HTMLDivElement, DropdownBodyProps>(
   ({ children, top, right }, ref) => {
-    const opacity = useContext(TransitionProgressContext);
     return (
       <div
         className="dropdown-outer"
         ref={ref}
         style={{
-          opacity,
           zIndex: 10000,
           position: "absolute",
           boxSizing: "border-box",

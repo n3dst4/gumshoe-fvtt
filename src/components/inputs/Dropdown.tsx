@@ -11,8 +11,7 @@ import React, {
 } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import ReactDOM from "react-dom";
-import { TransitionInOut } from "./TransitionInOut";
-import { DropdownBody } from "./DropdownBody";
+import { useShowHideTransition } from "../transitions/useShowHideTransition";
 
 export const DropdownContainerContext =
   React.createContext<RefObject<HTMLElement> | null>(null);
@@ -30,6 +29,8 @@ type DropdownProps = {
   className?: string;
   role?: string;
 };
+
+const duration = 300;
 
 export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
   children,
@@ -103,6 +104,8 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
   const top = (buttonRect?.bottom ?? 0) - containerRect.top;
   const right = containerRect.right - (buttonRect?.right ?? 0);
 
+  const { shouldMount, isShowing } = useShowHideTransition(isOpen, duration);
+
   return (
     <Fragment>
       <button
@@ -122,18 +125,27 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
         ) : null}
       </button>
 
-      {ReactDOM.createPortal(
-        <TransitionInOut>
-          {isOpen && (
-            <CloseContext.Provider value={handleClose}>
-              <DropdownBody top={top} right={right} ref={dropdownRef}>
-                {children}
-              </DropdownBody>
-            </CloseContext.Provider>
-          )}
-        </TransitionInOut>,
-        container,
-      )}
+      {shouldMount &&
+        ReactDOM.createPortal(
+          <CloseContext.Provider value={handleClose}>
+            <div
+              style={{
+                position: "absolute",
+                top,
+                right,
+                transitionProperty: "opacity",
+                transitionDuration: `${duration}ms`,
+                zIndex: 10000,
+                boxSizing: "border-box",
+                opacity: isShowing ? 1 : 0,
+              }}
+              ref={dropdownRef}
+            >
+              {children}
+            </div>
+          </CloseContext.Provider>,
+          container,
+        )}
     </Fragment>
   );
 };
