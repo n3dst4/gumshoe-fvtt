@@ -1,9 +1,11 @@
 import { CSSObject } from "@emotion/react";
 import React, { Fragment } from "react";
-import { CSSTransition } from "react-transition-group";
+// import { CSSTransition } from "react-transition-group";
 import { useHover } from "../../hooks/useHover";
+import { useShowHideTransition } from "../transitions/useShowHideTransition";
 import { Translate } from "../Translate";
-import { fadeInOutClasses } from "./transitions";
+// import { Translate } from "../Translate";
+// import { fadeInOutClasses } from "./transitions";
 import { MWResult } from "./types";
 
 type MwButtonProps = {
@@ -35,6 +37,11 @@ export const MwButton: React.FC<MwButtonProps> = ({
     fontSize: "1.5em",
   };
 
+  const { isShowing: isShowingDeets, shouldMount: shouldMountDeets } =
+    useShowHideTransition(!hover, 800);
+  const { isShowing: isShowingReRoll, shouldMount: shouldMountReRoll } =
+    useShowHideTransition(hover, 800);
+
   const content = (
     <Fragment>
       <div
@@ -60,7 +67,7 @@ export const MwButton: React.FC<MwButtonProps> = ({
           gridTemplateAreas: "'area'",
         }}
       >
-        <CSSTransition
+        {/* <CSSTransition
           in={!hover}
           timeout={1000}
           classNames={{
@@ -69,8 +76,21 @@ export const MwButton: React.FC<MwButtonProps> = ({
           unmountOnExit
         >
           <span css={{ gridArea: "area" }}>{deets.text}</span>
-        </CSSTransition>
-        <CSSTransition
+        </CSSTransition> */}
+        {shouldMountDeets && (
+          <span
+            css={{ gridArea: "area" }}
+            style={{
+              opacity: isShowingDeets ? 1 : 0,
+              transition: isShowingDeets
+                ? "opacity 400ms 400ms"
+                : "opacity 400ms",
+            }}
+          >
+            {deets.text}
+          </span>
+        )}
+        {/* <CSSTransition
           in={hover}
           timeout={1000}
           classNames={{
@@ -81,7 +101,20 @@ export const MwButton: React.FC<MwButtonProps> = ({
           <span css={{ gridArea: "area" }}>
             <Translate>Re-Roll</Translate> <i className="fas fa-sync fa-spin" />
           </span>
-        </CSSTransition>
+        </CSSTransition> */}
+        {shouldMountReRoll && (
+          <span
+            css={{ gridArea: "area" }}
+            style={{
+              opacity: isShowingReRoll ? 1 : 0,
+              transition: isShowingReRoll
+                ? "opacity 400ms 400ms"
+                : "opacity 400ms",
+            }}
+          >
+            <Translate>Re-Roll</Translate>
+          </span>
+        )}
       </div>
     </Fragment>
   );
