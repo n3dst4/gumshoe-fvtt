@@ -1,22 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useRefStash } from "../../hooks/useRefStash";
-
-export enum TransitionState {
-  startEntering,
-  entering,
-  entered,
-  exiting,
-  exited,
-}
-
-const mountedStates = [
-  TransitionState.startEntering,
-  TransitionState.entering,
-  TransitionState.entered,
-  TransitionState.exiting,
-];
-
-const showingStates = [TransitionState.entering, TransitionState.entered];
+import { mountedStates, showingStates, TransitionState } from "./shared";
 
 export function useShowHideTransition(show: boolean, duration: number) {
   const [transitionState, setTransitionState] = useState(
