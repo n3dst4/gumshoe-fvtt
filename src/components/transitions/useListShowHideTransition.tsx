@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
 import { useRefStash } from "../../hooks/useRefStash";
-import { showingStates, TransitionState } from "./shared";
 
 interface ItemWithTransitionState<Item> {
   item: Item;
-  transitionState: TransitionState;
+  isShowing: boolean;
+  key: string;
 }
 
 export function useListShowHideTransition<Item>(
@@ -13,13 +13,13 @@ export function useListShowHideTransition<Item>(
   getKey: (item: Item) => string,
   timeout: number,
 ) {
-  console.log("rendering useListShowHideTransition");
   const [internalList, setInternalList] = useState<
     ItemWithTransitionState<Item>[]
   >(
     externallList.map((item) => ({
       item,
-      transitionState: TransitionState.entered,
+      isShowing: true,
+      key: getKey(item),
     })),
   );
 
@@ -28,7 +28,6 @@ export function useListShowHideTransition<Item>(
   const timeoutStash = useRefStash(timeout);
 
   useEffect(() => {
-    console.log("useEffect");
     const newInternalList = [...internalListRef.current];
 
     const keysToRemove: string[] = [];
@@ -37,20 +36,26 @@ export function useListShowHideTransition<Item>(
     const getKey = getKeyRef.current;
 
     // for each item in old list
-    for (const oldItem of newInternalList) {
+    for (const [i, oldItem] of newInternalList.entries()) {
       const externalItem = externallList.find(
-        (item) => getKey(item) === getKey(oldItem.item),
+        (item) => getKey(item) === oldItem.key,
       );
       // if it exists in new list
       if (externalItem) {
         // update it
-        oldItem.item = externalItem;
+        newInternalList[i] = {
+          ...oldItem,
+          item: externalItem,
+        };
         // if it does not exist in new list
       } else {
         // set it to exiting
-        oldItem.transitionState = TransitionState.exiting;
+        newInternalList[i] = {
+          ...oldItem,
+          isShowing: false,
+        };
         // add it to a list to be removed
-        keysToRemove.push(getKey(oldItem.item));
+        keysToRemove.push(oldItem.key);
       }
     }
 
@@ -61,21 +66,22 @@ export function useListShowHideTransition<Item>(
       // if it does not exist in old list
       if (
         !internalListRef.current.some(
-          (internalItem) => getKey(internalItem.item) === externalKey,
+          (internalItem) => internalItem.key === externalKey,
         )
       ) {
         // add it to a list to be added
-        keysToEnter.push(getKey(externalItem));
+        keysToEnter.push(externalKey);
         // add it to the list just after its neighbour with startEntering state
         const indexOfNeighbour =
           neighbourKey === null
             ? 0
             : newInternalList.findIndex(
-                ({ item }) => getKey(item) === neighbourKey,
+                ({ key: internaItemKey }) => internaItemKey === neighbourKey,
               );
         const newItem: ItemWithTransitionState<Item> = {
           item: externalItem,
-          transitionState: TransitionState.startEntering,
+          isShowing: false,
+          key: externalKey,
         };
         newInternalList.splice(indexOfNeighbour + 1, 0, newItem);
       }
@@ -93,7 +99,6 @@ export function useListShowHideTransition<Item>(
         setInternalList(newInternalList);
       });
     });
-    console.log("newInternalList", newInternalList);
 
     // if there are any items in the "remove" list
     if (keysToRemove.length > 0) {
@@ -101,9 +106,8 @@ export function useListShowHideTransition<Item>(
       setTimeout(() => {
         setInternalList((internalList) => {
           const filteredList = internalList.filter(
-            (internalItem) => !keysToRemove.includes(getKey(internalItem.item)),
+            (internalItem) => !keysToRemove.includes(internalItem.key),
           );
-          console.log("filteredList", filteredList);
           return filteredList;
         });
       }, timeoutStash.current);
@@ -115,25 +119,20 @@ export function useListShowHideTransition<Item>(
       requestAnimationFrame(() => {
         setInternalList((internalList) => {
           const mappedList = internalList.map((internalItem) => {
-            if (keysToEnter.includes(getKey(internalItem.item))) {
+            if (keysToEnter.includes(internalItem.key)) {
               return {
-                item: internalItem.item,
-                transitionState: TransitionState.entering,
+                ...internalItem,
+                isShowing: true,
               };
             } else {
               return internalItem;
             }
           });
-          console.log("start entering", mappedList);
           return mappedList;
         });
       });
     }
   }, [externallList, getKeyRef, internalListRef, timeoutStash]);
 
-  return internalList.map((internalItem) => ({
-    item: internalItem.item,
-    transitionState: internalItem.transitionState,
-    isShowing: showingStates.includes(internalItem.transitionState),
-  }));
+  return internalList;
 }

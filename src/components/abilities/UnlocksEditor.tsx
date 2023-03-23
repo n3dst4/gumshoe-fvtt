@@ -11,22 +11,12 @@ interface UnlocksEditorProps {
   ability: InvestigatorItem;
 }
 
-const transitionTime = 1000;
+const transitionTime = 400;
 
 export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
   ability,
 }: UnlocksEditorProps) => {
   assertAbilityDataSource(ability.data);
-
-  // const unlocks = useMemo(() => {
-  //   assertAbilityDataSource(ability.data);
-  //   return ability.data.data.unlocks.map((unlock) => {
-  //     return {
-  //       unlock,
-  //       ref: React.createRef<HTMLDivElement>(),
-  //     };
-  //   });
-  // }, [ability.data]);
 
   const transitionedUnlocks = useListShowHideTransition(
     ability.data.data.unlocks,
@@ -34,54 +24,34 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
     transitionTime,
   );
 
-  console.log("rendering UnlocksEditor", transitionedUnlocks);
-
   return (
     <div
       css={{
         marginBottom: "1em",
       }}
     >
-      {transitionedUnlocks.map<ReactNode>(({ item: unlock, isShowing }, i) => {
-        return (
-          <div
-            key={unlock.id}
-            style={{
-              transition: `opacity ${transitionTime}ms ease-in-out`,
-              opacity: isShowing ? 1 : 0,
-            }}
-          >
-            <UnlocksEditorRow
-              index={i}
-              unlock={unlock}
-              onChangeDescription={ability.setUnlockDescription}
-              onChangeRating={ability.setUnlockRating}
-              onDelete={ability.deleteUnlock}
-            />
-          </div>
-        );
-      })}
-      {/* <TransitionGroup>
-        {unlocks.map<ReactNode>(({ unlock, ref }, i) => {
+      {transitionedUnlocks.map<ReactNode>(
+        ({ item: unlock, isShowing, key }, i) => {
           return (
-            <CSSTransition
-              key={unlock.id}
-              timeout={500}
-              classNames={fadeInOutClasses}
-              nodeRef={ref}
+            <div
+              key={key}
+              style={{
+                transition: `opacity ${transitionTime}ms ease-in-out, transform ${transitionTime}ms ease-in-out`,
+                opacity: isShowing ? 1 : 0,
+                transform: isShowing ? "none" : "translateX(40px)",
+              }}
             >
               <UnlocksEditorRow
-                ref={ref}
                 index={i}
                 unlock={unlock}
                 onChangeDescription={ability.setUnlockDescription}
                 onChangeRating={ability.setUnlockRating}
                 onDelete={ability.deleteUnlock}
               />
-            </CSSTransition>
+            </div>
           );
-        })}
-      </TransitionGroup> */}
+        },
+      )}
       <button
         onClick={ability.addUnlock}
         css={{
