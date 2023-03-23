@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { flushSync } from "react-dom";
 import { useRefStash } from "../../hooks/useRefStash";
-import { TransitionState } from "./shared";
+import { showingStates, TransitionState } from "./shared";
 
 interface ItemWithTransitionState<Item> {
   item: Item;
@@ -12,6 +13,7 @@ export function useListShowHideTransition<Item>(
   getKey: (item: Item) => string,
   timeout: number,
 ) {
+  console.log("rendering useListShowHideTransition");
   const [internalList, setInternalList] = useState<
     ItemWithTransitionState<Item>[]
   >(
@@ -26,6 +28,7 @@ export function useListShowHideTransition<Item>(
   const timeoutStash = useRefStash(timeout);
 
   useEffect(() => {
+    console.log("useEffect");
     const newInternalList = [...internalListRef.current];
 
     const keysToRemove: string[] = [];
@@ -70,46 +73,59 @@ export function useListShowHideTransition<Item>(
             : newInternalList.findIndex(
                 ({ item }) => getKey(item) === neighbourKey,
               );
-        newInternalList.splice(indexOfNeighbour + 1, 0, {
+        const newItem: ItemWithTransitionState<Item> = {
           item: externalItem,
           transitionState: TransitionState.startEntering,
-        });
+        };
+        newInternalList.splice(indexOfNeighbour + 1, 0, newItem);
       }
     }
 
     // update the state
-    setInternalList(newInternalList);
+    flushSync(() => {
+      setInternalList(newInternalList);
+    });
+    console.log("newInternalList", newInternalList);
 
     // if there are any items in the "remove" list
     if (keysToRemove.length > 0) {
       // set a timeout to remove them
       setTimeout(() => {
-        setInternalList((internalList) =>
-          internalList.filter(
+        setInternalList((internalList) => {
+          const filteredList = internalList.filter(
             (internalItem) => !keysToRemove.includes(getKey(internalItem.item)),
-          ),
-        );
+          );
+          console.log("filteredList", filteredList);
+          return filteredList;
+        });
       }, timeoutStash.current);
     }
 
     // if the "new items" list is not empty
     if (keysToEnter.length > 0) {
       // set a timeout to start them entering
-      requestAnimationFrame(() => {
+      setTimeout(() => {
         setInternalList((internalList) => {
           const mappedList = internalList.map((internalItem) => {
             if (keysToEnter.includes(getKey(internalItem.item))) {
-              internalItem.transitionState = TransitionState.entering;
+              return {
+                item: internalItem.item,
+                transitionState: TransitionState.entering,
+              };
+            } else {
+              return internalItem;
             }
-            return internalItem;
           });
+          console.log("start entering", mappedList);
           return mappedList;
         });
-      });
+      }, 1);
     }
-
-    //   set a timeout to start them entering
   }, [externallList, getKeyRef, internalListRef, timeoutStash]);
 
-  return internalList;
+  return internalList.map((internalItem) => ({
+    item: internalItem.item,
+    transitionState: internalItem.transitionState,
+    isShowing: showingStates.includes(internalItem.transitionState),
+  }));
 }

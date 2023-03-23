@@ -1,9 +1,9 @@
 export enum TransitionState {
-  startEntering,
-  entering,
-  entered,
-  exiting,
-  exited,
+  startEntering = "startEntering",
+  entering = "entering",
+  entered = "entered",
+  exiting = "exiting",
+  exited = "exited",
 }
 
 export const mountedStates = [
