@@ -55,7 +55,7 @@ export function useListShowHideTransition<Item>(
     }
 
     // for each item in new list
-    const neighbourKey: string | null = null;
+    let neighbourKey: string | null = null;
     for (const externalItem of externallList) {
       const externalKey = getKey(externalItem);
       // if it does not exist in old list
@@ -79,11 +79,19 @@ export function useListShowHideTransition<Item>(
         };
         newInternalList.splice(indexOfNeighbour + 1, 0, newItem);
       }
+      neighbourKey = externalKey;
     }
 
     // update the state
-    flushSync(() => {
-      setInternalList(newInternalList);
+    // flushSync is needed in React 18+ to avoid automatic batching. without it,
+    // the state update will be batched with the timeout below, so we will not
+    // see the items render in their "out" state.
+    // see https://github.com/reactwg/react-18/discussions/21
+    // raf is needed bec
+    requestAnimationFrame(() => {
+      flushSync(() => {
+        setInternalList(newInternalList);
+      });
     });
     console.log("newInternalList", newInternalList);
 
@@ -104,7 +112,7 @@ export function useListShowHideTransition<Item>(
     // if the "new items" list is not empty
     if (keysToEnter.length > 0) {
       // set a timeout to start them entering
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         setInternalList((internalList) => {
           const mappedList = internalList.map((internalItem) => {
             if (keysToEnter.includes(getKey(internalItem.item))) {
@@ -119,7 +127,7 @@ export function useListShowHideTransition<Item>(
           console.log("start entering", mappedList);
           return mappedList;
         });
-      }, 1);
+      });
     }
   }, [externallList, getKeyRef, internalListRef, timeoutStash]);
 
