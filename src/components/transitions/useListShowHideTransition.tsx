@@ -8,11 +8,16 @@ interface ItemWithTransitionState<Item> {
   key: string;
 }
 
+/**
+ * A simple hook to manage the transition state of a list of items.
+ */
 export function useListShowHideTransition<Item>(
   externallList: Item[],
   getKey: (item: Item) => string,
   timeout: number,
 ) {
+  // this is internally managed list of items, including items which have left
+  // the master list but are still exiting.
   const [internalList, setInternalList] = useState<
     ItemWithTransitionState<Item>[]
   >(
@@ -23,10 +28,13 @@ export function useListShowHideTransition<Item>(
     })),
   );
 
+  // these refs are to prevent the effect triggering too often - we only want it
+  // to run when the external (i.e. from props) list changes
   const internalListRef = useRefStash(internalList);
   const getKeyRef = useRefStash(getKey);
   const timeoutStash = useRefStash(timeout);
 
+  // this effect is where the bulk of the work happens
   useEffect(() => {
     const newInternalList = [...internalListRef.current];
 
@@ -93,7 +101,8 @@ export function useListShowHideTransition<Item>(
     // the state update will be batched with the timeout below, so we will not
     // see the items render in their "out" state.
     // see https://github.com/reactwg/react-18/discussions/21
-    // raf is needed bec
+    // requestAnimationFrame is needed because flushSync cannot run inside a
+    // hook.
     requestAnimationFrame(() => {
       flushSync(() => {
         setInternalList(newInternalList);
