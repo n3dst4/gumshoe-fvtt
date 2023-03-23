@@ -31,14 +31,18 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
       }}
     >
       {transitionedUnlocks.map<ReactNode>(
-        ({ item: unlock, isShowing, key }, i) => {
+        ({ item: unlock, isShowing, isEntering, key }, i) => {
           return (
             <div
               key={key}
               style={{
                 transition: `opacity ${transitionTime}ms ease-in-out, transform ${transitionTime}ms ease-in-out`,
                 opacity: isShowing ? 1 : 0,
-                transform: isShowing ? "none" : "translateX(40px)",
+                transform: isShowing
+                  ? "none"
+                  : isEntering
+                  ? "translateX(-40px)"
+                  : "translateX(40px)",
               }}
             >
               <UnlocksEditorRow

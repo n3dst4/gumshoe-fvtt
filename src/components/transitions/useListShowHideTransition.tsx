@@ -3,8 +3,23 @@ import { flushSync } from "react-dom";
 import { useRefStash } from "../../hooks/useRefStash";
 
 interface ItemWithTransitionState<Item> {
+  /** The original item from the source list */
   item: Item;
+  /**
+   * If true, the item should be at, or headed towards its "fully visible"
+   * state
+   */
   isShowing: boolean;
+  /**
+   * This only matters when `isShowing` is false. If true, the item is newly
+   * added and should have its "off stage, about to enter" state. If false,
+   * the item is leaving and should have its "on stage, about to leave" state.
+   */
+  isEntering: boolean;
+  /**
+   * The unique identifier for this item. This is the result of calling the
+   * `getKey` function on the item.
+   */
   key: string;
 }
 
@@ -12,8 +27,27 @@ interface ItemWithTransitionState<Item> {
  * A simple hook to manage the transition state of a list of items.
  */
 export function useListShowHideTransition<Item>(
+  /**
+   * The source list - what you would normally pass to a `map` function if you
+   * were not using this hook.
+   */
   externallList: Item[],
+  /**
+   * A function which returns a unique identifier for each item in the list.
+   * This is needed because we need to be able to track items as they enter and
+   * leave the list.
+   *
+   * We cannot use the index of the item in the list because items can be added
+   *   and removed from the list, so the index of an item can change. We cannot
+   *   use object equality because the source data may be modified in an
+   *   immutable way, breaking `===` equality.
+   *
+   * You were going to have decent object keys anyway, weren't you?
+   */
   getKey: (item: Item) => string,
+  /**
+   * The time in milliseconds that the exit transition should take.
+   */
   timeout: number,
 ) {
   // this is internally managed list of items, including items which have left
@@ -24,6 +58,7 @@ export function useListShowHideTransition<Item>(
     externallList.map((item) => ({
       item,
       isShowing: true,
+      isEntering: true,
       key: getKey(item),
     })),
   );
@@ -61,6 +96,7 @@ export function useListShowHideTransition<Item>(
         newInternalList[i] = {
           ...oldItem,
           isShowing: false,
+          isEntering: false,
         };
         // add it to a list to be removed
         keysToRemove.push(oldItem.key);
@@ -89,6 +125,7 @@ export function useListShowHideTransition<Item>(
         const newItem: ItemWithTransitionState<Item> = {
           item: externalItem,
           isShowing: false,
+          isEntering: true,
           key: externalKey,
         };
         newInternalList.splice(indexOfNeighbour + 1, 0, newItem);
