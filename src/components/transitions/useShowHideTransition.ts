@@ -24,8 +24,8 @@ export function useShowHideTransition(show: boolean, duration: number) {
         setTransitionState(TransitionState.entering);
         timeoutId = setTimeout(() => {
           setTransitionState(TransitionState.entered);
-        });
-      });
+        }, 0);
+      }, 0);
     } else {
       setTransitionState(TransitionState.exiting);
       timeoutId = setTimeout(() => {
