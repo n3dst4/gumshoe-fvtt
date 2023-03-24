@@ -45,9 +45,29 @@ export class InvestigatorItem extends Item {
     }
     const isBoosted = settings.useBoost.get() && this.getBoost();
     const boost = isBoosted ? 1 : 0;
-    const roll = isBoosted
-      ? new Roll("1d6 + @spend + @boost", { spend, boost })
-      : new Roll("1d6 + @spend", { spend });
+    const situationalModifiers = this.activeSituationalModifiers.map((id) => {
+      assertAbilityDataSource(this.data);
+      const situationalModifier = this.data.data.situationalModifiers.find(
+        (situationalModifier) => situationalModifier?.id === id,
+      );
+      return situationalModifier;
+    });
+
+    let rollExpression = "1d6 + @spend";
+    const rollValues: Record<string, number> = { spend };
+    if (isBoosted) {
+      rollExpression += " + @boost";
+      rollValues.boost = boost;
+    }
+    for (const situationalModifier of situationalModifiers) {
+      if (situationalModifier === undefined) {
+        continue;
+      }
+      rollExpression += ` + @${situationalModifier.id}`;
+      rollValues[situationalModifier.id] = situationalModifier.modifier;
+    }
+
+    const roll = new Roll(rollExpression, rollValues);
     await roll.evaluate({ async: true });
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),

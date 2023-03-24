@@ -47,11 +47,6 @@ export const SituationalModifierBadge: React.FC<
           display: "inline-block",
           position: "relative",
           paddingLeft: "0.25em",
-          // top: "50%",
-          // left: "50%",
-          // transform: "translate(-50%, -50%)",
-          // fontSize: "2em",
-          // color: theme.colors.glow,
           width: "1em",
           fontWeight: "bold",
         }}
