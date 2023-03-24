@@ -6,7 +6,7 @@ import {
   isGeneralAbilityDataSource,
   isInvestigativeAbilityDataSource,
 } from "../../typeAssertions";
-import { UnlockBadges } from "../abilities/UnlockBadges";
+import { AbilityBadges } from "../abilities/AbilityBadges";
 
 type AbilitySlugPlayProps = {
   ability: InvestigatorItem;
@@ -110,7 +110,7 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
             </button>
           )}
       </div>
-      <UnlockBadges ability={ability} css={{ gridColumn: "1/-1" }} />
+      <AbilityBadges ability={ability} css={{ gridColumn: "1/-1" }} />
       {ability.data.data.hasSpecialities && (
         <div css={{ paddingLeft: "1em", gridColumn: "1/-1" }}>
           {(ability.data.data.specialities || []).map<JSX.Element>(

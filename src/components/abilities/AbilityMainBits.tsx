@@ -15,7 +15,7 @@ import {
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { settings } from "../../settings";
-import { UnlockBadges } from "./UnlockBadges";
+import { AbilityBadges } from "./AbilityBadges";
 
 type AbilityMainBitsProps = {
   ability: InvestigatorItem;
@@ -118,7 +118,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
           onChange={ability.setRating}
         />
       </GridField>
-      <UnlockBadges
+      <AbilityBadges
         css={{
           gridColumn: "1 / 4",
         }}
@@ -197,3 +197,5 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     </InputGrid>
   );
 };
+
+AbilityMainBits.displayName = "AbilityMainBits";

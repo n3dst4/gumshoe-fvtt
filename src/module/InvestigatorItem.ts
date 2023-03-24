@@ -679,6 +679,14 @@ export class InvestigatorItem extends Item {
     );
   };
 
+  getVisibleSituationalModifiers = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.situationalModifiers.filter(({ situation }) => {
+      assertAbilityDataSource(this.data);
+      return situation !== "";
+    });
+  };
+
   setUnlockDescription = (index: number, description: string) => {
     assertAbilityDataSource(this.data);
     const unlocks = [...this.data.data.unlocks];
