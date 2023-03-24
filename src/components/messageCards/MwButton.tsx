@@ -1,11 +1,8 @@
 import { CSSObject } from "@emotion/react";
 import React, { Fragment } from "react";
-// import { CSSTransition } from "react-transition-group";
 import { useHover } from "../../hooks/useHover";
 import { useShowHideTransition } from "../transitions/useShowHideTransition";
 import { Translate } from "../Translate";
-// import { Translate } from "../Translate";
-// import { fadeInOutClasses } from "./transitions";
 import { MWResult } from "./types";
 
 type MwButtonProps = {

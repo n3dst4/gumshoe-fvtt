@@ -1,10 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { CSSTransition } from "react-transition-group";
 import { Translate } from "../Translate";
 import { DiceTerms } from "./DiceTerms";
-import { duration, termsClasses } from "./transitions";
-// import * as constants from "../../constants";
 
 interface AttackCardProps {
   msg: ChatMessage;
@@ -19,12 +16,6 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(
     const onClickWeaponName = useCallback(() => {
       weapon?.sheet?.render(true);
     }, [weapon?.sheet]);
-
-    const [showTerms, setShowTerms] = useState(true);
-
-    const onClickResult = useCallback(() => {
-      setShowTerms((s) => !s);
-    }, []);
 
     const img = weapon?.data.img ?? imageUrl;
 
@@ -77,28 +68,19 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(
           (<Translate>{rangeName || ""}</Translate>)
         </div>
         {/* HIT TERMS */}
-        <CSSTransition
-          in={showTerms}
-          timeout={duration}
-          classNames={{
-            ...termsClasses,
+
+        <div
+          css={{
+            gridArea: "hit-terms",
           }}
-          unmountOnExit
         >
-          <div
-            css={{
-              gridArea: "hit-terms",
-            }}
-          >
-            <Translate>Hit roll</Translate>
-            {": "}
-            <DiceTerms terms={hitRoll.terms} />
-            {" ="}
-          </div>
-        </CSSTransition>
+          <Translate>Hit roll</Translate>
+          {": "}
+          <DiceTerms terms={hitRoll.terms} />
+          {" ="}
+        </div>
         {/* HIT RESULT */}
         <a
-          onClick={onClickResult}
           className="dice-total"
           css={{
             gridArea: "hit-body",
@@ -108,28 +90,19 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(
         </a>
 
         {/* DAMAGE TERMS */}
-        <CSSTransition
-          in={showTerms}
-          timeout={duration}
-          classNames={{
-            ...termsClasses,
+
+        <div
+          css={{
+            gridArea: "damage-terms",
           }}
-          unmountOnExit
         >
-          <div
-            css={{
-              gridArea: "damage-terms",
-            }}
-          >
-            <Translate>Damage</Translate>
-            {": "}
-            <DiceTerms terms={damageRoll.terms} />
-            {" ="}
-          </div>
-        </CSSTransition>
+          <Translate>Damage</Translate>
+          {": "}
+          <DiceTerms terms={damageRoll.terms} />
+          {" ="}
+        </div>
         {/* DAMAGE RESULT */}
         <a
-          onClick={onClickResult}
           className="dice-total"
           css={{
             gridArea: "damage-body",
