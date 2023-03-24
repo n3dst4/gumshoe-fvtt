@@ -6,6 +6,7 @@ import { UnlocksEditorRow } from "./UnlocksEditorRow";
 // import { TransitionGroup, CSSTransition } from "react-transition-group";
 // import { fadeInOutClasses } from "./fadeInOutClasses";
 import { useListShowHideTransition } from "../transitions/useListShowHideTransition";
+import { getListTransitionStyles } from "./getListTransitionStyles";
 
 interface UnlocksEditorProps {
   ability: InvestigatorItem;
@@ -35,15 +36,11 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
           return (
             <div
               key={key}
-              style={{
-                transition: `opacity ${transitionTime}ms ease-in-out, transform ${transitionTime}ms ease-in-out`,
-                opacity: isShowing ? 1 : 0,
-                transform: isShowing
-                  ? "none"
-                  : isEntering
-                  ? "translateX(-40px)"
-                  : "translateX(40px)",
-              }}
+              style={getListTransitionStyles(
+                isShowing,
+                isEntering,
+                transitionTime,
+              )}
             >
               <UnlocksEditorRow
                 index={i}
