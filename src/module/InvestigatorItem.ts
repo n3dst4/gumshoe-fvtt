@@ -31,6 +31,8 @@ import { nanoid } from "nanoid";
  * @extends {Item}
  */
 export class InvestigatorItem extends Item {
+  activeSituationalModifiers: string[] = [];
+
   /**
    * classic gumshoe test: spend a number of points from the pool, and add that
    * to a d6
@@ -685,6 +687,27 @@ export class InvestigatorItem extends Item {
       assertAbilityDataSource(this.data);
       return situation !== "";
     });
+  };
+
+  toggleSituationalModifier = (id: string) => {
+    assertAbilityDataSource(this.data);
+    if (this.isSituationalModifierActive(id)) {
+      const index = this.activeSituationalModifiers.indexOf(id);
+      if (index !== -1) {
+        this.activeSituationalModifiers.splice(index, 1);
+      }
+    } else {
+      if (!this.activeSituationalModifiers.includes(id)) {
+        this.activeSituationalModifiers.push(id);
+      }
+    }
+    this.sheet?.render();
+    this.actor?.sheet?.render();
+  };
+
+  isSituationalModifierActive = (id: string) => {
+    assertAbilityDataSource(this.data);
+    return this.activeSituationalModifiers.includes(id);
   };
 
   setUnlockDescription = (index: number, description: string) => {

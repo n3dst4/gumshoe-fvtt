@@ -1,0 +1,65 @@
+import React, { useContext } from "react";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { ThemeContext } from "../../themes/ThemeContext";
+import { SituationalModifier } from "../../types";
+
+interface SituationalModifierBadgeProps {
+  situationalModifier: SituationalModifier;
+  ability: InvestigatorItem;
+}
+
+export const SituationalModifierBadge: React.FC<
+  SituationalModifierBadgeProps
+> = ({ situationalModifier: { situation, modifier, id }, ability }) => {
+  const theme = useContext(ThemeContext);
+  const isActive = ability.isSituationalModifierActive(id);
+  return (
+    <a
+      onClick={() => {
+        ability.toggleSituationalModifier(id);
+      }}
+      css={{
+        display: "inline-block",
+        position: "relative",
+        background: theme.colors.accentContrast,
+        color: theme.colors.accent,
+        border: `1px solid ${theme.colors.accent}`,
+        fontSize: "0.9em",
+        lineHeight: "1",
+        borderRadius: "0.5em",
+        padding: "0 0.5em",
+        margin: "0 0.25em",
+        boxShadow: isActive ? `0 0 0.7em 0.2em ${theme.colors.glow}` : "none",
+        opacity: isActive ? 1 : 0.5,
+      }}
+    >
+      <span
+        css={{
+          display: "inline-block",
+          position: "relative",
+        }}
+      >
+        {situation}: {modifier >= 0 && "+"}
+        {modifier}
+      </span>
+      <span
+        css={{
+          display: "inline-block",
+          position: "relative",
+          paddingLeft: "0.25em",
+          // top: "50%",
+          // left: "50%",
+          // transform: "translate(-50%, -50%)",
+          // fontSize: "2em",
+          // color: theme.colors.glow,
+          width: "1em",
+          fontWeight: "bold",
+        }}
+      >
+        {isActive ? "✓" : "✗"}
+      </span>
+    </a>
+  );
+};
+
+SituationalModifierBadge.displayName = "SituationalModifierBadge";
