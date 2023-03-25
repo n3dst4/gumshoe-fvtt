@@ -38,9 +38,9 @@ export function useListShowHideTransition<Item>(
    * leave the list.
    *
    * We cannot use the index of the item in the list because items can be added
-   *   and removed from the list, so the index of an item can change. We cannot
-   *   use object equality because the source data may be modified in an
-   *   immutable way, breaking `===` equality.
+   * and removed from the list, so the index of an item can change. We cannot
+   * use object equality because the source data may be modified in an immutable
+   * way, breaking `===` equality.
    *
    * You were going to have decent object keys anyway, weren't you?
    */
