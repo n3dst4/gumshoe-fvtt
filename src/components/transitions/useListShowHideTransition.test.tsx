@@ -417,7 +417,7 @@ describe("useListShowHideTransition", () => {
     //     },
     //   ]);
   });
-  test("should keep track whenn an item is removed and then quickly re-added", () => {
+  test("should keep track when an item is removed and then quickly re-added", () => {
     const { result, rerender } = renderUseListShowHideTransition([
       "foo",
       "bar",
@@ -468,6 +468,27 @@ describe("useListShowHideTransition", () => {
     ]);
     rerender(["foo", "bar", "baz"]);
     actAndAdvance(10);
+    expect(result.current).toEqual([
+      {
+        item: "foo",
+        isShowing: true,
+        isEntering: true,
+        key: "foo",
+      },
+      {
+        item: "bar",
+        isShowing: true,
+        isEntering: true,
+        key: "bar",
+      },
+      {
+        item: "baz",
+        isShowing: true,
+        isEntering: true,
+        key: "baz",
+      },
+    ]);
+    actAndAdvance(15);
     expect(result.current).toEqual([
       {
         item: "foo",

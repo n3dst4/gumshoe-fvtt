@@ -156,7 +156,11 @@ export function useListShowHideTransition<Item>(
       setTimeout(() => {
         setInternalList((internalList) => {
           const filteredList = internalList.filter(
-            (internalItem) => !keysToRemove.includes(internalItem.key),
+            (internalItem) =>
+              !(
+                keysToRemove.includes(internalItem.key) &&
+                !internalItem.isEntering
+              ),
           );
           return filteredList;
         });
