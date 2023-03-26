@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
 import { useRefStash } from "../../hooks/useRefStash";
 
-interface ItemWithTransitionState<Item> {
+export interface ItemWithTransitionState<Item> {
   /** The original item from the source list */
   item: Item;
   /**
@@ -48,7 +48,8 @@ export function useListShowHideTransition<Item>(
   /**
    * The time in milliseconds that the exit transition should take.
    */
-  timeout: number,
+  exitAfterMs: number,
+  enterAfterMs = 0,
 ) {
   // this is internally managed list of items, including items which have left
   // the master list but are still exiting.
@@ -67,7 +68,8 @@ export function useListShowHideTransition<Item>(
   // to run when the external (i.e. from props) list changes
   const internalListRef = useRefStash(internalList);
   const getKeyRef = useRefStash(getKey);
-  const timeoutStash = useRefStash(timeout);
+  const exitAfterMsRef = useRefStash(exitAfterMs);
+  const enterAfterMsRef = useRefStash(enterAfterMs);
 
   // this effect is where the bulk of the work happens
   useEffect(() => {
@@ -118,7 +120,7 @@ export function useListShowHideTransition<Item>(
         // add it to the list just after its neighbour with startEntering state
         const indexOfNeighbour =
           neighbourKey === null
-            ? 0
+            ? -1
             : newInternalList.findIndex(
                 ({ key: internaItemKey }) => internaItemKey === neighbourKey,
               );
@@ -140,11 +142,11 @@ export function useListShowHideTransition<Item>(
     // see https://github.com/reactwg/react-18/discussions/21
     // requestAnimationFrame is needed because flushSync cannot run inside a
     // hook.
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       flushSync(() => {
         setInternalList(newInternalList);
       });
-    });
+    }, 0);
 
     // if there are any items in the "remove" list
     if (keysToRemove.length > 0) {
@@ -156,13 +158,13 @@ export function useListShowHideTransition<Item>(
           );
           return filteredList;
         });
-      }, timeoutStash.current);
+      }, exitAfterMsRef.current);
     }
 
     // if the "new items" list is not empty
     if (keysToEnter.length > 0) {
       // set a timeout to start them entering
-      requestAnimationFrame(() => {
+      setTimeout(() => {
         setInternalList((internalList) => {
           const mappedList = internalList.map((internalItem) => {
             if (keysToEnter.includes(internalItem.key)) {
@@ -176,9 +178,15 @@ export function useListShowHideTransition<Item>(
           });
           return mappedList;
         });
-      });
+      }, enterAfterMsRef.current);
     }
-  }, [externallList, getKeyRef, internalListRef, timeoutStash]);
+  }, [
+    externallList,
+    getKeyRef,
+    internalListRef,
+    exitAfterMsRef,
+    enterAfterMsRef,
+  ]);
 
   return internalList;
 }
