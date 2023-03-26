@@ -91,6 +91,8 @@ export function useListShowHideTransition<Item>(
         newInternalList[i] = {
           ...oldItem,
           item: externalItem,
+          isShowing: oldItem.isEntering ? oldItem.isShowing : true,
+          isEntering: true,
         };
         // if it does not exist in new list
       } else {

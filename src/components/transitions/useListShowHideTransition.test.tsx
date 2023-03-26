@@ -417,4 +417,76 @@ describe("useListShowHideTransition", () => {
     //     },
     //   ]);
   });
+  test("should keep track whenn an item is removed and then quickly re-added", () => {
+    const { result, rerender } = renderUseListShowHideTransition([
+      "foo",
+      "bar",
+      "baz",
+    ]);
+    actAndAdvance(100);
+    expect(result.current).toEqual([
+      {
+        item: "foo",
+        isShowing: true,
+        isEntering: true,
+        key: "foo",
+      },
+      {
+        item: "bar",
+        isShowing: true,
+        isEntering: true,
+        key: "bar",
+      },
+      {
+        item: "baz",
+        isShowing: true,
+        isEntering: true,
+        key: "baz",
+      },
+    ]);
+    rerender(["foo", "baz"]);
+    actAndAdvance(25);
+    expect(result.current).toEqual([
+      {
+        item: "foo",
+        isShowing: true,
+        isEntering: true,
+        key: "foo",
+      },
+      {
+        item: "bar",
+        isShowing: false,
+        isEntering: false,
+        key: "bar",
+      },
+      {
+        item: "baz",
+        isShowing: true,
+        isEntering: true,
+        key: "baz",
+      },
+    ]);
+    rerender(["foo", "bar", "baz"]);
+    actAndAdvance(10);
+    expect(result.current).toEqual([
+      {
+        item: "foo",
+        isShowing: true,
+        isEntering: true,
+        key: "foo",
+      },
+      {
+        item: "bar",
+        isShowing: true,
+        isEntering: true,
+        key: "bar",
+      },
+      {
+        item: "baz",
+        isShowing: true,
+        isEntering: true,
+        key: "baz",
+      },
+    ]);
+  });
 });
