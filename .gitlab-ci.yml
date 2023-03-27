@@ -27,8 +27,13 @@ cache:
 build:
   stage: build
   script:
+    - pwd
+    - ls -l
+    - cat tsconfig.json
+    - npx tsc --version
     - export
     - corepack enable
+    - pnpm --version
     - pnpm i
     - if [[ -n $CI_COMMIT_TAG ]]; then ./tasks.js updateManifestFromCITagPush; fi
     - pnpm package

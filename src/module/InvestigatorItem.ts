@@ -17,17 +17,22 @@ import {
   MwType,
   NoteWithFormat,
   RangeTuple,
+  SituationalModifier,
+  Unlock,
 } from "../types";
 import * as constants from "../constants";
 import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
 import { ThemeV1 } from "../themes/types";
+import { nanoid } from "nanoid";
 
 /**
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
  */
 export class InvestigatorItem extends Item {
+  activeSituationalModifiers: string[] = [];
+
   /**
    * classic gumshoe test: spend a number of points from the pool, and add that
    * to a d6
@@ -40,9 +45,29 @@ export class InvestigatorItem extends Item {
     }
     const isBoosted = settings.useBoost.get() && this.getBoost();
     const boost = isBoosted ? 1 : 0;
-    const roll = isBoosted
-      ? new Roll("1d6 + @spend + @boost", { spend, boost })
-      : new Roll("1d6 + @spend", { spend });
+    const situationalModifiers = this.activeSituationalModifiers.map((id) => {
+      assertAbilityDataSource(this.data);
+      const situationalModifier = this.data.data.situationalModifiers.find(
+        (situationalModifier) => situationalModifier?.id === id,
+      );
+      return situationalModifier;
+    });
+
+    let rollExpression = "1d6 + @spend";
+    const rollValues: Record<string, number> = { spend };
+    if (isBoosted) {
+      rollExpression += " + @boost";
+      rollValues.boost = boost;
+    }
+    for (const situationalModifier of situationalModifiers) {
+      if (situationalModifier === undefined) {
+        continue;
+      }
+      rollExpression += ` + @${situationalModifier.id}`;
+      rollValues[situationalModifier.id] = situationalModifier.modifier;
+    }
+
+    const roll = new Roll(rollExpression, rollValues);
     await roll.evaluate({ async: true });
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
@@ -668,10 +693,121 @@ export class InvestigatorItem extends Item {
 
   getActiveUnlocks = () => {
     assertAbilityDataSource(this.data);
-    return this.data.data.unlocks.filter(({ rating: targetRating }) => {
+    return this.data.data.unlocks.filter(
+      ({ rating: targetRating, description }) => {
+        assertAbilityDataSource(this.data);
+        return this.data.data.rating >= targetRating && description !== "";
+      },
+    );
+  };
+
+  getVisibleSituationalModifiers = () => {
+    assertAbilityDataSource(this.data);
+    return this.data.data.situationalModifiers.filter(({ situation }) => {
       assertAbilityDataSource(this.data);
-      return this.data.data.rating >= targetRating;
+      return situation !== "";
     });
+  };
+
+  toggleSituationalModifier = (id: string) => {
+    assertAbilityDataSource(this.data);
+    if (this.isSituationalModifierActive(id)) {
+      const index = this.activeSituationalModifiers.indexOf(id);
+      if (index !== -1) {
+        this.activeSituationalModifiers.splice(index, 1);
+      }
+    } else {
+      if (!this.activeSituationalModifiers.includes(id)) {
+        this.activeSituationalModifiers.push(id);
+      }
+    }
+    this.sheet?.render();
+    this.actor?.sheet?.render();
+  };
+
+  isSituationalModifierActive = (id: string) => {
+    assertAbilityDataSource(this.data);
+    return this.activeSituationalModifiers.includes(id);
+  };
+
+  setUnlockDescription = (index: number, description: string) => {
+    assertAbilityDataSource(this.data);
+    const unlocks = [...this.data.data.unlocks];
+    unlocks[index] = {
+      ...unlocks[index],
+      description,
+    };
+    return this.update({ data: { unlocks } });
+  };
+
+  setUnlockRating = (index: number, rating: number) => {
+    assertAbilityDataSource(this.data);
+    const unlocks = [...this.data.data.unlocks];
+    unlocks[index] = {
+      ...unlocks[index],
+      rating,
+    };
+    return this.update({ data: { unlocks } });
+  };
+
+  deleteUnlock = (index: number) => {
+    assertAbilityDataSource(this.data);
+    const unlocks = [...this.data.data.unlocks];
+    unlocks.splice(index, 1);
+    return this.update({ data: { unlocks } });
+  };
+
+  addUnlock = () => {
+    assertAbilityDataSource(this.data);
+    const unlocks: Unlock[] = [
+      ...this.data.data.unlocks,
+      {
+        description: "",
+        rating: 0,
+        id: nanoid(),
+      },
+    ];
+    return this.update({ data: { unlocks } });
+  };
+
+  setSituationalModifierSituation = (index: number, situation: string) => {
+    assertAbilityDataSource(this.data);
+    const situationalModifiers = [...this.data.data.situationalModifiers];
+    situationalModifiers[index] = {
+      ...situationalModifiers[index],
+      situation,
+    };
+    return this.update({ data: { situationalModifiers } });
+  };
+
+  setSituationalModifierModifier = (index: number, modifier: number) => {
+    assertAbilityDataSource(this.data);
+    const situationalModifiers = [...this.data.data.situationalModifiers];
+    situationalModifiers[index] = {
+      ...situationalModifiers[index],
+      modifier,
+    };
+    return this.update({ data: { situationalModifiers } });
+  };
+
+  deleteSituationalModifier = (index: number) => {
+    assertAbilityDataSource(this.data);
+    const situationalModifiers = [...this.data.data.situationalModifiers];
+    situationalModifiers.splice(index, 1);
+    return this.update({ data: { situationalModifiers } });
+  };
+
+  addSituationalModifier = () => {
+    assertAbilityDataSource(this.data);
+    const situationalModifiers: SituationalModifier[] = [
+      ...this.data.data.situationalModifiers,
+      {
+        situation: "",
+        modifier: 0,
+        id: nanoid(),
+      },
+    ];
+    return this.update({ data: { situationalModifiers } });
   };
 
   setCombatBonus = async (combatBonus: number) => {

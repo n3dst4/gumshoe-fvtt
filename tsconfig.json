@@ -8,8 +8,7 @@
 		],
 		"moduleResolution": "node",
 		"module": "esnext",
-    "types": [
-			// "react",
+		"types": [
 			"@league-of-foundry-developers/foundry-vtt-types",
 			"@lumphammer/investigator-fvtt-types",
 			"@types/jest",

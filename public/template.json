@@ -105,7 +105,8 @@
         "boost": false,
         "excludeFromGeneralRefresh": false,
         "refreshesDaily": false,
-        "unlocks": []
+        "unlocks": [],
+        "situationalModifiers": []
       }
     },
     "investigativeAbility": {

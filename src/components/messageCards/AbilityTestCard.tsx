@@ -1,11 +1,8 @@
-import React, { Fragment, useCallback, useState } from "react";
+import React, { Fragment, useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { CSSTransition } from "react-transition-group";
 import { DiceTerms } from "./DiceTerms";
 import { AbilityCardMode } from "./types";
 import { Translate } from "../Translate";
-import * as constants from "../../constants";
-import { duration, termsClasses } from "./transitions";
 
 interface AbilityTestCardProps {
   msg: ChatMessage;
@@ -20,12 +17,6 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(
     const onClickAbilityName = useCallback(() => {
       ability?.sheet?.render(true);
     }, [ability?.sheet]);
-
-    const [showTerms, setShowTerms] = useState(true);
-
-    const onClickResult = useCallback(() => {
-      setShowTerms((s) => !s);
-    }, []);
 
     return (
       <div
@@ -67,46 +58,25 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(
               {name ?? ability?.data.name ?? "Missing"}
             </a>
           </b>
-          {!showTerms && (
-            <span>
-              {" "}
-              {mode === constants.htmlDataModeSpend && (
-                <Translate>PointSpend</Translate>
-              )}
-              {mode === constants.htmlDataModeTest && (
-                <Translate>AbilityTest</Translate>
-              )}
-            </span>
-          )}
         </div>
         {/* TERMS */}
-        <CSSTransition
-          in={showTerms}
-          timeout={duration}
-          classNames={{
-            ...termsClasses,
+        <div
+          css={{
+            gridArea: "terms",
           }}
-          unmountOnExit
         >
-          <div
-            css={{
-              gridArea: "terms",
-            }}
-          >
-            {mode === "spend" && <Translate>PointSpend</Translate>}
-            {mode === "test" && (
-              <Fragment>
-                <Translate>AbilityTest</Translate>
-                {": "}
-                <DiceTerms terms={msg.roll?.terms} />
-                {" ="}
-              </Fragment>
-            )}
-          </div>
-        </CSSTransition>
+          {mode === "spend" && <Translate>PointSpend</Translate>}
+          {mode === "test" && (
+            <Fragment>
+              <Translate>AbilityTest</Translate>
+              {": "}
+              <DiceTerms terms={msg.roll?.terms} />
+              {" ="}
+            </Fragment>
+          )}
+        </div>
         {/* RESULT */}
         <a
-          onClick={onClickResult}
           className="dice-total"
           css={{
             gridArea: "body",

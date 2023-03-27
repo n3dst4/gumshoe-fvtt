@@ -50,28 +50,34 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
   return (
     <InputGrid>
       <GridField label="Category Id">
-        <code
-          css={{
-            display: "inline-block",
-            margin: "0.3em 1em 0.3em 0",
-          }}
-        >
-          {equipment.data.data.category}
-        </code>
-        <a
-          css={{
-            gridArea: "cog",
-          }}
-          onClick={() => {
-            assertEquipmentDataSource(equipment.data);
-            navigator.clipboard.writeText(equipment.data.data.category);
-            ui.notifications?.info(
-              `Copied category ID "${equipment.data.data.category}" to clipboard`,
-            );
-          }}
-        >
-          <i className={"fa fa-copy"} />
-        </a>
+        {equipment.data.data.category ? (
+          <>
+            <code
+              css={{
+                display: "inline-block",
+                margin: "0.3em 1em 0.3em 0",
+              }}
+            >
+              {equipment.data.data.category}
+            </code>
+            <a
+              css={{
+                gridArea: "cog",
+              }}
+              onClick={() => {
+                assertEquipmentDataSource(equipment.data);
+                navigator.clipboard.writeText(equipment.data.data.category);
+                ui.notifications?.info(
+                  `Copied category ID "${equipment.data.data.category}" to clipboard`,
+                );
+              }}
+            >
+              <i className={"fa fa-copy"} />
+            </a>
+          </>
+        ) : (
+          <i>None set</i>
+        )}
       </GridField>
       <GridFieldStacked
         label="Orphaned fields"

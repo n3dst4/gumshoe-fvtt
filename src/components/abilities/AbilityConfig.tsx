@@ -14,6 +14,7 @@ import {
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { settings } from "../../settings";
 import { UnlocksEditor } from "./UnlocksEditor";
+import { SituationalModifiersEditor } from "./SituationalModifiersEditor";
 
 type AbilityConfigProps = {
   ability: InvestigatorItem;
@@ -212,6 +213,9 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
         )}
       <GridField label="Unlocks">
         <UnlocksEditor ability={ability} />
+      </GridField>
+      <GridField label="Situational Modifiers">
+        <SituationalModifiersEditor ability={ability} />
       </GridField>
       <GridField label="Delete ability">
         <button

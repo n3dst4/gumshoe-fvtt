@@ -1,41 +1,41 @@
-import React, { forwardRef, useCallback } from "react";
-import { Unlock } from "../../types";
+import React, { useCallback, forwardRef } from "react";
+import { SituationalModifier } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 
-interface UnlocksEditorRowProps {
-  unlock: Unlock;
+interface SituationalModifiersEditorRowProps {
+  situationalModifier: SituationalModifier;
   index: number;
-  onChangeRating: (index: number, rating: number) => void;
-  onChangeDescription: (index: number, description: string) => void;
+  onChangeModifier: (index: number, rating: number) => void;
+  onChangeSituation: (index: number, description: string) => void;
   onDelete: (index: number) => void;
 }
 
-export const UnlocksEditorRow = forwardRef<
+export const SituationalModifiersEditorRow = forwardRef<
   HTMLDivElement,
-  UnlocksEditorRowProps
+  SituationalModifiersEditorRowProps
 >(
   (
     {
-      unlock: { rating, description },
+      situationalModifier: { modifier, situation },
       index,
-      onChangeRating,
-      onChangeDescription,
+      onChangeModifier,
+      onChangeSituation,
       onDelete,
     },
     ref,
   ) => {
     const onChangeRatingCallback = useCallback(
       (newVal: number) => {
-        onChangeRating(index, newVal);
+        onChangeModifier(index, newVal);
       },
-      [index, onChangeRating],
+      [index, onChangeModifier],
     );
     const onChangeDescriptionCallback = useCallback(
       (newDescription: string) => {
-        onChangeDescription(index, newDescription);
+        onChangeSituation(index, newDescription);
       },
-      [index, onChangeDescription],
+      [index, onChangeSituation],
     );
 
     return (
@@ -55,7 +55,7 @@ export const UnlocksEditorRow = forwardRef<
             css={{
               flex: 1,
             }}
-            value={rating}
+            value={modifier}
             onChange={onChangeRatingCallback}
           />
           <button
@@ -70,7 +70,7 @@ export const UnlocksEditorRow = forwardRef<
           </button>
         </div>
         <AsyncTextInput
-          value={description}
+          value={situation}
           onChange={onChangeDescriptionCallback}
         />
       </div>
@@ -78,4 +78,4 @@ export const UnlocksEditorRow = forwardRef<
   },
 );
 
-UnlocksEditorRow.displayName = "UnlocksEditorRow";
+SituationalModifiersEditorRow.displayName = "SituationalModifiersEditorRow";

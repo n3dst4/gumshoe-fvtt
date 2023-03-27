@@ -186,8 +186,15 @@ interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
 }
 
 export interface Unlock {
+  id: string;
   rating: number;
   description: string;
+}
+
+export interface SituationalModifier {
+  id: string;
+  situation: string;
+  modifier: number;
 }
 
 /** data.data for either type of ability */
@@ -209,6 +216,7 @@ export interface BaseAbilityDataSourceData {
   // different defaults but it's the same property
   hideIfZeroRated: boolean;
   unlocks: Unlock[];
+  situationalModifiers: SituationalModifier[];
 }
 
 /** data.data for investigative abilities */

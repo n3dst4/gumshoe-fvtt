@@ -1,27 +1,25 @@
 import React, { ReactNode } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityDataSource } from "../../typeAssertions";
-import { Translate } from "../Translate";
-import { UnlocksEditorRow } from "./UnlocksEditorRow";
-// import { TransitionGroup, CSSTransition } from "react-transition-group";
-// import { fadeInOutClasses } from "./fadeInOutClasses";
 import { useListShowHideTransition } from "../transitions/useListShowHideTransition";
+import { Translate } from "../Translate";
 import { getListTransitionStyles } from "./getListTransitionStyles";
+import { SituationalModifiersEditorRow } from "./SituationalModifiersEditorRow";
 
-interface UnlocksEditorProps {
+interface SituationalModifiersEditorProps {
   ability: InvestigatorItem;
 }
 
 const transitionTime = 400;
 
-export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
-  ability,
-}: UnlocksEditorProps) => {
+export const SituationalModifiersEditor: React.FC<
+  SituationalModifiersEditorProps
+> = ({ ability }: SituationalModifiersEditorProps) => {
   assertAbilityDataSource(ability.data);
 
-  const transitionedUnlocks = useListShowHideTransition(
-    ability.data.data.unlocks,
-    (unlock) => unlock.id,
+  const transitionedSituationalModifiers = useListShowHideTransition(
+    ability.data.data.situationalModifiers,
+    (situationalModifier) => situationalModifier.id,
     transitionTime,
   );
 
@@ -31,8 +29,8 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
         marginBottom: "1em",
       }}
     >
-      {transitionedUnlocks.map<ReactNode>(
-        ({ item: unlock, isShowing, isEntering, key }, i) => {
+      {transitionedSituationalModifiers.map<ReactNode>(
+        ({ item: situationalModifier, isShowing, isEntering, key }, i) => {
           return (
             <div
               key={key}
@@ -42,19 +40,20 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
                 transitionTime,
               )}
             >
-              <UnlocksEditorRow
+              <SituationalModifiersEditorRow
                 index={i}
-                unlock={unlock}
-                onChangeDescription={ability.setUnlockDescription}
-                onChangeRating={ability.setUnlockRating}
-                onDelete={ability.deleteUnlock}
+                situationalModifier={situationalModifier}
+                onChangeSituation={ability.setSituationalModifierSituation}
+                onChangeModifier={ability.setSituationalModifierModifier}
+                onDelete={ability.deleteSituationalModifier}
               />
             </div>
           );
         },
       )}
+
       <button
-        onClick={ability.addUnlock}
+        onClick={ability.addSituationalModifier}
         css={{
           margin: 0,
         }}
