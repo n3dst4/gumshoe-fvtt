@@ -22,16 +22,16 @@ jobs:
         id: get_tag_version
         uses: actions-ecosystem/action-regex-match@v2.0.2
         with:
-          # regex: '^refs\/tags\/(v\d+\.\d+\.\d+)(-[a-z0-9._-]+)?'
-          regex: '^refs/tags\\/(v\\d+\\.\\d+\\.\\d+(?:$|(-[a-z0-9._-]+)))'
+          regex: '^refs/tags'
+          # regex: '^refs/tags\\/(v\\d+\\.\\d+\\.\\d+(?:$|(-[a-z0-9._-]+)))'
           text: ${{ github.ref }}
 
       - name: Instrument tags capture
         run: |
           echo "github.ref: ${{ github.ref }}"
-          echo "whole match: ${{ steps.get_tag_version.outputs.match }}"
-          echo "tag version: ${{ steps.get_tag_version.outputs.group1 }}"
-          echo "prerelease: ${{ steps.get_tag_version.outputs.group2 }}"
+          echo "match: ${{ steps.get_tag_version.outputs.match }}"
+          echo "group1: ${{ steps.get_tag_version.outputs.group1 }}"
+          echo "group2: ${{ steps.get_tag_version.outputs.group2 }}"
 
 
   update_manifest:
