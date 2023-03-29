@@ -46,7 +46,7 @@ jobs:
   update_manifest:
     runs-on: ubuntu-latest
     environment: release
-    if: github.ref_type != 'tag' && needs.parse_tag.outputs.tag_version != ''
+    if: github.ref_type == 'tag' && needs.parse_tag.outputs.tag_version != ''
     needs: parse_tag
     steps:
       - name: Update manifest
