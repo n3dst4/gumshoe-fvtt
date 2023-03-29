@@ -6,10 +6,39 @@ on:
 env:
   PACKAGE_NAME: "investigator"
   MANIFEST_NAME: "system.json"
-  # MANIFEST_PATH: "public/${{env.MANIFEST_NAME}}"
-  # ZIP_FILE_NAME: "${{PACKAGE_NAME}}.zip"
+  MANIFEST_PATH: "public/system.json"
+  ZIP_FILE_NAME: "investigator.zip"
 
 jobs:
+  parse_tag:
+    runs-on: ubuntu-latest
+    environment: release
+    if: github.ref_type == 'tag'
+    outputs:
+      tag_version: ${{ steps.get_tag_version.outputs.group1 }}
+      tag_prerelease: ${{ steps.get_tag_version.outputs.group2 }}
+    steps:
+      - name: Get tag versions
+        id: get_tag_version
+        uses: actions-ecosystem/action-regex-match@v2.0.2
+        with:
+          regex: '^refs\/tags\/(v\d+\.\d+\.\d+)(?:-([a-z0-9._-]+))?'
+          text: ${{ github.ref }}
+
+      - name: Instrument tags capture
+        run: |
+          echo "github.ref: ${{ github.ref }}"
+          echo "whole match: ${{ steps.get_tag_version.outputs.match }}"
+          echo "tag version: ${{ steps.get_tag_version.outputs.group1 }}"
+          echo "prerelease: ${{ steps.get_tag_version.outputs.group2 }}"
+
+      - name: Update manifest
+        if: steps.get_tag_version.outputs.group1 != ''
+        env:
+          CI_COMMIT_TAG: ${{ steps.get_tag_version.outputs.group1 }}
+          CI_PROJECT_PATH: ${{ github.repository }}
+        run: ./tasks.js updateManifestFromCITagPush
+
   # build:
   #   name: Build
   #   runs-on: ubuntu-latest
@@ -44,35 +73,20 @@ jobs:
   #       run: pnpm package
 
 
-  publish:
-    # needs: build
-    runs-on: ubuntu-latest
-    environment: release
-    if: github.ref_type == 'tag'
-    steps:
-      - id: get_tag_version
-        uses: actions-ecosystem/action-regex-match@v2.0.2
-        with:
-          regex: '^refs\/tags\/(v\d+\.\d+\.\d+)(?:-([a-z0-9._-]+))?'
-          text: ${{ github.ref }}
-
-      - name: Instrument tags capture
-        run: |
-          echo "github.ref: ${{ github.ref }}"
-          echo "whole match: ${{ steps.get_tag_version.outputs.match }}"
-          echo "tag version: ${{ steps.get_tag_version.outputs.group1 }}"
-          echo "prerelease: ${{ steps.get_tag_version.outputs.group2 }}"
-
-
-      # - name: Update Release With Files
-      #   uses: ncipollo/release-action@v1
-      #   if: env.is_version_tag
-      #   with:
-      #     allowUpdates: true
-      #     name: ${{ github.event.release.name }}
-      #     draft: ${{ github.event.release.unpublished }}
-      #     prerelease: ${{ github.event.release.prerelease }}
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     artifacts: './module.json, ./module.zip'
-      #     tag: ${{ github.event.release.tag_name }}
-      #     body: ${{ github.event.release.body }}
+  # publish:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   environment: release
+  #   steps:
+  #     - name: Update Release With Files
+  #       uses: ncipollo/release-action@v1
+  #       if: jobs.parse_tag.outputs.tag_version != ''
+  #       with:
+  #         allowUpdates: true
+  #         name: ${{ jobs.parse_tag.outputs.tag_version }}
+  #         draft: ${{ github.event.release.unpublished }}
+  #         prerelease: ${{ github.event.release.prerelease }}
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #         artifacts: './module.json, ./module.zip'
+  #         tag: ${{ github.event.release.tag_name }}
+  #         body: ${{ github.event.release.body }}
