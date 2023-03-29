@@ -28,7 +28,7 @@ jobs:
   instrument_parse_tag:
     runs-on: ubuntu-latest
     environment: release
-    if: github.ref_type == 'tag'
+    # if: github.ref_type == 'tag'
     needs: parse_tag
     steps:
       - name: Instrument tags capture
