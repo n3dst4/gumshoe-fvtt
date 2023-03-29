@@ -32,12 +32,22 @@ jobs:
           echo "tag version: ${{ steps.get_tag_version.outputs.group1 }}"
           echo "prerelease: ${{ steps.get_tag_version.outputs.group2 }}"
 
+
+  update_manifest:
+    runs-on: ubuntu-latest
+    environment: release
+    if: github.ref_type != 'tag' && needs.parse_tag.outputs.tag_version == ''
+    needs: parse_tag
+    steps:
       - name: Update manifest
-        if: steps.get_tag_version.outputs.group1 != ''
         env:
-          CI_COMMIT_TAG: ${{ steps.get_tag_version.outputs.group1 }}
+          CI_COMMIT_TAG: ${{ needs.parse_tag.outputs.tag_version }}
           CI_PROJECT_PATH: ${{ github.repository }}
-        run: ./tasks.js updateManifestFromCITagPush
+        run: |
+          echo "CI_COMMIT_TAG: $CI_COMMIT_TAG"
+          echo "CI_PROJECT_PATH: $CI_PROJECT_PATH"
+          ./tasks.js updateManifestFromCIPush
+          cat $MANIFEST_PATH
 
   # build:
   #   name: Build
