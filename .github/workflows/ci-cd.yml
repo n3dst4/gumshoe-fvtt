@@ -22,7 +22,6 @@ jobs:
         id: get_tag_version
         uses: actions-ecosystem/action-regex-match@v2.0.2
         with:
-          # regex: '^refs/tags/v\d+\.\d+\.\d+'
           regex: '^refs/tags\/(v\d+\.\d+\.\d+(?:$|(-[a-z0-9._-]+)))'
           text: ${{ github.ref }}
 
@@ -33,11 +32,21 @@ jobs:
           echo "group1: ${{ steps.get_tag_version.outputs.group1 }}"
           echo "group2: ${{ steps.get_tag_version.outputs.group2 }}"
 
+  instrument_parse_tag:
+    runs-on: ubuntu-latest
+    environment: release
+    if: github.ref_type == 'tag'
+    needs: parse_tag
+    steps:
+      - name: Instrument tags capture
+        run: |
+          echo "tag_version: ${{ needs.parse_tag.outputs.tag_version }}"
+          echo "tag_prerelease: ${{ needs.parse_tag.outputs.tag_prerelease }}"
 
   update_manifest:
     runs-on: ubuntu-latest
     environment: release
-    if: github.ref_type != 'tag' && needs.parse_tag.outputs.tag_version == ''
+    if: github.ref_type != 'tag' && needs.parse_tag.outputs.tag_version != ''
     needs: parse_tag
     steps:
       - name: Update manifest
