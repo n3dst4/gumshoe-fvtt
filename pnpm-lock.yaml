@@ -44,7 +44,7 @@ specifiers:
   jest: ^27.5.1
   json-stringify-pretty-compact: ^2.0.0
   json5: ^2.2.1
-  just-diff: ^5.1.1
+  just-diff: ^6.0.2
   less: ^4.1.2
   lodash: ^4.17.21
   marked: ^4.0.3
@@ -75,7 +75,7 @@ dependencies:
   immer: 9.0.19
   irid: 4.0.0
   json5: 2.2.3
-  just-diff: 5.2.0
+  just-diff: 6.0.2
   lodash: 4.17.21
   marked: 4.2.12
   nanoid: 3.3.4
@@ -4741,8 +4741,8 @@ packages:
       object.assign: 4.1.4
     dev: true
 
-  /just-diff/5.2.0:
-    resolution: {integrity: sha512-6ufhP9SHjb7jibNFrNxyFZ6od3g+An6Ai9mhGRvcYe8UJlH0prseN64M+6ZBBUoKYHZsitDP42gAJ8+eVWr3lw==}
+  /just-diff/6.0.2:
+    resolution: {integrity: sha512-S59eriX5u3/QhMNq3v/gm8Kd0w8OS6Tz2FS1NG4blv+z0MuQcBRJyFWjdovM0Rad4/P4aUPFtnkNjMjyMlMSYA==}
     dev: false
 
   /kind-of/6.0.3:
