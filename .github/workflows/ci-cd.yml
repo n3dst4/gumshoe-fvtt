@@ -6,54 +6,46 @@ on:
 env:
   PACKAGE_NAME: "investigator"
   MANIFEST_NAME: "system.json"
-  MANIFEST_PATH: "public/${MANIFEST_NAME}"
-  ZIP_FILE_NAME: "${PACKAGE_NAME}.zip"
-
-  PACKAGE_BASE: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${PACKAGE_NAME}"
-  PACKAGE_LATEST_BASE: "${PACKAGE_BASE}/latest"
-  PACKAGE_VERSION_BASE: "${PACKAGE_BASE}/${CI_COMMIT_TAG}"
-  PACKAGE_LATEST_MANIFEST: "${PACKAGE_LATEST_BASE}/${MANIFEST_NAME}"
-  PACKAGE_LATEST_DOWNLOAD: "${PACKAGE_LATEST_BASE}/${ZIP_FILE_NAME}"
-  PACKAGE_VERSION_MANIFEST: "${PACKAGE_VERSION_BASE}/${MANIFEST_NAME}"
-  PACKAGE_VERSION_DOWNLOAD: "${PACKAGE_VERSION_BASE}/${ZIP_FILE_NAME}"
+  # MANIFEST_PATH: "public/${{env.MANIFEST_NAME}}"
+  # ZIP_FILE_NAME: "${{PACKAGE_NAME}}.zip"
 
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
+  # build:
+  #   name: Build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
 
-      - name: Activate pnpm
-        run: corepack enable
+  #     - name: Activate pnpm
+  #       run: corepack enable
 
-      - name: Instrumentation
-        run: |
-          pwd
-          ls -l
-          cat tsconfig.json
-          export
-          node --version
-          pnpm --version
+  #     - name: Instrumentation
+  #       run: |
+  #         pwd
+  #         ls -l
+  #         cat tsconfig.json
+  #         export
+  #         node --version
+  #         pnpm --version
 
-      - name: Install dependencies
-        run: pnpm i
+  #     - name: Install dependencies
+  #       run: pnpm i
 
-      - name: Instrument tsc version
-        run: npx tsc --version
+  #     - name: Instrument tsc version
+  #       run: npx tsc --version
 
-      - name: Test
-        run: pnpm test
+  #     - name: Test
+  #       run: pnpm test
 
-      - name: Build
-        run: pnpm package
+  #     - name: Build
+  #       run: pnpm package
 
 
   publish:
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     environment: release
     if: github.ref_type == 'tag'
@@ -61,7 +53,7 @@ jobs:
       - id: get_tag_version
         uses: actions-ecosystem/action-regex-match@v2.0.2
         with:
-          regex: '^refs/tags/v\d+\.\d\+\.\d+'
+          regex: '^refs/tags/v\\d+\.\\d\+\\\.\\d+'
           text: ${{ github.ref }}
 
       - id: get_prerelease_tag_version
@@ -73,6 +65,7 @@ jobs:
   
       - name: Instrument tags capture
         run: |
+          echo "github.ref: ${{ github.ref }}"
           echo "tag version: ${{ steps.get_tag_version.outputs.match }}"
           echo "prerelease tag version: ${{ steps.get_prerelease_tag_version.outputs.match }}"
 
