@@ -110,6 +110,8 @@ jobs:
       - parse_tag
     runs-on: ubuntu-latest
     environment: release
+    permissions:
+      contents: write
     if: needs.parse_tag.outputs.tag_version != ''
     env:
       version: ${{ needs.parse_tag.outputs.tag_version }}
