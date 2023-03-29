@@ -103,6 +103,12 @@ jobs:
           name: package-zip
           path: package/investigator.zip
 
+      - name: Upload manifest
+        uses: actions/upload-artifact@v3
+        with:
+          name: manifest
+          path: public/system.json
+
 
   publish:
     needs:
@@ -122,6 +128,11 @@ jobs:
         with:
           name: package-zip
 
+      - name: Download manifest
+        uses: actions/download-artifact@v3
+        with:
+          name: manifest
+
       - name: Look around
         run: |
           pwd
@@ -135,7 +146,7 @@ jobs:
           draft: true
           prerelease: ${{ env.prerelease != '' }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: './public/system.json, ./package/investigator.zip'
+          artifacts: './system.json, ./investigator.zip'
           tag: ${{ env.version }}
           body: >
             **Installation:** To manually install this release, please use the
