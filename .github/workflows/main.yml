@@ -27,6 +27,12 @@ jobs:
         with:
           node-version: 16
 
+      - name: Activate pnpm
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm i
+
       - name: Instrumentation
         run: |
           pwd
@@ -35,12 +41,6 @@ jobs:
           npx tsc --version
           export
           pnpm --version
-  
-      - name: Activate pnpm
-        run: corepack enable
-
-      - name: Install dependencies
-        run: pnpm i
 
       - name: Test
         run: pnpm test
