@@ -25,22 +25,25 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Activate pnpm
         run: corepack enable
-
-      - name: Install dependencies
-        run: pnpm i
 
       - name: Instrumentation
         run: |
           pwd
           ls -l
           cat tsconfig.json
-          npx tsc --version
           export
+          node --version
           pnpm --version
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Instrument tsc version
+        run: npx tsc --version
 
       - name: Test
         run: pnpm test
