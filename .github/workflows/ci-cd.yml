@@ -97,21 +97,39 @@ jobs:
       - name: Build
         run: pnpm package
 
+      - name: Upload package file
+        uses: actions/upload-artifact@v3
+        with:
+          name: package-zip
+          path: package/investigator.zip
 
-  # publish:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   environment: release
-  #   steps:
-  #     - name: Update Release With Files
-  #       uses: ncipollo/release-action@v1
-  #       if: jobs.parse_tag.outputs.tag_version != ''
-  #       with:
-  #         allowUpdates: true
-  #         name: ${{ jobs.parse_tag.outputs.tag_version }}
-  #         draft: ${{ github.event.release.unpublished }}
-  #         prerelease: ${{ github.event.release.prerelease }}
-  #         token: ${{ secrets.GITHUB_TOKEN }}
-  #         artifacts: './module.json, ./module.zip'
-  #         tag: ${{ github.event.release.tag_name }}
-  #         body: ${{ github.event.release.body }}
+
+  publish:
+    needs:
+      - build
+      - parse_tag
+    runs-on: ubuntu-latest
+    environment: release
+    if: needs.parse_tag.outputs.tag_version != ''
+    env:
+      version: ${{ needs.parse_tag.outputs.tag_version }}
+      prerelease: ${{ needs.parse_tag.outputs.tag_prerelease }}
+    steps:
+      - name: Download package
+        uses: actions/download-artifact@v3
+        with:
+          name: package-zip
+
+      - name: Update Release With Files
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          name: ${{ env.version }}
+          draft: true
+          prerelease: ${{ env.prerelease != '' }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: './public/system.json, ./package/investigator.zip'
+          tag: ${{ env.version }}
+          body: >
+            **Installation:** To manually install this release, please use the
+            following manifest URL: ***TBD***
