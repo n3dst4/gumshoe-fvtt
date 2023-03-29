@@ -22,7 +22,7 @@ jobs:
         id: get_tag_version
         uses: actions-ecosystem/action-regex-match@v2.0.2
         with:
-          regex: '^refs/tags'
+          regex: '^refs/tags/v\d+\.\d+\.\d+'
           # regex: '^refs/tags\\/(v\\d+\\.\\d+\\.\\d+(?:$|(-[a-z0-9._-]+)))'
           text: ${{ github.ref }}
 
