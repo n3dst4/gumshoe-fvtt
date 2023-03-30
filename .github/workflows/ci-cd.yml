@@ -143,9 +143,11 @@ jobs:
         with:
           allowUpdates: true
           name: ${{ env.version }}
-          draft: true
+          # draft: true
           prerelease: ${{ env.prerelease != '' }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          removeArtifacts: true
+          replacesArtifacts: true
           artifacts: './system.json, ./investigator.zip'
           tag: ${{ env.version }}
           body: >
