@@ -73,8 +73,8 @@ devDependencies:
     specifier: ^1.9.0
     version: 1.9.0(@types/react@18.0.31)(react@18.2.0)
   '@seald-io/nedb':
-    specifier: ^3.0.0
-    version: 3.1.0
+    specifier: ^4.0.0
+    version: 4.0.0
   '@testing-library/react':
     specifier: ^14.0.0
     version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -1637,8 +1637,8 @@ packages:
     resolution: {integrity: sha512-qv3jnwoakeax2razYaMsGI/luWdliBLHTdC6jU55hQt1hcFqzauH/HsBollQ7IR4ySTtYhT+xyHoijpA16C+tA==}
     dev: true
 
-  /@seald-io/nedb@3.1.0:
-    resolution: {integrity: sha512-5G0hCQGJjOelOutvW1l4VD581XMhTPxpj1BUaCWTEM2MPXR9TzIr0MKMnEjnTA5nEKfujPyvVW7iF3etm1/gKQ==}
+  /@seald-io/nedb@4.0.0:
+    resolution: {integrity: sha512-2hIBCoXn2O6fkUd7CeevtLdiK4WbAsE2wVhM6+CVG0Ub45aoyCC83P9ikUNcL5HytZA6gLRWc+1Eseio9ctfCQ==}
     dependencies:
       '@seald-io/binary-search-tree': 1.0.3
       localforage: 1.10.0

@@ -34,7 +34,7 @@
     "@emotion/react": "^11.10.0",
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
     "@lumphammer/investigator-fvtt-types": "^1.9.0",
-    "@seald-io/nedb": "^3.0.0",
+    "@seald-io/nedb": "^4.0.0",
     "@testing-library/react": "^14.0.0",
     "@types/d3-ease": "^3.0.0",
     "@types/dompurify": "^2.3.1",
