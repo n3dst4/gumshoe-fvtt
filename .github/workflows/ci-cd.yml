@@ -8,6 +8,7 @@ env:
   MANIFEST_NAME: "system.json"
   MANIFEST_PATH: "public/system.json"
   ZIP_FILE_NAME: "investigator.zip"
+  DOWNLOAD_BASE: "https://github.com/n3dst4/investigator-fvtt/releases/download"
 
 jobs:
   parse_tag:
@@ -152,4 +153,5 @@ jobs:
           tag: ${{ env.version }}
           body: >
             **Installation:** To manually install this release, please use the
-            following manifest URL: ***TBD***
+            following manifest URL:
+            ${{env.DOWNLOAD_BASE}}/${{env.version}}/${{env.MANIFEST_NAME}}
