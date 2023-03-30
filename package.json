@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "investigator-fvtt",
-  "version": "6.2.0",
+  "version": "100.0.0-alpha.1",
   "type": "module",
   "description": "Unofficial GUMSHOE SRD-Compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
   "scripts": {
