@@ -1,6 +1,6 @@
-# INVESTIGATOR System for Foundry VTT
+# GUMSHOE for Foundry VTT (aka INVESTIGATOR)
 
-Unofficial GUMSHOE SRD-compatible system for Foundry VTT. Ships with compatibility for several settings, and can be customized to work with any other setting. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
+Official GUMSHOE SRD-compatible system for Foundry VTT. Ships with compatibility for several settings, and can be customized to work with any other setting. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
 
 Includes 7 character sheet themes plus an extra high-contrast accessible theme.
 
@@ -9,7 +9,7 @@ Includes 7 character sheet themes plus an extra high-contrast accessible theme.
 [(Full size image)](assets/screenshots/theme_lineup.webp)
 
 ## Contents
-- [INVESTIGATOR System for Foundry VTT](#investigator-system-for-foundry-vtt)
+- [GUMSHOE for Foundry VTT (aka INVESTIGATOR)](#gumshoe-for-foundry-vtt-aka-investigator)
   - [Contents](#contents)
   - [Features](#features)
   - [How to install](#how-to-install)
@@ -61,7 +61,7 @@ Now you can create a new world and choose this as the system.
 
 The system comes preconfigured for **Path of Cthulhu**. If that's what you want to play, you can skip this section and start making PCs.
 
-If you want to use one of the other built-in systems, open the Settings sidebar tab and look for the **INVESTIGATOR System Settings** button. Click this to open the configuration. You can ignore 90% of this window and just choose one of the presets at the top! If you want to tweak the other setting can can do so.
+If you want to use one of the other built-in systems, open the Settings sidebar tab and look for the **GUMSHOE System Settings** button. Click this to open the configuration. You can ignore 90% of this window and just choose one of the presets at the top! If you want to tweak the other setting can can do so.
 
 HOWEVER.
 
@@ -89,7 +89,7 @@ Done! New PCs will now automatically be given the abilities in your new compendi
 
 ## Translations
 
-Thanks to Foundry's translation systems, plus the excellent [Babele](https://gitlab.com/riccisi/foundryvtt-babele) module, and the enormous contributions from many volunteers, INVESTIGATOR will work in more languages than just my native English! Check out the [Translations page on the wiki](https://github.com/n3dst4/investigator-fvtt/wiki/Translations) to see what has been translated into which languages and get instructions if you'd like to contribute a translation.
+Thanks to Foundry's translation systems, plus the excellent [Babele](https://gitlab.com/riccisi/foundryvtt-babele) module, and the enormous contributions from many volunteers, INVESTIGATOR will work in more languages than just my native English! Check out the [Translations page on the wiki](https://github.com/n3dst4/gumshoe-fvtt/wiki/Translations) to see what has been translated into which languages and get instructions if you'd like to contribute a translation.
 
 
 ## Setting up any system that isn't built in
@@ -100,7 +100,7 @@ The abilities that get added to a newly-created character all have to come from 
 
 So, first up, create a compendium pack to house your custom abilities. Give it a name like "Exampleshoe Abilities", if you're going to play Exampleshoe. You don't need to fill in the abilities yet.
 
-Now open the **Game Settings** sidebar tab and look for the **INVESTIGATOR System Settings** button. Click this to open the configuration. Pick any built-in system as a starting point, then customize the fields as you need to match your needs:
+Now open the **Game Settings** sidebar tab and look for the **GUMSHOE System Settings** button. Click this to open the configuration. Pick any built-in system as a starting point, then customize the fields as you need to match your needs:
 
 * **Visual Theme** We ship with a handful of visual themes to support our built-in systems. You can pick whichever one you like.
 * **Compendium packs for new PCs** This is a really important one. This selects what abilities will be automatically added to newly-created characters. Select the compendium you created for your custom abilities and **UNSELECT** everything else. You *could* leave multiple packs selected but you probably don't want to.
@@ -170,8 +170,8 @@ Contributions, bug fixes, pull requests all welcome! Please see [DEVELOPMENT.md]
 
 You can create new themes for INVESTIGATOR in two ways:
 
-* [By writing a Foundry VTT module which uses INVESTIGATOR's API to inject a new theme](https://github.com/n3dst4/investigator-fvtt/wiki/Adding-new-content-from-third-party-code) (this is intended for developers and module authors.)
-* [By dropping a JSON file in a folder in your local data](https://github.com/n3dst4/investigator-fvtt/wiki/Adding-new-themes-from-local-data) (this is intended for technical users who are not authoring modules.)
+* [By writing a Foundry VTT module which uses INVESTIGATOR's API to inject a new theme](https://github.com/n3dst4/gumshoe-fvtt/wiki/Adding-new-content-from-third-party-code) (this is intended for developers and module authors.)
+* [By dropping a JSON file in a folder in your local data](https://github.com/n3dst4/gumshoe-fvtt/wiki/Adding-new-themes-from-local-data) (this is intended for technical users who are not authoring modules.)
 
 
 ## Credits
@@ -214,5 +214,5 @@ Thanks to [The Design Mechanism](https://thedesignmechanism.com) for permission 
 This work is based on the GUMSHOE SRD (found at http://www.pelgranepress.com/?p=12466), a product of Pelgrane Press, developed, written, and edited by Robin D. Laws with additional material by Kenneth Hite, and licensed for our use under the Creative Commons Attribution 3.0 Unported license (http://creativecommons.org/licenses/by/3.0/)
 
 
-[project-site]: https://github.com/n3dst4/investigator-fvtt/issues
+[project-site]: https://github.com/n3dst4/gumshoe-fvtt/issues
 [srd]: https://site.pelgranepress.com/index.php/the-gumshoe-system-reference-document/

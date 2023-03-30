@@ -24,7 +24,7 @@ export class SettingsClassBase extends FormApplication<
       width: 700,
       height: 800,
       resizable: true,
-      title: "INVESTIGATOR Settings",
+      title: "GUMSHOE Settings",
     });
   }
 

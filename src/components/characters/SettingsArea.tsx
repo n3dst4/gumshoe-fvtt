@@ -91,7 +91,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
         }}
       >
         <a target="_new" href="https://github.com/n3dst4/investigator-fvtt">
-          INVESTIGATOR System
+          GUMSHOE for FoundryVTT (aka INVESTIGATOR)
         </a>{" "}
         is made by me, Neil de Carteret. Find all my non-work links and ways to
         contact me at my{" "}

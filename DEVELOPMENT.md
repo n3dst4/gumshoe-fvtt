@@ -128,7 +128,7 @@ What this enables (list subject to change):
     * The zip package
     * The manifest
   * If the tag is a release (i.e.there is no pre-release suffix), it also marks the release as "latest" on GitHub.
-  * You can always find the latest release at the URL https://github.com/n3dst4/investigator-fvtt/releases/latest
+  * You can always find the latest release at the URL https://github.com/n3dst4/gumshoe-fvtt/releases/latest
 
 
 ## Release process
@@ -197,7 +197,7 @@ As of v7.0.0 we are moving off GitLab and going home to GitHub. The following li
 [gl-generic-packages]: https://docs.gitlab.com/ee/user/packages/generic_packages/
 [gl-releases]: https://gitlab.com/n3dst4/investigator-fvtt/-/releases
 [gl-ci]: https://gitlab.com/n3dst4/investigator-fvtt/-/pipelines
-[gh-ci]: https://github.com/n3dst4/investigator-fvtt/actions/workflows/ci-cd.yml
+[gh-ci]: https://github.com/n3dst4/gumshoe-fvtt/actions/workflows/ci-cd.yml
 [pelgrane-discord]: https://discord.com/channels/692113540210753568/720741108937916518
 [fprd]: https://discord.com/channels/170995199584108546/64821535989524071
-[gh-releases]: https://github.com/n3dst4/investigator-fvtt/releases
+[gh-releases]: https://github.com/n3dst4/gumshoe-fvtt/releases

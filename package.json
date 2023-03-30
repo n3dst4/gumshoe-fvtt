@@ -1,9 +1,9 @@
 {
   "private": false,
-  "name": "investigator-fvtt",
-  "version": "100.0.0-alpha.1",
+  "name": "gumshoe-fvtt",
+  "version": "6.2.0",
   "type": "module",
-  "description": "Unofficial GUMSHOE SRD-Compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
+  "description": "Official GUMSHOE support for FoundryVTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
   "scripts": {
     "package": "vite build && ./tasks.js packidge",
     "build": "vite build",
