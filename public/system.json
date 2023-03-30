@@ -1,7 +1,7 @@
 {
   "name": "investigator",
-  "title": "INVESTIGATOR System",
-  "description": "Unofficial GUMSHOE SRD-Compatible system. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
+  "title": "GUMSHOE",
+  "description": "Official GUMSHOE support for FoundryVTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
   "version": "6.2.0",
   "author": "Neil de Carteret",
   "scripts": [],
@@ -125,17 +125,17 @@
   "minimumCoreVersion": "10.291",
   "compatibleCoreVersion": "10.291",
   "initiative": "1d6",
-  "url": "https://gitlab.com/n3dst4/investigator-fvtt",
-  "manifest": "https://gitlab.com/api/v4/projects/n3dst4%2Finvestigator-fvtt/packages/generic/investigator/latest/system.json",
-  "download": "https://gitlab.com/api/v4/projects/n3dst4%2Finvestigator-fvtt/packages/generic/investigator/latest/investigator.zip",
+  "url": "https://github.com/n3dst4/gumshoe-fvtt",
+  "manifest": "https://github.com/n3dst4/gumshoe-fvtt/releases/latest/download/system.json",
+  "download": "https://github.com/n3dst4/gumshoe-fvtt/releases/latest/download/investigator.zip",
   "license": "MIT",
-  "readme": "https://gitlab.com/n3dst4/investigator-fvtt/-/blob/release/README.md",
-  "bugs": "https://gitlab.com/n3dst4/investigator-fvtt/-/issues",
-  "changelog": "https://gitlab.com/n3dst4/investigator-fvtt/-/blob/release/CHANGELOG.md",
+  "readme": "https://github.com/n3dst4/gumshoe-fvtt/blob/main/README.md",
+  "bugs": "https://github.com/n3dst4/gumshoe-fvtt/issues",
+  "changelog": "https://github.com/n3dst4/gumshoe-fvtt/blob/main/CHANGELOG.md",
   "media": [
     {
       "type": "cover",
-      "url": "https://gitlab.com/n3dst4/investigator-fvtt/-/raw/main/assets/cover.webp"
+      "url": "https://raw.githubusercontent.com/n3dst4/gumshoe-fvtt/main/assets/cover.webp"
     }
   ]
 }

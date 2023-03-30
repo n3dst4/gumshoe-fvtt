@@ -164,11 +164,7 @@ async function updateManifestFromCITagPush() {
       `Manifest version (${manifest.version}) does not match tag (${tag})`,
     );
   }
-  manifest.download = `${
-    process.env.CI_API_V4_URL
-  }/projects/${encodeURIComponent(path)}/packages/generic/${
-    manifest.name
-  }/${tag}/${manifest.name}.zip`;
+  manifest.download = `https://github.com/${path}/releases/download/${tag}/${manifest.name}.zip`;
   log({ tag, path, manifest });
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 }

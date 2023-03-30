@@ -44,8 +44,8 @@ export class ErrorBoundary extends React.Component<
           </p>
           <p>
             Alternatively, you can{" "}
-            <a href="https://gitlab.com/n3dst4/investigator-fvtt/-/issues">
-              log an issue on GitLab
+            <a href="https://github.com/n3dst4/investigator-fvtt/issues">
+              log an issue on GitHub
             </a>{" "}
             .
           </p>
