@@ -29,7 +29,6 @@ jobs:
   instrument_parse_tag:
     runs-on: ubuntu-latest
     environment: release
-    # if: github.ref_type == 'tag'
     needs: parse_tag
     steps:
       - name: Instrument tags capture
@@ -37,28 +36,13 @@ jobs:
           echo "tag_version: ${{ needs.parse_tag.outputs.tag_version }}"
           echo "tag_prerelease: ${{ needs.parse_tag.outputs.tag_prerelease }}"
 
-  # update_manifest:
-  #   runs-on: ubuntu-latest
-  #   environment: release
-  #   needs: parse_tag
-  #   steps:
-  #     - name: Update manifest
-  #       if: github.ref_type == 'tag' && needs.parse_tag.outputs.tag_version != ''
-  #       env:
-  #         CI_COMMIT_TAG: ${{ needs.parse_tag.outputs.tag_version }}
-  #         CI_PROJECT_PATH: ${{ github.repository }}
-  #       run: |
-  #         echo "CI_COMMIT_TAG: $CI_COMMIT_TAG"
-  #         echo "CI_PROJECT_PATH: $CI_PROJECT_PATH"
-  #         ./tasks.js updateManifestFromCIPush
-  #         cat $MANIFEST_PATH
-
   build:
     name: Build
     runs-on: ubuntu-latest
     needs: parse_tag
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -82,7 +66,7 @@ jobs:
         run: npx tsc --version
 
       - name: Update manifest
-        if: github.ref_type == 'tag' && needs.parse_tag.outputs.tag_version != ''
+        if: needs.parse_tag.outputs.tag_version != ''
         env:
           CI_COMMIT_TAG: ${{ needs.parse_tag.outputs.tag_version }}
           CI_PROJECT_PATH: ${{ github.repository }}
