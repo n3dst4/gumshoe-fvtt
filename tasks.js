@@ -154,15 +154,12 @@ async function link() {
 async function updateManifestFromCITagPush() {
   const tag = process.env.CI_COMMIT_TAG;
   const path = process.env.CI_PROJECT_PATH;
-  log("updateManifestFromCITagPush", { tag, path, manifest });
   if (!tag) {
-    log("About to throw CI_COMMIT_TAG error");
     throw new Error(
       "This task should only be run from a CI tag push, but $CI_COMMIT_TAG was empty or undefined",
     );
   }
   if (stripInitialv(tag) !== manifest.version) {
-    log("About to throw tag mismatch error");
     throw new Error(
       `Manifest version (${manifest.version}) does not match tag (${tag})`,
     );
@@ -208,9 +205,6 @@ async function packidge() {
 }
 
 // yargs turns this into a usable script
-
-log(process.argv);
-
 yargs(hideBin(process.argv))
   .command(
     "link",

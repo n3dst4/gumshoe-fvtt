@@ -89,7 +89,7 @@ jobs:
         run: |
           echo "CI_COMMIT_TAG: $CI_COMMIT_TAG"
           echo "CI_PROJECT_PATH: $CI_PROJECT_PATH"
-          ./tasks.js updateManifestFromCIPush
+          ./tasks.js updateManifestFromCITagPush
           cat $MANIFEST_PATH
 
       - name: Test
