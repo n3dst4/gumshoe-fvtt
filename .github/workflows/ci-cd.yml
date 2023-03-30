@@ -86,13 +86,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: package-zip
-          path: ${{env.PACKAGE_PATH}}/${{env.PACKAGE_FILE_NAME}}}
+          path: ${{env.PACKAGE_PATH}}/${{env.PACKAGE_FILE_NAME}}
 
       - name: Upload manifest
         uses: actions/upload-artifact@v3
         with:
           name: manifest
-          path: ${{env.PUBLIC_PATH}}/${{env.MANIFEST_FILE_NAME}}}
+          path: ${{env.PUBLIC_PATH}}/${{env.MANIFEST_FILE_NAME}}
 
 
   publish:
