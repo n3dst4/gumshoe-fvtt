@@ -82,8 +82,8 @@ devDependencies:
     specifier: ^3.0.0
     version: 3.0.0
   '@types/dompurify':
-    specifier: ^2.3.1
-    version: 2.4.0
+    specifier: ^3.0.0
+    version: 3.0.0
   '@types/jest':
     specifier: ^27.4.1
     version: 27.5.2
@@ -1739,8 +1739,8 @@ packages:
     resolution: {integrity: sha512-aMo4eaAOijJjA6uU+GIeW018dvy9+oH5Y2VPPzjjfxevvGQ/oRDs+tfYC9b50Q4BygRR8yE2QCLsrT0WtAVseA==}
     dev: true
 
-  /@types/dompurify@2.4.0:
-    resolution: {integrity: sha512-IDBwO5IZhrKvHFUl+clZxgf3hn2b/lU6H1KaBShPkQyGJUQ0xwebezIPSuiyGwfz1UzJWQl4M7BDxtHtCCPlTg==}
+  /@types/dompurify@3.0.0:
+    resolution: {integrity: sha512-EcSqmgm/xJwH8CcJPy9AHNypp/j58CYga3nWdl93/wLxX6OH+rSD3aAj75NQazcZd1YKHJ/pjNZ9qmgVajggwQ==}
     dependencies:
       '@types/trusted-types': 2.0.3
     dev: true
