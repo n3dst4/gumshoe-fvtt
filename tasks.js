@@ -208,6 +208,9 @@ async function packidge() {
 }
 
 // yargs turns this into a usable script
+
+log(process.argv);
+
 yargs(hideBin(process.argv))
   .command(
     "link",
