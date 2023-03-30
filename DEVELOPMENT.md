@@ -13,6 +13,7 @@
   - [Development flow](#development-flow)
   - [Release process](#release-process)
     - [What happens if the CI pipeline fails?](#what-happens-if-the-ci-pipeline-fails)
+  - [GitLab Legacy](#gitlab-legacy)
 
 ## Development & general hacking
 
@@ -40,7 +41,7 @@ game.settings.set("investigator","systemMigrationVersion", "1.0.0")
 
 We have a newer, better system for migrations, which runs each migration once, and then marks it as "complete" so it doesn't run again. This is the "flagged migrations" system. Unlike the old system, it doesn't rely on the version number. Also, the old system has the unpleasant habit of running all the migrations every time it detects a version change, which is not ideal.
 
-To see the current state of flagged migrations, open the console and type 
+To see the current state of flagged migrations, open the console and type
 
 ```js
 console.log(JSON.stringify(game.settings.get("investigator", "migrationFlags"), null,  "  "))
@@ -48,14 +49,10 @@ console.log(JSON.stringify(game.settings.get("investigator", "migrationFlags"), 
 
 There will be a flag in there for every migration that has been run. If you want to force a migration to run again, you can delete the flag for it. For example, if you want to force the migration to run again that adds the `investigator` field to all actors, you can do this:
 
-
-```js
-
-
 ## Generating Compendium packs
 
 1. In your **Items** tab, delete the "Trail of Cthulhu Abilities" folder
-2. In the **Compendium Packs** tab, make sure the edit lock is toggled off for the pack (right click and `Toggle edit lock` if you see a padlock.) 
+2. In the **Compendium Packs** tab, make sure the edit lock is toggled off for the pack (right click and `Toggle edit lock` if you see a padlock.)
 3. Open the browser console (F12) and type `generateTrailAbilitiesData()`
 4. Check the compendium packs if you like
 5. Copy the `packs/*.db` files back from `dist/` into `src/`
@@ -118,23 +115,31 @@ What this enables (list subject to change):
 ## Development flow
 
 * We develop on `main`, with occasional feature branches or forks as needed and wanted.
-* We deliver both the public-facing manifest and the downloadable zip package using [GitLab Generic Packages][gl-generic-packages].
+* We deliver both the public-facing manifest and the downloadable zip package using [tagged GitHub releases][gh-releases]
 * The manifest in VCS points to the "latest package" of the manifest and the download.
 * To do a release, we push a tag.
 * The CI kicks in and:
   * Checks that the tag matches the version in the manifest. Barfs if not right.
   * Works out the release asset URL and set the `download` path.
+  * Runs tests.
   * Runs the build.
-  * Uploads a "latest package" of the manifest.
-  * Uploads a "latest package" of the actual package.
-  * Creates a release with linked assets for the above.
+  * Creates the zip package.
+  * Creates/updates a tagged release with two extra attachments:
+    * The zip package
+    * The manifest
+  * If the tag is a release (i.e.there is no pre-release suffix), it also marks the release as "latest" on GitHub.
+  * You can always find the latest release at the URL https://github.com/n3dst4/investigator-fvtt/releases/latest
 
 
 ## Release process
 
-*The innocuous-looking 4.9.7 release represented a change in how we do releases. We used to have a `release` branch which pointed to the most recent release, with attachment links pasted into `system.json` for the download. For the foreseeable future we will need to fast-forward `release` to `main` when releasing to make sure we catch slow updaters*
+> The innocuous-looking 4.9.7 release represented a change in how we do releases. We used to have a `release` branch which pointed to the most recent release, with attachment links pasted into `system.json` for the download. For the foreseeable future we will need to fast-forward `release` to `main` when releasing to make sure we catch slow updaters*
+>
+> 7.0.0 will be (probably) the first release from GitHub:
+> * Uses GitGub actions instead of GitLab CI
+> * Uses GitHub Releases instead of GitLab Generic Packages
 
-To perform a release: 
+To perform a release:
 
 1. Decide if you're doing a testing release or a real release. DO DO A TESTING RELEASE AND CHECK IT ON A TEST SERVER.
 2. Pick the new version number according to semantic versioning. If you're doing a testing release, use a suffix e.g. `x.y.z-test-1`.
@@ -148,17 +153,17 @@ To perform a release:
     scripts/do-release.sh
     ```
 
-6. If this is a test release, stop here. You can find the manifest URL to install this test release on [the GitLab releases page][releases]. 
-   
+6. If this is a test release, stop here. You can find the manifest URL to install this test release on [the GitHub releases page][gh-releases].
+
    Otherwise, continue.
-   
+
 7. Fast-forward `release` to `main` (yes this is a funky use of `fetch`):
 
     ```
     scripts/update-legacy-release-branch.sh
     ```
 
-8. Head over to the [CI page][ci] and wait for the pipeline to finish.
+8. Head over to the [CI page][gh-ci] and wait for the pipeline to finish.
 
 9. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
 
@@ -180,9 +185,19 @@ To perform a release:
 2. Fix the problem, commit.
 3. Run `do-release.sh` again.
 
+## GitLab Legacy
+
+As of v7.0.0 we are moving off GitLab and going home to GitHub. The following links are historical purposes only:
+
+* [GitLab CI pipeline][gl-ci]
+* [GitLab Releases][gl-releases]
+* [GitLab Generic Packages (docs)][gl-generic-packages]
+
 
 [gl-generic-packages]: https://docs.gitlab.com/ee/user/packages/generic_packages/
-[ci]: https://gitlab.com/n3dst4/investigator-fvtt/-/pipelines
+[gl-releases]: https://gitlab.com/n3dst4/investigator-fvtt/-/releases
+[gl-ci]: https://gitlab.com/n3dst4/investigator-fvtt/-/pipelines
+[gh-ci]: https://github.com/n3dst4/investigator-fvtt/actions/workflows/ci-cd.yml
 [pelgrane-discord]: https://discord.com/channels/692113540210753568/720741108937916518
 [fprd]: https://discord.com/channels/170995199584108546/64821535989524071
-[releases]: https://gitlab.com/n3dst4/investigator-fvtt/-/releases
+[gh-releases]: https://github.com/n3dst4/investigator-fvtt/releases

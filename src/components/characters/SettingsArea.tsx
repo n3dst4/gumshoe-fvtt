@@ -90,10 +90,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
           backgroundColor: theme.colors.backgroundSecondary,
         }}
       >
-        <a
-          target="_new"
-          href="https://gitlab.com/n3dst4/investigator-fvtt/-/blob/main/README.md"
-        >
+        <a target="_new" href="https://github.com/n3dst4/investigator-fvtt">
           INVESTIGATOR System
         </a>{" "}
         is made by me, Neil de Carteret. Find all my non-work links and ways to

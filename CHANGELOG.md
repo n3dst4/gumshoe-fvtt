@@ -16,7 +16,7 @@ Another "building block" release, with a big new feature that will make more sen
 * Small new feature: Boosted investigative abilities automatically restore 1 point after a spend. (#147) Thanks P. Troilus for the idea again.
 * Bug fix: Regular players no longer see a spurious error message when the GM adds a non-player-controlled token to combat (#149) Thanks Inloy for the bug report.
 * Bug fix: spend on attacks by NPCs without linked actor data now stick (#150) Thanks Rob Bush for the bug report.
-* Bug fix: Using the built-in "save" button on the rich text editor actuall saves the text now (#152) Thanks little old me for the bug report.
+* Bug fix: Using the built-in "save" button on the rich text editor actually saves the text now (#152) Thanks little old me for the bug report.
 
 ## 6.0.0 (2023-01-08)
 
@@ -131,11 +131,11 @@ Happy March! A big list of updates today:
 * The party sheet now has a an editable image.
 * **Bug fix** If a character is missing the relevant ability for a weapon, they can now do a simple +0 roll.
 * **Bug fix** You can now click to open an ability from the party sheet directly in FVTT 9.x, as you could in 8.x.
-* **Bug fix** The "Remove" buttons across the top of the party sheet now remove the right charcater.
+* **Bug fix** The "Remove" buttons across the top of the party sheet now remove the right character.
 
 ## v4.8.0 (2021-12-31)
 
-Happy new year! A big update. 
+Happy new year! A big update.
 
 * **Tested against Foundry VTT v9.238**
 * **Rich text support!** All the places where previously we had plain-text notes areas, you can ow choose to edit as either rich text (using Foundry's standard rich text editor,) [Markdown](https://commonmark.org/help/) (if you're into that sort of thing), or plain text.
@@ -163,8 +163,8 @@ Happy new year! A big update.
 
 ## v4.6.0 (2021-10-20)
 
-* **New "Play" and "Edit" tabs** (#41) Thanks to Yariv Yanay (@yariv on Discord, @yarrriv on GitLab). The main character sheet tab is now interative and you can performs tests and spends directly from it instead of having to open the ability pop-up. There's also an "Edit" tab for rapid ability editing.
-* **Behind the scenes** Two chnages which won't be visible to the user, but which will affect development: 1. I've semi-automated pulling in translations from Transifex, so it'll be nice and easy to keep up to date with the translation contributions. 2. The way themes are authored has been completely refactored. This will bear fruit later.
+* **New "Play" and "Edit" tabs** (#41) Thanks to Yariv Yanay (@yariv on Discord, @yarrriv on GitLab). The main character sheet tab is now interactive and you can performs tests and spends directly from it instead of having to open the ability pop-up. There's also an "Edit" tab for rapid ability editing.
+* **Behind the scenes** Two changes which won't be visible to the user, but which will affect development: 1. I've semi-automated pulling in translations from Transifex, so it'll be nice and easy to keep up to date with the translation contributions. 2. The way themes are authored has been completely refactored. This will bear fruit later.
 
 ## v4.5.0 (2021-10-04)
 
@@ -219,7 +219,7 @@ Happy new year! A big update.
 * Fix Deprecation warnings when running in Foundry VTT 0.8.0+ :)
 * (Internal) switch from `foundry-pc-types` to the more up-to-date and complete
   `@league-of-foundry-developers/foundry-vtt-types`.
-* Fix a bug where newly created characters' abilities were missing, duplicated, 
+* Fix a bug where newly created characters' abilities were missing, duplicated,
   or weird.
 * Fix some translation issues.
 
@@ -264,14 +264,14 @@ Happy new year! A big update.
 
 ## v2.0.1 (2021-02-26)
 
-* Mainly practicing my release process
+* Mainly practising my release process
 * Fix for newly created abilities having the wrong icons
-* Fix a possible bug when adding new charcaters
+* Fix a possible bug when adding new characters
 
 ## v2.0.0 (2021-02-26)
 
 * GUMSHOE for Foundry VTT is now re-launched separate from the previous Trail of Cthulhu system, which will go into maintenance mode with a strong recommendation that folks upgrade to this one.
-* Skipping a version number and dropping the pre-prelease suffix. Version numbers are free!
+* Skipping a version number and dropping the pre-release suffix. Version numbers are free!
 * Launch this newly renamed GUMSHOE for Foundry VTT with support for Trail of Cthulhu (as taken from the previous incarnation) and Night's Black Agents.
 
 ## v1.0.0-alpha.4 (2021-02-19)

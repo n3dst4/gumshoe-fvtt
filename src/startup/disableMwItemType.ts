@@ -30,7 +30,7 @@ function mwItemOnOrOff() {
 }
 
 export const handleMwItemType = () => {
-  // see https://gitlab.com/foundrynet/foundryvtt/-/issues/6977
+  // see https://github.com/foundryvtt/foundryvtt/issues/6977
   // hook handlers registered with `.once` and `.on` exhibit the "once"
   // behaviour for the "on" registration. This can be fixed by wrapping the
   // handler in an anon function. technically you'd only need to do this to one

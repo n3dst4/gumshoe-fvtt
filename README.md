@@ -1,6 +1,6 @@
 # INVESTIGATOR System for Foundry VTT
 
-Unofficial GUMSHOE SRD-compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
+Unofficial GUMSHOE SRD-compatible system for Foundry VTT. Ships with compatibility for several settings, and can be customized to work with any other setting. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
 
 Includes 7 character sheet themes plus an extra high-contrast accessible theme.
 
@@ -21,7 +21,7 @@ Includes 7 character sheet themes plus an extra high-contrast accessible theme.
   - [Using Abilities](#using-abilities)
   - [Party Tracker](#party-tracker)
   - [Bug reports and contact](#bug-reports-and-contact)
-  - [Development & general hacking](#development--general-hacking)
+  - [Development \& general hacking](#development--general-hacking)
   - [Custom themes](#custom-themes)
   - [Credits](#credits)
     - [GUMSHOE SRD Creative Commons](#gumshoe-srd-creative-commons)
@@ -49,26 +49,17 @@ Includes 7 character sheet themes plus an extra high-contrast accessible theme.
 
 I'm going to assume you have a working knowledge of [Foundry VTT](https://foundryvtt.com/), and the concepts it uses, like systems, modules, and worlds.
 
-This sytem isn't registered so to install it into your Foundry instance:
-
 1. On the admin screen, got to **Game Systems**
 2. Click **Install System**
-3. Where it says **Manfest URL**, paste in
-
-    ```
-    https://gitlab.com/n3dst4/investigator-fvtt/-/raw/main/src/system.json
-    ```
-    
-4. Click **Install**
+3. In the top-right, where it says "Filter Packages", type "gumshoe".
+4. The first (or only) result should be "GUMSHOE".
+5. Click the **Install** button next to it.
 
 Now you can create a new world and choose this as the system.
 
-If you've been using the precusor to the system, "T**** of Cthulhu Unsanctioned", see [UPGRADING](./UPGRADING.md) for info about how to upgrade existing worlds to this new system.
-
-
 ## Using the built-in game systems
 
-The system comes preconfigured for **Path of Cthulhu**. If that's what you want to play, you can skip this section and move ahead to [Making PCs](#making-pcs).
+The system comes preconfigured for **Path of Cthulhu**. If that's what you want to play, you can skip this section and start making PCs.
 
 If you want to use one of the other built-in systems, open the Settings sidebar tab and look for the **INVESTIGATOR System Settings** button. Click this to open the configuration. You can ignore 90% of this window and just choose one of the presets at the top! If you want to tweak the other setting can can do so.
 
@@ -98,7 +89,7 @@ Done! New PCs will now automatically be given the abilities in your new compendi
 
 ## Translations
 
-Thanks to Foundry's translation systems, plus the excellent [Babele](https://gitlab.com/riccisi/foundryvtt-babele) module, and the enormous contributions from many volunteers, INVESTIGATOR will work in more languages than just my native English! Check out the [Translations page on the wiki](https://gitlab.com/n3dst4/investigator-fvtt/-/wikis/Translations) to see what has been translated into which languages and get instructions if you'd like to contribute a translation.
+Thanks to Foundry's translation systems, plus the excellent [Babele](https://gitlab.com/riccisi/foundryvtt-babele) module, and the enormous contributions from many volunteers, INVESTIGATOR will work in more languages than just my native English! Check out the [Translations page on the wiki](https://github.com/n3dst4/investigator-fvtt/wiki/Translations) to see what has been translated into which languages and get instructions if you'd like to contribute a translation.
 
 
 ## Setting up any system that isn't built in
@@ -115,11 +106,11 @@ Now open the **Game Settings** sidebar tab and look for the **INVESTIGATOR Syste
 * **Compendium packs for new PCs** This is a really important one. This selects what abilities will be automatically added to newly-created characters. Select the compendium you created for your custom abilities and **UNSELECT** everything else. You *could* leave multiple packs selected but you probably don't want to.
 * **Investigative Ability Categories** These are just the headings that investigative abilities can appear under. It's worth noting that any ability can define its own category, so this setting is mainly for convenience when you're setting up new abilities/
 * **General Ability Categories** Like above, but for General abilities. Many games only have one category for General abilities, called "General".
-* **Combat Abilities** This is a list of the abilities (by name) which can be used to make attacks in combat. 
+* **Combat Abilities** This is a list of the abilities (by name) which can be used to make attacks in combat.
 * **Short notes fields** A list of all the "small" text fields on the character sheet, after **Name** and **Occupation**. This is for short bits of text like "Drive" and "Previous Patron".
 * **Long notes fields** A list of all the long text areas on the character sheet, like "Notes", "Background", "Contacts" etc.
 
-Now you can create the abilities you need as items in the **Items directory**, and then add them to your compendium pack. 
+Now you can create the abilities you need as items in the **Items directory**, and then add them to your compendium pack.
 
 * **Pool** and **Rating** should be clear if you're familiar with investigative game systems like this. Set the rating of you want characters to automatically start with a certain amount in that ability. Set the pool to match if you like, so they don't start out with an empty pool.
 
@@ -128,8 +119,8 @@ Click the cog to see all the other config for an ability:
 * **Name** e.g. "Philately", "Rock climbing" (you can also type this in directly at the top of the window)
 * **Category** the drop-down will give you quick access to at thw **ability categories** you set up before. Abilities can also have custom categories.
 * **Min** and **Max** Some abilities can go negative, like Health and Stability, so you can give them a negative Min here. The Max is probably overkill and will likely be removed in a future update.
-* **Has Specialities?** If ticked, you will be able to add individual specialities to the ability. This is for abilities like **Language**, where yuou can add the individual languages your character knows.
-* **Occupational?** This is more for use when you're setting up an individual character - you can mark an ability as occupational fopr your own reference. We don't support points-based character generation (yet) so this is just for informational purposes.
+* **Has Specialities?** If ticked, you will be able to add individual specialities to the ability. This is for abilities like **Language**, where you can add the individual languages your character knows.
+* **Occupational?** This is more for use when you're setting up an individual character - you can mark an ability as occupational for your own reference. We don't support points-based character generation (yet) so this is just for informational purposes.
 * **Can be investigative?** Another informational field. Some General Abilities are deemed to have an investigative usage, so they can be used "just by having them".
 * **Show Tracker?** Another important one - if ticked, the character sheet will show a clickable pool tracker for this ability. This is key for abilities like Health, Sanity, etc.
 
@@ -138,13 +129,13 @@ Click the cog to see all the other config for an ability:
 
 Create a character int he normal way, through the **Actors directory**. It should be pre-populated with the right abilities for your system.
 
-Most of the character shjeet should be self explanatory. Watch out for the Nuke button (hidden away on the settings tab of the character sheet) - it will blow away all your character's abilities and equipment.
+Most of the character sheet should be self explanatory. Watch out for the Nuke button (hidden away on the settings tab of the character sheet) - it will blow away all your character's abilities and equipment.
 
 ## Using Abilities
 
 Using Investigative abilities doesn't require any active effort - you just tell the GM that you're using `Geology` or whatever.
 
-If you want **spend points**, open the ability from your character sheet and shoose the number of points to spend.
+If you want **spend points**, open the ability from your character sheet and choose the number of points to spend.
 
 General abilities can also be **rolled** - choose the number of points to expend and click **Test**.
 
@@ -165,7 +156,7 @@ You can create multiple "party" actors if you want to tracks different groups of
 
 ## Bug reports and contact
 
-If you have a GitLab account, then by all means log an issue over at [the project site][project-site]. Merge requests are also welcome!
+If you have a GitHub account, then by all means log an issue over at [the project site][project-site]. Merge requests are also welcome!
 
 Otherwise you can email me at `neil at lumphammer.com`, or hit me up on Discord (search for `n3dst4#8227`.)
 
@@ -179,8 +170,8 @@ Contributions, bug fixes, pull requests all welcome! Please see [DEVELOPMENT.md]
 
 You can create new themes for INVESTIGATOR in two ways:
 
-* [By writing a Foundry VTT module which uses INVESTIGATOR's API to inject a new theme](https://gitlab.com/n3dst4/investigator-fvtt/-/wikis/Adding-new-themes-from-third-party-code) (this is intended for developers and module authors.)
-* [By dropping a JSON file in a folder in your local data](https://gitlab.com/n3dst4/investigator-fvtt/-/wikis/Adding-new-themes-from-local-data) (this is intended for technical users who are not authoring modules.)
+* [By writing a Foundry VTT module which uses INVESTIGATOR's API to inject a new theme](https://github.com/n3dst4/investigator-fvtt/wiki/Adding-new-content-from-third-party-code) (this is intended for developers and module authors.)
+* [By dropping a JSON file in a folder in your local data](https://github.com/n3dst4/investigator-fvtt/wiki/Adding-new-themes-from-local-data) (this is intended for technical users who are not authoring modules.)
 
 
 ## Credits
@@ -200,7 +191,7 @@ You can create new themes for INVESTIGATOR in two ways:
 Photo by <a href="https://unsplash.com/@stilclassics?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">STIL</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 Photo by <a href="https://unsplash.com/@sammywilliams?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sammy Williams</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  
+
 Photo by <a href="https://unsplash.com/@kiwihug?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kiwihug</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 Photo by <a href="https://unsplash.com/@scottwebb?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Scott Webb</a> on <a href="https://unsplash.com/s/photos/granite?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -210,7 +201,7 @@ Photo by <a href="https://unsplash.com/@meric?utm_source=unsplash&utm_medium=ref
 
 Illustrations from [Old Book Illustrations](https://www.oldbookillustrations.com/).
 
-Huge thanks to Nick van Oosten/NickEast for [Foundry Project Creator](https://gitlab.com/foundry-projects/foundry-pc/create-foundry-project) and [the Typescript types to go with it](https://gitlab.com/foundry-projects/foundry-pc/foundry-pc-types).
+Huge thanks to Nick van Oosten/NickEast for [Foundry Project Creator](https://gitlab.com/foundry-projects/foundry-pc/create-foundry-project) and the original [the Typescript types to go with it](https://gitlab.com/foundry-projects/foundry-pc/foundry-pc-types).
 
 Current types are provided by the excellent [League of Foundry Developers](https://github.com/League-of-Foundry-Developers/foundry-vtt-types).
 
@@ -223,5 +214,5 @@ Thanks to [The Design Mechanism](https://thedesignmechanism.com) for permission 
 This work is based on the GUMSHOE SRD (found at http://www.pelgranepress.com/?p=12466), a product of Pelgrane Press, developed, written, and edited by Robin D. Laws with additional material by Kenneth Hite, and licensed for our use under the Creative Commons Attribution 3.0 Unported license (http://creativecommons.org/licenses/by/3.0/)
 
 
-[project-site]: https://gitlab.com/n3dst4/investigator-system/-/issues
+[project-site]: https://github.com/n3dst4/investigator-fvtt/issues
 [srd]: https://site.pelgranepress.com/index.php/the-gumshoe-system-reference-document/
