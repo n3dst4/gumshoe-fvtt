@@ -1,5 +1,17 @@
 # INVESTIGATOR System for Foundry VTT
 
+## ⚠️ This repository is moving! ⚠️
+
+> ⚠️The new address for this repository is:
+>
+> ⚠️ https://github.com/n3dst4/gumshoe-fvtt/
+>
+> ⚠️ Please go there for the latest issues, wiki pages, releases etc!
+>
+> Thank you!
+
+
+
 Unofficial GUMSHOE SRD-compatible system for Foundry VTT. Ships with compatiblity for several settings, and can be customized to work with any other setting. Rules relating to anything outside of the character sheet are not included, so you'll need to own a compatible game in order to play.
 
 Includes 7 character sheet themes plus an extra high-contrast accessible theme.
@@ -10,6 +22,7 @@ Includes 7 character sheet themes plus an extra high-contrast accessible theme.
 
 ## Contents
 - [INVESTIGATOR System for Foundry VTT](#investigator-system-for-foundry-vtt)
+  - [⚠️ This repository is moving! ⚠️](#️-this-repository-is-moving-️)
   - [Contents](#contents)
   - [Features](#features)
   - [How to install](#how-to-install)
@@ -21,7 +34,7 @@ Includes 7 character sheet themes plus an extra high-contrast accessible theme.
   - [Using Abilities](#using-abilities)
   - [Party Tracker](#party-tracker)
   - [Bug reports and contact](#bug-reports-and-contact)
-  - [Development & general hacking](#development--general-hacking)
+  - [Development \& general hacking](#development--general-hacking)
   - [Custom themes](#custom-themes)
   - [Credits](#credits)
     - [GUMSHOE SRD Creative Commons](#gumshoe-srd-creative-commons)
@@ -58,7 +71,7 @@ This sytem isn't registered so to install it into your Foundry instance:
     ```
     https://gitlab.com/n3dst4/investigator-fvtt/-/raw/main/src/system.json
     ```
-    
+
 4. Click **Install**
 
 Now you can create a new world and choose this as the system.
@@ -115,11 +128,11 @@ Now open the **Game Settings** sidebar tab and look for the **INVESTIGATOR Syste
 * **Compendium packs for new PCs** This is a really important one. This selects what abilities will be automatically added to newly-created characters. Select the compendium you created for your custom abilities and **UNSELECT** everything else. You *could* leave multiple packs selected but you probably don't want to.
 * **Investigative Ability Categories** These are just the headings that investigative abilities can appear under. It's worth noting that any ability can define its own category, so this setting is mainly for convenience when you're setting up new abilities/
 * **General Ability Categories** Like above, but for General abilities. Many games only have one category for General abilities, called "General".
-* **Combat Abilities** This is a list of the abilities (by name) which can be used to make attacks in combat. 
+* **Combat Abilities** This is a list of the abilities (by name) which can be used to make attacks in combat.
 * **Short notes fields** A list of all the "small" text fields on the character sheet, after **Name** and **Occupation**. This is for short bits of text like "Drive" and "Previous Patron".
 * **Long notes fields** A list of all the long text areas on the character sheet, like "Notes", "Background", "Contacts" etc.
 
-Now you can create the abilities you need as items in the **Items directory**, and then add them to your compendium pack. 
+Now you can create the abilities you need as items in the **Items directory**, and then add them to your compendium pack.
 
 * **Pool** and **Rating** should be clear if you're familiar with investigative game systems like this. Set the rating of you want characters to automatically start with a certain amount in that ability. Set the pool to match if you like, so they don't start out with an empty pool.
 
@@ -200,7 +213,7 @@ You can create new themes for INVESTIGATOR in two ways:
 Photo by <a href="https://unsplash.com/@stilclassics?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">STIL</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 Photo by <a href="https://unsplash.com/@sammywilliams?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sammy Williams</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  
+
 Photo by <a href="https://unsplash.com/@kiwihug?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kiwihug</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 Photo by <a href="https://unsplash.com/@scottwebb?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Scott Webb</a> on <a href="https://unsplash.com/s/photos/granite?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
