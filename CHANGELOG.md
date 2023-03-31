@@ -1,6 +1,14 @@
 # CHANGELOG
 
+## 7.0.0-alpha.1 (2023-03-31, not yet released)
+
+* Weapons now have a "cost" field. This was needed for some settings.
+* Situational modifiers! These are specific +/- modifiers that apply to abilities in certain situations, like "+1 while flying" or "-3 near water". You can check them on or off before making your ability test.
+* Internal stuff: we've updated to React 18, which either means nothing to you, or is terribly exciting. If you're in the first group, please try to be excited on behalf of those of us in the second group.
+* More internal stuff: the project has switched back from GitLab to GitHub (which is where it was back when it was called "Trail of Cthulhu for Foundry VTT".) This follows a general community shift away from GitLab, and also makes it easier for Pelgrane to contribute to the project.
+
 ## 6.2.0 (2023-03-08)
+
 * A small release to introduce the optional ability to turn personal details back into text fields, like how they used to be.
 
 ## 6.2.0-beta.1 (2023-03-08)
