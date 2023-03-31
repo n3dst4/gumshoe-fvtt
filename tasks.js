@@ -53,15 +53,7 @@ if (config?.dataPath) {
 async function clean() {
   const distPath = path.join(__dirname, buildPath);
   log("Cleaning...");
-  await new Promise((resolve, reject) => {
-    rimraf(distPath, (err) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    });
-  });
+  await rimraf(distPath);
   log("Done.");
 }
 
