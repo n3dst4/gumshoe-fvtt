@@ -59,7 +59,8 @@ const config = defineConfig(({ mode }) => {
                   headTag,
                   `${headTag}${preambleHtml}`,
                 );
-                res.statusCode = proxyRes.statusCode;
+                res.statusCode = proxyRes.statusCode ?? 200;
+                // @ts-expect-error no idea
                 res.headers = proxyRes.headers;
                 res.end(fixedHtml);
               });
