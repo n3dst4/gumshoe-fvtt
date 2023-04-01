@@ -1,7 +1,7 @@
 // import ReactDOM from "react-dom";
 import React from "react";
 import { Suspense } from "../components/Suspense";
-import { reactTemplatePath, systemName } from "../constants";
+import { reactTemplatePath, systemId } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 // React stuff -----------------------------------------------------------------
@@ -29,7 +29,7 @@ class ItemSheetClassBase extends ItemSheet {
   static get defaultOptions() {
     return {
       ...super.defaultOptions,
-      classes: [systemName, "sheet", "item"],
+      classes: [systemId, "sheet", "item"],
       template: reactTemplatePath,
       width: 450,
       height: 600,

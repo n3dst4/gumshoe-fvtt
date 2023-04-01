@@ -1,4 +1,4 @@
-import { systemName } from "../constants";
+import { systemId } from "../constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
@@ -10,7 +10,7 @@ export const niceTheme: ThemeV1 = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
   largeSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+    backgroundImage: `url(systems/${systemId}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Unica One', serif",
@@ -25,7 +25,7 @@ export const niceTheme: ThemeV1 = themeFactory({
       transform: "scale(0.8)",
     },
     backdropStyle: {
-      background: `#4a0d00 url(systems/${systemName}/assets/wallpaper/nice_red_agents.webp)`,
+      background: `#4a0d00 url(systems/${systemId}/assets/wallpaper/nice_red_agents.webp)`,
       backgroundSize: "cover",
       transform: "scaleY(0.9) scaleX(1.2) translateY(0.1em)",
       zIndex: -1,

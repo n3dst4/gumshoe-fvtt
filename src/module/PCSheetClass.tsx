@@ -1,5 +1,5 @@
 import React from "react";
-import { reactTemplatePath, systemName } from "../constants";
+import { reactTemplatePath, systemId } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 import { PCSheet } from "../components/characters/PCSheet";
 
@@ -11,7 +11,7 @@ class PCSheetClassBase extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: [systemName, "sheet", "actor"],
+      classes: [systemId, "sheet", "actor"],
       template: reactTemplatePath,
       width: 777,
       height: 900,
