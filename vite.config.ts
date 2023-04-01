@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 // import { visualizer } from "rollup-plugin-visualizer";
 import checker from "vite-plugin-checker";
 import path from "path";
-import { name } from "./public/system.json";
+import { id as name } from "./public/system.json";
 import react from "@vitejs/plugin-react";
 
 // guide to using Vite for Foundry from the Lancer guys:
