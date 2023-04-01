@@ -18,12 +18,9 @@ try {
 
 const port = 40000;
 
-const preambleJS = react.preambleCode.replace(
-  "__BASE__",
-`/systems/${name}/`,
-);
+const preambleJS = react.preambleCode.replace("__BASE__", `/systems/${name}/`);
 const preambleHtml =
-'\n<script type="module">\n' + preambleJS + "\n</script>\n";
+  '\n<script type="module">\n' + preambleJS + "\n</script>\n";
 const headTag = "<head>";
 
 const config = defineConfig(({ mode }) => {
@@ -37,16 +34,16 @@ const config = defineConfig(({ mode }) => {
       port,
       open: `http://localhost:${port}`,
       proxy: {
-      // In dev mode, plugin-react needs a preamble inserted in the head. When
-      // you run a "normal" vite app, each plugin gets a chance to transform the
-      // `index.html`, so the react plugin can add the preamble. But when you
-      // run a Foundry app, the `index.html` comes direct from Foundry itself
-      // and the React plugin doesn't get a chance to transform it. So we need
-      // to add the preamble ourselves. We do this by singling out the proxy
-      // rule for `/game` and using `configure` to add some hooks to manually
-      // insert the proxy ourselves.
+        // In dev mode, plugin-react needs a preamble inserted in the head. When
+        // you run a "normal" vite app, each plugin gets a chance to transform the
+        // `index.html`, so the react plugin can add the preamble. But when you
+        // run a Foundry app, the `index.html` comes direct from Foundry itself
+        // and the React plugin doesn't get a chance to transform it. So we need
+        // to add the preamble ourselves. We do this by singling out the proxy
+        // rule for `/game` and using `configure` to add some hooks to manually
+        // insert the proxy ourselves.
         "/game": {
-        // see https://github.com/http-party/node-http-proxy#modify-response
+          // see https://github.com/http-party/node-http-proxy#modify-response
           selfHandleResponse: true,
           target: foundryUrl,
           configure: (proxy: HttpProxy.Server) => {
@@ -60,7 +57,7 @@ const config = defineConfig(({ mode }) => {
                 // this is the most future-proof way to get the preamble code.
                 const fixedHtml = html.replace(
                   headTag,
-                `${headTag}${preambleHtml}`,
+                  `${headTag}${preambleHtml}`,
                 );
                 res.statusCode = proxyRes.statusCode;
                 res.headers = proxyRes.headers;
