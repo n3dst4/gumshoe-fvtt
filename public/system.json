@@ -1,9 +1,9 @@
 {
-  "name": "investigator",
+  "id": "investigator",
   "title": "GUMSHOE",
   "description": "Official GUMSHOE support for FoundryVTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
   "version": "7.0.0-alpha.1",
-  "author": "Neil de Carteret",
+  "authors": [{ "name": "Neil de Carteret" }],
   "scripts": [],
   "esmodules": ["investigator.js"],
   "styles": ["investigator.css"],
@@ -122,8 +122,9 @@
   ],
   "gridDistance": 1,
   "gridUnits": "",
-  "minimumCoreVersion": "10.291",
-  "compatibleCoreVersion": "10.291",
+  "compatibility": {
+    "minimum": "10"
+  },
   "initiative": "1d6",
   "url": "https://github.com/n3dst4/gumshoe-fvtt",
   "manifest": "https://github.com/n3dst4/gumshoe-fvtt/releases/latest/download/system.json",
