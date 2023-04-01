@@ -70,10 +70,7 @@ export class InvestigatorCombatant extends Combatant {
       this.actor && isActiveCharacterDataSource(this.actor?.data)
         ? this.actor?.data.data.initiativePassingTurns
         : 1;
-    const tagValue = this.getFlag(
-      constants.systemName,
-      "passingTurnsRemaining",
-    );
+    const tagValue = this.getFlag(constants.systemId, "passingTurnsRemaining");
     if (tagValue === undefined) {
       this.passingTurnsRemaining = maxPassingTurns;
       return maxPassingTurns;
@@ -84,7 +81,7 @@ export class InvestigatorCombatant extends Combatant {
   set passingTurnsRemaining(turns: number) {
     assertGame(game);
     if (game.user && this.canUserModify(game.user, "update")) {
-      this.setFlag(constants.systemName, "passingTurnsRemaining", turns);
+      this.setFlag(constants.systemId, "passingTurnsRemaining", turns);
     }
   }
 }

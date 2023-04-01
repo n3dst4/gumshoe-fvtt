@@ -1,4 +1,4 @@
-import { systemName } from "../constants";
+import { systemId } from "../constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
@@ -10,7 +10,7 @@ export const tealTheme: ThemeV1 = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
   largeSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
+    backgroundImage: `url(systems/${systemId}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal small-caps normal 1em 'Federo', serif",

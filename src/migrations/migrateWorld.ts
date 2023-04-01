@@ -21,7 +21,7 @@ export const migrateWorld = async function (
 ) {
   assertGame(game);
   (ui as any).notifications.info(
-    `Applying ${title} System Migration for version ${game.system.data.version}. 
+    `Applying ${title} System Migration for version ${game.system.data.version}.
     Please be patient and do not close your game or shut down your server.`,
     { permanent: true },
   );
@@ -91,7 +91,7 @@ export const migrateWorld = async function (
 (window as any).migrateSystemCompendiums = async () => {
   assertGame(game);
   for (const p of game.packs as any) {
-    if (p.metadata.package !== constants.systemName) continue;
+    if (p.metadata.package !== constants.systemId) continue;
     if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
     await migrateCompendium(p, flaggedMigrations);
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Suspense } from "../components/Suspense";
-import { reactTemplatePath, systemName } from "../constants";
+import { reactTemplatePath, systemId } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 const NPCSheet = React.lazy(() =>
@@ -17,7 +17,7 @@ class NPCSheetClassBase extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: [systemName, "sheet", "actor"],
+      classes: [systemId, "sheet", "actor"],
       template: reactTemplatePath,
       width: 700,
       height: 660,

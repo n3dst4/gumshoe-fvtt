@@ -53,13 +53,13 @@ export class InvestigatorCombat extends Combat {
   }
 
   get activeTurnPassingCombatant() {
-    return this.getFlag(constants.systemName, "activeTurnPassingCombatant") as
+    return this.getFlag(constants.systemId, "activeTurnPassingCombatant") as
       | string
       | null;
   }
 
   set activeTurnPassingCombatant(id: string | null) {
-    this.setFlag(constants.systemName, "activeTurnPassingCombatant", id);
+    this.setFlag(constants.systemId, "activeTurnPassingCombatant", id);
   }
 }
 
