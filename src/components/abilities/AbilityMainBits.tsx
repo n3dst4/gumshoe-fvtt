@@ -7,15 +7,15 @@ import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
 import { Translate } from "../Translate";
 import { ActiveCharacterDataSource } from "../../types";
-import {
-  assertAbilityDataSource,
-  assertActiveCharacterDataSource,
-  isActiveCharacterDataSource,
-} from "../../typeAssertions";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { settings } from "../../settings";
 import { AbilityBadges } from "./AbilityBadges";
+import {
+  assertAbilityItem,
+  assertActiveCharacterActor,
+  isActiveCharacterActor,
+} from "../../v10Types";
 
 type AbilityMainBitsProps = {
   ability: InvestigatorItem;
@@ -37,7 +37,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     .includes(ability.data.name);
 
   const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
-    isActiveCharacterDataSource(ability?.actor?.data) &&
+    isActiveCharacterActor(ability?.actor) &&
       ability?.actor?.system.initiativeAbility,
   );
 
@@ -50,7 +50,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     ) => {
       if (actor.data._id === ability?.actor?.data?._id) {
         setActorInitiativeAbility(
-          isActiveCharacterDataSource(ability?.actor?.data) &&
+          isActiveCharacterActor(ability?.actor) &&
             ability?.actor?.system.initiativeAbility,
         );
       }
@@ -59,12 +59,12 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     return () => {
       Hooks.off("updateActor", callback);
     };
-  }, [ability?.actor?.data]);
+  }, [ability?.actor, ability?.actor?.data]);
 
   const isAbilityUsed = actorInitiativeAbility === ability.name;
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
-      assertActiveCharacterDataSource(ability?.actor?.data);
+      assertActiveCharacterActor(ability?.actor);
       ability?.actor?.update({
         data: {
           initiativeAbility: ability.data.name,

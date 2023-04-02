@@ -2,8 +2,8 @@ import React from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
-import { assertGeneralAbilityDataSource } from "../../typeAssertions";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { assertGeneralAbilityItem } from "../../v10Types";
 
 type AbilityMwExtraFieldsProps = {
   ability: InvestigatorItem;

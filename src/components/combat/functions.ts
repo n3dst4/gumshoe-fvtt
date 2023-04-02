@@ -1,10 +1,7 @@
 import { ConfiguredDocumentClass } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import {
-  isActiveCharacterDataSource,
-  isGeneralAbilityDataSource,
-} from "../../typeAssertions";
 import * as constants from "../../constants";
+import { isActiveCharacterActor, isGeneralAbilityItem } from "../../v10Types";
 
 const compare = <T>(a: T, b: T) => (a < b ? -1 : a > b ? 1 : 0);
 const compareInv = <T>(a: T, b: T) => compare(a, b) * -1;
@@ -30,8 +27,8 @@ export function compareCombatantsStandard(
   if (
     a.actor !== null &&
     b.actor !== null &&
-    isActiveCharacterDataSource(a.actor?.data) &&
-    isActiveCharacterDataSource(b.actor?.data)
+    isActiveCharacterActor(a.actor) &&
+    isActiveCharacterActor(b.actor)
   ) {
     const aAbilityName = a.actor.system.initiativeAbility;
     const aAbility = a.actor.items.find(

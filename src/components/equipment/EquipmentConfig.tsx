@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";
-import { assertEquipmentDataSource } from "../../typeAssertions";
+import { assertEquipmentItem } from "../../v10Types";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";

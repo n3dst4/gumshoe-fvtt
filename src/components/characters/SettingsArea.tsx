@@ -5,7 +5,7 @@ import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";
-import { assertPCDataSource } from "../../typeAssertions";
+import { assertPCActor } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";

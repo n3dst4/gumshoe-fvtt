@@ -1,11 +1,8 @@
 import React, { useCallback, useContext } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { FoundryAppContext } from "../FoundryAppContext";
-import {
-  assertAbilityDataSource,
-  isGeneralAbilityDataSource,
-} from "../../typeAssertions";
 import { settings } from "../../settings";
+import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
 
 type AbilitySlugProps = {
   ability: InvestigatorItem;

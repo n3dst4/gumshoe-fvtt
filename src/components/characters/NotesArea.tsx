@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings";
-import { assertPCDataSource } from "../../typeAssertions";
 import { NoteWithFormat } from "../../types";
+import { assertPCActor } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { IndexedNotesEditorWithControls } from "../inputs/IndexedNotesEditorWithControls";
 import { InputGrid } from "../inputs/InputGrid";

@@ -3,7 +3,7 @@ import { mwNegateCost, mwWallopCost } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { MWDifficulty } from "../../types";
-import { assertGeneralAbilityDataSource } from "../../typeAssertions";
+import { assertGeneralAbilityItem } from "../../v10Types";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
