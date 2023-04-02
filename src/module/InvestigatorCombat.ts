@@ -5,7 +5,7 @@ import {
 } from "../components/combat/functions";
 import * as constants from "../constants";
 import { settings } from "../settings";
-import { isActiveCharacterDataSource } from "../typeAssertions";
+import { isActiveCharacterActor } from "../v10Types";
 
 /**
  * Override base Combat so we can do custom GUMSHOE-style initiative
@@ -43,7 +43,7 @@ export class InvestigatorCombat extends Combat {
     this.turns.forEach((combatant) => {
       const actor = combatant.actor;
       const max =
-        actor !== null && isActiveCharacterDataSource(actor.data)
+        actor !== null && isActiveCharacterActor(actor)
           ? actor.system.initiativePassingTurns
           : 1;
       combatant.passingTurnsRemaining = max;

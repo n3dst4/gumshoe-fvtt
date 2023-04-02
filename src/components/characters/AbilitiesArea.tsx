@@ -21,7 +21,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
   actor,
   flipLeftRight,
 }) => {
-  assertActiveCharacterItem(actor);
+  assertActiveCharacterActor(actor);
   const theme = useContext(ThemeContext);
 
   const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};

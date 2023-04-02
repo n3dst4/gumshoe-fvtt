@@ -9,11 +9,7 @@ import { generalAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { PCDataSource } from "../../types";
-import {
-  assertWeaponDataSource,
-  isAbilityDataSource,
-  isPCDataSource,
-} from "../../typeAssertions";
+import { assertWeaponItem, isAbilityItem, isPCActor } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";
@@ -71,7 +67,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
       rangeName: "point blank",
       rangeDamage: weapon.system.pointBlankDamage,
     });
-  }, [basePerformAttack, weapon.data]);
+  }, [basePerformAttack, weapon]);
 
   const onCloseRange = useCallback(() => {
     assertWeaponItem(weapon);
@@ -79,7 +75,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
       rangeName: "close range",
       rangeDamage: weapon.system.closeRangeDamage,
     });
-  }, [basePerformAttack, weapon.data]);
+  }, [basePerformAttack, weapon]);
 
   const onNearRange = useCallback(() => {
     assertWeaponItem(weapon);
@@ -87,7 +83,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
       rangeName: "near range",
       rangeDamage: weapon.system.nearRangeDamage,
     });
-  }, [basePerformAttack, weapon.data]);
+  }, [basePerformAttack, weapon]);
 
   const onLongRange = useCallback(() => {
     assertWeaponItem(weapon);
@@ -95,13 +91,13 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
       rangeName: "long range",
       rangeDamage: weapon.system.longRangeDamage,
     });
-  }, [basePerformAttack, weapon.data]);
+  }, [basePerformAttack, weapon]);
 
-  const weaponActorData = weapon.actor?.data;
+  const weaponActor = weapon.actor;
 
   const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
-    weaponActorData && isPCDataSource(weaponActorData)
-      ? weaponActorData.data.initiativeAbility
+    weaponActor && isPCActor(weaponActor)
+      ? weaponActor.system.initiativeAbility
       : "",
   );
 
@@ -112,10 +108,12 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
       options: unknown,
       id: string,
     ) => {
-      if (actor.data._id === weaponActorData?._id) {
+      // XXXV10 this used to say `(actor.data._id === weaponActor?._id)` - is
+      // this correct now?
+      if (actor.data._id === weaponActor?.id) {
         setActorInitiativeAbility(
-          weaponActorData && isPCDataSource(weaponActorData)
-            ? weaponActorData.data.initiativeAbility
+          weaponActor && isPCActor(weaponActor)
+            ? weaponActor.system.initiativeAbility
             : "",
         );
       }
@@ -124,7 +122,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     return () => {
       Hooks.off("updateActor", callback);
     };
-  }, [weaponActorData]);
+  }, [weaponActor]);
 
   const isAbilityUsed = actorInitiativeAbility === ability?.name;
   const onClickUseForInitiative = useCallback(

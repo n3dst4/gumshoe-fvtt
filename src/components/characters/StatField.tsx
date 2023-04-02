@@ -14,10 +14,10 @@ export const StatField: React.FC<StatFieldProps> = ({
   actor,
   id,
 }: StatFieldProps) => {
-  assertActiveCharacterItem(actor);
+  assertActiveCharacterActor(actor);
   const onChange = useCallback(
     (newVal: number) => {
-      assertActiveCharacterItem(actor);
+      assertActiveCharacterActor(actor);
       actor.update({
         data: { stats: { ...actor.system.stats, [id]: newVal } },
       });

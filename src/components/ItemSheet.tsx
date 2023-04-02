@@ -24,7 +24,7 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
   const theme = item.getTheme();
 
   const style: CSSObject =
-    isAbilityItem(item) || isMwItemDataSource(item.data)
+    isAbilityItem(item) || isMwItemItem(item)
       ? {
           position: "absolute",
           top: 0,

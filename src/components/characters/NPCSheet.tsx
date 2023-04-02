@@ -26,7 +26,7 @@ type NPCSheetProps = {
 };
 
 export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
-  assertNPCItem(actor);
+  assertNPCActor(actor);
 
   const theme = actor.getSheetTheme();
   const stats = settings.npcStats.get();
@@ -101,7 +101,7 @@ export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
         {/* Stats */}
         <hr />
         {/* SotS NPC Combat bonus */}
-        {settings.useNpcCombatBonuses.get() && isNPCDataSource(actor.data) && (
+        {settings.useNpcCombatBonuses.get() && isNPCActor(actor) && (
           <Fragment>
             <h3 css={{ gridColumn: "start / end" }}>
               <Translate>Combat bonus</Translate>

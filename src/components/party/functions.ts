@@ -1,5 +1,4 @@
 import { AbilityDataSource, AbilityType } from "../../types";
-import { isAbilityDataSource } from "../../typeAssertions";
 import {
   abilityRowkey,
   ActorAbilityInfo,
@@ -11,6 +10,7 @@ import * as constants from "../../constants";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertGame } from "../../functions";
 import { settings } from "../../settings";
+import { isAbilityItem } from "../../v10Types";
 
 /**
  * get a sorted list of ability tuples
@@ -26,7 +26,8 @@ export const getSystemAbilities = async (): Promise<AbilityDataSource[]> => {
     );
     const content = await pack?.getDocuments();
     const tuples: AbilityDataSource[] = (content || [])
-      .filter((x) => isAbilityItem(x))
+      // XXXV10 what do we actually get here?
+      .filter((x) => isAbilityItem(x as any))
       .map((x) => x.data as AbilityDataSource);
     return tuples;
   });

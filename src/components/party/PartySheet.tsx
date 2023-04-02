@@ -6,10 +6,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings";
 import { AbilityDataSource } from "../../types";
-import {
-  assertPartyDataSource,
-  isAbilityDataSource,
-} from "../../typeAssertions";
+import { assertPartyActor, isAbilityItem } from "../../v10Types";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -46,7 +43,7 @@ export const PartySheet: React.FC<{
       something: unknown, // i cannot tell what this is supposed to be
       userId: string, // probably?
     ) => {
-      assertPartyItem(party);
+      assertPartyActor(party);
       const actorIds = party.system.actorIds.filter(
         (id) => id !== deletedActor.id,
       );
@@ -59,7 +56,7 @@ export const PartySheet: React.FC<{
       options: any,
       useId: string,
     ) => {
-      assertPartyItem(party);
+      assertPartyActor(party);
       if (
         isAbilityItem(item) &&
         item.isOwned &&
@@ -122,7 +119,7 @@ export const PartySheet: React.FC<{
     [party],
   );
 
-  assertPartyItem(party);
+  assertPartyActor(party);
   return (
     <CSSReset
       mode="small"

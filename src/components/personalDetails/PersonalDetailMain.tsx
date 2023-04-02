@@ -3,7 +3,7 @@ import { occupationSlotIndex } from "../../constants";
 import { assertGame, padLength } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";
-import { assertPersonalDetailDataSource } from "../../typeAssertions";
+import { assertPersonalDetailItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
