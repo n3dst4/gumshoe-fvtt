@@ -88,7 +88,7 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
         </button>
       </div>
       <div css={{ gridColumn: "spend" }}>
-        {isInvestigativeAbilityDataSource(ability.data) && (
+        {isInvestigativeAbilityItem(ability) && (
           <button disabled={spend === 0} onClick={onSpend}>
             <i className="fa fa-search" title="Spend" />
             {spend}

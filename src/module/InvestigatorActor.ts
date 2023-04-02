@@ -1,13 +1,4 @@
-import {
-  generalAbility,
-  investigativeAbility,
-  pc,
-  npc,
-  weapon,
-  personalDetail,
-  equipment,
-  occupationSlotIndex,
-} from "../constants";
+import { personalDetail, equipment, occupationSlotIndex } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
 import {
   AbilityType,
@@ -18,20 +9,26 @@ import {
   NoteFormat,
   MwInjuryStatus,
 } from "../types";
-import {
-  assertPCDataSource,
-  assertActiveCharacterDataSource,
-  assertPartyDataSource,
-  isAbilityDataSource,
-  isMwItemDataSource,
-  assertMwItemDataSource,
-  assertNPCDataSource,
-} from "../typeAssertions";
 import { convertNotes } from "../textFunctions";
 import { tealTheme } from "../themes/tealTheme";
 import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
 import { ThemeV1 } from "../themes/types";
+import {
+  assertActiveCharacterActor,
+  assertMwItem,
+  assertNPCActor,
+  assertPartyActor,
+  assertPCActor,
+  isAbilityItem,
+  isActiveCharacterActor,
+  isEquipmentItem,
+  isGeneralAbilityItem,
+  isMwItem,
+  isPCActor,
+  isPersonalDetailItem,
+  isWeaponItem,
+} from "../v10Types";
 
 export class InvestigatorActor extends Actor {
   confirmRefresh = () => {
@@ -75,8 +72,7 @@ export class InvestigatorActor extends Actor {
   refresh = () => {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
-        (item.data.type === generalAbility ||
-          item.data.type === investigativeAbility) &&
+        isAbilityItem(item) &&
         item.system.rating !== item.system.pool &&
         !item.system.excludeFromGeneralRefresh
       ) {
@@ -98,7 +94,7 @@ export class InvestigatorActor extends Actor {
   mWrefresh(group: MwRefreshGroup) {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
-        item.data.type === generalAbility &&
+        isGeneralAbilityItem(item) &&
         // MW refreshes allow you to keep a boon
         item.system.rating > item.system.pool &&
         item.system.mwRefreshGroup === group
@@ -123,8 +119,7 @@ export class InvestigatorActor extends Actor {
   refresh24h = () => {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
-        (item.data.type === generalAbility ||
-          item.data.type === investigativeAbility) &&
+        isAbilityItem(item) &&
         item.system.rating !== item.system.pool &&
         item.system.refreshesDaily
       ) {
@@ -177,23 +172,23 @@ export class InvestigatorActor extends Actor {
   }
 
   getEquipment() {
-    return this.items.filter((item) => item.type === equipment);
+    return this.items.filter(isEquipmentItem);
   }
 
   getWeapons() {
-    return this.items.filter((item) => item.type === weapon);
+    return this.items.filter(isWeaponItem);
   }
 
   getAbilities() {
-    return this.items.filter((item) => isAbilityItem(item));
+    return this.items.filter(isAbilityItem);
   }
 
   getPersonalDetails() {
-    return this.items.filter((item) => item.type === personalDetail);
+    return this.items.filter(isPersonalDetailItem);
   }
 
   getMwItems() {
-    const allItems = this.items.filter((item) => isMwItemDataSource(item.data));
+    const allItems = this.items.filter(isMwItem);
     const items: { [type in MwType]: Item[] } = {
       tweak: [],
       spell: [],
@@ -257,21 +252,19 @@ export class InvestigatorActor extends Actor {
   }
 
   getSheetThemeName(): string | null {
-    return this.data.type === pc || this.data.type === npc
-      ? this.system.sheetTheme
-      : null;
+    return isActiveCharacterActor(this) ? this.system.sheetTheme : null;
   }
 
   setSheetTheme = (sheetTheme: string | null) =>
     this.update({ data: { sheetTheme } });
 
   getNotes = () => {
-    assertNPCItem(this);
+    assertNPCActor(this);
     return this.system.notes;
   };
 
   setNotes = (notes: NoteWithFormat) => {
-    assertNPCItem(this);
+    assertNPCActor(this);
     return this.update({ data: { notes } });
   };
 
@@ -345,23 +338,23 @@ export class InvestigatorActor extends Actor {
   };
 
   getHitThreshold = () => {
-    assertActiveCharacterItem(this);
+    assertActiveCharacterActor(this);
     return this.system.hitThreshold;
   };
 
   setHitThreshold = (hitThreshold: number) => {
-    assertActiveCharacterItem(this);
+    assertActiveCharacterActor(this);
     return this.update({ data: { hitThreshold } });
   };
 
   getInitiativeAbility = () => {
-    assertActiveCharacterItem(this);
+    assertActiveCharacterActor(this);
     return this.system.initiativeAbility;
   };
 
   setInitiativeAbility = async (initiativeAbility: string) => {
     assertGame(game);
-    assertActiveCharacterItem(this);
+    assertActiveCharacterActor(this);
     await this.update({ data: { initiativeAbility } });
     const isInCombat = !!this.token?.combatant;
     if (isInCombat) {
@@ -370,41 +363,41 @@ export class InvestigatorActor extends Actor {
   };
 
   setCombatBonus = async (combatBonus: number) => {
-    assertNPCItem(this);
+    assertNPCActor(this);
     await this.update({ data: { combatBonus } });
   };
 
   setDamageBonus = async (damageBonus: number) => {
-    assertNPCItem(this);
+    assertNPCActor(this);
     await this.update({ data: { damageBonus } });
   };
 
   setPassingTurns = async (initiativePassingTurns: number) => {
-    assertActiveCharacterItem(this);
+    assertActiveCharacterActor(this);
     await this.update({ data: { initiativePassingTurns } });
   };
 
   // ###########################################################################
   // Moribund World stuff
   getMwInjuryStatus = () => {
-    assertActiveCharacterItem(this);
+    assertActiveCharacterActor(this);
     return this.system.mwInjuryStatus;
   };
 
   setMwInjuryStatus = async (mwInjuryStatus: MwInjuryStatus) => {
-    assertActiveCharacterItem(this);
+    assertActiveCharacterActor(this);
     await this.update({ data: { mwInjuryStatus } });
   };
 
   // ###########################################################################
   // For the party sheet
   getActorIds = () => {
-    assertPartyItem(this);
+    assertPartyActor(this);
     return this.system.actorIds;
   };
 
   setActorIds = (actorIds: string[]) => {
-    assertPartyItem(this);
+    assertPartyActor(this);
     return this.update({ data: { actorIds } });
   };
 
@@ -429,7 +422,7 @@ export class InvestigatorActor extends Actor {
           (actor) =>
             actor !== undefined &&
             actor.id !== null &&
-            actor.data.type === pc &&
+            isPCActor(actor) &&
             !currentIds.includes(actor.id),
         ) as Actor[]
     ).map((actor) => actor.id) as string[];

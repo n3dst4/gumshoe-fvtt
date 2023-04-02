@@ -9,10 +9,10 @@ import { assertGame, confirmADoodleDo } from "../../functions";
 import { ImagePickle } from "../ImagePickle";
 import { absoluteCover } from "../absoluteCover";
 import { MwType } from "../../types";
-import { assertMwItemDataSource } from "../../typeAssertions";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { assertMwItem } from "../../v10Types";
 
 type MwItemSheetProps = {
   item: InvestigatorItem;

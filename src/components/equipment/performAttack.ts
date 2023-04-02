@@ -2,10 +2,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import * as constants from "../../constants";
 import { assertGame } from "../../functions";
 import { settings } from "../../settings";
-import {
-  isGeneralAbilityDataSource,
-  isNPCDataSource,
-} from "../../typeAssertions";
+import { isGeneralAbilityItem, isNPCActor } from "../../v10Types";
 
 type PerformAttackArgs1 = {
   spend: number;
@@ -52,7 +49,7 @@ export const performAttack =
       settings.useNpcCombatBonuses.get() &&
       ability?.isOwned &&
       ability.parent &&
-      isNPCDataSource(ability.parent.data) &&
+      isNPCActor(ability.parent) &&
       isGeneralAbilityItem(ability);
 
     if (useNpcBonuses) {

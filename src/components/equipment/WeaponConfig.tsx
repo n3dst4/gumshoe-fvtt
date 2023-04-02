@@ -8,9 +8,9 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { WeaponRange } from "./WeaponRangeConfig";
 import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
-import { assertWeaponDataSource } from "../../typeAssertions";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { settings } from "../../settings";
+import { assertWeaponItem } from "../../v10Types";
 
 type WeaponConfigProps = {
   weapon: InvestigatorItem;

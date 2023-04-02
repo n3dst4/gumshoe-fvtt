@@ -1,14 +1,11 @@
 import {
   generalAbility,
+  investigativeAbility,
   generalAbilityIcon,
   investigativeAbilityIcon,
 } from "../constants";
 import { isNullOrEmptyString } from "../functions";
 import { escape } from "html-escaper";
-import {
-  isAbilityDataSource,
-  isGeneralAbilityDataSource,
-} from "../typeAssertions";
 import { getDefaultGeneralAbilityCategory, settings } from "../settings";
 import { niceBlackAgentsPreset } from "../presets";
 
@@ -47,16 +44,20 @@ export const setTrackersForPreAlpha4Updates = (data: any, updateData: any) => {
 };
 
 export const setIconForAbilities = (data: any, updateData: any) => {
+  // XXXV10 what actually *is* data?
   if (
-    isAbilityDataSource(data) &&
-    (isNullOrEmptyString(data.img) || data.img === "icons/svg/mystery-man.svg")
+    data.type === generalAbility ||
+    (data.type === investigativeAbility &&
+      (isNullOrEmptyString(data.img) ||
+        data.img === "icons/svg/mystery-man.svg"))
   ) {
     if (!updateData.data) {
       updateData.data = {};
     }
-    updateData.img = isGeneralAbilityDataSource(data ?? "")
-      ? generalAbilityIcon
-      : investigativeAbilityIcon;
+    updateData.img =
+      data.type === generalAbility
+        ? generalAbilityIcon
+        : investigativeAbilityIcon;
   }
   return updateData;
 };
