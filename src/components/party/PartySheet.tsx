@@ -47,7 +47,7 @@ export const PartySheet: React.FC<{
       userId: string, // probably?
     ) => {
       assertPartyDataSource(party.data);
-      const actorIds = party.data.data.actorIds.filter(
+      const actorIds = party.system.actorIds.filter(
         (id) => id !== deletedActor.id,
       );
       party.update({ actorIds });
@@ -63,7 +63,7 @@ export const PartySheet: React.FC<{
       if (
         isAbilityDataSource(item.data) &&
         item.isOwned &&
-        party.data.data.actorIds.includes(item.actor?.id ?? "")
+        party.system.actorIds.includes(item.actor?.id ?? "")
       ) {
         setAbilities(await getSystemAbilities());
       }
@@ -137,7 +137,7 @@ export const PartySheet: React.FC<{
         flexDirection: "column",
       }}
     >
-      {party.data.data.actorIds.length === 0 && (
+      {party.system.actorIds.length === 0 && (
         <div
           style={{
             position: "absolute",

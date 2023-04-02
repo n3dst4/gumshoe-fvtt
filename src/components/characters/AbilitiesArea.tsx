@@ -27,23 +27,23 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
   const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
   const generalAbilities: { [category: string]: InvestigatorItem[] } = {};
 
-  const hideZeroRated = actor.data.data.hideZeroRated;
+  const hideZeroRated = actor.system.hideZeroRated;
 
   for (const item of actor.items.values()) {
     if (!isAbilityDataSource(item.data)) {
       continue;
     }
-    if (hideZeroRated && item.data.data.rating === 0) {
+    if (hideZeroRated && item.system.rating === 0) {
       continue;
     }
     if (item.data.type === investigativeAbility) {
-      const cat = item.data.data.category || "Uncategorised";
+      const cat = item.system.category || "Uncategorised";
       if (investigativeAbilities[cat] === undefined) {
         investigativeAbilities[cat] = [];
       }
       investigativeAbilities[cat].push(item);
     } else if (item.type === generalAbility) {
-      const cat = item.data.data.category || "Uncategorised";
+      const cat = item.system.category || "Uncategorised";
       if (generalAbilities[cat] === undefined) {
         generalAbilities[cat] = [];
       }

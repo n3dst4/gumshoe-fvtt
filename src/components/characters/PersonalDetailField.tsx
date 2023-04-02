@@ -12,7 +12,7 @@ export const PersonalDetailField: React.FC<{
 }> = ({ actor, name, slotIndex }) => {
   const personalDetailItems = actor.getPersonalDetails().filter((item) => {
     assertPersonalDetailDataSource(item.data);
-    return item.data.data.slotIndex === slotIndex;
+    return item.system.slotIndex === slotIndex;
   });
 
   return (

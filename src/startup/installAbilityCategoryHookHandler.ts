@@ -24,7 +24,7 @@ export const installAbilityCategoryHookHandler = () => {
       if (isAbilityDataSource(item.data)) {
         const isGeneralAbility = isGeneralAbilityDataSource(item.data);
         // set category
-        if (isNullOrEmptyString(item.data.data.category)) {
+        if (isNullOrEmptyString(item.system.category)) {
           const category = isGeneralAbility
             ? getDefaultGeneralAbilityCategory()
             : getDefaultInvestigativeAbilityCategory();

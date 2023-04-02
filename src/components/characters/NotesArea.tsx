@@ -38,9 +38,9 @@ export const NotesArea: React.FC<NotesAreaProps> = ({ actor }) => {
               title={name}
               index={i}
               allowChangeFormat={false}
-              format={actor.data.data.longNotesFormat}
-              html={actor.data.data.longNotes[i]?.html ?? ""}
-              source={actor.data.data.longNotes[i]?.source ?? ""}
+              format={actor.system.longNotesFormat}
+              html={actor.system.longNotes[i]?.html ?? ""}
+              source={actor.system.longNotes[i]?.source ?? ""}
               onSave={updateLongNote}
               h2
             />

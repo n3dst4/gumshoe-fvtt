@@ -127,7 +127,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
         </GridField>
         <GridField label="MwType">
           <select
-            value={item.data.data.mwType}
+            value={item.system.mwType}
             onChange={onChangeType}
             css={{
               width: "100%",
@@ -146,9 +146,9 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
         </GridField>
         <NotesEditorWithControls
           allowChangeFormat
-          format={item.data.data.notes.format}
-          html={item.data.data.notes.html}
-          source={item.data.data.notes.source}
+          format={item.system.notes.format}
+          html={item.system.notes.html}
+          source={item.system.notes.source}
           onSave={item.setNotes}
           css={{
             height: "100%",
@@ -170,7 +170,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
             }}
           />
         </GridFieldStacked> */}
-        {item.data.data.mwType === "enchantedItem" && (
+        {item.system.mwType === "enchantedItem" && (
           <GridField label="Charges">
             <AsyncNumberInput
               onChange={item.setCharges}
@@ -179,7 +179,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
             />
           </GridField>
         )}
-        {item.data.data.mwType === "missileWeapon" && (
+        {item.system.mwType === "missileWeapon" && (
           <GridFieldStacked label="Ranges">
             <div
               css={{

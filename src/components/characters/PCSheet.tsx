@@ -14,7 +14,7 @@ import { WeaponsArea } from "./Weapons/WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
-import { assertPCDataSource, isPCDataSource } from "../../typeAssertions";
+import { assertPCDataSource } from "../../typeAssertions";
 import { ImagePickle } from "../ImagePickle";
 import { assertGame } from "../../functions";
 import { AbilitiesAreaMW } from "./MoribundWorld/AbilitiesAreaMW";
@@ -26,6 +26,7 @@ import { StatField } from "./StatField";
 import { PersonalDetailField } from "./PersonalDetailField";
 import { occupationSlotIndex } from "../../constants";
 import { IndexedAsyncTextInput } from "../inputs/IndexedAsyncTextInput";
+import { isPCActor } from "../../v10Types";
 
 export const PCSheet: React.FC<{
   actor: InvestigatorActor;
@@ -83,7 +84,7 @@ export const PCSheet: React.FC<{
       >
         <LogoEditable
           mainText={actor.data.name}
-          subText={actor.data.data.occupation}
+          subText={actor.system.occupation}
           defaultSubText={settings.genericOccupation.get()}
           onChangeMainText={actor.setName}
           onChangeSubText={actor.setOccupation}
@@ -120,11 +121,7 @@ export const PCSheet: React.FC<{
             type === "text" ? (
               <GridField noTranslate key={`${name}--${i}`} label={name}>
                 <IndexedAsyncTextInput
-                  value={
-                    isPCDataSource(actor.data)
-                      ? actor.data.data.shortNotes[i]
-                      : ""
-                  }
+                  value={isPCActor(actor) ? actor.system.shortNotes[i] : ""}
                   onChange={updateShortNote}
                   index={i}
                 />
@@ -143,9 +140,7 @@ export const PCSheet: React.FC<{
               <GridField noTranslate key={`${name}--${i}`} label={name}>
                 <IndexedAsyncTextInput
                   value={
-                    isPCDataSource(actor.data)
-                      ? actor.data.data.hiddenShortNotes[i]
-                      : ""
+                    isPCActor(actor) ? actor.system.hiddenShortNotes[i] : ""
                   }
                   onChange={updateMwHiddenShortNote}
                   index={i}

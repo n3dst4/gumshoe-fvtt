@@ -57,9 +57,9 @@ export const performAttack =
 
     if (useNpcBonuses) {
       hitTerm += " + @npcCombatBonus";
-      hitParams.npcCombatBonus = ability.parent.data.data.combatBonus;
+      hitParams.npcCombatBonus = ability.parent.system.combatBonus;
       hitTerm += " + @abilityCombatBonus";
-      hitParams.abilityCombatBonus = ability.data.data.combatBonus;
+      hitParams.abilityCombatBonus = ability.system.combatBonus;
     }
     const hitRoll = new Roll(hitTerm, hitParams);
 
@@ -70,9 +70,9 @@ export const performAttack =
     const damageParams: { [name: string]: number } = { damage, rangeDamage };
     if (useNpcBonuses) {
       damageTerm += " + @npcDamageBonus";
-      damageParams.npcDamageBonus = ability.parent.data.data.damageBonus;
+      damageParams.npcDamageBonus = ability.parent.system.damageBonus;
       damageTerm += " + @abilityDamageBonus";
-      damageParams.abilityDamageBonus = ability.data.data.damageBonus;
+      damageParams.abilityDamageBonus = ability.system.damageBonus;
     }
 
     const damageRoll = new Roll(damageTerm, damageParams);
@@ -85,7 +85,7 @@ export const performAttack =
     actualRoll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: weapon.actor }),
       content: `
-    <div 
+    <div
       class="${constants.abilityChatMessageClassName}"
       ${constants.htmlDataItemId}="${ability?.data._id}"
       ${constants.htmlDataActorId}="${weapon.actor?.data._id}"
@@ -93,7 +93,7 @@ export const performAttack =
       ${constants.htmlDataRange}="${rangeName}"
       ${constants.htmlDataWeaponId}="${weapon.data._id}"
       ${constants.htmlDataName}="${weapon.data.name}"
-      ${constants.htmlDataImageUrl}="${weapon.data.img}"  
+      ${constants.htmlDataImageUrl}="${weapon.data.img}"
     />
   `,
     });

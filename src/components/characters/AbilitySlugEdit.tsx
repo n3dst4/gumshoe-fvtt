@@ -33,18 +33,18 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
     [ability],
   );
 
-  // const [occupational, setOccupational] = useState(ability.data.data.occupational);
+  // const [occupational, setOccupational] = useState(ability.system.occupational);
   // useEffect(() => {
   //   assertAbilityDataSource(ability.data);
-  //   setOccupational(ability.data.data.occupational);
-  // }, [ability.data, ability.data.data.occupational]);
+  //   setOccupational(ability.system.occupational);
+  // }, [ability.data, ability.system.occupational]);
 
   return (
     <Fragment key={ability.id}>
       {showOcc && (
         <div css={{ gridColumn: "isocc", justifySelf: "center" }}>
           <AsyncCheckbox
-            checked={ability.data.data.occupational}
+            checked={ability.system.occupational}
             onChange={ability.setOccupational}
           />
         </div>
@@ -63,13 +63,13 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
       <div css={{ gridColumn: "rating", justifySelf: "center" }}>
         <AsyncNumberInput
           min={0}
-          value={ability.data.data.rating}
+          value={ability.system.rating}
           onChange={updateRating}
           smallButtons
         />
       </div>
       <AbilityBadges ability={ability} css={{ gridColumn: "1/-1" }} />
-      {ability.getHasSpecialities() && ability.data.data.rating > 0 && (
+      {ability.getHasSpecialities() && ability.system.rating > 0 && (
         <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
           <SpecialityList ability={ability} />
         </div>

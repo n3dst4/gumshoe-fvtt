@@ -55,7 +55,7 @@ export function installPersonalDetailHookHandler() {
       const itemsAlreadyInSlot = item.actor?.items.filter(
         (i) =>
           i.data.type === personalDetail &&
-          i.data.data.slotIndex === createData.system.slotIndex,
+          i.system.slotIndex === createData.system.slotIndex,
       );
       const existingCount = itemsAlreadyInSlot?.length ?? 0;
       if (existingCount > 0) {

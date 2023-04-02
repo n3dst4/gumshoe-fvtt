@@ -44,7 +44,7 @@ export class InvestigatorCombat extends Combat {
       const actor = combatant.actor;
       const max =
         actor !== null && isActiveCharacterDataSource(actor.data)
-          ? actor.data.data.initiativePassingTurns
+          ? actor.system.initiativePassingTurns
           : 1;
       combatant.passingTurnsRemaining = max;
     });

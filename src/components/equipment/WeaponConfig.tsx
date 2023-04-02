@@ -50,7 +50,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
       </GridField>
       <GridField label="Ability">
         <select
-          value={weapon.data.data.ability}
+          value={weapon.system.ability}
           onChange={(e) => weapon.setAbility(e.currentTarget.value)}
           css={{
             lineHeight: "inherit",
@@ -102,7 +102,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
           onChange={weapon.setUsesAmmo}
         />
       </GridField>
-      {weapon.data.data.usesAmmo && (
+      {weapon.system.usesAmmo && (
         <Fragment>
           <GridField label="Ammo capacity">
             <AsyncNumberInput

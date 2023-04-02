@@ -19,7 +19,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({ actor }) => {
   const uncategorizedItems = items.filter(
     (item) =>
       isEquipmentDataSource(item.data) &&
-      Object.keys(categories).indexOf(item.data.data.category) === -1,
+      Object.keys(categories).indexOf(item.system.category) === -1,
   );
 
   return (
@@ -32,7 +32,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({ actor }) => {
             items={items.filter(
               (item) =>
                 isEquipmentDataSource(item.data) &&
-                item.data.data.category === categoryId,
+                item.system.category === categoryId,
             )}
             name={category.name}
             key={categoryId}

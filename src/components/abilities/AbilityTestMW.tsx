@@ -90,14 +90,14 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
         }}
       >
         <button
-          disabled={ability.data.data.pool < mwNegateCost}
+          disabled={ability.system.pool < mwNegateCost}
           css={{ flex: "1" }}
           onClick={onNegateIllustrious}
         >
           <Translate>Negate</Translate>
         </button>
         <button
-          disabled={ability.data.data.pool < mwWallopCost}
+          disabled={ability.system.pool < mwWallopCost}
           css={{ flex: "1" }}
           onClick={onWallop}
         >

@@ -38,10 +38,9 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
     });
   }, [equipment]);
 
-  const allFields = equipment.data.data.fields;
+  const allFields = equipment.system.fields;
   const knownFieldIds = Object.keys(
-    settings.equipmentCategories.get()[equipment.data.data.category]?.fields ??
-      {},
+    settings.equipmentCategories.get()[equipment.system.category]?.fields ?? {},
   );
   const unknownFields = Object.keys(allFields).filter(
     (fieldId) => !knownFieldIds.includes(fieldId),
@@ -50,7 +49,7 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
   return (
     <InputGrid>
       <GridField label="Category Id">
-        {equipment.data.data.category ? (
+        {equipment.system.category ? (
           <>
             <code
               css={{
@@ -58,7 +57,7 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
                 margin: "0.3em 1em 0.3em 0",
               }}
             >
-              {equipment.data.data.category}
+              {equipment.system.category}
             </code>
             <a
               css={{
@@ -66,9 +65,9 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
               }}
               onClick={() => {
                 assertEquipmentDataSource(equipment.data);
-                navigator.clipboard.writeText(equipment.data.data.category);
+                navigator.clipboard.writeText(equipment.system.category);
                 ui.notifications?.info(
-                  `Copied category ID "${equipment.data.data.category}" to clipboard`,
+                  `Copied category ID "${equipment.system.category}" to clipboard`,
                 );
               }}
             >

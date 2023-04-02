@@ -19,7 +19,7 @@ export const StatField: React.FC<StatFieldProps> = ({
     (newVal: number) => {
       assertActiveCharacterDataSource(actor.data);
       actor.update({
-        data: { stats: { ...actor.data.data.stats, [id]: newVal } },
+        data: { stats: { ...actor.system.stats, [id]: newVal } },
       });
     },
     [actor, id],
@@ -31,7 +31,7 @@ export const StatField: React.FC<StatFieldProps> = ({
       <AsyncNumberInput
         min={stat.min ?? 0}
         max={stat.max}
-        value={actor.data.data.stats[id] ?? stat.default}
+        value={actor.system.stats[id] ?? stat.default}
         onChange={onChange}
       />
     </Fragment>

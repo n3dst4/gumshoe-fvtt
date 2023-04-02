@@ -39,7 +39,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const [bonusPool, setBonusPool] = useState(0);
   const theme = useContext(ThemeContext);
 
-  const abilityName = weapon.data.data.ability;
+  const abilityName = weapon.system.ability;
 
   const ability: InvestigatorItem | undefined = weapon.actor?.items.find(
     (item: InvestigatorItem) => {
@@ -48,7 +48,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   );
 
   const pool =
-    ability && isAbilityDataSource(ability.data) ? ability.data.data.pool : 0;
+    ability && isAbilityDataSource(ability.data) ? ability.system.pool : 0;
 
   const spendOptions = defaultSpendOptions.map((option) => ({
     ...option,
@@ -70,7 +70,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     assertWeaponDataSource(weapon.data);
     basePerformAttack({
       rangeName: "point blank",
-      rangeDamage: weapon.data.data.pointBlankDamage,
+      rangeDamage: weapon.system.pointBlankDamage,
     });
   }, [basePerformAttack, weapon.data]);
 
@@ -78,7 +78,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     assertWeaponDataSource(weapon.data);
     basePerformAttack({
       rangeName: "close range",
-      rangeDamage: weapon.data.data.closeRangeDamage,
+      rangeDamage: weapon.system.closeRangeDamage,
     });
   }, [basePerformAttack, weapon.data]);
 
@@ -86,7 +86,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     assertWeaponDataSource(weapon.data);
     basePerformAttack({
       rangeName: "near range",
-      rangeDamage: weapon.data.data.nearRangeDamage,
+      rangeDamage: weapon.system.nearRangeDamage,
     });
   }, [basePerformAttack, weapon.data]);
 
@@ -94,7 +94,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     assertWeaponDataSource(weapon.data);
     basePerformAttack({
       rangeName: "long range",
-      rangeDamage: weapon.data.data.longRangeDamage,
+      rangeDamage: weapon.system.longRangeDamage,
     });
   }, [basePerformAttack, weapon.data]);
 
@@ -186,28 +186,28 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
             )}
             <button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={ammoFail || !weapon.data.data.isPointBlank}
+              disabled={ammoFail || !weapon.system.isPointBlank}
               onClick={onPointBlank}
             >
               <Translate>Point Blank</Translate>
             </button>
             <button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={ammoFail || !weapon.data.data.isCloseRange}
+              disabled={ammoFail || !weapon.system.isCloseRange}
               onClick={onCloseRange}
             >
               <Translate>Close Range</Translate>
             </button>
             <button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={ammoFail || !weapon.data.data.isNearRange}
+              disabled={ammoFail || !weapon.system.isNearRange}
               onClick={onNearRange}
             >
               <Translate>Near Range</Translate>
             </button>
             <button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={ammoFail || !weapon.data.data.isLongRange}
+              disabled={ammoFail || !weapon.system.isLongRange}
               onClick={onLongRange}
             >
               <Translate>Long Range</Translate>
@@ -218,10 +218,10 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
       <InputGrid
         css={{
           flex: 1,
-          gridTemplateRows: `${weapon.data.data.usesAmmo ? "auto " : ""}1fr`,
+          gridTemplateRows: `${weapon.system.usesAmmo ? "auto " : ""}1fr`,
         }}
       >
-        {weapon.data.data.usesAmmo && (
+        {weapon.system.usesAmmo && (
           <GridField label="Ammo">
             <div
               css={{
@@ -252,9 +252,9 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
 
         <NotesEditorWithControls
           allowChangeFormat
-          format={weapon.data.data.notes.format}
-          html={weapon.data.data.notes.html}
-          source={weapon.data.data.notes.source}
+          format={weapon.system.notes.format}
+          html={weapon.system.notes.html}
+          source={weapon.system.notes.source}
           onSave={weapon.setNotes}
           css={{
             height: "100%",
@@ -302,7 +302,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
         <GridField label="Cost">
           <AsyncNumberInput
             min={0}
-            value={weapon.data.data.cost}
+            value={weapon.system.cost}
             onChange={weapon.setCost}
           />
         </GridField>

@@ -48,7 +48,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
 
         <GridField label="Notes Format">
           <select
-            value={actor.data.data.longNotesFormat}
+            value={actor.system.longNotesFormat}
             onChange={(e) => {
               actor.setLongNotesFormat(e.currentTarget.value as NoteFormat);
             }}
@@ -66,7 +66,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
         {settings.useTurnPassingInitiative.get() && (
           <GridField label="Number of turns">
             <AsyncNumberInput
-              value={actor.data.data.initiativePassingTurns}
+              value={actor.system.initiativePassingTurns}
               onChange={actor.setPassingTurns}
             />
           </GridField>
