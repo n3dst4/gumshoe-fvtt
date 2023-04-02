@@ -64,7 +64,7 @@ export enum MwInjuryStatus {
 
 // XXX I think there's a load of things in here we don't need, but let's revisit
 // once we're on foundry-vtt-types
-interface PCDataSourceData {
+export interface PCDataSourceData {
   buildPoints: number;
   occupation: string;
   longNotes: BaseNote[];
@@ -87,7 +87,7 @@ interface PCDataSourceData {
   initiativePassingTurns: number;
 }
 
-interface NPCDataSourceData {
+export interface NPCDataSourceData {
   notes: NoteWithFormat;
   initiativeAbility: string;
   hideZeroRated: boolean;
@@ -115,7 +115,7 @@ interface NPCDataSourceData {
   initiativePassingTurns: number;
 }
 
-interface PartyDataSourceData {
+export interface PartyDataSourceData {
   // party stuff
   abilityNames: string[];
   actorIds: string[];
@@ -142,20 +142,20 @@ export type ActiveCharacterDataSource = PCDataSource | NPCDataSource;
 // #############################################################################
 
 /** Stuff that is in common between Equipment and Weapons */
-interface BaseEquipmentDataSourceData {
+export interface BaseEquipmentDataSourceData {
   notes: NoteWithFormat;
 }
 
 /**
  * data.data for equipment
  */
-interface EquipmentDataSourceData extends BaseEquipmentDataSourceData {
+export interface EquipmentDataSourceData extends BaseEquipmentDataSourceData {
   category: string;
   fields: Record<string, string | number | boolean>;
 }
 
 /** data.data for weapons */
-interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
+export interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
   ability: string;
   damage: number;
   pointBlankDamage: number;
