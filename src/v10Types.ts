@@ -38,14 +38,19 @@ export type PersonalDetailItem =
 
 export type AbilityItem = GeneralAbilityItem | InvestigativeAbilityItem;
 
-export function isGeneralAbilityItem(
-  item: InvestigatorItem,
-): item is GeneralAbilityItem {
+export type AnyItem =
+  | AbilityItem
+  | WeaponItem
+  | EquipmentItem
+  | MwItem
+  | PersonalDetailItem;
+
+export function isGeneralAbilityItem(item: Item): item is GeneralAbilityItem {
   return item.type === "generalAbility";
 }
 
 export function assertGeneralAbilityItem(
-  item: InvestigatorItem,
+  item: Item,
 ): asserts item is GeneralAbilityItem {
   if (!isGeneralAbilityItem(item)) {
     throw new Error("not a general ability item");
@@ -53,28 +58,92 @@ export function assertGeneralAbilityItem(
 }
 
 export function isInvestigativeAbilityItem(
-  item: InvestigatorItem,
+  item: Item,
 ): item is InvestigativeAbilityItem {
   return item.type === "investigativeAbility";
 }
 
 export function assertInvestigativeAbilityItem(
-  item: InvestigatorItem,
+  item: Item,
 ): asserts item is InvestigativeAbilityItem {
   if (!isInvestigativeAbilityItem(item)) {
     throw new Error("not an investigative ability item");
   }
 }
 
-export function isAbilityItem(item: InvestigatorItem): item is AbilityItem {
+export function isAbilityItem(item: Item): item is AbilityItem {
   return isGeneralAbilityItem(item) || isInvestigativeAbilityItem(item);
 }
 
-export function assertAbilityItem(
-  item: InvestigatorItem,
-): asserts item is AbilityItem {
+export function assertAbilityItem(item: Item): asserts item is AbilityItem {
   if (!isAbilityItem(item)) {
     throw new Error("not an ability item");
+  }
+}
+
+export function isEquipmentItem(item: Item): item is EquipmentItem {
+  return item.type === "equipment";
+}
+
+export function assertEquipmentItem(item: Item): asserts item is EquipmentItem {
+  if (!isEquipmentItem(item)) {
+    throw new Error("not an equipment item");
+  }
+}
+
+export function isEquipmentOrAbilityItem(
+  item: Item,
+): item is EquipmentItem | AbilityItem {
+  return isAbilityItem(item) || isEquipmentItem(item);
+}
+
+export function assertEquipmentOrAbilityItem(
+  item: Item,
+): asserts item is EquipmentItem | AbilityItem {
+  if (!isEquipmentOrAbilityItem(item)) {
+    throw new Error("not an equipment or ability item");
+  }
+}
+
+export function isWeaponItem(item: Item): item is WeaponItem {
+  return item.type === "weapon";
+}
+
+export function assertWeaponItem(item: Item): asserts item is WeaponItem {
+  if (!isWeaponItem(item)) {
+    throw new Error("not a weapon item");
+  }
+}
+
+export function isMwItem(item: Item): item is MwItem {
+  return item.type === "mwItem";
+}
+
+export function assertMwItem(item: Item): asserts item is MwItem {
+  if (!isMwItem(item)) {
+    throw new Error("not an mw item");
+  }
+}
+
+export function isAnyItem(item: Item): item is AnyItem {
+  return true;
+}
+
+export function assertAnyItem(item: Item): asserts item is AnyItem {
+  if (!isAnyItem(item)) {
+    throw new Error("not an item");
+  }
+}
+
+export function isPersonalDetailItem(item: Item): item is PersonalDetailItem {
+  return item.type === "personalDetail";
+}
+
+export function assertPersonalDetailItem(
+  item: Item,
+): asserts item is PersonalDetailItem {
+  if (!isPersonalDetailItem(item)) {
+    throw new Error("not a personal detail item");
   }
 }
 
@@ -90,6 +159,8 @@ export type PCACtor = InvestigatorActorSystem<PCDataSourceData>;
 export type NPCActor = InvestigatorActorSystem<NPCDataSourceData>;
 
 export type PartyActor = InvestigatorActorSystem<PartyDataSourceData>;
+
+export type ActiveCharacterActor = PCACtor | NPCActor;
 
 export function isPCActor(actor: Actor): actor is PCACtor {
   return actor.type === "pc";
@@ -118,5 +189,19 @@ export function isPartyActor(actor: Actor): actor is PartyActor {
 export function assertPartyActor(actor: Actor): asserts actor is PartyActor {
   if (!isPartyActor(actor)) {
     throw new Error("not a party actor");
+  }
+}
+
+export function isActiveCharacterActor(
+  actor: Actor,
+): actor is ActiveCharacterActor {
+  return isPCActor(actor) || isNPCActor(actor);
+}
+
+export function assertActiveCharacterActor(
+  actor: Actor,
+): asserts actor is ActiveCharacterActor {
+  if (!isActiveCharacterActor(actor)) {
+    throw new Error("not a PC or NPC actor");
   }
 }

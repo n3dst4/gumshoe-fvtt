@@ -12,7 +12,7 @@ type AbilitySlugProps = {
 };
 
 export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
-  assertAbilityDataSource(ability.data);
+  assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(
     (e: React.DragEvent<HTMLAnchorElement>) => {
@@ -51,14 +51,13 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
           />
         )}
         {ability.name} ({ability.system.pool}/{ability.system.rating})
-        {isGeneralAbilityDataSource(ability.data) &&
-          ability.system.canBeInvestigative && (
-            <i
-              css={{ fontSize: "0.8em", marginLeft: "0.5em" }}
-              className="fa fa-search"
-              title="Can be used investigatively"
-            />
-          )}
+        {isGeneralAbilityItem(ability) && ability.system.canBeInvestigative && (
+          <i
+            css={{ fontSize: "0.8em", marginLeft: "0.5em" }}
+            className="fa fa-search"
+            title="Can be used investigatively"
+          />
+        )}
         {boost && (
           <i
             css={{ fontSize: "0.8em", marginLeft: "0.5em" }}

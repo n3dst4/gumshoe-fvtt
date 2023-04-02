@@ -5,9 +5,9 @@ import { AsyncCheckbox } from "../../inputs/AsyncCheckbox";
 import { CompactNotesEditor } from "../../inputs/CompactNotesEditor";
 import { CombatAbilityDropDown } from "../../inputs/CombatAbilityDropDown";
 import { assertGame, confirmADoodleDo } from "../../../functions";
-import { assertWeaponDataSource } from "../../../typeAssertions";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { ThemeContext } from "../../../themes/ThemeContext";
+import { assertWeaponItem } from "../../../v10Types";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem;
@@ -18,7 +18,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   weapon,
   index,
 }) => {
-  assertWeaponDataSource(weapon.data);
+  assertWeaponItem(weapon);
 
   const theme = useContext(ThemeContext);
 

@@ -24,7 +24,7 @@ type AbilityMainBitsProps = {
 export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
   ability,
 }) => {
-  assertAbilityDataSource(ability.data);
+  assertAbilityItem(ability);
 
   const onClickRefresh = useCallback(() => {
     ability.refreshPool();

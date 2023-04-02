@@ -16,7 +16,7 @@ interface EquipmentConfigProps {
 export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
   equipment,
 }) => {
-  assertEquipmentDataSource(equipment.data);
+  assertEquipmentItem(equipment);
 
   const onClickDelete = useCallback(() => {
     assertGame(game);
@@ -64,7 +64,7 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
                 gridArea: "cog",
               }}
               onClick={() => {
-                assertEquipmentDataSource(equipment.data);
+                assertEquipmentItem(equipment);
                 navigator.clipboard.writeText(equipment.system.category);
                 ui.notifications?.info(
                   `Copied category ID "${equipment.system.category}" to clipboard`,

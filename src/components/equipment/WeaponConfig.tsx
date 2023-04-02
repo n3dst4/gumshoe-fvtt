@@ -18,7 +18,7 @@ type WeaponConfigProps = {
 
 export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
   assertGame(game);
-  assertWeaponDataSource(weapon.data);
+  assertWeaponItem(weapon);
   const name = useAsyncUpdate(weapon.name || "", weapon.setName);
 
   const onClickDelete = useCallback(() => {

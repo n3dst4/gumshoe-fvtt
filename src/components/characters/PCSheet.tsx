@@ -14,7 +14,6 @@ import { WeaponsArea } from "./Weapons/WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
-import { assertPCDataSource } from "../../typeAssertions";
 import { ImagePickle } from "../ImagePickle";
 import { assertGame } from "../../functions";
 import { AbilitiesAreaMW } from "./MoribundWorld/AbilitiesAreaMW";
@@ -26,14 +25,14 @@ import { StatField } from "./StatField";
 import { PersonalDetailField } from "./PersonalDetailField";
 import { occupationSlotIndex } from "../../constants";
 import { IndexedAsyncTextInput } from "../inputs/IndexedAsyncTextInput";
-import { isPCActor } from "../../v10Types";
+import { assertPCActor, isPCActor } from "../../v10Types";
 
 export const PCSheet: React.FC<{
   actor: InvestigatorActor;
   foundryApplication: ActorSheet;
 }> = ({ actor, foundryApplication }) => {
   assertGame(game);
-  assertPCDataSource(actor.data);
+  assertPCActor(actor);
 
   const updateShortNote = useCallback(
     (value: string, index: number) => {

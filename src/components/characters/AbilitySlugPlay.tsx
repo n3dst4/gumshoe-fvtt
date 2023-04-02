@@ -15,7 +15,7 @@ type AbilitySlugPlayProps = {
 export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
   ability,
 }) => {
-  assertAbilityDataSource(ability.data);
+  assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(
     (e: React.DragEvent<HTMLAnchorElement>) => {
@@ -94,21 +94,20 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
             {spend}
           </button>
         )}
-        {isGeneralAbilityDataSource(ability.data) && (
+        {isGeneralAbilityItem(ability) && (
           <button css={{ width: "4.1em" }} onClick={onTest}>
             <i className="fa fa-dice" title="Test" />+{spend}
           </button>
         )}
-        {isGeneralAbilityDataSource(ability.data) &&
-          ability.system.canBeInvestigative && (
-            <button
-              css={{ width: "2em" }}
-              disabled={spend === 0}
-              onClick={onSpend}
-            >
-              <i className="fa fa-search" title="Spend" />
-            </button>
-          )}
+        {isGeneralAbilityItem(ability) && ability.system.canBeInvestigative && (
+          <button
+            css={{ width: "2em" }}
+            disabled={spend === 0}
+            onClick={onSpend}
+          >
+            <i className="fa fa-search" title="Spend" />
+          </button>
+        )}
       </div>
       <AbilityBadges ability={ability} css={{ gridColumn: "1/-1" }} />
       {ability.system.hasSpecialities && (

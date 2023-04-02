@@ -21,7 +21,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   ability,
   application,
 }) => {
-  const isGeneral = isGeneralAbilityDataSource(ability.data);
+  const isGeneral = isGeneralAbilityItem(ability);
 
   const useMwStyleAbilities = settings.useMwStyleAbilities.get();
 

@@ -48,8 +48,8 @@ export function compareCombatantsStandard(
     if (
       aAbility !== undefined &&
       bAbility !== undefined &&
-      isGeneralAbilityDataSource(aAbility.data) &&
-      isGeneralAbilityDataSource(bAbility.data)
+      isGeneralAbilityItem(aAbility) &&
+      isGeneralAbilityItem(bAbility)
     ) {
       if (
         aAbility.system.goesFirstInCombat &&

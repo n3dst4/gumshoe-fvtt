@@ -35,14 +35,14 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({ ability }) => {
   }, [ability, spend]);
 
   const spendOptions = defaultSpendOptions.map((option) => {
-    assertAbilityDataSource(ability.data);
+    assertAbilityItem(ability);
     return {
       ...option,
       enabled: option.value <= ability.system.pool,
     };
   });
 
-  const isGeneral = isGeneralAbilityDataSource(ability.data);
+  const isGeneral = isGeneralAbilityItem(ability);
 
   return (
     <InputGrid

@@ -12,7 +12,7 @@ import {
 } from "../functions";
 import { InvestigatorActorDataSource } from "../types";
 import { settings } from "../settings";
-import { isActiveCharacterDataSource } from "../typeAssertions";
+import { isActiveCharacterActor, isPersonalDetailItem } from "../v10Types";
 
 export function installPersonalDetailHookHandler() {
   Hooks.on(
@@ -47,15 +47,16 @@ export function installPersonalDetailHookHandler() {
           game.userId === userId &&
           item.type === personalDetail &&
           item.isEmbedded &&
-          isActiveCharacterDataSource(item.actor?.data)
+          item.actor &&
+          isActiveCharacterActor(item.actor)
         )
       ) {
         return;
       }
       const itemsAlreadyInSlot = item.actor?.items.filter(
-        (i) =>
-          i.data.type === personalDetail &&
-          i.system.slotIndex === createData.system.slotIndex,
+        (item) =>
+          isPersonalDetailItem(item) &&
+          item.system.slotIndex === createData.system.slotIndex,
       );
       const existingCount = itemsAlreadyInSlot?.length ?? 0;
       if (existingCount > 0) {

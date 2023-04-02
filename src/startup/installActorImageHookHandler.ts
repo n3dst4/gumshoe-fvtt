@@ -1,10 +1,6 @@
 import { npcIcon, partyIcon, pcIcon } from "../constants";
 import { assertGame, isNullOrEmptyString } from "../functions";
-import {
-  isNPCDataSource,
-  isPartyDataSource,
-  isPCDataSource,
-} from "../typeAssertions";
+import { isNPCActor, isPartyActor, isPCActor } from "../v10Types";
 
 export const installActorImageHookHandler = () => {
   Hooks.on(
@@ -24,11 +20,11 @@ export const installActorImageHookHandler = () => {
         actor.data.img === "icons/svg/mystery-man.svg"
       ) {
         actor.data.update({
-          img: isPCDataSource(actor.data)
+          img: isPCActor(actor)
             ? pcIcon
-            : isNPCDataSource(actor.data)
+            : isNPCActor(actor)
             ? npcIcon
-            : isPartyDataSource(actor.data)
+            : isPartyActor(actor)
             ? partyIcon
             : undefined,
         });

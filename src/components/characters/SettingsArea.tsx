@@ -17,7 +17,7 @@ type SettingAreaProps = {
 
 export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
   assertGame(game);
-  assertPCDataSource(actor.data);
+  assertPCActor(actor);
   const onSetTheme = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       const value = e.currentTarget.value;

@@ -19,7 +19,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
   flipLeftRight,
   showOcc: showOccProp = true,
 }) => {
-  assertActiveCharacterDataSource(actor.data);
+  assertActiveCharacterItem(actor);
   const theme = useContext(ThemeContext);
   const { investigativeAbilities, generalAbilities } = useAbilities(
     actor,

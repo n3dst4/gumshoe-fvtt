@@ -53,7 +53,7 @@ export const performAttack =
       ability?.isOwned &&
       ability.parent &&
       isNPCDataSource(ability.parent.data) &&
-      isGeneralAbilityDataSource(ability.data);
+      isGeneralAbilityItem(ability);
 
     if (useNpcBonuses) {
       hitTerm += " + @npcCombatBonus";

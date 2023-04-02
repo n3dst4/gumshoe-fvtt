@@ -15,7 +15,7 @@ const transitionTime = 400;
 export const SituationalModifiersEditor: React.FC<
   SituationalModifiersEditorProps
 > = ({ ability }: SituationalModifiersEditorProps) => {
-  assertAbilityDataSource(ability.data);
+  assertAbilityItem(ability);
 
   const transitionedSituationalModifiers = useListShowHideTransition(
     ability.system.situationalModifiers,

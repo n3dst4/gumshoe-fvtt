@@ -13,7 +13,7 @@ type AbilitySlugPlayMwProps = {
 export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({
   ability,
 }) => {
-  assertAbilityDataSource(ability.data);
+  assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(
     (e: React.DragEvent<HTMLAnchorElement>) => {
@@ -81,7 +81,7 @@ export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({
         </button>
       </div>
       <div css={{ gridColumn: "spend" }}>
-        {isGeneralAbilityDataSource(ability.data) && (
+        {isGeneralAbilityItem(ability) && (
           <button css={{ width: "4.1em" }} onClick={onTest}>
             <i className="fa fa-dice" title="Test" />+{boonLevy}
           </button>

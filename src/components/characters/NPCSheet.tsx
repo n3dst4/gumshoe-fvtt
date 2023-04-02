@@ -26,7 +26,7 @@ type NPCSheetProps = {
 };
 
 export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
-  assertNPCDataSource(actor.data);
+  assertNPCItem(actor);
 
   const theme = actor.getSheetTheme();
   const stats = settings.npcStats.get();

@@ -1,6 +1,6 @@
-import { generalAbility } from "../constants";
 import { assertGame } from "../functions";
 import { InvestigativeAbilityDataSource, RecursivePartial } from "../types";
+import { isGeneralAbilityItem } from "../v10Types";
 
 export function installResourceUpdateHookHandler() {
   /**
@@ -20,7 +20,7 @@ export function installResourceUpdateHookHandler() {
         return;
       }
 
-      if (item.data.type === generalAbility) {
+      if (isGeneralAbilityItem(item)) {
         if (
           ["Sanity", "Stability", "Health", "Magic"].includes(item.data.name)
         ) {

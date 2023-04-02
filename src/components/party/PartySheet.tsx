@@ -46,7 +46,7 @@ export const PartySheet: React.FC<{
       something: unknown, // i cannot tell what this is supposed to be
       userId: string, // probably?
     ) => {
-      assertPartyDataSource(party.data);
+      assertPartyItem(party);
       const actorIds = party.system.actorIds.filter(
         (id) => id !== deletedActor.id,
       );
@@ -59,9 +59,9 @@ export const PartySheet: React.FC<{
       options: any,
       useId: string,
     ) => {
-      assertPartyDataSource(party.data);
+      assertPartyItem(party);
       if (
-        isAbilityDataSource(item.data) &&
+        isAbilityItem(item) &&
         item.isOwned &&
         party.system.actorIds.includes(item.actor?.id ?? "")
       ) {
@@ -122,7 +122,7 @@ export const PartySheet: React.FC<{
     [party],
   );
 
-  assertPartyDataSource(party.data);
+  assertPartyItem(party);
   return (
     <CSSReset
       mode="small"

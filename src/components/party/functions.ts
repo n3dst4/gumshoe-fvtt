@@ -26,7 +26,7 @@ export const getSystemAbilities = async (): Promise<AbilityDataSource[]> => {
     );
     const content = await pack?.getDocuments();
     const tuples: AbilityDataSource[] = (content || [])
-      .filter((x) => isAbilityDataSource(x.data))
+      .filter((x) => isAbilityItem(x))
       .map((x) => x.data as AbilityDataSource);
     return tuples;
   });

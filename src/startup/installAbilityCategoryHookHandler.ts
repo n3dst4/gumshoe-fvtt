@@ -3,10 +3,7 @@ import {
   getDefaultGeneralAbilityCategory,
   getDefaultInvestigativeAbilityCategory,
 } from "../settings";
-import {
-  isAbilityDataSource,
-  isGeneralAbilityDataSource,
-} from "../typeAssertions";
+import { isAbilityItem, isGeneralAbilityItem } from "../v10Types";
 
 export const installAbilityCategoryHookHandler = () => {
   Hooks.on(
@@ -21,8 +18,8 @@ export const installAbilityCategoryHookHandler = () => {
       if (game.userId !== userId) return;
 
       // ABILITIES
-      if (isAbilityDataSource(item.data)) {
-        const isGeneralAbility = isGeneralAbilityDataSource(item.data);
+      if (isAbilityItem(item)) {
+        const isGeneralAbility = isGeneralAbilityItem(item);
         // set category
         if (isNullOrEmptyString(item.system.category)) {
           const category = isGeneralAbility

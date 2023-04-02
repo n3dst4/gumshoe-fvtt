@@ -10,7 +10,7 @@ interface PersonalDetailSlugProps {
 export const PersonalDetailSlug: React.FC<PersonalDetailSlugProps> = ({
   item,
 }) => {
-  assertPersonalDetailDataSource(item.data);
+  assertPersonalDetailItem(item);
 
   return (
     <Slug
