@@ -9,7 +9,6 @@ import { WeaponsArea } from "./Weapons/WeaponsArea";
 import { WeaponsAreaEdit } from "./Weapons/WeaponsAreaEdit";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
-import { assertNPCDataSource, isNPCDataSource } from "../../typeAssertions";
 import { ImagePickle } from "../ImagePickle";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
@@ -19,6 +18,7 @@ import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 import { settings } from "../../settings";
 import { StatField } from "./StatField";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { assertNPCActor, isNPCActor } from "../../v10Types";
 
 type NPCSheetProps = {
   actor: InvestigatorActor;

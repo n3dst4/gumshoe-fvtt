@@ -4,10 +4,7 @@ import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import {
-  assertActiveCharacterDataSource,
-  isAbilityDataSource,
-} from "../../typeAssertions";
+import { assertActiveCharacterActor, isAbilityItem } from "../../v10Types";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
 import { AbilitySlug } from "./AbilitySlug";

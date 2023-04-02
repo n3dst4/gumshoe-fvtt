@@ -7,8 +7,8 @@ import { getTranslated } from "../../functions";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { settings } from "../../settings";
 import { EquipmentField } from "./EquipmentField";
-import { assertEquipmentDataSource } from "../../typeAssertions";
 import { absoluteCover } from "../absoluteCover";
+import { assertEquipmentItem } from "../../v10Types";
 
 interface EquipmentMainProps {
   equipment: InvestigatorItem;
@@ -21,11 +21,10 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
   name,
   onChangeName,
 }) => {
-  const data = equipment.data;
-  assertEquipmentDataSource(data);
+  assertEquipmentItem(equipment);
 
   const categories = settings.equipmentCategories.get();
-  const categoryMetadata = categories[data.data.category];
+  const categoryMetadata = categories[equipment.system.category];
   const isRealCategory = categoryMetadata !== undefined;
 
   const onChangeCategory = useCallback(
@@ -42,7 +41,7 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
     [equipment],
   );
 
-  const selectedCat = isRealCategory ? data.data.category : "";
+  const selectedCat = isRealCategory ? equipment.system.category : "";
 
   const fieldsLength = Object.keys(categoryMetadata?.fields ?? {}).length + 2;
 
@@ -93,7 +92,7 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
               key={fieldId}
               fieldId={fieldId}
               fieldMetadata={fieldMetadata}
-              value={data.data.fields?.[fieldId]}
+              value={equipment.system.fields?.[fieldId]}
               equipment={equipment}
             />
           );

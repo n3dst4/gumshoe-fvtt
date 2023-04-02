@@ -1,11 +1,11 @@
 import React, { Fragment, useCallback, useContext } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { FoundryAppContext } from "../FoundryAppContext";
-import { assertAbilityDataSource } from "../../typeAssertions";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { SpecialityList } from "../abilities/SpecialityList";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AbilityBadges } from "../abilities/AbilityBadges";
+import { assertAbilityItem } from "../../v10Types";
 
 type AbilitySlugEditProps = {
   ability: InvestigatorItem;

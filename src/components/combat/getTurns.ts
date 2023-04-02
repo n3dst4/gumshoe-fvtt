@@ -1,4 +1,4 @@
-import { isActiveCharacterDataSource } from "../../typeAssertions";
+import { isActiveCharacterActor } from "../../v10Types";
 
 export interface InvestigatorTurn
   extends Omit<CombatTracker.Turn, "ressource" | "css"> {
@@ -64,7 +64,7 @@ export function getTurns(combat: Combat) {
       });
     }
 
-    const totalPassingTurns = isActiveCharacterDataSource(combatant.actor?.data)
+    const totalPassingTurns = isActiveCharacterActor(combatant.actor)
       ? combatant.actor?.system.initiativePassingTurns ?? 1
       : 1;
 
