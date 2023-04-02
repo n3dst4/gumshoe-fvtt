@@ -72,7 +72,7 @@ export class InvestigatorItem extends Item {
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       content: `
-        <div 
+        <div
           class="${constants.abilityChatMessageClassName}"
           ${constants.htmlDataItemId}="${this.data._id}"
           ${constants.htmlDataActorId}="${this.parent?.data._id}"
@@ -151,7 +151,7 @@ export class InvestigatorItem extends Item {
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       content: `
-        <div 
+        <div
           class="${constants.abilityChatMessageClassName}"
           ${constants.htmlDataItemId}="${this.data._id}"
           ${constants.htmlDataActorId}="${this.parent?.data._id}"
@@ -171,7 +171,7 @@ export class InvestigatorItem extends Item {
     const newPool = Math.max(0, this.data.data.pool - constants.mwNegateCost);
     ChatMessage.create({
       content: `
-        <div 
+        <div
           class="${constants.abilityChatMessageClassName}"
           ${constants.htmlDataItemId}="${this.data._id}"
           ${constants.htmlDataActorId}="${this.parent?.data._id}"
@@ -188,7 +188,7 @@ export class InvestigatorItem extends Item {
     const newPool = Math.max(0, this.data.data.pool - constants.mwWallopCost);
     ChatMessage.create({
       content: `
-        <div 
+        <div
           class="${constants.abilityChatMessageClassName}"
           ${constants.htmlDataItemId}="${this.data._id}"
           ${constants.htmlDataActorId}="${this.parent?.data._id}"
