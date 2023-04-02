@@ -102,9 +102,9 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
 
       <NotesEditorWithControls
         allowChangeFormat
-        format={equipment.data.data.notes.format}
-        html={equipment.data.data.notes.html}
-        source={equipment.data.data.notes.source}
+        format={equipment.system.notes.format}
+        html={equipment.system.notes.html}
+        source={equipment.system.notes.source}
         onSave={equipment.setNotes}
         css={{
           height: "100%",

@@ -18,7 +18,7 @@ export const SituationalModifiersEditor: React.FC<
   assertAbilityDataSource(ability.data);
 
   const transitionedSituationalModifiers = useListShowHideTransition(
-    ability.data.data.situationalModifiers,
+    ability.system.situationalModifiers,
     (situationalModifier) => situationalModifier.id,
     transitionTime,
   );

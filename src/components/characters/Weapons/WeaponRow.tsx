@@ -79,14 +79,14 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
   const [rangeSelected, setRangeSelected] = useState(0);
   const ammoFail = weapon.getUsesAmmo() && weapon.getAmmo() <= 0;
 
-  const abilityName = weapon.data.data.ability;
+  const abilityName = weapon.system.ability;
   const ability: InvestigatorItem | undefined = weapon.actor?.items.find(
     (item: InvestigatorItem) => {
       return item.type === generalAbility && item.name === abilityName;
     },
   );
   const pool =
-    ability && isAbilityDataSource(ability.data) ? ability.data.data.pool : 0;
+    ability && isAbilityDataSource(ability.data) ? ability.system.pool : 0;
   const [spend, setSpend] = useState(0);
   const [bonusPool, setBonusPool] = useState(0);
   const onClickInc = useCallback(() => {

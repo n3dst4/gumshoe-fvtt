@@ -20,7 +20,7 @@ export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
   assertAbilityDataSource(ability.data);
 
   const transitionedUnlocks = useListShowHideTransition(
-    ability.data.data.unlocks,
+    ability.system.unlocks,
     (unlock) => unlock.id,
     transitionTime,
   );

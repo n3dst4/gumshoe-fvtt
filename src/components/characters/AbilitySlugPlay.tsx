@@ -63,7 +63,7 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
         {ability.name}
       </a>
       <div css={{ gridColumn: "rating", justifySelf: "right" }}>
-        {ability.data.data.pool}/{ability.data.data.rating}
+        {ability.system.pool}/{ability.system.rating}
       </div>
       <div
         css={{
@@ -82,7 +82,7 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
         <button
           css={{ gridColumn: "2" }}
           onClick={onClickInc}
-          disabled={spend >= ability.data.data.pool}
+          disabled={spend >= ability.system.pool}
         >
           <i css={{ fontSize: "x-small" }} className="fa fa-plus" />
         </button>
@@ -100,7 +100,7 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
           </button>
         )}
         {isGeneralAbilityDataSource(ability.data) &&
-          ability.data.data.canBeInvestigative && (
+          ability.system.canBeInvestigative && (
             <button
               css={{ width: "2em" }}
               disabled={spend === 0}
@@ -111,9 +111,9 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
           )}
       </div>
       <AbilityBadges ability={ability} css={{ gridColumn: "1/-1" }} />
-      {ability.data.data.hasSpecialities && (
+      {ability.system.hasSpecialities && (
         <div css={{ paddingLeft: "1em", gridColumn: "1/-1" }}>
-          {(ability.data.data.specialities || []).map<JSX.Element>(
+          {(ability.system.specialities || []).map<JSX.Element>(
             (x: string, i: number) => (
               <div key={i}>{x.trim()}</div>
             ),

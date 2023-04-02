@@ -73,9 +73,9 @@ export const EquipmentItemRow: React.FC<EquipmentItemRowProps> = ({
             onClick={() => item.sheet?.render(true)}
           >
             {field.type === "checkbox" ? (
-              <CheckOrCross checked={!!item.data.data.fields?.[fieldId]} />
+              <CheckOrCross checked={!!item.system.fields?.[fieldId]} />
             ) : (
-              <span>{item.data.data.fields?.[fieldId]}</span>
+              <span>{item.system.fields?.[fieldId]}</span>
             )}
           </a>
         );

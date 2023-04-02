@@ -43,16 +43,16 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
       draggable="true"
     >
       <div>
-        {ability.data.data.occupational && (
+        {ability.system.occupational && (
           <i
             css={{ fontSize: "0.8em", marginRight: "0.5em" }}
             className="fa fa-star-of-life"
             title="This is an occupational ability"
           />
         )}
-        {ability.name} ({ability.data.data.pool}/{ability.data.data.rating})
+        {ability.name} ({ability.system.pool}/{ability.system.rating})
         {isGeneralAbilityDataSource(ability.data) &&
-          ability.data.data.canBeInvestigative && (
+          ability.system.canBeInvestigative && (
             <i
               css={{ fontSize: "0.8em", marginLeft: "0.5em" }}
               className="fa fa-search"
@@ -67,9 +67,9 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
           />
         )}
       </div>
-      {ability.data.data.hasSpecialities && (
+      {ability.system.hasSpecialities && (
         <div css={{ paddingLeft: "1em" }}>
-          {(ability.data.data.specialities || []).map<JSX.Element>(
+          {(ability.system.specialities || []).map<JSX.Element>(
             (x: string, i: number) => (
               <div key={i}>{x.trim()}</div>
             ),

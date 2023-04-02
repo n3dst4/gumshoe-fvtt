@@ -32,8 +32,8 @@ export function installResourceUpdateHookHandler() {
               data: {
                 resources: {
                   [item.data.name.toLowerCase()]: {
-                    value: item.data.data.pool,
-                    max: item.data.data.rating,
+                    value: item.system.pool,
+                    max: item.system.rating,
                   },
                 },
               },

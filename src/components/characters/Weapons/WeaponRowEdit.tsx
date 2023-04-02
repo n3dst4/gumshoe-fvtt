@@ -181,7 +181,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         }}
       >
         <CombatAbilityDropDown
-          value={weapon.data.data.ability}
+          value={weapon.system.ability}
           onChange={(e) => weapon.setAbility(e)}
           css={{ display: "block" }}
         />

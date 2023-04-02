@@ -107,14 +107,14 @@ export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
               <Translate>Combat bonus</Translate>
             </h3>
             <AsyncNumberInput
-              value={actor.data.data.combatBonus}
+              value={actor.system.combatBonus}
               onChange={actor.setCombatBonus}
             />
             <h3 css={{ gridColumn: "start / end" }}>
               <Translate>Damage bonus</Translate>
             </h3>
             <AsyncNumberInput
-              value={actor.data.data.damageBonus}
+              value={actor.system.damageBonus}
               onChange={actor.setDamageBonus}
             />
           </Fragment>
@@ -141,7 +141,7 @@ export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
               <Translate>Number of turns</Translate>
             </h4>
             <AsyncNumberInput
-              value={actor.data.data.initiativePassingTurns}
+              value={actor.system.initiativePassingTurns}
               onChange={actor.setPassingTurns}
             />
           </Fragment>

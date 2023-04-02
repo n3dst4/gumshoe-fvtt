@@ -38,7 +38,7 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({ ability }) => {
     assertAbilityDataSource(ability.data);
     return {
       ...option,
-      enabled: option.value <= ability.data.data.pool,
+      enabled: option.value <= ability.system.pool,
     };
   });
 

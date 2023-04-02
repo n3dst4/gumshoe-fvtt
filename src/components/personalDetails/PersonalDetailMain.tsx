@@ -25,7 +25,7 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
     .map((detail) => detail.name);
   const options = padLength(
     personalDetails,
-    item.data.data.slotIndex + 1,
+    item.system.slotIndex + 1,
     (index) => `Slot ${index + 1}`,
   );
   const compendiumPacks = game.packs.filter(
@@ -45,7 +45,7 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
       </GridField>
       <GridField label="Slot">
         <select
-          value={item.data.data.slotIndex}
+          value={item.system.slotIndex}
           css={{
             width: "100%",
           }}
@@ -65,7 +65,7 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
       </GridField>
       <GridField label="Compendium Pack">
         <select
-          value={item.data.data.compendiumPackId ?? ""}
+          value={item.system.compendiumPackId ?? ""}
           css={{
             width: "100%",
           }}
@@ -87,9 +87,9 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
       </GridField>
       <NotesEditorWithControls
         allowChangeFormat
-        format={item.data.data.notes.format}
-        html={item.data.data.notes.html}
-        source={item.data.data.notes.source}
+        format={item.system.notes.format}
+        html={item.system.notes.html}
+        source={item.system.notes.source}
         onSave={item.setNotes}
         css={{
           height: "100%",

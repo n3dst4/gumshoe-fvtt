@@ -22,13 +22,13 @@ export const AbilityMwExtraFields: React.FC<AbilityMwExtraFieldsProps> = ({
     >
       <GridField label="Trumps">
         <AsyncTextInput
-          value={ability.data.data.mwTrumps}
+          value={ability.system.mwTrumps}
           onChange={ability.setMwTrumps}
         />
       </GridField>
       <GridField label="Trumped by">
         <AsyncTextInput
-          value={ability.data.data.mwTrumpedBy}
+          value={ability.system.mwTrumpedBy}
           onChange={ability.setMwTrumpedBy}
         />
       </GridField>

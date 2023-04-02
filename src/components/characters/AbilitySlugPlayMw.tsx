@@ -56,7 +56,7 @@ export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({
         {ability.name}
       </a>
       <div css={{ gridColumn: "rating", justifySelf: "right" }}>
-        {ability.data.data.pool}/{ability.data.data.rating}
+        {ability.system.pool}/{ability.system.rating}
       </div>
       <div
         css={{
@@ -87,9 +87,9 @@ export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({
           </button>
         )}
       </div>
-      {ability.data.data.hasSpecialities && (
+      {ability.system.hasSpecialities && (
         <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
-          {(ability.data.data.specialities || []).map<JSX.Element>(
+          {(ability.system.specialities || []).map<JSX.Element>(
             (x: string, i: number) => (
               <div key={i}>{x.trim()}</div>
             ),

@@ -38,7 +38,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
 
   const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
     isActiveCharacterDataSource(ability?.actor?.data) &&
-      ability?.actor?.data.data.initiativeAbility,
+      ability?.actor?.system.initiativeAbility,
   );
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
       if (actor.data._id === ability?.actor?.data?._id) {
         setActorInitiativeAbility(
           isActiveCharacterDataSource(ability?.actor?.data) &&
-            ability?.actor?.data.data.initiativeAbility,
+            ability?.actor?.system.initiativeAbility,
         );
       }
     };
@@ -92,8 +92,8 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
         >
           <AsyncNumberInput
             min={0}
-            max={useMwStyleAbilities ? undefined : ability.data.data.rating}
-            value={ability.data.data.pool}
+            max={useMwStyleAbilities ? undefined : ability.system.rating}
+            value={ability.system.pool}
             onChange={ability.setPool}
             css={{
               flex: 1,
@@ -114,7 +114,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
       <GridField label="Rating">
         <AsyncNumberInput
           min={0}
-          value={ability.data.data.rating}
+          value={ability.system.rating}
           onChange={ability.setRating}
         />
       </GridField>

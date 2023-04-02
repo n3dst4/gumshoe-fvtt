@@ -33,12 +33,12 @@ export function compareCombatantsStandard(
     isActiveCharacterDataSource(a.actor?.data) &&
     isActiveCharacterDataSource(b.actor?.data)
   ) {
-    const aAbilityName = a.actor.data.data.initiativeAbility;
+    const aAbilityName = a.actor.system.initiativeAbility;
     const aAbility = a.actor.items.find(
       (item: InvestigatorItem) =>
         item.type === constants.generalAbility && item.name === aAbilityName,
     );
-    const bAbilityName = b.actor.data.data.initiativeAbility;
+    const bAbilityName = b.actor.system.initiativeAbility;
     const bAbility = b.actor.items.find(
       (item: InvestigatorItem) =>
         item.type === constants.generalAbility && item.name === bAbilityName,
@@ -52,20 +52,20 @@ export function compareCombatantsStandard(
       isGeneralAbilityDataSource(bAbility.data)
     ) {
       if (
-        aAbility.data.data.goesFirstInCombat &&
-        !bAbility.data.data.goesFirstInCombat
+        aAbility.system.goesFirstInCombat &&
+        !bAbility.system.goesFirstInCombat
       ) {
         return -1;
       } else if (
-        !aAbility.data.data.goesFirstInCombat &&
-        bAbility.data.data.goesFirstInCombat
+        !aAbility.system.goesFirstInCombat &&
+        bAbility.system.goesFirstInCombat
       ) {
         return 1;
       } else {
-        const aRating = aAbility.data.data.rating;
-        const bRating = bAbility.data.data.rating;
-        const aPool = aAbility.data.data.pool;
-        const bPool = bAbility.data.data.pool;
+        const aRating = aAbility.system.rating;
+        const bRating = bAbility.system.rating;
+        const aPool = aAbility.system.pool;
+        const bPool = bAbility.system.pool;
         if (aRating < bRating) {
           return 1;
         } else if (aRating > bRating) {
