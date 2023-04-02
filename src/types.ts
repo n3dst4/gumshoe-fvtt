@@ -135,15 +135,6 @@ export type InvestigatorActorDataSource =
 
 export type ActiveCharacterDataSource = PCDataSource | NPCDataSource;
 
-declare global {
-  interface SourceConfig {
-    Actor: InvestigatorActorDataSource;
-  }
-  interface DataConfig {
-    Actor: InvestigatorActorDataSource;
-  }
-}
-
 // #############################################################################
 // #############################################################################
 // Item stuff
@@ -321,11 +312,14 @@ export type InvestigatorItemDataSource =
 
 // now we crowbar this into the global type system using declaration merging
 declare global {
+  // v9 and previous data configs
   interface SourceConfig {
     Item: InvestigatorItemDataSource;
+    Actor: InvestigatorActorDataSource;
   }
   interface DataConfig {
     Item: InvestigatorItemDataSource;
+    Actor: InvestigatorActorDataSource;
   }
 }
 
