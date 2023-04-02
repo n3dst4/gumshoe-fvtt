@@ -1,3 +1,4 @@
+import { InvestigatorActor } from "./module/InvestigatorActor";
 import { InvestigatorItem } from "./module/InvestigatorItem";
 import {
   EquipmentDataSourceData,
@@ -16,24 +17,24 @@ import {
 // /////////////////////////////////////////////////////////////////////////////
 // ITEMS
 
-export interface GeneralAbilityItem extends InvestigatorItem {
-  system: GeneralAbilityDataSourceData;
+interface InvestigatorItemSystem<SystemData> extends InvestigatorItem {
+  system: SystemData;
 }
-export interface InvestigativeAbilityItem extends InvestigatorItem {
-  system: InvestigativeAbilityDataSourceData;
-}
-export interface WeaponItem extends InvestigatorItem {
-  system: WeaponDataSourceData;
-}
-export interface EquipmentItem extends InvestigatorItem {
-  system: EquipmentDataSourceData;
-}
-export interface MwItem extends InvestigatorItem {
-  system: MwItemDataSourceData;
-}
-export interface PersonalDetailItem extends InvestigatorItem {
-  system: PersonalDetailSourceData;
-}
+
+export type GeneralAbilityItem =
+  InvestigatorItemSystem<GeneralAbilityDataSourceData>;
+
+export type InvestigativeAbilityItem =
+  InvestigatorItemSystem<InvestigativeAbilityDataSourceData>;
+
+export type WeaponItem = InvestigatorItemSystem<WeaponDataSourceData>;
+
+export type EquipmentItem = InvestigatorItemSystem<EquipmentDataSourceData>;
+
+export type MwItem = InvestigatorItemSystem<MwItemDataSourceData>;
+
+export type PersonalDetailItem =
+  InvestigatorItemSystem<PersonalDetailSourceData>;
 
 export type AbilityItem = GeneralAbilityItem | InvestigativeAbilityItem;
 
@@ -80,17 +81,15 @@ export function assertAbilityItem(
 // /////////////////////////////////////////////////////////////////////////////
 // ACTORS
 
-export interface PCACtor extends Actor {
-  system: PCDataSourceData;
+interface InvestigatorActorSystem<SystemData> extends InvestigatorActor {
+  system: SystemData;
 }
 
-export interface NPCActor extends Actor {
-  system: NPCDataSourceData;
-}
+export type PCACtor = InvestigatorActorSystem<PCDataSourceData>;
 
-export interface PartyActor extends Actor {
-  system: PartyDataSourceData;
-}
+export type NPCActor = InvestigatorActorSystem<NPCDataSourceData>;
+
+export type PartyActor = InvestigatorActorSystem<PartyDataSourceData>;
 
 export function isPCActor(actor: Actor): actor is PCACtor {
   return actor.type === "pc";
