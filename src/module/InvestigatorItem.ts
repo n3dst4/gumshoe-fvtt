@@ -15,7 +15,18 @@ import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
 import { ThemeV1 } from "../themes/types";
 import { nanoid } from "nanoid";
-import { assertAbilityItem } from "../v10Types";
+import {
+  assertAbilityItem,
+  assertEquipmentItem,
+  assertEquipmentOrAbilityItem,
+  assertGeneralAbilityItem,
+  isEquipmentItem,
+  isEquipmentOrAbilityItem,
+  assertWeaponItem,
+  assertAnyItem,
+  assertMwItem,
+  assertPersonalDetailItem,
+} from "../v10Types";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -37,7 +48,7 @@ export class InvestigatorItem extends Item {
     const isBoosted = settings.useBoost.get() && this.getBoost();
     const boost = isBoosted ? 1 : 0;
     const situationalModifiers = this.activeSituationalModifiers.map((id) => {
-      assertAbilityDataSource(this.data);
+      assertAbilityItem(this);
       const situationalModifier = this.system.situationalModifiers.find(
         (situationalModifier) => situationalModifier?.id === id,
       );
@@ -61,7 +72,9 @@ export class InvestigatorItem extends Item {
     const roll = new Roll(rollExpression, rollValues);
     await roll.evaluate({ async: true });
     roll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      speaker: ChatMessage.getSpeaker({
+        actor: this.actor as InvestigatorActor,
+      }),
       content: `
         <div
           class="${constants.abilityChatMessageClassName}"
@@ -82,14 +95,16 @@ export class InvestigatorItem extends Item {
    * goodies
    */
   async spendAbility(spend: number) {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     if (this.actor === null) {
       return;
     }
     const roll = new Roll("@spend", { spend });
     await roll.evaluate({ async: true });
     roll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      speaker: ChatMessage.getSpeaker({
+        actor: this.actor as InvestigatorActor,
+      }),
       content: `
         <div
           class="${constants.abilityChatMessageClassName}"
@@ -116,7 +131,7 @@ export class InvestigatorItem extends Item {
     reRoll: number | null = null,
   ) {
     assertGame(game);
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     if (this.actor === null) {
       return;
     }
@@ -140,7 +155,9 @@ export class InvestigatorItem extends Item {
     }
     const newPool = Math.max(0, this.system.pool - cost);
     roll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      speaker: ChatMessage.getSpeaker({
+        actor: this.actor as InvestigatorActor,
+      }),
       content: `
         <div
           class="${constants.abilityChatMessageClassName}"
@@ -158,7 +175,7 @@ export class InvestigatorItem extends Item {
   }
 
   mWNegateIllustrious() {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     const newPool = Math.max(0, this.system.pool - constants.mwNegateCost);
     ChatMessage.create({
       content: `
@@ -175,7 +192,7 @@ export class InvestigatorItem extends Item {
   }
 
   async mWWallop() {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     const newPool = Math.max(0, this.system.pool - constants.mwWallopCost);
     ChatMessage.create({
       content: `
@@ -195,7 +212,7 @@ export class InvestigatorItem extends Item {
    * reset the pool to the rating
    */
   refreshPool() {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     this.update({
       data: {
         pool: this.system.rating ?? 0,
@@ -211,15 +228,15 @@ export class InvestigatorItem extends Item {
   // ###########################################################################
 
   getCategory = () => {
-    assertEquipmentOrAbilityDataSource(this.data);
+    assertEquipmentOrAbilityItem(this);
     return this.system.category;
   };
 
   setCategory = (category: string) => {
-    assertEquipmentOrAbilityDataSource(this.data);
+    isEquipmentOrAbilityItem(this);
     const updateData: Pick<EquipmentDataSource["data"], "category" | "fields"> =
       { category, fields: {} };
-    if (isEquipmentDataSource(this.data)) {
+    if (isEquipmentItem(this)) {
       const fields = settings.equipmentCategories.get()[category]?.fields ?? {};
       for (const field in fields) {
         updateData.fields[field] =
@@ -230,102 +247,102 @@ export class InvestigatorItem extends Item {
   };
 
   setField = (field: string, value: string | number | boolean) => {
-    assertEquipmentDataSource(this.data);
+    assertEquipmentItem(this);
     return this.update({ data: { fields: { [field]: value } } });
   };
 
   deleteField = (field: string) => {
-    assertEquipmentDataSource(this.data);
+    assertEquipmentItem(this);
     return this.update({ [`data.fields.-=${field}`]: null });
   };
 
   getMin = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.min;
   };
 
   setMin = (min: number) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({ data: { min } });
   };
 
   getMax = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.max;
   };
 
   setMax = (max: number) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({ data: { max } });
   };
 
   getOccupational = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.occupational;
   };
 
   setOccupational = (occupational: boolean) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({ data: { occupational } });
   };
 
   getCanBeInvestigative = () => {
-    assertGeneralAbilityDataSource(this.data);
+    assertGeneralAbilityItem(this);
     return this.system.canBeInvestigative;
   };
 
   setCanBeInvestigative = (canBeInvestigative: boolean) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({ data: { canBeInvestigative } });
   };
 
   getShowTracker = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.showTracker;
   };
 
   setShowTracker = (showTracker: boolean) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({ data: { showTracker } });
   };
 
   getExcludeFromGeneralRefresh = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.excludeFromGeneralRefresh;
   };
 
   setExcludeFromGeneralRefresh = (excludeFromGeneralRefresh: boolean) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({ data: { excludeFromGeneralRefresh } });
   };
 
   getRefreshesDaily = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.refreshesDaily;
   };
 
   setRefreshesDaily = (refreshesDaily: boolean) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({ data: { refreshesDaily } });
   };
 
   getGoesFirstInCombat = () => {
-    assertGeneralAbilityDataSource(this.data);
+    assertGeneralAbilityItem(this);
     return this.system.goesFirstInCombat;
   };
 
   setGoesFirstInCombat = (goesFirstInCombat: boolean) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({ data: { goesFirstInCombat } });
   };
 
   getSpecialities = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return fixLength(this.system.specialities, this.system.rating, "");
   };
 
   setSpecialities = (newSpecs: string[]) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({
       data: {
         specialities: fixLength(newSpecs, this.system.rating, ""),
@@ -334,12 +351,12 @@ export class InvestigatorItem extends Item {
   };
 
   getRating = (): number => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.rating ?? 0;
   };
 
   setRating = (newRating: number) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({
       data: {
         rating: newRating,
@@ -349,7 +366,7 @@ export class InvestigatorItem extends Item {
   };
 
   setRatingRefresh = (newRating: number) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({
       data: {
         rating: newRating,
@@ -360,12 +377,12 @@ export class InvestigatorItem extends Item {
   };
 
   getHasSpecialities = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.hasSpecialities ?? false;
   };
 
   setHasSpecialities = (hasSpecialities: boolean) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({
       data: {
         hasSpecialities,
@@ -398,7 +415,7 @@ export class InvestigatorItem extends Item {
   };
 
   getAmmoMax = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.ammo?.max || 0;
   };
 
@@ -413,12 +430,12 @@ export class InvestigatorItem extends Item {
   };
 
   getAmmo = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.ammo?.value || 0;
   };
 
   reload = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({
       data: {
         ammo: {
@@ -429,24 +446,24 @@ export class InvestigatorItem extends Item {
   };
 
   getAmmoPerShot = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.ammoPerShot ?? 1;
   };
 
   setAmmoPerShot = (ammoPerShot: number) => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({
       data: { ammoPerShot },
     });
   };
 
   getUsesAmmo = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.usesAmmo ?? false;
   };
 
   setUsesAmmo = (usesAmmo: boolean) => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({
       data: { usesAmmo },
     });
@@ -470,6 +487,7 @@ export class InvestigatorItem extends Item {
   }
 
   getNotes = () => {
+    assertAnyItem(this);
     return this.system.notes ?? "";
   };
 
@@ -478,132 +496,132 @@ export class InvestigatorItem extends Item {
   };
 
   getAbility = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.ability ?? "";
   };
 
   setAbility = (ability: string) => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({ data: { ability } });
   };
 
   getPool = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.pool ?? 0;
   };
 
   setPool = (pool: number) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({ data: { pool } });
   };
 
   getBoost = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.boost ?? 0;
   };
 
   setBoost = (boost: boolean) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({ data: { boost } });
   };
 
   getDamage = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.damage ?? 0;
   };
 
   setDamage = (damage: number) => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({ data: { damage } });
   };
 
   getPointBlankDamage = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.pointBlankDamage ?? 0;
   };
 
   setPointBlankDamage = (pointBlankDamage: number) => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({ data: { pointBlankDamage } });
   };
 
   getCloseRangeDamage = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.closeRangeDamage ?? 0;
   };
 
   setCloseRangeDamage = (closeRangeDamage: number) => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({ data: { closeRangeDamage } });
   };
 
   getNearRangeDamage = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.nearRangeDamage ?? 0;
   };
 
   setNearRangeDamage = (nearRangeDamage: number) => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({ data: { nearRangeDamage } });
   };
 
   getLongRangeDamage = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.longRangeDamage ?? 0;
   };
 
   setLongRangeDamage = (longRangeDamage: number) => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({ data: { longRangeDamage } });
   };
 
   getIsPointBlank = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.isPointBlank;
   };
 
   setIsPointBlank = (isPointBlank: boolean) => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({ data: { isPointBlank } });
   };
 
   getIsCloseRange = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.isCloseRange;
   };
 
   setIsCloseRange = (isCloseRange: boolean) => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({ data: { isCloseRange } });
   };
 
   getIsNearRange = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.isNearRange;
   };
 
   setIsNearRange = (isNearRange: boolean) => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({ data: { isNearRange } });
   };
 
   getIsLongRange = () => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.system.isLongRange;
   };
 
   setIsLongRange = (isLongRange: boolean) => {
-    assertWeaponDataSource(this.data);
+    assertWeaponItem(this);
     return this.update({ data: { isLongRange } });
   };
 
   getHideIfZeroRated = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.hideIfZeroRated;
   };
 
   setHideIfZeroRated = (hideIfZeroRated: boolean) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.update({ data: { hideIfZeroRated } });
   };
 
@@ -611,97 +629,97 @@ export class InvestigatorItem extends Item {
   // MW specific fields
 
   getMwTrumps = () => {
-    assertGeneralAbilityDataSource(this.data);
+    assertGeneralAbilityItem(this);
     return this.system.mwTrumps;
   };
 
   setMwTrumps = (mwTrumps: string) => {
-    assertGeneralAbilityDataSource(this.data);
+    assertGeneralAbilityItem(this);
     return this.update({ data: { mwTrumps } });
   };
 
   getMwTrumpedBy = () => {
-    assertGeneralAbilityDataSource(this.data);
+    assertGeneralAbilityItem(this);
     return this.system.mwTrumpedBy;
   };
 
   setMwTrumpedBy = (mwTrumpedBy: string) => {
-    assertGeneralAbilityDataSource(this.data);
+    assertGeneralAbilityItem(this);
     return this.update({ data: { mwTrumpedBy } });
   };
 
   getMwType = () => {
-    assertMwItemDataSource(this.data);
+    assertMwItem(this);
     return this.system.mwType;
   };
 
   setMwType = (mwType: MwType) => {
-    assertMwItemDataSource(this.data);
+    assertMwItem(this);
     return this.update({ data: { mwType } });
   };
 
   getCharges = () => {
-    assertMwItemDataSource(this.data);
+    assertMwItem(this);
     return this.system.charges;
   };
 
   setCharges = (charges: number) => {
-    assertMwItemDataSource(this.data);
+    assertMwItem(this);
     return this.update({ data: { charges } });
   };
 
   getRanges = () => {
-    assertMwItemDataSource(this.data);
+    assertMwItem(this);
     return this.system.ranges;
   };
 
   getRange = (range: 0 | 1 | 2 | 3) => {
-    assertMwItemDataSource(this.data);
+    assertMwItem(this);
     return this.system.ranges[range];
   };
 
   setRanges = (ranges: [number, number, number, number]) => {
-    assertMwItemDataSource(this.data);
+    assertMwItem(this);
     return this.update({ data: { ranges } });
   };
 
   setRange = (range: 0 | 1 | 2 | 3) => (value: number) => {
-    assertMwItemDataSource(this.data);
+    assertMwItem(this);
     const ranges = [...this.system.ranges] as RangeTuple;
     ranges[range] = value;
     return this.update({ data: { ranges } });
   };
 
   getMwRefreshGroup = () => {
-    assertGeneralAbilityDataSource(this.data);
+    assertGeneralAbilityItem(this);
     return this.system.mwRefreshGroup;
   };
 
   setMwRefreshGroup = (mwRefreshGroup: MwRefreshGroup) => {
-    assertGeneralAbilityDataSource(this.data);
+    assertGeneralAbilityItem(this);
     return this.update({ data: { mwRefreshGroup } });
   };
 
   getActiveUnlocks = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.unlocks.filter(
       ({ rating: targetRating, description }) => {
-        assertAbilityDataSource(this.data);
+        assertAbilityItem(this);
         return this.system.rating >= targetRating && description !== "";
       },
     );
   };
 
   getVisibleSituationalModifiers = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.system.situationalModifiers.filter(({ situation }) => {
-      assertAbilityDataSource(this.data);
+      assertAbilityItem(this);
       return situation !== "";
     });
   };
 
   toggleSituationalModifier = (id: string) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     if (this.isSituationalModifierActive(id)) {
       const index = this.activeSituationalModifiers.indexOf(id);
       if (index !== -1) {
@@ -717,12 +735,12 @@ export class InvestigatorItem extends Item {
   };
 
   isSituationalModifierActive = (id: string) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     return this.activeSituationalModifiers.includes(id);
   };
 
   setUnlockDescription = (index: number, description: string) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     const unlocks = [...this.system.unlocks];
     unlocks[index] = {
       ...unlocks[index],
@@ -732,7 +750,7 @@ export class InvestigatorItem extends Item {
   };
 
   setUnlockRating = (index: number, rating: number) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     const unlocks = [...this.system.unlocks];
     unlocks[index] = {
       ...unlocks[index],
@@ -742,14 +760,14 @@ export class InvestigatorItem extends Item {
   };
 
   deleteUnlock = (index: number) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     const unlocks = [...this.system.unlocks];
     unlocks.splice(index, 1);
     return this.update({ data: { unlocks } });
   };
 
   addUnlock = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     const unlocks: Unlock[] = [
       ...this.system.unlocks,
       {
@@ -762,7 +780,7 @@ export class InvestigatorItem extends Item {
   };
 
   setSituationalModifierSituation = (index: number, situation: string) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     const situationalModifiers = [...this.system.situationalModifiers];
     situationalModifiers[index] = {
       ...situationalModifiers[index],
@@ -772,7 +790,7 @@ export class InvestigatorItem extends Item {
   };
 
   setSituationalModifierModifier = (index: number, modifier: number) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     const situationalModifiers = [...this.system.situationalModifiers];
     situationalModifiers[index] = {
       ...situationalModifiers[index],
@@ -782,14 +800,14 @@ export class InvestigatorItem extends Item {
   };
 
   deleteSituationalModifier = (index: number) => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     const situationalModifiers = [...this.system.situationalModifiers];
     situationalModifiers.splice(index, 1);
     return this.update({ data: { situationalModifiers } });
   };
 
   addSituationalModifier = () => {
-    assertAbilityDataSource(this.data);
+    assertAbilityItem(this);
     const situationalModifiers: SituationalModifier[] = [
       ...this.system.situationalModifiers,
       {
@@ -802,17 +820,17 @@ export class InvestigatorItem extends Item {
   };
 
   setCombatBonus = async (combatBonus: number) => {
-    assertGeneralAbilityDataSource(this.data);
+    assertGeneralAbilityItem(this);
     await this.update({ data: { combatBonus } });
   };
 
   setDamageBonus = async (damageBonus: number) => {
-    assertGeneralAbilityDataSource(this.data);
+    assertGeneralAbilityItem(this);
     await this.update({ data: { damageBonus } });
   };
 
   setSlotIndex = (slotIndex: number) => {
-    assertPersonalDetailDataSource(this.data);
+    assertPersonalDetailItem(this);
     this.update({
       data: {
         slotIndex,
@@ -821,7 +839,7 @@ export class InvestigatorItem extends Item {
   };
 
   setCompendiumPack = (id: string | null) => {
-    assertPersonalDetailDataSource(this.data);
+    assertPersonalDetailItem(this);
     this.update({
       data: {
         compendiumPackId: id,

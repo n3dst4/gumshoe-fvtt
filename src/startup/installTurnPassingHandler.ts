@@ -1,7 +1,7 @@
 import { assertGame } from "../functions";
 import * as constants from "../constants";
 import { RequestTurnPassArgs } from "../types";
-import { assertActiveCharacterDataSource } from "../typeAssertions";
+import { assertActiveCharacterActor } from "../v10Types";
 
 export function installTurnPassingHandler() {
   Hooks.once("ready", () => {
@@ -21,7 +21,7 @@ export function installTurnPassingHandler() {
             combatant.passingTurnsRemaining > 0 &&
             combat.activeTurnPassingCombatant !== combatant.data._id
           ) {
-            assertActiveCharacterDataSource(actor?.data);
+            assertActiveCharacterActor(actor);
             combat.activeTurnPassingCombatant = combatant.data._id;
             combatant.passingTurnsRemaining -= 1;
           }

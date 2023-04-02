@@ -31,7 +31,7 @@ export const NotesArea: React.FC<NotesAreaProps> = ({ actor }) => {
       }}
     >
       {longNotesNames.map<JSX.Element>((name: string, i: number) => {
-        assertPCDataSource(actor.data);
+        assertPCActor(actor);
         return (
           <InputGrid key={`${name}--${i}`} css={{ flex: 1, minHeight: "12em" }}>
             <IndexedNotesEditorWithControls

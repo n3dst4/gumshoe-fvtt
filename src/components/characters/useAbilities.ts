@@ -16,7 +16,7 @@ export const useAbilities = (actor: Actor, hideZeroRated: boolean) => {
   }
 
   for (const item of actor.items.values()) {
-    if (!isAbilityDataSource(item.data)) {
+    if (!isAbilityItem(item)) {
       continue;
     }
     if (

@@ -12,7 +12,7 @@ type AbilityMwExtraFieldsProps = {
 export const AbilityMwExtraFields: React.FC<AbilityMwExtraFieldsProps> = ({
   ability,
 }) => {
-  assertGeneralAbilityDataSource(ability.data);
+  assertGeneralAbilityItem(ability);
 
   return (
     <InputGrid

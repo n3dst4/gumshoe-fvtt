@@ -20,7 +20,7 @@ type WeaponRowProps = {
 };
 
 export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
-  assertWeaponDataSource(weapon.data);
+  assertWeaponItem(weapon);
 
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(
@@ -85,8 +85,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
       return item.type === generalAbility && item.name === abilityName;
     },
   );
-  const pool =
-    ability && isAbilityDataSource(ability.data) ? ability.system.pool : 0;
+  const pool = ability && isAbilityItem(ability) ? ability.system.pool : 0;
   const [spend, setSpend] = useState(0);
   const [bonusPool, setBonusPool] = useState(0);
   const onClickInc = useCallback(() => {

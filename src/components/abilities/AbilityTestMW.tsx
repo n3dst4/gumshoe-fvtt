@@ -13,7 +13,7 @@ type AbilityTestMWProps = {
 };
 
 export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
-  assertGeneralAbilityDataSource(ability.data);
+  assertGeneralAbilityItem(ability);
   const theme = useContext(ThemeContext);
   const [difficulty, setDifficulty] = useState<MWDifficulty>(0);
   const [boonLevy, setBoonLevy] = useState(0);

@@ -21,7 +21,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
   actor,
   flipLeftRight,
 }) => {
-  assertActiveCharacterDataSource(actor.data);
+  assertActiveCharacterItem(actor);
   const theme = useContext(ThemeContext);
 
   const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
@@ -30,7 +30,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
   const hideZeroRated = actor.system.hideZeroRated;
 
   for (const item of actor.items.values()) {
-    if (!isAbilityDataSource(item.data)) {
+    if (!isAbilityItem(item)) {
       continue;
     }
     if (hideZeroRated && item.system.rating === 0) {

@@ -24,7 +24,7 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
   const theme = item.getTheme();
 
   const style: CSSObject =
-    isAbilityDataSource(item.data) || isMwItemDataSource(item.data)
+    isAbilityItem(item) || isMwItemDataSource(item.data)
       ? {
           position: "absolute",
           top: 0,
@@ -38,7 +38,7 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
 
   return (
     <CSSReset theme={theme} mode="small" css={style}>
-      {isAbilityDataSource(item.data) ? (
+      {isAbilityItem(item) ? (
         <AbilitySheet ability={item} application={application} />
       ) : item.type === equipment ? (
         <EquipmentSheet equipment={item} application={application} />

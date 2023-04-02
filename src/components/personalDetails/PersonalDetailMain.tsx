@@ -18,7 +18,7 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
   item,
 }) => {
   assertGame(game);
-  assertPersonalDetailDataSource(item.data);
+  assertPersonalDetailItem(item);
   const name = item.name;
   const personalDetails = settings.personalDetails
     .get()

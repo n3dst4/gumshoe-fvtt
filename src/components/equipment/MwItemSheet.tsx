@@ -23,7 +23,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
   item,
   application,
 }) => {
-  assertMwItemDataSource(item.data);
+  assertMwItem(item);
 
   const name = useAsyncUpdate(item.name || "", item.setName);
   const nameInput = useAsyncUpdate(item.name || "", item.setName);

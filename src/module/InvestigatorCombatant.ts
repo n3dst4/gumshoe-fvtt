@@ -1,11 +1,12 @@
 import * as constants from "../constants";
 import { InvestigatorItem } from "./InvestigatorItem";
-import {
-  assertActiveCharacterDataSource,
-  isActiveCharacterDataSource,
-} from "../typeAssertions";
 import { assertGame, isNullOrEmptyString } from "../functions";
 import { settings } from "../settings";
+import {
+  assertActiveCharacterActor,
+  isActiveCharacterActor,
+  isGeneralAbilityItem,
+} from "../v10Types";
 
 /**
  * Override base Combatant class to override the initiative formula.
@@ -21,9 +22,10 @@ export class InvestigatorCombatant extends Combatant {
   };
 
   resetPassingTurns() {
-    this.passingTurnsRemaining = isActiveCharacterDataSource(this.actor?.data)
-      ? this.actor?.system.initiativePassingTurns ?? 1
-      : 1;
+    this.passingTurnsRemaining =
+      this.actor && isActiveCharacterActor(this.actor)
+        ? this.actor?.system.initiativePassingTurns ?? 1
+        : 1;
   }
 
   addPassingTurn() {
@@ -35,7 +37,7 @@ export class InvestigatorCombatant extends Combatant {
   }
 
   static getGumshoeInitiative(actor: Actor) {
-    assertActiveCharacterDataSource(actor?.data);
+    assertActiveCharacterActor(actor);
     // get the ability name, and if not set, use the first one on the system
     // config (we had a bug where some chars were getting created without an
     // init ability name)
@@ -51,7 +53,7 @@ export class InvestigatorCombatant extends Combatant {
       (item: InvestigatorItem) =>
         item.type === constants.generalAbility && item.name === abilityName,
     );
-    if (ability && ability.data.type === constants.generalAbility) {
+    if (ability && isGeneralAbilityItem(ability)) {
       const score = ability.system.rating;
       return score;
     } else {
@@ -67,7 +69,7 @@ export class InvestigatorCombatant extends Combatant {
 
   get passingTurnsRemaining(): number {
     const maxPassingTurns =
-      this.actor && isActiveCharacterDataSource(this.actor?.data)
+      this.actor && isActiveCharacterActor(this.actor)
         ? this.actor?.system.initiativePassingTurns
         : 1;
     const tagValue = this.getFlag(constants.systemId, "passingTurnsRemaining");

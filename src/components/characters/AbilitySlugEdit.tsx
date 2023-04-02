@@ -16,7 +16,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
   ability,
   showOcc = true,
 }) => {
-  assertAbilityDataSource(ability.data);
+  assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(
     (e: React.DragEvent<HTMLAnchorElement>) => {
@@ -35,7 +35,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
 
   // const [occupational, setOccupational] = useState(ability.system.occupational);
   // useEffect(() => {
-  //   assertAbilityDataSource(ability.data);
+  //   assertAbilityItem(ability);
   //   setOccupational(ability.system.occupational);
   // }, [ability.data, ability.system.occupational]);
 

@@ -59,7 +59,7 @@ export const EquipmentItemRow: React.FC<EquipmentItemRowProps> = ({
         {item.name}
       </a>
       {Object.entries(fields).map<JSX.Element>(([fieldId, field], j) => {
-        assertEquipmentDataSource(item.data);
+        assertEquipmentItem(item);
         return (
           <a
             key={fieldId}

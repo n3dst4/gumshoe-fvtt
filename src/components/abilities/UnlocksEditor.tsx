@@ -17,7 +17,7 @@ const transitionTime = 400;
 export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
   ability,
 }: UnlocksEditorProps) => {
-  assertAbilityDataSource(ability.data);
+  assertAbilityItem(ability);
 
   const transitionedUnlocks = useListShowHideTransition(
     ability.system.unlocks,

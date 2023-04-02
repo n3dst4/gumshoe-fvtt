@@ -15,7 +15,7 @@ export const PersonalDetailSheet: React.FC<PersonalDetailSheetProps> = ({
   personalDetail,
   application,
 }) => {
-  assertPersonalDetailDataSource(personalDetail.data);
+  assertPersonalDetailItem(personalDetail);
 
   return (
     <ItemSheetFramework application={application} item={personalDetail}>

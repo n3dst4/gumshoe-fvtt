@@ -167,7 +167,7 @@ export class InvestigatorActor extends Actor {
   getAbilityByName(name: string, type?: AbilityType) {
     return this.items.find(
       (item) =>
-        (type ? item.data.type === type : isAbilityDataSource(item.data)) &&
+        (type ? item.data.type === type : isAbilityItem(item)) &&
         item.name === name,
     );
   }
@@ -185,7 +185,7 @@ export class InvestigatorActor extends Actor {
   }
 
   getAbilities() {
-    return this.items.filter((item) => isAbilityDataSource(item.data));
+    return this.items.filter((item) => isAbilityItem(item));
   }
 
   getPersonalDetails() {
@@ -206,7 +206,7 @@ export class InvestigatorActor extends Actor {
       sandestin: [],
     };
     for (const item of allItems) {
-      assertMwItemDataSource(item.data);
+      assertMwItem(item);
       items[item.system.mwType].push(item);
     }
     return items;
@@ -214,7 +214,7 @@ export class InvestigatorActor extends Actor {
 
   getTrackerAbilities() {
     return this.getAbilities().filter(
-      (item) => isAbilityDataSource(item.data) && item.system.showTracker,
+      (item) => isAbilityItem(item) && item.system.showTracker,
     );
   }
 
@@ -232,12 +232,12 @@ export class InvestigatorActor extends Actor {
   };
 
   getOccupation = () => {
-    assertPCDataSource(this.data);
+    assertPCActor(this);
     return this.system.occupation;
   };
 
   setOccupation = (occupation: string) => {
-    assertPCDataSource(this.data);
+    assertPCActor(this);
     return this.update({ data: { occupation } });
   };
 
@@ -266,38 +266,38 @@ export class InvestigatorActor extends Actor {
     this.update({ data: { sheetTheme } });
 
   getNotes = () => {
-    assertNPCDataSource(this.data);
+    assertNPCItem(this);
     return this.system.notes;
   };
 
   setNotes = (notes: NoteWithFormat) => {
-    assertNPCDataSource(this.data);
+    assertNPCItem(this);
     return this.update({ data: { notes } });
   };
 
   getLongNote = (i: number) => {
-    assertPCDataSource(this.data);
+    assertPCActor(this);
     return this.system.longNotes?.[i] ?? "";
   };
 
   getLongNotes = () => {
-    assertPCDataSource(this.data);
+    assertPCActor(this);
     return this.system.longNotes ?? [];
   };
 
   setLongNote = (i: number, note: BaseNote) => {
-    assertPCDataSource(this.data);
+    assertPCActor(this);
     const longNotes = [...(this.system.longNotes || [])];
     longNotes[i] = note;
     return this.update({ data: { longNotes } });
   };
 
   setLongNotesFormat = async (longNotesFormat: NoteFormat) => {
-    assertPCDataSource(this.data);
+    assertPCActor(this);
     const longNotesPromises = (this.system.longNotes || []).map<
       Promise<BaseNote>
     >(async (note) => {
-      assertPCDataSource(this.data);
+      assertPCActor(this);
       const { newHtml, newSource } = await convertNotes(
         this.system.longNotesFormat,
         longNotesFormat,
@@ -313,17 +313,17 @@ export class InvestigatorActor extends Actor {
   };
 
   getShortNote = (i: number) => {
-    assertPCDataSource(this.data);
+    assertPCActor(this);
     return this.system.shortNotes?.[i] ?? "";
   };
 
   getShortNotes = () => {
-    assertPCDataSource(this.data);
+    assertPCActor(this);
     return this.system.shortNotes ?? [];
   };
 
   setShortNote = (i: number, text: string) => {
-    assertPCDataSource(this.data);
+    assertPCActor(this);
     const newNotes = [...(this.system.shortNotes || [])];
     newNotes[i] = text;
     return this.update({
@@ -334,7 +334,7 @@ export class InvestigatorActor extends Actor {
   };
 
   setMwHiddenShortNote = (i: number, text: string) => {
-    assertPCDataSource(this.data);
+    assertPCActor(this);
     const newNotes = [...(this.system.hiddenShortNotes || [])];
     newNotes[i] = text;
     return this.update({
@@ -345,23 +345,23 @@ export class InvestigatorActor extends Actor {
   };
 
   getHitThreshold = () => {
-    assertActiveCharacterDataSource(this.data);
+    assertActiveCharacterItem(this);
     return this.system.hitThreshold;
   };
 
   setHitThreshold = (hitThreshold: number) => {
-    assertActiveCharacterDataSource(this.data);
+    assertActiveCharacterItem(this);
     return this.update({ data: { hitThreshold } });
   };
 
   getInitiativeAbility = () => {
-    assertActiveCharacterDataSource(this.data);
+    assertActiveCharacterItem(this);
     return this.system.initiativeAbility;
   };
 
   setInitiativeAbility = async (initiativeAbility: string) => {
     assertGame(game);
-    assertActiveCharacterDataSource(this.data);
+    assertActiveCharacterItem(this);
     await this.update({ data: { initiativeAbility } });
     const isInCombat = !!this.token?.combatant;
     if (isInCombat) {
@@ -370,41 +370,41 @@ export class InvestigatorActor extends Actor {
   };
 
   setCombatBonus = async (combatBonus: number) => {
-    assertNPCDataSource(this.data);
+    assertNPCItem(this);
     await this.update({ data: { combatBonus } });
   };
 
   setDamageBonus = async (damageBonus: number) => {
-    assertNPCDataSource(this.data);
+    assertNPCItem(this);
     await this.update({ data: { damageBonus } });
   };
 
   setPassingTurns = async (initiativePassingTurns: number) => {
-    assertActiveCharacterDataSource(this.data);
+    assertActiveCharacterItem(this);
     await this.update({ data: { initiativePassingTurns } });
   };
 
   // ###########################################################################
   // Moribund World stuff
   getMwInjuryStatus = () => {
-    assertActiveCharacterDataSource(this.data);
+    assertActiveCharacterItem(this);
     return this.system.mwInjuryStatus;
   };
 
   setMwInjuryStatus = async (mwInjuryStatus: MwInjuryStatus) => {
-    assertActiveCharacterDataSource(this.data);
+    assertActiveCharacterItem(this);
     await this.update({ data: { mwInjuryStatus } });
   };
 
   // ###########################################################################
   // For the party sheet
   getActorIds = () => {
-    assertPartyDataSource(this.data);
+    assertPartyItem(this);
     return this.system.actorIds;
   };
 
   setActorIds = (actorIds: string[]) => {
-    assertPartyDataSource(this.data);
+    assertPartyItem(this);
     return this.update({ data: { actorIds } });
   };
 

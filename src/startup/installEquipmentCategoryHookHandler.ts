@@ -1,7 +1,7 @@
 import { assertGame } from "../functions";
 import { settings } from "../settings";
-import { isEquipmentDataSource } from "../typeAssertions";
 import { EquipmentDataSource } from "../types";
+import { isEquipmentItem } from "../v10Types";
 
 export const installEquipmentCategoryHookHandler = () => {
   Hooks.on(
@@ -16,7 +16,7 @@ export const installEquipmentCategoryHookHandler = () => {
       if (game.userId !== userId) return;
 
       // set category and fields
-      if (isEquipmentDataSource(item.data)) {
+      if (isEquipmentItem(item)) {
         const equipmentCategories = settings.equipmentCategories.get();
         const categoryId =
           item.system.category || Object.keys(equipmentCategories)[0];

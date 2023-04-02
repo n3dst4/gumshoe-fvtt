@@ -34,7 +34,7 @@ const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
 });
 
 export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
-  assertWeaponDataSource(weapon.data);
+  assertWeaponItem(weapon);
   const [spend, setSpend] = useState(0);
   const [bonusPool, setBonusPool] = useState(0);
   const theme = useContext(ThemeContext);
@@ -47,8 +47,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     },
   );
 
-  const pool =
-    ability && isAbilityDataSource(ability.data) ? ability.system.pool : 0;
+  const pool = ability && isAbilityItem(ability) ? ability.system.pool : 0;
 
   const spendOptions = defaultSpendOptions.map((option) => ({
     ...option,
@@ -67,7 +66,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   }, [ability, bonusPool, spend, weapon]);
 
   const onPointBlank = useCallback(() => {
-    assertWeaponDataSource(weapon.data);
+    assertWeaponItem(weapon);
     basePerformAttack({
       rangeName: "point blank",
       rangeDamage: weapon.system.pointBlankDamage,
@@ -75,7 +74,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   }, [basePerformAttack, weapon.data]);
 
   const onCloseRange = useCallback(() => {
-    assertWeaponDataSource(weapon.data);
+    assertWeaponItem(weapon);
     basePerformAttack({
       rangeName: "close range",
       rangeDamage: weapon.system.closeRangeDamage,
@@ -83,7 +82,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   }, [basePerformAttack, weapon.data]);
 
   const onNearRange = useCallback(() => {
-    assertWeaponDataSource(weapon.data);
+    assertWeaponItem(weapon);
     basePerformAttack({
       rangeName: "near range",
       rangeDamage: weapon.system.nearRangeDamage,
@@ -91,7 +90,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   }, [basePerformAttack, weapon.data]);
 
   const onLongRange = useCallback(() => {
-    assertWeaponDataSource(weapon.data);
+    assertWeaponItem(weapon);
     basePerformAttack({
       rangeName: "long range",
       rangeDamage: weapon.system.longRangeDamage,
