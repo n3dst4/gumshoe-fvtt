@@ -10,7 +10,6 @@ import {
   getTranslated,
   isNullOrEmptyString,
 } from "../functions";
-import { InvestigatorActorDataSource } from "../types";
 import { settings } from "../settings";
 import { isActiveCharacterActor, isPersonalDetailItem } from "../v10Types";
 
@@ -19,7 +18,8 @@ export function installPersonalDetailHookHandler() {
     "preUpdateActor",
     (
       actor: Actor,
-      data: DeepPartial<InvestigatorActorDataSource>,
+      // XXXV10: DeepPartial<InvestigatorActorDataSource>
+      data: any,
       options: any,
       userId: string,
     ) => {

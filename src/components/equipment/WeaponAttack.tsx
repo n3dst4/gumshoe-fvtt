@@ -8,7 +8,6 @@ import React, {
 import { generalAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { PCDataSource } from "../../types";
 import { assertWeaponItem, isAbilityItem, isPCActor } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -104,7 +103,8 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   useEffect(() => {
     const callback = (
       actor: Actor,
-      diff: { _id: string; data: DeepPartial<PCDataSource> },
+      // XXXV10 diff: { _id: string; data: DeepPartial<PCDataSource> },
+      diff: any,
       options: unknown,
       id: string,
     ) => {

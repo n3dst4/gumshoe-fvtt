@@ -1,7 +1,7 @@
 import { assertGame, fixLength } from "../functions";
 import { InvestigatorActor } from "./InvestigatorActor";
 import {
-  EquipmentDataSource,
+  EquipmentDataSourceData,
   MWDifficulty,
   MwRefreshGroup,
   MwType,
@@ -234,8 +234,10 @@ export class InvestigatorItem extends Item {
 
   setCategory = (category: string) => {
     isEquipmentOrAbilityItem(this);
-    const updateData: Pick<EquipmentDataSource["data"], "category" | "fields"> =
-      { category, fields: {} };
+    const updateData: Pick<EquipmentDataSourceData, "category" | "fields"> = {
+      category,
+      fields: {},
+    };
     if (isEquipmentItem(this)) {
       const fields = settings.equipmentCategories.get()[category]?.fields ?? {};
       for (const field in fields) {

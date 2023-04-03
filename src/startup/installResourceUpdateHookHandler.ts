@@ -1,6 +1,6 @@
+import { generalAbility } from "../constants";
 import { assertGame } from "../functions";
-import { InvestigativeAbilityDataSource, RecursivePartial } from "../types";
-import { isGeneralAbilityItem } from "../v10Types";
+import { assertAbilityItem } from "../v10Types";
 
 export function installResourceUpdateHookHandler() {
   /**
@@ -11,16 +11,19 @@ export function installResourceUpdateHookHandler() {
     (
       item: Item,
       // this seems like a fib, but I can't see what else to type this as
-      diff: RecursivePartial<InvestigativeAbilityDataSource> & { _id: string },
+      // XXXV10: this used to be `RecursivePartial<InvestigativeAbilityDataSource> & { _id: string }`
+      // and now it's even worse
+      diff: any,
       options: Record<string, unknown>,
       userId: string,
     ) => {
       assertGame(game);
+      assertAbilityItem(item);
       if (game.userId !== userId || item.actor === undefined) {
         return;
       }
 
-      if (isGeneralAbilityItem(item)) {
+      if (item.data.type === generalAbility) {
         if (
           ["Sanity", "Stability", "Health", "Magic"].includes(item.data.name)
         ) {
