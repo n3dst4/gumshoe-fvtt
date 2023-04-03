@@ -8,7 +8,12 @@ import React, {
 import { generalAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { assertWeaponItem, isAbilityItem, isPCActor } from "../../v10Types";
+import {
+  ActorPayload,
+  assertWeaponItem,
+  isAbilityItem,
+  isPCActor,
+} from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";
@@ -103,14 +108,11 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   useEffect(() => {
     const callback = (
       actor: Actor,
-      // XXXV10 diff: { _id: string; data: DeepPartial<PCDataSource> },
-      diff: any,
+      diff: ActorPayload,
       options: unknown,
       id: string,
     ) => {
-      // XXXV10 this used to say `(actor.data._id === weaponActor?._id)` - is
-      // this correct now?
-      if (actor.data._id === weaponActor?.id) {
+      if (actor.id === weaponActor?.id) {
         setActorInitiativeAbility(
           weaponActor && isPCActor(weaponActor)
             ? weaponActor.system.initiativeAbility

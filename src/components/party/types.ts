@@ -19,7 +19,6 @@ export type ActorAbilityInfo = {
 };
 export type AbilityRowData = {
   rowType: typeof abilityRowKey;
-  // XXXV10: ?
   abilityItem: AbilityItem;
   actorInfo: {
     [actorId: string]: ActorAbilityInfo;

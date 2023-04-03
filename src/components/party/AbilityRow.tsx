@@ -3,6 +3,7 @@ import { confirmADoodleDo } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings";
+import { isAbilityItem, AbilityItem } from "../../v10Types";
 import { AbilityRowData } from "./types";
 
 type AbilityRowProps = {
@@ -62,7 +63,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
         return (
           <a
             key={actor.id}
-            onClick={(e) => {
+            onClick={async (e) => {
               e.preventDefault();
               const ability = actorInfo.abilityId
                 ? actor.items.get(actorInfo.abilityId)
@@ -70,28 +71,29 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
               if (ability) {
                 ability.sheet?.render(true);
               } else {
-                confirmADoodleDo({
+                const confirmed = await confirmADoodleDo({
                   message:
                     "{ActorName} does not have {AbilityName}. Add it now?",
                   confirmText: "Yes please!",
                   cancelText: "No thanks",
                   confirmIconClass: "fa-check",
+                  resolveFalseOnCancel: true,
                   values: {
                     ActorName: actor.name ?? "",
                     AbilityName: abilityRowData.abilityItem.name ?? "",
                   },
-                })
-                  .then(() => {
-                    return actor.createEmbeddedDocuments("Item", [
-                      abilityRowData.abilityItem.toJSON(),
-                    ]);
-                  })
-                  // XXXV10 wtf
-                  .then((newAbility: any) => {
-                    if (newAbility) {
-                      newAbility[0].sheet?.render(true);
-                    }
-                  });
+                });
+                if (!confirmed) {
+                  return;
+                }
+                const newAbility = (
+                  await actor.createEmbeddedDocuments("Item", [
+                    abilityRowData.abilityItem.toJSON(),
+                  ])
+                )[0] as AbilityItem;
+                if (isAbilityItem(newAbility as AbilityItem)) {
+                  newAbility.sheet?.render(true);
+                }
               }
             }}
             css={{
