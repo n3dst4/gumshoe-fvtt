@@ -50,7 +50,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
           left: 0,
         }}
       >
-        {abilityRowData.abilityDataSource.name}
+        {abilityRowData.abilityItem.name}
       </div>
 
       {/* Ability scores */}
@@ -78,20 +78,18 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
                   confirmIconClass: "fa-check",
                   values: {
                     ActorName: actor.name ?? "",
-                    AbilityName: abilityRowData.abilityDataSource.name,
+                    AbilityName: abilityRowData.abilityItem.name ?? "",
                   },
                 })
                   .then(() => {
-                    logger.log("OKAY");
-                    const newAbility = Item.create(
-                      abilityRowData.abilityDataSource,
-                      { parent: actor },
-                    );
-                    return newAbility;
+                    return actor.createEmbeddedDocuments("Item", [
+                      abilityRowData.abilityItem.toJSON(),
+                    ]);
                   })
-                  .then((newAbility) => {
+                  // XXXV10 wtf
+                  .then((newAbility: any) => {
                     if (newAbility) {
-                      newAbility.sheet?.render(true);
+                      newAbility[0].sheet?.render(true);
                     }
                   });
               }

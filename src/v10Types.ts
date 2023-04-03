@@ -11,30 +11,48 @@ import {
   PersonalDetailSourceData,
   WeaponDataSourceData,
 } from "./types";
+import * as constants from "./constants";
 
 // this is all junk to allow us to start using v10's `.system` property
 
 // /////////////////////////////////////////////////////////////////////////////
 // ITEMS
 
-interface InvestigatorItemSystem<SystemData> extends InvestigatorItem {
+interface InvestigatorItemSystem<Type extends string, SystemData>
+  extends InvestigatorItem {
+  type: Type;
   system: SystemData;
 }
 
-export type GeneralAbilityItem =
-  InvestigatorItemSystem<GeneralAbilityDataSourceData>;
+export type GeneralAbilityItem = InvestigatorItemSystem<
+  typeof constants.generalAbility,
+  GeneralAbilityDataSourceData
+>;
 
-export type InvestigativeAbilityItem =
-  InvestigatorItemSystem<InvestigativeAbilityDataSourceData>;
+export type InvestigativeAbilityItem = InvestigatorItemSystem<
+  typeof constants.investigativeAbility,
+  InvestigativeAbilityDataSourceData
+>;
 
-export type WeaponItem = InvestigatorItemSystem<WeaponDataSourceData>;
+export type WeaponItem = InvestigatorItemSystem<
+  typeof constants.weapon,
+  WeaponDataSourceData
+>;
 
-export type EquipmentItem = InvestigatorItemSystem<EquipmentDataSourceData>;
+export type EquipmentItem = InvestigatorItemSystem<
+  typeof constants.equipment,
+  EquipmentDataSourceData
+>;
 
-export type MwItem = InvestigatorItemSystem<MwItemDataSourceData>;
+export type MwItem = InvestigatorItemSystem<
+  typeof constants.mwItem,
+  MwItemDataSourceData
+>;
 
-export type PersonalDetailItem =
-  InvestigatorItemSystem<PersonalDetailSourceData>;
+export type PersonalDetailItem = InvestigatorItemSystem<
+  typeof constants.personalDetail,
+  PersonalDetailSourceData
+>;
 
 export type AbilityItem = GeneralAbilityItem | InvestigativeAbilityItem;
 
@@ -160,15 +178,26 @@ export function assertPersonalDetailItem(
 // /////////////////////////////////////////////////////////////////////////////
 // ACTORS
 
-interface InvestigatorActorSystem<SystemData> extends InvestigatorActor {
+interface InvestigatorActorSystem<Type extends string, SystemData>
+  extends InvestigatorActor {
+  type: Type;
   system: SystemData;
 }
 
-export type PCACtor = InvestigatorActorSystem<PCDataSourceData>;
+export type PCACtor = InvestigatorActorSystem<
+  typeof constants.pc,
+  PCDataSourceData
+>;
 
-export type NPCActor = InvestigatorActorSystem<NPCDataSourceData>;
+export type NPCActor = InvestigatorActorSystem<
+  typeof constants.npc,
+  NPCDataSourceData
+>;
 
-export type PartyActor = InvestigatorActorSystem<PartyDataSourceData>;
+export type PartyActor = InvestigatorActorSystem<
+  typeof constants.party,
+  PartyDataSourceData
+>;
 
 export type ActiveCharacterActor = PCACtor | NPCActor;
 

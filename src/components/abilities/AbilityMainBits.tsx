@@ -6,7 +6,6 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
 import { Translate } from "../Translate";
-import { ActiveCharacterDataSource } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { settings } from "../../settings";
@@ -44,7 +43,8 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
   useEffect(() => {
     const callback = (
       actor: Actor,
-      diff: { _id: string; data: DeepPartial<ActiveCharacterDataSource> },
+      // XXXV10 diff: { _id: string; data: DeepPartial<ActiveCharacterDataSource> },
+      diff: any,
       options: unknown,
       id: string,
     ) => {

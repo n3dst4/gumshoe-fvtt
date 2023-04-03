@@ -5,8 +5,7 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings";
-import { AbilityDataSource } from "../../types";
-import { assertPartyActor, isAbilityItem } from "../../v10Types";
+import { AbilityItem, assertPartyActor, isAbilityItem } from "../../v10Types";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -24,7 +23,7 @@ export const PartySheet: React.FC<{
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
     runtimeConfig.themes.tealTheme;
-  const [abilities, setAbilities] = useState<AbilityDataSource[]>([]);
+  const [abilities, setAbilities] = useState<AbilityItem[]>([]);
   const [actors, setActors] = useState<InvestigatorActor[]>([]);
   const [rowData, setRowData] = useState<RowData[]>([]);
   const actorIds = party.getActorIds();
@@ -368,7 +367,7 @@ export const PartySheet: React.FC<{
             // Actual Abilities
             return (
               <AbilityRow
-                key={data.abilityDataSource._id}
+                key={data.abilityItem.id}
                 abilityRowData={data}
                 index={i}
                 actors={actors}
