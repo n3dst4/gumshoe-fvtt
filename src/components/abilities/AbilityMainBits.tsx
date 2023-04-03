@@ -11,6 +11,8 @@ import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { settings } from "../../settings";
 import { AbilityBadges } from "./AbilityBadges";
 import {
+  ActorPayload,
+  AnyActor,
   assertAbilityItem,
   assertActiveCharacterActor,
   isActiveCharacterActor,
@@ -42,13 +44,12 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
 
   useEffect(() => {
     const callback = (
-      actor: Actor,
-      // XXXV10 diff: { _id: string; data: DeepPartial<ActiveCharacterDataSource> },
-      diff: any,
+      actor: AnyActor,
+      diff: ActorPayload,
       options: unknown,
       id: string,
     ) => {
-      if (actor.data._id === ability?.actor?.data?._id) {
+      if (actor.id === ability?.actor?.id) {
         setActorInitiativeAbility(
           isActiveCharacterActor(ability?.actor) &&
             ability?.actor?.system.initiativeAbility,

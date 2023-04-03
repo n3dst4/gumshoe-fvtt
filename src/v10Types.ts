@@ -201,6 +201,10 @@ export type PartyActor = InvestigatorActorSystem<
 
 export type ActiveCharacterActor = PCACtor | NPCActor;
 
+export type AnyActor = PCACtor | NPCActor | PartyActor;
+
+export type ActorPayload = DeepPartial<AnyActor>;
+
 export function isPCActor(actor: Actor | null): actor is PCACtor {
   return actor?.type === "pc";
 }
@@ -244,5 +248,15 @@ export function assertActiveCharacterActor(
 ): asserts actor is ActiveCharacterActor {
   if (!isActiveCharacterActor(actor)) {
     throw new Error("not a PC or NPC actor");
+  }
+}
+
+export function isAnyActor(actor: Actor | null): actor is AnyActor {
+  return true;
+}
+
+export function assertAnyActor(actor: Actor | null): asserts actor is AnyActor {
+  if (!isAnyActor(actor)) {
+    throw new Error("not an actor");
   }
 }

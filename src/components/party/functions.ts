@@ -10,7 +10,7 @@ import * as constants from "../../constants";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertGame } from "../../functions";
 import { settings } from "../../settings";
-import { AbilityItem, isAbilityItem } from "../../v10Types";
+import { AbilityItem, AnyItem, isAbilityItem } from "../../v10Types";
 
 /**
  * get a sorted list of ability tuples
@@ -24,12 +24,10 @@ export const getSystemAbilities = async (): Promise<AbilityItem[]> => {
     const pack = game.packs.find(
       (p) => p.metadata.type === "Item" && p.collection === packId,
     );
-    const content = await pack?.getDocuments();
-    const tuples: AbilityItem[] = (content || [])
-      // XXXV10 what do we actually get here?
-      .filter((x) => isAbilityItem(x as any))
-      // XXXV10: wtf
-      .map((x) => x.data as unknown as AbilityItem);
+    const content = (await pack?.getDocuments()) as AnyItem[];
+    const tuples: AbilityItem[] = content.filter((item) =>
+      isAbilityItem(item),
+    ) as AbilityItem[];
     return tuples;
   });
   const results = await Promise.all(proms);

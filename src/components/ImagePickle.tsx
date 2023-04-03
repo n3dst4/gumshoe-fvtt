@@ -30,7 +30,6 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
     setShowOverlay(false);
     const fp = new FilePicker({
       type: "image",
-      // XXXV10 added the ?? undefined
       current: subject.img ?? undefined,
       callback: (path: string) => {
         subject.update({
