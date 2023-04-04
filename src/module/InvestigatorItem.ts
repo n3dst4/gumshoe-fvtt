@@ -360,7 +360,7 @@ export class InvestigatorItem extends Item {
   setRating = (newRating: number) => {
     assertAbilityItem(this);
     return this.update({
-      data: {
+      system: {
         rating: newRating,
         specialities: fixLength(this.system.specialities, newRating, ""),
       },
@@ -514,7 +514,7 @@ export class InvestigatorItem extends Item {
 
   setPool = (pool: number) => {
     assertAbilityItem(this);
-    return this.update({ data: { pool } });
+    return this.update({ system: { pool } });
   };
 
   getBoost = () => {

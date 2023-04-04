@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityItem, isAbilityItem } from "../../v10Types";
 import { PoolCheckbox } from "./PoolCheckbox";
@@ -21,17 +21,6 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({ ability }) => {
   const max = ability?.system.rating;
   const vals = range(min, max);
 
-  const setPool = useCallback(
-    (pool: number) => {
-      ability.update({
-        data: {
-          pool,
-        },
-      });
-    },
-    [ability],
-  );
-
   return (
     <div
       style={{
@@ -51,7 +40,7 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({ ability }) => {
         <PoolCheckbox
           key={value}
           value={value}
-          onClick={setPool}
+          onClick={ability.setPool}
           selected={
             ability && isAbilityItem(ability) && value === ability.system.pool
           }
