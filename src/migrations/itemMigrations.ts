@@ -48,7 +48,6 @@ export const setTrackersForPreAlpha4Updates = (
 };
 
 export const setIconForAbilities = (item: AnyItem, updateData: any) => {
-  // XXXV10 what actually *is* data?
   if (
     (item.type === generalAbility || item.type === investigativeAbility) &&
     (isNullOrEmptyString(item.img) || item.img === "icons/svg/mystery-man.svg")
