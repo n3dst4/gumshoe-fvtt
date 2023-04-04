@@ -10,9 +10,6 @@ export function installResourceUpdateHookHandler() {
     "updateItem",
     (
       item: Item,
-      // this seems like a fib, but I can't see what else to type this as
-      // XXXV10: this used to be `RecursivePartial<InvestigativeAbilityDataSource> & { _id: string }`
-      // and now it's even worse
       diff: any,
       options: Record<string, unknown>,
       userId: string,
