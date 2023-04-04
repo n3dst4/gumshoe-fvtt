@@ -16,19 +16,15 @@ import { isActiveCharacterActor, isPersonalDetailItem } from "../v10Types";
 export function installPersonalDetailHookHandler() {
   Hooks.on(
     "preUpdateActor",
-    (
-      actor: Actor,
-      // XXXV10: DeepPartial<InvestigatorActorDataSource>
-      data: any,
-      options: any,
-      userId: string,
-    ) => {
+    (actor: Actor, update: any, options: any, userId: string) => {
       assertGame(game);
       if (game.userId !== userId) return;
-
-      if (data.img && !data.token?.img) {
-        data.token = data.token || {};
-        data.token.img = data.img;
+      if (update.img) {
+        // @ts-expect-error prototypeToken not yetin types
+        const token = actor.prototypeToken;
+        if (["icons/svg/cowled.svg", actor.img].includes(token.texture.src)) {
+          token.update({ texture: { src: update.img } });
+        }
       }
     },
   );
