@@ -12,7 +12,8 @@ import { isActiveCharacterActor } from "../v10Types";
  */
 export class InvestigatorCombat extends Combat {
   override _onCreate(
-    data: this["data"]["_source"],
+    // was this["data"]["_source"]
+    data: any,
     options: any,
     userId: string,
   ) {
