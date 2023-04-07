@@ -70,7 +70,8 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(
             <Fragment>
               <Translate>AbilityTest</Translate>
               {": "}
-              <DiceTerms terms={msg.roll?.terms} />
+              {/* @ts-expect-error v10 types */}
+              <DiceTerms terms={msg.rolls?.[0]?.terms} />
               {" ="}
             </Fragment>
           )}
@@ -85,7 +86,8 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(
             },
           }}
         >
-          {msg.roll?.total}
+          {/* @ts-expect-error v10 types */}
+          {msg.rolls?.[0]?.total}
         </a>
       </div>
     );
