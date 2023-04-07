@@ -79,18 +79,25 @@ export const performAttack =
     const pool = PoolTerm.fromRolls([hitRoll, damageRoll]);
     const actualRoll = Roll.fromTerms([pool]);
 
+    // @ts-expect-error v10 types
+    const abilityId = ability?._id ?? "";
+    // @ts-expect-error v10 types
+    const actorId = weapon.actor?._id ?? "";
+    // @ts-expect-error v10 types
+    const weaponId = weapon._id;
+
     actualRoll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: weapon.actor }),
       content: `
     <div
       class="${constants.abilityChatMessageClassName}"
-      ${constants.htmlDataItemId}="${ability?.data._id}"
-      ${constants.htmlDataActorId}="${weapon.actor?.data._id}"
+      ${constants.htmlDataItemId}="${abilityId}"
+      ${constants.htmlDataActorId}="${actorId}"
       ${constants.htmlDataMode}="${constants.htmlDataModeAttack}"
       ${constants.htmlDataRange}="${rangeName}"
-      ${constants.htmlDataWeaponId}="${weapon.data._id}"
-      ${constants.htmlDataName}="${weapon.data.name}"
-      ${constants.htmlDataImageUrl}="${weapon.data.img}"
+      ${constants.htmlDataWeaponId}="${weaponId}"
+      ${constants.htmlDataName}="${weapon.name}"
+      ${constants.htmlDataImageUrl}="${weapon.img}"
     />
   `,
     });

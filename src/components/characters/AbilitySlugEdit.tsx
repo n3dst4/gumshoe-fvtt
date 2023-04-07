@@ -33,12 +33,6 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
     [ability],
   );
 
-  // const [occupational, setOccupational] = useState(ability.system.occupational);
-  // useEffect(() => {
-  //   assertAbilityItem(ability);
-  //   setOccupational(ability.system.occupational);
-  // }, [ability.data, ability.system.occupational]);
-
   return (
     <Fragment key={ability.id}>
       {showOcc && (

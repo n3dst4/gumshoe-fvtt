@@ -13,7 +13,8 @@ import {
  */
 export class InvestigatorCombatant extends Combatant {
   doGumshoeInitiative = () => {
-    if (this.data._id) {
+    // @ts-expect-error v10 types
+    if (this._id) {
       const initiative = this.actor
         ? InvestigatorCombatant.getGumshoeInitiative(this.actor)
         : 0;
@@ -47,7 +48,7 @@ export class InvestigatorCombatant extends Combatant {
       "";
     // and if it was null, set it on the actor now.
     if (actor && isNullOrEmptyString(actor.system.initiativeAbility)) {
-      actor.update({ data: { initiativeAbility: abilityName } });
+      actor.update({ system: { initiativeAbility: abilityName } });
     }
     const ability = actor.items.find(
       (item: InvestigatorItem) =>

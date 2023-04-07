@@ -90,7 +90,7 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
         <div
           css={{
             ...cover,
-            backgroundImage: `url("${subject.data.img}")`,
+            backgroundImage: `url("${subject.img}")`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             filter: showOverlay ? "blur(0.7em)" : undefined,

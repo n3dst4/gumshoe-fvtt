@@ -20,7 +20,7 @@ export const PersonalDetailSlug: React.FC<PersonalDetailSlugProps> = ({
         item.sheet?.render(true);
       }}
     >
-      {item.data.name}
+      {item.name}
     </Slug>
   );
 };

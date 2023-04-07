@@ -33,8 +33,8 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",
       values: {
-        ActorName: weapon.actor?.data.name ?? "",
-        EquipmentName: weapon.data.name,
+        ActorName: weapon.actor?.name ?? "",
+        EquipmentName: weapon.name ?? "",
       },
     }).then(() => {
       weapon.delete();

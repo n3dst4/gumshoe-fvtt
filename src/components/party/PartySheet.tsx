@@ -246,7 +246,7 @@ export const PartySheet: React.FC<{
                   css={{
                     width: "3em",
                     height: "3em",
-                    backgroundImage: `url(${actor.data.img})`,
+                    backgroundImage: `url(${actor.img})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     margin: "0 auto",
@@ -272,7 +272,8 @@ export const PartySheet: React.FC<{
                       width: "auto",
                     },
                   }}
-                  data-actor-id={actor.data._id}
+                  // @ts-expect-error v10 types
+                  data-actor-id={actor._id ?? ""}
                   onClick={onClickRemoveActor}
                 >
                   <Translate>REMOVE</Translate>

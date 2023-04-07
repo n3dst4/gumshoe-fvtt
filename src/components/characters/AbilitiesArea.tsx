@@ -33,7 +33,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
     if (hideZeroRated && item.system.rating === 0) {
       continue;
     }
-    if (item.data.type === investigativeAbility) {
+    if (item.type === investigativeAbility) {
       const cat = item.system.category || "Uncategorised";
       if (investigativeAbilities[cat] === undefined) {
         investigativeAbilities[cat] = [];
@@ -50,7 +50,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
 
   const onChangeHideZero = useCallback(
     (hideZeroRated: boolean) => {
-      actor.update({ data: { hideZeroRated } });
+      actor.update({ system: { hideZeroRated } });
     },
     [actor],
   );

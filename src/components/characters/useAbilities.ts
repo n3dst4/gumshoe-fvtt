@@ -26,7 +26,7 @@ export const useAbilities = (actor: Actor, hideZeroRated: boolean) => {
     ) {
       continue;
     }
-    if (item.data.type === investigativeAbility) {
+    if (item.type === investigativeAbility) {
       const cat = item.system.category || "Uncategorised";
       if (investigativeAbilities[cat] === undefined) {
         investigativeAbilities[cat] = [];

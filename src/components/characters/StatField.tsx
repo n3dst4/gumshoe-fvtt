@@ -19,7 +19,7 @@ export const StatField: React.FC<StatFieldProps> = ({
     (newVal: number) => {
       assertActiveCharacterActor(actor);
       actor.update({
-        data: { stats: { ...actor.system.stats, [id]: newVal } },
+        system: { stats: { ...actor.system.stats, [id]: newVal } },
       });
     },
     [actor, id],
