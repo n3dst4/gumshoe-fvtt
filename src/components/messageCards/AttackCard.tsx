@@ -19,7 +19,8 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(
 
     const img = weapon?.data.img ?? imageUrl;
 
-    const poolRolls = (msg.roll?.terms[0] as PoolTerm).rolls;
+    // @ts-expect-error v10 types
+    const poolRolls = (msg.rolls?.[0]?.terms[0] as PoolTerm).rolls;
     const hitRoll = poolRolls[0];
     const damageRoll = poolRolls[1];
 
