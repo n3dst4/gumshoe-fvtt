@@ -34,7 +34,7 @@ export const upgradeLongNotesToRichText = (
       if (!updateData.system) {
         updateData.system = {};
       }
-      updateData.data.notes = {
+      updateData.notes = {
         format: "plain",
         source: actor.system.notes,
         html: escape(actor.system.notes),
@@ -57,11 +57,11 @@ export const moveStats = (actor: any, updateData: any) => {
     if (!updateData.system.stats) {
       updateData.system.stats = {};
     }
-    updateData.system.stats.hitThreshold = actor.data.hitThreshold;
-    updateData.system.stats.armor = actor.data.armor;
-    updateData.system.stats.alertness = actor.data.alertness;
-    updateData.system.stats.stealth = actor.data.stealth;
-    updateData.system.stats.stabilityLoss = actor.data.stabilityLoss;
+    updateData.system.stats.hitThreshold = actor.system.hitThreshold;
+    updateData.system.stats.armor = actor.system.armor;
+    updateData.system.stats.alertness = actor.system.alertness;
+    updateData.system.stats.stealth = actor.system.stealth;
+    updateData.system.stats.stabilityLoss = actor.system.stabilityLoss;
     updateData.system.hitThreshold = MINUS_LIKE_A_BILLION;
   }
 };

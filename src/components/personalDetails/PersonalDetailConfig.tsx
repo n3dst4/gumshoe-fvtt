@@ -23,8 +23,8 @@ export const PersonalDetailConfig: React.FC<PersonalDetailConfigProps> = ({
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",
       values: {
-        ActorName: item.actor?.data.name ?? "",
-        EquipmentName: item.data.name,
+        ActorName: item.actor?.name ?? "",
+        EquipmentName: item.name ?? "",
       },
     }).then(() => {
       item.delete();

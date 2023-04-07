@@ -19,10 +19,12 @@ export function installTurnPassingHandler() {
             combat &&
             combatant &&
             combatant.passingTurnsRemaining > 0 &&
-            combat.activeTurnPassingCombatant !== combatant.data._id
+            // @ts-expect-error V10 types
+            combat.activeTurnPassingCombatant !== combatant._id
           ) {
             assertActiveCharacterActor(actor);
-            combat.activeTurnPassingCombatant = combatant.data._id;
+            // @ts-expect-error V10 types
+            combat.activeTurnPassingCombatant = combatant._id;
             combatant.passingTurnsRemaining -= 1;
           }
         },

@@ -97,7 +97,7 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(
         >
           <b>
             <a onClick={onClickAbilityName}>
-              {name ?? ability?.data.name ?? "Missing"}
+              {name ?? ability?.name ?? "Missing"}
             </a>
           </b>{" "}
           <DiceTerms terms={msg.roll?.terms} />

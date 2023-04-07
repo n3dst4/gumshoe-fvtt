@@ -82,7 +82,7 @@ export const PCSheet: React.FC<{
         }}
       >
         <LogoEditable
-          mainText={actor.data.name}
+          mainText={actor.name ?? ""}
           subText={actor.system.occupation}
           defaultSubText={settings.genericOccupation.get()}
           onChangeMainText={actor.setName}
@@ -109,7 +109,7 @@ export const PCSheet: React.FC<{
       >
         <InputGrid>
           <GridField label="Name">
-            <AsyncTextInput value={actor.data.name} onChange={actor.setName} />
+            <AsyncTextInput value={actor.name ?? ""} onChange={actor.setName} />
           </GridField>
           <PersonalDetailField
             name={occupationLabel}

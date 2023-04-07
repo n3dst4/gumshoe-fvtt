@@ -30,8 +30,8 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",
       values: {
-        ActorName: equipment.actor?.data.name ?? "",
-        EquipmentName: equipment.data.name,
+        ActorName: equipment.actor?.name ?? "",
+        EquipmentName: equipment.name ?? "",
       },
     }).then(() => {
       equipment.delete();

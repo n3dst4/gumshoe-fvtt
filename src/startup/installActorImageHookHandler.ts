@@ -7,7 +7,7 @@ export const installActorImageHookHandler = () => {
     "preCreateActor",
     (
       actor: Actor,
-      createData: { name: string; type: string; data?: any; img?: string },
+      createData: { name: string; type: string; img?: string },
       options: any,
       userId: string,
     ) => {
@@ -16,10 +16,10 @@ export const installActorImageHookHandler = () => {
 
       // set image
       if (
-        isNullOrEmptyString(actor.data.img) ||
-        actor.data.img === "icons/svg/mystery-man.svg"
+        isNullOrEmptyString(actor.img) ||
+        actor.img === "icons/svg/mystery-man.svg"
       ) {
-        actor.data.update({
+        actor.update({
           img: isPCActor(actor)
             ? pcIcon
             : isNPCActor(actor)

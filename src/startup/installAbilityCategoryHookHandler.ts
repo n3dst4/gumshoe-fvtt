@@ -10,7 +10,7 @@ export const installAbilityCategoryHookHandler = () => {
     "preCreateItem",
     (
       item: Item,
-      createData: { name: string; type: string; data?: any; img?: string },
+      createData: { name: string; type: string; img?: string },
       options: any,
       userId: string,
     ) => {
@@ -28,8 +28,8 @@ export const installAbilityCategoryHookHandler = () => {
           console.log(
             `found ability "${createData.name}" with no category, updating to "${category}"`,
           );
-          item.data.update({
-            data: { category },
+          item.update({
+            system: { category },
           });
         }
       }

@@ -35,7 +35,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
 
   const isCombatAbility = settings.combatAbilities
     .get()
-    .includes(ability.data.name);
+    .includes(ability.name ?? "");
 
   const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
     isActiveCharacterActor(ability?.actor) &&
@@ -60,19 +60,19 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     return () => {
       Hooks.off("updateActor", callback);
     };
-  }, [ability?.actor, ability?.actor?.data]);
+  }, [ability?.actor]);
 
   const isAbilityUsed = actorInitiativeAbility === ability.name;
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
       assertActiveCharacterActor(ability?.actor);
       ability?.actor?.update({
-        data: {
-          initiativeAbility: ability.data.name,
+        system: {
+          initiativeAbility: ability.name,
         },
       });
     },
-    [ability?.actor, ability.data.name],
+    [ability?.actor, ability.name],
   );
 
   const useMwStyleAbilities = settings.useMwStyleAbilities.get();

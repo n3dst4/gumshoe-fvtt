@@ -33,8 +33,8 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",
       values: {
-        ActorName: ability.actor?.data.name ?? "",
-        AbilityName: ability.data.name,
+        ActorName: ability.actor?.name ?? "",
+        AbilityName: ability.name ?? "",
       },
     }).then(() => {
       ability.delete();
@@ -68,7 +68,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
   return (
     <InputGrid>
       <GridField label="Name">
-        <AsyncTextInput value={ability.data.name} onChange={ability.setName} />
+        <AsyncTextInput value={ability.name ?? ""} onChange={ability.setName} />
       </GridField>
       <GridField label="Category">
         <div

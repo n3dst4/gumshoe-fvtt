@@ -18,7 +18,7 @@ export const installItemImageHookHandler = () => {
     "preCreateItem",
     (
       item: Item,
-      createData: { name: string; type: string; data?: any; img?: string },
+      createData: { name: string; type: string; img?: string },
       options: any,
       userId: string,
     ) => {
@@ -27,10 +27,10 @@ export const installItemImageHookHandler = () => {
 
       // set image
       if (
-        isNullOrEmptyString(item.data.img) ||
-        item.data.img === "icons/svg/item-bag.svg"
+        isNullOrEmptyString(item.img) ||
+        item.img === "icons/svg/item-bag.svg"
       ) {
-        item.data.update({
+        item.update({
           img: isWeaponItem(item)
             ? weaponIcon
             : isEquipmentItem(item)

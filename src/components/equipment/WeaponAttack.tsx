@@ -131,7 +131,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     (e: React.MouseEvent) => {
       if (ability) {
         weapon.actor?.update({
-          data: {
+          system: {
             initiativeAbility: ability.name || "",
           },
         });

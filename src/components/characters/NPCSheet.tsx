@@ -56,7 +56,7 @@ export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
         }}
       >
         <LogoEditable
-          mainText={actor.data.name}
+          mainText={actor.name ?? ""}
           onChangeMainText={actor.setName}
           css={{
             fontSize: "0.66em",
