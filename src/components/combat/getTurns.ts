@@ -26,7 +26,8 @@ export function getTurns(combat: Combat) {
 
     const active = i === combat.turn;
     const hidden = combatant.hidden;
-    let defeated = combatant.data.defeated;
+    // @ts-expect-error combatant.defeated not in typoes yet
+    let defeated = combatant.defeated;
     const owner = combatant.isOwner;
     const initiative = combatant.initiative;
     const hasRolled = combatant.initiative !== null;
@@ -52,15 +53,23 @@ export function getTurns(combat: Combat) {
     // Actor and Token status effects
     const effects = new Set<string>();
     if (combatant.token) {
-      combatant.token.data.effects.forEach((e) => effects.add(e));
-      if (combatant.token.data.overlayEffect)
-        effects.add(combatant.token.data.overlayEffect);
+      // @ts-expect-error v10 types
+      combatant.token.effects.forEach((e) => effects.add(e));
+      // @ts-expect-error v10 types
+      if (combatant.token.overlayEffect)
+        // @ts-expect-error v10 types
+        effects.add(combatant.token.overlayEffect);
     }
     if (combatant.actor) {
       combatant.actor.temporaryEffects.forEach((e) => {
-        if (e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId)
+        if (e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId) {
           defeated = true;
-        else if (e.data.icon) effects.add(e.data.icon);
+        }
+        // @ts-expect-error v10 types
+        else if (e.icon) {
+          // @ts-expect-error v10 types
+          effects.add(e.icon);
+        }
       });
     }
 
