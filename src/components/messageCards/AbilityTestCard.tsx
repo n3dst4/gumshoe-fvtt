@@ -37,7 +37,7 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(
             height: "4em",
             width: "4em",
             gridArea: "image",
-            backgroundImage: `url(${ability?.data.img ?? imageUrl})`,
+            backgroundImage: `url(${ability?.img ?? imageUrl})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
@@ -55,7 +55,7 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(
         >
           <b>
             <a onClick={onClickAbilityName}>
-              {name ?? ability?.data.name ?? "Missing"}
+              {name ?? ability?.name ?? "Missing"}
             </a>
           </b>
         </div>
