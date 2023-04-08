@@ -13,7 +13,7 @@ export const getTranslated = (
   assertGame(game);
   const debug = settings.debugTranslations.get() && getDevMode();
   const pascal = Case.pascal(text);
-  const prefixed = `${constants.systemName}.${pascal}`;
+  const prefixed = `${constants.systemId}.${pascal}`;
   const local = game.i18n.format(prefixed, values);
   const has = game.i18n.has(prefixed, false);
   return `${debug ? (has ? "✔ " : "❌ ") : ""}${local}`;

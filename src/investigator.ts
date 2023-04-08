@@ -1,5 +1,5 @@
 import "./investigator.less";
-import { systemName } from "./constants";
+import { systemId } from "./constants";
 import { registerSettingsMenu } from "./startup/registerSettingsMenu";
 import { preloadTemplates } from "./startup/preloadTemplates";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
@@ -32,7 +32,7 @@ injectGlobalHelper();
 
 // Initialize system
 Hooks.once("init", async function () {
-  logger.log(`${systemName} | Initializing system`);
+  logger.log(`${systemId} | Initializing system`);
   registerSettingsMenu();
   await preloadTemplates();
   registerSheetsAndClasses();

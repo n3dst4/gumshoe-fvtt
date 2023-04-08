@@ -1,10 +1,7 @@
 import React, { useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import {
-  assertAbilityDataSource,
-  isGeneralAbilityDataSource,
-} from "../../typeAssertions";
+import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
@@ -35,14 +32,14 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({ ability }) => {
   }, [ability, spend]);
 
   const spendOptions = defaultSpendOptions.map((option) => {
-    assertAbilityDataSource(ability.data);
+    assertAbilityItem(ability);
     return {
       ...option,
-      enabled: option.value <= ability.data.data.pool,
+      enabled: option.value <= ability.system.pool,
     };
   });
 
-  const isGeneral = isGeneralAbilityDataSource(ability.data);
+  const isGeneral = isGeneralAbilityItem(ability);
 
   return (
     <InputGrid

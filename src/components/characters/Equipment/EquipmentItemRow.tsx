@@ -2,7 +2,7 @@ import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import React, { useCallback, useContext } from "react";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { ThemeContext } from "../../../themes/ThemeContext";
-import { assertEquipmentDataSource } from "../../../typeAssertions";
+import { assertEquipmentItem } from "../../../v10Types";
 import { CheckOrCross } from "./CheckOrCross";
 
 interface EquipmentItemRowProps {
@@ -59,7 +59,7 @@ export const EquipmentItemRow: React.FC<EquipmentItemRowProps> = ({
         {item.name}
       </a>
       {Object.entries(fields).map<JSX.Element>(([fieldId, field], j) => {
-        assertEquipmentDataSource(item.data);
+        assertEquipmentItem(item);
         return (
           <a
             key={fieldId}
@@ -73,9 +73,9 @@ export const EquipmentItemRow: React.FC<EquipmentItemRowProps> = ({
             onClick={() => item.sheet?.render(true)}
           >
             {field.type === "checkbox" ? (
-              <CheckOrCross checked={!!item.data.data.fields?.[fieldId]} />
+              <CheckOrCross checked={!!item.system.fields?.[fieldId]} />
             ) : (
-              <span>{item.data.data.fields?.[fieldId]}</span>
+              <span>{item.system.fields?.[fieldId]}</span>
             )}
           </a>
         );

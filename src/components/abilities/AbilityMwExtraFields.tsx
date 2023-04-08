@@ -2,8 +2,8 @@ import React from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
-import { assertGeneralAbilityDataSource } from "../../typeAssertions";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { assertGeneralAbilityItem } from "../../v10Types";
 
 type AbilityMwExtraFieldsProps = {
   ability: InvestigatorItem;
@@ -12,7 +12,7 @@ type AbilityMwExtraFieldsProps = {
 export const AbilityMwExtraFields: React.FC<AbilityMwExtraFieldsProps> = ({
   ability,
 }) => {
-  assertGeneralAbilityDataSource(ability.data);
+  assertGeneralAbilityItem(ability);
 
   return (
     <InputGrid
@@ -22,13 +22,13 @@ export const AbilityMwExtraFields: React.FC<AbilityMwExtraFieldsProps> = ({
     >
       <GridField label="Trumps">
         <AsyncTextInput
-          value={ability.data.data.mwTrumps}
+          value={ability.system.mwTrumps}
           onChange={ability.setMwTrumps}
         />
       </GridField>
       <GridField label="Trumped by">
         <AsyncTextInput
-          value={ability.data.data.mwTrumpedBy}
+          value={ability.system.mwTrumpedBy}
           onChange={ability.setMwTrumpedBy}
         />
       </GridField>

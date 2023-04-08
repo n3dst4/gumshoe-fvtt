@@ -1,6 +1,6 @@
 import React from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { assertPersonalDetailDataSource } from "../../typeAssertions";
+import { assertPersonalDetailItem } from "../../v10Types";
 import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
 import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";
 import { ItemSheetMode } from "../ItemSheetFramework/types";
@@ -15,7 +15,7 @@ export const PersonalDetailSheet: React.FC<PersonalDetailSheetProps> = ({
   personalDetail,
   application,
 }) => {
-  assertPersonalDetailDataSource(personalDetail.data);
+  assertPersonalDetailItem(personalDetail);
 
   return (
     <ItemSheetFramework application={application} item={personalDetail}>

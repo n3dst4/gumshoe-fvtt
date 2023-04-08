@@ -1,5 +1,5 @@
 // import { css } from "@emotion/react";
-import { systemName } from "../constants";
+import { systemId } from "../constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
@@ -11,7 +11,7 @@ export const antiquarianTheme: ThemeV1 = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');
   `,
   largeSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
+    backgroundImage: `url(systems/${systemId}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
     backgroundPosition: "center",
     backgroundSize: "cover",
   },
@@ -24,7 +24,7 @@ export const antiquarianTheme: ThemeV1 = themeFactory({
     fontScaleFactor: 24,
     frontTextElementStyle: {
       color: "#000",
-      maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
+      maskImage: `url(systems/${systemId}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
       maskMode: "luminance",
       maskRepeat: "repeat",
       maskSize: "contain",
@@ -43,11 +43,11 @@ export const antiquarianTheme: ThemeV1 = themeFactory({
       fontWeight: "bold",
     },
     backdropStyle: {
-      backgroundImage: `url(systems/${systemName}/assets/wallpaper/tailpiece9-768.webp), url(systems/${systemName}/assets/wallpaper/tailpiece9-768.webp)`,
+      backgroundImage: `url(systems/${systemId}/assets/wallpaper/tailpiece9-768.webp), url(systems/${systemId}/assets/wallpaper/tailpiece9-768.webp)`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "bottom, top",
       backgroundSize: "19%",
-      maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
+      maskImage: `url(systems/${systemId}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
       maskMode: "luminance",
       maskRepeat: "repeat",
       maskSize: "contain",

@@ -1,12 +1,12 @@
 import React, { Fragment, useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { FoundryAppContext } from "../FoundryAppContext";
-import {
-  assertAbilityDataSource,
-  isGeneralAbilityDataSource,
-  isInvestigativeAbilityDataSource,
-} from "../../typeAssertions";
 import { AbilityBadges } from "../abilities/AbilityBadges";
+import {
+  assertAbilityItem,
+  isGeneralAbilityItem,
+  isInvestigativeAbilityItem,
+} from "../../v10Types";
 
 type AbilitySlugPlayProps = {
   ability: InvestigatorItem;
@@ -15,7 +15,7 @@ type AbilitySlugPlayProps = {
 export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
   ability,
 }) => {
-  assertAbilityDataSource(ability.data);
+  assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(
     (e: React.DragEvent<HTMLAnchorElement>) => {
@@ -63,7 +63,7 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
         {ability.name}
       </a>
       <div css={{ gridColumn: "rating", justifySelf: "right" }}>
-        {ability.data.data.pool}/{ability.data.data.rating}
+        {ability.system.pool}/{ability.system.rating}
       </div>
       <div
         css={{
@@ -82,38 +82,37 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
         <button
           css={{ gridColumn: "2" }}
           onClick={onClickInc}
-          disabled={spend >= ability.data.data.pool}
+          disabled={spend >= ability.system.pool}
         >
           <i css={{ fontSize: "x-small" }} className="fa fa-plus" />
         </button>
       </div>
       <div css={{ gridColumn: "spend" }}>
-        {isInvestigativeAbilityDataSource(ability.data) && (
+        {isInvestigativeAbilityItem(ability) && (
           <button disabled={spend === 0} onClick={onSpend}>
             <i className="fa fa-search" title="Spend" />
             {spend}
           </button>
         )}
-        {isGeneralAbilityDataSource(ability.data) && (
+        {isGeneralAbilityItem(ability) && (
           <button css={{ width: "4.1em" }} onClick={onTest}>
             <i className="fa fa-dice" title="Test" />+{spend}
           </button>
         )}
-        {isGeneralAbilityDataSource(ability.data) &&
-          ability.data.data.canBeInvestigative && (
-            <button
-              css={{ width: "2em" }}
-              disabled={spend === 0}
-              onClick={onSpend}
-            >
-              <i className="fa fa-search" title="Spend" />
-            </button>
-          )}
+        {isGeneralAbilityItem(ability) && ability.system.canBeInvestigative && (
+          <button
+            css={{ width: "2em" }}
+            disabled={spend === 0}
+            onClick={onSpend}
+          >
+            <i className="fa fa-search" title="Spend" />
+          </button>
+        )}
       </div>
       <AbilityBadges ability={ability} css={{ gridColumn: "1/-1" }} />
-      {ability.data.data.hasSpecialities && (
+      {ability.system.hasSpecialities && (
         <div css={{ paddingLeft: "1em", gridColumn: "1/-1" }}>
-          {(ability.data.data.specialities || []).map<JSX.Element>(
+          {(ability.system.specialities || []).map<JSX.Element>(
             (x: string, i: number) => (
               <div key={i}>{x.trim()}</div>
             ),

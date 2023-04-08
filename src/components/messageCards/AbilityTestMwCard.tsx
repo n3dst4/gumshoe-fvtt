@@ -50,7 +50,8 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(
       ability?.sheet?.render(true);
     }, [ability?.sheet]);
 
-    const cappedResult = Math.max(Math.min(msg.roll?.total ?? 1, 6), 1);
+    // @ts-expect-error v10 types
+    const cappedResult = Math.max(Math.min(msg.rolls?.[0]?.total ?? 1, 6), 1);
     const effectiveResult =
       difficulty === "easy" && cappedResult === 3 ? 4 : cappedResult;
     const deets = results[effectiveResult];
@@ -96,7 +97,7 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(
         >
           <b>
             <a onClick={onClickAbilityName}>
-              {name ?? ability?.data.name ?? "Missing"}
+              {name ?? ability?.name ?? "Missing"}
             </a>
           </b>{" "}
           <DiceTerms terms={msg.roll?.terms} />

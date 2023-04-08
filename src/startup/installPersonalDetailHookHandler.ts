@@ -10,25 +10,21 @@ import {
   getTranslated,
   isNullOrEmptyString,
 } from "../functions";
-import { InvestigatorActorDataSource } from "../types";
 import { settings } from "../settings";
-import { isActiveCharacterDataSource } from "../typeAssertions";
+import { isActiveCharacterActor, isPersonalDetailItem } from "../v10Types";
 
 export function installPersonalDetailHookHandler() {
   Hooks.on(
     "preUpdateActor",
-    (
-      actor: Actor,
-      data: DeepPartial<InvestigatorActorDataSource>,
-      options: any,
-      userId: string,
-    ) => {
+    (actor: Actor, update: any, options: any, userId: string) => {
       assertGame(game);
       if (game.userId !== userId) return;
-
-      if (data.img && !data.token?.img) {
-        data.token = data.token || {};
-        data.token.img = data.img;
+      if (update.img) {
+        // @ts-expect-error prototypeToken not yetin types
+        const token = actor.prototypeToken;
+        if (["icons/svg/cowled.svg", actor.img].includes(token.texture.src)) {
+          token.update({ texture: { src: update.img } });
+        }
       }
     },
   );
@@ -47,15 +43,16 @@ export function installPersonalDetailHookHandler() {
           game.userId === userId &&
           item.type === personalDetail &&
           item.isEmbedded &&
-          isActiveCharacterDataSource(item.actor?.data)
+          item.actor &&
+          isActiveCharacterActor(item.actor)
         )
       ) {
         return;
       }
       const itemsAlreadyInSlot = item.actor?.items.filter(
-        (i) =>
-          i.data.type === personalDetail &&
-          i.data.data.slotIndex === createData.system.slotIndex,
+        (item) =>
+          isPersonalDetailItem(item) &&
+          item.system.slotIndex === createData.system.slotIndex,
       );
       const existingCount = itemsAlreadyInSlot?.length ?? 0;
       if (existingCount > 0) {

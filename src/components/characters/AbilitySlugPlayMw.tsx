@@ -1,10 +1,7 @@
 import React, { Fragment, useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { FoundryAppContext } from "../FoundryAppContext";
-import {
-  assertAbilityDataSource,
-  isGeneralAbilityDataSource,
-} from "../../typeAssertions";
+import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
 
 type AbilitySlugPlayMwProps = {
   ability: InvestigatorItem;
@@ -13,7 +10,7 @@ type AbilitySlugPlayMwProps = {
 export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({
   ability,
 }) => {
-  assertAbilityDataSource(ability.data);
+  assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(
     (e: React.DragEvent<HTMLAnchorElement>) => {
@@ -56,7 +53,7 @@ export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({
         {ability.name}
       </a>
       <div css={{ gridColumn: "rating", justifySelf: "right" }}>
-        {ability.data.data.pool}/{ability.data.data.rating}
+        {ability.system.pool}/{ability.system.rating}
       </div>
       <div
         css={{
@@ -81,15 +78,15 @@ export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({
         </button>
       </div>
       <div css={{ gridColumn: "spend" }}>
-        {isGeneralAbilityDataSource(ability.data) && (
+        {isGeneralAbilityItem(ability) && (
           <button css={{ width: "4.1em" }} onClick={onTest}>
             <i className="fa fa-dice" title="Test" />+{boonLevy}
           </button>
         )}
       </div>
-      {ability.data.data.hasSpecialities && (
+      {ability.system.hasSpecialities && (
         <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
-          {(ability.data.data.specialities || []).map<JSX.Element>(
+          {(ability.system.specialities || []).map<JSX.Element>(
             (x: string, i: number) => (
               <div key={i}>{x.trim()}</div>
             ),

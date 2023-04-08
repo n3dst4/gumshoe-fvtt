@@ -66,7 +66,7 @@ export const AbilityNegateOrWallopMwCard: React.FC<AbilityNegateOrWallopMwCardPr
         >
           <b>
             <a onClick={onClickAbilityName}>
-              {name ?? ability?.data.name ?? "Missing"}
+              {name ?? ability?.name ?? "Missing"}
             </a>
           </b>
         </div>

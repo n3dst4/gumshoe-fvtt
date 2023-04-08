@@ -1,10 +1,10 @@
 import system from "../public/system.json";
 
-export const systemName = system.name;
+export const systemId = system.id;
 export const version = system.version;
 export const defaultMigratedSystemVersion = "0.0.0" as const;
 export const defaultSystemPreset = "pathOfCthulhuPreset";
-export const templatesPath = `systems/${systemName}/templates` as const;
+export const templatesPath = `systems/${systemId}/templates` as const;
 export const reactTemplatePath =
   `${templatesPath}/react-application.hbs` as const;
 export const reactifiedCombatSidebarTemplatePath =
@@ -26,21 +26,20 @@ export const personalDetail = "personalDetail" as const;
 
 // assets
 export const investigativeAbilityIcon =
-  `/systems/${systemName}/assets/icons/magnifying-glass.webp` as const;
+  `/systems/${systemId}/assets/icons/magnifying-glass.webp` as const;
 export const generalAbilityIcon =
-  `/systems/${systemName}/assets/icons/fist.webp` as const;
+  `/systems/${systemId}/assets/icons/fist.webp` as const;
 export const weaponIcon =
-  `/systems/${systemName}/assets/icons/trench-knife.webp` as const;
+  `/systems/${systemId}/assets/icons/trench-knife.webp` as const;
 export const equipmentIcon =
-  `/systems/${systemName}/assets/icons/shopping-bag.webp` as const;
+  `/systems/${systemId}/assets/icons/shopping-bag.webp` as const;
 export const pcIcon =
-  `/systems/${systemName}/assets/icons/sherlock-holmes.webp` as const;
-export const npcIcon =
-  `/systems/${systemName}/assets/icons/cowled.webp` as const;
+  `/systems/${systemId}/assets/icons/sherlock-holmes.webp` as const;
+export const npcIcon = `/systems/${systemId}/assets/icons/cowled.webp` as const;
 export const partyIcon =
-  `/systems/${systemName}/assets/icons/dark-squad.webp` as const;
+  `/systems/${systemId}/assets/icons/dark-squad.webp` as const;
 export const personalDetailIcon =
-  `/systems/${systemName}/assets/icons/notebook.webp` as const;
+  `/systems/${systemId}/assets/icons/notebook.webp` as const;
 
 // packs
 
@@ -57,11 +56,11 @@ export const packNames = {
 export const npcPackName = "opponentAbilities" as const;
 
 // hooks
-export const newPCPacksUpdated = `${systemName}.newPCPacksUpdated` as const;
-export const newNPCPacksUpdated = `${systemName}.newNPCPacksUpdated` as const;
-export const settingsSaved = `${systemName}.settingsSaved` as const;
-export const requestTurnPass = `${systemName}.requestTurnPass`;
-export const socketScope = `system.${systemName}` as const;
+export const newPCPacksUpdated = `${systemId}.newPCPacksUpdated` as const;
+export const newNPCPacksUpdated = `${systemId}.newNPCPacksUpdated` as const;
+export const settingsSaved = `${systemId}.settingsSaved` as const;
+export const requestTurnPass = `${systemId}.requestTurnPass`;
+export const socketScope = `system.${systemId}` as const;
 
 // css classes
 export const abilityChatMessageClassName = "investigator-ability-test" as const;

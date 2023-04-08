@@ -8,6 +8,7 @@ import * as constants from "../constants";
 import { settings } from "../settings";
 import { FlaggedMigrations } from "./types";
 import { flaggedMigrations } from "./flaggedMigrations";
+import { AnyItem } from "../v10Types";
 
 const title = system.title;
 
@@ -21,7 +22,8 @@ export const migrateWorld = async function (
 ) {
   assertGame(game);
   (ui as any).notifications.info(
-    `Applying ${title} System Migration for version ${game.system.data.version}. 
+    // @ts-expect-error version isn't on game yet
+    `Applying ${title} System Migration for version ${game.system.version}.
     Please be patient and do not close your game or shut down your server.`,
     { permanent: true },
   );
@@ -34,7 +36,7 @@ export const migrateWorld = async function (
   // Migrate World Actors
   for (const a of game.actors?.contents ?? []) {
     try {
-      const updateData = migrateActorData(a.data, flaggedMigrations);
+      const updateData = migrateActorData(a, flaggedMigrations);
       if (!isObjectEmpty(updateData)) {
         await a.update(updateData, { enforceTypes: false });
       }
@@ -47,7 +49,7 @@ export const migrateWorld = async function (
   // Migrate World Items
   for (const i of game.items?.contents ?? []) {
     try {
-      const updateData = migrateItemData(i.data, flaggedMigrations);
+      const updateData = migrateItemData(i as AnyItem, flaggedMigrations);
       if (!isObjectEmpty(updateData)) {
         console.log(`Migrating Item entity ${i.name}`);
         await i.update(updateData, { enforceTypes: false });
@@ -61,7 +63,7 @@ export const migrateWorld = async function (
   // Migrate Actor Override Tokens
   for (const s of game.scenes?.contents ?? []) {
     try {
-      const updateData = migrateSceneData(s.data, flaggedMigrations);
+      const updateData = migrateSceneData(s, flaggedMigrations);
       if (!isObjectEmpty(updateData)) {
         console.log(`Migrating Scene entity ${s.name}`);
         await s.update(updateData, { enforceTypes: false });
@@ -91,7 +93,7 @@ export const migrateWorld = async function (
 (window as any).migrateSystemCompendiums = async () => {
   assertGame(game);
   for (const p of game.packs as any) {
-    if (p.metadata.package !== constants.systemName) continue;
+    if (p.metadata.package !== constants.systemId) continue;
     if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
     await migrateCompendium(p, flaggedMigrations);
   }

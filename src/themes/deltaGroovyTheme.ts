@@ -1,4 +1,4 @@
-import { systemName } from "../constants";
+import { systemId } from "../constants";
 import { createStarburstGradient, themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
@@ -25,7 +25,7 @@ export const deltaGroovyTheme: ThemeV1 = themeFactory({
   displayName: "Delta Groovy",
   global: `
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');    
+    @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
   `,
   smallSheetRootStyle: {
     ":before": {
@@ -41,11 +41,11 @@ export const deltaGroovyTheme: ThemeV1 = themeFactory({
     "&>*": {
       position: "relative",
     },
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/pulpy_paper.webp)`,
+    backgroundImage: `url(systems/${systemId}/assets/wallpaper/pulpy_paper.webp)`,
     position: "relative",
   },
   largeSheetRootStyle: {
-    backgroundImage: `url(systems/${systemName}/assets/wallpaper/pulpy_paper.webp)`,
+    backgroundImage: `url(systems/${systemId}/assets/wallpaper/pulpy_paper.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "normal normal normal 1.1em 'Spicy Rice', serif",

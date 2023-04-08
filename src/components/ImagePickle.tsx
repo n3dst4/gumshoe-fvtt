@@ -30,7 +30,7 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
     setShowOverlay(false);
     const fp = new FilePicker({
       type: "image",
-      current: subject.data.img,
+      current: subject.img ?? undefined,
       callback: (path: string) => {
         subject.update({
           img: path,
@@ -39,17 +39,17 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
       top: (application.position.top ?? 0) + 40,
       left: (application.position.left ?? 0) + 10,
     });
-    return fp.browse(subject.data.img);
+    return fp.browse(subject.img ?? "");
   }, [application.position.left, application.position.top, subject]);
 
   const onClickShow = useCallback(() => {
     setShowOverlay(false);
-    const ip = new ImagePopout(subject.data.img, {
-      title: subject.data.img,
+    const ip = new ImagePopout(subject.img ?? "", {
+      title: subject.img,
       shareable: true,
     } as any);
     ip.render(true);
-  }, [subject.data.img]);
+  }, [subject.img]);
 
   const onClickCancel = useCallback(() => {
     setShowOverlay(false);
@@ -90,7 +90,7 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
         <div
           css={{
             ...cover,
-            backgroundImage: `url("${subject.data.img}")`,
+            backgroundImage: `url("${subject.img}")`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             filter: showOverlay ? "blur(0.7em)" : undefined,

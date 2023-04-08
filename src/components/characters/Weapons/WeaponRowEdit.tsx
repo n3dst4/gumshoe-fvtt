@@ -5,9 +5,9 @@ import { AsyncCheckbox } from "../../inputs/AsyncCheckbox";
 import { CompactNotesEditor } from "../../inputs/CompactNotesEditor";
 import { CombatAbilityDropDown } from "../../inputs/CombatAbilityDropDown";
 import { assertGame, confirmADoodleDo } from "../../../functions";
-import { assertWeaponDataSource } from "../../../typeAssertions";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { ThemeContext } from "../../../themes/ThemeContext";
+import { assertWeaponItem } from "../../../v10Types";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem;
@@ -18,7 +18,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   weapon,
   index,
 }) => {
-  assertWeaponDataSource(weapon.data);
+  assertWeaponItem(weapon);
 
   const theme = useContext(ThemeContext);
 
@@ -52,8 +52,8 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",
       values: {
-        ActorName: weapon.actor?.data.name ?? "",
-        EquipmentName: weapon.data.name,
+        ActorName: weapon.actor?.name ?? "",
+        EquipmentName: weapon.name ?? "",
       },
     }).then(() => {
       weapon.delete();
@@ -181,7 +181,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         }}
       >
         <CombatAbilityDropDown
-          value={weapon.data.data.ability}
+          value={weapon.system.ability}
           onChange={(e) => weapon.setAbility(e)}
           css={{ display: "block" }}
         />

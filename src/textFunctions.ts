@@ -110,7 +110,10 @@ export async function convertNotes(
     }
     unsafeNewHtml = newSource;
   }
-  const newHtml = TextEditor.enrichHTML(xss.process(unsafeNewHtml));
+  const newHtml = await TextEditor.enrichHTML(xss.process(unsafeNewHtml), {
+    // @ts-expect-error foundry types don't know about `async` yet
+    async: true,
+  });
   return { newSource, newHtml };
 }
 
@@ -124,6 +127,10 @@ export async function toHtml(format: NoteFormat, source: string) {
     newHtml = source;
   }
   const xssed = xss.process(newHtml);
-  const html = TextEditor.enrichHTML(xssed);
+  const html = await TextEditor.enrichHTML(
+    xssed,
+    // @ts-expect-error foundry types don't know about `async` yet
+    { async: true },
+  );
   return html;
 }

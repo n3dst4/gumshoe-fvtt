@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import Case from "case";
-import { systemName } from "../constants";
+import { systemId } from "../constants";
 import { assertGame, getDevMode } from "../functions";
 import { settings } from "../settings";
 
@@ -18,7 +18,7 @@ export const Translate: React.FC<TranslateProps> = ({
   assertGame(game);
   const debug = settings.debugTranslations.get() && getDevMode();
   const pascal = useMemo(() => Case.pascal(children), [children]);
-  const prefixed = `${systemName}.${pascal}`;
+  const prefixed = `${systemId}.${pascal}`;
   const local = useMemo(() => {
     assertGame(game);
     return game.i18n.format(prefixed, values);
