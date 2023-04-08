@@ -30,7 +30,8 @@ export const installItemImageHookHandler = () => {
         isNullOrEmptyString(item.img) ||
         item.img === "icons/svg/item-bag.svg"
       ) {
-        item.update({
+        // @ts-expect-error v10 types
+        item.updateSource({
           img: isWeaponItem(item)
             ? weaponIcon
             : isEquipmentItem(item)

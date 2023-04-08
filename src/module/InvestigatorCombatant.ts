@@ -44,7 +44,7 @@ export class InvestigatorCombatant extends Combatant {
     // init ability name)
     const abilityName =
       actor?.system.initiativeAbility ||
-      settings.combatAbilities.get().sort()[0] ||
+      [...settings.combatAbilities.get()].sort()[0] ||
       "";
     // and if it was null, set it on the actor now.
     if (actor && isNullOrEmptyString(actor.system.initiativeAbility)) {
