@@ -3,7 +3,6 @@ import { settings } from "../settings";
 
 export function installFlaggedMigrationSplatter() {
   function splatMigration(type: string, migration: string) {
-    // const flags = settings.migrationFlags.get();
     const newFlags = {
       ...settings.migrationFlags.get(),
       [type]: {

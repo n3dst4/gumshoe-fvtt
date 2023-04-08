@@ -19,7 +19,8 @@ export const installActorImageHookHandler = () => {
         isNullOrEmptyString(actor.img) ||
         actor.img === "icons/svg/mystery-man.svg"
       ) {
-        actor.update({
+        // @ts-expect-error v10 types
+        actor.updateSource({
           img: isPCActor(actor)
             ? pcIcon
             : isNPCActor(actor)
