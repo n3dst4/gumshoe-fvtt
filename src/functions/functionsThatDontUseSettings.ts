@@ -9,7 +9,7 @@ export const sortEntitiesByName = <T extends NameHaver>(ents: T[]) => {
   return ents.sort((a, b) => {
     const aName = a.name || "";
     const bName = b.name || "";
-    return aName < bName ? -1 : aName > bName ? 1 : 0;
+    return aName.localeCompare(bName);
   });
 };
 
