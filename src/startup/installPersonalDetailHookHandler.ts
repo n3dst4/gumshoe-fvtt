@@ -14,21 +14,13 @@ import { settings } from "../settings";
 import { isActiveCharacterActor, isPersonalDetailItem } from "../v10Types";
 
 export function installPersonalDetailHookHandler() {
-  Hooks.on(
-    "preUpdateActor",
-    (actor: Actor, update: any, options: any, userId: string) => {
-      assertGame(game);
-      if (game.userId !== userId) return;
-      if (update.img) {
-        // @ts-expect-error prototypeToken not yetin types
-        const token = actor.prototypeToken;
-        if (["icons/svg/cowled.svg", actor.img].includes(token.texture.src)) {
-          token.update({ texture: { src: update.img } });
-        }
-      }
-    },
-  );
-
+  /*
+   * quite a chunky hook, but it's doing a few things:
+   * 1. see if there's any preexisting personal details in the slot,
+   *   and if so, ask the user if they want to replace or add
+   * 2. if there's a compendium pack attached, then add the items from it
+   *
+   */
   Hooks.on(
     "preCreateItem",
     async (
@@ -38,6 +30,8 @@ export function installPersonalDetailHookHandler() {
       userId: string,
     ) => {
       assertGame(game);
+      // first off, make sure this is a personal detail, being created inside a
+      // pc or npc actor, by the current user
       if (
         !(
           game.userId === userId &&
@@ -49,12 +43,14 @@ export function installPersonalDetailHookHandler() {
       ) {
         return;
       }
+      // find out what's already in the slot
       const itemsAlreadyInSlot = item.actor?.items.filter(
         (item) =>
           isPersonalDetailItem(item) &&
           item.system.slotIndex === createData.system.slotIndex,
       );
       const existingCount = itemsAlreadyInSlot?.length ?? 0;
+      // if anything, ask the user if they want to replace or add
       if (existingCount > 0) {
         const tlMessage = getTranslated(
           "Replace existing {Thing} with {Name}?",
@@ -106,7 +102,7 @@ export function installPersonalDetailHookHandler() {
         await promise;
       }
 
-      // add compendium pack stuff if it's there
+      // add compendium pack stuff, if any
       if (!isNullOrEmptyString(createData.system?.compendiumPackId)) {
         const pack = game.packs?.find(
           (p) => p.collection === createData.system?.compendiumPackId,

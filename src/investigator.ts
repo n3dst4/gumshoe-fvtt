@@ -27,6 +27,7 @@ import { installEquipmentCategoryHookHandler } from "./startup/installEquipmentC
 import { installPersonalDetailHookHandler } from "./startup/installPersonalDetailHookHandler";
 import { installResourceUpdateHookHandler } from "./startup/installResourceUpdateHookHandler";
 import { installNewCharacterPacksHookHandler } from "./startup/installNewCharacterPacksHookHandler";
+import { installKeepTokenImageInSyncWithActor } from "./startup/installKeepTokenImageInSyncWithActor";
 
 injectGlobalHelper();
 
@@ -72,3 +73,4 @@ installEquipmentCategoryHookHandler();
 installPersonalDetailHookHandler();
 installResourceUpdateHookHandler();
 installNewCharacterPacksHookHandler();
+installKeepTokenImageInSyncWithActor();
