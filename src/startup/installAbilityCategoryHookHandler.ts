@@ -28,10 +28,10 @@ export const installAbilityCategoryHookHandler = () => {
           console.log(
             `found ability "${createData.name}" with no category, updating to "${category}"`,
           );
-          // // @ts-expect-error v10 types
-          // item.updateSource({
-          //   system: { category },
-          // });
+          // @ts-expect-error v10 types
+          item.updateSource({
+            system: { category },
+          });
         }
       }
     },
