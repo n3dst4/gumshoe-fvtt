@@ -454,7 +454,7 @@ export class InvestigatorActor extends Actor {
     const detailName =
       slotIndex === occupationSlotIndex
         ? settings.occupationLabel.get()
-        : settings.shortNotes.get()[slotIndex] ?? "detail";
+        : settings.personalDetails.get()[slotIndex]?.name ?? "detail";
     const name = `New ${detailName}`;
     await this.createEmbeddedDocuments(
       "Item",
