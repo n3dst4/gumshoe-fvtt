@@ -4,7 +4,7 @@ import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
 import archiver from "archiver";
-import rimraf from "rimraf";
+import { rimraf } from "rimraf";
 import { fileURLToPath } from "url";
 import { writeFile } from "fs/promises";
 import yargs from "yargs";
