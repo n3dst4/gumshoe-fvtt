@@ -44,6 +44,7 @@ try {
 if (config?.dataPath) {
   const linkRoot = manifestName === "system.json" ? "systems" : "modules";
   linkDir = path.join(config.dataPath, "Data", linkRoot, manifest.name);
+  linkDir = path.join(config.dataPath, "Data", linkRoot, manifest.id);
 }
 
 /**
@@ -97,7 +98,7 @@ async function buildPackTranslations() {
       mapping,
       entries,
     };
-    const outFileName = `${manifest.name}.${path.basename(
+    const outFileName = `${manifest.id}.${path.basename(
       pack.path,
       ".db",
     )}.json`;
@@ -156,7 +157,7 @@ async function updateManifestFromCITagPush() {
       `Manifest version (${manifest.version}) does not match tag (${tag})`,
     );
   }
-  manifest.download = `https://github.com/${path}/releases/download/${tag}/${manifest.name}.zip`;
+  manifest.download = `https://github.com/${path}/releases/download/${tag}/${manifest.id}.zip`;
   log({ tag, path, manifest });
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 }
@@ -171,7 +172,7 @@ async function packidge() {
       // Ensure there is a directory to hold all the packaged versions
       fs.ensureDirSync("package");
       // Initialize the zip file
-      const zipName = process.env.ZIP_FILE_NAME ?? `${manifest.name}.zip`;
+      const zipName = process.env.ZIP_FILE_NAME ?? `${manifest.id}.zip`;
       const zipFile = fs.createWriteStream(path.join("package", zipName));
       const zip = archiver("zip", { zlib: { level: 9 } });
       zipFile.on("close", () => {
@@ -184,7 +185,7 @@ async function packidge() {
       });
       zip.pipe(zipFile);
       // Add the directory with the final code
-      zip.directory(buildPath, manifest.name);
+      zip.directory(buildPath, manifest.id);
       zip.finalize();
     } catch (err) {
       return reject(err);
