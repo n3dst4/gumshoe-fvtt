@@ -9,6 +9,7 @@ import { WeaponsArea } from "./Weapons/WeaponsArea";
 import { WeaponsAreaEdit } from "./Weapons/WeaponsAreaEdit";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
+import { assertNPCDataSource, isNPCDataSource } from "../../typeAssertions";
 import { ImagePickle } from "../ImagePickle";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
@@ -18,7 +19,6 @@ import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 import { settings } from "../../settings";
 import { StatField } from "./StatField";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { assertNPCActor, isNPCActor } from "../../v10Types";
 
 type NPCSheetProps = {
   actor: InvestigatorActor;
@@ -26,7 +26,7 @@ type NPCSheetProps = {
 };
 
 export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
-  assertNPCActor(actor);
+  assertNPCDataSource(actor.data);
 
   const theme = actor.getSheetTheme();
   const stats = settings.npcStats.get();
@@ -56,7 +56,7 @@ export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
         }}
       >
         <LogoEditable
-          mainText={actor.name ?? ""}
+          mainText={actor.data.name}
           onChangeMainText={actor.setName}
           css={{
             fontSize: "0.66em",
@@ -101,20 +101,20 @@ export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
         {/* Stats */}
         <hr />
         {/* SotS NPC Combat bonus */}
-        {settings.useNpcCombatBonuses.get() && isNPCActor(actor) && (
+        {settings.useNpcCombatBonuses.get() && isNPCDataSource(actor.data) && (
           <Fragment>
             <h3 css={{ gridColumn: "start / end" }}>
               <Translate>Combat bonus</Translate>
             </h3>
             <AsyncNumberInput
-              value={actor.system.combatBonus}
+              value={actor.data.data.combatBonus}
               onChange={actor.setCombatBonus}
             />
             <h3 css={{ gridColumn: "start / end" }}>
               <Translate>Damage bonus</Translate>
             </h3>
             <AsyncNumberInput
-              value={actor.system.damageBonus}
+              value={actor.data.data.damageBonus}
               onChange={actor.setDamageBonus}
             />
           </Fragment>
@@ -141,7 +141,7 @@ export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
               <Translate>Number of turns</Translate>
             </h4>
             <AsyncNumberInput
-              value={actor.system.initiativePassingTurns}
+              value={actor.data.data.initiativePassingTurns}
               onChange={actor.setPassingTurns}
             />
           </Fragment>

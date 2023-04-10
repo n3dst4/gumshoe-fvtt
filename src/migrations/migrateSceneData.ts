@@ -16,7 +16,7 @@ export const migrateSceneData = function (
   const tokens = duplicate(scene.tokens);
   return {
     tokens: tokens.map((t: any) => {
-      if (!t.actorId || t.actorLink || !t.actorData) {
+      if (!t.actorId || t.actorLink || !t.actorData.data) {
         t.actorData = {};
         return t;
       }
@@ -25,8 +25,11 @@ export const migrateSceneData = function (
         t.actorId = null;
         t.actorData = {};
       } else if (!t.actorLink) {
-        const updateData = migrateActorData(token.actor, flaggedMigrations);
-        t.actorData = mergeObject(token.actor, updateData);
+        const updateData = migrateActorData(
+          token.data.actorData,
+          flaggedMigrations,
+        );
+        t.actorData = mergeObject(token.data.actorData, updateData);
       }
       return t;
     }),

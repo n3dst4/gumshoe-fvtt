@@ -1,10 +1,12 @@
 import React, { ReactNode } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { assertAbilityDataSource } from "../../typeAssertions";
 import { Translate } from "../Translate";
 import { UnlocksEditorRow } from "./UnlocksEditorRow";
+// import { TransitionGroup, CSSTransition } from "react-transition-group";
+// import { fadeInOutClasses } from "./fadeInOutClasses";
 import { useListShowHideTransition } from "../transitions/useListShowHideTransition";
 import { getListTransitionStyles } from "./getListTransitionStyles";
-import { assertAbilityItem } from "../../v10Types";
 
 interface UnlocksEditorProps {
   ability: InvestigatorItem;
@@ -15,10 +17,10 @@ const transitionTime = 400;
 export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
   ability,
 }: UnlocksEditorProps) => {
-  assertAbilityItem(ability);
+  assertAbilityDataSource(ability.data);
 
   const transitionedUnlocks = useListShowHideTransition(
-    ability.system.unlocks,
+    ability.data.data.unlocks,
     (unlock) => unlock.id,
     transitionTime,
   );

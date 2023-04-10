@@ -30,12 +30,14 @@ export const installCompendiumExportButton = () => {
         const contents =
           (await game.packs.get(app.collection.collection)?.getDocuments()) ??
           [];
-        const mapped = contents.map(({ name, type, img, system }: any) => ({
-          name,
-          type,
-          img,
-          system,
-        }));
+        const mapped = contents.map(
+          ({ data: { name, type, img, data } }: any) => ({
+            name,
+            type,
+            img,
+            data,
+          }),
+        );
         const exportData: ExportedCompendium = {
           label: app.collection.metadata.label,
           name: app.collection.metadata.name,

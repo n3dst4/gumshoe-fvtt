@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings";
-import { assertActiveCharacterActor } from "../../v10Types";
+import { assertActiveCharacterDataSource } from "../../typeAssertions";
 import { AbilitySlugPlay } from "./AbilitySlugPlay";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
 import { useAbilities } from "./useAbilities";
@@ -16,7 +16,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
   actor,
   flipLeftRight,
 }) => {
-  assertActiveCharacterActor(actor);
+  assertActiveCharacterDataSource(actor.data);
   const { investigativeAbilities, generalAbilities } = useAbilities(
     actor,
     true,

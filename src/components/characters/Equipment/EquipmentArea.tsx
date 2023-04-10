@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { getTranslated } from "../../../functions";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { settings } from "../../../settings";
-import { isEquipmentItem } from "../../../v10Types";
+import { isEquipmentDataSource } from "../../../typeAssertions";
 import { FoundryAppContext } from "../../FoundryAppContext";
 import { EquipmentCategory } from "./EquipmentCategory";
 
@@ -18,8 +18,8 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({ actor }) => {
 
   const uncategorizedItems = items.filter(
     (item) =>
-      isEquipmentItem(item) &&
-      Object.keys(categories).indexOf(item.system.category) === -1,
+      isEquipmentDataSource(item.data) &&
+      Object.keys(categories).indexOf(item.data.data.category) === -1,
   );
 
   return (
@@ -31,7 +31,8 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({ actor }) => {
             categoryId={categoryId}
             items={items.filter(
               (item) =>
-                isEquipmentItem(item) && item.system.category === categoryId,
+                isEquipmentDataSource(item.data) &&
+                item.data.data.category === categoryId,
             )}
             name={category.name}
             key={categoryId}

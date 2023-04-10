@@ -1,9 +1,8 @@
-import { AbilityType } from "../../types";
-import { AbilityItem } from "../../v10Types";
+import { AbilityDataSource, AbilityType } from "../../types";
 
 export const typeHeaderKey = "typeHeader" as const;
 export const categoryHeaderKey = "categoryHeader" as const;
-export const abilityRowKey = "abilityRowString" as const;
+export const abilityRowkey = "abilityRowString" as const;
 export type TypeHeaderData = {
   rowType: typeof typeHeaderKey;
   abilityType: AbilityType;
@@ -18,8 +17,8 @@ export type ActorAbilityInfo = {
   rating: number | undefined;
 };
 export type AbilityRowData = {
-  rowType: typeof abilityRowKey;
-  abilityItem: AbilityItem;
+  rowType: typeof abilityRowkey;
+  abilityDataSource: AbilityDataSource;
   actorInfo: {
     [actorId: string]: ActorAbilityInfo;
   };

@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { assertAbilityItem } from "../../v10Types";
+import { assertAbilityDataSource } from "../../typeAssertions";
 import { useListShowHideTransition } from "../transitions/useListShowHideTransition";
 import { Translate } from "../Translate";
 import { getListTransitionStyles } from "./getListTransitionStyles";
@@ -15,10 +15,10 @@ const transitionTime = 400;
 export const SituationalModifiersEditor: React.FC<
   SituationalModifiersEditorProps
 > = ({ ability }: SituationalModifiersEditorProps) => {
-  assertAbilityItem(ability);
+  assertAbilityDataSource(ability.data);
 
   const transitionedSituationalModifiers = useListShowHideTransition(
-    ability.system.situationalModifiers,
+    ability.data.data.situationalModifiers,
     (situationalModifier) => situationalModifier.id,
     transitionTime,
   );

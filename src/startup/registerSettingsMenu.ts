@@ -6,7 +6,7 @@ export const registerSettingsMenu = function () {
   assertGame(game);
 
   // Define a settings submenu which handles advanced configuration needs
-  game.settings.registerMenu(constants.systemId, "investigatorSettingsMenu", {
+  game.settings.registerMenu(constants.systemName, "investigatorSettingsMenu", {
     name: "GUMSHOE Settings",
     label: "Open GUMSHOE System Settings", // The text label used in the button
     // hint: "A description of what will occur in the submenu dialog.",

@@ -6,11 +6,11 @@ import { AbilityConfig } from "./AbilityConfig";
 import { Translate } from "../Translate";
 import { AbilityTestMW } from "./AbilityTestMW";
 import { AbilityMwExtraFields } from "./AbilityMwExtraFields";
+import { isGeneralAbilityDataSource } from "../../typeAssertions";
 import { settings } from "../../settings";
 import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";
 import { ItemSheetMode } from "../ItemSheetFramework/types";
 import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
-import { isGeneralAbilityItem } from "../../v10Types";
 
 type AbilitySheetProps = {
   ability: InvestigatorItem;
@@ -21,7 +21,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   ability,
   application,
 }) => {
-  const isGeneral = isGeneralAbilityItem(ability);
+  const isGeneral = isGeneralAbilityDataSource(ability.data);
 
   const useMwStyleAbilities = settings.useMwStyleAbilities.get();
 
@@ -32,7 +32,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
           <Translate>
             {isGeneral ? "General ability" : "Investigative ability"}
           </Translate>
-          {ability.actor && <span> ({ability.actor.name})</span>}
+          {ability.actor && <span> ({ability.actor.data.name})</span>}
         </>
       }
       item={ability}

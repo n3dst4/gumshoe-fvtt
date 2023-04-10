@@ -5,7 +5,7 @@ import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";
-import { assertPCActor } from "../../v10Types";
+import { assertPCDataSource } from "../../typeAssertions";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
@@ -17,7 +17,7 @@ type SettingAreaProps = {
 
 export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
   assertGame(game);
-  assertPCActor(actor);
+  assertPCDataSource(actor.data);
   const onSetTheme = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       const value = e.currentTarget.value;
@@ -48,7 +48,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
 
         <GridField label="Notes Format">
           <select
-            value={actor.system.longNotesFormat}
+            value={actor.data.data.longNotesFormat}
             onChange={(e) => {
               actor.setLongNotesFormat(e.currentTarget.value as NoteFormat);
             }}
@@ -66,7 +66,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
         {settings.useTurnPassingInitiative.get() && (
           <GridField label="Number of turns">
             <AsyncNumberInput
-              value={actor.system.initiativePassingTurns}
+              value={actor.data.data.initiativePassingTurns}
               onChange={actor.setPassingTurns}
             />
           </GridField>

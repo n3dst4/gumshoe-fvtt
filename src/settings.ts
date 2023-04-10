@@ -1,7 +1,7 @@
 import * as c from "./constants";
 import { assertGame, mapValues } from "./functions";
 import { pathOfCthulhuPreset } from "./presets";
-import { defaultCustomThemePath, systemId } from "./constants";
+import { defaultCustomThemePath, systemName } from "./constants";
 import { runtimeConfig } from "./runtime";
 import { ThemeV1 } from "./themes/types";
 import { MigrationFlags } from "./migrations/types";
@@ -22,14 +22,14 @@ const getSetting =
   <T = string>(key: string) =>
   (): T => {
     assertGame(game);
-    return game.settings.get(systemId, key) as T;
+    return game.settings.get(systemName, key) as T;
   };
 
 const setSetting =
   <T = string>(key: string) =>
   (value: T) => {
     assertGame(game);
-    return game.settings.set(systemId, key, value);
+    return game.settings.set(systemName, key, value);
   };
 
 const createSetting = <T>(
@@ -46,7 +46,7 @@ const createSetting = <T>(
 ) => {
   Hooks.once("init", () => {
     assertGame(game);
-    game.settings.register(c.systemId, key, {
+    game.settings.register(c.systemName, key, {
       name,
       scope,
       config,

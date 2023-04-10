@@ -1,6 +1,6 @@
 import React from "react";
 import { Suspense } from "../components/Suspense";
-import { reactTemplatePath, systemId } from "../constants";
+import { reactTemplatePath, systemName } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 const PartySheet = React.lazy(async () => {
@@ -18,7 +18,7 @@ class PartySheetClassBase extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: [systemId, "sheet", "actor"],
+      classes: [systemName, "sheet", "actor"],
       template: reactTemplatePath,
       width: 660,
       height: 900,

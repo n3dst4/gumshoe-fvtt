@@ -7,18 +7,18 @@ import {
 } from "../constants";
 import { assertGame, isNullOrEmptyString } from "../functions";
 import {
-  isEquipmentItem,
-  isGeneralAbilityItem,
-  isPersonalDetailItem,
-  isWeaponItem,
-} from "../v10Types";
+  isWeaponDataSource,
+  isGeneralAbilityDataSource,
+  isEquipmentDataSource,
+  isPersonalDetailDataSource,
+} from "../typeAssertions";
 
 export const installItemImageHookHandler = () => {
   Hooks.on(
     "preCreateItem",
     (
       item: Item,
-      createData: { name: string; type: string; img?: string },
+      createData: { name: string; type: string; data?: any; img?: string },
       options: any,
       userId: string,
     ) => {
@@ -27,17 +27,17 @@ export const installItemImageHookHandler = () => {
 
       // set image
       if (
-        isNullOrEmptyString(item.img) ||
-        item.img === "icons/svg/item-bag.svg"
+        isNullOrEmptyString(item.data.img) ||
+        item.data.img === "icons/svg/item-bag.svg"
       ) {
-        item.update({
-          img: isWeaponItem(item)
+        item.data.update({
+          img: isWeaponDataSource(item.data)
             ? weaponIcon
-            : isEquipmentItem(item)
+            : isEquipmentDataSource(item.data)
             ? equipmentIcon
-            : isGeneralAbilityItem(item)
+            : isGeneralAbilityDataSource(item.data)
             ? generalAbilityIcon
-            : isPersonalDetailItem(item)
+            : isPersonalDetailDataSource(item.data)
             ? personalDetailIcon
             : investigativeAbilityIcon,
         });

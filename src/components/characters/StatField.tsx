@@ -1,6 +1,6 @@
 import { Stat } from "@lumphammer/investigator-fvtt-types";
 import React, { Fragment, useCallback } from "react";
-import { assertActiveCharacterActor } from "../../v10Types";
+import { assertActiveCharacterDataSource } from "../../typeAssertions";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 
 interface StatFieldProps {
@@ -14,12 +14,12 @@ export const StatField: React.FC<StatFieldProps> = ({
   actor,
   id,
 }: StatFieldProps) => {
-  assertActiveCharacterActor(actor);
+  assertActiveCharacterDataSource(actor.data);
   const onChange = useCallback(
     (newVal: number) => {
-      assertActiveCharacterActor(actor);
+      assertActiveCharacterDataSource(actor.data);
       actor.update({
-        system: { stats: { ...actor.system.stats, [id]: newVal } },
+        data: { stats: { ...actor.data.data.stats, [id]: newVal } },
       });
     },
     [actor, id],
@@ -31,7 +31,7 @@ export const StatField: React.FC<StatFieldProps> = ({
       <AsyncNumberInput
         min={stat.min ?? 0}
         max={stat.max}
-        value={actor.system.stats[id] ?? stat.default}
+        value={actor.data.data.stats[id] ?? stat.default}
         onChange={onChange}
       />
     </Fragment>

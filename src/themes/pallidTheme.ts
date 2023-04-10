@@ -1,4 +1,4 @@
-import { systemId } from "../constants";
+import { systemName } from "../constants";
 import { Irid } from "../Irid";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
@@ -17,7 +17,7 @@ export const pallidTheme: ThemeV1 = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
   `,
   largeSheetRootStyle: {
-    backgroundImage: `url(systems/${systemId}/assets/wallpaper/guille-pozzi-sbcIAn4Mn14-unsplash.webp)`,
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/guille-pozzi-sbcIAn4Mn14-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont: "bold small-caps normal 1.1em 'Nova Square', serif",
@@ -29,9 +29,9 @@ export const pallidTheme: ThemeV1 = themeFactory({
     },
     rearTextElementStyle: {
       textShadow: stripNewlines(`
-        -${pallidOffset} -${pallidOffset} ${pallidBlur} #cdf6ff,
-        -${pallidOffset} ${pallidOffset} ${pallidBlur} #cdf6ff,
-        ${pallidOffset} -${pallidOffset} ${pallidBlur} #cdf6ff,
+        -${pallidOffset} -${pallidOffset} ${pallidBlur} #cdf6ff, 
+        -${pallidOffset} ${pallidOffset} ${pallidBlur} #cdf6ff, 
+        ${pallidOffset} -${pallidOffset} ${pallidBlur} #cdf6ff, 
         ${pallidOffset} ${pallidOffset} ${pallidBlur} #cdf6ff`),
     },
     textElementsStyle: {
@@ -40,7 +40,7 @@ export const pallidTheme: ThemeV1 = themeFactory({
     backdropStyle: {
       perspective: "500px",
       perspectiveOrigin: "50% 50%",
-      background: `url(systems/${systemId}/assets/wallpaper/philipp-trubchenko-jObj_p885Gg-unsplash.webp)`,
+      background: `url(systems/${systemName}/assets/wallpaper/philipp-trubchenko-jObj_p885Gg-unsplash.webp)`,
       backgroundSize: "cover",
       transform: "scaleY(1.1) scaleX(1.1) translateY(0%) rotate(0deg)",
       height: "400%",

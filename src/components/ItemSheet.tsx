@@ -6,10 +6,10 @@ import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { AbilitySheet } from "./abilities/AbilitySheet";
 import { WeaponSheet } from "./equipment/WeaponSheet";
 import { CSSReset } from "./CSSReset";
+import { isAbilityDataSource, isMwItemDataSource } from "../typeAssertions";
 import { MwItemSheet } from "./equipment/MwItemSheet";
 import { ThrowError } from "./ThrowError";
 import { PersonalDetailSheet } from "./personalDetails/PersonalDetailSheet";
-import { isAbilityItem, isMwItem } from "../v10Types";
 
 type ItemSheetProps = {
   item: InvestigatorItem;
@@ -24,7 +24,7 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
   const theme = item.getTheme();
 
   const style: CSSObject =
-    isAbilityItem(item) || isMwItem(item)
+    isAbilityDataSource(item.data) || isMwItemDataSource(item.data)
       ? {
           position: "absolute",
           top: 0,
@@ -38,7 +38,7 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
 
   return (
     <CSSReset theme={theme} mode="small" css={style}>
-      {isAbilityItem(item) ? (
+      {isAbilityDataSource(item.data) ? (
         <AbilitySheet ability={item} application={application} />
       ) : item.type === equipment ? (
         <EquipmentSheet equipment={item} application={application} />

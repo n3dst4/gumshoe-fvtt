@@ -14,6 +14,7 @@ import { WeaponsArea } from "./Weapons/WeaponsArea";
 import { SettingArea } from "./SettingsArea";
 import { TrackersArea } from "./TrackersArea";
 import { Translate } from "../Translate";
+import { assertPCDataSource, isPCDataSource } from "../../typeAssertions";
 import { ImagePickle } from "../ImagePickle";
 import { assertGame } from "../../functions";
 import { AbilitiesAreaMW } from "./MoribundWorld/AbilitiesAreaMW";
@@ -25,14 +26,13 @@ import { StatField } from "./StatField";
 import { PersonalDetailField } from "./PersonalDetailField";
 import { occupationSlotIndex } from "../../constants";
 import { IndexedAsyncTextInput } from "../inputs/IndexedAsyncTextInput";
-import { assertPCActor, isPCActor } from "../../v10Types";
 
 export const PCSheet: React.FC<{
   actor: InvestigatorActor;
   foundryApplication: ActorSheet;
 }> = ({ actor, foundryApplication }) => {
   assertGame(game);
-  assertPCActor(actor);
+  assertPCDataSource(actor.data);
 
   const updateShortNote = useCallback(
     (value: string, index: number) => {
@@ -82,8 +82,8 @@ export const PCSheet: React.FC<{
         }}
       >
         <LogoEditable
-          mainText={actor.name ?? ""}
-          subText={actor.system.occupation}
+          mainText={actor.data.name}
+          subText={actor.data.data.occupation}
           defaultSubText={settings.genericOccupation.get()}
           onChangeMainText={actor.setName}
           onChangeSubText={actor.setOccupation}
@@ -109,7 +109,7 @@ export const PCSheet: React.FC<{
       >
         <InputGrid>
           <GridField label="Name">
-            <AsyncTextInput value={actor.name ?? ""} onChange={actor.setName} />
+            <AsyncTextInput value={actor.data.name} onChange={actor.setName} />
           </GridField>
           <PersonalDetailField
             name={occupationLabel}
@@ -120,7 +120,11 @@ export const PCSheet: React.FC<{
             type === "text" ? (
               <GridField noTranslate key={`${name}--${i}`} label={name}>
                 <IndexedAsyncTextInput
-                  value={isPCActor(actor) ? actor.system.shortNotes[i] : ""}
+                  value={
+                    isPCDataSource(actor.data)
+                      ? actor.data.data.shortNotes[i]
+                      : ""
+                  }
                   onChange={updateShortNote}
                   index={i}
                 />
@@ -139,7 +143,9 @@ export const PCSheet: React.FC<{
               <GridField noTranslate key={`${name}--${i}`} label={name}>
                 <IndexedAsyncTextInput
                   value={
-                    isPCActor(actor) ? actor.system.hiddenShortNotes[i] : ""
+                    isPCDataSource(actor.data)
+                      ? actor.data.data.hiddenShortNotes[i]
+                      : ""
                   }
                   onChange={updateMwHiddenShortNote}
                   index={i}

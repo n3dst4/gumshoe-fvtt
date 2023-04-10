@@ -6,17 +6,16 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { SpecialityList } from "./SpecialityList";
 import { Translate } from "../Translate";
+import { ActiveCharacterDataSource } from "../../types";
+import {
+  assertAbilityDataSource,
+  assertActiveCharacterDataSource,
+  isActiveCharacterDataSource,
+} from "../../typeAssertions";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { settings } from "../../settings";
 import { AbilityBadges } from "./AbilityBadges";
-import {
-  ActorPayload,
-  AnyActor,
-  assertAbilityItem,
-  assertActiveCharacterActor,
-  isActiveCharacterActor,
-} from "../../v10Types";
 
 type AbilityMainBitsProps = {
   ability: InvestigatorItem;
@@ -25,7 +24,7 @@ type AbilityMainBitsProps = {
 export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
   ability,
 }) => {
-  assertAbilityItem(ability);
+  assertAbilityDataSource(ability.data);
 
   const onClickRefresh = useCallback(() => {
     ability.refreshPool();
@@ -35,24 +34,24 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
 
   const isCombatAbility = settings.combatAbilities
     .get()
-    .includes(ability.name ?? "");
+    .includes(ability.data.name);
 
   const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
-    isActiveCharacterActor(ability?.actor) &&
-      ability?.actor?.system.initiativeAbility,
+    isActiveCharacterDataSource(ability?.actor?.data) &&
+      ability?.actor?.data.data.initiativeAbility,
   );
 
   useEffect(() => {
     const callback = (
-      actor: AnyActor,
-      diff: ActorPayload,
+      actor: Actor,
+      diff: { _id: string; data: DeepPartial<ActiveCharacterDataSource> },
       options: unknown,
       id: string,
     ) => {
-      if (actor.id === ability?.actor?.id) {
+      if (actor.data._id === ability?.actor?.data?._id) {
         setActorInitiativeAbility(
-          isActiveCharacterActor(ability?.actor) &&
-            ability?.actor?.system.initiativeAbility,
+          isActiveCharacterDataSource(ability?.actor?.data) &&
+            ability?.actor?.data.data.initiativeAbility,
         );
       }
     };
@@ -60,19 +59,19 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     return () => {
       Hooks.off("updateActor", callback);
     };
-  }, [ability?.actor]);
+  }, [ability?.actor?.data]);
 
   const isAbilityUsed = actorInitiativeAbility === ability.name;
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
-      assertActiveCharacterActor(ability?.actor);
+      assertActiveCharacterDataSource(ability?.actor?.data);
       ability?.actor?.update({
-        system: {
-          initiativeAbility: ability.name,
+        data: {
+          initiativeAbility: ability.data.name,
         },
       });
     },
-    [ability?.actor, ability.name],
+    [ability?.actor, ability.data.name],
   );
 
   const useMwStyleAbilities = settings.useMwStyleAbilities.get();
@@ -93,8 +92,8 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
         >
           <AsyncNumberInput
             min={0}
-            max={useMwStyleAbilities ? undefined : ability.system.rating}
-            value={ability.system.pool}
+            max={useMwStyleAbilities ? undefined : ability.data.data.rating}
+            value={ability.data.data.pool}
             onChange={ability.setPool}
             css={{
               flex: 1,
@@ -115,7 +114,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
       <GridField label="Rating">
         <AsyncNumberInput
           min={0}
-          value={ability.system.rating}
+          value={ability.data.data.rating}
           onChange={ability.setRating}
         />
       </GridField>

@@ -14,27 +14,23 @@ export const Tracker: React.FC = () => {
   // STATE & DERIVED DATA
 
   const combat = game.combats?.active;
-  // @ts-expect-error v10 types
-  const combatId = combat?._id;
+  const combatId = combat?.data._id;
   const combatRef = useRefStash(combat);
   const combatCount = game.combats?.combats.length ?? 0;
 
   const combatIndex = combatId
-    ? // @ts-expect-error v10 types
-      game.combats?.combats.findIndex((c) => c._id === combatId)
+    ? game.combats?.combats.findIndex((c) => c.data._id === combatId)
     : undefined;
   const previousId =
     combatIndex !== undefined && combatIndex > 0
-      ? // @ts-expect-error v10 types
-        game.combats?.combats[combatIndex - 1]._id
+      ? game.combats?.combats[combatIndex - 1].data._id
       : null;
   const nextId =
     combatIndex !== undefined && combatIndex < combatCount - 1
-      ? // @ts-expect-error v10 types
-        game.combats?.combats[combatIndex + 1]._id
+      ? game.combats?.combats[combatIndex + 1].data._id
       : null;
 
-  const linked = combat?.scene !== null;
+  const linked = combat?.data.scene !== null;
   const hasCombat = !!combat;
 
   const scopeLabel = game.i18n.localize(
@@ -219,9 +215,9 @@ export const Tracker: React.FC = () => {
           <a className="combat-button combat-control" />
           {combatCount ? (
             <Fragment>
-              {combat?.round ? (
+              {combat?.data.round ? (
                 <h3 className="encounter-title noborder">
-                  {localize("COMBAT.Round")} {combat.round}
+                  {localize("COMBAT.Round")} {combat.data.round}
                   {isTurnPassing && game.user.isGM && (
                     <button
                       title={localize("COMBAT.RoundNext")}
@@ -313,7 +309,7 @@ export const Tracker: React.FC = () => {
             !isTurnPassing &&
             (game.user.isGM ? (
               <Fragment>
-                {combat.round ? (
+                {combat.data.round ? (
                   <Fragment>
                     <a
                       title={localize("COMBAT.RoundPrev")}

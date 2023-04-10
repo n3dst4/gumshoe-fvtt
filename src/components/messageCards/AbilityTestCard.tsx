@@ -37,7 +37,7 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(
             height: "4em",
             width: "4em",
             gridArea: "image",
-            backgroundImage: `url(${ability?.img ?? imageUrl})`,
+            backgroundImage: `url(${ability?.data.img ?? imageUrl})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
@@ -55,7 +55,7 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(
         >
           <b>
             <a onClick={onClickAbilityName}>
-              {name ?? ability?.name ?? "Missing"}
+              {name ?? ability?.data.name ?? "Missing"}
             </a>
           </b>
         </div>
@@ -70,8 +70,7 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(
             <Fragment>
               <Translate>AbilityTest</Translate>
               {": "}
-              {/* @ts-expect-error v10 types */}
-              <DiceTerms terms={msg.rolls?.[0]?.terms} />
+              <DiceTerms terms={msg.roll?.terms} />
               {" ="}
             </Fragment>
           )}
@@ -86,8 +85,7 @@ export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(
             },
           }}
         >
-          {/* @ts-expect-error v10 types */}
-          {msg.rolls?.[0]?.total}
+          {msg.roll?.total}
         </a>
       </div>
     );

@@ -40,7 +40,7 @@ export const installDropActorSheetDataHandler = () => {
     ) => {
       assertGame(game);
       if (
-        targetActor.type !== party ||
+        targetActor.data.type !== party ||
         (dropData.type !== "Actor" &&
           (dropData.type !== "Folder" || dropData.entity !== "Actor")) ||
         !game.user?.isGM
@@ -54,7 +54,7 @@ export const installDropActorSheetDataHandler = () => {
           : dropData.type === "Folder"
           ? getFolderDescendants(game.folders?.get(id))
               .filter((actor) => {
-                return (actor as any).type === pc;
+                return (actor as any).data.type === pc;
               })
               .map((actor) => (actor as any).id)
           : [];

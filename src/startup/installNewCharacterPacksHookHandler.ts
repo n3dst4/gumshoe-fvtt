@@ -18,7 +18,7 @@ export function installNewCharacterPacksHookHandler() {
         return;
       }
 
-      if (actor.type === pc) {
+      if (actor.data.type === pc) {
         // this used to be done in parallel with Promise.all but I was seeing some
         // weird behaviour (duplicated or missing abilities, or weird reference
         // errors) so I have switched it to serial to see if that helps
@@ -32,11 +32,13 @@ export function installNewCharacterPacksHookHandler() {
             // clunky cast here because there doesn't seem to be a sane way to
             // check the type of something coming out of a compendium pack.
             // XXX if we cast as InvestigatorItem, we have a circular dependency
-            const { name, img, system, type } = item as any;
+            const {
+              data: { name, img, data, type },
+            } = item as any;
             return {
               name,
               img,
-              system,
+              data,
               type,
             };
           });
@@ -45,7 +47,7 @@ export function installNewCharacterPacksHookHandler() {
         }
       }
 
-      if (actor.type === npc) {
+      if (actor.data.type === npc) {
         for (const packId of settings.newNPCPacks.get()) {
           assertGame(game);
           console.log("PACK", packId);
@@ -55,10 +57,10 @@ export function installNewCharacterPacksHookHandler() {
           // XXX eurgh - same as elsewhere - if we cast as InvestigatorItem, we
           // have a circular dependency
           const datas = (content as any[])?.map(
-            ({ name, img, system, type }) => ({
+            ({ data: { name, img, data, type } }) => ({
               name,
               img,
-              system,
+              data,
               type,
             }),
           );

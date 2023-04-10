@@ -1,6 +1,6 @@
 import React from "react";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
-import { reactTemplatePath, systemId } from "../constants";
+import { reactTemplatePath, systemName } from "../constants";
 import { Suspense } from "../components/Suspense";
 
 const Settings = React.lazy(() =>
@@ -19,7 +19,7 @@ export class SettingsClassBase extends FormApplication<
   // /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: [systemId, "sheet", "item", "dialog"],
+      classes: [systemName, "sheet", "item", "dialog"],
       template: reactTemplatePath,
       width: 700,
       height: 800,

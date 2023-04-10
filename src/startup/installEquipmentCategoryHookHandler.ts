@@ -1,7 +1,7 @@
 import { assertGame } from "../functions";
 import { settings } from "../settings";
-import { EquipmentDataSourceData } from "../types";
-import { isEquipmentItem } from "../v10Types";
+import { isEquipmentDataSource } from "../typeAssertions";
+import { EquipmentDataSource } from "../types";
 
 export const installEquipmentCategoryHookHandler = () => {
   Hooks.on(
@@ -16,15 +16,17 @@ export const installEquipmentCategoryHookHandler = () => {
       if (game.userId !== userId) return;
 
       // set category and fields
-      if (isEquipmentItem(item)) {
+      if (isEquipmentDataSource(item.data)) {
         const equipmentCategories = settings.equipmentCategories.get();
         const categoryId =
-          item.system.category || Object.keys(equipmentCategories)[0];
-        const updateData: Pick<EquipmentDataSourceData, "category" | "fields"> =
-          {
-            category: item.system.category || categoryId,
-            fields: item.system.fields || {},
-          };
+          item.data.data.category || Object.keys(equipmentCategories)[0];
+        const updateData: Pick<
+          EquipmentDataSource["data"],
+          "category" | "fields"
+        > = {
+          category: item.data.data.category || categoryId,
+          fields: item.data.data.fields || {},
+        };
         const fields = equipmentCategories[categoryId].fields;
         for (const field in fields) {
           updateData.fields[field] ||= fields[field].default;

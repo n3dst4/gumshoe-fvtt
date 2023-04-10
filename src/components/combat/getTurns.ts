@@ -1,4 +1,4 @@
-import { isActiveCharacterActor } from "../../v10Types";
+import { isActiveCharacterDataSource } from "../../typeAssertions";
 
 export interface InvestigatorTurn
   extends Omit<CombatTracker.Turn, "ressource" | "css"> {
@@ -26,8 +26,7 @@ export function getTurns(combat: Combat) {
 
     const active = i === combat.turn;
     const hidden = combatant.hidden;
-    // @ts-expect-error combatant.defeated not in typoes yet
-    let defeated = combatant.defeated;
+    let defeated = combatant.data.defeated;
     const owner = combatant.isOwner;
     const initiative = combatant.initiative;
     const hasRolled = combatant.initiative !== null;
@@ -53,28 +52,20 @@ export function getTurns(combat: Combat) {
     // Actor and Token status effects
     const effects = new Set<string>();
     if (combatant.token) {
-      // @ts-expect-error v10 types
-      combatant.token.effects.forEach((e) => effects.add(e));
-      // @ts-expect-error v10 types
-      if (combatant.token.overlayEffect)
-        // @ts-expect-error v10 types
-        effects.add(combatant.token.overlayEffect);
+      combatant.token.data.effects.forEach((e) => effects.add(e));
+      if (combatant.token.data.overlayEffect)
+        effects.add(combatant.token.data.overlayEffect);
     }
     if (combatant.actor) {
       combatant.actor.temporaryEffects.forEach((e) => {
-        if (e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId) {
+        if (e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId)
           defeated = true;
-        }
-        // @ts-expect-error v10 types
-        else if (e.icon) {
-          // @ts-expect-error v10 types
-          effects.add(e.icon);
-        }
+        else if (e.data.icon) effects.add(e.data.icon);
       });
     }
 
-    const totalPassingTurns = isActiveCharacterActor(combatant.actor)
-      ? combatant.actor?.system.initiativePassingTurns ?? 1
+    const totalPassingTurns = isActiveCharacterDataSource(combatant.actor?.data)
+      ? combatant.actor?.data.data.initiativePassingTurns ?? 1
       : 1;
 
     const turn: InvestigatorTurn = {

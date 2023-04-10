@@ -3,7 +3,7 @@ import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { assertActiveCharacterActor } from "../../v10Types";
+import { assertActiveCharacterDataSource } from "../../typeAssertions";
 import { AbilitySlugEdit } from "./AbilitySlugEdit";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
 import { useAbilities } from "./useAbilities";
@@ -19,7 +19,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
   flipLeftRight,
   showOcc: showOccProp = true,
 }) => {
-  assertActiveCharacterActor(actor);
+  assertActiveCharacterDataSource(actor.data);
   const theme = useContext(ThemeContext);
   const { investigativeAbilities, generalAbilities } = useAbilities(
     actor,

@@ -7,8 +7,8 @@ import { getTranslated } from "../../functions";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { settings } from "../../settings";
 import { EquipmentField } from "./EquipmentField";
+import { assertEquipmentDataSource } from "../../typeAssertions";
 import { absoluteCover } from "../absoluteCover";
-import { assertEquipmentItem } from "../../v10Types";
 
 interface EquipmentMainProps {
   equipment: InvestigatorItem;
@@ -21,10 +21,11 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
   name,
   onChangeName,
 }) => {
-  assertEquipmentItem(equipment);
+  const data = equipment.data;
+  assertEquipmentDataSource(data);
 
   const categories = settings.equipmentCategories.get();
-  const categoryMetadata = categories[equipment.system.category];
+  const categoryMetadata = categories[data.data.category];
   const isRealCategory = categoryMetadata !== undefined;
 
   const onChangeCategory = useCallback(
@@ -41,7 +42,7 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
     [equipment],
   );
 
-  const selectedCat = isRealCategory ? equipment.system.category : "";
+  const selectedCat = isRealCategory ? data.data.category : "";
 
   const fieldsLength = Object.keys(categoryMetadata?.fields ?? {}).length + 2;
 
@@ -92,7 +93,7 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
               key={fieldId}
               fieldId={fieldId}
               fieldMetadata={fieldMetadata}
-              value={equipment.system.fields?.[fieldId]}
+              value={data.data.fields?.[fieldId]}
               equipment={equipment}
             />
           );
@@ -101,9 +102,9 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
 
       <NotesEditorWithControls
         allowChangeFormat
-        format={equipment.system.notes.format}
-        html={equipment.system.notes.html}
-        source={equipment.system.notes.source}
+        format={equipment.data.data.notes.format}
+        html={equipment.data.data.notes.html}
+        source={equipment.data.data.notes.source}
         onSave={equipment.setNotes}
         css={{
           height: "100%",

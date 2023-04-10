@@ -1,7 +1,7 @@
 import React from "react";
 import { sortEntitiesByName } from "../../../functions";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
-import { assertActiveCharacterActor } from "../../../v10Types";
+import { assertActiveCharacterDataSource } from "../../../typeAssertions";
 import { AbilitiesColumnMW } from "../AbilitiesColumnMW";
 import { useAbilities } from "../useAbilities";
 
@@ -10,7 +10,7 @@ type AbilitiesAreaMWProps = {
 };
 
 export const AbilitiesAreaMW: React.FC<AbilitiesAreaMWProps> = ({ actor }) => {
-  assertActiveCharacterActor(actor);
+  assertActiveCharacterDataSource(actor.data);
   const { generalAbilities } = useAbilities(actor, true);
 
   return (

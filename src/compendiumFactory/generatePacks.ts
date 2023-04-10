@@ -15,7 +15,7 @@ import {
   investigativeAbility,
   investigativeAbilityIcon,
   packNames,
-  systemId,
+  systemName,
 } from "../constants";
 import { assertGame } from "../functions";
 
@@ -85,7 +85,7 @@ export const emptyPack = async (
 export const findPack = (packName: string) => {
   assertGame(game);
   const pack = game.packs.find(
-    (p: any) => p.collection === `${systemId}.${packName}`,
+    (p: any) => p.collection === `${systemName}.${packName}`,
   );
   return pack;
 };

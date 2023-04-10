@@ -1,4 +1,4 @@
-import { systemId } from "../constants";
+import { systemName } from "../constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
@@ -10,7 +10,7 @@ export const fearTheme: ThemeV1 = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
   `,
   largeSheetRootStyle: {
-    backgroundImage: `url(systems/${systemId}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
   },
   // smallSheetRootStyle: {
   //   backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,

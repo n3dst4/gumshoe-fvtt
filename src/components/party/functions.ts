@@ -1,6 +1,7 @@
-import { AbilityType } from "../../types";
+import { AbilityDataSource, AbilityType } from "../../types";
+import { isAbilityDataSource } from "../../typeAssertions";
 import {
-  abilityRowKey,
+  abilityRowkey,
   ActorAbilityInfo,
   categoryHeaderKey,
   RowData,
@@ -10,24 +11,23 @@ import * as constants from "../../constants";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertGame } from "../../functions";
 import { settings } from "../../settings";
-import { AbilityItem, AnyItem, isAbilityItem } from "../../v10Types";
 
 /**
  * get a sorted list of ability tuples
  * this is an intermediate stage - it will need to be built up into row data
  * with information from actors
  */
-export const getSystemAbilities = async (): Promise<AbilityItem[]> => {
+export const getSystemAbilities = async (): Promise<AbilityDataSource[]> => {
   const proms = settings.newPCPacks.get().map(async (packId) => {
     assertGame(game);
     // getting pack content is slow
     const pack = game.packs.find(
       (p) => p.metadata.type === "Item" && p.collection === packId,
     );
-    const content = (await pack?.getDocuments()) as AnyItem[];
-    const tuples: AbilityItem[] = content.filter((item) =>
-      isAbilityItem(item),
-    ) as AbilityItem[];
+    const content = await pack?.getDocuments();
+    const tuples: AbilityDataSource[] = (content || [])
+      .filter((x) => isAbilityDataSource(x.data))
+      .map((x) => x.data as AbilityDataSource);
     return tuples;
   });
   const results = await Promise.all(proms);
@@ -57,21 +57,18 @@ const compareStrings = (a = "", b = ""): -1 | 0 | 1 => {
  * ordering function for ability tuples
  */
 const compareAbilityDataSources = (
-  a: AbilityItem,
-  b: AbilityItem,
+  a: AbilityDataSource,
+  b: AbilityDataSource,
 ): -1 | 0 | 1 => {
   const typeComparison = compareTypes(a.type, b.type);
   if (typeComparison !== 0) {
     return typeComparison;
   }
-  const categoryComparison = compareStrings(
-    a.system.category,
-    b.system.category,
-  );
+  const categoryComparison = compareStrings(a.data.category, b.data.category);
   if (categoryComparison !== 0) {
     return categoryComparison;
   }
-  const nameComparison = compareStrings(a.name ?? "", b.name ?? "");
+  const nameComparison = compareStrings(a.name, b.name);
   return nameComparison;
 };
 
@@ -80,7 +77,7 @@ const compareAbilityDataSources = (
  * we need to render the party sheet
  */
 export const buildRowData = (
-  abilities: AbilityItem[],
+  abilities: AbilityDataSource[],
   actors: InvestigatorActor[],
 ): RowData[] => {
   const result: RowData[] = [];
@@ -90,12 +87,12 @@ export const buildRowData = (
   let lastType: AbilityType | null = null;
   let lastCategory: string | null = null;
 
-  for (const abilityItem of sorted) {
+  for (const abilityDataSource of sorted) {
     const {
       type: abilityType,
       name,
-      system: { category },
-    } = abilityItem;
+      data: { category },
+    } = abilityDataSource;
     // const abilityType = ability.type, category, name]
     if (abilityType !== lastType) {
       result.push({ rowType: typeHeaderKey, abilityType });
@@ -113,7 +110,7 @@ export const buildRowData = (
       if (actor === undefined) {
         continue;
       }
-      const ability = actor.getAbilityByName(name ?? "", abilityType);
+      const ability = actor.getAbilityByName(name, abilityType);
       if (actor.id !== null) {
         const rating = ability?.getRating();
         actorInfo[actor.id] = {
@@ -126,8 +123,8 @@ export const buildRowData = (
     }
 
     result.push({
-      rowType: abilityRowKey,
-      abilityItem,
+      rowType: abilityRowkey,
+      abilityDataSource,
       actorInfo,
       total,
     });
