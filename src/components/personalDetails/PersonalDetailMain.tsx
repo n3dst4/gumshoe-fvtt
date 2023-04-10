@@ -3,7 +3,7 @@ import { occupationSlotIndex } from "../../constants";
 import { assertGame, padLength } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";
-import { assertPersonalDetailItem } from "../../v10Types";
+import { assertPersonalDetailDataSource } from "../../typeAssertions";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
@@ -18,14 +18,14 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
   item,
 }) => {
   assertGame(game);
-  assertPersonalDetailItem(item);
+  assertPersonalDetailDataSource(item.data);
   const name = item.name;
   const personalDetails = settings.personalDetails
     .get()
     .map((detail) => detail.name);
   const options = padLength(
     personalDetails,
-    item.system.slotIndex + 1,
+    item.data.data.slotIndex + 1,
     (index) => `Slot ${index + 1}`,
   );
   const compendiumPacks = game.packs.filter(
@@ -45,7 +45,7 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
       </GridField>
       <GridField label="Slot">
         <select
-          value={item.system.slotIndex}
+          value={item.data.data.slotIndex}
           css={{
             width: "100%",
           }}
@@ -65,7 +65,7 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
       </GridField>
       <GridField label="Compendium Pack">
         <select
-          value={item.system.compendiumPackId ?? ""}
+          value={item.data.data.compendiumPackId ?? ""}
           css={{
             width: "100%",
           }}
@@ -87,9 +87,9 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
       </GridField>
       <NotesEditorWithControls
         allowChangeFormat
-        format={item.system.notes.format}
-        html={item.system.notes.html}
-        source={item.system.notes.source}
+        format={item.data.data.notes.format}
+        html={item.data.data.notes.html}
+        source={item.data.data.notes.source}
         onSave={item.setNotes}
         css={{
           height: "100%",

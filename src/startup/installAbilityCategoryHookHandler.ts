@@ -3,14 +3,17 @@ import {
   getDefaultGeneralAbilityCategory,
   getDefaultInvestigativeAbilityCategory,
 } from "../settings";
-import { isAbilityItem, isGeneralAbilityItem } from "../v10Types";
+import {
+  isAbilityDataSource,
+  isGeneralAbilityDataSource,
+} from "../typeAssertions";
 
 export const installAbilityCategoryHookHandler = () => {
   Hooks.on(
     "preCreateItem",
     (
       item: Item,
-      createData: { name: string; type: string; img?: string },
+      createData: { name: string; type: string; data?: any; img?: string },
       options: any,
       userId: string,
     ) => {
@@ -18,18 +21,18 @@ export const installAbilityCategoryHookHandler = () => {
       if (game.userId !== userId) return;
 
       // ABILITIES
-      if (isAbilityItem(item)) {
-        const isGeneralAbility = isGeneralAbilityItem(item);
+      if (isAbilityDataSource(item.data)) {
+        const isGeneralAbility = isGeneralAbilityDataSource(item.data);
         // set category
-        if (isNullOrEmptyString(item.system.category)) {
+        if (isNullOrEmptyString(item.data.data.category)) {
           const category = isGeneralAbility
             ? getDefaultGeneralAbilityCategory()
             : getDefaultInvestigativeAbilityCategory();
           console.log(
             `found ability "${createData.name}" with no category, updating to "${category}"`,
           );
-          item.update({
-            system: { category },
+          item.data.update({
+            data: { category },
           });
         }
       }

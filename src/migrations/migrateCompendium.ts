@@ -35,13 +35,13 @@ export const migrateCompendium = async function (
     try {
       switch (entity) {
         case "Actor":
-          updateData = migrateActorData(ent, flaggedMigrations);
+          updateData = migrateActorData(ent.data, flaggedMigrations);
           break;
         case "Item":
-          updateData = migrateItemData(ent, flaggedMigrations);
+          updateData = migrateItemData(ent.data, flaggedMigrations);
           break;
         case "Scene":
-          updateData = migrateSceneData(ent, flaggedMigrations);
+          updateData = migrateSceneData(ent.data, flaggedMigrations);
           break;
       }
       if (isObjectEmpty(updateData)) continue;

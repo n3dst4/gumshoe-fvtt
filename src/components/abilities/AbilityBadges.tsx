@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { assertAbilityItem } from "../../v10Types";
+import { assertAbilityDataSource } from "../../typeAssertions";
 import { SituationalModifierBadge } from "./SituationalModifierBadge";
 
 interface UnlockBadgesProps {
@@ -13,14 +13,14 @@ export const AbilityBadges: React.FC<UnlockBadgesProps> = ({
   ability,
   className,
 }: UnlockBadgesProps) => {
-  assertAbilityItem(ability);
+  assertAbilityDataSource(ability.data);
   const situationalModifiers = ability.getVisibleSituationalModifiers();
   const unlocks = ability.getActiveUnlocks();
   const theme = useContext(ThemeContext);
   return (
     <div className={className}>
       {/* Boost */}
-      {ability.system.boost && (
+      {ability.data.data.boost && (
         <span
           css={{
             background: theme.colors.accentContrast,

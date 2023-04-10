@@ -61,8 +61,16 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
     }
   }, [initialValue, myOnSave, onChange]);
 
+  // const onSubmit = useCallback((e: any) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   // eslint-disable-next-line no-debugger
+  //   // debugger;
+  // }, []);
+
   return (
     <form
+      // onSubmit={onSubmit}
       css={{
         ...absoluteCover,
         backgroundColor: "white",

@@ -1,36 +1,32 @@
 import {
   generalAbility,
-  investigativeAbility,
   generalAbilityIcon,
   investigativeAbilityIcon,
 } from "../constants";
 import { isNullOrEmptyString } from "../functions";
 import { escape } from "html-escaper";
+import {
+  isAbilityDataSource,
+  isGeneralAbilityDataSource,
+} from "../typeAssertions";
 import { getDefaultGeneralAbilityCategory, settings } from "../settings";
 import { niceBlackAgentsPreset } from "../presets";
-import { AnyItem } from "../v10Types";
 
-export const addCategoryToGeneralAbilities = (
-  item: AnyItem,
-  updateData: any,
-) => {
+export const addCategoryToGeneralAbilities = (data: any, updateData: any) => {
   if (
-    item.type === generalAbility &&
-    isNullOrEmptyString(item.system.category)
+    data.type === generalAbility &&
+    isNullOrEmptyString(data.data?.category)
   ) {
     const cat = getDefaultGeneralAbilityCategory();
-    if (!updateData.system) {
-      updateData.system = {};
+    if (!updateData.data) {
+      updateData.data = {};
     }
-    updateData.system.category = cat;
+    updateData.data.category = cat;
   }
   return updateData;
 };
 
-export const setTrackersForPreAlpha4Updates = (
-  item: AnyItem,
-  updateData: any,
-) => {
+export const setTrackersForPreAlpha4Updates = (data: any, updateData: any) => {
   const currentlyMigratedVersion = settings.systemMigrationVersion.get();
   const needsMigrationVersion = "1.0.0-alpha.5";
   const needsMigration = isNewerVersion(
@@ -38,43 +34,48 @@ export const setTrackersForPreAlpha4Updates = (
     currentlyMigratedVersion,
   );
   const isRelevant = ["Health", "Sanity", "Stability", "Magic"].includes(
-    item.name ?? "",
+    data.name,
   );
 
-  if (item.type === generalAbility && needsMigration && isRelevant) {
-    updateData.system.showTracker = true;
-  }
-  return updateData;
-};
-
-export const setIconForAbilities = (item: AnyItem, updateData: any) => {
-  if (
-    (item.type === generalAbility || item.type === investigativeAbility) &&
-    (isNullOrEmptyString(item.img) || item.img === "icons/svg/mystery-man.svg")
-  ) {
-    updateData.img =
-      item.type === generalAbility
-        ? generalAbilityIcon
-        : investigativeAbilityIcon;
-  }
-  return updateData;
-};
-
-export const upgradeNotesToRichText = (item: AnyItem, updateData: any) => {
-  if (typeof item.system.notes === "string") {
-    if (!updateData.system) {
-      updateData.system = {};
+  if (data.type === generalAbility && needsMigration && isRelevant) {
+    if (!updateData.data) {
+      updateData.data = {};
     }
-    updateData.system.notes = {
+    updateData.data.showTracker = true;
+  }
+  return updateData;
+};
+
+export const setIconForAbilities = (data: any, updateData: any) => {
+  if (
+    isAbilityDataSource(data) &&
+    (isNullOrEmptyString(data.img) || data.img === "icons/svg/mystery-man.svg")
+  ) {
+    if (!updateData.data) {
+      updateData.data = {};
+    }
+    updateData.img = isGeneralAbilityDataSource(data ?? "")
+      ? generalAbilityIcon
+      : investigativeAbilityIcon;
+  }
+  return updateData;
+};
+
+export const upgradeNotesToRichText = (data: any, updateData: any) => {
+  if (typeof data.data.notes === "string") {
+    if (!updateData.data) {
+      updateData.data = {};
+    }
+    updateData.data.notes = {
       format: "plain",
-      source: item.system.notes,
-      html: escape(item.system.notes),
+      source: data.data.notes,
+      html: escape(data.data.notes),
     };
   }
   return updateData;
 };
 
-export const setEquipmentCategory = (item: AnyItem, updateData: any) => {
+export const setEquipmentCategory = (data: any, updateData: any) => {
   const categories = settings.equipmentCategories.get();
   // we are only proceeding if we have default categories, so it's either a brave new world, or we're migrating
   if (
@@ -84,11 +85,11 @@ export const setEquipmentCategory = (item: AnyItem, updateData: any) => {
     /// XXX WIP
   }
 
-  if (item.type === "equipment" && isNullOrEmptyString(item.system.category)) {
-    if (!updateData.system) {
-      updateData.system = {};
+  if (data.type === "equipment" && isNullOrEmptyString(data.data?.category)) {
+    if (!updateData.data) {
+      updateData.data = {};
     }
-    updateData.system.category = "Other";
+    updateData.data.category = "Other";
   }
   return updateData;
 };

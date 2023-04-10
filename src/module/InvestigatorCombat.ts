@@ -5,15 +5,14 @@ import {
 } from "../components/combat/functions";
 import * as constants from "../constants";
 import { settings } from "../settings";
-import { isActiveCharacterActor } from "../v10Types";
+import { isActiveCharacterDataSource } from "../typeAssertions";
 
 /**
  * Override base Combat so we can do custom GUMSHOE-style initiative
  */
 export class InvestigatorCombat extends Combat {
   override _onCreate(
-    // was this["data"]["_source"]
-    data: any,
+    data: this["data"]["_source"],
     options: any,
     userId: string,
   ) {
@@ -44,8 +43,8 @@ export class InvestigatorCombat extends Combat {
     this.turns.forEach((combatant) => {
       const actor = combatant.actor;
       const max =
-        actor !== null && isActiveCharacterActor(actor)
-          ? actor.system.initiativePassingTurns
+        actor !== null && isActiveCharacterDataSource(actor.data)
+          ? actor.data.data.initiativePassingTurns
           : 1;
       combatant.passingTurnsRemaining = max;
     });
@@ -54,13 +53,13 @@ export class InvestigatorCombat extends Combat {
   }
 
   get activeTurnPassingCombatant() {
-    return this.getFlag(constants.systemId, "activeTurnPassingCombatant") as
+    return this.getFlag(constants.systemName, "activeTurnPassingCombatant") as
       | string
       | null;
   }
 
   set activeTurnPassingCombatant(id: string | null) {
-    this.setFlag(constants.systemId, "activeTurnPassingCombatant", id);
+    this.setFlag(constants.systemName, "activeTurnPassingCombatant", id);
   }
 }
 

@@ -49,7 +49,7 @@ export const MwItemGroup: React.FC<MwItemGroupProps> = ({
                 {
                   type: mwItem,
                   name: "New item",
-                  system: {
+                  data: {
                     mwType,
                   },
                 },

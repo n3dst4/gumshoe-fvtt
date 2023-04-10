@@ -1,7 +1,10 @@
 import { ConfiguredDocumentClass } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
+import {
+  isActiveCharacterDataSource,
+  isGeneralAbilityDataSource,
+} from "../../typeAssertions";
 import * as constants from "../../constants";
-import { isActiveCharacterActor, isGeneralAbilityItem } from "../../v10Types";
 
 const compare = <T>(a: T, b: T) => (a < b ? -1 : a > b ? 1 : 0);
 const compareInv = <T>(a: T, b: T) => compare(a, b) * -1;
@@ -27,15 +30,15 @@ export function compareCombatantsStandard(
   if (
     a.actor !== null &&
     b.actor !== null &&
-    isActiveCharacterActor(a.actor) &&
-    isActiveCharacterActor(b.actor)
+    isActiveCharacterDataSource(a.actor?.data) &&
+    isActiveCharacterDataSource(b.actor?.data)
   ) {
-    const aAbilityName = a.actor.system.initiativeAbility;
+    const aAbilityName = a.actor.data.data.initiativeAbility;
     const aAbility = a.actor.items.find(
       (item: InvestigatorItem) =>
         item.type === constants.generalAbility && item.name === aAbilityName,
     );
-    const bAbilityName = b.actor.system.initiativeAbility;
+    const bAbilityName = b.actor.data.data.initiativeAbility;
     const bAbility = b.actor.items.find(
       (item: InvestigatorItem) =>
         item.type === constants.generalAbility && item.name === bAbilityName,
@@ -45,24 +48,24 @@ export function compareCombatantsStandard(
     if (
       aAbility !== undefined &&
       bAbility !== undefined &&
-      isGeneralAbilityItem(aAbility) &&
-      isGeneralAbilityItem(bAbility)
+      isGeneralAbilityDataSource(aAbility.data) &&
+      isGeneralAbilityDataSource(bAbility.data)
     ) {
       if (
-        aAbility.system.goesFirstInCombat &&
-        !bAbility.system.goesFirstInCombat
+        aAbility.data.data.goesFirstInCombat &&
+        !bAbility.data.data.goesFirstInCombat
       ) {
         return -1;
       } else if (
-        !aAbility.system.goesFirstInCombat &&
-        bAbility.system.goesFirstInCombat
+        !aAbility.data.data.goesFirstInCombat &&
+        bAbility.data.data.goesFirstInCombat
       ) {
         return 1;
       } else {
-        const aRating = aAbility.system.rating;
-        const bRating = bAbility.system.rating;
-        const aPool = aAbility.system.pool;
-        const bPool = bAbility.system.pool;
+        const aRating = aAbility.data.data.rating;
+        const bRating = bAbility.data.data.rating;
+        const aPool = aAbility.data.data.pool;
+        const bPool = bAbility.data.data.pool;
         if (aRating < bRating) {
           return 1;
         } else if (aRating > bRating) {

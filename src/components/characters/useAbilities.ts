@@ -1,7 +1,7 @@
 import { generalAbility, investigativeAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";
-import { isAbilityItem } from "../../v10Types";
+import { isAbilityDataSource } from "../../typeAssertions";
 
 export const useAbilities = (actor: Actor, hideZeroRated: boolean) => {
   const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
@@ -16,24 +16,24 @@ export const useAbilities = (actor: Actor, hideZeroRated: boolean) => {
   }
 
   for (const item of actor.items.values()) {
-    if (!isAbilityItem(item)) {
+    if (!isAbilityDataSource(item.data)) {
       continue;
     }
     if (
       hideZeroRated &&
-      item.system.hideIfZeroRated &&
-      item.system.rating === 0
+      item.data.data.hideIfZeroRated &&
+      item.data.data.rating === 0
     ) {
       continue;
     }
-    if (item.type === investigativeAbility) {
-      const cat = item.system.category || "Uncategorised";
+    if (item.data.type === investigativeAbility) {
+      const cat = item.data.data.category || "Uncategorised";
       if (investigativeAbilities[cat] === undefined) {
         investigativeAbilities[cat] = [];
       }
       investigativeAbilities[cat].push(item);
     } else if (item.type === generalAbility) {
-      const cat = item.system.category || "Uncategorised";
+      const cat = item.data.data.category || "Uncategorised";
       if (generalAbilities[cat] === undefined) {
         generalAbilities[cat] = [];
       }

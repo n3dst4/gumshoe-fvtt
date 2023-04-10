@@ -1,6 +1,6 @@
 import React from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { assertPersonalDetailItem } from "../../v10Types";
+import { assertPersonalDetailDataSource } from "../../typeAssertions";
 import { GridField } from "../inputs/GridField";
 import { PersonalDetailSlug } from "./PersonalDetailSlug";
 import { Slug } from "./Slug";
@@ -11,8 +11,8 @@ export const PersonalDetailField: React.FC<{
   slotIndex: number;
 }> = ({ actor, name, slotIndex }) => {
   const personalDetailItems = actor.getPersonalDetails().filter((item) => {
-    assertPersonalDetailItem(item);
-    return item.system.slotIndex === slotIndex;
+    assertPersonalDetailDataSource(item.data);
+    return item.data.data.slotIndex === slotIndex;
   });
 
   return (

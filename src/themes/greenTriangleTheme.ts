@@ -1,4 +1,4 @@
-import { systemId } from "../constants";
+import { systemName } from "../constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 // import { ThemeV1 } from "./types";
@@ -11,10 +11,10 @@ export const greenTriangleTheme: ThemeV1 = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@900&family=Big+Shoulders+Stencil+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');
   `,
   largeSheetRootStyle: {
-    backgroundImage: `url(systems/${systemId}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
   },
   smallSheetRootStyle: {
-    backgroundImage: `linear-gradient( to right, #fff9,#fff9), url(systems/${systemId}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
+    backgroundImage: `linear-gradient( to right, #fff9,#fff9), url(systems/${systemName}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
   },
   bodyFont: "16px 'Patrick Hand SC', sans-serif",
   displayFont:
@@ -22,7 +22,7 @@ export const greenTriangleTheme: ThemeV1 = themeFactory({
   logo: {
     frontTextElementStyle: {
       color: "#fff",
-      maskImage: `url(systems/${systemId}/assets/wallpaper/annie-spratt-ctXf1GVyf9A-unsplash.webp)`,
+      maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-ctXf1GVyf9A-unsplash.webp)`,
       maskMode: "luminance",
       maskRepeat: "repeat",
     },

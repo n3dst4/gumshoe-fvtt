@@ -1,4 +1,4 @@
-import { systemId } from "../constants";
+import { systemName } from "../constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
@@ -10,10 +10,10 @@ export const niceThemeDark: ThemeV1 = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
   `,
   largeSheetRootStyle: {
-    backgroundImage: `url(systems/${systemId}/assets/wallpaper/nice_red_agents.webp)`,
+    backgroundImage: `url(systems/${systemName}/assets/wallpaper/nice_red_agents.webp)`,
   },
   smallSheetRootStyle: {
-    backgroundImage: `linear-gradient( to right, #0002,#0002), url(systems/${systemId}/assets/wallpaper/nice_red_agents.webp)`,
+    backgroundImage: `linear-gradient( to right, #0002,#0002), url(systems/${systemName}/assets/wallpaper/nice_red_agents.webp)`,
   },
   appWindowStyle: {
     boxShadow: "0 0 20px #f00",

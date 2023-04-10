@@ -12,17 +12,17 @@ export const flaggedMigrations: FlaggedMigrations = {
      * single category called "general". This migration will set the category
      * field on any existing equipment.
      */
-    setEquipmentCategory: (item: any, updateData: any) => {
+    setEquipmentCategory: (data: any, updateData: any) => {
       if (
-        item.type === c.equipment &&
-        isNullOrEmptyString(item.system.category)
+        data.type === c.equipment &&
+        isNullOrEmptyString(data.data?.category)
       ) {
-        logger.info(`Migrating item ${item.name} to set category`);
-        if (!updateData.system) {
-          updateData.system = {};
+        logger.info(`Migrating item ${data.name} to set category`);
+        if (!updateData.data) {
+          updateData.data = {};
         }
-        updateData.system.category = Object.keys(
-          pathOfCthulhuPreset.equipmentCategories,
+        updateData.data.category = Object.keys(
+          pathOfCthulhuPreset.equipmentCategories, //
         )[0];
       }
       return updateData;
@@ -32,9 +32,9 @@ export const flaggedMigrations: FlaggedMigrations = {
      * in/out UI transitions. This migration will add an id to any existing
      * unlocks.
      */
-    addIdtoUnlocks: (item: any, updateData: any) => {
-      if (item.type === c.equipment) {
-        const unlocks = item.system?.unlocks ?? [];
+    addIdtoUnlocks: (data: any, updateData: any) => {
+      if (data.type === c.equipment) {
+        const unlocks = data.data?.unlocks ?? [];
         const updatedUnlocks = unlocks.map((unlock: any) => {
           if (unlock.id) {
             return unlock;
@@ -44,8 +44,8 @@ export const flaggedMigrations: FlaggedMigrations = {
             id: unlock.name,
           };
         });
-        updateData.system = {
-          ...updateData.system,
+        updateData.data = {
+          ...updateData.data,
           unlocks: updatedUnlocks,
         };
       }
@@ -58,15 +58,15 @@ export const flaggedMigrations: FlaggedMigrations = {
      * included in compendiums etc. This migration will turn any exsiting
      * text-based short notes into new personalDetail items.
      */
-    turnShortNotesIntoPersonalDetails: (actor: any, updateData: any) => {
-      if (actor.type === c.pc && actor.system.shortNotes) {
+    turnShortNotesIntoPersonalDetails: (data: any, updateData: any) => {
+      if (data.type === c.pc && data.data?.shortNotes) {
         logger.info(
-          `Migrating actor ${actor.name} to turn short notes into personal details`,
+          `Migrating actor ${data.name} to turn short notes into personal details`,
         );
-        if (!updateData.system) {
-          updateData.system = {};
+        if (!updateData.data) {
+          updateData.data = {};
         }
-        const shortNoteItems = actor.system.shortNotes
+        const shortNoteItems = data.data.shortNotes
           .map((shortNote: string, i: number) => ({
             type: c.personalDetail,
             img: c.personalDetailIcon,
@@ -76,13 +76,13 @@ export const flaggedMigrations: FlaggedMigrations = {
             },
           }))
           .filter((item: any) => item.name !== null);
-        const occupationItem = isNullOrEmptyString(actor.system.occupation)
+        const occupationItem = isNullOrEmptyString(data.data.occupation)
           ? []
           : [
               {
                 type: c.personalDetail,
                 img: c.personalDetailIcon,
-                name: actor.system.occupation,
+                name: data.data.occupation,
                 system: {
                   slotIndex: c.occupationSlotIndex,
                 },
@@ -100,7 +100,7 @@ export const flaggedMigrations: FlaggedMigrations = {
      * Personal details are like short notes 2.0. This migration will take the
      * old short notes and turn them into personal details.
      */
-    convertShortNotesToPersonalDetails: () => {
+    convertShortNotesToPersonalDetails: (data: any, updateData: any) => {
       assertGame(game);
       const shortNotes: string[] = game.settings.get(
         "investigator",

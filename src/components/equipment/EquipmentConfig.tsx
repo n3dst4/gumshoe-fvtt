@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { assertGame, confirmADoodleDo } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";
-import { assertEquipmentItem } from "../../v10Types";
+import { assertEquipmentDataSource } from "../../typeAssertions";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
@@ -16,7 +16,7 @@ interface EquipmentConfigProps {
 export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
   equipment,
 }) => {
-  assertEquipmentItem(equipment);
+  assertEquipmentDataSource(equipment.data);
 
   const onClickDelete = useCallback(() => {
     assertGame(game);
@@ -30,17 +30,18 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",
       values: {
-        ActorName: equipment.actor?.name ?? "",
-        EquipmentName: equipment.name ?? "",
+        ActorName: equipment.actor?.data.name ?? "",
+        EquipmentName: equipment.data.name,
       },
     }).then(() => {
       equipment.delete();
     });
   }, [equipment]);
 
-  const allFields = equipment.system.fields;
+  const allFields = equipment.data.data.fields;
   const knownFieldIds = Object.keys(
-    settings.equipmentCategories.get()[equipment.system.category]?.fields ?? {},
+    settings.equipmentCategories.get()[equipment.data.data.category]?.fields ??
+      {},
   );
   const unknownFields = Object.keys(allFields).filter(
     (fieldId) => !knownFieldIds.includes(fieldId),
@@ -49,7 +50,7 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
   return (
     <InputGrid>
       <GridField label="Category Id">
-        {equipment.system.category ? (
+        {equipment.data.data.category ? (
           <>
             <code
               css={{
@@ -57,17 +58,17 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
                 margin: "0.3em 1em 0.3em 0",
               }}
             >
-              {equipment.system.category}
+              {equipment.data.data.category}
             </code>
             <a
               css={{
                 gridArea: "cog",
               }}
               onClick={() => {
-                assertEquipmentItem(equipment);
-                navigator.clipboard.writeText(equipment.system.category);
+                assertEquipmentDataSource(equipment.data);
+                navigator.clipboard.writeText(equipment.data.data.category);
                 ui.notifications?.info(
-                  `Copied category ID "${equipment.system.category}" to clipboard`,
+                  `Copied category ID "${equipment.data.data.category}" to clipboard`,
                 );
               }}
             >

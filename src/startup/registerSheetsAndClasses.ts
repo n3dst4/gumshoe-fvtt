@@ -21,20 +21,20 @@ export const registerSheetsAndClasses = () => {
 
   // Register custom sheets (if any)
   // Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet(constants.systemId, PCSheetClass, {
+  Actors.registerSheet(constants.systemName, PCSheetClass, {
     makeDefault: true,
     types: [constants.pc],
   });
-  Actors.registerSheet(constants.systemId, NPCSheetClass, {
+  Actors.registerSheet(constants.systemName, NPCSheetClass, {
     makeDefault: true,
     types: [constants.npc],
   });
-  Actors.registerSheet(constants.systemId, PartySheetClass, {
+  Actors.registerSheet(constants.systemName, PartySheetClass, {
     makeDefault: true,
     types: [constants.party],
   });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet(constants.systemId, ItemSheetClass, {
+  Items.registerSheet(constants.systemName, ItemSheetClass, {
     makeDefault: true,
     types: [
       constants.weapon,

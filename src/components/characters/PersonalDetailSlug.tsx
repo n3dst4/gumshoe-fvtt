@@ -1,6 +1,6 @@
 import React from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { assertPersonalDetailItem } from "../../v10Types";
+import { assertPersonalDetailDataSource } from "../../typeAssertions";
 import { Slug } from "./Slug";
 
 interface PersonalDetailSlugProps {
@@ -10,7 +10,7 @@ interface PersonalDetailSlugProps {
 export const PersonalDetailSlug: React.FC<PersonalDetailSlugProps> = ({
   item,
 }) => {
-  assertPersonalDetailItem(item);
+  assertPersonalDetailDataSource(item.data);
 
   return (
     <Slug
@@ -20,7 +20,7 @@ export const PersonalDetailSlug: React.FC<PersonalDetailSlugProps> = ({
         item.sheet?.render(true);
       }}
     >
-      {item.name}
+      {item.data.name}
     </Slug>
   );
 };

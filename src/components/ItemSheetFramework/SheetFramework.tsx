@@ -23,7 +23,7 @@ export const ItemSheetFramework: React.FC<ItemSheetFrameworkProps> = ({
   children,
 }) => {
   const { contentEditableRef, onBlur, onFocus, onInput } = useAsyncUpdate(
-    item.name ?? "",
+    item.data.name,
     item.setName,
   );
 

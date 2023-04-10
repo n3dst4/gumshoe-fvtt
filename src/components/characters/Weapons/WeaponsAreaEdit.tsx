@@ -36,7 +36,7 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({ actor }) => {
               {
                 type: weapon,
                 name: "A new weapon",
-                system: {
+                data: {
                   notes: {
                     format: "plain",
                   },

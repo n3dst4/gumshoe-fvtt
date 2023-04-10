@@ -8,9 +8,9 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { WeaponRange } from "./WeaponRangeConfig";
 import { Translate } from "../Translate";
 import { assertGame, confirmADoodleDo } from "../../functions";
+import { assertWeaponDataSource } from "../../typeAssertions";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { settings } from "../../settings";
-import { assertWeaponItem } from "../../v10Types";
 
 type WeaponConfigProps = {
   weapon: InvestigatorItem;
@@ -18,7 +18,7 @@ type WeaponConfigProps = {
 
 export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
   assertGame(game);
-  assertWeaponItem(weapon);
+  assertWeaponDataSource(weapon.data);
   const name = useAsyncUpdate(weapon.name || "", weapon.setName);
 
   const onClickDelete = useCallback(() => {
@@ -33,8 +33,8 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",
       values: {
-        ActorName: weapon.actor?.name ?? "",
-        EquipmentName: weapon.name ?? "",
+        ActorName: weapon.actor?.data.name ?? "",
+        EquipmentName: weapon.data.name,
       },
     }).then(() => {
       weapon.delete();
@@ -50,7 +50,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
       </GridField>
       <GridField label="Ability">
         <select
-          value={weapon.system.ability}
+          value={weapon.data.data.ability}
           onChange={(e) => weapon.setAbility(e.currentTarget.value)}
           css={{
             lineHeight: "inherit",
@@ -102,7 +102,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
           onChange={weapon.setUsesAmmo}
         />
       </GridField>
-      {weapon.system.usesAmmo && (
+      {weapon.data.data.usesAmmo && (
         <Fragment>
           <GridField label="Ammo capacity">
             <AsyncNumberInput

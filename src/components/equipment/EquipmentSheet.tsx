@@ -2,12 +2,12 @@ import React from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { Translate } from "../Translate";
+import { assertEquipmentDataSource } from "../../typeAssertions";
 import { EquipmentMain } from "./EquipmentMain";
 import { EquipmentConfig } from "./EquipmentConfig";
 import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";
 import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
 import { ItemSheetMode } from "../ItemSheetFramework/types";
-import { assertEquipmentItem } from "../../v10Types";
 
 type EquipmentSheetProps = {
   equipment: InvestigatorItem;
@@ -18,7 +18,8 @@ export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
   equipment,
   application,
 }) => {
-  assertEquipmentItem(equipment);
+  const data = equipment.data;
+  assertEquipmentDataSource(data);
   const name = useAsyncUpdate(equipment.name || "", equipment.setName);
 
   return (

@@ -9,10 +9,10 @@ import { assertGame, confirmADoodleDo } from "../../functions";
 import { ImagePickle } from "../ImagePickle";
 import { absoluteCover } from "../absoluteCover";
 import { MwType } from "../../types";
+import { assertMwItemDataSource } from "../../typeAssertions";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
-import { assertMwItem } from "../../v10Types";
 
 type MwItemSheetProps = {
   item: InvestigatorItem;
@@ -23,7 +23,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
   item,
   application,
 }) => {
-  assertMwItem(item);
+  assertMwItemDataSource(item.data);
 
   const name = useAsyncUpdate(item.name || "", item.setName);
   const nameInput = useAsyncUpdate(item.name || "", item.setName);
@@ -40,8 +40,8 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",
       values: {
-        ActorName: item.actor?.name ?? "",
-        EquipmentName: item.name ?? "",
+        ActorName: item.actor?.data.name ?? "",
+        EquipmentName: item.data.name,
       },
     }).then(() => {
       item.delete();
@@ -127,7 +127,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
         </GridField>
         <GridField label="MwType">
           <select
-            value={item.system.mwType}
+            value={item.data.data.mwType}
             onChange={onChangeType}
             css={{
               width: "100%",
@@ -146,9 +146,9 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
         </GridField>
         <NotesEditorWithControls
           allowChangeFormat
-          format={item.system.notes.format}
-          html={item.system.notes.html}
-          source={item.system.notes.source}
+          format={item.data.data.notes.format}
+          html={item.data.data.notes.html}
+          source={item.data.data.notes.source}
           onSave={item.setNotes}
           css={{
             height: "100%",
@@ -170,7 +170,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
             }}
           />
         </GridFieldStacked> */}
-        {item.system.mwType === "enchantedItem" && (
+        {item.data.data.mwType === "enchantedItem" && (
           <GridField label="Charges">
             <AsyncNumberInput
               onChange={item.setCharges}
@@ -179,7 +179,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
             />
           </GridField>
         )}
-        {item.system.mwType === "missileWeapon" && (
+        {item.data.data.mwType === "missileWeapon" && (
           <GridFieldStacked label="Ranges">
             <div
               css={{

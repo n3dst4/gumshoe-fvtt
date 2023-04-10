@@ -5,7 +5,11 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings";
-import { AbilityItem, assertPartyActor, isAbilityItem } from "../../v10Types";
+import { AbilityDataSource } from "../../types";
+import {
+  assertPartyDataSource,
+  isAbilityDataSource,
+} from "../../typeAssertions";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -23,7 +27,7 @@ export const PartySheet: React.FC<{
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
     runtimeConfig.themes.tealTheme;
-  const [abilities, setAbilities] = useState<AbilityItem[]>([]);
+  const [abilities, setAbilities] = useState<AbilityDataSource[]>([]);
   const [actors, setActors] = useState<InvestigatorActor[]>([]);
   const [rowData, setRowData] = useState<RowData[]>([]);
   const actorIds = party.getActorIds();
@@ -42,8 +46,8 @@ export const PartySheet: React.FC<{
       something: unknown, // i cannot tell what this is supposed to be
       userId: string, // probably?
     ) => {
-      assertPartyActor(party);
-      const actorIds = party.system.actorIds.filter(
+      assertPartyDataSource(party.data);
+      const actorIds = party.data.data.actorIds.filter(
         (id) => id !== deletedActor.id,
       );
       party.update({ actorIds });
@@ -55,11 +59,11 @@ export const PartySheet: React.FC<{
       options: any,
       useId: string,
     ) => {
-      assertPartyActor(party);
+      assertPartyDataSource(party.data);
       if (
-        isAbilityItem(item) &&
+        isAbilityDataSource(item.data) &&
         item.isOwned &&
-        party.system.actorIds.includes(item.actor?.id ?? "")
+        party.data.data.actorIds.includes(item.actor?.id ?? "")
       ) {
         setAbilities(await getSystemAbilities());
       }
@@ -118,7 +122,7 @@ export const PartySheet: React.FC<{
     [party],
   );
 
-  assertPartyActor(party);
+  assertPartyDataSource(party.data);
   return (
     <CSSReset
       mode="small"
@@ -133,7 +137,7 @@ export const PartySheet: React.FC<{
         flexDirection: "column",
       }}
     >
-      {party.system.actorIds.length === 0 && (
+      {party.data.data.actorIds.length === 0 && (
         <div
           style={{
             position: "absolute",
@@ -246,7 +250,7 @@ export const PartySheet: React.FC<{
                   css={{
                     width: "3em",
                     height: "3em",
-                    backgroundImage: `url(${actor.img})`,
+                    backgroundImage: `url(${actor.data.img})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     margin: "0 auto",
@@ -272,8 +276,7 @@ export const PartySheet: React.FC<{
                       width: "auto",
                     },
                   }}
-                  // @ts-expect-error v10 types
-                  data-actor-id={actor._id ?? ""}
+                  data-actor-id={actor.data._id}
                   onClick={onClickRemoveActor}
                 >
                   <Translate>REMOVE</Translate>
@@ -368,7 +371,7 @@ export const PartySheet: React.FC<{
             // Actual Abilities
             return (
               <AbilityRow
-                key={data.abilityItem.id}
+                key={data.abilityDataSource._id}
                 abilityRowData={data}
                 index={i}
                 actors={actors}

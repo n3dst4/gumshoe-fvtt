@@ -1,15 +1,43 @@
+import { pc } from "../constants";
 import { escape } from "html-escaper";
 import * as constants from "../constants";
-import { AnyActor, isNPCActor, isPCActor } from "../v10Types";
 
-export const upgradeLongNotesToRichText = (
-  actor: AnyActor,
-  updateData: any,
-) => {
+export const moveOldNotesToNewNoteSlots = (data: any, updateData: any) => {
+  if (data.type === pc) {
+    const hasOldNotes = !!(
+      data.data.drive ||
+      data.data.occupationalBenefits ||
+      data.data.pillarsOfSanity ||
+      data.data.sourcesOfStability ||
+      data.data.background
+    );
+
+    if (hasOldNotes) {
+      if (!updateData.data) {
+        updateData.data = {};
+      }
+      updateData.data.shortNotes = [data.data.drive || ""];
+      updateData.data.longNotes = [
+        data.data.occupationalBenefits || "",
+        data.data.pillarsOfSanity || "",
+        data.data.sourcesOfStability || "",
+        data.data.background || "",
+      ];
+      updateData.data.drive = null;
+      updateData.data.occupationalBenefits = null;
+      updateData.data.pillarsOfSanity = null;
+      updateData.data.sourcesOfStability = null;
+      updateData.data.background = null;
+    }
+  }
+  return updateData;
+};
+
+export const upgradeLongNotesToRichText = (data: any, updateData: any) => {
   let updateNeeded = false;
-  if (isPCActor(actor)) {
+  if (data.type === constants.pc) {
     const newLongNotes: any[] = [];
-    for (const note of actor.system.longNotes) {
+    for (const note of data.data.longNotes) {
       if (typeof note === "string") {
         updateNeeded = true;
         newLongNotes.push({
@@ -22,22 +50,22 @@ export const upgradeLongNotesToRichText = (
       }
     }
     if (updateNeeded) {
-      if (!updateData.system) {
-        updateData.system = {};
+      if (!updateData.data) {
+        updateData.data = {};
       }
-      updateData.system.longNotesFormat = "plain";
-      updateData.system.longNotes = newLongNotes;
+      updateData.data.longNotesFormat = "plain";
+      updateData.data.longNotes = newLongNotes;
     }
   }
-  if (isNPCActor(actor)) {
-    if (typeof actor.system.notes === "string") {
-      if (!updateData.system) {
-        updateData.system = {};
+  if (data.type === constants.npc) {
+    if (typeof data.data.notes === "string") {
+      if (!updateData.data) {
+        updateData.data = {};
       }
-      updateData.notes = {
+      updateData.data.notes = {
         format: "plain",
-        source: actor.system.notes,
-        html: escape(actor.system.notes),
+        source: data.data.notes,
+        html: escape(data.data.notes),
       };
     }
   }
@@ -46,22 +74,22 @@ export const upgradeLongNotesToRichText = (
 
 const MINUS_LIKE_A_BILLION = -1_000_000_000;
 
-export const moveStats = (actor: any, updateData: any) => {
+export const moveStats = (data: any, updateData: any) => {
   if (
-    (actor.type === constants.pc || actor.type === constants.npc) &&
-    actor.system.hitThreshold !== MINUS_LIKE_A_BILLION
+    (data.type === constants.pc || data.type === constants.npc) &&
+    data.data.hitThreshold !== MINUS_LIKE_A_BILLION
   ) {
-    if (!updateData.system) {
-      updateData.system = {};
+    if (!updateData.data) {
+      updateData.data = {};
     }
-    if (!updateData.system.stats) {
-      updateData.system.stats = {};
+    if (!updateData.data.stats) {
+      updateData.data.stats = {};
     }
-    updateData.system.stats.hitThreshold = actor.system.hitThreshold;
-    updateData.system.stats.armor = actor.system.armor;
-    updateData.system.stats.alertness = actor.system.alertness;
-    updateData.system.stats.stealth = actor.system.stealth;
-    updateData.system.stats.stabilityLoss = actor.system.stabilityLoss;
-    updateData.system.hitThreshold = MINUS_LIKE_A_BILLION;
+    updateData.data.stats.hitThreshold = data.data.hitThreshold;
+    updateData.data.stats.armor = data.data.armor;
+    updateData.data.stats.alertness = data.data.alertness;
+    updateData.data.stats.stealth = data.data.stealth;
+    updateData.data.stats.stabilityLoss = data.data.stabilityLoss;
+    updateData.data.hitThreshold = MINUS_LIKE_A_BILLION;
   }
 };
