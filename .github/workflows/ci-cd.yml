@@ -13,7 +13,6 @@ env:
 jobs:
   parse_tag:
     runs-on: ubuntu-latest
-    environment: release
     outputs:
       tag_version: ${{ steps.get_tag_version.outputs.group1 }}
       tag_prerelease: ${{ steps.get_tag_version.outputs.group2 }}
@@ -28,7 +27,6 @@ jobs:
 
   instrument_parse_tag:
     runs-on: ubuntu-latest
-    environment: release
     needs: parse_tag
     steps:
       - name: Instrument tags capture
