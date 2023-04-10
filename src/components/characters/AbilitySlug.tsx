@@ -1,18 +1,15 @@
 import React, { useCallback, useContext } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { FoundryAppContext } from "../FoundryAppContext";
-import {
-  assertAbilityDataSource,
-  isGeneralAbilityDataSource,
-} from "../../typeAssertions";
 import { settings } from "../../settings";
+import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
 
 type AbilitySlugProps = {
   ability: InvestigatorItem;
 };
 
 export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
-  assertAbilityDataSource(ability.data);
+  assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(
     (e: React.DragEvent<HTMLAnchorElement>) => {
@@ -43,22 +40,21 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
       draggable="true"
     >
       <div>
-        {ability.data.data.occupational && (
+        {ability.system.occupational && (
           <i
             css={{ fontSize: "0.8em", marginRight: "0.5em" }}
             className="fa fa-star-of-life"
             title="This is an occupational ability"
           />
         )}
-        {ability.name} ({ability.data.data.pool}/{ability.data.data.rating})
-        {isGeneralAbilityDataSource(ability.data) &&
-          ability.data.data.canBeInvestigative && (
-            <i
-              css={{ fontSize: "0.8em", marginLeft: "0.5em" }}
-              className="fa fa-search"
-              title="Can be used investigatively"
-            />
-          )}
+        {ability.name} ({ability.system.pool}/{ability.system.rating})
+        {isGeneralAbilityItem(ability) && ability.system.canBeInvestigative && (
+          <i
+            css={{ fontSize: "0.8em", marginLeft: "0.5em" }}
+            className="fa fa-search"
+            title="Can be used investigatively"
+          />
+        )}
         {boost && (
           <i
             css={{ fontSize: "0.8em", marginLeft: "0.5em" }}
@@ -67,9 +63,9 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
           />
         )}
       </div>
-      {ability.data.data.hasSpecialities && (
+      {ability.system.hasSpecialities && (
         <div css={{ paddingLeft: "1em" }}>
-          {(ability.data.data.specialities || []).map<JSX.Element>(
+          {(ability.system.specialities || []).map<JSX.Element>(
             (x: string, i: number) => (
               <div key={i}>{x.trim()}</div>
             ),

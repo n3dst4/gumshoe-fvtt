@@ -3,7 +3,7 @@ import { mwNegateCost, mwWallopCost } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { MWDifficulty } from "../../types";
-import { assertGeneralAbilityDataSource } from "../../typeAssertions";
+import { assertGeneralAbilityItem } from "../../v10Types";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
@@ -13,7 +13,7 @@ type AbilityTestMWProps = {
 };
 
 export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
-  assertGeneralAbilityDataSource(ability.data);
+  assertGeneralAbilityItem(ability);
   const theme = useContext(ThemeContext);
   const [difficulty, setDifficulty] = useState<MWDifficulty>(0);
   const [boonLevy, setBoonLevy] = useState(0);
@@ -90,14 +90,14 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
         }}
       >
         <button
-          disabled={ability.data.data.pool < mwNegateCost}
+          disabled={ability.system.pool < mwNegateCost}
           css={{ flex: "1" }}
           onClick={onNegateIllustrious}
         >
           <Translate>Negate</Translate>
         </button>
         <button
-          disabled={ability.data.data.pool < mwWallopCost}
+          disabled={ability.system.pool < mwWallopCost}
           css={{ flex: "1" }}
           onClick={onWallop}
         >

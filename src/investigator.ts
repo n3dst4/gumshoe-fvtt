@@ -1,5 +1,5 @@
 import "./investigator.less";
-import { systemName } from "./constants";
+import { systemId } from "./constants";
 import { registerSettingsMenu } from "./startup/registerSettingsMenu";
 import { preloadTemplates } from "./startup/preloadTemplates";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
@@ -27,12 +27,13 @@ import { installEquipmentCategoryHookHandler } from "./startup/installEquipmentC
 import { installPersonalDetailHookHandler } from "./startup/installPersonalDetailHookHandler";
 import { installResourceUpdateHookHandler } from "./startup/installResourceUpdateHookHandler";
 import { installNewCharacterPacksHookHandler } from "./startup/installNewCharacterPacksHookHandler";
+import { installKeepTokenImageInSyncWithActor } from "./startup/installKeepTokenImageInSyncWithActor";
 
 injectGlobalHelper();
 
 // Initialize system
 Hooks.once("init", async function () {
-  logger.log(`${systemName} | Initializing system`);
+  logger.log(`${systemId} | Initializing system`);
   registerSettingsMenu();
   await preloadTemplates();
   registerSheetsAndClasses();
@@ -72,3 +73,4 @@ installEquipmentCategoryHookHandler();
 installPersonalDetailHookHandler();
 installResourceUpdateHookHandler();
 installNewCharacterPacksHookHandler();
+installKeepTokenImageInSyncWithActor();

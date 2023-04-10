@@ -1,9 +1,5 @@
 import { migrateItemData } from "./migrateItemData";
-import {
-  moveOldNotesToNewNoteSlots,
-  moveStats,
-  upgradeLongNotesToRichText,
-} from "./actorMigrations";
+import { moveStats, upgradeLongNotesToRichText } from "./actorMigrations";
 import { FlaggedMigrations } from "./types";
 
 /**
@@ -21,7 +17,6 @@ export const migrateActorData = function (
   // Actor Data Updates
   // _migrateActorMovement(actor, updateData);
   // _migrateActorSenses(actor, updateData);
-  moveOldNotesToNewNoteSlots(actorData, updateData);
   upgradeLongNotesToRichText(actorData, updateData);
   moveStats(actorData, updateData);
 

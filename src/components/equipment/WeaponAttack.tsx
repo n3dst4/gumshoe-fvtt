@@ -8,12 +8,12 @@ import React, {
 import { generalAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { PCDataSource } from "../../types";
 import {
-  assertWeaponDataSource,
-  isAbilityDataSource,
-  isPCDataSource,
-} from "../../typeAssertions";
+  ActorPayload,
+  assertWeaponItem,
+  isAbilityItem,
+  isPCActor,
+} from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CheckButtons } from "../inputs/CheckButtons";
@@ -34,12 +34,12 @@ const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
 });
 
 export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
-  assertWeaponDataSource(weapon.data);
+  assertWeaponItem(weapon);
   const [spend, setSpend] = useState(0);
   const [bonusPool, setBonusPool] = useState(0);
   const theme = useContext(ThemeContext);
 
-  const abilityName = weapon.data.data.ability;
+  const abilityName = weapon.system.ability;
 
   const ability: InvestigatorItem | undefined = weapon.actor?.items.find(
     (item: InvestigatorItem) => {
@@ -47,8 +47,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     },
   );
 
-  const pool =
-    ability && isAbilityDataSource(ability.data) ? ability.data.data.pool : 0;
+  const pool = ability && isAbilityItem(ability) ? ability.system.pool : 0;
 
   const spendOptions = defaultSpendOptions.map((option) => ({
     ...option,
@@ -67,56 +66,56 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   }, [ability, bonusPool, spend, weapon]);
 
   const onPointBlank = useCallback(() => {
-    assertWeaponDataSource(weapon.data);
+    assertWeaponItem(weapon);
     basePerformAttack({
       rangeName: "point blank",
-      rangeDamage: weapon.data.data.pointBlankDamage,
+      rangeDamage: weapon.system.pointBlankDamage,
     });
-  }, [basePerformAttack, weapon.data]);
+  }, [basePerformAttack, weapon]);
 
   const onCloseRange = useCallback(() => {
-    assertWeaponDataSource(weapon.data);
+    assertWeaponItem(weapon);
     basePerformAttack({
       rangeName: "close range",
-      rangeDamage: weapon.data.data.closeRangeDamage,
+      rangeDamage: weapon.system.closeRangeDamage,
     });
-  }, [basePerformAttack, weapon.data]);
+  }, [basePerformAttack, weapon]);
 
   const onNearRange = useCallback(() => {
-    assertWeaponDataSource(weapon.data);
+    assertWeaponItem(weapon);
     basePerformAttack({
       rangeName: "near range",
-      rangeDamage: weapon.data.data.nearRangeDamage,
+      rangeDamage: weapon.system.nearRangeDamage,
     });
-  }, [basePerformAttack, weapon.data]);
+  }, [basePerformAttack, weapon]);
 
   const onLongRange = useCallback(() => {
-    assertWeaponDataSource(weapon.data);
+    assertWeaponItem(weapon);
     basePerformAttack({
       rangeName: "long range",
-      rangeDamage: weapon.data.data.longRangeDamage,
+      rangeDamage: weapon.system.longRangeDamage,
     });
-  }, [basePerformAttack, weapon.data]);
+  }, [basePerformAttack, weapon]);
 
-  const weaponActorData = weapon.actor?.data;
+  const weaponActor = weapon.actor;
 
   const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
-    weaponActorData && isPCDataSource(weaponActorData)
-      ? weaponActorData.data.initiativeAbility
+    weaponActor && isPCActor(weaponActor)
+      ? weaponActor.system.initiativeAbility
       : "",
   );
 
   useEffect(() => {
     const callback = (
       actor: Actor,
-      diff: { _id: string; data: DeepPartial<PCDataSource> },
+      diff: ActorPayload,
       options: unknown,
       id: string,
     ) => {
-      if (actor.data._id === weaponActorData?._id) {
+      if (actor.id === weaponActor?.id) {
         setActorInitiativeAbility(
-          weaponActorData && isPCDataSource(weaponActorData)
-            ? weaponActorData.data.initiativeAbility
+          weaponActor && isPCActor(weaponActor)
+            ? weaponActor.system.initiativeAbility
             : "",
         );
       }
@@ -125,14 +124,14 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     return () => {
       Hooks.off("updateActor", callback);
     };
-  }, [weaponActorData]);
+  }, [weaponActor]);
 
   const isAbilityUsed = actorInitiativeAbility === ability?.name;
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
       if (ability) {
         weapon.actor?.update({
-          data: {
+          system: {
             initiativeAbility: ability.name || "",
           },
         });
@@ -186,28 +185,28 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
             )}
             <button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={ammoFail || !weapon.data.data.isPointBlank}
+              disabled={ammoFail || !weapon.system.isPointBlank}
               onClick={onPointBlank}
             >
               <Translate>Point Blank</Translate>
             </button>
             <button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={ammoFail || !weapon.data.data.isCloseRange}
+              disabled={ammoFail || !weapon.system.isCloseRange}
               onClick={onCloseRange}
             >
               <Translate>Close Range</Translate>
             </button>
             <button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={ammoFail || !weapon.data.data.isNearRange}
+              disabled={ammoFail || !weapon.system.isNearRange}
               onClick={onNearRange}
             >
               <Translate>Near Range</Translate>
             </button>
             <button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={ammoFail || !weapon.data.data.isLongRange}
+              disabled={ammoFail || !weapon.system.isLongRange}
               onClick={onLongRange}
             >
               <Translate>Long Range</Translate>
@@ -218,10 +217,10 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
       <InputGrid
         css={{
           flex: 1,
-          gridTemplateRows: `${weapon.data.data.usesAmmo ? "auto " : ""}1fr`,
+          gridTemplateRows: `${weapon.system.usesAmmo ? "auto " : ""}1fr`,
         }}
       >
-        {weapon.data.data.usesAmmo && (
+        {weapon.system.usesAmmo && (
           <GridField label="Ammo">
             <div
               css={{
@@ -252,9 +251,9 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
 
         <NotesEditorWithControls
           allowChangeFormat
-          format={weapon.data.data.notes.format}
-          html={weapon.data.data.notes.html}
-          source={weapon.data.data.notes.source}
+          format={weapon.system.notes.format}
+          html={weapon.system.notes.html}
+          source={weapon.system.notes.source}
           onSave={weapon.setNotes}
           css={{
             height: "100%",
@@ -302,7 +301,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
         <GridField label="Cost">
           <AsyncNumberInput
             min={0}
-            value={weapon.data.data.cost}
+            value={weapon.system.cost}
             onChange={weapon.setCost}
           />
         </GridField>

@@ -2,10 +2,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import * as constants from "../../constants";
 import { assertGame } from "../../functions";
 import { settings } from "../../settings";
-import {
-  isGeneralAbilityDataSource,
-  isNPCDataSource,
-} from "../../typeAssertions";
+import { isGeneralAbilityItem, isNPCActor } from "../../v10Types";
 
 type PerformAttackArgs1 = {
   spend: number;
@@ -52,14 +49,14 @@ export const performAttack =
       settings.useNpcCombatBonuses.get() &&
       ability?.isOwned &&
       ability.parent &&
-      isNPCDataSource(ability.parent.data) &&
-      isGeneralAbilityDataSource(ability.data);
+      isNPCActor(ability.parent) &&
+      isGeneralAbilityItem(ability);
 
     if (useNpcBonuses) {
       hitTerm += " + @npcCombatBonus";
-      hitParams.npcCombatBonus = ability.parent.data.data.combatBonus;
+      hitParams.npcCombatBonus = ability.parent.system.combatBonus;
       hitTerm += " + @abilityCombatBonus";
-      hitParams.abilityCombatBonus = ability.data.data.combatBonus;
+      hitParams.abilityCombatBonus = ability.system.combatBonus;
     }
     const hitRoll = new Roll(hitTerm, hitParams);
 
@@ -70,9 +67,9 @@ export const performAttack =
     const damageParams: { [name: string]: number } = { damage, rangeDamage };
     if (useNpcBonuses) {
       damageTerm += " + @npcDamageBonus";
-      damageParams.npcDamageBonus = ability.parent.data.data.damageBonus;
+      damageParams.npcDamageBonus = ability.parent.system.damageBonus;
       damageTerm += " + @abilityDamageBonus";
-      damageParams.abilityDamageBonus = ability.data.data.damageBonus;
+      damageParams.abilityDamageBonus = ability.system.damageBonus;
     }
 
     const damageRoll = new Roll(damageTerm, damageParams);
@@ -82,18 +79,25 @@ export const performAttack =
     const pool = PoolTerm.fromRolls([hitRoll, damageRoll]);
     const actualRoll = Roll.fromTerms([pool]);
 
+    // @ts-expect-error v10 types
+    const abilityId = ability?._id ?? "";
+    // @ts-expect-error v10 types
+    const actorId = weapon.actor?._id ?? "";
+    // @ts-expect-error v10 types
+    const weaponId = weapon._id;
+
     actualRoll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: weapon.actor }),
       content: `
-    <div 
+    <div
       class="${constants.abilityChatMessageClassName}"
-      ${constants.htmlDataItemId}="${ability?.data._id}"
-      ${constants.htmlDataActorId}="${weapon.actor?.data._id}"
+      ${constants.htmlDataItemId}="${abilityId}"
+      ${constants.htmlDataActorId}="${actorId}"
       ${constants.htmlDataMode}="${constants.htmlDataModeAttack}"
       ${constants.htmlDataRange}="${rangeName}"
-      ${constants.htmlDataWeaponId}="${weapon.data._id}"
-      ${constants.htmlDataName}="${weapon.data.name}"
-      ${constants.htmlDataImageUrl}="${weapon.data.img}"  
+      ${constants.htmlDataWeaponId}="${weaponId}"
+      ${constants.htmlDataName}="${weapon.name}"
+      ${constants.htmlDataImageUrl}="${weapon.img}"
     />
   `,
     });

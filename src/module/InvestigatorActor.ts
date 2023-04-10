@@ -1,13 +1,4 @@
-import {
-  generalAbility,
-  investigativeAbility,
-  pc,
-  npc,
-  weapon,
-  personalDetail,
-  equipment,
-  occupationSlotIndex,
-} from "../constants";
+import { personalDetail, equipment, occupationSlotIndex } from "../constants";
 import { assertGame, confirmADoodleDo } from "../functions";
 import {
   AbilityType,
@@ -18,20 +9,26 @@ import {
   NoteFormat,
   MwInjuryStatus,
 } from "../types";
-import {
-  assertPCDataSource,
-  assertActiveCharacterDataSource,
-  assertPartyDataSource,
-  isAbilityDataSource,
-  isMwItemDataSource,
-  assertMwItemDataSource,
-  assertNPCDataSource,
-} from "../typeAssertions";
 import { convertNotes } from "../textFunctions";
 import { tealTheme } from "../themes/tealTheme";
 import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
 import { ThemeV1 } from "../themes/types";
+import {
+  assertActiveCharacterActor,
+  assertMwItem,
+  assertNPCActor,
+  assertPartyActor,
+  assertPCActor,
+  isAbilityItem,
+  isActiveCharacterActor,
+  isEquipmentItem,
+  isGeneralAbilityItem,
+  isMwItem,
+  isPCActor,
+  isPersonalDetailItem,
+  isWeaponItem,
+} from "../v10Types";
 
 export class InvestigatorActor extends Actor {
   confirmRefresh = () => {
@@ -40,7 +37,7 @@ export class InvestigatorActor extends Actor {
       confirmText: "Refresh",
       cancelText: "Cancel",
       confirmIconClass: "fa-sync",
-      values: { ActorName: this.data.name },
+      values: { ActorName: this.name ?? "" },
     }).then(this.refresh);
   };
 
@@ -51,7 +48,7 @@ export class InvestigatorActor extends Actor {
       confirmText: "Refresh",
       cancelText: "Cancel",
       confirmIconClass: "fa-sync",
-      values: { ActorName: this.data.name },
+      values: { ActorName: this.name ?? "" },
     }).then(this.refresh24h);
   };
 
@@ -63,7 +60,7 @@ export class InvestigatorActor extends Actor {
         confirmText: "Refresh",
         cancelText: "Cancel",
         confirmIconClass: "fa-sync",
-        values: { ActorName: this.data.name, Hours: group },
+        values: { ActorName: this.name ?? "", Hours: group },
       }).then(() => this.mWrefresh(group));
     };
   }
@@ -75,16 +72,15 @@ export class InvestigatorActor extends Actor {
   refresh = () => {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
-        (item.data.type === generalAbility ||
-          item.data.type === investigativeAbility) &&
-        item.data.data.rating !== item.data.data.pool &&
-        !item.data.data.excludeFromGeneralRefresh
+        isAbilityItem(item) &&
+        item.system.rating !== item.system.pool &&
+        !item.system.excludeFromGeneralRefresh
       ) {
         return [
           {
-            _id: item.data._id,
-            data: {
-              pool: item.data.data.rating,
+            _id: item.id,
+            system: {
+              pool: item.system.rating,
             },
           },
         ];
@@ -98,16 +94,16 @@ export class InvestigatorActor extends Actor {
   mWrefresh(group: MwRefreshGroup) {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
-        item.data.type === generalAbility &&
+        isGeneralAbilityItem(item) &&
         // MW refreshes allow you to keep a boon
-        item.data.data.rating > item.data.data.pool &&
-        item.data.data.mwRefreshGroup === group
+        item.system.rating > item.system.pool &&
+        item.system.mwRefreshGroup === group
       ) {
         return [
           {
-            _id: item.data._id,
-            data: {
-              pool: item.data.data.rating,
+            _id: item.id,
+            system: {
+              pool: item.system.rating,
             },
           },
         ];
@@ -123,16 +119,15 @@ export class InvestigatorActor extends Actor {
   refresh24h = () => {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
-        (item.data.type === generalAbility ||
-          item.data.type === investigativeAbility) &&
-        item.data.data.rating !== item.data.data.pool &&
-        item.data.data.refreshesDaily
+        isAbilityItem(item) &&
+        item.system.rating !== item.system.pool &&
+        item.system.refreshesDaily
       ) {
         return [
           {
-            _id: item.data._id,
-            data: {
-              pool: item.data.data.rating,
+            _id: item.id,
+            system: {
+              pool: item.system.rating,
             },
           },
         ];
@@ -149,7 +144,7 @@ export class InvestigatorActor extends Actor {
       confirmText: "Nuke it from orbit",
       cancelText: "Whoops no!",
       confirmIconClass: "fa-radiation",
-      values: { ActorName: this.data.name },
+      values: { ActorName: this.name ?? "" },
     }).then(() => this.nuke());
   };
 
@@ -167,8 +162,7 @@ export class InvestigatorActor extends Actor {
   getAbilityByName(name: string, type?: AbilityType) {
     return this.items.find(
       (item) =>
-        (type ? item.data.type === type : isAbilityDataSource(item.data)) &&
-        item.name === name,
+        (type ? item.type === type : isAbilityItem(item)) && item.name === name,
     );
   }
 
@@ -177,23 +171,23 @@ export class InvestigatorActor extends Actor {
   }
 
   getEquipment() {
-    return this.items.filter((item) => item.type === equipment);
+    return this.items.filter(isEquipmentItem);
   }
 
   getWeapons() {
-    return this.items.filter((item) => item.type === weapon);
+    return this.items.filter(isWeaponItem);
   }
 
   getAbilities() {
-    return this.items.filter((item) => isAbilityDataSource(item.data));
+    return this.items.filter(isAbilityItem);
   }
 
   getPersonalDetails() {
-    return this.items.filter((item) => item.type === personalDetail);
+    return this.items.filter(isPersonalDetailItem);
   }
 
   getMwItems() {
-    const allItems = this.items.filter((item) => isMwItemDataSource(item.data));
+    const allItems = this.items.filter(isMwItem);
     const items: { [type in MwType]: Item[] } = {
       tweak: [],
       spell: [],
@@ -206,15 +200,15 @@ export class InvestigatorActor extends Actor {
       sandestin: [],
     };
     for (const item of allItems) {
-      assertMwItemDataSource(item.data);
-      items[item.data.data.mwType].push(item);
+      assertMwItem(item);
+      items[item.system.mwType].push(item);
     }
     return items;
   }
 
   getTrackerAbilities() {
     return this.getAbilities().filter(
-      (item) => isAbilityDataSource(item.data) && item.data.data.showTracker,
+      (item) => isAbilityItem(item) && item.system.showTracker,
     );
   }
 
@@ -232,13 +226,13 @@ export class InvestigatorActor extends Actor {
   };
 
   getOccupation = () => {
-    assertPCDataSource(this.data);
-    return this.data.data.occupation;
+    assertPCActor(this);
+    return this.system.occupation;
   };
 
   setOccupation = (occupation: string) => {
-    assertPCDataSource(this.data);
-    return this.update({ data: { occupation } });
+    assertPCActor(this);
+    return this.update({ system: { occupation } });
   };
 
   getSheetTheme(): ThemeV1 {
@@ -257,49 +251,47 @@ export class InvestigatorActor extends Actor {
   }
 
   getSheetThemeName(): string | null {
-    return this.data.type === pc || this.data.type === npc
-      ? this.data.data.sheetTheme
-      : null;
+    return isActiveCharacterActor(this) ? this.system.sheetTheme : null;
   }
 
   setSheetTheme = (sheetTheme: string | null) =>
-    this.update({ data: { sheetTheme } });
+    this.update({ system: { sheetTheme } });
 
   getNotes = () => {
-    assertNPCDataSource(this.data);
-    return this.data.data.notes;
+    assertNPCActor(this);
+    return this.system.notes;
   };
 
   setNotes = (notes: NoteWithFormat) => {
-    assertNPCDataSource(this.data);
-    return this.update({ data: { notes } });
+    assertNPCActor(this);
+    return this.update({ system: { notes } });
   };
 
   getLongNote = (i: number) => {
-    assertPCDataSource(this.data);
-    return this.data.data.longNotes?.[i] ?? "";
+    assertPCActor(this);
+    return this.system.longNotes?.[i] ?? "";
   };
 
   getLongNotes = () => {
-    assertPCDataSource(this.data);
-    return this.data.data.longNotes ?? [];
+    assertPCActor(this);
+    return this.system.longNotes ?? [];
   };
 
   setLongNote = (i: number, note: BaseNote) => {
-    assertPCDataSource(this.data);
-    const longNotes = [...(this.data.data.longNotes || [])];
+    assertPCActor(this);
+    const longNotes = [...(this.system.longNotes || [])];
     longNotes[i] = note;
-    return this.update({ data: { longNotes } });
+    return this.update({ system: { longNotes } });
   };
 
   setLongNotesFormat = async (longNotesFormat: NoteFormat) => {
-    assertPCDataSource(this.data);
-    const longNotesPromises = (this.data.data.longNotes || []).map<
+    assertPCActor(this);
+    const longNotesPromises = (this.system.longNotes || []).map<
       Promise<BaseNote>
     >(async (note) => {
-      assertPCDataSource(this.data);
+      assertPCActor(this);
       const { newHtml, newSource } = await convertNotes(
-        this.data.data.longNotesFormat,
+        this.system.longNotesFormat,
         longNotesFormat,
         note.source,
       );
@@ -309,60 +301,60 @@ export class InvestigatorActor extends Actor {
       };
     });
     const longNotes = await Promise.all(longNotesPromises);
-    return this.update({ data: { longNotes, longNotesFormat } });
+    return this.update({ system: { longNotes, longNotesFormat } });
   };
 
   getShortNote = (i: number) => {
-    assertPCDataSource(this.data);
-    return this.data.data.shortNotes?.[i] ?? "";
+    assertPCActor(this);
+    return this.system.shortNotes?.[i] ?? "";
   };
 
   getShortNotes = () => {
-    assertPCDataSource(this.data);
-    return this.data.data.shortNotes ?? [];
+    assertPCActor(this);
+    return this.system.shortNotes ?? [];
   };
 
   setShortNote = (i: number, text: string) => {
-    assertPCDataSource(this.data);
-    const newNotes = [...(this.data.data.shortNotes || [])];
+    assertPCActor(this);
+    const newNotes = [...(this.system.shortNotes || [])];
     newNotes[i] = text;
     return this.update({
-      data: {
+      system: {
         shortNotes: newNotes,
       },
     });
   };
 
   setMwHiddenShortNote = (i: number, text: string) => {
-    assertPCDataSource(this.data);
-    const newNotes = [...(this.data.data.hiddenShortNotes || [])];
+    assertPCActor(this);
+    const newNotes = [...(this.system.hiddenShortNotes || [])];
     newNotes[i] = text;
     return this.update({
-      data: {
+      system: {
         hiddenShortNotes: newNotes,
       },
     });
   };
 
   getHitThreshold = () => {
-    assertActiveCharacterDataSource(this.data);
-    return this.data.data.hitThreshold;
+    assertActiveCharacterActor(this);
+    return this.system.hitThreshold;
   };
 
   setHitThreshold = (hitThreshold: number) => {
-    assertActiveCharacterDataSource(this.data);
-    return this.update({ data: { hitThreshold } });
+    assertActiveCharacterActor(this);
+    return this.update({ system: { hitThreshold } });
   };
 
   getInitiativeAbility = () => {
-    assertActiveCharacterDataSource(this.data);
-    return this.data.data.initiativeAbility;
+    assertActiveCharacterActor(this);
+    return this.system.initiativeAbility;
   };
 
   setInitiativeAbility = async (initiativeAbility: string) => {
     assertGame(game);
-    assertActiveCharacterDataSource(this.data);
-    await this.update({ data: { initiativeAbility } });
+    assertActiveCharacterActor(this);
+    await this.update({ system: { initiativeAbility } });
     const isInCombat = !!this.token?.combatant;
     if (isInCombat) {
       await this.rollInitiative({ rerollInitiative: true });
@@ -370,42 +362,42 @@ export class InvestigatorActor extends Actor {
   };
 
   setCombatBonus = async (combatBonus: number) => {
-    assertNPCDataSource(this.data);
-    await this.update({ data: { combatBonus } });
+    assertNPCActor(this);
+    await this.update({ system: { combatBonus } });
   };
 
   setDamageBonus = async (damageBonus: number) => {
-    assertNPCDataSource(this.data);
-    await this.update({ data: { damageBonus } });
+    assertNPCActor(this);
+    await this.update({ system: { damageBonus } });
   };
 
   setPassingTurns = async (initiativePassingTurns: number) => {
-    assertActiveCharacterDataSource(this.data);
-    await this.update({ data: { initiativePassingTurns } });
+    assertActiveCharacterActor(this);
+    await this.update({ system: { initiativePassingTurns } });
   };
 
   // ###########################################################################
   // Moribund World stuff
   getMwInjuryStatus = () => {
-    assertActiveCharacterDataSource(this.data);
-    return this.data.data.mwInjuryStatus;
+    assertActiveCharacterActor(this);
+    return this.system.mwInjuryStatus;
   };
 
   setMwInjuryStatus = async (mwInjuryStatus: MwInjuryStatus) => {
-    assertActiveCharacterDataSource(this.data);
-    await this.update({ data: { mwInjuryStatus } });
+    assertActiveCharacterActor(this);
+    await this.update({ system: { mwInjuryStatus } });
   };
 
   // ###########################################################################
   // For the party sheet
   getActorIds = () => {
-    assertPartyDataSource(this.data);
-    return this.data.data.actorIds;
+    assertPartyActor(this);
+    return this.system.actorIds;
   };
 
   setActorIds = (actorIds: string[]) => {
-    assertPartyDataSource(this.data);
-    return this.update({ data: { actorIds } });
+    assertPartyActor(this);
+    return this.update({ system: { actorIds } });
   };
 
   getActors = () => {
@@ -429,7 +421,7 @@ export class InvestigatorActor extends Actor {
           (actor) =>
             actor !== undefined &&
             actor.id !== null &&
-            actor.data.type === pc &&
+            isPCActor(actor) &&
             !currentIds.includes(actor.id),
         ) as Actor[]
     ).map((actor) => actor.id) as string[];
@@ -447,7 +439,7 @@ export class InvestigatorActor extends Actor {
         {
           type: equipment,
           name: "New item",
-          data: {
+          system: {
             category: categoryId,
           },
         },
@@ -462,7 +454,7 @@ export class InvestigatorActor extends Actor {
     const detailName =
       slotIndex === occupationSlotIndex
         ? settings.occupationLabel.get()
-        : settings.shortNotes.get()[slotIndex] ?? "detail";
+        : settings.personalDetails.get()[slotIndex]?.name ?? "detail";
     const name = `New ${detailName}`;
     await this.createEmbeddedDocuments(
       "Item",
@@ -470,7 +462,7 @@ export class InvestigatorActor extends Actor {
         {
           type: personalDetail,
           name,
-          data: {
+          system: {
             slotIndex,
           },
         },

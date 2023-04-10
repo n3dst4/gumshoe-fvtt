@@ -1,13 +1,13 @@
 import React from "react";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
-import { reactTemplatePath, systemName } from "../constants";
+import { reactTemplatePath, systemId } from "../constants";
 import { ThemeFarm } from "../themes/components/ThemeFarm";
 
 class ThemeFarmClassBase extends FormApplication {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: [systemName, "sheet", "item", "dialog"],
+      classes: [systemId, "sheet", "item", "dialog"],
       template: reactTemplatePath,
       width: window.innerWidth,
       height: window.innerHeight,

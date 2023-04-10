@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings";
-import { assertPCDataSource } from "../../typeAssertions";
 import { NoteWithFormat } from "../../types";
+import { assertPCActor } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { IndexedNotesEditorWithControls } from "../inputs/IndexedNotesEditorWithControls";
 import { InputGrid } from "../inputs/InputGrid";
@@ -31,16 +31,16 @@ export const NotesArea: React.FC<NotesAreaProps> = ({ actor }) => {
       }}
     >
       {longNotesNames.map<JSX.Element>((name: string, i: number) => {
-        assertPCDataSource(actor.data);
+        assertPCActor(actor);
         return (
           <InputGrid key={`${name}--${i}`} css={{ flex: 1, minHeight: "12em" }}>
             <IndexedNotesEditorWithControls
               title={name}
               index={i}
               allowChangeFormat={false}
-              format={actor.data.data.longNotesFormat}
-              html={actor.data.data.longNotes[i]?.html ?? ""}
-              source={actor.data.data.longNotes[i]?.source ?? ""}
+              format={actor.system.longNotesFormat}
+              html={actor.system.longNotes[i]?.html ?? ""}
+              source={actor.system.longNotes[i]?.source ?? ""}
               onSave={updateLongNote}
               h2
             />

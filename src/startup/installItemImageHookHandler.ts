@@ -7,18 +7,18 @@ import {
 } from "../constants";
 import { assertGame, isNullOrEmptyString } from "../functions";
 import {
-  isWeaponDataSource,
-  isGeneralAbilityDataSource,
-  isEquipmentDataSource,
-  isPersonalDetailDataSource,
-} from "../typeAssertions";
+  isEquipmentItem,
+  isGeneralAbilityItem,
+  isPersonalDetailItem,
+  isWeaponItem,
+} from "../v10Types";
 
 export const installItemImageHookHandler = () => {
   Hooks.on(
     "preCreateItem",
     (
       item: Item,
-      createData: { name: string; type: string; data?: any; img?: string },
+      createData: { name: string; type: string; img?: string },
       options: any,
       userId: string,
     ) => {
@@ -27,17 +27,18 @@ export const installItemImageHookHandler = () => {
 
       // set image
       if (
-        isNullOrEmptyString(item.data.img) ||
-        item.data.img === "icons/svg/item-bag.svg"
+        isNullOrEmptyString(item.img) ||
+        item.img === "icons/svg/item-bag.svg"
       ) {
-        item.data.update({
-          img: isWeaponDataSource(item.data)
+        // @ts-expect-error v10 types
+        item.updateSource({
+          img: isWeaponItem(item)
             ? weaponIcon
-            : isEquipmentDataSource(item.data)
+            : isEquipmentItem(item)
             ? equipmentIcon
-            : isGeneralAbilityDataSource(item.data)
+            : isGeneralAbilityItem(item)
             ? generalAbilityIcon
-            : isPersonalDetailDataSource(item.data)
+            : isPersonalDetailItem(item)
             ? personalDetailIcon
             : investigativeAbilityIcon,
         });

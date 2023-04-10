@@ -17,9 +17,10 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(
       weapon?.sheet?.render(true);
     }, [weapon?.sheet]);
 
-    const img = weapon?.data.img ?? imageUrl;
+    const img = weapon?.img ?? imageUrl;
 
-    const poolRolls = (msg.roll?.terms[0] as PoolTerm).rolls;
+    // @ts-expect-error v10 types
+    const poolRolls = (msg.rolls?.[0]?.terms[0] as PoolTerm).rolls;
     const hitRoll = poolRolls[0];
     const damageRoll = poolRolls[1];
 
@@ -63,7 +64,7 @@ export const AttackCard: React.FC<AttackCardProps> = React.memo(
           }}
         >
           <b>
-            <a onClick={onClickWeaponName}>{name ?? weapon?.data.name}</a>
+            <a onClick={onClickWeaponName}>{name ?? weapon?.name}</a>
           </b>{" "}
           (<Translate>{rangeName || ""}</Translate>)
         </div>

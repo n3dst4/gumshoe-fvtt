@@ -108,7 +108,7 @@ export function assertGame(game: any): asserts game is Game {
 export function getDevMode() {
   assertGame(game);
   return !!(game.modules.get("_dev-mode") as any)?.api?.getPackageDebugValue(
-    constants.systemName,
+    constants.systemId,
   );
 }
 

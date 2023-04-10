@@ -1,4 +1,3 @@
-import { TokenData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import * as constants from "./constants";
 export type AbilityType =
@@ -20,16 +19,6 @@ export type Resource = {
   min?: number;
   max: number;
   value: number;
-};
-
-// utility
-export type DataSource<TType extends string, TData> = {
-  type: TType;
-  name: string;
-  data: TData;
-  img: string;
-  token: TokenData;
-  _id: string;
 };
 
 // NOTES
@@ -64,7 +53,7 @@ export enum MwInjuryStatus {
 
 // XXX I think there's a load of things in here we don't need, but let's revisit
 // once we're on foundry-vtt-types
-interface PCDataSourceData {
+export interface PCDataSourceData {
   buildPoints: number;
   occupation: string;
   longNotes: BaseNote[];
@@ -87,7 +76,7 @@ interface PCDataSourceData {
   initiativePassingTurns: number;
 }
 
-interface NPCDataSourceData {
+export interface NPCDataSourceData {
   notes: NoteWithFormat;
   initiativeAbility: string;
   hideZeroRated: boolean;
@@ -115,33 +104,10 @@ interface NPCDataSourceData {
   initiativePassingTurns: number;
 }
 
-interface PartyDataSourceData {
+export interface PartyDataSourceData {
   // party stuff
   abilityNames: string[];
   actorIds: string[];
-}
-
-export type PCDataSource = DataSource<typeof constants.pc, PCDataSourceData>;
-export type NPCDataSource = DataSource<typeof constants.npc, NPCDataSourceData>;
-export type PartyDataSource = DataSource<
-  typeof constants.party,
-  PartyDataSourceData
->;
-
-export type InvestigatorActorDataSource =
-  | PCDataSource
-  | NPCDataSource
-  | PartyDataSource;
-
-export type ActiveCharacterDataSource = PCDataSource | NPCDataSource;
-
-declare global {
-  interface SourceConfig {
-    Actor: InvestigatorActorDataSource;
-  }
-  interface DataConfig {
-    Actor: InvestigatorActorDataSource;
-  }
 }
 
 // #############################################################################
@@ -151,20 +117,20 @@ declare global {
 // #############################################################################
 
 /** Stuff that is in common between Equipment and Weapons */
-interface BaseEquipmentDataSourceData {
+export interface BaseEquipmentDataSourceData {
   notes: NoteWithFormat;
 }
 
 /**
  * data.data for equipment
  */
-interface EquipmentDataSourceData extends BaseEquipmentDataSourceData {
+export interface EquipmentDataSourceData extends BaseEquipmentDataSourceData {
   category: string;
   fields: Record<string, string | number | boolean>;
 }
 
 /** data.data for weapons */
-interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
+export interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
   ability: string;
   damage: number;
   pointBlankDamage: number;
@@ -264,69 +230,6 @@ export interface PersonalDetailSourceData {
   notes: NoteWithFormat;
   slotIndex: number;
   compendiumPackId: string | null;
-}
-
-/** data for equipment */
-export type EquipmentDataSource = DataSource<
-  typeof constants.equipment,
-  EquipmentDataSourceData
->;
-
-/** data for weapons */
-export type WeaponDataSource = DataSource<
-  typeof constants.weapon,
-  WeaponDataSourceData
->;
-
-/** data for general abilities */
-export type GeneralAbilityDataSource = DataSource<
-  typeof constants.generalAbility,
-  GeneralAbilityDataSourceData
->;
-
-/** data for investigative abilities */
-export type InvestigativeAbilityDataSource = DataSource<
-  typeof constants.investigativeAbility,
-  InvestigativeAbilityDataSourceData
->;
-
-/** data for Moribund World stuff */
-export type MwItemDataSource = DataSource<
-  typeof constants.mwItem,
-  MwItemDataSourceData
->;
-
-/** data for personal details */
-export type PersonalDetailDataSource = DataSource<
-  typeof constants.personalDetail,
-  PersonalDetailSourceData
->;
-
-/** data for weapon OR equipment (rn this basically means "notes") */
-export type WeaponOrEquipmentDataSource =
-  | WeaponDataSource
-  | EquipmentDataSource;
-
-/** data for either of the ability types */
-export type AbilityDataSource =
-  | GeneralAbilityDataSource
-  | InvestigativeAbilityDataSource;
-
-/** data for any kind of item */
-export type InvestigatorItemDataSource =
-  | WeaponOrEquipmentDataSource
-  | AbilityDataSource
-  | MwItemDataSource
-  | PersonalDetailDataSource;
-
-// now we crowbar this into the global type system using declaration merging
-declare global {
-  interface SourceConfig {
-    Item: InvestigatorItemDataSource;
-  }
-  interface DataConfig {
-    Item: InvestigatorItemDataSource;
-  }
 }
 
 // #############################################################################

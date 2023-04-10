@@ -4,10 +4,7 @@ import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import {
-  assertActiveCharacterDataSource,
-  isAbilityDataSource,
-} from "../../typeAssertions";
+import { assertActiveCharacterActor, isAbilityItem } from "../../v10Types";
 import { Checkbox } from "../inputs/Checkbox";
 import { Translate } from "../Translate";
 import { AbilitySlug } from "./AbilitySlug";
@@ -21,29 +18,29 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
   actor,
   flipLeftRight,
 }) => {
-  assertActiveCharacterDataSource(actor.data);
+  assertActiveCharacterActor(actor);
   const theme = useContext(ThemeContext);
 
   const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
   const generalAbilities: { [category: string]: InvestigatorItem[] } = {};
 
-  const hideZeroRated = actor.data.data.hideZeroRated;
+  const hideZeroRated = actor.system.hideZeroRated;
 
   for (const item of actor.items.values()) {
-    if (!isAbilityDataSource(item.data)) {
+    if (!isAbilityItem(item)) {
       continue;
     }
-    if (hideZeroRated && item.data.data.rating === 0) {
+    if (hideZeroRated && item.system.rating === 0) {
       continue;
     }
-    if (item.data.type === investigativeAbility) {
-      const cat = item.data.data.category || "Uncategorised";
+    if (item.type === investigativeAbility) {
+      const cat = item.system.category || "Uncategorised";
       if (investigativeAbilities[cat] === undefined) {
         investigativeAbilities[cat] = [];
       }
       investigativeAbilities[cat].push(item);
     } else if (item.type === generalAbility) {
-      const cat = item.data.data.category || "Uncategorised";
+      const cat = item.system.category || "Uncategorised";
       if (generalAbilities[cat] === undefined) {
         generalAbilities[cat] = [];
       }
@@ -53,7 +50,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
 
   const onChangeHideZero = useCallback(
     (hideZeroRated: boolean) => {
-      actor.update({ data: { hideZeroRated } });
+      actor.update({ system: { hideZeroRated } });
     },
     [actor],
   );

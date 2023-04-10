@@ -9,18 +9,15 @@ import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { FoundryAppContext } from "../../FoundryAppContext";
 import { CheckButtons } from "../../inputs/CheckButtons";
 import { generalAbility } from "../../../constants";
-import {
-  assertWeaponDataSource,
-  isAbilityDataSource,
-} from "../../../typeAssertions";
 import { performAttack } from "../../equipment/performAttack";
+import { assertWeaponItem, isAbilityItem } from "../../../v10Types";
 
 type WeaponRowProps = {
   weapon: InvestigatorItem;
 };
 
 export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
-  assertWeaponDataSource(weapon.data);
+  assertWeaponItem(weapon);
 
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(
@@ -79,14 +76,13 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
   const [rangeSelected, setRangeSelected] = useState(0);
   const ammoFail = weapon.getUsesAmmo() && weapon.getAmmo() <= 0;
 
-  const abilityName = weapon.data.data.ability;
+  const abilityName = weapon.system.ability;
   const ability: InvestigatorItem | undefined = weapon.actor?.items.find(
     (item: InvestigatorItem) => {
       return item.type === generalAbility && item.name === abilityName;
     },
   );
-  const pool =
-    ability && isAbilityDataSource(ability.data) ? ability.data.data.pool : 0;
+  const pool = ability && isAbilityItem(ability) ? ability.system.pool : 0;
   const [spend, setSpend] = useState(0);
   const [bonusPool, setBonusPool] = useState(0);
   const onClickInc = useCallback(() => {
