@@ -43,7 +43,6 @@ try {
 }
 if (config?.dataPath) {
   const linkRoot = manifestName === "system.json" ? "systems" : "modules";
-  linkDir = path.join(config.dataPath, "Data", linkRoot, manifest.name);
   linkDir = path.join(config.dataPath, "Data", linkRoot, manifest.id);
 }
 
