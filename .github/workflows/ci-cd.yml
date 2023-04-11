@@ -92,7 +92,6 @@ jobs:
           name: manifest
           path: ${{env.PUBLIC_PATH}}/${{env.MANIFEST_FILE_NAME}}
 
-
   publish:
     needs:
       - build
@@ -102,37 +101,62 @@ jobs:
     permissions:
       contents: write
     if: needs.parse_tag.outputs.tag_version != ''
-    env:
-      version: ${{ needs.parse_tag.outputs.tag_version }}
-      prerelease: ${{ needs.parse_tag.outputs.tag_prerelease }}
     steps:
-      - name: Download package
-        uses: actions/download-artifact@v3
-        with:
-          name: package-zip
+      - uses: actions/checkout@v3
 
-      - name: Download manifest
-        uses: actions/download-artifact@v3
+      - name: publish
+        uses: ./.github/actions/publish
         with:
-          name: manifest
+          version: ${{needs.parse_tag.outputs.tag_version}}
+          prerelease: ${{needs.parse_tag.outputs.tag_prerelease}}
+          manifest_file_name: ${{env.MANIFEST_FILE_NAME}}
+          package_file_name: ${{env.PACKAGE_FILE_NAME}}
+          download_base: ${{env.DOWNLOAD_BASE}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      # secrets:
+        #   envPAT: ${{ secrets.envPAT }}
 
-      - name: Look around
-        run: |
-          pwd
-          ls -l
 
-      - name: Update Release With Files
-        uses: ncipollo/release-action@v1
-        with:
-          allowUpdates: true
-          name: ${{ env.version }}
-          prerelease: ${{ env.prerelease != '' }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          removeArtifacts: true
-          replacesArtifacts: true
-          artifacts: './${{env.MANIFEST_FILE_NAME}}, ./${{env.PACKAGE_FILE_NAME}}'
-          tag: ${{ env.version }}
-          body: >
-            **Installation:** To manually install this release, please use the
-            following manifest URL:
-            ${{env.DOWNLOAD_BASE}}/${{env.version}}/${{env.MANIFEST_FILE_NAME}}
+  # publish-old:
+  #   needs:
+  #     - build
+  #     - parse_tag
+  #   runs-on: ubuntu-latest
+  #   environment: release
+  #   permissions:
+  #     contents: write
+  #   if: needs.parse_tag.outputs.tag_version != ''
+  #   env:
+  #     version: ${{ needs.parse_tag.outputs.tag_version }}
+  #     prerelease: ${{ needs.parse_tag.outputs.tag_prerelease }}
+  #   steps:
+  #     - name: Download package
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: package-zip
+
+  #     - name: Download manifest
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: manifest
+
+  #     - name: Look around
+  #       run: |
+  #         pwd
+  #         ls -l
+
+  #     - name: Update Release With Files
+  #       uses: ncipollo/release-action@v1
+  #       with:
+  #         allowUpdates: true
+  #         name: ${{ env.version }}
+  #         prerelease: ${{ env.prerelease != '' }}
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #         removeArtifacts: true
+  #         replacesArtifacts: true
+  #         artifacts: './${{env.MANIFEST_FILE_NAME}}, ./${{env.PACKAGE_FILE_NAME}}'
+  #         tag: ${{ env.version }}
+  #         body: >
+  #           **Installation:** To manually install this release, please use the
+  #           following manifest URL:
+  #           ${{env.DOWNLOAD_BASE}}/${{env.version}}/${{env.MANIFEST_FILE_NAME}}
