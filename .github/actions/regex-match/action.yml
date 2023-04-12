@@ -1,0 +1,39 @@
+name: Regex Match
+description: Match a input text with a input regex.
+inputs:
+  text:
+    description: A text as the target for inputs.regex
+    required: true
+  regex:
+    description: A regex for inputs.text. Supports capturing groups.
+    required: true
+  flags:
+    description: Flags for inputs.regex. e.g. 'g', 'gm'
+    required: false
+outputs:
+  match:
+    description: The whole matched text. If the inputs.regex doesn't match inputs.text, this value is ''.
+  group1:
+    description: The 1st captured group.
+  group2:
+    description: The 2nd captured group.
+  group3:
+    description: The 3rd captured group.
+  group4:
+    description: The 4th captured group.
+  group5:
+    description: The 5th captured group.
+  group6:
+    description: The 6th captured group.
+  group7:
+    description: The 7th captured group.
+  group8:
+    description: The 8th captured group.
+  group9:
+    description: The 9th captured group.
+runs:
+  using: node16
+  main: dist/index.js
+branding:
+  icon: search
+  color: yellow
