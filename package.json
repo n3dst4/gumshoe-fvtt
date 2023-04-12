@@ -23,7 +23,8 @@
     "format:check": "prettier --check src",
     "format:fix": "prettier --write src",
     "lint:check": "pnpm format:check && pnpm eslint:check",
-    "lint:fix": "pnpm format:fix && pnpm eslint:fix"
+    "lint:fix": "pnpm format:fix && pnpm eslint:fix",
+    "compile-actions": "ncc build .github/actions/regex-match/src/index.ts -o .github/actions/regex-match/dist"
   },
   "author": "",
   "license": "",
@@ -50,6 +51,7 @@
     "@types/yamljs": "^0.2.31",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
+    "@vercel/ncc": "^0.36.1",
     "@vitejs/plugin-react": "^3.0.0",
     "archiver": "^5.2.0",
     "chalk": "^5.0.0",
@@ -78,6 +80,7 @@
     "yargs-parser": ">=5.0.0-security.0"
   },
   "dependencies": {
+    "@actions/core": "^1.10.0",
     "@types/html-escaper": "^3.0.0",
     "case": "^1.6.3",
     "d3-ease": "^3.0.1",
