@@ -94,7 +94,7 @@ jobs:
           name: manifest
           path: ${{env.PUBLIC_PATH}}/${{env.MANIFEST_FILE_NAME}}
 
-  publish:
+  publish-release:
     needs:
       - build
       - parse_tag
@@ -102,7 +102,29 @@ jobs:
     environment: release
     permissions:
       contents: write
-    if: needs.parse_tag.outputs.tag_version != ''
+    if: needs.parse_tag.outputs.tag_version != '' && needs.parse_tag.outputs.tag_prerelease == ''
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: publish
+        uses: ./.github/actions/publish
+        with:
+          version: ${{needs.parse_tag.outputs.tag_version}}
+          prerelease: ${{needs.parse_tag.outputs.tag_prerelease}}
+          manifest_file_name: ${{env.MANIFEST_FILE_NAME}}
+          package_file_name: ${{env.PACKAGE_FILE_NAME}}
+          download_base: ${{env.DOWNLOAD_BASE}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-prerelease:
+    needs:
+      - build
+      - parse_tag
+    runs-on: ubuntu-latest
+    environment: prerelease
+    permissions:
+      contents: write
+    if: needs.parse_tag.outputs.tag_version != '' && needs.parse_tag.outputs.tag_prerelease != ''
     steps:
       - uses: actions/checkout@v3
 
