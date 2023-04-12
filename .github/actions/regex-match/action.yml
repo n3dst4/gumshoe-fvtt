@@ -8,32 +8,29 @@ inputs:
     description: A regex for inputs.text. Supports capturing groups.
     required: true
   flags:
-    description: Flags for inputs.regex. e.g. 'g', 'gm'
+    description: Flags for inputs.regex, e.g. 'g', 'gm'
     required: false
 outputs:
   match:
-    description: The whole matched text. If the inputs.regex doesn't match inputs.text, this value is ''.
+    description: The whole match. If inputs.regex doesn't match inputs.text, this value is "".
   group1:
-    description: The 1st captured group.
+    description: 1st capture group
   group2:
-    description: The 2nd captured group.
+    description: 2nd capture group
   group3:
-    description: The 3rd captured group.
+    description: 3rd capture group
   group4:
-    description: The 4th captured group.
+    description: 4th capture group
   group5:
-    description: The 5th captured group.
+    description: 5th capture group
   group6:
-    description: The 6th captured group.
+    description: 6th capture group
   group7:
-    description: The 7th captured group.
+    description: 7th capture group
   group8:
-    description: The 8th captured group.
+    description: 8th capture group
   group9:
-    description: The 9th captured group.
+    description: 9th capture group
 runs:
   using: node16
   main: dist/index.js
-branding:
-  icon: search
-  color: yellow
