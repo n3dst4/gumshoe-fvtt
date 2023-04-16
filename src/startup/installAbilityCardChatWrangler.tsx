@@ -19,11 +19,12 @@ export const installAbilityCardChatWrangler = () => {
       return;
     }
     // this seems clunky but I can't see a way to pass arbitrary data through
-    // rolls or chat messages. at least this way to filth is confined to this
-    // handler - we grab the actor and ability here and pass them on to the
+    // rolls or chat messages. at least this way the filth is confined to this
+    // handler - we grab the actor and ability here and pass it on to the
     // component, which can just think in terms of the data.
     const abilityId = el.getAttribute(constants.htmlDataItemId);
     const actorId = el.getAttribute(constants.htmlDataActorId);
+    const tokenId = el.getAttribute(constants.htmlDataTokenId);
     const mode = el.getAttribute(constants.htmlDataMode);
     const weaponId = el.getAttribute(constants.htmlDataWeaponId);
     const rangeName = el.getAttribute(constants.htmlDataRange);
@@ -44,7 +45,12 @@ export const installAbilityCardChatWrangler = () => {
       );
       return;
     }
-    const actor = game.actors?.get(actorId);
+
+    // foundry doesn't seem to have a canonical way to just grab an item
+    // regardless of where it is (world, actor, token, compendium etc.)
+    const actor = tokenId
+      ? canvas?.tokens?.get(tokenId)?.actor
+      : game.actors?.get(actorId);
     const ability = abilityId ? actor?.items.get(abilityId) : undefined;
     let content: JSX.Element;
     if (mode === constants.htmlDataModeAttack) {

@@ -79,10 +79,11 @@ export class InvestigatorItem extends Item {
         <div
           class="${constants.abilityChatMessageClassName}"
           ${constants.htmlDataItemId}="${this.id}"
-          ${constants.htmlDataActorId}="${this.parent?.id}"
+          ${constants.htmlDataActorId}="${this.parent?.id ?? ""}"
           ${constants.htmlDataMode}="${constants.htmlDataModeTest}"
           ${constants.htmlDataName}="${this.name}"
           ${constants.htmlDataImageUrl}="${this.img}"
+          ${constants.htmlDataTokenId}="${this.parent?.token?.id ?? ""}"
         />
       `,
     });
@@ -109,10 +110,11 @@ export class InvestigatorItem extends Item {
         <div
           class="${constants.abilityChatMessageClassName}"
           ${constants.htmlDataItemId}="${this.id}"
-          ${constants.htmlDataActorId}="${this.parent?.id}"
+          ${constants.htmlDataActorId}="${this.parent?.id ?? ""}"
           ${constants.htmlDataMode}="${constants.htmlDataModeSpend}"
           ${constants.htmlDataName}="${this.name}"
           ${constants.htmlDataImageUrl}="${this.img}"
+          ${constants.htmlDataTokenId}="${this.parent?.token?.id ?? ""}"
         />
       `,
     });
@@ -162,12 +164,13 @@ export class InvestigatorItem extends Item {
         <div
           class="${constants.abilityChatMessageClassName}"
           ${constants.htmlDataItemId}="${this.id}"
-          ${constants.htmlDataActorId}="${this.parent?.id}"
+          ${constants.htmlDataActorId}="${this.parent?.id ?? ""}"
           ${constants.htmlDataMode}="${constants.htmlDataModeMwTest}"
           ${constants.htmlDataMwDifficulty} = ${difficulty}
           ${constants.htmlDataMwBoonLevy} = ${boonLevy}
           ${constants.htmlDataMwReRoll} = ${reRoll === null ? '""' : reRoll}
           ${constants.htmlDataMwPool} = ${newPool}
+          ${constants.htmlDataTokenId}="${this.parent?.token?.id ?? ""}"
         />
       `,
     });
