@@ -17,8 +17,8 @@ dependencies:
     specifier: ^3.0.3
     version: 3.0.3
   immer:
-    specifier: ^9.0.15
-    version: 9.0.21
+    specifier: ^10.0.0
+    version: 10.0.0
   irid:
     specifier: ^4.0.0
     version: 4.0.0
@@ -3934,8 +3934,8 @@ packages:
     resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
     dev: true
 
-  /immer@9.0.21:
-    resolution: {integrity: sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==}
+  /immer@10.0.0:
+    resolution: {integrity: sha512-U5wLsGKDt7+XnufwMYH7+RWcy4JTITNkWsV/H4sNhfIxcXvypDTzn9Cj0Y9Fjj0h1a/Gaba9oZYK0a+kO13uJQ==}
     dev: false
 
   /immutable@4.3.0:
