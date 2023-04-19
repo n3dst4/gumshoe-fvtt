@@ -13,7 +13,7 @@
     "dev": "vite dev",
     "start": "pnpm dev",
     "clean": "./tasks.js clean",
-    "buildPackTranslations": "./tasks.js buildPackTranslations",
+    "build-pack-translations": "./tasks.js buildPackTranslations",
     "pull-translations": "tx pull -a",
     "test-code": "jest",
     "test-types": "tsd -f src/types.test-d.ts -t src/types.ts",

@@ -61,13 +61,9 @@ There will be a flag in there for every migration that has been run. If you want
 
 There are three npm tasks pertaining to translations:
 
-* `npm run groom-translations` will:
-  * alphabetise `en.json` and all the other core translations.
-  * report any missing translations.
-  * report any "extra" translations.
-* `npm run extract-pack-translation-templates` will:
+* `npm run build-pack-translations` will:
   * populate `src/lang/babele-sources` with template translation files based on the packs.
-  * YOU WILL PROBABLY WANT TO UPLOAD THESE TO TRANSIFEX IF THEY CHANGE.
+  * These should be picked up by Transifex automatically.
 * `npm run pull-translations` will:
   * use the Transifex command line tool, [`tx`](https://github.com/transifex/cli), to pull in the latest translations and overwrite all the JSONs.
   * THIS WILL CLOBBER ANY JSON MODIFICATIONS WHICH HAVE NOT BEEN UPLOADED TO TRANSIFEX!
