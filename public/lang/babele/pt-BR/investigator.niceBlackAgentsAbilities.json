@@ -1,5 +1,5 @@
 {
-    "label": "Habilidades NIce Black Agents",
+    "label": "Habilidades Nice Black Agents",
     "mapping": {
         "category": "data.category"
     },
@@ -29,7 +29,7 @@
             "category": "Geral"
         },
         "Bullshit Detector": {
-            "name": "Detector de Baboseira",
+            "name": "Detector de Lorotas",
             "category": "Interpessoal"
         },
         "Bureaucracy": {
@@ -61,7 +61,7 @@
             "category": "Geral"
         },
         "Electronic Surveillance": {
-            "name": "Dispositivos Eletrônicos",
+            "name": "Monitoramento Eletrônico",
             "category": "Técnica"
         },
         "Filch": {
@@ -81,7 +81,7 @@
             "category": "Técnica"
         },
         "Gambling": {
-            "name": "Jogos",
+            "name": "Jogatina",
             "category": "Geral"
         },
         "Hand-to-Hand": {
@@ -121,15 +121,15 @@
             "category": "Acadêmica"
         },
         "Mechanics": {
-            "name": "Reparos Mecânicos",
+            "name": "Mecânica",
             "category": "Geral"
         },
         "Medic": {
-            "name": "Medicina",
+            "name": "Medicina de Combate",
             "category": "Geral"
         },
         "Military Science": {
-            "name": "Ciência Militar",
+            "name": "Ciências Militares",
             "category": "Acadêmica"
         },
         "Negotiation": {
@@ -141,15 +141,15 @@
             "category": "Geral"
         },
         "Notice": {
-            "name": "Percepção",
+            "name": "Observação",
             "category": "Técnica"
         },
         "Occult Studies": {
-            "name": "Estudos Ocultos",
+            "name": "Ocultismo",
             "category": "Acadêmica"
         },
         "Outdoor Survival": {
-            "name": "Sobrevivência",
+            "name": "Sobrevivência no Mato",
             "category": "Técnica"
         },
         "Photography": {
@@ -165,11 +165,11 @@
             "category": "Geral"
         },
         "Reassurance": {
-            "name": "Convencimento",
+            "name": "Apaziguamento",
             "category": "Interpessoal"
         },
         "Research": {
-            "name": "Pesquisa",
+            "name": "Busca",
             "category": "Acadêmica"
         },
         "Sense Trouble": {
@@ -181,7 +181,7 @@
             "category": "Geral"
         },
         "Shrink": {
-            "name": "Ombro Amigo",
+            "name": "Psicoterapia",
             "category": "Geral"
         },
         "Stability": {
@@ -193,15 +193,15 @@
             "category": "Interpessoal"
         },
         "Surveillance": {
-            "name": "Vigilância",
+            "name": "Monitoramento",
             "category": "Geral"
         },
         "Tradecraft": {
-            "name": "Técnicas de Espionagem",
+            "name": "Ofício",
             "category": "Interpessoal"
         },
         "Traffic Analysis": {
-            "name": "Analise de Tráfego",
+            "name": "Análise de Dados",
             "category": "Técnica"
         }
     }
