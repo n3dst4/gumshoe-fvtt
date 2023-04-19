@@ -105,6 +105,11 @@
       "path": "lang/pt-BR.json"
     },
     {
+      "lang": "pt-BR",
+      "name": "Português do Brasil",
+      "path": "lang/moribundWorld/pt-BR.json"
+    },
+    {
       "lang": "de",
       "name": "Deutsch",
       "path": "lang/de.json"
