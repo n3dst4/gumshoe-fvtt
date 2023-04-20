@@ -1,5 +1,5 @@
 # XXX consider using alpine and apk add'ing curl?
-image: node:16
+image: node:20
 
 variables:
   PACKAGE_NAME: "investigator"
