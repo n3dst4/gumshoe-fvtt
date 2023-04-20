@@ -4,7 +4,7 @@ import {
 } from "@lumphammer/investigator-fvtt-types";
 import { pathOfCthulhuPreset } from "../../presets";
 import { SettingsDict } from "../../settings";
-import produce, { Draft } from "immer";
+import { produce, Draft } from "immer";
 import { State, PcOrNpc } from "./types";
 import {
   getDevMode,
