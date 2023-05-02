@@ -65,6 +65,8 @@ export const PCSheet: React.FC<{
     actor.getOccupations()[0],
   );
 
+  // some acrobatics here to make sure we update the occupation when it changes
+  // there's no built in hook for "an actor's items changed"
   useEffect(() => {
     const callback = (affectedItem: AnyItem) => {
       if (affectedItem.isOwned && affectedItem.actor?.id === actor.id) {
