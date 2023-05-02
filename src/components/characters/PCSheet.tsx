@@ -1,4 +1,10 @@
-import React, { Fragment, ReactNode, useCallback } from "react";
+import React, {
+  Fragment,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
@@ -25,7 +31,12 @@ import { StatField } from "./StatField";
 import { PersonalDetailField } from "./PersonalDetailField";
 import { occupationSlotIndex } from "../../constants";
 import { IndexedAsyncTextInput } from "../inputs/IndexedAsyncTextInput";
-import { assertPCActor, isPCActor } from "../../v10Types";
+import {
+  AnyItem,
+  assertPCActor,
+  isPCActor,
+  PersonalDetailItem,
+} from "../../v10Types";
 
 export const PCSheet: React.FC<{
   actor: InvestigatorActor;
@@ -47,6 +58,30 @@ export const PCSheet: React.FC<{
     },
     [actor],
   );
+
+  const genericOccupation = settings.genericOccupation.get();
+
+  const [occupation, setOccupation] = useState<PersonalDetailItem | undefined>(
+    actor.getOccupations()[0],
+  );
+
+  // some acrobatics here to make sure we update the occupation when it changes
+  // there's no built in hook for "an actor's items changed"
+  useEffect(() => {
+    const callback = (affectedItem: AnyItem) => {
+      if (affectedItem.isOwned && affectedItem.actor?.id === actor.id) {
+        setOccupation(actor.getOccupations()[0]);
+      }
+    };
+    Hooks.on("createItem", callback);
+    Hooks.on("updateItem", callback);
+    Hooks.on("deleteItem", callback);
+    return () => {
+      Hooks.off("createItem", callback);
+      Hooks.off("updateItem", callback);
+      Hooks.off("deleteItem", callback);
+    };
+  }, [actor]);
 
   const theme = actor.getSheetTheme();
   const personalDetails = settings.personalDetails.get();
@@ -83,10 +118,10 @@ export const PCSheet: React.FC<{
       >
         <LogoEditable
           mainText={actor.name ?? ""}
-          subText={actor.system.occupation}
+          subText={occupation?.name ?? genericOccupation}
           defaultSubText={settings.genericOccupation.get()}
           onChangeMainText={actor.setName}
-          onChangeSubText={actor.setOccupation}
+          onChangeSubText={occupation?.setName}
         />
       </div>
       <ImagePickle
@@ -273,5 +308,3 @@ export const PCSheet: React.FC<{
 };
 
 PCSheet.displayName = "PCSheet";
-
-// export default PCSheet;

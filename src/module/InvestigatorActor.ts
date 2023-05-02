@@ -20,6 +20,7 @@ import {
   assertNPCActor,
   assertPartyActor,
   assertPCActor,
+  assertPersonalDetailItem,
   isAbilityItem,
   isActiveCharacterActor,
   isEquipmentItem,
@@ -225,14 +226,18 @@ export class InvestigatorActor extends Actor {
     return this.update({ name });
   };
 
-  getOccupation = () => {
+  getOccupations = () => {
     assertPCActor(this);
-    return this.system.occupation;
+    return this.getPersonalDetailsInSlotIndex(occupationSlotIndex);
   };
 
-  setOccupation = (occupation: string) => {
+  getPersonalDetailsInSlotIndex = (slotIndex: number) => {
     assertPCActor(this);
-    return this.update({ system: { occupation } });
+    const personalDetailItems = this.getPersonalDetails().filter((item) => {
+      assertPersonalDetailItem(item);
+      return item.system.slotIndex === slotIndex;
+    });
+    return personalDetailItems;
   };
 
   getSheetTheme(): ThemeV1 {
