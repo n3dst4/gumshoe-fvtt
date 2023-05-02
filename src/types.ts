@@ -55,6 +55,7 @@ export enum MwInjuryStatus {
 // once we're on foundry-vtt-types
 export interface PCDataSourceData {
   buildPoints: number;
+  /** @deprecated occupation is now a personalDetail item */
   occupation: string;
   longNotes: BaseNote[];
   longNotesFormat: NoteFormat;
