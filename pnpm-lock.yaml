@@ -73,8 +73,8 @@ devDependencies:
     specifier: ^9.280.0
     version: 9.280.0(@pixi/constants@6.5.9)(@pixi/core@6.5.9)(@pixi/display@6.5.9)(@pixi/graphics@6.5.9)(@pixi/math@6.5.9)(@pixi/utils@6.5.9)
   '@lumphammer/investigator-fvtt-types':
-    specifier: ^1.9.0
-    version: 1.9.0(@types/react@18.0.31)(react@18.2.0)
+    specifier: ^1.10.0
+    version: 1.10.0(@types/react@18.0.31)(react@18.2.0)
   '@seald-io/nedb':
     specifier: ^4.0.0
     version: 4.0.0
@@ -1248,8 +1248,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@lumphammer/investigator-fvtt-types@1.9.0(@types/react@18.0.31)(react@18.2.0):
-    resolution: {integrity: sha512-6SEaBWi7615lnSCV/jLJ+UzPgWpQbhoPLC+3Bd2PPk9SOGsbkhdNTUR0Kldif7TP4MMmNxqcJkQ/arRczxc6rA==}
+  /@lumphammer/investigator-fvtt-types@1.10.0(@types/react@18.0.31)(react@18.2.0):
+    resolution: {integrity: sha512-XF6pvdaWBdvWjyq3H7PbJ1Mn5yEjdGbozdlSZ4MvmUM/kw7ktbMfoTWKSHUnS/C18jfkni3O34maIoXTLeGHPw==}
     dependencies:
       '@emotion/react': 11.10.6(@types/react@18.0.31)(react@18.2.0)
     transitivePeerDependencies:
@@ -3292,9 +3292,9 @@ packages:
       eslint-plugin-es: 4.1.0(eslint@8.37.0)
       eslint-utils: 3.0.0(eslint@8.37.0)
       ignore: 5.2.4
-      is-core-module: 2.11.0
+      is-core-module: 2.12.0
       minimatch: 3.1.2
-      resolve: 1.22.1
+      resolve: 1.22.2
       semver: 7.5.0
     dev: true
 
@@ -4061,6 +4061,12 @@ packages:
 
   /is-core-module@2.11.0:
     resolution: {integrity: sha512-RRjxlvLDkD1YJwDbroBHMb+cukurkDWNyHx7D3oNB5x9rb5ogcksMC5wHCadcXoo67gVr/+3GFySh3134zi6rw==}
+    dependencies:
+      has: 1.0.3
+    dev: true
+
+  /is-core-module@2.12.0:
+    resolution: {integrity: sha512-RECHCBCd/viahWmwj6enj19sKbHfJrddi/6cBDsNTKbNq0f7VeaUkBo60BqzvPqo/W54ChS62Z5qyun7cfOMqQ==}
     dependencies:
       has: 1.0.3
     dev: true
@@ -5793,6 +5799,15 @@ packages:
     hasBin: true
     dependencies:
       is-core-module: 2.11.0
+      path-parse: 1.0.7
+      supports-preserve-symlinks-flag: 1.0.0
+    dev: true
+
+  /resolve@1.22.2:
+    resolution: {integrity: sha512-Sb+mjNHOULsBv818T40qSPeRiuWLyaGMa5ewydRLFimneixmVy2zdivRl+AF6jaYPC8ERxGDmFSiqui6SfPd+g==}
+    hasBin: true
+    dependencies:
+      is-core-module: 2.12.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true

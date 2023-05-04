@@ -25,7 +25,6 @@ export const pathOfCthulhuPreset: Required<PresetV1> = {
   genericOccupation: "Investigator",
   mwHiddenShortNotes: [],
   showEmptyInvestigativeCategories: false,
-  useHitThreshold: true,
   pcStats: {
     hitThreshold: {
       name: "Hit threshold",
