@@ -25,7 +25,9 @@
 			"@emotion/react": [
 				"./node_modules/@emotion/react"
 			],
-		}
+		},
+		"allowJs": true,
+
 	},
 	"exclude": ["**/node_modules", "**/.*/"],
 	"include": ["src"]
