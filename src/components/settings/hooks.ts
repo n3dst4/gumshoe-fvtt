@@ -2,12 +2,12 @@ import { useCallback, useContext, useMemo, useReducer } from "react";
 import { useRefStash } from "../../hooks/useRefStash";
 import { getSettingsDict } from "../../settings";
 import { StateContext } from "./contexts";
-import { slice } from "./reducer";
+import { store } from "./store";
 import { Setters, State } from "./types";
 
 export const useSettingsState = () => {
   const initialState = useMemo(() => ({ settings: getSettingsDict() }), []);
-  const [tempState, dispatch] = useReducer(slice.reducer, initialState);
+  const [tempState, dispatch] = useReducer(store.reducer, initialState);
   const tempStateRef = useRefStash(tempState);
   const setters = useMemo(() => {
     const setters: Partial<Setters> = {};
@@ -15,7 +15,7 @@ export const useSettingsState = () => {
       initialState.settings,
     ) as (keyof (typeof initialState)["settings"])[]) {
       setters[k] = (newVal: any) => {
-        dispatch(slice.creators.setSome({ newSettings: { [k]: newVal } }));
+        dispatch(store.creators.setSome({ newSettings: { [k]: newVal } }));
       };
     }
     return setters as Setters;

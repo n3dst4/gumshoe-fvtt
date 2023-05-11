@@ -14,7 +14,7 @@ import { InputGrid } from "../../inputs/InputGrid";
 import { Menu, MenuItem } from "../../inputs/Menu";
 import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
-import { slice } from "../reducer";
+import { store } from "../store";
 import { Field } from "./Field";
 
 interface CategoryProps {
@@ -28,7 +28,7 @@ export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
 
   const handleNameChange = useCallback(
     (newName: string) => {
-      dispatch(slice.creators.renameCategory({ id, newName }));
+      dispatch(store.creators.renameCategory({ id, newName }));
     },
     [dispatch, id],
   );
@@ -36,7 +36,7 @@ export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
   const handleAddField: MouseEventHandler = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(slice.creators.addField({ categoryId: id }));
+      dispatch(store.creators.addField({ categoryId: id }));
     },
     [dispatch, id],
   );
@@ -44,7 +44,7 @@ export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
   const handleUp: MouseEventHandler = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(slice.creators.moveCategoryUp({ id }));
+      dispatch(store.creators.moveCategoryUp({ id }));
     },
     [dispatch, id],
   );
@@ -52,7 +52,7 @@ export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
   const handleDown: MouseEventHandler = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(slice.creators.moveCategoryDown({ id }));
+      dispatch(store.creators.moveCategoryDown({ id }));
     },
     [dispatch, id],
   );
@@ -66,7 +66,7 @@ export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
       resolveFalseOnCancel: true,
     });
     if (aye) {
-      dispatch(slice.creators.deleteCategory({ id }));
+      dispatch(store.creators.deleteCategory({ id }));
     }
   }, [dispatch, id]);
 
@@ -77,7 +77,7 @@ export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
       id,
     );
     if (newId) {
-      dispatch(slice.creators.changeCategoryId({ oldId: id, newId }));
+      dispatch(store.creators.changeCategoryId({ oldId: id, newId }));
     }
   }, [dispatch, id, settings.equipmentCategories]);
 

@@ -8,7 +8,7 @@ import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
 import { StatSettingsRow } from "./StatSettingsRow";
 import { PcOrNpc } from "../types";
-import { slice } from "../reducer";
+import { store } from "../store";
 
 interface StatsSettingsEditorProps {
   which: PcOrNpc;
@@ -22,7 +22,7 @@ export const StatsSettingsEditor: React.FC<StatsSettingsEditorProps> = ({
   const handleAdd: MouseEventHandler = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(slice.creators.addStat({ which }));
+      dispatch(store.creators.addStat({ which }));
     },
     [dispatch, which],
   );

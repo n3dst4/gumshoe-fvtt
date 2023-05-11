@@ -7,7 +7,7 @@ import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Checkbox } from "../../inputs/Checkbox";
 import { Translate } from "../../Translate";
 import { DispatchContext } from "../contexts";
-import { slice } from "../reducer";
+import { store } from "../store";
 import { PcOrNpc } from "../types";
 
 interface StatSettingsRowProps {
@@ -34,7 +34,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
       const value = checked
         ? Math.min(statRef.current.default, statRef.current.max ?? 0)
         : undefined;
-      dispatch(slice.creators.setStatMin({ which, id: idRef.current, value }));
+      dispatch(store.creators.setStatMin({ which, id: idRef.current, value }));
     },
     [dispatch, which, idRef, statRef],
   );
@@ -44,7 +44,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
       const value = checked
         ? Math.max(statRef.current.default, statRef.current.min ?? 0)
         : undefined;
-      dispatch(slice.creators.setStatMax({ which, id: idRef.current, value }));
+      dispatch(store.creators.setStatMax({ which, id: idRef.current, value }));
     },
     [statRef, dispatch, which, idRef],
   );
@@ -52,7 +52,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
   const handleChangeDefault = useCallback(
     (value: number) => {
       dispatch(
-        slice.creators.setStatDefault({ which, id: idRef.current, value }),
+        store.creators.setStatDefault({ which, id: idRef.current, value }),
       );
     },
     [dispatch, which, idRef],
@@ -60,14 +60,14 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
 
   const handleChangeMin = useCallback(
     (value: number) => {
-      dispatch(slice.creators.setStatMin({ which, id: idRef.current, value }));
+      dispatch(store.creators.setStatMin({ which, id: idRef.current, value }));
     },
     [dispatch, which, idRef],
   );
 
   const handleChangeMax = useCallback(
     (value: number) => {
-      dispatch(slice.creators.setStatMax({ which, id: idRef.current, value }));
+      dispatch(store.creators.setStatMax({ which, id: idRef.current, value }));
     },
     [dispatch, which, idRef],
   );
@@ -75,7 +75,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
   const handleChangeIdCallback = useCallback(
     (newId: string) => {
       dispatch(
-        slice.creators.setStatId({ which, oldId: idRef.current, newId }),
+        store.creators.setStatId({ which, oldId: idRef.current, newId }),
       );
     },
     [dispatch, idRef, which],
@@ -83,7 +83,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
 
   const handleChangeName = useCallback(
     (name: string) => {
-      dispatch(slice.creators.setStatName({ which, id: idRef.current, name }));
+      dispatch(store.creators.setStatName({ which, id: idRef.current, name }));
     },
     [dispatch, idRef, which],
   );
@@ -91,7 +91,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
   const handleDelete = useCallback(
     (ev: React.MouseEvent<HTMLButtonElement>) => {
       ev.preventDefault();
-      dispatch(slice.creators.deleteStat({ which, id: idRef.current }));
+      dispatch(store.creators.deleteStat({ which, id: idRef.current }));
     },
     [dispatch, which, idRef],
   );
@@ -105,7 +105,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
         gridTemplateColumns: "1fr    1fr    1fr    1fr     1fr     1fr     2em",
         gridTemplateAreas: `
           "idLbl  idLbl  idLbl  nameLbl nameLbl nameLbl delete"
-          "id     id     id     name    name    name    delete" 
+          "id     id     id     name    name    name    delete"
           "defLbl defLbl minLbl minLbl  maxLbl  maxLbl  delete"
           "def    def    min    min     max     max     delete"
         `,
