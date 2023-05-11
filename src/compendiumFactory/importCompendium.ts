@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { assertGame } from "../functions";
+import { assertGame, systemLogger } from "../functions";
 import { RecursivePartial } from "../types";
 
 export type ExportedCompendium = {
@@ -63,7 +63,7 @@ export const importCompendium = async (candidate: unknown) => {
   });
   for (const entity of entities as any) {
     await pack.importDocument(entity);
-    logger.log(
+    systemLogger.log(
       `Imported ${verified.entity} ${entity.name} into Compendium pack ${pack.collection}`,
     );
   }

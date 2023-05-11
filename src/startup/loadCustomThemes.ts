@@ -1,7 +1,7 @@
 import { defaultCustomThemePath } from "../constants";
 import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
 import { highContrastTheme } from "../themes/highContrastTheme";
-import { assertGame } from "../functions";
+import { assertGame, systemLogger } from "../functions";
 import { settings } from "../settings";
 
 export function loadCustomThemes() {
@@ -12,7 +12,7 @@ export function loadCustomThemes() {
   Hooks.on("setup", async () => {
     assertGame(game);
     const customThemePath = settings.customThemePath.get();
-    logger.log({ customThemePath });
+    systemLogger.log({ customThemePath });
     let files: string[] = [];
 
     try {
@@ -31,7 +31,7 @@ export function loadCustomThemes() {
         return;
       }
     }
-    logger.log({ files });
+    systemLogger.log({ files });
     for (const filename of files) {
       let blob: any = null;
       try {
@@ -100,7 +100,7 @@ export function loadCustomThemes() {
           global: blob.global ?? highContrastTheme.global,
           smallSheetRootStyle: blob.smallSheetRootStyle ?? {},
         };
-        logger.log(`Loaded local theme ${filename}`, seed);
+        systemLogger.log(`Loaded local theme ${filename}`, seed);
         CONFIG.Investigator?.installTheme(filename, seed);
       } catch (e: any) {
         if (game?.user?.isGM) {

@@ -1,3 +1,5 @@
+import { systemLogger } from "../functions";
+
 export const registerBabele = () => {
   // register babele translations
   if (typeof Babele !== "undefined") {
@@ -7,7 +9,7 @@ export const registerBabele = () => {
     } else {
       const message =
         "Please make sure you have installed the latest version of Babele (unable to set system translations path).";
-      logger.warn(message);
+      systemLogger.warn(message);
       Hooks.once("ready", () => {
         ui.notifications?.warn(message);
       });

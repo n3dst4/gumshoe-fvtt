@@ -20,7 +20,7 @@ import { injectGlobalHelper } from "./startup/injectGlobalHelper";
 import { loadCustomThemes } from "./startup/loadCustomThemes";
 import { handleMwItemType } from "./startup/disableMwItemType";
 import { installInitiativeUpdateHookHandler } from "./startup/installInitiativeUpdateHookHandler";
-import { assertGame } from "./functions";
+import { assertGame, systemLogger } from "./functions";
 import { installTurnPassingHandler } from "./startup/installTurnPassingHandler";
 import { installSocketActionHandler } from "./startup/installSocketActionHandler";
 import { installEquipmentCategoryHookHandler } from "./startup/installEquipmentCategoryHookHandler";
@@ -33,7 +33,7 @@ injectGlobalHelper();
 
 // Initialize system
 Hooks.once("init", async function () {
-  logger.log(`${systemId} | Initializing system`);
+  systemLogger.log(`Initializing ${systemId} system`);
   registerSettingsMenu();
   await preloadTemplates();
   registerSheetsAndClasses();

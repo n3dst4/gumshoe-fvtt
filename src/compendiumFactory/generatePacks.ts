@@ -17,7 +17,7 @@ import {
   packNames,
   systemId,
 } from "../constants";
-import { assertGame } from "../functions";
+import { assertGame, systemLogger } from "../functions";
 
 /*
  * Ugh, sorry about the types in here. It's a mess, but the see-saw of
@@ -97,8 +97,6 @@ export const generatePacks = async <
   template: T,
   pack: any,
 ) => {
-  // const invFolder;
-
   Object.keys(abilityData).forEach(
     async (category: keyof typeof abilityData) => {
       const abilityDatas = abilityData[category].map((data) => {
@@ -119,7 +117,7 @@ export const generatePacks = async <
       // await pack.importEntity(folder);//
       for (const item of items as any) {
         await pack.importDocument(item);
-        logger.log(
+        systemLogger.log(
           `Imported Item ${item.name} into Compendium pack ${pack.collection}`,
         );
       }

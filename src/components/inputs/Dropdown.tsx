@@ -12,6 +12,7 @@ import React, {
 import { FaChevronDown } from "react-icons/fa";
 import ReactDOM from "react-dom";
 import { useShowHideTransition } from "../transitions/useShowHideTransition";
+import { systemLogger } from "../../functions";
 
 export const DropdownContainerContext =
   React.createContext<RefObject<HTMLElement> | null>(null);
@@ -19,7 +20,7 @@ export const DropdownContainerContext =
 type Close = () => void;
 
 export const CloseContext = React.createContext<Close>(() => {
-  logger.warn("CloseContext used without a provider");
+  systemLogger.warn("CloseContext used without a provider");
 });
 
 type DropdownProps = {
@@ -86,7 +87,7 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
     if (import.meta.env.MODE === "development") {
       const containerStyle = window.getComputedStyle(container);
       if (containerStyle.position === "static") {
-        logger.warn(
+        systemLogger.warn(
           "Dropdown container element has static positioning! " +
             "Your dropdowns may get positioned weirdly.",
         );

@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import { assertGame } from "../functions";
+import { assertGame, systemLogger } from "../functions";
 import * as constants from "../constants";
 import { isAbilityCardMode } from "../components/messageCards/types";
 import { AbilityTestCard } from "../components/messageCards/AbilityTestCard";
@@ -32,14 +32,14 @@ export const installAbilityCardChatWrangler = () => {
     const imageUrl = el.getAttribute(constants.htmlDataImageUrl);
 
     if (actorId === null) {
-      logger.error(
+      systemLogger.error(
         `Missing or invalid '${constants.htmlDataItemId}' attribute.`,
         el,
       );
       return;
     }
     if (mode === null || !isAbilityCardMode(mode)) {
-      logger.error(
+      systemLogger.error(
         `Ability test chat message found without a valid '${constants.htmlDataMode}' attribute. (Valid values are "test", "spend", "combat"`,
         el,
       );

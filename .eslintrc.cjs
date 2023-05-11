@@ -64,6 +64,15 @@ module.exports = {
     // can allow type imports from lodash but this willr equire some eslint etc
     // version bumps
     // "no-restricted-imports": ["error", "lodash"],
+    "no-restricted-globals": [
+      "error",
+      {
+        name: "logger",
+        message:
+          "This is a Foundry global which breaks tests.\n" +
+          "Import `systemLogger` from `functions` instead.",
+      },
+    ],
   },
   overrides: [
     {
