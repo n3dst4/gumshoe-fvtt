@@ -91,27 +91,38 @@ const slice = createSystemSlice({
   onError: jest.fn(),
 });
 
+// we need to mock nanoid so that we can predictably generate ids
+// I tried putting this in beforeAll but for some reason we weren't seeing the
+// mock in the test
 jest.mock("nanoid", () => {
+  let count = 0;
   return {
     __esModule: true,
-    nanoid: () => "foo",
+    nanoid: () => "id" + count++,
   };
 });
-
-// why doesn't this work?
-// beforeAll(() => {
-//   jest.mock("nanoid", () => {
-//     return {
-//       __esModule: true,
-//       nanoid: () => "foo",
-//     };
-//   });
-// });
 
 afterAll(() => {
   jest.resetModules();
 });
 
+/*
+ * DIFF SNAPSHOT TESTS!
+ *
+ * Rather than maintain a manual list of expected values,
+ * we can just snapshot the diff between the initial state and the state after
+ * the action is applied. This means the tests are not super brittle in the
+ * event of the structure changing, but it does require you to manually check
+ * the diff to make sure it's what you expect.
+ *
+ * The snapshots are stored in the __snapshots__ folder.
+ *
+ * To update the snapshots, run `npx jest-u`
+ *
+ * AND PLEASE CHECK THE DIFFS AFTER UPDATING! Your git tool of choice will help
+ * here, so you can just compare the diffs that have changed. Yes, it might feel
+ * a bit weird looking at "diffs of diffs", but you'll get the hang of it.
+ */
 describe("reducer", () => {
   it("should ignore unknown actions", () => {
     const result = slice.reducer(initialState, { type: "FOOEY" });
@@ -133,6 +144,11 @@ describe("reducer", () => {
     [
       "change a category id",
       slice.creators.changeCategoryId({ oldId: "category0", newId: "foo" }),
+    ],
+    ["move a category up", slice.creators.moveCategoryUp({ id: "category1" })],
+    [
+      "move a category down",
+      slice.creators.moveCategoryDown({ id: "category0" }),
     ],
     ["add a field", slice.creators.addField({ categoryId: "category0" })],
     [
@@ -220,20 +236,6 @@ describe("reducer", () => {
       }),
     ],
     [
-      "set a stat default",
-      slice.creators.setStatDefault({
-        which: "pcStats",
-        id: "pcStat0",
-        value: 1,
-      }),
-    ],
-    ["move a category up", slice.creators.moveCategoryUp({ id: "category1" })],
-    [
-      "move a category down",
-      slice.creators.moveCategoryDown({ id: "category0" }),
-    ],
-
-    [
       "move a field up",
       slice.creators.moveFieldUp({
         categoryId: "category0",
@@ -245,6 +247,37 @@ describe("reducer", () => {
       slice.creators.moveFieldDown({
         categoryId: "category0",
         fieldId: "field0",
+      }),
+    ],
+    [
+      "set a stat default",
+      slice.creators.setStatDefault({
+        which: "pcStats",
+        id: "pcStat0",
+        value: 1,
+      }),
+    ],
+    [
+      "set a stat name",
+      slice.creators.setStatName({
+        which: "pcStats",
+        id: "pcStat0",
+        name: "foo",
+      }),
+    ],
+    [
+      "delete a stat",
+      slice.creators.deleteStat({
+        which: "pcStats",
+        id: "pcStat0",
+      }),
+    ],
+    [
+      "set a stat id",
+      slice.creators.setStatId({
+        which: "pcStats",
+        oldId: "pcStat0",
+        newId: "foo",
       }),
     ],
   ])("should %s", (name, action) => {

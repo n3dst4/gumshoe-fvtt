@@ -11,7 +11,7 @@ exports[`reducer should add a category 1`] = `
          "name": "initial category",
          "fields": {}
 +      },
-+      "foo": {
++      "id0": {
 +        "name": "New category",
 +        "fields": {}
        }
@@ -32,7 +32,7 @@ exports[`reducer should add a field 1`] = `
              "type": "string",
              "default": "default value"
 +          },
-+          "foo": {
++          "id1": {
 +            "name": "New Field",
 +            "type": "string",
 +            "default": ""
@@ -308,6 +308,30 @@ exports[`reducer should delete a field 1`] = `
 "
 `;
 
+exports[`reducer should delete a stat 1`] = `
+"Index: delete a stat
+===================================================================
+--- delete a stat
++++ delete a stat
+@@ -1,14 +1,7 @@
+ {
+   "settings": {
+-    "pcStats": {
+-      "pcStat0": {
+-        "min": 0,
+-        "max": 10,
+-        "default": 3,
+-        "name": "PC Statisitic Zero"
+-      }
+-    },
++    "pcStats": {},
+     "npcStats": {
+       "npcStat0": {
+         "min": 0,
+         "max": 10,
+"
+`;
+
 exports[`reducer should move a category down 1`] = `
 "Index: move a category down
 ===================================================================
@@ -522,6 +546,24 @@ exports[`reducer should set a stat default 1`] = `
 "
 `;
 
+exports[`reducer should set a stat id 1`] = `
+"Index: set a stat id
+===================================================================
+--- set a stat id
++++ set a stat id
+@@ -1,8 +1,8 @@
+ {
+   "settings": {
+     "pcStats": {
+-      "pcStat0": {
++      "foo": {
+         "min": 0,
+         "max": 10,
+         "default": 3,
+         "name": "PC Statisitic Zero"
+"
+`;
+
 exports[`reducer should set a stat maximum 1`] = `
 "Index: set a stat maximum
 ===================================================================
@@ -557,6 +599,25 @@ exports[`reducer should set a stat minimum 1`] = `
          "default": 3,
          "name": "PC Statisitic Zero"
        }
+"
+`;
+
+exports[`reducer should set a stat name 1`] = `
+"Index: set a stat name
+===================================================================
+--- set a stat name
++++ set a stat name
+@@ -4,9 +4,9 @@
+       "pcStat0": {
+         "min": 0,
+         "max": 10,
+         "default": 3,
+-        "name": "PC Statisitic Zero"
++        "name": "foo"
+       }
+     },
+     "npcStats": {
+       "npcStat0": {
 "
 `;
 
