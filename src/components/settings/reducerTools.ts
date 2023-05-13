@@ -1,13 +1,12 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import { produce, Draft } from "immer";
-import { getDevMode, systemLogger } from "../../functions";
 import { diff } from "just-diff";
 
 /**
  * A minimal case for all actions - there will always be a `type` and a
  * `payload` property, but the payload may be `undefined`.
  */
-type AnyAction = {
+export type AnyAction = {
   type: string;
   payload?: unknown;
 };
@@ -26,13 +25,14 @@ type AnyAction = {
 function createCase<S, P = void>(
   type: string,
   reducer: (draft: S, payload: P) => void,
+  logger: (...args: unknown[]) => void = () => {},
 ) {
   const create = (payload: P) => ({ type, payload });
   const match = (action: AnyAction): action is { type: string; payload: P } =>
     action.type === type;
   const apply = (state: S, action: AnyAction) => {
     if (match(action)) {
-      systemLogger.log("Reducer apply", type, action.payload);
+      logger("Reducer apply", type, action.payload);
       return reducer ? reducer(state, action.payload) : state;
     }
     return state;
@@ -50,6 +50,11 @@ function createCase<S, P = void>(
 
 type Reducers<S> = { [key: string]: (state: Draft<S>, payload?: any) => void };
 
+export type CreateSliceArgs = {
+  onError?: (error: unknown) => void;
+  log?: (...args: unknown[]) => void;
+};
+
 /**
  * A minimal reimagination of the `createSlice` function from
  * `@reduxjs/toolkit`.
@@ -57,11 +62,11 @@ type Reducers<S> = { [key: string]: (state: Draft<S>, payload?: any) => void };
  * (reducers) to be inferred.
  */
 export const createSlice =
-  <S extends object>() =>
+  <S extends object>(args: CreateSliceArgs = {}) =>
   <R extends Reducers<S>>(reducers: R) => {
     // turn all the reducers into cases (so they can be created and applied)
     const sliceCases = Object.entries(reducers).map(([key, reducer]) => {
-      const action = createCase(key, reducer);
+      const action = createCase(key, reducer, args.log);
       return [key, action] as const;
     });
     // turn those cases back into an object o creators.
@@ -92,16 +97,17 @@ export const createSlice =
             sliceCase.apply(draft, action);
           }
         });
-        if (getDevMode()) {
+        if (args.log) {
           const diffs = diff(state, newState);
-          systemLogger.log("Reducer diffs", diffs);
+          args.log("Reducer diffs", diffs);
         }
         return newState;
       } catch (e) {
         // in the event of an error, we will try to keep going rather than just
         // exploding
-        systemLogger.error("Reducer error", e);
-        ui.notifications?.error(`Settings error: ${e}`, { permanent: true });
+        if (args.onError) {
+          args.onError(e);
+        }
         return state;
       }
     };
