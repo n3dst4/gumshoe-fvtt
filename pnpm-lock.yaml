@@ -177,6 +177,9 @@ devDependencies:
   jest:
     specifier: ^29.5.0
     version: 29.5.0
+  jest-diff:
+    specifier: ^29.5.0
+    version: 29.5.0
   jest-environment-jsdom:
     specifier: ^29.5.0
     version: 29.5.0

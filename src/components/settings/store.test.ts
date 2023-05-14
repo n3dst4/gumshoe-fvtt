@@ -86,6 +86,8 @@ const initialState: State = {
   },
 };
 
+const initialStateJSON = JSON.stringify(initialState, null, 2);
+
 const slice = createSystemSlice({
   log: jest.fn(),
   onError: jest.fn(),
@@ -281,10 +283,16 @@ describe("reducer", () => {
       }),
     ],
   ])("should %s", (name, action) => {
+    // * why snapshots of diffs?
+    //   * they're smaller and easier to read than snapshotting the entire
+    //     output object. You can peruse the snapshots file and see the
+    //     *changes* caused by the action, rather than the entire state.
+    // * why a patch formatted diff?
+    //   * first attempt used an object diff (from `just-diff`) but that does
+    //     not detect changes in key order.
     const result = slice.reducer(initialState, action);
-    const oldJSON = JSON.stringify(initialState, null, 2);
-    const newJSON = JSON.stringify(result, null, 2);
-    const diff = createPatch(name, oldJSON, newJSON);
+    const resultJSON = JSON.stringify(result, null, 2);
+    const diff = createPatch(name, initialStateJSON, resultJSON);
     expect(diff).toMatchSnapshot();
   });
 });
