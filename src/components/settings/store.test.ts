@@ -42,8 +42,8 @@ const initialState: State = {
           },
           field1: {
             name: "Initial field",
-            type: "string",
-            default: "default value",
+            type: "number",
+            default: 1,
           },
         },
       },
@@ -199,16 +199,16 @@ describe("reducer", () => {
       "set a field minimum",
       slice.creators.setFieldMin({
         categoryId: "category0",
-        fieldId: "field0",
-        newMin: 1,
+        fieldId: "field1",
+        newMin: 2,
       }),
     ],
     [
       "set a field maximum",
       slice.creators.setFieldMax({
         categoryId: "category0",
-        fieldId: "field0",
-        newMax: 1,
+        fieldId: "field1",
+        newMax: 2,
       }),
     ],
     [
@@ -244,7 +244,7 @@ describe("reducer", () => {
       "move a field up",
       slice.creators.moveFieldUp({
         categoryId: "category0",
-        fieldId: "field0",
+        fieldId: "field1",
       }),
     ],
     [
@@ -304,6 +304,9 @@ describe("reducer", () => {
       contextLines: 3,
       expand: false,
       omitAnnotationLines: true,
+      // keep object keys in the original order (so key order changes will be
+      // detected)
+      compareKeys: () => 0,
     });
     expect(diffs).toMatchSnapshot();
   });
