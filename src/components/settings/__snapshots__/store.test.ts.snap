@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`reducer should add a category 1`] = `
-"@@ -39,6 +39,10 @@
+"@@ -41,6 +41,10 @@
           "name": "initial category",
           "fields": Object {},
         },
@@ -15,8 +15,8 @@ exports[`reducer should add a category 1`] = `
 `;
 
 exports[`reducer should add a field 1`] = `
-"@@ -33,6 +33,11 @@
-              "type": "number",
+"@@ -35,6 +35,11 @@
+              "max": 10,
               "default": 1,
             },
 +           "id1": Object {
@@ -44,7 +44,7 @@ exports[`reducer should add a stat 1`] = `
 `;
 
 exports[`reducer should apply a preset 1`] = `
-"@@ -1,52 +1,56 @@
+"@@ -1,54 +1,56 @@
   Object {
     "settings": Object {
       "pcStats": Object {
@@ -88,6 +88,8 @@ exports[`reducer should apply a preset 1`] = `
 -           "field1": Object {
 -             "name": "Initial field",
 -             "type": "number",
+-             "min": 0,
+-             "max": 10,
 -             "default": 1,
 +       "stealth": Object {
 +         "name": "Stealth",
@@ -128,7 +130,7 @@ exports[`reducer should apply a preset 1`] = `
       "migrationFlags": Object {
         "actor": Object {},
         "item": Object {},
-@@ -59,18 +63,38 @@
+@@ -61,18 +63,38 @@
         "world": Object {},
       },
       "useTurnPassingInitiative": false,
@@ -203,11 +205,11 @@ exports[`reducer should change a field id 1`] = `
 +           "field0": Object {
               "name": "Initial field",
               "type": "number",
-              "default": 1,"
+              "min": 0,"
 `;
 
 exports[`reducer should delete a category 1`] = `
-"@@ -20,21 +20,6 @@
+"@@ -20,23 +20,6 @@
       "combatAbilities": Array [],
       "customThemePath": "",
       "equipmentCategories": Object {
@@ -222,6 +224,8 @@ exports[`reducer should delete a category 1`] = `
 -           "field1": Object {
 -             "name": "Initial field",
 -             "type": "number",
+-             "min": 0,
+-             "max": 10,
 -             "default": 1,
 -           },
 -         },
@@ -276,9 +280,9 @@ exports[`reducer should move a category down 1`] = `
         "category0": Object {
           "name": "initial category",
           "fields": Object {
-@@ -32,12 +36,8 @@
-              "name": "Initial field",
-              "type": "number",
+@@ -34,12 +38,8 @@
+              "min": 0,
+              "max": 10,
               "default": 1,
 -           },
             },
@@ -303,9 +307,9 @@ exports[`reducer should move a category up 1`] = `
         "category0": Object {
           "name": "initial category",
           "fields": Object {
-@@ -32,12 +36,8 @@
-              "name": "Initial field",
-              "type": "number",
+@@ -34,12 +38,8 @@
+              "min": 0,
+              "max": 10,
               "default": 1,
 -           },
             },
@@ -319,7 +323,7 @@ exports[`reducer should move a category up 1`] = `
 `;
 
 exports[`reducer should move a field down 1`] = `
-"@@ -23,15 +23,15 @@
+"@@ -23,17 +23,17 @@
         "category0": Object {
           "name": "initial category",
           "fields": Object {
@@ -331,6 +335,8 @@ exports[`reducer should move a field down 1`] = `
             "field1": Object {
               "name": "Initial field",
               "type": "number",
+              "min": 0,
+              "max": 10,
               "default": 1,
 +           },
 +           "field0": Object {
@@ -343,7 +349,7 @@ exports[`reducer should move a field down 1`] = `
 `;
 
 exports[`reducer should move a field up 1`] = `
-"@@ -23,15 +23,15 @@
+"@@ -23,17 +23,17 @@
         "category0": Object {
           "name": "initial category",
           "fields": Object {
@@ -355,6 +361,8 @@ exports[`reducer should move a field up 1`] = `
             "field1": Object {
               "name": "Initial field",
               "type": "number",
+              "min": 0,
+              "max": 10,
               "default": 1,
 +           },
 +           "field0": Object {
@@ -403,25 +411,27 @@ exports[`reducer should set a field default 1`] = `
 `;
 
 exports[`reducer should set a field maximum 1`] = `
-"@@ -32,6 +32,7 @@
+"@@ -32,7 +32,7 @@
               "name": "Initial field",
               "type": "number",
-              "default": 1,
+              "min": 0,
+-             "max": 10,
 +             "max": 2,
+              "default": 1,
             },
-          },
-        },"
+          },"
 `;
 
 exports[`reducer should set a field minimum 1`] = `
-"@@ -32,6 +32,7 @@
+"@@ -31,7 +31,7 @@
+            "field1": Object {
               "name": "Initial field",
               "type": "number",
-              "default": 1,
+-             "min": 0,
 +             "min": 2,
-            },
-          },
-        },"
+              "max": 10,
+              "default": 1,
+            },"
 `;
 
 exports[`reducer should set a field type 1`] = `
@@ -499,7 +509,7 @@ exports[`reducer should set a stat name 1`] = `
 `;
 
 exports[`reducer should set a value using setSome 1`] = `
-"@@ -59,7 +59,7 @@
+"@@ -61,7 +61,7 @@
         "world": Object {},
       },
       "useTurnPassingInitiative": false,

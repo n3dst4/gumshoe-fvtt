@@ -1,6 +1,5 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import { produce, Draft } from "immer";
-import { diff } from "just-diff";
 
 /**
  * A minimal case for all actions - there will always be a `type` and a
@@ -25,14 +24,12 @@ export type AnyAction = {
 function createCase<S, P = void>(
   type: string,
   reducer: (draft: S, payload: P) => void,
-  logger: (...args: unknown[]) => void = () => {},
 ) {
   const create = (payload: P) => ({ type, payload });
   const match = (action: AnyAction): action is { type: string; payload: P } =>
     action.type === type;
   const apply = (state: S, action: AnyAction) => {
     if (match(action)) {
-      logger("Reducer apply", type, action.payload);
       return reducer ? reducer(state, action.payload) : state;
     }
     return state;
@@ -66,7 +63,7 @@ export const createSlice =
   <R extends Reducers<S>>(reducers: R) => {
     // turn all the reducers into cases (so they can be created and applied)
     const sliceCases = Object.entries(reducers).map(([key, reducer]) => {
-      const action = createCase(key, reducer, args.log);
+      const action = createCase(key, reducer);
       return [key, action] as const;
     });
     // turn those cases back into an object of creators.
@@ -98,8 +95,7 @@ export const createSlice =
           }
         });
         if (args.log) {
-          const diffs = diff(state, newState);
-          args.log("Reducer diffs", diffs);
+          args.log(action, state, newState);
         }
         return newState;
       } catch (e) {

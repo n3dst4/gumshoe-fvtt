@@ -25,9 +25,6 @@ dependencies:
   json5:
     specifier: ^2.2.1
     version: 2.2.3
-  just-diff:
-    specifier: ^6.0.2
-    version: 6.0.2
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -4847,10 +4844,6 @@ packages:
       array-includes: 3.1.6
       object.assign: 4.1.4
     dev: true
-
-  /just-diff@6.0.2:
-    resolution: {integrity: sha512-S59eriX5u3/QhMNq3v/gm8Kd0w8OS6Tz2FS1NG4blv+z0MuQcBRJyFWjdovM0Rad4/P4aUPFtnkNjMjyMlMSYA==}
-    dev: false
 
   /kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}

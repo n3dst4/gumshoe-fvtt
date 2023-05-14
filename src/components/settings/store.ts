@@ -184,6 +184,13 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
     ) => {
       const field = cats[payload.categoryId].fields[payload.fieldId];
       assertNumericFieldOkayness(field, payload.fieldId, payload.newMin);
+      if (
+        field.max !== undefined &&
+        payload.newMin !== undefined &&
+        payload.newMin > field.max
+      ) {
+        throw new Error("Min cannot be greater than max");
+      }
       field.min = payload.newMin;
     },
     setFieldMax: (
@@ -196,6 +203,13 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
     ) => {
       const field = cats[payload.categoryId].fields[payload.fieldId];
       assertNumericFieldOkayness(field, payload.fieldId, payload.newMax);
+      if (
+        field.min !== undefined &&
+        payload.newMax !== undefined &&
+        payload.newMax < field.min
+      ) {
+        throw new Error("Max cannot be less than min");
+      }
       field.max = payload.newMax;
     },
     moveFieldUp: (
@@ -241,6 +255,10 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
         value,
       }: { which: PcOrNpc; id: string; value: number | undefined },
     ) => {
+      const max = draft.settings[which][id].max;
+      if (max !== undefined && value !== undefined && value > max) {
+        throw new Error("Min cannot be greater than max");
+      }
       draft.settings[which][id].min = value;
     },
     setStatMax: (
@@ -251,6 +269,10 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
         value,
       }: { which: PcOrNpc; id: string; value: number | undefined },
     ) => {
+      const min = draft.settings[which][id].min;
+      if (min !== undefined && value !== undefined && value < min) {
+        throw new Error("Max cannot be less than min");
+      }
       draft.settings[which][id].max = value;
     },
     setStatDefault: (

@@ -43,6 +43,8 @@ const initialState: State = {
           field1: {
             name: "Initial field",
             type: "number",
+            min: 0,
+            max: 10,
             default: 1,
           },
         },
@@ -91,9 +93,17 @@ const initialState: State = {
 
 const noColor = (x: string) => x;
 
+const logFn = jest.fn();
+const onErrorFn = jest.fn();
+
 const slice = createSystemSlice({
-  log: jest.fn(),
-  onError: jest.fn(),
+  log: logFn,
+  onError: onErrorFn,
+});
+
+beforeEach(() => {
+  logFn.mockReset();
+  onErrorFn.mockReset();
 });
 
 // we need to mock nanoid so that we can predictably generate ids
@@ -296,12 +306,15 @@ describe("reducer", () => {
     const result = slice.reducer(initialState, action);
     // const resultJSON = JSON.stringify(result, null, 2);
     const diffs = diff(initialState, result, {
+      // don't colourise the diff
       aColor: noColor,
       bColor: noColor,
       changeColor: noColor,
       commonColor: noColor,
       patchColor: noColor,
+      // show 3 lines of context around each change
       contextLines: 3,
+      // don't show the entire object in the diff
       expand: false,
       omitAnnotationLines: true,
       // keep object keys in the original order (so key order changes will be
@@ -309,5 +322,116 @@ describe("reducer", () => {
       compareKeys: () => 0,
     });
     expect(diffs).toMatchSnapshot();
+    expect(onErrorFn).not.toHaveBeenCalled();
+    expect(logFn).toHaveBeenCalledTimes(1);
+    expect(logFn).toHaveBeenCalledWith(action, initialState, result);
+  });
+
+  // error cases
+  it.each<TestTuple>([
+    [
+      "moving a category up when it's already at the top",
+      slice.creators.moveCategoryUp({ id: "category0" }),
+    ],
+    [
+      "moving a category down when it's already at the bottom",
+      slice.creators.moveCategoryDown({ id: "category1" }),
+    ],
+    [
+      "moving a field up when it's already at the top",
+      slice.creators.moveFieldUp({
+        categoryId: "category0",
+        fieldId: "field0",
+      }),
+    ],
+    [
+      "moving a field down when it's already at the bottom",
+      slice.creators.moveFieldDown({
+        categoryId: "category0",
+        fieldId: "field1",
+      }),
+    ],
+    [
+      "setting a field minimum to a value greater than its maximum",
+      slice.creators.setFieldMin({
+        categoryId: "category0",
+        fieldId: "field1",
+        newMin: 20,
+      }),
+    ],
+    [
+      "setting a stat minimum to a value greater than its maximum",
+      slice.creators.setStatMin({
+        which: "pcStats",
+        id: "pcStat0",
+        value: 20,
+      }),
+    ],
+    [
+      "setting a stat maximum to a value less than its minimum",
+      slice.creators.setStatMax({
+        which: "pcStats",
+        id: "pcStat0",
+        value: -10,
+      }),
+    ],
+    [
+      "changing a catrgory id to one that already exists",
+      slice.creators.changeCategoryId({
+        oldId: "category0",
+        newId: "category1",
+      }),
+    ],
+    [
+      "changing a field id to one that already exists",
+      slice.creators.changeFieldId({
+        categoryId: "category0",
+        fieldId: "field0",
+        newFieldId: "field1",
+      }),
+    ],
+    [
+      "setting a numeric default for a string field",
+      slice.creators.setFieldDefault({
+        categoryId: "category0",
+        fieldId: "field0",
+        newDefault: 1,
+      }),
+    ],
+    [
+      "setting a boolean default for a string field",
+      slice.creators.setFieldDefault({
+        categoryId: "category0",
+        fieldId: "field0",
+        newDefault: true,
+      }),
+    ],
+    [
+      "setting a string default for a numeric field",
+      slice.creators.setFieldDefault({
+        categoryId: "category0",
+        fieldId: "field1",
+        newDefault: "foo",
+      }),
+    ],
+    [
+      "setting a boolean default for a numeric field",
+      slice.creators.setFieldDefault({
+        categoryId: "category0",
+        fieldId: "field1",
+        newDefault: true,
+      }),
+    ],
+    [
+      "deliberately throwing an error",
+      slice.creators.throwError({
+        message: "foo",
+      }),
+    ],
+  ])("should error when %s", (name, action) => {
+    const result = slice.reducer(initialState, action);
+    expect(result).toEqual(initialState);
+    expect(logFn).not.toHaveBeenCalled();
+    expect(onErrorFn).toHaveBeenCalledTimes(1);
   });
 });
