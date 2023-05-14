@@ -1,641 +1,1662 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`reducer should add a category 1`] = `
-"Index: add a category
-===================================================================
---- add a category
-+++ add a category
-@@ -37,8 +37,12 @@
-       },
-       "category1": {
-         "name": "initial category",
-         "fields": {}
-+      },
-+      "id0": {
-+        "name": "New category",
-+        "fields": {}
-       }
-     },
-     "debugTranslations": false,
-     "useBoost": false,
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
++       "id0": Object {
++         "fields": Object {},
++         "name": "New category",
++       },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should add a field 1`] = `
-"Index: add a field
-===================================================================
---- add a field
-+++ add a field
-@@ -31,8 +31,13 @@
-           "field1": {
-             "name": "Initial field",
-             "type": "string",
-             "default": "default value"
-+          },
-+          "id1": {
-+            "name": "New Field",
-+            "type": "string",
-+            "default": ""
-           }
-         }
-       },
-       "category1": {
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
++           "id1": Object {
++             "default": "",
++             "name": "New Field",
++             "type": "string",
++           },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should add a stat 1`] = `
-"Index: add a stat
-===================================================================
---- add a stat
-+++ add a stat
-@@ -5,8 +5,12 @@
-         "min": 0,
-         "max": 10,
-         "default": 3,
-         "name": "PC Statisitic Zero"
-+      },
-+      "stat1": {
-+        "name": "",
-+        "default": 0
-       }
-     },
-     "npcStats": {
-       "npcStat0": {
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
++       "stat1": Object {
++         "default": 0,
++         "name": "",
++       },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should apply a preset 1`] = `
-"Index: apply a preset
-===================================================================
---- apply a preset
-+++ apply a preset
-@@ -1,53 +1,57 @@
- {
-   "settings": {
-     "pcStats": {
--      "pcStat0": {
--        "min": 0,
--        "max": 10,
--        "default": 3,
--        "name": "PC Statisitic Zero"
-+      "hitThreshold": {
-+        "name": "Hit threshold",
-+        "default": 3
-       }
-     },
-     "npcStats": {
--      "npcStat0": {
--        "min": 0,
--        "max": 10,
--        "default": 3,
--        "name": "NPC Statisitic Zero"
-+      "hitThreshold": {
-+        "name": "Hit threshold",
-+        "default": 3
-+      },
-+      "armor": {
-+        "name": "Armor",
-+        "default": 0
-+      },
-+      "alertness": {
-+        "name": "Alertness",
-+        "default": 0
-+      },
-+      "stealth": {
-+        "name": "Stealth",
-+        "default": 0
-+      },
-+      "stabilityLoss": {
-+        "name": "Stability Loss",
-+        "default": 0
-       }
-     },
--    "systemPreset": "dnd5e",
--    "combatAbilities": [],
-+    "systemPreset": "pathOfCthulhu",
-+    "combatAbilities": [
-+      "Scuffling",
-+      "Weapons",
-+      "Firearms",
-+      "Athletics"
-+    ],
-     "customThemePath": "",
-     "equipmentCategories": {
--      "category0": {
--        "name": "initial category",
--        "fields": {
--          "field0": {
--            "name": "Initial field",
--            "type": "string",
--            "default": "default value"
--          },
--          "field1": {
--            "name": "Initial field",
--            "type": "string",
--            "default": "default value"
--          }
--        }
--      },
--      "category1": {
--        "name": "initial category",
-+      "general": {
-+        "name": "General",
-         "fields": {}
-       }
-     },
-     "debugTranslations": false,
-     "useBoost": false,
--    "defaultThemeName": "",
-+    "defaultThemeName": "tealTheme",
-     "useMwInjuryStatus": false,
-     "useMwStyleAbilities": false,
-     "useNpcCombatBonuses": false,
--    "generalAbilityCategories": [],
-+    "generalAbilityCategories": [
-+      "General"
-+    ],
-     "migrationFlags": {
-       "actor": {},
-       "item": {},
-       "compendium": {},
-@@ -58,19 +62,39 @@
-       "playlist": {},
-       "world": {}
-     },
-     "useTurnPassingInitiative": false,
--    "genericOccupation": "",
--    "investigativeAbilityCategories": [],
--    "longNotes": [],
-+    "genericOccupation": "Investigator",
-+    "investigativeAbilityCategories": [
-+      "Academic",
-+      "Interpersonal",
-+      "Technical"
-+    ],
-+    "longNotes": [
-+      "Notes, Contacts etc.",
-+      "Occupational Benefits",
-+      "Pillars of Sanity",
-+      "Sources of Stability"
-+    ],
-     "mwHiddenShortNotes": [],
-     "mwUseAlternativeItemTypes": false,
--    "newNPCPacks": [],
--    "newPCPacks": [],
--    "occupationLabel": "",
--    "personalDetails": [],
-+    "newNPCPacks": [
-+      "investigator.opponentAbilities"
-+    ],
-+    "newPCPacks": [
-+      "investigator.pathOfCthulhuAbilities"
-+    ],
-+    "occupationLabel": "Occupation",
-+    "personalDetails": [
-+      {
-+        "name": "Drive",
-+        "type": "item"
-+      }
-+    ],
-     "showEmptyInvestigativeCategories": false,
-     "systemMigrationVersion": "",
-     "abilityCategories": "",
--    "shortNotes": []
-+    "shortNotes": [],
-+    "schemaVersion": "v1",
-+    "displayName": "Path of Cthulhu"
-   }
- }
-\\ No newline at end of file
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+-     "combatAbilities": Array [],
++     "combatAbilities": Array [
++       "Scuffling",
++       "Weapons",
++       "Firearms",
++       "Athletics",
++     ],
+      "customThemePath": "",
+      "debugTranslations": false,
+-     "defaultThemeName": "",
++     "defaultThemeName": "tealTheme",
++     "displayName": "Path of Cthulhu",
+      "equipmentCategories": Object {
+-       "category0": Object {
+-         "fields": Object {
+-           "field0": Object {
+-             "default": "default value",
+-             "name": "Initial field",
+-             "type": "string",
+-           },
+-           "field1": Object {
+-             "default": "default value",
+-             "name": "Initial field",
+-             "type": "string",
+-           },
+-         },
+-         "name": "initial category",
+-       },
+-       "category1": Object {
++       "general": Object {
+          "fields": Object {},
+-         "name": "initial category",
++         "name": "General",
+        },
+      },
+-     "generalAbilityCategories": Array [],
+-     "genericOccupation": "",
+-     "investigativeAbilityCategories": Array [],
+-     "longNotes": Array [],
++     "generalAbilityCategories": Array [
++       "General",
++     ],
++     "genericOccupation": "Investigator",
++     "investigativeAbilityCategories": Array [
++       "Academic",
++       "Interpersonal",
++       "Technical",
++     ],
++     "longNotes": Array [
++       "Notes, Contacts etc.",
++       "Occupational Benefits",
++       "Pillars of Sanity",
++       "Sources of Stability",
++     ],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+-     "newNPCPacks": Array [],
+-     "newPCPacks": Array [],
++     "newNPCPacks": Array [
++       "investigator.opponentAbilities",
++     ],
++     "newPCPacks": Array [
++       "investigator.pathOfCthulhuAbilities",
++     ],
+      "npcStats": Object {
+-       "npcStat0": Object {
++       "alertness": Object {
++         "default": 0,
++         "name": "Alertness",
++       },
++       "armor": Object {
++         "default": 0,
++         "name": "Armor",
++       },
++       "hitThreshold": Object {
+          "default": 3,
+-         "max": 10,
+-         "min": 0,
+-         "name": "NPC Statisitic Zero",
++         "name": "Hit threshold",
++       },
++       "stabilityLoss": Object {
++         "default": 0,
++         "name": "Stability Loss",
++       },
++       "stealth": Object {
++         "default": 0,
++         "name": "Stealth",
+        },
+      },
+-     "occupationLabel": "",
++     "occupationLabel": "Occupation",
+      "pcStats": Object {
+-       "pcStat0": Object {
++       "hitThreshold": Object {
+          "default": 3,
+-         "max": 10,
+-         "min": 0,
+-         "name": "PC Statisitic Zero",
++         "name": "Hit threshold",
++       },
+      },
++     "personalDetails": Array [
++       Object {
++         "name": "Drive",
++         "type": "item",
+        },
+-     "personalDetails": Array [],
++     ],
++     "schemaVersion": "v1",
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+-     "systemPreset": "dnd5e",
++     "systemPreset": "pathOfCthulhu",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should change a category id 1`] = `
-"Index: change a category id
-===================================================================
---- change a category id
-+++ change a category id
-@@ -19,9 +19,9 @@
-     "systemPreset": "dnd5e",
-     "combatAbilities": [],
-     "customThemePath": "",
-     "equipmentCategories": {
--      "category0": {
-+      "foo": {
-         "name": "initial category",
-         "fields": {
-           "field0": {
-             "name": "Initial field",
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+-       "category0": Object {
++       "category1": Object {
++         "fields": Object {},
++         "name": "initial category",
++       },
++       "foo": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+-         "name": "initial category",
+-       },
+-       "category1": Object {
+-         "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should change a field id 1`] = `
-"Index: change a field id
-===================================================================
---- change a field id
-+++ change a field id
-@@ -22,14 +22,14 @@
-     "equipmentCategories": {
-       "category0": {
-         "name": "initial category",
-         "fields": {
--          "field0": {
-+          "foo": {
-             "name": "Initial field",
-             "type": "string",
-             "default": "default value"
-           },
--          "field1": {
-+          "field0": {
-             "name": "Initial field",
-             "type": "string",
-             "default": "default value"
-           }
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+-           "field1": Object {
++           "foo": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should delete a category 1`] = `
-"Index: delete a category
-===================================================================
---- delete a category
-+++ delete a category
-@@ -19,23 +19,8 @@
-     "systemPreset": "dnd5e",
-     "combatAbilities": [],
-     "customThemePath": "",
-     "equipmentCategories": {
--      "category0": {
--        "name": "initial category",
--        "fields": {
--          "field0": {
--            "name": "Initial field",
--            "type": "string",
--            "default": "default value"
--          },
--          "field1": {
--            "name": "Initial field",
--            "type": "string",
--            "default": "default value"
--          }
--        }
--      },
-       "category1": {
-         "name": "initial category",
-         "fields": {}
-       }
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+-       "category0": Object {
+-         "fields": Object {
+-           "field0": Object {
+-             "default": "default value",
+-             "name": "Initial field",
+-             "type": "string",
+-           },
+-           "field1": Object {
+-             "default": "default value",
+-             "name": "Initial field",
+-             "type": "string",
+-           },
+-         },
+-         "name": "initial category",
+-       },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should delete a field 1`] = `
-"Index: delete a field
-===================================================================
---- delete a field
-+++ delete a field
-@@ -22,13 +22,8 @@
-     "equipmentCategories": {
-       "category0": {
-         "name": "initial category",
-         "fields": {
--          "field0": {
--            "name": "Initial field",
--            "type": "string",
--            "default": "default value"
--          },
-           "field1": {
-             "name": "Initial field",
-             "type": "string",
-             "default": "default value"
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+-           "field0": Object {
+-             "default": "default value",
+-             "name": "Initial field",
+-             "type": "string",
+-           },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should delete a stat 1`] = `
-"Index: delete a stat
-===================================================================
---- delete a stat
-+++ delete a stat
-@@ -1,14 +1,7 @@
- {
-   "settings": {
--    "pcStats": {
--      "pcStat0": {
--        "min": 0,
--        "max": 10,
--        "default": 3,
--        "name": "PC Statisitic Zero"
--      }
--    },
-+    "pcStats": {},
-     "npcStats": {
-       "npcStat0": {
-         "min": 0,
-         "max": 10,
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+-     "pcStats": Object {
+-       "pcStat0": Object {
+-         "default": 3,
+-         "max": 10,
+-         "min": 0,
+-         "name": "PC Statisitic Zero",
+-       },
+-     },
++     "pcStats": Object {},
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
-exports[`reducer should move a category down 1`] = `
-"Index: move a category down
-===================================================================
---- move a category down
-+++ move a category down
-@@ -19,8 +19,12 @@
-     "systemPreset": "dnd5e",
-     "combatAbilities": [],
-     "customThemePath": "",
-     "equipmentCategories": {
-+      "category1": {
-+        "name": "initial category",
-+        "fields": {}
-+      },
-       "category0": {
-         "name": "initial category",
-         "fields": {
-           "field0": {
-@@ -33,12 +37,8 @@
-             "type": "string",
-             "default": "default value"
-           }
-         }
--      },
--      "category1": {
--        "name": "initial category",
--        "fields": {}
-       }
-     },
-     "debugTranslations": false,
-     "useBoost": false,
-"
-`;
+exports[`reducer should move a category down 1`] = `"Compared values have no visual difference."`;
 
-exports[`reducer should move a category up 1`] = `
-"Index: move a category up
-===================================================================
---- move a category up
-+++ move a category up
-@@ -19,8 +19,12 @@
-     "systemPreset": "dnd5e",
-     "combatAbilities": [],
-     "customThemePath": "",
-     "equipmentCategories": {
-+      "category1": {
-+        "name": "initial category",
-+        "fields": {}
-+      },
-       "category0": {
-         "name": "initial category",
-         "fields": {
-           "field0": {
-@@ -33,12 +37,8 @@
-             "type": "string",
-             "default": "default value"
-           }
-         }
--      },
--      "category1": {
--        "name": "initial category",
--        "fields": {}
-       }
-     },
-     "debugTranslations": false,
-     "useBoost": false,
-"
-`;
+exports[`reducer should move a category up 1`] = `"Compared values have no visual difference."`;
 
-exports[`reducer should move a field down 1`] = `
-"Index: move a field down
-===================================================================
---- move a field down
-+++ move a field down
-@@ -22,14 +22,14 @@
-     "equipmentCategories": {
-       "category0": {
-         "name": "initial category",
-         "fields": {
--          "field0": {
-+          "field1": {
-             "name": "Initial field",
-             "type": "string",
-             "default": "default value"
-           },
--          "field1": {
-+          "field0": {
-             "name": "Initial field",
-             "type": "string",
-             "default": "default value"
-           }
-"
-`;
+exports[`reducer should move a field down 1`] = `"Compared values have no visual difference."`;
 
-exports[`reducer should move a field up 1`] = `
-"Index: move a field up
-===================================================================
---- move a field up
-+++ move a field up
-"
-`;
+exports[`reducer should move a field up 1`] = `"Compared values have no visual difference."`;
 
 exports[`reducer should rename a category 1`] = `
-"Index: rename a category
-===================================================================
---- rename a category
-+++ rename a category
-@@ -20,9 +20,9 @@
-     "combatAbilities": [],
-     "customThemePath": "",
-     "equipmentCategories": {
-       "category0": {
--        "name": "initial category",
-+        "name": "foo",
-         "fields": {
-           "field0": {
-             "name": "Initial field",
-             "type": "string",
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+-         "name": "initial category",
++         "name": "foo",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should rename a field 1`] = `
-"Index: rename a field
-===================================================================
---- rename a field
-+++ rename a field
-@@ -23,9 +23,9 @@
-       "category0": {
-         "name": "initial category",
-         "fields": {
-           "field0": {
--            "name": "Initial field",
-+            "name": "foo",
-             "type": "string",
-             "default": "default value"
-           },
-           "field1": {
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+-             "name": "Initial field",
++             "name": "foo",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should set a field default 1`] = `
-"Index: set a field default
-===================================================================
---- set a field default
-+++ set a field default
-@@ -25,9 +25,9 @@
-         "fields": {
-           "field0": {
-             "name": "Initial field",
-             "type": "string",
--            "default": "default value"
-+            "default": "foo"
-           },
-           "field1": {
-             "name": "Initial field",
-             "type": "string",
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+-             "default": "default value",
++             "default": "foo",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
-exports[`reducer should set a field maximum 1`] = `
-"Index: set a field maximum
-===================================================================
---- set a field maximum
-+++ set a field maximum
-"
-`;
+exports[`reducer should set a field maximum 1`] = `"Compared values have no visual difference."`;
 
-exports[`reducer should set a field minimum 1`] = `
-"Index: set a field minimum
-===================================================================
---- set a field minimum
-+++ set a field minimum
-"
-`;
+exports[`reducer should set a field minimum 1`] = `"Compared values have no visual difference."`;
 
 exports[`reducer should set a field type 1`] = `
-"Index: set a field type
-===================================================================
---- set a field type
-+++ set a field type
-@@ -24,10 +24,10 @@
-         "name": "initial category",
-         "fields": {
-           "field0": {
-             "name": "Initial field",
--            "type": "string",
--            "default": "default value"
-+            "type": "number",
-+            "default": 0
-           },
-           "field1": {
-             "name": "Initial field",
-             "type": "string",
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+-             "default": "default value",
++             "default": 0,
+              "name": "Initial field",
+-             "type": "string",
++             "type": "number",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should set a stat default 1`] = `
-"Index: set a stat default
-===================================================================
---- set a stat default
-+++ set a stat default
-@@ -3,9 +3,9 @@
-     "pcStats": {
-       "pcStat0": {
-         "min": 0,
-         "max": 10,
--        "default": 3,
-+        "default": 1,
-         "name": "PC Statisitic Zero"
-       }
-     },
-     "npcStats": {
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+-         "default": 3,
++         "default": 1,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should set a stat id 1`] = `
-"Index: set a stat id
-===================================================================
---- set a stat id
-+++ set a stat id
-@@ -1,8 +1,8 @@
- {
-   "settings": {
-     "pcStats": {
--      "pcStat0": {
-+      "foo": {
-         "min": 0,
-         "max": 10,
-         "default": 3,
-         "name": "PC Statisitic Zero"
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+-       "pcStat0": Object {
++       "foo": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should set a stat maximum 1`] = `
-"Index: set a stat maximum
-===================================================================
---- set a stat maximum
-+++ set a stat maximum
-@@ -2,9 +2,9 @@
-   "settings": {
-     "pcStats": {
-       "pcStat0": {
-         "min": 0,
--        "max": 10,
-+        "max": 1,
-         "default": 3,
-         "name": "PC Statisitic Zero"
-       }
-     },
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+-         "max": 10,
++         "max": 1,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should set a stat minimum 1`] = `
-"Index: set a stat minimum
-===================================================================
---- set a stat minimum
-+++ set a stat minimum
-@@ -1,9 +1,9 @@
- {
-   "settings": {
-     "pcStats": {
-       "pcStat0": {
--        "min": 0,
-+        "min": 1,
-         "max": 10,
-         "default": 3,
-         "name": "PC Statisitic Zero"
-       }
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+-         "min": 0,
++         "min": 1,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should set a stat name 1`] = `
-"Index: set a stat name
-===================================================================
---- set a stat name
-+++ set a stat name
-@@ -4,9 +4,9 @@
-       "pcStat0": {
-         "min": 0,
-         "max": 10,
-         "default": 3,
--        "name": "PC Statisitic Zero"
-+        "name": "foo"
-       }
-     },
-     "npcStats": {
-       "npcStat0": {
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+      "genericOccupation": "",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+-         "name": "PC Statisitic Zero",
++         "name": "foo",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
 
 exports[`reducer should set a value using setSome 1`] = `
-"Index: set a value using setSome
-===================================================================
---- set a value using setSome
-+++ set a value using setSome
-@@ -58,9 +58,9 @@
-       "playlist": {},
-       "world": {}
-     },
-     "useTurnPassingInitiative": false,
--    "genericOccupation": "",
-+    "genericOccupation": "foo",
-     "investigativeAbilityCategories": [],
-     "longNotes": [],
-     "mwHiddenShortNotes": [],
-     "mwUseAlternativeItemTypes": false,
-"
+"- Expected
++ Received
+
+  Object {
+    "settings": Object {
+      "abilityCategories": "",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "debugTranslations": false,
+      "defaultThemeName": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+          "fields": Object {
+            "field0": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+            "field1": Object {
+              "default": "default value",
+              "name": "Initial field",
+              "type": "string",
+            },
+          },
+          "name": "initial category",
+        },
+        "category1": Object {
+          "fields": Object {},
+          "name": "initial category",
+        },
+      },
+      "generalAbilityCategories": Array [],
+-     "genericOccupation": "",
++     "genericOccupation": "foo",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "migrationFlags": Object {
+        "actor": Object {},
+        "compendium": Object {},
+        "item": Object {},
+        "journal": Object {},
+        "macro": Object {},
+        "playlist": Object {},
+        "rollTable": Object {},
+        "scene": Object {},
+        "world": Object {},
+      },
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+      "newNPCPacks": Array [],
+      "newPCPacks": Array [],
+      "npcStats": Object {
+        "npcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "NPC Statisitic Zero",
+        },
+      },
+      "occupationLabel": "",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "default": 3,
+          "max": 10,
+          "min": 0,
+          "name": "PC Statisitic Zero",
+        },
+      },
+      "personalDetails": Array [],
+      "shortNotes": Array [],
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "systemPreset": "dnd5e",
+      "useBoost": false,
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+      "useTurnPassingInitiative": false,
+    },
+  }"
 `;
