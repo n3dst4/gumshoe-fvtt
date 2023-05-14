@@ -165,11 +165,8 @@ describe("getFlaggedMigrations", () => {
       sampleFlaggedMigrations,
       [false, emptyFlaggedMigrations, sampleMigrationFlags3],
     ],
-  ])(
-    "getFlaggedMigrations (%s)",
-    (_, migrationFlags, flaggedMigrations, expected) => {
-      const result = getFlaggedMigrations(migrationFlags, flaggedMigrations);
-      expect(result).toEqual(expected);
-    },
-  );
+  ])("%s", (_, migrationFlags, flaggedMigrations, expected) => {
+    const result = getFlaggedMigrations(migrationFlags, flaggedMigrations);
+    expect(result).toEqual(expected);
+  });
 });

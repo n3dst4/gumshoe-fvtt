@@ -1,11 +1,8 @@
-// import { nanoid } from "nanoid";
 import { createSystemSlice } from "./store";
 import { State } from "./types";
 import { expect, jest, it, describe } from "@jest/globals";
-// import * as functions from "../../functions";
 import { AnyAction } from "./reducerTools";
 import { pathOfCthulhuPreset } from "../../presets";
-// import { createPatch } from "diff";
 import { diff } from "jest-diff";
 
 type TestTuple = [string, AnyAction];
