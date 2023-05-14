@@ -301,6 +301,9 @@ describe("reducer", () => {
       changeColor: noColor,
       commonColor: noColor,
       patchColor: noColor,
+      contextLines: 3,
+      expand: false,
+      omitAnnotationLines: true,
     });
     expect(diffs).toMatchSnapshot();
   });
