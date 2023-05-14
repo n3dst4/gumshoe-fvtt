@@ -5,8 +5,7 @@ import { expect, jest, it, describe } from "@jest/globals";
 // import * as functions from "../../functions";
 import { AnyAction } from "./reducerTools";
 import { pathOfCthulhuPreset } from "../../presets";
-// import { createPatch } from "diff";
-import { diff } from "jest-diff";
+import { createPatch } from "diff";
 
 type TestTuple = [string, AnyAction];
 
@@ -87,9 +86,7 @@ const initialState: State = {
   },
 };
 
-// const initialStateJSON = JSON.stringify(initialState, null, 2);
-
-const noColor = (x: string) => x;
+const initialStateJSON = JSON.stringify(initialState, null, 2);
 
 const slice = createSystemSlice({
   log: jest.fn(),
@@ -294,14 +291,8 @@ describe("reducer", () => {
     //   * first attempt used an object diff (from `just-diff`) but that does
     //     not detect changes in key order.
     const result = slice.reducer(initialState, action);
-    // const resultJSON = JSON.stringify(result, null, 2);
-    const diffs = diff(initialState, result, {
-      aColor: noColor,
-      bColor: noColor,
-      changeColor: noColor,
-      commonColor: noColor,
-      patchColor: noColor,
-    });
-    expect(diffs).toMatchSnapshot();
+    const resultJSON = JSON.stringify(result, null, 2);
+    const diff = createPatch(name, initialStateJSON, resultJSON);
+    expect(diff).toMatchSnapshot();
   });
 });

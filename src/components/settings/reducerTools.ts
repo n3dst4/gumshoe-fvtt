@@ -69,7 +69,7 @@ export const createSlice =
       const action = createCase(key, reducer, args.log);
       return [key, action] as const;
     });
-    // turn those cases back into an object of creators.
+    // turn those cases back into an object o creators.
     const creators = Object.fromEntries(
       sliceCases.map(([key, action]) => [key, action.create]),
     ) as {
