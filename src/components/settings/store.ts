@@ -59,35 +59,41 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
     },
     changeCategoryId: (
       { settings }: State,
-      payload: { oldId: string; newId: string },
+      payload: { oldCategoryId: string; newCategoryId: string },
     ) => {
       const newCats: typeof settings.equipmentCategories = {};
-      if (settings.equipmentCategories[payload.newId]) {
+      if (settings.equipmentCategories[payload.newCategoryId]) {
         throw new Error(
-          `Cannot change category id to "${payload.newId}" - already exists`,
+          `Cannot change category id to "${payload.newCategoryId}" - already exists`,
         );
       }
       for (const [id, category] of Object.entries(
         settings.equipmentCategories,
       )) {
-        if (id === payload.oldId) {
-          newCats[payload.newId] = category;
+        if (id === payload.oldCategoryId) {
+          newCats[payload.newCategoryId] = category;
         } else {
           newCats[id] = category;
         }
       }
       settings.equipmentCategories = newCats;
     },
-    moveCategoryUp: ({ settings }: State, { id }: { id: string }) => {
+    moveCategoryUp: (
+      { settings }: State,
+      { categoryId }: { categoryId: string },
+    ) => {
       settings.equipmentCategories = moveKeyUp(
         settings.equipmentCategories,
-        id,
+        categoryId,
       );
     },
-    moveCategoryDown: ({ settings }: State, { id }: { id: string }) => {
+    moveCategoryDown: (
+      { settings }: State,
+      { categoryId }: { categoryId: string },
+    ) => {
       settings.equipmentCategories = moveKeyDown(
         settings.equipmentCategories,
-        id,
+        categoryId,
       );
     },
     addField: (
@@ -243,7 +249,6 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
       };
     },
     addStat: (draft: State, { which }: { which: PcOrNpc }) => {
-      // const whichKey = payload.which === "pc" ? "pcStats" : "npcStats";
       const newId = `stat${Object.keys(draft.settings[which]).length}`;
       draft.settings[which][newId] = { name: "", default: 0 };
     },
@@ -251,55 +256,67 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
       draft: State,
       {
         which,
-        id,
-        value,
-      }: { which: PcOrNpc; id: string; value: number | undefined },
+        statId,
+        newMin,
+      }: { which: PcOrNpc; statId: string; newMin: number | undefined },
     ) => {
-      const max = draft.settings[which][id].max;
-      if (max !== undefined && value !== undefined && value > max) {
+      const max = draft.settings[which][statId].max;
+      if (max !== undefined && newMin !== undefined && newMin > max) {
         throw new Error("Min cannot be greater than max");
       }
-      draft.settings[which][id].min = value;
+      draft.settings[which][statId].min = newMin;
     },
     setStatMax: (
       draft: State,
       {
         which,
-        id,
-        value,
-      }: { which: PcOrNpc; id: string; value: number | undefined },
+        statId,
+        newMax,
+      }: { which: PcOrNpc; statId: string; newMax: number | undefined },
     ) => {
-      const min = draft.settings[which][id].min;
-      if (min !== undefined && value !== undefined && value < min) {
+      const min = draft.settings[which][statId].min;
+      if (min !== undefined && newMax !== undefined && newMax < min) {
         throw new Error("Max cannot be less than min");
       }
-      draft.settings[which][id].max = value;
+      draft.settings[which][statId].max = newMax;
     },
     setStatDefault: (
       draft: State,
-      { which, id, value }: { which: PcOrNpc; id: string; value: number },
+      {
+        which,
+        statId,
+        newDefault,
+      }: { which: PcOrNpc; statId: string; newDefault: number },
     ) => {
-      draft.settings[which][id].default = value;
+      draft.settings[which][statId].default = newDefault;
     },
     setStatName: (
       draft: State,
-      { which, id, name }: { which: PcOrNpc; id: string; name: string },
+      {
+        which,
+        statId,
+        newName,
+      }: { which: PcOrNpc; statId: string; newName: string },
     ) => {
-      draft.settings[which][id].name = name;
+      draft.settings[which][statId].name = newName;
     },
     deleteStat: (
       draft: State,
-      { which, id }: { which: PcOrNpc; id: string },
+      { which, statId }: { which: PcOrNpc; statId: string },
     ) => {
-      delete draft.settings[which][id];
+      delete draft.settings[which][statId];
     },
     setStatId: (
       draft: State,
-      { which, oldId, newId }: { which: PcOrNpc; oldId: string; newId: string },
+      {
+        which,
+        oldStatId,
+        newStatId,
+      }: { which: PcOrNpc; oldStatId: string; newStatId: string },
     ) => {
       draft.settings[which] = renameProperty(
-        oldId,
-        newId,
+        oldStatId,
+        newStatId,
         draft.settings[which],
       );
     },

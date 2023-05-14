@@ -155,12 +155,18 @@ describe("reducer", () => {
     ],
     [
       "change a category id",
-      slice.creators.changeCategoryId({ oldId: "category0", newId: "foo" }),
+      slice.creators.changeCategoryId({
+        oldCategoryId: "category0",
+        newCategoryId: "foo",
+      }),
     ],
-    ["move a category up", slice.creators.moveCategoryUp({ id: "category1" })],
+    [
+      "move a category up",
+      slice.creators.moveCategoryUp({ categoryId: "category1" }),
+    ],
     [
       "move a category down",
-      slice.creators.moveCategoryDown({ id: "category0" }),
+      slice.creators.moveCategoryDown({ categoryId: "category0" }),
     ],
     ["add a field", slice.creators.addField({ categoryId: "category0" })],
     [
@@ -235,16 +241,16 @@ describe("reducer", () => {
       "set a stat minimum",
       slice.creators.setStatMin({
         which: "pcStats",
-        id: "pcStat0",
-        value: 1,
+        statId: "pcStat0",
+        newMin: 1,
       }),
     ],
     [
       "set a stat maximum",
       slice.creators.setStatMax({
         which: "pcStats",
-        id: "pcStat0",
-        value: 1,
+        statId: "pcStat0",
+        newMax: 1,
       }),
     ],
     [
@@ -265,31 +271,31 @@ describe("reducer", () => {
       "set a stat default",
       slice.creators.setStatDefault({
         which: "pcStats",
-        id: "pcStat0",
-        value: 1,
+        statId: "pcStat0",
+        newDefault: 1,
       }),
     ],
     [
       "set a stat name",
       slice.creators.setStatName({
         which: "pcStats",
-        id: "pcStat0",
-        name: "foo",
+        statId: "pcStat0",
+        newName: "foo",
       }),
     ],
     [
       "delete a stat",
       slice.creators.deleteStat({
         which: "pcStats",
-        id: "pcStat0",
+        statId: "pcStat0",
       }),
     ],
     [
       "set a stat id",
       slice.creators.setStatId({
         which: "pcStats",
-        oldId: "pcStat0",
-        newId: "foo",
+        oldStatId: "pcStat0",
+        newStatId: "foo",
       }),
     ],
   ])("should %s", (name, action) => {
@@ -328,11 +334,11 @@ describe("reducer", () => {
   it.each<TestTuple>([
     [
       "moving a category up when it's already at the top",
-      slice.creators.moveCategoryUp({ id: "category0" }),
+      slice.creators.moveCategoryUp({ categoryId: "category0" }),
     ],
     [
       "moving a category down when it's already at the bottom",
-      slice.creators.moveCategoryDown({ id: "category1" }),
+      slice.creators.moveCategoryDown({ categoryId: "category1" }),
     ],
     [
       "moving a field up when it's already at the top",
@@ -360,23 +366,23 @@ describe("reducer", () => {
       "setting a stat minimum to a value greater than its maximum",
       slice.creators.setStatMin({
         which: "pcStats",
-        id: "pcStat0",
-        value: 20,
+        statId: "pcStat0",
+        newMin: 20,
       }),
     ],
     [
       "setting a stat maximum to a value less than its minimum",
       slice.creators.setStatMax({
         which: "pcStats",
-        id: "pcStat0",
-        value: -10,
+        statId: "pcStat0",
+        newMax: -10,
       }),
     ],
     [
       "changing a catrgory id to one that already exists",
       slice.creators.changeCategoryId({
-        oldId: "category0",
-        newId: "category1",
+        oldCategoryId: "category0",
+        newCategoryId: "category1",
       }),
     ],
     [

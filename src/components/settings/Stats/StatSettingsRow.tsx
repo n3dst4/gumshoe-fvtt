@@ -34,7 +34,13 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
       const value = checked
         ? Math.min(statRef.current.default, statRef.current.max ?? 0)
         : undefined;
-      dispatch(store.creators.setStatMin({ which, id: idRef.current, value }));
+      dispatch(
+        store.creators.setStatMin({
+          which,
+          statId: idRef.current,
+          newMin: value,
+        }),
+      );
     },
     [dispatch, which, idRef, statRef],
   );
@@ -44,7 +50,13 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
       const value = checked
         ? Math.max(statRef.current.default, statRef.current.min ?? 0)
         : undefined;
-      dispatch(store.creators.setStatMax({ which, id: idRef.current, value }));
+      dispatch(
+        store.creators.setStatMax({
+          which,
+          statId: idRef.current,
+          newMax: value,
+        }),
+      );
     },
     [statRef, dispatch, which, idRef],
   );
@@ -52,7 +64,11 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
   const handleChangeDefault = useCallback(
     (value: number) => {
       dispatch(
-        store.creators.setStatDefault({ which, id: idRef.current, value }),
+        store.creators.setStatDefault({
+          which,
+          statId: idRef.current,
+          newDefault: value,
+        }),
       );
     },
     [dispatch, which, idRef],
@@ -60,14 +76,26 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
 
   const handleChangeMin = useCallback(
     (value: number) => {
-      dispatch(store.creators.setStatMin({ which, id: idRef.current, value }));
+      dispatch(
+        store.creators.setStatMin({
+          which,
+          statId: idRef.current,
+          newMin: value,
+        }),
+      );
     },
     [dispatch, which, idRef],
   );
 
   const handleChangeMax = useCallback(
     (value: number) => {
-      dispatch(store.creators.setStatMax({ which, id: idRef.current, value }));
+      dispatch(
+        store.creators.setStatMax({
+          which,
+          statId: idRef.current,
+          newMax: value,
+        }),
+      );
     },
     [dispatch, which, idRef],
   );
@@ -75,7 +103,11 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
   const handleChangeIdCallback = useCallback(
     (newId: string) => {
       dispatch(
-        store.creators.setStatId({ which, oldId: idRef.current, newId }),
+        store.creators.setStatId({
+          which,
+          oldStatId: idRef.current,
+          newStatId: newId,
+        }),
       );
     },
     [dispatch, idRef, which],
@@ -83,7 +115,13 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
 
   const handleChangeName = useCallback(
     (name: string) => {
-      dispatch(store.creators.setStatName({ which, id: idRef.current, name }));
+      dispatch(
+        store.creators.setStatName({
+          which,
+          statId: idRef.current,
+          newName: name,
+        }),
+      );
     },
     [dispatch, idRef, which],
   );
@@ -91,7 +129,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
   const handleDelete = useCallback(
     (ev: React.MouseEvent<HTMLButtonElement>) => {
       ev.preventDefault();
-      dispatch(store.creators.deleteStat({ which, id: idRef.current }));
+      dispatch(store.creators.deleteStat({ which, statId: idRef.current }));
     },
     [dispatch, which, idRef],
   );

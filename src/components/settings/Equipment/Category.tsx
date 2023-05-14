@@ -44,7 +44,7 @@ export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
   const handleUp: MouseEventHandler = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(store.creators.moveCategoryUp({ id }));
+      dispatch(store.creators.moveCategoryUp({ categoryId: id }));
     },
     [dispatch, id],
   );
@@ -52,7 +52,7 @@ export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
   const handleDown: MouseEventHandler = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(store.creators.moveCategoryDown({ id }));
+      dispatch(store.creators.moveCategoryDown({ categoryId: id }));
     },
     [dispatch, id],
   );
@@ -77,7 +77,12 @@ export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
       id,
     );
     if (newId) {
-      dispatch(store.creators.changeCategoryId({ oldId: id, newId }));
+      dispatch(
+        store.creators.changeCategoryId({
+          oldCategoryId: id,
+          newCategoryId: newId,
+        }),
+      );
     }
   }, [dispatch, id, settings.equipmentCategories]);
 
