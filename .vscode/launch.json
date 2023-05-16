@@ -5,7 +5,7 @@
   "name": "Jest file",
   "type": "pwa-node",
   "request": "launch",
-  "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/jest",
+  "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/jest",
   "args": [
       "${fileBasenameNoExtension}",
       "--runInBand",
@@ -13,7 +13,7 @@
       "--coverage=false",
       "--no-cache"
   ],
-  "cwd": "${workspaceRoot}",
+  "cwd": "${workspaceFolder}",
   "console": "integratedTerminal",
   "internalConsoleOptions": "neverOpen",
   "sourceMaps": true,
@@ -33,11 +33,11 @@
         "--runTestsByPath",
         "${jest.testFile}"
       ],
-      "cwd": "/home/ndc/projects/investigator-fvtt",
+      "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "disableOptimisticBPs": true,
-      "program": "/home/ndc/projects/investigator-fvtt/node_modules/jest/bin/jest.js"
+      "program": "${workspaceFolder}/node_modules/jest/bin/jest.js"
     }
   ]
 }
