@@ -87,9 +87,6 @@ devDependencies:
   '@types/d3-ease':
     specifier: ^3.0.0
     version: 3.0.0
-  '@types/diff':
-    specifier: ^5.0.3
-    version: 5.0.3
   '@types/dompurify':
     specifier: ^3.0.0
     version: 3.0.0
@@ -1806,10 +1803,6 @@ packages:
 
   /@types/d3-ease@3.0.0:
     resolution: {integrity: sha512-aMo4eaAOijJjA6uU+GIeW018dvy9+oH5Y2VPPzjjfxevvGQ/oRDs+tfYC9b50Q4BygRR8yE2QCLsrT0WtAVseA==}
-    dev: true
-
-  /@types/diff@5.0.3:
-    resolution: {integrity: sha512-amrLbRqTU9bXMCc6uX0sWpxsQzRIo9z6MJPkH1pkez/qOxuqSZVuryJAWoBRq94CeG8JxY+VK4Le9HtjQR5T9A==}
     dev: true
 
   /@types/dompurify@3.0.0:
