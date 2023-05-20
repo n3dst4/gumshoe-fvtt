@@ -2,7 +2,7 @@ import React, { ChangeEventHandler, useCallback, useContext } from "react";
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { DispatchContext, StateContext } from "../contexts";
-import { slice } from "../reducer";
+import { store } from "../store";
 import { Dropdown } from "../../inputs/Dropdown";
 import {
   FaArrowDown,
@@ -44,7 +44,7 @@ export const Field: React.FC<FieldProps> = ({
 
   const handleNameChange = useCallback(
     (newName: string) => {
-      dispatch(slice.creators.renameField({ categoryId, fieldId, newName }));
+      dispatch(store.creators.renameField({ categoryId, fieldId, newName }));
     },
     [dispatch, categoryId, fieldId],
   );
@@ -61,23 +61,23 @@ export const Field: React.FC<FieldProps> = ({
         throw new Error("Invalid field type");
       }
       assertIsEquipmentFieldType(newType);
-      dispatch(slice.creators.setFieldType({ categoryId, fieldId, newType }));
+      dispatch(store.creators.setFieldType({ categoryId, fieldId, newType }));
     },
     [dispatch, categoryId, fieldId],
   );
 
   const handleUp = useCallback(() => {
-    dispatch(slice.creators.moveFieldUp({ categoryId, fieldId }));
+    dispatch(store.creators.moveFieldUp({ categoryId, fieldId }));
   }, [dispatch, categoryId, fieldId]);
 
   const handleDown = useCallback(() => {
-    dispatch(slice.creators.moveFieldDown({ categoryId, fieldId }));
+    dispatch(store.creators.moveFieldDown({ categoryId, fieldId }));
   }, [dispatch, categoryId, fieldId]);
 
   const handleDelete = useCallback(async () => {
     const aye = await getTranslated("Delete Field");
     if (aye) {
-      dispatch(slice.creators.deleteField({ categoryId, fieldId }));
+      dispatch(store.creators.deleteField({ categoryId, fieldId }));
     }
   }, [dispatch, categoryId, fieldId]);
 
@@ -89,7 +89,7 @@ export const Field: React.FC<FieldProps> = ({
     );
     if (newFieldId) {
       dispatch(
-        slice.creators.changeFieldId({ categoryId, fieldId, newFieldId }),
+        store.creators.changeFieldId({ categoryId, fieldId, newFieldId }),
       );
     }
   }, [categoryId, dispatch, field.name, fieldId]);

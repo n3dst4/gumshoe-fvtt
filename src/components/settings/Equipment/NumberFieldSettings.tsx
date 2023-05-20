@@ -5,7 +5,7 @@ import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
 import { Checkbox } from "../../inputs/Checkbox";
 import { Translate } from "../../Translate";
 import { DispatchContext } from "../contexts";
-import { slice } from "../reducer";
+import { store } from "../store";
 
 interface NumberFieldSettingsProps {
   field: EquipmentFieldMetadata & { type: "number" };
@@ -24,7 +24,7 @@ export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
   const handleChangeDefault = useCallback(
     (newDefault: number) => {
       dispatch(
-        slice.creators.setFieldDefault({
+        store.creators.setFieldDefault({
           categoryId,
           fieldId,
           newDefault,
@@ -37,7 +37,7 @@ export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
   const handleChangeMin = useCallback(
     (newMin: number) => {
       dispatch(
-        slice.creators.setFieldMin({
+        store.creators.setFieldMin({
           categoryId,
           fieldId,
           newMin,
@@ -50,7 +50,7 @@ export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
   const handleChangeMax = useCallback(
     (newMax: number) => {
       dispatch(
-        slice.creators.setFieldMax({
+        store.creators.setFieldMax({
           categoryId,
           fieldId,
           newMax,
@@ -66,7 +66,7 @@ export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
         ? Math.min(fieldStash.current.default, fieldStash.current.max ?? 0)
         : undefined;
       dispatch(
-        slice.creators.setFieldMin({
+        store.creators.setFieldMin({
           categoryId,
           fieldId,
           newMin,
@@ -82,7 +82,7 @@ export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
         ? Math.max(fieldStash.current.default, fieldStash.current.min ?? 0)
         : undefined;
       dispatch(
-        slice.creators.setFieldMax({
+        store.creators.setFieldMax({
           categoryId,
           fieldId,
           newMax,

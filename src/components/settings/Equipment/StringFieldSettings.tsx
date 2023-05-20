@@ -3,7 +3,7 @@ import React, { useCallback, useContext } from "react";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Translate } from "../../Translate";
 import { DispatchContext } from "../contexts";
-import { slice } from "../reducer";
+import { store } from "../store";
 
 interface StringFieldSettingsProps {
   field: EquipmentFieldMetadata & { type: "string" };
@@ -21,7 +21,7 @@ export const StringFieldSettings: React.FC<StringFieldSettingsProps> = ({
   const handleChangeDefault = useCallback(
     (newDefault: string) => {
       dispatch(
-        slice.creators.setFieldDefault({
+        store.creators.setFieldDefault({
           categoryId,
           fieldId,
           newDefault,

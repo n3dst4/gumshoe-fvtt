@@ -1,6 +1,6 @@
 import { PersonalDetail } from "@lumphammer/investigator-fvtt-types";
 import * as c from "../constants";
-import { assertGame, isNullOrEmptyString } from "../functions";
+import { assertGame, isNullOrEmptyString, systemLogger } from "../functions";
 import { pathOfCthulhuPreset } from "../presets";
 import { FlaggedMigrations } from "./types";
 
@@ -17,7 +17,7 @@ export const flaggedMigrations: FlaggedMigrations = {
         item.type === c.equipment &&
         isNullOrEmptyString(item.system.category)
       ) {
-        logger.info(`Migrating item ${item.name} to set category`);
+        systemLogger.info(`Migrating item ${item.name} to set category`);
         if (!updateData.system) {
           updateData.system = {};
         }
@@ -60,7 +60,7 @@ export const flaggedMigrations: FlaggedMigrations = {
      */
     turnShortNotesIntoPersonalDetails: (actor: any, updateData: any) => {
       if (actor.type === c.pc && actor.system.shortNotes) {
-        logger.info(
+        systemLogger.info(
           `Migrating actor ${actor.name} to turn short notes into personal details`,
         );
         if (!updateData.system) {

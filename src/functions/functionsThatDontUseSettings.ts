@@ -239,3 +239,20 @@ export function moveKeyDown<V>(
 export async function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+type LoggerFn = (...args: any[]) => void;
+
+function brand(fn: LoggerFn) {
+  return fn.bind(
+    null,
+    `%c[${constants.systemId}]`,
+    "color: white; background: #1d5d5d; padding: 2px 4px; border-radius: 2px",
+  );
+}
+
+export const systemLogger = {
+  log: brand(console.log),
+  info: brand(console.info),
+  warn: brand(console.warn),
+  error: brand(console.error),
+};

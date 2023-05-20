@@ -3,7 +3,7 @@ import React, { useCallback, useContext } from "react";
 import { AsyncCheckbox } from "../../inputs/AsyncCheckbox";
 import { Translate } from "../../Translate";
 import { DispatchContext } from "../contexts";
-import { slice } from "../reducer";
+import { store } from "../store";
 
 interface CheckboxFieldSettingsProps {
   field: EquipmentFieldMetadata & { type: "checkbox" };
@@ -21,7 +21,7 @@ export const CheckboxFieldSettings: React.FC<CheckboxFieldSettingsProps> = ({
   const handleChangeDefault = useCallback(
     (newDefault: boolean) => {
       dispatch(
-        slice.creators.setFieldDefault({
+        store.creators.setFieldDefault({
           categoryId,
           fieldId,
           newDefault,

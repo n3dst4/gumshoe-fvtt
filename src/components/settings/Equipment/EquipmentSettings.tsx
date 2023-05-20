@@ -5,7 +5,7 @@ import { Category } from "./Category";
 import { GridFieldStacked } from "../../inputs/GridFieldStacked";
 import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
-import { slice } from "../reducer";
+import { store } from "../store";
 
 export const EquipmentSettings: React.FC = () => {
   assertGame(game);
@@ -13,7 +13,7 @@ export const EquipmentSettings: React.FC = () => {
   const handleAdd: MouseEventHandler = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(slice.creators.addCategory());
+      dispatch(store.creators.addCategory());
     },
     [dispatch],
   );
