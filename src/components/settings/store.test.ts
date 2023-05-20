@@ -88,8 +88,28 @@ const initialState: State = {
 
 // const initialStateJSON = JSON.stringify(initialState, null, 2);
 
+// no-op used later to prevent jest-diff trying to color output
 const noColor = (x: string) => x;
 
+// options for jest-diff
+const diffOptions = {
+  // don't colourise the diff
+  aColor: noColor,
+  bColor: noColor,
+  changeColor: noColor,
+  commonColor: noColor,
+  patchColor: noColor,
+  // show 3 lines of context around each change
+  contextLines: 3,
+  // don't show the entire object in the diff
+  expand: false,
+  omitAnnotationLines: true,
+  // keep object keys in the original order (so key order changes will be
+  // detected)
+  compareKeys: () => 0,
+};
+
+// mock the reducer callbacks
 const logFn = jest.fn();
 const onErrorFn = jest.fn();
 
@@ -129,7 +149,7 @@ afterAll(() => {
  *
  * The snapshots are stored in the __snapshots__ folder.
  *
- * To update the snapshots, run `npx jest-u`
+ * To update the snapshots, run `npx jest -u`
  *
  * AND PLEASE CHECK THE DIFFS AFTER UPDATING! Your git tool of choice will help
  * here, so you can just compare the diffs that have changed. Yes, it might feel
@@ -307,23 +327,7 @@ describe("reducer", () => {
     //   * first attempt used an object diff (from `just-diff`) but that does
     //     not detect changes in key order.
     const result = slice.reducer(initialState, action);
-    // const resultJSON = JSON.stringify(result, null, 2);
-    const diffs = diff(initialState, result, {
-      // don't colourise the diff
-      aColor: noColor,
-      bColor: noColor,
-      changeColor: noColor,
-      commonColor: noColor,
-      patchColor: noColor,
-      // show 3 lines of context around each change
-      contextLines: 3,
-      // don't show the entire object in the diff
-      expand: false,
-      omitAnnotationLines: true,
-      // keep object keys in the original order (so key order changes will be
-      // detected)
-      compareKeys: () => 0,
-    });
+    const diffs = diff(initialState, result, diffOptions);
     expect(diffs).toMatchSnapshot();
     expect(onErrorFn).not.toHaveBeenCalled();
     expect(logFn).toHaveBeenCalledTimes(1);
