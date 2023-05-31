@@ -1,11 +1,33 @@
 # CHANGELOG
 
-## 7.0.0-alpha.1 (2023-03-31, not yet released)
+## 7.0.0 (2023-06-01)
 
-* Weapons now have a "cost" field. This was needed for some settings.
-* Situational modifiers! These are specific +/- modifiers that apply to abilities in certain situations, like "+1 while flying" or "-3 near water". You can check them on or off before making your ability test.
-* Internal stuff: we've updated to React 18, which either means nothing to you, or is terribly exciting. If you're in the first group, please try to be excited on behalf of those of us in the second group.
-* More internal stuff: the project has switched back from GitLab to GitHub (which is where it was back when it was called "Trail of Cthulhu for Foundry VTT".) This follows a general community shift away from GitLab, and also makes it easier for Pelgrane to contribute to the project.
+### The Headlines
+
+* 🎉🥳👌 INVESTIGATOR has been reborn as the official **GUMSHOE** system for Foundry VTT.
+  * You will still see the string "investigator" here and there for technical reasons, but the system is now called "GUMSHOE".
+* Full ability compendiums! The built-in packs now contain full lists of abilities for their respective games and settings. No more having to type them in yourself! (#242)
+
+### Other stuff which is cool but not as cool as the above
+
+* Weapons now have a "cost" field. This was needed for some game settings (#130).
+* Situational modifiers! These are specific +/- modifiers that apply to abilities in certain situations, like "+1 while flying" or "-3 near water". You can check them on or off before making your ability test (#129).
+* BUG FIX: Abilities with diäčriţicałs in their names will now sort correctly. Thanks to Vivien DE BONA for the fix, and marksjus for a bug report (#204 and #239).
+* To celebrate the recent release of Foundry v11, GUMSHOE is now fully compatible with Foundry v10. Yes, you read that right. I will get busy with v11 testing next 😃 (#199)
+* SMALL BUG FIX: The actor icon that appears in the chat bar is now correct for tokens actors that are not linked to a world actor (#203).
+* Updates `es` and `pr-BR` translations from Musrha and Luiz Borges (#222 and #223)
+* The occupation "subtitle" at the top of the character is now in sync with the occupation item. This matches how it used to be before we added occupation items. (#229)
+* The font used for the NBA-related themes (Unica One) was hard to read, and has been replaced with Big Shoulders Text and Big Shoulders Display (#243).
+* Major version bump from 6 to 7 to celebrate the name change and the Foundry v10 full compatibility.
+
+
+### BTS stuff of which I am very proud but should make 0 difference to you
+
+* I've updated to React 18, which either means nothing to you, or is terribly exciting. If you're in the first group, please try to be excited on behalf of those of us in the second group (#154).
+* More internal stuff: the project has switched back from GitLab to GitHub (which is where it was back when it was called "Trail of Cthulhu for Foundry VTT".) This follows a general community shift away from GitLab, and also makes it easier for Pelgrane to be involved in the project (#156).
+* Some really neat stuff with diff snapshot tests for the settings reducer. Again, please just nod and smile if this means nothing to you (#236).
+
+
 
 ## 6.2.0 (2023-03-08)
 
