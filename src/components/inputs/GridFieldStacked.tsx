@@ -6,7 +6,7 @@ import { Translate } from "../Translate";
 type GridFieldStackedProps = {
   label?: string | ReactNode;
   className?: string;
-  children: any;
+  children?: any;
   noTranslate?: boolean;
 };
 

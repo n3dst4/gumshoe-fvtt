@@ -2,7 +2,10 @@ import React, { useContext } from "react";
 import { assertGame } from "../../functions";
 import { InputGrid } from "../inputs/InputGrid";
 import { Setters } from "./types";
-import { SettingsGridField } from "./SettingsGridField";
+import {
+  SettingsGridField,
+  SettingsGridFieldStacked,
+} from "./SettingsGridField";
 import { IdContext } from "../IdContext";
 import { ListEdit } from "../inputs/ListEdit";
 import { Checkbox } from "../inputs/Checkbox";
@@ -27,7 +30,7 @@ export const AbilitySettings: React.FC<{
         overflow: "auto",
       }}
     >
-      <SettingsGridField
+      <SettingsGridFieldStacked
         label="Compendium packs for new characters"
         index={idx++}
         noLabel
@@ -148,7 +151,7 @@ export const AbilitySettings: React.FC<{
               },
             )}
         </div>
-      </SettingsGridField>
+      </SettingsGridFieldStacked>
       <SettingsGridField label="Investigative Ability Categories" index={idx++}>
         <ListEdit
           value={settings.investigativeAbilityCategories}
