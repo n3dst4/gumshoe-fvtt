@@ -3,6 +3,7 @@ import { GeneralAbilitiesData, InvestigativeAbilitiesData } from "./types";
 export const investigativeAbilities: InvestigativeAbilitiesData = {
   Academic: [
     { name: "History" },
+    { name: "Humanities" },
     { name: "Languages" },
     { name: "Law" },
     { name: "Occult Studies" },
@@ -23,13 +24,23 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Streetwise" },
   ],
   Technical: [
+    { name: "Computer Use" },
+    { name: "Investigative Procedure" },
     { name: "Medicine" },
     { name: "Notice" },
     { name: "Outdoor Survival" },
     { name: "Photography" },
-    { name: "Science!" },
+    { name: "Science" },
   ],
-  "Psychic Powers": [{ name: "Aura Reading" }],
+  "Psychic Powers": [
+    { name: "Aura Reading" },
+    { name: "Medium" },
+    { name: "Messenger" },
+    { name: "Premonitions" },
+    { name: "Remote Viewing" },
+    { name: "Sensitive" },
+    { name: "Synchronicity" },
+  ],
 };
 
 export const generalAbilities: GeneralAbilitiesData = {
@@ -39,7 +50,7 @@ export const generalAbilities: GeneralAbilitiesData = {
     { name: "Filch" },
     { name: "Fleeing" },
     { name: "Health", min: -12, rating: 1, pool: 1, showTracker: true },
-    { name: "Hiding" }, // not in SRD
+    { name: "Hiding" },
     { name: "Infiltration" },
     { name: "Mechanics" },
     { name: "Medic" },
