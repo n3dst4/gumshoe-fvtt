@@ -41,7 +41,7 @@
       "name": "missingAbilitiesNote",
       "label": "WE NOW HAVE FULL ABILITY COMPENDIUMS!",
       "system": "investigator",
-      "path": "./packs/missingAbilitiesNote.db",
+      "path": "./packs/fullCompendiumsNote.db",
       "type": "JournalEntry"
     },
     {
