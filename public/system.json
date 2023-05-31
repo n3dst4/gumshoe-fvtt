@@ -11,37 +11,37 @@
   "packs": [
     {
       "name": "pathOfCthulhuAbilities",
-      "label": "Path of Cthulhu Abilities",
+      "label": "Trail of Cthulhu Abilities",
       "system": "investigator",
       "path": "./packs/pathOfCthulhuAbilities.db",
       "type": "Item"
     },
     {
       "name": "niceBlackAgentsAbilities",
-      "label": "Nice Black Agents Abilities",
+      "label": "Night's Black Agents Abilities",
       "system": "investigator",
       "path": "./packs/niceBlackAgentsAbilities.db",
       "type": "Item"
     },
     {
       "name": "nothingToFearAbilities",
-      "label": "Nothing to Fear Abilities",
+      "label": "Fear Itself Abilities",
       "system": "investigator",
       "path": "./packs/nothingToFearAbilities.db",
       "type": "Item"
     },
     {
       "name": "pallidStarsAbilities",
-      "label": "Pallid Stars Abilities",
+      "label": "Ashen Stars Abilities",
       "system": "investigator",
       "path": "./packs/pallidStarsAbilities.db",
       "type": "Item"
     },
     {
       "name": "missingAbilitiesNote",
-      "label": "MISSING ABILITIES? READ THIS!",
+      "label": "WE NOW HAVE FULL ABILITY COMPENDIUMS!",
       "system": "investigator",
-      "path": "./packs/missingAbilitiesNote.db",
+      "path": "./packs/fullCompendiumsNote.db",
       "type": "JournalEntry"
     },
     {

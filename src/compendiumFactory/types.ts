@@ -1,4 +1,5 @@
 import { generalAbility, investigativeAbility } from "../constants";
+import { Unlock } from "../types";
 
 type BaseAbilityTemplate = {
   category: string;
@@ -14,6 +15,7 @@ type BaseAbilityTemplate = {
   excludeFromGeneralRefresh: boolean;
   refreshesDaily: boolean;
   hideIfZeroRated: boolean;
+  unlocks: Array<Unlock>;
 };
 
 export type InvestigativeAbilityTemplate = {

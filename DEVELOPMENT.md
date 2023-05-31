@@ -55,7 +55,7 @@ There will be a flag in there for every migration that has been run. If you want
 2. In the **Compendium Packs** tab, make sure the edit lock is toggled off for the pack (right click and `Toggle edit lock` if you see a padlock.)
 3. Open the browser console (F12) and type `generateTrailAbilitiesData()`
 4. Check the compendium packs if you like
-5. Copy the `packs/*.db` files back from `dist/` into `src/`
+5. Copy the `packs/*.db` files back from `build/` into `public/`
 
 ## Translations
 
