@@ -17,7 +17,7 @@
 * SMALL BUG FIX: The actor icon that appears in the chat bar is now correct for tokens actors that are not linked to a world actor (#203).
 * Updates `es` and `pr-BR` translations from Musrha and Luiz Borges (#222 and #223)
 * The occupation "subtitle" at the top of the character is now in sync with the occupation item. This matches how it used to be before we added occupation items. (#229)
-* The font used for the NBA-related themes (Unica One) was hard to read, and has been replaced with Big Shoulders Text and Big Shoulders Display (#243).
+* The font used for the NBA-related themes (Unica One) was hard to read, and has been replaced with Big Shoulders Text and Big Shoulders Display. Thanks @WillPlant#1676 (#243).
 * Major version bump from 6 to 7 to celebrate the name change and the Foundry v10 full compatibility.
 
 
