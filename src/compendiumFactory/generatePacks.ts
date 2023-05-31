@@ -46,6 +46,7 @@ const investigativeTemplate: InvestigativeAbilityTemplate = {
   showTracker: false,
   excludeFromGeneralRefresh: false,
   hideIfZeroRated: true,
+  unlocks: [],
 };
 
 /**
@@ -71,6 +72,7 @@ const generalTemplate: GeneralAbilityTemplate = {
   excludeFromGeneralRefresh: false,
   goesFirstInCombat: false,
   hideIfZeroRated: false,
+  unlocks: [],
 };
 
 export const emptyPack = async (
