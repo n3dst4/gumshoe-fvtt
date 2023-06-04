@@ -58,6 +58,21 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
         this.initialized = true;
       }
       element.find(".window-title").text(this.title);
+
+      // this is a very specific hack for Foundry v11. In
+      // `Application#_activateCoreListeners` it assumes that `html` (which is
+      // actually a jQuery object) has been injected into the DOM, so it tries
+      // to call `.parentElement` on it. However we are blocking the call to
+      // `_replaceHTML` (here, where you're reading this) so it doesn't bugger
+      // up React, which means that `html` just contains a free-floating
+      // unattached DOM node with no `.parentElement`. So this hack is just that
+      // we wrap it in a div to keep Foundry's internals happy.
+      //
+      // The alternative might be to override `_activateCoreListeners` but
+      // there's an alarming cautionary comment on it saying basically don't do
+      // that. TBH that probably applies more to normal apps rather than this
+      // Reactified system, but this hack seems more targetted anyway.
+      html.wrap("<div/>");
     }
 
     initialized = false;
@@ -76,6 +91,7 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
     activateListeners(html: JQuery) {
       // we were previously calling super.activateListeners(html) here
       // leaving this comment in case it help with future debugging.
+      // super.activateListeners(html);
       const target = $(this.element).find(".react-target");
       const parent = target.closest(".window-content");
       if (this.options.resizable) {
