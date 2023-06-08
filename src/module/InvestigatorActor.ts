@@ -1,5 +1,10 @@
 import { personalDetail, equipment, occupationSlotIndex } from "../constants";
-import { assertGame, confirmADoodleDo } from "../functions";
+import {
+  assertGame,
+  confirmADoodleDo,
+  getTranslated,
+  isGame,
+} from "../functions";
 import {
   AbilityType,
   MwType,
@@ -89,6 +94,7 @@ export class InvestigatorActor extends Actor {
         return [];
       }
     });
+    this.broadcastUserMessage("RefreshedAllOfActorNamesAbilities");
     return this.updateEmbeddedDocuments("Item", updates);
   };
 
@@ -112,6 +118,12 @@ export class InvestigatorActor extends Actor {
         return [];
       }
     });
+    this.broadcastUserMessage(
+      "RefreshedAllOfActorNamesHoursHoursRefreshAbilities",
+      {
+        Hours: group.toString(),
+      },
+    );
     return this.updateEmbeddedDocuments("Item", updates);
   }
 
@@ -136,7 +148,28 @@ export class InvestigatorActor extends Actor {
         return [];
       }
     });
+    this.broadcastUserMessage("RefreshedAllOfActorNames24hRefreshAbilities");
     this.updateEmbeddedDocuments("Item", updates);
+  };
+
+  broadcastUserMessage = (
+    text: string,
+    extraData: Record<string, string> = {},
+  ) => {
+    if (isGame(game)) {
+      const chatData = {
+        user: game.user?.id,
+        speaker: ChatMessage.getSpeaker({
+          alias: game.user?.name ?? "",
+        }),
+        content: getTranslated(text, {
+          ActorName: this.name ?? "",
+          UserName: game.user?.name ?? "",
+          ...extraData,
+        }),
+      };
+      ChatMessage.create(chatData, {});
+    }
   };
 
   confirmNuke = () => {

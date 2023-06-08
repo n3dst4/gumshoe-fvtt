@@ -163,5 +163,8 @@
   "investigator.PersonalDetails": "Personal Details",
   "investigator.NotesFields": "Notes fields",
   "investigator.Cost": "Cost",
-  "investigator.SituationalModifiers": "Situational Modifiers"
+  "investigator.SituationalModifiers": "Situational Modifiers",
+  "investigator.RefreshedAllOfActorNamesAbilities": "Refreshed all of {ActorName}'s abilities",
+  "investigator.RefreshedAllOfActorNames24hRefreshAbilities": "Refreshed all of {ActorName}'s 24h refresh abilities",
+  "investigator.RefreshedAllOfActorNamesHoursHoursRefreshAbilities": "Refreshed all of {ActorName}'s {Hours}-hour refresh abilities"
 }
