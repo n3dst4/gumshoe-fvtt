@@ -91,7 +91,6 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
     activateListeners(html: JQuery) {
       // we were previously calling super.activateListeners(html) here
       // leaving this comment in case it help with future debugging.
-      // super.activateListeners(html);
       const target = $(this.element).find(".react-target");
       const parent = target.closest(".window-content");
       if (this.options.resizable) {
