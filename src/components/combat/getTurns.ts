@@ -62,11 +62,29 @@ export function getTurns(combat: Combat) {
     }
     if (combatant.actor) {
       combatant.actor.temporaryEffects.forEach((e) => {
+        // some cocking about going on here in an effort to be v10/v11 compatible.
+        // v11 uses ActiveEffect#statuses, v10 uses ActiveEffect#getFlag
+        let hasDefeatedStatus = false;
         // @ts-expect-error v11 types
-        const statuses = e.statuses as Set<string>;
+        if (e.statuses) {
+          // v11 mode
+          // @ts-expect-error v11 types
+          const statuses = e.statuses as Set<string>;
 
-        // @ts-expect-error v11 types
-        if (statuses.has(CONFIG.specialStatusEffects.DEFEATED)) {
+          // @ts-expect-error v11 types
+          if (statuses.has(CONFIG.specialStatusEffects.DEFEATED)) {
+            hasDefeatedStatus = true;
+          }
+        } else {
+          // v10 mode
+          if (
+            e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId
+          ) {
+            hasDefeatedStatus = true;
+          }
+        }
+
+        if (hasDefeatedStatus) {
           defeated = true;
         }
         // @ts-expect-error v10 types
