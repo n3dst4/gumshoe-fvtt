@@ -26,7 +26,7 @@ export function getTurns(combat: Combat) {
 
     const active = i === combat.turn;
     const hidden = combatant.hidden;
-    // @ts-expect-error combatant.defeated not in typoes yet
+    // @ts-expect-error combatant.defeated not in types yet
     let defeated = combatant.defeated;
     const owner = combatant.isOwner;
     const initiative = combatant.initiative;
@@ -62,7 +62,11 @@ export function getTurns(combat: Combat) {
     }
     if (combatant.actor) {
       combatant.actor.temporaryEffects.forEach((e) => {
-        if (e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId) {
+        // @ts-expect-error v11 types
+        const statuses = e.statuses as Set<string>;
+
+        // @ts-expect-error v11 types
+        if (statuses.has(CONFIG.specialStatusEffects.DEFEATED)) {
           defeated = true;
         }
         // @ts-expect-error v10 types

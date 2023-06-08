@@ -23,7 +23,8 @@ export const useCombatant = (
     if (!token) return;
     // Push the defeated status to the token
     const status = CONFIG.statusEffects.find(
-      (e) => e.id === CONFIG.Combat.defeatedStatusId,
+      // @ts-expect-error types
+      (e) => e.id === CONFIG.specialStatusEffects.DEFEATED,
     );
     if (!status && !token.object) return;
     const effect =
