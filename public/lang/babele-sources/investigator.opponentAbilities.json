@@ -1,7 +1,7 @@
 {
     "label": "Opponent Abilities",
     "mapping": {
-        "category": "data.category"
+        "category": "system.category"
     },
     "entries": {
         "Athletics": {

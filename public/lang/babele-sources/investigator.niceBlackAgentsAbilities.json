@@ -1,7 +1,7 @@
 {
-    "label": "Nice Black Agents Abilities",
+    "label": "Night's Black Agents Abilities",
     "mapping": {
-        "category": "data.category"
+        "category": "system.category"
     },
     "entries": {
         "Accounting": {
@@ -48,9 +48,29 @@
             "name": "Cop Talk",
             "category": "Interpersonal"
         },
+        "Cover": {
+            "name": "Cover",
+            "category": "General"
+        },
+        "Criminology": {
+            "name": "Criminology",
+            "category": "Academic"
+        },
         "Cryptography": {
             "name": "Cryptography",
             "category": "Technical"
+        },
+        "Data Recovery": {
+            "name": "Data Recovery",
+            "category": "Technical"
+        },
+        "Diagnosis": {
+            "name": "Diagnosis",
+            "category": "Academic"
+        },
+        "Digital Intrusion": {
+            "name": "Digital Intrusion",
+            "category": "General"
         },
         "Disguise": {
             "name": "Disguise",
@@ -63,6 +83,10 @@
         "Electronic Surveillance": {
             "name": "Electronic Surveillance",
             "category": "Technical"
+        },
+        "Explosive Devices": {
+            "name": "Explosive Devices",
+            "category": "General"
         },
         "Filch": {
             "name": "Filch",
@@ -98,6 +122,10 @@
         },
         "History": {
             "name": "History",
+            "category": "Academic"
+        },
+        "Human Terrain": {
+            "name": "Human Terrain",
             "category": "Academic"
         },
         "Infiltration": {
@@ -152,6 +180,10 @@
             "name": "Outdoor Survival",
             "category": "Technical"
         },
+        "Pharmacy": {
+            "name": "Pharmacy",
+            "category": "Technical"
+        },
         "Photography": {
             "name": "Photography",
             "category": "Technical"
@@ -203,6 +235,18 @@
         "Traffic Analysis": {
             "name": "Traffic Analysis",
             "category": "Technical"
+        },
+        "Urban Survival": {
+            "name": "Urban Survival",
+            "category": "Technical"
+        },
+        "Vampirology": {
+            "name": "Vampirology",
+            "category": "Academic"
+        },
+        "Weapons": {
+            "name": "Weapons",
+            "category": "General"
         }
     }
 }

@@ -1,7 +1,7 @@
 {
     "label": "Casting the Runes Abilities",
     "mapping": {
-        "category": "data.category"
+        "category": "system.category"
     },
     "entries": {
         "Anthropology": {
