@@ -68,7 +68,7 @@ async function buildPackTranslations() {
   const { default: Datastore } = await import("@seald-io/nedb");
 
   const mapping = {
-    category: "data.category",
+    category: "system.category",
   };
 
   const itemPacks = manifest.packs.filter((p) => p.type === "Item");
@@ -87,7 +87,7 @@ async function buildPackTranslations() {
     for (const doc of docs) {
       entries[doc.name] = {
         name: doc.name,
-        category: doc.data.category,
+        category: doc.system.category,
       };
     }
     const numEntries = Object.keys(entries).length;
