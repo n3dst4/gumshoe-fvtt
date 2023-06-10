@@ -14,7 +14,7 @@
     "start": "pnpm dev",
     "clean": "./tasks.js clean",
     "build-pack-translations": "./tasks.js buildPackTranslations",
-    "pull-translations": "tx pull -a",
+    "pull-translations": "tx pull --workers 16 --force -all",
     "test-code": "jest",
     "test-types": "tsd -f src/types.test-d.ts -t src/types.ts",
     "test": "pnpm test-code && pnpm test-types",
