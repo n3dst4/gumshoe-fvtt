@@ -20,6 +20,10 @@
             "name": "Burocracia",
             "category": "Interpessoal"
         },
+        "Computer Use": {
+            "name": "Computer Use",
+            "category": "Técnica"
+        },
         "Cop Talk": {
             "name": "Trato Policial",
             "category": "Interpessoal"
@@ -56,6 +60,10 @@
             "name": "História",
             "category": "Acadêmica"
         },
+        "Humanities": {
+            "name": "Humanities",
+            "category": "Acadêmica"
+        },
         "Impersonate": {
             "name": "Personificação",
             "category": "Interpessoal"
@@ -71,6 +79,10 @@
         "Intimidation": {
             "name": "Intimidação",
             "category": "Interpessoal"
+        },
+        "Investigative Procedure": {
+            "name": "Investigative Procedure",
+            "category": "Técnica"
         },
         "Languages": {
             "name": "Idiomas",
@@ -92,6 +104,14 @@
             "name": "Medicina",
             "category": "Técnica"
         },
+        "Medium": {
+            "name": "Medium",
+            "category": "Poderes Psíquicos"
+        },
+        "Messenger": {
+            "name": "Messenger",
+            "category": "Poderes Psíquicos"
+        },
         "Negotiation": {
             "name": "Negociação",
             "category": "Interpessoal"
@@ -112,6 +132,10 @@
             "name": "Fotografia",
             "category": "Técnica"
         },
+        "Premonitions": {
+            "name": "Premonitions",
+            "category": "Poderes Psíquicos"
+        },
         "Preparedness": {
             "name": "Precaução",
             "category": "Geral"
@@ -120,12 +144,16 @@
             "name": "Convencimento",
             "category": "Interpessoal"
         },
+        "Remote Viewing": {
+            "name": "Remote Viewing",
+            "category": "Poderes Psíquicos"
+        },
         "Research": {
             "name": "Pesquisa",
             "category": "Acadêmica"
         },
-        "Science!": {
-            "name": "Ciência!",
+        "Science": {
+            "name": "Ciência",
             "category": "Técnica"
         },
         "Scuffling": {
@@ -135,6 +163,10 @@
         "Sense Trouble": {
             "name": "Sentir Perigo",
             "category": "Geral"
+        },
+        "Sensitive": {
+            "name": "Sensitive",
+            "category": "Poderes Psíquicos"
         },
         "Shooting": {
             "name": "Tiro",
@@ -151,6 +183,10 @@
         "Streetwise": {
             "name": "Manha",
             "category": "Interpessoal"
+        },
+        "Synchronicity": {
+            "name": "Synchronicity",
+            "category": "Poderes Psíquicos"
         },
         "Trivia": {
             "name": "Trivialidades",

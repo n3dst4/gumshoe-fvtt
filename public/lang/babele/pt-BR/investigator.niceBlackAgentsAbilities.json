@@ -48,9 +48,29 @@
             "name": "Trato Policial",
             "category": "Interpessoal"
         },
+        "Cover": {
+            "name": "Cover",
+            "category": "Geral"
+        },
+        "Criminology": {
+            "name": "Criminologia",
+            "category": "Acadêmica"
+        },
         "Cryptography": {
             "name": "Criptografia",
             "category": "Técnica"
+        },
+        "Data Recovery": {
+            "name": "Data Recovery",
+            "category": "Técnica"
+        },
+        "Diagnosis": {
+            "name": "Diagnosis",
+            "category": "Acadêmica"
+        },
+        "Digital Intrusion": {
+            "name": "Digital Intrusion",
+            "category": "Geral"
         },
         "Disguise": {
             "name": "Disfarce",
@@ -63,6 +83,10 @@
         "Electronic Surveillance": {
             "name": "Monitoramento Eletrônico",
             "category": "Técnica"
+        },
+        "Explosive Devices": {
+            "name": "Dispositivos Explosivos",
+            "category": "Geral"
         },
         "Filch": {
             "name": "Punga",
@@ -98,6 +122,10 @@
         },
         "History": {
             "name": "História",
+            "category": "Acadêmica"
+        },
+        "Human Terrain": {
+            "name": "Human Terrain",
             "category": "Acadêmica"
         },
         "Infiltration": {
@@ -152,6 +180,10 @@
             "name": "Sobrevivência no Mato",
             "category": "Técnica"
         },
+        "Pharmacy": {
+            "name": "Farmácia",
+            "category": "Técnica"
+        },
         "Photography": {
             "name": "Fotografia",
             "category": "Técnica"
@@ -203,6 +235,18 @@
         "Traffic Analysis": {
             "name": "Análise de Dados",
             "category": "Técnica"
+        },
+        "Urban Survival": {
+            "name": "Urban Survival",
+            "category": "Técnica"
+        },
+        "Vampirology": {
+            "name": "Vampirology",
+            "category": "Acadêmica"
+        },
+        "Weapons": {
+            "name": "Armas Brancas",
+            "category": "Geral"
         }
     }
 }
