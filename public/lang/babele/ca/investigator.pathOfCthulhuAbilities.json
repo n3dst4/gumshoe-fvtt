@@ -1,0 +1,256 @@
+{
+    "label": "Trail of Cthulhu Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Accounting": {
+            "name": "Accounting",
+            "category": "Acadèmiques"
+        },
+        "Anthropology": {
+            "name": "Antropologia",
+            "category": "Acadèmiques"
+        },
+        "Archaeology": {
+            "name": "Arqueologia",
+            "category": "Acadèmiques"
+        },
+        "Architecture": {
+            "name": "Arquitectura",
+            "category": "Acadèmiques"
+        },
+        "Art": {
+            "name": "Art",
+            "category": "Tècniques"
+        },
+        "Art History": {
+            "name": "Història de l'Art",
+            "category": "Acadèmiques"
+        },
+        "Assess Honesty": {
+            "name": "Valorar l'honestedat",
+            "category": "Interpersonal"
+        },
+        "Astronomy": {
+            "name": "Astronomia",
+            "category": "Tècniques"
+        },
+        "Athletics": {
+            "name": "Atlètiques",
+            "category": "Generals"
+        },
+        "Bargain": {
+            "name": "Negociar",
+            "category": "Interpersonal"
+        },
+        "Biology": {
+            "name": "Biologia",
+            "category": "Acadèmiques"
+        },
+        "Bureaucracy": {
+            "name": "Burocràcia",
+            "category": "Interpersonal"
+        },
+        "Chemistry": {
+            "name": "Química",
+            "category": "Tècniques"
+        },
+        "Chtulhu Mythos": {
+            "name": "Chtulhu Mythos",
+            "category": "Acadèmiques"
+        },
+        "Conceal": {
+            "name": "Ocultar",
+            "category": "Generals"
+        },
+        "Cop Talk": {
+            "name": "Argot policial",
+            "category": "Interpersonal"
+        },
+        "Craft": {
+            "name": "Habilitat Artesanal",
+            "category": "Tècniques"
+        },
+        "Credit Rating": {
+            "name": "Credit Rating",
+            "category": "Interpersonal"
+        },
+        "Cryptography": {
+            "name": "Criptografia",
+            "category": "Acadèmiques"
+        },
+        "Disguise": {
+            "name": "Disfressar-se",
+            "category": "Generals"
+        },
+        "Driving": {
+            "name": "Conduir",
+            "category": "Generals"
+        },
+        "Electrical Repair": {
+            "name": "Electrical Repair",
+            "category": "Generals"
+        },
+        "Evidence Collection": {
+            "name": "Recollida de proves",
+            "category": "Tècniques"
+        },
+        "Explosives": {
+            "name": "Explosius",
+            "category": "Generals"
+        },
+        "Filch": {
+            "name": "Furtar",
+            "category": "Generals"
+        },
+        "Firearms": {
+            "name": "Firearms",
+            "category": "Generals"
+        },
+        "First Aid": {
+            "name": "Primers Auxilis",
+            "category": "Generals"
+        },
+        "Flattery": {
+            "name": "Adular",
+            "category": "Interpersonal"
+        },
+        "Fleeing": {
+            "name": "Fugida",
+            "category": "Generals"
+        },
+        "Forensics": {
+            "name": "Medicina Forense",
+            "category": "Tècniques"
+        },
+        "Geology": {
+            "name": "Geologia",
+            "category": "Acadèmiques"
+        },
+        "Health": {
+            "name": "Salut",
+            "category": "Generals"
+        },
+        "History": {
+            "name": "Història",
+            "category": "Acadèmiques"
+        },
+        "Hypnosis": {
+            "name": "Hipnosis",
+            "category": "Generals"
+        },
+        "Interrogation": {
+            "name": "Interrogatori",
+            "category": "Interpersonal"
+        },
+        "Intimidation": {
+            "name": "Intimidació",
+            "category": "Interpersonal"
+        },
+        "Languages": {
+            "name": "Idiomes",
+            "category": "Acadèmiques"
+        },
+        "Law": {
+            "name": "Dret",
+            "category": "Acadèmiques"
+        },
+        "Library Use": {
+            "name": "Library Use",
+            "category": "Acadèmiques"
+        },
+        "Locksmith": {
+            "name": "Serralleria",
+            "category": "Tècniques"
+        },
+        "Mechanical Repair": {
+            "name": "Mechanical Repair",
+            "category": "Generals"
+        },
+        "Medicine": {
+            "name": "Medicina",
+            "category": "Acadèmiques"
+        },
+        "Occult": {
+            "name": "Occult",
+            "category": "Acadèmiques"
+        },
+        "Oral History": {
+            "name": "Història oral",
+            "category": "Interpersonal"
+        },
+        "Outdoorsman": {
+            "name": "Outdoorsman",
+            "category": "Tècniques"
+        },
+        "Pharmacy": {
+            "name": "Farmacología",
+            "category": "Tècniques"
+        },
+        "Photography": {
+            "name": "Fotografia",
+            "category": "Tècniques"
+        },
+        "Physics": {
+            "name": "Física",
+            "category": "Acadèmiques"
+        },
+        "Piloting": {
+            "name": "Pilotar",
+            "category": "Generals"
+        },
+        "Preparedness": {
+            "name": "Preparació",
+            "category": "Generals"
+        },
+        "Psychoanalysis": {
+            "name": "Psicoanàlisis",
+            "category": "Generals"
+        },
+        "Reassurance": {
+            "name": "Consol",
+            "category": "Interpersonal"
+        },
+        "Riding": {
+            "name": "Cavalcar",
+            "category": "Generals"
+        },
+        "Sanity": {
+            "name": "Sanity",
+            "category": "Generals"
+        },
+        "Scuffling": {
+            "name": "Escaramussa",
+            "category": "Generals"
+        },
+        "Sense Trouble": {
+            "name": "Sentir el perill",
+            "category": "Generals"
+        },
+        "Shadowing": {
+            "name": "Shadowing",
+            "category": "Generals"
+        },
+        "Stability": {
+            "name": "Estabilitat",
+            "category": "Generals"
+        },
+        "Stealth": {
+            "name": "Stealth",
+            "category": "Generals"
+        },
+        "Streetwise": {
+            "name": "Baixos fons",
+            "category": "Interpersonal"
+        },
+        "Theology": {
+            "name": "Teologia",
+            "category": "Acadèmiques"
+        },
+        "Weapons": {
+            "name": "Armes",
+            "category": "Generals"
+        }
+    }
+}

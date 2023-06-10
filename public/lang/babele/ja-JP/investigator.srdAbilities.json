@@ -1,0 +1,516 @@
+{
+    "label": "SRD技能",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Analytic Taste": {
+            "name": "Analytic Taste",
+            "category": "異国系探索技能"
+        },
+        "Anthropology": {
+            "name": "人類学",
+            "category": "学術系探索技能"
+        },
+        "Archaeology": {
+            "name": "考古学",
+            "category": "学術系探索技能"
+        },
+        "Architecture": {
+            "name": "建築学",
+            "category": "学術系探索技能"
+        },
+        "Art History": {
+            "name": "美術史",
+            "category": "学術系探索技能"
+        },
+        "Artillery": {
+            "name": "Artillery",
+            "category": "Physical"
+        },
+        "Astronomy": {
+            "name": "天文学",
+            "category": "学術系探索技能"
+        },
+        "Athletics": {
+            "name": "運動",
+            "category": "Physical"
+        },
+        "Aura Reading": {
+            "name": "Aura Reading",
+            "category": "異国系探索技能"
+        },
+        "Authority": {
+            "name": "Authority",
+            "category": "交渉系探索技能"
+        },
+        "Ballistics": {
+            "name": "Ballistics",
+            "category": "技術系探索技能"
+        },
+        "Battlefield": {
+            "name": "Battlefield",
+            "category": "Focus"
+        },
+        "Belle-Lettres": {
+            "name": "Belle-Lettres",
+            "category": "学術系探索技能"
+        },
+        "Bonhomie": {
+            "name": "Bonhomie",
+            "category": "交渉系探索技能"
+        },
+        "Botany": {
+            "name": "Botany",
+            "category": "学術系探索技能"
+        },
+        "Bullshit Detector": {
+            "name": "Bullshit Detector",
+            "category": "交渉系探索技能"
+        },
+        "Bureaucracy": {
+            "name": "官僚制度",
+            "category": "交渉系探索技能"
+        },
+        "Burglary": {
+            "name": "Burglary",
+            "category": "Focus"
+        },
+        "Business Affairs": {
+            "name": "Business Affairs",
+            "category": "Presence"
+        },
+        "Camping": {
+            "name": "Camping",
+            "category": "技術系探索技能"
+        },
+        "Charm": {
+            "name": "魅了",
+            "category": "交渉系探索技能"
+        },
+        "Chemistry": {
+            "name": "化学",
+            "category": "技術系探索技能"
+        },
+        "Chronal Stability": {
+            "name": "Chronal Stability",
+            "category": "異国系探索技能"
+        },
+        "Comparative Religion": {
+            "name": "Comparative Religion",
+            "category": "学術系探索技能"
+        },
+        "Composure": {
+            "name": "Composure",
+            "category": "Presence"
+        },
+        "Conceal": {
+            "name": "隠蔽",
+            "category": "Focus"
+        },
+        "Cop Talk": {
+            "name": "警官言葉",
+            "category": "交渉系探索技能"
+        },
+        "Counterinsurgency": {
+            "name": "Counterinsurgency",
+            "category": "技術系探索技能"
+        },
+        "Craft": {
+            "name": "製作",
+            "category": "技術系探索技能"
+        },
+        "Cryptography": {
+            "name": "暗号学",
+            "category": "技術系探索技能"
+        },
+        "Culture": {
+            "name": "Culture",
+            "category": "学術系探索技能"
+        },
+        "Data Retrieval": {
+            "name": "Data Retrieval",
+            "category": "技術系探索技能"
+        },
+        "Disguise": {
+            "name": "変装",
+            "category": "Focus"
+        },
+        "Document Analysis": {
+            "name": "Document Analysis",
+            "category": "技術系探索技能"
+        },
+        "Driving": {
+            "name": "運転",
+            "category": "Focus"
+        },
+        "Electronic Surveillance": {
+            "name": "Electronic Surveillance",
+            "category": "技術系探索技能"
+        },
+        "Evidence Collection": {
+            "name": "証拠収集",
+            "category": "技術系探索技能"
+        },
+        "Explosive Devices": {
+            "name": "Explosive Devices",
+            "category": "技術系探索技能"
+        },
+        "Explosives": {
+            "name": "爆発物",
+            "category": "Focus"
+        },
+        "Farming": {
+            "name": "Farming",
+            "category": "技術系探索技能"
+        },
+        "Fashion": {
+            "name": "Fashion",
+            "category": "学術系探索技能"
+        },
+        "Fighting": {
+            "name": "Fighting",
+            "category": "Physical"
+        },
+        "Filch": {
+            "name": "スリ",
+            "category": "Focus"
+        },
+        "Fingerprinting": {
+            "name": "Fingerprinting",
+            "category": "技術系探索技能"
+        },
+        "First Aid": {
+            "name": "応急手当て",
+            "category": "Focus"
+        },
+        "Flattery": {
+            "name": "巧言令色",
+            "category": "交渉系探索技能"
+        },
+        "Fleeing": {
+            "name": "逃走",
+            "category": "Physical"
+        },
+        "Flirting": {
+            "name": "Flirting",
+            "category": "交渉系探索技能"
+        },
+        "Forensic Accounting": {
+            "name": "Forensic Accounting",
+            "category": "学術系探索技能"
+        },
+        "Forensic Anthropology": {
+            "name": "Forensic Anthropology",
+            "category": "技術系探索技能"
+        },
+        "Forensic Entomology": {
+            "name": "Forensic Entomology",
+            "category": "技術系探索技能"
+        },
+        "Forensic Psychology": {
+            "name": "Forensic Psychology",
+            "category": "学術系探索技能"
+        },
+        "Forgery": {
+            "name": "Forgery",
+            "category": "技術系探索技能"
+        },
+        "Gambling": {
+            "name": "Gambling",
+            "category": "Presence"
+        },
+        "Geology": {
+            "name": "地質学",
+            "category": "学術系探索技能"
+        },
+        "Hacking": {
+            "name": "ハッキング",
+            "category": "技術系探索技能"
+        },
+        "Health": {
+            "name": "体力",
+            "category": "Physical"
+        },
+        "High Society": {
+            "name": "High Society",
+            "category": "交渉系探索技能"
+        },
+        "History": {
+            "name": "歴史学",
+            "category": "学術系探索技能"
+        },
+        "Hunting": {
+            "name": "Hunting",
+            "category": "技術系探索技能"
+        },
+        "Hypnosis": {
+            "name": "催眠術",
+            "category": "Presence"
+        },
+        "Impersonate": {
+            "name": "Impersonate",
+            "category": "交渉系探索技能"
+        },
+        "Infiltration": {
+            "name": "Infiltration",
+            "category": "Physical"
+        },
+        "Inspiration": {
+            "name": "Inspiration",
+            "category": "交渉系探索技能"
+        },
+        "Insurgency": {
+            "name": "Insurgency",
+            "category": "Focus"
+        },
+        "Interrogation": {
+            "name": "尋問",
+            "category": "交渉系探索技能"
+        },
+        "Intimidation": {
+            "name": "威圧",
+            "category": "交渉系探索技能"
+        },
+        "Intuition": {
+            "name": "Intuition",
+            "category": "技術系探索技能"
+        },
+        "Languages": {
+            "name": "語学",
+            "category": "学術系探索技能"
+        },
+        "Law": {
+            "name": "法学",
+            "category": "学術系探索技能"
+        },
+        "Leadership": {
+            "name": "Leadership",
+            "category": "交渉系探索技能"
+        },
+        "Linguistics": {
+            "name": "Linguistics",
+            "category": "学術系探索技能"
+        },
+        "Locksmith": {
+            "name": "鍵開け",
+            "category": "技術系探索技能"
+        },
+        "Mechanics": {
+            "name": "機械修理",
+            "category": "Focus"
+        },
+        "Medic": {
+            "name": "Medic",
+            "category": "Focus"
+        },
+        "Medical Expertise": {
+            "name": "Medical Expertise",
+            "category": "技術系探索技能"
+        },
+        "Military History": {
+            "name": "Military History",
+            "category": "学術系探索技能"
+        },
+        "Military Tactics": {
+            "name": "Military Tactics",
+            "category": "学術系探索技能"
+        },
+        "Morale": {
+            "name": "Morale",
+            "category": "Presence"
+        },
+        "Mutant Power: Blood Spray": {
+            "name": "Mutant Power: Blood Spray",
+            "category": "異国系探索技能"
+        },
+        "Natural History": {
+            "name": "Natural History",
+            "category": "学術系探索技能"
+        },
+        "Negotiation": {
+            "name": "Negotiation",
+            "category": "交渉系探索技能"
+        },
+        "Network": {
+            "name": "Network",
+            "category": "Focus"
+        },
+        "Notice": {
+            "name": "Notice",
+            "category": "技術系探索技能"
+        },
+        "Occult Studies": {
+            "name": "Occult Studies",
+            "category": "学術系探索技能"
+        },
+        "Oral History": {
+            "name": "聞き集め",
+            "category": "交渉系探索技能"
+        },
+        "Outdoor Survival": {
+            "name": "Outdoor Survival",
+            "category": "技術系探索技能"
+        },
+        "Painting": {
+            "name": "Painting",
+            "category": "技術系探索技能"
+        },
+        "Paradox Prevention": {
+            "name": "Paradox Prevention",
+            "category": "技術系探索技能"
+        },
+        "Pathology": {
+            "name": "Pathology",
+            "category": "学術系探索技能"
+        },
+        "Pathway Amplification": {
+            "name": "Pathway Amplification",
+            "category": "異国系探索技能"
+        },
+        "People Person": {
+            "name": "People Person",
+            "category": "交渉系探索技能"
+        },
+        "Photography": {
+            "name": "撮影",
+            "category": "技術系探索技能"
+        },
+        "Piloting": {
+            "name": "操縦",
+            "category": "Physical"
+        },
+        "Poetry": {
+            "name": "Poetry",
+            "category": "学術系探索技能"
+        },
+        "Political Science": {
+            "name": "Political Science",
+            "category": "学術系探索技能"
+        },
+        "Politics": {
+            "name": "Politics",
+            "category": "Presence"
+        },
+        "Preparedness": {
+            "name": "もしもの備え",
+            "category": "Presence"
+        },
+        "Public Relations": {
+            "name": "Public Relations",
+            "category": "Presence"
+        },
+        "Reality Anchor": {
+            "name": "Reality Anchor",
+            "category": "異国系探索技能"
+        },
+        "Reassurance": {
+            "name": "安心",
+            "category": "交渉系探索技能"
+        },
+        "Research": {
+            "name": "Research",
+            "category": "学術系探索技能"
+        },
+        "Respect": {
+            "name": "Respect",
+            "category": "交渉系探索技能"
+        },
+        "Riding": {
+            "name": "騎乗",
+            "category": "Physical"
+        },
+        "Salt of the Earth": {
+            "name": "Salt of the Earth",
+            "category": "交渉系探索技能"
+        },
+        "Science!": {
+            "name": "Science!",
+            "category": "技術系探索技能"
+        },
+        "Scrounging": {
+            "name": "Scrounging",
+            "category": "Presence"
+        },
+        "Scuffling": {
+            "name": "格闘",
+            "category": "Physical"
+        },
+        "Sculpture": {
+            "name": "Sculpture",
+            "category": "技術系探索技能"
+        },
+        "Sense Trouble": {
+            "name": "嫌な気配",
+            "category": "Presence"
+        },
+        "Shooting": {
+            "name": "銃器",
+            "category": "Physical"
+        },
+        "Shrink": {
+            "name": "Shrink",
+            "category": "Presence"
+        },
+        "Society": {
+            "name": "Society",
+            "category": "交渉系探索技能"
+        },
+        "Spying": {
+            "name": "Spying",
+            "category": "技術系探索技能"
+        },
+        "Stability": {
+            "name": "安定度",
+            "category": "Presence"
+        },
+        "Streetwise": {
+            "name": "裏社会",
+            "category": "交渉系探索技能"
+        },
+        "Surveillance": {
+            "name": "Surveillance",
+            "category": "Focus"
+        },
+        "Taunt": {
+            "name": "Taunt",
+            "category": "交渉系探索技能"
+        },
+        "Terrain": {
+            "name": "Terrain",
+            "category": "技術系探索技能"
+        },
+        "Textual Analysis": {
+            "name": "Textual Analysis",
+            "category": "学術系探索技能"
+        },
+        "Timecraft": {
+            "name": "Timecraft",
+            "category": "学術系探索技能"
+        },
+        "Tradecraft": {
+            "name": "Tradecraft",
+            "category": "交渉系探索技能"
+        },
+        "Traffic Analysis": {
+            "name": "Traffic Analysis",
+            "category": "技術系探索技能"
+        },
+        "Traps and Bombs": {
+            "name": "Traps and Bombs",
+            "category": "Focus"
+        },
+        "Trivia": {
+            "name": "Trivia",
+            "category": "学術系探索技能"
+        },
+        "Unobtrusiveness": {
+            "name": "Unobtrusiveness",
+            "category": "Focus"
+        },
+        "Viroware Enhancement: Dominator": {
+            "name": "Viroware Enhancement: Dominator",
+            "category": "異国系探索技能"
+        }
+    }
+}

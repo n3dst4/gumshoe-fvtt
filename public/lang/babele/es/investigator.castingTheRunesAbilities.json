@@ -1,0 +1,260 @@
+{
+    "label": "Casting the Runes Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "Antropología",
+            "category": "Académicas"
+        },
+        "Archaeology": {
+            "name": "Arqueología",
+            "category": "Académicas"
+        },
+        "Architecture": {
+            "name": "Arquitectura",
+            "category": "Académicas"
+        },
+        "Art": {
+            "name": "Art",
+            "category": "Técnicas"
+        },
+        "Art History": {
+            "name": "Historia del arte",
+            "category": "Académicas"
+        },
+        "Assess Honesty": {
+            "name": "Assess Honesty",
+            "category": "Interpersonales"
+        },
+        "Astronomy": {
+            "name": "Astronomía",
+            "category": "Técnicas"
+        },
+        "Athletics": {
+            "name": "Atletismo",
+            "category": "Generales"
+        },
+        "Bargain": {
+            "name": "Bargain",
+            "category": "Interpersonales"
+        },
+        "Biology": {
+            "name": "Biology",
+            "category": "Académicas"
+        },
+        "Bookkeeping": {
+            "name": "Bookkeeping",
+            "category": "Técnicas"
+        },
+        "Bureaucracy": {
+            "name": "Burocracia",
+            "category": "Generales"
+        },
+        "Charm": {
+            "name": "Charm",
+            "category": "Interpersonales"
+        },
+        "Chemistry": {
+            "name": "Química",
+            "category": "Técnicas"
+        },
+        "Class": {
+            "name": "Class",
+            "category": "Interpersonales"
+        },
+        "Conceal": {
+            "name": "Ocultar",
+            "category": "Generales"
+        },
+        "Connections": {
+            "name": "Connections",
+            "category": "Generales"
+        },
+        "Contemplation": {
+            "name": "Contemplation",
+            "category": "Académicas"
+        },
+        "Craft": {
+            "name": "Habilidad artesanal",
+            "category": "Técnicas"
+        },
+        "Criminology": {
+            "name": "Criminology",
+            "category": "Académicas"
+        },
+        "Cryptography": {
+            "name": "Criptografía",
+            "category": "Técnicas"
+        },
+        "Demolition": {
+            "name": "Demolition",
+            "category": "Generales"
+        },
+        "Disguise": {
+            "name": "Disfraz",
+            "category": "Generales"
+        },
+        "Driving": {
+            "name": "Conducir",
+            "category": "Generales"
+        },
+        "Evidence Collection": {
+            "name": "Recogida de pruebas",
+            "category": "Técnicas"
+        },
+        "Fieldcraft": {
+            "name": "Fieldcraft",
+            "category": "Técnicas"
+        },
+        "Filch": {
+            "name": "Birlar",
+            "category": "Generales"
+        },
+        "Firearms": {
+            "name": "Firearms",
+            "category": "Generales"
+        },
+        "First Aid": {
+            "name": "Primeros auxilios",
+            "category": "Generales"
+        },
+        "Fleeing": {
+            "name": "Huida",
+            "category": "Generales"
+        },
+        "Folklore": {
+            "name": "Folklore",
+            "category": "Académicas"
+        },
+        "Forensics": {
+            "name": "Forensics",
+            "category": "Técnicas"
+        },
+        "Gambling": {
+            "name": "Gambling",
+            "category": "Generales"
+        },
+        "Geology": {
+            "name": "Geología",
+            "category": "Académicas"
+        },
+        "Health": {
+            "name": "Salud",
+            "category": "Generales"
+        },
+        "History": {
+            "name": "Historia",
+            "category": "Académicas"
+        },
+        "Hypnosis": {
+            "name": "Hipnosis",
+            "category": "Generales"
+        },
+        "Interrogation": {
+            "name": "Interrogatorio",
+            "category": "Interpersonales"
+        },
+        "Intimidation": {
+            "name": "Intimidación",
+            "category": "Interpersonales"
+        },
+        "Language": {
+            "name": "Language",
+            "category": "Académicas"
+        },
+        "Law": {
+            "name": "Derecho",
+            "category": "Académicas"
+        },
+        "Library Use": {
+            "name": "Library Use",
+            "category": "Académicas"
+        },
+        "Mechanics": {
+            "name": "Mecánica",
+            "category": "Generales"
+        },
+        "Medicine": {
+            "name": "Medicine",
+            "category": "Académicas"
+        },
+        "Navigation": {
+            "name": "Navigation",
+            "category": "Generales"
+        },
+        "Occult": {
+            "name": "Occult",
+            "category": "Académicas"
+        },
+        "Pharmacy": {
+            "name": "Pharmacy",
+            "category": "Técnicas"
+        },
+        "Photography": {
+            "name": "Fotografía",
+            "category": "Técnicas"
+        },
+        "Physics": {
+            "name": "Physics",
+            "category": "Académicas"
+        },
+        "Preparedness": {
+            "name": "Preparación",
+            "category": "Generales"
+        },
+        "Psychoanalysis": {
+            "name": "Psychoanalysis",
+            "category": "Generales"
+        },
+        "Reassurance": {
+            "name": "Consolar",
+            "category": "Interpersonales"
+        },
+        "Riding": {
+            "name": "Monta",
+            "category": "Generales"
+        },
+        "Sailing": {
+            "name": "Sailing",
+            "category": "Generales"
+        },
+        "Scuffling": {
+            "name": "Escaramuza",
+            "category": "Generales"
+        },
+        "Sense Trouble": {
+            "name": "Sentir el peligro",
+            "category": "Generales"
+        },
+        "Shadowing": {
+            "name": "Shadowing",
+            "category": "Generales"
+        },
+        "Stability": {
+            "name": "Estabilidad",
+            "category": "Generales"
+        },
+        "Stealth": {
+            "name": "Sigilo",
+            "category": "Generales"
+        },
+        "Streetwise": {
+            "name": "Bajos fondos",
+            "category": "Interpersonales"
+        },
+        "Theology": {
+            "name": "Theology",
+            "category": "Académicas"
+        },
+        "Trade": {
+            "name": "Trade",
+            "category": "Generales"
+        },
+        "Weapons": {
+            "name": "Armas",
+            "category": "Generales"
+        }
+    }
+}

@@ -1,0 +1,252 @@
+{
+    "label": "Night's Black Agents Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Accounting": {
+            "name": "Accounting",
+            "category": "Académicas"
+        },
+        "Archaeology": {
+            "name": "Arqueología",
+            "category": "Académicas"
+        },
+        "Architecture": {
+            "name": "Arquitectura",
+            "category": "Académicas"
+        },
+        "Art History": {
+            "name": "Historia del arte",
+            "category": "Académicas"
+        },
+        "Astronomy": {
+            "name": "Astronomía",
+            "category": "Técnicas"
+        },
+        "Athletics": {
+            "name": "Atletismo",
+            "category": "Generales"
+        },
+        "Bullshit Detector": {
+            "name": "Detección de Mentiras",
+            "category": "Interpersonales"
+        },
+        "Bureaucracy": {
+            "name": "Burocracia",
+            "category": "Interpersonales"
+        },
+        "Chemistry": {
+            "name": "Química",
+            "category": "Técnicas"
+        },
+        "Conceal": {
+            "name": "Ocultar",
+            "category": "Generales"
+        },
+        "Cop Talk": {
+            "name": "Jerga policial",
+            "category": "Interpersonales"
+        },
+        "Cover": {
+            "name": "Cover",
+            "category": "Generales"
+        },
+        "Criminology": {
+            "name": "Criminology",
+            "category": "Académicas"
+        },
+        "Cryptography": {
+            "name": "Criptografía",
+            "category": "Técnicas"
+        },
+        "Data Recovery": {
+            "name": "Data Recovery",
+            "category": "Técnicas"
+        },
+        "Diagnosis": {
+            "name": "Diagnosis",
+            "category": "Académicas"
+        },
+        "Digital Intrusion": {
+            "name": "Digital Intrusion",
+            "category": "Generales"
+        },
+        "Disguise": {
+            "name": "Disfraz",
+            "category": "Generales"
+        },
+        "Driving": {
+            "name": "Conducir",
+            "category": "Generales"
+        },
+        "Electronic Surveillance": {
+            "name": "Electronic Surveillance",
+            "category": "Técnicas"
+        },
+        "Explosive Devices": {
+            "name": "Explosive Devices",
+            "category": "Generales"
+        },
+        "Filch": {
+            "name": "Birlar",
+            "category": "Generales"
+        },
+        "Flattery": {
+            "name": "Adular",
+            "category": "Interpersonales"
+        },
+        "Flirting": {
+            "name": "Flirting",
+            "category": "Interpersonales"
+        },
+        "Forgery": {
+            "name": "Forgery",
+            "category": "Técnicas"
+        },
+        "Gambling": {
+            "name": "Gambling",
+            "category": "Generales"
+        },
+        "Hand-to-Hand": {
+            "name": "Hand-to-Hand",
+            "category": "Generales"
+        },
+        "Health": {
+            "name": "Salud",
+            "category": "Generales"
+        },
+        "High Society": {
+            "name": "High Society",
+            "category": "Interpersonales"
+        },
+        "History": {
+            "name": "Historia",
+            "category": "Académicas"
+        },
+        "Human Terrain": {
+            "name": "Human Terrain",
+            "category": "Académicas"
+        },
+        "Infiltration": {
+            "name": "Infiltration",
+            "category": "Generales"
+        },
+        "Interrogation": {
+            "name": "Interrogatorio",
+            "category": "Interpersonales"
+        },
+        "Intimidation": {
+            "name": "Intimidación",
+            "category": "Interpersonales"
+        },
+        "Languages": {
+            "name": "Idiomas",
+            "category": "Académicas"
+        },
+        "Law": {
+            "name": "Derecho",
+            "category": "Académicas"
+        },
+        "Mechanics": {
+            "name": "Mecánica",
+            "category": "Generales"
+        },
+        "Medic": {
+            "name": "Medic",
+            "category": "Generales"
+        },
+        "Military Science": {
+            "name": "Military Science",
+            "category": "Académicas"
+        },
+        "Negotiation": {
+            "name": "Negotiation",
+            "category": "Interpersonales"
+        },
+        "Network": {
+            "name": "Network",
+            "category": "Generales"
+        },
+        "Notice": {
+            "name": "Notice",
+            "category": "Técnicas"
+        },
+        "Occult Studies": {
+            "name": "Occult Studies",
+            "category": "Académicas"
+        },
+        "Outdoor Survival": {
+            "name": "Outdoor Survival",
+            "category": "Técnicas"
+        },
+        "Pharmacy": {
+            "name": "Pharmacy",
+            "category": "Técnicas"
+        },
+        "Photography": {
+            "name": "Fotografía",
+            "category": "Técnicas"
+        },
+        "Piloting": {
+            "name": "Pilotaje",
+            "category": "Generales"
+        },
+        "Preparedness": {
+            "name": "Preparación",
+            "category": "Generales"
+        },
+        "Reassurance": {
+            "name": "Consolar",
+            "category": "Interpersonales"
+        },
+        "Research": {
+            "name": "Research",
+            "category": "Académicas"
+        },
+        "Sense Trouble": {
+            "name": "Sentir el peligro",
+            "category": "Generales"
+        },
+        "Shooting": {
+            "name": "Disparar",
+            "category": "Generales"
+        },
+        "Shrink": {
+            "name": "Shrink",
+            "category": "Generales"
+        },
+        "Stability": {
+            "name": "Estabilidad",
+            "category": "Generales"
+        },
+        "Streetwise": {
+            "name": "Bajos fondos",
+            "category": "Interpersonales"
+        },
+        "Surveillance": {
+            "name": "Surveillance",
+            "category": "Generales"
+        },
+        "Tradecraft": {
+            "name": "Tradecraft",
+            "category": "Interpersonales"
+        },
+        "Traffic Analysis": {
+            "name": "Traffic Analysis",
+            "category": "Técnicas"
+        },
+        "Urban Survival": {
+            "name": "Urban Survival",
+            "category": "Técnicas"
+        },
+        "Vampirology": {
+            "name": "Vampirology",
+            "category": "Académicas"
+        },
+        "Weapons": {
+            "name": "Armas",
+            "category": "Generales"
+        }
+    }
+}

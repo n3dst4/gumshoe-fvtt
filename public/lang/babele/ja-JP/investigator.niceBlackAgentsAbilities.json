@@ -1,0 +1,252 @@
+{
+    "label": "Night's Black Agents Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Accounting": {
+            "name": "Accounting",
+            "category": "学術系探索技能"
+        },
+        "Archaeology": {
+            "name": "考古学",
+            "category": "学術系探索技能"
+        },
+        "Architecture": {
+            "name": "建築学",
+            "category": "学術系探索技能"
+        },
+        "Art History": {
+            "name": "美術史",
+            "category": "学術系探索技能"
+        },
+        "Astronomy": {
+            "name": "天文学",
+            "category": "技術系探索技能"
+        },
+        "Athletics": {
+            "name": "運動",
+            "category": "一般"
+        },
+        "Bullshit Detector": {
+            "name": "Bullshit Detector",
+            "category": "交渉系探索技能"
+        },
+        "Bureaucracy": {
+            "name": "官僚制度",
+            "category": "交渉系探索技能"
+        },
+        "Chemistry": {
+            "name": "化学",
+            "category": "技術系探索技能"
+        },
+        "Conceal": {
+            "name": "隠蔽",
+            "category": "一般"
+        },
+        "Cop Talk": {
+            "name": "警官言葉",
+            "category": "交渉系探索技能"
+        },
+        "Cover": {
+            "name": "Cover",
+            "category": "一般"
+        },
+        "Criminology": {
+            "name": "Criminology",
+            "category": "学術系探索技能"
+        },
+        "Cryptography": {
+            "name": "暗号学",
+            "category": "技術系探索技能"
+        },
+        "Data Recovery": {
+            "name": "Data Recovery",
+            "category": "技術系探索技能"
+        },
+        "Diagnosis": {
+            "name": "Diagnosis",
+            "category": "学術系探索技能"
+        },
+        "Digital Intrusion": {
+            "name": "Digital Intrusion",
+            "category": "一般"
+        },
+        "Disguise": {
+            "name": "変装",
+            "category": "一般"
+        },
+        "Driving": {
+            "name": "運転",
+            "category": "一般"
+        },
+        "Electronic Surveillance": {
+            "name": "Electronic Surveillance",
+            "category": "技術系探索技能"
+        },
+        "Explosive Devices": {
+            "name": "Explosive Devices",
+            "category": "一般"
+        },
+        "Filch": {
+            "name": "スリ",
+            "category": "一般"
+        },
+        "Flattery": {
+            "name": "巧言令色",
+            "category": "交渉系探索技能"
+        },
+        "Flirting": {
+            "name": "Flirting",
+            "category": "交渉系探索技能"
+        },
+        "Forgery": {
+            "name": "Forgery",
+            "category": "技術系探索技能"
+        },
+        "Gambling": {
+            "name": "Gambling",
+            "category": "一般"
+        },
+        "Hand-to-Hand": {
+            "name": "Hand-to-Hand",
+            "category": "一般"
+        },
+        "Health": {
+            "name": "体力",
+            "category": "一般"
+        },
+        "High Society": {
+            "name": "High Society",
+            "category": "交渉系探索技能"
+        },
+        "History": {
+            "name": "歴史学",
+            "category": "学術系探索技能"
+        },
+        "Human Terrain": {
+            "name": "Human Terrain",
+            "category": "学術系探索技能"
+        },
+        "Infiltration": {
+            "name": "Infiltration",
+            "category": "一般"
+        },
+        "Interrogation": {
+            "name": "尋問",
+            "category": "交渉系探索技能"
+        },
+        "Intimidation": {
+            "name": "威圧",
+            "category": "交渉系探索技能"
+        },
+        "Languages": {
+            "name": "語学",
+            "category": "学術系探索技能"
+        },
+        "Law": {
+            "name": "法学",
+            "category": "学術系探索技能"
+        },
+        "Mechanics": {
+            "name": "機械修理",
+            "category": "一般"
+        },
+        "Medic": {
+            "name": "Medic",
+            "category": "一般"
+        },
+        "Military Science": {
+            "name": "Military Science",
+            "category": "学術系探索技能"
+        },
+        "Negotiation": {
+            "name": "Negotiation",
+            "category": "交渉系探索技能"
+        },
+        "Network": {
+            "name": "Network",
+            "category": "一般"
+        },
+        "Notice": {
+            "name": "Notice",
+            "category": "技術系探索技能"
+        },
+        "Occult Studies": {
+            "name": "Occult Studies",
+            "category": "学術系探索技能"
+        },
+        "Outdoor Survival": {
+            "name": "Outdoor Survival",
+            "category": "技術系探索技能"
+        },
+        "Pharmacy": {
+            "name": "Pharmacy",
+            "category": "技術系探索技能"
+        },
+        "Photography": {
+            "name": "撮影",
+            "category": "技術系探索技能"
+        },
+        "Piloting": {
+            "name": "操縦",
+            "category": "一般"
+        },
+        "Preparedness": {
+            "name": "もしもの備え",
+            "category": "一般"
+        },
+        "Reassurance": {
+            "name": "安心",
+            "category": "交渉系探索技能"
+        },
+        "Research": {
+            "name": "Research",
+            "category": "学術系探索技能"
+        },
+        "Sense Trouble": {
+            "name": "嫌な気配",
+            "category": "一般"
+        },
+        "Shooting": {
+            "name": "銃器",
+            "category": "一般"
+        },
+        "Shrink": {
+            "name": "Shrink",
+            "category": "一般"
+        },
+        "Stability": {
+            "name": "安定度",
+            "category": "一般"
+        },
+        "Streetwise": {
+            "name": "裏社会",
+            "category": "交渉系探索技能"
+        },
+        "Surveillance": {
+            "name": "Surveillance",
+            "category": "一般"
+        },
+        "Tradecraft": {
+            "name": "Tradecraft",
+            "category": "交渉系探索技能"
+        },
+        "Traffic Analysis": {
+            "name": "Traffic Analysis",
+            "category": "技術系探索技能"
+        },
+        "Urban Survival": {
+            "name": "Urban Survival",
+            "category": "技術系探索技能"
+        },
+        "Vampirology": {
+            "name": "Vampirology",
+            "category": "学術系探索技能"
+        },
+        "Weapons": {
+            "name": "武器",
+            "category": "一般"
+        }
+    }
+}

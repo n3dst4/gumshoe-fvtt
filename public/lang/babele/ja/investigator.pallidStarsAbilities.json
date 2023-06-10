@@ -1,0 +1,332 @@
+{
+    "label": "Ashen Stars Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "人類学",
+            "category": "Academic"
+        },
+        "Archaeology": {
+            "name": "考古学",
+            "category": "Academic"
+        },
+        "Astronomy": {
+            "name": "天文学",
+            "category": "Technical"
+        },
+        "Athletics": {
+            "name": "運動",
+            "category": "一般"
+        },
+        "Battle Console": {
+            "name": "Battle Console",
+            "category": "一般"
+        },
+        "Bio Signatures": {
+            "name": "Bio Signatures",
+            "category": "技術系探索技能"
+        },
+        "Botany": {
+            "name": "Botany",
+            "category": "Academic"
+        },
+        "Bullshit Detector": {
+            "name": "Bullshit Detector",
+            "category": "Interpersonal"
+        },
+        "Bureaucracy": {
+            "name": "官僚制度",
+            "category": "Interpersonal"
+        },
+        "Business Affairs": {
+            "name": "Business Affairs",
+            "category": "一般"
+        },
+        "Chemistry": {
+            "name": "化学",
+            "category": "Technical"
+        },
+        "Communications Intercept": {
+            "name": "Communications Intercept",
+            "category": "一般"
+        },
+        "Consciousness Simulation": {
+            "name": "Consciousness Simulation",
+            "category": "Special"
+        },
+        "Cop Talk": {
+            "name": "警官言葉",
+            "category": "Interpersonal"
+        },
+        "Cybe Culture": {
+            "name": "Cybe Culture",
+            "category": "学術系探索技能"
+        },
+        "Data Retrieval": {
+            "name": "Data Retrieval",
+            "category": "Technical"
+        },
+        "Decryption": {
+            "name": "Decryption",
+            "category": "技術系探索技能"
+        },
+        "Downside": {
+            "name": "Downside",
+            "category": "交渉系探索技能"
+        },
+        "Dreamsight": {
+            "name": "Dreamsight",
+            "category": "Special"
+        },
+        "Emotion Suppression (Balla)": {
+            "name": "Emotion Suppression (Balla)",
+            "category": "一般"
+        },
+        "Energy Signatures": {
+            "name": "Energy Signatures",
+            "category": "技術系探索技能"
+        },
+        "Enhancement Integration (Cybe)": {
+            "name": "Enhancement Integration (Cybe)",
+            "category": "一般"
+        },
+        "Evidence Collection": {
+            "name": "証拠収集",
+            "category": "Technical"
+        },
+        "Explosive Devices": {
+            "name": "Explosive Devices",
+            "category": "Technical"
+        },
+        "Farsight (Vas Mal)": {
+            "name": "Farsight (Vas Mal)",
+            "category": "一般"
+        },
+        "Filch": {
+            "name": "スリ",
+            "category": "一般"
+        },
+        "Flattery": {
+            "name": "巧言令色",
+            "category": "Interpersonal"
+        },
+        "Flirting": {
+            "name": "Flirting",
+            "category": "Interpersonal"
+        },
+        "Forensic Accounting": {
+            "name": "Forensic Accounting",
+            "category": "Academic"
+        },
+        "Forensic Anthropology": {
+            "name": "Forensic Anthropology",
+            "category": "Technical"
+        },
+        "Forensic Engineering": {
+            "name": "Forensic Engineering",
+            "category": "技術系探索技能"
+        },
+        "Forensic Psychology": {
+            "name": "Forensic Psychology",
+            "category": "Academic"
+        },
+        "Geology": {
+            "name": "地質学",
+            "category": "Academic"
+        },
+        "Ground Craft": {
+            "name": "Ground Craft",
+            "category": "一般"
+        },
+        "Health": {
+            "name": "体力",
+            "category": "一般"
+        },
+        "Helm Control": {
+            "name": "Helm Control",
+            "category": "一般"
+        },
+        "History, Balla": {
+            "name": "History, Balla",
+            "category": "学術系探索技能"
+        },
+        "History, Combine": {
+            "name": "History, Combine",
+            "category": "学術系探索技能"
+        },
+        "History, Durugh": {
+            "name": "History, Durugh",
+            "category": "学術系探索技能"
+        },
+        "History, Human": {
+            "name": "History, Human",
+            "category": "学術系探索技能"
+        },
+        "History, Kch-Thk": {
+            "name": "History, Kch-Thk",
+            "category": "学術系探索技能"
+        },
+        "History, Tavak": {
+            "name": "History, Tavak",
+            "category": "学術系探索技能"
+        },
+        "Holo Surveillance": {
+            "name": "Holo Surveillance",
+            "category": "技術系探索技能"
+        },
+        "Imaging": {
+            "name": "Imaging",
+            "category": "技術系探索技能"
+        },
+        "Impersonate": {
+            "name": "Impersonate",
+            "category": "Interpersonal"
+        },
+        "Industrial Design": {
+            "name": "Industrial Design",
+            "category": "技術系探索技能"
+        },
+        "Infiltration": {
+            "name": "Infiltration",
+            "category": "一般"
+        },
+        "Inspiration": {
+            "name": "Inspiration",
+            "category": "Interpersonal"
+        },
+        "Interrogation": {
+            "name": "尋問",
+            "category": "Interpersonal"
+        },
+        "Intimidation": {
+            "name": "威圧",
+            "category": "Interpersonal"
+        },
+        "Kinetics": {
+            "name": "Kinetics",
+            "category": "技術系探索技能"
+        },
+        "Law": {
+            "name": "法学",
+            "category": "Academic"
+        },
+        "Linguistics": {
+            "name": "Linguistics",
+            "category": "Academic"
+        },
+        "Medic": {
+            "name": "Medic",
+            "category": "一般"
+        },
+        "Migrate Consciousness (Kch-Thk)": {
+            "name": "Migrate Consciousness (Kch-Thk)",
+            "category": "一般"
+        },
+        "Naval Tactics": {
+            "name": "Naval Tactics",
+            "category": "一般"
+        },
+        "Negotiation": {
+            "name": "Negotiation",
+            "category": "Interpersonal"
+        },
+        "Neural Rewiring (Cybe)": {
+            "name": "Neural Rewiring (Cybe)",
+            "category": "一般"
+        },
+        "Neurosight": {
+            "name": "Neurosight",
+            "category": "Special"
+        },
+        "Pathway Amplification (Vas Mal)": {
+            "name": "Pathway Amplification (Vas Mal)",
+            "category": "一般"
+        },
+        "Phase (Durugh)": {
+            "name": "Phase (Durugh)",
+            "category": "一般"
+        },
+        "Preparedness": {
+            "name": "もしもの備え",
+            "category": "一般"
+        },
+        "Probability Override (Vas Mal)": {
+            "name": "Probability Override (Vas Mal)",
+            "category": "一般"
+        },
+        "Psychic Vitality (Vas Mal)": {
+            "name": "Psychic Vitality (Vas Mal)",
+            "category": "一般"
+        },
+        "Public Relations": {
+            "name": "Public Relations",
+            "category": "一般"
+        },
+        "Reassurance": {
+            "name": "安心",
+            "category": "Interpersonal"
+        },
+        "Resist Battle Frenzy (Tavak)": {
+            "name": "Resist Battle Frenzy (Tavak)",
+            "category": "一般"
+        },
+        "Respect": {
+            "name": "Respect",
+            "category": "Interpersonal"
+        },
+        "Scuffling": {
+            "name": "格闘",
+            "category": "一般"
+        },
+        "Sense Trouble": {
+            "name": "嫌な気配",
+            "category": "一般"
+        },
+        "Shooting": {
+            "name": "Shooting",
+            "category": "一般"
+        },
+        "Shuttle Craft": {
+            "name": "Shuttle Craft",
+            "category": "一般"
+        },
+        "Surveillance": {
+            "name": "Surveillance",
+            "category": "一般"
+        },
+        "Systems Design": {
+            "name": "Systems Design",
+            "category": "一般"
+        },
+        "Systems Repair": {
+            "name": "Systems Repair",
+            "category": "一般"
+        },
+        "Timesight": {
+            "name": "Timesight",
+            "category": "Special"
+        },
+        "Vas Mal Culture": {
+            "name": "Vas Mal Culture",
+            "category": "学術系探索技能"
+        },
+        "Viro Manipulation": {
+            "name": "Viro Manipulation",
+            "category": "一般"
+        },
+        "Virology": {
+            "name": "Virology",
+            "category": "技術系探索技能"
+        },
+        "Xenoculture": {
+            "name": "Xenoculture",
+            "category": "学術系探索技能"
+        },
+        "Zoology": {
+            "name": "Zoology",
+            "category": "学術系探索技能"
+        }
+    }
+}

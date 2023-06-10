@@ -1,0 +1,332 @@
+{
+    "label": "Ashen Stars Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "Anthropologie",
+            "category": "Akademisch"
+        },
+        "Archaeology": {
+            "name": "Archäologie",
+            "category": "Akademisch"
+        },
+        "Astronomy": {
+            "name": "Astronomy",
+            "category": "Technical"
+        },
+        "Athletics": {
+            "name": "Athletics",
+            "category": "Allgemein"
+        },
+        "Battle Console": {
+            "name": "Battle Console",
+            "category": "Allgemein"
+        },
+        "Bio Signatures": {
+            "name": "Bio Signatures",
+            "category": "Technical"
+        },
+        "Botany": {
+            "name": "Botany",
+            "category": "Akademisch"
+        },
+        "Bullshit Detector": {
+            "name": "Bullshit Detector",
+            "category": "Interpersonal"
+        },
+        "Bureaucracy": {
+            "name": "Bureaucracy",
+            "category": "Interpersonal"
+        },
+        "Business Affairs": {
+            "name": "Business Affairs",
+            "category": "Allgemein"
+        },
+        "Chemistry": {
+            "name": "Chemistry",
+            "category": "Technical"
+        },
+        "Communications Intercept": {
+            "name": "Communications Intercept",
+            "category": "Allgemein"
+        },
+        "Consciousness Simulation": {
+            "name": "Consciousness Simulation",
+            "category": "Special"
+        },
+        "Cop Talk": {
+            "name": "Cop Talk",
+            "category": "Interpersonal"
+        },
+        "Cybe Culture": {
+            "name": "Cybe Culture",
+            "category": "Akademisch"
+        },
+        "Data Retrieval": {
+            "name": "Data Retrieval",
+            "category": "Technical"
+        },
+        "Decryption": {
+            "name": "Decryption",
+            "category": "Technical"
+        },
+        "Downside": {
+            "name": "Downside",
+            "category": "Interpersonal"
+        },
+        "Dreamsight": {
+            "name": "Dreamsight",
+            "category": "Special"
+        },
+        "Emotion Suppression (Balla)": {
+            "name": "Emotion Suppression (Balla)",
+            "category": "Allgemein"
+        },
+        "Energy Signatures": {
+            "name": "Energy Signatures",
+            "category": "Technical"
+        },
+        "Enhancement Integration (Cybe)": {
+            "name": "Enhancement Integration (Cybe)",
+            "category": "Allgemein"
+        },
+        "Evidence Collection": {
+            "name": "Evidence Collection",
+            "category": "Technical"
+        },
+        "Explosive Devices": {
+            "name": "Explosive Devices",
+            "category": "Technical"
+        },
+        "Farsight (Vas Mal)": {
+            "name": "Farsight (Vas Mal)",
+            "category": "Allgemein"
+        },
+        "Filch": {
+            "name": "Filch",
+            "category": "Allgemein"
+        },
+        "Flattery": {
+            "name": "Flattery",
+            "category": "Interpersonal"
+        },
+        "Flirting": {
+            "name": "Flirting",
+            "category": "Interpersonal"
+        },
+        "Forensic Accounting": {
+            "name": "Forensic Accounting",
+            "category": "Akademisch"
+        },
+        "Forensic Anthropology": {
+            "name": "Forensic Anthropology",
+            "category": "Technical"
+        },
+        "Forensic Engineering": {
+            "name": "Forensic Engineering",
+            "category": "Technical"
+        },
+        "Forensic Psychology": {
+            "name": "Forensic Psychology",
+            "category": "Akademisch"
+        },
+        "Geology": {
+            "name": "Geology",
+            "category": "Akademisch"
+        },
+        "Ground Craft": {
+            "name": "Ground Craft",
+            "category": "Allgemein"
+        },
+        "Health": {
+            "name": "Health",
+            "category": "Allgemein"
+        },
+        "Helm Control": {
+            "name": "Helm Control",
+            "category": "Allgemein"
+        },
+        "History, Balla": {
+            "name": "History, Balla",
+            "category": "Akademisch"
+        },
+        "History, Combine": {
+            "name": "History, Combine",
+            "category": "Akademisch"
+        },
+        "History, Durugh": {
+            "name": "History, Durugh",
+            "category": "Akademisch"
+        },
+        "History, Human": {
+            "name": "History, Human",
+            "category": "Akademisch"
+        },
+        "History, Kch-Thk": {
+            "name": "History, Kch-Thk",
+            "category": "Akademisch"
+        },
+        "History, Tavak": {
+            "name": "History, Tavak",
+            "category": "Akademisch"
+        },
+        "Holo Surveillance": {
+            "name": "Holo Surveillance",
+            "category": "Technical"
+        },
+        "Imaging": {
+            "name": "Imaging",
+            "category": "Technical"
+        },
+        "Impersonate": {
+            "name": "Impersonate",
+            "category": "Interpersonal"
+        },
+        "Industrial Design": {
+            "name": "Industrial Design",
+            "category": "Technical"
+        },
+        "Infiltration": {
+            "name": "Infiltration",
+            "category": "Allgemein"
+        },
+        "Inspiration": {
+            "name": "Inspiration",
+            "category": "Interpersonal"
+        },
+        "Interrogation": {
+            "name": "Interrogation",
+            "category": "Interpersonal"
+        },
+        "Intimidation": {
+            "name": "Intimidation",
+            "category": "Interpersonal"
+        },
+        "Kinetics": {
+            "name": "Kinetics",
+            "category": "Technical"
+        },
+        "Law": {
+            "name": "Law",
+            "category": "Akademisch"
+        },
+        "Linguistics": {
+            "name": "Linguistics",
+            "category": "Akademisch"
+        },
+        "Medic": {
+            "name": "Medic",
+            "category": "Allgemein"
+        },
+        "Migrate Consciousness (Kch-Thk)": {
+            "name": "Migrate Consciousness (Kch-Thk)",
+            "category": "Allgemein"
+        },
+        "Naval Tactics": {
+            "name": "Naval Tactics",
+            "category": "Allgemein"
+        },
+        "Negotiation": {
+            "name": "Negotiation",
+            "category": "Interpersonal"
+        },
+        "Neural Rewiring (Cybe)": {
+            "name": "Neural Rewiring (Cybe)",
+            "category": "Allgemein"
+        },
+        "Neurosight": {
+            "name": "Neurosight",
+            "category": "Special"
+        },
+        "Pathway Amplification (Vas Mal)": {
+            "name": "Pathway Amplification (Vas Mal)",
+            "category": "Allgemein"
+        },
+        "Phase (Durugh)": {
+            "name": "Phase (Durugh)",
+            "category": "Allgemein"
+        },
+        "Preparedness": {
+            "name": "Preparedness",
+            "category": "Allgemein"
+        },
+        "Probability Override (Vas Mal)": {
+            "name": "Probability Override (Vas Mal)",
+            "category": "Allgemein"
+        },
+        "Psychic Vitality (Vas Mal)": {
+            "name": "Psychic Vitality (Vas Mal)",
+            "category": "Allgemein"
+        },
+        "Public Relations": {
+            "name": "Public Relations",
+            "category": "Allgemein"
+        },
+        "Reassurance": {
+            "name": "Reassurance",
+            "category": "Interpersonal"
+        },
+        "Resist Battle Frenzy (Tavak)": {
+            "name": "Resist Battle Frenzy (Tavak)",
+            "category": "Allgemein"
+        },
+        "Respect": {
+            "name": "Respect",
+            "category": "Interpersonal"
+        },
+        "Scuffling": {
+            "name": "Scuffling",
+            "category": "Allgemein"
+        },
+        "Sense Trouble": {
+            "name": "Sense Trouble",
+            "category": "Allgemein"
+        },
+        "Shooting": {
+            "name": "Shooting",
+            "category": "Allgemein"
+        },
+        "Shuttle Craft": {
+            "name": "Shuttle Craft",
+            "category": "Allgemein"
+        },
+        "Surveillance": {
+            "name": "Surveillance",
+            "category": "Allgemein"
+        },
+        "Systems Design": {
+            "name": "Systems Design",
+            "category": "Allgemein"
+        },
+        "Systems Repair": {
+            "name": "Systems Repair",
+            "category": "Allgemein"
+        },
+        "Timesight": {
+            "name": "Timesight",
+            "category": "Special"
+        },
+        "Vas Mal Culture": {
+            "name": "Vas Mal Culture",
+            "category": "Akademisch"
+        },
+        "Viro Manipulation": {
+            "name": "Viro Manipulation",
+            "category": "Allgemein"
+        },
+        "Virology": {
+            "name": "Virology",
+            "category": "Technical"
+        },
+        "Xenoculture": {
+            "name": "Xenoculture",
+            "category": "Akademisch"
+        },
+        "Zoology": {
+            "name": "Zoology",
+            "category": "Akademisch"
+        }
+    }
+}

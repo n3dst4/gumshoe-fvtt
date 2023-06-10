@@ -1,0 +1,252 @@
+{
+    "label": "Night's Black Agents Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Accounting": {
+            "name": "Accounting",
+            "category": "Academic"
+        },
+        "Archaeology": {
+            "name": "考古学",
+            "category": "Academic"
+        },
+        "Architecture": {
+            "name": "建築学",
+            "category": "Academic"
+        },
+        "Art History": {
+            "name": "美術史",
+            "category": "Academic"
+        },
+        "Astronomy": {
+            "name": "天文学",
+            "category": "Technical"
+        },
+        "Athletics": {
+            "name": "運動",
+            "category": "一般"
+        },
+        "Bullshit Detector": {
+            "name": "Bullshit Detector",
+            "category": "Interpersonal"
+        },
+        "Bureaucracy": {
+            "name": "官僚制度",
+            "category": "Interpersonal"
+        },
+        "Chemistry": {
+            "name": "化学",
+            "category": "Technical"
+        },
+        "Conceal": {
+            "name": "隠蔽",
+            "category": "一般"
+        },
+        "Cop Talk": {
+            "name": "警官言葉",
+            "category": "Interpersonal"
+        },
+        "Cover": {
+            "name": "Cover",
+            "category": "一般"
+        },
+        "Criminology": {
+            "name": "Criminology",
+            "category": "学術系探索技能"
+        },
+        "Cryptography": {
+            "name": "暗号学",
+            "category": "Technical"
+        },
+        "Data Recovery": {
+            "name": "Data Recovery",
+            "category": "技術系探索技能"
+        },
+        "Diagnosis": {
+            "name": "Diagnosis",
+            "category": "学術系探索技能"
+        },
+        "Digital Intrusion": {
+            "name": "Digital Intrusion",
+            "category": "一般"
+        },
+        "Disguise": {
+            "name": "変装",
+            "category": "一般"
+        },
+        "Driving": {
+            "name": "運転",
+            "category": "一般"
+        },
+        "Electronic Surveillance": {
+            "name": "Electronic Surveillance",
+            "category": "Technical"
+        },
+        "Explosive Devices": {
+            "name": "Explosive Devices",
+            "category": "一般"
+        },
+        "Filch": {
+            "name": "スリ",
+            "category": "一般"
+        },
+        "Flattery": {
+            "name": "巧言令色",
+            "category": "Interpersonal"
+        },
+        "Flirting": {
+            "name": "Flirting",
+            "category": "Interpersonal"
+        },
+        "Forgery": {
+            "name": "Forgery",
+            "category": "Technical"
+        },
+        "Gambling": {
+            "name": "Gambling",
+            "category": "一般"
+        },
+        "Hand-to-Hand": {
+            "name": "Hand-to-Hand",
+            "category": "一般"
+        },
+        "Health": {
+            "name": "体力",
+            "category": "一般"
+        },
+        "High Society": {
+            "name": "High Society",
+            "category": "Interpersonal"
+        },
+        "History": {
+            "name": "歴史",
+            "category": "Academic"
+        },
+        "Human Terrain": {
+            "name": "Human Terrain",
+            "category": "学術系探索技能"
+        },
+        "Infiltration": {
+            "name": "Infiltration",
+            "category": "一般"
+        },
+        "Interrogation": {
+            "name": "尋問",
+            "category": "Interpersonal"
+        },
+        "Intimidation": {
+            "name": "威圧",
+            "category": "Interpersonal"
+        },
+        "Languages": {
+            "name": "語学",
+            "category": "Academic"
+        },
+        "Law": {
+            "name": "法学",
+            "category": "Academic"
+        },
+        "Mechanics": {
+            "name": "機械修理",
+            "category": "一般"
+        },
+        "Medic": {
+            "name": "Medic",
+            "category": "一般"
+        },
+        "Military Science": {
+            "name": "Military Science",
+            "category": "Academic"
+        },
+        "Negotiation": {
+            "name": "Negotiation",
+            "category": "Interpersonal"
+        },
+        "Network": {
+            "name": "Network",
+            "category": "一般"
+        },
+        "Notice": {
+            "name": "Notice",
+            "category": "Technical"
+        },
+        "Occult Studies": {
+            "name": "Occult Studies",
+            "category": "Academic"
+        },
+        "Outdoor Survival": {
+            "name": "Outdoor Survival",
+            "category": "Technical"
+        },
+        "Pharmacy": {
+            "name": "Pharmacy",
+            "category": "技術系探索技能"
+        },
+        "Photography": {
+            "name": "撮影",
+            "category": "Technical"
+        },
+        "Piloting": {
+            "name": "操縦",
+            "category": "一般"
+        },
+        "Preparedness": {
+            "name": "もしもの備え",
+            "category": "一般"
+        },
+        "Reassurance": {
+            "name": "安心",
+            "category": "Interpersonal"
+        },
+        "Research": {
+            "name": "Research",
+            "category": "Academic"
+        },
+        "Sense Trouble": {
+            "name": "嫌な気配",
+            "category": "一般"
+        },
+        "Shooting": {
+            "name": "Shooting",
+            "category": "一般"
+        },
+        "Shrink": {
+            "name": "Shrink",
+            "category": "一般"
+        },
+        "Stability": {
+            "name": "安定度",
+            "category": "一般"
+        },
+        "Streetwise": {
+            "name": "裏社会",
+            "category": "Interpersonal"
+        },
+        "Surveillance": {
+            "name": "Surveillance",
+            "category": "一般"
+        },
+        "Tradecraft": {
+            "name": "Tradecraft",
+            "category": "Interpersonal"
+        },
+        "Traffic Analysis": {
+            "name": "Traffic Analysis",
+            "category": "Technical"
+        },
+        "Urban Survival": {
+            "name": "Urban Survival",
+            "category": "技術系探索技能"
+        },
+        "Vampirology": {
+            "name": "Vampirology",
+            "category": "学術系探索技能"
+        },
+        "Weapons": {
+            "name": "武器",
+            "category": "一般"
+        }
+    }
+}
