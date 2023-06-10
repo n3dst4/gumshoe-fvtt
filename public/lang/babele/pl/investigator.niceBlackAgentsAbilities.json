@@ -1,7 +1,7 @@
 {
     "label": "Umiejętności agenta",
     "mapping": {
-        "category": "kategorie.danych"
+        "category": "system.category"
     },
     "entries": {
         "Accounting": {
@@ -48,9 +48,29 @@
             "name": "Sprawy policyjne",
             "category": "Interpersonalne"
         },
+        "Cover": {
+            "name": "Cover",
+            "category": "Ogólne"
+        },
+        "Criminology": {
+            "name": "Kryminologia",
+            "category": "Naukowe"
+        },
         "Cryptography": {
             "name": "Kryptologia",
             "category": "Techniczne"
+        },
+        "Data Recovery": {
+            "name": "Data Recovery",
+            "category": "Techniczne"
+        },
+        "Diagnosis": {
+            "name": "Diagnosis",
+            "category": "Naukowe"
+        },
+        "Digital Intrusion": {
+            "name": "Digital Intrusion",
+            "category": "Ogólne"
         },
         "Disguise": {
             "name": "Przebrania",
@@ -63,6 +83,10 @@
         "Electronic Surveillance": {
             "name": "Naprawy elektryczne",
             "category": "Techniczne"
+        },
+        "Explosive Devices": {
+            "name": "urządzenia wybuchowe",
+            "category": "Ogólne"
         },
         "Filch": {
             "name": "Zwinne palce",
@@ -98,6 +122,10 @@
         },
         "History": {
             "name": "Historia",
+            "category": "Naukowe"
+        },
+        "Human Terrain": {
+            "name": "Human Terrain",
             "category": "Naukowe"
         },
         "Infiltration": {
@@ -152,6 +180,10 @@
             "name": "Umiejętności przetrwania",
             "category": "Techniczne"
         },
+        "Pharmacy": {
+            "name": "Aptekarstwo",
+            "category": "Techniczne"
+        },
         "Photography": {
             "name": "Fotografia",
             "category": "Techniczne"
@@ -203,6 +235,18 @@
         "Traffic Analysis": {
             "name": "Analiza ruchu",
             "category": "Techniczne"
+        },
+        "Urban Survival": {
+            "name": "Urban Survival",
+            "category": "Techniczne"
+        },
+        "Vampirology": {
+            "name": "Vampirology",
+            "category": "Naukowe"
+        },
+        "Weapons": {
+            "name": "Bronie",
+            "category": "Ogólne"
         }
     }
 }

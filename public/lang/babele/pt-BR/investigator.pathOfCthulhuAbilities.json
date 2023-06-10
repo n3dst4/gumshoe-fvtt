@@ -4,11 +4,15 @@
         "category": "data.category"
     },
     "entries": {
+        "Accounting": {
+            "name": "Contabilidade",
+            "category": "Acadêmica"
+        },
         "Anthropology": {
             "name": "Antropologia",
             "category": "Acadêmica"
         },
-        "Archeology": {
+        "Archaeology": {
             "name": "Arqueologia",
             "category": "Acadêmica"
         },
@@ -16,9 +20,17 @@
             "name": "Arquitetura",
             "category": "Acadêmica"
         },
+        "Art": {
+            "name": "Arte",
+            "category": "Técnica"
+        },
         "Art History": {
             "name": "História da Arte",
             "category": "Acadêmica"
+        },
+        "Assess Honesty": {
+            "name": "Avaliar Honestidade",
+            "category": "Interpessoal"
         },
         "Astronomy": {
             "name": "Astronomia",
@@ -28,6 +40,14 @@
             "name": "Atletismo",
             "category": "Geral"
         },
+        "Bargain": {
+            "name": "Barganha",
+            "category": "Interpessoal"
+        },
+        "Biology": {
+            "name": "Biologia",
+            "category": "Acadêmica"
+        },
         "Bureaucracy": {
             "name": "Burocracia",
             "category": "Interpessoal"
@@ -35,6 +55,10 @@
         "Chemistry": {
             "name": "Química",
             "category": "Técnica"
+        },
+        "Chtulhu Mythos": {
+            "name": "Chtulhu Mythos",
+            "category": "Acadêmica"
         },
         "Conceal": {
             "name": "Ocultação",
@@ -48,6 +72,10 @@
             "name": "Ofício",
             "category": "Técnica"
         },
+        "Credit Rating": {
+            "name": "Credit Rating",
+            "category": "Interpessoal"
+        },
         "Cryptography": {
             "name": "Criptografia",
             "category": "Acadêmica"
@@ -58,6 +86,10 @@
         },
         "Driving": {
             "name": "Condução",
+            "category": "Geral"
+        },
+        "Electrical Repair": {
+            "name": "Electrical Repair",
             "category": "Geral"
         },
         "Evidence Collection": {
@@ -72,6 +104,10 @@
             "name": "Punga",
             "category": "Geral"
         },
+        "Firearms": {
+            "name": "Armas de Fogo",
+            "category": "Geral"
+        },
         "First Aid": {
             "name": "Primeiros Socorros",
             "category": "Geral"
@@ -83,6 +119,10 @@
         "Fleeing": {
             "name": "Fuga",
             "category": "Geral"
+        },
+        "Forensics": {
+            "name": "Ciência Forense",
+            "category": "Técnica"
         },
         "Geology": {
             "name": "Geologia",
@@ -116,21 +156,45 @@
             "name": "Direito",
             "category": "Acadêmica"
         },
+        "Library Use": {
+            "name": "Usar Biblioteca",
+            "category": "Acadêmica"
+        },
         "Locksmith": {
             "name": "Arrombamento",
             "category": "Técnica"
         },
-        "Mechanics": {
+        "Mechanical Repair": {
             "name": "Reparos Mecânicos",
             "category": "Geral"
+        },
+        "Medicine": {
+            "name": "Medicina",
+            "category": "Acadêmica"
+        },
+        "Occult": {
+            "name": "Ocultismo",
+            "category": "Acadêmica"
         },
         "Oral History": {
             "name": "História Oral",
             "category": "Interpessoal"
         },
+        "Outdoorsman": {
+            "name": "Outdoorsman",
+            "category": "Técnica"
+        },
+        "Pharmacy": {
+            "name": "Farmácia",
+            "category": "Técnica"
+        },
         "Photography": {
             "name": "Fotografia",
             "category": "Técnica"
+        },
+        "Physics": {
+            "name": "Física",
+            "category": "Acadêmica"
         },
         "Piloting": {
             "name": "Pilotagem",
@@ -138,6 +202,10 @@
         },
         "Preparedness": {
             "name": "Precaução",
+            "category": "Geral"
+        },
+        "Psychoanalysis": {
+            "name": "Psicanálise",
             "category": "Geral"
         },
         "Reassurance": {
@@ -148,6 +216,10 @@
             "name": "Equitação",
             "category": "Geral"
         },
+        "Sanity": {
+            "name": "Sanity",
+            "category": "Geral"
+        },
         "Scuffling": {
             "name": "Briga",
             "category": "Geral"
@@ -156,13 +228,29 @@
             "name": "Sentir Perigo",
             "category": "Geral"
         },
+        "Shadowing": {
+            "name": "Perseguição",
+            "category": "Geral"
+        },
         "Stability": {
             "name": "Estabilidade",
+            "category": "Geral"
+        },
+        "Stealth": {
+            "name": "Furtividade",
             "category": "Geral"
         },
         "Streetwise": {
             "name": "Manha",
             "category": "Interpessoal"
+        },
+        "Theology": {
+            "name": "Teologia",
+            "category": "Acadêmica"
+        },
+        "Weapons": {
+            "name": "Armas Brancas",
+            "category": "Geral"
         }
     }
 }

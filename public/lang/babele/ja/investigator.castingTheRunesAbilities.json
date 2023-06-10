@@ -1,0 +1,260 @@
+{
+    "label": "Casting the Runes Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "人類学",
+            "category": "Academic"
+        },
+        "Archaeology": {
+            "name": "考古学",
+            "category": "Academic"
+        },
+        "Architecture": {
+            "name": "建築学",
+            "category": "Academic"
+        },
+        "Art": {
+            "name": "Art",
+            "category": "Technical"
+        },
+        "Art History": {
+            "name": "美術史",
+            "category": "Academic"
+        },
+        "Assess Honesty": {
+            "name": "Assess Honesty",
+            "category": "Interpersonal"
+        },
+        "Astronomy": {
+            "name": "天文学",
+            "category": "Technical"
+        },
+        "Athletics": {
+            "name": "運動",
+            "category": "一般"
+        },
+        "Bargain": {
+            "name": "Bargain",
+            "category": "Interpersonal"
+        },
+        "Biology": {
+            "name": "Biology",
+            "category": "Academic"
+        },
+        "Bookkeeping": {
+            "name": "Bookkeeping",
+            "category": "Technical"
+        },
+        "Bureaucracy": {
+            "name": "官僚制度",
+            "category": "一般"
+        },
+        "Charm": {
+            "name": "Charm",
+            "category": "Interpersonal"
+        },
+        "Chemistry": {
+            "name": "化学",
+            "category": "Technical"
+        },
+        "Class": {
+            "name": "Class",
+            "category": "Interpersonal"
+        },
+        "Conceal": {
+            "name": "隠蔽",
+            "category": "一般"
+        },
+        "Connections": {
+            "name": "Connections",
+            "category": "一般"
+        },
+        "Contemplation": {
+            "name": "Contemplation",
+            "category": "Academic"
+        },
+        "Craft": {
+            "name": "製作",
+            "category": "Technical"
+        },
+        "Criminology": {
+            "name": "Criminology",
+            "category": "Academic"
+        },
+        "Cryptography": {
+            "name": "暗号学",
+            "category": "Technical"
+        },
+        "Demolition": {
+            "name": "Demolition",
+            "category": "一般"
+        },
+        "Disguise": {
+            "name": "変装",
+            "category": "一般"
+        },
+        "Driving": {
+            "name": "運転",
+            "category": "一般"
+        },
+        "Evidence Collection": {
+            "name": "証拠収集",
+            "category": "Technical"
+        },
+        "Fieldcraft": {
+            "name": "Fieldcraft",
+            "category": "Technical"
+        },
+        "Filch": {
+            "name": "スリ",
+            "category": "一般"
+        },
+        "Firearms": {
+            "name": "Firearms",
+            "category": "一般"
+        },
+        "First Aid": {
+            "name": "応急手当て",
+            "category": "一般"
+        },
+        "Fleeing": {
+            "name": "逃走",
+            "category": "一般"
+        },
+        "Folklore": {
+            "name": "Folklore",
+            "category": "Academic"
+        },
+        "Forensics": {
+            "name": "Forensics",
+            "category": "Technical"
+        },
+        "Gambling": {
+            "name": "Gambling",
+            "category": "一般"
+        },
+        "Geology": {
+            "name": "地質学",
+            "category": "Academic"
+        },
+        "Health": {
+            "name": "体力",
+            "category": "一般"
+        },
+        "History": {
+            "name": "歴史",
+            "category": "Academic"
+        },
+        "Hypnosis": {
+            "name": "催眠術",
+            "category": "一般"
+        },
+        "Interrogation": {
+            "name": "尋問",
+            "category": "Interpersonal"
+        },
+        "Intimidation": {
+            "name": "威圧",
+            "category": "Interpersonal"
+        },
+        "Language": {
+            "name": "Language",
+            "category": "Academic"
+        },
+        "Law": {
+            "name": "法学",
+            "category": "Academic"
+        },
+        "Library Use": {
+            "name": "Library Use",
+            "category": "Academic"
+        },
+        "Mechanics": {
+            "name": "機械修理",
+            "category": "一般"
+        },
+        "Medicine": {
+            "name": "Medicine",
+            "category": "Academic"
+        },
+        "Navigation": {
+            "name": "Navigation",
+            "category": "一般"
+        },
+        "Occult": {
+            "name": "Occult",
+            "category": "Academic"
+        },
+        "Pharmacy": {
+            "name": "Pharmacy",
+            "category": "Technical"
+        },
+        "Photography": {
+            "name": "撮影",
+            "category": "Technical"
+        },
+        "Physics": {
+            "name": "Physics",
+            "category": "Academic"
+        },
+        "Preparedness": {
+            "name": "もしもの備え",
+            "category": "一般"
+        },
+        "Psychoanalysis": {
+            "name": "Psychoanalysis",
+            "category": "一般"
+        },
+        "Reassurance": {
+            "name": "安心",
+            "category": "Interpersonal"
+        },
+        "Riding": {
+            "name": "騎乗",
+            "category": "一般"
+        },
+        "Sailing": {
+            "name": "Sailing",
+            "category": "一般"
+        },
+        "Scuffling": {
+            "name": "格闘",
+            "category": "一般"
+        },
+        "Sense Trouble": {
+            "name": "嫌な気配",
+            "category": "一般"
+        },
+        "Shadowing": {
+            "name": "Shadowing",
+            "category": "一般"
+        },
+        "Stability": {
+            "name": "安定度",
+            "category": "一般"
+        },
+        "Stealth": {
+            "name": "不可視",
+            "category": "一般"
+        },
+        "Streetwise": {
+            "name": "裏社会",
+            "category": "Interpersonal"
+        },
+        "Theology": {
+            "name": "Theology",
+            "category": "Academic"
+        },
+        "Trade": {
+            "name": "Trade",
+            "category": "一般"
+        },
+        "Weapons": {
+            "name": "武器",
+            "category": "一般"
+        }
+    }
+}

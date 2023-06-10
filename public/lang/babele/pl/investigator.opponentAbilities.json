@@ -1,7 +1,7 @@
 {
     "label": "Umiejętności przeciwnika",
     "mapping": {
-        "category": "kategorie.danych"
+        "category": "system.category"
     },
     "entries": {
         "Athletics": {

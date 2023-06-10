@@ -1,9 +1,13 @@
 {
-    "label": "Path of Cthulhu Abilities",
+    "label": "Trail of Cthulhu Abilities",
     "mapping": {
-        "category": "datos.categoria"
+        "category": "system.category"
     },
     "entries": {
+        "Accounting": {
+            "name": "Accounting",
+            "category": "Académicas"
+        },
         "Anthropology": {
             "name": "Antropología",
             "category": "Académicas"
@@ -16,9 +20,17 @@
             "name": "Arquitectura",
             "category": "Académicas"
         },
+        "Art": {
+            "name": "Art",
+            "category": "Técnicas"
+        },
         "Art History": {
             "name": "Historia del arte",
             "category": "Académicas"
+        },
+        "Assess Honesty": {
+            "name": "Assess Honesty",
+            "category": "Interpersonales"
         },
         "Astronomy": {
             "name": "Astronomía",
@@ -28,6 +40,14 @@
             "name": "Atletismo",
             "category": "Generales"
         },
+        "Bargain": {
+            "name": "Bargain",
+            "category": "Interpersonales"
+        },
+        "Biology": {
+            "name": "Biology",
+            "category": "Académicas"
+        },
         "Bureaucracy": {
             "name": "Burocracia",
             "category": "Interpersonales"
@@ -35,6 +55,10 @@
         "Chemistry": {
             "name": "Química",
             "category": "Técnicas"
+        },
+        "Chtulhu Mythos": {
+            "name": "Chtulhu Mythos",
+            "category": "Académicas"
         },
         "Conceal": {
             "name": "Ocultar",
@@ -48,6 +72,10 @@
             "name": "Habilidad artesanal",
             "category": "Técnicas"
         },
+        "Credit Rating": {
+            "name": "Credit Rating",
+            "category": "Interpersonales"
+        },
         "Cryptography": {
             "name": "Criptografía",
             "category": "Académicas"
@@ -57,7 +85,11 @@
             "category": "Generales"
         },
         "Driving": {
-            "name": "Conducir",
+            "name": "Conducción",
+            "category": "Generales"
+        },
+        "Electrical Repair": {
+            "name": "Electrical Repair",
             "category": "Generales"
         },
         "Evidence Collection": {
@@ -72,17 +104,25 @@
             "name": "Birlar",
             "category": "Generales"
         },
+        "Firearms": {
+            "name": "Firearms",
+            "category": "Generales"
+        },
         "First Aid": {
             "name": "Primeros auxilios",
             "category": "Generales"
         },
         "Flattery": {
-            "name": "Adular",
+            "name": "Adulación",
             "category": "Interpersonales"
         },
         "Fleeing": {
             "name": "Huida",
             "category": "Generales"
+        },
+        "Forensics": {
+            "name": "Forensics",
+            "category": "Técnicas"
         },
         "Geology": {
             "name": "Geología",
@@ -116,21 +156,45 @@
             "name": "Derecho",
             "category": "Académicas"
         },
+        "Library Use": {
+            "name": "Library Use",
+            "category": "Académicas"
+        },
         "Locksmith": {
             "name": "Cerrajería",
             "category": "Técnicas"
         },
-        "Mechanics": {
-            "name": "Mecánica",
+        "Mechanical Repair": {
+            "name": "Mechanical Repair",
             "category": "Generales"
         },
+        "Medicine": {
+            "name": "Medicine",
+            "category": "Académicas"
+        },
+        "Occult": {
+            "name": "Occult",
+            "category": "Académicas"
+        },
         "Oral History": {
-            "name": "Historia horal",
+            "name": "Historia oral",
             "category": "Interpersonales"
+        },
+        "Outdoorsman": {
+            "name": "Outdoorsman",
+            "category": "Técnicas"
+        },
+        "Pharmacy": {
+            "name": "Pharmacy",
+            "category": "Técnicas"
         },
         "Photography": {
             "name": "Fotografía",
             "category": "Técnicas"
+        },
+        "Physics": {
+            "name": "Physics",
+            "category": "Académicas"
         },
         "Piloting": {
             "name": "Pilotaje",
@@ -140,12 +204,20 @@
             "name": "Preparación",
             "category": "Generales"
         },
+        "Psychoanalysis": {
+            "name": "Psychoanalysis",
+            "category": "Generales"
+        },
         "Reassurance": {
-            "name": "Consolar",
+            "name": "Consuelo",
             "category": "Interpersonales"
         },
         "Riding": {
             "name": "Monta",
+            "category": "Generales"
+        },
+        "Sanity": {
+            "name": "Sanity",
             "category": "Generales"
         },
         "Scuffling": {
@@ -156,13 +228,29 @@
             "name": "Sentir el peligro",
             "category": "Generales"
         },
+        "Shadowing": {
+            "name": "Shadowing",
+            "category": "Generales"
+        },
         "Stability": {
             "name": "Estabilidad",
+            "category": "Generales"
+        },
+        "Stealth": {
+            "name": "Sigilo",
             "category": "Generales"
         },
         "Streetwise": {
             "name": "Bajos fondos",
             "category": "Interpersonales"
+        },
+        "Theology": {
+            "name": "Theology",
+            "category": "Académicas"
+        },
+        "Weapons": {
+            "name": "Armas",
+            "category": "Generales"
         }
     }
 }

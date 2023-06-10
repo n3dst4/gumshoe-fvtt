@@ -1,0 +1,30 @@
+{
+    "label": "Opponent Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Athletics": {
+            "name": "運動",
+            "category": "一般"
+        },
+        "Health": {
+            "name": "体力",
+            "category": "一般"
+        },
+        "Melee Attack": {
+            "name": "Melee Attack"
+        },
+        "Ranged Attack": {
+            "name": "Ranged Attack"
+        },
+        "Scuffling": {
+            "name": "格闘",
+            "category": "一般"
+        },
+        "Shooting": {
+            "name": "Shooting",
+            "category": "一般"
+        }
+    }
+}

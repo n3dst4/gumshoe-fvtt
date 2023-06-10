@@ -1,0 +1,196 @@
+{
+    "label": "Fear Itself Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Athletics": {
+            "name": "運動",
+            "category": "一般"
+        },
+        "Aura Reading": {
+            "name": "Aura Reading",
+            "category": "Psychic Powers"
+        },
+        "Bullshit Detector": {
+            "name": "Bullshit Detector",
+            "category": "Interpersonal"
+        },
+        "Bureaucracy": {
+            "name": "官僚制度",
+            "category": "Interpersonal"
+        },
+        "Computer Use": {
+            "name": "Computer Use",
+            "category": "技術系探索技能"
+        },
+        "Cop Talk": {
+            "name": "警官言葉",
+            "category": "Interpersonal"
+        },
+        "Driving": {
+            "name": "運転",
+            "category": "一般"
+        },
+        "Filch": {
+            "name": "スリ",
+            "category": "一般"
+        },
+        "Flattery": {
+            "name": "巧言令色",
+            "category": "Interpersonal"
+        },
+        "Fleeing": {
+            "name": "逃走",
+            "category": "一般"
+        },
+        "Flirting": {
+            "name": "Flirting",
+            "category": "Interpersonal"
+        },
+        "Health": {
+            "name": "体力",
+            "category": "一般"
+        },
+        "Hiding": {
+            "name": "Hiding",
+            "category": "一般"
+        },
+        "History": {
+            "name": "歴史",
+            "category": "Academic"
+        },
+        "Humanities": {
+            "name": "Humanities",
+            "category": "学術系探索技能"
+        },
+        "Impersonate": {
+            "name": "Impersonate",
+            "category": "Interpersonal"
+        },
+        "Infiltration": {
+            "name": "Infiltration",
+            "category": "一般"
+        },
+        "Interrogation": {
+            "name": "尋問",
+            "category": "Interpersonal"
+        },
+        "Intimidation": {
+            "name": "威圧",
+            "category": "Interpersonal"
+        },
+        "Investigative Procedure": {
+            "name": "Investigative Procedure",
+            "category": "技術系探索技能"
+        },
+        "Languages": {
+            "name": "語学",
+            "category": "Academic"
+        },
+        "Law": {
+            "name": "法学",
+            "category": "Academic"
+        },
+        "Mechanics": {
+            "name": "機械修理",
+            "category": "一般"
+        },
+        "Medic": {
+            "name": "Medic",
+            "category": "一般"
+        },
+        "Medicine": {
+            "name": "Medicine",
+            "category": "Technical"
+        },
+        "Medium": {
+            "name": "Medium",
+            "category": "Psychic Powers"
+        },
+        "Messenger": {
+            "name": "Messenger",
+            "category": "Psychic Powers"
+        },
+        "Negotiation": {
+            "name": "Negotiation",
+            "category": "Interpersonal"
+        },
+        "Notice": {
+            "name": "Notice",
+            "category": "Technical"
+        },
+        "Occult Studies": {
+            "name": "Occult Studies",
+            "category": "Academic"
+        },
+        "Outdoor Survival": {
+            "name": "Outdoor Survival",
+            "category": "Technical"
+        },
+        "Photography": {
+            "name": "撮影",
+            "category": "Technical"
+        },
+        "Premonitions": {
+            "name": "Premonitions",
+            "category": "Psychic Powers"
+        },
+        "Preparedness": {
+            "name": "もしもの備え",
+            "category": "一般"
+        },
+        "Reassurance": {
+            "name": "安心",
+            "category": "Interpersonal"
+        },
+        "Remote Viewing": {
+            "name": "Remote Viewing",
+            "category": "Psychic Powers"
+        },
+        "Research": {
+            "name": "Research",
+            "category": "Academic"
+        },
+        "Science": {
+            "name": "Science",
+            "category": "技術系探索技能"
+        },
+        "Scuffling": {
+            "name": "格闘",
+            "category": "一般"
+        },
+        "Sense Trouble": {
+            "name": "嫌な気配",
+            "category": "一般"
+        },
+        "Sensitive": {
+            "name": "Sensitive",
+            "category": "Psychic Powers"
+        },
+        "Shooting": {
+            "name": "Shooting",
+            "category": "一般"
+        },
+        "Shrink": {
+            "name": "Shrink",
+            "category": "一般"
+        },
+        "Stability": {
+            "name": "安定度",
+            "category": "一般"
+        },
+        "Streetwise": {
+            "name": "裏社会",
+            "category": "Interpersonal"
+        },
+        "Synchronicity": {
+            "name": "Synchronicity",
+            "category": "Psychic Powers"
+        },
+        "Trivia": {
+            "name": "Trivia",
+            "category": "Academic"
+        }
+    }
+}

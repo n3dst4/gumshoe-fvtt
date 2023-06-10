@@ -1,14 +1,18 @@
 {
     "label": "Scieżka umiejętności Cthulhu",
     "mapping": {
-        "category": "kategorie.danych"
+        "category": "system.category"
     },
     "entries": {
+        "Accounting": {
+            "name": "Księgowość",
+            "category": "Naukowe"
+        },
         "Anthropology": {
             "name": "Antropologia ",
             "category": "Naukowe"
         },
-        "Archeology": {
+        "Archaeology": {
             "name": "Archeologia",
             "category": "Naukowe"
         },
@@ -16,9 +20,17 @@
             "name": "Architektura",
             "category": "Naukowe"
         },
+        "Art": {
+            "name": "Sztuka",
+            "category": "Techniczne"
+        },
         "Art History": {
             "name": "Historia sztuki",
             "category": "Naukowe"
+        },
+        "Assess Honesty": {
+            "name": "Ocena szczerości",
+            "category": "Interpersonalne"
         },
         "Astronomy": {
             "name": "Astronomia",
@@ -28,6 +40,14 @@
             "name": "Wysportowanie",
             "category": "Ogólne"
         },
+        "Bargain": {
+            "name": "Targowanie się",
+            "category": "Interpersonalne"
+        },
+        "Biology": {
+            "name": "Biologia",
+            "category": "Naukowe"
+        },
         "Bureaucracy": {
             "name": "Biurokracja",
             "category": "Interpersonalne"
@@ -35,6 +55,10 @@
         "Chemistry": {
             "name": "Chemia",
             "category": "Techniczne"
+        },
+        "Chtulhu Mythos": {
+            "name": "Chtulhu Mythos",
+            "category": "Naukowe"
         },
         "Conceal": {
             "name": "Ukrywanie się ",
@@ -48,6 +72,10 @@
             "name": "Rzemiosło",
             "category": "Techniczne"
         },
+        "Credit Rating": {
+            "name": "Credit Rating",
+            "category": "Interpersonalne"
+        },
         "Cryptography": {
             "name": "Kryptologia",
             "category": "Naukowe"
@@ -58,6 +86,10 @@
         },
         "Driving": {
             "name": "Prowadzenie",
+            "category": "Ogólne"
+        },
+        "Electrical Repair": {
+            "name": "Electrical Repair",
             "category": "Ogólne"
         },
         "Evidence Collection": {
@@ -72,6 +104,10 @@
             "name": "Zwinne palce",
             "category": "Ogólne"
         },
+        "Firearms": {
+            "name": "Broń panlna",
+            "category": "Ogólne"
+        },
         "First Aid": {
             "name": "Pierwsza pomoc",
             "category": "Ogólne"
@@ -83,6 +119,10 @@
         "Fleeing": {
             "name": "Uciekanie",
             "category": "Ogólne"
+        },
+        "Forensics": {
+            "name": "Kryminologia",
+            "category": "Techniczne"
         },
         "Geology": {
             "name": "Geologia",
@@ -116,21 +156,45 @@
             "name": "Prawo",
             "category": "Naukowe"
         },
+        "Library Use": {
+            "name": "Korzystanie z bibliotek",
+            "category": "Naukowe"
+        },
         "Locksmith": {
             "name": "Otwieranie zamków",
             "category": "Techniczne"
         },
-        "Mechanics": {
+        "Mechanical Repair": {
             "name": "Naprawy mechaniczne",
             "category": "Ogólne"
+        },
+        "Medicine": {
+            "name": "Medycyna",
+            "category": "Naukowe"
+        },
+        "Occult": {
+            "name": "Okultyzm",
+            "category": "Naukowe"
         },
         "Oral History": {
             "name": "Przekazy ustne",
             "category": "Interpersonalne"
         },
+        "Outdoorsman": {
+            "name": "Outdoorsman",
+            "category": "Techniczne"
+        },
+        "Pharmacy": {
+            "name": "Aptekarstwo",
+            "category": "Techniczne"
+        },
         "Photography": {
             "name": "Fotografia",
             "category": "Techniczne"
+        },
+        "Physics": {
+            "name": "Fizyka",
+            "category": "Naukowe"
         },
         "Piloting": {
             "name": "Sterowanie",
@@ -138,6 +202,10 @@
         },
         "Preparedness": {
             "name": "Przygotowanie",
+            "category": "Ogólne"
+        },
+        "Psychoanalysis": {
+            "name": "Psychoanaliza",
             "category": "Ogólne"
         },
         "Reassurance": {
@@ -148,6 +216,10 @@
             "name": "Jeździectwo",
             "category": "Ogólne"
         },
+        "Sanity": {
+            "name": "Sanity",
+            "category": "Ogólne"
+        },
         "Scuffling": {
             "name": "przepychanki",
             "category": "Ogólne"
@@ -156,13 +228,29 @@
             "name": "Wyczucie zagrożenia",
             "category": "Ogólne"
         },
+        "Shadowing": {
+            "name": "Śledzenie",
+            "category": "Ogólne"
+        },
         "Stability": {
             "name": "Stabilność",
+            "category": "Ogólne"
+        },
+        "Stealth": {
+            "name": "Ukrywanie",
             "category": "Ogólne"
         },
         "Streetwise": {
             "name": "Znajomość półświatka",
             "category": "Interpersonalne"
+        },
+        "Theology": {
+            "name": "Teologia",
+            "category": "Naukowe"
+        },
+        "Weapons": {
+            "name": "Bronie",
+            "category": "Ogólne"
         }
     }
 }

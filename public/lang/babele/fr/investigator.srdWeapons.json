@@ -1,7 +1,7 @@
 {
     "label": "Armes du SRD",
     "mapping": {
-        "category": "data.category"
+        "category": "system.category"
     },
     "entries": {
         "Firearm (heavy)": {

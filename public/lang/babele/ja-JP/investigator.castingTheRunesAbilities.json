@@ -1,0 +1,260 @@
+{
+    "label": "Casting the Runes Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "人類学",
+            "category": "学術系探索技能"
+        },
+        "Archaeology": {
+            "name": "考古学",
+            "category": "学術系探索技能"
+        },
+        "Architecture": {
+            "name": "建築学",
+            "category": "学術系探索技能"
+        },
+        "Art": {
+            "name": "Art",
+            "category": "技術系探索技能"
+        },
+        "Art History": {
+            "name": "美術史",
+            "category": "学術系探索技能"
+        },
+        "Assess Honesty": {
+            "name": "Assess Honesty",
+            "category": "交渉系探索技能"
+        },
+        "Astronomy": {
+            "name": "天文学",
+            "category": "技術系探索技能"
+        },
+        "Athletics": {
+            "name": "運動",
+            "category": "一般"
+        },
+        "Bargain": {
+            "name": "Bargain",
+            "category": "交渉系探索技能"
+        },
+        "Biology": {
+            "name": "Biology",
+            "category": "学術系探索技能"
+        },
+        "Bookkeeping": {
+            "name": "Bookkeeping",
+            "category": "技術系探索技能"
+        },
+        "Bureaucracy": {
+            "name": "官僚制度",
+            "category": "一般"
+        },
+        "Charm": {
+            "name": "魅了",
+            "category": "交渉系探索技能"
+        },
+        "Chemistry": {
+            "name": "化学",
+            "category": "技術系探索技能"
+        },
+        "Class": {
+            "name": "Class",
+            "category": "交渉系探索技能"
+        },
+        "Conceal": {
+            "name": "隠蔽",
+            "category": "一般"
+        },
+        "Connections": {
+            "name": "Connections",
+            "category": "一般"
+        },
+        "Contemplation": {
+            "name": "Contemplation",
+            "category": "学術系探索技能"
+        },
+        "Craft": {
+            "name": "製作",
+            "category": "技術系探索技能"
+        },
+        "Criminology": {
+            "name": "Criminology",
+            "category": "学術系探索技能"
+        },
+        "Cryptography": {
+            "name": "暗号学",
+            "category": "技術系探索技能"
+        },
+        "Demolition": {
+            "name": "Demolition",
+            "category": "一般"
+        },
+        "Disguise": {
+            "name": "変装",
+            "category": "一般"
+        },
+        "Driving": {
+            "name": "運転",
+            "category": "一般"
+        },
+        "Evidence Collection": {
+            "name": "証拠収集",
+            "category": "技術系探索技能"
+        },
+        "Fieldcraft": {
+            "name": "Fieldcraft",
+            "category": "技術系探索技能"
+        },
+        "Filch": {
+            "name": "スリ",
+            "category": "一般"
+        },
+        "Firearms": {
+            "name": "Firearms",
+            "category": "一般"
+        },
+        "First Aid": {
+            "name": "応急手当て",
+            "category": "一般"
+        },
+        "Fleeing": {
+            "name": "逃走",
+            "category": "一般"
+        },
+        "Folklore": {
+            "name": "Folklore",
+            "category": "学術系探索技能"
+        },
+        "Forensics": {
+            "name": "Forensics",
+            "category": "技術系探索技能"
+        },
+        "Gambling": {
+            "name": "Gambling",
+            "category": "一般"
+        },
+        "Geology": {
+            "name": "地質学",
+            "category": "学術系探索技能"
+        },
+        "Health": {
+            "name": "体力",
+            "category": "一般"
+        },
+        "History": {
+            "name": "歴史学",
+            "category": "学術系探索技能"
+        },
+        "Hypnosis": {
+            "name": "催眠術",
+            "category": "一般"
+        },
+        "Interrogation": {
+            "name": "尋問",
+            "category": "交渉系探索技能"
+        },
+        "Intimidation": {
+            "name": "威圧",
+            "category": "交渉系探索技能"
+        },
+        "Language": {
+            "name": "Language",
+            "category": "学術系探索技能"
+        },
+        "Law": {
+            "name": "法学",
+            "category": "学術系探索技能"
+        },
+        "Library Use": {
+            "name": "Library Use",
+            "category": "学術系探索技能"
+        },
+        "Mechanics": {
+            "name": "機械修理",
+            "category": "一般"
+        },
+        "Medicine": {
+            "name": "Medicine",
+            "category": "学術系探索技能"
+        },
+        "Navigation": {
+            "name": "Navigation",
+            "category": "一般"
+        },
+        "Occult": {
+            "name": "Occult",
+            "category": "学術系探索技能"
+        },
+        "Pharmacy": {
+            "name": "Pharmacy",
+            "category": "技術系探索技能"
+        },
+        "Photography": {
+            "name": "撮影",
+            "category": "技術系探索技能"
+        },
+        "Physics": {
+            "name": "Physics",
+            "category": "学術系探索技能"
+        },
+        "Preparedness": {
+            "name": "もしもの備え",
+            "category": "一般"
+        },
+        "Psychoanalysis": {
+            "name": "Psychoanalysis",
+            "category": "一般"
+        },
+        "Reassurance": {
+            "name": "安心",
+            "category": "交渉系探索技能"
+        },
+        "Riding": {
+            "name": "騎乗",
+            "category": "一般"
+        },
+        "Sailing": {
+            "name": "Sailing",
+            "category": "一般"
+        },
+        "Scuffling": {
+            "name": "格闘",
+            "category": "一般"
+        },
+        "Sense Trouble": {
+            "name": "嫌な気配",
+            "category": "一般"
+        },
+        "Shadowing": {
+            "name": "Shadowing",
+            "category": "一般"
+        },
+        "Stability": {
+            "name": "安定度",
+            "category": "一般"
+        },
+        "Stealth": {
+            "name": "不可視",
+            "category": "一般"
+        },
+        "Streetwise": {
+            "name": "裏社会",
+            "category": "交渉系探索技能"
+        },
+        "Theology": {
+            "name": "Theology",
+            "category": "学術系探索技能"
+        },
+        "Trade": {
+            "name": "Trade",
+            "category": "一般"
+        },
+        "Weapons": {
+            "name": "武器",
+            "category": "一般"
+        }
+    }
+}

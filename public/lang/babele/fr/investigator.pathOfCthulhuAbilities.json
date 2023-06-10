@@ -1,24 +1,36 @@
 {
     "label": "La voie de Cthulhu",
     "mapping": {
-        "category": "data.category"
+        "category": "system.category"
     },
     "entries": {
+        "Accounting": {
+            "name": "Comptabilité",
+            "category": "Académique"
+        },
         "Anthropology": {
             "name": "Anthropologie",
             "category": "Acad\u00e9mique"
         },
-        "Archeology": {
-            "name": "Arch\u00e9ologie",
-            "category": "Acad\u00e9mique"
+        "Archaeology": {
+            "name": "Archéologie",
+            "category": "Académique"
         },
         "Architecture": {
             "name": "Architecture",
             "category": "Acad\u00e9mique"
         },
+        "Art": {
+            "name": "Art",
+            "category": "Technique"
+        },
         "Art History": {
             "name": "Histoire de l\u2019art",
             "category": "Acad\u00e9mique"
+        },
+        "Assess Honesty": {
+            "name": "Déterminer l'honnêteté",
+            "category": "Relationnelle"
         },
         "Astronomy": {
             "name": "Astronomie",
@@ -28,6 +40,14 @@
             "name": "Athl\u00e9tisme",
             "category": "G\u00e9n\u00e9rale"
         },
+        "Bargain": {
+            "name": "Marchandage",
+            "category": "Relationnelle"
+        },
+        "Biology": {
+            "name": "Biologie",
+            "category": "Académique"
+        },
         "Bureaucracy": {
             "name": "Bureaucratie",
             "category": "Relationnelle"
@@ -35,6 +55,10 @@
         "Chemistry": {
             "name": "Chimie",
             "category": "Technique"
+        },
+        "Chtulhu Mythos": {
+            "name": "Chtulhu Mythos",
+            "category": "Académique"
         },
         "Conceal": {
             "name": "Camouflage",
@@ -48,6 +72,10 @@
             "name": "Artisanat",
             "category": "Technique"
         },
+        "Credit Rating": {
+            "name": "Credit Rating",
+            "category": "Relationnelle"
+        },
         "Cryptography": {
             "name": "Cryptographie",
             "category": "Technique"
@@ -59,6 +87,10 @@
         "Driving": {
             "name": "Conduite",
             "category": "G\u00e9n\u00e9rale"
+        },
+        "Electrical Repair": {
+            "name": "Electrical Repair",
+            "category": "Générale"
         },
         "Evidence Collection": {
             "name": "Recueil d\u2019indices",
@@ -72,6 +104,10 @@
             "name": "Piquer",
             "category": "G\u00e9n\u00e9rale"
         },
+        "Firearms": {
+            "name": "Armes à feu",
+            "category": "Générale"
+        },
         "First Aid": {
             "name": "Premiers soins",
             "category": "G\u00e9n\u00e9rale"
@@ -83,6 +119,10 @@
         "Fleeing": {
             "name": "Fuir",
             "category": "G\u00e9n\u00e9rale"
+        },
+        "Forensics": {
+            "name": "Criminalistique",
+            "category": "Technique"
         },
         "Geology": {
             "name": "G\u00e9ologie",
@@ -116,21 +156,45 @@
             "name": "Droit",
             "category": "Acad\u00e9mique"
         },
+        "Library Use": {
+            "name": "Bibliothèque",
+            "category": "Académique"
+        },
         "Locksmith": {
             "name": "Crochetage",
             "category": "Technique"
         },
-        "Mechanics": {
-            "name": "M\u00e9canique",
-            "category": "G\u00e9n\u00e9rale"
+        "Mechanical Repair": {
+            "name": "M\\u00e9canique",
+            "category": "Générale"
+        },
+        "Medicine": {
+            "name": "Medicine",
+            "category": "Académique"
+        },
+        "Occult": {
+            "name": "Occulte",
+            "category": "Académique"
         },
         "Oral History": {
             "name": "Histoire orale",
             "category": "Relationnelle"
         },
+        "Outdoorsman": {
+            "name": "Outdoorsman",
+            "category": "Technique"
+        },
+        "Pharmacy": {
+            "name": "Pharmacie",
+            "category": "Technique"
+        },
         "Photography": {
             "name": "Photographie",
             "category": "Technique"
+        },
+        "Physics": {
+            "name": "Physique",
+            "category": "Académique"
         },
         "Piloting": {
             "name": "Pilotage",
@@ -140,6 +204,10 @@
             "name": "Organisation",
             "category": "G\u00e9n\u00e9rale"
         },
+        "Psychoanalysis": {
+            "name": "Psychanalyse",
+            "category": "Générale"
+        },
         "Reassurance": {
             "name": "Apaisement",
             "category": "Relationnelle"
@@ -147,6 +215,10 @@
         "Riding": {
             "name": "Equitation",
             "category": "G\u00e9n\u00e9rale"
+        },
+        "Sanity": {
+            "name": "Sanity",
+            "category": "Générale"
         },
         "Scuffling": {
             "name": "Bagarre",
@@ -156,13 +228,29 @@
             "name": "Sixi\u00e8me sens",
             "category": "G\u00e9n\u00e9rale"
         },
+        "Shadowing": {
+            "name": "Surveillance",
+            "category": "Générale"
+        },
         "Stability": {
             "name": "Equilibre mental",
             "category": "G\u00e9n\u00e9rale"
         },
+        "Stealth": {
+            "name": "Discrétion",
+            "category": "Générale"
+        },
         "Streetwise": {
             "name": "Connaissance de la rue",
             "category": "Relationnelle"
+        },
+        "Theology": {
+            "name": "Theologie",
+            "category": "Académique"
+        },
+        "Weapons": {
+            "name": "Armes",
+            "category": "Générale"
         }
     }
 }

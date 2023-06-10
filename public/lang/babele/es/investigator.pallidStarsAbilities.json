@@ -1,0 +1,332 @@
+{
+    "label": "Ashen Stars Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "Antropología",
+            "category": "Académicas"
+        },
+        "Archaeology": {
+            "name": "Arqueología",
+            "category": "Académicas"
+        },
+        "Astronomy": {
+            "name": "Astronomía",
+            "category": "Técnicas"
+        },
+        "Athletics": {
+            "name": "Atletismo",
+            "category": "Generales"
+        },
+        "Battle Console": {
+            "name": "Battle Console",
+            "category": "Generales"
+        },
+        "Bio Signatures": {
+            "name": "Bio Signatures",
+            "category": "Técnicas"
+        },
+        "Botany": {
+            "name": "Botánica",
+            "category": "Académicas"
+        },
+        "Bullshit Detector": {
+            "name": "Detección de Mentiras",
+            "category": "Interpersonales"
+        },
+        "Bureaucracy": {
+            "name": "Burocracia",
+            "category": "Interpersonales"
+        },
+        "Business Affairs": {
+            "name": "Business Affairs",
+            "category": "Generales"
+        },
+        "Chemistry": {
+            "name": "Química",
+            "category": "Técnicas"
+        },
+        "Communications Intercept": {
+            "name": "Communications Intercept",
+            "category": "Generales"
+        },
+        "Consciousness Simulation": {
+            "name": "Consciousness Simulation",
+            "category": "Special"
+        },
+        "Cop Talk": {
+            "name": "Jerga policial",
+            "category": "Interpersonales"
+        },
+        "Cybe Culture": {
+            "name": "Cybe Culture",
+            "category": "Académicas"
+        },
+        "Data Retrieval": {
+            "name": "Data Retrieval",
+            "category": "Técnicas"
+        },
+        "Decryption": {
+            "name": "Decryption",
+            "category": "Técnicas"
+        },
+        "Downside": {
+            "name": "Downside",
+            "category": "Interpersonales"
+        },
+        "Dreamsight": {
+            "name": "Dreamsight",
+            "category": "Special"
+        },
+        "Emotion Suppression (Balla)": {
+            "name": "Emotion Suppression (Balla)",
+            "category": "Generales"
+        },
+        "Energy Signatures": {
+            "name": "Energy Signatures",
+            "category": "Técnicas"
+        },
+        "Enhancement Integration (Cybe)": {
+            "name": "Enhancement Integration (Cybe)",
+            "category": "Generales"
+        },
+        "Evidence Collection": {
+            "name": "Recogida de pruebas",
+            "category": "Técnicas"
+        },
+        "Explosive Devices": {
+            "name": "Explosive Devices",
+            "category": "Técnicas"
+        },
+        "Farsight (Vas Mal)": {
+            "name": "Farsight (Vas Mal)",
+            "category": "Generales"
+        },
+        "Filch": {
+            "name": "Birlar",
+            "category": "Generales"
+        },
+        "Flattery": {
+            "name": "Adular",
+            "category": "Interpersonales"
+        },
+        "Flirting": {
+            "name": "Flirting",
+            "category": "Interpersonales"
+        },
+        "Forensic Accounting": {
+            "name": "Forensic Accounting",
+            "category": "Académicas"
+        },
+        "Forensic Anthropology": {
+            "name": "Forensic Anthropology",
+            "category": "Técnicas"
+        },
+        "Forensic Engineering": {
+            "name": "Forensic Engineering",
+            "category": "Técnicas"
+        },
+        "Forensic Psychology": {
+            "name": "Forensic Psychology",
+            "category": "Académicas"
+        },
+        "Geology": {
+            "name": "Geología",
+            "category": "Académicas"
+        },
+        "Ground Craft": {
+            "name": "Ground Craft",
+            "category": "Generales"
+        },
+        "Health": {
+            "name": "Salud",
+            "category": "Generales"
+        },
+        "Helm Control": {
+            "name": "Helm Control",
+            "category": "Generales"
+        },
+        "History, Balla": {
+            "name": "History, Balla",
+            "category": "Académicas"
+        },
+        "History, Combine": {
+            "name": "History, Combine",
+            "category": "Académicas"
+        },
+        "History, Durugh": {
+            "name": "History, Durugh",
+            "category": "Académicas"
+        },
+        "History, Human": {
+            "name": "History, Human",
+            "category": "Académicas"
+        },
+        "History, Kch-Thk": {
+            "name": "History, Kch-Thk",
+            "category": "Académicas"
+        },
+        "History, Tavak": {
+            "name": "History, Tavak",
+            "category": "Académicas"
+        },
+        "Holo Surveillance": {
+            "name": "Holo Surveillance",
+            "category": "Técnicas"
+        },
+        "Imaging": {
+            "name": "Imaging",
+            "category": "Técnicas"
+        },
+        "Impersonate": {
+            "name": "Impersonate",
+            "category": "Interpersonales"
+        },
+        "Industrial Design": {
+            "name": "Industrial Design",
+            "category": "Técnicas"
+        },
+        "Infiltration": {
+            "name": "Infiltration",
+            "category": "Generales"
+        },
+        "Inspiration": {
+            "name": "Inspiration",
+            "category": "Interpersonales"
+        },
+        "Interrogation": {
+            "name": "Interrogatorio",
+            "category": "Interpersonales"
+        },
+        "Intimidation": {
+            "name": "Intimidación",
+            "category": "Interpersonales"
+        },
+        "Kinetics": {
+            "name": "Kinetics",
+            "category": "Técnicas"
+        },
+        "Law": {
+            "name": "Derecho",
+            "category": "Académicas"
+        },
+        "Linguistics": {
+            "name": "Linguistics",
+            "category": "Académicas"
+        },
+        "Medic": {
+            "name": "Medic",
+            "category": "Generales"
+        },
+        "Migrate Consciousness (Kch-Thk)": {
+            "name": "Migrate Consciousness (Kch-Thk)",
+            "category": "Generales"
+        },
+        "Naval Tactics": {
+            "name": "Naval Tactics",
+            "category": "Generales"
+        },
+        "Negotiation": {
+            "name": "Negotiation",
+            "category": "Interpersonales"
+        },
+        "Neural Rewiring (Cybe)": {
+            "name": "Neural Rewiring (Cybe)",
+            "category": "Generales"
+        },
+        "Neurosight": {
+            "name": "Neurosight",
+            "category": "Special"
+        },
+        "Pathway Amplification (Vas Mal)": {
+            "name": "Pathway Amplification (Vas Mal)",
+            "category": "Generales"
+        },
+        "Phase (Durugh)": {
+            "name": "Phase (Durugh)",
+            "category": "Generales"
+        },
+        "Preparedness": {
+            "name": "Preparación",
+            "category": "Generales"
+        },
+        "Probability Override (Vas Mal)": {
+            "name": "Probability Override (Vas Mal)",
+            "category": "Generales"
+        },
+        "Psychic Vitality (Vas Mal)": {
+            "name": "Psychic Vitality (Vas Mal)",
+            "category": "Generales"
+        },
+        "Public Relations": {
+            "name": "Public Relations",
+            "category": "Generales"
+        },
+        "Reassurance": {
+            "name": "Consolar",
+            "category": "Interpersonales"
+        },
+        "Resist Battle Frenzy (Tavak)": {
+            "name": "Resist Battle Frenzy (Tavak)",
+            "category": "Generales"
+        },
+        "Respect": {
+            "name": "Respect",
+            "category": "Interpersonales"
+        },
+        "Scuffling": {
+            "name": "Escaramuza",
+            "category": "Generales"
+        },
+        "Sense Trouble": {
+            "name": "Sentir el peligro",
+            "category": "Generales"
+        },
+        "Shooting": {
+            "name": "Disparar",
+            "category": "Generales"
+        },
+        "Shuttle Craft": {
+            "name": "Shuttle Craft",
+            "category": "Generales"
+        },
+        "Surveillance": {
+            "name": "Surveillance",
+            "category": "Generales"
+        },
+        "Systems Design": {
+            "name": "Systems Design",
+            "category": "Generales"
+        },
+        "Systems Repair": {
+            "name": "Systems Repair",
+            "category": "Generales"
+        },
+        "Timesight": {
+            "name": "Timesight",
+            "category": "Special"
+        },
+        "Vas Mal Culture": {
+            "name": "Vas Mal Culture",
+            "category": "Académicas"
+        },
+        "Viro Manipulation": {
+            "name": "Viro Manipulation",
+            "category": "Generales"
+        },
+        "Virology": {
+            "name": "Virology",
+            "category": "Técnicas"
+        },
+        "Xenoculture": {
+            "name": "Xenoculture",
+            "category": "Académicas"
+        },
+        "Zoology": {
+            "name": "Zoology",
+            "category": "Académicas"
+        }
+    }
+}

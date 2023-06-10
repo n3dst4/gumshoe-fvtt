@@ -1,7 +1,7 @@
 {
     "label": "Umiejętność brak strachu",
     "mapping": {
-        "category": "kategorie.danych"
+        "category": "system.category"
     },
     "entries": {
         "Athletics": {
@@ -19,6 +19,10 @@
         "Bureaucracy": {
             "name": "Biurokracja",
             "category": "Interpersonalne"
+        },
+        "Computer Use": {
+            "name": "Computer Use",
+            "category": "Techniczne"
         },
         "Cop Talk": {
             "name": "Sprawy policyjne",
@@ -56,6 +60,10 @@
             "name": "Historia",
             "category": "Naukowe"
         },
+        "Humanities": {
+            "name": "Humanities",
+            "category": "Naukowe"
+        },
         "Impersonate": {
             "name": "Podszywanie się ",
             "category": "Interpersonalne"
@@ -71,6 +79,10 @@
         "Intimidation": {
             "name": "Zastraszanie",
             "category": "Interpersonalne"
+        },
+        "Investigative Procedure": {
+            "name": "Investigative Procedure",
+            "category": "Techniczne"
         },
         "Languages": {
             "name": "Języki",
@@ -92,6 +104,14 @@
             "name": "Medycyna",
             "category": "Techniczne"
         },
+        "Medium": {
+            "name": "Medium",
+            "category": "Moce mentalne"
+        },
+        "Messenger": {
+            "name": "Messenger",
+            "category": "Moce mentalne"
+        },
         "Negotiation": {
             "name": "Negocjacje",
             "category": "Interpersonalne"
@@ -112,6 +132,10 @@
             "name": "Fotografia",
             "category": "Techniczne"
         },
+        "Premonitions": {
+            "name": "Premonitions",
+            "category": "Moce mentalne"
+        },
         "Preparedness": {
             "name": "Przygotowanie",
             "category": "Ogólne"
@@ -120,12 +144,16 @@
             "name": "Asekuracja",
             "category": "Interpersonalne"
         },
+        "Remote Viewing": {
+            "name": "Remote Viewing",
+            "category": "Moce mentalne"
+        },
         "Research": {
             "name": "Badania",
             "category": "Naukowe"
         },
-        "Science!": {
-            "name": "Nauka!",
+        "Science": {
+            "name": "Nauka",
             "category": "Techniczne"
         },
         "Scuffling": {
@@ -135,6 +163,10 @@
         "Sense Trouble": {
             "name": "Wyczucie zagrożenia",
             "category": "Ogólne"
+        },
+        "Sensitive": {
+            "name": "Sensitive",
+            "category": "Moce mentalne"
         },
         "Shooting": {
             "name": "Broń palna",
@@ -151,6 +183,10 @@
         "Streetwise": {
             "name": "Znajomość półświatka",
             "category": "Interpersonalne"
+        },
+        "Synchronicity": {
+            "name": "Synchronicity",
+            "category": "Moce mentalne"
         },
         "Trivia": {
             "name": "Drobnostki",

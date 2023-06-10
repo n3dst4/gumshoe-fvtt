@@ -1,7 +1,7 @@
 {
     "label": "Frayeurs!",
     "mapping": {
-        "category": "data.category"
+        "category": "system.category"
     },
     "entries": {
         "Athletics": {
@@ -19,6 +19,10 @@
         "Bureaucracy": {
             "name": "Bureaucratie",
             "category": "Relationnelle"
+        },
+        "Computer Use": {
+            "name": "Computer Use",
+            "category": "Technique"
         },
         "Cop Talk": {
             "name": "Jargon policier",
@@ -56,6 +60,10 @@
             "name": "Histoire",
             "category": "Acad\u00e9mique"
         },
+        "Humanities": {
+            "name": "Humanities",
+            "category": "Académique"
+        },
         "Impersonate": {
             "name": "Incarner",
             "category": "Relationnelle"
@@ -71,6 +79,10 @@
         "Intimidation": {
             "name": "Intimidation",
             "category": "Relationnelle"
+        },
+        "Investigative Procedure": {
+            "name": "Investigative Procedure",
+            "category": "Technique"
         },
         "Languages": {
             "name": "Langues",
@@ -92,6 +104,14 @@
             "name": "M\u00e9decine",
             "category": "Technique"
         },
+        "Medium": {
+            "name": "Medium",
+            "category": "Pouvoir psychique"
+        },
+        "Messenger": {
+            "name": "Messenger",
+            "category": "Pouvoir psychique"
+        },
         "Negotiation": {
             "name": "N\u00e9gociation",
             "category": "Relationnelle"
@@ -112,6 +132,10 @@
             "name": "Photographie",
             "category": "Technique"
         },
+        "Premonitions": {
+            "name": "Premonitions",
+            "category": "Pouvoir psychique"
+        },
         "Preparedness": {
             "name": "Organisation",
             "category": "G\u00e9n\u00e9rale"
@@ -120,12 +144,16 @@
             "name": "Apaisement",
             "category": "Relationnelle"
         },
+        "Remote Viewing": {
+            "name": "Remote Viewing",
+            "category": "Pouvoir psychique"
+        },
         "Research": {
             "name": "Recherche",
             "category": "Acad\u00e9mique"
         },
-        "Science!": {
-            "name": "Science !",
+        "Science": {
+            "name": "Science",
             "category": "Technique"
         },
         "Scuffling": {
@@ -135,6 +163,10 @@
         "Sense Trouble": {
             "name": "Sixi\u00e8me sens",
             "category": "G\u00e9n\u00e9rale"
+        },
+        "Sensitive": {
+            "name": "Sensitive",
+            "category": "Pouvoir psychique"
         },
         "Shooting": {
             "name": "Armes \u00e0 feu",
@@ -151,6 +183,10 @@
         "Streetwise": {
             "name": "Connaissance de la rue",
             "category": "Relationnelle"
+        },
+        "Synchronicity": {
+            "name": "Synchronicity",
+            "category": "Pouvoir psychique"
         },
         "Trivia": {
             "name": "Trivia",

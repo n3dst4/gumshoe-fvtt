@@ -1,0 +1,260 @@
+{
+    "label": "Casting the Runes Abilities",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "Anthropologie",
+            "category": "Akademisch"
+        },
+        "Archaeology": {
+            "name": "Archäologie",
+            "category": "Akademisch"
+        },
+        "Architecture": {
+            "name": "Architektur",
+            "category": "Akademisch"
+        },
+        "Art": {
+            "name": "Kunst",
+            "category": "Technical"
+        },
+        "Art History": {
+            "name": "Art History",
+            "category": "Akademisch"
+        },
+        "Assess Honesty": {
+            "name": "Assess Honesty",
+            "category": "Interpersonal"
+        },
+        "Astronomy": {
+            "name": "Astronomy",
+            "category": "Technical"
+        },
+        "Athletics": {
+            "name": "Athletics",
+            "category": "Allgemein"
+        },
+        "Bargain": {
+            "name": "Bargain",
+            "category": "Interpersonal"
+        },
+        "Biology": {
+            "name": "Biology",
+            "category": "Akademisch"
+        },
+        "Bookkeeping": {
+            "name": "Bookkeeping",
+            "category": "Technical"
+        },
+        "Bureaucracy": {
+            "name": "Bureaucracy",
+            "category": "Allgemein"
+        },
+        "Charm": {
+            "name": "Charm",
+            "category": "Interpersonal"
+        },
+        "Chemistry": {
+            "name": "Chemistry",
+            "category": "Technical"
+        },
+        "Class": {
+            "name": "Class",
+            "category": "Interpersonal"
+        },
+        "Conceal": {
+            "name": "Conceal",
+            "category": "Allgemein"
+        },
+        "Connections": {
+            "name": "Connections",
+            "category": "Allgemein"
+        },
+        "Contemplation": {
+            "name": "Contemplation",
+            "category": "Akademisch"
+        },
+        "Craft": {
+            "name": "Craft",
+            "category": "Technical"
+        },
+        "Criminology": {
+            "name": "Criminology",
+            "category": "Akademisch"
+        },
+        "Cryptography": {
+            "name": "Cryptography",
+            "category": "Technical"
+        },
+        "Demolition": {
+            "name": "Demolition",
+            "category": "Allgemein"
+        },
+        "Disguise": {
+            "name": "Disguise",
+            "category": "Allgemein"
+        },
+        "Driving": {
+            "name": "Driving",
+            "category": "Allgemein"
+        },
+        "Evidence Collection": {
+            "name": "Evidence Collection",
+            "category": "Technical"
+        },
+        "Fieldcraft": {
+            "name": "Fieldcraft",
+            "category": "Technical"
+        },
+        "Filch": {
+            "name": "Filch",
+            "category": "Allgemein"
+        },
+        "Firearms": {
+            "name": "Firearms",
+            "category": "Allgemein"
+        },
+        "First Aid": {
+            "name": "First Aid",
+            "category": "Allgemein"
+        },
+        "Fleeing": {
+            "name": "Fleeing",
+            "category": "Allgemein"
+        },
+        "Folklore": {
+            "name": "Folklore",
+            "category": "Akademisch"
+        },
+        "Forensics": {
+            "name": "Forensics",
+            "category": "Technical"
+        },
+        "Gambling": {
+            "name": "Gambling",
+            "category": "Allgemein"
+        },
+        "Geology": {
+            "name": "Geology",
+            "category": "Akademisch"
+        },
+        "Health": {
+            "name": "Health",
+            "category": "Allgemein"
+        },
+        "History": {
+            "name": "History",
+            "category": "Akademisch"
+        },
+        "Hypnosis": {
+            "name": "Hypnosis",
+            "category": "Allgemein"
+        },
+        "Interrogation": {
+            "name": "Interrogation",
+            "category": "Interpersonal"
+        },
+        "Intimidation": {
+            "name": "Intimidation",
+            "category": "Interpersonal"
+        },
+        "Language": {
+            "name": "Language",
+            "category": "Akademisch"
+        },
+        "Law": {
+            "name": "Law",
+            "category": "Akademisch"
+        },
+        "Library Use": {
+            "name": "Library Use",
+            "category": "Akademisch"
+        },
+        "Mechanics": {
+            "name": "Mechanics",
+            "category": "Allgemein"
+        },
+        "Medicine": {
+            "name": "Medicine",
+            "category": "Akademisch"
+        },
+        "Navigation": {
+            "name": "Navigation",
+            "category": "Allgemein"
+        },
+        "Occult": {
+            "name": "Occult",
+            "category": "Akademisch"
+        },
+        "Pharmacy": {
+            "name": "Pharmacy",
+            "category": "Technical"
+        },
+        "Photography": {
+            "name": "Photography",
+            "category": "Technical"
+        },
+        "Physics": {
+            "name": "Physics",
+            "category": "Akademisch"
+        },
+        "Preparedness": {
+            "name": "Preparedness",
+            "category": "Allgemein"
+        },
+        "Psychoanalysis": {
+            "name": "Psychoanalysis",
+            "category": "Allgemein"
+        },
+        "Reassurance": {
+            "name": "Reassurance",
+            "category": "Interpersonal"
+        },
+        "Riding": {
+            "name": "Riding",
+            "category": "Allgemein"
+        },
+        "Sailing": {
+            "name": "Sailing",
+            "category": "Allgemein"
+        },
+        "Scuffling": {
+            "name": "Scuffling",
+            "category": "Allgemein"
+        },
+        "Sense Trouble": {
+            "name": "Sense Trouble",
+            "category": "Allgemein"
+        },
+        "Shadowing": {
+            "name": "Shadowing",
+            "category": "Allgemein"
+        },
+        "Stability": {
+            "name": "Stability",
+            "category": "Allgemein"
+        },
+        "Stealth": {
+            "name": "Verborgen bleiben",
+            "category": "Allgemein"
+        },
+        "Streetwise": {
+            "name": "Streetwise",
+            "category": "Interpersonal"
+        },
+        "Theology": {
+            "name": "Theology",
+            "category": "Akademisch"
+        },
+        "Trade": {
+            "name": "Trade",
+            "category": "Allgemein"
+        },
+        "Weapons": {
+            "name": "Waffen",
+            "category": "Allgemein"
+        }
+    }
+}

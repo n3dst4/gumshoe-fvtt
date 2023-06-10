@@ -1,7 +1,7 @@
 {
     "label": "Umiejętności bladych gwiazd",
     "mapping": {
-        "category": "kategorie.danych"
+        "category": "system.category"
     },
     "entries": {
         "Anthropology": {
@@ -19,6 +19,14 @@
         "Athletics": {
             "name": "Wysportowanie",
             "category": "Ogólne"
+        },
+        "Battle Console": {
+            "name": "Battle Console",
+            "category": "Ogólne"
+        },
+        "Bio Signatures": {
+            "name": "Bio Signatures",
+            "category": "Techniczne"
         },
         "Botany": {
             "name": "Botanika",
@@ -40,21 +48,49 @@
             "name": "Chemia",
             "category": "Techniczne"
         },
+        "Communications Intercept": {
+            "name": "Communications Intercept",
+            "category": "Ogólne"
+        },
+        "Consciousness Simulation": {
+            "name": "Consciousness Simulation",
+            "category": "Special"
+        },
         "Cop Talk": {
             "name": "Sprawy policyjne",
             "category": "Interpersonalne"
         },
-        "Cryptography": {
-            "name": "Kryptologia",
-            "category": "Techniczne"
-        },
-        "Culture": {
-            "name": "Kultura",
+        "Cybe Culture": {
+            "name": "Cybe Culture",
             "category": "Naukowe"
         },
         "Data Retrieval": {
             "name": "Wyszukiwanie danych",
             "category": "Techniczne"
+        },
+        "Decryption": {
+            "name": "Decryption",
+            "category": "Techniczne"
+        },
+        "Downside": {
+            "name": "Downside",
+            "category": "Interpersonalne"
+        },
+        "Dreamsight": {
+            "name": "Dreamsight",
+            "category": "Special"
+        },
+        "Emotion Suppression (Balla)": {
+            "name": "Emotion Suppression (Balla)",
+            "category": "Ogólne"
+        },
+        "Energy Signatures": {
+            "name": "Energy Signatures",
+            "category": "Techniczne"
+        },
+        "Enhancement Integration (Cybe)": {
+            "name": "Enhancement Integration (Cybe)",
+            "category": "Ogólne"
         },
         "Evidence Collection": {
             "name": "Zbieranie dowodów",
@@ -63,6 +99,10 @@
         "Explosive Devices": {
             "name": "urządzenia wybuchowe",
             "category": "Techniczne"
+        },
+        "Farsight (Vas Mal)": {
+            "name": "Farsight (Vas Mal)",
+            "category": "Ogólne"
         },
         "Filch": {
             "name": "Zwinne palce",
@@ -84,6 +124,10 @@
             "name": "Antropologia kryminalna",
             "category": "Techniczne"
         },
+        "Forensic Engineering": {
+            "name": "Forensic Engineering",
+            "category": "Techniczne"
+        },
         "Forensic Psychology": {
             "name": "Antropologia kryminalna",
             "category": "Naukowe"
@@ -92,17 +136,57 @@
             "name": "Geologia",
             "category": "Naukowe"
         },
+        "Ground Craft": {
+            "name": "Ground Craft",
+            "category": "Ogólne"
+        },
         "Health": {
             "name": "Zdrowie",
             "category": "Ogólne"
         },
-        "History": {
-            "name": "Historia",
+        "Helm Control": {
+            "name": "Helm Control",
+            "category": "Ogólne"
+        },
+        "History, Balla": {
+            "name": "History, Balla",
             "category": "Naukowe"
+        },
+        "History, Combine": {
+            "name": "History, Combine",
+            "category": "Naukowe"
+        },
+        "History, Durugh": {
+            "name": "History, Durugh",
+            "category": "Naukowe"
+        },
+        "History, Human": {
+            "name": "History, Human",
+            "category": "Naukowe"
+        },
+        "History, Kch-Thk": {
+            "name": "History, Kch-Thk",
+            "category": "Naukowe"
+        },
+        "History, Tavak": {
+            "name": "History, Tavak",
+            "category": "Naukowe"
+        },
+        "Holo Surveillance": {
+            "name": "Holo Surveillance",
+            "category": "Techniczne"
+        },
+        "Imaging": {
+            "name": "Imaging",
+            "category": "Techniczne"
         },
         "Impersonate": {
             "name": "Podszywanie się ",
             "category": "Interpersonalne"
+        },
+        "Industrial Design": {
+            "name": "Industrial Design",
+            "category": "Techniczne"
         },
         "Infiltration": {
             "name": "infiltracja",
@@ -120,6 +204,10 @@
             "name": "Zastraszanie",
             "category": "Interpersonalne"
         },
+        "Kinetics": {
+            "name": "Kinetics",
+            "category": "Techniczne"
+        },
         "Law": {
             "name": "Prawo",
             "category": "Naukowe"
@@ -132,12 +220,44 @@
             "name": "Medycyna",
             "category": "Ogólne"
         },
+        "Migrate Consciousness (Kch-Thk)": {
+            "name": "Migrate Consciousness (Kch-Thk)",
+            "category": "Ogólne"
+        },
+        "Naval Tactics": {
+            "name": "Naval Tactics",
+            "category": "Ogólne"
+        },
         "Negotiation": {
             "name": "Negocjacje",
             "category": "Interpersonalne"
         },
+        "Neural Rewiring (Cybe)": {
+            "name": "Neural Rewiring (Cybe)",
+            "category": "Ogólne"
+        },
+        "Neurosight": {
+            "name": "Neurosight",
+            "category": "Special"
+        },
+        "Pathway Amplification (Vas Mal)": {
+            "name": "Pathway Amplification (Vas Mal)",
+            "category": "Ogólne"
+        },
+        "Phase (Durugh)": {
+            "name": "Phase (Durugh)",
+            "category": "Ogólne"
+        },
         "Preparedness": {
             "name": "Przygotowanie",
+            "category": "Ogólne"
+        },
+        "Probability Override (Vas Mal)": {
+            "name": "Probability Override (Vas Mal)",
+            "category": "Ogólne"
+        },
+        "Psychic Vitality (Vas Mal)": {
+            "name": "Psychic Vitality (Vas Mal)",
             "category": "Ogólne"
         },
         "Public Relations": {
@@ -147,6 +267,10 @@
         "Reassurance": {
             "name": "Asekuracja",
             "category": "Interpersonalne"
+        },
+        "Resist Battle Frenzy (Tavak)": {
+            "name": "Resist Battle Frenzy (Tavak)",
+            "category": "Ogólne"
         },
         "Respect": {
             "name": "Szacunek",
@@ -164,9 +288,45 @@
             "name": "Broń palna",
             "category": "Ogólne"
         },
+        "Shuttle Craft": {
+            "name": "Shuttle Craft",
+            "category": "Ogólne"
+        },
         "Surveillance": {
             "name": "Nadzór",
             "category": "Ogólne"
+        },
+        "Systems Design": {
+            "name": "Systems Design",
+            "category": "Ogólne"
+        },
+        "Systems Repair": {
+            "name": "Systems Repair",
+            "category": "Ogólne"
+        },
+        "Timesight": {
+            "name": "Timesight",
+            "category": "Special"
+        },
+        "Vas Mal Culture": {
+            "name": "Vas Mal Culture",
+            "category": "Naukowe"
+        },
+        "Viro Manipulation": {
+            "name": "Viro Manipulation",
+            "category": "Ogólne"
+        },
+        "Virology": {
+            "name": "Virology",
+            "category": "Techniczne"
+        },
+        "Xenoculture": {
+            "name": "Xenoculture",
+            "category": "Naukowe"
+        },
+        "Zoology": {
+            "name": "Zoology",
+            "category": "Naukowe"
         }
     }
 }
