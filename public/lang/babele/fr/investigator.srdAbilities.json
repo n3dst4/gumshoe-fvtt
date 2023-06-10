@@ -1,7 +1,7 @@
 {
     "label": "Comp\u00e9tences du SRD",
     "mapping": {
-        "category": "data.category"
+        "category": "system.category"
     },
     "entries": {
         "Analytic Taste": {

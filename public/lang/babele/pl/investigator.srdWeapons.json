@@ -1,7 +1,7 @@
 {
     "label": "Bronie SRD",
     "mapping": {
-        "category": "kategorie.danych"
+        "category": "system.category"
     },
     "entries": {
         "Firearm (heavy)": {

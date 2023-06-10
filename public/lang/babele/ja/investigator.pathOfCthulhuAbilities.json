@@ -1,14 +1,18 @@
 {
     "label": "パス・オブ・クトゥルー技能",
     "mapping": {
-        "category": "data.category"
+        "category": "system.category"
     },
     "entries": {
+        "Accounting": {
+            "name": "Accounting",
+            "category": "学術系探索技能"
+        },
         "Anthropology": {
             "name": "人類学",
             "category": "学術系探索技能"
         },
-        "Archeology": {
+        "Archaeology": {
             "name": "考古学",
             "category": "学術系探索技能"
         },
@@ -16,9 +20,17 @@
             "name": "建築学",
             "category": "学術系探索技能"
         },
+        "Art": {
+            "name": "Art",
+            "category": "技術系探索技能"
+        },
         "Art History": {
             "name": "美術史",
             "category": "学術系探索技能"
+        },
+        "Assess Honesty": {
+            "name": "Assess Honesty",
+            "category": "交渉系探索技能"
         },
         "Astronomy": {
             "name": "天文学",
@@ -28,6 +40,14 @@
             "name": "運動",
             "category": "一般"
         },
+        "Bargain": {
+            "name": "Bargain",
+            "category": "交渉系探索技能"
+        },
+        "Biology": {
+            "name": "Biology",
+            "category": "学術系探索技能"
+        },
         "Bureaucracy": {
             "name": "官僚制度",
             "category": "交渉系探索技能"
@@ -35,6 +55,10 @@
         "Chemistry": {
             "name": "化学",
             "category": "技術系探索技能"
+        },
+        "Chtulhu Mythos": {
+            "name": "Chtulhu Mythos",
+            "category": "学術系探索技能"
         },
         "Conceal": {
             "name": "隠蔽",
@@ -48,6 +72,10 @@
             "name": "製作",
             "category": "技術系探索技能"
         },
+        "Credit Rating": {
+            "name": "Credit Rating",
+            "category": "交渉系探索技能"
+        },
         "Cryptography": {
             "name": "暗号学",
             "category": "学術系探索技能"
@@ -58,6 +86,10 @@
         },
         "Driving": {
             "name": "運転",
+            "category": "一般"
+        },
+        "Electrical Repair": {
+            "name": "Electrical Repair",
             "category": "一般"
         },
         "Evidence Collection": {
@@ -72,6 +104,10 @@
             "name": "スリ",
             "category": "一般"
         },
+        "Firearms": {
+            "name": "Firearms",
+            "category": "一般"
+        },
         "First Aid": {
             "name": "応急手当て",
             "category": "一般"
@@ -83,6 +119,10 @@
         "Fleeing": {
             "name": "逃走",
             "category": "一般"
+        },
+        "Forensics": {
+            "name": "Forensics",
+            "category": "技術系探索技能"
         },
         "Geology": {
             "name": "地質学",
@@ -116,21 +156,45 @@
             "name": "法学",
             "category": "学術系探索技能"
         },
+        "Library Use": {
+            "name": "Library Use",
+            "category": "学術系探索技能"
+        },
         "Locksmith": {
             "name": "鍵開け",
             "category": "技術系探索技能"
         },
-        "Mechanics": {
+        "Mechanical Repair": {
             "name": "機械修理",
             "category": "一般"
+        },
+        "Medicine": {
+            "name": "Medicine",
+            "category": "学術系探索技能"
+        },
+        "Occult": {
+            "name": "Occult",
+            "category": "学術系探索技能"
         },
         "Oral History": {
             "name": "聞き集め",
             "category": "交渉系探索技能"
         },
+        "Outdoorsman": {
+            "name": "Outdoorsman",
+            "category": "技術系探索技能"
+        },
+        "Pharmacy": {
+            "name": "Pharmacy",
+            "category": "技術系探索技能"
+        },
         "Photography": {
             "name": "撮影",
             "category": "技術系探索技能"
+        },
+        "Physics": {
+            "name": "Physics",
+            "category": "学術系探索技能"
         },
         "Piloting": {
             "name": "操縦",
@@ -138,6 +202,10 @@
         },
         "Preparedness": {
             "name": "もしもの備え",
+            "category": "一般"
+        },
+        "Psychoanalysis": {
+            "name": "Psychoanalysis",
             "category": "一般"
         },
         "Reassurance": {
@@ -148,6 +216,10 @@
             "name": "騎乗",
             "category": "一般"
         },
+        "Sanity": {
+            "name": "Sanity",
+            "category": "一般"
+        },
         "Scuffling": {
             "name": "格闘",
             "category": "一般"
@@ -156,13 +228,29 @@
             "name": "嫌な気配",
             "category": "一般"
         },
+        "Shadowing": {
+            "name": "Shadowing",
+            "category": "一般"
+        },
         "Stability": {
             "name": "安定度",
+            "category": "一般"
+        },
+        "Stealth": {
+            "name": "不可視",
             "category": "一般"
         },
         "Streetwise": {
             "name": "裏社会",
             "category": "交渉系探索技能"
+        },
+        "Theology": {
+            "name": "Theology",
+            "category": "学術系探索技能"
+        },
+        "Weapons": {
+            "name": "武器",
+            "category": "一般"
         }
     }
 }

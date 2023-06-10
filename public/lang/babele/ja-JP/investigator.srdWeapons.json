@@ -1,7 +1,7 @@
 {
     "label": "SRD武器",
     "mapping": {
-        "category": "data.category"
+        "category": "system.category"
     },
     "entries": {
         "Firearm (heavy)": {
