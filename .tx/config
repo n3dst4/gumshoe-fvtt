@@ -9,7 +9,7 @@ file_filter  = public/lang/babele/<lang>/investigator.castingTheRunesAbilities.j
 source_file  = public/lang/babele-sources/investigator.castingTheRunesAbilities.json
 source_lang  = en
 type         = KEYVALUEJSON
-minimum_perc = 80
+minimum_perc = 0
 
 [o:investigator-system:p:investigator-system:r:corestrings]
 file_filter  = public/lang/<lang>.json
@@ -23,47 +23,47 @@ file_filter  = public/lang/babele/<lang>/investigator.niceBlackAgentsAbilities.j
 source_file  = public/lang/babele-sources/investigator.niceBlackAgentsAbilities.json
 source_lang  = en
 type         = KEYVALUEJSON
-minimum_perc = 80
+minimum_perc = 0
 
 [o:investigator-system:p:investigator-system:r:nothing-to-fear-abilities]
 file_filter  = public/lang/babele/<lang>/investigator.nothingToFearAbilities.json
 source_file  = public/lang/babele-sources/investigator.nothingToFearAbilities.json
 source_lang  = en
 type         = KEYVALUEJSON
-minimum_perc = 80
+minimum_perc = 0
 
 [o:investigator-system:p:investigator-system:r:opponent-abilities]
 file_filter  = public/lang/babele/<lang>/investigator.opponentAbilities.json
 source_file  = public/lang/babele-sources/investigator.opponentAbilities.json
 source_lang  = en
 type         = KEYVALUEJSON
-minimum_perc = 80
+minimum_perc = 0
 
 [o:investigator-system:p:investigator-system:r:pallid-stars-abilities]
 file_filter  = public/lang/babele/<lang>/investigator.pallidStarsAbilities.json
 source_file  = public/lang/babele-sources/investigator.pallidStarsAbilities.json
 source_lang  = en
 type         = KEYVALUEJSON
-minimum_perc = 80
+minimum_perc = 0
 
 [o:investigator-system:p:investigator-system:r:path-of-cthulhu-abilities]
 file_filter  = public/lang/babele/<lang>/investigator.pathOfCthulhuAbilities.json
 source_file  = public/lang/babele-sources/investigator.pathOfCthulhuAbilities.json
 source_lang  = en
 type         = KEYVALUEJSON
-minimum_perc = 80
+minimum_perc = 0
 
 [o:investigator-system:p:investigator-system:r:srd-abilities]
 file_filter  = public/lang/babele/<lang>/investigator.srdAbilities.json
 source_file  = public/lang/babele-sources/investigator.srdAbilities.json
 source_lang  = en
 type         = KEYVALUEJSON
-minimum_perc = 80
+minimum_perc = 0
 
 [o:investigator-system:p:investigator-system:r:srd-weapons]
 file_filter  = public/lang/babele/<lang>/investigator.srdWeapons.json
 source_file  = public/lang/babele-sources/investigator.srdWeapons.json
 source_lang  = en
 type         = KEYVALUEJSON
-minimum_perc = 80
+minimum_perc = 0
 
