@@ -1,7 +1,7 @@
 {
     "label": "Habilitats dels oponents",
     "mapping": {
-        "category": "data.category"
+        "category": "system.category"
     },
     "entries": {
         "Athletics": {
@@ -19,7 +19,7 @@
             "name": "Atac a distància"
         },
         "Scuffling": {
-            "name": "Scuffling",
+            "name": "Sigil",
             "category": "Generals"
         },
         "Shooting": {

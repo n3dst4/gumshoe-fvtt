@@ -1,7 +1,7 @@
 {
-    "label": "Nice Black Agents",
+    "label": "Night's Black Agents Abilities",
     "mapping": {
-        "category": "data.category"
+        "category": "system.category"
     },
     "entries": {
         "Accounting": {
@@ -48,9 +48,29 @@
             "name": "Jargon policier",
             "category": "Relationnelle"
         },
+        "Cover": {
+            "name": "Cover",
+            "category": "Générale"
+        },
+        "Criminology": {
+            "name": "Criminologie",
+            "category": "Académique"
+        },
         "Cryptography": {
             "name": "Cryptographie",
             "category": "Technique"
+        },
+        "Data Recovery": {
+            "name": "Data Recovery",
+            "category": "Technique"
+        },
+        "Diagnosis": {
+            "name": "Diagnosis",
+            "category": "Académique"
+        },
+        "Digital Intrusion": {
+            "name": "Digital Intrusion",
+            "category": "Générale"
         },
         "Disguise": {
             "name": "D\u00e9guisement",
@@ -63,6 +83,10 @@
         "Electronic Surveillance": {
             "name": "Surveillance \u00e9lectronique",
             "category": "Technique"
+        },
+        "Explosive Devices": {
+            "name": "Engins explosifs",
+            "category": "Générale"
         },
         "Filch": {
             "name": "Escamotage",
@@ -99,6 +123,10 @@
         "History": {
             "name": "Histoire",
             "category": "Acad\u00e9mique"
+        },
+        "Human Terrain": {
+            "name": "Human Terrain",
+            "category": "Académique"
         },
         "Infiltration": {
             "name": "Infiltration",
@@ -152,6 +180,10 @@
             "name": "Survie en ext\u00e9rieur",
             "category": "Technique"
         },
+        "Pharmacy": {
+            "name": "Pharmacie",
+            "category": "Technique"
+        },
         "Photography": {
             "name": "Photographie",
             "category": "Technique"
@@ -203,6 +235,18 @@
         "Traffic Analysis": {
             "name": "Analyse de donn\u00e9es",
             "category": "Technique"
+        },
+        "Urban Survival": {
+            "name": "Urban Survival",
+            "category": "Technique"
+        },
+        "Vampirology": {
+            "name": "Vampirology",
+            "category": "Académique"
+        },
+        "Weapons": {
+            "name": "Armes",
+            "category": "Générale"
         }
     }
 }
