@@ -1,7 +1,7 @@
 {
     "label": "Etoiles mourantes",
     "mapping": {
-        "category": "data.category"
+        "category": "system.category"
     },
     "entries": {
         "Anthropology": {
@@ -19,6 +19,14 @@
         "Athletics": {
             "name": "Athl\u00e9tisme",
             "category": "G\u00e9n\u00e9rale"
+        },
+        "Battle Console": {
+            "name": "Battle Console",
+            "category": "Générale"
+        },
+        "Bio Signatures": {
+            "name": "Bio Signatures",
+            "category": "Technique"
         },
         "Botany": {
             "name": "Botanique",
@@ -40,21 +48,49 @@
             "name": "Chimie",
             "category": "Technique"
         },
+        "Communications Intercept": {
+            "name": "Communications Intercept",
+            "category": "Générale"
+        },
+        "Consciousness Simulation": {
+            "name": "Consciousness Simulation",
+            "category": "Special"
+        },
         "Cop Talk": {
             "name": "Jargon policier",
             "category": "Relationnelle"
         },
-        "Cryptography": {
-            "name": "Cryptographie",
-            "category": "Technique"
-        },
-        "Culture": {
-            "name": "Culture",
-            "category": "Acad\u00e9mique"
+        "Cybe Culture": {
+            "name": "Cybe Culture",
+            "category": "Académique"
         },
         "Data Retrieval": {
             "name": "R\u00e9cup\u00e9ration de donn\u00e9es",
             "category": "Technique"
+        },
+        "Decryption": {
+            "name": "Decryption",
+            "category": "Technique"
+        },
+        "Downside": {
+            "name": "Downside",
+            "category": "Relationnelle"
+        },
+        "Dreamsight": {
+            "name": "Dreamsight",
+            "category": "Special"
+        },
+        "Emotion Suppression (Balla)": {
+            "name": "Emotion Suppression (Balla)",
+            "category": "Générale"
+        },
+        "Energy Signatures": {
+            "name": "Energy Signatures",
+            "category": "Technique"
+        },
+        "Enhancement Integration (Cybe)": {
+            "name": "Enhancement Integration (Cybe)",
+            "category": "Générale"
         },
         "Evidence Collection": {
             "name": "Recueil d\u2019indices",
@@ -63,6 +99,10 @@
         "Explosive Devices": {
             "name": "Engins explosifs",
             "category": "Technique"
+        },
+        "Farsight (Vas Mal)": {
+            "name": "Farsight (Vas Mal)",
+            "category": "Générale"
         },
         "Filch": {
             "name": "Escamotage",
@@ -84,6 +124,10 @@
             "name": "Analyse \u2013 Anthropologie",
             "category": "Technique"
         },
+        "Forensic Engineering": {
+            "name": "Forensic Engineering",
+            "category": "Technique"
+        },
         "Forensic Psychology": {
             "name": "Analyse \u2013 Psychologie",
             "category": "Acad\u00e9mique"
@@ -92,17 +136,57 @@
             "name": "G\u00e9ologie",
             "category": "Acad\u00e9mique"
         },
+        "Ground Craft": {
+            "name": "Ground Craft",
+            "category": "Générale"
+        },
         "Health": {
             "name": "Sant\u00e9",
             "category": "G\u00e9n\u00e9rale"
         },
-        "History": {
-            "name": "Histoire",
-            "category": "Acad\u00e9mique"
+        "Helm Control": {
+            "name": "Helm Control",
+            "category": "Générale"
+        },
+        "History, Balla": {
+            "name": "History, Balla",
+            "category": "Académique"
+        },
+        "History, Combine": {
+            "name": "History, Combine",
+            "category": "Académique"
+        },
+        "History, Durugh": {
+            "name": "History, Durugh",
+            "category": "Académique"
+        },
+        "History, Human": {
+            "name": "History, Human",
+            "category": "Académique"
+        },
+        "History, Kch-Thk": {
+            "name": "History, Kch-Thk",
+            "category": "Académique"
+        },
+        "History, Tavak": {
+            "name": "History, Tavak",
+            "category": "Académique"
+        },
+        "Holo Surveillance": {
+            "name": "Holo Surveillance",
+            "category": "Technique"
+        },
+        "Imaging": {
+            "name": "Imaging",
+            "category": "Technique"
         },
         "Impersonate": {
             "name": "Incarner",
             "category": "Relationnelle"
+        },
+        "Industrial Design": {
+            "name": "Industrial Design",
+            "category": "Technique"
         },
         "Infiltration": {
             "name": "Infiltration",
@@ -120,6 +204,10 @@
             "name": "Intimidation",
             "category": "Relationnelle"
         },
+        "Kinetics": {
+            "name": "Kinetics",
+            "category": "Technique"
+        },
         "Law": {
             "name": "Droit",
             "category": "Acad\u00e9mique"
@@ -132,13 +220,45 @@
             "name": "Premiers soins",
             "category": "G\u00e9n\u00e9rale"
         },
+        "Migrate Consciousness (Kch-Thk)": {
+            "name": "Migrate Consciousness (Kch-Thk)",
+            "category": "Générale"
+        },
+        "Naval Tactics": {
+            "name": "Naval Tactics",
+            "category": "Générale"
+        },
         "Negotiation": {
             "name": "N\u00e9gociation",
             "category": "Relationnelle"
         },
+        "Neural Rewiring (Cybe)": {
+            "name": "Neural Rewiring (Cybe)",
+            "category": "Générale"
+        },
+        "Neurosight": {
+            "name": "Neurosight",
+            "category": "Special"
+        },
+        "Pathway Amplification (Vas Mal)": {
+            "name": "Pathway Amplification (Vas Mal)",
+            "category": "Générale"
+        },
+        "Phase (Durugh)": {
+            "name": "Phase (Durugh)",
+            "category": "Générale"
+        },
         "Preparedness": {
             "name": "Organisation",
             "category": "G\u00e9n\u00e9rale"
+        },
+        "Probability Override (Vas Mal)": {
+            "name": "Probability Override (Vas Mal)",
+            "category": "Générale"
+        },
+        "Psychic Vitality (Vas Mal)": {
+            "name": "Psychic Vitality (Vas Mal)",
+            "category": "Générale"
         },
         "Public Relations": {
             "name": "Relations publiques",
@@ -147,6 +267,10 @@
         "Reassurance": {
             "name": "Apaisement",
             "category": "Relationnelle"
+        },
+        "Resist Battle Frenzy (Tavak)": {
+            "name": "Resist Battle Frenzy (Tavak)",
+            "category": "Générale"
         },
         "Respect": {
             "name": "Respect",
@@ -164,9 +288,45 @@
             "name": "Armes \u00e0 feu",
             "category": "G\u00e9n\u00e9rale"
         },
+        "Shuttle Craft": {
+            "name": "Shuttle Craft",
+            "category": "Générale"
+        },
         "Surveillance": {
             "name": "Surveillance",
             "category": "G\u00e9n\u00e9rale"
+        },
+        "Systems Design": {
+            "name": "Systems Design",
+            "category": "Générale"
+        },
+        "Systems Repair": {
+            "name": "Systems Repair",
+            "category": "Générale"
+        },
+        "Timesight": {
+            "name": "Timesight",
+            "category": "Special"
+        },
+        "Vas Mal Culture": {
+            "name": "Vas Mal Culture",
+            "category": "Académique"
+        },
+        "Viro Manipulation": {
+            "name": "Viro Manipulation",
+            "category": "Générale"
+        },
+        "Virology": {
+            "name": "Virology",
+            "category": "Technique"
+        },
+        "Xenoculture": {
+            "name": "Xenoculture",
+            "category": "Académique"
+        },
+        "Zoology": {
+            "name": "Zoology",
+            "category": "Académique"
         }
     }
 }
