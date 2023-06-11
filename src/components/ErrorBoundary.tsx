@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from "react";
+import { systemLogger } from "../functions";
 import { absoluteCover } from "./absoluteCover";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -20,6 +21,10 @@ export class ErrorBoundary extends React.Component<
   static getDerivedStateFromError(error: Error) {
     // Update state so the next render will show the fallback UI.
     return { error };
+  }
+
+  componentDidCatch(error: Error, info: any) {
+    systemLogger.error(error, info.componentStack);
   }
 
   render() {
