@@ -1,8 +1,6 @@
 [main]
 host     = https://www.transifex.com
-# https://docs.transifex.com/client/client-configuration#language-mappings
-# Transifex uses an underscore instead of a dash
-lang_map = pt_PT: pt-PT, pt_BR: pt-BR, ja_JP: ja-JP
+lang_map = pt_BR: pt-BR, ja_JP: ja-JP, pt_PT: pt-PT
 
 [o:investigator-system:p:investigator-system:r:casting-the-runes-abilities]
 file_filter  = public/lang/babele/<lang>/investigator.castingTheRunesAbilities.json
@@ -17,6 +15,13 @@ source_file  = public/lang/en.json
 source_lang  = en
 type         = KEYVALUEJSON
 minimum_perc = 0
+
+[o:investigator-system:p:investigator-system:r:moribund-world-strings]
+file_filter   = public/lang/moribundWorld/<lang>.json
+source_file   = public/lang/moribundWorld/en.json
+type          = KEYVALUEJSON
+minimum_perc  = 0
+resource_name = Moribund World strings
 
 [o:investigator-system:p:investigator-system:r:nice-black-agents-abilities]
 file_filter  = public/lang/babele/<lang>/investigator.niceBlackAgentsAbilities.json
