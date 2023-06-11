@@ -2,6 +2,9 @@
 
 - [Development notes](#development-notes)
   - [Development \& general hacking](#development--general-hacking)
+    - [Prerequisites](#prerequisites)
+    - [Getting started](#getting-started)
+    - [pnpm](#pnpm)
   - [Migrations](#migrations)
   - [Flagged migrations](#flagged-migrations)
   - [Generating Compendium packs](#generating-compendium-packs)
@@ -13,19 +16,30 @@
   - [Development flow](#development-flow)
   - [Release process](#release-process)
     - [What happens if the CI pipeline fails?](#what-happens-if-the-ci-pipeline-fails)
+  - [How to pull translations from Transifex](#how-to-pull-translations-from-transifex)
   - [GitLab Legacy](#gitlab-legacy)
 
 ## Development & general hacking
 
-If you're a developer and you'd like to hack on this code, please be aware it uses Webpack and React so some of it will not look like normal Handlebars + JQuery Foundry stuff.
+If you're a developer and you'd like to hack on this code, please be aware it uses Webpack and React so some of it will not look like normal Handlebars + JQuery Foundry stuff. Also it's set up to use **[pnpm](#pnpm)** instead of npm, so you'll need to install that.
+
+### Prerequisites
+
+* Have [Node.js](https://nodejs.org/) installed.
+
+### Getting started
 
 1. Clone the repo.
 2. Copy `foundryconfig_template.json` to `foundryconfig.json` and edit it to fill in the `dataPath`, e.g.  `"dataPath" "/home/ndc/foundrydata",`.
-3. `npm i` to install dependencies
-4. `npm run build` to do a build
-5. `npm run link` to link it into your foundry data folder
-6. `npm start` to start a live incremental build (so you don't need to keep running `npm run build` after every change).
+3. `pnpm i` to install dependencies
+4. `pnpm run build` to do a build
+5. `pnpm run link` to link it into your foundry data folder
+6. `pnpm start` to start a live incremental build (so you don't need to keep running `pnpm run build` after every change).
 7. Open your local foundry server and create a world using this as the system.
+
+### pnpm
+
+We use [pnpm](https://pnpm.io/) instead of npm because it's faster and more efficient. It's a drop-in replacement for npm, so you can use it just like npm. If you don't have it installed, you can install it with `corepack enable` (Corepack is a tool for installing package managers. It ships with Node.js, so you should already have it.)
 
 ## Migrations
 
@@ -180,6 +194,28 @@ To perform a release:
 
 2. Fix the problem, commit.
 3. Run `do-release.sh` again.
+
+
+## How to pull translations from Transifex
+
+```sh
+pn pull-translations
+```
+
+The command to pull translations has gone through a few iterations and never quite seemed right. Here's the current version (this is in `package.json`):
+
+```sh
+tx pull --all --force --workers 16
+```
+
+* `--all` - pull all languages, not just the pre-existing ones.
+* `--workers 16` - seems to make sense on a 16-core machine. I'm not sure if it's actually helping.
+* `--force` - overwrite "newer" files. This should only happen if there has been a PR or commit that changed the translations without also uploading those changes to Transifex.
+
+> ⚠️ After running `pn pullTranslations` (or the `tx pull` command above), you MUST look through the changes in git and confirm that they make sense. Look for languages with a lot of changes and double check that you are not accidentally overwriting changes that were added to git but not TX.
+>
+> ⚠️ To that point - when someone sends a PR with translation changes, it's better to feed those into TX (resources -> language -> upload file) and then pull them back down again, rather than committing directly. This way TX remains the single source of truth for translations.
+
 
 ## GitLab Legacy
 
