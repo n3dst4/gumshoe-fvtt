@@ -33,7 +33,7 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
    * */
   render: Render<TBase>,
 ) {
-  return class Reactified extends Base {
+  class Reactified extends Base {
     /**
      * Override _replaceHTML to stop FVTT's standard template lifecycle coming in
      * and knackering React on every update.
@@ -135,4 +135,6 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
       return super.close(options);
     }
   };
+  Object.defineProperty(Reactified, "name", {value: Base.name.replace(/Base$/, "")});
+  return Reactified;
 }
