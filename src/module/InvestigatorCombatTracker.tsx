@@ -3,14 +3,8 @@ import { reactifiedCombatSidebarTemplatePath } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 import React from "react";
 import { ErrorBoundary } from "../components/ErrorBoundary";
-import { systemLogger } from "../functions";
 
 export class InvestigatorCombatTrackerBase extends CombatTracker {
-
-  constructor(...args: any[]) {
-    systemLogger.log("InvestigatorCombatTrackerBase constructor");
-    super(...args);
-  }
 
   /** @override */
   static get defaultOptions() {
