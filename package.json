@@ -32,7 +32,7 @@
     "@emotion/babel-plugin": "^11.10.0",
     "@emotion/cache": "^11.10.1",
     "@emotion/css": "^11.10.0",
-    "@emotion/react": "^11.10.0",
+    "@emotion/react": "^11.11.1",
     "@jest/globals": "^29.5.0",
     "@jest/types": "^29.5.0",
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
