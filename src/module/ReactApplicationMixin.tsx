@@ -18,13 +18,6 @@ type Render<T> = (
   serial: number,
 ) => JSX.Element;
 
-export interface ReactApplicationMixinOptions {
-  callReplaceHtml?: boolean;
-}
-
-const defaults: Required<ReactApplicationMixinOptions> = {
-  callReplaceHtml: false,
-};
 
 /**
  * Wrap an existing Foundry Application class in this Mixin to override the
@@ -39,10 +32,7 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
    * return some JSX.
    * */
   render: Render<TBase>,
-  options: ReactApplicationMixinOptions = {},
 ) {
-  const fullOptions = { ...defaults, ...options };
-
   return class Reactified extends Base {
     /**
      * Override _replaceHTML to stop FVTT's standard template lifecycle coming in
@@ -51,31 +41,46 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
      * @override
      */
     _replaceHTML(element: JQuery, html: JQuery) {
-      // this is the only thing we need to do here - react deals with updating
-      // the rest of the window.
-      if (fullOptions.callReplaceHtml && !this.initialized) {
+
+      // this is a very specific hack for Foundry v11. In
+      // `Application#_activateCoreListeners` it assumes that `html` (which is
+      // actually a jQuery object) has been injected into the DOM, so it tries
+      // to call `.parentElement` on it. However we are blocking the call to
+      // `_replaceHTML` (here, where you're reading this) so it doesn't bugger
+      // up React, which means that `html` just contains a free-floating
+      // unattached DOM node with no `.parentElement`. So this hack is just that
+      // we wrap it in a div to keep Foundry's internals happy.
+      //
+      // The alternative might be to override `_activateCoreListeners` but
+      // there's an alarming cautionary comment on it saying basically don't do
+      // that. TBH that probably applies more to normal apps rather than this
+      // Reactified system, but this hack seems more targetted anyway.
+      html.wrap("<div/>");
+
+      // in some circumstances, _injectHTML never gets called, so we need to let
+      // this method (_replaceHTML) have it's normal effect once in that case.
+      if (!this.isDOMInitialized) {
         super._replaceHTML(element, html);
-        this.initialized = true;
-      } else {
-        // this is a very specific hack for Foundry v11. In
-        // `Application#_activateCoreListeners` it assumes that `html` (which is
-        // actually a jQuery object) has been injected into the DOM, so it tries
-        // to call `.parentElement` on it. However we are blocking the call to
-        // `_replaceHTML` (here, where you're reading this) so it doesn't bugger
-        // up React, which means that `html` just contains a free-floating
-        // unattached DOM node with no `.parentElement`. So this hack is just that
-        // we wrap it in a div to keep Foundry's internals happy.
-        //
-        // The alternative might be to override `_activateCoreListeners` but
-        // there's an alarming cautionary comment on it saying basically don't do
-        // that. TBH that probably applies more to normal apps rather than this
-        // Reactified system, but this hack seems more targetted anyway.
-        html.wrap("<div/>");
+        this.isDOMInitialized = true;
       }
+
+      // this is the only other thing we need to do here - react deals with
+      // updating the rest of the window.
       element.find(".window-title").text(this.title);
     }
 
-    initialized = false;
+    /**
+     * Override _injectHTML to set our domInitialized flag.
+     */
+    _injectHTML(html: JQuery) {
+      this.isDOMInitialized = true;
+      super._injectHTML(html);
+    }
+
+    /**
+     * when true, we've called `_injectHTML` or `_replaceHTML` at least once.
+     */
+    isDOMInitialized = false;
 
     serial = 0;
 
@@ -131,5 +136,3 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
     }
   };
 }
-
-// Module '"react-dom"' has no exported member 'createRoot'.

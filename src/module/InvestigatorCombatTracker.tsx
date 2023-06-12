@@ -19,5 +19,4 @@ const render = () => <ReactCombatTracker />;
 export const InvestigatorCombatTracker = ReactApplicationMixin(
   InvestigatorCombatTrackerBase,
   render,
-  { callReplaceHtml: true },
 );
