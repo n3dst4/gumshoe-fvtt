@@ -135,6 +135,8 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
       return super.close(options);
     }
   };
+  // we are assuming that the base classn is named WhateverBase, so we set the
+  // name of the mixed-in class to Whatever.
   Object.defineProperty(Reactified, "name", {value: Base.name.replace(/Base$/, "")});
   return Reactified;
 }
