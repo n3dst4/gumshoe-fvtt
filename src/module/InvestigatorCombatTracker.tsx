@@ -16,7 +16,7 @@ export class InvestigatorCombatTrackerBase extends CombatTracker {
 
   // we do love a hack. there is a weird behaviour in FVTT where when you pop
   // out the combat tracker, it gets auto-size some some proportion of the
-  // screen height. This makes it less usable than the normla version. it comes
+  // screen height. This makes it less usable than the normal version. it comes
   // down to Application#createPopout which doesn't make the popout resizable.
   // So this override does everything from CombatTracker.createPopout and
   // Application#createPopout, but adds the `resizable` option.
