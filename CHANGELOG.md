@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 7.1.0 (2023-06-16)
+
+* GUMSHOE now works with Foundry v11! (it kinda did before but with some bugs, which have now been fixed.) (#244)
+* Polish translations have been added fixed and completed, thanks @marksju (#246)
+* The combat tracker is now resizable when popped out (#143)
+* When you refresh a PC's abilities, a message is broadcast to the chat log (#230)
+
+And finally:
+
+* As a result of sorting out some issues found while integrating the Polish translations, I realised that a whole bunch of translations that had been contributed to Transifex had not made their way into any release. APOLOGIES to the folks who had contributed those strings. They are now included in this release. (#251)
+
+
 ## 7.0.0 (2023-06-01)
 
 ### The Headlines
