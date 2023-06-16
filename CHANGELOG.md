@@ -3,7 +3,7 @@
 ## 7.1.0 (2023-06-16)
 
 * GUMSHOE now works with Foundry v11! (it kinda did before but with some bugs, which have now been fixed.) (#244)
-* Polish translations have been added fixed and completed, thanks @marksju (#246)
+* Polish translations have been added fixed and completed, thanks @marksjus  (#246)
 * The combat tracker is now resizable when popped out (#143)
 * When you refresh a PC's abilities, a message is broadcast to the chat log (#230)
 
