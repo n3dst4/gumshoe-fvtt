@@ -270,21 +270,6 @@ export class InvestigatorActor extends Actor {
     return personalDetailItems;
   };
 
-  // getSheetTheme(): ThemeV1 {
-  //   const themeName =
-  //     this.getSheetThemeName() || settings.defaultThemeName.get();
-  //   const theme = runtimeConfig.themes[themeName];
-  //   if (theme !== undefined) {
-  //     return theme;
-  //   } else if (
-  //     runtimeConfig.themes[settings.defaultThemeName.get()] !== undefined
-  //   ) {
-  //     return runtimeConfig.themes[settings.defaultThemeName.get()];
-  //   } else {
-  //     return tealTheme;
-  //   }
-  // }
-
   getSheetThemeName(): string {
     return (
       (isActiveCharacterActor(this)
