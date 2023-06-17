@@ -263,15 +263,12 @@ export const moribundWorldPreset: PresetV1 = {
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
 };
+
 export const veritatisPreset: PresetV1 = {
   schemaVersion: "v1",
   displayName: "Ordo Veritatis",
   defaultThemeName: "unsafeRealityTheme",
-  investigativeAbilityCategories: [
-    "Academic",
-    "Interpersonal",
-    "Technical",
-  ],
+  investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
   combatAbilities: ["Scuffling", "Shooting", "Athletics"],
   occupationLabel: "Off-duty Occupation",
@@ -279,11 +276,11 @@ export const veritatisPreset: PresetV1 = {
   longNotes: ["Notes"],
   newPCPacks: [`${systemId}.${packNames.veritasAbilities}`],
   newNPCPacks: [`${systemId}.${npcPackName}`],
-  useBoost: false, //
+  useBoost: false,
   useMwStyleAbilities: false,
   mwUseAlternativeItemTypes: false,
   useMwInjuryStatus: false,
-  genericOccupation: "Investigator", //
+  genericOccupation: "Investigator",
   pcStats: pathOfCthulhuPreset.pcStats,
   npcStats: pathOfCthulhuPreset.npcStats,
   equipmentCategories: { general: { name: "General", fields: {} } },

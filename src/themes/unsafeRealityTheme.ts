@@ -4,19 +4,21 @@ import { ThemeV1 } from "./types";
 
 export const unsafeRealityTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
-displayName: "Unsafe Reality",
+  displayName: "Unsafe Reality2",
   global: `
     @import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
   `,
   largeSheetRootStyle: {
-    backgroundImage: `url(systems/${systemId}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
+    background: `
+      url(systems/${systemId}/assets/wallpaper/pawel-czerwinski-RPMcxbm2zi4-unsplash.webp)
+    `,
   },
   // smallSheetRootStyle: {
   //   backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
   // },
   bodyFont: "16px 'Averia Libre', sans-serif",
-  displayFont: "normal normal normal 1.1em 'Averia Serif Libre', serif",
+  displayFont: "normal normal normal 1.1em 'Averia Libre', serif",
   logo: {
     frontTextElementStyle: {
       background:
@@ -31,14 +33,15 @@ displayName: "Unsafe Reality",
     },
     backdropStyle: {},
   },
+
   colors: {
-    accent: "#615144",
-    accentContrast: "white",
+    accent: "#ed9f5e",
+    accentContrast: "black",
     glow: "#fff",
-    wallpaper: "#b6b3b3", //
-    backgroundSecondary: "rgba(255,255,255,0.2)",
-    backgroundPrimary: "rgba(255,255,255,0.5)",
+    wallpaper: "#144350", //
+    backgroundSecondary: "rgba(0,0,0,0.2)",
+    backgroundPrimary: "rgba(0,0,0,0.5)",
     backgroundButton: "rgba(0,0,0,0.1)",
-    text: "#444",
+    text: "#f3dbb2",
   },
 });
