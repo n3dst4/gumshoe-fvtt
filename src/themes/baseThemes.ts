@@ -9,6 +9,7 @@ import { greenTriangleTheme } from "./greenTriangleTheme";
 import { antiquarianTheme } from "./antiquarianTheme";
 import { olderThanMemoryTheme } from "./olderThanMemoryTheme";
 import { ThemeV1 } from "./types";
+import { unsafeRealityTheme } from "./unsafeRealityTheme";
 
 export const baseThemes: { [themeName: string]: ThemeV1 } = {
   tealTheme,
@@ -21,4 +22,5 @@ export const baseThemes: { [themeName: string]: ThemeV1 } = {
   greenTriangleTheme,
   antiquarianTheme,
   olderThanMemoryTheme,
+  unsafeRealityTheme,
 };

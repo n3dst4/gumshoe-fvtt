@@ -71,6 +71,13 @@
       "system": "investigator",
       "path": "./packs/castingTheRunesAbilities.db",
       "type": "Item"
+    },
+    {
+      "name": "veritasAbilities",
+      "label": "Ordo Veritatis Abilities",
+      "system": "investigator",
+      "path": "./packs/veritasAbilities.db",
+      "type": "Item"
     }
   ],
   "languages": [

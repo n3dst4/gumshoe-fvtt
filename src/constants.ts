@@ -51,6 +51,7 @@ export const packNames = {
   srdAbilities: "srdAbilities" as const,
   castingTheRunesAbilities: "castingTheRunesAbilities" as const,
   moribundWorldAbilities: "moribundWorldAbilities" as const,
+  veritasAbilities: "veritasAbilities" as const,
 };
 
 export const npcPackName = "opponentAbilities" as const;
