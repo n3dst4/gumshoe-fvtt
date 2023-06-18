@@ -128,12 +128,12 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           css={{
             zIndex: -1,
             ...textBearerStyle,
-            ...theme.logo.rearTextElementStyle,
           }}
         >
           <div
             css={{
               ...textStyle,
+              ...theme.logo.rearTextElementStyle,
             }}
           >
             {displayText}
@@ -142,6 +142,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
             <div
               css={{
                 ...subtextSyle,
+                ...theme.logo.rearTextElementStyle,
               }}
             >
               {displaySubtext}
@@ -151,47 +152,34 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
 
         {/* front element, aka the gradient-bearer (on themes that have text
           gradients) */}
-        {/* This extra div is SOLELY to work around this Firefox bug
-          https://bugzilla.mozilla.org/show_bug.cgi?id=1720995
-          Basically if you have transform and background-clip: text on the same
-          element it cocks up. Bug was introduced in FF90, and as resolved in
-          FF92 so I could have ignored it but then again that's not how I roll.
-          I have tested this in FF nightlies and it is 100% fixed in FF92. When
-          FF92 hits mainline, it will be safe to come back and unwrap this div
-          and just apply textBearerStyle on the gradient-bearer div.
-          */}
-        <div css={textBearerStyle}>
+        <div
+          css={textBearerStyle}
+          className="front-text-element gradient-bearer"
+        >
           <div
-            className="front-text-element gradient-bearer"
             css={{
-              // When F92 is mainline, unwrap this div and uncomment this style.
-              // ...textBearerStyle,
+              ...textStyle,
               ...theme.logo.frontTextElementStyle,
             }}
-          >
+            contentEditable
+            ref={contentEditableRefText}
+            onInput={onInputText}
+            onFocus={onFocusText}
+            onBlur={onBlurText}
+          />
+          {hasSubtext && (
             <div
               css={{
-                ...textStyle,
+                ...subtextSyle,
+                ...theme.logo.frontTextElementStyle,
               }}
               contentEditable
-              ref={contentEditableRefText}
-              onInput={onInputText}
-              onFocus={onFocusText}
-              onBlur={onBlurText}
+              ref={contentEditableRefSubtext}
+              onInput={onInputSubtext}
+              onFocus={onFocusSubtext}
+              onBlur={onBlurSubtext}
             />
-            {hasSubtext && (
-              <div
-                css={{
-                  ...subtextSyle,
-                }}
-                contentEditable
-                ref={contentEditableRefSubtext}
-                onInput={onInputSubtext}
-                onFocus={onFocusSubtext}
-                onBlur={onBlurSubtext}
-              />
-            )}
-          </div>
+          )}
         </div>
       </div>
     </div>

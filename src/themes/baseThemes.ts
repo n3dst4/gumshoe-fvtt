@@ -40,9 +40,6 @@ if (import.meta.hot) {
 
   if (import.meta.hot) {
     import.meta.hot.accept(
-      // keep this list in sync with the exports above.
-      // unfortunately the HMP API is staticaly analysed so we can't do anything
-      // clever - this *must* be a string literal array in the source code
       [
         "tealTheme.ts",
         "niceTheme.ts",
@@ -56,11 +53,15 @@ if (import.meta.hot) {
         "olderThanMemoryTheme.ts",
         "unsafeRealityTheme.ts",
       ],
+      // keep this list in sync with the exports above.
+      // unfortunately the HMP API is staticaly analysed so we can't do anything
+      // clever - this *must* be a string literal array in the source code.
+      // also this comment should be above the list, but doing so breaks said
+      // static analysis.
       (newModules) => {
         newModules.forEach((newModule, i) => {
           if (newModule) {
             const themeName = themeNames[i];
-            console.info(`Updating ${themeName}`, newModule[themeName]);
             CONFIG.Investigator?.installTheme(themeName, newModule[themeName]);
             Hooks.call("investigator:themeHMR", themeName);
           }
