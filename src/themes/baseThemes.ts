@@ -10,8 +10,8 @@ import { antiquarianTheme } from "./antiquarianTheme";
 import { olderThanMemoryTheme } from "./olderThanMemoryTheme";
 import { ThemeV1 } from "./types";
 import { unsafeRealityTheme } from "./unsafeRealityTheme";
-// import { systemLogger } from "../functions";
 
+// remember to update the HMR setup below any time you modify this export.
 export const baseThemes: { [themeName: string]: ThemeV1 } = {
   tealTheme,
   niceTheme,
@@ -36,14 +36,36 @@ export const reregisterBaseTheme = (name: string, theme: ThemeV1) => {
 // runtime config and then call a (Foundry) hook to notify the (React) useTheme
 // hook about the change.
 if (import.meta.hot) {
-  import.meta.hot.accept("./unsafeRealityTheme.ts", (newModule) => {
-    if (newModule) {
-      console.info("Updating unsafeRealityTheme", newModule.unsafeRealityTheme);
-      CONFIG.Investigator?.installTheme(
-        "unsafeRealityTheme",
-        newModule.unsafeRealityTheme,
-      );
-      Hooks.call("investigator:themeHMR", "unsafeRealityTheme");
-    }
-  });
+  const themeNames = Object.keys(baseThemes);
+
+  if (import.meta.hot) {
+    import.meta.hot.accept(
+      // keep this list in sync with the exports above.
+      // unfortunately the HMP API is staticaly analysed so we can't do anything
+      // clever - this *must* be a string literal array in the source code
+      [
+        "tealTheme.ts",
+        "niceTheme.ts",
+        "niceThemeDark.ts",
+        "highContrastTheme.ts",
+        "fearTheme.ts",
+        "pallidTheme.ts",
+        "deltaGroovyTheme.ts",
+        "greenTriangleTheme.ts",
+        "antiquarianTheme.ts",
+        "olderThanMemoryTheme.ts",
+        "unsafeRealityTheme.ts",
+      ],
+      (newModules) => {
+        newModules.forEach((newModule, i) => {
+          if (newModule) {
+            const themeName = themeNames[i];
+            console.info(`Updating ${themeName}`, newModule[themeName]);
+            CONFIG.Investigator?.installTheme(themeName, newModule[themeName]);
+            Hooks.call("investigator:themeHMR", themeName);
+          }
+        });
+      },
+    );
+  }
 }
