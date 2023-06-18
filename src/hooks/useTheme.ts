@@ -3,19 +3,23 @@ import { runtimeConfig } from "../runtime";
 import { tealTheme } from "../themes/tealTheme";
 import { ThemeV1 } from "../themes/types";
 
+function getThemeByName(name: string) {
+  const theme = runtimeConfig.themes[name] ?? tealTheme;
+  return theme;
+}
+
 /**
  * This is the new right way to get a theme from a theme name. It will return a
  * default theme in the event ogf an error, and will also update the theme if it
  * changes in dev using HMR (see baseThemes.ts for where that gets initiated.)
  */
 export const useTheme = (name: string) => {
-  const [theme, setTheme] = React.useState<ThemeV1>(
-    runtimeConfig.themes[name] ?? tealTheme,
-  );
+  const [theme, setTheme] = React.useState<ThemeV1>(getThemeByName(name));
   useEffect(() => {
+    setTheme(runtimeConfig.themes[name] ?? tealTheme);
     const fn = (themeName: string) => {
       if (themeName === name) {
-        setTheme(runtimeConfig.themes[name] ?? tealTheme);
+        setTheme(getThemeByName(name));
       }
     };
     Hooks.on("investigator:themeHMR", fn);
