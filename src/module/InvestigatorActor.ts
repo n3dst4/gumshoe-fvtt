@@ -270,16 +270,17 @@ export class InvestigatorActor extends Actor {
     return personalDetailItems;
   };
 
-  getSheetThemeName(): string {
-    return (
-      (isActiveCharacterActor(this)
-        ? this.system.sheetTheme
-        : settings.defaultThemeName.get()) ?? "tealTheme"
-    );
+  getSheetThemeName(): string | null {
+    // eslint-disable-next-line no-debugger
+    // debugger;
+    return isActiveCharacterActor(this)
+      ? this.system.sheetTheme
+      : settings.defaultThemeName.get();
   }
 
-  setSheetTheme = (sheetTheme: string | null) =>
+  setSheetTheme = (sheetTheme: string | null) => {
     this.update({ system: { sheetTheme } });
+  };
 
   getNotes = () => {
     assertNPCActor(this);
