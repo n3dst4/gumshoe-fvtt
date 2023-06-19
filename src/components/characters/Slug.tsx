@@ -34,7 +34,7 @@ export const Slug: React.FC<SlugProps> = ({ onClick, item, children }) => {
         borderRadius: "0.7em",
         padding: "0.1em 0.5em",
         margin: "0.1em 0.1em 0.1em 0",
-        backgroundColor: theme.colors.backgroundSecondary,
+        backgroundColor: theme.colors.backgroundButton,
         color: theme.colors.accent,
         lineHeight: "1em",
         whiteSpace: "nowrap",
