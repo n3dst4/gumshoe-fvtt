@@ -73,10 +73,10 @@
       "type": "Item"
     },
     {
-      "name": "veritasAbilities",
-      "label": "Ordo Veritatis Abilities",
+      "name": "esoterroristsAbilities",
+      "label": "Esoterrorists Abilities (built-in)",
       "system": "investigator",
-      "path": "./packs/veritasAbilities.db",
+      "path": "./packs/esoterroristsAbilities.db",
       "type": "Item"
     }
   ],

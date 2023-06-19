@@ -274,7 +274,7 @@ export const veritatisPreset: PresetV1 = {
   occupationLabel: "Off-duty Occupation",
   personalDetails: [],
   longNotes: ["Notes"],
-  newPCPacks: [`${systemId}.${packNames.veritasAbilities}`],
+  newPCPacks: [`${systemId}.${packNames.esoterroristsAbilities}`],
   newNPCPacks: [`${systemId}.${npcPackName}`],
   useBoost: false,
   useMwStyleAbilities: false,
