@@ -4,8 +4,12 @@ import { ThemeV1 } from "./types";
 
 const orange = "#af2211";
 const darkOrange = "#b63017";
-const glow = "#ed6a26";
+const lightOrange = "#ed6a26";
 const yellow = "#ffef78";
+// const lightBlue = "#a9d2ff";
+const blueWallpaper = "#143370";
+const brick = "#84432a";
+const wallpaper = brick;
 
 export const unsafeRealityTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
@@ -16,10 +20,21 @@ export const unsafeRealityTheme: ThemeV1 = themeFactory({
   `,
   largeSheetRootStyle: {
     background: `
-      url(systems/${systemId}/assets/wallpaper/blue-purple-unreality.webp)
+    linear-gradient(
+      to bottom,
+      ${wallpaper} 0%,
+      ${wallpaper} 100%
+    ),
+    linear-gradient(
+      to bottom,
+      #000a 0%,
+      #000a 100%
+    ),
+      url(systems/${systemId}/assets/wallpaper/monochrome-unreality-cropped.webp)
     `,
     backgroundSize: "cover",
     backgroundPosition: "center",
+    backgroundBlendMode: "color, normal, normal",
   },
   // smallSheetRootStyle: {
   //   backgroundImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-xvU-X0GV9-o-unsplash.webp)`,
@@ -44,8 +59,8 @@ export const unsafeRealityTheme: ThemeV1 = themeFactory({
     rearTextElementStyle: {
       color: orange,
       textShadow: `
-      -5px -5px 10px ${glow},
-      5px 5px 10px ${glow}
+      -5px -5px 10px ${lightOrange},
+      5px 5px 10px ${lightOrange}
       `,
     },
     textElementsStyle: {
@@ -54,7 +69,9 @@ export const unsafeRealityTheme: ThemeV1 = themeFactory({
       fontVariant: "small-caps",
     },
     backdropStyle: {
-      backgroundImage: `linear-gradient(to bottom, ${darkOrange} 0%, ${orange} 100%)`,
+      background: `
+        linear-gradient(to bottom, ${darkOrange} 0%, ${orange} 100%)
+      `,
       maskImage: `url(systems/${systemId}/assets/wallpaper/esoterica.webp)`,
       maskMode: "luminance",
       maskRepeat: "no-repeat",
@@ -66,13 +83,15 @@ export const unsafeRealityTheme: ThemeV1 = themeFactory({
   },
 
   colors: {
-    accent: "#e2a553",
+    // accent: "#e2a553",
+    // accent: lightBlue,
+    accent: "#df9d4f",
     accentContrast: "black",
     glow: "#f4bcf0",
-    wallpaper: "#144350", //
-    backgroundSecondary: "rgba(255,255,255,0.1)",
-    backgroundPrimary: "rgba(0,0,0,0.4)",
-    backgroundButton: "rgba(0,0,0,0.1)",
+    wallpaper, //
+    backgroundSecondary: "#7777",
+    backgroundPrimary: "#4447",
+    backgroundButton: "#fff2",
     text: "#ccc",
   },
 });
