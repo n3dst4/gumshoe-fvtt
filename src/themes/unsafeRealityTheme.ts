@@ -7,7 +7,7 @@ const darkOrange = "#b63017";
 const lightOrange = "#ed6a26";
 const yellow = "#ffef78";
 // const lightBlue = "#a9d2ff";
-const blueWallpaper = "#143370";
+// const blueWallpaper = "#143370";
 const brick = "#84432a";
 const wallpaper = brick;
 
@@ -89,9 +89,9 @@ export const unsafeRealityTheme: ThemeV1 = themeFactory({
     accentContrast: "black",
     glow: "#f4bcf0",
     wallpaper, //
-    backgroundSecondary: "#7777",
-    backgroundPrimary: "#4447",
-    backgroundButton: "#fff2",
+    backgroundSecondary: "#5677",
+    backgroundPrimary: "#5447",
+    backgroundButton: "#7702",
     text: "#ccc",
   },
 });
