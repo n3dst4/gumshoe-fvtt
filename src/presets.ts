@@ -264,9 +264,9 @@ export const moribundWorldPreset: PresetV1 = {
   npcStats: pathOfCthulhuPreset.npcStats,
 };
 
-export const veritatisPreset: PresetV1 = {
+export const esoterroristsPreset: PresetV1 = {
   schemaVersion: "v1",
-  displayName: "Ordo Veritatis",
+  displayName: "Esoterrorists (built-in)",
   defaultThemeName: "unsafeRealityTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
@@ -293,5 +293,5 @@ export const basePresets = {
   pallidStarsPreset,
   castingTheRunesPreset,
   moribundWorldPreset,
-  veritatisPreset,
+  esoterroristsPreset,
 };
