@@ -16,7 +16,7 @@
     "build-pack-translations": "./tasks.js buildPackTranslations",
     "pull-translations": "tx pull --workers 16 --force -all",
     "test-code": "vitest",
-    "test-types": "tsd -f src/types.test-d.ts -t src/types.ts",
+    "test-types": "vitest typecheck",
     "test": "pnpm test-code && pnpm test-types",
     "eslint:check": "eslint src",
     "eslint:fix": "eslint src --fix",
