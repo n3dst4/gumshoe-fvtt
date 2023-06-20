@@ -1,13 +1,13 @@
 import { systemId } from "../constants";
-import { Irid } from "../Irid";
+import { irid } from "../irid/irid";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
 const pallidBlur = "5px";
 const pallidOffset = "3px";
 const stripNewlines = (s: string) => s.replace("\n", "");
-const pallidColor = Irid("#282c34");
-const pallidComplement = Irid("#aff2f2");
+const pallidColor = irid("#282c34");
+const pallidComplement = irid("#aff2f2");
 
 export const pallidTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",

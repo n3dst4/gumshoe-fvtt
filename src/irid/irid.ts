@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-this-alias */
 import { hslToRGB, rgbToHSL } from "./conversion-functions";
 import { cssHSLToHSL, cssRGBToRGB, hexToRGB } from "./parsing-functions";
 import { hslToCSSHSL, rgbToCSSRGB, rgbToHex } from "./formatting-functions";
@@ -88,17 +87,11 @@ export class Irid {
   // http://www.w3.org/TR/WCAG20/#contrast-ratiodefs
   contrastRatio(other: Irid | string): number {
     other = Irid.create(other);
-    let lighter, darker;
-    if (other.relativeLuminance() > this.relativeLuminance()) {
-      lighter = other;
-      darker = this;
-    } else {
-      lighter = this;
-      darker = other;
-    }
-    return (
-      (lighter.relativeLuminance() + 0.05) / (darker.relativeLuminance() + 0.05)
-    );
+    const otherLum = other.relativeLuminance();
+    const thisLum = this.relativeLuminance();
+    const lighter = Math.max(otherLum, thisLum);
+    const darker = Math.min(otherLum, thisLum);
+    return (lighter + 0.05) / (darker + 0.05);
   }
 
   red(): number;
