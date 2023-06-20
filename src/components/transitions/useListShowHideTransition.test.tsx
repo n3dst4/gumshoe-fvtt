@@ -3,12 +3,13 @@ import {
   ItemWithTransitionState,
   useListShowHideTransition,
 } from "./useListShowHideTransition";
+import { expect, describe, test, vi } from "vitest";
 
 function identity<T>(value: T): T {
   return value;
 }
 
-jest.useFakeTimers();
+vi.useFakeTimers();
 
 function renderUseListShowHideTransition(initialList: string[] = []) {
   return renderHook<ItemWithTransitionState<string>[], string[]>(
@@ -21,7 +22,7 @@ function renderUseListShowHideTransition(initialList: string[] = []) {
 
 function actAndAdvance(time: number) {
   act(() => {
-    jest.advanceTimersByTime(time);
+    vi.advanceTimersByTime(time);
   });
 }
 

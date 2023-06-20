@@ -1,9 +1,9 @@
 import { createSystemSlice } from "./store";
 import { State } from "./types";
-import { expect, jest, it, describe } from "@jest/globals";
 import { AnyAction } from "./reducerTools";
 import { pathOfCthulhuPreset } from "../../presets";
 import { diff } from "jest-diff";
+import { describe, it, expect, vi, beforeEach, afterAll } from "vitest";
 
 type TestTuple = [string, AnyAction];
 
@@ -110,8 +110,8 @@ const diffOptions = {
 };
 
 // mock the reducer callbacks
-const logFn = jest.fn();
-const onErrorFn = jest.fn();
+const logFn = vi.fn();
+const onErrorFn = vi.fn();
 
 const slice = createSystemSlice({
   log: logFn,
@@ -126,7 +126,7 @@ beforeEach(() => {
 // we need to mock nanoid so that we can predictably generate ids
 // I tried putting this in beforeAll but for some reason we weren't seeing the
 // mock in the test
-jest.mock("nanoid", () => {
+vi.mock("nanoid", () => {
   let count = 0;
   return {
     __esModule: true,
@@ -135,7 +135,7 @@ jest.mock("nanoid", () => {
 });
 
 afterAll(() => {
-  jest.resetModules();
+  vi.resetModules();
 });
 
 /*
