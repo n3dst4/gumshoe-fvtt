@@ -14,10 +14,6 @@ export type HSLA = {
 };
 export type Color = RGBA | HSLA;
 export type ColorType = Color["type"];
-// export type ColorCache = {
-//   rgba?: RGBA;
-//   hsla?: HSLA;
-// };
 
 export function isRGBA(color: Color): color is RGBA {
   return color.type === "rgba";

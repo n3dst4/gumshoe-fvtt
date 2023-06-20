@@ -1,12 +1,7 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
-import hexToRGB from "./hex-to-rgb";
-import cssHSLToHSL from "./css-hsl-to-hsl";
-import cssRGBToRGB from "./css-rgb-to-rgb";
-import hslToCSSHSL from "./hsl-to-css-hsl";
-import rgbToCSSRGB from "./rgb-to-css-rgb";
-import rgbToHex from "./rgb-to-hex";
-import rgbToHSL from "./rgb-to-hsl";
-import hslToRGB from "./hsl-to-rgb";
+import { hslToRGB, rgbToHSL } from "./conversion-functions";
+import { cssHSLToHSL, cssRGBToRGB, hexToRGB } from "./parsing-functions";
+import { hslToCSSHSL, rgbToCSSRGB, rgbToHex } from "./formatting-functions";
 import { swatches } from "./swatches";
 import { Color, HSLA, isRGBA, RGBA } from "./types";
 
