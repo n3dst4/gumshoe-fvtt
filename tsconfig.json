@@ -11,7 +11,6 @@
 		"types": [
 			"@league-of-foundry-developers/foundry-vtt-types",
 			"@lumphammer/investigator-fvtt-types",
-			"@types/jest",
 			"vite/client"
 		],
 		"esModuleInterop": true,

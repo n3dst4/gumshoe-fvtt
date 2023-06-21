@@ -1,5 +1,6 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import { assertNumericFieldOkayness } from "./reducerTools";
+import { describe, it, expect } from "vitest";
 
 type ErrorTestTuple = [
   string,

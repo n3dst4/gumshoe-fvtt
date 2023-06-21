@@ -264,6 +264,28 @@ export const moribundWorldPreset: PresetV1 = {
   npcStats: pathOfCthulhuPreset.npcStats,
 };
 
+export const esoterroristsPreset: PresetV1 = {
+  schemaVersion: "v1",
+  displayName: "Esoterrorists (built-in)",
+  defaultThemeName: "unsafeRealityTheme",
+  investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
+  generalAbilityCategories: ["General"],
+  combatAbilities: ["Scuffling", "Shooting", "Athletics"],
+  occupationLabel: "Off-duty Occupation",
+  personalDetails: [],
+  longNotes: ["Notes"],
+  newPCPacks: [`${systemId}.${packNames.esoterroristsAbilities}`],
+  newNPCPacks: [`${systemId}.${npcPackName}`],
+  useBoost: false,
+  useMwStyleAbilities: false,
+  mwUseAlternativeItemTypes: false,
+  useMwInjuryStatus: false,
+  genericOccupation: "Investigator",
+  pcStats: pathOfCthulhuPreset.pcStats,
+  npcStats: pathOfCthulhuPreset.npcStats,
+  equipmentCategories: { general: { name: "General", fields: {} } },
+};
+
 export const basePresets = {
   pathOfCthulhuPreset,
   niceBlackAgentsPreset,
@@ -271,4 +293,5 @@ export const basePresets = {
   pallidStarsPreset,
   castingTheRunesPreset,
   moribundWorldPreset,
+  esoterroristsPreset,
 };

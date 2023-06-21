@@ -10,6 +10,7 @@ import { MwItemSheet } from "./equipment/MwItemSheet";
 import { ThrowError } from "./ThrowError";
 import { PersonalDetailSheet } from "./personalDetails/PersonalDetailSheet";
 import { isAbilityItem, isMwItem } from "../v10Types";
+import { useTheme } from "../hooks/useTheme";
 
 type ItemSheetProps = {
   item: InvestigatorItem;
@@ -21,7 +22,8 @@ type ItemSheetProps = {
  * type here.
  */
 export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
-  const theme = item.getTheme();
+  const themeName = item.getThemeName();
+  const theme = useTheme(themeName);
 
   const style: CSSObject =
     isAbilityItem(item) || isMwItem(item)

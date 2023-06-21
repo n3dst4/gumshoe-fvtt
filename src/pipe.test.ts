@@ -1,4 +1,5 @@
 import { pipe, chainPipe } from "./pipe";
+import { describe, test, expect } from "vitest";
 
 interface V1 {
   member1: number;

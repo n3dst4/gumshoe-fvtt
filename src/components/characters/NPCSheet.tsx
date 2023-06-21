@@ -19,6 +19,7 @@ import { settings } from "../../settings";
 import { StatField } from "./StatField";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { assertNPCActor, isNPCActor } from "../../v10Types";
+import { useTheme } from "../../hooks/useTheme";
 
 type NPCSheetProps = {
   actor: InvestigatorActor;
@@ -27,8 +28,8 @@ type NPCSheetProps = {
 
 export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
   assertNPCActor(actor);
-
-  const theme = actor.getSheetTheme();
+  const themeName = actor.getSheetThemeName();
+  const theme = useTheme(themeName);
   const stats = settings.npcStats.get();
 
   return (

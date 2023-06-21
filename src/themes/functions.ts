@@ -1,5 +1,5 @@
 import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
-import { Irid } from "../Irid";
+import { irid } from "../irid/irid";
 import { ThemeV1 } from "./types";
 
 const defaultFontScaleFactor = 14;
@@ -9,10 +9,10 @@ const defaultFontScaleFactor = 14;
  * on the first
  */
 const overlay = (baseString: string, layerString: string): string => {
-  const layer = Irid(layerString);
+  const layer = irid(layerString);
   const opacity = layer.opacity();
   const layerOpaque = layer.opacity(1);
-  const result = Irid(baseString).blend(layerOpaque, opacity);
+  const result = irid(baseString).blend(layerOpaque, opacity);
   return result.toRGBString();
 };
 
@@ -30,9 +30,9 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
     seed.colors.backgroundSecondary,
   );
 
-  const bgTransPrimary = Irid(seed.colors.backgroundPrimary);
-  const bgTransSecondary = Irid(seed.colors.backgroundSecondary);
-  const danger = Irid(seed.colors.danger ?? "red");
+  const bgTransPrimary = irid(seed.colors.backgroundPrimary);
+  const bgTransSecondary = irid(seed.colors.backgroundSecondary);
+  const danger = irid(seed.colors.danger ?? "red");
 
   const bgTransDangerPrimary = bgTransPrimary
     .blend(danger, 0.5)

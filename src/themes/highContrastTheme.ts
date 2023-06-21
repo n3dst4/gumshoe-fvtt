@@ -1,9 +1,9 @@
-import { Irid } from "../Irid";
+import { irid } from "../irid/irid";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
-const white = Irid("white");
-const black = Irid("black");
+const white = irid("white");
+const black = irid("black");
 
 export const highContrastTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",

@@ -1,10 +1,8 @@
 import React, { useCallback } from "react";
 import { settingsSaved } from "../../constants";
 import { assertGame, confirmADoodleDo } from "../../functions";
-import { tealTheme } from "../../themes/tealTheme";
 import { CSSReset } from "../CSSReset";
 import { Translate } from "../Translate";
-import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings";
 import { absoluteCover } from "../absoluteCover";
 import { TabContainer } from "../TabContainer";
@@ -15,6 +13,7 @@ import { MiscSettings } from "./MiscSettings";
 import { EquipmentSettings } from "./Equipment/EquipmentSettings";
 import { DispatchContext, StateContext } from "./contexts";
 import { useSettingsState } from "./hooks";
+import { useTheme } from "../../hooks/useTheme";
 
 type SettingsProps = {
   foundryApplication: Application;
@@ -24,8 +23,7 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
   assertGame(game);
   const { tempState, setters, tempStateRef, dispatch, isDirty } =
     useSettingsState();
-  const theme =
-    runtimeConfig.themes[tempState.settings.defaultThemeName] || tealTheme;
+  const theme = useTheme(tempState.settings.defaultThemeName);
 
   const handleClickClose = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {

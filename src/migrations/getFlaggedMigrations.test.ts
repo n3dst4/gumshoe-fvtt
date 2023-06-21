@@ -1,5 +1,6 @@
 import { getFlaggedMigrations } from "./getFlaggedMigrations";
 import { FlaggedMigrations, MigrationFlags } from "./types";
+import { describe, test, expect } from "vitest";
 
 const emptyFlaggedMigrations: FlaggedMigrations = {
   item: {},

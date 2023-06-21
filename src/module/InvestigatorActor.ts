@@ -15,10 +15,7 @@ import {
   MwInjuryStatus,
 } from "../types";
 import { convertNotes } from "../textFunctions";
-import { tealTheme } from "../themes/tealTheme";
-import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
-import { ThemeV1 } from "../themes/types";
 import {
   assertActiveCharacterActor,
   assertMwItem,
@@ -273,27 +270,15 @@ export class InvestigatorActor extends Actor {
     return personalDetailItems;
   };
 
-  getSheetTheme(): ThemeV1 {
-    const themeName =
-      this.getSheetThemeName() || settings.defaultThemeName.get();
-    const theme = runtimeConfig.themes[themeName];
-    if (theme !== undefined) {
-      return theme;
-    } else if (
-      runtimeConfig.themes[settings.defaultThemeName.get()] !== undefined
-    ) {
-      return runtimeConfig.themes[settings.defaultThemeName.get()];
-    } else {
-      return tealTheme;
-    }
-  }
-
   getSheetThemeName(): string | null {
-    return isActiveCharacterActor(this) ? this.system.sheetTheme : null;
+    return isActiveCharacterActor(this)
+      ? this.system.sheetTheme
+      : settings.defaultThemeName.get();
   }
 
-  setSheetTheme = (sheetTheme: string | null) =>
+  setSheetTheme = (sheetTheme: string | null) => {
     this.update({ system: { sheetTheme } });
+  };
 
   getNotes = () => {
     assertNPCActor(this);

@@ -1,5 +1,5 @@
 import { RecursivePartial, RecursiveRequired } from "./types";
-import { expectAssignable, expectNotAssignable } from "tsd";
+import { describe, it, expectTypeOf } from "vitest";
 
 // -----------------------------------------------------------------------------
 // simple types to play with
@@ -16,20 +16,33 @@ type MyFunction = (foo: number) => number;
 // RecursivePartial
 type RecursivePartialOfBasic = RecursivePartial<Basic>;
 
-expectAssignable<RecursivePartialOfBasic>({});
-expectAssignable<RecursivePartialOfBasic>({ bar: {} });
-expectAssignable<RecursivePartialOfBasic>({ bar: { corge: "" } });
-expectAssignable<RecursivePartialOfBasic>({ bar: undefined });
-expectNotAssignable<RecursivePartialOfBasic>(null);
-expectNotAssignable<RecursivePartialOfBasic>(undefined);
-expectNotAssignable<RecursivePartialOfBasic>({ bar: null });
+describe("RecursivePartial", () => {
+  it("can be assigned various things", () => {
+    expectTypeOf<RecursivePartialOfBasic>().toMatchTypeOf({});
+    expectTypeOf({}).toMatchTypeOf<RecursivePartialOfBasic>();
+    expectTypeOf({ bar: {} }).toMatchTypeOf<RecursivePartialOfBasic>();
+    expectTypeOf({
+      bar: { corge: "" },
+    }).toMatchTypeOf<RecursivePartialOfBasic>();
+    expectTypeOf({ bar: undefined }).toMatchTypeOf<RecursivePartialOfBasic>();
+    expectTypeOf(null).not.toMatchTypeOf<RecursivePartialOfBasic>();
+    expectTypeOf(undefined).not.toMatchTypeOf<RecursivePartialOfBasic>();
+    expectTypeOf({ bar: null }).not.toMatchTypeOf<RecursivePartialOfBasic>();
+  });
+});
 
 type RecursivePartialOfMyFunction = RecursivePartial<MyFunction>;
 
-expectAssignable<RecursivePartialOfMyFunction>((x) => x);
-expectNotAssignable<RecursivePartialOfMyFunction>(null);
-expectNotAssignable<RecursivePartialOfMyFunction>(undefined);
-expectNotAssignable<RecursivePartialOfMyFunction>(() => null);
+describe("RecursivePartial on a function", () => {
+  it("can be assigned {}", () => {
+    expectTypeOf(
+      (x: number) => x,
+    ).toMatchTypeOf<RecursivePartialOfMyFunction>();
+    expectTypeOf(null).not.toMatchTypeOf<RecursivePartialOfMyFunction>();
+    expectTypeOf(undefined).not.toMatchTypeOf<RecursivePartialOfMyFunction>();
+    expectTypeOf(() => null).not.toMatchTypeOf<RecursivePartialOfMyFunction>();
+  });
+});
 
 // -----------------------------------------------------------------------------
 // now to try and reverse the spell...
@@ -37,15 +50,21 @@ expectNotAssignable<RecursivePartialOfMyFunction>(() => null);
 type RecursiveRequiredOfRecursivePartialOfBasic =
   RecursiveRequired<RecursivePartialOfBasic>;
 
-expectAssignable<RecursiveRequiredOfRecursivePartialOfBasic>({
+expectTypeOf({
   bar: { corge: "" },
-});
-expectNotAssignable<RecursiveRequiredOfRecursivePartialOfBasic>({});
-expectNotAssignable<RecursiveRequiredOfRecursivePartialOfBasic>({ bar: {} });
-expectNotAssignable<RecursiveRequiredOfRecursivePartialOfBasic>({ bar: null });
-expectNotAssignable<RecursiveRequiredOfRecursivePartialOfBasic>({
+}).toMatchTypeOf<RecursiveRequiredOfRecursivePartialOfBasic>();
+expectTypeOf(
+  {},
+).not.toMatchTypeOf<RecursiveRequiredOfRecursivePartialOfBasic>();
+expectTypeOf({
+  bar: {},
+}).not.toMatchTypeOf<RecursiveRequiredOfRecursivePartialOfBasic>();
+expectTypeOf({
+  bar: null,
+}).not.toMatchTypeOf<RecursiveRequiredOfRecursivePartialOfBasic>();
+expectTypeOf({
   bar: undefined,
-});
+}).not.toMatchTypeOf<RecursiveRequiredOfRecursivePartialOfBasic>();
 
 // -----------------------------------------------------------------------------
 // how about an array?
@@ -54,21 +73,27 @@ type RecursiveRequiredOfArrayOfRecursivePartialOfBasic = RecursiveRequired<
   RecursivePartial<Basic>[]
 >;
 
-expectAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([]);
-expectAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([
+expectTypeOf(
+  [],
+).toMatchTypeOf<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>();
+expectTypeOf([
   { bar: { corge: "" } },
-]);
-expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([
+]).toMatchTypeOf<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>();
+expectTypeOf([
   { bar: {} },
-]);
-expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([
+]).not.toMatchTypeOf<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>();
+expectTypeOf([
   { bar: null },
-]);
-expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>([{}]);
-expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>(
+]).not.toMatchTypeOf<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>();
+expectTypeOf([
+  {},
+]).not.toMatchTypeOf<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>();
+expectTypeOf(
   undefined,
-);
-expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>(null);
+).not.toMatchTypeOf<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>();
+expectTypeOf(
+  null,
+).not.toMatchTypeOf<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>();
 
 // -----------------------------------------------------------------------------
 // we can go deeper...
@@ -76,24 +101,24 @@ expectNotAssignable<RecursiveRequiredOfArrayOfRecursivePartialOfBasic>(null);
 type RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic =
   RecursivePartial<RecursiveRequiredOfRecursivePartialOfBasic>;
 
-expectAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
+expectTypeOf(
   {},
-);
-expectAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
-  { bar: {} },
-);
-expectAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
-  { bar: { corge: "" } },
-);
-expectAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
-  { bar: undefined },
-);
-expectNotAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
+).toMatchTypeOf<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>();
+expectTypeOf({
+  bar: {},
+}).toMatchTypeOf<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>();
+expectTypeOf({
+  bar: { corge: "" },
+}).toMatchTypeOf<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>();
+expectTypeOf({
+  bar: undefined,
+}).toMatchTypeOf<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>();
+expectTypeOf(
   null,
-);
-expectNotAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
+).not.toMatchTypeOf<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>();
+expectTypeOf(
   undefined,
-);
-expectNotAssignable<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>(
-  { bar: null },
-);
+).not.toMatchTypeOf<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>();
+expectTypeOf({
+  bar: null,
+}).not.toMatchTypeOf<RecursivePartialOfRecursiveRequiredOfRecursiveOfPartialOfBasic>();

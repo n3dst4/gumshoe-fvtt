@@ -1,25 +1,25 @@
 import { systemId } from "../constants";
-import { Irid } from "../Irid";
+import { irid } from "../irid/irid";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
 const pallidBlur = "5px";
 const pallidOffset = "3px";
 const stripNewlines = (s: string) => s.replace("\n", "");
-const pallidColor = Irid("#282c34");
-const pallidComplement = Irid("#aff2f2");
+const pallidColor = irid("#282c34");
+const pallidComplement = irid("#aff2f2");
 
 export const pallidTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Aching Stars",
   global: `
-    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
   `,
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemId}/assets/wallpaper/guille-pozzi-sbcIAn4Mn14-unsplash.webp)`,
   },
-  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  bodyFont: "16px 'Roboto Condensed', sans-serif",
   displayFont: "bold small-caps normal 1.1em 'Nova Square', serif",
   logo: {
     frontTextElementStyle: {

@@ -37,6 +37,7 @@ import {
   isPCActor,
   PersonalDetailItem,
 } from "../../v10Types";
+import { useTheme } from "../../hooks/useTheme";
 
 export const PCSheet: React.FC<{
   actor: InvestigatorActor;
@@ -83,7 +84,8 @@ export const PCSheet: React.FC<{
     };
   }, [actor]);
 
-  const theme = actor.getSheetTheme();
+  const themeName = actor.getSheetThemeName();
+  const theme = useTheme(themeName);
   const personalDetails = settings.personalDetails.get();
   const shortHiddenNotesNames = settings.mwHiddenShortNotes.get();
   const occupationLabel = settings.occupationLabel.get();

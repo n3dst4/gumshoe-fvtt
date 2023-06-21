@@ -77,7 +77,7 @@ export const deltaGroovyTheme: ThemeV1 = themeFactory({
     },
   },
   colors: {
-    accent: "#801d8c ",
+    accent: "#801d8c",
     accentContrast: "white",
     glow: "#fff",
     wallpaper: "#b6b3b3", //

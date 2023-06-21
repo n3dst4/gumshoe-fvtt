@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import type { HttpProxy } from "vite";
 import { defineConfig } from "vite";
 // import { visualizer } from "rollup-plugin-visualizer";
@@ -29,6 +30,14 @@ const config = defineConfig(({ mode }) => {
     root: "src/",
     base: `/systems/${name}/`,
     publicDir: path.resolve(__dirname, "public"),
+
+    // configure vitest
+    test: {
+      // fix "document is not defined"
+      environment: "jsdom",
+      // equivalent to jest.setup.js
+      setupFiles: ["../vitest.setup.js"],
+    },
 
     server: {
       port,

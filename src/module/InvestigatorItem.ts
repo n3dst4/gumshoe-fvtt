@@ -11,9 +11,7 @@ import {
   Unlock,
 } from "../types";
 import * as constants from "../constants";
-import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
-import { ThemeV1 } from "../themes/types";
 import { nanoid } from "nanoid";
 import {
   assertAbilityItem,
@@ -473,12 +471,6 @@ export class InvestigatorItem extends Item {
       system: { usesAmmo },
     });
   };
-
-  getTheme(): ThemeV1 {
-    const themeName = this.getThemeName();
-    const theme = runtimeConfig.themes[themeName];
-    return theme;
-  }
 
   getThemeName(): string {
     const systemThemeName = settings.defaultThemeName.get();
