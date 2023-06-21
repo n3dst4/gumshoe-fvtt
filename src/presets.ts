@@ -3,7 +3,7 @@ import { packNames, systemId, npcPackName } from "./constants";
 
 export const pathOfCthulhuPreset: Required<PresetV1> = {
   schemaVersion: "v1",
-  displayName: "Path of Cthulhu",
+  displayName: "Trail of Cthulhu (built-in)",
   defaultThemeName: "tealTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
@@ -79,7 +79,7 @@ export const pathOfCthulhuPreset: Required<PresetV1> = {
 
 export const niceBlackAgentsPreset: PresetV1 = {
   schemaVersion: "v1",
-  displayName: "Nice Black Agents",
+  displayName: "Night's Black Agents (built-in)",
   defaultThemeName: "niceTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
@@ -104,7 +104,7 @@ export const niceBlackAgentsPreset: PresetV1 = {
 
 export const nothingToFearPreset: PresetV1 = {
   schemaVersion: "v1",
-  displayName: "Nothing to Fear",
+  displayName: "Fear Itself (built-in)",
   defaultThemeName: "fearTheme",
   investigativeAbilityCategories: [
     "Academic",
@@ -131,7 +131,7 @@ export const nothingToFearPreset: PresetV1 = {
 
 export const pallidStarsPreset: PresetV1 = {
   schemaVersion: "v1",
-  displayName: "Pallid Stars",
+  displayName: "Ashen Stars (built-in)",
   defaultThemeName: "pallidTheme",
   investigativeAbilityCategories: [
     "Academic",
@@ -194,7 +194,7 @@ export const pallidStarsPreset: PresetV1 = {
 
 export const castingTheRunesPreset: PresetV1 = {
   schemaVersion: "v1",
-  displayName: "Casting the Runes",
+  displayName: "Casting the Runes (built-in)",
   defaultThemeName: "antiquarianTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
@@ -222,7 +222,7 @@ export const castingTheRunesPreset: PresetV1 = {
 
 export const moribundWorldPreset: PresetV1 = {
   schemaVersion: "v1",
-  displayName: "Moribund World",
+  displayName: "Dying Earth (built-in)",
   defaultThemeName: "olderThanMemoryTheme",
   investigativeAbilityCategories: [],
   generalAbilityCategories: [
