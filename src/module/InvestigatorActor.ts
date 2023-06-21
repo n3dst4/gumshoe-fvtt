@@ -271,8 +271,6 @@ export class InvestigatorActor extends Actor {
   };
 
   getSheetThemeName(): string | null {
-    // eslint-disable-next-line no-debugger
-    // debugger;
     return isActiveCharacterActor(this)
       ? this.system.sheetTheme
       : settings.defaultThemeName.get();

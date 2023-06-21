@@ -2,7 +2,7 @@ import { hslToRGB, rgbToHSL } from "./conversion-functions";
 import { cssHSLToHSL, cssRGBToRGB, hexToRGB } from "./parsing-functions";
 import { hslToCSSHSL, rgbToCSSRGB, rgbToHex } from "./formatting-functions";
 import { swatches } from "./swatches";
-import { Color, HSLA, isRGBA, RGBA } from "./types";
+import { Color, HSLA, isHSLA, isRGBA, RGBA } from "./types";
 
 const invalidErrorMessage = "Invalid color specification";
 const invalidInternalStateMessage = "Invalid internal state";
@@ -21,26 +21,33 @@ export class Irid {
   /**
    * utility constructor for creating an Irid instance from a CSS color string
    */
-  static create(value: string | Irid): Irid {
+  static create(value: string | Irid | Color): Irid {
     if (value instanceof Irid) {
       return value;
     }
-    const rgb =
-      hexToRGB(value) ||
-      cssRGBToRGB(value) ||
-      hexToRGB(swatches[value.toLowerCase()]);
-    if (rgb) {
-      return new Irid(rgb);
+    // if value is a string
+    if (typeof value === "string") {
+      const rgb =
+        hexToRGB(value) ||
+        cssRGBToRGB(value) ||
+        hexToRGB(swatches[value.toLowerCase()]);
+      if (rgb) {
+        return new Irid(rgb);
+      }
+      const hsl = cssHSLToHSL(value);
+      if (!hsl) {
+        throw new Error(invalidErrorMessage);
+      }
+      return new Irid(hsl);
     }
-    const hsl = cssHSLToHSL(value);
-    if (!hsl) {
-      throw new Error(invalidErrorMessage);
+    if (isRGBA(value) || isHSLA(value)) {
+      return new Irid(value);
     }
-    return new Irid(hsl);
+    throw new Error(invalidErrorMessage);
   }
 
-  _rgb: RGBA | undefined = { type: "rgba", r: 0, g: 0, b: 0, a: 1 };
-  _hsl: HSLA | undefined = { type: "hsla", h: 0, s: 0, l: 0, a: 1 };
+  _rgb: RGBA | undefined = undefined;
+  _hsl: HSLA | undefined = undefined;
 
   get rgb(): RGBA {
     if (!this._rgb) {
@@ -179,14 +186,11 @@ export class Irid {
   }
 
   alpha(): number;
-  alpha(a: number): Irid;
-  alpha(a?: number): number | Irid {
-    if (a === undefined) {
+  alpha(a: number | undefined | null): Irid;
+  alpha(a?: number | null): number | Irid | undefined {
+    if (arguments.length === 0) {
       const a = (this._hsl || this._rgb)?.a;
-      if (a === undefined) {
-        throw new Error(invalidInternalStateMessage);
-      }
-      return a as any;
+      return a;
     } else {
       if (this._hsl) {
         return new Irid({
@@ -194,7 +198,7 @@ export class Irid {
           h: this.hsl.h,
           s: this.hsl.s,
           l: this.hsl.l,
-          a,
+          a: a ?? undefined,
         }) as any;
       } else {
         return new Irid({
@@ -202,16 +206,16 @@ export class Irid {
           r: this.rgb.r,
           g: this.rgb.g,
           b: this.rgb.b,
-          a,
+          a: a ?? undefined,
         }) as any;
       }
     }
   }
 
   opacity(): number;
-  opacity(a: number): Irid;
-  opacity(a?: number): number | Irid {
-    if (a === undefined) {
+  opacity(a: number | undefined | null): Irid;
+  opacity(a?: number | null): number | Irid | undefined {
+    if (arguments.length === 0) {
       return this.alpha();
     } else {
       return this.alpha(a);
@@ -309,7 +313,7 @@ export class Irid {
     return [this, this.hue(this.hue() - 5 / 12), this.hue(this.hue() + 5 / 12)];
   }
 
-  blend(other: Irid | string, opacity: number): Irid {
+  blend(other: Irid | string, opacity?: number): Irid {
     if (typeof opacity === "undefined") {
       opacity = 0.5;
     }
