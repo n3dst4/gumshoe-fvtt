@@ -222,7 +222,7 @@ export const castingTheRunesPreset: PresetV1 = {
 
 export const moribundWorldPreset: PresetV1 = {
   schemaVersion: "v1",
-  displayName: "Dying Earth (huilt-in)",
+  displayName: "Dying Earth (built-in)",
   defaultThemeName: "olderThanMemoryTheme",
   investigativeAbilityCategories: [],
   generalAbilityCategories: [
