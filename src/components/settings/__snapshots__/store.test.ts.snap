@@ -173,7 +173,7 @@ exports[`reducer > should apply a preset 1`] = `
       \\"abilityCategories\\": \\"\\",
       \\"shortNotes\\": Array [],
 +     \\"schemaVersion\\": \\"v1\\",
-+     \\"displayName\\": \\"Path of Cthulhu\\",
++     \\"displayName\\": \\"Trail of Cthulhu (built-in)\\",
     },
   }"
 `;
