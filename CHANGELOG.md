@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 7.2.1 (2023-06-22)
+
+* Add Polish strings for "Moribund World" to the system manifest. WHOOPS.
+
+
 ## 7.2.0 (2023-06-22)
 
 ### Headlines
