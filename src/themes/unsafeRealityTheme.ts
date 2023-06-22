@@ -19,7 +19,7 @@ export const unsafeRealityTheme: ThemeV1 = themeFactory({
     @import url('https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
   `,
   largeSheetRootStyle: {
-    background: `
+    backgroundImage: `
     linear-gradient(
       to bottom,
       ${wallpaper} 0%,
@@ -32,8 +32,8 @@ export const unsafeRealityTheme: ThemeV1 = themeFactory({
     ),
       url(systems/${systemId}/assets/wallpaper/monochrome-unreality-cropped.webp)
     `,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
+    backgroundSize: "cover, cover, cover",
+    backgroundPosition: "center, center, center",
     backgroundBlendMode: "color, normal, normal",
   },
   // smallSheetRootStyle: {
@@ -93,5 +93,6 @@ export const unsafeRealityTheme: ThemeV1 = themeFactory({
     backgroundPrimary: "#5447",
     backgroundButton: "#7702",
     text: "#ccc",
+    controlBorder: "#aaa9",
   },
 });
