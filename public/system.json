@@ -2,7 +2,7 @@
   "id": "investigator",
   "title": "GUMSHOE",
   "description": "Official GUMSHOE support for FoundryVTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
-  "version": "7.1.0",
+  "version": "7.2.0-alpha.1",
   "authors": [{ "name": "Neil de Carteret" }],
   "scripts": [],
   "esmodules": ["investigator.js"],
