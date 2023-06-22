@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 7.2.0 (2023-06-22)
+
+### Headlines
+
+* **The Esoterrorists** Thanks to @tbsvttr for the ability compendium pack, we now have bnuilt-in support for The Esoterrorists, (#261) including...
+* **New character sheet theme: Unsafe Reality**
+* Fully updated Polish translations, thanks to @marksjus
+
+### And also:
+
+* The config presets are now all named correctly for the system, rather than the quirky trademark-dodging names they had before. (#270)
+
+### Behind the scenes stuff that only front-end devs will care about:
+
+* I've replaced Jest and tsd with [Vitest](https://vitest.dev/) as the test runner. This was motivated by Jest's config getting increasingly painful to maintain for the way INVESTIGATOR is set up. Vitest just grabs your Vite config and goes from there, so it's dead easy.
+
+
 ## 7.1.0 (2023-06-16)
 
 * GUMSHOE now works with Foundry v11! (it kinda did before but with some bugs, which have now been fixed.) (#244)
