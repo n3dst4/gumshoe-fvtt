@@ -130,6 +130,11 @@
       "lang": "pl",
       "name": "Polski",
       "path": "lang/pl.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "lang/moribundWorld/pl.json"
     }
   ],
   "gridDistance": 1,
