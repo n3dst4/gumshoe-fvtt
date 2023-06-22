@@ -93,5 +93,6 @@ export const unsafeRealityTheme: ThemeV1 = themeFactory({
     backgroundPrimary: "#5447",
     backgroundButton: "#7702",
     text: "#ccc",
+    controlBorder: "#aaa9",
   },
 });
