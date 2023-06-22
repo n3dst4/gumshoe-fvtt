@@ -1,15 +1,15 @@
 {
-    "label": "Umiejętności z SRD",
+    "label": "SRD - Umiejętności",
     "mapping": {
         "category": "system.category"
     },
     "entries": {
         "Analytic Taste": {
-            "name": "Zmysł Analityczny",
+            "name": "Analityczny smak",
             "category": "Egzotyczne"
         },
         "Anthropology": {
-            "name": "Antropologia ",
+            "name": "Antropologia",
             "category": "Naukowe"
         },
         "Archaeology": {
@@ -25,7 +25,7 @@
             "category": "Naukowe"
         },
         "Artillery": {
-            "name": "Altyleria",
+            "name": "Artyleria",
             "category": "Fizyczne"
         },
         "Astronomy": {
@@ -49,15 +49,15 @@
             "category": "Techniczne"
         },
         "Battlefield": {
-            "name": "Znajomość pola bitwy",
-            "category": "Skupienie"
+            "name": "Pole walki",
+            "category": "Specjalistyczne"
         },
         "Belle-Lettres": {
-            "name": "Belle-Lettres  ",
+            "name": "Beletrystyka",
             "category": "Naukowe"
         },
         "Bonhomie": {
-            "name": "Dobroduszność",
+            "name": "Bohema",
             "category": "Interpersonalne"
         },
         "Botany": {
@@ -65,7 +65,7 @@
             "category": "Naukowe"
         },
         "Bullshit Detector": {
-            "name": "Ocena szczerości",
+            "name": "Wyczucie ściemy",
             "category": "Interpersonalne"
         },
         "Bureaucracy": {
@@ -73,19 +73,19 @@
             "category": "Interpersonalne"
         },
         "Burglary": {
-            "name": "Włamywanie się ",
-            "category": "Skupienie"
+            "name": "Włamania",
+            "category": "Specjalistyczne"
         },
         "Business Affairs": {
             "name": "Sprawy biznesowe",
-            "category": "Prezencja"
+            "category": "Obycie"
         },
         "Camping": {
-            "name": "Obozowanie",
+            "name": "Kemping",
             "category": "Techniczne"
         },
         "Charm": {
-            "name": "Urok",
+            "name": "Urok osobisty",
             "category": "Interpersonalne"
         },
         "Chemistry": {
@@ -97,23 +97,23 @@
             "category": "Egzotyczne"
         },
         "Comparative Religion": {
-            "name": "Teologia",
+            "name": "Religioznawstwo",
             "category": "Naukowe"
         },
         "Composure": {
-            "name": "Opanownie",
-            "category": "Prezencja"
+            "name": "Opanowanie",
+            "category": "Obycie"
         },
         "Conceal": {
-            "name": "Ukrywanie się ",
-            "category": "Skupienie"
+            "name": "Ukrywanie",
+            "category": "Specjalistyczne"
         },
         "Cop Talk": {
-            "name": "Sprawy policyjne",
+            "name": "Policyjne sprawy",
             "category": "Interpersonalne"
         },
         "Counterinsurgency": {
-            "name": "Przeciwdziałanie rebelii",
+            "name": "Doktryna przeciwpartyzancka",
             "category": "Techniczne"
         },
         "Craft": {
@@ -121,7 +121,7 @@
             "category": "Techniczne"
         },
         "Cryptography": {
-            "name": "Kryptologia",
+            "name": "Kryptografia",
             "category": "Techniczne"
         },
         "Culture": {
@@ -134,18 +134,18 @@
         },
         "Disguise": {
             "name": "Przebrania",
-            "category": "Skupienie"
+            "category": "Specjalistyczne"
         },
         "Document Analysis": {
-            "name": "Korzystanie z Bibliotek",
+            "name": "Analiza dokumentów",
             "category": "Techniczne"
         },
         "Driving": {
             "name": "Prowadzenie",
-            "category": "Skupienie"
+            "category": "Specjalistyczne"
         },
         "Electronic Surveillance": {
-            "name": "Naprawy elektryczne",
+            "name": "Nadzór elektroniczny",
             "category": "Techniczne"
         },
         "Evidence Collection": {
@@ -153,12 +153,12 @@
             "category": "Techniczne"
         },
         "Explosive Devices": {
-            "name": "urządzenia wybuchowe",
+            "name": "Urządzenia wybuchowe",
             "category": "Techniczne"
         },
         "Explosives": {
-            "name": "ładunki wybuchowe",
-            "category": "Skupienie"
+            "name": "Materiały wybuchowe",
+            "category": "Specjalistyczne"
         },
         "Farming": {
             "name": "Rolnictwo",
@@ -169,27 +169,27 @@
             "category": "Naukowe"
         },
         "Fighting": {
-            "name": "Bójka",
+            "name": "Walka",
             "category": "Fizyczne"
         },
         "Filch": {
             "name": "Zwinne palce",
-            "category": "Skupienie"
+            "category": "Specjalistyczne"
         },
         "Fingerprinting": {
-            "name": "Zdejmowanie odcisków palców",
+            "name": "Daktyloskopia",
             "category": "Techniczne"
         },
         "First Aid": {
             "name": "Pierwsza pomoc",
-            "category": "Skupienie"
+            "category": "Specjalistyczne"
         },
         "Flattery": {
             "name": "Pochlebstwa",
             "category": "Interpersonalne"
         },
         "Fleeing": {
-            "name": "Uciekanie",
+            "name": "Ucieczka",
             "category": "Fizyczne"
         },
         "Flirting": {
@@ -197,19 +197,19 @@
             "category": "Interpersonalne"
         },
         "Forensic Accounting": {
-            "name": "Rachunkowość kryminalistyczna",
+            "name": "Rachunkowość sądowa",
             "category": "Naukowe"
         },
         "Forensic Anthropology": {
-            "name": "Antropologia kryminalna",
+            "name": "Antropologia sądowa",
             "category": "Techniczne"
         },
         "Forensic Entomology": {
-            "name": "Antropologia kryminalna\n ",
+            "name": "Entomologia sądowa",
             "category": "Techniczne"
         },
         "Forensic Psychology": {
-            "name": "Antropologia kryminalna",
+            "name": "Psychologia sądowa",
             "category": "Naukowe"
         },
         "Forgery": {
@@ -218,7 +218,7 @@
         },
         "Gambling": {
             "name": "Hazard",
-            "category": "Prezencja"
+            "category": "Obycie"
         },
         "Geology": {
             "name": "Geologia",
@@ -233,7 +233,7 @@
             "category": "Fizyczne"
         },
         "High Society": {
-            "name": "Etykieta",
+            "name": "Wyższe sfery",
             "category": "Interpersonalne"
         },
         "History": {
@@ -241,31 +241,31 @@
             "category": "Naukowe"
         },
         "Hunting": {
-            "name": "Polowanie",
+            "name": "Myślistwo",
             "category": "Techniczne"
         },
         "Hypnosis": {
             "name": "Hipnoza",
-            "category": "Prezencja"
+            "category": "Obycie"
         },
         "Impersonate": {
-            "name": "Podszywanie się ",
+            "name": "Podszywanie się",
             "category": "Interpersonalne"
         },
         "Infiltration": {
-            "name": "infiltracja",
+            "name": "Infiltracja",
             "category": "Fizyczne"
         },
         "Inspiration": {
-            "name": "inspirowanie",
+            "name": "Inspirowanie",
             "category": "Interpersonalne"
         },
         "Insurgency": {
-            "name": "Powstanie przeciw władzy",
-            "category": "Skupienie"
+            "name": "Działalność powstańcza",
+            "category": "Specjalistyczne"
         },
         "Interrogation": {
-            "name": "integracja",
+            "name": "Przesłuchiwanie",
             "category": "Interpersonalne"
         },
         "Intimidation": {
@@ -273,7 +273,7 @@
             "category": "Interpersonalne"
         },
         "Intuition": {
-            "name": "Intuicja ",
+            "name": "Intuicja",
             "category": "Techniczne"
         },
         "Languages": {
@@ -285,11 +285,11 @@
             "category": "Naukowe"
         },
         "Leadership": {
-            "name": "Przywództwo ",
+            "name": "Przywództwo",
             "category": "Interpersonalne"
         },
         "Linguistics": {
-            "name": "Lingwistyka",
+            "name": "Językoznawstwo",
             "category": "Naukowe"
         },
         "Locksmith": {
@@ -297,15 +297,15 @@
             "category": "Techniczne"
         },
         "Mechanics": {
-            "name": "Naprawy mechaniczne",
-            "category": "Skupienie"
+            "name": "Mechanika",
+            "category": "Specjalistyczne"
         },
         "Medic": {
-            "name": "Medycyna",
-            "category": "Skupienie"
+            "name": "Pomoc medyczna",
+            "category": "Specjalistyczne"
         },
         "Medical Expertise": {
-            "name": "Ekspertyza medyczna",
+            "name": "Wiedza medyczna",
             "category": "Techniczne"
         },
         "Military History": {
@@ -318,10 +318,10 @@
         },
         "Morale": {
             "name": "Morale",
-            "category": "Prezencja"
+            "category": "Obycie"
         },
         "Mutant Power: Blood Spray": {
-            "name": "Moc mutantów: oprysk krwi",
+            "name": "Moc mutanta: Rozprysk krwi",
             "category": "Egzotyczne"
         },
         "Natural History": {
@@ -334,10 +334,10 @@
         },
         "Network": {
             "name": "Powiązania",
-            "category": "Skupienie"
+            "category": "Specjalistyczne"
         },
         "Notice": {
-            "name": "Zauwarzanie",
+            "name": "Spostrzegawczość",
             "category": "Techniczne"
         },
         "Occult Studies": {
@@ -345,7 +345,7 @@
             "category": "Naukowe"
         },
         "Oral History": {
-            "name": "Przekazy ustne",
+            "name": "Historia mówiona",
             "category": "Interpersonalne"
         },
         "Outdoor Survival": {
@@ -353,7 +353,7 @@
             "category": "Techniczne"
         },
         "Painting": {
-            "name": "Malownaie",
+            "name": "Malarstwo",
             "category": "Techniczne"
         },
         "Paradox Prevention": {
@@ -365,11 +365,11 @@
             "category": "Naukowe"
         },
         "Pathway Amplification": {
-            "name": "Powstanie przeciw władzy...",
+            "name": "Wzmocnienie jaźni",
             "category": "Egzotyczne"
         },
         "People Person": {
-            "name": "Osoba z ludu",
+            "name": "Dusza towarzystwa",
             "category": "Interpersonalne"
         },
         "Photography": {
@@ -377,7 +377,7 @@
             "category": "Techniczne"
         },
         "Piloting": {
-            "name": "Sterowanie",
+            "name": "Pilotaż",
             "category": "Fizyczne"
         },
         "Poetry": {
@@ -390,22 +390,22 @@
         },
         "Politics": {
             "name": "Polityka",
-            "category": "Prezencja"
+            "category": "Obycie"
         },
         "Preparedness": {
             "name": "Przygotowanie",
-            "category": "Prezencja"
+            "category": "Obycie"
         },
         "Public Relations": {
-            "name": "Public Relations",
-            "category": "Prezencja"
+            "name": "Reputacja",
+            "category": "Obycie"
         },
         "Reality Anchor": {
-            "name": "Kotwica rzeczywistości",
+            "name": "Kotwiczenie w rzeczywistości",
             "category": "Egzotyczne"
         },
         "Reassurance": {
-            "name": "Asekuracja",
+            "name": "Empatia",
             "category": "Interpersonalne"
         },
         "Research": {
@@ -429,11 +429,11 @@
             "category": "Techniczne"
         },
         "Scrounging": {
-            "name": "Żebractwo",
-            "category": "Prezencja"
+            "name": "Pozyskiwanie",
+            "category": "Obycie"
         },
         "Scuffling": {
-            "name": "przepychanki",
+            "name": "Bójka",
             "category": "Fizyczne"
         },
         "Sculpture": {
@@ -442,27 +442,27 @@
         },
         "Sense Trouble": {
             "name": "Wyczucie zagrożenia",
-            "category": "Prezencja"
+            "category": "Obycie"
         },
         "Shooting": {
-            "name": "Broń palna",
+            "name": "Strzelanie",
             "category": "Fizyczne"
         },
         "Shrink": {
             "name": "Psychoanaliza",
-            "category": "Prezencja"
+            "category": "Obycie"
         },
         "Society": {
-            "name": "Wiedza ogólna",
+            "name": "Etykieta",
             "category": "Interpersonalne"
         },
         "Spying": {
-            "name": "Śledzenie",
+            "name": "Szpiegostwo",
             "category": "Techniczne"
         },
         "Stability": {
             "name": "Stabilność",
-            "category": "Prezencja"
+            "category": "Obycie"
         },
         "Streetwise": {
             "name": "Znajomość półświatka",
@@ -470,10 +470,10 @@
         },
         "Surveillance": {
             "name": "Nadzór",
-            "category": "Skupienie"
+            "category": "Specjalistyczne"
         },
         "Taunt": {
-            "name": "Kpina",
+            "name": "Wyśmiewanie",
             "category": "Interpersonalne"
         },
         "Terrain": {
@@ -481,15 +481,15 @@
             "category": "Techniczne"
         },
         "Textual Analysis": {
-            "name": "Analiza tekstowa",
+            "name": "Analiza tekstu",
             "category": "Naukowe"
         },
         "Timecraft": {
-            "name": "Rzemiosło czasu",
+            "name": "Procedury operacyjne TimeWatch",
             "category": "Naukowe"
         },
         "Tradecraft": {
-            "name": "Rzemiosło",
+            "name": "Techniki wywiadowcze",
             "category": "Interpersonalne"
         },
         "Traffic Analysis": {
@@ -497,19 +497,19 @@
             "category": "Techniczne"
         },
         "Traps and Bombs": {
-            "name": "Półapki i bomby",
-            "category": "Skupienie"
+            "name": "Pułapki i bomby",
+            "category": "Specjalistyczne"
         },
         "Trivia": {
-            "name": "Drobnostki",
+            "name": "Ciekawostki",
             "category": "Naukowe"
         },
         "Unobtrusiveness": {
-            "name": "Dyskretność",
-            "category": "Skupienie"
+            "name": "Dyskrecja",
+            "category": "Specjalistyczne"
         },
         "Viroware Enhancement: Dominator": {
-            "name": "Ulepszanie oprogramowania wirusowego: Dominator",
+            "name": "Wiroulepszenie: Dominator",
             "category": "Egzotyczne"
         }
     }

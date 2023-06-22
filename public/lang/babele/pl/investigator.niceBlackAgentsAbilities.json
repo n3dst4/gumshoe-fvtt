@@ -1,5 +1,5 @@
 {
-    "label": "Umiejętności agenta",
+    "label": "Umiejętności Night's Black Agents",
     "mapping": {
         "category": "system.category"
     },
@@ -29,7 +29,7 @@
             "category": "Ogólne"
         },
         "Bullshit Detector": {
-            "name": "Ocena szczerości",
+            "name": "Wyczucie ściemy",
             "category": "Interpersonalne"
         },
         "Bureaucracy": {
@@ -41,15 +41,15 @@
             "category": "Techniczne"
         },
         "Conceal": {
-            "name": "Ukrywanie się ",
+            "name": "Ukrywanie",
             "category": "Ogólne"
         },
         "Cop Talk": {
-            "name": "Sprawy policyjne",
+            "name": "Policyjne sprawy",
             "category": "Interpersonalne"
         },
         "Cover": {
-            "name": "Cover",
+            "name": "Krycie się",
             "category": "Ogólne"
         },
         "Criminology": {
@@ -57,19 +57,19 @@
             "category": "Naukowe"
         },
         "Cryptography": {
-            "name": "Kryptologia",
+            "name": "Kryptografia",
             "category": "Techniczne"
         },
         "Data Recovery": {
-            "name": "Data Recovery",
+            "name": "Odzyskiwanie danych",
             "category": "Techniczne"
         },
         "Diagnosis": {
-            "name": "Diagnosis",
+            "name": "Diagnostyka",
             "category": "Naukowe"
         },
         "Digital Intrusion": {
-            "name": "Digital Intrusion",
+            "name": "Włamania cyfrowe",
             "category": "Ogólne"
         },
         "Disguise": {
@@ -81,11 +81,11 @@
             "category": "Ogólne"
         },
         "Electronic Surveillance": {
-            "name": "Naprawy elektryczne",
+            "name": "Nadzór elektroniczny",
             "category": "Techniczne"
         },
         "Explosive Devices": {
-            "name": "urządzenia wybuchowe",
+            "name": "Urządzenia wybuchowe",
             "category": "Ogólne"
         },
         "Filch": {
@@ -109,7 +109,7 @@
             "category": "Ogólne"
         },
         "Hand-to-Hand": {
-            "name": "Ręka w rękę",
+            "name": "Walka wręcz",
             "category": "Ogólne"
         },
         "Health": {
@@ -117,7 +117,7 @@
             "category": "Ogólne"
         },
         "High Society": {
-            "name": "Etykieta",
+            "name": "Wyższe sfery",
             "category": "Interpersonalne"
         },
         "History": {
@@ -125,15 +125,15 @@
             "category": "Naukowe"
         },
         "Human Terrain": {
-            "name": "Human Terrain",
+            "name": "Obszar społeczny",
             "category": "Naukowe"
         },
         "Infiltration": {
-            "name": "infiltracja",
+            "name": "Infiltracja",
             "category": "Ogólne"
         },
         "Interrogation": {
-            "name": "integracja",
+            "name": "Przesłuchiwanie",
             "category": "Interpersonalne"
         },
         "Intimidation": {
@@ -149,15 +149,15 @@
             "category": "Naukowe"
         },
         "Mechanics": {
-            "name": "Naprawy mechaniczne",
+            "name": "Mechanika",
             "category": "Ogólne"
         },
         "Medic": {
-            "name": "Medycyna",
+            "name": "Pomoc medyczna",
             "category": "Ogólne"
         },
         "Military Science": {
-            "name": "Nauka wojskowości",
+            "name": "Nauki wojskowe",
             "category": "Naukowe"
         },
         "Negotiation": {
@@ -169,7 +169,7 @@
             "category": "Ogólne"
         },
         "Notice": {
-            "name": "Zauwarzanie",
+            "name": "Spostrzegawczość",
             "category": "Techniczne"
         },
         "Occult Studies": {
@@ -189,7 +189,7 @@
             "category": "Techniczne"
         },
         "Piloting": {
-            "name": "Sterowanie",
+            "name": "Pilotaż",
             "category": "Ogólne"
         },
         "Preparedness": {
@@ -197,7 +197,7 @@
             "category": "Ogólne"
         },
         "Reassurance": {
-            "name": "Asekuracja",
+            "name": "Empatia",
             "category": "Interpersonalne"
         },
         "Research": {
@@ -209,7 +209,7 @@
             "category": "Ogólne"
         },
         "Shooting": {
-            "name": "Broń palna",
+            "name": "Strzelanie",
             "category": "Ogólne"
         },
         "Shrink": {
@@ -229,7 +229,7 @@
             "category": "Ogólne"
         },
         "Tradecraft": {
-            "name": "Rzemiosło",
+            "name": "Techniki wywiadowcze",
             "category": "Interpersonalne"
         },
         "Traffic Analysis": {
@@ -237,15 +237,15 @@
             "category": "Techniczne"
         },
         "Urban Survival": {
-            "name": "Urban Survival",
+            "name": "Przetrwanie w mieście",
             "category": "Techniczne"
         },
         "Vampirology": {
-            "name": "Vampirology",
+            "name": "Wampirologia",
             "category": "Naukowe"
         },
         "Weapons": {
-            "name": "Bronie",
+            "name": "Broń biała",
             "category": "Ogólne"
         }
     }

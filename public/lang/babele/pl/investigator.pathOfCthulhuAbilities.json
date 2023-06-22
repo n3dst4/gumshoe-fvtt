@@ -1,5 +1,5 @@
 {
-    "label": "Scieżka umiejętności Cthulhu",
+    "label": "Umiejętności Na Tropie Cthulhu",
     "mapping": {
         "category": "system.category"
     },
@@ -9,7 +9,7 @@
             "category": "Naukowe"
         },
         "Anthropology": {
-            "name": "Antropologia ",
+            "name": "Antropologia",
             "category": "Naukowe"
         },
         "Archaeology": {
@@ -57,15 +57,15 @@
             "category": "Techniczne"
         },
         "Chtulhu Mythos": {
-            "name": "Chtulhu Mythos",
+            "name": "Mity Chtulhu",
             "category": "Naukowe"
         },
         "Conceal": {
-            "name": "Ukrywanie się ",
+            "name": "Ukrywanie",
             "category": "Ogólne"
         },
         "Cop Talk": {
-            "name": "Sprawy policyjne",
+            "name": "Policyjne sprawy",
             "category": "Interpersonalne"
         },
         "Craft": {
@@ -73,7 +73,7 @@
             "category": "Techniczne"
         },
         "Credit Rating": {
-            "name": "Credit Rating",
+            "name": "Stan majątkowy",
             "category": "Interpersonalne"
         },
         "Cryptography": {
@@ -89,7 +89,7 @@
             "category": "Ogólne"
         },
         "Electrical Repair": {
-            "name": "Electrical Repair",
+            "name": "Naprawy elektryczne",
             "category": "Ogólne"
         },
         "Evidence Collection": {
@@ -97,7 +97,7 @@
             "category": "Techniczne"
         },
         "Explosives": {
-            "name": "ładunki wybuchowe",
+            "name": "Ładunki wybuchowe",
             "category": "Ogólne"
         },
         "Filch": {
@@ -105,7 +105,7 @@
             "category": "Ogólne"
         },
         "Firearms": {
-            "name": "Broń panlna",
+            "name": "Broń palna",
             "category": "Ogólne"
         },
         "First Aid": {
@@ -117,11 +117,11 @@
             "category": "Interpersonalne"
         },
         "Fleeing": {
-            "name": "Uciekanie",
+            "name": "Ucieczka",
             "category": "Ogólne"
         },
         "Forensics": {
-            "name": "Kryminologia",
+            "name": "Medycyna sądowa",
             "category": "Techniczne"
         },
         "Geology": {
@@ -141,7 +141,7 @@
             "category": "Ogólne"
         },
         "Interrogation": {
-            "name": "integracja",
+            "name": "Przesłuchiwanie",
             "category": "Interpersonalne"
         },
         "Intimidation": {
@@ -181,7 +181,7 @@
             "category": "Interpersonalne"
         },
         "Outdoorsman": {
-            "name": "Outdoorsman",
+            "name": "Przetrwanie",
             "category": "Techniczne"
         },
         "Pharmacy": {
@@ -209,7 +209,7 @@
             "category": "Ogólne"
         },
         "Reassurance": {
-            "name": "Asekuracja",
+            "name": "Empatia",
             "category": "Interpersonalne"
         },
         "Riding": {
@@ -217,11 +217,11 @@
             "category": "Ogólne"
         },
         "Sanity": {
-            "name": "Sanity",
+            "name": "Poczytalność",
             "category": "Ogólne"
         },
         "Scuffling": {
-            "name": "przepychanki",
+            "name": "Bójka",
             "category": "Ogólne"
         },
         "Sense Trouble": {
@@ -237,7 +237,7 @@
             "category": "Ogólne"
         },
         "Stealth": {
-            "name": "Ukrywanie",
+            "name": "Skradanie się",
             "category": "Ogólne"
         },
         "Streetwise": {
@@ -249,7 +249,7 @@
             "category": "Naukowe"
         },
         "Weapons": {
-            "name": "Bronie",
+            "name": "Broń",
             "category": "Ogólne"
         }
     }

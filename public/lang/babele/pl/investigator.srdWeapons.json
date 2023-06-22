@@ -1,5 +1,5 @@
 {
-    "label": "Bronie SRD",
+    "label": "SRD - Uzbrojenie",
     "mapping": {
         "category": "system.category"
     },
@@ -8,16 +8,16 @@
             "name": "Broń palna (ciężka)"
         },
         "Firearm (light)": {
-            "name": "Broń plana (lekka)"
+            "name": "Broń palna (lekka)"
         },
         "Fist/kick": {
-            "name": "Pięśc/Kopnięcie"
+            "name": "Pięść/kopnięcie"
         },
         "Heavy club": {
-            "name": "Ciężka maczuga"
+            "name": "Ciężka pałka"
         },
         "Knife": {
-            "name": "nóż"
+            "name": "Nóż"
         },
         "Machete": {
             "name": "Maczeta"
@@ -26,7 +26,7 @@
             "name": "Pałka policyjna"
         },
         "Small improvised weapon": {
-            "name": "Mała improwizowana broń"
+            "name": "Mała broń improwizowana"
         },
         "Sword": {
             "name": "Miecz"

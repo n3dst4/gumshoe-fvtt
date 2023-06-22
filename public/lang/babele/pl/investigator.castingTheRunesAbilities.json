@@ -1,11 +1,11 @@
 {
-    "label": "Rzucanie umiejętności run",
+    "label": "Umiejętności Casting the Runes",
     "mapping": {
         "category": "system.category"
     },
     "entries": {
         "Anthropology": {
-            "name": "Antropologia ",
+            "name": "Antropologia",
             "category": "Naukowe"
         },
         "Archaeology": {
@@ -53,7 +53,7 @@
             "category": "Ogólne"
         },
         "Charm": {
-            "name": "Urok",
+            "name": "Urok osobisty",
             "category": "Interpersonalne"
         },
         "Chemistry": {
@@ -61,11 +61,11 @@
             "category": "Techniczne"
         },
         "Class": {
-            "name": "Klasa",
+            "name": "Klasa społeczna",
             "category": "Interpersonalne"
         },
         "Conceal": {
-            "name": "Ukrywanie się ",
+            "name": "Ukrywanie",
             "category": "Ogólne"
         },
         "Connections": {
@@ -85,7 +85,7 @@
             "category": "Naukowe"
         },
         "Cryptography": {
-            "name": "Kryptologia",
+            "name": "Kryptografia",
             "category": "Techniczne"
         },
         "Demolition": {
@@ -113,7 +113,7 @@
             "category": "Ogólne"
         },
         "Firearms": {
-            "name": "Broń panlna",
+            "name": "Broń palna",
             "category": "Ogólne"
         },
         "First Aid": {
@@ -121,7 +121,7 @@
             "category": "Ogólne"
         },
         "Fleeing": {
-            "name": "Uciekanie",
+            "name": "Ucieczka",
             "category": "Ogólne"
         },
         "Folklore": {
@@ -153,7 +153,7 @@
             "category": "Ogólne"
         },
         "Interrogation": {
-            "name": "integracja",
+            "name": "Przesłuchiwanie",
             "category": "Interpersonalne"
         },
         "Intimidation": {
@@ -173,7 +173,7 @@
             "category": "Naukowe"
         },
         "Mechanics": {
-            "name": "Naprawy mechaniczne",
+            "name": "Mechanika",
             "category": "Ogólne"
         },
         "Medicine": {
@@ -209,7 +209,7 @@
             "category": "Ogólne"
         },
         "Reassurance": {
-            "name": "Asekuracja",
+            "name": "Empatia",
             "category": "Interpersonalne"
         },
         "Riding": {
@@ -221,7 +221,7 @@
             "category": "Ogólne"
         },
         "Scuffling": {
-            "name": "przepychanki",
+            "name": "Bójka",
             "category": "Ogólne"
         },
         "Sense Trouble": {
@@ -237,7 +237,7 @@
             "category": "Ogólne"
         },
         "Stealth": {
-            "name": "Ukrywanie",
+            "name": "Skradanie się",
             "category": "Ogólne"
         },
         "Streetwise": {
@@ -249,11 +249,11 @@
             "category": "Naukowe"
         },
         "Trade": {
-            "name": "Targowanie się ",
+            "name": "Targowanie się",
             "category": "Ogólne"
         },
         "Weapons": {
-            "name": "Bronie",
+            "name": "Broń biała",
             "category": "Ogólne"
         }
     }

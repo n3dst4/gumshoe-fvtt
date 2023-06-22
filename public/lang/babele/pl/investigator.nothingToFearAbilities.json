@@ -1,5 +1,5 @@
 {
-    "label": "Umiejętność brak strachu",
+    "label": "Umiejętność Fear Itself",
     "mapping": {
         "category": "system.category"
     },
@@ -13,7 +13,7 @@
             "category": "Moce mentalne"
         },
         "Bullshit Detector": {
-            "name": "Ocena szczerości",
+            "name": "Wyczucie ściemy",
             "category": "Interpersonalne"
         },
         "Bureaucracy": {
@@ -21,11 +21,11 @@
             "category": "Interpersonalne"
         },
         "Computer Use": {
-            "name": "Computer Use",
+            "name": "Używanie komputera",
             "category": "Techniczne"
         },
         "Cop Talk": {
-            "name": "Sprawy policyjne",
+            "name": "Policyjne sprawy",
             "category": "Interpersonalne"
         },
         "Driving": {
@@ -41,7 +41,7 @@
             "category": "Interpersonalne"
         },
         "Fleeing": {
-            "name": "Uciekanie",
+            "name": "Ucieczka",
             "category": "Ogólne"
         },
         "Flirting": {
@@ -53,7 +53,7 @@
             "category": "Ogólne"
         },
         "Hiding": {
-            "name": "Ukrywanie ",
+            "name": "Ukrywanie",
             "category": "Ogólne"
         },
         "History": {
@@ -61,19 +61,19 @@
             "category": "Naukowe"
         },
         "Humanities": {
-            "name": "Humanities",
+            "name": "Humanistyka",
             "category": "Naukowe"
         },
         "Impersonate": {
-            "name": "Podszywanie się ",
+            "name": "Podszywanie się",
             "category": "Interpersonalne"
         },
         "Infiltration": {
-            "name": "infiltracja",
+            "name": "Infiltracja",
             "category": "Ogólne"
         },
         "Interrogation": {
-            "name": "integracja",
+            "name": "Przesłuchiwanie",
             "category": "Interpersonalne"
         },
         "Intimidation": {
@@ -81,7 +81,7 @@
             "category": "Interpersonalne"
         },
         "Investigative Procedure": {
-            "name": "Investigative Procedure",
+            "name": "Procedury śledcze",
             "category": "Techniczne"
         },
         "Languages": {
@@ -93,11 +93,11 @@
             "category": "Naukowe"
         },
         "Mechanics": {
-            "name": "Naprawy mechaniczne",
+            "name": "Mechanika",
             "category": "Ogólne"
         },
         "Medic": {
-            "name": "Medycyna",
+            "name": "Pomoc medyczna",
             "category": "Ogólne"
         },
         "Medicine": {
@@ -109,7 +109,7 @@
             "category": "Moce mentalne"
         },
         "Messenger": {
-            "name": "Messenger",
+            "name": "Posłaniec",
             "category": "Moce mentalne"
         },
         "Negotiation": {
@@ -117,7 +117,7 @@
             "category": "Interpersonalne"
         },
         "Notice": {
-            "name": "Zauwarzanie",
+            "name": "Spostrzegawczość",
             "category": "Techniczne"
         },
         "Occult Studies": {
@@ -133,7 +133,7 @@
             "category": "Techniczne"
         },
         "Premonitions": {
-            "name": "Premonitions",
+            "name": "Przewidywanie przyszłości",
             "category": "Moce mentalne"
         },
         "Preparedness": {
@@ -141,11 +141,11 @@
             "category": "Ogólne"
         },
         "Reassurance": {
-            "name": "Asekuracja",
+            "name": "Empatia",
             "category": "Interpersonalne"
         },
         "Remote Viewing": {
-            "name": "Remote Viewing",
+            "name": "Widzenie zdalne",
             "category": "Moce mentalne"
         },
         "Research": {
@@ -153,11 +153,11 @@
             "category": "Naukowe"
         },
         "Science": {
-            "name": "Nauka",
+            "name": "Nauki ścisłe",
             "category": "Techniczne"
         },
         "Scuffling": {
-            "name": "przepychanki",
+            "name": "Bójka",
             "category": "Ogólne"
         },
         "Sense Trouble": {
@@ -165,11 +165,11 @@
             "category": "Ogólne"
         },
         "Sensitive": {
-            "name": "Sensitive",
+            "name": "Wyczucie emocji",
             "category": "Moce mentalne"
         },
         "Shooting": {
-            "name": "Broń palna",
+            "name": "Strzelanie",
             "category": "Ogólne"
         },
         "Shrink": {
@@ -185,11 +185,11 @@
             "category": "Interpersonalne"
         },
         "Synchronicity": {
-            "name": "Synchronicity",
+            "name": "Synchroniczność",
             "category": "Moce mentalne"
         },
         "Trivia": {
-            "name": "Drobnostki",
+            "name": "Ciekawostki",
             "category": "Naukowe"
         }
     }

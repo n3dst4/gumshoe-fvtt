@@ -1,5 +1,5 @@
 {
-    "label": "Umiejętności przeciwnika",
+    "label": "Umiejetności przeciwników",
     "mapping": {
         "category": "system.category"
     },
@@ -13,17 +13,17 @@
             "category": "Ogólne"
         },
         "Melee Attack": {
-            "name": "Atak wręcz"
+            "name": "Atak w zwaciu"
         },
         "Ranged Attack": {
-            "name": "Atak na dystans"
+            "name": "Atak dystansowy"
         },
         "Scuffling": {
-            "name": "przepychanki",
+            "name": "Bójka",
             "category": "Ogólne"
         },
         "Shooting": {
-            "name": "Broń palna",
+            "name": "Strzelanie",
             "category": "Ogólne"
         }
     }
