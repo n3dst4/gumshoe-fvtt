@@ -266,7 +266,7 @@ export const moribundWorldPreset: PresetV1 = {
 
 export const esoterroristsPreset: PresetV1 = {
   schemaVersion: "v1",
-  displayName: "Esoterrorists (built-in)",
+  displayName: "The Esoterrorists (built-in)",
   defaultThemeName: "unsafeRealityTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
   generalAbilityCategories: ["General"],
