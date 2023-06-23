@@ -21,7 +21,7 @@ export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
       css={{
         flex: 1,
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(8em, 1fr))",
+        gridTemplateColumns: "repeat(auto-fit, minmax(6em, 1fr))",
         gridAutoColumns: "minMax(6em, 1fr)",
         gridAutoRows: "auto",
         gap: "0.5em",

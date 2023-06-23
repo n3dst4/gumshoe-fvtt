@@ -96,6 +96,7 @@
         "rating": 0,
         "pool": 0,
         "hasSpecialities": false,
+        "specialitiesMode": "one",
         "specialities": [],
         "min": 0,
         "max": 8,
