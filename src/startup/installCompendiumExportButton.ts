@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { assertGame, getUserFile, systemLogger } from "../functions";
+import { assertGame, getUserFile } from "../functions";
 import { saveJson } from "../saveFile";
 import {
   ExportedCompendium,
@@ -51,7 +51,6 @@ export const installCompendiumExportButton = () => {
     if (app.tabName !== "compendium") {
       return;
     }
-    systemLogger.log("compendium tab rendered - adding import button");
     $(app.element[0]).find(".directory-header .import-file-picker").remove();
     const id = `file-picker-button-${nanoid()}`;
     const content =
