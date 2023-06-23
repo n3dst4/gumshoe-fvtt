@@ -1,12 +1,5 @@
 # CHANGELOG
 
-## 7.2.2 (2023-06-23)
-
-* BUGFIX: Archaeology was missing from the Esoterrorists ability pack. #276
-* BUGFIX: Newly-created worlds have a blank string for the "Personal Detail". #273
-
-Thanks @marksjus for both bug reports.
-
 ## 7.2.1 (2023-06-22)
 
 * Add Polish strings for "Moribund World" to the system manifest. WHOOPS.
