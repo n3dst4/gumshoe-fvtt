@@ -83,6 +83,7 @@ const initialState: State = {
     systemMigrationVersion: "",
     abilityCategories: "",
     shortNotes: [],
+    firstRun: true,
   },
 };
 

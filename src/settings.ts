@@ -243,6 +243,11 @@ export const settings = {
       world: {},
     },
   }),
+  firstRun: createSettingBoolean({
+    key: "firstRun",
+    name: "First run?",
+    default: true,
+  }),
 };
 
 // -----------------------------------------------------------------------------
