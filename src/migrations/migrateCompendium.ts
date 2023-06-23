@@ -44,7 +44,7 @@ export const migrateCompendium = async function (
           updateData = migrateSceneData(ent, flaggedMigrations);
           break;
       }
-      if (isObjectEmpty(updateData)) continue;
+      if (isEmpty(updateData)) continue;
 
       // Save the entry, if data was changed
       updateData._id = ent.id;

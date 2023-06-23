@@ -35,7 +35,7 @@ export const migrateActorData = function (
       const itemUpdate = migrateItemData(itemData, flaggedMigrations);
 
       // Update the Owned Item
-      if (!isObjectEmpty(itemUpdate)) {
+      if (!isEmpty(itemUpdate)) {
         return [
           {
             _id: itemData._id,

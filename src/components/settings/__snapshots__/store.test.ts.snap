@@ -130,7 +130,7 @@ exports[`reducer > should apply a preset 1`] = `
       \\"migrationFlags\\": Object {
         \\"actor\\": Object {},
         \\"item\\": Object {},
-@@ -61,18 +63,38 @@
+@@ -61,19 +63,39 @@
         \\"world\\": Object {},
       },
       \\"useTurnPassingInitiative\\": false,
@@ -172,6 +172,7 @@ exports[`reducer > should apply a preset 1`] = `
       \\"systemMigrationVersion\\": \\"\\",
       \\"abilityCategories\\": \\"\\",
       \\"shortNotes\\": Array [],
+      \\"firstRun\\": true,
 +     \\"schemaVersion\\": \\"v1\\",
 +     \\"displayName\\": \\"Trail of Cthulhu (built-in)\\",
     },
