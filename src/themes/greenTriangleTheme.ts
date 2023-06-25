@@ -22,15 +22,15 @@ export const greenTriangleTheme: ThemeV1 = themeFactory({
   logo: {
     frontTextElementStyle: {
       color: "#fff",
-      maskImage: `url(systems/${systemId}/assets/wallpaper/annie-spratt-ctXf1GVyf9A-unsplash.webp)`,
-      maskMode: "luminance",
-      maskRepeat: "repeat",
     },
     rearTextElementStyle: {
       textShadow: "0 0 0.2em #cfffc2",
     },
     textElementsStyle: {
       transform: "scale(1.0, 0.8) rotate(-1.5deg)",
+      maskImage: `url(systems/${systemId}/assets/wallpaper/textured-mask.webp)`,
+      maskSize: "10em 0.2em",
+      maskOrigin: "border-box",
     },
     backdropStyle: {},
   },
