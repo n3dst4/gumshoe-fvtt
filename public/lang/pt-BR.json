@@ -48,6 +48,7 @@
   "investigator.GeneralAbilityCategories": "Categorias de Habilidades Gerais",
   "investigator.GoesFirstInCombat": "Age primeiro em combate?",
   "investigator.HasSpecialities": "Tem Especializações?",
+  "investigator.HideIfZeroRated": "Ocultar sem graduação?",
   "investigator.HideZeroRatedAbilities": "Ocultar habilidades sem graduação",
   "investigator.HitRoll": "Rolagem de acerto",
   "investigator.HitThreshold": "Limiar de Acerto",

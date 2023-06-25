@@ -48,6 +48,7 @@
   "investigator.GeneralAbilityCategories": "General ability categories",
   "investigator.GoesFirstInCombat": "Goes first in combat?",
   "investigator.HasSpecialities": "Has specialities?",
+  "investigator.HideIfZeroRated": "Hide if zero-rated?",
   "investigator.HideZeroRatedAbilities": "Hide zero-rated abilities",
   "investigator.HitRoll": "Hit roll",
   "investigator.HitThreshold": "Hit Threshold",

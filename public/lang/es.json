@@ -48,6 +48,7 @@
   "investigator.GeneralAbilityCategories": "Categorías de habilidades generales",
   "investigator.GoesFirstInCombat": "¿Vas primero en combate?",
   "investigator.HasSpecialities": "¿Tiene especialidades?",
+  "investigator.HideIfZeroRated": "Hide if zero-rated?",
   "investigator.HideZeroRatedAbilities": "Esconder habilidades sin puntos asignados.",
   "investigator.HitRoll": "Tirada de golpear",
   "investigator.HitThreshold": "Umbral de golpe",

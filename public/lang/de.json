@@ -48,6 +48,7 @@
   "investigator.GeneralAbilityCategories": "Allgemeine Kategorien",
   "investigator.GoesFirstInCombat": "Priorität im Kamp?",
   "investigator.HasSpecialities": "Hat Spezialisierungen?",
+  "investigator.HideIfZeroRated": "Hide if zero-rated?",
   "investigator.HideZeroRatedAbilities": "0 Punkte Fähigkeiten verbergen",
   "investigator.HitRoll": "Trefferwurf",
   "investigator.HitThreshold": "Trefferschwelle",

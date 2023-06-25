@@ -48,6 +48,7 @@
   "investigator.GeneralAbilityCategories": "一般技能カテゴリ",
   "investigator.GoesFirstInCombat": "戦闘時、最初に指定",
   "investigator.HasSpecialities": "専門分野",
+  "investigator.HideIfZeroRated": "Hide if zero-rated?",
   "investigator.HideZeroRatedAbilities": "レート0の時に非表示",
   "investigator.HitRoll": "攻撃判定",
   "investigator.HitThreshold": "回避値",
