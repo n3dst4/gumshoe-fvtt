@@ -45,7 +45,6 @@ export const unsafeRealityTheme: ThemeV1 = themeFactory({
     frontTextElementStyle: {
       color: yellow,
       maskImage: `url(systems/${systemId}/assets/wallpaper/grunge-gradient.webp)`,
-      maskMode: "luminance",
       maskRepeat: "no-repeat",
       maskSize: "100% 100%",
       maskOrigin: "border-box",
@@ -73,7 +72,6 @@ export const unsafeRealityTheme: ThemeV1 = themeFactory({
         linear-gradient(to bottom, ${darkOrange} 0%, ${orange} 100%)
       `,
       maskImage: `url(systems/${systemId}/assets/wallpaper/esoterica.webp)`,
-      maskMode: "luminance",
       maskRepeat: "no-repeat",
       maskSize: "contain",
       maskPosition: "50% 10%",
