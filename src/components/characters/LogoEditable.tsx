@@ -128,6 +128,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           css={{
             zIndex: -1,
             ...textBearerStyle,
+            ...theme.logo.rearTextElementWrapperStyle,
           }}
         >
           <div
@@ -153,7 +154,10 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
         {/* front element, aka the gradient-bearer (on themes that have text
           gradients) */}
         <div
-          css={textBearerStyle}
+          css={{
+            ...textBearerStyle,
+            ...theme.logo.rearTextElementWrapperStyle,
+          }}
           className="front-text-element gradient-bearer"
         >
           <div

@@ -37,7 +37,8 @@ export const olderThanMemoryTheme: ThemeV1 = themeFactory({
         `0 0 2em ${glow}`,
       ].join(", "),
     },
-    rearTextElementStyle: {
+    rearTextElementStyle: {},
+    rearTextElementWrapperStyle: {
       border: `2px solid ${glow}`,
       borderRadius: "3em",
       boxShadow: [`0 0 0.5em 0 inset ${glow}`, `0 0 0.5em 0 ${glow}`].join(","),
