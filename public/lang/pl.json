@@ -48,6 +48,7 @@
   "investigator.GeneralAbilityCategories": "Kategorie umiejętności ogólnych",
   "investigator.GoesFirstInCombat": "Pierwszeństwo w walce",
   "investigator.HasSpecialities": "Ma specjalizację",
+  "investigator.HideIfZeroRated": "Ukryj przy zerowej puli",
   "investigator.HideZeroRatedAbilities": "Ukryj umiejętności z zerową pulą",
   "investigator.HitRoll": "Rzut na trafienie",
   "investigator.HitThreshold": "Próg trafienia:",

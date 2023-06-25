@@ -48,6 +48,7 @@
   "investigator.GeneralAbilityCategories": "Categories d'habilitats generals",
   "investigator.GoesFirstInCombat": "Vas primer en combat?",
   "investigator.HasSpecialities": "Té especialitats?",
+  "investigator.HideIfZeroRated": "Hide if zero-rated?",
   "investigator.HideZeroRatedAbilities": "Amagar habilitats sense punts assignats.",
   "investigator.HitRoll": "Tirada per colpejar",
   "investigator.HitThreshold": "Llindar de cop",

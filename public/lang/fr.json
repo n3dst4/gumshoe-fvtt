@@ -48,6 +48,7 @@
   "investigator.GeneralAbilityCategories": "Catégories compétence générale ",
   "investigator.GoesFirstInCombat": "Agit avant en combat?",
   "investigator.HasSpecialities": "A une spécialité?",
+  "investigator.HideIfZeroRated": "Hide if zero-rated?",
   "investigator.HideZeroRatedAbilities": "Masquer les compétences à zéro",
   "investigator.HitRoll": "Jet pour toucher",
   "investigator.HitThreshold": "Seuil de blessure",
