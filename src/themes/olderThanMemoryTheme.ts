@@ -30,10 +30,6 @@ export const olderThanMemoryTheme: ThemeV1 = themeFactory({
     fontScaleFactor: 24,
     frontTextElementStyle: {
       color: "#fff",
-      // maskImage: `url(systems/${systemName}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
-      // maskMode: "luminance",
-      // maskRepeat: "repeat",
-      // maskSize: "contain",
       textShadow: [
         `0 0 0.5em ${glow}`,
         `0 0 0.2em ${glow}`,
@@ -42,7 +38,6 @@ export const olderThanMemoryTheme: ThemeV1 = themeFactory({
       ].join(", "),
     },
     rearTextElementStyle: {
-      // display: "none",
       border: `2px solid ${glow}`,
       borderRadius: "3em",
       boxShadow: [`0 0 0.5em 0 inset ${glow}`, `0 0 0.5em 0 ${glow}`].join(","),
@@ -67,7 +62,7 @@ export const olderThanMemoryTheme: ThemeV1 = themeFactory({
     backgroundPrimary: "#211616cc",
     backgroundSecondary: "#21161699",
     backgroundButton: "rgba(0,0,0,0.1)",
-    text: "#ccc", // "#9ad6de",
+    text: "#ccc",
     controlBorder: "#825050",
   },
 });
