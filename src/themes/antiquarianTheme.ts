@@ -24,22 +24,18 @@ export const antiquarianTheme: ThemeV1 = themeFactory({
     fontScaleFactor: 24,
     frontTextElementStyle: {
       color: "#000",
-      maskImage: `url(systems/${systemId}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
-      maskMode: "luminance",
+      maskImage: `url(systems/${systemId}/assets/wallpaper/stonelike-mask.webp)`,
       maskRepeat: "repeat",
       maskSize: "contain",
-      textShadow: [
-        "0.03em 0.03em 0px #fff",
-        // "0.06em 0.06em 0px #000",
-        "-0.03em -0.03em 0px #fff",
-        // "-0.06em -0.06em 0px #000",
-      ].join(", "),
+      textShadow: ["0.03em 0.03em 0px #fff", "-0.03em -0.03em 0px #fff"].join(
+        ", ",
+      ),
     },
     rearTextElementStyle: {
       display: "none",
     },
     textElementsStyle: {
-      transform: "scale(0.6)",
+      transform: "scale(0.7)",
       fontWeight: "bold",
     },
     backdropStyle: {
@@ -47,8 +43,7 @@ export const antiquarianTheme: ThemeV1 = themeFactory({
       backgroundRepeat: "no-repeat",
       backgroundPosition: "bottom, top",
       backgroundSize: "19%",
-      maskImage: `url(systems/${systemId}/assets/wallpaper/annie-spratt-UR2DMIFuc5c-unsplash.webp)`,
-      maskMode: "luminance",
+      maskImage: `url(systems/${systemId}/assets/wallpaper/stonelike-mask.webp)`,
       maskRepeat: "repeat",
       maskSize: "contain",
       opacity: 0.7,
