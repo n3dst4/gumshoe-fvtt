@@ -145,7 +145,7 @@ export const PCSheet: React.FC<{
         }}
       >
         <InputGrid>
-          <GridField label="Name">
+          <GridField label="PersonName">
             <AsyncTextInput value={actor.name ?? ""} onChange={actor.setName} />
           </GridField>
           <PersonalDetailField
