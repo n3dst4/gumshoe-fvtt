@@ -117,7 +117,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
           gridAutoRows: "auto",
         }}
       >
-        <GridField label="ItemName">
+        <GridField label="Item Name">
           <TextInput
             value={nameInput.display}
             onChange={nameInput.onChange}
