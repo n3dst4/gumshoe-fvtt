@@ -164,6 +164,8 @@ export interface SituationalModifier {
   modifier: number;
 }
 
+export type SpecialitiesMode = "one" | "twoThreeFour";
+
 /** data.data for either type of ability */
 export interface BaseAbilityDataSourceData {
   rating: number;
@@ -172,6 +174,7 @@ export interface BaseAbilityDataSourceData {
   max: number;
   occupational: boolean;
   hasSpecialities: boolean;
+  specialitiesMode: SpecialitiesMode;
   specialities: string[];
   showTracker: boolean;
   boost: boolean;

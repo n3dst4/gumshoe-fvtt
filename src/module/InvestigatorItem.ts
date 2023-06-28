@@ -8,6 +8,7 @@ import {
   NoteWithFormat,
   RangeTuple,
   SituationalModifier,
+  SpecialitiesMode,
   Unlock,
 } from "../types";
 import * as constants from "../constants";
@@ -341,14 +342,35 @@ export class InvestigatorItem extends Item {
 
   getSpecialities = () => {
     assertAbilityItem(this);
-    return fixLength(this.system.specialities, this.system.rating, "");
+    return fixLength(this.system.specialities, this.getSpecialitesCount(), "");
+  };
+
+  getSpecialitesCount = () => {
+    assertAbilityItem(this);
+    if (!this.system.hasSpecialities) {
+      return 0;
+    } else if (this.system.specialitiesMode === "twoThreeFour") {
+      // NBA langauges style
+      switch (this.system.rating) {
+        case 0:
+          return 0;
+        case 1:
+          return 2;
+        case 2:
+          return 5;
+        default:
+          return Math.max(0, (this.system.rating - 2) * 4 + 5);
+      }
+    } else {
+      return this.system.rating;
+    }
   };
 
   setSpecialities = (newSpecs: string[]) => {
     assertAbilityItem(this);
     return this.update({
       system: {
-        specialities: fixLength(newSpecs, this.system.rating, ""),
+        specialities: fixLength(newSpecs, this.getSpecialitesCount(), ""),
       },
     });
   };
@@ -842,6 +864,11 @@ export class InvestigatorItem extends Item {
         compendiumPackId: id,
       },
     });
+  };
+
+  setSpecialitiesMode = (mode: SpecialitiesMode) => {
+    assertAbilityItem(this);
+    return this.update({ system: { specialitiesMode: mode } });
   };
 }
 

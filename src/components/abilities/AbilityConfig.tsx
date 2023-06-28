@@ -6,7 +6,7 @@ import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Translate } from "../Translate";
-import { MwRefreshGroup } from "../../types";
+import { MwRefreshGroup, SpecialitiesMode } from "../../types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { settings } from "../../settings";
 import { UnlocksEditor } from "./UnlocksEditor";
@@ -144,6 +144,23 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
           }}
         />
       </GridField>
+      {ability.system.hasSpecialities && (
+        <GridField label="Specialities Mode">
+          <select
+            value={ability.system.specialitiesMode}
+            onChange={(t) => {
+              ability.setSpecialitiesMode(
+                t.currentTarget.value as SpecialitiesMode,
+              );
+            }}
+          >
+            <option value="one">{getTranslated("One per rank")}</option>
+            <option value="twoThreeFour">
+              {getTranslated("+2/+3/+4 per rank")}
+            </option>
+          </select>
+        </GridField>
+      )}
       <GridField label="Occupational?">
         <AsyncCheckbox
           checked={ability.system.occupational}

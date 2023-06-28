@@ -43,7 +43,7 @@ export const AbilityBadges: React.FC<UnlockBadgesProps> = ({
           flexDirection: "row",
           justifyContent: "center",
           flexWrap: "wrap",
-          marginBottom: "0.1em",
+          marginBottom: situationalModifiers.length > 0 ? "0.1em" : undefined,
         }}
       >
         {situationalModifiers.map<ReactNode>((situationalModifer) => {
@@ -62,7 +62,7 @@ export const AbilityBadges: React.FC<UnlockBadgesProps> = ({
           flexDirection: "row",
           justifyContent: "center",
           flexWrap: "wrap",
-          marginBottom: "0.25em",
+          marginBottom: unlocks.length > 0 ? "0.25em" : undefined,
         }}
       >
         {/* Unlocks */}
