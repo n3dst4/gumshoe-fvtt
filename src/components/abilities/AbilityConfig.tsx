@@ -67,7 +67,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
 
   return (
     <InputGrid>
-      <GridField label="Name">
+      <GridField label="Item Name">
         <AsyncTextInput value={ability.name ?? ""} onChange={ability.setName} />
       </GridField>
       <GridField label="Category">

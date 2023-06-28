@@ -153,7 +153,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
     >
       <span css={{ gridArea: "idLbl" }}>id</span>
       <span css={{ gridArea: "nameLbl" }}>
-        <Translate>name</Translate>
+        <Translate>Item Name</Translate>
       </span>
       <AsyncTextInput
         css={{ gridArea: "id" }}

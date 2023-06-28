@@ -52,7 +52,7 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
         ...absoluteCover,
       }}
     >
-      <GridField label="Name">
+      <GridField label="Item Name">
         <TextInput value={name} onChange={onChangeName} />
       </GridField>
 

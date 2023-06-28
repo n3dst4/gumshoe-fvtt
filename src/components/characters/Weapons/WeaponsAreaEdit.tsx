@@ -84,7 +84,7 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({ actor }) => {
               textAlign: "center",
             }}
           >
-            <Translate>Name</Translate>
+            <Translate>Item Name</Translate>
           </div>
           <div
             className="header"
