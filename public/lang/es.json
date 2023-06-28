@@ -168,5 +168,8 @@
   "investigator.SituationalModifiers": "Situational Modifiers",
   "investigator.RefreshedAllOfActorNamesAbilities": "Refreshed all of {ActorName}'s abilities",
   "investigator.RefreshedAllOfActorNames24hRefreshAbilities": "Refreshed all of {ActorName}'s 24h refresh abilities",
-  "investigator.RefreshedAllOfActorNamesHoursHoursRefreshAbilities": "Refreshed all of {ActorName}'s {Hours}-hour refresh abilities"
+  "investigator.RefreshedAllOfActorNamesHoursHoursRefreshAbilities": "Refreshed all of {ActorName}'s {Hours}-hour refresh abilities",
+  "investigator.SpecialitiesMode": "Specialities mode",
+  "investigator.OnePerRank": "One per rank",
+  "investigator.234PerRank": "+2/+3/+4 per rank"
 }
