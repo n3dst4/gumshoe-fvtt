@@ -1,0 +1,224 @@
+{
+    "label": "Umiejętności Esoterrorists (wbudowane)",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "Antropologia",
+            "category": "Naukowe"
+        },
+        "Archaeology": {
+            "name": "Archeologia",
+            "category": "Naukowe"
+        },
+        "Architecture": {
+            "name": "Architektura",
+            "category": "Naukowe"
+        },
+        "Art History": {
+            "name": "Historia sztuki",
+            "category": "Naukowe"
+        },
+        "Astronomy": {
+            "name": "Astronomia",
+            "category": "Techniczne"
+        },
+        "Athletics": {
+            "name": "Wysportowanie",
+            "category": "Ogólne"
+        },
+        "Ballistics": {
+            "name": "Balistyka",
+            "category": "Techniczne"
+        },
+        "Bullshit Detector": {
+            "name": "Wyczucie ściemy",
+            "category": "Interpersonalne"
+        },
+        "Bureaucracy": {
+            "name": "Biurokracja",
+            "category": "Interpersonalne"
+        },
+        "Chemistry": {
+            "name": "Chemia",
+            "category": "Techniczne"
+        },
+        "Cop Talk": {
+            "name": "Policyjne sprawy",
+            "category": "Interpersonalne"
+        },
+        "Cryptography": {
+            "name": "Kryptografia",
+            "category": "Techniczne"
+        },
+        "Data Retrival": {
+            "name": "Odzyskiwanie danych",
+            "category": "Techniczne"
+        },
+        "Document Analysis": {
+            "name": "Analiza dokumentów",
+            "category": "Techniczne"
+        },
+        "Driving": {
+            "name": "Prowadzenie",
+            "category": "Ogólne"
+        },
+        "Electronic Surveillance": {
+            "name": "Nadzór elektroniczny",
+            "category": "Techniczne"
+        },
+        "Evidence Collection": {
+            "name": "Zbieranie dowodów",
+            "category": "Techniczne"
+        },
+        "Explosive Devices": {
+            "name": "Urządzenia wybuchowe",
+            "category": "Techniczne"
+        },
+        "Filch": {
+            "name": "Zwinne palce",
+            "category": "Ogólne"
+        },
+        "Fingerprinting": {
+            "name": "Daktyloskopia",
+            "category": "Techniczne"
+        },
+        "Flattery": {
+            "name": "Pochlebstwa",
+            "category": "Interpersonalne"
+        },
+        "Flirting": {
+            "name": "Flirtowanie",
+            "category": "Interpersonalne"
+        },
+        "Forensic Accounting": {
+            "name": "Rachunkowość sądowa",
+            "category": "Naukowe"
+        },
+        "Forensic Anthropology": {
+            "name": "Antropologia sądowa",
+            "category": "Techniczne"
+        },
+        "Forensic Entomology": {
+            "name": "Entomologia sądowa",
+            "category": "Techniczne"
+        },
+        "Forensic Psychology": {
+            "name": "Psychologia sądowa",
+            "category": "Naukowe"
+        },
+        "Health": {
+            "name": "Zdrowie",
+            "category": "Ogólne"
+        },
+        "History": {
+            "name": "Historia",
+            "category": "Naukowe"
+        },
+        "Impersonate": {
+            "name": "Podszywanie się",
+            "category": "Interpersonalne"
+        },
+        "Infiltration": {
+            "name": "Infiltracja",
+            "category": "Ogólne"
+        },
+        "Interrogation": {
+            "name": "Przesłuchiwanie",
+            "category": "Interpersonalne"
+        },
+        "Intimidation": {
+            "name": "Zastraszanie",
+            "category": "Interpersonalne"
+        },
+        "Languages": {
+            "name": "Języki",
+            "category": "Naukowe"
+        },
+        "Law": {
+            "name": "Prawo",
+            "category": "Naukowe"
+        },
+        "Linguistics": {
+            "name": "Językoznawstwo",
+            "category": "Naukowe"
+        },
+        "Local Knowledge": {
+            "name": "Wiedza lokalna",
+            "category": "Naukowe"
+        },
+        "Mechanics": {
+            "name": "Mechanika",
+            "category": "Ogólne"
+        },
+        "Medic": {
+            "name": "Pomoc medyczna",
+            "category": "Ogólne"
+        },
+        "Natural History": {
+            "name": "Historia naturalna",
+            "category": "Naukowe"
+        },
+        "Negotiation": {
+            "name": "Negocjacje",
+            "category": "Interpersonalne"
+        },
+        "Occult Studies": {
+            "name": "Okultyzm",
+            "category": "Naukowe"
+        },
+        "Pathology": {
+            "name": "Patologia",
+            "category": "Naukowe"
+        },
+        "Photography": {
+            "name": "Fotografia",
+            "category": "Techniczne"
+        },
+        "Preparedness": {
+            "name": "Przygotowanie",
+            "category": "Ogólne"
+        },
+        "Reassurance": {
+            "name": "Empatia",
+            "category": "Interpersonalne"
+        },
+        "Research": {
+            "name": "Badania",
+            "category": "Naukowe"
+        },
+        "Scuffing": {
+            "name": "Bójka",
+            "category": "Ogólne"
+        },
+        "Shooting": {
+            "name": "Strzelanie",
+            "category": "Ogólne"
+        },
+        "Shrink": {
+            "name": "Psychoanaliza",
+            "category": "Ogólne"
+        },
+        "Stability": {
+            "name": "Stabilność",
+            "category": "Ogólne"
+        },
+        "Streetwise": {
+            "name": "Znajomość półświatka",
+            "category": "Interpersonalne"
+        },
+        "Surveillance": {
+            "name": "Nadzór",
+            "category": "Ogólne"
+        },
+        "Textual Analysis": {
+            "name": "Analiza tekstu",
+            "category": "Naukowe"
+        },
+        "Trivia": {
+            "name": "Ciekawostki",
+            "category": "Naukowe"
+        }
+    }
+}
