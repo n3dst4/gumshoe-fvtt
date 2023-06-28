@@ -87,7 +87,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
         }}
       ></div>
       <div css={{ gridColumn: "1", gridRow: "headers" }}>
-        <Translate>Name</Translate>
+        <Translate>Item Name</Translate>
       </div>
       {Object.entries(fields).map<JSX.Element>(([fieldId, field], i) => {
         return (

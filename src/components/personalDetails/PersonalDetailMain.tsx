@@ -40,7 +40,7 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
         gridTemplateRows: "auto auto auto 1fr",
       }}
     >
-      <GridField label="Name">
+      <GridField label="Item Name">
         <AsyncTextInput value={name || ""} onChange={item.setName} />
       </GridField>
       <GridField label="Slot">

@@ -45,7 +45,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
 
   return (
     <InputGrid>
-      <GridField label="Name">
+      <GridField label="Item Name">
         <TextInput value={name.display} onChange={name.onChange} />
       </GridField>
       <GridField label="Ability">
