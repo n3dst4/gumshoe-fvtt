@@ -30,8 +30,8 @@ dependencies:
     specifier: ^4.17.21
     version: 4.17.21
   marked:
-    specifier: ^5.0.0
-    version: 5.0.0
+    specifier: ^5.1.0
+    version: 5.1.0
   nanoid:
     specifier: ^4.0.2
     version: 4.0.2
@@ -5050,8 +5050,8 @@ packages:
       tmpl: 1.0.5
     dev: true
 
-  /marked@5.0.0:
-    resolution: {integrity: sha512-YQ6+L9l/NSBDjFgCQQebmTCc62EUdZ5RpIZ7A/FmC8IYMB5s7Cz8sT7imuMAkbIL4CvXpQLdW45fpK5UwiU7DA==}
+  /marked@5.1.0:
+    resolution: {integrity: sha512-z3/nBe7aTI8JDszlYLk7dDVNpngjw0o1ZJtrA9kIfkkHcIF+xH7mO23aISl4WxP83elU+MFROgahqdpd05lMEQ==}
     engines: {node: '>= 18'}
     hasBin: true
     dev: false
