@@ -72,7 +72,7 @@
     "sass": "^1.63.6",
     "ts-jest": "^29.0.0",
     "typescript": "~4.7.4",
-    "vite": "^4.1.4",
+    "vite": "^4.3.9",
     "vite-plugin-checker": "^0.6.1",
     "vitest": "^0.32.2",
     "yargs": "^17.7.2",
