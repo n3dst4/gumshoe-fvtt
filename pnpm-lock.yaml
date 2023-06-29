@@ -131,8 +131,8 @@ devDependencies:
     specifier: ^5.3.1
     version: 5.3.1
   chalk:
-    specifier: ^5.0.0
-    version: 5.0.0
+    specifier: ^5.3.0
+    version: 5.3.0
   eslint:
     specifier: ^8.22.0
     version: 8.37.0
@@ -2653,8 +2653,8 @@ packages:
       supports-color: 7.2.0
     dev: true
 
-  /chalk@5.0.0:
-    resolution: {integrity: sha512-/duVOqst+luxCQRKEo4bNxinsOQtMP80ZYm7mMqzuh5PociNL0PvmHFvREJ9ueYL2TxlHjBcmLCdmocx9Vg+IQ==}
+  /chalk@5.3.0:
+    resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
     dev: true
 
