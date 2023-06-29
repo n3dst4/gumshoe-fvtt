@@ -1,0 +1,224 @@
+{
+    "label": "Esoterrorists Abilities (built-in)",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Anthropology": {
+            "name": "Antropologia",
+            "category": "Acadêmica"
+        },
+        "Archaeology": {
+            "name": "Arqueologia",
+            "category": "Acadêmica"
+        },
+        "Architecture": {
+            "name": "Arquitetura",
+            "category": "Acadêmica"
+        },
+        "Art History": {
+            "name": "História da Arte",
+            "category": "Acadêmica"
+        },
+        "Astronomy": {
+            "name": "Astronomia",
+            "category": "Técnica"
+        },
+        "Athletics": {
+            "name": "Atletismo",
+            "category": "Geral"
+        },
+        "Ballistics": {
+            "name": "Balística",
+            "category": "Técnica"
+        },
+        "Bullshit Detector": {
+            "name": "Detector de Lorotas",
+            "category": "Interpessoal"
+        },
+        "Bureaucracy": {
+            "name": "Burocracia",
+            "category": "Interpessoal"
+        },
+        "Chemistry": {
+            "name": "Química",
+            "category": "Técnica"
+        },
+        "Cop Talk": {
+            "name": "Trato Policial",
+            "category": "Interpessoal"
+        },
+        "Cryptography": {
+            "name": "Criptografia",
+            "category": "Técnica"
+        },
+        "Data Retrival": {
+            "name": "Data Retrival",
+            "category": "Técnica"
+        },
+        "Document Analysis": {
+            "name": "Análise de Documento",
+            "category": "Técnica"
+        },
+        "Driving": {
+            "name": "Condução",
+            "category": "Geral"
+        },
+        "Electronic Surveillance": {
+            "name": "Monitoramento Eletrônico",
+            "category": "Técnica"
+        },
+        "Evidence Collection": {
+            "name": "Coletar Evidências",
+            "category": "Técnica"
+        },
+        "Explosive Devices": {
+            "name": "Dispositivos Explosivos",
+            "category": "Técnica"
+        },
+        "Filch": {
+            "name": "Punga",
+            "category": "Geral"
+        },
+        "Fingerprinting": {
+            "name": "Datiloscopia",
+            "category": "Técnica"
+        },
+        "Flattery": {
+            "name": "Bajulação",
+            "category": "Interpessoal"
+        },
+        "Flirting": {
+            "name": "Flerte",
+            "category": "Interpessoal"
+        },
+        "Forensic Accounting": {
+            "name": "Perícia Contábil",
+            "category": "Acadêmica"
+        },
+        "Forensic Anthropology": {
+            "name": "Antropologia Forense",
+            "category": "Técnica"
+        },
+        "Forensic Entomology": {
+            "name": "Entomologia Forense",
+            "category": "Técnica"
+        },
+        "Forensic Psychology": {
+            "name": "Psicologia Forense",
+            "category": "Acadêmica"
+        },
+        "Health": {
+            "name": "Vitalidade",
+            "category": "Geral"
+        },
+        "History": {
+            "name": "História",
+            "category": "Acadêmica"
+        },
+        "Impersonate": {
+            "name": "Personificação",
+            "category": "Interpessoal"
+        },
+        "Infiltration": {
+            "name": "Infiltração",
+            "category": "Geral"
+        },
+        "Interrogation": {
+            "name": "Interrogatório",
+            "category": "Interpessoal"
+        },
+        "Intimidation": {
+            "name": "Intimidação",
+            "category": "Interpessoal"
+        },
+        "Languages": {
+            "name": "Idiomas",
+            "category": "Acadêmica"
+        },
+        "Law": {
+            "name": "Direito",
+            "category": "Acadêmica"
+        },
+        "Linguistics": {
+            "name": "Linguística",
+            "category": "Acadêmica"
+        },
+        "Local Knowledge": {
+            "name": "Local Knowledge",
+            "category": "Acadêmica"
+        },
+        "Mechanics": {
+            "name": "Mecânica",
+            "category": "Geral"
+        },
+        "Medic": {
+            "name": "Medicina de Combate",
+            "category": "Geral"
+        },
+        "Natural History": {
+            "name": "História Natural",
+            "category": "Acadêmica"
+        },
+        "Negotiation": {
+            "name": "Negociação",
+            "category": "Interpessoal"
+        },
+        "Occult Studies": {
+            "name": "Ocultismo",
+            "category": "Acadêmica"
+        },
+        "Pathology": {
+            "name": "Patologia",
+            "category": "Acadêmica"
+        },
+        "Photography": {
+            "name": "Fotografia",
+            "category": "Técnica"
+        },
+        "Preparedness": {
+            "name": "Precaução",
+            "category": "Geral"
+        },
+        "Reassurance": {
+            "name": "Apaziguamento",
+            "category": "Interpessoal"
+        },
+        "Research": {
+            "name": "Busca",
+            "category": "Acadêmica"
+        },
+        "Scuffing": {
+            "name": "Scuffing",
+            "category": "Geral"
+        },
+        "Shooting": {
+            "name": "Tiro",
+            "category": "Geral"
+        },
+        "Shrink": {
+            "name": "Psicoterapia",
+            "category": "Geral"
+        },
+        "Stability": {
+            "name": "Estabilidade",
+            "category": "Geral"
+        },
+        "Streetwise": {
+            "name": "Manha",
+            "category": "Interpessoal"
+        },
+        "Surveillance": {
+            "name": "Monitoramento",
+            "category": "Geral"
+        },
+        "Textual Analysis": {
+            "name": "Análise Textual",
+            "category": "Acadêmica"
+        },
+        "Trivia": {
+            "name": "Trivialidades",
+            "category": "Acadêmica"
+        }
+    }
+}
