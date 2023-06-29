@@ -101,8 +101,8 @@ devDependencies:
     specifier: ^18.0.11
     version: 18.0.11
   '@types/react-transition-group':
-    specifier: ^4.4.4
-    version: 4.4.5
+    specifier: ^4.4.6
+    version: 4.4.6
   '@types/sanitize-html':
     specifier: ^2.6.2
     version: 2.9.0
@@ -1888,8 +1888,8 @@ packages:
       '@types/react': 18.0.31
     dev: true
 
-  /@types/react-transition-group@4.4.5:
-    resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
+  /@types/react-transition-group@4.4.6:
+    resolution: {integrity: sha512-VnCdSxfcm08KjsJVQcfBmhEQAPnLB8G08hAxn39azX1qYBQ/5RVQuoHuKIcfKOdncuaUvEpFKFzEvbtIMsfVew==}
     dependencies:
       '@types/react': 18.0.31
     dev: true
