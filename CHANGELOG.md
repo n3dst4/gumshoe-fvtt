@@ -1,9 +1,21 @@
 # CHANGELOG
 
+## 7.3.0 (2023-06-30)
+
+An unexpected release, to be sure, but a welcome one.
+
+* Special handling for Night's black agents Languages, where the number of specialities is not just the same as the number of ranks. (#240)
+* Support for languages (specifically, Polish) in which the "name" for an object is not the same as the "name" for a person. Thanks @marksjus (#284)
+* Esoterrorists is now supported in Babele translations, including Polish Thanks @marksjus (#278)
+* BUG FIX: Newly-created world now have "Drive" as the single personal detail, as intended. (#273)
+* BUG FIX: Some fixes for Esoterrorists abilities (#276)
+* BUG FIX: Some themes looked like ASS in Chrome because yours truly only uses Firefox, and although I do perform browser testing I evidently hadn't used the affected themes in Chrome until now. Thanks @marksjus again for the report (#279)
+* BTS: The automatic dependency updater had stopped working. It's now back online, so this release includes a bunch of package updates which shouldn't change anything outwardly.
+
+
 ## 7.2.1 (2023-06-22)
 
 * Add Polish strings for "Moribund World" to the system manifest. WHOOPS.
-
 
 ## 7.2.0 (2023-06-22)
 
