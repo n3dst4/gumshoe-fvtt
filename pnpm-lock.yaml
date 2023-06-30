@@ -1,9 +1,6 @@
 lockfileVersion: '6.0'
 
 dependencies:
-  '@types/html-escaper':
-    specifier: ^3.0.0
-    version: 3.0.0
   case:
     specifier: ^1.6.3
     version: 1.6.3
@@ -76,6 +73,9 @@ devDependencies:
     specifier: ^14.0.0
     version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
   '@types/d3-ease':
+    specifier: ^3.0.0
+    version: 3.0.0
+  '@types/html-escaper':
     specifier: ^3.0.0
     version: 3.0.0
   '@types/lodash':
@@ -1446,7 +1446,7 @@ packages:
 
   /@types/html-escaper@3.0.0:
     resolution: {integrity: sha512-OcJcvP3Yk8mjYwf/IdXZtTE1tb/u0WF0qa29ER07ZHCYUBZXSN29Z1mBS+/96+kNMGTFUAbSz9X+pHmHpZrTCw==}
-    dev: false
+    dev: true
 
   /@types/jquery@3.5.16:
     resolution: {integrity: sha512-bsI7y4ZgeMkmpG9OM710RRzDFp+w4P1RGiIt30C1mSBT+ExCleeh4HObwgArnDFELmRrOpXgSYN9VF1hj+f1lw==}
