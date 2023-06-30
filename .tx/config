@@ -16,6 +16,13 @@ source_lang  = en
 type         = KEYVALUEJSON
 minimum_perc = 0
 
+[o:investigator-system:p:investigator-system:r:investigatoresoterroristsabilitiesjson]
+file_filter   = public/lang/babele/<lang>/investigator.esoterroristsAbilities.json
+source_file   = public/lang/babele-sources/investigator.esoterroristsAbilities.json
+type          = KEYVALUEJSON
+minimum_perc  = 0
+resource_name = Esoterrorists Abilities
+
 [o:investigator-system:p:investigator-system:r:moribund-world-strings]
 file_filter   = public/lang/moribundWorld/<lang>.json
 source_file   = public/lang/moribundWorld/en.json
