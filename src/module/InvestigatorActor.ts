@@ -1,4 +1,9 @@
-import { personalDetail, equipment, occupationSlotIndex } from "../constants";
+import {
+  personalDetail,
+  equipment,
+  occupationSlotIndex,
+  pc,
+} from "../constants";
 import {
   assertGame,
   confirmADoodleDo,
@@ -34,6 +39,11 @@ import {
 } from "../v10Types";
 
 export class InvestigatorActor extends Actor {
+  shouldBrodcastRefreshes() {
+    assertGame(game);
+    return !game.user?.isGM || this.type === pc;
+  }
+
   confirmRefresh = () => {
     confirmADoodleDo({
       message: "Refresh all of (actor name)'s abilities?",
@@ -91,7 +101,9 @@ export class InvestigatorActor extends Actor {
         return [];
       }
     });
-    this.broadcastUserMessage("RefreshedAllOfActorNamesAbilities");
+    if (this.shouldBrodcastRefreshes()) {
+      this.broadcastUserMessage("RefreshedAllOfActorNamesAbilities");
+    }
     return this.updateEmbeddedDocuments("Item", updates);
   };
 
@@ -115,12 +127,14 @@ export class InvestigatorActor extends Actor {
         return [];
       }
     });
-    this.broadcastUserMessage(
-      "RefreshedAllOfActorNamesHoursHoursRefreshAbilities",
-      {
-        Hours: group.toString(),
-      },
-    );
+    if (this.shouldBrodcastRefreshes()) {
+      this.broadcastUserMessage(
+        "RefreshedAllOfActorNamesHoursHoursRefreshAbilities",
+        {
+          Hours: group.toString(),
+        },
+      );
+    }
     return this.updateEmbeddedDocuments("Item", updates);
   }
 
@@ -145,7 +159,9 @@ export class InvestigatorActor extends Actor {
         return [];
       }
     });
-    this.broadcastUserMessage("RefreshedAllOfActorNames24hRefreshAbilities");
+    if (this.shouldBrodcastRefreshes()) {
+      this.broadcastUserMessage("RefreshedAllOfActorNames24hRefreshAbilities");
+    }
     this.updateEmbeddedDocuments("Item", updates);
   };
 
