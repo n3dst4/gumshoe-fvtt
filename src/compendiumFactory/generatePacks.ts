@@ -1,5 +1,5 @@
 import {
-  BaseAbilityDump,
+  AbilityDump,
   GeneralAbilityTemplate,
   InvestigativeAbilityTemplate,
 } from "./types";
@@ -95,7 +95,7 @@ export const findPack = (packName: string) => {
 export const generatePacks = async <
   T extends InvestigativeAbilityTemplate | GeneralAbilityTemplate,
 >(
-  abilityData: BaseAbilityDump<T>,
+  abilityData: AbilityDump<T>,
   template: T,
   pack: any,
 ) => {

@@ -1,42 +1,31 @@
 import { generalAbility, investigativeAbility } from "../constants";
-import { Unlock } from "../types";
+import {
+  GeneralAbilityDataSourceData,
+  InvestigativeAbilityDataSourceData,
+} from "../types";
 
-type BaseAbilityTemplate = {
-  category: string;
-  hasSpecialities: boolean;
-  specialities: string[];
-  rating: number;
-  pool: number;
-  min: number;
-  max: number;
-  occupational: boolean;
-  showTracker: boolean;
-  img: string;
-  excludeFromGeneralRefresh: boolean;
-  refreshesDaily: boolean;
-  hideIfZeroRated: boolean;
-  unlocks: Array<Unlock>;
-};
+interface Essentials {
+  name?: string;
+  img?: string;
+}
 
-export type InvestigativeAbilityTemplate = {
-  type: typeof investigativeAbility;
-} & BaseAbilityTemplate;
+export interface InvestigativeAbilityTemplate
+  extends Partial<InvestigativeAbilityDataSourceData>,
+    Essentials {
+  type?: typeof investigativeAbility;
+}
 
-export type GeneralAbilityTemplate = {
-  type: typeof generalAbility;
-  canBeInvestigative: boolean;
-  goesFirstInCombat: boolean;
-} & BaseAbilityTemplate;
+export interface GeneralAbilityTemplate
+  extends Partial<GeneralAbilityDataSourceData>,
+    Essentials {
+  type?: typeof generalAbility;
+}
 
-type Name = {
-  name: string;
-};
-
-export type BaseAbilityDump<T> = {
-  [category: string]: Array<Name & Partial<T>>;
-};
+export interface AbilityDump<T> {
+  [category: string]: T[];
+}
 
 export type InvestigativeAbilitiesData =
-  BaseAbilityDump<InvestigativeAbilityTemplate>;
+  AbilityDump<InvestigativeAbilityTemplate>;
 
-export type GeneralAbilitiesData = BaseAbilityDump<GeneralAbilityTemplate>;
+export type GeneralAbilitiesData = AbilityDump<GeneralAbilityTemplate>;
