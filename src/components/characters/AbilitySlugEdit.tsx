@@ -63,7 +63,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
         />
       </div>
       <AbilityBadges ability={ability} css={{ gridColumn: "1/-1" }} />
-      {ability.getHasSpecialities() && ability.system.rating > 0 && (
+      {ability.getHasSpecialities() && ability.getSpecialitesCount() > 0 && (
         <div css={{ paddingLeft: "2em", gridColumn: "1/-1" }}>
           <SpecialityList ability={ability} />
         </div>

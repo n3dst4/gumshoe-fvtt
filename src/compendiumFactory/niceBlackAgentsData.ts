@@ -15,7 +15,11 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     },
     { name: "History" },
     { name: "Human Terrain" },
-    { name: "Languages", hasSpecialities: true },
+    {
+      name: "Languages",
+      hasSpecialities: true,
+      specialitiesMode: "twoThreeFour",
+    },
     { name: "Law" },
     { name: "Military Science" },
     { name: "Occult Studies" },
