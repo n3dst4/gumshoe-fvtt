@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
 import path from "path";
 import { id as name } from "./public/system.json";
-import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-swc";
 
 // guide to using Vite for Foundry from the Lancer guys:
 // https://foundryvtt.wiki/en/development/guides/vite
@@ -19,9 +19,16 @@ try {
 
 const port = 40000;
 
-const preambleJS = react.preambleCode.replace("__BASE__", `/systems/${name}/`);
+// this is lifted from https://github.com/vitejs/vite-plugin-react-swc/blob/main/src/index.ts
+const preambleCode = `
+  import { injectIntoGlobalHook } from "__PATH__";
+  injectIntoGlobalHook(window);
+  window.$RefreshReg$ = () => {};
+  window.$RefreshSig$ = () => (type) => type;`;
 const preambleHtml =
-  '\n<script type="module">\n' + preambleJS + "\n</script>\n";
+  '\n<script type="module">\n' +
+  preambleCode.replace("__PATH__", `/systems/${name}/@react-refresh`) +
+  "\n</script>\n";
 const headTag = "<head>";
 
 const config = defineConfig(({ mode }) => {
@@ -50,7 +57,7 @@ const config = defineConfig(({ mode }) => {
         // and the React plugin doesn't get a chance to transform it. So we need
         // to add the preamble ourselves. We do this by singling out the proxy
         // rule for `/game` and using `configure` to add some hooks to manually
-        // insert the proxy ourselves.
+        // insert the preamble ourselves.
         "/game": {
           // see https://github.com/http-party/node-http-proxy#modify-response
           selfHandleResponse: true,
@@ -107,11 +114,9 @@ const config = defineConfig(({ mode }) => {
       emptyOutDir: true,
       sourcemap: mode !== "production",
       minify: mode === "production",
-      // commonjsOptions: {
-      //   defaultIsModuleExports: "auto",
-      // },
+      // by default vite will generate "style.css". For Foundry, we want to have
+      // the name of the system in the filename.
       rollupOptions: {
-        // shimMissingExports: true,
         output: {
           assetFileNames: (assetInfo) => {
             if (assetInfo.name === "style.css") {
@@ -132,9 +137,14 @@ const config = defineConfig(({ mode }) => {
     plugins: [
       react({
         jsxImportSource: "@emotion/react",
-        babel: {
-          plugins: ["@emotion/babel-plugin"],
-        },
+        plugins: [
+          [
+            "@swc/plugin-emotion",
+            {
+              autoLabel: "always",
+            },
+          ],
+        ],
       }),
       checker({
         typescript: true,
