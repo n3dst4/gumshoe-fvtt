@@ -107,11 +107,7 @@ const config = defineConfig(({ mode }) => {
       emptyOutDir: true,
       sourcemap: mode !== "production",
       minify: mode === "production",
-      // commonjsOptions: {
-      //   defaultIsModuleExports: "auto",
-      // },
       rollupOptions: {
-        // shimMissingExports: true,
         output: {
           assetFileNames: (assetInfo) => {
             if (assetInfo.name === "style.css") {
