@@ -37,7 +37,7 @@ export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
           disabled={!ability.getHasSpecialities()}
         />
       ))}
-      {ability.getRating() === 0 && (
+      {ability.getSpecialitesCount() === 0 && (
         <i>Rating must be at least 1 to add specialities</i>
       )}
     </div>
