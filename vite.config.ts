@@ -107,6 +107,8 @@ const config = defineConfig(({ mode }) => {
       emptyOutDir: true,
       sourcemap: mode !== "production",
       minify: mode === "production",
+      // by default vite will generate "style.css". For Foundry, we want to have
+      // the name of the system in the filename.
       rollupOptions: {
         output: {
           assetFileNames: (assetInfo) => {
