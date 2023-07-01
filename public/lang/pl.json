@@ -169,7 +169,7 @@
   "investigator.RefreshedAllOfActorNamesAbilities": "Odnowiono wszystkie umiejętności {ActorName}",
   "investigator.RefreshedAllOfActorNames24hRefreshAbilities": "Odnowiono wszystkie umiejętności {ActorName}, odnawiane co 24 godziny",
   "investigator.RefreshedAllOfActorNamesHoursHoursRefreshAbilities": "Odnowiono wszystkie umiejętności {ActorName}, odnawiane co {Hours} godziny",
-  "investigator.SpecialitiesMode": "Specialities mode",
-  "investigator.OnePerRank": "One per rank",
-  "investigator.234PerRank": "+2/+3/+4 per rank"
+  "investigator.SpecialitiesMode": "Tryb specjalizacji",
+  "investigator.OnePerRank": "Jeden na poziom",
+  "investigator.234PerRank": "+2/+3/+4 na poziom"
 }
