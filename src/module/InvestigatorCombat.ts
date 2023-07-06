@@ -4,6 +4,7 @@ import {
   compareCombatantsStandard,
 } from "../components/combat/functions";
 import * as constants from "../constants";
+import { assertGame } from "../functions";
 import { settings } from "../settings";
 import { isActiveCharacterActor } from "../v10Types";
 
@@ -61,6 +62,20 @@ export class InvestigatorCombat extends Combat {
 
   set activeTurnPassingCombatant(id: string | null) {
     this.setFlag(constants.systemId, "activeTurnPassingCombatant", id);
+  }
+
+  get jumpInInitiativeCounter(): number {
+    return (this.getFlag(
+      constants.systemId,
+      constants.jumpInInitiativeCounter,
+    ) ?? 0) as number;
+  }
+
+  set jumpInInitiativeCounter(counter: number) {
+    assertGame(game);
+    if (game.user && this.canUserModify(game.user, "update")) {
+      this.setFlag(constants.systemId, constants.jumpInitiative, counter);
+    }
   }
 }
 

@@ -47,6 +47,20 @@ export const useInititative = (
     broadcastHook(constants.requestTurnPass, payload);
   }, [combatantStash]);
 
+  const onJumpIn = useCallback(() => {
+    const payload = {
+      combatantId: combatantStash.current?.id,
+    };
+    broadcastHook(constants.jumpInInitiative, payload);
+  }, [combatantStash]);
+
+  const onDropToLast = useCallback(() => {
+    const payload = {
+      combatantId: combatantStash.current?.id,
+    };
+    broadcastHook(constants.dropToLastInitiative, payload);
+  }, [combatantStash]);
+
   const onAddTurn = useCallback(() => {
     combatantStash.current?.addPassingTurn();
   }, [combatantStash]);
@@ -69,5 +83,7 @@ export const useInititative = (
     onAddTurn,
     onRemoveTurn,
     openSheet,
+    onJumpIn,
+    onDropToLast,
   };
 };

@@ -171,5 +171,7 @@
   "investigator.RefreshedAllOfActorNamesHoursHoursRefreshAbilities": "Refreshed all of {ActorName}'s {Hours}-hour refresh abilities",
   "investigator.SpecialitiesMode": "Specialities mode",
   "investigator.OnePerRank": "One per rank",
-  "investigator.234PerRank": "+2/+3/+4 per rank"
+  "investigator.234PerRank": "+2/+3/+4 per rank",
+  "investigator.JumpIn": "Jump in",
+  "investigator.DropToLast": "Drop to last"
 }

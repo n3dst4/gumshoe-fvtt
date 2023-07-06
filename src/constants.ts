@@ -62,6 +62,8 @@ export const newNPCPacksUpdated = `${systemId}.newNPCPacksUpdated` as const;
 export const settingsSaved = `${systemId}.settingsSaved` as const;
 export const requestTurnPass = `${systemId}.requestTurnPass`;
 export const socketScope = `system.${systemId}` as const;
+export const jumpInInitiative = `${systemId}.jumpInInitiative` as const;
+export const dropToLastInitiative = `${systemId}.dropToLastInitiative` as const;
 
 // css classes
 export const abilityChatMessageClassName = "investigator-ability-test" as const;
@@ -93,6 +95,8 @@ export const defaultCustomThemePath = "investigator_themes";
 
 export const passingTurnsRemaining = "passingTurnsRemaining";
 export const extraPassingTurns = "extraPassingTurns";
+export const jumpInitiative = "jumpInitiative";
+export const jumpInInitiativeCounter = "jumpInInitiativeCounter";
 
 // magic values
 

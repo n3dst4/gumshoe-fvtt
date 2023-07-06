@@ -57,9 +57,9 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
         width: "100%",
         transform: `translateY(${index * 4}em)`,
         transition: "transform 1000ms",
-        boxShadow: active ? "0 0 0.5em 0 #7f7 inset" : undefined,
-        backgroundColor: active ? "#9f72" : undefined,
-        opacity: depleted && !active ? 0.5 : 1,
+        boxShadow: turnPassing && active ? "0 0 0.5em 0 #7f7 inset" : undefined,
+        backgroundColor: turnPassing && active ? "#9f72" : undefined,
+        opacity: turnPassing && depleted && !active ? 0.5 : 1,
       }}
     >
       <img

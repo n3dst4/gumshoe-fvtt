@@ -73,7 +73,10 @@ export class InvestigatorCombatant extends Combatant {
       this.actor && isActiveCharacterActor(this.actor)
         ? this.actor?.system.initiativePassingTurns
         : 1;
-    const tagValue = this.getFlag(constants.systemId, "passingTurnsRemaining");
+    const tagValue = this.getFlag(
+      constants.systemId,
+      constants.passingTurnsRemaining,
+    );
     if (tagValue === undefined) {
       this.passingTurnsRemaining = maxPassingTurns;
       return maxPassingTurns;
@@ -84,7 +87,24 @@ export class InvestigatorCombatant extends Combatant {
   set passingTurnsRemaining(turns: number) {
     assertGame(game);
     if (game.user && this.canUserModify(game.user, "update")) {
-      this.setFlag(constants.systemId, "passingTurnsRemaining", turns);
+      this.setFlag(constants.systemId, constants.passingTurnsRemaining, turns);
+    }
+  }
+
+  get jumpInBeforeId(): string | undefined {
+    return this.getFlag(constants.systemId, constants.jumpInitiative) as
+      | string
+      | undefined;
+  }
+
+  set jumpInBeforeId(jumpInitiative: string | undefined) {
+    assertGame(game);
+    if (game.user && this.canUserModify(game.user, "update")) {
+      this.setFlag(
+        constants.systemId,
+        constants.jumpInitiative,
+        jumpInitiative,
+      );
     }
   }
 }

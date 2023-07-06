@@ -42,12 +42,36 @@ export function compareCombatantsStandard(
     );
     // working out initiative - "goes first" beats non-"goes first"; then
     // compare ratings, then compare pools.
+    // debugger;
+
     if (
       aAbility !== undefined &&
       bAbility !== undefined &&
       isGeneralAbilityItem(aAbility) &&
       isGeneralAbilityItem(bAbility)
     ) {
+      // debugger;
+      if (a.jumpInBeforeId) {
+        const jumpInBeforeCombatant = a.combat?.combatants.get(
+          a.jumpInBeforeId,
+        );
+        if (a.jumpInBeforeId === b.id) {
+          return -1;
+        } else if (jumpInBeforeCombatant) {
+          return compareCombatantsStandard(jumpInBeforeCombatant, b);
+        }
+      }
+      if (b.jumpInBeforeId) {
+        const jumpInBeforeCombatant = b.combat?.combatants.get(
+          b.jumpInBeforeId,
+        );
+        if (b.jumpInBeforeId === a.id) {
+          return 1;
+        } else if (jumpInBeforeCombatant) {
+          return compareCombatantsStandard(a, jumpInBeforeCombatant);
+        }
+      }
+
       if (
         aAbility.system.goesFirstInCombat &&
         !bAbility.system.goesFirstInCombat

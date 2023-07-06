@@ -9,7 +9,7 @@ export interface SocketHookAction<T> {
   payload: T;
 }
 
-export interface RequestTurnPassArgs {
+export interface InitiativeActionArgs {
   combatantId: string;
 }
 
