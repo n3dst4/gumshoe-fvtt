@@ -114,7 +114,7 @@ devDependencies:
     version: 0.36.1
   '@vitejs/plugin-react-swc':
     specifier: ^3.3.2
-    version: 3.3.2(vite@4.4.0)
+    version: 3.3.2(vite@4.4.1)
   '@vitest/ui':
     specifier: ^0.32.4
     version: 0.32.4(vitest@0.32.4)
@@ -173,11 +173,11 @@ devDependencies:
     specifier: ~4.7.4
     version: 4.7.4
   vite:
-    specifier: ^4.4.0
-    version: 4.4.0(@types/node@18.15.11)(less@4.1.3)
+    specifier: ^4.4.1
+    version: 4.4.1(@types/node@18.15.11)(less@4.1.3)
   vite-plugin-checker:
     specifier: ^0.6.1
-    version: 0.6.1(eslint@8.44.0)(typescript@4.7.4)(vite@4.4.0)
+    version: 0.6.1(eslint@8.44.0)(typescript@4.7.4)(vite@4.4.1)
   vitest:
     specifier: ^0.32.4
     version: 0.32.4(@vitest/ui@0.32.4)(jsdom@22.1.0)(less@4.1.3)
@@ -1559,13 +1559,13 @@ packages:
     hasBin: true
     dev: true
 
-  /@vitejs/plugin-react-swc@3.3.2(vite@4.4.0):
+  /@vitejs/plugin-react-swc@3.3.2(vite@4.4.1):
     resolution: {integrity: sha512-VJFWY5sfoZerQRvJrh518h3AcQt6f/yTuWn4/TRB+dqmYU0NX1qz7qM5Wfd+gOQqUzQW4gxKqKN3KpE/P3+zrA==}
     peerDependencies:
       vite: ^4
     dependencies:
       '@swc/core': 1.3.67
-      vite: 4.4.0(@types/node@18.15.11)(less@4.1.3)
+      vite: 4.4.1(@types/node@18.15.11)(less@4.1.3)
     transitivePeerDependencies:
       - '@swc/helpers'
     dev: true
@@ -4821,7 +4821,7 @@ packages:
       mlly: 1.4.0
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.4.0(@types/node@18.15.11)(less@4.1.3)
+      vite: 4.4.1(@types/node@18.15.11)(less@4.1.3)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -4833,7 +4833,7 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-checker@0.6.1(eslint@8.44.0)(typescript@4.7.4)(vite@4.4.0):
+  /vite-plugin-checker@0.6.1(eslint@8.44.0)(typescript@4.7.4)(vite@4.4.1):
     resolution: {integrity: sha512-4fAiu3W/IwRJuJkkUZlWbLunSzsvijDf0eDN6g/MGh6BUK4SMclOTGbLJCPvdAcMOQvVmm8JyJeYLYd4//8CkA==}
     engines: {node: '>=14.16'}
     peerDependencies:
@@ -4879,15 +4879,15 @@ packages:
       strip-ansi: 6.0.1
       tiny-invariant: 1.3.1
       typescript: 4.7.4
-      vite: 4.4.0(@types/node@18.15.11)(less@4.1.3)
+      vite: 4.4.1(@types/node@18.15.11)(less@4.1.3)
       vscode-languageclient: 7.0.0
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.8
       vscode-uri: 3.0.7
     dev: true
 
-  /vite@4.4.0(@types/node@18.15.11)(less@4.1.3):
-    resolution: {integrity: sha512-Wf+DCEjuM8aGavEYiF77hnbxEZ+0+/jC9nABR46sh5Xi+GYeSvkeEFRiVuI3x+tPjxgZeS91h1jTAQTPFgePpA==}
+  /vite@4.4.1(@types/node@18.15.11)(less@4.1.3):
+    resolution: {integrity: sha512-8mmwPlsy7t+ZcTme7vdbVGuZ3Tri+lrLXr6hsF5UHdyYyARPPPMtM16QlqC9TZuCd5j3NmWs1rwka3cVSRHZTw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -4977,7 +4977,7 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.5.0
-      vite: 4.4.0(@types/node@18.15.11)(less@4.1.3)
+      vite: 4.4.1(@types/node@18.15.11)(less@4.1.3)
       vite-node: 0.32.4(@types/node@18.15.11)(less@4.1.3)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
