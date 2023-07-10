@@ -37,7 +37,7 @@ export class InvestigatorCombat extends Combat {
     if (settings.useTurnPassingInitiative.get()) {
       return compareCombatantsPassing(this.activeTurnPassingCombatant)(a, b);
     } else {
-      return compareCombatantsStandard(a, b);
+      return compareCombatantsStandard(a, b, this.turn ?? 0);
     }
   };
 

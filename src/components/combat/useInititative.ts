@@ -25,7 +25,9 @@ export const useInititative = (
   );
 
   const onClearInitiative = useCallback(() => {
-    combatantStash.current?.update({ initiative: null });
+    combatantStash.current?.update({
+      initiative: null,
+    });
   }, [combatantStash]);
 
   const onDoInitiative = useCallback(() => {

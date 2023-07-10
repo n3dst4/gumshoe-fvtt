@@ -33,35 +33,14 @@ export function installTurnPassingHandler() {
         constants.jumpInInitiative,
         ({ combatantId }: InitiativeActionArgs) => {
           assertGame(game);
-          const combat = game.combat;
-          const combatant = combat?.combatants.get(combatantId);
-          const actor = combatant?.actor;
-          if (!(actor && combat && combatant)) {
-            return;
+          const combatant = game?.combat?.combatants.get(combatantId);
+          if (combatant) {
+            combatant.jumpIn();
+          } else {
+            systemLogger.log(
+              `jumpInInitiative - combatant ${combatantId} not found`,
+            );
           }
-          assertActiveCharacterActor(actor);
-          // bail out if the combatant has already gone this round
-          const thisCombatantIndex = combat.turns.findIndex(
-            (turn) => turn.id === combatantId,
-          );
-          const activeCombatantIndex = combat.turn;
-          if (thisCombatantIndex <= (activeCombatantIndex ?? 0)) {
-            systemLogger.log("jumpInInitiative - combatant already gone");
-            return;
-          }
-          const activeCombatantId = combat.turns[activeCombatantIndex ?? 0].id;
-          // if (activeCombatant.initiative === null) {
-
-          combatant.jumpInBeforeId = activeCombatantId ?? undefined;
-          // combatant.
-          // work out fake initiative
-          //     find the active combatant
-          //     use their initiative
-          //     get curent jump-in counter
-
-          // @ts-expect-error V10 types
-          combat.activeTurnPassingCombatant = combatant._id;
-          combatant.passingTurnsRemaining -= 1;
         },
       );
     }

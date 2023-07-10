@@ -23,6 +23,7 @@ export const compareCombatantsPassing =
 export function compareCombatantsStandard(
   a: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
   b: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
+  turnNumber: number,
 ): number {
   if (
     a.actor !== null &&
@@ -51,24 +52,30 @@ export function compareCombatantsStandard(
       isGeneralAbilityItem(bAbility)
     ) {
       // debugger;
-      if (a.jumpInBeforeId) {
-        const jumpInBeforeCombatant = a.combat?.combatants.get(
-          a.jumpInBeforeId,
-        );
-        if (a.jumpInBeforeId === b.id) {
+      const aJumpInBeforeId = a.jumpInBeforeIds[turnNumber];
+      const bJumpInBeforeId = b.jumpInBeforeIds[turnNumber];
+      if (aJumpInBeforeId) {
+        const jumpInBeforeCombatant = a.combat?.combatants.get(aJumpInBeforeId);
+        if (aJumpInBeforeId === b.id) {
           return -1;
         } else if (jumpInBeforeCombatant) {
-          return compareCombatantsStandard(jumpInBeforeCombatant, b);
+          return compareCombatantsStandard(
+            jumpInBeforeCombatant,
+            b,
+            turnNumber,
+          );
         }
       }
-      if (b.jumpInBeforeId) {
-        const jumpInBeforeCombatant = b.combat?.combatants.get(
-          b.jumpInBeforeId,
-        );
-        if (b.jumpInBeforeId === a.id) {
+      if (bJumpInBeforeId) {
+        const jumpInBeforeCombatant = b.combat?.combatants.get(bJumpInBeforeId);
+        if (bJumpInBeforeId === a.id) {
           return 1;
         } else if (jumpInBeforeCombatant) {
-          return compareCombatantsStandard(a, jumpInBeforeCombatant);
+          return compareCombatantsStandard(
+            a,
+            jumpInBeforeCombatant,
+            turnNumber,
+          );
         }
       }
 
