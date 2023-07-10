@@ -1,5 +1,6 @@
 import { assertGame } from "../functions";
 import { InvestigatorCombatant } from "../module/InvestigatorCombatant";
+import { settings } from "../settings";
 
 export function installInitiativeUpdateHookHandler() {
   // on createCombatant, if you are the user wot done it, set the initiative.
@@ -10,8 +11,11 @@ export function installInitiativeUpdateHookHandler() {
       if (userId !== game.userId) {
         return;
       }
-      combatant.doGumshoeInitiative();
-      combatant.resetPassingTurns();
+      if (settings.useTurnPassingInitiative.get()) {
+        combatant.resetPassingTurns();
+      } else {
+        combatant.doGumshoeInitiative();
+      }
     },
   );
 }
