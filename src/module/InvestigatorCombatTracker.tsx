@@ -5,7 +5,6 @@ import React from "react";
 import { ErrorBoundary } from "../components/ErrorBoundary";
 
 export class InvestigatorCombatTrackerBase extends CombatTracker {
-
   /** @override */
   static get defaultOptions() {
     return {
@@ -21,7 +20,7 @@ export class InvestigatorCombatTrackerBase extends CombatTracker {
   // So this override does everything from CombatTracker.createPopout and
   // Application#createPopout, but adds the `resizable` option.
   createPopout() {
-    if ( this._popout ) return this._popout;
+    if (this._popout) return this._popout;
     // I can't see a good way to avoid this circularity, but it's fine.
     // I SAID IT'S FINE.
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -30,11 +29,10 @@ export class InvestigatorCombatTrackerBase extends CombatTracker {
       height: window.innerHeight - 200,
       // ta-da
       resizable: true,
-
     }) as unknown as this; // the typing is a mess
     this._popout = pop;
     pop._original = this;
-    pop.initialize({combat: this.viewed, render: true});
+    pop.initialize({ combat: this.viewed, render: true });
     return pop;
   }
 }
