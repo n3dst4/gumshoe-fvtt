@@ -80,7 +80,13 @@ jobs:
         run: pnpm test
 
       - name: Test types
-        run: pnpm test-types
+        run: pnpm run test-types
+
+      - name: ESlint
+        run: pnpm run eslint:check
+
+      - name: Check formatting
+        run: pnpm run format:check
 
       - name: Build
         run: pnpm package

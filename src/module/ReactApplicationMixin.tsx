@@ -18,7 +18,6 @@ type Render<T> = (
   serial: number,
 ) => JSX.Element;
 
-
 /**
  * Wrap an existing Foundry Application class in this Mixin to override the
  * normal rednering behaviour and and use React instead.
@@ -41,7 +40,6 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
      * @override
      */
     _replaceHTML(element: JQuery, html: JQuery) {
-
       // this is a very specific hack for Foundry v11. In
       // `Application#_activateCoreListeners` it assumes that `html` (which is
       // actually a jQuery object) has been injected into the DOM, so it tries
@@ -134,9 +132,11 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
       }
       return super.close(options);
     }
-  };
+  }
   // we are assuming that the base classn is named WhateverBase, so we set the
   // name of the mixed-in class to Whatever.
-  Object.defineProperty(Reactified, "name", {value: Base.name.replace(/Base$/, "")});
+  Object.defineProperty(Reactified, "name", {
+    value: Base.name.replace(/Base$/, ""),
+  });
   return Reactified;
 }

@@ -5,9 +5,9 @@ This is a local copy of a color-wrangling toolkit called Irid that I wrote ages 
 ## Usage
 
 ```ts
-import { irid } from 'irid';
+import { irid } from "irid";
 
-const myColor = irid('#ff0000');
+const myColor = irid("#ff0000");
 
 // irids are immutable, so all "setters" actually return a new object.
 const myOtherColor = myColor.blue(0.5).alpha(0.5);
@@ -22,7 +22,7 @@ myOtherColor.alpha(); // 0.5
 myOtherColor.toHexString(); // '#ff008080'
 
 // irid also works in HSL space, and doesn't just squash everything down to RGB
-const myHSLColor = irid('hsl(0, 100%, 50%)');
+const myHSLColor = irid("hsl(0, 100%, 50%)");
 ```
 
 After that, I recommend just seeing what TS autocomplete offers you.
