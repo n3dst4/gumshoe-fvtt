@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* BUG FIX: Initiative values were sometimes not being remembered if you refreshed the page. Fixed. (#346)
+
 ## 7.3.1 (2023-07-01)
 
 * BUG FIX: The NBA Languages ability now actually uses the custom logic added in 7.3.0. (#333)
