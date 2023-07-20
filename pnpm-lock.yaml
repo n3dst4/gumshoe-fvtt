@@ -71,8 +71,8 @@ devDependencies:
     specifier: ^4.0.2
     version: 4.0.2
   '@swc/plugin-emotion':
-    specifier: ^2.5.69
-    version: 2.5.69
+    specifier: ^2.5.70
+    version: 2.5.70
   '@testing-library/react':
     specifier: ^14.0.0
     version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -1271,8 +1271,8 @@ packages:
       '@swc/core-win32-x64-msvc': 1.3.67
     dev: true
 
-  /@swc/plugin-emotion@2.5.69:
-    resolution: {integrity: sha512-MUSX7gqEF5qoDCUM0Fax4OQd7C7y8tqxILpMBuY+GcNb0CRpWIGUebrQig5t5uNG/4ux6jPb3XKvGmOtocpSUw==}
+  /@swc/plugin-emotion@2.5.70:
+    resolution: {integrity: sha512-n7hk1LfJr13N6ncGltp2y8a7nfCuFqhrWVSjJW5ZjsWLQ/mVsEqrpwrKt5nOYPrmMwXfLktSi61CjWfQG5UBwA==}
     dev: true
 
   /@testing-library/dom@9.2.0:
@@ -1890,7 +1890,7 @@ packages:
   /builtins@5.0.1:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
-      semver: 7.5.1
+      semver: 7.5.4
     dev: true
 
   /cac@6.7.14:
@@ -2548,7 +2548,7 @@ packages:
       is-core-module: 2.12.0
       minimatch: 3.1.2
       resolve: 1.22.2
-      semver: 7.5.1
+      semver: 7.5.4
     dev: true
 
   /eslint-plugin-node@11.1.0(eslint@8.45.0):
