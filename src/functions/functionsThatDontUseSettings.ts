@@ -256,3 +256,13 @@ export const systemLogger = {
   warn: brand(console.warn),
   error: brand(console.error),
 };
+
+export function memoizeOnce<T>(fn: () => T): () => T {
+  let state: [true, T] | [false] = [false];
+  return () => {
+    if (!state[0]) {
+      state = [true, fn()];
+    }
+    return state[1];
+  };
+}

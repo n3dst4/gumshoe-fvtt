@@ -5,9 +5,9 @@ import {
   whiteList as defaultXssWhitelist,
   escapeAttrValue,
 } from "xss";
-import memoize from "lodash/memoize";
+import { memoizeOnce } from "./functions";
 
-const makeTurndownService = memoize(async () => {
+const makeTurndownService = memoizeOnce(async () => {
   console.log("Making turndown service");
   const { default: TurndownService } = await import("turndown");
   class SafeTurndownService extends TurndownService {
