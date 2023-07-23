@@ -1,5 +1,5 @@
 import * as constants from "../constants";
-import { SocketHookAction } from "../types";
+import { PickByType, SocketHookAction } from "../types";
 
 interface NameHaver {
   name: string | null;
@@ -271,3 +271,63 @@ export function memoizeNullaryOnce<T>(fn: () => T): () => T {
     return state[1];
   };
 }
+
+/**
+ * Sort an array of objects by a key
+ */
+export function sortByKey<T, K extends string | number>(
+  xs: T[],
+  k: keyof PickByType<T, K>,
+) {
+  return xs.sort((a, b) => {
+    const aK = a[k] as any;
+    const bK = b[k] as any;
+    if (typeof aK === "number" && typeof bK === "number") {
+      return aK - bK;
+    }
+    return aK.localeCompare(bK);
+  });
+}
+
+// interface Person {
+//   name: string;
+//   age: number;
+//   vegan: boolean;
+//   scores: Record<string, number>;
+// }
+
+// const people: Person[] = [
+//   {
+//     name: "Alice",
+//     age: 30,
+//     vegan: true,
+//     scores: {
+//       "2021-01-01": 10,
+//       "2021-01-02": 20,
+//     },
+//   },
+//   {
+//     name: "Bob",
+//     age: 40,
+//     vegan: false,
+//     scores: {
+//       "2021-01-01": 20,
+//       "2021-01-02": 10,
+//     },
+//   },
+//   {
+//     name: "Charlie",
+//     age: 50,
+//     vegan: true,
+//     scores: {
+//       "2021-01-01": 30,
+//       "2021-01-02": 30,
+//     },
+//   },
+// ];
+
+// const sortedByName = sortByKey(people, "name");
+// const sortedByAge = sortByKey(people, "age");
+// const sortedByVegan = sortByKey(people, "vegan");
+// const sortedByScore = sortByKey(people, "scores");
+// const sortedByScore20210101 = sortByKey(people, "scores.2021-01-01");

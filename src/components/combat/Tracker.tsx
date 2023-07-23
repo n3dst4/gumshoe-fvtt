@@ -1,7 +1,6 @@
 import { cx } from "@emotion/css";
-import sortBy from "lodash/sortBy";
 import React, { Fragment, useCallback, MouseEvent, ReactNode } from "react";
-import { assertGame, assertNotNull } from "../../functions";
+import { assertGame, assertNotNull, sortByKey } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { settings } from "../../settings";
 import { CombatantRow } from "./CombatantRow";
@@ -294,7 +293,7 @@ export const Tracker: React.FC = () => {
           // combatant sorting is done in "Combat" but for rendering stability
           // we need to un-sort the combatants and then tell each row where it
           // used to exist in the order
-          sortBy(turns, "id").map<ReactNode>((turn, i) => (
+          sortByKey(turns, "id").map<ReactNode>((turn, i) => (
             <CombatantRow
               key={turn.id}
               index={turns.findIndex((x) => x.id === turn.id)}

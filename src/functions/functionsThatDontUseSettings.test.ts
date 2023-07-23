@@ -7,6 +7,7 @@ import {
   moveKeyDown,
   moveKeyUp,
   renameProperty,
+  sortByKey,
   sortEntitiesByName,
 } from "./functionsThatDontUseSettings";
 
@@ -133,5 +134,34 @@ describe("memoizeNullaryOnce", () => {
     expect(result2).toEqual("foo");
     expect(result3).toEqual("foo");
     expect(fn).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("sortByKey", () => {
+  test.each([
+    ["empty", [], []],
+    ["single", [{ name: "a" }], [{ name: "a" }]],
+    ["no-op", [{ name: "a" }, { name: "b" }], [{ name: "a" }, { name: "b" }]],
+    [
+      "reversal",
+      [{ name: "b" }, { name: "a" }],
+      [{ name: "a" }, { name: "b" }],
+    ],
+    [
+      "three",
+      [{ name: "b" }, { name: "c" }, { name: "a" }],
+      [{ name: "a" }, { name: "b" }, { name: "c" }],
+    ],
+  ])("string, %s", (name, input, expected) => {
+    expect(sortByKey(input, "name")).toEqual(expected);
+  });
+  test.each([
+    [
+      "three",
+      [{ name: 2 }, { name: 3 }, { name: 1 }],
+      [{ name: 1 }, { name: 2 }, { name: 3 }],
+    ],
+  ])("number, %s", (name, input, expected) => {
+    expect(sortByKey(input, "name")).toEqual(expected);
   });
 });
