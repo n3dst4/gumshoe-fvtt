@@ -1,4 +1,4 @@
-import { describe, test, expect, vi } from "vitest";
+import { describe, test, expect, vi, beforeAll, afterAll } from "vitest";
 
 import {
   fixLength,
@@ -9,6 +9,8 @@ import {
   renameProperty,
   sortByKey,
   sortEntitiesByName,
+  throttle,
+  debounce,
 } from "./functionsThatDontUseSettings";
 
 const obj = {
@@ -163,5 +165,65 @@ describe("sortByKey", () => {
     ],
   ])("number, %s", (name, input, expected) => {
     expect(sortByKey(input, "name")).toEqual(expected);
+  });
+});
+
+describe("throttle", () => {
+  beforeAll(() => {
+    vi.useFakeTimers();
+  });
+  afterAll(() => {
+    vi.useRealTimers();
+  });
+  test("should only call the function once per interval", async () => {
+    const fn = vi.fn();
+    const throttled = throttle(fn, 100);
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    expect(fn).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(1);
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    expect(fn).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe("debounce", () => {
+  beforeAll(() => {
+    vi.useFakeTimers();
+  });
+  afterAll(() => {
+    vi.useRealTimers();
+  });
+  test("should only call the function after the interval has elapsed", async () => {
+    const fn = vi.fn();
+    const throttled = debounce(fn, 100);
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    expect(fn).toHaveBeenCalledTimes(0);
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(1);
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    expect(fn).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 });

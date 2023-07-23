@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import throttle from "lodash/throttle";
+import { throttle } from "../functions";
 
 /**
  * Hook for handling async updates, e,g, where you want to be calling an

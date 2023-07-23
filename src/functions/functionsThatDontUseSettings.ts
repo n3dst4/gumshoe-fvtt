@@ -289,45 +289,37 @@ export function sortByKey<T, K extends string | number>(
   });
 }
 
-// interface Person {
-//   name: string;
-//   age: number;
-//   vegan: boolean;
-//   scores: Record<string, number>;
-// }
+/**
+ * Simple debounce function
+ */
+export function debounce<T extends (...args: any[]) => any>(
+  fn: T,
+  delay: number,
+): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+  return (...args: Parameters<T>) => {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      fn(...args);
+    }, delay);
+  };
+}
 
-// const people: Person[] = [
-//   {
-//     name: "Alice",
-//     age: 30,
-//     vegan: true,
-//     scores: {
-//       "2021-01-01": 10,
-//       "2021-01-02": 20,
-//     },
-//   },
-//   {
-//     name: "Bob",
-//     age: 40,
-//     vegan: false,
-//     scores: {
-//       "2021-01-01": 20,
-//       "2021-01-02": 10,
-//     },
-//   },
-//   {
-//     name: "Charlie",
-//     age: 50,
-//     vegan: true,
-//     scores: {
-//       "2021-01-01": 30,
-//       "2021-01-02": 30,
-//     },
-//   },
-// ];
-
-// const sortedByName = sortByKey(people, "name");
-// const sortedByAge = sortByKey(people, "age");
-// const sortedByVegan = sortByKey(people, "vegan");
-// const sortedByScore = sortByKey(people, "scores");
-// const sortedByScore20210101 = sortByKey(people, "scores.2021-01-01");
+/**
+ * Simple throttle function
+ */
+export function throttle<T extends (...args: any[]) => any>(
+  fn: T,
+  delay: number,
+): (...args: Parameters<T>) => void {
+  let lastCall = 0;
+  return (...args: Parameters<T>) => {
+    const now = Date.now();
+    if (now - lastCall > delay) {
+      lastCall = now;
+      fn(...args);
+    }
+  };
+}
