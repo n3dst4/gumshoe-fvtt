@@ -5,9 +5,9 @@ import {
   whiteList as defaultXssWhitelist,
   escapeAttrValue,
 } from "xss";
-import { memoizeOnce } from "./functions";
+import { memoizeNullaryOnce } from "./functions";
 
-const makeTurndownService = memoizeOnce(async () => {
+const makeTurndownService = memoizeNullaryOnce(async () => {
   console.log("Making turndown service");
   const { default: TurndownService } = await import("turndown");
   class SafeTurndownService extends TurndownService {

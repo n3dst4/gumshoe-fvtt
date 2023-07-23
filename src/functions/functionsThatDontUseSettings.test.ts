@@ -3,7 +3,7 @@ import { describe, test, expect, vi } from "vitest";
 import {
   fixLength,
   isNullOrEmptyString,
-  memoizeOnce,
+  memoizeNullaryOnce,
   moveKeyDown,
   moveKeyUp,
   renameProperty,
@@ -110,22 +110,22 @@ describe("renameProperty", () => {
   });
 });
 
-describe("memoizeOnce", () => {
+describe("memoizeNullaryOnce", () => {
   test("should not run the inner function when the memoized function is created", () => {
     const fn = vi.fn(() => "foo");
-    memoizeOnce(fn);
+    memoizeNullaryOnce(fn);
     expect(fn).not.toHaveBeenCalled();
   });
   test("should run the inner function when the memoized function is called", () => {
     const fn = vi.fn(() => "foo");
-    const memoized = memoizeOnce(fn);
+    const memoized = memoizeNullaryOnce(fn);
     const result = memoized();
     expect(result).toEqual("foo");
     expect(fn).toHaveBeenCalledTimes(1);
   });
   test("should not run the inner function again on subsequent calls", () => {
     const fn = vi.fn(() => "foo");
-    const memoized = memoizeOnce(fn);
+    const memoized = memoizeNullaryOnce(fn);
     const result1 = memoized();
     const result2 = memoized();
     const result3 = memoized();

@@ -257,7 +257,12 @@ export const systemLogger = {
   error: brand(console.error),
 };
 
-export function memoizeOnce<T>(fn: () => T): () => T {
+/**
+ * A very simple memoization function that only works for nullary functions.
+ */
+export function memoizeNullaryOnce<T>(fn: () => T): () => T {
+  // doing state like this helps TS understand that when state[0] is true,
+  // state[1] is defined
   let state: [true, T] | [false] = [false];
   return () => {
     if (!state[0]) {
