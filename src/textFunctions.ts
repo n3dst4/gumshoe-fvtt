@@ -1,10 +1,5 @@
 import { escape as escapeText } from "html-escaper";
 import { NoteFormat } from "./types";
-import {
-  FilterXSS,
-  whiteList as defaultXssWhitelist,
-  escapeAttrValue,
-} from "xss";
 import { memoizeNullaryOnce } from "./functions";
 
 const makeTurndownService = memoizeNullaryOnce(async () => {
@@ -26,29 +21,38 @@ const makeTurndownService = memoizeNullaryOnce(async () => {
   return turndownService;
 });
 
-// build a custom shitelist for xss that adds "style" to the allowed attributes
-// for everything
-const newWhitelist = Object.fromEntries(
-  Object.entries(defaultXssWhitelist).map(([tag, attrList = []]) => [
-    tag,
-    [...attrList, "style"],
-  ]),
-);
+const createXss = memoizeNullaryOnce(async () => {
+  const {
+    FilterXSS,
+    whiteList: defaultXssWhitelist,
+    escapeAttrValue,
+  } = await import("xss");
 
-// copilot said this but it does not work
-// newWhitelist["*"] = ["style"];
+  // build a custom shitelist for xss that adds "style" to the allowed attributes
+  // for everything
+  const newWhitelist = Object.fromEntries(
+    Object.entries(defaultXssWhitelist).map(([tag, attrList = []]) => [
+      tag,
+      [...attrList, "style"],
+    ]),
+  );
 
-// custom xss to allow style attributes and allow images with src attributes.
-// Yes, it's not ideal XSS, but then again this is a collaborative, trusted
-// environment.
-const xss = new FilterXSS({
-  whiteList: newWhitelist,
-  onTagAttr: function (tag, name, value, isWhiteAttr) {
-    if (tag === "img" && name === "src") {
-      // escape its value using built-in escapeAttrValue function
-      return name + '="' + escapeAttrValue(value) + '"';
-    }
-  },
+  // copilot said this but it does not work
+  // newWhitelist["*"] = ["style"];
+
+  // custom xss to allow style attributes and allow images with src attributes.
+  // Yes, it's not ideal XSS, but then again this is a collaborative, trusted
+  // environment.
+  const xss = new FilterXSS({
+    whiteList: newWhitelist,
+    onTagAttr: function (tag, name, value, isWhiteAttr) {
+      if (tag === "img" && name === "src") {
+        // escape its value using built-in escapeAttrValue function
+        return name + '="' + escapeAttrValue(value) + '"';
+      }
+    },
+  });
+  return xss;
 });
 
 // /////////////////////////////////////////////////////////////////////////////
@@ -110,6 +114,7 @@ export async function convertNotes(
     }
     unsafeNewHtml = newSource;
   }
+  const xss = await createXss();
   const newHtml = await TextEditor.enrichHTML(xss.process(unsafeNewHtml), {
     // @ts-expect-error foundry types don't know about `async` yet
     async: true,
@@ -126,6 +131,7 @@ export async function toHtml(format: NoteFormat, source: string) {
   } else if (format === NoteFormat.richText) {
     newHtml = source;
   }
+  const xss = await createXss();
   const xssed = xss.process(newHtml);
   const html = await TextEditor.enrichHTML(
     xssed,
