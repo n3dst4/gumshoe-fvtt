@@ -1,5 +1,5 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
-import { Draft,produce } from "immer";
+import { Draft, produce } from "immer";
 
 /**
  * A minimal case for all actions - there will always be a `type` and a

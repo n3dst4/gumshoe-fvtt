@@ -1,4 +1,4 @@
-import { describe, expectTypeOf,it } from "vitest";
+import { describe, expectTypeOf, it } from "vitest";
 
 import { RecursivePartial, RecursiveRequired } from "../types";
 

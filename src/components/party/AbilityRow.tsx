@@ -4,7 +4,7 @@ import { confirmADoodleDo } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings";
-import { AbilityItem,isAbilityItem } from "../../v10Types";
+import { AbilityItem, isAbilityItem } from "../../v10Types";
 import { AbilityRowData } from "./types";
 
 type AbilityRowProps = {

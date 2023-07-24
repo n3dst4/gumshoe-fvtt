@@ -1,5 +1,5 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
-import { describe, expect,it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { assertNumericFieldOkayness } from "./reducerTools";
 

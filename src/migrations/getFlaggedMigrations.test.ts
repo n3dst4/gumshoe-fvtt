@@ -1,4 +1,4 @@
-import { describe, expect,test } from "vitest";
+import { describe, expect, test } from "vitest";
 
 import { getFlaggedMigrations } from "./getFlaggedMigrations";
 import { FlaggedMigrations, MigrationFlags } from "./types";

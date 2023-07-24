@@ -1,4 +1,4 @@
-import { describe, expectTypeOf,it } from "vitest";
+import { describe, expectTypeOf, it } from "vitest";
 
 import { PickByType } from "../types";
 

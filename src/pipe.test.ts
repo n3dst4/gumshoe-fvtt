@@ -1,6 +1,6 @@
-import { describe, expect,test } from "vitest";
+import { describe, expect, test } from "vitest";
 
-import { chainPipe,pipe } from "./pipe";
+import { chainPipe, pipe } from "./pipe";
 
 interface V1 {
   member1: number;

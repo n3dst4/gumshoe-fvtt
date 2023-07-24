@@ -1,6 +1,6 @@
 import { keyframes } from "@emotion/react";
 import React, { Fragment } from "react";
-import { FaEdit, FaEllipsisH, FaMinus,FaPlus, FaTrash } from "react-icons/fa";
+import { FaEdit, FaEllipsisH, FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import { HiDocumentText } from "react-icons/hi";
 
 import { assertGame, getTranslated } from "../../functions";

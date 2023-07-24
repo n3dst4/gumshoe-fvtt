@@ -1,6 +1,6 @@
 import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
 
-import { npcPackName,packNames, systemId } from "./constants";
+import { npcPackName, packNames, systemId } from "./constants";
 
 export const pathOfCthulhuPreset: Required<PresetV1> = {
   schemaVersion: "v1",

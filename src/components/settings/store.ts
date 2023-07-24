@@ -19,7 +19,7 @@ import {
   createSlice,
   CreateSliceArgs,
 } from "./reducerTools";
-import { PcOrNpc,State } from "./types";
+import { PcOrNpc, State } from "./types";
 
 const defaultStoreArgs: CreateSliceArgs = {
   log(...args) {
