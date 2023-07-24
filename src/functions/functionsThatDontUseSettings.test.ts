@@ -1,12 +1,16 @@
-import { describe, test, expect } from "vitest";
+import { describe, test, expect, vi, beforeAll, afterAll } from "vitest";
 
 import {
   fixLength,
   isNullOrEmptyString,
+  memoizeNullaryOnce,
   moveKeyDown,
   moveKeyUp,
   renameProperty,
+  sortByKey,
   sortEntitiesByName,
+  throttle,
+  debounce,
 } from "./functionsThatDontUseSettings";
 
 const obj = {
@@ -106,5 +110,120 @@ describe("renameProperty", () => {
     [{ a: 1, b: 2 }, "b", "c", { a: 1, c: 2 }],
   ])("renameProperty(%s, %s, %s)", (input, oldName, newName, expected) => {
     expect(renameProperty(oldName, newName, input)).toEqual(expected);
+  });
+});
+
+describe("memoizeNullaryOnce", () => {
+  test("should not run the inner function when the memoized function is created", () => {
+    const fn = vi.fn(() => "foo");
+    memoizeNullaryOnce(fn);
+    expect(fn).not.toHaveBeenCalled();
+  });
+  test("should run the inner function when the memoized function is called", () => {
+    const fn = vi.fn(() => "foo");
+    const memoized = memoizeNullaryOnce(fn);
+    const result = memoized();
+    expect(result).toEqual("foo");
+    expect(fn).toHaveBeenCalledTimes(1);
+  });
+  test("should not run the inner function again on subsequent calls", () => {
+    const fn = vi.fn(() => "foo");
+    const memoized = memoizeNullaryOnce(fn);
+    const result1 = memoized();
+    const result2 = memoized();
+    const result3 = memoized();
+    expect(result1).toEqual("foo");
+    expect(result2).toEqual("foo");
+    expect(result3).toEqual("foo");
+    expect(fn).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("sortByKey", () => {
+  test.each([
+    ["empty", [], []],
+    ["single", [{ name: "a" }], [{ name: "a" }]],
+    ["no-op", [{ name: "a" }, { name: "b" }], [{ name: "a" }, { name: "b" }]],
+    [
+      "reversal",
+      [{ name: "b" }, { name: "a" }],
+      [{ name: "a" }, { name: "b" }],
+    ],
+    [
+      "three",
+      [{ name: "b" }, { name: "c" }, { name: "a" }],
+      [{ name: "a" }, { name: "b" }, { name: "c" }],
+    ],
+  ])("string, %s", (name, input, expected) => {
+    expect(sortByKey(input, "name")).toEqual(expected);
+  });
+  test.each([
+    [
+      "three",
+      [{ name: 2 }, { name: 3 }, { name: 1 }],
+      [{ name: 1 }, { name: 2 }, { name: 3 }],
+    ],
+  ])("number, %s", (name, input, expected) => {
+    expect(sortByKey(input, "name")).toEqual(expected);
+  });
+});
+
+describe("throttle", () => {
+  beforeAll(() => {
+    vi.useFakeTimers();
+  });
+  afterAll(() => {
+    vi.useRealTimers();
+  });
+  test("should only call the function once per interval", async () => {
+    const fn = vi.fn();
+    const throttled = throttle(fn, 100);
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    expect(fn).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(1);
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    expect(fn).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe("debounce", () => {
+  beforeAll(() => {
+    vi.useFakeTimers();
+  });
+  afterAll(() => {
+    vi.useRealTimers();
+  });
+  test("should only call the function after the interval has elapsed", async () => {
+    const fn = vi.fn();
+    const throttled = debounce(fn, 100);
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    expect(fn).toHaveBeenCalledTimes(0);
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(1);
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    throttled();
+    expect(fn).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 });

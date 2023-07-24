@@ -1,5 +1,5 @@
 import * as constants from "../constants";
-import { SocketHookAction } from "../types";
+import { PickByType, SocketHookAction } from "../types";
 
 interface NameHaver {
   name: string | null;
@@ -256,3 +256,70 @@ export const systemLogger = {
   warn: brand(console.warn),
   error: brand(console.error),
 };
+
+/**
+ * A very simple memoization function that only works for nullary functions.
+ */
+export function memoizeNullaryOnce<T>(fn: () => T): () => T {
+  // doing state like this helps TS understand that when state[0] is true,
+  // state[1] is defined
+  let state: [true, T] | [false] = [false];
+  return () => {
+    if (!state[0]) {
+      state = [true, fn()];
+    }
+    return state[1];
+  };
+}
+
+/**
+ * Sort an array of objects by a key
+ */
+export function sortByKey<T, K extends string | number>(
+  xs: T[],
+  k: keyof PickByType<T, K>,
+) {
+  return xs.sort((a, b) => {
+    const aK = a[k] as any;
+    const bK = b[k] as any;
+    if (typeof aK === "number" && typeof bK === "number") {
+      return aK - bK;
+    }
+    return aK.localeCompare(bK);
+  });
+}
+
+/**
+ * Simple debounce function
+ */
+export function debounce<T extends (...args: any[]) => any>(
+  fn: T,
+  delay: number,
+): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+  return (...args: Parameters<T>) => {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      fn(...args);
+    }, delay);
+  };
+}
+
+/**
+ * Simple throttle function
+ */
+export function throttle<T extends (...args: any[]) => any>(
+  fn: T,
+  delay: number,
+): (...args: Parameters<T>) => void {
+  let lastCall = 0;
+  return (...args: Parameters<T>) => {
+    const now = Date.now();
+    if (now - lastCall > delay) {
+      lastCall = now;
+      fn(...args);
+    }
+  };
+}
