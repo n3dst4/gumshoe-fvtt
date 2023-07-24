@@ -1,10 +1,10 @@
 import * as c from "./constants";
-import { assertGame, mapValues } from "./functions";
-import { pathOfCthulhuPreset } from "./presets";
 import { defaultCustomThemePath, systemId } from "./constants";
+import { assertGame, mapValues } from "./functions";
+import { MigrationFlags } from "./migrations/types";
+import { pathOfCthulhuPreset } from "./presets";
 import { runtimeConfig } from "./runtime";
 import { ThemeV1 } from "./themes/types";
-import { MigrationFlags } from "./migrations/types";
 
 // any of these could have an `onChange` added if we wanted to
 

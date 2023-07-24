@@ -1,11 +1,12 @@
 import React, { useCallback } from "react";
+
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { DiceTerms } from "./DiceTerms";
-import { Translate } from "../Translate";
 import { MWDifficulty } from "../../types";
-import { MWResult } from "./types";
+import { Translate } from "../Translate";
+import { DiceTerms } from "./DiceTerms";
 import { MwButton } from "./MwButton";
 import { MwCostSlug } from "./MwCostSlug";
+import { MWResult } from "./types";
 
 interface AbilityTestMwCardProps {
   msg: ChatMessage;

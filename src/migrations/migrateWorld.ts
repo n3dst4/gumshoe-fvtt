@@ -1,14 +1,14 @@
 import system from "../../public/system.json";
+import * as constants from "../constants";
+import { assertGame } from "../functions";
+import { settings } from "../settings";
+import { AnyItem } from "../v10Types";
+import { flaggedMigrations } from "./flaggedMigrations";
 import { migrateActorData } from "./migrateActorData";
 import { migrateCompendium } from "./migrateCompendium";
 import { migrateItemData } from "./migrateItemData";
 import { migrateSceneData } from "./migrateSceneData";
-import { assertGame } from "../functions";
-import * as constants from "../constants";
-import { settings } from "../settings";
 import { FlaggedMigrations } from "./types";
-import { flaggedMigrations } from "./flaggedMigrations";
-import { AnyItem } from "../v10Types";
 
 const title = system.title;
 

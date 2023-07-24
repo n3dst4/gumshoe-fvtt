@@ -1,4 +1,5 @@
 import React, { useCallback, useContext } from "react";
+
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { FoundryAppContext } from "../FoundryAppContext";

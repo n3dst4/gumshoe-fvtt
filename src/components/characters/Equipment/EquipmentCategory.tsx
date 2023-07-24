@@ -1,10 +1,11 @@
+import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import React, { useCallback, useContext } from "react";
+
+import { sortEntitiesByName } from "../../../functions";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
-import { Translate } from "../../Translate";
-import { sortEntitiesByName } from "../../../functions";
-import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import { ThemeContext } from "../../../themes/ThemeContext";
+import { Translate } from "../../Translate";
 import { EquipmentItemRow } from "./EquipmentItemRow";
 
 interface EquipmentCategoryProps {

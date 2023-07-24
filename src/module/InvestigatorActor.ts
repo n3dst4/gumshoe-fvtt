@@ -1,8 +1,8 @@
 import {
-  personalDetail,
   equipment,
   occupationSlotIndex,
   pc,
+  personalDetail,
 } from "../constants";
 import {
   assertGame,
@@ -10,17 +10,17 @@ import {
   getTranslated,
   isGame,
 } from "../functions";
+import { settings } from "../settings";
+import { convertNotes } from "../textFunctions";
 import {
   AbilityType,
-  MwType,
-  MwRefreshGroup,
-  NoteWithFormat,
   BaseNote,
-  NoteFormat,
   MwInjuryStatus,
+  MwRefreshGroup,
+  MwType,
+  NoteFormat,
+  NoteWithFormat,
 } from "../types";
-import { convertNotes } from "../textFunctions";
-import { settings } from "../settings";
 import {
   assertActiveCharacterActor,
   assertMwItem,

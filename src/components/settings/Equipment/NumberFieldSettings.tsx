@@ -1,5 +1,6 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import React, { useCallback, useContext } from "react";
+
 import { useRefStash } from "../../../hooks/useRefStash";
 import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
 import { Checkbox } from "../../inputs/Checkbox";

@@ -1,5 +1,6 @@
-import React, { Fragment, useCallback, useContext, useMemo } from "react";
 import { nanoid } from "nanoid";
+import React, { Fragment, useCallback, useContext, useMemo } from "react";
+
 import { ThemeContext } from "../../themes/ThemeContext";
 
 type CheckButtonsProps = {

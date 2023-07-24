@@ -1,7 +1,8 @@
 import React, { Fragment, useCallback, useContext, useState } from "react";
+
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { FoundryAppContext } from "../FoundryAppContext";
 import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
+import { FoundryAppContext } from "../FoundryAppContext";
 
 type AbilitySlugPlayMwProps = {
   ability: InvestigatorItem;

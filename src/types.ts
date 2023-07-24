@@ -1,4 +1,5 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
+
 import * as constants from "./constants";
 export type AbilityType =
   | typeof constants.investigativeAbility

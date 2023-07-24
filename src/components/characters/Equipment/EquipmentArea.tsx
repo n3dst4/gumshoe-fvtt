@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+
 import { getTranslated } from "../../../functions";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { settings } from "../../../settings";

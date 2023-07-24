@@ -1,7 +1,8 @@
 import React from "react";
-import { ReactApplicationMixin } from "./ReactApplicationMixin";
+
 import { reactTemplatePath, systemId } from "../constants";
 import { ThemeFarm } from "../themes/components/ThemeFarm";
+import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 class ThemeFarmClassBase extends FormApplication {
   /** @override */

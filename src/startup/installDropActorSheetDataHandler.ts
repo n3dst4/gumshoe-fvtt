@@ -1,6 +1,6 @@
-import { InvestigatorActor } from "../module/InvestigatorActor";
 import { party, pc } from "../constants";
 import { assertGame, getFolderDescendants } from "../functions";
+import { InvestigatorActor } from "../module/InvestigatorActor";
 
 // we are in a high fuckiness situation here. I don't have time to work out what
 // the correct types for this DropData are, and there's a breaking change from

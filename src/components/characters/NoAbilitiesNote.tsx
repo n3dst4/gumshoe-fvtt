@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Translate } from "../Translate";
 
 export const NoAbilitiesNote: React.FC = () => {

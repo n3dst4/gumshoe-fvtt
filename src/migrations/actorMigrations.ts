@@ -1,4 +1,5 @@
 import { escape } from "html-escaper";
+
 import * as constants from "../constants";
 import { AnyActor, isNPCActor, isPCActor } from "../v10Types";
 

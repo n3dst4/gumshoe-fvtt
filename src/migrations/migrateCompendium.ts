@@ -1,7 +1,7 @@
+import system from "../../public/system.json";
 import { migrateActorData } from "./migrateActorData";
 import { migrateItemData } from "./migrateItemData";
 import { migrateSceneData } from "./migrateSceneData";
-import system from "../../public/system.json";
 import { FlaggedMigrations } from "./types";
 
 /**

@@ -1,8 +1,9 @@
 import React, { Fragment, useCallback } from "react";
+
 import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { Translate } from "../Translate";
 import { DiceTerms } from "./DiceTerms";
 import { AbilityCardMode } from "./types";
-import { Translate } from "../Translate";
 
 interface AbilityTestCardProps {
   msg: ChatMessage;

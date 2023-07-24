@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
+
 import { getDevMode } from "../../functions";
-import { InputGrid } from "../inputs/InputGrid";
-import { Setters } from "./types";
-import { SettingsGridField } from "./SettingsGridField";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { Checkbox } from "../inputs/Checkbox";
-import { Translate } from "../Translate";
+import { InputGrid } from "../inputs/InputGrid";
 import { ListEdit } from "../inputs/ListEdit";
+import { Translate } from "../Translate";
 import { StateContext } from "./contexts";
+import { SettingsGridField } from "./SettingsGridField";
+import { Setters } from "./types";
 
 export const MiscSettings: React.FC<{
   setters: Setters;

@@ -1,4 +1,5 @@
 import React from "react";
+
 import { weapon } from "../../../constants";
 import { sortEntitiesByName } from "../../../functions";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";

@@ -1,18 +1,19 @@
 import React, {
-  useState,
-  useCallback,
   CSSProperties,
-  useContext,
-  useRef,
-  RefObject,
-  useEffect,
   Fragment,
   PropsWithChildren,
+  RefObject,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
-import { FaChevronDown } from "react-icons/fa";
 import ReactDOM from "react-dom";
-import { useShowHideTransition } from "../transitions/useShowHideTransition";
+import { FaChevronDown } from "react-icons/fa";
+
 import { systemLogger } from "../../functions";
+import { useShowHideTransition } from "../transitions/useShowHideTransition";
 
 export const DropdownContainerContext =
   React.createContext<RefObject<HTMLElement> | null>(null);

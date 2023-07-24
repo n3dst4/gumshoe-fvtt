@@ -1,10 +1,10 @@
+import { easeSinOut } from "d3-ease";
 import React, {
   createContext,
   useCallback,
   useEffect,
   useTransition,
 } from "react";
-import { easeSinOut } from "d3-ease";
 
 export const TransitionProgressContext = createContext(0);
 

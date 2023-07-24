@@ -1,9 +1,10 @@
 import React, {
-  ReactNode,
-  useState,
   PropsWithChildren,
+  ReactNode,
   useEffect,
+  useState,
 } from "react";
+
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ImagePickle } from "../ImagePickle";

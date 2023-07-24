@@ -1,12 +1,13 @@
 import React, { Fragment, useCallback, useContext, useState } from "react";
+
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { FoundryAppContext } from "../FoundryAppContext";
-import { AbilityBadges } from "../abilities/AbilityBadges";
 import {
   assertAbilityItem,
   isGeneralAbilityItem,
   isInvestigativeAbilityItem,
 } from "../../v10Types";
+import { AbilityBadges } from "../abilities/AbilityBadges";
+import { FoundryAppContext } from "../FoundryAppContext";
 
 type AbilitySlugPlayProps = {
   ability: InvestigatorItem;

@@ -1,15 +1,4 @@
 import {
-  AbilityDump,
-  GeneralAbilityTemplate,
-  InvestigativeAbilityTemplate,
-} from "./types";
-import * as pathOfCthulhuData from "./pathOfCthulhuData";
-import * as niceBlackAgentsData from "./niceBlackAgentsData";
-import * as nothingToFearData from "./nothingToFearData";
-import * as pallidStarsData from "./pallidStarsData";
-import * as srdAbilitiesData from "./srdAbilitiesData";
-import * as moribundWorldData from "./moribundWorldData";
-import {
   generalAbility,
   generalAbilityIcon,
   investigativeAbility,
@@ -18,6 +7,17 @@ import {
   systemId,
 } from "../constants";
 import { assertGame, systemLogger } from "../functions";
+import * as moribundWorldData from "./moribundWorldData";
+import * as niceBlackAgentsData from "./niceBlackAgentsData";
+import * as nothingToFearData from "./nothingToFearData";
+import * as pallidStarsData from "./pallidStarsData";
+import * as pathOfCthulhuData from "./pathOfCthulhuData";
+import * as srdAbilitiesData from "./srdAbilitiesData";
+import {
+  AbilityDump,
+  GeneralAbilityTemplate,
+  InvestigativeAbilityTemplate,
+} from "./types";
 
 /*
  * Ugh, sorry about the types in here. It's a mess, but the see-saw of

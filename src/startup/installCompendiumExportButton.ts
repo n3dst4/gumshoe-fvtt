@@ -1,10 +1,11 @@
 import { nanoid } from "nanoid";
-import { assertGame, getUserFile } from "../functions";
-import { saveJson } from "../saveFile";
+
 import {
   ExportedCompendium,
   importCompendium,
 } from "../compendiumFactory/importCompendium";
+import { assertGame, getUserFile } from "../functions";
+import { saveJson } from "../saveFile";
 
 const importButtonIconClass = "fa-cloud-upload-alt";
 const importButtonSpinnerClass = "fa-spinner fa-pulse";

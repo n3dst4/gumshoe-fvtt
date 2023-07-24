@@ -1,16 +1,17 @@
 import React, { Fragment, useCallback } from "react";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { GridField } from "../inputs/GridField";
-import { InputGrid } from "../inputs/InputGrid";
-import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { TextInput } from "../inputs/TextInput";
-import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { WeaponRange } from "./WeaponRangeConfig";
-import { Translate } from "../Translate";
+
 import { assertGame, confirmADoodleDo } from "../../functions";
-import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
+import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";
 import { assertWeaponItem } from "../../v10Types";
+import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { GridField } from "../inputs/GridField";
+import { InputGrid } from "../inputs/InputGrid";
+import { TextInput } from "../inputs/TextInput";
+import { Translate } from "../Translate";
+import { WeaponRange } from "./WeaponRangeConfig";
 
 type WeaponConfigProps = {
   weapon: InvestigatorItem;

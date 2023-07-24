@@ -1,18 +1,19 @@
+import { nanoid } from "nanoid";
 import React, { useContext } from "react";
+
 import { assertGame } from "../../functions";
+import { ThemeContext } from "../../themes/ThemeContext";
+import { IdContext } from "../IdContext";
+import { Checkbox } from "../inputs/Checkbox";
 import { InputGrid } from "../inputs/InputGrid";
-import { Setters } from "./types";
+import { ListEdit } from "../inputs/ListEdit";
+import { Translate } from "../Translate";
+import { StateContext } from "./contexts";
 import {
   SettingsGridField,
   SettingsGridFieldStacked,
 } from "./SettingsGridField";
-import { IdContext } from "../IdContext";
-import { ListEdit } from "../inputs/ListEdit";
-import { Checkbox } from "../inputs/Checkbox";
-import { Translate } from "../Translate";
-import { nanoid } from "nanoid";
-import { ThemeContext } from "../../themes/ThemeContext";
-import { StateContext } from "./contexts";
+import { Setters } from "./types";
 
 export const AbilitySettings: React.FC<{
   setters: Setters;

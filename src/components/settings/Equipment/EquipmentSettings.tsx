@@ -1,11 +1,12 @@
 import React, { MouseEventHandler, useCallback, useContext } from "react";
+
 import { assertGame } from "../../../functions";
-import { InputGrid } from "../../inputs/InputGrid";
-import { Category } from "./Category";
 import { GridFieldStacked } from "../../inputs/GridFieldStacked";
+import { InputGrid } from "../../inputs/InputGrid";
 import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
 import { store } from "../store";
+import { Category } from "./Category";
 
 export const EquipmentSettings: React.FC = () => {
   assertGame(game);

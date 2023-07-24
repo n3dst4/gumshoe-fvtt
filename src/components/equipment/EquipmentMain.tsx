@@ -1,14 +1,15 @@
 import React, { ChangeEvent, useCallback } from "react";
+
+import { getTranslated } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { settings } from "../../settings";
+import { assertEquipmentItem } from "../../v10Types";
+import { absoluteCover } from "../absoluteCover";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
-import { TextInput } from "../inputs/TextInput";
-import { getTranslated } from "../../functions";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
-import { settings } from "../../settings";
+import { TextInput } from "../inputs/TextInput";
 import { EquipmentField } from "./EquipmentField";
-import { absoluteCover } from "../absoluteCover";
-import { assertEquipmentItem } from "../../v10Types";
 
 interface EquipmentMainProps {
   equipment: InvestigatorItem;

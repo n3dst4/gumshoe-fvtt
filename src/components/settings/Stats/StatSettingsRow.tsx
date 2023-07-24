@@ -1,5 +1,6 @@
 import { Stat } from "@lumphammer/investigator-fvtt-types";
 import React, { useCallback, useContext } from "react";
+
 import { useRefStash } from "../../../hooks/useRefStash";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";

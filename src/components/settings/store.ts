@@ -2,9 +2,8 @@ import {
   EquipmentFieldMetadata,
   PresetV1,
 } from "@lumphammer/investigator-fvtt-types";
-import { pathOfCthulhuPreset } from "../../presets";
-import { SettingsDict } from "../../settings";
-import { State, PcOrNpc } from "./types";
+import { nanoid } from "nanoid";
+
 import {
   getDevMode,
   moveKeyDown,
@@ -12,13 +11,15 @@ import {
   renameProperty,
   systemLogger,
 } from "../../functions";
+import { pathOfCthulhuPreset } from "../../presets";
+import { SettingsDict } from "../../settings";
 import { EquipmentFieldType } from "../../types";
-import { nanoid } from "nanoid";
 import {
   assertNumericFieldOkayness,
   createSlice,
   CreateSliceArgs,
 } from "./reducerTools";
+import { PcOrNpc,State } from "./types";
 
 const defaultStoreArgs: CreateSliceArgs = {
   log(...args) {

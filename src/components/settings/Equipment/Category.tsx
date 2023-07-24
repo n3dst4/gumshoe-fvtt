@@ -1,11 +1,12 @@
 import React, { MouseEventHandler, useCallback, useContext } from "react";
 import {
+  FaArrowDown,
+  FaArrowUp,
+  FaCode,
   FaEllipsisH,
   FaTrash,
-  FaArrowUp,
-  FaArrowDown,
-  FaCode,
 } from "react-icons/fa";
+
 import { confirmADoodleDo, getTranslated } from "../../../functions";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Dropdown } from "../../inputs/Dropdown";

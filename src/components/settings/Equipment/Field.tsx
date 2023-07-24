@@ -1,9 +1,5 @@
-import React, { ChangeEventHandler, useCallback, useContext } from "react";
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
-import { AsyncTextInput } from "../../inputs/AsyncTextInput";
-import { DispatchContext, StateContext } from "../contexts";
-import { store } from "../store";
-import { Dropdown } from "../../inputs/Dropdown";
+import React, { ChangeEventHandler, useCallback, useContext } from "react";
 import {
   FaArrowDown,
   FaArrowUp,
@@ -11,14 +7,19 @@ import {
   FaEllipsisH,
   FaTrash,
 } from "react-icons/fa";
-import { Menu, MenuItem } from "../../inputs/Menu";
+
 import { getTranslated } from "../../../functions";
-import { NumberFieldSettings } from "./NumberFieldSettings";
-import { StringFieldSettings } from "./StringFieldSettings";
-import { CheckboxFieldSettings } from "./CheckboxFieldSettings";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { assertIsEquipmentFieldType } from "../../../typeAssertions";
+import { AsyncTextInput } from "../../inputs/AsyncTextInput";
+import { Dropdown } from "../../inputs/Dropdown";
+import { Menu, MenuItem } from "../../inputs/Menu";
 import { Translate } from "../../Translate";
+import { DispatchContext, StateContext } from "../contexts";
+import { store } from "../store";
+import { CheckboxFieldSettings } from "./CheckboxFieldSettings";
+import { NumberFieldSettings } from "./NumberFieldSettings";
+import { StringFieldSettings } from "./StringFieldSettings";
 
 interface FieldProps {
   field: EquipmentFieldMetadata;

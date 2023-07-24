@@ -1,25 +1,26 @@
 import React, { Fragment, ReactNode } from "react";
+
+import { useTheme } from "../../hooks/useTheme";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { settings } from "../../settings";
+import { assertNPCActor, isNPCActor } from "../../v10Types";
+import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
+import { ImagePickle } from "../ImagePickle";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
+import { InputGrid } from "../inputs/InputGrid";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { TabContainer } from "../TabContainer";
-import { LogoEditable } from "./LogoEditable";
+import { Translate } from "../Translate";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
+import { LogoEditable } from "./LogoEditable";
+import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
+import { StatField } from "./StatField";
+import { TrackersArea } from "./TrackersArea";
 import { WeaponsArea } from "./Weapons/WeaponsArea";
 import { WeaponsAreaEdit } from "./Weapons/WeaponsAreaEdit";
-import { TrackersArea } from "./TrackersArea";
-import { Translate } from "../Translate";
-import { ImagePickle } from "../ImagePickle";
-import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
-import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
-import { InputGrid } from "../inputs/InputGrid";
-import { absoluteCover } from "../absoluteCover";
-import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
-import { settings } from "../../settings";
-import { StatField } from "./StatField";
-import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { assertNPCActor, isNPCActor } from "../../v10Types";
-import { useTheme } from "../../hooks/useTheme";
 
 type NPCSheetProps = {
   actor: InvestigatorActor;

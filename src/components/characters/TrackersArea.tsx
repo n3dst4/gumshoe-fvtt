@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { PoolTracker } from "../abilities/PoolTracker";
 

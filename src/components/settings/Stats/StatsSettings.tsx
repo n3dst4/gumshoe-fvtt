@@ -1,4 +1,5 @@
 import React from "react";
+
 import { InputGrid } from "../../inputs/InputGrid";
 import { SettingsGridField } from "../SettingsGridField";
 import { StatsSettingsEditor } from "./StatsSettingsEditor";

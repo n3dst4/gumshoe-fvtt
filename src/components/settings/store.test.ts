@@ -1,9 +1,10 @@
+import { diff } from "jest-diff";
+import { afterAll,beforeEach, describe, expect, it, vi } from "vitest";
+
+import { pathOfCthulhuPreset } from "../../presets";
+import { AnyAction } from "./reducerTools";
 import { createSystemSlice } from "./store";
 import { State } from "./types";
-import { AnyAction } from "./reducerTools";
-import { pathOfCthulhuPreset } from "../../presets";
-import { diff } from "jest-diff";
-import { describe, it, expect, vi, beforeEach, afterAll } from "vitest";
 
 type TestTuple = [string, AnyAction];
 

@@ -1,16 +1,17 @@
 import React, { Fragment } from "react";
+
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { AbilityTest } from "./AbilityTest";
-import { AbilityMainBits } from "./AbilityMainBits";
-import { AbilityConfig } from "./AbilityConfig";
-import { Translate } from "../Translate";
-import { AbilityTestMW } from "./AbilityTestMW";
-import { AbilityMwExtraFields } from "./AbilityMwExtraFields";
 import { settings } from "../../settings";
+import { isGeneralAbilityItem } from "../../v10Types";
+import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
 import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";
 import { ItemSheetMode } from "../ItemSheetFramework/types";
-import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
-import { isGeneralAbilityItem } from "../../v10Types";
+import { Translate } from "../Translate";
+import { AbilityConfig } from "./AbilityConfig";
+import { AbilityMainBits } from "./AbilityMainBits";
+import { AbilityMwExtraFields } from "./AbilityMwExtraFields";
+import { AbilityTest } from "./AbilityTest";
+import { AbilityTestMW } from "./AbilityTestMW";
 
 type AbilitySheetProps = {
   ability: InvestigatorItem;

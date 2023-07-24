@@ -1,7 +1,8 @@
 import { keyframes } from "@emotion/react";
 import React, { Fragment } from "react";
-import { FaEdit, FaEllipsisH, FaPlus, FaTrash, FaMinus } from "react-icons/fa";
+import { FaEdit, FaEllipsisH, FaMinus,FaPlus, FaTrash } from "react-icons/fa";
 import { HiDocumentText } from "react-icons/hi";
+
 import { assertGame, getTranslated } from "../../functions";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 import { Dropdown } from "../inputs/Dropdown";

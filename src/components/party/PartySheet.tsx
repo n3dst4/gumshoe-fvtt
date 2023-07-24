@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+
 import * as constants from "../../constants";
 import { assertGame, sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";

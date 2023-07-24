@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useState } from "react";
+
 import { mwNegateCost, mwWallopCost } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";

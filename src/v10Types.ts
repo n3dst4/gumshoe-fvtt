@@ -1,3 +1,4 @@
+import * as constants from "./constants";
 import { InvestigatorActor } from "./module/InvestigatorActor";
 import { InvestigatorItem } from "./module/InvestigatorItem";
 import {
@@ -11,7 +12,6 @@ import {
   PersonalDetailSourceData,
   WeaponDataSourceData,
 } from "./types";
-import * as constants from "./constants";
 
 // this is all junk to allow us to start using v10's `.system` property
 

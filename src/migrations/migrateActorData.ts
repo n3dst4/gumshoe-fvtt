@@ -1,5 +1,5 @@
-import { migrateItemData } from "./migrateItemData";
 import { moveStats, upgradeLongNotesToRichText } from "./actorMigrations";
+import { migrateItemData } from "./migrateItemData";
 import { FlaggedMigrations } from "./types";
 
 /**

@@ -1,10 +1,11 @@
 import React, { useCallback } from "react";
+
+import * as constants from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { Translate } from "../Translate";
 import { MwButton } from "./MwButton";
-import { MWResult } from "./types";
-import * as constants from "../../constants";
 import { MwCostSlug } from "./MwCostSlug";
+import { MWResult } from "./types";
 
 type WallopNegateMode =
   | typeof constants.htmlDataModeMwNegate

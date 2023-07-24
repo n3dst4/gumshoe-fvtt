@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+
 import { NoteWithFormat } from "../../types";
 import {
   NotesEditorWithControls,

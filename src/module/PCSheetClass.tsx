@@ -1,7 +1,8 @@
 import React from "react";
+
+import { PCSheet } from "../components/characters/PCSheet";
 import { reactTemplatePath, systemId } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
-import { PCSheet } from "../components/characters/PCSheet";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications

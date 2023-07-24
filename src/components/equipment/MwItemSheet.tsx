@@ -1,18 +1,19 @@
 import React, { useCallback } from "react";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { GridField } from "../inputs/GridField";
-import { InputGrid } from "../inputs/InputGrid";
+
+import { assertGame, confirmADoodleDo } from "../../functions";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { MwType } from "../../types";
+import { assertMwItem } from "../../v10Types";
+import { absoluteCover } from "../absoluteCover";
+import { ImagePickle } from "../ImagePickle";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { GridField } from "../inputs/GridField";
+import { GridFieldStacked } from "../inputs/GridFieldStacked";
+import { InputGrid } from "../inputs/InputGrid";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { TextInput } from "../inputs/TextInput";
 import { Translate } from "../Translate";
-import { assertGame, confirmADoodleDo } from "../../functions";
-import { ImagePickle } from "../ImagePickle";
-import { absoluteCover } from "../absoluteCover";
-import { MwType } from "../../types";
-import { GridFieldStacked } from "../inputs/GridFieldStacked";
-import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
-import { assertMwItem } from "../../v10Types";
 
 type MwItemSheetProps = {
   item: InvestigatorItem;

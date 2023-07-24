@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+
 import { generalAbility } from "../../constants";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";

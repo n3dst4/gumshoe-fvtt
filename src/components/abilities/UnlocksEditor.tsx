@@ -1,10 +1,11 @@
 import React, { ReactNode } from "react";
+
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { Translate } from "../Translate";
-import { UnlocksEditorRow } from "./UnlocksEditorRow";
-import { useListShowHideTransition } from "../transitions/useListShowHideTransition";
-import { getListTransitionStyles } from "./getListTransitionStyles";
 import { assertAbilityItem } from "../../v10Types";
+import { useListShowHideTransition } from "../transitions/useListShowHideTransition";
+import { Translate } from "../Translate";
+import { getListTransitionStyles } from "./getListTransitionStyles";
+import { UnlocksEditorRow } from "./UnlocksEditorRow";
 
 interface UnlocksEditorProps {
   ability: InvestigatorItem;

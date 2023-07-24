@@ -1,15 +1,15 @@
+import system from "../../public/system.json";
 import { assertGame, mapObject, systemLogger } from "../functions";
-import { migrateWorld } from "../migrations/migrateWorld";
-import { settings } from "../settings";
 import { flaggedMigrations } from "../migrations/flaggedMigrations";
 import { getFlaggedMigrations } from "../migrations/getFlaggedMigrations";
 import { getNeedsMigrationBasedOnLegacyVersionSystem } from "../migrations/getNeedsMigrationBasedOnLegacyVersionSystem";
+import { migrateWorld } from "../migrations/migrateWorld";
 import {
   MigrationFlags,
   MigrationFunction,
   MigrationFunctionsForType,
 } from "../migrations/types";
-import system from "../../public/system.json";
+import { settings } from "../settings";
 
 /**
  * The startup task, which determines whether a migration is needed (using

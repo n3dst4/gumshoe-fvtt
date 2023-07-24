@@ -1,15 +1,16 @@
 import React, { useCallback, useContext } from "react";
+
 import * as constants from "../../constants";
 import { assertGame } from "../../functions";
-import { InputGrid } from "../inputs/InputGrid";
-import { Setters } from "./types";
-import { SettingsGridField } from "./SettingsGridField";
 import { runtimeConfig } from "../../runtime";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { InputGrid } from "../inputs/InputGrid";
 import { ListEdit } from "../inputs/ListEdit";
-import { DispatchContext, StateContext } from "./contexts";
-import { store } from "./store";
 import { PersonalDetailsListEdit } from "../inputs/PersonalDetailsListEdit";
+import { DispatchContext, StateContext } from "./contexts";
+import { SettingsGridField } from "./SettingsGridField";
+import { store } from "./store";
+import { Setters } from "./types";
 
 interface CoreSettingsProps {
   setters: Setters;

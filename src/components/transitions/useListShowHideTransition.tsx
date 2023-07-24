@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
+
 import { useRefStash } from "../../hooks/useRefStash";
 
 export interface ItemWithTransitionState<Item> {

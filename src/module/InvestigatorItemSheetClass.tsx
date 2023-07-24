@@ -1,5 +1,6 @@
 // import ReactDOM from "react-dom";
 import React from "react";
+
 import { Suspense } from "../components/Suspense";
 import { reactTemplatePath, systemId } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";

@@ -1,4 +1,5 @@
 import React, { ReactNode, useContext } from "react";
+
 import { assertGame } from "../../functions";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";

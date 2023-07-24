@@ -1,4 +1,9 @@
+import * as constants from "../../constants";
+import { assertGame } from "../../functions";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { settings } from "../../settings";
 import { AbilityType } from "../../types";
+import { AbilityItem, AnyItem, isAbilityItem } from "../../v10Types";
 import {
   abilityRowKey,
   ActorAbilityInfo,
@@ -6,11 +11,6 @@ import {
   RowData,
   typeHeaderKey,
 } from "./types";
-import * as constants from "../../constants";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { assertGame } from "../../functions";
-import { settings } from "../../settings";
-import { AbilityItem, AnyItem, isAbilityItem } from "../../v10Types";
 
 /**
  * get a sorted list of ability tuples

@@ -1,4 +1,5 @@
 import { ConfiguredDocumentClass } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
+
 import {
   compareCombatantsPassing,
   compareCombatantsStandard,

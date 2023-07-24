@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { assertGame, getTranslated } from "../../../functions";
 import { MwInjuryStatus } from "../../../types";
 

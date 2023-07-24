@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { Translate } from "../Translate";
 import { DiceTerms } from "./DiceTerms";

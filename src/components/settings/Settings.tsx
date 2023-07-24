@@ -1,19 +1,20 @@
 import React, { useCallback } from "react";
+
 import { settingsSaved } from "../../constants";
 import { assertGame, confirmADoodleDo } from "../../functions";
-import { CSSReset } from "../CSSReset";
-import { Translate } from "../Translate";
+import { useTheme } from "../../hooks/useTheme";
 import { settings } from "../../settings";
 import { absoluteCover } from "../absoluteCover";
+import { CSSReset } from "../CSSReset";
 import { TabContainer } from "../TabContainer";
-import { CoreSettings } from "./CoreSettings";
+import { Translate } from "../Translate";
 import { AbilitySettings } from "./AbilitySettings";
-import { StatsSettings } from "./Stats/StatsSettings";
-import { MiscSettings } from "./MiscSettings";
-import { EquipmentSettings } from "./Equipment/EquipmentSettings";
 import { DispatchContext, StateContext } from "./contexts";
+import { CoreSettings } from "./CoreSettings";
+import { EquipmentSettings } from "./Equipment/EquipmentSettings";
 import { useSettingsState } from "./hooks";
-import { useTheme } from "../../hooks/useTheme";
+import { MiscSettings } from "./MiscSettings";
+import { StatsSettings } from "./Stats/StatsSettings";
 
 type SettingsProps = {
   foundryApplication: Application;

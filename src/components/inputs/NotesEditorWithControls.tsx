@@ -1,15 +1,16 @@
 import React, { Fragment, useCallback, useState } from "react";
+
 import {
   assertGame,
   confirmADoodleDo,
   getDevMode,
   getTranslated,
 } from "../../functions";
+import { useStateWithGetter } from "../../hooks/useStateWithGetter";
+import { convertNotes, toHtml } from "../../textFunctions";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { Translate } from "../Translate";
 import { NotesEditor } from "./NotesEditor";
-import { convertNotes, toHtml } from "../../textFunctions";
-import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 
 export interface NotesEditorWithControlsProps {
   source: string;

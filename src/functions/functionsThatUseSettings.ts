@@ -1,7 +1,8 @@
 import Case from "case";
+
+import * as constants from "../constants";
 import { settings } from "../settings";
 import { assertGame, getDevMode } from "./functionsThatDontUseSettings";
-import * as constants from "../constants";
 
 /**
  * convenience method to grab a translated string

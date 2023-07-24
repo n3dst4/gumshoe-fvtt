@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 import { toHtml } from "../../textFunctions";
 import { NoteFormat, NoteWithFormat } from "../../types";

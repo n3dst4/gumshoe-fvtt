@@ -1,13 +1,13 @@
-import { tealTheme } from "./tealTheme";
+import { antiquarianTheme } from "./antiquarianTheme";
+import { deltaGroovyTheme } from "./deltaGroovyTheme";
+import { fearTheme } from "./fearTheme";
+import { greenTriangleTheme } from "./greenTriangleTheme";
+import { highContrastTheme } from "./highContrastTheme";
 import { niceTheme } from "./niceTheme";
 import { niceThemeDark } from "./niceThemeDark";
-import { highContrastTheme } from "./highContrastTheme";
-import { fearTheme } from "./fearTheme";
-import { pallidTheme } from "./pallidTheme";
-import { deltaGroovyTheme } from "./deltaGroovyTheme";
-import { greenTriangleTheme } from "./greenTriangleTheme";
-import { antiquarianTheme } from "./antiquarianTheme";
 import { olderThanMemoryTheme } from "./olderThanMemoryTheme";
+import { pallidTheme } from "./pallidTheme";
+import { tealTheme } from "./tealTheme";
 import { ThemeV1 } from "./types";
 import { unsafeRealityTheme } from "./unsafeRealityTheme";
 

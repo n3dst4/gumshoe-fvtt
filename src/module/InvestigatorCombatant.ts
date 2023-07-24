@@ -1,5 +1,4 @@
 import * as constants from "../constants";
-import { InvestigatorItem } from "./InvestigatorItem";
 import { assertGame, isNullOrEmptyString } from "../functions";
 import { settings } from "../settings";
 import {
@@ -7,6 +6,7 @@ import {
   isActiveCharacterActor,
   isGeneralAbilityItem,
 } from "../v10Types";
+import { InvestigatorItem } from "./InvestigatorItem";
 
 /**
  * Override base Combatant class to override the initiative formula.

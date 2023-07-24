@@ -1,17 +1,18 @@
 import React, { ChangeEvent, Fragment, useCallback, useState } from "react";
+
 import { assertGame, confirmADoodleDo, getTranslated } from "../../functions";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { settings } from "../../settings";
+import { MwRefreshGroup, SpecialitiesMode } from "../../types";
+import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
+import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
-import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Translate } from "../Translate";
-import { MwRefreshGroup, SpecialitiesMode } from "../../types";
-import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { settings } from "../../settings";
-import { UnlocksEditor } from "./UnlocksEditor";
 import { SituationalModifiersEditor } from "./SituationalModifiersEditor";
-import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
+import { UnlocksEditor } from "./UnlocksEditor";
 
 type AbilityConfigProps = {
   ability: InvestigatorItem;

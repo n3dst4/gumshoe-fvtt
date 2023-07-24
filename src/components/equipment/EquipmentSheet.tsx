@@ -1,13 +1,14 @@
 import React from "react";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { Translate } from "../Translate";
-import { EquipmentMain } from "./EquipmentMain";
-import { EquipmentConfig } from "./EquipmentConfig";
-import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";
-import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
-import { ItemSheetMode } from "../ItemSheetFramework/types";
+import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertEquipmentItem } from "../../v10Types";
+import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
+import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";
+import { ItemSheetMode } from "../ItemSheetFramework/types";
+import { Translate } from "../Translate";
+import { EquipmentConfig } from "./EquipmentConfig";
+import { EquipmentMain } from "./EquipmentMain";
 
 type EquipmentSheetProps = {
   equipment: InvestigatorItem;

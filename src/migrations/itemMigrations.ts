@@ -1,13 +1,14 @@
+import { escape } from "html-escaper";
+
 import {
   generalAbility,
-  investigativeAbility,
   generalAbilityIcon,
+  investigativeAbility,
   investigativeAbilityIcon,
 } from "../constants";
 import { isNullOrEmptyString } from "../functions";
-import { escape } from "html-escaper";
-import { getDefaultGeneralAbilityCategory, settings } from "../settings";
 import { niceBlackAgentsPreset } from "../presets";
+import { getDefaultGeneralAbilityCategory, settings } from "../settings";
 import { AnyItem } from "../v10Types";
 
 export const addCategoryToGeneralAbilities = (

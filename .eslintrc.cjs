@@ -18,7 +18,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint", "simple-import-sort"],
   rules: {
     quotes: ["error", "double", { avoidEscape: true }],
     semi: ["error", "always"],
@@ -73,6 +73,8 @@ module.exports = {
           "Import `systemLogger` from `functions` instead.",
       },
     ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
   },
   overrides: [
     {

@@ -1,6 +1,6 @@
 import { hslToRGB, rgbToHSL } from "./conversion-functions";
-import { cssHSLToHSL, cssRGBToRGB, hexToRGB } from "./parsing-functions";
 import { hslToCSSHSL, rgbToCSSRGB, rgbToHex } from "./formatting-functions";
+import { cssHSLToHSL, cssRGBToRGB, hexToRGB } from "./parsing-functions";
 import { swatches } from "./swatches";
 import { Color, HSLA, isHSLA, isRGBA, RGBA } from "./types";
 

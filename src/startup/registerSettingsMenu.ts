@@ -1,6 +1,6 @@
+import * as constants from "../constants";
 import { assertGame } from "../functions/functionsThatDontUseSettings";
 import { SettingsClass } from "../module/SettingsClass";
-import * as constants from "../constants";
 
 export const registerSettingsMenu = function () {
   assertGame(game);

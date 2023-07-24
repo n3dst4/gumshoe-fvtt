@@ -1,4 +1,5 @@
 import React, { Fragment, useCallback, useContext } from "react";
+
 import { generalAbility, investigativeAbility } from "../../constants";
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";

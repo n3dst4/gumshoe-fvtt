@@ -1,5 +1,5 @@
-import { assertGame } from "../functions";
 import * as constants from "../constants";
+import { assertGame } from "../functions";
 import { isSocketHookAction } from "../typeAssertions";
 
 export function installSocketActionHandler() {

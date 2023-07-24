@@ -1,5 +1,6 @@
-import React, { useMemo } from "react";
 import Case from "case";
+import React, { useMemo } from "react";
+
 import { systemId } from "../constants";
 import { assertGame, getDevMode } from "../functions";
 import { settings } from "../settings";

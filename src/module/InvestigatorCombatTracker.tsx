@@ -1,8 +1,9 @@
+import React from "react";
+
 import { Tracker as ReactCombatTracker } from "../components/combat/Tracker";
+import { ErrorBoundary } from "../components/ErrorBoundary";
 import { reactifiedCombatSidebarTemplatePath } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
-import React from "react";
-import { ErrorBoundary } from "../components/ErrorBoundary";
 
 export class InvestigatorCombatTrackerBase extends CombatTracker {
   /** @override */

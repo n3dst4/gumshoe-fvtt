@@ -2,8 +2,8 @@ import {
   equipmentIcon,
   generalAbilityIcon,
   investigativeAbilityIcon,
-  weaponIcon,
   personalDetailIcon,
+  weaponIcon,
 } from "../constants";
 import { assertGame, isNullOrEmptyString } from "../functions";
 import {

@@ -1,4 +1,5 @@
 import React from "react";
+
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertPersonalDetailItem } from "../../v10Types";
 import { ModeSelect } from "../ItemSheetFramework/ModeSelect";

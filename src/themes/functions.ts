@@ -1,4 +1,5 @@
 import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
+
 import { irid } from "../irid/irid";
 import { ThemeV1 } from "./types";
 

@@ -1,13 +1,14 @@
 import React, { Fragment, useCallback, useContext } from "react";
-import { InvestigatorItem } from "../../../module/InvestigatorItem";
-import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
-import { AsyncCheckbox } from "../../inputs/AsyncCheckbox";
-import { CompactNotesEditor } from "../../inputs/CompactNotesEditor";
-import { CombatAbilityDropDown } from "../../inputs/CombatAbilityDropDown";
+
 import { assertGame, confirmADoodleDo } from "../../../functions";
-import { AsyncTextInput } from "../../inputs/AsyncTextInput";
+import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { assertWeaponItem } from "../../../v10Types";
+import { AsyncCheckbox } from "../../inputs/AsyncCheckbox";
+import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
+import { AsyncTextInput } from "../../inputs/AsyncTextInput";
+import { CombatAbilityDropDown } from "../../inputs/CombatAbilityDropDown";
+import { CompactNotesEditor } from "../../inputs/CompactNotesEditor";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem;

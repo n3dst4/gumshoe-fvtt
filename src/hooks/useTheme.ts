@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import { runtimeConfig } from "../runtime";
 import { settings } from "../settings";
 import { tealTheme } from "../themes/tealTheme";

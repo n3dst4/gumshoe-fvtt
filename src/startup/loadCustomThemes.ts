@@ -1,8 +1,9 @@
-import { defaultCustomThemePath } from "../constants";
 import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
-import { highContrastTheme } from "../themes/highContrastTheme";
+
+import { defaultCustomThemePath } from "../constants";
 import { assertGame, systemLogger } from "../functions";
 import { settings } from "../settings";
+import { highContrastTheme } from "../themes/highContrastTheme";
 
 export function loadCustomThemes() {
   const jsonRe = /\.(?:json|json5)$/;

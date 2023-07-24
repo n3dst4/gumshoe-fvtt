@@ -1,6 +1,7 @@
-import { describe, test, expect, vi, beforeAll, afterAll } from "vitest";
+import { afterAll,beforeAll, describe, expect, test, vi } from "vitest";
 
 import {
+  debounce,
   fixLength,
   isNullOrEmptyString,
   memoizeNullaryOnce,
@@ -10,7 +11,6 @@ import {
   sortByKey,
   sortEntitiesByName,
   throttle,
-  debounce,
 } from "./functionsThatDontUseSettings";
 
 const obj = {

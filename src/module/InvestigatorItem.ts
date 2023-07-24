@@ -1,5 +1,8 @@
+import { nanoid } from "nanoid";
+
+import * as constants from "../constants";
 import { assertGame, fixLength } from "../functions";
-import { InvestigatorActor } from "./InvestigatorActor";
+import { settings } from "../settings";
 import {
   EquipmentDataSourceData,
   MWDifficulty,
@@ -11,21 +14,19 @@ import {
   SpecialitiesMode,
   Unlock,
 } from "../types";
-import * as constants from "../constants";
-import { settings } from "../settings";
-import { nanoid } from "nanoid";
 import {
   assertAbilityItem,
+  assertAnyItem,
   assertEquipmentItem,
   assertEquipmentOrAbilityItem,
   assertGeneralAbilityItem,
-  isEquipmentItem,
-  isEquipmentOrAbilityItem,
-  assertWeaponItem,
-  assertAnyItem,
   assertMwItem,
   assertPersonalDetailItem,
+  assertWeaponItem,
+  isEquipmentItem,
+  isEquipmentOrAbilityItem,
 } from "../v10Types";
+import { InvestigatorActor } from "./InvestigatorActor";
 
 /**
  * Extend the basic Item with some very simple modifications.

@@ -1,15 +1,7 @@
 import React, { useCallback, useEffect } from "react";
+
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { GridField } from "../inputs/GridField";
-import { InputGrid } from "../inputs/InputGrid";
-import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { GridFieldStacked } from "../inputs/GridFieldStacked";
-import { SpecialityList } from "./SpecialityList";
-import { Translate } from "../Translate";
-import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { settings } from "../../settings";
-import { AbilityBadges } from "./AbilityBadges";
 import {
   ActorPayload,
   AnyActor,
@@ -17,6 +9,15 @@ import {
   assertActiveCharacterActor,
   isActiveCharacterActor,
 } from "../../v10Types";
+import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
+import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { GridField } from "../inputs/GridField";
+import { GridFieldStacked } from "../inputs/GridFieldStacked";
+import { InputGrid } from "../inputs/InputGrid";
+import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { Translate } from "../Translate";
+import { AbilityBadges } from "./AbilityBadges";
+import { SpecialityList } from "./SpecialityList";
 
 type AbilityMainBitsProps = {
   ability: InvestigatorItem;

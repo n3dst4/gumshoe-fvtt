@@ -1,4 +1,5 @@
 import React from "react";
+
 import { sortEntitiesByName } from "../../../functions";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { assertActiveCharacterActor } from "../../../v10Types";

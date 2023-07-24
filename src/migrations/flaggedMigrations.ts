@@ -1,4 +1,5 @@
 import { PersonalDetail } from "@lumphammer/investigator-fvtt-types";
+
 import * as c from "../constants";
 import { assertGame, isNullOrEmptyString, systemLogger } from "../functions";
 import { pathOfCthulhuPreset } from "../presets";

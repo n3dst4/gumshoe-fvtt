@@ -7,6 +7,7 @@ import {
   FaTrash,
 } from "react-icons/fa";
 import { HiDocumentText } from "react-icons/hi";
+
 import { assertGame } from "../../functions";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 import { Dropdown } from "../inputs/Dropdown";

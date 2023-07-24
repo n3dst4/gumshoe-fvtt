@@ -5,39 +5,40 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
-import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
-import { CSSReset } from "../CSSReset";
-import { LogoEditable } from "./LogoEditable";
-import { InputGrid } from "../inputs/InputGrid";
-import { GridField } from "../inputs/GridField";
-import { AsyncTextInput } from "../inputs/AsyncTextInput";
-import { TabContainer } from "../TabContainer";
-import { EquipmentArea } from "./Equipment/EquipmentArea";
-import { NotesArea } from "./NotesArea";
-import { WeaponsArea } from "./Weapons/WeaponsArea";
-import { SettingArea } from "./SettingsArea";
-import { TrackersArea } from "./TrackersArea";
-import { Translate } from "../Translate";
-import { ImagePickle } from "../ImagePickle";
-import { assertGame } from "../../functions";
-import { AbilitiesAreaMW } from "./MoribundWorld/AbilitiesAreaMW";
-import { MwItemArea } from "./MoribundWorld/MwItemArea";
-import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
-import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
-import { settings } from "../../settings";
-import { StatField } from "./StatField";
-import { PersonalDetailField } from "./PersonalDetailField";
+
 import { occupationSlotIndex } from "../../constants";
-import { IndexedAsyncTextInput } from "../inputs/IndexedAsyncTextInput";
+import { assertGame } from "../../functions";
+import { useTheme } from "../../hooks/useTheme";
+import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { settings } from "../../settings";
 import {
   AnyItem,
   assertPCActor,
   isPCActor,
   PersonalDetailItem,
 } from "../../v10Types";
-import { useTheme } from "../../hooks/useTheme";
+import { CSSReset } from "../CSSReset";
+import { ImagePickle } from "../ImagePickle";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
+import { GridField } from "../inputs/GridField";
+import { IndexedAsyncTextInput } from "../inputs/IndexedAsyncTextInput";
+import { InputGrid } from "../inputs/InputGrid";
+import { TabContainer } from "../TabContainer";
+import { Translate } from "../Translate";
+import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
+import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
+import { EquipmentArea } from "./Equipment/EquipmentArea";
+import { LogoEditable } from "./LogoEditable";
+import { AbilitiesAreaMW } from "./MoribundWorld/AbilitiesAreaMW";
+import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
+import { MwItemArea } from "./MoribundWorld/MwItemArea";
+import { NotesArea } from "./NotesArea";
+import { PersonalDetailField } from "./PersonalDetailField";
+import { SettingArea } from "./SettingsArea";
+import { StatField } from "./StatField";
+import { TrackersArea } from "./TrackersArea";
+import { WeaponsArea } from "./Weapons/WeaponsArea";
 
 export const PCSheet: React.FC<{
   actor: InvestigatorActor;

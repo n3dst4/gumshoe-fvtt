@@ -1,16 +1,17 @@
 import { CSSObject } from "@emotion/react";
 import React from "react";
+
 import { equipment, mwItem, weapon } from "../constants";
-import { InvestigatorItem } from "../module/InvestigatorItem";
-import { EquipmentSheet } from "./equipment/EquipmentSheet";
-import { AbilitySheet } from "./abilities/AbilitySheet";
-import { WeaponSheet } from "./equipment/WeaponSheet";
-import { CSSReset } from "./CSSReset";
-import { MwItemSheet } from "./equipment/MwItemSheet";
-import { ThrowError } from "./ThrowError";
-import { PersonalDetailSheet } from "./personalDetails/PersonalDetailSheet";
-import { isAbilityItem, isMwItem } from "../v10Types";
 import { useTheme } from "../hooks/useTheme";
+import { InvestigatorItem } from "../module/InvestigatorItem";
+import { isAbilityItem, isMwItem } from "../v10Types";
+import { AbilitySheet } from "./abilities/AbilitySheet";
+import { CSSReset } from "./CSSReset";
+import { EquipmentSheet } from "./equipment/EquipmentSheet";
+import { MwItemSheet } from "./equipment/MwItemSheet";
+import { WeaponSheet } from "./equipment/WeaponSheet";
+import { PersonalDetailSheet } from "./personalDetails/PersonalDetailSheet";
+import { ThrowError } from "./ThrowError";
 
 type ItemSheetProps = {
   item: InvestigatorItem;

@@ -1,8 +1,9 @@
 import { useCallback } from "react";
+
+import * as constants from "../../constants";
 import { assertGame, broadcastHook, systemLogger } from "../../functions";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
-import * as constants from "../../constants";
 
 export const useInititative = (
   combat: InvestigatorCombat | undefined,

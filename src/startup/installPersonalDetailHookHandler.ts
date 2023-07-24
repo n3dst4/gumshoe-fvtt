@@ -1,8 +1,8 @@
 import {
   generalAbility,
   investigativeAbility,
-  personalDetail,
   occupationSlotIndex,
+  personalDetail,
 } from "../constants";
 import {
   assertGame,

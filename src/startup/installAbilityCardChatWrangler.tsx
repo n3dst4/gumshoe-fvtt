@@ -1,13 +1,14 @@
-import { createRoot } from "react-dom/client";
-import { assertGame, systemLogger } from "../functions";
-import * as constants from "../constants";
-import { isAbilityCardMode } from "../components/messageCards/types";
-import { AbilityTestCard } from "../components/messageCards/AbilityTestCard";
-import { AttackCard } from "../components/messageCards/AttackCard";
-import { AbilityTestMwCard } from "../components/messageCards/AbilityTestMwCard";
-import { MWDifficulty } from "../types";
-import { AbilityNegateOrWallopMwCard } from "../components/messageCards/AbilityNegateOrWallopMwCard";
 import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+
+import { AbilityNegateOrWallopMwCard } from "../components/messageCards/AbilityNegateOrWallopMwCard";
+import { AbilityTestCard } from "../components/messageCards/AbilityTestCard";
+import { AbilityTestMwCard } from "../components/messageCards/AbilityTestMwCard";
+import { AttackCard } from "../components/messageCards/AttackCard";
+import { isAbilityCardMode } from "../components/messageCards/types";
+import * as constants from "../constants";
+import { assertGame, systemLogger } from "../functions";
+import { MWDifficulty } from "../types";
 
 export const installAbilityCardChatWrangler = () => {
   Hooks.on("renderChatMessage", (chatMessage, html, options) => {

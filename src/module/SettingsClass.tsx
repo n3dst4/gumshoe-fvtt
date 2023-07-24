@@ -1,7 +1,8 @@
 import React from "react";
-import { ReactApplicationMixin } from "./ReactApplicationMixin";
-import { reactTemplatePath, systemId } from "../constants";
+
 import { Suspense } from "../components/Suspense";
+import { reactTemplatePath, systemId } from "../constants";
+import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 const Settings = React.lazy(() =>
   import("../components/settings/Settings").then(({ Settings }) => ({

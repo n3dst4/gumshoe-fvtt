@@ -3,6 +3,7 @@ import {
   PersonalDetailType,
 } from "@lumphammer/investigator-fvtt-types";
 import React, { useCallback } from "react";
+
 import { Translate } from "../Translate";
 
 type PersonalDetailsListEditProps = {

@@ -1,4 +1,5 @@
 import React, { Fragment, useContext } from "react";
+
 import { sortEntitiesByName } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings";

@@ -4,11 +4,12 @@ import React, {
   useCallback,
   useContext,
 } from "react";
+
 import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
-import { StatSettingsRow } from "./StatSettingsRow";
-import { PcOrNpc } from "../types";
 import { store } from "../store";
+import { PcOrNpc } from "../types";
+import { StatSettingsRow } from "./StatSettingsRow";
 
 interface StatsSettingsEditorProps {
   which: PcOrNpc;

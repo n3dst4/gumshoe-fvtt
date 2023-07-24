@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings";
 import { NoteWithFormat } from "../../types";

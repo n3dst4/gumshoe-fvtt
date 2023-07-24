@@ -1,4 +1,5 @@
 import React, { useCallback, useContext } from "react";
+
 import { ThemeContext } from "../../themes/ThemeContext";
 
 type PoolCheckboxProps = {

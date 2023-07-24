@@ -1,4 +1,5 @@
 import React, { Fragment, useCallback, useContext } from "react";
+
 import { assertGame, getDevMode, getTranslated } from "../../functions";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { runtimeConfig } from "../../runtime";

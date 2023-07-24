@@ -1,6 +1,7 @@
 import { escape as escapeText } from "html-escaper";
-import { NoteFormat } from "./types";
+
 import { memoizeNullaryOnce } from "./functions";
+import { NoteFormat } from "./types";
 
 const makeTurndownService = memoizeNullaryOnce(async () => {
   console.log("Making turndown service");
