@@ -5,11 +5,10 @@ import {
   personalDetail,
 } from "../constants";
 import {
-  assertGame,
   confirmADoodleDo,
   getTranslated,
-  isNullOrEmptyString,
-} from "../functions";
+} from "../functions/functionsThatUseSettings";
+import { assertGame, isNullOrEmptyString } from "../functions/utilities";
 import { settings } from "../settings";
 import { isActiveCharacterActor, isPersonalDetailItem } from "../v10Types";
 

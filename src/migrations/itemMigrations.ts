@@ -6,7 +6,7 @@ import {
   investigativeAbility,
   investigativeAbilityIcon,
 } from "../constants";
-import { isNullOrEmptyString } from "../functions";
+import { isNullOrEmptyString } from "../functions/utilities";
 import { niceBlackAgentsPreset } from "../presets";
 import { getDefaultGeneralAbilityCategory, settings } from "../settings";
 import { AnyItem } from "../v10Types";

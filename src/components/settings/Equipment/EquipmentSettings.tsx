@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useCallback, useContext } from "react";
 
-import { assertGame } from "../../../functions";
+import { assertGame } from "../../../functions/utilities";
 import { GridFieldStacked } from "../../inputs/GridFieldStacked";
 import { InputGrid } from "../../inputs/InputGrid";
 import { Translate } from "../../Translate";

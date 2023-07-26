@@ -1,7 +1,11 @@
 import { useCallback } from "react";
 
 import * as constants from "../../constants";
-import { assertGame, broadcastHook, systemLogger } from "../../functions";
+import {
+  assertGame,
+  broadcastHook,
+  systemLogger,
+} from "../../functions/utilities";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 

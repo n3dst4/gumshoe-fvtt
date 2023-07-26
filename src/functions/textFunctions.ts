@@ -1,7 +1,7 @@
 import { escape as escapeText } from "html-escaper";
 
 import { NoteFormat } from "../types";
-import { memoizeNullaryOnce } from ".";
+import { memoizeNullaryOnce } from "./utilities";
 
 // /////////////////////////////////////////////////////////////////////////////
 // Toolbox

@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 
 import * as constants from "../constants";
-import { assertGame, fixLength } from "../functions";
+import { assertGame, fixLength } from "../functions/utilities";
 import { settings } from "../settings";
 import {
   EquipmentDataSourceData,

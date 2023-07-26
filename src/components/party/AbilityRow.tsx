@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { confirmADoodleDo } from "../../functions";
+import { confirmADoodleDo } from "../../functions/functionsThatUseSettings";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings";

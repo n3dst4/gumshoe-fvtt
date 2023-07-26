@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext } from "react";
 
-import { assertGame } from "../../functions";
+import { assertGame } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";
 import { absoluteCover } from "../absoluteCover";

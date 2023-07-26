@@ -1,6 +1,6 @@
 import system from "../../public/system.json";
 import * as constants from "../constants";
-import { assertGame } from "../functions";
+import { assertGame } from "../functions/utilities";
 import { settings } from "../settings";
 import { AnyItem } from "../v10Types";
 import { flaggedMigrations } from "./flaggedMigrations";

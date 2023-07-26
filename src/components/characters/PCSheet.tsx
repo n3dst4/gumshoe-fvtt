@@ -7,7 +7,7 @@ import React, {
 } from "react";
 
 import { occupationSlotIndex } from "../../constants";
-import { assertGame } from "../../functions";
+import { assertGame } from "../../functions/utilities";
 import { useTheme } from "../../hooks/useTheme";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings";

@@ -11,7 +11,7 @@ import {
   sortByKey,
   sortEntitiesByName,
   throttle,
-} from "./functionsThatDontUseSettings";
+} from "./utilities";
 
 const obj = {
   a: 1,

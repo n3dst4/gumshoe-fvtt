@@ -1,7 +1,7 @@
 import { ConfiguredObjectClassForName } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
 import { useCallback, useRef } from "react";
 
-import { assertGame } from "../../functions";
+import { assertGame } from "../../functions/utilities";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 

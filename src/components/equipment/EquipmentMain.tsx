@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useCallback } from "react";
 
-import { getTranslated } from "../../functions";
+import { getTranslated } from "../../functions/functionsThatUseSettings";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";
 import { assertEquipmentItem } from "../../v10Types";

@@ -1,4 +1,4 @@
-import { assertGame } from "../functions";
+import { assertGame } from "../functions/utilities";
 import { InvestigatorCombatant } from "../module/InvestigatorCombatant";
 import { settings } from "../settings";
 

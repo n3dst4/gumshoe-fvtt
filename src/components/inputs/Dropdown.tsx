@@ -12,7 +12,7 @@ import React, {
 import ReactDOM from "react-dom";
 import { FaChevronDown } from "react-icons/fa";
 
-import { systemLogger } from "../../functions";
+import { systemLogger } from "../../functions/utilities";
 import { useShowHideTransition } from "../transitions/useShowHideTransition";
 
 export const DropdownContainerContext =

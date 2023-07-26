@@ -1,6 +1,7 @@
 import React, { Fragment, useCallback, useContext } from "react";
 
-import { assertGame, confirmADoodleDo } from "../../../functions";
+import { confirmADoodleDo } from "../../../functions/functionsThatUseSettings";
+import { assertGame } from "../../../functions/utilities";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { assertWeaponItem } from "../../../v10Types";

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { weapon } from "../../../constants";
-import { sortEntitiesByName } from "../../../functions";
+import { sortEntitiesByName } from "../../../functions/utilities";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { Translate } from "../../Translate";
 import { WeaponRowEdit } from "./WeaponRowEdit";

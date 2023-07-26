@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 
-import { systemLogger } from "../functions";
+import { systemLogger } from "../functions/utilities";
 import { absoluteCover } from "./absoluteCover";
 
 // eslint-disable-next-line @typescript-eslint/ban-types

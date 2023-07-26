@@ -3,7 +3,8 @@ import React, { Fragment } from "react";
 import { FaEdit, FaEllipsisH, FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import { HiDocumentText } from "react-icons/hi";
 
-import { assertGame, getTranslated } from "../../functions";
+import { getTranslated } from "../../functions/functionsThatUseSettings";
+import { assertGame } from "../../functions/utilities";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 import { Dropdown } from "../inputs/Dropdown";
 import { Menu, MenuItem } from "../inputs/Menu";

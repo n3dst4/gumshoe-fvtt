@@ -1,12 +1,11 @@
 import React, { Fragment, useCallback, useState } from "react";
 
 import {
-  assertGame,
   confirmADoodleDo,
-  getDevMode,
   getTranslated,
-} from "../../functions";
+} from "../../functions/functionsThatUseSettings";
 import { convertNotes, toHtml } from "../../functions/textFunctions";
+import { assertGame, getDevMode } from "../../functions/utilities";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { Translate } from "../Translate";

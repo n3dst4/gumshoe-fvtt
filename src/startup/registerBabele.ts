@@ -1,4 +1,4 @@
-import { systemLogger } from "../functions";
+import { systemLogger } from "../functions/utilities";
 
 export const registerBabele = () => {
   // register babele translations

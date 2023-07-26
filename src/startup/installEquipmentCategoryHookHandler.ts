@@ -1,4 +1,4 @@
-import { assertGame } from "../functions";
+import { assertGame } from "../functions/utilities";
 import { settings } from "../settings";
 import { EquipmentDataSourceData } from "../types";
 import { isEquipmentItem } from "../v10Types";

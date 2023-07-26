@@ -8,7 +8,7 @@ import {
   FaTrash,
 } from "react-icons/fa";
 
-import { getTranslated } from "../../../functions";
+import { getTranslated } from "../../../functions/functionsThatUseSettings";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { assertIsEquipmentFieldType } from "../../../typeAssertions";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";

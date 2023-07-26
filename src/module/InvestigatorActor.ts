@@ -5,12 +5,11 @@ import {
   personalDetail,
 } from "../constants";
 import {
-  assertGame,
   confirmADoodleDo,
   getTranslated,
-  isGame,
-} from "../functions";
+} from "../functions/functionsThatUseSettings";
 import { convertNotes } from "../functions/textFunctions";
+import { assertGame, isGame } from "../functions/utilities";
 import { settings } from "../settings";
 import {
   AbilityType,

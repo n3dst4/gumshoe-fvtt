@@ -7,7 +7,10 @@ import {
   FaTrash,
 } from "react-icons/fa";
 
-import { confirmADoodleDo, getTranslated } from "../../../functions";
+import {
+  confirmADoodleDo,
+  getTranslated,
+} from "../../../functions/functionsThatUseSettings";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Dropdown } from "../../inputs/Dropdown";
 import { GridField } from "../../inputs/GridField";

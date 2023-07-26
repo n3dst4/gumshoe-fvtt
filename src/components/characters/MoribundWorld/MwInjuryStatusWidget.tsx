@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { assertGame, getTranslated } from "../../../functions";
+import { getTranslated } from "../../../functions/functionsThatUseSettings";
+import { assertGame } from "../../../functions/utilities";
 import { MwInjuryStatus } from "../../../types";
 
 interface MwInjuryStatusWidgetProps {

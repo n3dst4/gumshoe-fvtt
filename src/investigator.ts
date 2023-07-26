@@ -2,7 +2,7 @@ import "./investigator.less";
 
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { systemId } from "./constants";
-import { assertGame, systemLogger } from "./functions";
+import { assertGame, systemLogger } from "./functions/utilities";
 import { handleMwItemType } from "./startup/disableMwItemType";
 import { injectGlobalHelper } from "./startup/injectGlobalHelper";
 import { installAbilityCardChatWrangler } from "./startup/installAbilityCardChatWrangler";

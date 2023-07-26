@@ -1,4 +1,4 @@
-import { assertGame, isNullOrEmptyString } from "../functions";
+import { assertGame, isNullOrEmptyString } from "../functions/utilities";
 import {
   getDefaultGeneralAbilityCategory,
   getDefaultInvestigativeAbilityCategory,

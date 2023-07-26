@@ -1,7 +1,7 @@
 import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
 
 import { defaultCustomThemePath } from "../constants";
-import { assertGame, systemLogger } from "../functions";
+import { assertGame, systemLogger } from "../functions/utilities";
 import { settings } from "../settings";
 import { highContrastTheme } from "../themes/highContrastTheme";
 

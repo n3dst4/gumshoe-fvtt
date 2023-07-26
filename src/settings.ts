@@ -1,6 +1,6 @@
 import * as c from "./constants";
 import { defaultCustomThemePath, systemId } from "./constants";
-import { assertGame, mapValues } from "./functions";
+import { assertGame, mapValues } from "./functions/utilities";
 import { MigrationFlags } from "./migrations/types";
 import { pathOfCthulhuPreset } from "./presets";
 import { runtimeConfig } from "./runtime";

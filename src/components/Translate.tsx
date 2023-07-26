@@ -2,7 +2,7 @@ import Case from "case";
 import React, { useMemo } from "react";
 
 import { systemId } from "../constants";
-import { assertGame, getDevMode } from "../functions";
+import { assertGame, getDevMode } from "../functions/utilities";
 import { settings } from "../settings";
 
 type TranslateProps = {

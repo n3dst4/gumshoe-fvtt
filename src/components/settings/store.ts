@@ -10,7 +10,7 @@ import {
   moveKeyUp,
   renameProperty,
   systemLogger,
-} from "../../functions";
+} from "../../functions/utilities";
 import { pathOfCthulhuPreset } from "../../presets";
 import { SettingsDict } from "../../settings";
 import { EquipmentFieldType } from "../../types";

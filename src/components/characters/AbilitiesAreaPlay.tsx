@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { sortEntitiesByName } from "../../functions";
+import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings";
 import { assertActiveCharacterActor } from "../../v10Types";
