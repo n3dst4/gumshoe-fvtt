@@ -10,8 +10,8 @@ import {
   getTranslated,
   isGame,
 } from "../functions";
+import { convertNotes } from "../functions/textFunctions";
 import { settings } from "../settings";
-import { convertNotes } from "../textFunctions";
 import {
   AbilityType,
   BaseNote,

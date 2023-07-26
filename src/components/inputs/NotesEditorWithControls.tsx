@@ -6,8 +6,8 @@ import {
   getDevMode,
   getTranslated,
 } from "../../functions";
+import { convertNotes, toHtml } from "../../functions/textFunctions";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
-import { convertNotes, toHtml } from "../../textFunctions";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { Translate } from "../Translate";
 import { NotesEditor } from "./NotesEditor";

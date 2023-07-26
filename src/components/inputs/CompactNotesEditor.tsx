@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 
+import { toHtml } from "../../functions/textFunctions";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
-import { toHtml } from "../../textFunctions";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { AsyncTextArea } from "./AsyncTextArea";
 import { MarkdownEditor } from "./MarkdownEditor";
