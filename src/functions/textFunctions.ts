@@ -1,10 +1,14 @@
 import { escape as escapeText } from "html-escaper";
 
-import { memoizeNullaryOnce } from "./functions";
-import { NoteFormat } from "./types";
+import { NoteFormat } from "../types";
+import { memoizeNullaryOnce } from ".";
 
-const makeTurndownService = memoizeNullaryOnce(async () => {
-  console.log("Making turndown service");
+// /////////////////////////////////////////////////////////////////////////////
+// Toolbox
+// /////////////////////////////////////////////////////////////////////////////
+
+// allow bundle splitting of turndown
+const makeTurndown = memoizeNullaryOnce(async () => {
   const { default: TurndownService } = await import("turndown");
   class SafeTurndownService extends TurndownService {
     // by default, turndown escapes anything that looks like a markdown control
@@ -22,6 +26,7 @@ const makeTurndownService = memoizeNullaryOnce(async () => {
   return turndownService;
 });
 
+// allow bundle splitting of xss
 const createXss = memoizeNullaryOnce(async () => {
   const {
     FilterXSS,
@@ -56,34 +61,68 @@ const createXss = memoizeNullaryOnce(async () => {
   return xss;
 });
 
+async function enrichHtml(originalHtml: string): Promise<string> {
+  if (typeof TextEditor !== "undefined") {
+    const newHtml = await TextEditor.enrichHTML(originalHtml, {
+      // @ts-expect-error foundry types don't know about `async` yet
+      async: true,
+    });
+    return newHtml;
+  } else {
+    return originalHtml;
+  }
+}
+
 // /////////////////////////////////////////////////////////////////////////////
 // Converters
+// There are no plaintext <=> markdown converters because it's a no-op.
 // /////////////////////////////////////////////////////////////////////////////
 
-export function plainTextToHtml(source: string) {
-  return escapeText(source).replace(/\n/g, "<br/>");
-}
-
-async function markdownToHtml(markdown: string) {
-  const { marked } = await import("marked");
-  return marked(markdown);
-}
-
-export async function htmlToMarkdown(html: string) {
+async function htmlToMarkdown(html: string) {
   // ever first-time a cool regex and then realise you don't need it, but
   // you're so proud of your ninja regex skills dating back to doing Perl in the
   // 90s that you want to leave it in as a comment? Anyway check this bad boy
   // out. Turns out I don't need it because I've overridden turndown to stop it
   // doing any escaping at all.
   // return turndown(source).replace(/@(\w+)\\\[(\w+)\\\]\{([^}]*)\}/g, (m, p1, p2, p3) => `@${p1}[${p2}]{${p3}}`);
-  const turndownService = await makeTurndownService();
-  return turndownService.turndown(html);
+  const turndown = await makeTurndown();
+  return turndown.turndown(html);
 }
 
-export function htmlToPlaintext(html: string) {
+async function markdownToHtml(markdown: string) {
+  const { marked } = await import("marked");
+  return marked(markdown, { mangle: false, headerIds: false });
+}
+
+function plainTextToHtml(source: string) {
+  return escapeText(source).replace(/\n/g, "<br/>");
+}
+
+function htmlToPlaintext(html: string) {
   return htmlToMarkdown(html);
 }
 
+/**
+ * end-consumer function to convert a note to HTML.
+ */
+export async function toHtml(format: NoteFormat, source: string) {
+  let newHtml = "";
+  if (format === NoteFormat.plain) {
+    newHtml = plainTextToHtml(source);
+  } else if (format === NoteFormat.markdown) {
+    newHtml = await markdownToHtml(source);
+  } else if (format === NoteFormat.richText) {
+    newHtml = source;
+  }
+  const xss = await createXss();
+  const xssed = xss.process(newHtml);
+  const html = await enrichHtml(xssed);
+  return html;
+}
+
+/**
+ * convert a note from one format to another
+ */
 export async function convertNotes(
   oldFormat: NoteFormat,
   newFormat: NoteFormat,
@@ -116,28 +155,6 @@ export async function convertNotes(
     unsafeNewHtml = newSource;
   }
   const xss = await createXss();
-  const newHtml = await TextEditor.enrichHTML(xss.process(unsafeNewHtml), {
-    // @ts-expect-error foundry types don't know about `async` yet
-    async: true,
-  });
+  const newHtml = await enrichHtml(xss.process(unsafeNewHtml));
   return { newSource, newHtml };
-}
-
-export async function toHtml(format: NoteFormat, source: string) {
-  let newHtml = "";
-  if (format === NoteFormat.plain) {
-    newHtml = plainTextToHtml(source);
-  } else if (format === NoteFormat.markdown) {
-    newHtml = await markdownToHtml(source);
-  } else if (format === NoteFormat.richText) {
-    newHtml = source;
-  }
-  const xss = await createXss();
-  const xssed = xss.process(newHtml);
-  const html = await TextEditor.enrichHTML(
-    xssed,
-    // @ts-expect-error foundry types don't know about `async` yet
-    { async: true },
-  );
-  return html;
 }
