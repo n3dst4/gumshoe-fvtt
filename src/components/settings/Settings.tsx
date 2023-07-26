@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 
 import { settingsSaved } from "../../constants";
-import { confirmADoodleDo } from "../../functions/functionsThatUseSettings";
+import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
 import { useTheme } from "../../hooks/useTheme";
 import { settings } from "../../settings";

@@ -1,9 +1,7 @@
 import React, { ChangeEvent, Fragment, useCallback, useState } from "react";
 
-import {
-  confirmADoodleDo,
-  getTranslated,
-} from "../../functions/functionsThatUseSettings";
+import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
+import { getTranslated } from "../../functions/getTranslated";
 import { assertGame } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";

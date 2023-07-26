@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback, useContext } from "react";
 
-import { getTranslated } from "../../functions/functionsThatUseSettings";
+import { getTranslated } from "../../functions/getTranslated";
 import { assertGame, getDevMode } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { runtimeConfig } from "../../runtime";

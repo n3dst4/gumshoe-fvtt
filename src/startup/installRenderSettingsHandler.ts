@@ -1,4 +1,4 @@
-import { getTranslated } from "../functions/functionsThatUseSettings";
+import { getTranslated } from "../functions/getTranslated";
 import { assertGame } from "../functions/utilities";
 import { investigatorSettingsClassInstance } from "../module/SettingsClass";
 

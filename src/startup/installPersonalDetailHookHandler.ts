@@ -4,10 +4,8 @@ import {
   occupationSlotIndex,
   personalDetail,
 } from "../constants";
-import {
-  confirmADoodleDo,
-  getTranslated,
-} from "../functions/functionsThatUseSettings";
+import { confirmADoodleDo } from "../functions/confirmADoodleDo";
+import { getTranslated } from "../functions/getTranslated";
 import { assertGame, isNullOrEmptyString } from "../functions/utilities";
 import { settings } from "../settings";
 import { isActiveCharacterActor, isPersonalDetailItem } from "../v10Types";

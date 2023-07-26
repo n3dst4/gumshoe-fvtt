@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 
-import { confirmADoodleDo } from "../../functions/functionsThatUseSettings";
+import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";

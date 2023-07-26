@@ -1,9 +1,7 @@
 import React, { Fragment, useCallback, useState } from "react";
 
-import {
-  confirmADoodleDo,
-  getTranslated,
-} from "../../functions/functionsThatUseSettings";
+import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
+import { getTranslated } from "../../functions/getTranslated";
 import { convertNotes, toHtml } from "../../functions/textFunctions";
 import { assertGame, getDevMode } from "../../functions/utilities";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
