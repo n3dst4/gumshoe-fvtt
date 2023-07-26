@@ -1,6 +1,6 @@
 import React from "react";
 
-import { sortEntitiesByName } from "../../../functions";
+import { sortEntitiesByName } from "../../../functions/utilities";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { assertActiveCharacterActor } from "../../../v10Types";
 import { AbilitiesColumnMW } from "../AbilitiesColumnMW";

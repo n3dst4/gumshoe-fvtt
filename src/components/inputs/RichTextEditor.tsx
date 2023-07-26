@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
-import { wait } from "../../functions";
+import { wait } from "../../functions/utilities";
 import { absoluteCover } from "../absoluteCover";
 type RichTextEditorProps = {
   value: string;

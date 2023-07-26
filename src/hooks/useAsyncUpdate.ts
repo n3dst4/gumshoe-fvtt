@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { throttle } from "../functions";
+import { throttle } from "../functions/utilities";
 
 /**
  * Hook for handling async updates, e,g, where you want to be calling an

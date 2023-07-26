@@ -7,7 +7,7 @@ import { AbilityTestMwCard } from "../components/messageCards/AbilityTestMwCard"
 import { AttackCard } from "../components/messageCards/AttackCard";
 import { isAbilityCardMode } from "../components/messageCards/types";
 import * as constants from "../constants";
-import { assertGame, systemLogger } from "../functions";
+import { assertGame, systemLogger } from "../functions/utilities";
 import { MWDifficulty } from "../types";
 
 export const installAbilityCardChatWrangler = () => {

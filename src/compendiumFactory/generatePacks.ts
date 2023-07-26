@@ -6,7 +6,7 @@ import {
   packNames,
   systemId,
 } from "../constants";
-import { assertGame, systemLogger } from "../functions";
+import { assertGame, systemLogger } from "../functions/utilities";
 import * as moribundWorldData from "./moribundWorldData";
 import * as niceBlackAgentsData from "./niceBlackAgentsData";
 import * as nothingToFearData from "./nothingToFearData";

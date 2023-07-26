@@ -1,5 +1,5 @@
 import * as constants from "../../constants";
-import { assertGame } from "../../functions";
+import { assertGame } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings";
 import { isGeneralAbilityItem, isNPCActor } from "../../v10Types";

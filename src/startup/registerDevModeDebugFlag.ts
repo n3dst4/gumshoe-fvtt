@@ -1,4 +1,4 @@
-import { assertGame } from "../functions";
+import { assertGame } from "../functions/utilities";
 
 export const registerDevModeDebugFlag = () => {
   Hooks.on("devModeReady", () => {

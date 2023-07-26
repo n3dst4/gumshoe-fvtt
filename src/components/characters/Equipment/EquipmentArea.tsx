@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { getTranslated } from "../../../functions";
+import { getTranslated } from "../../../functions/getTranslated";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { settings } from "../../../settings";
 import { isEquipmentItem } from "../../../v10Types";

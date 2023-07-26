@@ -1,6 +1,6 @@
 import { PresetV1, ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
 
-import { assertNotNull } from "../functions";
+import { assertNotNull } from "../functions/utilities";
 import { runtimeConfig } from "../runtime";
 import { themeFactory } from "../themes/functions";
 

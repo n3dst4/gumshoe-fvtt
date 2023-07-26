@@ -1,7 +1,11 @@
 import { cx } from "@emotion/css";
 import React, { Fragment, MouseEvent, ReactNode, useCallback } from "react";
 
-import { assertGame, assertNotNull, sortByKey } from "../../functions";
+import {
+  assertGame,
+  assertNotNull,
+  sortByKey,
+} from "../../functions/utilities";
 import { useRefStash } from "../../hooks/useRefStash";
 import { settings } from "../../settings";
 import { CombatantRow } from "./CombatantRow";

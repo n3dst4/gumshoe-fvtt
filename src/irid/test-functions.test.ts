@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { assertNotNull } from "../functions";
+import { assertNotNull } from "../functions/utilities";
 import { hslToRGB, rgbToHSL } from "./conversion-functions";
 import { hslToCSSHSL, rgbToCSSRGB, rgbToHex } from "./formatting-functions";
 import { cssHSLToHSL, cssRGBToRGB, hexToRGB } from "./parsing-functions";

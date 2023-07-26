@@ -1,4 +1,5 @@
-import { assertGame, getTranslated } from "../functions";
+import { getTranslated } from "../functions/getTranslated";
+import { assertGame } from "../functions/utilities";
 import { investigatorSettingsClassInstance } from "../module/SettingsClass";
 
 export const installRenderSettingsHandler = () => {

@@ -1,4 +1,4 @@
-import { hasOwnProperty } from "./functions";
+import { hasOwnProperty } from "./functions/utilities";
 import { EquipmentFieldType, SocketHookAction } from "./types";
 
 export function isSocketHookAction<T>(

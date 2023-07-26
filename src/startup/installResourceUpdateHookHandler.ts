@@ -1,4 +1,4 @@
-import { assertGame } from "../functions";
+import { assertGame } from "../functions/utilities";
 import { AnyItem, isGeneralAbilityItem } from "../v10Types";
 
 export function installResourceUpdateHookHandler() {

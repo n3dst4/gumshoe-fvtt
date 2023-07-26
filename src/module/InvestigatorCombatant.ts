@@ -1,5 +1,5 @@
 import * as constants from "../constants";
-import { assertGame, isNullOrEmptyString } from "../functions";
+import { assertGame, isNullOrEmptyString } from "../functions/utilities";
 import { settings } from "../settings";
 import {
   assertActiveCharacterActor,

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import * as constants from "../../constants";
-import { assertGame, sortEntitiesByName } from "../../functions";
+import { assertGame, sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { runtimeConfig } from "../../runtime";

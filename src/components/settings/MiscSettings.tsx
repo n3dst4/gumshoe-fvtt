@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { getDevMode } from "../../functions";
+import { getDevMode } from "../../functions/utilities";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { Checkbox } from "../inputs/Checkbox";
 import { InputGrid } from "../inputs/InputGrid";

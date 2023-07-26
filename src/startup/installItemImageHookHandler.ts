@@ -5,7 +5,7 @@ import {
   personalDetailIcon,
   weaponIcon,
 } from "../constants";
-import { assertGame, isNullOrEmptyString } from "../functions";
+import { assertGame, isNullOrEmptyString } from "../functions/utilities";
 import {
   isEquipmentItem,
   isGeneralAbilityItem,

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { mwItem } from "../../../constants";
-import { sortEntitiesByName } from "../../../functions";
+import { sortEntitiesByName } from "../../../functions/utilities";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { MwType } from "../../../types";
 import { Translate } from "../../Translate";

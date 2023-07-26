@@ -1,7 +1,7 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import React, { useCallback, useContext } from "react";
 
-import { sortEntitiesByName } from "../../../functions";
+import { sortEntitiesByName } from "../../../functions/utilities";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { ThemeContext } from "../../../themes/ThemeContext";

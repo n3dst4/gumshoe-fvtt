@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 
-import { assertGame, confirmADoodleDo } from "../../functions";
+import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
+import { assertGame } from "../../functions/utilities";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { MwType } from "../../types";
