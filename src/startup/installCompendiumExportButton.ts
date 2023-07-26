@@ -5,7 +5,7 @@ import {
   importCompendium,
 } from "../compendiumFactory/importCompendium";
 import { assertGame, getUserFile } from "../functions";
-import { saveJson } from "../saveFile";
+import { saveJson } from "../functions/saveFile";
 
 const importButtonIconClass = "fa-cloud-upload-alt";
 const importButtonSpinnerClass = "fa-spinner fa-pulse";
