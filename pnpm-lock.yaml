@@ -149,8 +149,8 @@ devDependencies:
     specifier: ^11.1.1
     version: 11.1.1
   jest-diff:
-    specifier: ^29.6.1
-    version: 29.6.1
+    specifier: ^29.6.2
+    version: 29.6.2
   jsdom:
     specifier: ^22.1.0
     version: 22.1.0
@@ -3357,14 +3357,14 @@ packages:
       '@pkgjs/parseargs': 0.11.0
     dev: true
 
-  /jest-diff@29.6.1:
-    resolution: {integrity: sha512-FsNCvinvl8oVxpNLttNQX7FAq7vR+gMDGj90tiP7siWw1UdakWUGqrylpsYrpvj908IYckm5Y0Q7azNAozU1Kg==}
+  /jest-diff@29.6.2:
+    resolution: {integrity: sha512-t+ST7CB9GX5F2xKwhwCf0TAR17uNDiaPTZnVymP9lw0lssa9vG+AFyDZoeIHStU3WowFFwT+ky+er0WVl2yGhA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       chalk: 4.1.2
       diff-sequences: 29.4.3
       jest-get-type: 29.4.3
-      pretty-format: 29.6.1
+      pretty-format: 29.6.2
     dev: true
 
   /jest-get-type@29.4.3:
@@ -4049,6 +4049,15 @@ packages:
 
   /pretty-format@29.6.1:
     resolution: {integrity: sha512-7jRj+yXO0W7e4/tSJKoR7HRIHLPPjtNaUGG2xxKQnGvPNRkgWcQ0AZX6P4KBRJN4FcTBWb3sa7DVUJmocYuoog==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    dependencies:
+      '@jest/schemas': 29.6.0
+      ansi-styles: 5.2.0
+      react-is: 18.2.0
+    dev: true
+
+  /pretty-format@29.6.2:
+    resolution: {integrity: sha512-1q0oC8eRveTg5nnBEWMXAU2qpv65Gnuf2eCQzSjxpWFkPaPARwqZZDGuNE0zPAZfTCHzIk3A8dIjwlQKKLphyg==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/schemas': 29.6.0
