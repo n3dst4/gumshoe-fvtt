@@ -9,6 +9,7 @@
   - [Flagged migrations](#flagged-migrations)
   - [Generating Compendium packs](#generating-compendium-packs)
   - [Translations](#translations)
+    - [How to pull translations from Transifex](#how-to-pull-translations-from-transifex)
     - [Getting set up to pull translations from Transifex](#getting-set-up-to-pull-translations-from-transifex)
   - [Adding Actor or Item data fields](#adding-actor-or-item-data-fields)
   - [Adding system settings](#adding-system-settings)
@@ -16,7 +17,6 @@
   - [Development flow](#development-flow)
   - [Release process](#release-process)
     - [What happens if the CI pipeline fails?](#what-happens-if-the-ci-pipeline-fails)
-  - [How to pull translations from Transifex](#how-to-pull-translations-from-transifex)
   - [GitLab Legacy](#gitlab-legacy)
 
 ## Development & general hacking
@@ -73,7 +73,7 @@ There will be a flag in there for every migration that has been run. If you want
 
 ## Translations
 
-There are three npm tasks pertaining to translations:
+There are two npm tasks pertaining to translations:
 
 * `npm run build-pack-translations` will:
   * populate `src/lang/babele-sources` with template translation files based on the packs.
@@ -83,6 +83,28 @@ There are three npm tasks pertaining to translations:
   * THIS WILL CLOBBER ANY JSON MODIFICATIONS WHICH HAVE NOT BEEN UPLOADED TO TRANSIFEX!
 
 To keep the translation imports running sweetly, you will need to update `.tx/config` to map everything to the right places.
+
+### How to pull translations from Transifex
+
+```sh
+pn pull-translations
+```
+
+The command to pull translations has gone through a few iterations and never quite seemed right. Here's the current version (this is in `package.json`):
+
+```sh
+tx pull --all --force --workers 16
+```
+
+* `--all` - pull all languages, not just the pre-existing ones.
+* `--workers 16` - seems to make sense on a 16-core machine. I'm not sure if it's actually helping.
+* `--force` - overwrite "newer" files. This should only happen if there has been a PR or commit that changed the translations without also uploading those changes to Transifex.
+
+> ⚠️ After running `pn pullTranslations` (or the `tx pull` command above), you MUST look through the changes in git and confirm that they make sense. Look for languages with a lot of changes and double check that you are not accidentally overwriting changes that were added to git but not TX.
+>
+> ⚠️ To that point - when someone sends a PR with translation changes, it's better to feed those into TX (resources -> language -> upload file) and then pull them back down again, rather than committing directly. This way TX remains the single source of truth for translations.
+
+
 
 ### Getting set up to pull translations from Transifex
 
@@ -194,27 +216,6 @@ To perform a release:
 
 2. Fix the problem, commit.
 3. Run `do-release.sh` again.
-
-
-## How to pull translations from Transifex
-
-```sh
-pn pull-translations
-```
-
-The command to pull translations has gone through a few iterations and never quite seemed right. Here's the current version (this is in `package.json`):
-
-```sh
-tx pull --all --force --workers 16
-```
-
-* `--all` - pull all languages, not just the pre-existing ones.
-* `--workers 16` - seems to make sense on a 16-core machine. I'm not sure if it's actually helping.
-* `--force` - overwrite "newer" files. This should only happen if there has been a PR or commit that changed the translations without also uploading those changes to Transifex.
-
-> ⚠️ After running `pn pullTranslations` (or the `tx pull` command above), you MUST look through the changes in git and confirm that they make sense. Look for languages with a lot of changes and double check that you are not accidentally overwriting changes that were added to git but not TX.
->
-> ⚠️ To that point - when someone sends a PR with translation changes, it's better to feed those into TX (resources -> language -> upload file) and then pull them back down again, rather than committing directly. This way TX remains the single source of truth for translations.
 
 
 ## GitLab Legacy
