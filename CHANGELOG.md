@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased changes
+## 7.4.0 (2023-08-05)
 
 * Updated German translations (#380) Cheers @muwak!
 
