@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased changes
+
+* Updated German translations (#380) Cheers @muwak!
+
 ## 7.3.2 (2023-07-11)
 
 * BUG FIX: Initiative values were sometimes not being remembered if you refreshed the page. Fixed. (#346)
