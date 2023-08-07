@@ -91,7 +91,7 @@ async function htmlToMarkdown(html: string) {
 
 async function markdownToHtml(markdown: string) {
   const { marked } = await import("marked");
-  return marked(markdown, { mangle: false, headerIds: false });
+  return marked(markdown);
 }
 
 function plainTextToHtml(source: string) {
