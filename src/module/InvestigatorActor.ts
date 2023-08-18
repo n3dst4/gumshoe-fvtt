@@ -426,12 +426,12 @@ export class InvestigatorActor extends Actor {
 
   // ###########################################################################
   // For the party sheet
-  getActorIds = () => {
+  getActorIds = (): string[] => {
     assertPartyActor(this);
     return this.system.actorIds;
   };
 
-  setActorIds = (actorIds: string[]) => {
+  setActorIds = (actorIds: string[]): Promise<this | undefined> => {
     assertPartyActor(this);
     return this.update({ system: { actorIds } });
   };

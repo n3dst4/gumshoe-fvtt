@@ -68,7 +68,7 @@
     "prettier": "^3.0.2",
     "rimraf": "^5.0.1",
     "rollup-plugin-visualizer": "^5.9.2",
-    "typescript": "~4.7.4",
+    "typescript": "~5.1.6",
     "vite": "^4.4.9",
     "vite-plugin-checker": "^0.6.1",
     "vitest": "^0.34.2",
@@ -89,5 +89,10 @@
     "turndown": "^7.1.2",
     "xss": "^1.0.14",
     "yamljs": "^0.3.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "tinymce@5.10.1": "patches/tinymce@5.10.1.patch"
+    }
   }
 }

@@ -112,7 +112,7 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(
               (<Translate>Hard</Translate>)
             </span>
           )}
-          {difficulty < -1 && (
+          {difficulty !== "easy" && difficulty < -1 && (
             <span>
               (<Translate>Very Hard</Translate>)
             </span>

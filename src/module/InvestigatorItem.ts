@@ -367,7 +367,7 @@ export class InvestigatorItem extends Item {
     }
   };
 
-  setSpecialities = (newSpecs: string[]) => {
+  setSpecialities = (newSpecs: string[]): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({
       system: {
@@ -440,7 +440,7 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  getAmmoMax = () => {
+  getAmmoMax = (): number => {
     assertWeaponItem(this);
     return this.system.ammo?.max || 0;
   };
