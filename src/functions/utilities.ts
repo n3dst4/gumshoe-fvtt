@@ -308,18 +308,35 @@ export function debounce<T extends (...args: any[]) => any>(
 }
 
 /**
- * Simple throttle function
+ * Simple throttle function handling user inputs.
+ *
+ * The returned function always returns void, so it's not suitable for functions
+ * where you need the return value.
+ *
+ * Some calls *will* be dropped in a throttling scenario. When the taget
+ * function is eventually called, it will be called with the most recent
+ * arguments. This fits with a user input scenario where you don't care about
+ * intermediate values, i.e. the "f", "fr", "fre" on the way to "fred" .
  */
 export function throttle<T extends (...args: any[]) => any>(
   fn: T,
-  delay: number,
+  period: number,
 ): (...args: Parameters<T>) => void {
-  let lastCall = 0;
+  let startAt = 0;
+  let timeout: ReturnType<typeof setTimeout> | null = null;
   return (...args: Parameters<T>) => {
     const now = Date.now();
-    if (now - lastCall > delay) {
-      lastCall = now;
-      fn(...args);
+    if (now - startAt > period) {
+      startAt = now;
     }
+    const delay = startAt + period - now;
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      fn(...args);
+      timeout = null;
+      startAt = Date.now();
+    }, delay);
   };
 }
