@@ -34,6 +34,7 @@ export const TextInput: React.FC<TextInputProps> = ({
 
   return (
     <input
+      role="text-input"
       size={3}
       id={id}
       css={{
