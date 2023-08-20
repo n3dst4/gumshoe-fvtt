@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+import { afterEach, vi } from "vitest";
 
 const noop = () => {};
 
@@ -12,3 +12,6 @@ global.Hooks = {
 global.jest = {
   advanceTimersByTime: vi.advanceTimersByTime.bind(vi),
 };
+
+// see https://testing-library.com/docs/react-testing-library/api/#cleanup
+global.afterEach = afterEach;
