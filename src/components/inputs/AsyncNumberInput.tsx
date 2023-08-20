@@ -1,8 +1,8 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback } from "react";
 
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { ThemeContext } from "../../themes/ThemeContext";
 import { TextInput } from "./TextInput";
+import { ValidationResult } from "./types";
 
 type AsyncNumberInputProps = {
   value: undefined | number;
@@ -14,16 +14,6 @@ type AsyncNumberInputProps = {
   noPlusMinus?: boolean;
   smallButtons?: boolean;
 };
-
-export type ValidationResult =
-  | {
-      state: "failed";
-      reasons: string[];
-    }
-  | {
-      state: "succeeded";
-      value: number;
-    };
 
 const adjust = (display: string, by: number, min?: number, max?: number) => {
   let result = Number(display) + by;
@@ -112,11 +102,7 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
     [display, max, min, onChange],
   );
 
-  const result = validate(display);
-
-  const theme = useContext(ThemeContext);
-
-  const errorColor = theme.colors.bgTransDangerPrimary;
+  const validationResult = validate(display);
 
   return (
     <div
@@ -131,9 +117,6 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
           fontSize: smallButtons ? "0.6em" : undefined,
         },
       }}
-      style={{
-        color: result.state === "failed" ? "red" : undefined,
-      }}
       className={className}
     >
       {(noPlusMinus === undefined || !noPlusMinus) && (
@@ -147,14 +130,11 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
         </button>
       )}
       <TextInput
+        validation={validationResult}
         css={{
           flex: 1,
           flexBasis: "min-content",
           userSelect: "text",
-        }}
-        style={{
-          // color: result.state === "failed" ? errorColor : undefined,
-          backgroundColor: result.state === "failed" ? errorColor : undefined,
         }}
         value={display}
         onChange={onChange}

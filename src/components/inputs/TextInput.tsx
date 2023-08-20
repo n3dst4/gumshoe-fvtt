@@ -1,6 +1,9 @@
+import { cx } from "@emotion/css";
 import React, { ChangeEvent, useCallback, useContext } from "react";
 
+import { ThemeContext } from "../../themes/ThemeContext";
 import { IdContext } from "../IdContext";
+import { ValidationResult } from "./types";
 
 type TextInputProps = {
   className?: string;
@@ -11,7 +14,7 @@ type TextInputProps = {
   onBlur?: () => void;
   disabled?: boolean;
   placeholder?: string;
-  style?: React.CSSProperties;
+  validation?: ValidationResult;
 };
 
 export const TextInput: React.FC<TextInputProps> = ({
@@ -23,7 +26,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   onBlur,
   disabled,
   placeholder,
-  style,
+  validation,
 }) => {
   const id = useContext(IdContext);
 
@@ -33,6 +36,10 @@ export const TextInput: React.FC<TextInputProps> = ({
     },
     [onChange],
   );
+
+  const theme = useContext(ThemeContext);
+
+  const errorColor = theme.colors.bgTransDangerPrimary;
 
   return (
     <input
@@ -47,8 +54,11 @@ export const TextInput: React.FC<TextInputProps> = ({
           fontStyle: "italic",
         },
       }}
-      style={style}
-      className={className}
+      style={{
+        backgroundColor:
+          validation?.state === "failed" ? errorColor : undefined,
+      }}
+      className={cx(className, validation?.state === "failed" && "error")}
       data-lpignore="true"
       value={value}
       defaultValue={defaultValue}

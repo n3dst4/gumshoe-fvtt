@@ -50,10 +50,14 @@ describe.each<[string, string, string | undefined, string | undefined]>([
   ["too high", "-100", undefined, "-200"],
   ["too high", "100", undefined, "-200"],
   ["too high", Number.MAX_SAFE_INTEGER.toString(), undefined, "-200"],
+  ["too low", "-1", "0", undefined],
+  ["too low", Number.MIN_SAFE_INTEGER.toString(), "0", undefined],
+  ["too low", "0", "1", undefined],
+  ["too low", "100", "200", undefined],
 ])(
   "when input is %s (input %s, min %s, max %s)",
   async (_, input, min, max) => {
-    it("should not call upstream onChange", async () => {
+    async function setup() {
       const onChange = vi.fn();
       const { getByRole } = render(
         <AsyncNumberInput
@@ -67,10 +71,19 @@ describe.each<[string, string, string | undefined, string | undefined]>([
       const inputEl = getByRole("text-input");
       inputEl.focus();
       await user.keyboard("{backspace}" + input);
-      expect(getByRole("text-input").getAttribute("value")).toBe(input);
+      return { inputEl, onChange };
+    }
+
+    it("should enter error mode", async () => {
+      const { inputEl, onChange } = await setup();
+      expect(inputEl.getAttribute("value")).toBe(input);
       expect(onChange).toHaveBeenCalledTimes(0);
       vi.advanceTimersByTime(inputThrottleTime * 2);
       expect(onChange).toHaveBeenCalledTimes(0);
+    });
+    it("should show error state", async () => {
+      const { inputEl } = await setup();
+      expect(inputEl.className.split(" ")).toContain("error");
     });
   },
 );
