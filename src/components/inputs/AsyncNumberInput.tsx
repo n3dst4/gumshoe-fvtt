@@ -1,7 +1,7 @@
-import { css } from "@emotion/react";
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
+import { ThemeContext } from "../../themes/ThemeContext";
 import { TextInput } from "./TextInput";
 
 type AsyncNumberInputProps = {
@@ -17,11 +17,11 @@ type AsyncNumberInputProps = {
 
 export type ValidationResult =
   | {
-      validation: "failed";
+      state: "failed";
       reasons: string[];
     }
   | {
-      validation: "succeeded";
+      state: "succeeded";
       value: number;
     };
 
@@ -54,22 +54,22 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
       const num = Number(text);
       if (Number.isNaN(num)) {
         return {
-          validation: "failed",
+          state: "failed",
           reasons: ["Not a number"],
         };
       } else if (min !== undefined && num < min) {
         return {
-          validation: "failed",
+          state: "failed",
           reasons: ["Too low"],
         };
       } else if (max !== undefined && num > max) {
         return {
-          validation: "failed",
+          state: "failed",
           reasons: ["Too high"],
         };
       } else {
         return {
-          validation: "succeeded",
+          state: "succeeded",
           value: num,
         };
       }
@@ -77,10 +77,14 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
     [max, min],
   );
 
+  // const [validationResult, setValidationResult] = useState<ValidationResult>(
+  //   validate(value?.toString() || ""),
+  // );
+
   const onChangeString = useCallback(
     (text: string) => {
       const result = validate(text);
-      if (result.validation === "succeeded") {
+      if (result.state === "succeeded") {
         onChangeOrig(result.value);
       }
     },
@@ -110,6 +114,10 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
 
   const result = validate(display);
 
+  const theme = useContext(ThemeContext);
+
+  const errorColor = theme.colors.bgTransDangerPrimary;
+
   return (
     <div
       css={{
@@ -122,6 +130,9 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
           padding: "0 0.25em",
           fontSize: smallButtons ? "0.6em" : undefined,
         },
+      }}
+      style={{
+        color: result.state === "failed" ? "red" : undefined,
       }}
       className={className}
     >
@@ -136,12 +147,15 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
         </button>
       )}
       <TextInput
-        css={css`
-          flex: 1;
-          flex-basis: min-content;
-          color: ${result.validation === "failed" ? "red" : undefined};
-          user-select: "text";
-        `}
+        css={{
+          flex: 1,
+          flexBasis: "min-content",
+          userSelect: "text",
+        }}
+        style={{
+          // color: result.state === "failed" ? errorColor : undefined,
+          backgroundColor: result.state === "failed" ? errorColor : undefined,
+        }}
         value={display}
         onChange={onChange}
         onFocus={onFocus}

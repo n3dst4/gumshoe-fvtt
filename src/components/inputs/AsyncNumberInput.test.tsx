@@ -1,9 +1,10 @@
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
-import { afterAll, beforeEach, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { inputThrottleTime } from "../../constants";
+import { isNullOrEmptyString } from "../../functions/utilities";
 import { AsyncNumberInput } from "./AsyncNumberInput";
 
 // set up uiser interactions
@@ -18,13 +19,13 @@ beforeEach(() => {
   vi.useFakeTimers();
 });
 
-afterAll(() => {
+afterEach(() => {
   vi.useRealTimers();
 });
 
 it("should show input value and call onChange eventually", async () => {
   const onChange = vi.fn();
-  const { getByRole, unmount } = render(
+  const { getByRole } = render(
     <AsyncNumberInput value={2} onChange={onChange} />,
   );
   const input = getByRole("text-input");
@@ -38,6 +39,38 @@ it("should show input value and call onChange eventually", async () => {
   expect(onChange).toHaveBeenCalledTimes(1);
   expect(onChange).toHaveBeenCalledWith(123);
 
-  unmount();
   vi.useRealTimers();
 });
+
+describe.each<[string, string, string | undefined, string | undefined]>([
+  ["too high", "11", undefined, "10"],
+  ["too high", "99", undefined, "10"],
+  ["too high", Number.MAX_SAFE_INTEGER.toString(), undefined, "10"],
+  ["too high", "0", undefined, "-1"],
+  ["too high", "-100", undefined, "-200"],
+  ["too high", "100", undefined, "-200"],
+  ["too high", Number.MAX_SAFE_INTEGER.toString(), undefined, "-200"],
+])(
+  "when input is %s (input %s, min %s, max %s)",
+  async (_, input, min, max) => {
+    it("should not call upstream onChange", async () => {
+      const onChange = vi.fn();
+      const { getByRole } = render(
+        <AsyncNumberInput
+          value={2}
+          onChange={onChange}
+          min={isNullOrEmptyString(min) ? undefined : Number(min)}
+          max={isNullOrEmptyString(max) ? undefined : Number(max)}
+          className="test"
+        />,
+      );
+      const inputEl = getByRole("text-input");
+      inputEl.focus();
+      await user.keyboard("{backspace}" + input);
+      expect(getByRole("text-input").getAttribute("value")).toBe(input);
+      expect(onChange).toHaveBeenCalledTimes(0);
+      vi.advanceTimersByTime(inputThrottleTime * 2);
+      expect(onChange).toHaveBeenCalledTimes(0);
+    });
+  },
+);

@@ -11,6 +11,7 @@ type TextInputProps = {
   onBlur?: () => void;
   disabled?: boolean;
   placeholder?: string;
+  style?: React.CSSProperties;
 };
 
 export const TextInput: React.FC<TextInputProps> = ({
@@ -22,6 +23,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   onBlur,
   disabled,
   placeholder,
+  style,
 }) => {
   const id = useContext(IdContext);
 
@@ -45,6 +47,7 @@ export const TextInput: React.FC<TextInputProps> = ({
           fontStyle: "italic",
         },
       }}
+      style={style}
       className={className}
       data-lpignore="true"
       value={value}
