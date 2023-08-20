@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import { expect, it, vi } from "vitest";
 
+import { inputThrottleTime } from "../constants";
 import { useAsyncUpdate } from "./useAsyncUpdate";
 
 // this kinda restests the throttle function, but it's a good sanity check
@@ -21,7 +22,7 @@ it("should follow a typical scenario", () => {
   rerender();
   expect(result.current.display).toEqual("foo");
   expect(onChangeSpy).not.toHaveBeenCalled();
-  vi.advanceTimersByTime(499);
+  vi.advanceTimersByTime(inputThrottleTime - 1);
   rerender();
   expect(result.current.display).toEqual("foo");
   expect(onChangeSpy).not.toHaveBeenCalled();
@@ -46,7 +47,7 @@ it("should follow a typical scenario", () => {
   rerender();
   expect(result.current.display).toEqual("baz");
   onChange("qux");
-  vi.advanceTimersByTime(439);
+  vi.advanceTimersByTime(inputThrottleTime - 20 - 20 - 20 - 1);
   rerender();
   expect(result.current.display).toEqual("qux");
   expect(onChangeSpy).toHaveBeenCalledTimes(1);

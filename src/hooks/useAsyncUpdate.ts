@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { inputThrottleTime } from "../constants";
 import { throttle } from "../functions/utilities";
 
 /**
@@ -31,7 +32,7 @@ export const useAsyncUpdate = (
   // we only fire the update event every so often to avoid spamming the
   // network
   const onChangeThrottled = useMemo(() => {
-    return throttle(onChangeOrig, 500);
+    return throttle(onChangeOrig, inputThrottleTime);
   }, [onChangeOrig]);
 
   const onChange = useCallback(
