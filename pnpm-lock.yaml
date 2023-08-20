@@ -26,8 +26,8 @@ dependencies:
     specifier: ^2.2.3
     version: 2.2.3
   marked:
-    specifier: ^7.0.3
-    version: 7.0.3
+    specifier: ^7.0.4
+    version: 7.0.4
   nanoid:
     specifier: ^4.0.2
     version: 4.0.2
@@ -2604,7 +2604,7 @@ packages:
       eslint-plugin-es: 4.1.0(eslint@8.47.0)
       eslint-utils: 3.0.0(eslint@8.47.0)
       ignore: 5.2.4
-      is-core-module: 2.12.1
+      is-core-module: 2.13.0
       minimatch: 3.1.2
       resolve: 1.22.3
       semver: 7.5.4
@@ -3703,8 +3703,8 @@ packages:
     dev: true
     optional: true
 
-  /marked@7.0.3:
-    resolution: {integrity: sha512-ev2uM40p0zQ/GbvqotfKcSWEa59fJwluGZj5dcaUOwDRrB1F3dncdXy8NWUApk4fi8atU3kTBOwjyjZ0ud0dxw==}
+  /marked@7.0.4:
+    resolution: {integrity: sha512-t8eP0dXRJMtMvBojtkcsA7n48BkauktUKzfkPSCq85ZMTJ0v76Rke4DYz01omYpPTUh4p/f7HePgRo3ebG8+QQ==}
     engines: {node: '>= 16'}
     hasBin: true
     dev: false
