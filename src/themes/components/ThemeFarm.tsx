@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 
 import { runtimeConfig } from "../../runtime";
+import { TextInputTest } from "./TextInputTest";
 import { ThemeSwatch } from "./ThemeSwatch";
 
 type ThemeFarmProps = {
@@ -16,6 +17,7 @@ export const ThemeFarm: React.FC<ThemeFarmProps> = ({
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#111",
+        color: "#fff",
         position: "absolute",
         top: 0,
         left: 0,
@@ -37,6 +39,13 @@ export const ThemeFarm: React.FC<ThemeFarmProps> = ({
         {Object.keys(runtimeConfig.themes).map<ReactNode>((id) => (
           <ThemeSwatch key={id} theme={runtimeConfig.themes[id]} />
         ))}
+      </div>
+      <div
+        css={{
+          flex: 1,
+        }}
+      >
+        <TextInputTest />
       </div>
     </div>
   );

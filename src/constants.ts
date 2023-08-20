@@ -12,6 +12,7 @@ export const reactifiedCombatSidebarTemplatePath =
 export const customSystem = "customSystem" as const;
 export const genericOccupationDefault = "Investigator";
 export const showEmptyInvestigativeCategoriesDefault = true;
+export const inputThrottleTime = 500;
 
 // item types
 export const investigativeAbility = "investigativeAbility" as const;

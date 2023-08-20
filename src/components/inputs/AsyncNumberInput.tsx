@@ -1,8 +1,8 @@
-import { css } from "@emotion/react";
 import React, { useCallback } from "react";
 
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextInput } from "./TextInput";
+import { ValidationResult } from "./types";
 
 type AsyncNumberInputProps = {
   value: undefined | number;
@@ -14,16 +14,6 @@ type AsyncNumberInputProps = {
   noPlusMinus?: boolean;
   smallButtons?: boolean;
 };
-
-export type ValidationResult =
-  | {
-      validation: "failed";
-      reasons: string[];
-    }
-  | {
-      validation: "succeeded";
-      value: number;
-    };
 
 const adjust = (display: string, by: number, min?: number, max?: number) => {
   let result = Number(display) + by;
@@ -54,22 +44,22 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
       const num = Number(text);
       if (Number.isNaN(num)) {
         return {
-          validation: "failed",
+          state: "failed",
           reasons: ["Not a number"],
         };
       } else if (min !== undefined && num < min) {
         return {
-          validation: "failed",
+          state: "failed",
           reasons: ["Too low"],
         };
       } else if (max !== undefined && num > max) {
         return {
-          validation: "failed",
+          state: "failed",
           reasons: ["Too high"],
         };
       } else {
         return {
-          validation: "succeeded",
+          state: "succeeded",
           value: num,
         };
       }
@@ -77,10 +67,14 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
     [max, min],
   );
 
+  // const [validationResult, setValidationResult] = useState<ValidationResult>(
+  //   validate(value?.toString() || ""),
+  // );
+
   const onChangeString = useCallback(
     (text: string) => {
       const result = validate(text);
-      if (result.validation === "succeeded") {
+      if (result.state === "succeeded") {
         onChangeOrig(result.value);
       }
     },
@@ -108,7 +102,7 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
     [display, max, min, onChange],
   );
 
-  const result = validate(display);
+  const validationResult = validate(display);
 
   return (
     <div
@@ -136,12 +130,12 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
         </button>
       )}
       <TextInput
-        css={css`
-          flex: 1;
-          flex-basis: min-content;
-          color: ${result.validation === "failed" ? "red" : undefined};
-          user-select: "text";
-        `}
+        validation={validationResult}
+        css={{
+          flex: 1,
+          flexBasis: "min-content",
+          userSelect: "text",
+        }}
         value={display}
         onChange={onChange}
         onFocus={onFocus}
