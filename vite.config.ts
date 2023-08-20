@@ -1,11 +1,12 @@
 /// <reference types="vitest" />
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
 import type { HttpProxy } from "vite";
 import { defineConfig } from "vite";
 // import { visualizer } from "rollup-plugin-visualizer";
 import checker from "vite-plugin-checker";
-import path from "path";
+
 import { id as name } from "./public/system.json";
-import react from "@vitejs/plugin-react-swc";
 
 // guide to using Vite for Foundry from the Lancer guys:
 // https://foundryvtt.wiki/en/development/guides/vite
