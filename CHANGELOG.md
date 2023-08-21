@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Unreleased
+
+* Number input now work properly again when you type into them (#391) Thanks @muwak
+* Esoterrorists abilities: "Scuffling" now spelled correctly, and Health and Stability now have a minimum value of -12 (#397) Cheers @AlbertG73
+
 ## 7.4.0 (2023-08-05)
 
 * Updated German translations (#380) Cheers @muwak!
