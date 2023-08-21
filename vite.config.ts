@@ -42,7 +42,7 @@ const config = defineConfig(({ mode }) => {
     // configure vitest
     test: {
       // fix "document is not defined"
-      environment: "jsdom",
+      environment: "happy-dom",
       // equivalent to jest.setup.js
       setupFiles: ["../vitest.setup.js"],
     },
