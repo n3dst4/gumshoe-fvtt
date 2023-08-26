@@ -230,12 +230,12 @@ export class InvestigatorItem extends Item {
   // used as handy callbacks in the component tree
   // ###########################################################################
 
-  getCategory = () => {
+  getCategory = (): string => {
     assertEquipmentOrAbilityItem(this);
     return this.system.category;
   };
 
-  setCategory = (category: string) => {
+  setCategory = async (category: string): Promise<void> => {
     isEquipmentOrAbilityItem(this);
     const updateData: Pick<EquipmentDataSourceData, "category" | "fields"> = {
       category,
@@ -248,17 +248,20 @@ export class InvestigatorItem extends Item {
           this.system.fields[field] ?? fields[field].default;
       }
     }
-    return this.update({ system: updateData });
+    await this.update({ system: updateData });
   };
 
-  setField = (field: string, value: string | number | boolean) => {
+  setField = async (
+    field: string,
+    value: string | number | boolean,
+  ): Promise<void> => {
     assertEquipmentItem(this);
-    return this.update({ system: { fields: { [field]: value } } });
+    await this.update({ system: { fields: { [field]: value } } });
   };
 
-  deleteField = (field: string) => {
+  deleteField = async (field: string) => {
     assertEquipmentItem(this);
-    return this.update({ [`system.fields.-=${field}`]: null });
+    await this.update({ [`system.fields.-=${field}`]: null });
   };
 
   getMin = () => {
@@ -455,14 +458,14 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  getAmmo = () => {
+  getAmmo = (): number => {
     assertWeaponItem(this);
     return this.system.ammo?.value || 0;
   };
 
-  reload = () => {
+  reload = async () => {
     assertWeaponItem(this);
-    return this.update({
+    await this.update({
       system: {
         ammo: {
           value: this.getAmmoMax(),
@@ -471,26 +474,26 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  getAmmoPerShot = () => {
+  getAmmoPerShot = (): number => {
     assertWeaponItem(this);
     return this.system.ammoPerShot ?? 1;
   };
 
-  setAmmoPerShot = (ammoPerShot: number) => {
+  setAmmoPerShot = async (ammoPerShot: number) => {
     assertWeaponItem(this);
-    return this.update({
+    await this.update({
       system: { ammoPerShot },
     });
   };
 
-  getUsesAmmo = () => {
+  getUsesAmmo = (): boolean => {
     assertWeaponItem(this);
     return this.system.usesAmmo ?? false;
   };
 
-  setUsesAmmo = (usesAmmo: boolean) => {
+  setUsesAmmo = async (usesAmmo: boolean) => {
     assertWeaponItem(this);
-    return this.update({
+    await this.update({
       system: { usesAmmo },
     });
   };
@@ -506,23 +509,29 @@ export class InvestigatorItem extends Item {
     }
   }
 
-  getNotes = () => {
+  getNotes = (): NoteWithFormat => {
     assertAnyItem(this);
-    return this.system.notes ?? "";
+    return (
+      this.system.notes ?? {
+        format: "richtext",
+        value: "",
+        html: "",
+      }
+    );
   };
 
   setNotes = async (newNotes: NoteWithFormat) => {
     await this.update({ system: { notes: newNotes } });
   };
 
-  getAbility = () => {
+  getAbility = (): string => {
     assertWeaponItem(this);
     return this.system.ability ?? "";
   };
 
-  setAbility = (ability: string) => {
+  setAbility = async (ability: string) => {
     assertWeaponItem(this);
-    return this.update({ system: { ability } });
+    await this.update({ system: { ability } });
   };
 
   getPool = () => {
@@ -545,104 +554,104 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { boost } });
   };
 
-  getDamage = () => {
+  getDamage = (): number => {
     assertWeaponItem(this);
     return this.system.damage ?? 0;
   };
 
-  setDamage = (damage: number) => {
+  setDamage = async (damage: number) => {
     assertWeaponItem(this);
-    return this.update({ system: { damage } });
+    await this.update({ system: { damage } });
   };
 
-  getPointBlankDamage = () => {
+  getPointBlankDamage = (): number => {
     assertWeaponItem(this);
     return this.system.pointBlankDamage ?? 0;
   };
 
-  setPointBlankDamage = (pointBlankDamage: number) => {
+  setPointBlankDamage = async (pointBlankDamage: number) => {
     assertWeaponItem(this);
-    return this.update({ system: { pointBlankDamage } });
+    await this.update({ system: { pointBlankDamage } });
   };
 
-  getCloseRangeDamage = () => {
+  getCloseRangeDamage = (): number => {
     assertWeaponItem(this);
     return this.system.closeRangeDamage ?? 0;
   };
 
-  setCloseRangeDamage = (closeRangeDamage: number) => {
+  setCloseRangeDamage = async (closeRangeDamage: number) => {
     assertWeaponItem(this);
-    return this.update({ system: { closeRangeDamage } });
+    await this.update({ system: { closeRangeDamage } });
   };
 
-  getNearRangeDamage = () => {
+  getNearRangeDamage = (): number => {
     assertWeaponItem(this);
     return this.system.nearRangeDamage ?? 0;
   };
 
-  setNearRangeDamage = (nearRangeDamage: number) => {
+  setNearRangeDamage = async (nearRangeDamage: number) => {
     assertWeaponItem(this);
-    return this.update({ system: { nearRangeDamage } });
+    await this.update({ system: { nearRangeDamage } });
   };
 
-  getLongRangeDamage = () => {
+  getLongRangeDamage = (): number => {
     assertWeaponItem(this);
     return this.system.longRangeDamage ?? 0;
   };
 
-  setLongRangeDamage = (longRangeDamage: number) => {
+  setLongRangeDamage = async (longRangeDamage: number) => {
     assertWeaponItem(this);
-    return this.update({ system: { longRangeDamage } });
+    await this.update({ system: { longRangeDamage } });
   };
 
-  getIsPointBlank = () => {
+  getIsPointBlank = (): boolean => {
     assertWeaponItem(this);
     return this.system.isPointBlank;
   };
 
-  setIsPointBlank = (isPointBlank: boolean) => {
+  setIsPointBlank = async (isPointBlank: boolean) => {
     assertWeaponItem(this);
-    return this.update({ system: { isPointBlank } });
+    await this.update({ system: { isPointBlank } });
   };
 
-  getIsCloseRange = () => {
+  getIsCloseRange = (): boolean => {
     assertWeaponItem(this);
     return this.system.isCloseRange;
   };
 
-  setIsCloseRange = (isCloseRange: boolean) => {
+  setIsCloseRange = async (isCloseRange: boolean) => {
     assertWeaponItem(this);
-    return this.update({ system: { isCloseRange } });
+    await this.update({ system: { isCloseRange } });
   };
 
-  getIsNearRange = () => {
+  getIsNearRange = (): boolean => {
     assertWeaponItem(this);
     return this.system.isNearRange;
   };
 
-  setIsNearRange = (isNearRange: boolean) => {
+  setIsNearRange = async (isNearRange: boolean) => {
     assertWeaponItem(this);
-    return this.update({ system: { isNearRange } });
+    await this.update({ system: { isNearRange } });
   };
 
-  getIsLongRange = () => {
+  getIsLongRange = (): boolean => {
     assertWeaponItem(this);
     return this.system.isLongRange;
   };
 
-  setIsLongRange = (isLongRange: boolean) => {
+  setIsLongRange = async (isLongRange: boolean) => {
     assertWeaponItem(this);
-    return this.update({ system: { isLongRange } });
+    await this.update({ system: { isLongRange } });
   };
 
-  getHideIfZeroRated = () => {
+  getHideIfZeroRated = (): boolean => {
     assertAbilityItem(this);
     return this.system.hideIfZeroRated;
   };
 
-  setHideIfZeroRated = (hideIfZeroRated: boolean) => {
+  setHideIfZeroRated = async (hideIfZeroRated: boolean) => {
     assertAbilityItem(this);
-    return this.update({ system: { hideIfZeroRated } });
+    await this.update({ system: { hideIfZeroRated } });
   };
 
   // ---------------------------------------------------------------------------
@@ -668,46 +677,46 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { mwTrumpedBy } });
   };
 
-  getMwType = () => {
+  getMwType = (): MwType => {
     assertMwItem(this);
     return this.system.mwType;
   };
 
-  setMwType = (mwType: MwType) => {
+  setMwType = async (mwType: MwType) => {
     assertMwItem(this);
-    return this.update({ system: { mwType } });
+    await this.update({ system: { mwType } });
   };
 
-  getCharges = () => {
+  getCharges = (): number => {
     assertMwItem(this);
     return this.system.charges;
   };
 
-  setCharges = (charges: number) => {
+  setCharges = async (charges: number) => {
     assertMwItem(this);
-    return this.update({ system: { charges } });
+    await this.update({ system: { charges } });
   };
 
-  getRanges = () => {
+  getRanges = (): RangeTuple => {
     assertMwItem(this);
     return this.system.ranges;
   };
 
-  getRange = (range: 0 | 1 | 2 | 3) => {
+  getRange = (range: 0 | 1 | 2 | 3): number => {
     assertMwItem(this);
     return this.system.ranges[range];
   };
 
-  setRanges = (ranges: [number, number, number, number]) => {
+  setRanges = async (ranges: [number, number, number, number]) => {
     assertMwItem(this);
-    return this.update({ system: { ranges } });
+    await this.update({ system: { ranges } });
   };
 
-  setRange = (range: 0 | 1 | 2 | 3) => (value: number) => {
+  setRange = (range: 0 | 1 | 2 | 3) => async (value: number) => {
     assertMwItem(this);
     const ranges = [...this.system.ranges] as RangeTuple;
     ranges[range] = value;
-    return this.update({ system: { ranges } });
+    await this.update({ system: { ranges } });
   };
 
   getMwRefreshGroup = () => {
@@ -715,9 +724,9 @@ export class InvestigatorItem extends Item {
     return this.system.mwRefreshGroup;
   };
 
-  setMwRefreshGroup = (mwRefreshGroup: MwRefreshGroup) => {
+  setMwRefreshGroup = async (mwRefreshGroup: MwRefreshGroup) => {
     assertGeneralAbilityItem(this);
-    return this.update({ system: { mwRefreshGroup } });
+    await this.update({ system: { mwRefreshGroup } });
   };
 
   getActiveUnlocks = () => {
