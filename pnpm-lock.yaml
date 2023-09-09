@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   tinymce@5.10.1:
-    hash: d4nf7mnfn2ivybvqmfo5lypqh4
+    hash: 44owjxk7xhoqumikuzpwd43zjq
     path: patches/tinymce@5.10.1.patch
 
 dependencies:
@@ -670,7 +670,7 @@ packages:
       pixi-particles: 4.3.1(pixi.js@5.3.11)
       pixi.js: 5.3.11
       socket.io-client: 4.3.2
-      tinymce: 5.10.1(patch_hash=d4nf7mnfn2ivybvqmfo5lypqh4)
+      tinymce: 5.10.1(patch_hash=44owjxk7xhoqumikuzpwd43zjq)
     transitivePeerDependencies:
       - '@pixi/constants'
       - '@pixi/core'
@@ -4519,7 +4519,7 @@ packages:
     resolution: {integrity: sha512-kRwSG8Zx4tjF9ZiyH4bhaebu+EDz1BOx9hOigYHlUW4xxI/wKIUQUqo018UlU4ar6ATPBsaMrdbKZ+tmPdohFA==}
     dev: true
 
-  /tinymce@5.10.1(patch_hash=d4nf7mnfn2ivybvqmfo5lypqh4):
+  /tinymce@5.10.1(patch_hash=44owjxk7xhoqumikuzpwd43zjq):
     resolution: {integrity: sha512-aIsFTYiuESpoYkCgkoojpVtPwrSvYBxp4mMEGsj20CnUruLCWosywkbYHDII+j7KlQZZn3p+xK89f5gT3QyuGw==}
     dev: true
     patched: true
