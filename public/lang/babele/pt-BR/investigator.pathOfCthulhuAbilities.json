@@ -1,5 +1,5 @@
 {
-    "label": "Habilidades Caminho de Cthulhu",
+    "label": "Habilidades Rastro de Cthulhu",
     "mapping": {
         "category": "data.category"
     },
@@ -57,7 +57,7 @@
             "category": "Técnica"
         },
         "Chtulhu Mythos": {
-            "name": "Chtulhu Mythos",
+            "name": "Mythos de Cthulhu",
             "category": "Acadêmica"
         },
         "Conceal": {
@@ -73,7 +73,7 @@
             "category": "Técnica"
         },
         "Credit Rating": {
-            "name": "Credit Rating",
+            "name": "Crédito",
             "category": "Interpessoal"
         },
         "Cryptography": {
@@ -89,7 +89,7 @@
             "category": "Geral"
         },
         "Electrical Repair": {
-            "name": "Electrical Repair",
+            "name": "Reparos Elétricos",
             "category": "Geral"
         },
         "Evidence Collection": {
@@ -217,7 +217,7 @@
             "category": "Geral"
         },
         "Sanity": {
-            "name": "Sanity",
+            "name": "Sanidade",
             "category": "Geral"
         },
         "Scuffling": {
