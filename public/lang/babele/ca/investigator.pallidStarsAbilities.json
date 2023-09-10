@@ -33,7 +33,7 @@
             "category": "Acadèmiques"
         },
         "Bullshit Detector": {
-            "name": "Bullshit Detector",
+            "name": "Detecció de mentides",
             "category": "Interpersonal"
         },
         "Bureaucracy": {
@@ -97,7 +97,7 @@
             "category": "Tècniques"
         },
         "Explosive Devices": {
-            "name": "Explosive Devices",
+            "name": "Explosius",
             "category": "Tècniques"
         },
         "Farsight (Vas Mal)": {
@@ -113,15 +113,15 @@
             "category": "Interpersonal"
         },
         "Flirting": {
-            "name": "Flirting",
+            "name": "Flirteig",
             "category": "Interpersonal"
         },
         "Forensic Accounting": {
-            "name": "Forensic Accounting",
+            "name": "Comptabilitat forense",
             "category": "Acadèmiques"
         },
         "Forensic Anthropology": {
-            "name": "Forensic Anthropology",
+            "name": "Antropologia forense",
             "category": "Tècniques"
         },
         "Forensic Engineering": {
@@ -129,7 +129,7 @@
             "category": "Tècniques"
         },
         "Forensic Psychology": {
-            "name": "Forensic Psychology",
+            "name": "Psicologia forense",
             "category": "Acadèmiques"
         },
         "Geology": {
@@ -181,7 +181,7 @@
             "category": "Tècniques"
         },
         "Impersonate": {
-            "name": "Impersonate",
+            "name": "Imitar",
             "category": "Interpersonal"
         },
         "Industrial Design": {
@@ -189,7 +189,7 @@
             "category": "Tècniques"
         },
         "Infiltration": {
-            "name": "Infiltration",
+            "name": "Infiltració",
             "category": "Generals"
         },
         "Inspiration": {
@@ -213,11 +213,11 @@
             "category": "Acadèmiques"
         },
         "Linguistics": {
-            "name": "Linguistics",
+            "name": "Lingüística",
             "category": "Acadèmiques"
         },
         "Medic": {
-            "name": "Medic",
+            "name": "Medicina",
             "category": "Generals"
         },
         "Migrate Consciousness (Kch-Thk)": {
@@ -229,7 +229,7 @@
             "category": "Generals"
         },
         "Negotiation": {
-            "name": "Negotiation",
+            "name": "Negociació",
             "category": "Interpersonal"
         },
         "Neural Rewiring (Cybe)": {
@@ -293,7 +293,7 @@
             "category": "Generals"
         },
         "Surveillance": {
-            "name": "Surveillance",
+            "name": "Vigilància",
             "category": "Generals"
         },
         "Systems Design": {
