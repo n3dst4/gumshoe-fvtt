@@ -29,16 +29,16 @@
             "category": "Generals"
         },
         "Ballistics": {
-            "name": "Ballistics",
+            "name": "Balística",
             "category": "Tècniques"
         },
         "Bullshit Detector": {
-            "name": "Bullshit Detector",
-            "category": "Interpersonal"
+            "name": "Detecció de mentides",
+            "category": "Interpersonals"
         },
         "Bureaucracy": {
             "name": "Burocràcia",
-            "category": "Interpersonal"
+            "category": "Interpersonals"
         },
         "Chemistry": {
             "name": "Química",
@@ -46,18 +46,18 @@
         },
         "Cop Talk": {
             "name": "Argot policial",
-            "category": "Interpersonal"
+            "category": "Interpersonals"
         },
         "Cryptography": {
             "name": "Criptografia",
             "category": "Tècniques"
         },
         "Data Retrival": {
-            "name": "Data Retrival",
+            "name": "Recuperació de dades",
             "category": "Tècniques"
         },
         "Document Analysis": {
-            "name": "Document Analysis",
+            "name": "Anàlisi de documents",
             "category": "Tècniques"
         },
         "Driving": {
@@ -65,7 +65,7 @@
             "category": "Generals"
         },
         "Electronic Surveillance": {
-            "name": "Electronic Surveillance",
+            "name": "Vigilància electrònica",
             "category": "Tècniques"
         },
         "Evidence Collection": {
@@ -73,7 +73,7 @@
             "category": "Tècniques"
         },
         "Explosive Devices": {
-            "name": "Explosive Devices",
+            "name": "Explosius",
             "category": "Tècniques"
         },
         "Filch": {
@@ -81,31 +81,31 @@
             "category": "Generals"
         },
         "Fingerprinting": {
-            "name": "Fingerprinting",
+            "name": "Empremtes dactilars",
             "category": "Tècniques"
         },
         "Flattery": {
             "name": "Adular",
-            "category": "Interpersonal"
+            "category": "Interpersonals"
         },
         "Flirting": {
-            "name": "Flirting",
-            "category": "Interpersonal"
+            "name": "Flirteig",
+            "category": "Interpersonals"
         },
         "Forensic Accounting": {
-            "name": "Forensic Accounting",
+            "name": "Comptabilitat forense",
             "category": "Acadèmiques"
         },
         "Forensic Anthropology": {
-            "name": "Forensic Anthropology",
+            "name": "Medicina forense",
             "category": "Tècniques"
         },
         "Forensic Entomology": {
-            "name": "Forensic Entomology",
+            "name": "Entomologia Forense",
             "category": "Tècniques"
         },
         "Forensic Psychology": {
-            "name": "Forensic Psychology",
+            "name": "Psicologia forense",
             "category": "Acadèmiques"
         },
         "Health": {
@@ -117,20 +117,20 @@
             "category": "Acadèmiques"
         },
         "Impersonate": {
-            "name": "Impersonate",
-            "category": "Interpersonal"
+            "name": "Imitar",
+            "category": "Interpersonals"
         },
         "Infiltration": {
-            "name": "Infiltration",
+            "name": "Infiltració",
             "category": "Generals"
         },
         "Interrogation": {
             "name": "Interrogatori",
-            "category": "Interpersonal"
+            "category": "Interpersonals"
         },
         "Intimidation": {
             "name": "Intimidació",
-            "category": "Interpersonal"
+            "category": "Interpersonals"
         },
         "Languages": {
             "name": "Idiomes",
@@ -141,11 +141,11 @@
             "category": "Acadèmiques"
         },
         "Linguistics": {
-            "name": "Linguistics",
+            "name": "Lingüística",
             "category": "Acadèmiques"
         },
         "Local Knowledge": {
-            "name": "Local Knowledge",
+            "name": "Coneixement local",
             "category": "Acadèmiques"
         },
         "Mechanics": {
@@ -153,23 +153,23 @@
             "category": "Generals"
         },
         "Medic": {
-            "name": "Medic",
+            "name": "Primers auxilis",
             "category": "Generals"
         },
         "Natural History": {
-            "name": "Natural History",
+            "name": "Història natural",
             "category": "Acadèmiques"
         },
         "Negotiation": {
-            "name": "Negotiation",
-            "category": "Interpersonal"
+            "name": "Negociació",
+            "category": "Interpersonals"
         },
         "Occult Studies": {
-            "name": "Occult Studies",
+            "name": "Ocultisme",
             "category": "Acadèmiques"
         },
         "Pathology": {
-            "name": "Pathology",
+            "name": "Patologia",
             "category": "Acadèmiques"
         },
         "Photography": {
@@ -182,14 +182,14 @@
         },
         "Reassurance": {
             "name": "Consol",
-            "category": "Interpersonal"
+            "category": "Interpersonals"
         },
         "Research": {
-            "name": "Research",
+            "name": "Investigar",
             "category": "Acadèmiques"
         },
         "Scuffling": {
-            "name": "Scuffling",
+            "name": "Escaramussa",
             "category": "Generals"
         },
         "Shooting": {
@@ -197,7 +197,7 @@
             "category": "Generals"
         },
         "Shrink": {
-            "name": "Shrink",
+            "name": "Psicoanàlisi",
             "category": "Generals"
         },
         "Stability": {
@@ -206,18 +206,18 @@
         },
         "Streetwise": {
             "name": "Baixos fons",
-            "category": "Interpersonal"
+            "category": "Interpersonals"
         },
         "Surveillance": {
-            "name": "Surveillance",
+            "name": "Vigilància",
             "category": "Generals"
         },
         "Textual Analysis": {
-            "name": "Textual Analysis",
+            "name": "Anàlisi de textos",
             "category": "Acadèmiques"
         },
         "Trivia": {
-            "name": "Trivia",
+            "name": "Cultura general",
             "category": "Acadèmiques"
         }
     }

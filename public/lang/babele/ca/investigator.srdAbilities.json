@@ -45,7 +45,7 @@
             "category": "Interpersonal"
         },
         "Ballistics": {
-            "name": "Ballistics",
+            "name": "Balística",
             "category": "Tècniques"
         },
         "Battlefield": {
@@ -65,7 +65,7 @@
             "category": "Acadèmiques"
         },
         "Bullshit Detector": {
-            "name": "Bullshit Detector",
+            "name": "Detecció de mentides",
             "category": "Interpersonal"
         },
         "Bureaucracy": {
@@ -137,7 +137,7 @@
             "category": "Focus"
         },
         "Document Analysis": {
-            "name": "Document Analysis",
+            "name": "Anàlisi de documents",
             "category": "Tècniques"
         },
         "Driving": {
@@ -145,7 +145,7 @@
             "category": "Focus"
         },
         "Electronic Surveillance": {
-            "name": "Electronic Surveillance",
+            "name": "Vigilància electrònica",
             "category": "Tècniques"
         },
         "Evidence Collection": {
@@ -153,7 +153,7 @@
             "category": "Tècniques"
         },
         "Explosive Devices": {
-            "name": "Explosive Devices",
+            "name": "Explosius",
             "category": "Tècniques"
         },
         "Explosives": {
@@ -177,7 +177,7 @@
             "category": "Focus"
         },
         "Fingerprinting": {
-            "name": "Fingerprinting",
+            "name": "Empremtes dactilars",
             "category": "Tècniques"
         },
         "First Aid": {
@@ -193,23 +193,23 @@
             "category": "Physical"
         },
         "Flirting": {
-            "name": "Flirting",
+            "name": "Flirteig",
             "category": "Interpersonal"
         },
         "Forensic Accounting": {
-            "name": "Forensic Accounting",
+            "name": "Comptabilitat forense",
             "category": "Acadèmiques"
         },
         "Forensic Anthropology": {
-            "name": "Forensic Anthropology",
+            "name": "Antropologia forense",
             "category": "Tècniques"
         },
         "Forensic Entomology": {
-            "name": "Forensic Entomology",
+            "name": "Entomologia Forense",
             "category": "Tècniques"
         },
         "Forensic Psychology": {
-            "name": "Forensic Psychology",
+            "name": "Psicologia forense",
             "category": "Acadèmiques"
         },
         "Forgery": {
@@ -249,11 +249,11 @@
             "category": "Presence"
         },
         "Impersonate": {
-            "name": "Impersonate",
+            "name": "Imitar",
             "category": "Interpersonal"
         },
         "Infiltration": {
-            "name": "Infiltration",
+            "name": "Infiltració",
             "category": "Physical"
         },
         "Inspiration": {
@@ -289,7 +289,7 @@
             "category": "Interpersonal"
         },
         "Linguistics": {
-            "name": "Linguistics",
+            "name": "Lingüística",
             "category": "Acadèmiques"
         },
         "Locksmith": {
@@ -301,7 +301,7 @@
             "category": "Focus"
         },
         "Medic": {
-            "name": "Medic",
+            "name": "Medicina",
             "category": "Focus"
         },
         "Medical Expertise": {
@@ -325,11 +325,11 @@
             "category": "Exotic"
         },
         "Natural History": {
-            "name": "Natural History",
+            "name": "Història natural",
             "category": "Acadèmiques"
         },
         "Negotiation": {
-            "name": "Negotiation",
+            "name": "Negociació",
             "category": "Interpersonal"
         },
         "Network": {
@@ -341,7 +341,7 @@
             "category": "Tècniques"
         },
         "Occult Studies": {
-            "name": "Occult Studies",
+            "name": "Ocultisme",
             "category": "Acadèmiques"
         },
         "Oral History": {
@@ -361,7 +361,7 @@
             "category": "Tècniques"
         },
         "Pathology": {
-            "name": "Pathology",
+            "name": "Patologia",
             "category": "Acadèmiques"
         },
         "Pathway Amplification": {
@@ -409,7 +409,7 @@
             "category": "Interpersonal"
         },
         "Research": {
-            "name": "Research",
+            "name": "Investigar",
             "category": "Acadèmiques"
         },
         "Respect": {
@@ -449,7 +449,7 @@
             "category": "Physical"
         },
         "Shrink": {
-            "name": "Shrink",
+            "name": "Psicoanàlisi",
             "category": "Presence"
         },
         "Society": {
@@ -469,7 +469,7 @@
             "category": "Interpersonal"
         },
         "Surveillance": {
-            "name": "Surveillance",
+            "name": "Vigilància",
             "category": "Focus"
         },
         "Taunt": {
@@ -481,7 +481,7 @@
             "category": "Tècniques"
         },
         "Textual Analysis": {
-            "name": "Textual Analysis",
+            "name": "Anàlisi de textos",
             "category": "Acadèmiques"
         },
         "Timecraft": {
@@ -501,7 +501,7 @@
             "category": "Focus"
         },
         "Trivia": {
-            "name": "Trivia",
+            "name": "Cultura general",
             "category": "Acadèmiques"
         },
         "Unobtrusiveness": {
