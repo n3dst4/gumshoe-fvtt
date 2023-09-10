@@ -13,7 +13,7 @@
             "category": "Psychic Powers"
         },
         "Bullshit Detector": {
-            "name": "Bullshit Detector",
+            "name": "Detecció de mentides",
             "category": "Interpersonal"
         },
         "Bureaucracy": {
@@ -45,7 +45,7 @@
             "category": "Generals"
         },
         "Flirting": {
-            "name": "Flirting",
+            "name": "Flirteig",
             "category": "Interpersonal"
         },
         "Health": {
@@ -65,11 +65,11 @@
             "category": "Acadèmiques"
         },
         "Impersonate": {
-            "name": "Impersonate",
+            "name": "Imitar",
             "category": "Interpersonal"
         },
         "Infiltration": {
-            "name": "Infiltration",
+            "name": "Infiltració",
             "category": "Generals"
         },
         "Interrogation": {
@@ -97,7 +97,7 @@
             "category": "Generals"
         },
         "Medic": {
-            "name": "Medic",
+            "name": "Medicina",
             "category": "Generals"
         },
         "Medicine": {
@@ -113,7 +113,7 @@
             "category": "Psychic Powers"
         },
         "Negotiation": {
-            "name": "Negotiation",
+            "name": "Negociació",
             "category": "Interpersonal"
         },
         "Notice": {
@@ -121,7 +121,7 @@
             "category": "Tècniques"
         },
         "Occult Studies": {
-            "name": "Occult Studies",
+            "name": "Ocultisme",
             "category": "Acadèmiques"
         },
         "Outdoor Survival": {
@@ -149,7 +149,7 @@
             "category": "Psychic Powers"
         },
         "Research": {
-            "name": "Research",
+            "name": "Investigar",
             "category": "Acadèmiques"
         },
         "Science": {
@@ -173,7 +173,7 @@
             "category": "Generals"
         },
         "Shrink": {
-            "name": "Shrink",
+            "name": "Psicoanàlisi",
             "category": "Generals"
         },
         "Stability": {
@@ -189,7 +189,7 @@
             "category": "Psychic Powers"
         },
         "Trivia": {
-            "name": "Trivia",
+            "name": "Cultura general",
             "category": "Acadèmiques"
         }
     }
