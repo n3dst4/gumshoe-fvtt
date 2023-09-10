@@ -29,7 +29,7 @@
             "category": "Generals"
         },
         "Bullshit Detector": {
-            "name": "Bullshit Detector",
+            "name": "Detecció de mentides",
             "category": "Interpersonal"
         },
         "Bureaucracy": {
@@ -81,11 +81,11 @@
             "category": "Generals"
         },
         "Electronic Surveillance": {
-            "name": "Electronic Surveillance",
+            "name": "Vigilància electrònica",
             "category": "Tècniques"
         },
         "Explosive Devices": {
-            "name": "Explosive Devices",
+            "name": "Explosius",
             "category": "Generals"
         },
         "Filch": {
@@ -97,7 +97,7 @@
             "category": "Interpersonal"
         },
         "Flirting": {
-            "name": "Flirting",
+            "name": "Flirteig",
             "category": "Interpersonal"
         },
         "Forgery": {
@@ -129,7 +129,7 @@
             "category": "Acadèmiques"
         },
         "Infiltration": {
-            "name": "Infiltration",
+            "name": "Infiltració",
             "category": "Generals"
         },
         "Interrogation": {
@@ -153,7 +153,7 @@
             "category": "Generals"
         },
         "Medic": {
-            "name": "Medic",
+            "name": "Medicina",
             "category": "Generals"
         },
         "Military Science": {
@@ -161,7 +161,7 @@
             "category": "Acadèmiques"
         },
         "Negotiation": {
-            "name": "Negotiation",
+            "name": "Negociació",
             "category": "Interpersonal"
         },
         "Network": {
@@ -173,7 +173,7 @@
             "category": "Tècniques"
         },
         "Occult Studies": {
-            "name": "Occult Studies",
+            "name": "Ocultisme",
             "category": "Acadèmiques"
         },
         "Outdoor Survival": {
@@ -201,7 +201,7 @@
             "category": "Interpersonal"
         },
         "Research": {
-            "name": "Research",
+            "name": "Investigar",
             "category": "Acadèmiques"
         },
         "Sense Trouble": {
@@ -213,7 +213,7 @@
             "category": "Generals"
         },
         "Shrink": {
-            "name": "Shrink",
+            "name": "Psicoanàlisi",
             "category": "Generals"
         },
         "Stability": {
@@ -225,7 +225,7 @@
             "category": "Interpersonal"
         },
         "Surveillance": {
-            "name": "Surveillance",
+            "name": "Vigilància",
             "category": "Generals"
         },
         "Tradecraft": {
