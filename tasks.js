@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
+import archiver from "archiver";
 import chalk from "chalk";
+import { writeFile } from "fs/promises";
 import fs from "fs-extra";
 import path from "path";
-import archiver from "archiver";
 import { rimraf } from "rimraf";
 import { fileURLToPath } from "url";
-import { writeFile } from "fs/promises";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
@@ -25,7 +25,7 @@ const buildPath = "build";
 // Utilities
 
 // logging function
-const log = console.log.bind(console, chalk.green("[task] "));
+const log = console.log.bind(console, chalk.green("[task]"));
 
 // if subject is a semver string beginning with a v, remove the v
 const stripInitialv = (subject) =>
