@@ -16,3 +16,8 @@ export const DispatchContext = createContext<React.Dispatch<any>>(() => {});
 export const StateContext = createContext<State>({
   settings: getSettingsDict(),
 });
+
+/**
+ * Context for whether the settings are dirty
+ */
+export const DirtyContext = createContext<() => boolean>(() => false);
