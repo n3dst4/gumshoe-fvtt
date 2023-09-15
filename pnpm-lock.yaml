@@ -26,8 +26,8 @@ dependencies:
     specifier: ^2.2.3
     version: 2.2.3
   marked:
-    specifier: ^9.0.0
-    version: 9.0.0
+    specifier: ^9.0.1
+    version: 9.0.1
   nanoid:
     specifier: ^5.0.1
     version: 5.0.1
@@ -3529,8 +3529,8 @@ packages:
     dev: true
     optional: true
 
-  /marked@9.0.0:
-    resolution: {integrity: sha512-37yoTpjU+TSXb9OBYY5n78z/CqXh76KiQj9xsKxEdztzU9fRLmbWO5YqKxgCVGKlNdexppnbKTkwB3RipVri8w==}
+  /marked@9.0.1:
+    resolution: {integrity: sha512-U6DB4r9D40jiszUTAB15mrNDfS7AREySx/ch7OJProHn/NebNKknQHZq7MaubLaUpL/4AkES/Osr0S6efQrtNQ==}
     engines: {node: '>= 16'}
     hasBin: true
     dev: false
