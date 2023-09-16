@@ -16,6 +16,7 @@ interface SettingFactoryArgs<T> {
   choices?: (T extends number | string ? Record<T, string> : never) | undefined;
   default: T;
   onChange?: (newVal: T) => void;
+  exportable?: boolean;
 }
 
 const getSetting =
@@ -41,6 +42,7 @@ const createSetting = <T>(
     scope = "world",
     choices,
     onChange,
+    exportable = true,
   }: SettingFactoryArgs<T>,
   type: any,
 ) => {
@@ -60,6 +62,7 @@ const createSetting = <T>(
     key,
     get: getSetting<T>(key),
     set: setSetting<T>(key),
+    exportable,
   };
 };
 
@@ -93,11 +96,13 @@ export const settings = {
     key: "customThemePath",
     name: "Custom theme path",
     default: defaultCustomThemePath,
+    exportable: false as const,
   }),
   debugTranslations: createSettingBoolean({
     key: "debugTranslations",
     name: "Debug translations?",
     default: false,
+    exportable: false,
   }),
   defaultThemeName: createSettingString({
     key: "defaultThemeName",
@@ -167,6 +172,7 @@ export const settings = {
     key: "shortNotes",
     name: "Short Notes",
     default: [""],
+    exportable: false,
   }),
   personalDetails: createSettingObject({
     key: "personalDetails",
@@ -182,6 +188,7 @@ export const settings = {
     key: "systemMigrationVersion",
     name: "System migration version",
     default: c.defaultMigratedSystemVersion,
+    exportable: false,
   }),
   systemPreset: createSettingString({
     key: "systemPreset",
@@ -242,11 +249,13 @@ export const settings = {
       playlist: {},
       world: {},
     },
+    exportable: false,
   }),
   firstRun: createSettingBoolean({
     key: "firstRun",
     name: "First run?",
     default: true,
+    exportable: false,
   }),
 };
 

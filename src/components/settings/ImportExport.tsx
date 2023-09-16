@@ -6,6 +6,7 @@ import { getUserFile } from "../../functions/utilities";
 import { TextInput } from "../inputs/TextInput";
 import { Translate } from "../Translate";
 import { DirtyContext, DispatchContext, StateContext } from "./contexts";
+import { getExportableSettingsDict } from "./getExportableSettingsDict";
 import { SettingsGridField } from "./SettingsGridField";
 import { store } from "./store";
 
@@ -19,7 +20,8 @@ export const ImportExport: React.FC = () => {
 
   const handleExport = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    saveJson(settings, filename);
+    const exportableSettings = getExportableSettingsDict(settings);
+    saveJson(exportableSettings, filename);
     ui.notifications?.info("Settings exported to file");
   };
 
@@ -32,14 +34,15 @@ export const ImportExport: React.FC = () => {
     const aye =
       !isDirty() ||
       (await confirmADoodleDo({
-        message: "You have unsaved changes. Are you sure you overwrite them?",
+        message:
+          "You have unsaved changes. Are you sure you want to overwrite them?",
         confirmText: "Yes, discard my changes",
         cancelText: "Whoops, No!",
         confirmIconClass: "fas fa-times",
         resolveFalseOnCancel: true,
       }));
     if (aye) {
-      dispatch(store.creators.setSome(newSettings));
+      dispatch(store.creators.setSome({ newSettings }));
     }
   };
 
