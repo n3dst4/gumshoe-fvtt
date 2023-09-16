@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 import * as c from "./constants";
 import { defaultCustomThemePath, systemId } from "./constants";
 import { assertGame, mapValues } from "./functions/utilities";
@@ -8,6 +10,8 @@ import { ThemeV1 } from "./themes/types";
 
 // any of these could have an `onChange` added if we wanted to
 
+// const mySchema = z.string();
+
 interface SettingFactoryArgs<T> {
   key: string;
   name: string;
@@ -17,6 +21,7 @@ interface SettingFactoryArgs<T> {
   default: T;
   onChange?: (newVal: T) => void;
   exportable?: boolean;
+  validator?: z.ZodTypeAny;
 }
 
 const getSetting =
@@ -43,8 +48,10 @@ const createSetting = <T>(
     choices,
     onChange,
     exportable = true,
+    validator,
   }: SettingFactoryArgs<T>,
   type: any,
+  defaultValidator?: z.ZodTypeAny,
 ) => {
   Hooks.once("init", () => {
     assertGame(game);
@@ -63,20 +70,26 @@ const createSetting = <T>(
     get: getSetting<T>(key),
     set: setSetting<T>(key),
     exportable,
+    validator: validator ?? defaultValidator,
   };
 };
 
-const createSettingString = (args: SettingFactoryArgs<string>) =>
-  createSetting(args, String);
+export const createSettingString = (args: SettingFactoryArgs<string>) =>
+  createSetting(args, String, z.string());
 
-const createSettingArray = <T>(args: SettingFactoryArgs<T>) =>
-  createSetting(args, Array);
+export const createSettingArrayOfString = (
+  args: SettingFactoryArgs<string[]>,
+) => createSetting(args, Array, z.array(z.string()));
 
-const createSettingBoolean = (args: SettingFactoryArgs<boolean>) =>
-  createSetting(args, Boolean);
+export const createSettingBoolean = (args: SettingFactoryArgs<boolean>) =>
+  createSetting(args, Boolean, z.boolean());
 
-const createSettingObject = <T>(args: SettingFactoryArgs<T>) =>
-  createSetting<T>(args, Object);
+export const createSettingObject = <T>(args: SettingFactoryArgs<T>) =>
+  createSetting<T>(args, Object, z.object({}).catchall(z.any()));
+
+const statsValidator = z.record(
+  z.object({ name: z.string(), default: z.number() }),
+);
 
 export const settings = {
   /**
@@ -87,7 +100,7 @@ export const settings = {
     name: "Ability categories",
     default: "Academic,Interpersonal,Technical",
   }),
-  combatAbilities: createSettingObject({
+  combatAbilities: createSettingArrayOfString({
     key: "combatAbilities",
     name: "Combat abilities",
     default: pathOfCthulhuPreset.combatAbilities,
@@ -113,7 +126,7 @@ export const settings = {
       runtimeConfig.themes,
     ),
   }),
-  generalAbilityCategories: createSettingObject({
+  generalAbilityCategories: createSettingArrayOfString({
     key: "generalAbilityCategories",
     name: "General ability categories",
     default: pathOfCthulhuPreset.generalAbilityCategories,
@@ -123,17 +136,17 @@ export const settings = {
     name: "Generic occupation",
     default: pathOfCthulhuPreset.genericOccupation,
   }),
-  investigativeAbilityCategories: createSettingObject({
+  investigativeAbilityCategories: createSettingArrayOfString({
     key: "investigativeAbilityCategories",
     name: "Investigative ability categories",
     default: pathOfCthulhuPreset.investigativeAbilityCategories,
   }),
-  longNotes: createSettingObject({
+  longNotes: createSettingArrayOfString({
     key: "longNotes",
     name: "Long Notes",
     default: pathOfCthulhuPreset.longNotes,
   }),
-  mwHiddenShortNotes: createSettingObject<string[]>({
+  mwHiddenShortNotes: createSettingArrayOfString({
     key: "mwHiddenShortNotes",
     name: "Hidden short notes",
     default: [],
@@ -143,7 +156,7 @@ export const settings = {
     name: "Use alternative item types",
     default: false,
   }),
-  newNPCPacks: createSettingArray({
+  newNPCPacks: createSettingArrayOfString({
     key: "newNPCPacks",
     name: "Compendium packs for new NPCs",
     default: pathOfCthulhuPreset.newNPCPacks,
@@ -151,7 +164,7 @@ export const settings = {
       Hooks.call(c.newNPCPacksUpdated, newPacks);
     },
   }),
-  newPCPacks: createSettingArray({
+  newPCPacks: createSettingArrayOfString({
     key: "newPCPacks",
     name: "Compendium packs for new PCs",
     default: pathOfCthulhuPreset.newPCPacks,
@@ -178,6 +191,12 @@ export const settings = {
     key: "personalDetails",
     name: "Personal details",
     default: pathOfCthulhuPreset.personalDetails,
+    validator: z.array(
+      z.object({
+        name: z.string(),
+        type: z.enum(["text", "item"]),
+      }),
+    ),
   }),
   showEmptyInvestigativeCategories: createSettingBoolean({
     key: "showEmptyInvestigativeCategories",
@@ -214,11 +233,13 @@ export const settings = {
     key: "pcStats",
     name: "What stats should PCs have?",
     default: pathOfCthulhuPreset.pcStats,
+    validator: statsValidator,
   }),
   npcStats: createSettingObject({
     key: "npcStats",
     name: "What stats should NPCs have?",
     default: pathOfCthulhuPreset.npcStats,
+    validator: statsValidator,
   }),
   useNpcCombatBonuses: createSettingBoolean({
     key: "useNpcCombatBonuses",
