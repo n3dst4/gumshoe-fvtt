@@ -1,7 +1,7 @@
 import { npc, pc } from "../constants";
 import { assertGame } from "../functions/utilities";
 import { InvestigatorActor } from "../module/InvestigatorActor";
-import { settings } from "../settings";
+import { settings } from "../settings/settings";
 
 export function installNewCharacterPacksHookHandler() {
   Hooks.on(

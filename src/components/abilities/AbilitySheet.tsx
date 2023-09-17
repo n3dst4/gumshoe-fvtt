@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { isGeneralAbilityItem } from "../../v10Types";
 import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
 import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";

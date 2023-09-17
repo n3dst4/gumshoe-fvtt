@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 
 type CombatAbilityDropDownProps = {
   value: string;

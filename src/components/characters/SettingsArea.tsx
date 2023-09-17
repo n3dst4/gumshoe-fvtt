@@ -4,7 +4,7 @@ import { getTranslated } from "../../functions/getTranslated";
 import { assertGame, getDevMode } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { runtimeConfig } from "../../runtime";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";
 import { assertPCActor } from "../../v10Types";

@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from "react";
 
 import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertActiveCharacterActor } from "../../v10Types";
 import { AbilitySlugEdit } from "./AbilitySlugEdit";

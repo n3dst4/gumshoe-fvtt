@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import {
   ActorPayload,
   AnyActor,

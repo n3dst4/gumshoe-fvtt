@@ -4,7 +4,7 @@ import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { getTranslated } from "../../functions/getTranslated";
 import { assertGame } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { MwRefreshGroup, SpecialitiesMode } from "../../types";
 import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";

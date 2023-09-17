@@ -1,5 +1,5 @@
 import { assertGame } from "../functions/utilities";
-import { settings } from "../settings";
+import { settings } from "../settings/settings";
 import { EquipmentDataSourceData } from "../types";
 import { isEquipmentItem } from "../v10Types";
 

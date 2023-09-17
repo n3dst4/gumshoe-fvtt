@@ -4,7 +4,7 @@ import { settingsSaved } from "../../constants";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
 import { useTheme } from "../../hooks/useTheme";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
 import { TabContainer } from "../TabContainer";

@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import { getSettingsDict } from "../../settings";
+import { getSettingsDict } from "../../settings/settings";
 import { State } from "./types";
 
 /**

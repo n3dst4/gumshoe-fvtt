@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { assertEquipmentItem } from "../../v10Types";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";

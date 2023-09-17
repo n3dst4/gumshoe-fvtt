@@ -5,7 +5,7 @@ import {
   compareCombatantsStandard,
 } from "../components/combat/functions";
 import * as constants from "../constants";
-import { settings } from "../settings";
+import { settings } from "../settings/settings";
 import { isActiveCharacterActor } from "../v10Types";
 
 /**

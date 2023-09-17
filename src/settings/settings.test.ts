@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
 
-import { createSettingObject, settings } from "./settings";
+import { createSettingObject } from "./createSettings";
+import { settings } from "./settings";
 
 describe("createSettingObject", () => {
   it("should return a default validator", () => {

@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 
 import { systemId } from "../constants";
 import { assertGame, getDevMode } from "../functions/utilities";
-import { settings } from "../settings";
+import { settings } from "../settings/settings";
 
 type TranslateProps = {
   children: string;

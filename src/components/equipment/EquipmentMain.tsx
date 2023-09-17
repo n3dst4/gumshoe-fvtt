@@ -2,7 +2,7 @@ import React, { ChangeEvent, useCallback } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { assertEquipmentItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { GridField } from "../inputs/GridField";

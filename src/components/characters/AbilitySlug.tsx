@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
 import { FoundryAppContext } from "../FoundryAppContext";
 

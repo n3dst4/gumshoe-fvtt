@@ -1,7 +1,7 @@
 import { useCallback, useContext, useMemo, useReducer } from "react";
 
 import { useRefStash } from "../../hooks/useRefStash";
-import { getSettingsDict } from "../../settings";
+import { getSettingsDict } from "../../settings/settings";
 import { StateContext } from "./contexts";
 import { store } from "./store";
 import { Setters, State } from "./types";

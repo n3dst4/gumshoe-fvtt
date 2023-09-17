@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 
 import { runtimeConfig } from "../runtime";
-import { settings } from "../settings";
+import { settings } from "../settings/settings";
 import { absoluteCover } from "./absoluteCover";
 import { CSSReset } from "./CSSReset";
 

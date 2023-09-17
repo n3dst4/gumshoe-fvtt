@@ -1,7 +1,7 @@
 import * as constants from "../../constants";
 import { assertGame } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { isGeneralAbilityItem, isNPCActor } from "../../v10Types";
 
 type PerformAttackArgs1 = {

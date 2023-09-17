@@ -10,7 +10,7 @@ import { occupationSlotIndex } from "../../constants";
 import { assertGame } from "../../functions/utilities";
 import { useTheme } from "../../hooks/useTheme";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import {
   AnyItem,
   assertPCActor,

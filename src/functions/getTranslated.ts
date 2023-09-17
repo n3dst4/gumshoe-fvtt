@@ -1,7 +1,7 @@
 import Case from "case";
 
 import * as constants from "../constants";
-import { settings } from "../settings";
+import { settings } from "../settings/settings";
 import { assertGame, getDevMode } from "./utilities";
 
 /**

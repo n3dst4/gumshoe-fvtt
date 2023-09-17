@@ -1,95 +1,22 @@
-import { z } from "zod";
-
-import * as c from "./constants";
-import { defaultCustomThemePath, systemId } from "./constants";
-import { assertGame, mapValues } from "./functions/utilities";
-import { MigrationFlags } from "./migrations/types";
-import { pathOfCthulhuPreset } from "./presets";
-import { runtimeConfig } from "./runtime";
-import { ThemeV1 } from "./themes/types";
+import * as c from "../constants";
+import { mapValues } from "../functions/utilities";
+import { MigrationFlags } from "../migrations/types";
+import { pathOfCthulhuPreset } from "../presets";
+import { runtimeConfig } from "../runtime";
+import { ThemeV1 } from "../themes/types";
+import {
+  createSettingArrayOfString,
+  createSettingBoolean,
+  createSettingObject,
+  createSettingString,
+} from "./createSettings";
+import { equipmentCategoriesValidator } from "./validators/equipmentCategoriesValidator";
+import { personalDetailsValidator } from "./validators/personalDetailsValidator";
+import { statsValidator } from "./validators/statsValidator";
 
 // any of these could have an `onChange` added if we wanted to
 
 // const mySchema = z.string();
-
-interface SettingFactoryArgs<T> {
-  key: string;
-  name: string;
-  scope?: "world" | "client";
-  config?: boolean;
-  choices?: (T extends number | string ? Record<T, string> : never) | undefined;
-  default: T;
-  onChange?: (newVal: T) => void;
-  exportable?: boolean;
-  validator?: z.ZodTypeAny;
-}
-
-const getSetting =
-  <T = string>(key: string) =>
-  (): T => {
-    assertGame(game);
-    return game.settings.get(systemId, key) as T;
-  };
-
-const setSetting =
-  <T = string>(key: string) =>
-  (value: T) => {
-    assertGame(game);
-    return game.settings.set(systemId, key, value);
-  };
-
-const createSetting = <T>(
-  {
-    default: _default,
-    key,
-    name,
-    config = false,
-    scope = "world",
-    choices,
-    onChange,
-    exportable = true,
-    validator,
-  }: SettingFactoryArgs<T>,
-  type: any,
-  defaultValidator?: z.ZodTypeAny,
-) => {
-  Hooks.once("init", () => {
-    assertGame(game);
-    game.settings.register(c.systemId, key, {
-      name,
-      scope,
-      config,
-      default: _default,
-      type,
-      choices,
-      onChange,
-    });
-  });
-  return {
-    key,
-    get: getSetting<T>(key),
-    set: setSetting<T>(key),
-    exportable,
-    validator: validator ?? defaultValidator,
-  };
-};
-
-export const createSettingString = (args: SettingFactoryArgs<string>) =>
-  createSetting(args, String, z.string());
-
-export const createSettingArrayOfString = (
-  args: SettingFactoryArgs<string[]>,
-) => createSetting(args, Array, z.array(z.string()));
-
-export const createSettingBoolean = (args: SettingFactoryArgs<boolean>) =>
-  createSetting(args, Boolean, z.boolean());
-
-export const createSettingObject = <T>(args: SettingFactoryArgs<T>) =>
-  createSetting<T>(args, Object, z.object({}).catchall(z.any()));
-
-const statsValidator = z.record(
-  z.object({ name: z.string(), default: z.number() }),
-);
 
 export const settings = {
   /**
@@ -108,7 +35,7 @@ export const settings = {
   customThemePath: createSettingString({
     key: "customThemePath",
     name: "Custom theme path",
-    default: defaultCustomThemePath,
+    default: c.defaultCustomThemePath,
     exportable: false as const,
   }),
   debugTranslations: createSettingBoolean({
@@ -191,12 +118,7 @@ export const settings = {
     key: "personalDetails",
     name: "Personal details",
     default: pathOfCthulhuPreset.personalDetails,
-    validator: z.array(
-      z.object({
-        name: z.string(),
-        type: z.enum(["text", "item"]),
-      }),
-    ),
+    validator: personalDetailsValidator,
   }),
   showEmptyInvestigativeCategories: createSettingBoolean({
     key: "showEmptyInvestigativeCategories",
@@ -255,35 +177,7 @@ export const settings = {
     key: "equipmentCategories",
     name: "Equipment categories",
     default: pathOfCthulhuPreset.equipmentCategories,
-    validator: z.record(
-      z.object({
-        name: z.string(),
-        fields: z.record(
-          z
-            .object({
-              name: z.string(),
-            })
-            .and(
-              z.discriminatedUnion("type", [
-                z.object({
-                  type: z.literal("string"),
-                  default: z.string(),
-                }),
-                z.object({
-                  type: z.literal("number"),
-                  default: z.number(),
-                  min: z.number().optional(),
-                  max: z.number().optional(),
-                }),
-                z.object({
-                  type: z.literal("checkbox"),
-                  default: z.boolean(),
-                }),
-              ]),
-            ),
-        ),
-      }),
-    ),
+    validator: equipmentCategoriesValidator,
   }),
   migrationFlags: createSettingObject<MigrationFlags>({
     key: "migrationFlags",
