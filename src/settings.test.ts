@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { z } from "zod";
 
 import { createSettingObject, settings } from "./settings";
 
@@ -42,7 +43,7 @@ describe("settings", () => {
       expect(() => validator?.parse({ name: "foo", type: "text" })).toThrow();
     });
   });
-  describe("statsVaildator", () => {
+  describe("Stats validator", () => {
     it.each(["pcStats", "npcStats"])("should validate %s", (key) => {
       const validator = settings[key as keyof typeof settings].validator;
       expect(validator).toBeDefined();
@@ -106,6 +107,159 @@ describe("settings", () => {
       ).toThrow();
       expect(() => validator?.parse(null)).toThrow();
       expect(() => validator?.parse(5)).toThrow();
+    });
+  });
+
+  function makeValidatorTest<T>(validator: z.ZodType<T> | undefined) {
+    expect(validator).toBeDefined();
+    return {
+      expectParseOkay(value: unknown) {
+        expect(validator!.parse(value)).toEqual(value);
+      },
+      expectParseError(value: unknown) {
+        expect(() => validator!.parse(value)).toThrowError();
+      },
+    };
+  }
+
+  describe("equipmentCategories", () => {
+    it("should validate equipment categories", () => {
+      expect(settings.equipmentCategories.validator).toBeDefined();
+      const { expectParseOkay, expectParseError } = makeValidatorTest(
+        settings.equipmentCategories.validator,
+      );
+      expectParseOkay({});
+      expectParseOkay({
+        foo: {
+          name: "Foo",
+          fields: {},
+        },
+      });
+      expectParseOkay({
+        foo: {
+          name: "Foo",
+          fields: {
+            bar: {
+              name: "Bar",
+              type: "string",
+              default: "",
+            },
+          },
+        },
+      });
+      expectParseOkay({
+        foo: {
+          name: "Foo",
+          fields: {
+            bar: {
+              name: "Bar",
+              type: "number",
+              default: 0,
+            },
+          },
+        },
+      });
+      expectParseOkay({
+        foo: {
+          name: "Foo",
+          fields: {
+            bar: {
+              name: "Bar",
+              type: "number",
+              default: 0,
+              min: 0,
+            },
+          },
+        },
+      });
+      expectParseOkay({
+        foo: {
+          name: "Foo",
+          fields: {
+            bar: {
+              name: "Bar",
+              type: "number",
+              default: 0,
+              max: 100,
+            },
+          },
+        },
+      });
+      expectParseOkay({
+        foo: {
+          name: "Foo",
+          fields: {
+            bar: {
+              name: "Bar",
+              type: "number",
+              default: 0,
+              min: 0,
+              max: 100,
+            },
+          },
+        },
+      });
+      expectParseOkay({
+        foo: {
+          name: "Foo",
+          fields: {
+            bar: {
+              name: "Bar",
+              type: "checkbox",
+              default: false,
+            },
+          },
+        },
+      });
+      expectParseError({
+        foo: {
+          name: "Foo",
+        },
+      });
+      expectParseError({
+        foo: {
+          fields: {
+            bar: {
+              name: "Bar",
+              type: "checkbox",
+              default: false,
+            },
+          },
+        },
+      });
+      expectParseError({
+        foo: {
+          fields: {
+            name: "Bar",
+            bar: {
+              type: "checkbox",
+              default: false,
+            },
+          },
+        },
+      });
+      expectParseError({
+        foo: {
+          fields: {
+            name: "Bar",
+            bar: {
+              name: "Bar",
+              default: false,
+            },
+          },
+        },
+      });
+      expectParseError({
+        foo: {
+          fields: {
+            name: "Bar",
+            bar: {
+              name: "Bar",
+              type: "checkbox",
+            },
+          },
+        },
+      });
     });
   });
 });
