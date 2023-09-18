@@ -4,4 +4,4 @@ export const statsValidator = z.record(
   z.object({ name: z.string(), default: z.number() }),
 );
 
-export type Stats = z.infer<typeof statsValidator>;
+export type ValidatorStats = z.infer<typeof statsValidator>;
