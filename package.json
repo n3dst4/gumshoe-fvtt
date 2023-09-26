@@ -67,7 +67,7 @@
     "jest-diff": "^29.7.0",
     "less": "^4.2.0",
     "prettier": "^3.0.3",
-    "rimraf": "^5.0.1",
+    "rimraf": "^5.0.4",
     "rollup-plugin-visualizer": "^5.9.2",
     "typescript": "~5.2.2",
     "vite": "^4.4.9",
