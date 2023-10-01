@@ -29,6 +29,7 @@ import { registerBabele } from "./startup/registerBabele";
 import { registerDevModeDebugFlag } from "./startup/registerDevModeDebugFlag";
 import { registerSettingsMenu } from "./startup/registerSettingsMenu";
 import { registerSheetsAndClasses } from "./startup/registerSheetsAndClasses";
+import { installNewCharacterDefaultOccupationHookHandler } from "./startup/installNewCharacterDefaultOccupationHookHandler";
 
 injectGlobalHelper();
 
@@ -75,3 +76,4 @@ installPersonalDetailHookHandler();
 installResourceUpdateHookHandler();
 installNewCharacterPacksHookHandler();
 installKeepTokenImageInSyncWithActor();
+installNewCharacterDefaultOccupationHookHandler();
