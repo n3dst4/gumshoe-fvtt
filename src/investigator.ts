@@ -15,6 +15,7 @@ import { installEquipmentCategoryHookHandler } from "./startup/installEquipmentC
 import { installInitiativeUpdateHookHandler } from "./startup/installInitiativeUpdateHookHandler";
 import { installItemImageHookHandler } from "./startup/installItemImageHookHandler";
 import { installKeepTokenImageInSyncWithActor } from "./startup/installKeepTokenImageInSyncWithActor";
+import { installNewCharacterDefaultOccupationHookHandler } from "./startup/installNewCharacterDefaultOccupationHookHandler";
 import { installNewCharacterPacksHookHandler } from "./startup/installNewCharacterPacksHookHandler";
 import { installPersonalDetailHookHandler } from "./startup/installPersonalDetailHookHandler";
 import { installRenderSettingsHandler } from "./startup/installRenderSettingsHandler";
@@ -75,3 +76,4 @@ installPersonalDetailHookHandler();
 installResourceUpdateHookHandler();
 installNewCharacterPacksHookHandler();
 installKeepTokenImageInSyncWithActor();
+installNewCharacterDefaultOccupationHookHandler();

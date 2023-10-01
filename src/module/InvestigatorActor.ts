@@ -486,12 +486,11 @@ export class InvestigatorActor extends Actor {
     );
   };
 
-  createPersonalDetail = async (slotIndex: number) => {
-    const detailName =
+  createPersonalDetail = async (slotIndex: number, renderSheet = true) => {
+    const name =
       slotIndex === occupationSlotIndex
-        ? settings.occupationLabel.get()
-        : settings.personalDetails.get()[slotIndex]?.name ?? "detail";
-    const name = `New ${detailName}`;
+        ? settings.genericOccupation.get()
+        : `New ${settings.personalDetails.get()[slotIndex]?.name ?? "detail"}`;
     await this.createEmbeddedDocuments(
       "Item",
       [
@@ -504,7 +503,7 @@ export class InvestigatorActor extends Actor {
         },
       ],
       {
-        renderSheet: true,
+        renderSheet,
       },
     );
   };
