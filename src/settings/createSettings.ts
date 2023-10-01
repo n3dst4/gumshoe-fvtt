@@ -3,18 +3,6 @@ import { z } from "zod";
 import * as c from "../constants";
 import { assertGame } from "../functions/utilities";
 
-interface SettingFactoryArgs<T> {
-  key: string;
-  name: string;
-  scope?: "world" | "client";
-  config?: boolean;
-  choices?: (T extends number | string ? Record<T, string> : never) | undefined;
-  default: T;
-  onChange?: (newVal: T) => void;
-  exportable?: boolean;
-  validator?: z.ZodTypeAny;
-}
-
 const getSetting =
   <T = string>(key: string) =>
   (): T => {
@@ -29,8 +17,35 @@ const setSetting =
     return game.settings.set(c.systemId, key, value);
   };
 
-const createSetting = <T>(
-  {
+interface SettingFactoryArgs<T, TValidator extends z.ZodType | undefined> {
+  key: string;
+  name: string;
+  scope?: "world" | "client";
+  config?: boolean;
+  choices?: (T extends number | string ? Record<T, string> : never) | undefined;
+  default: T;
+  onChange?: (newVal: T) => void;
+  exportable?: boolean;
+  validator?: TValidator;
+}
+
+interface SettingObject<T, TValidator extends z.ZodType | undefined> {
+  key: string;
+  get: () => T;
+  set: (value: T) => Promise<T>;
+  exportable: boolean;
+  validator?: TValidator;
+}
+
+// type ZodCatchAllType = z.infer<typeof zodCatchAll>;
+
+const createSetting =
+  <T>() =>
+  <TDefaultValidator extends z.ZodType | undefined = undefined>(
+    type: any,
+    defaultValidator?: TDefaultValidator,
+  ) =>
+  <TValidator extends z.ZodTypeAny | undefined = undefined>({
     default: _default,
     key,
     name,
@@ -40,40 +55,102 @@ const createSetting = <T>(
     onChange,
     exportable = true,
     validator,
-  }: SettingFactoryArgs<T>,
-  type: any,
-  defaultValidator?: z.ZodTypeAny,
-) => {
-  Hooks.once("init", () => {
-    assertGame(game);
-    game.settings.register(c.systemId, key, {
-      name,
-      scope,
-      config,
-      default: _default,
-      type,
-      choices,
-      onChange,
+  }: SettingFactoryArgs<T, TValidator>): SettingObject<
+    T,
+    TValidator extends undefined ? TDefaultValidator : TValidator
+  > => {
+    Hooks.once("init", () => {
+      assertGame(game);
+      game.settings.register(c.systemId, key, {
+        name,
+        scope,
+        config,
+        default: _default,
+        type,
+        choices,
+        onChange,
+      });
     });
-  });
-  return {
-    key,
-    get: getSetting<T>(key),
-    set: setSetting<T>(key),
-    exportable,
-    validator: validator ?? defaultValidator,
+    return {
+      key,
+      get: getSetting<T>(key),
+      set: setSetting<T>(key),
+      exportable,
+      // painful - I can't get TS to understand that `=== undefined` corresponds
+      // to `extends undefined` in the return type
+      validator: (validator === undefined
+        ? defaultValidator
+        : validator) as TValidator extends undefined
+        ? TDefaultValidator
+        : TValidator,
+    };
   };
-};
 
-export const createSettingString = (args: SettingFactoryArgs<string>) =>
-  createSetting(args, String, z.string());
+// const createSetting = <T, TValidator extends z.ZodType | undefined>(
+//   {
+//     default: _default,
+//     key,
+//     name,
+//     config = false,
+//     scope = "world",
+//     choices,
+//     onChange,
+//     exportable = true,
+//     validator,
+//   }: SettingFactoryArgs<T>,
+//   type: any,
+//   defaultValidator?: TValidator,
+// ): SettingObject<
+//   T,
+//   TValidator extends undefined ? typeof zodCatchAll : TValidator
+// > => {
+//   Hooks.once("init", () => {
+//     assertGame(game);
+//     game.settings.register(c.systemId, key, {
+//       name,
+//       scope,
+//       config,
+//       default: _default,
+//       type,
+//       choices,
+//       onChange,
+//     });
+//   });
+//   return {
+//     key,
+//     get: getSetting<T>(key),
+//     set: setSetting<T>(key),
+//     exportable,
+//     validator: validator ?? defaultValidator,
+//   };
+// };
 
-export const createSettingArrayOfString = (
-  args: SettingFactoryArgs<string[]>,
-) => createSetting(args, Array, z.array(z.string()));
+export const createSettingString = createSetting<string>()(String, z.string());
 
-export const createSettingBoolean = (args: SettingFactoryArgs<boolean>) =>
-  createSetting(args, Boolean, z.boolean());
+export const myStringSetting = createSettingString<undefined>({
+  key: "myStringSetting",
+  name: "My string setting",
+  default: "default string",
+});
 
-export const createSettingObject = <T>(args: SettingFactoryArgs<T>) =>
-  createSetting<T>(args, Object, z.object({}).catchall(z.any()));
+export const myStringSetting2 = createSettingString({
+  key: "myStringSetting",
+  name: "My string setting",
+  default: "default string",
+  validator: z.enum(["Salmon", "Tuna", "Trout"]),
+});
+
+export const createSettingArrayOfString = createSetting<string[]>()(
+  Array,
+  z.array(z.string()),
+);
+
+export const createSettingBoolean = createSetting<boolean>()(
+  Boolean,
+  z.boolean(),
+);
+
+export const createSettingObject = createSetting<Record<string, any>>()(
+  Object,
+  z.object({}).catchall(z.any()),
+);
