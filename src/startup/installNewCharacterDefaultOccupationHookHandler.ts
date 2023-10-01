@@ -11,18 +11,13 @@ export function installNewCharacterDefaultOccupationHookHandler() {
       userId: string,
     ) => {
       assertGame(game);
-      if (game.userId !== userId) return;
-
-      if (actor.type !== pc) {
-        return;
+      if (
+        game.userId === userId &&
+        actor.type === pc &&
+        actor.getOccupations().length === 0
+      ) {
+        await actor.createPersonalDetail(occupationSlotIndex, false);
       }
-
-      const existingOccupation = actor.getOccupations();
-      if (existingOccupation.length > 0) {
-        return;
-      }
-
-      await actor.createPersonalDetail(occupationSlotIndex, false);
     },
   );
 }
