@@ -1,6 +1,6 @@
 import * as c from "../constants";
 import { mapValues } from "../functions/utilities";
-// import { MigrationFlags } from "../migrations/types";
+import { MigrationFlags } from "../migrations/types";
 import { pathOfCthulhuPreset } from "../presets";
 import { runtimeConfig } from "../runtime";
 import { ThemeV1 } from "../themes/types";
@@ -8,6 +8,7 @@ import {
   createSettingArrayOfString,
   createSettingBoolean,
   createSettingObject,
+  createSettingObjectT,
   createSettingString,
 } from "./createSettings";
 import { equipmentCategoriesValidator } from "./validators/equipmentCategoriesValidator";
@@ -179,8 +180,7 @@ export const settings = {
     default: pathOfCthulhuPreset.equipmentCategories,
     validator: equipmentCategoriesValidator,
   }),
-  // migrationFlags: createSettingObject<MigrationFlags>({
-  migrationFlags: createSettingObject({
+  migrationFlags: createSettingObjectT<MigrationFlags>()({
     key: "migrationFlags",
     name: "Migration flags",
     default: {
