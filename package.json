@@ -63,7 +63,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "fs-extra": "^11.1.1",
-    "happy-dom": "^12.5.0",
+    "happy-dom": "^12.8.0",
     "jest-diff": "^29.7.0",
     "less": "^4.2.0",
     "prettier": "^3.0.3",
