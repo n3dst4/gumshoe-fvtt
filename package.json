@@ -53,7 +53,7 @@
     "@vitest/ui": "^0.34.6",
     "archiver": "^6.0.1",
     "chalk": "^5.3.0",
-    "eslint": "^8.50.0",
+    "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.28.1",
