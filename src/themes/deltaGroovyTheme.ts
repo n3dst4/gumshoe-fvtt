@@ -55,6 +55,8 @@ export const deltaGroovyTheme: ThemeV1 = themeFactory({
       backgroundClip: "text",
     },
     rearTextElementStyle: {
+      // front style clips weirdly, this stops it showing through
+      color: "#fff",
       textShadow:
         // "0 0 0.3em #fff, " +
         "-0.01em -0.01em 0 #000, " +
