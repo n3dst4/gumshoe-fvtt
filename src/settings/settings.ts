@@ -165,16 +165,19 @@ export const settings = {
     name: "Personal details",
     default: pathOfCthulhuPreset.personalDetails,
   }),
+
   pcStats: createSetting<PresetV1["pcStats"]>()(Object, statsValidator)({
     key: "pcStats",
     name: "What stats should PCs have?",
     default: pathOfCthulhuPreset.pcStats,
   }),
+
   npcStats: createSetting<PresetV1["npcStats"]>()(Object, statsValidator)({
     key: "npcStats",
     name: "What stats should NPCs have?",
     default: pathOfCthulhuPreset.npcStats,
   }),
+
   equipmentCategories: createSetting<
     Mandatory<PresetV1["equipmentCategories"]>
   >()(
@@ -185,6 +188,7 @@ export const settings = {
     name: "Equipment categories",
     default: pathOfCthulhuPreset.equipmentCategories,
   }),
+
   migrationFlags: createSetting<MigrationFlags>()(Object)({
     key: "migrationFlags",
     name: "Migration flags",
@@ -201,6 +205,7 @@ export const settings = {
     },
     exportable: false,
   }),
+
   firstRun: createSettingBoolean({
     key: "firstRun",
     name: "First run?",

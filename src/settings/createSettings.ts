@@ -48,7 +48,12 @@ export const createSetting =
   // the first one so we can be explicit about TSetting but use inference for
   // TValidator. We also give Foundry its "type" (which is basically a
   // constructor) here.
-  <TValidator extends z.ZodType | undefined = undefined>(
+  <
+    TValidator extends
+      | z.ZodType<TSetting>
+      | z.ZodOptional<z.ZodType<TSetting>>
+      | undefined = undefined,
+  >(
     type: any,
     validator?: TValidator,
   ) =>
