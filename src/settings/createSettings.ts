@@ -46,8 +46,8 @@ export const createSetting =
   // 👇 the second factory allows us to inject TValidator, the type of
   // the validator for this setting factory. it's a separate call from
   // the first one so we can be explicit about TSetting but use inference for
-  // TValidator. We also throw Foundry it's "type" (which is basically a
-  // constructor)
+  // TValidator. We also give Foundry its "type" (which is basically a
+  // constructor) here.
   <TValidator extends z.ZodType | undefined = undefined>(
     type: any,
     validator?: TValidator,
