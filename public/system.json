@@ -6,7 +6,7 @@
   "authors": [{ "name": "Neil de Carteret" }],
   "scripts": [],
   "esmodules": ["investigator.js"],
-  "styles": ["investigator.css"],
+  "styles": [],
   "socket": true,
   "packs": [
     {

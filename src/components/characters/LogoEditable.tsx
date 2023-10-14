@@ -157,7 +157,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
         <div
           css={{
             ...textBearerStyle,
-            ...theme.logo.rearTextElementWrapperStyle,
+            ...theme.logo.frontTextElementWrapperStyle,
           }}
           className="front-text-element gradient-bearer"
         >
