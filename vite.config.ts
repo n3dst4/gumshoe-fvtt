@@ -157,7 +157,7 @@ const config = defineConfig(({ mode }) => {
       // I can't work out why we don't see these warnings in any other mode
       // (vite dev, vite built, vitest --run, eslint directly etc.) but the
       // solution here is to not run checker in test mode.
-      mode === "test"
+      mode === "test" || (process.env.CHECKER ?? "").toLowerCase() === "no"
         ? null
         : checker({
             typescript: true,
