@@ -19,7 +19,7 @@ export const olderThanMemoryTheme: ThemeV1 = themeFactory({
   smallSheetRootStyle: {
     backgroundImage: `linear-gradient( to right, #0009,#0009), url(systems/${systemId}/assets/wallpaper/red_sands.jpg)`,
     backgroundPosition: "center",
-    backgroundSize: "cpver",
+    backgroundSize: "cover",
   },
   appWindowStyle: {
     boxShadow: `0 0 20px ${glow}`,
