@@ -1,8 +1,4 @@
-import {
-  EquipmentCategory,
-  PersonalDetail,
-  Stat,
-} from "@lumphammer/investigator-fvtt-types";
+import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
 
 import * as c from "../constants";
 import { mapValues } from "../functions/utilities";
@@ -10,6 +6,7 @@ import { MigrationFlags } from "../migrations/types";
 import { pathOfCthulhuPreset } from "../presets";
 import { runtimeConfig } from "../runtime";
 import { ThemeV1 } from "../themes/types";
+import { Mandatory } from "../types";
 import {
   createSetting,
   createSettingArrayOfString,
@@ -19,10 +16,6 @@ import {
 import { equipmentCategoriesValidator } from "./validators/equipmentCategoriesValidator";
 import { personalDetailsValidator } from "./validators/personalDetailsValidator";
 import { statsValidator } from "./validators/statsValidator";
-
-// any of these could have an `onChange` added if we wanted to
-
-// const mySchema = z.string();
 
 export const settings = {
   /**
@@ -164,7 +157,7 @@ export const settings = {
 
   // ///////////////////////////////////////////////////////////////////////////
   // object settings
-  personalDetails: createSetting<PersonalDetail[]>()(
+  personalDetails: createSetting<Mandatory<PresetV1["personalDetails"]>>()(
     Object,
     personalDetailsValidator,
   )({
@@ -172,17 +165,19 @@ export const settings = {
     name: "Personal details",
     default: pathOfCthulhuPreset.personalDetails,
   }),
-  pcStats: createSetting<Record<string, Stat>>()(Object, statsValidator)({
+  pcStats: createSetting<PresetV1["pcStats"]>()(Object, statsValidator)({
     key: "pcStats",
     name: "What stats should PCs have?",
     default: pathOfCthulhuPreset.pcStats,
   }),
-  npcStats: createSetting<Record<string, Stat>>()(Object, statsValidator)({
+  npcStats: createSetting<PresetV1["npcStats"]>()(Object, statsValidator)({
     key: "npcStats",
     name: "What stats should NPCs have?",
     default: pathOfCthulhuPreset.npcStats,
   }),
-  equipmentCategories: createSetting<Record<string, EquipmentCategory>>()(
+  equipmentCategories: createSetting<
+    Mandatory<PresetV1["equipmentCategories"]>
+  >()(
     Object,
     equipmentCategoriesValidator,
   )({
