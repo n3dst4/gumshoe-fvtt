@@ -133,6 +133,10 @@ const config = defineConfig(({ mode }) => {
         formats: ["es"],
         fileName: name,
       },
+      optimizeDeps: {
+        // https://stackoverflow.com/a/75922488/212676
+        enties: ["src/index.ts"],
+      },
     },
 
     plugins: [
