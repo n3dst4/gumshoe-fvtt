@@ -1,8 +1,7 @@
-import "./investigator.less";
-
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { systemId } from "./constants";
 import { assertGame, systemLogger } from "./functions/utilities";
+import processedStyles from "./investigator.less?inline";
 import { handleMwItemType } from "./startup/disableMwItemType";
 import { injectGlobalHelper } from "./startup/injectGlobalHelper";
 import { installAbilityCardChatWrangler } from "./startup/installAbilityCardChatWrangler";
@@ -32,6 +31,14 @@ import { registerSettingsMenu } from "./startup/registerSettingsMenu";
 import { registerSheetsAndClasses } from "./startup/registerSheetsAndClasses";
 
 injectGlobalHelper();
+
+// Inject CSS
+// normal css imports don't work in foundry because the html is loaded from
+// foundry itself and vite's css injection never kicks in. So we have to
+// import the css as a string and inject it ourselves.
+const styleElement = document.createElement("style");
+styleElement.innerHTML = processedStyles;
+document.head.appendChild(styleElement);
 
 // Initialize system
 Hooks.once("init", async function () {
