@@ -1,23 +1,46 @@
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
 
-import { createSettingObject } from "./createSettings";
+import { createSetting } from "./createSettings";
 import { settings } from "./settings";
 
-describe("createSettingObject", () => {
-  it("should return a default validator", () => {
-    expect(true).toBe(true);
-    const setting = createSettingObject({
-      key: "test",
-      name: "Test",
-      default: { a: 1 },
+describe("createSetting", () => {
+  describe("no validator", () => {
+    it("should return a setting object", () => {
+      const setting = createSetting()(Object)({
+        key: "test",
+        name: "Test",
+        default: { a: 1 },
+      });
+      expect(setting.validator).toBeUndefined();
+      expect(setting.exportable).toBe(true);
+      expect(setting.key).toBe("test");
     });
-    expect(setting.validator).toBeDefined();
-    expect(setting.validator?.parse({ a: 1 })).toEqual({ a: 1 });
-    expect(() => setting.validator?.parse(null)).toThrow();
-    expect(() => setting.validator?.parse(5)).toThrow();
-    expect(() => setting.validator?.parse("")).toThrow();
   });
+  describe("validator", () => {
+    it("should return a setting object", () => {
+      const validator = z.object({ a: z.number() });
+      const setting = createSetting()(Object, validator)({
+        key: "test",
+        name: "Test",
+        default: { a: 1 },
+      });
+      expect(setting.validator).toBe(validator);
+      expect(setting.exportable).toBe(true);
+    });
+  });
+  // it("should return a setting object", () => {
+  //   const setting = createSetting()(Object, z.string())({
+  //     key: "test",
+  //     name: "Test",
+  //     default: { a: 1 },
+  //   });
+  //   expect(setting.validator).toBeDefined();
+  //   expect(setting.validator?.parse({ a: 1 })).toEqual({ a: 1 });
+  //   expect(() => setting.validator?.parse(null)).toThrow();
+  //   expect(() => setting.validator?.parse(5)).toThrow();
+  //   expect(() => setting.validator?.parse("")).toThrow();
+  // });
 });
 
 describe("settings", () => {

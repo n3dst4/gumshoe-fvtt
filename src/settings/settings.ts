@@ -1,3 +1,9 @@
+import {
+  EquipmentCategory,
+  PersonalDetail,
+  Stat,
+} from "@lumphammer/investigator-fvtt-types";
+
 import * as c from "../constants";
 import { mapValues } from "../functions/utilities";
 import { MigrationFlags } from "../migrations/types";
@@ -5,10 +11,9 @@ import { pathOfCthulhuPreset } from "../presets";
 import { runtimeConfig } from "../runtime";
 import { ThemeV1 } from "../themes/types";
 import {
+  createSetting,
   createSettingArrayOfString,
   createSettingBoolean,
-  createSettingObject,
-  createSettingObjectT,
   createSettingString,
 } from "./createSettings";
 import { equipmentCategoriesValidator } from "./validators/equipmentCategoriesValidator";
@@ -109,17 +114,11 @@ export const settings = {
    * @deprecated
    * Use personalDetails instead
    */
-  shortNotes: createSettingObject({
+  shortNotes: createSettingArrayOfString({
     key: "shortNotes",
     name: "Short Notes",
     default: [""],
     exportable: false,
-  }),
-  personalDetails: createSettingObject({
-    key: "personalDetails",
-    name: "Personal details",
-    default: pathOfCthulhuPreset.personalDetails,
-    validator: personalDetailsValidator,
   }),
   showEmptyInvestigativeCategories: createSettingBoolean({
     key: "showEmptyInvestigativeCategories",
@@ -152,18 +151,6 @@ export const settings = {
     name: "Use Moribund World-style abilities",
     default: false,
   }),
-  pcStats: createSettingObject({
-    key: "pcStats",
-    name: "What stats should PCs have?",
-    default: pathOfCthulhuPreset.pcStats,
-    validator: statsValidator,
-  }),
-  npcStats: createSettingObject({
-    key: "npcStats",
-    name: "What stats should NPCs have?",
-    default: pathOfCthulhuPreset.npcStats,
-    validator: statsValidator,
-  }),
   useNpcCombatBonuses: createSettingBoolean({
     key: "useNpcCombatBonuses",
     name: "Use NPC Combat Bonuses?",
@@ -174,13 +161,36 @@ export const settings = {
     name: "Use turn-passing initiative?",
     default: pathOfCthulhuPreset.useNpcCombatBonuses,
   }),
-  equipmentCategories: createSettingObject({
+
+  // ///////////////////////////////////////////////////////////////////////////
+  // object settings
+  personalDetails: createSetting<PersonalDetail[]>()(
+    Object,
+    personalDetailsValidator,
+  )({
+    key: "personalDetails",
+    name: "Personal details",
+    default: pathOfCthulhuPreset.personalDetails,
+  }),
+  pcStats: createSetting<Record<string, Stat>>()(Object, statsValidator)({
+    key: "pcStats",
+    name: "What stats should PCs have?",
+    default: pathOfCthulhuPreset.pcStats,
+  }),
+  npcStats: createSetting<Record<string, Stat>>()(Object, statsValidator)({
+    key: "npcStats",
+    name: "What stats should NPCs have?",
+    default: pathOfCthulhuPreset.npcStats,
+  }),
+  equipmentCategories: createSetting<Record<string, EquipmentCategory>>()(
+    Object,
+    equipmentCategoriesValidator,
+  )({
     key: "equipmentCategories",
     name: "Equipment categories",
     default: pathOfCthulhuPreset.equipmentCategories,
-    validator: equipmentCategoriesValidator,
   }),
-  migrationFlags: createSettingObjectT<MigrationFlags>()({
+  migrationFlags: createSetting<MigrationFlags>()(Object)({
     key: "migrationFlags",
     name: "Migration flags",
     default: {
