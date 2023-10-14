@@ -1,4 +1,5 @@
 import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
+import { z } from "zod";
 
 import * as c from "../constants";
 import { mapValues } from "../functions/utilities";
@@ -246,3 +247,11 @@ export type SettingsDict = {
 
 export const getSettingsDict = () =>
   mapValues((x) => x.get(), settings) as SettingsDict;
+
+const valObj = Object.fromEntries(
+  Object.entries(settings)
+    .filter(([_, setting]) => !!setting.validator && setting.exportable)
+    .map(([key, setting]) => [key, setting.validator]),
+);
+
+export const superValidator = z.object(valObj as any).strict();

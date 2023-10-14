@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
+import { fromZodError } from "zod-validation-error";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { saveJson } from "../../functions/saveFile";
 import { getUserFile } from "../../functions/utilities";
+import { SettingsDict, superValidator } from "../../settings/settings";
 import { TextInput } from "../inputs/TextInput";
 import { Translate } from "../Translate";
 import { DirtyContext, DispatchContext, StateContext } from "./contexts";
@@ -13,14 +15,14 @@ import { store } from "./store";
 export const ImportExport: React.FC = () => {
   let idx = 0;
   const dispatch = useContext(DispatchContext);
-  const { settings } = useContext(StateContext);
+  const { settings: settingsState } = useContext(StateContext);
   const isDirty = useContext(DirtyContext);
 
   const [filename, setFilename] = React.useState<string>("settings");
 
   const handleExport = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    const exportableSettings = getExportableSettingsDict(settings);
+    const exportableSettings = getExportableSettingsDict(settingsState);
     saveJson(exportableSettings, filename);
     ui.notifications?.info("Settings exported to file");
   };
@@ -29,8 +31,6 @@ export const ImportExport: React.FC = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     e.preventDefault();
-    const jsonText = await getUserFile("json");
-    const newSettings = JSON.parse(jsonText);
     const aye =
       !isDirty() ||
       (await confirmADoodleDo({
@@ -41,8 +41,24 @@ export const ImportExport: React.FC = () => {
         confirmIconClass: "fas fa-times",
         resolveFalseOnCancel: true,
       }));
-    if (aye) {
-      dispatch(store.creators.setSome({ newSettings }));
+    if (!aye) {
+      return;
+    }
+
+    try {
+      const jsonText = await getUserFile("json");
+      const candidateSettings = JSON.parse(jsonText);
+
+      try {
+        const newSettings: Partial<SettingsDict> =
+          superValidator.parse(candidateSettings);
+        dispatch(store.creators.setSome({ newSettings }));
+        ui.notifications?.info("Successfully imported settings");
+      } catch (e) {
+        throw fromZodError(e as any);
+      }
+    } catch (e) {
+      ui.notifications?.error(`Error importing settings: ${e}`);
     }
   };
 
@@ -50,7 +66,7 @@ export const ImportExport: React.FC = () => {
     <>
       <hr css={{ gridColumn: "label / end" }} />
       <h2 css={{ gridColumn: "label / end" }}>
-        <Translate>Import/Export</Translate>
+        <Translate>Import/Export</Translate> (BETA - please report bugs!)
       </h2>
       <SettingsGridField label="Export settings to file" index={idx++}>
         <Translate>ItemName</Translate>
