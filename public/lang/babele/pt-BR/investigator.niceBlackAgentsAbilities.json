@@ -1,5 +1,5 @@
 {
-    "label": "Habilidades Nice Black Agents",
+    "label": "Habilidades Night's Black Agents",
     "mapping": {
         "category": "data.category"
     },
@@ -49,7 +49,7 @@
             "category": "Interpessoal"
         },
         "Cover": {
-            "name": "Cover",
+            "name": "Cobertura",
             "category": "Geral"
         },
         "Criminology": {
@@ -61,15 +61,15 @@
             "category": "Técnica"
         },
         "Data Recovery": {
-            "name": "Data Recovery",
+            "name": "Recuperação de Dados",
             "category": "Técnica"
         },
         "Diagnosis": {
-            "name": "Diagnosis",
+            "name": "Diagnose",
             "category": "Acadêmica"
         },
         "Digital Intrusion": {
-            "name": "Digital Intrusion",
+            "name": "Invasão Digital",
             "category": "Geral"
         },
         "Disguise": {
@@ -125,7 +125,7 @@
             "category": "Acadêmica"
         },
         "Human Terrain": {
-            "name": "Human Terrain",
+            "name": "Terreno Humano",
             "category": "Acadêmica"
         },
         "Infiltration": {
@@ -237,11 +237,11 @@
             "category": "Técnica"
         },
         "Urban Survival": {
-            "name": "Urban Survival",
+            "name": "Sobrevivência na Cidade",
             "category": "Técnica"
         },
         "Vampirology": {
-            "name": "Vampirology",
+            "name": "Vampirologia",
             "category": "Acadêmica"
         },
         "Weapons": {
