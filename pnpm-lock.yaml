@@ -73,8 +73,8 @@ devDependencies:
     specifier: ^4.0.2
     version: 4.0.2
   '@swc/plugin-emotion':
-    specifier: ^2.5.87
-    version: 2.5.87
+    specifier: ^2.5.92
+    version: 2.5.92
   '@testing-library/react':
     specifier: ^14.0.0
     version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -1278,8 +1278,8 @@ packages:
     resolution: {integrity: sha512-xVRaR4u9hcYjFvcSg71Lz5Bo4//CyjAAfMxa7UsaDSYxAshflUkVJWiyVWrfxC59z2kP1IzI4/1BEpnhI9o3Mw==}
     dev: true
 
-  /@swc/plugin-emotion@2.5.87:
-    resolution: {integrity: sha512-CCgzR4j1fvgsrch416fxUxHHdIXskBdSSDPiITB9EBJ2e431Vya33O2i/CF60kQmf1ykpWQZTF5bnH6e+O3cdw==}
+  /@swc/plugin-emotion@2.5.92:
+    resolution: {integrity: sha512-mt7HUtENIT8zimQEiNxX+VCAWNxf9H14X4gVrD6XgaSQpqGEe+i7CCgQrbCxPP1s065wgS/6/j6O1WTznZk6Aw==}
     dev: true
 
   /@swc/types@0.1.5:
