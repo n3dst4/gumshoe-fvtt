@@ -1,0 +1,101 @@
+{
+  "abilityCategories": "Academic,Interpersonal,Technical",
+  "combatAbilities": ["Scuffling", "Shooting"],
+  "defaultThemeName": "pallidTheme",
+  "generalAbilityCategories": ["General"],
+  "genericOccupation": "Investigator",
+  "investigativeAbilityCategories": [
+    "Academic",
+    "Interpersonal",
+    "Technical",
+    "Special"
+  ],
+  "longNotes": [
+    "Personal Arc",
+    "Cybernetic Enhancements",
+    "Viroware Enhancements",
+    "What You Did During The War"
+  ],
+  "mwHiddenShortNotes": [],
+  "mwUseAlternativeItemTypes": false,
+  "newNPCPacks": ["investigator.opponentAbilities"],
+  "newPCPacks": ["investigator.pallidStarsAbilities"],
+  "occupationLabel": "Species",
+  "showEmptyInvestigativeCategories": false,
+  "systemPreset": "pallidStarsPreset",
+  "useBoost": true,
+  "useMwInjuryStatus": false,
+  "useMwStyleAbilities": false,
+  "useNpcCombatBonuses": false,
+  "useTurnPassingInitiative": false,
+  "personalDetails": [
+    {
+      "name": "Drive",
+      "type": "item"
+    },
+    {
+      "name": "Groundside Post",
+      "type": "item"
+    },
+    {
+      "name": "Warpside Post",
+      "type": "item"
+    }
+  ],
+  "pcStats": {
+    "hitThreshold": {
+      "name": "Hit threshold",
+      "default": 3
+    }
+  },
+  "npcStats": {
+    "hitThreshold": {
+      "name": "Hit threshold",
+      "default": 3
+    },
+    "armor": {
+      "name": "Armor",
+      "default": 0
+    },
+    "alertness": {
+      "name": "Alertness",
+      "default": 0
+    },
+    "stealth": {
+      "name": "Stealth",
+      "default": 0
+    },
+    "stabilityLoss": {
+      "name": "Stability Loss",
+      "default": 0
+    }
+  },
+  "equipmentCategories": {
+    "general": {
+      "name": "Gear",
+      "fields": {}
+    },
+    "I5ujOaf_930T5m6XF59w0": {
+      "name": "Cybernetics",
+      "fields": {
+        "achu_d$31aq461l3pn1zs": {
+          "name": "Upkeep",
+          "type": "number",
+          "default": 0,
+          "min": 0
+        }
+      }
+    },
+    "omvQkNoORdSNhVgI42hYi": {
+      "name": "Virusware",
+      "fields": {
+        "YdjIcb6lTZpa07DynCO1C": {
+          "name": "Upkeep",
+          "type": "number",
+          "default": 0,
+          "min": 0
+        }
+      }
+    }
+  }
+}

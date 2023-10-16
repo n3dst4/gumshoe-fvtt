@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
-import { fromZodError } from "zod-validation-error";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { saveJson } from "../../functions/saveFile";
 import { getUserFile } from "../../functions/utilities";
-import { SettingsDict, superValidator } from "../../settings/settings";
+import { getExportableSettingsDict } from "../../settings/getExportableSettingsDict";
+import { validateImportedSettings } from "../../settings/validateImportedSettings";
 import { TextInput } from "../inputs/TextInput";
 import { Translate } from "../Translate";
 import { DirtyContext, DispatchContext, StateContext } from "./contexts";
-import { getExportableSettingsDict } from "./getExportableSettingsDict";
 import { SettingsGridField } from "./SettingsGridField";
 import { store } from "./store";
 
@@ -45,18 +44,11 @@ export const ImportExport: React.FC = () => {
       return;
     }
 
+    const rawRext = await getUserFile("json");
     try {
-      const jsonText = await getUserFile("json");
-      const candidateSettings = JSON.parse(jsonText);
-
-      try {
-        const newSettings: Partial<SettingsDict> =
-          superValidator.parse(candidateSettings);
-        dispatch(store.creators.setSome({ newSettings }));
-        ui.notifications?.info("Successfully imported settings");
-      } catch (e) {
-        throw fromZodError(e as any);
-      }
+      const newSettings = validateImportedSettings(rawRext);
+      dispatch(store.creators.setSome({ newSettings }));
+      ui.notifications?.info("Successfully imported settings");
     } catch (e) {
       ui.notifications?.error(`Error importing settings: ${e}`);
     }

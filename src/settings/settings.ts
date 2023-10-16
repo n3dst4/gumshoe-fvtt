@@ -215,10 +215,6 @@ export const settings = {
   }),
 };
 
-// type SettingsType = typeof settings;
-
-// type equipmentCategoriesType = SettingsType["equipmentCategories"];
-
 // -----------------------------------------------------------------------------
 
 export const getDefaultGeneralAbilityCategory = () => {
