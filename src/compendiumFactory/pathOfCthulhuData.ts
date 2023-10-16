@@ -8,7 +8,7 @@ export const investigativeAbilities: InvestigativeAbilitiesData = {
     { name: "Architecture" },
     { name: "Art History" },
     { name: "Biology" },
-    { name: "Chtulhu Mythos" },
+    { name: "Cthulhu Mythos" },
     { name: "Cryptography" },
     { name: "Geology" },
     { name: "History" },
