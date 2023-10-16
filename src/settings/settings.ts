@@ -251,7 +251,7 @@ export const getSettingsDict = () =>
 const valObj = Object.fromEntries(
   Object.entries(settings)
     .filter(([_, setting]) => !!setting.validator && setting.exportable)
-    .map(([key, setting]) => [key, setting.validator]),
+    .map(([key, setting]) => [key, setting.validator?.optional()]),
 );
 
 export const superValidator = z.object(valObj as any).strict();
