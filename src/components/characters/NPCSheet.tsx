@@ -2,7 +2,7 @@ import React, { Fragment, ReactNode } from "react";
 
 import { useTheme } from "../../hooks/useTheme";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { assertNPCActor, isNPCActor } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";

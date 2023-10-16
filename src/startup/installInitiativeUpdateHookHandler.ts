@@ -1,6 +1,6 @@
 import { assertGame } from "../functions/utilities";
 import { InvestigatorCombatant } from "../module/InvestigatorCombatant";
-import { settings } from "../settings";
+import { settings } from "../settings/settings";
 
 export function installInitiativeUpdateHookHandler() {
   // on createCombatant, if you are the user wot done it, set the initiative.

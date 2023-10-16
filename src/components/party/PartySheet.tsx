@@ -5,7 +5,7 @@ import { assertGame, sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { runtimeConfig } from "../../runtime";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { AbilityItem, assertPartyActor, isAbilityItem } from "../../v10Types";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";

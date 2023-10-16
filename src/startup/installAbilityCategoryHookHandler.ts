@@ -2,7 +2,7 @@ import { assertGame, isNullOrEmptyString } from "../functions/utilities";
 import {
   getDefaultGeneralAbilityCategory,
   getDefaultInvestigativeAbilityCategory,
-} from "../settings";
+} from "../settings/settings";
 import { isAbilityItem, isGeneralAbilityItem } from "../v10Types";
 
 export const installAbilityCategoryHookHandler = () => {

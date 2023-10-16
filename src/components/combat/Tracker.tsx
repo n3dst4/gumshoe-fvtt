@@ -7,7 +7,7 @@ import {
   sortByKey,
 } from "../../functions/utilities";
 import { useRefStash } from "../../hooks/useRefStash";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { CombatantRow } from "./CombatantRow";
 import { getTurns } from "./getTurns";
 

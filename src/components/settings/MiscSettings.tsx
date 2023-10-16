@@ -7,6 +7,7 @@ import { InputGrid } from "../inputs/InputGrid";
 import { ListEdit } from "../inputs/ListEdit";
 import { Translate } from "../Translate";
 import { StateContext } from "./contexts";
+import { ImportExport } from "./ImportExport";
 import { SettingsGridField } from "./SettingsGridField";
 import { Setters } from "./types";
 
@@ -47,6 +48,7 @@ export const MiscSettings: React.FC<{
           />
         </SettingsGridField>
       )}
+
       {/* ####################################################################
           MORIBUND WORLD STUFF BELOW HERE
         #################################################################### */}
@@ -82,6 +84,12 @@ export const MiscSettings: React.FC<{
           onChange={setters.useMwInjuryStatus}
         />
       </SettingsGridField>
+
+      {/* ####################################################################
+          IMPORT / EXPORT
+        #################################################################### */}
+
+      <ImportExport />
     </InputGrid>
   );
 };

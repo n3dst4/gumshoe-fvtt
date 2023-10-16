@@ -1,11 +1,15 @@
 import { useCallback, useContext, useMemo, useReducer } from "react";
 
 import { useRefStash } from "../../hooks/useRefStash";
-import { getSettingsDict } from "../../settings";
+import { getSettingsDict } from "../../settings/settings";
 import { StateContext } from "./contexts";
 import { store } from "./store";
 import { Setters, State } from "./types";
 
+/**
+ * Top-level hook for settings state. This sets up the reducer and temporary
+ * state
+ */
 export const useSettingsState = () => {
   const initialState = useMemo(() => ({ settings: getSettingsDict() }), []);
   const [tempState, dispatch] = useReducer(store.reducer, initialState);

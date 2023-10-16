@@ -3,7 +3,7 @@ import React from "react";
 import { occupationSlotIndex } from "../../constants";
 import { assertGame, padLength } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { assertPersonalDetailItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";

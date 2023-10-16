@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import { getTranslated } from "../../../functions/getTranslated";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
-import { settings } from "../../../settings";
+import { settings } from "../../../settings/settings";
 import { isEquipmentItem } from "../../../v10Types";
 import { FoundryAppContext } from "../../FoundryAppContext";
 import { EquipmentCategory } from "./EquipmentCategory";

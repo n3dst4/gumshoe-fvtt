@@ -1,5 +1,5 @@
 import { MigrationFlags } from "../migrations/types";
-import { settings } from "../settings";
+import { settings } from "../settings/settings";
 
 export function installFlaggedMigrationSplatter() {
   function splatMigration(type: string, migration: string) {

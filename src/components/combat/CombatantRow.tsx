@@ -3,7 +3,7 @@ import React, { Fragment, ReactNode } from "react";
 
 import { assertGame } from "../../functions/utilities";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { InvestigatorTurn } from "./getTurns";
 import { StandardInitiative } from "./StandardInitiative";
 import { TurnPassingInitiative } from "./TurnPassingInitiative";

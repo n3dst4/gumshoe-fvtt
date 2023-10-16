@@ -1,79 +1,22 @@
-import * as c from "./constants";
-import { defaultCustomThemePath, systemId } from "./constants";
-import { assertGame, mapValues } from "./functions/utilities";
-import { MigrationFlags } from "./migrations/types";
-import { pathOfCthulhuPreset } from "./presets";
-import { runtimeConfig } from "./runtime";
-import { ThemeV1 } from "./themes/types";
+import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
+import { z } from "zod";
 
-// any of these could have an `onChange` added if we wanted to
-
-interface SettingFactoryArgs<T> {
-  key: string;
-  name: string;
-  scope?: "world" | "client";
-  config?: boolean;
-  choices?: (T extends number | string ? Record<T, string> : never) | undefined;
-  default: T;
-  onChange?: (newVal: T) => void;
-}
-
-const getSetting =
-  <T = string>(key: string) =>
-  (): T => {
-    assertGame(game);
-    return game.settings.get(systemId, key) as T;
-  };
-
-const setSetting =
-  <T = string>(key: string) =>
-  (value: T) => {
-    assertGame(game);
-    return game.settings.set(systemId, key, value);
-  };
-
-const createSetting = <T>(
-  {
-    default: _default,
-    key,
-    name,
-    config = false,
-    scope = "world",
-    choices,
-    onChange,
-  }: SettingFactoryArgs<T>,
-  type: any,
-) => {
-  Hooks.once("init", () => {
-    assertGame(game);
-    game.settings.register(c.systemId, key, {
-      name,
-      scope,
-      config,
-      default: _default,
-      type,
-      choices,
-      onChange,
-    });
-  });
-  return {
-    key,
-    get: getSetting<T>(key),
-    set: setSetting<T>(key),
-  };
-};
-
-const createSettingString = (args: SettingFactoryArgs<string>) =>
-  createSetting(args, String);
-
-const createSettingArray = <T>(args: SettingFactoryArgs<T>) =>
-  createSetting(args, Array);
-
-const createSettingBoolean = (args: SettingFactoryArgs<boolean>) =>
-  createSetting(args, Boolean);
-
-const createSettingObject = <T>(args: SettingFactoryArgs<T>) =>
-  createSetting<T>(args, Object);
+import * as c from "../constants";
+import { mapValues } from "../functions/utilities";
+import { MigrationFlags } from "../migrations/types";
+import { pathOfCthulhuPreset } from "../presets";
+import { runtimeConfig } from "../runtime";
+import { ThemeV1 } from "../themes/types";
+import { Mandatory } from "../types";
+import {
+  createSetting,
+  createSettingArrayOfString,
+  createSettingBoolean,
+  createSettingString,
+} from "./createSettings";
+import { equipmentCategoriesValidator } from "./validators/equipmentCategoriesValidator";
+import { personalDetailsValidator } from "./validators/personalDetailsValidator";
+import { statsValidator } from "./validators/statsValidator";
 
 export const settings = {
   /**
@@ -84,7 +27,7 @@ export const settings = {
     name: "Ability categories",
     default: "Academic,Interpersonal,Technical",
   }),
-  combatAbilities: createSettingObject({
+  combatAbilities: createSettingArrayOfString({
     key: "combatAbilities",
     name: "Combat abilities",
     default: pathOfCthulhuPreset.combatAbilities,
@@ -92,12 +35,14 @@ export const settings = {
   customThemePath: createSettingString({
     key: "customThemePath",
     name: "Custom theme path",
-    default: defaultCustomThemePath,
+    default: c.defaultCustomThemePath,
+    exportable: false as const,
   }),
   debugTranslations: createSettingBoolean({
     key: "debugTranslations",
     name: "Debug translations?",
     default: false,
+    exportable: false,
   }),
   defaultThemeName: createSettingString({
     key: "defaultThemeName",
@@ -108,7 +53,7 @@ export const settings = {
       runtimeConfig.themes,
     ),
   }),
-  generalAbilityCategories: createSettingObject({
+  generalAbilityCategories: createSettingArrayOfString({
     key: "generalAbilityCategories",
     name: "General ability categories",
     default: pathOfCthulhuPreset.generalAbilityCategories,
@@ -118,17 +63,17 @@ export const settings = {
     name: "Generic occupation",
     default: pathOfCthulhuPreset.genericOccupation,
   }),
-  investigativeAbilityCategories: createSettingObject({
+  investigativeAbilityCategories: createSettingArrayOfString({
     key: "investigativeAbilityCategories",
     name: "Investigative ability categories",
     default: pathOfCthulhuPreset.investigativeAbilityCategories,
   }),
-  longNotes: createSettingObject({
+  longNotes: createSettingArrayOfString({
     key: "longNotes",
     name: "Long Notes",
     default: pathOfCthulhuPreset.longNotes,
   }),
-  mwHiddenShortNotes: createSettingObject<string[]>({
+  mwHiddenShortNotes: createSettingArrayOfString({
     key: "mwHiddenShortNotes",
     name: "Hidden short notes",
     default: [],
@@ -138,7 +83,7 @@ export const settings = {
     name: "Use alternative item types",
     default: false,
   }),
-  newNPCPacks: createSettingArray({
+  newNPCPacks: createSettingArrayOfString({
     key: "newNPCPacks",
     name: "Compendium packs for new NPCs",
     default: pathOfCthulhuPreset.newNPCPacks,
@@ -146,7 +91,7 @@ export const settings = {
       Hooks.call(c.newNPCPacksUpdated, newPacks);
     },
   }),
-  newPCPacks: createSettingArray({
+  newPCPacks: createSettingArrayOfString({
     key: "newPCPacks",
     name: "Compendium packs for new PCs",
     default: pathOfCthulhuPreset.newPCPacks,
@@ -163,15 +108,11 @@ export const settings = {
    * @deprecated
    * Use personalDetails instead
    */
-  shortNotes: createSettingObject({
+  shortNotes: createSettingArrayOfString({
     key: "shortNotes",
     name: "Short Notes",
     default: [""],
-  }),
-  personalDetails: createSettingObject({
-    key: "personalDetails",
-    name: "Personal details",
-    default: pathOfCthulhuPreset.personalDetails,
+    exportable: false,
   }),
   showEmptyInvestigativeCategories: createSettingBoolean({
     key: "showEmptyInvestigativeCategories",
@@ -182,6 +123,7 @@ export const settings = {
     key: "systemMigrationVersion",
     name: "System migration version",
     default: c.defaultMigratedSystemVersion,
+    exportable: false,
   }),
   systemPreset: createSettingString({
     key: "systemPreset",
@@ -203,16 +145,6 @@ export const settings = {
     name: "Use Moribund World-style abilities",
     default: false,
   }),
-  pcStats: createSettingObject({
-    key: "pcStats",
-    name: "What stats should PCs have?",
-    default: pathOfCthulhuPreset.pcStats,
-  }),
-  npcStats: createSettingObject({
-    key: "npcStats",
-    name: "What stats should NPCs have?",
-    default: pathOfCthulhuPreset.npcStats,
-  }),
   useNpcCombatBonuses: createSettingBoolean({
     key: "useNpcCombatBonuses",
     name: "Use NPC Combat Bonuses?",
@@ -223,12 +155,42 @@ export const settings = {
     name: "Use turn-passing initiative?",
     default: pathOfCthulhuPreset.useNpcCombatBonuses,
   }),
-  equipmentCategories: createSettingObject({
+
+  // ///////////////////////////////////////////////////////////////////////////
+  // object settings
+  personalDetails: createSetting<Mandatory<PresetV1["personalDetails"]>>()(
+    Object,
+    personalDetailsValidator,
+  )({
+    key: "personalDetails",
+    name: "Personal details",
+    default: pathOfCthulhuPreset.personalDetails,
+  }),
+
+  pcStats: createSetting<PresetV1["pcStats"]>()(Object, statsValidator)({
+    key: "pcStats",
+    name: "What stats should PCs have?",
+    default: pathOfCthulhuPreset.pcStats,
+  }),
+
+  npcStats: createSetting<PresetV1["npcStats"]>()(Object, statsValidator)({
+    key: "npcStats",
+    name: "What stats should NPCs have?",
+    default: pathOfCthulhuPreset.npcStats,
+  }),
+
+  equipmentCategories: createSetting<
+    Mandatory<PresetV1["equipmentCategories"]>
+  >()(
+    Object,
+    equipmentCategoriesValidator,
+  )({
     key: "equipmentCategories",
     name: "Equipment categories",
     default: pathOfCthulhuPreset.equipmentCategories,
   }),
-  migrationFlags: createSettingObject<MigrationFlags>({
+
+  migrationFlags: createSetting<MigrationFlags>()(Object)({
     key: "migrationFlags",
     name: "Migration flags",
     default: {
@@ -242,11 +204,14 @@ export const settings = {
       playlist: {},
       world: {},
     },
+    exportable: false,
   }),
+
   firstRun: createSettingBoolean({
     key: "firstRun",
     name: "First run?",
     default: true,
+    exportable: false,
   }),
 };
 
@@ -278,3 +243,11 @@ export type SettingsDict = {
 
 export const getSettingsDict = () =>
   mapValues((x) => x.get(), settings) as SettingsDict;
+
+const valObj = Object.fromEntries(
+  Object.entries(settings)
+    .filter(([_, setting]) => !!setting.validator && setting.exportable)
+    .map(([key, setting]) => [key, setting.validator?.optional()]),
+);
+
+export const superValidator = z.object(valObj as any).strict();

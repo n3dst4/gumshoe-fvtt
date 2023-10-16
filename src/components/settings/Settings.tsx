@@ -4,13 +4,13 @@ import { settingsSaved } from "../../constants";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
 import { useTheme } from "../../hooks/useTheme";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
 import { TabContainer } from "../TabContainer";
 import { Translate } from "../Translate";
 import { AbilitySettings } from "./AbilitySettings";
-import { DispatchContext, StateContext } from "./contexts";
+import { DirtyContext, DispatchContext, StateContext } from "./contexts";
 import { CoreSettings } from "./CoreSettings";
 import { EquipmentSettings } from "./Equipment/EquipmentSettings";
 import { useSettingsState } from "./hooks";
@@ -64,70 +64,73 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
   return (
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={tempState}>
-        <CSSReset
-          mode="small"
-          theme={theme}
-          css={{
-            ...absoluteCover,
-            display: "flex",
-            flexDirection: "column",
-            padding: 0,
-          }}
-        >
-          <div css={{ flex: 1, overflow: "auto", position: "relative" }}>
-            <TabContainer
-              defaultTab="core"
-              tabs={[
-                {
-                  id: "core",
-                  label: "Core",
-                  content: <CoreSettings setters={setters} />,
-                },
-                {
-                  id: "abilities",
-                  label: "Abilities",
-                  content: <AbilitySettings setters={setters} />,
-                },
-                {
-                  id: "equipment",
-                  label: "Equipment",
-                  content: <EquipmentSettings />,
-                },
-                {
-                  id: "stats",
-                  label: "Stats",
-                  content: <StatsSettings />,
-                },
-                {
-                  id: "misc",
-                  label: "Misc",
-                  content: <MiscSettings setters={setters} />,
-                },
-              ]}
-            />
-          </div>
-          <div
+        <DirtyContext.Provider value={isDirty}>
+          <CSSReset
+            mode="small"
+            theme={theme}
             css={{
+              ...absoluteCover,
               display: "flex",
-              flexDirection: "row",
-              padding: "0.5em",
-              background: theme.colors.backgroundSecondary,
+              flexDirection: "column",
+              padding: 0,
             }}
           >
-            <button
-              css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
-              onClick={handleClickClose}
+            <div css={{ flex: 1, overflow: "auto", position: "relative" }}>
+              <TabContainer
+                defaultTab="core"
+                tabs={[
+                  {
+                    id: "core",
+                    label: "Core",
+                    content: <CoreSettings setters={setters} />,
+                  },
+                  {
+                    id: "abilities",
+                    label: "Abilities",
+                    content: <AbilitySettings setters={setters} />,
+                  },
+                  {
+                    id: "equipment",
+                    label: "Equipment",
+                    content: <EquipmentSettings />,
+                  },
+                  {
+                    id: "stats",
+                    label: "Stats",
+                    content: <StatsSettings />,
+                  },
+                  {
+                    id: "misc",
+                    label: "Misc",
+                    content: <MiscSettings setters={setters} />,
+                  },
+                ]}
+              />
+            </div>
+            <div
+              css={{
+                display: "flex",
+                flexDirection: "row",
+                padding: "0.5em",
+                background: theme.colors.backgroundSecondary,
+              }}
             >
-              <i className="fas fa-times" /> <Translate>Cancel</Translate>
-            </button>
-            <button
-              css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
-              onClick={handleClickSave}
-            >
-              <i className="fas fa-save" /> <Translate>Save Changes</Translate>
-            </button>
-          </div>
-        </CSSReset>
+              <button
+                css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
+                onClick={handleClickClose}
+              >
+                <i className="fas fa-times" /> <Translate>Cancel</Translate>
+              </button>
+              <button
+                css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
+                onClick={handleClickSave}
+              >
+                <i className="fas fa-save" />{" "}
+                <Translate>Save Changes</Translate>
+              </button>
+            </div>
+          </CSSReset>
+        </DirtyContext.Provider>
       </StateContext.Provider>
     </DispatchContext.Provider>
   );

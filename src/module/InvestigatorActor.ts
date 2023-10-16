@@ -8,7 +8,7 @@ import { confirmADoodleDo } from "../functions/confirmADoodleDo";
 import { getTranslated } from "../functions/getTranslated";
 import { convertNotes } from "../functions/textFunctions";
 import { assertGame, isGame } from "../functions/utilities";
-import { settings } from "../settings";
+import { settings } from "../settings/settings";
 import {
   AbilityType,
   BaseNote,

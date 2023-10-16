@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { settings } from "../../settings";
+import { settings } from "../../settings/settings";
 import { NoteWithFormat } from "../../types";
 import { assertPCActor } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";

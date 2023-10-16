@@ -9,7 +9,7 @@ import {
   MigrationFunction,
   MigrationFunctionsForType,
 } from "../migrations/types";
-import { settings } from "../settings";
+import { settings } from "../settings/settings";
 
 /**
  * The startup task, which determines whether a migration is needed (using

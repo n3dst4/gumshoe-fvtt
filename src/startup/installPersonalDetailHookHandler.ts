@@ -7,7 +7,7 @@ import {
 import { confirmADoodleDo } from "../functions/confirmADoodleDo";
 import { getTranslated } from "../functions/getTranslated";
 import { assertGame, isNullOrEmptyString } from "../functions/utilities";
-import { settings } from "../settings";
+import { settings } from "../settings/settings";
 import { isActiveCharacterActor, isPersonalDetailItem } from "../v10Types";
 
 export function installPersonalDetailHookHandler() {
