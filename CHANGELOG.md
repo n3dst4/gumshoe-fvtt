@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Unreleased
+
+* BUG FIX: Newly created PCs now have a occupation set, as intended (#474).
+* BUG FIX: The "logo" on the character sheet was looking a bit weird in some circumstances. Fixed (#476).
+* BUG FIX: "Chtulhu Mythos" typo now corrected to "Cthulhu Mythos" (#477). Thanks @chrisjensenromer! And *shame* on anyone else who noticed but didn't let me know.
+* NEW FEATURE! You can now import and export your settings to a JSON file. This is useful for:
+
+  * Backing up your settings.
+  * Sharing your settings with other people.
+
+  This feature is being considered BETA for now. Bear in mind that it monkeys with your whole setup, so I'd advise taking a Foundry backup (using Foundry's funky new built-in backups) until you'#re confident that it's working for you. Thanks @itsmegrave for the idea waaay back last year (#136)
+
 ## 7.4.1 (2023-08-21)
 
 * Number input now work properly again when you type into them (#391) Thanks @muwak

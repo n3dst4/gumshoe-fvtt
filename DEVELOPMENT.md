@@ -178,7 +178,7 @@ To perform a release:
 3. Update the version in
    * [`package.json`](package.json)
    * [`system.json`](public/system.json).
-4. Update the `CHANGELOG`.
+4. Update the [`CHANGELOG`](CHANGELOG.md).
 5. Run this one handy command, which will commit, push, and create a new tag and push it also:
 
     ```
