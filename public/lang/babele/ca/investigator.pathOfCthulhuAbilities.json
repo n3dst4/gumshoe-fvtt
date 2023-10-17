@@ -56,10 +56,6 @@
             "name": "Química",
             "category": "Tècniques"
         },
-        "Chtulhu Mythos": {
-            "name": "Chtulhu Mythos",
-            "category": "Acadèmiques"
-        },
         "Conceal": {
             "name": "Ocultar",
             "category": "Generals"
@@ -78,6 +74,10 @@
         },
         "Cryptography": {
             "name": "Criptografia",
+            "category": "Acadèmiques"
+        },
+        "Cthulhu Mythos": {
+            "name": "Cthulhu Mythos",
             "category": "Acadèmiques"
         },
         "Disguise": {

@@ -80,7 +80,6 @@ async function buildPackTranslations() {
     const store = new Datastore({
       filename: path.join(publicPath, pack.path),
       autoload: true,
-      inMemoryOnly: true,
     });
 
     const docs = await store.find({});
