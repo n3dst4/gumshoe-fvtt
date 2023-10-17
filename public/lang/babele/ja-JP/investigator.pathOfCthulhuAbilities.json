@@ -56,10 +56,6 @@
             "name": "化学",
             "category": "技術系探索技能"
         },
-        "Chtulhu Mythos": {
-            "name": "Chtulhu Mythos",
-            "category": "学術系探索技能"
-        },
         "Conceal": {
             "name": "隠蔽",
             "category": "一般技能"
@@ -78,6 +74,10 @@
         },
         "Cryptography": {
             "name": "暗号学",
+            "category": "学術系探索技能"
+        },
+        "Cthulhu Mythos": {
+            "name": "Cthulhu Mythos",
             "category": "学術系探索技能"
         },
         "Disguise": {
