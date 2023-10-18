@@ -5,6 +5,7 @@
 * BUG FIX: Newly created PCs now have a occupation set, as intended (#474).
 * BUG FIX: The "logo" on the character sheet was looking a bit weird in some circumstances. Fixed (#476).
 * BUG FIX: "Chtulhu Mythos" typo now corrected to "Cthulhu Mythos" (#477). Thanks @chrisjensenromer! And *shame* on anyone else who noticed but didn't let me know.
+* BUG FIX: PC actor won't open in v7.5.0-alpha.1 (#504). Cheers @marksjus for the testing and the bug report.
 * NEW FEATURE! You can now import and export your settings to a JSON file. This is useful for:
 
   * Backing up your settings.
