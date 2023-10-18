@@ -48,7 +48,7 @@
     "@types/yamljs": "^0.2.32",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
-    "@vercel/ncc": "^0.38.0",
+    "@vercel/ncc": "^0.38.1",
     "@vitejs/plugin-react-swc": "^3.4.0",
     "@vitest/ui": "^0.34.6",
     "archiver": "^6.0.1",
