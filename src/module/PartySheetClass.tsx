@@ -36,6 +36,7 @@ const render = (sheet: PartySheetClassBase) => {
 };
 
 export const PartySheetClass = ReactApplicationMixin(
+  "PartySheetClass",
   PartySheetClassBase,
   render,
 );

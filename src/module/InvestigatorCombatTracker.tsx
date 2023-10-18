@@ -47,6 +47,7 @@ const render = () => {
 };
 
 export const InvestigatorCombatTracker = ReactApplicationMixin(
+  "InvestigatorCombatTracker",
   InvestigatorCombatTrackerBase,
   render,
 );

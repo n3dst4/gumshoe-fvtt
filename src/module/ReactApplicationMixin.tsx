@@ -25,6 +25,12 @@ type Render<T> = (
  */
 export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
   /**
+   * Name to be attached to the created class. This is needed because minified
+   * classes have weird names which can break foundry when thney get used as
+   * HTML ids.
+   */
+  name: string,
+  /**
    * The base class.
    */
   Base: TBase,
@@ -134,10 +140,10 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
       return super.close(options);
     }
   }
-  // we are assuming that the base classn is named WhateverBase, so we set the
-  // name of the mixed-in class to Whatever.
+  // see comment on name arg above
   Object.defineProperty(Reactified, "name", {
-    value: Base.name.replace(/Base$/, ""),
+    value: name,
   });
+
   return Reactified;
 }

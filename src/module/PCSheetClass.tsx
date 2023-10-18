@@ -24,4 +24,8 @@ const render = (sheet: PCSheetClassBase) => {
   return <PCSheet actor={sheet.document} foundryApplication={sheet} />;
 };
 
-export const PCSheetClass = ReactApplicationMixin(PCSheetClassBase, render);
+export const PCSheetClass = ReactApplicationMixin(
+  "PCSheetClass",
+  PCSheetClassBase,
+  render,
+);

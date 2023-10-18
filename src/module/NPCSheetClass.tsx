@@ -34,4 +34,8 @@ const render = (sheet: NPCSheetClassBase) => {
   );
 };
 
-export const NPCSheetClass = ReactApplicationMixin(NPCSheetClassBase, render);
+export const NPCSheetClass = ReactApplicationMixin(
+  "NPCSheetClass",
+  NPCSheetClassBase,
+  render,
+);

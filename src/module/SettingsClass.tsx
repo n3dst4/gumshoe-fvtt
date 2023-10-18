@@ -44,7 +44,11 @@ const render = (sheet: SettingsClassBase) => {
   );
 };
 
-export const SettingsClass = ReactApplicationMixin(SettingsClassBase, render);
+export const SettingsClass = ReactApplicationMixin(
+  "SettingsClass",
+  SettingsClassBase,
+  render,
+);
 
 export const investigatorSettingsClassInstance = new SettingsClass(
   undefined,

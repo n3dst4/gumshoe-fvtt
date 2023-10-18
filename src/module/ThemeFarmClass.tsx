@@ -29,6 +29,10 @@ const render = (sheet: ThemeFarmClassBase) => {
   return <ThemeFarm foundryApplication={sheet} />;
 };
 
-export const ThemeFarmClass = ReactApplicationMixin(ThemeFarmClassBase, render);
+export const ThemeFarmClass = ReactApplicationMixin(
+  "ThemeFarmClass",
+  ThemeFarmClassBase,
+  render,
+);
 
 export const themeFarmClassInstance = new ThemeFarmClass({}, {});

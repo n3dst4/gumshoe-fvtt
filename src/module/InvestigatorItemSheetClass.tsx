@@ -39,4 +39,8 @@ class ItemSheetClassBase extends ItemSheet {
   }
 }
 
-export const ItemSheetClass = ReactApplicationMixin(ItemSheetClassBase, render);
+export const ItemSheetClass = ReactApplicationMixin(
+  "ItemSheetClass",
+  ItemSheetClassBase,
+  render,
+);
