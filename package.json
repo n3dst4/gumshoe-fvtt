@@ -70,7 +70,7 @@
     "rimraf": "^5.0.5",
     "rollup-plugin-visualizer": "^5.9.2",
     "typescript": "~5.2.2",
-    "vite": "^4.4.11",
+    "vite": "^4.5.0",
     "vite-plugin-checker": "^0.6.2",
     "vitest": "^0.34.6",
     "yargs": "^17.7.2",
