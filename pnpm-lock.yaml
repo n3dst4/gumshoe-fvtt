@@ -109,8 +109,8 @@ devDependencies:
     specifier: ^5.0.3
     version: 5.0.3
   '@types/yamljs':
-    specifier: ^0.2.32
-    version: 0.2.32
+    specifier: ^0.2.33
+    version: 0.2.33
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.8.0
     version: 6.8.0(@typescript-eslint/parser@6.8.0)(eslint@8.51.0)(typescript@5.2.2)
@@ -1431,8 +1431,8 @@ packages:
     resolution: {integrity: sha512-2PCZA9g/dkeHIGTf6ESMOD3Gz5RMpDzODtvlBbkLAdtKa/yTQDAFudDEVolHjaBUnu8ugd8BeTCWk4x0STnqkA==}
     dev: true
 
-  /@types/yamljs@0.2.32:
-    resolution: {integrity: sha512-KeVUr9iOPxHfzB3kWtwMj2RyMGhgLt5rCLKQ63t5TGgAkn2KDI+NccoPki3jwE5fks+ywbqiDfotYgcQH5mvgg==}
+  /@types/yamljs@0.2.33:
+    resolution: {integrity: sha512-IuphSS8fXN/oQnSUr6+YyC/VolXmasZaRldPIyFv1HoX0M6m10pcZqd1pKYi1y8VoM9Go1VzEb0rzP08f74tow==}
     dev: true
 
   /@typescript-eslint/eslint-plugin@6.8.0(@typescript-eslint/parser@6.8.0)(eslint@8.51.0)(typescript@5.2.2):
