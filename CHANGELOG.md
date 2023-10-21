@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 7.5.1 (2023-10-21)
 
 * Updated Polish translations for the new import/export features. Thanks @marksjus (#503)
 
