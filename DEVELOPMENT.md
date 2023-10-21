@@ -101,9 +101,12 @@ tx pull --all --force --workers 16
 * `--force` - overwrite "newer" files. This should only happen if there has been a PR or commit that changed the translations without also uploading those changes to Transifex.
 
 > ⚠️ After running `pn pullTranslations` (or the `tx pull` command above), you MUST look through the changes in git and confirm that they make sense. Look for languages with a lot of changes and double check that you are not accidentally overwriting changes that were added to git but not TX.
->
-> ⚠️ To that point - when someone sends a PR with translation changes, it's better to feed those into TX (resources -> language -> upload file) and then pull them back down again, rather than committing directly. This way TX remains the single source of truth for translations.
 
+### When someone sends a PR with translation changes
+
+It's better to feed those into TX (resources -> language -> upload file) and then pull them back down again, rather than committing directly. This way TX remains the single source of truth for translations.
+
+Alternatively, if the PR looks safe, you can merge it - but then you sghould upload the changes to TX and immediately pull them back down again to make sure that nothing else changed in the meantime.
 
 
 ### Getting set up to pull translations from Transifex

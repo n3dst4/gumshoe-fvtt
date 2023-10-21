@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Updated Polish translations for the new import/export features. Thanks @marksjus (#503)
+
 ## 7.5.0 (2023-10-19)
 
 * **BUG FIX: Newly created PCs now have a occupation**, as intended (#474).
