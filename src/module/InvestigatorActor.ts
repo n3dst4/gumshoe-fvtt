@@ -329,7 +329,7 @@ export class InvestigatorActor extends Actor {
       const { newHtml, newSource } = await convertNotes(
         this.system.longNotesFormat,
         longNotesFormat,
-        note.source,
+        note?.source ?? "",
       );
       return {
         html: newHtml,
