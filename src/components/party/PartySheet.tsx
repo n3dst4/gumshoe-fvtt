@@ -247,7 +247,7 @@ export const PartySheet: React.FC<{
                   css={{
                     width: "3em",
                     height: "3em",
-                    backgroundImage: `url(${actor.img})`,
+                    backgroundImage: `url("${actor.img}")`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     margin: "0 auto",
