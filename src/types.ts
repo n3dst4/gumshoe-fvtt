@@ -1,43 +1,68 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 
 import * as constants from "./constants";
-export type AbilityType =
-  | typeof constants.investigativeAbility
-  | typeof constants.generalAbility;
 
+// SOCKET STUFF ----------------------------------------------------------------
+
+/**
+ * data send out over the game websocket to request all clients to call the
+ * hook `hook` with the given payload
+ */
 export interface SocketHookAction<T> {
   hook: string;
   payload: T;
 }
 
+/**
+ * args passed to the `requestTurnPass` hook. this is sent out over the
+ * websocket and broadcast to everyone. the GM's client picks it up and acts on
+ * it.
+ */
 export interface RequestTurnPassArgs {
   combatantId: string;
 }
 
-export type MWDifficulty = "easy" | number;
+// FOUNDRY STUFF ---------------------------------------------------------------
 
+/** Foundry's idea of a resource */
 export type Resource = {
   min?: number;
   max: number;
   value: number;
 };
 
-// NOTES
+// NOTES -----------------------------------------------------------------------
+
+/**
+ * Enum for the types of notes formats we support.
+ */
 export enum NoteFormat {
   plain = "plain",
   richText = "richText",
   markdown = "markdown",
 }
 
+/**
+ * Sometimes notes don't have a format specified, when the format is handeled
+ * externally. E.g. for PCs, the format is specified in the actor data so you
+ * get the same format across all notes fields. This type represents the bare
+ * minimum of a note, the source and the rendered output.
+ */
 export interface BaseNote {
   source: string;
   html: string;
 }
 
+/**
+ * For notes where they need their own format.
+ */
 export interface NoteWithFormat extends BaseNote {
   format: NoteFormat;
 }
 
+// MORIBUND WORLD --------------------------------------------------------------
+
+/** MW Injury status */
 export enum MwInjuryStatus {
   uninjured = "uninjured",
   hurt = "hurt",
@@ -46,15 +71,18 @@ export enum MwInjuryStatus {
   dead = "dead",
 }
 
+/** difficulty levels for MW */
+export type MWDifficulty = "easy" | number;
+
 // #############################################################################
 // #############################################################################
 // Actor data stuff
 // #############################################################################
 // #############################################################################
 
-// XXX I think there's a load of things in here we don't need, but let's revisit
-// once we're on foundry-vtt-types
-export interface PCDataSourceData {
+export interface PCSystemData {
+  // this is not used anywhere, but it's in template.json and has been since
+  // forever
   buildPoints: number;
   /** @deprecated occupation is now a personalDetail item */
   occupation: string;
@@ -78,7 +106,7 @@ export interface PCDataSourceData {
   initiativePassingTurns: number;
 }
 
-export interface NPCDataSourceData {
+export interface NPCSystemData {
   notes: NoteWithFormat;
   initiativeAbility: string;
   hideZeroRated: boolean;
@@ -106,7 +134,7 @@ export interface NPCDataSourceData {
   initiativePassingTurns: number;
 }
 
-export interface PartyDataSourceData {
+export interface PartySystemData {
   // party stuff
   abilityNames: string[];
   actorIds: string[];
@@ -118,21 +146,25 @@ export interface PartyDataSourceData {
 // #############################################################################
 // #############################################################################
 
+export type AbilityType =
+  | typeof constants.investigativeAbility
+  | typeof constants.generalAbility;
+
 /** Stuff that is in common between Equipment and Weapons */
-export interface BaseEquipmentDataSourceData {
+export interface BaseEquipmentSystemData {
   notes: NoteWithFormat;
 }
 
 /**
  * data.data for equipment
  */
-export interface EquipmentDataSourceData extends BaseEquipmentDataSourceData {
+export interface EquipmentSystemData extends BaseEquipmentSystemData {
   category: string;
   fields: Record<string, string | number | boolean>;
 }
 
 /** data.data for weapons */
-export interface WeaponDataSourceData extends BaseEquipmentDataSourceData {
+export interface WeaponSystemData extends BaseEquipmentSystemData {
   ability: string;
   damage: number;
   pointBlankDamage: number;
@@ -168,7 +200,7 @@ export interface SituationalModifier {
 export type SpecialitiesMode = "one" | "twoThreeFour";
 
 /** data.data for either type of ability */
-export interface BaseAbilityDataSourceData {
+interface BaseAbilitySystemData {
   rating: number;
   pool: number;
   min: number;
@@ -192,14 +224,12 @@ export interface BaseAbilityDataSourceData {
 
 /** data.data for investigative abilities */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface InvestigativeAbilityDataSourceData
-  extends BaseAbilityDataSourceData {}
+export interface InvestigativeAbilitySystemData extends BaseAbilitySystemData {}
 
 export type MwRefreshGroup = 2 | 4 | 8;
 
 /** data.data for general abilities */
-export interface GeneralAbilityDataSourceData
-  extends BaseAbilityDataSourceData {
+export interface GeneralAbilitySystemData extends BaseAbilitySystemData {
   canBeInvestigative: boolean;
   goesFirstInCombat: boolean;
   // MW-specific fields
@@ -223,7 +253,7 @@ export type MwType =
 export type RangeTuple = [number, number, number, number];
 
 /** data.data for Moribund World stuff */
-export interface MwItemDataSourceData {
+export interface MwItemSystemData {
   mwType: MwType;
   notes: NoteWithFormat;
   charges: number;
@@ -231,25 +261,11 @@ export interface MwItemDataSourceData {
 }
 
 /** data.data for personal details */
-export interface PersonalDetailSourceData {
+export interface PersonalDetailSystemData {
   notes: NoteWithFormat;
   slotIndex: number;
   compendiumPackId: string | null;
 }
-
-// #############################################################################
-// #############################################################################
-// SETTINGS
-// #############################################################################
-// #############################################################################
-
-// declare global {
-//   namespace ClientSettings {
-//     interface Values {
-//       [constants["systemName"]]: boolean,
-//     }
-//   }
-// }
 
 // #############################################################################
 // #############################################################################
@@ -267,17 +283,6 @@ export type PickByType<T, P> = Omit<
   T,
   { [K in keyof T]: T[K] extends P ? never : K }[keyof T]
 >;
-
-/**
- * Like Partial<T>, but recursive.
- */
-// export type RecursivePartial<T> = {
-//   [P in keyof T]?: T[P] extends (infer U)[]
-//   ? RecursivePartial<U>[]
-//   : T[P] extends Record<string, unknown>
-//   ? RecursivePartial<T[P]>
-//   : T[P];
-// };
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type RecursivePartial<T> = T extends Function

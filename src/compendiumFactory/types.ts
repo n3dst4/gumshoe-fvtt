@@ -1,7 +1,7 @@
 import { generalAbility, investigativeAbility } from "../constants";
 import {
-  GeneralAbilityDataSourceData,
-  InvestigativeAbilityDataSourceData,
+  GeneralAbilitySystemData,
+  InvestigativeAbilitySystemData,
 } from "../types";
 
 interface Essentials {
@@ -10,13 +10,13 @@ interface Essentials {
 }
 
 export interface InvestigativeAbilityTemplate
-  extends Partial<InvestigativeAbilityDataSourceData>,
+  extends Partial<InvestigativeAbilitySystemData>,
     Essentials {
   type?: typeof investigativeAbility;
 }
 
 export interface GeneralAbilityTemplate
-  extends Partial<GeneralAbilityDataSourceData>,
+  extends Partial<GeneralAbilitySystemData>,
     Essentials {
   type?: typeof generalAbility;
 }
