@@ -1,20 +1,16 @@
 import { useCallback } from "react";
 
-import * as constants from "../../constants";
 import {
   assertGame,
-  broadcastHook,
+  requestTurnPass,
   systemLogger,
 } from "../../functions/utilities";
 import { useRefStash } from "../../hooks/useRefStash";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
 
-export const useInititative = (
-  combat: InvestigatorCombat | undefined,
-  id: string,
-) => {
+export const useInititative = (combat: InvestigatorCombat, id: string) => {
   assertGame(game);
-  const combatantStash = useRefStash(combat?.combatants.get(id));
+  const combatantStash = useRefStash(combat.combatants.get(id));
 
   const onConfigureCombatant = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
@@ -46,10 +42,9 @@ export const useInititative = (
   const onTakeTurn = useCallback(() => {
     assertGame(game);
     systemLogger.log("turnPassingHandler - calling hook");
-    const payload = {
-      combatantId: combatantStash.current?.id,
-    };
-    broadcastHook(constants.requestTurnPass, payload);
+    // call `requestTurnPass` on everyone's client - the GM's client will pick
+    // this up and perform the turn pass
+    requestTurnPass(combatantStash.current?.id);
   }, [combatantStash]);
 
   const onAddTurn = useCallback(() => {

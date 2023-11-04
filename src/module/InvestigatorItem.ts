@@ -4,7 +4,7 @@ import * as constants from "../constants";
 import { assertGame, fixLength } from "../functions/utilities";
 import { settings } from "../settings/settings";
 import {
-  EquipmentDataSourceData,
+  EquipmentSystemData,
   MWDifficulty,
   MwRefreshGroup,
   MwType,
@@ -237,7 +237,7 @@ export class InvestigatorItem extends Item {
 
   setCategory = async (category: string): Promise<void> => {
     isEquipmentOrAbilityItem(this);
-    const updateData: Pick<EquipmentDataSourceData, "category" | "fields"> = {
+    const updateData: Pick<EquipmentSystemData, "category" | "fields"> = {
       category,
       fields: {},
     };

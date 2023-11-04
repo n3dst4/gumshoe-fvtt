@@ -2,15 +2,15 @@ import * as constants from "./constants";
 import { InvestigatorActor } from "./module/InvestigatorActor";
 import { InvestigatorItem } from "./module/InvestigatorItem";
 import {
-  EquipmentDataSourceData,
-  GeneralAbilityDataSourceData,
-  InvestigativeAbilityDataSourceData,
-  MwItemDataSourceData,
-  NPCDataSourceData,
-  PartyDataSourceData,
-  PCDataSourceData,
-  PersonalDetailSourceData,
-  WeaponDataSourceData,
+  EquipmentSystemData,
+  GeneralAbilitySystemData,
+  InvestigativeAbilitySystemData,
+  MwItemSystemData,
+  NPCSystemData,
+  PartySystemData,
+  PCSystemData,
+  PersonalDetailSystemData,
+  WeaponSystemData,
 } from "./types";
 
 // this is all junk to allow us to start using v10's `.system` property
@@ -26,32 +26,32 @@ interface InvestigatorItemSystem<Type extends string, SystemData>
 
 export type GeneralAbilityItem = InvestigatorItemSystem<
   typeof constants.generalAbility,
-  GeneralAbilityDataSourceData
+  GeneralAbilitySystemData
 >;
 
 export type InvestigativeAbilityItem = InvestigatorItemSystem<
   typeof constants.investigativeAbility,
-  InvestigativeAbilityDataSourceData
+  InvestigativeAbilitySystemData
 >;
 
 export type WeaponItem = InvestigatorItemSystem<
   typeof constants.weapon,
-  WeaponDataSourceData
+  WeaponSystemData
 >;
 
 export type EquipmentItem = InvestigatorItemSystem<
   typeof constants.equipment,
-  EquipmentDataSourceData
+  EquipmentSystemData
 >;
 
 export type MwItem = InvestigatorItemSystem<
   typeof constants.mwItem,
-  MwItemDataSourceData
+  MwItemSystemData
 >;
 
 export type PersonalDetailItem = InvestigatorItemSystem<
   typeof constants.personalDetail,
-  PersonalDetailSourceData
+  PersonalDetailSystemData
 >;
 
 export type AbilityItem = GeneralAbilityItem | InvestigativeAbilityItem;
@@ -186,17 +186,17 @@ interface InvestigatorActorSystem<Type extends string, SystemData>
 
 export type PCACtor = InvestigatorActorSystem<
   typeof constants.pc,
-  PCDataSourceData
+  PCSystemData
 >;
 
 export type NPCActor = InvestigatorActorSystem<
   typeof constants.npc,
-  NPCDataSourceData
+  NPCSystemData
 >;
 
 export type PartyActor = InvestigatorActorSystem<
   typeof constants.party,
-  PartyDataSourceData
+  PartySystemData
 >;
 
 export type ActiveCharacterActor = PCACtor | NPCActor;
