@@ -172,7 +172,7 @@
       "templates": ["notes"],
       "title": "",
       "type": "",
-      "backgroundImage": ""
+      "flags": []
     }
   }
 }

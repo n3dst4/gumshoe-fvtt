@@ -157,14 +157,14 @@ export interface BaseEquipmentSystemData {
 }
 
 /**
- * data.data for equipment
+ * system data forequipment
  */
 export interface EquipmentSystemData extends BaseEquipmentSystemData {
   category: string;
   fields: Record<string, string | number | boolean>;
 }
 
-/** data.data for weapons */
+/** system data forweapons */
 export interface WeaponSystemData extends BaseEquipmentSystemData {
   ability: string;
   damage: number;
@@ -200,7 +200,7 @@ export interface SituationalModifier {
 
 export type SpecialitiesMode = "one" | "twoThreeFour";
 
-/** data.data for either type of ability */
+/** system data foreither type of ability */
 interface BaseAbilitySystemData {
   rating: number;
   pool: number;
@@ -223,13 +223,13 @@ interface BaseAbilitySystemData {
   situationalModifiers: SituationalModifier[];
 }
 
-/** data.data for investigative abilities */
+/** system data forinvestigative abilities */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface InvestigativeAbilitySystemData extends BaseAbilitySystemData {}
 
 export type MwRefreshGroup = 2 | 4 | 8;
 
-/** data.data for general abilities */
+/** system data forgeneral abilities */
 export interface GeneralAbilitySystemData extends BaseAbilitySystemData {
   canBeInvestigative: boolean;
   goesFirstInCombat: boolean;
@@ -253,7 +253,7 @@ export type MwType =
   | "retainer";
 export type RangeTuple = [number, number, number, number];
 
-/** data.data for Moribund World stuff */
+/** system data forMoribund World stuff */
 export interface MwItemSystemData {
   mwType: MwType;
   notes: NoteWithFormat;
@@ -261,11 +261,18 @@ export interface MwItemSystemData {
   ranges: RangeTuple;
 }
 
-/** data.data for personal details */
+/** system data forpersonal details */
 export interface PersonalDetailSystemData {
   notes: NoteWithFormat;
   slotIndex: number;
   compendiumPackId: string | null;
+}
+
+export interface CardSystemData {
+  notes: NoteWithFormat;
+  title: string;
+  type: string;
+  flags: string[];
 }
 
 // #############################################################################
