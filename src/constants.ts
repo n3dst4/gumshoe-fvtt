@@ -24,6 +24,7 @@ export const npc = "npc" as const;
 export const party = "party" as const;
 export const mwItem = "mwItem" as const;
 export const personalDetail = "personalDetail" as const;
+export const card = "card" as const;
 
 // assets
 export const investigativeAbilityIcon =

@@ -15,6 +15,25 @@ import {
 
 // this is all junk to allow us to start using v10's `.system` property
 
+/**
+ * Given a type predicate function and a value, throw an error if the predicate
+ * returns false.
+ *
+ * This just makes it easier to use type predicates in assertions. I tried a hof
+ * which just wrapped the predicate, but TS reqires an explicit type signature
+ * for type assertions, so it actually ended up fiddlier to use.
+ */
+function assertPredicate<T>(
+  predicate: (item: T | null | undefined) => boolean,
+  item: T | null | undefined,
+): asserts item is T {
+  if (!predicate(item)) {
+    throw new Error("type predicate failed");
+  }
+}
+
+type Optional<T> = T | null | undefined;
+
 // /////////////////////////////////////////////////////////////////////////////
 // ITEMS
 
@@ -54,6 +73,11 @@ export type PersonalDetailItem = InvestigatorItemSystem<
   PersonalDetailSystemData
 >;
 
+export type CardItem = InvestigatorItemSystem<
+  typeof constants.card,
+  PersonalDetailSystemData
+>;
+
 export type AbilityItem = GeneralAbilityItem | InvestigativeAbilityItem;
 
 export type AnyItem =
@@ -64,115 +88,105 @@ export type AnyItem =
   | PersonalDetailItem;
 
 export function isGeneralAbilityItem(
-  item: Item | null,
+  item: Optional<Item>,
 ): item is GeneralAbilityItem {
   return item?.type === "generalAbility";
 }
 
 export function assertGeneralAbilityItem(
-  item: Item | null,
+  item: Optional<Item>,
 ): asserts item is GeneralAbilityItem {
-  if (!isGeneralAbilityItem(item)) {
-    throw new Error("not a general ability item");
-  }
+  assertPredicate(isGeneralAbilityItem, item);
 }
 
 export function isInvestigativeAbilityItem(
-  item: Item | null,
+  item: Optional<Item>,
 ): item is InvestigativeAbilityItem {
   return item?.type === "investigativeAbility";
 }
 
 export function assertInvestigativeAbilityItem(
-  item: Item | null,
+  item: Optional<Item>,
 ): asserts item is InvestigativeAbilityItem {
-  if (!isInvestigativeAbilityItem(item)) {
-    throw new Error("not an investigative ability item");
-  }
+  assertPredicate(isInvestigativeAbilityItem, item);
 }
 
-export function isAbilityItem(item: Item | null): item is AbilityItem {
+export function isAbilityItem(item: Optional<Item>): item is AbilityItem {
   return isGeneralAbilityItem(item) || isInvestigativeAbilityItem(item);
 }
 
 export function assertAbilityItem(
-  item: Item | null,
+  item: Optional<Item>,
 ): asserts item is AbilityItem {
-  if (!isAbilityItem(item)) {
-    throw new Error("not an ability item");
-  }
+  assertPredicate(isAbilityItem, item);
 }
 
-export function isEquipmentItem(item: Item | null): item is EquipmentItem {
+export function isEquipmentItem(item: Optional<Item>): item is EquipmentItem {
   return item?.type === "equipment";
 }
 
 export function assertEquipmentItem(
-  item: Item | null,
+  item: Optional<Item>,
 ): asserts item is EquipmentItem {
-  if (!isEquipmentItem(item)) {
-    throw new Error("not an equipment item");
-  }
+  assertPredicate(isEquipmentItem, item);
 }
 
 export function isEquipmentOrAbilityItem(
-  item: Item | null,
+  item: Optional<Item>,
 ): item is EquipmentItem | AbilityItem {
   return isAbilityItem(item) || isEquipmentItem(item);
 }
 
 export function assertEquipmentOrAbilityItem(
-  item: Item | null,
+  item: Optional<Item>,
 ): asserts item is EquipmentItem | AbilityItem {
-  if (!isEquipmentOrAbilityItem(item)) {
-    throw new Error("not an equipment or ability item");
-  }
+  assertPredicate(isEquipmentOrAbilityItem, item);
 }
 
-export function isWeaponItem(item: Item | null): item is WeaponItem {
+export function isWeaponItem(item: Optional<Item>): item is WeaponItem {
   return item?.type === "weapon";
 }
 
 export function assertWeaponItem(
-  item: Item | null,
+  item: Optional<Item>,
 ): asserts item is WeaponItem {
-  if (!isWeaponItem(item)) {
-    throw new Error("not a weapon item");
-  }
+  assertPredicate(isWeaponItem, item);
 }
 
-export function isMwItem(item: Item | null): item is MwItem {
+export function isMwItem(item: Optional<Item>): item is MwItem {
   return item?.type === "mwItem";
 }
 
-export function assertMwItem(item: Item | null): asserts item is MwItem {
-  if (!isMwItem(item)) {
-    throw new Error("not an mw item");
-  }
+export function assertMwItem(item: Optional<Item>): asserts item is MwItem {
+  assertPredicate(isMwItem, item);
 }
 
-export function isAnyItem(item: Item | null): item is AnyItem {
+export function isAnyItem(item: Optional<Item>): item is AnyItem {
   return true;
 }
 
-export function assertAnyItem(item: Item | null): asserts item is AnyItem {
-  if (!isAnyItem(item)) {
-    throw new Error("not an item");
-  }
+export function assertAnyItem(item: Optional<Item>): asserts item is AnyItem {
+  assertPredicate(isAnyItem, item);
 }
 
 export function isPersonalDetailItem(
-  item: Item | null,
+  item: Optional<Item>,
 ): item is PersonalDetailItem {
   return item?.type === "personalDetail";
 }
 
 export function assertPersonalDetailItem(
-  item: Item | null,
+  item: Optional<Item>,
 ): asserts item is PersonalDetailItem {
-  if (!isPersonalDetailItem(item)) {
-    throw new Error("not a personal detail item");
-  }
+  assertPredicate(isPersonalDetailItem, item);
+}
+
+export function isCardItem(item: Optional<Item>): item is CardItem {
+  return item?.type === "card";
+}
+
+export function assertCardItem(item: Optional<Item>): asserts item is CardItem {
+  assertPredicate(isCardItem, item);
 }
 
 // /////////////////////////////////////////////////////////////////////////////
