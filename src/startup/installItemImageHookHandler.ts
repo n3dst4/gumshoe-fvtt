@@ -1,4 +1,5 @@
 import {
+  cardIcon,
   equipmentIcon,
   generalAbilityIcon,
   investigativeAbilityIcon,
@@ -7,6 +8,7 @@ import {
 } from "../constants";
 import { assertGame, isNullOrEmptyString } from "../functions/utilities";
 import {
+  isCardItem,
   isEquipmentItem,
   isGeneralAbilityItem,
   isPersonalDetailItem,
@@ -40,7 +42,9 @@ export const installItemImageHookHandler = () => {
                 ? generalAbilityIcon
                 : isPersonalDetailItem(item)
                   ? personalDetailIcon
-                  : investigativeAbilityIcon,
+                  : isCardItem(item)
+                    ? cardIcon
+                    : investigativeAbilityIcon,
         });
       }
     },

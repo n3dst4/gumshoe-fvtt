@@ -27,6 +27,7 @@ export const personalDetail = "personalDetail" as const;
 export const card = "card" as const;
 
 // assets
+// all generated through https://game-icons.net/
 export const investigativeAbilityIcon =
   `/systems/${systemId}/assets/icons/magnifying-glass.webp` as const;
 export const generalAbilityIcon =
@@ -42,6 +43,7 @@ export const partyIcon =
   `/systems/${systemId}/assets/icons/dark-squad.webp` as const;
 export const personalDetailIcon =
   `/systems/${systemId}/assets/icons/notebook.webp` as const;
+export const cardIcon = `/systems/${systemId}/assets/icons/card.webp` as const;
 
 // packs
 
