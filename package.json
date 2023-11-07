@@ -39,7 +39,7 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.5.1",
     "@types/d3-ease": "^3.0.1",
-    "@types/html-escaper": "^3.0.1",
+    "@types/html-escaper": "^3.0.2",
     "@types/marked": "^5.0.2",
     "@types/nanoid": "^2.1.0",
     "@types/react": "^18.2.34",
