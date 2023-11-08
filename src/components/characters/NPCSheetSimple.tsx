@@ -21,33 +21,65 @@ import { StatField } from "./StatField";
 import { TrackersArea } from "./TrackersArea";
 import { WeaponsArea } from "./Weapons/WeaponsArea";
 import { WeaponsAreaEdit } from "./Weapons/WeaponsAreaEdit";
-import { NPCSheetFull } from "./NPCSheetFull";
-import { NPCSheetSimple } from "./NPCSheetSimple";
 
-type NPCSheetProps = {
+type NPCSheetSimpleProps = {
   actor: InvestigatorActor;
   foundryApplication: ActorSheet;
 };
 
-export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
+export const NPCSheetSimple = ({
+  actor,
+  foundryApplication,
+}: NPCSheetSimpleProps) => {
   assertNPCActor(actor);
-
-  const user = game.user;
-  const myLevel = actor.getUserLevel(user);
-
   const themeName = actor.getSheetThemeName();
   const theme = useTheme(themeName);
   const stats = settings.npcStats.get();
-  
-  if (myLevel==CONST.DOCUMENT_PERMISSION_LEVELS.OWNER || user.isGM) {
-    return (
-      <NPCSheetFull actor={actor} foundryApplication={foundryApplication} />
-    );
-  } else {
-    return (
-      <NPCSheetSimple actor={actor} foundryApplication={foundryApplication} />
-    );
-  }
+
+  return (
+    <CSSReset
+      theme={theme}
+      mode="large"
+      css={{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        display: "flex",        
+        justifyContent: "center",
+        alignItems:"flex-start",
+        alignContent:"flex-start",
+        flexWrap: "wrap",
+      }}
+    >
+   
+        <LogoEditable
+          mainText={actor.name ?? ""}
+          onChangeMainText={actor.setName}
+          css={{
+            fontSize: "0.66em",            
+            width:"100%",
+          }}
+        />
+      
+      <ImagePickle
+        subject={actor}
+        application={foundryApplication}
+        css={{          
+          transform: "rotateZ(2deg)",
+          width:"200px",
+          height:"200px",
+        }}
+      />
+      <div
+        css={{          
+          width:"100%",
+        }}
+        dangerouslySetInnerHTML={{ __html: actor.getNotes().html }}
+      />    
+    </CSSReset>
+  );
 };
 
-NPCSheet.displayName = "NPCSheet";
+NPCSheetSimple.displayName = "NPCSheetSimple";
