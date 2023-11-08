@@ -1,26 +1,11 @@
-import React, { Fragment, ReactNode } from "react";
+import React from "react";
 
 import { useTheme } from "../../hooks/useTheme";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { settings } from "../../settings/settings";
-import { assertNPCActor, isNPCActor } from "../../v10Types";
-import { absoluteCover } from "../absoluteCover";
+import { assertNPCActor } from "../../v10Types";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
-import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
-import { InputGrid } from "../inputs/InputGrid";
-import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
-import { TabContainer } from "../TabContainer";
-import { Translate } from "../Translate";
-import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
-import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
 import { LogoEditable } from "./LogoEditable";
-import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
-import { StatField } from "./StatField";
-import { TrackersArea } from "./TrackersArea";
-import { WeaponsArea } from "./Weapons/WeaponsArea";
-import { WeaponsAreaEdit } from "./Weapons/WeaponsAreaEdit";
 
 type NPCSheetSimpleProps = {
   actor: InvestigatorActor;
@@ -34,7 +19,8 @@ export const NPCSheetSimple = ({
   assertNPCActor(actor);
   const themeName = actor.getSheetThemeName();
   const theme = useTheme(themeName);
-  const stats = settings.npcStats.get();
+  const notes = actor.getNotes().html;
+  const hasNotes = notes.length > 0;
 
   return (
     <CSSReset
@@ -46,38 +32,68 @@ export const NPCSheetSimple = ({
         right: 0,
         bottom: 0,
         left: 0,
-        display: "flex",        
-        justifyContent: "center",
-        alignItems:"flex-start",
-        alignContent:"flex-start",
+        display: "flex",
+        alignItems: "stretch",
+        alignContent: "flex-start",
         flexWrap: "wrap",
+        flexDirection: "column",
+        justifyContent: "flex-start",
       }}
     >
-   
-        <LogoEditable
-          mainText={actor.name ?? ""}
-          onChangeMainText={actor.setName}
-          css={{
-            fontSize: "0.66em",            
-            width:"100%",
-          }}
-        />
-      
-      <ImagePickle
-        subject={actor}
-        application={foundryApplication}
-        css={{          
-          transform: "rotateZ(2deg)",
-          width:"200px",
-          height:"200px",
+      <LogoEditable
+        mainText={actor.name ?? ""}
+        onChangeMainText={actor.setName}
+        css={{
+          fontSize: "0.66em",
+          width: "100%",
         }}
       />
       <div
-        css={{          
-          width:"100%",
+        css={{
+          flex: 1,
+          overflow: "auto",
+          display: "flex",
+          flexDirection: "row",
+          gap: "1em",
         }}
-        dangerouslySetInnerHTML={{ __html: actor.getNotes().html }}
-      />    
+      >
+        <div
+          css={{
+            containerType: "size",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "start",
+
+            flex: 1,
+            padding: "1em",
+          }}
+        >
+          <ImagePickle
+            subject={actor}
+            application={foundryApplication}
+            css={{
+              width: "100%",
+              height: "auto",
+              aspectRatio: "1/1",
+              "@container (aspect-ratio > 1/1)": {
+                width: "auto",
+                height: "100%",
+              },
+
+              transform: "rotateZ(-1deg)",
+            }}
+          />
+        </div>
+        {hasNotes && (
+          <div
+            css={{
+              flex: 1,
+              overflow: "auto",
+            }}
+            dangerouslySetInnerHTML={{ __html: notes }}
+          />
+        )}
+      </div>
     </CSSReset>
   );
 };
