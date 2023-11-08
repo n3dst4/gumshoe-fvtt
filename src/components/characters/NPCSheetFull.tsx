@@ -27,7 +27,10 @@ type NPCSheetFullProps = {
   foundryApplication: ActorSheet;
 };
 
-export const NPCSheetFull = ({ actor, foundryApplication }: NPCSheetFullProps) => {  
+export const NPCSheetFull = ({
+  actor,
+  foundryApplication,
+}: NPCSheetFullProps) => {
   assertNPCActor(actor);
   const themeName = actor.getSheetThemeName();
   const theme = useTheme(themeName);
@@ -166,7 +169,7 @@ export const NPCSheetFull = ({ actor, foundryApplication }: NPCSheetFullProps) =
               id: "play",
               label: "Play",
               content: (
-                <Fragment>xxx
+                <Fragment>
                   <WeaponsArea actor={actor} />
                   <div css={{ height: "1em" }} />
                   <AbilitiesAreaPlay actor={actor} flipLeftRight={true} />
