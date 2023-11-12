@@ -36,9 +36,10 @@ it("should throw an error if there is an unknown key", () => {
 });
 
 it("should throw an error if the text is not JSON", () => {
+  // this is now testing for the node 20 version of the error
   expect(() =>
     validateImportedSettings("not json"),
   ).toThrowErrorMatchingInlineSnapshot(
-    '"Unexpected token o in JSON at position 1"',
+    '"Unexpected token \'o\', \\"not json\\" is not valid JSON"',
   );
 });

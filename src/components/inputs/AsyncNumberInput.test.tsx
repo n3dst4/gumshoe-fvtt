@@ -38,8 +38,6 @@ it("should show input value and call onChange eventually", async () => {
   vi.advanceTimersByTime(1);
   expect(onChange).toHaveBeenCalledTimes(1);
   expect(onChange).toHaveBeenCalledWith(123);
-
-  vi.useRealTimers();
 });
 
 describe.each<[string, string, string | undefined, string | undefined]>([
