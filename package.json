@@ -97,5 +97,9 @@
     "patchedDependencies": {
       "tinymce@5.10.1": "patches/tinymce@5.10.1.patch"
     }
+  },
+  "engines": {
+    "node": "20",
+    "pnpm": "8"
   }
 }

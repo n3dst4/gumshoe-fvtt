@@ -36,6 +36,7 @@ it("should throw an error if there is an unknown key", () => {
 });
 
 it("should throw an error if the text is not JSON", () => {
+  // this is now testing for the node 20 version of the error
   expect(() =>
     validateImportedSettings("not json"),
   ).toThrowErrorMatchingInlineSnapshot(
