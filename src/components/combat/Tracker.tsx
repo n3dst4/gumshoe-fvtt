@@ -209,7 +209,7 @@ export const Tracker: React.FC = () => {
           </nav>
         )}
 
-        {/* SECOND ROW: RoUnD 4, link, cog */}
+        {/* SECOND ROW: Round 1, link to scene, cog */}
         {/* This used to be a <nav> in v9 but leaving as div doesn't seem to
         break v9 */}
         <div

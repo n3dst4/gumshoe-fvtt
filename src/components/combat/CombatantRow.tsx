@@ -52,7 +52,6 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
       css={{
         height: "4em",
         position: "absolute",
-        // top: `${index * 4}em`,
         top: "0",
         left: "0",
         width: "100%",
