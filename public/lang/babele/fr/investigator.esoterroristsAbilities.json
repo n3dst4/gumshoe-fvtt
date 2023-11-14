@@ -1,5 +1,5 @@
 {
-    "label": "Esoterrorists Abilities (built-in)",
+    "label": "Compétences Esoterroristes",
     "mapping": {
         "category": "system.category"
     },
@@ -53,7 +53,7 @@
             "category": "Technique"
         },
         "Data Retrival": {
-            "name": "Data Retrival",
+            "name": "Récupération de données",
             "category": "Technique"
         },
         "Document Analysis": {
@@ -145,7 +145,7 @@
             "category": "Académique"
         },
         "Local Knowledge": {
-            "name": "Local Knowledge",
+            "name": "Connaissances locales",
             "category": "Académique"
         },
         "Mechanics": {

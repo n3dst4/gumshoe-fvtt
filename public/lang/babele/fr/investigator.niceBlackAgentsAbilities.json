@@ -1,5 +1,5 @@
 {
-    "label": "Night's Black Agents Abilities",
+    "label": "Compétences Night's Black Agents",
     "mapping": {
         "category": "system.category"
     },
@@ -49,7 +49,7 @@
             "category": "Relationnelle"
         },
         "Cover": {
-            "name": "Cover",
+            "name": "Couverture",
             "category": "Générale"
         },
         "Criminology": {
@@ -61,15 +61,15 @@
             "category": "Technique"
         },
         "Data Recovery": {
-            "name": "Data Recovery",
+            "name": "Récupération de données ",
             "category": "Technique"
         },
         "Diagnosis": {
-            "name": "Diagnosis",
+            "name": "Diagnostic",
             "category": "Académique"
         },
         "Digital Intrusion": {
-            "name": "Digital Intrusion",
+            "name": "Intrusion numérique",
             "category": "Générale"
         },
         "Disguise": {
@@ -125,7 +125,7 @@
             "category": "Acad\u00e9mique"
         },
         "Human Terrain": {
-            "name": "Human Terrain",
+            "name": "Environnement Humain",
             "category": "Académique"
         },
         "Infiltration": {
@@ -237,11 +237,11 @@
             "category": "Technique"
         },
         "Urban Survival": {
-            "name": "Urban Survival",
+            "name": "Survie urbain",
             "category": "Technique"
         },
         "Vampirology": {
-            "name": "Vampirology",
+            "name": "Vampirologie",
             "category": "Académique"
         },
         "Weapons": {

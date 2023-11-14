@@ -5,7 +5,7 @@
     },
     "entries": {
         "Accounting": {
-            "name": "Accounting",
+            "name": "Contabilidad",
             "category": "Académicas"
         },
         "Archaeology": {
@@ -181,7 +181,7 @@
             "category": "Técnicas"
         },
         "Pharmacy": {
-            "name": "Pharmacy",
+            "name": "Farmacología",
             "category": "Técnicas"
         },
         "Photography": {

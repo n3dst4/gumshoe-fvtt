@@ -17,7 +17,7 @@
             "category": "Académicas"
         },
         "Art": {
-            "name": "Art",
+            "name": "Habilidad artística",
             "category": "Técnicas"
         },
         "Art History": {
@@ -25,7 +25,7 @@
             "category": "Académicas"
         },
         "Assess Honesty": {
-            "name": "Assess Honesty",
+            "name": "Evaluar Sinceridad",
             "category": "Interpersonales"
         },
         "Astronomy": {
@@ -37,11 +37,11 @@
             "category": "Generales"
         },
         "Bargain": {
-            "name": "Bargain",
+            "name": "Regatear",
             "category": "Interpersonales"
         },
         "Biology": {
-            "name": "Biology",
+            "name": "Biología",
             "category": "Académicas"
         },
         "Bookkeeping": {
@@ -113,7 +113,7 @@
             "category": "Generales"
         },
         "Firearms": {
-            "name": "Firearms",
+            "name": "Armas de Fuego",
             "category": "Generales"
         },
         "First Aid": {
@@ -129,7 +129,7 @@
             "category": "Académicas"
         },
         "Forensics": {
-            "name": "Forensics",
+            "name": "Medicina Forense",
             "category": "Técnicas"
         },
         "Gambling": {
@@ -169,7 +169,7 @@
             "category": "Académicas"
         },
         "Library Use": {
-            "name": "Library Use",
+            "name": "Buscar libros",
             "category": "Académicas"
         },
         "Mechanics": {
@@ -177,7 +177,7 @@
             "category": "Generales"
         },
         "Medicine": {
-            "name": "Medicine",
+            "name": "Medicina",
             "category": "Académicas"
         },
         "Navigation": {
@@ -185,11 +185,11 @@
             "category": "Generales"
         },
         "Occult": {
-            "name": "Occult",
+            "name": "Ocultismo",
             "category": "Académicas"
         },
         "Pharmacy": {
-            "name": "Pharmacy",
+            "name": "Farmacología",
             "category": "Técnicas"
         },
         "Photography": {
@@ -197,7 +197,7 @@
             "category": "Técnicas"
         },
         "Physics": {
-            "name": "Physics",
+            "name": "Física",
             "category": "Académicas"
         },
         "Preparedness": {
@@ -205,7 +205,7 @@
             "category": "Generales"
         },
         "Psychoanalysis": {
-            "name": "Psychoanalysis",
+            "name": "Psicoanálisis",
             "category": "Generales"
         },
         "Reassurance": {
@@ -229,7 +229,7 @@
             "category": "Generales"
         },
         "Shadowing": {
-            "name": "Shadowing",
+            "name": "Seguir",
             "category": "Generales"
         },
         "Stability": {
@@ -245,7 +245,7 @@
             "category": "Interpersonales"
         },
         "Theology": {
-            "name": "Theology",
+            "name": "Teología",
             "category": "Académicas"
         },
         "Trade": {
