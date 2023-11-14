@@ -1,5 +1,6 @@
 import React, { Fragment, useCallback, useContext, useState } from "react";
 
+import { assertGame } from "../functions/utilities";
 import { ThemeContext } from "../themes/ThemeContext";
 import { ImagePickerLink } from "./ImagePickerLink";
 
@@ -26,6 +27,10 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
 }: ImagePickleProps) => {
   const [showOverlay, setShowOverlay] = useState(false);
   const theme = useContext(ThemeContext);
+  assertGame(game);
+  const user = game.user;
+  const myLevel = user ? subject.getUserLevel(user) ?? 0 : 0;
+  const isOwner = myLevel >= CONST.DOCUMENT_PERMISSION_LEVELS.OWNER;
 
   const onClickEdit = useCallback(() => {
     setShowOverlay(false);
@@ -43,8 +48,7 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
     return fp.browse(subject.img ?? "");
   }, [application.position.left, application.position.top, subject]);
 
-  const onClickShow = useCallback(() => {
-    setShowOverlay(false);
+  const showImage = useCallback(() => {
     const ip = new ImagePopout(subject.img ?? "", {
       title: subject.img,
       shareable: true,
@@ -52,24 +56,29 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
     ip.render(true);
   }, [subject.img]);
 
-  const onClickCancel = useCallback(() => {
+  const onClickShow = useCallback(() => {
     setShowOverlay(false);
-  }, []);
+    showImage();
+  }, [showImage]);
 
   const onClickImage = useCallback(
     (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       event.stopPropagation();
-      setShowOverlay(true);
-      const clickListener = () => {
-        setShowOverlay(false);
-      };
-      document.addEventListener("click", clickListener);
+      if (isOwner) {
+        setShowOverlay(true);
+        const clickListener = () => {
+          setShowOverlay(false);
+        };
+        document.addEventListener("click", clickListener);
 
-      return () => {
-        document.removeEventListener("click", clickListener);
-      };
+        return () => {
+          document.removeEventListener("click", clickListener);
+        };
+      } else {
+        showImage();
+      }
     },
-    [],
+    [isOwner, showImage],
   );
 
   return (
@@ -116,7 +125,6 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
           <Fragment>
             <ImagePickerLink onClick={onClickShow}>Show</ImagePickerLink>
             <ImagePickerLink onClick={onClickEdit}>Edit</ImagePickerLink>
-            <ImagePickerLink onClick={onClickCancel}>Cancel</ImagePickerLink>
           </Fragment>
         )}
       </div>
