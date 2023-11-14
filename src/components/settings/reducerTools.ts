@@ -79,8 +79,8 @@ export const createSlice =
           R[key] extends (state: infer S1) => void
             ? void
             : R[key] extends (state: infer S1, payload: infer P1) => void
-            ? P1
-            : never
+              ? P1
+              : never
         >
       >["create"];
     };

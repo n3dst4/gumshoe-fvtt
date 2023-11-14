@@ -30,15 +30,15 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
       ? theme.colors.bgTransDangerPrimary
       : theme.colors.bgTransDangerSecondary
     : odd
-    ? theme.colors.backgroundPrimary
-    : theme.colors.backgroundSecondary;
+      ? theme.colors.backgroundPrimary
+      : theme.colors.backgroundSecondary;
   const headerBg = zero
     ? odd
       ? theme.colors.bgOpaqueDangerPrimary
       : theme.colors.bgOpaqueDangerSecondary
     : odd
-    ? theme.colors.bgOpaquePrimary
-    : theme.colors.bgOpaqueSecondary;
+      ? theme.colors.bgOpaquePrimary
+      : theme.colors.bgOpaqueSecondary;
   return (
     <Fragment>
       {/* Ability name */}

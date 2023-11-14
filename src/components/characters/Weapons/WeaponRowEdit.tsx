@@ -136,12 +136,12 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           gridColumn: weapon.getIsLongRange()
             ? "back"
             : weapon.getIsNearRange()
-            ? "lr"
-            : weapon.getIsCloseRange()
-            ? "nr"
-            : weapon.getIsPointBlank()
-            ? "cr"
-            : "pb",
+              ? "lr"
+              : weapon.getIsCloseRange()
+                ? "nr"
+                : weapon.getIsPointBlank()
+                  ? "cr"
+                  : "pb",
           gridRow,
         }}
       >

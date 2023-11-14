@@ -24,10 +24,10 @@ export const installActorImageHookHandler = () => {
           img: isPCActor(actor)
             ? pcIcon
             : isNPCActor(actor)
-            ? npcIcon
-            : isPartyActor(actor)
-            ? partyIcon
-            : undefined,
+              ? npcIcon
+              : isPartyActor(actor)
+                ? partyIcon
+                : undefined,
         });
       }
     },

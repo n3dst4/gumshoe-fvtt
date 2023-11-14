@@ -9,7 +9,7 @@ export function getListTransitionStyles(
     transform: isShowing
       ? "none"
       : isEntering
-      ? "translateX(-40px)"
-      : "translateX(40px)",
+        ? "translateX(-40px)"
+        : "translateX(40px)",
   };
 }

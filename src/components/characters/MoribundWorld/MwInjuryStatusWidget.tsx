@@ -25,12 +25,12 @@ export const MwInjuryStatusWidget: React.FC<MwInjuryStatusWidgetProps> = ({
     display === MwInjuryStatus.uninjured
       ? "#0f07"
       : display === MwInjuryStatus.hurt
-      ? "#770f"
-      : display === MwInjuryStatus.down ||
-        display === MwInjuryStatus.unconscious
-      ? "#950f"
-      : // dead
-        "#f00f";
+        ? "#770f"
+        : display === MwInjuryStatus.down ||
+            display === MwInjuryStatus.unconscious
+          ? "#950f"
+          : // dead
+            "#f00f";
 
   return (
     <div
