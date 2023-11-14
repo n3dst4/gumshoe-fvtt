@@ -1,5 +1,5 @@
 {
-    "label": "Frayeurs!",
+    "label": "Compétences Terreurs",
     "mapping": {
         "category": "system.category"
     },
@@ -21,7 +21,7 @@
             "category": "Relationnelle"
         },
         "Computer Use": {
-            "name": "Computer Use",
+            "name": "Informatique",
             "category": "Technique"
         },
         "Cop Talk": {
@@ -61,7 +61,7 @@
             "category": "Acad\u00e9mique"
         },
         "Humanities": {
-            "name": "Humanities",
+            "name": "Sciences humaines",
             "category": "Académique"
         },
         "Impersonate": {
@@ -81,7 +81,7 @@
             "category": "Relationnelle"
         },
         "Investigative Procedure": {
-            "name": "Investigative Procedure",
+            "name": "Technique d'investigation",
             "category": "Technique"
         },
         "Languages": {
@@ -109,7 +109,7 @@
             "category": "Pouvoir psychique"
         },
         "Messenger": {
-            "name": "Messenger",
+            "name": "Messager",
             "category": "Pouvoir psychique"
         },
         "Negotiation": {
@@ -133,7 +133,7 @@
             "category": "Technique"
         },
         "Premonitions": {
-            "name": "Premonitions",
+            "name": "Prémonitions",
             "category": "Pouvoir psychique"
         },
         "Preparedness": {
@@ -145,7 +145,7 @@
             "category": "Relationnelle"
         },
         "Remote Viewing": {
-            "name": "Remote Viewing",
+            "name": "Visions",
             "category": "Pouvoir psychique"
         },
         "Research": {
@@ -165,7 +165,7 @@
             "category": "G\u00e9n\u00e9rale"
         },
         "Sensitive": {
-            "name": "Sensitive",
+            "name": "Sensibilité",
             "category": "Pouvoir psychique"
         },
         "Shooting": {
@@ -185,7 +185,7 @@
             "category": "Relationnelle"
         },
         "Synchronicity": {
-            "name": "Synchronicity",
+            "name": "Synchronicité",
             "category": "Pouvoir psychique"
         },
         "Trivia": {

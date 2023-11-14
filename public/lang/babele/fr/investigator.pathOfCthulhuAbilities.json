@@ -1,5 +1,5 @@
 {
-    "label": "La voie de Cthulhu",
+    "label": "Compétences Trail of Cthulhu",
     "mapping": {
         "category": "system.category"
     },
@@ -69,7 +69,7 @@
             "category": "Technique"
         },
         "Credit Rating": {
-            "name": "Credit Rating",
+            "name": "Niveau de vie",
             "category": "Relationnelle"
         },
         "Cryptography": {
@@ -77,7 +77,7 @@
             "category": "Technique"
         },
         "Cthulhu Mythos": {
-            "name": "Cthulhu Mythos",
+            "name": "Mythe de Cthulhu",
             "category": "Académique"
         },
         "Disguise": {
@@ -89,7 +89,7 @@
             "category": "G\u00e9n\u00e9rale"
         },
         "Electrical Repair": {
-            "name": "Electrical Repair",
+            "name": "Electricité",
             "category": "Générale"
         },
         "Evidence Collection": {
@@ -165,7 +165,7 @@
             "category": "Technique"
         },
         "Mechanical Repair": {
-            "name": "M\\u00e9canique",
+            "name": "Mécanique",
             "category": "Générale"
         },
         "Medicine": {
@@ -181,7 +181,7 @@
             "category": "Relationnelle"
         },
         "Outdoorsman": {
-            "name": "Outdoorsman",
+            "name": "Connaissance de la nature",
             "category": "Technique"
         },
         "Pharmacy": {
@@ -217,7 +217,7 @@
             "category": "G\u00e9n\u00e9rale"
         },
         "Sanity": {
-            "name": "Sanity",
+            "name": "Santé mentale",
             "category": "Générale"
         },
         "Scuffling": {
