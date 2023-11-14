@@ -41,8 +41,8 @@ const compareTypes = (a: AbilityType, b: AbilityType) =>
   a === constants.investigativeAbility && b === constants.generalAbility
     ? -1
     : a === constants.generalAbility && b === constants.investigativeAbility
-    ? +1
-    : 0;
+      ? +1
+      : 0;
 
 /**
  * case-insensitive string ordering fn

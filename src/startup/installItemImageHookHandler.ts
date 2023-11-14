@@ -35,12 +35,12 @@ export const installItemImageHookHandler = () => {
           img: isWeaponItem(item)
             ? weaponIcon
             : isEquipmentItem(item)
-            ? equipmentIcon
-            : isGeneralAbilityItem(item)
-            ? generalAbilityIcon
-            : isPersonalDetailItem(item)
-            ? personalDetailIcon
-            : investigativeAbilityIcon,
+              ? equipmentIcon
+              : isGeneralAbilityItem(item)
+                ? generalAbilityIcon
+                : isPersonalDetailItem(item)
+                  ? personalDetailIcon
+                  : investigativeAbilityIcon,
         });
       }
     },

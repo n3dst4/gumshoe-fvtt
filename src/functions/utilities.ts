@@ -181,8 +181,8 @@ export async function getUserFile(accept: string): Promise<string> {
         reader.result === null
           ? ""
           : typeof reader.result === "string"
-          ? reader.result
-          : new TextDecoder("utf-8").decode(new Uint8Array(reader.result));
+            ? reader.result
+            : new TextDecoder("utf-8").decode(new Uint8Array(reader.result));
       resolve(text);
     });
   });

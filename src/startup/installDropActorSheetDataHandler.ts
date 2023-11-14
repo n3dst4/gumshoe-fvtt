@@ -52,12 +52,12 @@ export const installDropActorSheetDataHandler = () => {
         dropData.type === "Actor"
           ? [id]
           : dropData.type === "Folder"
-          ? getFolderDescendants(game.folders?.get(id))
-              .filter((actor) => {
-                return (actor as any).type === pc;
-              })
-              .map((actor) => (actor as any).id)
-          : [];
+            ? getFolderDescendants(game.folders?.get(id))
+                .filter((actor) => {
+                  return (actor as any).type === pc;
+                })
+                .map((actor) => (actor as any).id)
+            : [];
 
       targetActor.addActorIds(actorIds);
     },
