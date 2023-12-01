@@ -6,7 +6,7 @@
 			"ES6",
 			"ES2019"
 		],
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"module": "esnext",
 		"types": [
 			"@league-of-foundry-developers/foundry-vtt-types",
