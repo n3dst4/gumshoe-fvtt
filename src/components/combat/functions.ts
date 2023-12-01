@@ -1,6 +1,5 @@
-import { ConfiguredDocumentClass } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
-
 import * as constants from "../../constants";
+import { InvestigatorCombatant } from "../../module/InvestigatorCombatant";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { isActiveCharacterActor, isGeneralAbilityItem } from "../../v10Types";
 
@@ -10,8 +9,8 @@ const compareInv = <T>(a: T, b: T) => compare(a, b) * -1;
 export const compareCombatantsPassing =
   (active: string | null) =>
   (
-    a: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
-    b: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
+    a: InstanceType<typeof InvestigatorCombatant>,
+    b: InstanceType<typeof InvestigatorCombatant>,
   ): number => {
     return (
       compareInv(a.id === active, b.id === active) ||
@@ -22,8 +21,11 @@ export const compareCombatantsPassing =
   };
 
 export function compareCombatantsStandard(
-  a: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
-  b: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
+  // was previously ConfiguredDocumentClass<typeof Combatant> (not
+  // "InvestigatorCombatant") but I can't get TS to resolve the league type
+  // ConfiguredDocumentClass so just using my type directly
+  a: InstanceType<typeof InvestigatorCombatant>,
+  b: InstanceType<typeof InvestigatorCombatant>,
 ): number {
   if (
     a.actor !== null &&

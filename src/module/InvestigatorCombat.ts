@@ -1,5 +1,3 @@
-import { ConfiguredDocumentClass } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
-
 import {
   compareCombatantsPassing,
   compareCombatantsStandard,
@@ -7,6 +5,7 @@ import {
 import * as constants from "../constants";
 import { settings } from "../settings/settings";
 import { isActiveCharacterActor } from "../v10Types";
+import { InvestigatorCombatant } from "./InvestigatorCombatant";
 
 /**
  * Override base Combat so we can do custom GUMSHOE-style initiative
@@ -31,8 +30,8 @@ export class InvestigatorCombat extends Combat {
   }
 
   protected override _sortCombatants = (
-    a: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
-    b: InstanceType<ConfiguredDocumentClass<typeof Combatant>>,
+    a: InstanceType<typeof InvestigatorCombatant>,
+    b: InstanceType<typeof InvestigatorCombatant>,
   ): number => {
     if (settings.useTurnPassingInitiative.get()) {
       return compareCombatantsPassing(this.activeTurnPassingCombatant)(a, b);
