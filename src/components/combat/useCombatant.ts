@@ -1,4 +1,3 @@
-import { ConfiguredObjectClassForName } from "@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes";
 import { useCallback, useRef } from "react";
 
 import { assertGame } from "../../functions/utilities";
@@ -12,9 +11,10 @@ export const useCombatant = (
   assertGame(game);
   const combatantStash = useRefStash(combat?.combatants.get(id));
 
-  const hoveredToken = useRef<ConfiguredObjectClassForName<"Token"> | null>(
-    null,
-  );
+  // was previously ConfiguredObjectClassForName<"Token"> (not just "Token") but
+  // I can't get TS to resolve the league type ConfiguredObjectClassForName and
+  // we're not subnclassing Token anyway so this is fine
+  const hoveredToken = useRef<Token | null>(null);
 
   const onToggleDefeatedStatus = useCallback(async () => {
     if (combatantStash.current === undefined) return;
@@ -62,8 +62,8 @@ export const useCombatant = (
           // @ts-expect-error privacy means nothing
           token._onHoverIn(event);
         }
-        hoveredToken.current =
-          token as unknown as ConfiguredObjectClassForName<"Token">;
+        // see comment above re: ConfiguredObjectClassForName
+        hoveredToken.current = token as unknown as Token;
       }
     },
     [combatantStash],

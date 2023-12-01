@@ -106,7 +106,7 @@ tx pull --all --force --workers 16
 
 It's better to feed those into TX (resources -> language -> upload file) and then pull them back down again, rather than committing directly. This way TX remains the single source of truth for translations.
 
-Alternatively, if the PR looks safe, you can merge it - but then you sghould upload the changes to TX and immediately pull them back down again to make sure that nothing else changed in the meantime.
+Alternatively, if the PR looks safe, you can merge it - but then you should upload the changes to TX and immediately pull them back down again to make sure that nothing else changed in the meantime.
 
 
 ### Getting set up to pull translations from Transifex
@@ -228,6 +228,23 @@ As of v7.0.0 we are moving off GitLab and going home to GitHub. The following li
 * [GitLab CI pipeline][gl-ci]
 * [GitLab Releases][gl-releases]
 * [GitLab Generic Packages (docs)][gl-generic-packages]
+
+
+## Patched packages
+
+We use a patched version of the following packages:
+
+* [react-icons](https://github.com/react-icons/react-icons)
+  * Has some wonky setup that doesn't work with typescript's moduleResolution: 'bundler' setting. However, `bundler` is needed for Rollup 4, which is needed for Vite 5. So we have a patch which fixes the problem for the subdirectories of react-icons we use.
+  * See https://github.com/react-icons/react-icons/issues/509#issuecomment-1484863625
+  * See https://github.com/react-icons/react-icons/issues/717
+* tinymce
+  * This is a dependency of https://github.com/League-of-Foundry-Developers/foundry-vtt-types
+  * contains types that don't work in typescript 5+
+
+## @league-of-foundry-developers/foundry-vtt-types
+
+As of writing, this project has gone through a stagnant phase caused mainly by Foundry doing stuff that is very hard to represent in typescript. However it's just had a flurry of activity, and Foundry themselves have indicated willingness to provide decent core types. We have been using these types for the sake of the basic core declarations, but currently needs a lot of `@ts-expect-error` to make it work. Also we used to have some direct imports from it, but they no longer work with `moduleResolution: 'bundler'` so they have been replaced by alternatives.
 
 
 [gl-generic-packages]: https://docs.gitlab.com/ee/user/packages/generic_packages/
