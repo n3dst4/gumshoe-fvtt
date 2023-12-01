@@ -95,7 +95,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "tinymce@5.10.1": "patches/tinymce@5.10.1.patch"
+      "tinymce@5.10.1": "patches/tinymce@5.10.1.patch",
+      "react-icons@4.12.0": "patches/react-icons@4.12.0.patch"
     }
   },
   "engines": {

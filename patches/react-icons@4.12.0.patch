@@ -1,0 +1,22 @@
+diff --git a/fa/index.d.ts b/fa/index.d.ts
+index 72e075981595d97a4b9ddffd09bb13044f8ac379..b273db1085857d8b35b53211cc9342219c03c0a6 100644
+--- a/fa/index.d.ts
++++ b/fa/index.d.ts
+@@ -1,5 +1,5 @@
+ // THIS FILE IS AUTO GENERATED
+-import { IconTree, IconType } from '../lib'
++import { IconTree, IconType } from "..";
+ export declare const Fa500Px: IconType;
+ export declare const FaAccessibleIcon: IconType;
+ export declare const FaAccusoft: IconType;
+diff --git a/hi/index.d.ts b/hi/index.d.ts
+index ef7399c6b4d5855d9e8139c56b569fd4b5f23aa1..f39b5710dcbd23151efa3d57511333bd8dbd2fdd 100644
+--- a/hi/index.d.ts
++++ b/hi/index.d.ts
+@@ -1,5 +1,5 @@
+ // THIS FILE IS AUTO GENERATED
+-import { IconTree, IconType } from '../lib'
++import { IconTree, IconType } from "..";
+ export declare const HiAcademicCap: IconType;
+ export declare const HiAdjustments: IconType;
+ export declare const HiAnnotation: IconType;
