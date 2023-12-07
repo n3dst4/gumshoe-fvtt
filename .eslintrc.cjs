@@ -83,6 +83,13 @@ module.exports = {
         "@typescript-eslint/no-var-requires": ["off"],
       },
     },
+    {
+      // vitest 1.x generates inline snapshots in backticks
+      files: ["*.test.ts"],
+      rules: {
+        quotes: ["off", "double", { avoidEscape: true }],
+      },
+    },
   ],
   globals: {
     // Hooks: "readonly",
