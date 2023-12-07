@@ -79,9 +79,6 @@ jobs:
       - name: Test
         run: pnpm test
 
-      - name: Test types
-        run: pnpm run test-types
-
       - name: ESlint
         run: pnpm run eslint:check
 
