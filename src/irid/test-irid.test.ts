@@ -29,7 +29,7 @@ describe("Irid", function () {
 
   test("from invalid string (#yyy)", function () {
     expect(() => irid("#yyy")).toThrowErrorMatchingInlineSnapshot(
-      '"Invalid color specification"',
+      `[Error: Invalid color specification]`,
     );
   });
 
@@ -66,33 +66,33 @@ describe("Irid", function () {
   test("from undefined", function () {
     // @ts-expect-error "For JS users"
     expect(() => irid(undefined)).toThrowErrorMatchingInlineSnapshot(
-      "\"Cannot read properties of undefined (reading 'type')\"",
+      `[TypeError: Cannot read properties of undefined (reading 'type')]`,
     );
   });
 
   test("from gibberish", function () {
     expect(() => irid("gibberish")).toThrowErrorMatchingInlineSnapshot(
-      '"Invalid color specification"',
+      `[Error: Invalid color specification]`,
     );
   });
 
   test("from null", function () {
     // @ts-expect-error "For JS users"
     expect(() => irid(null)).toThrowErrorMatchingInlineSnapshot(
-      "\"Cannot read properties of null (reading 'type')\"",
+      `[TypeError: Cannot read properties of null (reading 'type')]`,
     );
   });
 
   test("from NaN", function () {
     // @ts-expect-error "For JS users"
     expect(() => irid(NaN)).toThrowErrorMatchingInlineSnapshot(
-      '"Invalid color specification"',
+      `[Error: Invalid color specification]`,
     );
   });
 
   test("from malformed hex code", function () {
     expect(() => irid("#ab")).toThrowErrorMatchingInlineSnapshot(
-      '"Invalid color specification"',
+      `[Error: Invalid color specification]`,
     );
   });
 
