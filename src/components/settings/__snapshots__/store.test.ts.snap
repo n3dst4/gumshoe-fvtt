@@ -2,348 +2,348 @@
 
 exports[`reducer > should add a category 1`] = `
 "@@ -41,6 +41,10 @@
-          \\"name\\": \\"initial category\\",
-          \\"fields\\": Object {},
+          "name": "initial category",
+          "fields": Object {},
         },
-+       \\"id0\\": Object {
-+         \\"name\\": \\"New category\\",
-+         \\"fields\\": Object {},
++       "id0": Object {
++         "name": "New category",
++         "fields": Object {},
 +       },
       },
-      \\"debugTranslations\\": false,
-      \\"useBoost\\": false,"
+      "debugTranslations": false,
+      "useBoost": false,"
 `;
 
 exports[`reducer > should add a field 1`] = `
 "@@ -35,6 +35,11 @@
-              \\"max\\": 10,
-              \\"default\\": 1,
+              "max": 10,
+              "default": 1,
             },
-+           \\"id1\\": Object {
-+             \\"name\\": \\"New Field\\",
-+             \\"type\\": \\"string\\",
-+             \\"default\\": \\"\\",
++           "id1": Object {
++             "name": "New Field",
++             "type": "string",
++             "default": "",
 +           },
           },
         },
-        \\"category1\\": Object {"
+        "category1": Object {"
 `;
 
 exports[`reducer > should add a stat 1`] = `
 "@@ -7,6 +7,10 @@
-          \\"default\\": 3,
-          \\"name\\": \\"PC Statisitic Zero\\",
+          "default": 3,
+          "name": "PC Statisitic Zero",
         },
-+       \\"stat1\\": Object {
-+         \\"name\\": \\"\\",
-+         \\"default\\": 0,
++       "stat1": Object {
++         "name": "",
++         "default": 0,
 +       },
       },
-      \\"npcStats\\": Object {
-        \\"npcStat0\\": Object {"
+      "npcStats": Object {
+        "npcStat0": Object {"
 `;
 
 exports[`reducer > should apply a preset 1`] = `
 "@@ -1,54 +1,56 @@
   Object {
-    \\"settings\\": Object {
-      \\"pcStats\\": Object {
--       \\"pcStat0\\": Object {
--         \\"min\\": 0,
--         \\"max\\": 10,
-+       \\"hitThreshold\\": Object {
-+         \\"name\\": \\"Hit threshold\\",
-          \\"default\\": 3,
--         \\"name\\": \\"PC Statisitic Zero\\",
+    "settings": Object {
+      "pcStats": Object {
+-       "pcStat0": Object {
+-         "min": 0,
+-         "max": 10,
++       "hitThreshold": Object {
++         "name": "Hit threshold",
+          "default": 3,
+-         "name": "PC Statisitic Zero",
         },
       },
-      \\"npcStats\\": Object {
--       \\"npcStat0\\": Object {
--         \\"min\\": 0,
--         \\"max\\": 10,
-+       \\"hitThreshold\\": Object {
-+         \\"name\\": \\"Hit threshold\\",
-          \\"default\\": 3,
--         \\"name\\": \\"NPC Statisitic Zero\\",
+      "npcStats": Object {
+-       "npcStat0": Object {
+-         "min": 0,
+-         "max": 10,
++       "hitThreshold": Object {
++         "name": "Hit threshold",
+          "default": 3,
+-         "name": "NPC Statisitic Zero",
         },
-+       \\"armor\\": Object {
-+         \\"name\\": \\"Armor\\",
-+         \\"default\\": 0,
++       "armor": Object {
++         "name": "Armor",
++         "default": 0,
         },
--     \\"systemPreset\\": \\"dnd5e\\",
--     \\"combatAbilities\\": Array [],
--     \\"customThemePath\\": \\"\\",
--     \\"equipmentCategories\\": Object {
--       \\"category0\\": Object {
--         \\"name\\": \\"initial category\\",
--         \\"fields\\": Object {
--           \\"field0\\": Object {
--             \\"name\\": \\"Initial field\\",
--             \\"type\\": \\"string\\",
--             \\"default\\": \\"default value\\",
-+       \\"alertness\\": Object {
-+         \\"name\\": \\"Alertness\\",
-+         \\"default\\": 0,
+-     "systemPreset": "dnd5e",
+-     "combatAbilities": Array [],
+-     "customThemePath": "",
+-     "equipmentCategories": Object {
+-       "category0": Object {
+-         "name": "initial category",
+-         "fields": Object {
+-           "field0": Object {
+-             "name": "Initial field",
+-             "type": "string",
+-             "default": "default value",
++       "alertness": Object {
++         "name": "Alertness",
++         "default": 0,
         },
--           \\"field1\\": Object {
--             \\"name\\": \\"Initial field\\",
--             \\"type\\": \\"number\\",
--             \\"min\\": 0,
--             \\"max\\": 10,
--             \\"default\\": 1,
-+       \\"stealth\\": Object {
-+         \\"name\\": \\"Stealth\\",
-+         \\"default\\": 0,
+-           "field1": Object {
+-             "name": "Initial field",
+-             "type": "number",
+-             "min": 0,
+-             "max": 10,
+-             "default": 1,
++       "stealth": Object {
++         "name": "Stealth",
++         "default": 0,
         },
-+       \\"stabilityLoss\\": Object {
-+         \\"name\\": \\"Stability Loss\\",
-+         \\"default\\": 0,
++       "stabilityLoss": Object {
++         "name": "Stability Loss",
++         "default": 0,
         },
       },
--       \\"category1\\": Object {
--         \\"name\\": \\"initial category\\",
-+     \\"systemPreset\\": \\"pathOfCthulhu\\",
-+     \\"combatAbilities\\": Array [
-+       \\"Scuffling\\",
-+       \\"Weapons\\",
-+       \\"Firearms\\",
-+       \\"Athletics\\",
+-       "category1": Object {
+-         "name": "initial category",
++     "systemPreset": "pathOfCthulhu",
++     "combatAbilities": Array [
++       "Scuffling",
++       "Weapons",
++       "Firearms",
++       "Athletics",
 +     ],
-+     \\"customThemePath\\": \\"\\",
-+     \\"equipmentCategories\\": Object {
-+       \\"general\\": Object {
-+         \\"name\\": \\"General\\",
-          \\"fields\\": Object {},
++     "customThemePath": "",
++     "equipmentCategories": Object {
++       "general": Object {
++         "name": "General",
+          "fields": Object {},
         },
       },
-      \\"debugTranslations\\": false,
-      \\"useBoost\\": false,
--     \\"defaultThemeName\\": \\"\\",
-+     \\"defaultThemeName\\": \\"tealTheme\\",
-      \\"useMwInjuryStatus\\": false,
-      \\"useMwStyleAbilities\\": false,
-      \\"useNpcCombatBonuses\\": false,
--     \\"generalAbilityCategories\\": Array [],
-+     \\"generalAbilityCategories\\": Array [
-+       \\"General\\",
+      "debugTranslations": false,
+      "useBoost": false,
+-     "defaultThemeName": "",
++     "defaultThemeName": "tealTheme",
+      "useMwInjuryStatus": false,
+      "useMwStyleAbilities": false,
+      "useNpcCombatBonuses": false,
+-     "generalAbilityCategories": Array [],
++     "generalAbilityCategories": Array [
++       "General",
 +     ],
-      \\"migrationFlags\\": Object {
-        \\"actor\\": Object {},
-        \\"item\\": Object {},
+      "migrationFlags": Object {
+        "actor": Object {},
+        "item": Object {},
 @@ -61,19 +63,39 @@
-        \\"world\\": Object {},
+        "world": Object {},
       },
-      \\"useTurnPassingInitiative\\": false,
--     \\"genericOccupation\\": \\"\\",
--     \\"investigativeAbilityCategories\\": Array [],
--     \\"longNotes\\": Array [],
-+     \\"genericOccupation\\": \\"Investigator\\",
-+     \\"investigativeAbilityCategories\\": Array [
-+       \\"Academic\\",
-+       \\"Interpersonal\\",
-+       \\"Technical\\",
+      "useTurnPassingInitiative": false,
+-     "genericOccupation": "",
+-     "investigativeAbilityCategories": Array [],
+-     "longNotes": Array [],
++     "genericOccupation": "Investigator",
++     "investigativeAbilityCategories": Array [
++       "Academic",
++       "Interpersonal",
++       "Technical",
 +     ],
-+     \\"longNotes\\": Array [
-+       \\"Notes, Contacts etc.\\",
-+       \\"Occupational Benefits\\",
-+       \\"Pillars of Sanity\\",
-+       \\"Sources of Stability\\",
++     "longNotes": Array [
++       "Notes, Contacts etc.",
++       "Occupational Benefits",
++       "Pillars of Sanity",
++       "Sources of Stability",
 +     ],
-      \\"mwHiddenShortNotes\\": Array [],
-      \\"mwUseAlternativeItemTypes\\": false,
--     \\"newNPCPacks\\": Array [],
--     \\"newPCPacks\\": Array [],
--     \\"occupationLabel\\": \\"\\",
--     \\"personalDetails\\": Array [],
-+     \\"newNPCPacks\\": Array [
-+       \\"investigator.opponentAbilities\\",
+      "mwHiddenShortNotes": Array [],
+      "mwUseAlternativeItemTypes": false,
+-     "newNPCPacks": Array [],
+-     "newPCPacks": Array [],
+-     "occupationLabel": "",
+-     "personalDetails": Array [],
++     "newNPCPacks": Array [
++       "investigator.opponentAbilities",
 +     ],
-+     \\"newPCPacks\\": Array [
-+       \\"investigator.pathOfCthulhuAbilities\\",
++     "newPCPacks": Array [
++       "investigator.pathOfCthulhuAbilities",
 +     ],
-+     \\"occupationLabel\\": \\"Occupation\\",
-+     \\"personalDetails\\": Array [
++     "occupationLabel": "Occupation",
++     "personalDetails": Array [
 +       Object {
-+         \\"name\\": \\"Drive\\",
-+         \\"type\\": \\"item\\",
++         "name": "Drive",
++         "type": "item",
 +       },
 +     ],
-      \\"showEmptyInvestigativeCategories\\": false,
-      \\"systemMigrationVersion\\": \\"\\",
-      \\"abilityCategories\\": \\"\\",
-      \\"shortNotes\\": Array [],
-      \\"firstRun\\": true,
-+     \\"schemaVersion\\": \\"v1\\",
-+     \\"displayName\\": \\"Trail of Cthulhu (built-in)\\",
+      "showEmptyInvestigativeCategories": false,
+      "systemMigrationVersion": "",
+      "abilityCategories": "",
+      "shortNotes": Array [],
+      "firstRun": true,
++     "schemaVersion": "v1",
++     "displayName": "Trail of Cthulhu (built-in)",
     },
   }"
 `;
 
 exports[`reducer > should change a category id 1`] = `
 "@@ -20,7 +20,7 @@
-      \\"combatAbilities\\": Array [],
-      \\"customThemePath\\": \\"\\",
-      \\"equipmentCategories\\": Object {
--       \\"category0\\": Object {
-+       \\"foo\\": Object {
-          \\"name\\": \\"initial category\\",
-          \\"fields\\": Object {
-            \\"field0\\": Object {"
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "equipmentCategories": Object {
+-       "category0": Object {
++       "foo": Object {
+          "name": "initial category",
+          "fields": Object {
+            "field0": Object {"
 `;
 
 exports[`reducer > should change a field id 1`] = `
 "@@ -23,12 +23,12 @@
-        \\"category0\\": Object {
-          \\"name\\": \\"initial category\\",
-          \\"fields\\": Object {
--           \\"field0\\": Object {
-+           \\"foo\\": Object {
-              \\"name\\": \\"Initial field\\",
-              \\"type\\": \\"string\\",
-              \\"default\\": \\"default value\\",
+        "category0": Object {
+          "name": "initial category",
+          "fields": Object {
+-           "field0": Object {
++           "foo": Object {
+              "name": "Initial field",
+              "type": "string",
+              "default": "default value",
             },
--           \\"field1\\": Object {
-+           \\"field0\\": Object {
-              \\"name\\": \\"Initial field\\",
-              \\"type\\": \\"number\\",
-              \\"min\\": 0,"
+-           "field1": Object {
++           "field0": Object {
+              "name": "Initial field",
+              "type": "number",
+              "min": 0,"
 `;
 
 exports[`reducer > should delete a category 1`] = `
 "@@ -20,23 +20,6 @@
-      \\"combatAbilities\\": Array [],
-      \\"customThemePath\\": \\"\\",
-      \\"equipmentCategories\\": Object {
--       \\"category0\\": Object {
--         \\"name\\": \\"initial category\\",
--         \\"fields\\": Object {
--           \\"field0\\": Object {
--             \\"name\\": \\"Initial field\\",
--             \\"type\\": \\"string\\",
--             \\"default\\": \\"default value\\",
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "equipmentCategories": Object {
+-       "category0": Object {
+-         "name": "initial category",
+-         "fields": Object {
+-           "field0": Object {
+-             "name": "Initial field",
+-             "type": "string",
+-             "default": "default value",
 -           },
--           \\"field1\\": Object {
--             \\"name\\": \\"Initial field\\",
--             \\"type\\": \\"number\\",
--             \\"min\\": 0,
--             \\"max\\": 10,
--             \\"default\\": 1,
+-           "field1": Object {
+-             "name": "Initial field",
+-             "type": "number",
+-             "min": 0,
+-             "max": 10,
+-             "default": 1,
 -           },
 -         },
 -       },
-        \\"category1\\": Object {
-          \\"name\\": \\"initial category\\",
-          \\"fields\\": Object {},"
+        "category1": Object {
+          "name": "initial category",
+          "fields": Object {},"
 `;
 
 exports[`reducer > should delete a field 1`] = `
 "@@ -23,11 +23,6 @@
-        \\"category0\\": Object {
-          \\"name\\": \\"initial category\\",
-          \\"fields\\": Object {
--           \\"field0\\": Object {
--             \\"name\\": \\"Initial field\\",
--             \\"type\\": \\"string\\",
--             \\"default\\": \\"default value\\",
+        "category0": Object {
+          "name": "initial category",
+          "fields": Object {
+-           "field0": Object {
+-             "name": "Initial field",
+-             "type": "string",
+-             "default": "default value",
 -           },
-            \\"field1\\": Object {
-              \\"name\\": \\"Initial field\\",
-              \\"type\\": \\"number\\","
+            "field1": Object {
+              "name": "Initial field",
+              "type": "number","
 `;
 
 exports[`reducer > should delete a stat 1`] = `
 "@@ -1,13 +1,6 @@
   Object {
-    \\"settings\\": Object {
--     \\"pcStats\\": Object {
--       \\"pcStat0\\": Object {
--         \\"min\\": 0,
--         \\"max\\": 10,
--         \\"default\\": 3,
--         \\"name\\": \\"PC Statisitic Zero\\",
+    "settings": Object {
+-     "pcStats": Object {
+-       "pcStat0": Object {
+-         "min": 0,
+-         "max": 10,
+-         "default": 3,
+-         "name": "PC Statisitic Zero",
 -       },
 -     },
-+     \\"pcStats\\": Object {},
-      \\"npcStats\\": Object {
-        \\"npcStat0\\": Object {
-          \\"min\\": 0,"
++     "pcStats": Object {},
+      "npcStats": Object {
+        "npcStat0": Object {
+          "min": 0,"
 `;
 
 exports[`reducer > should move a category down 1`] = `
 "@@ -20,6 +20,10 @@
-      \\"combatAbilities\\": Array [],
-      \\"customThemePath\\": \\"\\",
-      \\"equipmentCategories\\": Object {
-+       \\"category1\\": Object {
-+         \\"name\\": \\"initial category\\",
-+         \\"fields\\": Object {},
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "equipmentCategories": Object {
++       "category1": Object {
++         "name": "initial category",
++         "fields": Object {},
 +       },
-        \\"category0\\": Object {
-          \\"name\\": \\"initial category\\",
-          \\"fields\\": Object {
+        "category0": Object {
+          "name": "initial category",
+          "fields": Object {
 @@ -34,12 +38,8 @@
-              \\"min\\": 0,
-              \\"max\\": 10,
-              \\"default\\": 1,
+              "min": 0,
+              "max": 10,
+              "default": 1,
 -           },
             },
           },
--       \\"category1\\": Object {
--         \\"name\\": \\"initial category\\",
--         \\"fields\\": Object {},
+-       "category1": Object {
+-         "name": "initial category",
+-         "fields": Object {},
         },
       },
-      \\"debugTranslations\\": false,"
+      "debugTranslations": false,"
 `;
 
 exports[`reducer > should move a category up 1`] = `
 "@@ -20,6 +20,10 @@
-      \\"combatAbilities\\": Array [],
-      \\"customThemePath\\": \\"\\",
-      \\"equipmentCategories\\": Object {
-+       \\"category1\\": Object {
-+         \\"name\\": \\"initial category\\",
-+         \\"fields\\": Object {},
+      "combatAbilities": Array [],
+      "customThemePath": "",
+      "equipmentCategories": Object {
++       "category1": Object {
++         "name": "initial category",
++         "fields": Object {},
 +       },
-        \\"category0\\": Object {
-          \\"name\\": \\"initial category\\",
-          \\"fields\\": Object {
+        "category0": Object {
+          "name": "initial category",
+          "fields": Object {
 @@ -34,12 +38,8 @@
-              \\"min\\": 0,
-              \\"max\\": 10,
-              \\"default\\": 1,
+              "min": 0,
+              "max": 10,
+              "default": 1,
 -           },
             },
           },
--       \\"category1\\": Object {
--         \\"name\\": \\"initial category\\",
--         \\"fields\\": Object {},
+-       "category1": Object {
+-         "name": "initial category",
+-         "fields": Object {},
         },
       },
-      \\"debugTranslations\\": false,"
+      "debugTranslations": false,"
 `;
 
 exports[`reducer > should move a field down 1`] = `
 "@@ -23,17 +23,17 @@
-        \\"category0\\": Object {
-          \\"name\\": \\"initial category\\",
-          \\"fields\\": Object {
--           \\"field0\\": Object {
--             \\"name\\": \\"Initial field\\",
--             \\"type\\": \\"string\\",
--             \\"default\\": \\"default value\\",
+        "category0": Object {
+          "name": "initial category",
+          "fields": Object {
+-           "field0": Object {
+-             "name": "Initial field",
+-             "type": "string",
+-             "default": "default value",
 -           },
-            \\"field1\\": Object {
-              \\"name\\": \\"Initial field\\",
-              \\"type\\": \\"number\\",
-              \\"min\\": 0,
-              \\"max\\": 10,
-              \\"default\\": 1,
+            "field1": Object {
+              "name": "Initial field",
+              "type": "number",
+              "min": 0,
+              "max": 10,
+              "default": 1,
 +           },
-+           \\"field0\\": Object {
-+             \\"name\\": \\"Initial field\\",
-+             \\"type\\": \\"string\\",
-+             \\"default\\": \\"default value\\",
++           "field0": Object {
++             "name": "Initial field",
++             "type": "string",
++             "default": "default value",
             },
           },
         },"
@@ -351,25 +351,25 @@ exports[`reducer > should move a field down 1`] = `
 
 exports[`reducer > should move a field up 1`] = `
 "@@ -23,17 +23,17 @@
-        \\"category0\\": Object {
-          \\"name\\": \\"initial category\\",
-          \\"fields\\": Object {
--           \\"field0\\": Object {
--             \\"name\\": \\"Initial field\\",
--             \\"type\\": \\"string\\",
--             \\"default\\": \\"default value\\",
+        "category0": Object {
+          "name": "initial category",
+          "fields": Object {
+-           "field0": Object {
+-             "name": "Initial field",
+-             "type": "string",
+-             "default": "default value",
 -           },
-            \\"field1\\": Object {
-              \\"name\\": \\"Initial field\\",
-              \\"type\\": \\"number\\",
-              \\"min\\": 0,
-              \\"max\\": 10,
-              \\"default\\": 1,
+            "field1": Object {
+              "name": "Initial field",
+              "type": "number",
+              "min": 0,
+              "max": 10,
+              "default": 1,
 +           },
-+           \\"field0\\": Object {
-+             \\"name\\": \\"Initial field\\",
-+             \\"type\\": \\"string\\",
-+             \\"default\\": \\"default value\\",
++           "field0": Object {
++             "name": "Initial field",
++             "type": "string",
++             "default": "default value",
             },
           },
         },"
@@ -377,86 +377,86 @@ exports[`reducer > should move a field up 1`] = `
 
 exports[`reducer > should rename a category 1`] = `
 "@@ -21,7 +21,7 @@
-      \\"customThemePath\\": \\"\\",
-      \\"equipmentCategories\\": Object {
-        \\"category0\\": Object {
--         \\"name\\": \\"initial category\\",
-+         \\"name\\": \\"foo\\",
-          \\"fields\\": Object {
-            \\"field0\\": Object {
-              \\"name\\": \\"Initial field\\","
+      "customThemePath": "",
+      "equipmentCategories": Object {
+        "category0": Object {
+-         "name": "initial category",
++         "name": "foo",
+          "fields": Object {
+            "field0": Object {
+              "name": "Initial field","
 `;
 
 exports[`reducer > should rename a field 1`] = `
 "@@ -24,7 +24,7 @@
-          \\"name\\": \\"initial category\\",
-          \\"fields\\": Object {
-            \\"field0\\": Object {
--             \\"name\\": \\"Initial field\\",
-+             \\"name\\": \\"foo\\",
-              \\"type\\": \\"string\\",
-              \\"default\\": \\"default value\\",
+          "name": "initial category",
+          "fields": Object {
+            "field0": Object {
+-             "name": "Initial field",
++             "name": "foo",
+              "type": "string",
+              "default": "default value",
             },"
 `;
 
 exports[`reducer > should set a field default 1`] = `
 "@@ -26,7 +26,7 @@
-            \\"field0\\": Object {
-              \\"name\\": \\"Initial field\\",
-              \\"type\\": \\"string\\",
--             \\"default\\": \\"default value\\",
-+             \\"default\\": \\"foo\\",
+            "field0": Object {
+              "name": "Initial field",
+              "type": "string",
+-             "default": "default value",
++             "default": "foo",
             },
-            \\"field1\\": Object {
-              \\"name\\": \\"Initial field\\","
+            "field1": Object {
+              "name": "Initial field","
 `;
 
 exports[`reducer > should set a field maximum 1`] = `
 "@@ -32,7 +32,7 @@
-              \\"name\\": \\"Initial field\\",
-              \\"type\\": \\"number\\",
-              \\"min\\": 0,
--             \\"max\\": 10,
-+             \\"max\\": 2,
-              \\"default\\": 1,
+              "name": "Initial field",
+              "type": "number",
+              "min": 0,
+-             "max": 10,
++             "max": 2,
+              "default": 1,
             },
           },"
 `;
 
 exports[`reducer > should set a field minimum 1`] = `
 "@@ -31,7 +31,7 @@
-            \\"field1\\": Object {
-              \\"name\\": \\"Initial field\\",
-              \\"type\\": \\"number\\",
--             \\"min\\": 0,
-+             \\"min\\": 2,
-              \\"max\\": 10,
-              \\"default\\": 1,
+            "field1": Object {
+              "name": "Initial field",
+              "type": "number",
+-             "min": 0,
++             "min": 2,
+              "max": 10,
+              "default": 1,
             },"
 `;
 
 exports[`reducer > should set a field type 1`] = `
 "@@ -25,8 +25,8 @@
-          \\"fields\\": Object {
-            \\"field0\\": Object {
-              \\"name\\": \\"Initial field\\",
--             \\"type\\": \\"string\\",
--             \\"default\\": \\"default value\\",
-+             \\"type\\": \\"number\\",
-+             \\"default\\": 0,
+          "fields": Object {
+            "field0": Object {
+              "name": "Initial field",
+-             "type": "string",
+-             "default": "default value",
++             "type": "number",
++             "default": 0,
             },
-            \\"field1\\": Object {
-              \\"name\\": \\"Initial field\\","
+            "field1": Object {
+              "name": "Initial field","
 `;
 
 exports[`reducer > should set a stat default 1`] = `
 "@@ -4,7 +4,7 @@
-        \\"pcStat0\\": Object {
-          \\"min\\": 0,
-          \\"max\\": 10,
--         \\"default\\": 3,
-+         \\"default\\": 1,
-          \\"name\\": \\"PC Statisitic Zero\\",
+        "pcStat0": Object {
+          "min": 0,
+          "max": 10,
+-         "default": 3,
++         "default": 1,
+          "name": "PC Statisitic Zero",
         },
       },"
 `;
@@ -464,59 +464,59 @@ exports[`reducer > should set a stat default 1`] = `
 exports[`reducer > should set a stat id 1`] = `
 "@@ -1,7 +1,7 @@
   Object {
-    \\"settings\\": Object {
-      \\"pcStats\\": Object {
--       \\"pcStat0\\": Object {
-+       \\"foo\\": Object {
-          \\"min\\": 0,
-          \\"max\\": 10,
-          \\"default\\": 3,"
+    "settings": Object {
+      "pcStats": Object {
+-       "pcStat0": Object {
++       "foo": Object {
+          "min": 0,
+          "max": 10,
+          "default": 3,"
 `;
 
 exports[`reducer > should set a stat maximum 1`] = `
 "@@ -3,7 +3,7 @@
-      \\"pcStats\\": Object {
-        \\"pcStat0\\": Object {
-          \\"min\\": 0,
--         \\"max\\": 10,
-+         \\"max\\": 1,
-          \\"default\\": 3,
-          \\"name\\": \\"PC Statisitic Zero\\",
+      "pcStats": Object {
+        "pcStat0": Object {
+          "min": 0,
+-         "max": 10,
++         "max": 1,
+          "default": 3,
+          "name": "PC Statisitic Zero",
         },"
 `;
 
 exports[`reducer > should set a stat minimum 1`] = `
 "@@ -2,7 +2,7 @@
-    \\"settings\\": Object {
-      \\"pcStats\\": Object {
-        \\"pcStat0\\": Object {
--         \\"min\\": 0,
-+         \\"min\\": 1,
-          \\"max\\": 10,
-          \\"default\\": 3,
-          \\"name\\": \\"PC Statisitic Zero\\","
+    "settings": Object {
+      "pcStats": Object {
+        "pcStat0": Object {
+-         "min": 0,
++         "min": 1,
+          "max": 10,
+          "default": 3,
+          "name": "PC Statisitic Zero","
 `;
 
 exports[`reducer > should set a stat name 1`] = `
 "@@ -5,7 +5,7 @@
-          \\"min\\": 0,
-          \\"max\\": 10,
-          \\"default\\": 3,
--         \\"name\\": \\"PC Statisitic Zero\\",
-+         \\"name\\": \\"foo\\",
+          "min": 0,
+          "max": 10,
+          "default": 3,
+-         "name": "PC Statisitic Zero",
++         "name": "foo",
         },
       },
-      \\"npcStats\\": Object {"
+      "npcStats": Object {"
 `;
 
 exports[`reducer > should set a value using setSome 1`] = `
 "@@ -61,7 +61,7 @@
-        \\"world\\": Object {},
+        "world": Object {},
       },
-      \\"useTurnPassingInitiative\\": false,
--     \\"genericOccupation\\": \\"\\",
-+     \\"genericOccupation\\": \\"foo\\",
-      \\"investigativeAbilityCategories\\": Array [],
-      \\"longNotes\\": Array [],
-      \\"mwHiddenShortNotes\\": Array [],"
+      "useTurnPassingInitiative": false,
+-     "genericOccupation": "",
++     "genericOccupation": "foo",
+      "investigativeAbilityCategories": Array [],
+      "longNotes": Array [],
+      "mwHiddenShortNotes": Array [],"
 `;
