@@ -71,13 +71,13 @@ devDependencies:
     version: 11.11.2
   '@emotion/react':
     specifier: ^11.11.1
-    version: 11.11.1(@types/react@18.2.41)(react@18.2.0)
+    version: 11.11.1(@types/react@18.2.42)(react@18.2.0)
   '@league-of-foundry-developers/foundry-vtt-types':
     specifier: ^9.280.0
     version: 9.280.0(@pixi/constants@6.5.9)(@pixi/core@6.5.9)(@pixi/display@6.5.9)(@pixi/graphics@6.5.9)(@pixi/math@6.5.9)(@pixi/utils@6.5.9)
   '@lumphammer/investigator-fvtt-types':
     specifier: ^1.11.0
-    version: 1.11.0(@types/react@18.2.41)(react@18.2.0)
+    version: 1.11.0(@types/react@18.2.42)(react@18.2.0)
   '@seald-io/nedb':
     specifier: ^4.0.2
     version: 4.0.2
@@ -103,8 +103,8 @@ devDependencies:
     specifier: ^2.1.0
     version: 2.1.0
   '@types/react':
-    specifier: ^18.2.41
-    version: 18.2.41
+    specifier: ^18.2.42
+    version: 18.2.42
   '@types/react-dom':
     specifier: ^18.2.17
     version: 18.2.17
@@ -315,7 +315,7 @@ packages:
     resolution: {integrity: sha512-W2P2c/VRW1/1tLox0mVUalvnWXxavmv/Oum2aPsRcoDJuob75FC3Y8FbpfLwUegRcxINtGUMPq0tFCvYNTBXNA==}
     dev: true
 
-  /@emotion/react@11.11.1(@types/react@18.2.41)(react@18.2.0):
+  /@emotion/react@11.11.1(@types/react@18.2.42)(react@18.2.0):
     resolution: {integrity: sha512-5mlW1DquU5HaxjLkfkGN1GA/fvVGdyHURRiX/0FHl2cfIfRxSOfmxEH5YS43edp0OldZrZ+dkBKbngxcNCdZvA==}
     peerDependencies:
       '@types/react': '*'
@@ -331,7 +331,7 @@ packages:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.3.1
-      '@types/react': 18.2.41
+      '@types/react': 18.2.42
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
     dev: true
@@ -671,10 +671,10 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@lumphammer/investigator-fvtt-types@1.11.0(@types/react@18.2.41)(react@18.2.0):
+  /@lumphammer/investigator-fvtt-types@1.11.0(@types/react@18.2.42)(react@18.2.0):
     resolution: {integrity: sha512-JHQ9SXDA2zdhaxhfTgzuXoEgwXS92Q7HiRONyel3U7dE9e6JiaeoOADQCK3Hb+sdWuVJfo6mVBSnJ/UegjEQHg==}
     dependencies:
-      '@emotion/react': 11.11.1(@types/react@18.2.41)(react@18.2.0)
+      '@emotion/react': 11.11.1(@types/react@18.2.42)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
       - react
@@ -1466,11 +1466,11 @@ packages:
   /@types/react-dom@18.2.17:
     resolution: {integrity: sha512-rvrT/M7Df5eykWFxn6MYt5Pem/Dbyc1N8Y0S9Mrkw2WFCRiqUgw9P7ul2NpwsXCSM1DVdENzdG9J5SreqfAIWg==}
     dependencies:
-      '@types/react': 18.2.41
+      '@types/react': 18.2.42
     dev: true
 
-  /@types/react@18.2.41:
-    resolution: {integrity: sha512-CwOGr/PiLiNBxEBqpJ7fO3kocP/2SSuC9fpH5K7tusrg4xPSRT/193rzolYwQnTN02We/ATXKnb6GqA5w4fRxw==}
+  /@types/react@18.2.42:
+    resolution: {integrity: sha512-c1zEr96MjakLYus/wPnuWDo1/zErfdU9rNsIGmE+NV71nx88FG9Ttgo5dqorXTu/LImX2f63WBP986gJkMPNbA==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
