@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Unreleased
+
+* **FEATURE** - a new stripped-back sheet for NPCs for when the user has "limited" rights (#235). Thanks @muwak for this one!
+* **ENHANCEMENT** - "Moribund World" replaced with "Dying Earth" in more places. Cheers @marksjus!
+* **ENHANCEMENT** - Various translation updates - thanks to everyone who contributed!
+* **BUG FIX** Images with brackets in the file name now show up in the party tracker (#518).
+* **BUG FIX** Fix a small weirdness when changing the "notes format" for PCs (#519).
+* **BUG FIX** Initiative order works as intended again (#281).
+
 ## 7.5.1 (2023-10-21)
 
 * Updated Polish translations for the new import/export features. Thanks @marksjus (#503)
