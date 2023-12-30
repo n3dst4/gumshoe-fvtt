@@ -279,7 +279,7 @@ export function sortByKey<T, K extends string | number>(
   xs: T[],
   k: keyof PickByType<T, K>,
 ) {
-  return xs.sort((a, b) => {
+  return xs.toSorted((a, b) => {
     const aK = a[k] as any;
     const bK = b[k] as any;
     if (typeof aK === "number" && typeof bK === "number") {
