@@ -180,5 +180,6 @@
   "investigator.GMNotes": "GM Notes",
   "investigator.HideSecret": "Hide secret",
   "investigator.RevealSecret": "Reveal secret",
-  "investigator.Cards": "Cards"
+  "investigator.Cards": "Cards",
+  "investigator.Card": "Card"
 }
