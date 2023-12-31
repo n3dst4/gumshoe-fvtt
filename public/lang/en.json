@@ -177,5 +177,6 @@
   "investigator.ImportSettingsFromFile": "Import Settings from file",
   "investigator.Import": "Import",
   "investigator.Export": "Export",
-  "investigator.Cards": "Cards"
+  "investigator.Cards": "Cards",
+  "investigator.Card": "Card"
 }

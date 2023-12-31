@@ -17,7 +17,7 @@ import {
   isPCActor,
   PersonalDetailItem,
 } from "../../v10Types";
-import CardsArea from "../Cards/CardsArea";
+import CardsArea from "../cards/CardsArea";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";

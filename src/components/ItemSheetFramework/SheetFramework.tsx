@@ -17,6 +17,9 @@ type ItemSheetFrameworkProps = PropsWithChildren<{
   application: DocumentSheet;
 }>;
 
+/**
+ * A framework for item sheets.
+ */
 export const ItemSheetFramework: React.FC<ItemSheetFrameworkProps> = ({
   supertitle,
   item,

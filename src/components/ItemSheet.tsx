@@ -1,11 +1,18 @@
 import { CSSObject } from "@emotion/react";
 import React from "react";
 
-import { equipment, mwItem, weapon } from "../constants";
 import { useTheme } from "../hooks/useTheme";
 import { InvestigatorItem } from "../module/InvestigatorItem";
-import { isAbilityItem, isMwItem } from "../v10Types";
+import {
+  isAbilityItem,
+  isCardItem,
+  isEquipmentItem,
+  isMwItem,
+  isPersonalDetailItem,
+  isWeaponItem,
+} from "../v10Types";
 import { AbilitySheet } from "./abilities/AbilitySheet";
+import { CardSheet } from "./cards/CardSheet";
 import { CSSReset } from "./CSSReset";
 import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { MwItemSheet } from "./equipment/MwItemSheet";
@@ -43,14 +50,16 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
     <CSSReset theme={theme} mode="small" css={style}>
       {isAbilityItem(item) ? (
         <AbilitySheet ability={item} application={application} />
-      ) : item.type === equipment ? (
+      ) : isEquipmentItem(item) ? (
         <EquipmentSheet equipment={item} application={application} />
-      ) : item.type === weapon ? (
+      ) : isWeaponItem(item) ? (
         <WeaponSheet weapon={item} application={application} />
-      ) : item.type === mwItem ? (
+      ) : isMwItem(item) ? (
         <MwItemSheet item={item} application={application} />
-      ) : item.type === "personalDetail" ? (
+      ) : isPersonalDetailItem(item) ? (
         <PersonalDetailSheet personalDetail={item} application={application} />
+      ) : isCardItem(item) ? (
+        <CardSheet item={item} application={application} />
       ) : (
         <ThrowError message={`No sheet defined for item type ${item.type}`} />
       )}
