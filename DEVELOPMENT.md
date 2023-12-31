@@ -10,6 +10,7 @@
   - [Generating Compendium packs](#generating-compendium-packs)
   - [Translations](#translations)
     - [How to pull translations from Transifex](#how-to-pull-translations-from-transifex)
+    - [When someone sends a PR with translation changes](#when-someone-sends-a-pr-with-translation-changes)
     - [Getting set up to pull translations from Transifex](#getting-set-up-to-pull-translations-from-transifex)
   - [Adding Actor or Item data fields](#adding-actor-or-item-data-fields)
   - [Adding system settings](#adding-system-settings)
@@ -18,6 +19,8 @@
   - [Release process](#release-process)
     - [What happens if the CI pipeline fails?](#what-happens-if-the-ci-pipeline-fails)
   - [GitLab Legacy](#gitlab-legacy)
+  - [Patched packages](#patched-packages)
+  - [@league-of-foundry-developers/foundry-vtt-types](#league-of-foundry-developersfoundry-vtt-types)
 
 ## Development & general hacking
 
@@ -200,7 +203,7 @@ To perform a release:
 
 8. Head over to the [CI page][gh-ci] and wait for the pipeline to finish.
 
-9. Create a new release on https://foundryvtt.com/admin/packages/package/948/change/
+9. Create a new release on https://foundryvtt.com/packages/investigator/edit
 
     You can mostly copy everything from the line before, but **update the version number and the version number in the URLs**. You can also update the compatible Foundry versions as long as you've made the same change in `system.json`.
 
