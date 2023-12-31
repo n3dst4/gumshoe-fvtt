@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## Unreleased
+## 7.6.0 (2023-12-31)
 
+* Happy new year!
 * **FEATURE** - a new stripped-back sheet for NPCs for when the user has "limited" rights (#235). Thanks @muwak for this one!
 * **ENHANCEMENT** - "Moribund World" replaced with "Dying Earth" in more places. Cheers @marksjus!
 * **ENHANCEMENT** - Various translation updates - thanks to everyone who contributed!
