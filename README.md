@@ -23,6 +23,7 @@ Includes 7 character sheet themes plus an extra high-contrast accessible theme.
   - [Bug reports and contact](#bug-reports-and-contact)
   - [Development \& general hacking](#development--general-hacking)
   - [Custom themes](#custom-themes)
+  - [Brief history of major versions](#brief-history-of-major-versions)
   - [Credits](#credits)
     - [GUMSHOE SRD Creative Commons](#gumshoe-srd-creative-commons)
 
@@ -172,6 +173,19 @@ You can create new themes for INVESTIGATOR in two ways:
 
 * [By writing a Foundry VTT module which uses INVESTIGATOR's API to inject a new theme](https://github.com/n3dst4/gumshoe-fvtt/wiki/Adding-new-content-from-third-party-code) (this is intended for developers and module authors.)
 * [By dropping a JSON file in a folder in your local data](https://github.com/n3dst4/gumshoe-fvtt/wiki/Adding-new-themes-from-local-data) (this is intended for technical users who are not authoring modules.)
+
+
+## Brief history of major versions
+
+| Version | Date       | Reason                             |
+| --------| ---------- | ---------------------------------- |
+| 1.0.0   | 2021-01-31 | Initial *Trail of Cthulhu* system  |
+| 2.0.0   | 2021-02-26 | Re-launch as *GUMSHOE*             |
+| 3.0.0   | 2021-07-03 | Re-branded to "*INVESTIGATOR*      |
+| 4.0.0   | 2021-08-14 | Minimum Foundry version 0.8.0      |
+| 5.0.0   | 2022-08-08 | Minimum Foundry version 9          |
+| 6.0.0   | 2023-01-08 | Minimum Foundry version 10         |
+| 7.0.0   | 2023-06-01 | Return to *GUMSHOE* branding       |
 
 
 ## Credits
