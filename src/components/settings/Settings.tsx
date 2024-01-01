@@ -1,4 +1,10 @@
-import React, { useCallback } from "react";
+import React, { PropsWithChildren, useCallback } from "react";
+import {
+  MemoryRouter,
+  Route,
+  Routes,
+  useLinkClickHandler,
+} from "react-router-dom";
 
 import { settingsSaved } from "../../constants";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
@@ -7,7 +13,7 @@ import { useTheme } from "../../hooks/useTheme";
 import { settings } from "../../settings/settings";
 import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
-import { TabContainer } from "../TabContainer";
+// import { TabContainer } from "../TabContainer";
 import { Translate } from "../Translate";
 import { AbilitySettings } from "./AbilitySettings";
 import { DirtyContext, DispatchContext, StateContext } from "./contexts";
@@ -16,6 +22,28 @@ import { EquipmentSettings } from "./Equipment/EquipmentSettings";
 import { useSettingsState } from "./hooks";
 import { MiscSettings } from "./MiscSettings";
 import { StatsSettings } from "./Stats/StatsSettings";
+
+/**
+ * Custom version of reacty-router's Link component that stops propagation so
+ * that whatever weird link handler Foundry has doesn't get triggered.
+ * XXX move this out to a separate file
+ */
+function NavigationLink({ to, children }: PropsWithChildren<{ to: string }>) {
+  const routerHandleClick = useLinkClickHandler(to);
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.stopPropagation();
+      routerHandleClick(e);
+      console.log("Clicked", to);
+    },
+    [routerHandleClick, to],
+  );
+  return (
+    <a href={to} onClick={handleClick}>
+      {children}
+    </a>
+  );
+}
 
 type SettingsProps = {
   foundryApplication: Application;
@@ -76,7 +104,33 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
             }}
           >
             <div css={{ flex: 1, overflow: "auto", position: "relative" }}>
-              <TabContainer
+              <MemoryRouter initialEntries={["/"]}>
+                Memory router
+                <NavigationLink to="/">Core</NavigationLink>
+                <NavigationLink to="/abilities">Abilities</NavigationLink>
+                <NavigationLink to="/equipment">Equipment</NavigationLink>
+                <NavigationLink to="/stats">Stats</NavigationLink>
+                <NavigationLink to="/misc">Misc</NavigationLink>
+                <br />
+                <Routes>
+                  <Route
+                    path="/"
+                    element={<CoreSettings setters={setters} />}
+                  />
+                  <Route
+                    path="/abilities"
+                    element={<AbilitySettings setters={setters} />}
+                  />
+                  <Route path="/equipment" element={<EquipmentSettings />} />
+                  <Route path="/stats" element={<StatsSettings />} />
+                  <Route
+                    path="/misc"
+                    element={<MiscSettings setters={setters} />}
+                  />
+                </Routes>
+              </MemoryRouter>
+
+              {/* <TabContainer
                 defaultTab="core"
                 tabs={[
                   {
@@ -105,7 +159,7 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                     content: <MiscSettings setters={setters} />,
                   },
                 ]}
-              />
+              /> */}
             </div>
             <div
               css={{
