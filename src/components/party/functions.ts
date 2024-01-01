@@ -24,7 +24,7 @@ export const getSystemAbilities = async (): Promise<AbilityItem[]> => {
     const pack = game.packs.find(
       (p) => p.metadata.type === "Item" && p.collection === packId,
     );
-    const content = (await pack?.getDocuments()) as AnyItem[];
+    const content = ((await pack?.getDocuments()) ?? []) as AnyItem[];
     const tuples: AbilityItem[] = content.filter((item) =>
       isAbilityItem(item),
     ) as AbilityItem[];
