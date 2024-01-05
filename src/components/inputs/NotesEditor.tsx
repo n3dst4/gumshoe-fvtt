@@ -51,6 +51,7 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
   } else if (!editMode) {
     editor = (
       <div
+        className="investigator-notes-editor"
         css={{
           ...absoluteCover,
           overflow: "auto",
