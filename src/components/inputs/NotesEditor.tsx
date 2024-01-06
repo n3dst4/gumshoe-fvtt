@@ -59,8 +59,9 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
           padding: "0.5em",
           border: `1px solid ${theme.colors.controlBorder}`,
         }}
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      >
+        <div className="red-theme" dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
     );
   } else if (format === NoteFormat.plain) {
     editor = (
