@@ -86,7 +86,7 @@
     "nanoid": "^5.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.12.0",
+    "react-icons": "^5.0.1",
     "turndown": "^7.1.2",
     "xss": "^1.0.14",
     "yamljs": "^0.3.0",
@@ -95,8 +95,7 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "tinymce@5.10.1": "patches/tinymce@5.10.1.patch",
-      "react-icons@4.12.0": "patches/react-icons@4.12.0.patch"
+      "tinymce@5.10.1": "patches/tinymce@5.10.1.patch"
     }
   },
   "engines": {
