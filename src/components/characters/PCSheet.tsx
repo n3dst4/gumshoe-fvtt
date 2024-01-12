@@ -40,10 +40,15 @@ import { StatField } from "./StatField";
 import { TrackersArea } from "./TrackersArea";
 import { WeaponsArea } from "./Weapons/WeaponsArea";
 
-export const PCSheet: React.FC<{
+interface PCSheetProps {
   actor: InvestigatorActor;
   foundryApplication: ActorSheet;
-}> = ({ actor, foundryApplication }) => {
+}
+
+export const PCSheet: React.FC<PCSheetProps> = ({
+  actor,
+  foundryApplication,
+}) => {
   assertGame(game);
   assertPCActor(actor);
 
