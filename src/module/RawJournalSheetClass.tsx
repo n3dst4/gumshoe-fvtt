@@ -19,7 +19,7 @@ export class RawJournalSheetClassBase extends JournalSheet {
       ...super.defaultOptions,
       template: reactTemplatePath,
       resizable: true,
-      width: 1560,
+      width: 1230,
     };
     return options;
   }
