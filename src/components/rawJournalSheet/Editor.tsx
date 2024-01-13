@@ -1,5 +1,5 @@
 import MonacoEditor, { Monaco, OnMount } from "@monaco-editor/react";
-import React, { useRef } from "react";
+import React, { useCallback, useRef } from "react";
 
 interface EditorProps {
   page: any;
@@ -13,38 +13,47 @@ export const Editor: React.FC<EditorProps> = ({ page }) => {
   const editorRef = useRef<IStandalonCodeEditor | null>(null);
 
   function handleEditorWillMount(monaco: Monaco) {
-    // here is the monaco instance
-    // do something before editor is mounted
-    // monaco.languages.html
+    monaco.languages.html.htmlDefaults.setOptions({
+      format: {
+        ...monaco.languages.html.htmlDefaults.options.format,
+        tabSize: 2,
+        insertSpaces: true,
+        wrapLineLength: 80,
+        wrapAttributes: "auto",
+      },
+    });
   }
 
-  const handleEditorDidMount: OnMount = (editor, monaco) => {
-    // here is another way to get monaco instance
-    // you can also store it in `useRef` for further usage
+  const handleEditorDidMount: OnMount = useCallback((editor, monaco) => {
     monacoRef.current = monaco;
     editorRef.current = editor;
-  };
+  }, []);
 
-  const doFormat = () => {
+  const doFormat = useCallback(() => {
     editorRef.current?.getAction("editor.action.formatDocument")?.run();
-  };
+  }, []);
 
-  const handleFormat = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    await doFormat();
-  };
+  const handleFormat = useCallback(
+    async (e: React.MouseEvent) => {
+      e.preventDefault();
+      await doFormat();
+    },
+    [doFormat],
+  );
 
-  const handleSave = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    await doFormat();
-    // page.text.content = editorRef.current?.getValue() ?? "";
-    await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
-      {
-        _id: page.id,
-        text: { content: editorRef.current?.getValue() ?? "" },
-      },
-    ]);
-  };
+  const handleSave = useCallback(
+    async (e: React.MouseEvent) => {
+      e.preventDefault();
+      await doFormat();
+      await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
+        {
+          _id: page.id,
+          text: { content: editorRef.current?.getValue() ?? "" },
+        },
+      ]);
+    },
+    [doFormat, page.parent, page.id, editorRef],
+  );
 
   return (
     <div
@@ -83,6 +92,14 @@ export const Editor: React.FC<EditorProps> = ({ page }) => {
           onMount={handleEditorDidMount}
           options={{
             automaticLayout: true,
+            scrollbar: {
+              horizontal: "visible",
+            },
+            wordWrap: "off",
+            rulers: [80],
+            unicodeHighlight: {
+              ambiguousCharacters: false,
+            },
           }}
         />
       </div>
