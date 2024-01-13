@@ -39,24 +39,24 @@ export const RawJournalSheet = ({
         bottom: 0,
         left: 0,
         display: "flex",
-        // alignItems: "stretch",
-        // alignContent: "flex-start",
-        // flexWrap: "wrap",
-        // flexDirection: "row",
-        // justifyContent: "flex-start",
+        flexDirection: "row",
       }}
     >
       <div
+        data-testid="page-navigation"
         css={{
-          width: "20em",
+          flexBasis: "20em",
+          minWidth: "20em",
           position: "relative",
         }}
       >
         <PageNavigation journal={journal} onNavigate={handlePageClick} />
       </div>
       <div
+        data-testid="page-editor"
         css={{
           flex: 1,
+          overflow: "hidden",
         }}
       >
         {activePageId !== null && journal.pages.has(activePageId) ? (

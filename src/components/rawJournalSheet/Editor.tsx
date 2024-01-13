@@ -55,7 +55,6 @@ export const Editor: React.FC<EditorProps> = ({ page }) => {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        overflow: "hidden",
       }}
     >
       <div
@@ -71,7 +70,6 @@ export const Editor: React.FC<EditorProps> = ({ page }) => {
         data-testid="monaco-wrapper"
         css={{
           flex: 1,
-          overflow: "hidden",
         }}
       >
         <MonacoEditor
