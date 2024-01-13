@@ -25,31 +25,53 @@ export const Editor: React.FC<EditorProps> = ({ page }) => {
     editorRef.current = editor;
   };
 
-  const handleFormat = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const doFormat = () => {
     editorRef.current?.getAction("editor.action.formatDocument")?.run();
+  };
+
+  const handleFormat = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    await doFormat();
+  };
+
+  const handleSave = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    await doFormat();
+    // page.text.content = editorRef.current?.getValue() ?? "";
+    await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
+      {
+        _id: page.id,
+        text: { content: editorRef.current?.getValue() ?? "" },
+      },
+    ]);
   };
 
   return (
     <div
+      data-testid="editor"
       css={{
         position: "relative",
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        overflow: "hidden",
       }}
     >
       <div
+        data-testid="toolbar"
         css={{
           flexBasis: "4em",
         }}
       >
         <button onClick={handleFormat}>Format</button>
+        <button onClick={handleSave}>Save</button>
       </div>
       <div
+        data-testid="monaco-wrapper"
         css={{
           flex: 1,
+          overflow: "hidden",
         }}
       >
         <MonacoEditor
@@ -61,6 +83,9 @@ export const Editor: React.FC<EditorProps> = ({ page }) => {
           theme="vs-dark"
           beforeMount={handleEditorWillMount}
           onMount={handleEditorDidMount}
+          options={{
+            automaticLayout: true,
+          }}
         />
       </div>
     </div>
