@@ -5,22 +5,38 @@ import React, { useCallback, useMemo, useRef } from "react";
 import { FaIndent } from "react-icons/fa6";
 
 import { throttle } from "../../functions/utilities";
-import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { Toolbar } from "./Toolbar";
 import { ToolbarButton } from "./ToolbarButton";
 
 interface HTMLEditorProps {
   page: any;
 }
-
 type IStandalonCodeEditor = Parameters<OnMount>[0];
 
 export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
-  // return <div>{page.text.content}</div>;
   const monacoRef = useRef<Monaco | null>(null);
   const editorRef = useRef<IStandalonCodeEditor | null>(null);
 
   function handleEditorWillMount(monaco: Monaco) {}
+
+  const doFormat = useCallback(async () => {
+    await editorRef.current?.getAction("editor.action.formatDocument")?.run();
+  }, []);
+
+  const doSave = useCallback(async () => {
+    try {
+      await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
+        {
+          _id: page.id,
+          text: { content: editorRef.current?.getValue() ?? "" },
+        },
+      ]);
+    } catch (error) {
+      ui.notifications?.error((error as Error).message);
+    }
+  }, [page.parent, page.id, editorRef]);
+
+  const handleChange = useMemo(() => throttle(doSave, 500), [doSave]);
 
   const handleEditorDidMount: OnMount = useCallback((editor, monaco) => {
     monacoRef.current = monaco;
@@ -70,32 +86,12 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
     // editor.
   }, []);
 
-  const doFormat = useCallback(async () => {
-    await editorRef.current?.getAction("editor.action.formatDocument")?.run();
-  }, []);
-
   const handleFormat = useCallback(async () => {
     await doFormat();
   }, [doFormat]);
 
-  const doSave = useCallback(async () => {
-    try {
-      await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
-        {
-          _id: page.id,
-          text: { content: editorRef.current?.getValue() ?? "" },
-        },
-      ]);
-    } catch (error) {
-      ui.notifications?.error((error as Error).message);
-    }
-  }, [page.parent, page.id, editorRef]);
-
-  const handleChange = useMemo(() => throttle(doSave, 500), [doSave]);
-
   return (
     <div
-      data-testid="editor"
       css={{
         position: "relative",
         width: "100%",
@@ -107,26 +103,6 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
     >
       <div
         data-testid="toolbar"
-        css={
-          {
-            // flexBasis: "4em",
-          }
-        }
-      >
-        <AsyncTextInput
-          value={page.name}
-          onChange={async (value) => {
-            await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
-              {
-                _id: page.id,
-                name: value,
-              },
-            ]);
-          }}
-        />
-      </div>
-      <div
-        data-testid="toolbar"
         css={{
           flexBasis: "4em",
         }}
@@ -135,12 +111,7 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
           <ToolbarButton onClick={handleFormat} text="Format" icon={FaIndent} />
         </Toolbar>
       </div>
-      <div
-        data-testid="monaco-wrapper"
-        css={{
-          flex: 1,
-        }}
-      >
+      <div css={{ flex: 1, overflow: "hidden" }}>
         <MonacoEditor
           key={page.id}
           height="100%"
@@ -169,4 +140,4 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
   );
 };
 
-HTMLEditor.displayName = "Editor";
+HTMLEditor.displayName = "MonacoWrapper";

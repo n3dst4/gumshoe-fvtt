@@ -1,10 +1,10 @@
 import React from "react";
 
-interface ImageEditorProps {
+interface ImagePageProps {
   page: any;
 }
 
-export const ImageEditor: React.FC<ImageEditorProps> = ({ page }) => {
+export const ImagePage: React.FC<ImagePageProps> = ({ page }) => {
   return (
     <div>
       {page.name}
@@ -24,4 +24,4 @@ export const ImageEditor: React.FC<ImageEditorProps> = ({ page }) => {
   );
 };
 
-ImageEditor.displayName = "ImageEditor";
+ImagePage.displayName = "ImageEditor";

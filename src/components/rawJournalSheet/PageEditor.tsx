@@ -1,7 +1,7 @@
 import React from "react";
 
-import { HTMLEditor } from "./HTMLEditor";
-import { ImageEditor } from "./ImageEditor";
+import { HTMLPage } from "./HTMLPage";
+import { ImagePage } from "./ImagePage";
 
 interface PageEditorProps {
   page: any;
@@ -10,9 +10,9 @@ interface PageEditorProps {
 export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
   switch (page.type) {
     case "image":
-      return <ImageEditor page={page} />;
+      return <ImagePage page={page} />;
     case "text":
-      return <HTMLEditor page={page} />;
+      return <HTMLPage page={page} />;
     default:
       return <div>Unknown Page Type</div>;
   }
