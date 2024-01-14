@@ -1,7 +1,9 @@
 import React from "react";
+import { FaFileImage, FaFileLines } from "react-icons/fa6";
 
-// import X from "react-icons/fa6/faFile";
+import { Toolbar } from "./Toolbar";
 // import { useTheme } from "../../hooks/useTheme";
+import { ToolbarButton } from "./ToolbarButton";
 
 interface PageNavigationProps {
   journal: JournalEntry;
@@ -12,7 +14,9 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
   journal,
   onNavigate,
 }) => {
-  const pages = Array.from(journal.pages.values());
+  const pages = Array.from(journal.pages.values()).sort((a, b) => {
+    return a.sort - b.sort;
+  });
   // const theme = useTheme();
 
   const handlePageClick = React.useCallback(
@@ -25,6 +29,32 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
     },
     [onNavigate],
   );
+
+  const handleAddNewTextPage = React.useCallback(async () => {
+    console.log(journal);
+    const sort =
+      // @ts-expect-error the journal types are so fucked
+      Math.max(...journal.pages.contents.map((p) => p.sort)) +
+      CONST.SORT_INTEGER_DENSITY;
+
+    await journal.createEmbeddedDocuments(
+      "JournalEntryPage",
+      [
+        {
+          type: "base",
+          name: "New page",
+          sort,
+        },
+      ],
+      {
+        renderSheet: false,
+      },
+    );
+  }, [journal]);
+  const handleAddNewImagePage = React.useCallback(() => {
+    console.log(journal);
+    // debugger;
+  }, [journal]);
 
   return (
     <div
@@ -67,16 +97,31 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
           );
         })}
       </div>
-      <div>
-        <button
-          css={{
-            padding: "1em",
-            display: "inline",
-            width: "4em",
+      <Toolbar header="Add new:">
+        <ToolbarButton
+          onClick={handleAddNewTextPage}
+          icon={FaFileLines}
+          text="Text"
+        />
+        <ToolbarButton
+          onClick={handleAddNewImagePage}
+          icon={FaFileImage}
+          text="Image"
+        />
+        <ToolbarButton
+          onClick={() => {
+            console.log(journal);
+            const SotsSheet: JournalSheet = Journal.registeredSheets.find(
+              // @ts-expect-error Journal types are effed
+              (sheet) => sheet.name === "SwordsOfTheSerpentineJournalSheet",
+            ) as unknown as JournalSheet;
+            // @ts-expect-error Journal types are effed
+            new SotsSheet(journal).render(true);
           }}
-          onClick={handlePageClick}
-        ></button>
-      </div>
+          icon={FaFileImage}
+          text="View"
+        />
+      </Toolbar>
     </div>
   );
 };
