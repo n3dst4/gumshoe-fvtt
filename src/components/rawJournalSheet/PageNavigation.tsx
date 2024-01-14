@@ -1,6 +1,7 @@
 import React from "react";
-import { FaFileImage, FaFileLines } from "react-icons/fa6";
+import { FaBarsStaggered, FaImage } from "react-icons/fa6";
 
+import { useTheme } from "../../hooks/useTheme";
 import { Toolbar } from "./Toolbar";
 // import { useTheme } from "../../hooks/useTheme";
 import { ToolbarButton } from "./ToolbarButton";
@@ -8,6 +9,7 @@ import { ToolbarButton } from "./ToolbarButton";
 interface PageNavigationProps {
   journal: JournalEntry;
   onNavigate: (pageId: string) => void;
+  activePageId: string;
 }
 
 function addPage(
@@ -45,14 +47,17 @@ function addPage(
 export const PageNavigation: React.FC<PageNavigationProps> = ({
   journal,
   onNavigate,
+  activePageId,
 }) => {
+  const theme = useTheme(null);
+
   const pages = Array.from(journal.pages.values()).sort((a, b) => {
     return a.sort - b.sort;
   });
   // const theme = useTheme();
 
   const handlePageClick = React.useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
       const pageId = event.currentTarget.dataset.pageid;
       if (pageId !== undefined) {
@@ -101,25 +106,51 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
       >
         {pages.map((page) => {
           return (
-            <button
+            <a
               data-pageid={page.id}
               key={page.id}
               onClick={handlePageClick}
+              css={{
+                textAlign: "left",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "block",
+                padding: "0.5em",
+                cursor: "pointer",
+                textDecoration: "none",
+                color: "inherit",
+                "&:hover": {
+                  backgroundColor: theme.colors.backgroundButton,
+                },
+                border: `1px solid ${
+                  page.id === activePageId ? theme.colors.accent : "transparent"
+                }`,
+              }}
             >
+              <span
+                css={{
+                  display: "inline-block",
+                  width: "2em",
+                  verticalAlign: "baseline",
+                }}
+              >
+                {page.type === "text" ? <FaBarsStaggered /> : <FaImage />}
+              </span>
               {page.name}
-            </button>
+            </a>
           );
         })}
       </div>
       <Toolbar header="Add new:">
         <ToolbarButton
           onClick={handleAddNewTextPage}
-          icon={FaFileLines}
+          icon={FaBarsStaggered}
           text="Text"
         />
         <ToolbarButton
           onClick={handleAddNewImagePage}
-          icon={FaFileImage}
+          icon={FaImage}
           text="Image"
         />
         <ToolbarButton
@@ -132,7 +163,7 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
             // @ts-expect-error Journal types are effed
             new SotsSheet(journal).render(true);
           }}
-          icon={FaFileImage}
+          icon={FaImage}
           text="View"
         />
       </Toolbar>

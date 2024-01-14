@@ -50,7 +50,11 @@ export const RawJournalSheet = ({
           position: "relative",
         }}
       >
-        <PageNavigation journal={journal} onNavigate={handlePageClick} />
+        <PageNavigation
+          journal={journal}
+          onNavigate={handlePageClick}
+          activePageId={activePageId}
+        />
       </div>
       <div
         data-testid="page-editor"
