@@ -1,9 +1,10 @@
 import MonacoEditor, { Monaco, OnMount } from "@monaco-editor/react";
 import htmlParser from "prettier/plugins/html";
 import prettier from "prettier/standalone";
-import React, { useCallback, useRef } from "react";
-import { FaFloppyDisk, FaIndent } from "react-icons/fa6";
+import React, { useCallback, useMemo, useRef } from "react";
+import { FaIndent } from "react-icons/fa6";
 
+import { throttle } from "../../functions/utilities";
 import { Toolbar } from "./Toolbar";
 import { ToolbarButton } from "./ToolbarButton";
 
@@ -76,8 +77,7 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
     await doFormat();
   }, [doFormat]);
 
-  const handleSave = useCallback(async () => {
-    await doFormat();
+  const doSave = useCallback(async () => {
     try {
       await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
         {
@@ -88,7 +88,9 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
     } catch (error) {
       ui.notifications?.error((error as Error).message);
     }
-  }, [doFormat, page.parent, page.id, editorRef]);
+  }, [page.parent, page.id, editorRef]);
+
+  const handleChange = useMemo(() => throttle(doSave, 500), [doSave]);
 
   return (
     <div
@@ -110,7 +112,6 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
       >
         <Toolbar>
           <ToolbarButton onClick={handleFormat} text="Format" icon={FaIndent} />
-          <ToolbarButton onClick={handleSave} text="Save" icon={FaFloppyDisk} />
         </Toolbar>
       </div>
       <div
@@ -128,6 +129,7 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
           theme="vs-dark"
           beforeMount={handleEditorWillMount}
           onMount={handleEditorDidMount}
+          onChange={handleChange}
           options={{
             language: "html",
             automaticLayout: true,
