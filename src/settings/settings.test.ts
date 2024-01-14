@@ -55,8 +55,8 @@ describe("settings", () => {
       expect(validator?.parse([{ name: "foo", type: "text" }])).toEqual([
         { name: "foo", type: "text" },
       ]);
-      expect(
-        () => validator?.parse([{ name: "foo", type: "potato" }]),
+      expect(() =>
+        validator?.parse([{ name: "foo", type: "potato" }]),
       ).toThrow();
       expect(() => validator?.parse([{ name: "foo", type: 5 }])).toThrow();
       expect(() => validator?.parse([{ name: "foo", type: null }])).toThrow();
@@ -106,28 +106,25 @@ describe("settings", () => {
           default: 5,
         },
       });
-      expect(
-        () =>
-          validator?.parse({
-            name: "Foo",
+      expect(() =>
+        validator?.parse({
+          name: "Foo",
+          default: 3,
+        }),
+      ).toThrow();
+      expect(() =>
+        validator?.parse({
+          foo: {
             default: 3,
-          }),
+          },
+        }),
       ).toThrow();
-      expect(
-        () =>
-          validator?.parse({
-            foo: {
-              default: 3,
-            },
-          }),
-      ).toThrow();
-      expect(
-        () =>
-          validator?.parse({
-            foo: {
-              name: "Foo",
-            },
-          }),
+      expect(() =>
+        validator?.parse({
+          foo: {
+            name: "Foo",
+          },
+        }),
       ).toThrow();
       expect(() => validator?.parse(null)).toThrow();
       expect(() => validator?.parse(5)).toThrow();
