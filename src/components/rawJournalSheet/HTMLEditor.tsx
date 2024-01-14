@@ -5,6 +5,7 @@ import React, { useCallback, useMemo, useRef } from "react";
 import { FaIndent } from "react-icons/fa6";
 
 import { throttle } from "../../functions/utilities";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { Toolbar } from "./Toolbar";
 import { ToolbarButton } from "./ToolbarButton";
 
@@ -104,6 +105,26 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
         gap: "0.5em",
       }}
     >
+      <div
+        data-testid="toolbar"
+        css={
+          {
+            // flexBasis: "4em",
+          }
+        }
+      >
+        <AsyncTextInput
+          value={page.name}
+          onChange={async (value) => {
+            await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
+              {
+                _id: page.id,
+                name: value,
+              },
+            ]);
+          }}
+        />
+      </div>
       <div
         data-testid="toolbar"
         css={{
