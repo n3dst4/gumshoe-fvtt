@@ -9,7 +9,7 @@ import { ToolbarButton } from "./ToolbarButton";
 interface PageNavigationProps {
   journal: JournalEntry;
   onNavigate: (pageId: string) => void;
-  activePageId: string;
+  activePageId: string | null;
 }
 
 function addPage(
