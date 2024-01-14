@@ -7,13 +7,13 @@ import { FaFloppyDisk, FaIndent } from "react-icons/fa6";
 import { Toolbar } from "./Toolbar";
 import { ToolbarButton } from "./ToolbarButton";
 
-interface EditorProps {
+interface HTMLEditorProps {
   page: any;
 }
 
 type IStandalonCodeEditor = Parameters<OnMount>[0];
 
-export const Editor: React.FC<EditorProps> = ({ page }) => {
+export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
   // return <div>{page.text.content}</div>;
   const monacoRef = useRef<Monaco | null>(null);
   const editorRef = useRef<IStandalonCodeEditor | null>(null);
@@ -155,4 +155,4 @@ export const Editor: React.FC<EditorProps> = ({ page }) => {
   );
 };
 
-Editor.displayName = "Editor";
+HTMLEditor.displayName = "Editor";
