@@ -10,6 +10,38 @@ interface PageNavigationProps {
   onNavigate: (pageId: string) => void;
 }
 
+function addPage(
+  journalEntry: JournalEntry,
+  type: "text" | "image",
+  name: string,
+) {
+  const sort =
+    // @ts-expect-error the journal types are so fucked
+    Math.max(...journalEntry.pages.contents.map((p) => p.sort)) +
+    CONST.SORT_INTEGER_DENSITY;
+  const nameRegex = new RegExp(`^${name}\\s+(\\d+)$`, "i");
+  // @ts-expect-error urrrrrgh
+  const pages: any[] = journalEntry.pages.contents;
+  const pageNumbers = pages
+    .map((p) => nameRegex.exec(p.name)?.[1])
+    .filter((n) => n && n.length > 0)
+    .map(Number);
+
+  const newPageNumber = pageNumbers.length ? Math.max(...pageNumbers) + 1 : 1;
+
+  journalEntry.createEmbeddedDocuments(
+    "JournalEntryPage",
+    [
+      {
+        type,
+        name: `${name} ${newPageNumber}`,
+        sort,
+      },
+    ],
+    { renderSheet: false },
+  );
+}
+
 export const PageNavigation: React.FC<PageNavigationProps> = ({
   journal,
   onNavigate,
@@ -31,29 +63,11 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
   );
 
   const handleAddNewTextPage = React.useCallback(async () => {
-    console.log(journal);
-    const sort =
-      // @ts-expect-error the journal types are so fucked
-      Math.max(...journal.pages.contents.map((p) => p.sort)) +
-      CONST.SORT_INTEGER_DENSITY;
-
-    await journal.createEmbeddedDocuments(
-      "JournalEntryPage",
-      [
-        {
-          type: "base",
-          name: "New page",
-          sort,
-        },
-      ],
-      {
-        renderSheet: false,
-      },
-    );
+    addPage(journal, "text", "New page");
   }, [journal]);
+
   const handleAddNewImagePage = React.useCallback(() => {
-    console.log(journal);
-    // debugger;
+    addPage(journal, "image", "New image");
   }, [journal]);
 
   return (
