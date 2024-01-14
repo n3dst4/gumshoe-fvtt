@@ -88,12 +88,16 @@ export const Editor: React.FC<EditorProps> = ({ page }) => {
 
   const handleSave = useCallback(async () => {
     await doFormat();
-    await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
-      {
-        _id: page.id,
-        text: { content: editorRef.current?.getValue() ?? "" },
-      },
-    ]);
+    try {
+      await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
+        {
+          _id: page.id,
+          text: { content: editorRef.current?.getValue() ?? "" },
+        },
+      ]);
+    } catch (error) {
+      ui.notifications?.error((error as Error).message);
+    }
   }, [doFormat, page.parent, page.id, editorRef]);
 
   return (
