@@ -1,9 +1,8 @@
 import React from "react";
-import { IconType } from "react-icons";
 
 type ToolbarButtonProps = {
   text?: React.ReactNode;
-  icon?: IconType;
+  icon?: React.ComponentType;
   onClick: () => void | Promise<void>;
 };
 
