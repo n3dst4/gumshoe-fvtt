@@ -3,7 +3,7 @@ import React from "react";
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings/settings";
 import { CSSReset } from "../CSSReset";
-import { HTMLEditor } from "./HTMLEditor";
+import { PageEditor } from "./PageEditor";
 import { PageNavigation } from "./PageNavigation";
 
 type RawJournalSheetProps = {
@@ -64,7 +64,7 @@ export const RawJournalSheet = ({
         }}
       >
         {activePageId !== null && journal.pages.has(activePageId) ? (
-          <HTMLEditor page={journal.pages.get(activePageId)} />
+          <PageEditor page={journal.pages.get(activePageId)} />
         ) : (
           "Select a page to view its content"
         )}
