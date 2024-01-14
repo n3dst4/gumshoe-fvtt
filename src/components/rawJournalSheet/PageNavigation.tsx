@@ -103,7 +103,7 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
 
       <div
         css={{
-          padding: "1em",
+          padding: "1px",
           overflowY: "auto",
           flex: 1,
           backgroundColor: theme.colors.backgroundPrimary,
@@ -127,12 +127,18 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
                 cursor: "pointer",
                 textDecoration: "none",
                 color: "inherit",
+                backgroundColor:
+                  page.id === activePageId
+                    ? theme.colors.backgroundButton
+                    : "transparent",
+                border: "1px solid transparent",
                 "&:hover": {
-                  backgroundColor: theme.colors.backgroundButton,
+                  // backgroundColor: theme.colors.backgroundButton,
+                  border: `1px solid ${theme.colors.accent}`,
                 },
-                border: `1px solid ${
-                  page.id === activePageId ? theme.colors.accent : "transparent"
-                }`,
+                // border: `1px solid ${
+                //   page.id === activePageId ? theme.colors.accent : "transparent"
+                // }`,
               }}
             >
               <span
