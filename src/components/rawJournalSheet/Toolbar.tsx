@@ -6,7 +6,13 @@ type ToolbarProps = React.PropsWithChildren<{
 
 export const Toolbar: React.FC<ToolbarProps> = ({ children, header }) => {
   return (
-    <div css={{ display: "flex", flexDirection: "column", padding: "0.5em" }}>
+    <div
+      css={{
+        display: "flex",
+        flexDirection: "column",
+        // padding: "0.5em",
+      }}
+    >
       {header}
       <div
         css={{

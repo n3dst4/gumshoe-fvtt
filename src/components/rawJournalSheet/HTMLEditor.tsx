@@ -18,17 +18,7 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
   const monacoRef = useRef<Monaco | null>(null);
   const editorRef = useRef<IStandalonCodeEditor | null>(null);
 
-  function handleEditorWillMount(monaco: Monaco) {
-    // monaco.languages.html.htmlDefaults.setOptions({
-    //   format: {
-    //     ...monaco.languages.html.htmlDefaults.options.format,
-    //     tabSize: 2,
-    //     insertSpaces: true,
-    //     wrapLineLength: 80,
-    //     wrapAttributes: "auto",
-    //   },
-    // });
-  }
+  function handleEditorWillMount(monaco: Monaco) {}
 
   const handleEditorDidMount: OnMount = useCallback((editor, monaco) => {
     monacoRef.current = monaco;
@@ -109,6 +99,7 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        gap: "0.5em",
       }}
     >
       <div

@@ -85,14 +85,18 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
         left: 0,
         display: "flex",
         flexDirection: "column",
+        padding: "0.5em",
+        // backgroundColor: theme.colors.backgroundPrimary,
       }}
     >
       <div
-        css={{
-          padding: "1em",
-          // backgroundColor: theme.colors.,
-          // color: "white",s
-        }}
+        css={
+          {
+            // padding: "1em",
+            // backgroundColor: theme.colors.,
+            // color: "white",s
+          }
+        }
       >
         {journal.name}
       </div>
@@ -102,6 +106,9 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
           padding: "1em",
           overflowY: "auto",
           flex: 1,
+          backgroundColor: theme.colors.backgroundPrimary,
+          border: `1px solid ${theme.colors.accent}`,
+          // borderBottom: `1px solid ${theme.colors.accent}`,
         }}
       >
         {pages.map((page) => {
