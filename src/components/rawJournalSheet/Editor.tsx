@@ -2,6 +2,10 @@ import MonacoEditor, { Monaco, OnMount } from "@monaco-editor/react";
 import htmlParser from "prettier/plugins/html";
 import prettier from "prettier/standalone";
 import React, { useCallback, useRef } from "react";
+import { FaFloppyDisk, FaIndent } from "react-icons/fa6";
+
+import { Toolbar } from "./Toolbar";
+import { ToolbarButton } from "./ToolbarButton";
 
 interface EditorProps {
   page: any;
@@ -74,31 +78,23 @@ export const Editor: React.FC<EditorProps> = ({ page }) => {
     // editor.
   }, []);
 
-  const doFormat = useCallback(() => {
-    editorRef.current?.getAction("editor.action.formatDocument")?.run();
+  const doFormat = useCallback(async () => {
+    await editorRef.current?.getAction("editor.action.formatDocument")?.run();
   }, []);
 
-  const handleFormat = useCallback(
-    async (e: React.MouseEvent) => {
-      e.preventDefault();
-      await doFormat();
-    },
-    [doFormat],
-  );
+  const handleFormat = useCallback(async () => {
+    await doFormat();
+  }, [doFormat]);
 
-  const handleSave = useCallback(
-    async (e: React.MouseEvent) => {
-      e.preventDefault();
-      await doFormat();
-      await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
-        {
-          _id: page.id,
-          text: { content: editorRef.current?.getValue() ?? "" },
-        },
-      ]);
-    },
-    [doFormat, page.parent, page.id, editorRef],
-  );
+  const handleSave = useCallback(async () => {
+    await doFormat();
+    await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
+      {
+        _id: page.id,
+        text: { content: editorRef.current?.getValue() ?? "" },
+      },
+    ]);
+  }, [doFormat, page.parent, page.id, editorRef]);
 
   return (
     <div
@@ -117,8 +113,10 @@ export const Editor: React.FC<EditorProps> = ({ page }) => {
           flexBasis: "4em",
         }}
       >
-        <button onClick={handleFormat}>Format</button>
-        <button onClick={handleSave}>Save</button>
+        <Toolbar>
+          <ToolbarButton onClick={handleFormat} text="Format" icon={FaIndent} />
+          <ToolbarButton onClick={handleSave} text="Save" icon={FaFloppyDisk} />
+        </Toolbar>
       </div>
       <div
         data-testid="monaco-wrapper"
