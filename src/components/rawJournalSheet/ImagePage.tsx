@@ -7,19 +7,26 @@ interface ImagePageProps {
 export const ImagePage: React.FC<ImagePageProps> = ({ page }) => {
   return (
     <div>
-      {page.name}
-      <img
-        css={{
-          cursor: "pointer",
-          ":hover": {
-            opacity: 0.5,
-          },
-        }}
-        src={page.src}
+      <div>{page.name}</div>
+      <a
         onClick={() => {
           page.sheet.render(true);
         }}
-      />
+      >
+        {page.src ? (
+          <img
+            css={{
+              cursor: "pointer",
+              ":hover": {
+                opacity: 0.5,
+              },
+            }}
+            src={page.src}
+          />
+        ) : (
+          "Click to add image"
+        )}
+      </a>
     </div>
   );
 };
