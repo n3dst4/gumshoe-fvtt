@@ -18,6 +18,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({ children, header }) => {
         css={{
           display: "flex",
           flexDirection: "row",
+          gap: "0.5em",
         }}
       >
         {children}
