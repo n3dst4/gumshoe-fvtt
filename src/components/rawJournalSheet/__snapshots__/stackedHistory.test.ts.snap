@@ -115,3 +115,95 @@ exports[`stackedHistory > stores a sequence of edits onto the next stack 1`] = `
   },
 }
 `;
+
+exports[`stackedHistory > stores a sequence of edits onto the third stack 1`] = `
+{
+  "periodicity": 3,
+  "serial": 10,
+  "stack": {
+    "deltas": [
+      {
+        "change": [
+          [
+            0,
+            7,
+          ],
+          [
+            1,
+            "h",
+          ],
+        ],
+        "date": "1070-01-01T00:00:00.000Z",
+      },
+      {
+        "change": [
+          [
+            0,
+            8,
+          ],
+          [
+            1,
+            "i",
+          ],
+        ],
+        "date": "1070-01-01T00:00:00.000Z",
+      },
+      {
+        "change": [
+          [
+            0,
+            9,
+          ],
+          [
+            1,
+            "j",
+          ],
+        ],
+        "date": "1070-01-01T00:00:00.000Z",
+      },
+    ],
+    "next": {
+      "deltas": [
+        {
+          "change": [
+            [
+              1,
+              "abc",
+            ],
+          ],
+          "date": "1070-01-01T00:00:00.000Z",
+        },
+        {
+          "change": [
+            [
+              0,
+              3,
+            ],
+            [
+              1,
+              "def",
+            ],
+          ],
+          "date": "1070-01-01T00:00:00.000Z",
+        },
+        {
+          "change": [
+            [
+              0,
+              6,
+            ],
+            [
+              1,
+              "ghi",
+            ],
+          ],
+          "date": "1070-01-01T00:00:00.000Z",
+        },
+      ],
+      "next": null,
+      "snapshot": "abcdefghi",
+    },
+    "snapshot": "abcdefghij",
+  },
+}
+`;

@@ -147,4 +147,18 @@ describe("stackedHistory", () => {
     h = save(h, "barbaz");
     expect(h).toMatchSnapshot();
   });
+  test("stores a sequence of edits onto the third stack", () => {
+    let h = createHistory(3);
+    h = save(h, "a");
+    h = save(h, "ab");
+    h = save(h, "abc");
+    h = save(h, "abcd");
+    h = save(h, "abcde");
+    h = save(h, "abcdef");
+    h = save(h, "abcdefg");
+    h = save(h, "abcdefgh");
+    h = save(h, "abcdefghi");
+    h = save(h, "abcdefghij");
+    expect(h).toMatchSnapshot();
+  });
 });
