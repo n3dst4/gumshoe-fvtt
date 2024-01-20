@@ -1,0 +1,209 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`stackedHistory > stores a sequence of edits 1`] = `
+{
+  "periodicity": 3,
+  "serial": 3,
+  "stack": {
+    "deltas": [
+      {
+        "change": [
+          [
+            1,
+            "foo",
+          ],
+        ],
+        "date": "1970-01-01T00:00:01.000Z",
+      },
+      {
+        "change": [
+          [
+            0,
+            3,
+          ],
+          [
+            1,
+            "bar",
+          ],
+        ],
+        "date": "1970-01-01T00:00:11.000Z",
+      },
+      {
+        "change": [
+          [
+            -1,
+            3,
+          ],
+          [
+            0,
+            3,
+          ],
+        ],
+        "date": "1970-01-01T00:00:21.000Z",
+      },
+    ],
+    "next": null,
+    "snapshot": "bar",
+  },
+}
+`;
+
+exports[`stackedHistory > stores a sequence of edits onto the next stack 1`] = `
+{
+  "periodicity": 3,
+  "serial": 4,
+  "stack": {
+    "deltas": [
+      {
+        "change": [
+          [
+            0,
+            3,
+          ],
+          [
+            1,
+            "bar",
+          ],
+        ],
+        "date": "1970-01-01T00:00:11.000Z",
+      },
+      {
+        "change": [
+          [
+            -1,
+            3,
+          ],
+          [
+            0,
+            3,
+          ],
+        ],
+        "date": "1970-01-01T00:00:21.000Z",
+      },
+      {
+        "change": [
+          [
+            0,
+            3,
+          ],
+          [
+            1,
+            "baz",
+          ],
+        ],
+        "date": "1970-01-01T00:00:31.000Z",
+      },
+    ],
+    "next": {
+      "deltas": [
+        null,
+        null,
+        {
+          "change": [
+            [
+              1,
+              "bar",
+            ],
+          ],
+          "date": "1970-01-01T00:00:31.000Z",
+        },
+      ],
+      "next": null,
+      "snapshot": "bar",
+    },
+    "snapshot": "barbaz",
+  },
+}
+`;
+
+exports[`stackedHistory > stores a sequence of edits onto the third stack 1`] = `
+{
+  "periodicity": 3,
+  "serial": 10,
+  "stack": {
+    "deltas": [
+      {
+        "change": [
+          [
+            0,
+            7,
+          ],
+          [
+            1,
+            "h",
+          ],
+        ],
+        "date": "1970-01-01T00:01:11.000Z",
+      },
+      {
+        "change": [
+          [
+            0,
+            8,
+          ],
+          [
+            1,
+            "i",
+          ],
+        ],
+        "date": "1970-01-01T00:01:21.000Z",
+      },
+      {
+        "change": [
+          [
+            0,
+            9,
+          ],
+          [
+            1,
+            "j",
+          ],
+        ],
+        "date": "1970-01-01T00:01:31.000Z",
+      },
+    ],
+    "next": {
+      "deltas": [
+        {
+          "change": [
+            [
+              1,
+              "abc",
+            ],
+          ],
+          "date": "1970-01-01T00:00:31.000Z",
+        },
+        {
+          "change": [
+            [
+              0,
+              3,
+            ],
+            [
+              1,
+              "def",
+            ],
+          ],
+          "date": "1970-01-01T00:01:01.000Z",
+        },
+        {
+          "change": [
+            [
+              0,
+              6,
+            ],
+            [
+              1,
+              "ghi",
+            ],
+          ],
+          "date": "1970-01-01T00:01:31.000Z",
+        },
+      ],
+      "next": null,
+      "snapshot": "abcdefghi",
+    },
+    "snapshot": "abcdefghij",
+  },
+}
+`;
