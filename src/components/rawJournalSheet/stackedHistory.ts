@@ -1,12 +1,12 @@
 import diff, { Change } from "textdiff-create";
 
 interface Delta {
-  change: Change;
+  change: Change[];
   date: string;
 }
 
 interface Stack {
-  deltas: Delta[];
+  deltas: Array<Delta | null>;
   snapshot: string;
   next: Stack | null;
 }
@@ -19,57 +19,75 @@ interface History {
 
 const DEFAULT_PERIODICITY = 100;
 
-function createStack(): Stack {
+function createStack(periodicity: number): Stack {
   return {
-    deltas: [],
+    deltas: new Array(periodicity).fill(null),
     snapshot: "",
     next: null,
   };
 }
 
-function createHistory(periodicity: number = DEFAULT_PERIODICITY): History {
+export function createHistory(
+  periodicity: number = DEFAULT_PERIODICITY,
+): History {
   return {
-    stack: createStack(),
+    stack: createStack(periodicity),
     serial: 0,
     periodicity,
   };
 }
 
-export function snapshot(history: History, state: string): History {
-  const serial = history.serial + 1;
-  const stack = push(history.stack, state, serial, history.periodicity, 0);
-  return history;
-}
-
-export function calculateOffset(period: number, depth: number): number {
-  let sum = 0;
-  for (let i = depth - 1; i >= 0; i--) {
-    sum += Math.pow(period, i);
-  }
-  return sum;
-}
-
+/**
+ * Given a period and depth, returns whether the serial number is one one where
+ * we will trigger a push to the next stack.
+ */
 export function isMagicSerial(period: number, depth: number, serial: number) {
-  const offset = calculateOffset(period, depth);
+  // we could cache this in some way (like making isMagicSerial f -> f -> bool)
+  // which would help with the speed of tests, but isn't necessary in actual use
+  // and just adds complexity
+  let offset = 0;
+  for (let i = depth - 1; i >= 0; i--) {
+    offset += Math.pow(period, i);
+  }
   const isMagicSerial =
-    serial >= offset && (serial - offset) % period ** depth === 0;
+    serial > offset && (serial - offset) % period ** depth === 0;
   return isMagicSerial;
 }
 
 function push(
   stack: Stack,
-  state: string,
+  newState: string,
   serial: number,
   period: number,
   depth: number,
 ): Stack {
-  const offset = calculateOffset(period, depth);
-
-  const isMagicPeriod = (serial - offset) % period === 0;
-
-  if (!isMagicPeriod) {
-    return stack;
+  const newDelta: Delta = {
+    change: diff(stack.snapshot, newState),
+    date: new Date().toISOString(),
+  };
+  let next = stack.next;
+  if (isMagicSerial(period, depth, serial)) {
+    next = push(
+      next ?? createStack(period),
+      stack.snapshot,
+      serial,
+      period,
+      depth + 1,
+    );
   }
+  return {
+    deltas: [...stack.deltas.slice(1), newDelta],
+    snapshot: newState,
+    next,
+  };
+}
 
-  return stack;
+export function save(history: History, state: string): History {
+  const serial = history.serial + 1;
+  const stack = push(history.stack, state, serial, history.periodicity, 1);
+  return {
+    stack,
+    serial,
+    periodicity: history.periodicity,
+  };
 }
