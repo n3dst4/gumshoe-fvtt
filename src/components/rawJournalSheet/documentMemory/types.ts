@@ -7,8 +7,8 @@ import { Change } from "textdiff-create";
 export interface Edit {
   /** The actual change, as a diff */
   change: Change[];
-  /** The timestamp of the edit */
-  timestamp: string;
+  /** The timestamp of the edit, in epoch seconds */
+  timestamp: number;
 }
 
 /**

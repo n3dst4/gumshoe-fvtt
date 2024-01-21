@@ -17,7 +17,7 @@ function push(
 ): Stack {
   const newDelta: Edit = {
     change: diff(stack.snapshot, newState),
-    timestamp: new Date().toISOString(),
+    timestamp: Math.floor(new Date().getTime() / 1000),
   };
   let next = stack.next;
   if (isMagicSerial(period, depth, serial)) {

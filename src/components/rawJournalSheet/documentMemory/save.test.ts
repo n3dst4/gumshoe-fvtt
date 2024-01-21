@@ -3,7 +3,7 @@ import { afterAll, beforeEach, expect, test, vi } from "vitest";
 import { createDocumentMemory } from "./createDocumentMemory";
 import { save } from "./save";
 
-const epoch = "1970-01-01T00:00:01.000Z";
+const epoch = 0;
 
 function advanceTime10s() {
   vi.setSystemTime(new Date().setSeconds(new Date().getSeconds() + 10));
@@ -27,7 +27,7 @@ test("starts", () => {
         null,
         {
           change: [[1, "foo"]],
-          timestamp: epoch,
+          timestamp: expect.closeTo(epoch),
         },
       ],
       snapshot: "foo",
