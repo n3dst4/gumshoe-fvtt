@@ -1,7 +1,7 @@
 import { afterAll, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { ArrayOfNulls } from "./ArrayOfNullsEqualityTester";
-import { createHistory, save } from "./documentMemory";
+import { createDocumentMemory, save } from "./documentMemory";
 
 const epoch = "1970-01-01T00:00:01.000Z";
 
@@ -21,7 +21,7 @@ describe("createHistory", () => {
   test.each([3, 4, 5, 6, 100, 1000])(
     "creates an empty history with period %i",
     (period) => {
-      const history = createHistory(period);
+      const history = createDocumentMemory(period);
       expect(history).toEqual({
         stack: {
           edits: new ArrayOfNulls(period),
@@ -36,7 +36,7 @@ describe("createHistory", () => {
 });
 
 test("starts", () => {
-  const h1 = createHistory(3);
+  const h1 = createDocumentMemory(3);
   const h2 = save(h1, "foo");
   expect(h2).toEqual({
     stack: {
@@ -57,7 +57,7 @@ test("starts", () => {
 });
 
 test("stores a sequence of edits", () => {
-  let h = createHistory(3);
+  let h = createDocumentMemory(3);
   const states = ["foo", "foobar", "bar"];
   for (const state of states) {
     h = save(h, state);
@@ -67,7 +67,7 @@ test("stores a sequence of edits", () => {
 });
 
 test("stores a sequence of edits onto the next stack", () => {
-  let h = createHistory(3);
+  let h = createDocumentMemory(3);
   const states = ["foo", "foobar", "bar", "barbaz"];
   for (const state of states) {
     h = save(h, state);
@@ -77,7 +77,7 @@ test("stores a sequence of edits onto the next stack", () => {
 });
 
 test("stores a sequence of edits onto the third stack", () => {
-  let h = createHistory(3);
+  let h = createDocumentMemory(3);
   const states = [
     "a",
     "ab",

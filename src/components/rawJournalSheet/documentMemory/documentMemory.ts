@@ -11,7 +11,10 @@ function createStack(periodicity: number): Stack {
   };
 }
 
-export function createHistory(periodicity: number): DocumentMemory {
+/**
+ * Create a new empty document memory
+ */
+export function createDocumentMemory(periodicity: number): DocumentMemory {
   return {
     stack: createStack(periodicity),
     serial: 0,
@@ -19,6 +22,10 @@ export function createHistory(periodicity: number): DocumentMemory {
   };
 }
 
+/**
+ * This function pushes a new state onto a stack and returns the new stack.
+ * Recurses down onto deeper stacks if necessary.
+ */
 function push(
   stack: Stack,
   newState: string,
@@ -47,12 +54,15 @@ function push(
   };
 }
 
-export function save(history: DocumentMemory, state: string): DocumentMemory {
-  const serial = history.serial + 1;
-  const stack = push(history.stack, state, serial, history.period, 1);
+/**
+ * Add a new state to the memory
+ */
+export function save(memory: DocumentMemory, state: string): DocumentMemory {
+  const serial = memory.serial + 1;
+  const stack = push(memory.stack, state, serial, memory.period, 1);
   return {
     stack,
     serial,
-    period: history.period,
+    period: memory.period,
   };
 }

@@ -13,7 +13,7 @@ export interface Edit {
 
 /**
  * A stack of edits in a document memory. Each stack represents an older stage
- * of the history and has pointer the next, even, older, one. So, the freshest
+ * of the memory and has pointer the next, even, older, one. So, the freshest
  * edits are in the first stack. Every time that fills once, a  combnined edit
  * isadded to the next stack, recursively.
  */
@@ -39,8 +39,7 @@ export interface Stack {
 }
 
 /**
- * A document's edit history, stored with a receding granularity, so older edits
- * are stored with less granularity.
+ * A document's edit memory. Older edits are stored with less granularity.
  */
 export interface DocumentMemory {
   /**
