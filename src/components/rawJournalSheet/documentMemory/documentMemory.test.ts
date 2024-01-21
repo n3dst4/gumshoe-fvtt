@@ -17,12 +17,12 @@ afterAll(() => {
   vi.useRealTimers();
 });
 
-describe("createHistory", () => {
+describe("createDocumentMemory", () => {
   test.each([3, 4, 5, 6, 100, 1000])(
-    "creates an empty history with period %i",
+    "creates an empty memory with period %i",
     (period) => {
-      const history = createDocumentMemory(period);
-      expect(history).toEqual({
+      const memory = createDocumentMemory(period);
+      expect(memory).toEqual({
         stack: {
           edits: new ArrayOfNulls(period),
           snapshot: "",
