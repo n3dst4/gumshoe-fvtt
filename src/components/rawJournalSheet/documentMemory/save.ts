@@ -1,26 +1,8 @@
 import diff from "textdiff-create";
 
+import { createStack } from "./createStack";
 import { isMagicSerial } from "./isMagicSerial";
 import { DocumentMemory, Edit, Stack } from "./types";
-
-function createStack(periodicity: number): Stack {
-  return {
-    edits: new Array(periodicity).fill(null),
-    snapshot: "",
-    next: null,
-  };
-}
-
-/**
- * Create a new empty document memory
- */
-export function createDocumentMemory(periodicity: number): DocumentMemory {
-  return {
-    stack: createStack(periodicity),
-    serial: 0,
-    period: periodicity,
-  };
-}
 
 /**
  * This function pushes a new state onto a stack and returns the new stack.

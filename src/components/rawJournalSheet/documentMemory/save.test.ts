@@ -1,7 +1,7 @@
-import { afterAll, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterAll, beforeEach, expect, test, vi } from "vitest";
 
-import { ArrayOfNulls } from "./ArrayOfNullsEqualityTester";
-import { createDocumentMemory, save } from "./documentMemory";
+import { createDocumentMemory } from "./createDocumentMemory";
+import { save } from "./save";
 
 const epoch = "1970-01-01T00:00:01.000Z";
 
@@ -15,24 +15,6 @@ beforeEach(() => {
 
 afterAll(() => {
   vi.useRealTimers();
-});
-
-describe("createDocumentMemory", () => {
-  test.each([3, 4, 5, 6, 100, 1000])(
-    "creates an empty memory with period %i",
-    (period) => {
-      const memory = createDocumentMemory(period);
-      expect(memory).toEqual({
-        stack: {
-          edits: new ArrayOfNulls(period),
-          snapshot: "",
-          next: null,
-        },
-        serial: 0,
-        period,
-      });
-    },
-  );
 });
 
 test("starts", () => {
