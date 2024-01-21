@@ -40,7 +40,7 @@ test("starts", () => {
 
 test("stores a sequence of edits", () => {
   let h = createDocumentMemory(3);
-  const states = ["foo", "foobar", "bar"];
+  const states = ["a", "ab", "abc"];
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();
@@ -50,7 +50,12 @@ test("stores a sequence of edits", () => {
 
 test("stores a sequence of edits onto the next stack", () => {
   let h = createDocumentMemory(3);
-  const states = ["foo", "foobar", "bar", "barbaz"];
+  const states = [
+    "a", // 1
+    "ab", // 2
+    "abc", // 3
+    "abcd", // 4
+  ];
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();
@@ -71,6 +76,10 @@ test("stores a sequence of edits onto the third stack", () => {
     "abcdefgh",
     "abcdefghi",
     "abcdefghij",
+    "abcdefghijk",
+    "abcdefghijkl",
+    "abcdefghijklm",
+    "abcdefghijklmn",
   ];
   for (const state of states) {
     h = save(h, state);

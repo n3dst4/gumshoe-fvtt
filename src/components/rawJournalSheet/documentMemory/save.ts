@@ -14,19 +14,23 @@ function push(
   serial: number,
   period: number,
   depth: number,
+  timestamp: number,
 ): Stack {
   const newDelta: Edit = {
     change: diff(stack.snapshot, newState),
-    timestamp: Math.floor(new Date().getTime() / 1000),
+    timestamp,
   };
   let next = stack.next;
   if (isMagicSerial(period, depth, serial)) {
+    const lastEditTimestamp =
+      stack.edits[stack.edits.length - 1]?.timestamp ?? 0;
     next = push(
       next ?? createStack(period),
       stack.snapshot,
       serial,
       period,
       depth + 1,
+      lastEditTimestamp,
     );
   }
   return {
@@ -41,7 +45,14 @@ function push(
  */
 export function save(memory: DocumentMemory, state: string): DocumentMemory {
   const serial = memory.serial + 1;
-  const stack = push(memory.stack, state, serial, memory.period, 1);
+  const stack = push(
+    memory.stack,
+    state,
+    serial,
+    memory.period,
+    1,
+    Math.floor(Date.now() / 1000),
+  );
   return {
     stack,
     serial,

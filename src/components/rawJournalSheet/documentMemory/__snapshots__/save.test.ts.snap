@@ -10,7 +10,7 @@ exports[`stores a sequence of edits 1`] = `
         "change": [
           [
             1,
-            "foo",
+            "a",
           ],
         ],
         "timestamp": 0,
@@ -19,11 +19,11 @@ exports[`stores a sequence of edits 1`] = `
         "change": [
           [
             0,
-            3,
+            1,
           ],
           [
             1,
-            "bar",
+            "b",
           ],
         ],
         "timestamp": 10,
@@ -31,19 +31,19 @@ exports[`stores a sequence of edits 1`] = `
       {
         "change": [
           [
-            -1,
-            3,
+            0,
+            2,
           ],
           [
-            0,
-            3,
+            1,
+            "c",
           ],
         ],
         "timestamp": 20,
       },
     ],
     "next": null,
-    "snapshot": "bar",
+    "snapshot": "abc",
   },
 }
 `;
@@ -58,11 +58,11 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
         "change": [
           [
             0,
-            3,
+            1,
           ],
           [
             1,
-            "bar",
+            "b",
           ],
         ],
         "timestamp": 10,
@@ -70,12 +70,12 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
       {
         "change": [
           [
-            -1,
-            3,
+            0,
+            2,
           ],
           [
-            0,
-            3,
+            1,
+            "c",
           ],
         ],
         "timestamp": 20,
@@ -88,7 +88,7 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
           ],
           [
             1,
-            "baz",
+            "d",
           ],
         ],
         "timestamp": 30,
@@ -102,16 +102,16 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
           "change": [
             [
               1,
-              "bar",
+              "abc",
             ],
           ],
-          "timestamp": 30,
+          "timestamp": 20,
         },
       ],
       "next": null,
-      "snapshot": "bar",
+      "snapshot": "abc",
     },
-    "snapshot": "barbaz",
+    "snapshot": "abcd",
   },
 }
 `;
@@ -119,60 +119,51 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
 exports[`stores a sequence of edits onto the third stack 1`] = `
 {
   "period": 3,
-  "serial": 10,
+  "serial": 14,
   "stack": {
     "edits": [
       {
         "change": [
           [
             0,
-            7,
+            11,
           ],
           [
             1,
-            "h",
+            "l",
           ],
         ],
-        "timestamp": 70,
+        "timestamp": 110,
       },
       {
         "change": [
           [
             0,
-            8,
+            12,
           ],
           [
             1,
-            "i",
+            "m",
           ],
         ],
-        "timestamp": 80,
+        "timestamp": 120,
       },
       {
         "change": [
           [
             0,
-            9,
+            13,
           ],
           [
             1,
-            "j",
+            "n",
           ],
         ],
-        "timestamp": 90,
+        "timestamp": 130,
       },
     ],
     "next": {
       "edits": [
-        {
-          "change": [
-            [
-              1,
-              "abc",
-            ],
-          ],
-          "timestamp": 30,
-        },
         {
           "change": [
             [
@@ -184,7 +175,7 @@ exports[`stores a sequence of edits onto the third stack 1`] = `
               "def",
             ],
           ],
-          "timestamp": 60,
+          "timestamp": 50,
         },
         {
           "change": [
@@ -197,13 +188,42 @@ exports[`stores a sequence of edits onto the third stack 1`] = `
               "ghi",
             ],
           ],
-          "timestamp": 90,
+          "timestamp": 80,
+        },
+        {
+          "change": [
+            [
+              0,
+              9,
+            ],
+            [
+              1,
+              "jkl",
+            ],
+          ],
+          "timestamp": 110,
         },
       ],
-      "next": null,
-      "snapshot": "abcdefghi",
+      "next": {
+        "edits": [
+          null,
+          null,
+          {
+            "change": [
+              [
+                1,
+                "abcdefghi",
+              ],
+            ],
+            "timestamp": 80,
+          },
+        ],
+        "next": null,
+        "snapshot": "abcdefghi",
+      },
+      "snapshot": "abcdefghijkl",
     },
-    "snapshot": "abcdefghij",
+    "snapshot": "abcdefghijklmn",
   },
 }
 `;
