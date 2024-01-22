@@ -55,4 +55,11 @@ export interface DocumentMemory {
    * The period of this memory, i.e. how many edits are stored in each stack.
    */
   period: number;
+  /**
+   * Limit on maximum depth of stacks. The total number of edits stored will be
+   * period * maxDepth, representing
+   * period^maxDepth + period^(maxDepth - 1) + ... + period^1
+   * total edits.
+   */
+  maxDepth: number;
 }

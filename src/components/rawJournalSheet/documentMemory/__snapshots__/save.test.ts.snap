@@ -2,6 +2,7 @@
 
 exports[`stores a sequence of edits 1`] = `
 {
+  "maxDepth": 9007199254740991,
   "period": 3,
   "serial": 3,
   "stack": {
@@ -50,6 +51,7 @@ exports[`stores a sequence of edits 1`] = `
 
 exports[`stores a sequence of edits onto the next stack 1`] = `
 {
+  "maxDepth": 9007199254740991,
   "period": 3,
   "serial": 4,
   "stack": {
@@ -118,6 +120,7 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
 
 exports[`stores a sequence of edits onto the third stack 1`] = `
 {
+  "maxDepth": 9007199254740991,
   "period": 3,
   "serial": 14,
   "stack": {

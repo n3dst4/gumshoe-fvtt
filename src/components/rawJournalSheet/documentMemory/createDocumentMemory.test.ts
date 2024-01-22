@@ -7,7 +7,7 @@ describe("createDocumentMemory", () => {
   test.each([3, 4, 5, 6, 100, 1000])(
     "creates an empty memory with period %i",
     (period) => {
-      const memory = createDocumentMemory(period);
+      const memory = createDocumentMemory(period, Number.MAX_SAFE_INTEGER);
       expect(memory).toEqual({
         stack: {
           edits: new ArrayOfNulls(period),
@@ -16,6 +16,7 @@ describe("createDocumentMemory", () => {
         },
         serial: 0,
         period,
+        maxDepth: Number.MAX_SAFE_INTEGER,
       });
     },
   );

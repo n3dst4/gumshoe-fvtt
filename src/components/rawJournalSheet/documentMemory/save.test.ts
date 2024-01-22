@@ -18,7 +18,7 @@ afterAll(() => {
 });
 
 test("starts", () => {
-  const h1 = createDocumentMemory(3);
+  const h1 = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
   const h2 = save(h1, "foo");
   expect(h2).toEqual({
     stack: {
@@ -35,11 +35,12 @@ test("starts", () => {
     },
     serial: 1,
     period: 3,
+    maxDepth: Number.MAX_SAFE_INTEGER,
   });
 });
 
 test("stores a sequence of edits", () => {
-  let h = createDocumentMemory(3);
+  let h = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
   const states = ["a", "ab", "abc"];
   for (const state of states) {
     h = save(h, state);
@@ -49,7 +50,7 @@ test("stores a sequence of edits", () => {
 });
 
 test("stores a sequence of edits onto the next stack", () => {
-  let h = createDocumentMemory(3);
+  let h = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
   const states = [
     "a", // 1
     "ab", // 2
@@ -64,7 +65,7 @@ test("stores a sequence of edits onto the next stack", () => {
 });
 
 test("stores a sequence of edits onto the third stack", () => {
-  let h = createDocumentMemory(3);
+  let h = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
   const states = [
     "a",
     "ab",
@@ -86,4 +87,34 @@ test("stores a sequence of edits onto the third stack", () => {
     advanceTime10s();
   }
   expect(h).toMatchSnapshot();
+});
+
+test("stores a sequence of edits that hits the depth limit", () => {
+  let h = createDocumentMemory(3, 2);
+  const states = [
+    "a",
+    "ab",
+    "abc",
+    "abcd",
+    "abcde",
+    "abcdef",
+    "abcdefg",
+    "abcdefgh",
+    "abcdefghi",
+    "abcdefghij",
+    "abcdefghijk",
+    "abcdefghijkl",
+    "abcdefghijklm",
+    "abcdefghijklmn",
+  ];
+  for (const state of states) {
+    h = save(h, state);
+    advanceTime10s();
+  }
+  const stacks: any[] = [];
+  for (let stack: any = h.stack; stack; stack = stack.next) {
+    stacks.push(stack);
+  }
+
+  expect(stacks.length).toEqual(2);
 });

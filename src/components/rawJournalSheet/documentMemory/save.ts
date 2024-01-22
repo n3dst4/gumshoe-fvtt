@@ -15,13 +15,14 @@ function push(
   period: number,
   depth: number,
   timestamp: number,
+  maxDepth: number,
 ): Stack {
   const newDelta: Edit = {
     change: diff(stack.snapshot, newState),
     timestamp,
   };
   let next = stack.next;
-  if (isMagicSerial(period, depth, serial)) {
+  if (isMagicSerial(period, depth, serial) && depth < maxDepth) {
     const lastEditTimestamp =
       stack.edits[stack.edits.length - 1]?.timestamp ?? 0;
     next = push(
@@ -31,6 +32,7 @@ function push(
       period,
       depth + 1,
       lastEditTimestamp,
+      maxDepth,
     );
   }
   return {
@@ -52,10 +54,12 @@ export function save(memory: DocumentMemory, state: string): DocumentMemory {
     memory.period,
     1,
     Math.floor(Date.now() / 1000),
+    memory.maxDepth,
   );
   return {
     stack,
     serial,
     period: memory.period,
+    maxDepth: memory.maxDepth,
   };
 }
