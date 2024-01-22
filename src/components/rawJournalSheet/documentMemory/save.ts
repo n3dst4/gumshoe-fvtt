@@ -15,14 +15,17 @@ function push(
   period: number,
   depth: number,
   timestamp: number,
-  maxDepth: number,
+  maxDepth: number | null,
 ): Stack {
   const newDelta: Edit = {
     change: diff(stack.snapshot, newState),
     timestamp,
   };
   let next = stack.next;
-  if (isMagicSerial(period, depth, serial) && depth < maxDepth) {
+  if (
+    isMagicSerial(period, depth, serial) &&
+    (maxDepth === null || depth < maxDepth)
+  ) {
     const lastEditTimestamp =
       stack.edits[stack.edits.length - 1]?.timestamp ?? 0;
     next = push(

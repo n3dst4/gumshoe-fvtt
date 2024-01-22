@@ -61,5 +61,5 @@ export interface DocumentMemory {
    * period^maxDepth + period^(maxDepth - 1) + ... + period^1
    * total edits.
    */
-  maxDepth: number;
+  maxDepth: number | null;
 }

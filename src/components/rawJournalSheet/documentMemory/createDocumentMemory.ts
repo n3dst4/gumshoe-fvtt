@@ -6,7 +6,7 @@ import { DocumentMemory } from "./types";
  */
 export function createDocumentMemory(
   period: number,
-  maxDepth: number,
+  maxDepth: number | null = null,
 ): DocumentMemory {
   return {
     stack: createStack(period),

@@ -5,9 +5,9 @@ import { createDocumentMemory } from "./createDocumentMemory";
 
 describe("createDocumentMemory", () => {
   test.each([3, 4, 5, 6, 100, 1000])(
-    "creates an empty memory with period %i",
+    "creates an empty memory with period %i and no maxDepth",
     (period) => {
-      const memory = createDocumentMemory(period, Number.MAX_SAFE_INTEGER);
+      const memory = createDocumentMemory(period);
       expect(memory).toEqual({
         stack: {
           edits: new ArrayOfNulls(period),
@@ -16,7 +16,23 @@ describe("createDocumentMemory", () => {
         },
         serial: 0,
         period,
-        maxDepth: Number.MAX_SAFE_INTEGER,
+        maxDepth: null,
+      });
+    },
+  );
+  test.each([3, 4, 5, 6, 100, 1000])(
+    "creates an empty memory with period %i and no maxDepth",
+    (period) => {
+      const memory = createDocumentMemory(period, 10);
+      expect(memory).toEqual({
+        stack: {
+          edits: new ArrayOfNulls(period),
+          snapshot: "",
+          next: null,
+        },
+        serial: 0,
+        period,
+        maxDepth: 10,
       });
     },
   );
