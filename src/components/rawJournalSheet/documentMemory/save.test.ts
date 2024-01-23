@@ -2,12 +2,7 @@ import { afterAll, beforeEach, expect, test, vi } from "vitest";
 
 import { createDocumentMemory } from "./createDocumentMemory";
 import { save } from "./save";
-
-const epoch = 0;
-
-function advanceTime10s() {
-  vi.setSystemTime(new Date().setSeconds(new Date().getSeconds() + 10));
-}
+import { advanceTime10s, epoch, getStates } from "./testHelpers";
 
 beforeEach(() => {
   vi.setSystemTime(new Date(epoch));
@@ -41,7 +36,7 @@ test("starts", () => {
 
 test("stores a sequence of edits", () => {
   let h = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
-  const states = ["a", "ab", "abc"];
+  const states = getStates(3);
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();
@@ -51,12 +46,7 @@ test("stores a sequence of edits", () => {
 
 test("stores a sequence of edits onto the next stack", () => {
   let h = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
-  const states = [
-    "a", // 1
-    "ab", // 2
-    "abc", // 3
-    "abcd", // 4
-  ];
+  const states = getStates(4);
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();
@@ -66,22 +56,7 @@ test("stores a sequence of edits onto the next stack", () => {
 
 test("stores a sequence of edits onto the third stack", () => {
   let h = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
-  const states = [
-    "a",
-    "ab",
-    "abc",
-    "abcd",
-    "abcde",
-    "abcdef",
-    "abcdefg",
-    "abcdefgh",
-    "abcdefghi",
-    "abcdefghij",
-    "abcdefghijk",
-    "abcdefghijkl",
-    "abcdefghijklm",
-    "abcdefghijklmn",
-  ];
+  const states = getStates(14);
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();
@@ -91,22 +66,7 @@ test("stores a sequence of edits onto the third stack", () => {
 
 test("stores a sequence of edits that hits the depth limit", () => {
   let h = createDocumentMemory(3, 2);
-  const states = [
-    "a",
-    "ab",
-    "abc",
-    "abcd",
-    "abcde",
-    "abcdef",
-    "abcdefg",
-    "abcdefgh",
-    "abcdefghi",
-    "abcdefghij",
-    "abcdefghijk",
-    "abcdefghijkl",
-    "abcdefghijklm",
-    "abcdefghijklmn",
-  ];
+  const states = getStates(14);
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();
