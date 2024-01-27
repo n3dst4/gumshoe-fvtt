@@ -2,7 +2,7 @@ import { afterAll, beforeEach, expect, test, vi } from "vitest";
 
 import { createDocumentMemory } from "./createDocumentMemory";
 import { save } from "./save";
-import { advanceTime10s, epoch, getStates } from "./testHelpers";
+import { advanceTime10s, epoch, getAdditiveStates } from "./testHelpers";
 
 beforeEach(() => {
   vi.setSystemTime(new Date(epoch));
@@ -36,7 +36,7 @@ test("starts", () => {
 
 test("stores a sequence of edits", () => {
   let h = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
-  const states = getStates(3);
+  const states = getAdditiveStates(3);
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();
@@ -46,7 +46,7 @@ test("stores a sequence of edits", () => {
 
 test("stores a sequence of edits onto the next stack", () => {
   let h = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
-  const states = getStates(4);
+  const states = getAdditiveStates(4);
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();
@@ -56,7 +56,7 @@ test("stores a sequence of edits onto the next stack", () => {
 
 test("stores a sequence of edits onto the third stack", () => {
   let h = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
-  const states = getStates(14);
+  const states = getAdditiveStates(14);
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();
@@ -66,7 +66,7 @@ test("stores a sequence of edits onto the third stack", () => {
 
 test("stores a sequence of edits that hits the depth limit", () => {
   let h = createDocumentMemory(3, 2);
-  const states = getStates(14);
+  const states = getAdditiveStates(14);
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();

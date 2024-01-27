@@ -1,0 +1,91 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`getAdditiveStates > getStates: 1 states 1`] = `
+[
+  "a",
+]
+`;
+
+exports[`getAdditiveStates > getStates: 2 states 1`] = `
+[
+  "a",
+  "ab",
+]
+`;
+
+exports[`getAdditiveStates > getStates: 3 states 1`] = `
+[
+  "a",
+  "ab",
+  "abc",
+]
+`;
+
+exports[`getAdditiveStates > getStates: 4 states 1`] = `
+[
+  "a",
+  "ab",
+  "abc",
+  "abcd",
+]
+`;
+
+exports[`getAdditiveStates > getStates: 5 states 1`] = `
+[
+  "a",
+  "ab",
+  "abc",
+  "abcd",
+  "abcde",
+]
+`;
+
+exports[`getAdditiveStates > getStates: 6 states 1`] = `
+[
+  "a",
+  "ab",
+  "abc",
+  "abcd",
+  "abcde",
+  "abcdef",
+]
+`;
+
+exports[`getAdditiveStates > getStates: 7 states 1`] = `
+[
+  "a",
+  "ab",
+  "abc",
+  "abcd",
+  "abcde",
+  "abcdef",
+  "abcdefg",
+]
+`;
+
+exports[`getAdditiveStates > getStates: 8 states 1`] = `
+[
+  "a",
+  "ab",
+  "abc",
+  "abcd",
+  "abcde",
+  "abcdef",
+  "abcdefg",
+  "abcdefgh",
+]
+`;
+
+exports[`getAdditiveStates > getStates: 9 states 1`] = `
+[
+  "a",
+  "ab",
+  "abc",
+  "abcd",
+  "abcde",
+  "abcdef",
+  "abcdefg",
+  "abcdefgh",
+  "abcdefghi",
+]
+`;

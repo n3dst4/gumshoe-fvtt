@@ -13,10 +13,12 @@ describe("createDocumentMemory", () => {
           edits: new ArrayOfNulls(period),
           snapshot: "",
           next: null,
+          lastPushSnapshot: "",
         },
         serial: 0,
         period,
         maxDepth: null,
+        snapshot: "",
       });
     },
   );
@@ -29,10 +31,12 @@ describe("createDocumentMemory", () => {
           edits: new ArrayOfNulls(period),
           snapshot: "",
           next: null,
+          lastPushSnapshot: "",
         },
         serial: 0,
         period,
         maxDepth: 10,
+        snapshot: "",
       });
     },
   );

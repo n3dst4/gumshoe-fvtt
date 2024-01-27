@@ -13,5 +13,7 @@ export function createDocumentMemory(
     serial: 0,
     period,
     maxDepth,
+    state: "",
+    snapshots: [],
   };
 }

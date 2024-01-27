@@ -1,11 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`listEdits: 0 edits 1`] = `[]`;
-
 exports[`listEdits: 1 edits 1`] = `
 [
   {
-    "change": [
+    "changes": [
       [
         1,
         "a",
@@ -19,7 +17,7 @@ exports[`listEdits: 1 edits 1`] = `
 exports[`listEdits: 2 edits 1`] = `
 [
   {
-    "change": [
+    "changes": [
       [
         1,
         "a",
@@ -28,7 +26,7 @@ exports[`listEdits: 2 edits 1`] = `
     "timestamp": 0,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         1,
@@ -46,7 +44,7 @@ exports[`listEdits: 2 edits 1`] = `
 exports[`listEdits: 3 edits 1`] = `
 [
   {
-    "change": [
+    "changes": [
       [
         1,
         "a",
@@ -55,7 +53,7 @@ exports[`listEdits: 3 edits 1`] = `
     "timestamp": 0,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         1,
@@ -68,7 +66,7 @@ exports[`listEdits: 3 edits 1`] = `
     "timestamp": 10,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         2,
@@ -86,7 +84,7 @@ exports[`listEdits: 3 edits 1`] = `
 exports[`listEdits: 4 edits 1`] = `
 [
   {
-    "change": [
+    "changes": [
       [
         0,
         1,
@@ -99,7 +97,7 @@ exports[`listEdits: 4 edits 1`] = `
     "timestamp": 10,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         2,
@@ -112,7 +110,7 @@ exports[`listEdits: 4 edits 1`] = `
     "timestamp": 20,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         3,
@@ -130,7 +128,7 @@ exports[`listEdits: 4 edits 1`] = `
 exports[`listEdits: 5 edits 1`] = `
 [
   {
-    "change": [
+    "changes": [
       [
         0,
         2,
@@ -143,7 +141,7 @@ exports[`listEdits: 5 edits 1`] = `
     "timestamp": 20,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         3,
@@ -156,7 +154,7 @@ exports[`listEdits: 5 edits 1`] = `
     "timestamp": 30,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         4,
@@ -174,16 +172,7 @@ exports[`listEdits: 5 edits 1`] = `
 exports[`listEdits: 6 edits 1`] = `
 [
   {
-    "change": [
-      [
-        1,
-        "abc",
-      ],
-    ],
-    "timestamp": 20,
-  },
-  {
-    "change": [
+    "changes": [
       [
         0,
         3,
@@ -196,7 +185,7 @@ exports[`listEdits: 6 edits 1`] = `
     "timestamp": 30,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         4,
@@ -209,7 +198,7 @@ exports[`listEdits: 6 edits 1`] = `
     "timestamp": 40,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         5,
@@ -227,16 +216,7 @@ exports[`listEdits: 6 edits 1`] = `
 exports[`listEdits: 7 edits 1`] = `
 [
   {
-    "change": [
-      [
-        1,
-        "abc",
-      ],
-    ],
-    "timestamp": 20,
-  },
-  {
-    "change": [
+    "changes": [
       [
         0,
         4,
@@ -249,7 +229,7 @@ exports[`listEdits: 7 edits 1`] = `
     "timestamp": 40,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         5,
@@ -262,7 +242,7 @@ exports[`listEdits: 7 edits 1`] = `
     "timestamp": 50,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         6,
@@ -280,16 +260,20 @@ exports[`listEdits: 7 edits 1`] = `
 exports[`listEdits: 8 edits 1`] = `
 [
   {
-    "change": [
+    "changes": [
+      [
+        0,
+        5,
+      ],
       [
         1,
-        "abc",
+        "f",
       ],
     ],
-    "timestamp": 20,
+    "timestamp": 40,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         5,
@@ -302,7 +286,7 @@ exports[`listEdits: 8 edits 1`] = `
     "timestamp": 50,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         6,
@@ -315,7 +299,7 @@ exports[`listEdits: 8 edits 1`] = `
     "timestamp": 60,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         7,
@@ -333,29 +317,20 @@ exports[`listEdits: 8 edits 1`] = `
 exports[`listEdits: 9 edits 1`] = `
 [
   {
-    "change": [
-      [
-        1,
-        "abc",
-      ],
-    ],
-    "timestamp": 20,
-  },
-  {
-    "change": [
+    "changes": [
       [
         0,
-        3,
+        5,
       ],
       [
         1,
-        "def",
+        "f",
       ],
     ],
-    "timestamp": 50,
+    "timestamp": 40,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         6,
@@ -368,7 +343,7 @@ exports[`listEdits: 9 edits 1`] = `
     "timestamp": 60,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         7,
@@ -381,7 +356,7 @@ exports[`listEdits: 9 edits 1`] = `
     "timestamp": 70,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         8,
@@ -399,29 +374,20 @@ exports[`listEdits: 9 edits 1`] = `
 exports[`listEdits: 10 edits 1`] = `
 [
   {
-    "change": [
-      [
-        1,
-        "abc",
-      ],
-    ],
-    "timestamp": 20,
-  },
-  {
-    "change": [
+    "changes": [
       [
         0,
-        3,
+        5,
       ],
       [
         1,
-        "def",
+        "f",
       ],
     ],
-    "timestamp": 50,
+    "timestamp": 40,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         7,
@@ -434,7 +400,7 @@ exports[`listEdits: 10 edits 1`] = `
     "timestamp": 70,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         8,
@@ -447,7 +413,7 @@ exports[`listEdits: 10 edits 1`] = `
     "timestamp": 80,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         9,
@@ -465,29 +431,33 @@ exports[`listEdits: 10 edits 1`] = `
 exports[`listEdits: 11 edits 1`] = `
 [
   {
-    "change": [
-      [
-        1,
-        "abc",
-      ],
-    ],
-    "timestamp": 20,
-  },
-  {
-    "change": [
+    "changes": [
       [
         0,
-        3,
+        5,
       ],
       [
         1,
-        "def",
+        "f",
       ],
     ],
-    "timestamp": 50,
+    "timestamp": 40,
   },
   {
-    "change": [
+    "changes": [
+      [
+        0,
+        8,
+      ],
+      [
+        1,
+        "i",
+      ],
+    ],
+    "timestamp": 70,
+  },
+  {
+    "changes": [
       [
         0,
         8,
@@ -500,7 +470,7 @@ exports[`listEdits: 11 edits 1`] = `
     "timestamp": 80,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         9,
@@ -513,7 +483,7 @@ exports[`listEdits: 11 edits 1`] = `
     "timestamp": 90,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         10,
@@ -531,42 +501,33 @@ exports[`listEdits: 11 edits 1`] = `
 exports[`listEdits: 12 edits 1`] = `
 [
   {
-    "change": [
-      [
-        1,
-        "abc",
-      ],
-    ],
-    "timestamp": 20,
-  },
-  {
-    "change": [
+    "changes": [
       [
         0,
-        3,
+        5,
       ],
       [
         1,
-        "def",
+        "f",
       ],
     ],
-    "timestamp": 50,
+    "timestamp": 40,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
-        6,
+        8,
       ],
       [
         1,
-        "ghi",
+        "i",
       ],
     ],
-    "timestamp": 80,
+    "timestamp": 70,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         9,
@@ -579,7 +540,7 @@ exports[`listEdits: 12 edits 1`] = `
     "timestamp": 90,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         10,
@@ -592,7 +553,7 @@ exports[`listEdits: 12 edits 1`] = `
     "timestamp": 100,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         11,
@@ -610,33 +571,33 @@ exports[`listEdits: 12 edits 1`] = `
 exports[`listEdits: 13 edits 1`] = `
 [
   {
-    "change": [
+    "changes": [
       [
         0,
-        3,
+        5,
       ],
       [
         1,
-        "def",
+        "f",
       ],
     ],
-    "timestamp": 50,
+    "timestamp": 40,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
-        6,
+        8,
       ],
       [
         1,
-        "ghi",
+        "i",
       ],
     ],
-    "timestamp": 80,
+    "timestamp": 70,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         10,
@@ -649,7 +610,7 @@ exports[`listEdits: 13 edits 1`] = `
     "timestamp": 100,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         11,
@@ -662,7 +623,7 @@ exports[`listEdits: 13 edits 1`] = `
     "timestamp": 110,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         12,
@@ -680,33 +641,46 @@ exports[`listEdits: 13 edits 1`] = `
 exports[`listEdits: 14 edits 1`] = `
 [
   {
-    "change": [
+    "changes": [
       [
         0,
-        3,
+        5,
       ],
       [
         1,
-        "def",
+        "f",
       ],
     ],
-    "timestamp": 50,
+    "timestamp": 40,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
-        6,
+        8,
       ],
       [
         1,
-        "ghi",
+        "i",
       ],
     ],
-    "timestamp": 80,
+    "timestamp": 70,
   },
   {
-    "change": [
+    "changes": [
+      [
+        0,
+        11,
+      ],
+      [
+        1,
+        "l",
+      ],
+    ],
+    "timestamp": 100,
+  },
+  {
+    "changes": [
       [
         0,
         11,
@@ -719,7 +693,7 @@ exports[`listEdits: 14 edits 1`] = `
     "timestamp": 110,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         12,
@@ -732,7 +706,7 @@ exports[`listEdits: 14 edits 1`] = `
     "timestamp": 120,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         13,
@@ -750,46 +724,33 @@ exports[`listEdits: 14 edits 1`] = `
 exports[`listEdits: 15 edits 1`] = `
 [
   {
-    "change": [
+    "changes": [
       [
         0,
-        3,
+        8,
       ],
       [
         1,
-        "def",
+        "i",
       ],
     ],
-    "timestamp": 50,
+    "timestamp": 70,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
-        6,
+        11,
       ],
       [
         1,
-        "ghi",
+        "l",
       ],
     ],
-    "timestamp": 80,
+    "timestamp": 100,
   },
   {
-    "change": [
-      [
-        0,
-        9,
-      ],
-      [
-        1,
-        "jkl",
-      ],
-    ],
-    "timestamp": 110,
-  },
-  {
-    "change": [
+    "changes": [
       [
         0,
         12,
@@ -802,7 +763,7 @@ exports[`listEdits: 15 edits 1`] = `
     "timestamp": 120,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         13,
@@ -815,7 +776,7 @@ exports[`listEdits: 15 edits 1`] = `
     "timestamp": 130,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         14,
@@ -833,33 +794,33 @@ exports[`listEdits: 15 edits 1`] = `
 exports[`listEdits: 16 edits 1`] = `
 [
   {
-    "change": [
+    "changes": [
       [
         0,
-        6,
+        8,
       ],
       [
         1,
-        "ghi",
+        "i",
       ],
     ],
-    "timestamp": 80,
+    "timestamp": 70,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
-        9,
+        11,
       ],
       [
         1,
-        "jkl",
+        "l",
       ],
     ],
-    "timestamp": 110,
+    "timestamp": 100,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         13,
@@ -872,7 +833,7 @@ exports[`listEdits: 16 edits 1`] = `
     "timestamp": 130,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         14,
@@ -885,7 +846,7 @@ exports[`listEdits: 16 edits 1`] = `
     "timestamp": 140,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         15,
@@ -903,33 +864,46 @@ exports[`listEdits: 16 edits 1`] = `
 exports[`listEdits: 17 edits 1`] = `
 [
   {
-    "change": [
+    "changes": [
       [
         0,
-        6,
+        8,
       ],
       [
         1,
-        "ghi",
+        "i",
       ],
     ],
-    "timestamp": 80,
+    "timestamp": 70,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
-        9,
+        11,
       ],
       [
         1,
-        "jkl",
+        "l",
       ],
     ],
-    "timestamp": 110,
+    "timestamp": 100,
   },
   {
-    "change": [
+    "changes": [
+      [
+        0,
+        14,
+      ],
+      [
+        1,
+        "o",
+      ],
+    ],
+    "timestamp": 130,
+  },
+  {
+    "changes": [
       [
         0,
         14,
@@ -942,7 +916,7 @@ exports[`listEdits: 17 edits 1`] = `
     "timestamp": 140,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         15,
@@ -955,7 +929,7 @@ exports[`listEdits: 17 edits 1`] = `
     "timestamp": 150,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         16,
@@ -973,46 +947,33 @@ exports[`listEdits: 17 edits 1`] = `
 exports[`listEdits: 18 edits 1`] = `
 [
   {
-    "change": [
+    "changes": [
       [
         0,
-        6,
+        11,
       ],
       [
         1,
-        "ghi",
+        "l",
       ],
     ],
-    "timestamp": 80,
+    "timestamp": 100,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
-        9,
+        14,
       ],
       [
         1,
-        "jkl",
+        "o",
       ],
     ],
-    "timestamp": 110,
+    "timestamp": 130,
   },
   {
-    "change": [
-      [
-        0,
-        12,
-      ],
-      [
-        1,
-        "mno",
-      ],
-    ],
-    "timestamp": 140,
-  },
-  {
-    "change": [
+    "changes": [
       [
         0,
         15,
@@ -1025,7 +986,7 @@ exports[`listEdits: 18 edits 1`] = `
     "timestamp": 150,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         16,
@@ -1038,7 +999,7 @@ exports[`listEdits: 18 edits 1`] = `
     "timestamp": 160,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         17,
@@ -1056,42 +1017,33 @@ exports[`listEdits: 18 edits 1`] = `
 exports[`listEdits: 19 edits 1`] = `
 [
   {
-    "change": [
-      [
-        1,
-        "abcdefghi",
-      ],
-    ],
-    "timestamp": 80,
-  },
-  {
-    "change": [
+    "changes": [
       [
         0,
-        9,
+        11,
       ],
       [
         1,
-        "jkl",
+        "l",
       ],
     ],
-    "timestamp": 110,
+    "timestamp": 100,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
-        12,
+        14,
       ],
       [
         1,
-        "mno",
+        "o",
       ],
     ],
-    "timestamp": 140,
+    "timestamp": 130,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         16,
@@ -1104,7 +1056,7 @@ exports[`listEdits: 19 edits 1`] = `
     "timestamp": 160,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         17,
@@ -1117,7 +1069,7 @@ exports[`listEdits: 19 edits 1`] = `
     "timestamp": 170,
   },
   {
-    "change": [
+    "changes": [
       [
         0,
         18,

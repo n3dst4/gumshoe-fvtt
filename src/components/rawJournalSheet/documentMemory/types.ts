@@ -6,7 +6,7 @@ import { Change } from "textdiff-create";
  */
 export interface Edit {
   /** The actual change, as a diff */
-  change: Change[];
+  changes: Change[];
   /** The timestamp of the edit, in epoch seconds */
   timestamp: number;
 }
@@ -23,14 +23,19 @@ export interface Stack {
    */
   edits: Array<Edit | null>;
   /**
-   * The state of the document the last time thius stack was pushed to. We store
+   * The state of the document the last time this stack was pushed to. We store
    * this so that we can calculate a diff when a new state comes in. The
    * alternative being to store reversible diffs, i.e. diffs that contain the
    * actual text from deletions so they can be reversed, which could make diffs
    * very large if there are lots of large changes.
    * XXX can we do anything cleverer?
    */
-  snapshot: string;
+  // lastPushSnapshot: string;
+  /**
+   * The state of the document the last time this stack pushed down to the
+   * next stack.
+   */
+  bombBay: Change[];
   /**
    * A pointer to the next stack, to which we will dump edits every time we have
    * recorded `period` edits.
@@ -49,7 +54,7 @@ export interface DocumentMemory {
   stack: Stack;
   /**
    * The curent serial number.
-   * */
+   */
   serial: number;
   /**
    * The period of this memory, i.e. how many edits are stored in each stack.
@@ -62,4 +67,12 @@ export interface DocumentMemory {
    * total edits.
    */
   maxDepth: number | null;
+  /**
+   * A snapshot of the most recent state of the document
+   */
+  state: string;
+  /**
+   * a cache of snapshots of each level of the document
+   */
+  snapshots: string[];
 }
