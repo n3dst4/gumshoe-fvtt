@@ -16,3 +16,16 @@ describe("getAdditiveStates", () => {
     },
   );
 });
+
+describe("Vitest expect.closeTo", () => {
+  test("0.1 + 0.2", () => {
+    const result = 0.1 + 0.2;
+    expect(result).not.toEqual(0.3);
+    expect(result).toEqual(expect.closeTo(0.3, 5));
+  });
+  test("0.3 + 0.6", () => {
+    const result = 0.3 + 0.6;
+    expect(result).not.toEqual(0.9);
+    expect(result).toEqual(expect.closeTo(0.9, 5));
+  });
+});
