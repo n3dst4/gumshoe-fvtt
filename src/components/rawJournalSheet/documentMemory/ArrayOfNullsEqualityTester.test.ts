@@ -18,4 +18,10 @@ describe("array of nulls custom equality", () => {
   ])("%s is not an array of nulls of length %i", (value, length) => {
     expect(value).not.toEqual(new ArrayOfNulls(length));
   });
+  test("Two ArrayOfNulls objects", () => {
+    expect(new ArrayOfNulls(3)).toEqual(new ArrayOfNulls(3));
+  });
+  test("Two ArrayOfNulls objects (different length parameters)", () => {
+    expect(new ArrayOfNulls(3)).not.toEqual(new ArrayOfNulls(4));
+  });
 });

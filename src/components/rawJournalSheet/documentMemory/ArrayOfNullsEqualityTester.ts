@@ -4,7 +4,10 @@ import { expect } from "vitest";
  * The actual function that tells if something is an array of nulls of a given
  * length.
  */
-function isArrayOfNulls(candidate: unknown): candidate is null[] {
+function isArrayOfNulls(
+  candidate: unknown,
+  length: number,
+): candidate is null[] {
   if (!(candidate instanceof Array)) {
     return false;
   }
@@ -13,7 +16,7 @@ function isArrayOfNulls(candidate: unknown): candidate is null[] {
       return false;
     }
   }
-  return true;
+  return candidate.length === length;
 }
 
 /**
@@ -30,10 +33,6 @@ export class ArrayOfNulls {
   constructor(length: number) {
     this.length = length;
   }
-
-  equals(other: unknown) {
-    return isArrayOfNulls(other) && other.length === this.length;
-  }
 }
 
 /**
@@ -47,9 +46,9 @@ export class ArrayOfNulls {
  */
 function testIsArrayOfNulls(a: unknown, b: unknown): boolean | undefined {
   if (a instanceof ArrayOfNulls && !(b instanceof ArrayOfNulls)) {
-    return a.equals(b);
+    return isArrayOfNulls(b, a.length);
   } else if (!(a instanceof ArrayOfNulls) && b instanceof ArrayOfNulls) {
-    return b.equals(a);
+    return isArrayOfNulls(a, b.length);
   } else {
     return undefined;
   }
