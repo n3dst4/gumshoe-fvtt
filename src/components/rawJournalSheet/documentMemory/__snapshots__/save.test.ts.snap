@@ -16,6 +16,7 @@ exports[`stores a sequence of edits 1`] = `
             "a",
           ],
         ],
+        "serial": 1,
         "timestamp": 0,
       },
       {
@@ -29,6 +30,7 @@ exports[`stores a sequence of edits 1`] = `
             "b",
           ],
         ],
+        "serial": 2,
         "timestamp": 10,
       },
       {
@@ -42,6 +44,7 @@ exports[`stores a sequence of edits 1`] = `
             "c",
           ],
         ],
+        "serial": 3,
         "timestamp": 20,
       },
     ],
@@ -73,6 +76,7 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
             "d",
           ],
         ],
+        "serial": 4,
         "timestamp": 30,
       },
       {
@@ -86,6 +90,7 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
             "e",
           ],
         ],
+        "serial": 5,
         "timestamp": 40,
       },
       {
@@ -99,6 +104,7 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
             "f",
           ],
         ],
+        "serial": 6,
         "timestamp": 50,
       },
     ],
@@ -112,6 +118,7 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
               "abc",
             ],
           ],
+          "serial": 3,
           "timestamp": 20,
         },
       ],
@@ -145,6 +152,7 @@ exports[`stores a sequence of edits onto the third stack 1`] = `
             "s",
           ],
         ],
+        "serial": 19,
         "timestamp": 180,
       },
       {
@@ -158,6 +166,7 @@ exports[`stores a sequence of edits onto the third stack 1`] = `
             "t",
           ],
         ],
+        "serial": 20,
         "timestamp": 190,
       },
       {
@@ -171,6 +180,7 @@ exports[`stores a sequence of edits onto the third stack 1`] = `
             "u",
           ],
         ],
+        "serial": 21,
         "timestamp": 200,
       },
     ],
@@ -188,6 +198,7 @@ exports[`stores a sequence of edits onto the third stack 1`] = `
               "jkl",
             ],
           ],
+          "serial": 12,
           "timestamp": 110,
         },
         {
@@ -201,6 +212,7 @@ exports[`stores a sequence of edits onto the third stack 1`] = `
               "mno",
             ],
           ],
+          "serial": 15,
           "timestamp": 140,
         },
         {
@@ -214,6 +226,7 @@ exports[`stores a sequence of edits onto the third stack 1`] = `
               "pqr",
             ],
           ],
+          "serial": 18,
           "timestamp": 170,
         },
       ],
@@ -227,6 +240,7 @@ exports[`stores a sequence of edits onto the third stack 1`] = `
                 "abcdefghi",
               ],
             ],
+            "serial": 9,
             "timestamp": 80,
           },
         ],

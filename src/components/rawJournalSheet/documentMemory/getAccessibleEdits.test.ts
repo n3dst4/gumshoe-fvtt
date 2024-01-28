@@ -1,7 +1,7 @@
 import { beforeEach, expect, test, vi } from "vitest";
 
 import { createDocumentMemory } from "./createDocumentMemory";
-import { listEdits } from "./listEdits";
+import { getAccessibleEdits } from "./getAccessibleEdits";
 import { save } from "./save";
 import { advanceTime10s, epoch, getAdditiveStates } from "./testHelpers";
 
@@ -9,14 +9,14 @@ beforeEach(() => {
   vi.setSystemTime(new Date(epoch));
 });
 
-test("listEdits: no edits", () => {
+test("getAccessibleEdits: no edits", () => {
   const memory = createDocumentMemory(3);
-  const edits = listEdits(memory);
+  const edits = getAccessibleEdits(memory);
   expect(edits).toEqual([]);
 });
 
 test.each(new Array(20).fill(null).map((_, i) => i + 1))(
-  "listEdits: %i edits",
+  "getAccessibleEdits: %i edits",
   (i) => {
     let memory = createDocumentMemory(3);
     const states = getAdditiveStates(i);
@@ -24,7 +24,7 @@ test.each(new Array(20).fill(null).map((_, i) => i + 1))(
       memory = save(memory, state);
       advanceTime10s();
     }
-    const edits = listEdits(memory);
+    const edits = getAccessibleEdits(memory);
     expect(edits).toMatchSnapshot();
   },
 );

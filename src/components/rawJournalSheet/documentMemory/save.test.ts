@@ -1,5 +1,6 @@
 import { afterAll, beforeEach, expect, test, vi } from "vitest";
 
+import { DocumentMemory } from ".";
 import { createDocumentMemory } from "./createDocumentMemory";
 import { save } from "./save";
 import { advanceTime10s, epoch, getAdditiveStates } from "./testHelpers";
@@ -15,7 +16,7 @@ afterAll(() => {
 test("starts", () => {
   const h1 = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
   const h2 = save(h1, "foo");
-  expect(h2).toEqual({
+  expect(h2).toEqual<DocumentMemory>({
     snapshots: [],
     stack: {
       bombBay: [],
@@ -23,6 +24,7 @@ test("starts", () => {
         {
           changes: [[1, "foo"]],
           timestamp: 0,
+          serial: 1,
         },
       ],
       next: null,

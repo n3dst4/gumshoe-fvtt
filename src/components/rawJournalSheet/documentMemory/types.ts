@@ -9,6 +9,8 @@ export interface Edit {
   changes: Change[];
   /** The timestamp of the edit, in epoch seconds */
   timestamp: number;
+  /** The serial number of the edit, unique for the document */
+  serial: number;
 }
 
 /**

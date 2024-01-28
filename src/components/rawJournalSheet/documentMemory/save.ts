@@ -47,6 +47,7 @@ function push(
     const editToPush: Edit = {
       changes: createDiff(oldState, newState),
       timestamp: bombBay[bombBay.length - 1].timestamp,
+      serial: bombBay[bombBay.length - 1].serial,
     };
     bombBay = [];
 
@@ -82,6 +83,7 @@ export function save(memory: DocumentMemory, state: string): DocumentMemory {
   const edit: Edit = {
     changes,
     timestamp: Math.floor(Date.now() / 1000),
+    serial,
   };
   const [stack, snapshots] = push(
     memory.stack,

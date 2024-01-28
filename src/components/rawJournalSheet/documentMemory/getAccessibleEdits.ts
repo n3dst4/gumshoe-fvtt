@@ -5,25 +5,13 @@ function getStacks(memory: DocumentMemory): Stack[] {
   for (let stack: Stack | null = memory.stack; stack; stack = stack.next) {
     stacks.push(stack);
   }
+  stacks.reverse();
   return stacks;
 }
 
-export function listEdits(memory: DocumentMemory) {
+export function getAccessibleEdits(memory: DocumentMemory) {
   const stacks = getStacks(memory);
-  const edits: Edit[] = [];
-  let lastTimestamp = Infinity;
-  for (const stack of stacks) {
-    for (let i = stack.edits.length - 1; i >= 0; i--) {
-      const edit = stack.edits[i];
-      if (edit && edit.timestamp < lastTimestamp) {
-        edits.push(edit);
-        lastTimestamp = edit?.timestamp;
-      }
-    }
-  }
-  // yeah I could return edits.reverse(), but I hate the way it's side-effecty
-  // so I like to treat it as if it doesn't return.
-  edits.reverse();
+  const edits: Edit[] = stacks.flatMap((stack) => stack.edits);
   return edits;
 }
 

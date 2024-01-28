@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`listEdits: 1 edits 1`] = `
+exports[`getAccessibleEdits: 1 edits 1`] = `
 [
   {
     "changes": [
@@ -9,12 +9,13 @@ exports[`listEdits: 1 edits 1`] = `
         "a",
       ],
     ],
+    "serial": 1,
     "timestamp": 0,
   },
 ]
 `;
 
-exports[`listEdits: 2 edits 1`] = `
+exports[`getAccessibleEdits: 2 edits 1`] = `
 [
   {
     "changes": [
@@ -23,6 +24,7 @@ exports[`listEdits: 2 edits 1`] = `
         "a",
       ],
     ],
+    "serial": 1,
     "timestamp": 0,
   },
   {
@@ -36,12 +38,13 @@ exports[`listEdits: 2 edits 1`] = `
         "b",
       ],
     ],
+    "serial": 2,
     "timestamp": 10,
   },
 ]
 `;
 
-exports[`listEdits: 3 edits 1`] = `
+exports[`getAccessibleEdits: 3 edits 1`] = `
 [
   {
     "changes": [
@@ -50,6 +53,7 @@ exports[`listEdits: 3 edits 1`] = `
         "a",
       ],
     ],
+    "serial": 1,
     "timestamp": 0,
   },
   {
@@ -63,6 +67,7 @@ exports[`listEdits: 3 edits 1`] = `
         "b",
       ],
     ],
+    "serial": 2,
     "timestamp": 10,
   },
   {
@@ -76,12 +81,13 @@ exports[`listEdits: 3 edits 1`] = `
         "c",
       ],
     ],
+    "serial": 3,
     "timestamp": 20,
   },
 ]
 `;
 
-exports[`listEdits: 4 edits 1`] = `
+exports[`getAccessibleEdits: 4 edits 1`] = `
 [
   {
     "changes": [
@@ -94,6 +100,7 @@ exports[`listEdits: 4 edits 1`] = `
         "b",
       ],
     ],
+    "serial": 2,
     "timestamp": 10,
   },
   {
@@ -107,6 +114,7 @@ exports[`listEdits: 4 edits 1`] = `
         "c",
       ],
     ],
+    "serial": 3,
     "timestamp": 20,
   },
   {
@@ -120,12 +128,13 @@ exports[`listEdits: 4 edits 1`] = `
         "d",
       ],
     ],
+    "serial": 4,
     "timestamp": 30,
   },
 ]
 `;
 
-exports[`listEdits: 5 edits 1`] = `
+exports[`getAccessibleEdits: 5 edits 1`] = `
 [
   {
     "changes": [
@@ -138,6 +147,7 @@ exports[`listEdits: 5 edits 1`] = `
         "c",
       ],
     ],
+    "serial": 3,
     "timestamp": 20,
   },
   {
@@ -151,6 +161,7 @@ exports[`listEdits: 5 edits 1`] = `
         "d",
       ],
     ],
+    "serial": 4,
     "timestamp": 30,
   },
   {
@@ -164,12 +175,13 @@ exports[`listEdits: 5 edits 1`] = `
         "e",
       ],
     ],
+    "serial": 5,
     "timestamp": 40,
   },
 ]
 `;
 
-exports[`listEdits: 6 edits 1`] = `
+exports[`getAccessibleEdits: 6 edits 1`] = `
 [
   {
     "changes": [
@@ -178,6 +190,7 @@ exports[`listEdits: 6 edits 1`] = `
         "abc",
       ],
     ],
+    "serial": 3,
     "timestamp": 20,
   },
   {
@@ -191,6 +204,7 @@ exports[`listEdits: 6 edits 1`] = `
         "d",
       ],
     ],
+    "serial": 4,
     "timestamp": 30,
   },
   {
@@ -204,6 +218,7 @@ exports[`listEdits: 6 edits 1`] = `
         "e",
       ],
     ],
+    "serial": 5,
     "timestamp": 40,
   },
   {
@@ -217,12 +232,13 @@ exports[`listEdits: 6 edits 1`] = `
         "f",
       ],
     ],
+    "serial": 6,
     "timestamp": 50,
   },
 ]
 `;
 
-exports[`listEdits: 7 edits 1`] = `
+exports[`getAccessibleEdits: 7 edits 1`] = `
 [
   {
     "changes": [
@@ -231,6 +247,7 @@ exports[`listEdits: 7 edits 1`] = `
         "abc",
       ],
     ],
+    "serial": 3,
     "timestamp": 20,
   },
   {
@@ -244,6 +261,7 @@ exports[`listEdits: 7 edits 1`] = `
         "e",
       ],
     ],
+    "serial": 5,
     "timestamp": 40,
   },
   {
@@ -257,6 +275,7 @@ exports[`listEdits: 7 edits 1`] = `
         "f",
       ],
     ],
+    "serial": 6,
     "timestamp": 50,
   },
   {
@@ -270,12 +289,13 @@ exports[`listEdits: 7 edits 1`] = `
         "g",
       ],
     ],
+    "serial": 7,
     "timestamp": 60,
   },
 ]
 `;
 
-exports[`listEdits: 8 edits 1`] = `
+exports[`getAccessibleEdits: 8 edits 1`] = `
 [
   {
     "changes": [
@@ -284,6 +304,7 @@ exports[`listEdits: 8 edits 1`] = `
         "abc",
       ],
     ],
+    "serial": 3,
     "timestamp": 20,
   },
   {
@@ -297,6 +318,7 @@ exports[`listEdits: 8 edits 1`] = `
         "f",
       ],
     ],
+    "serial": 6,
     "timestamp": 50,
   },
   {
@@ -310,6 +332,7 @@ exports[`listEdits: 8 edits 1`] = `
         "g",
       ],
     ],
+    "serial": 7,
     "timestamp": 60,
   },
   {
@@ -323,12 +346,13 @@ exports[`listEdits: 8 edits 1`] = `
         "h",
       ],
     ],
+    "serial": 8,
     "timestamp": 70,
   },
 ]
 `;
 
-exports[`listEdits: 9 edits 1`] = `
+exports[`getAccessibleEdits: 9 edits 1`] = `
 [
   {
     "changes": [
@@ -337,6 +361,7 @@ exports[`listEdits: 9 edits 1`] = `
         "abc",
       ],
     ],
+    "serial": 3,
     "timestamp": 20,
   },
   {
@@ -350,6 +375,7 @@ exports[`listEdits: 9 edits 1`] = `
         "def",
       ],
     ],
+    "serial": 6,
     "timestamp": 50,
   },
   {
@@ -363,6 +389,7 @@ exports[`listEdits: 9 edits 1`] = `
         "g",
       ],
     ],
+    "serial": 7,
     "timestamp": 60,
   },
   {
@@ -376,6 +403,7 @@ exports[`listEdits: 9 edits 1`] = `
         "h",
       ],
     ],
+    "serial": 8,
     "timestamp": 70,
   },
   {
@@ -389,12 +417,13 @@ exports[`listEdits: 9 edits 1`] = `
         "i",
       ],
     ],
+    "serial": 9,
     "timestamp": 80,
   },
 ]
 `;
 
-exports[`listEdits: 10 edits 1`] = `
+exports[`getAccessibleEdits: 10 edits 1`] = `
 [
   {
     "changes": [
@@ -403,6 +432,7 @@ exports[`listEdits: 10 edits 1`] = `
         "abc",
       ],
     ],
+    "serial": 3,
     "timestamp": 20,
   },
   {
@@ -416,6 +446,7 @@ exports[`listEdits: 10 edits 1`] = `
         "def",
       ],
     ],
+    "serial": 6,
     "timestamp": 50,
   },
   {
@@ -429,6 +460,7 @@ exports[`listEdits: 10 edits 1`] = `
         "h",
       ],
     ],
+    "serial": 8,
     "timestamp": 70,
   },
   {
@@ -442,6 +474,7 @@ exports[`listEdits: 10 edits 1`] = `
         "i",
       ],
     ],
+    "serial": 9,
     "timestamp": 80,
   },
   {
@@ -455,12 +488,13 @@ exports[`listEdits: 10 edits 1`] = `
         "j",
       ],
     ],
+    "serial": 10,
     "timestamp": 90,
   },
 ]
 `;
 
-exports[`listEdits: 11 edits 1`] = `
+exports[`getAccessibleEdits: 11 edits 1`] = `
 [
   {
     "changes": [
@@ -469,6 +503,7 @@ exports[`listEdits: 11 edits 1`] = `
         "abc",
       ],
     ],
+    "serial": 3,
     "timestamp": 20,
   },
   {
@@ -482,6 +517,7 @@ exports[`listEdits: 11 edits 1`] = `
         "def",
       ],
     ],
+    "serial": 6,
     "timestamp": 50,
   },
   {
@@ -495,6 +531,7 @@ exports[`listEdits: 11 edits 1`] = `
         "i",
       ],
     ],
+    "serial": 9,
     "timestamp": 80,
   },
   {
@@ -508,6 +545,7 @@ exports[`listEdits: 11 edits 1`] = `
         "j",
       ],
     ],
+    "serial": 10,
     "timestamp": 90,
   },
   {
@@ -521,12 +559,13 @@ exports[`listEdits: 11 edits 1`] = `
         "k",
       ],
     ],
+    "serial": 11,
     "timestamp": 100,
   },
 ]
 `;
 
-exports[`listEdits: 12 edits 1`] = `
+exports[`getAccessibleEdits: 12 edits 1`] = `
 [
   {
     "changes": [
@@ -535,6 +574,7 @@ exports[`listEdits: 12 edits 1`] = `
         "abc",
       ],
     ],
+    "serial": 3,
     "timestamp": 20,
   },
   {
@@ -548,6 +588,7 @@ exports[`listEdits: 12 edits 1`] = `
         "def",
       ],
     ],
+    "serial": 6,
     "timestamp": 50,
   },
   {
@@ -561,6 +602,7 @@ exports[`listEdits: 12 edits 1`] = `
         "ghi",
       ],
     ],
+    "serial": 9,
     "timestamp": 80,
   },
   {
@@ -574,6 +616,7 @@ exports[`listEdits: 12 edits 1`] = `
         "j",
       ],
     ],
+    "serial": 10,
     "timestamp": 90,
   },
   {
@@ -587,6 +630,7 @@ exports[`listEdits: 12 edits 1`] = `
         "k",
       ],
     ],
+    "serial": 11,
     "timestamp": 100,
   },
   {
@@ -600,12 +644,13 @@ exports[`listEdits: 12 edits 1`] = `
         "l",
       ],
     ],
+    "serial": 12,
     "timestamp": 110,
   },
 ]
 `;
 
-exports[`listEdits: 13 edits 1`] = `
+exports[`getAccessibleEdits: 13 edits 1`] = `
 [
   {
     "changes": [
@@ -614,6 +659,7 @@ exports[`listEdits: 13 edits 1`] = `
         "abc",
       ],
     ],
+    "serial": 3,
     "timestamp": 20,
   },
   {
@@ -627,6 +673,7 @@ exports[`listEdits: 13 edits 1`] = `
         "def",
       ],
     ],
+    "serial": 6,
     "timestamp": 50,
   },
   {
@@ -640,6 +687,7 @@ exports[`listEdits: 13 edits 1`] = `
         "ghi",
       ],
     ],
+    "serial": 9,
     "timestamp": 80,
   },
   {
@@ -653,6 +701,7 @@ exports[`listEdits: 13 edits 1`] = `
         "k",
       ],
     ],
+    "serial": 11,
     "timestamp": 100,
   },
   {
@@ -666,6 +715,7 @@ exports[`listEdits: 13 edits 1`] = `
         "l",
       ],
     ],
+    "serial": 12,
     "timestamp": 110,
   },
   {
@@ -679,12 +729,13 @@ exports[`listEdits: 13 edits 1`] = `
         "m",
       ],
     ],
+    "serial": 13,
     "timestamp": 120,
   },
 ]
 `;
 
-exports[`listEdits: 14 edits 1`] = `
+exports[`getAccessibleEdits: 14 edits 1`] = `
 [
   {
     "changes": [
@@ -693,6 +744,7 @@ exports[`listEdits: 14 edits 1`] = `
         "abc",
       ],
     ],
+    "serial": 3,
     "timestamp": 20,
   },
   {
@@ -706,6 +758,7 @@ exports[`listEdits: 14 edits 1`] = `
         "def",
       ],
     ],
+    "serial": 6,
     "timestamp": 50,
   },
   {
@@ -719,6 +772,7 @@ exports[`listEdits: 14 edits 1`] = `
         "ghi",
       ],
     ],
+    "serial": 9,
     "timestamp": 80,
   },
   {
@@ -732,6 +786,7 @@ exports[`listEdits: 14 edits 1`] = `
         "l",
       ],
     ],
+    "serial": 12,
     "timestamp": 110,
   },
   {
@@ -745,6 +800,7 @@ exports[`listEdits: 14 edits 1`] = `
         "m",
       ],
     ],
+    "serial": 13,
     "timestamp": 120,
   },
   {
@@ -758,12 +814,13 @@ exports[`listEdits: 14 edits 1`] = `
         "n",
       ],
     ],
+    "serial": 14,
     "timestamp": 130,
   },
 ]
 `;
 
-exports[`listEdits: 15 edits 1`] = `
+exports[`getAccessibleEdits: 15 edits 1`] = `
 [
   {
     "changes": [
@@ -776,6 +833,7 @@ exports[`listEdits: 15 edits 1`] = `
         "def",
       ],
     ],
+    "serial": 6,
     "timestamp": 50,
   },
   {
@@ -789,6 +847,7 @@ exports[`listEdits: 15 edits 1`] = `
         "ghi",
       ],
     ],
+    "serial": 9,
     "timestamp": 80,
   },
   {
@@ -802,6 +861,7 @@ exports[`listEdits: 15 edits 1`] = `
         "jkl",
       ],
     ],
+    "serial": 12,
     "timestamp": 110,
   },
   {
@@ -815,6 +875,7 @@ exports[`listEdits: 15 edits 1`] = `
         "m",
       ],
     ],
+    "serial": 13,
     "timestamp": 120,
   },
   {
@@ -828,6 +889,7 @@ exports[`listEdits: 15 edits 1`] = `
         "n",
       ],
     ],
+    "serial": 14,
     "timestamp": 130,
   },
   {
@@ -841,12 +903,13 @@ exports[`listEdits: 15 edits 1`] = `
         "o",
       ],
     ],
+    "serial": 15,
     "timestamp": 140,
   },
 ]
 `;
 
-exports[`listEdits: 16 edits 1`] = `
+exports[`getAccessibleEdits: 16 edits 1`] = `
 [
   {
     "changes": [
@@ -859,6 +922,7 @@ exports[`listEdits: 16 edits 1`] = `
         "def",
       ],
     ],
+    "serial": 6,
     "timestamp": 50,
   },
   {
@@ -872,6 +936,7 @@ exports[`listEdits: 16 edits 1`] = `
         "ghi",
       ],
     ],
+    "serial": 9,
     "timestamp": 80,
   },
   {
@@ -885,6 +950,7 @@ exports[`listEdits: 16 edits 1`] = `
         "jkl",
       ],
     ],
+    "serial": 12,
     "timestamp": 110,
   },
   {
@@ -898,6 +964,7 @@ exports[`listEdits: 16 edits 1`] = `
         "n",
       ],
     ],
+    "serial": 14,
     "timestamp": 130,
   },
   {
@@ -911,6 +978,7 @@ exports[`listEdits: 16 edits 1`] = `
         "o",
       ],
     ],
+    "serial": 15,
     "timestamp": 140,
   },
   {
@@ -924,12 +992,13 @@ exports[`listEdits: 16 edits 1`] = `
         "p",
       ],
     ],
+    "serial": 16,
     "timestamp": 150,
   },
 ]
 `;
 
-exports[`listEdits: 17 edits 1`] = `
+exports[`getAccessibleEdits: 17 edits 1`] = `
 [
   {
     "changes": [
@@ -942,6 +1011,7 @@ exports[`listEdits: 17 edits 1`] = `
         "def",
       ],
     ],
+    "serial": 6,
     "timestamp": 50,
   },
   {
@@ -955,6 +1025,7 @@ exports[`listEdits: 17 edits 1`] = `
         "ghi",
       ],
     ],
+    "serial": 9,
     "timestamp": 80,
   },
   {
@@ -968,6 +1039,7 @@ exports[`listEdits: 17 edits 1`] = `
         "jkl",
       ],
     ],
+    "serial": 12,
     "timestamp": 110,
   },
   {
@@ -981,6 +1053,7 @@ exports[`listEdits: 17 edits 1`] = `
         "o",
       ],
     ],
+    "serial": 15,
     "timestamp": 140,
   },
   {
@@ -994,6 +1067,7 @@ exports[`listEdits: 17 edits 1`] = `
         "p",
       ],
     ],
+    "serial": 16,
     "timestamp": 150,
   },
   {
@@ -1007,12 +1081,13 @@ exports[`listEdits: 17 edits 1`] = `
         "q",
       ],
     ],
+    "serial": 17,
     "timestamp": 160,
   },
 ]
 `;
 
-exports[`listEdits: 18 edits 1`] = `
+exports[`getAccessibleEdits: 18 edits 1`] = `
 [
   {
     "changes": [
@@ -1025,6 +1100,7 @@ exports[`listEdits: 18 edits 1`] = `
         "ghi",
       ],
     ],
+    "serial": 9,
     "timestamp": 80,
   },
   {
@@ -1038,6 +1114,7 @@ exports[`listEdits: 18 edits 1`] = `
         "jkl",
       ],
     ],
+    "serial": 12,
     "timestamp": 110,
   },
   {
@@ -1051,6 +1128,7 @@ exports[`listEdits: 18 edits 1`] = `
         "mno",
       ],
     ],
+    "serial": 15,
     "timestamp": 140,
   },
   {
@@ -1064,6 +1142,7 @@ exports[`listEdits: 18 edits 1`] = `
         "p",
       ],
     ],
+    "serial": 16,
     "timestamp": 150,
   },
   {
@@ -1077,6 +1156,7 @@ exports[`listEdits: 18 edits 1`] = `
         "q",
       ],
     ],
+    "serial": 17,
     "timestamp": 160,
   },
   {
@@ -1090,12 +1170,13 @@ exports[`listEdits: 18 edits 1`] = `
         "r",
       ],
     ],
+    "serial": 18,
     "timestamp": 170,
   },
 ]
 `;
 
-exports[`listEdits: 19 edits 1`] = `
+exports[`getAccessibleEdits: 19 edits 1`] = `
 [
   {
     "changes": [
@@ -1108,6 +1189,7 @@ exports[`listEdits: 19 edits 1`] = `
         "ghi",
       ],
     ],
+    "serial": 9,
     "timestamp": 80,
   },
   {
@@ -1121,6 +1203,7 @@ exports[`listEdits: 19 edits 1`] = `
         "jkl",
       ],
     ],
+    "serial": 12,
     "timestamp": 110,
   },
   {
@@ -1134,6 +1217,7 @@ exports[`listEdits: 19 edits 1`] = `
         "mno",
       ],
     ],
+    "serial": 15,
     "timestamp": 140,
   },
   {
@@ -1147,6 +1231,7 @@ exports[`listEdits: 19 edits 1`] = `
         "q",
       ],
     ],
+    "serial": 17,
     "timestamp": 160,
   },
   {
@@ -1160,6 +1245,7 @@ exports[`listEdits: 19 edits 1`] = `
         "r",
       ],
     ],
+    "serial": 18,
     "timestamp": 170,
   },
   {
@@ -1173,12 +1259,13 @@ exports[`listEdits: 19 edits 1`] = `
         "s",
       ],
     ],
+    "serial": 19,
     "timestamp": 180,
   },
 ]
 `;
 
-exports[`listEdits: 20 edits 1`] = `
+exports[`getAccessibleEdits: 20 edits 1`] = `
 [
   {
     "changes": [
@@ -1191,6 +1278,7 @@ exports[`listEdits: 20 edits 1`] = `
         "ghi",
       ],
     ],
+    "serial": 9,
     "timestamp": 80,
   },
   {
@@ -1204,6 +1292,7 @@ exports[`listEdits: 20 edits 1`] = `
         "jkl",
       ],
     ],
+    "serial": 12,
     "timestamp": 110,
   },
   {
@@ -1217,6 +1306,7 @@ exports[`listEdits: 20 edits 1`] = `
         "mno",
       ],
     ],
+    "serial": 15,
     "timestamp": 140,
   },
   {
@@ -1230,6 +1320,7 @@ exports[`listEdits: 20 edits 1`] = `
         "r",
       ],
     ],
+    "serial": 18,
     "timestamp": 170,
   },
   {
@@ -1243,6 +1334,7 @@ exports[`listEdits: 20 edits 1`] = `
         "s",
       ],
     ],
+    "serial": 19,
     "timestamp": 180,
   },
   {
@@ -1256,6 +1348,7 @@ exports[`listEdits: 20 edits 1`] = `
         "t",
       ],
     ],
+    "serial": 20,
     "timestamp": 190,
   },
 ]
