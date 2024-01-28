@@ -5,13 +5,24 @@ import { restoreVersion } from "./restoreVersion";
 import { save } from "./save";
 import { advanceTime10s } from "./testHelpers";
 
-// these are the serial numbers which should be restorable
+// these are the serial numbers which should be restorable. annotated with the
+// gap between them to show your fading stack memory
 const validVersions: number[] = [
-  243, 486, 648, 729, 810, 891, 918, 945, 963, 972, 981, 990, 993, 996, 998,
-  999, 1000,
+  // going up in 243's (oldest)
+  243, 486,
+  // 81's
+  648, 729, 810,
+  // 27's
+  891, 918, 945,
+  // 9's
+  963, 972, 981,
+  // 3's
+  990, 993, 996,
+  // going up in 1's (most recent)
+  998, 999, 1000,
 ];
 
-// I'm not typing this bad boy out
+// I'm not typing this bad boy out, sorry
 const invalidVersions = new Array(1002)
   .fill(0)
   .map((_, i) => i)
@@ -38,7 +49,10 @@ test("restoring a valid version 648", () => {
 test("restoring an invalid version throws", () => {
   expect.assertions(invalidVersions.length);
   for (const serial of invalidVersions) {
-    expect(() => restoreVersion(memory, serial)).toThrow();
+    expect(
+      () => restoreVersion(memory, serial),
+      `${serial} should be an invalid serial number`,
+    ).toThrow();
   }
 });
 
