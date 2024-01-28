@@ -168,3 +168,1012 @@ exports[`listEdits: 5 edits 1`] = `
   },
 ]
 `;
+
+exports[`listEdits: 6 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "d",
+      ],
+    ],
+    "timestamp": 30,
+  },
+  {
+    "changes": [
+      [
+        0,
+        4,
+      ],
+      [
+        1,
+        "e",
+      ],
+    ],
+    "timestamp": 40,
+  },
+  {
+    "changes": [
+      [
+        0,
+        5,
+      ],
+      [
+        1,
+        "f",
+      ],
+    ],
+    "timestamp": 50,
+  },
+]
+`;
+
+exports[`listEdits: 7 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        4,
+      ],
+      [
+        1,
+        "e",
+      ],
+    ],
+    "timestamp": 40,
+  },
+  {
+    "changes": [
+      [
+        0,
+        5,
+      ],
+      [
+        1,
+        "f",
+      ],
+    ],
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "g",
+      ],
+    ],
+    "timestamp": 60,
+  },
+]
+`;
+
+exports[`listEdits: 8 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        5,
+      ],
+      [
+        1,
+        "f",
+      ],
+    ],
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "g",
+      ],
+    ],
+    "timestamp": 60,
+  },
+  {
+    "changes": [
+      [
+        0,
+        7,
+      ],
+      [
+        1,
+        "h",
+      ],
+    ],
+    "timestamp": 70,
+  },
+]
+`;
+
+exports[`listEdits: 9 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "g",
+      ],
+    ],
+    "timestamp": 60,
+  },
+  {
+    "changes": [
+      [
+        0,
+        7,
+      ],
+      [
+        1,
+        "h",
+      ],
+    ],
+    "timestamp": 70,
+  },
+  {
+    "changes": [
+      [
+        0,
+        8,
+      ],
+      [
+        1,
+        "i",
+      ],
+    ],
+    "timestamp": 80,
+  },
+]
+`;
+
+exports[`listEdits: 10 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        7,
+      ],
+      [
+        1,
+        "h",
+      ],
+    ],
+    "timestamp": 70,
+  },
+  {
+    "changes": [
+      [
+        0,
+        8,
+      ],
+      [
+        1,
+        "i",
+      ],
+    ],
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "j",
+      ],
+    ],
+    "timestamp": 90,
+  },
+]
+`;
+
+exports[`listEdits: 11 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        8,
+      ],
+      [
+        1,
+        "i",
+      ],
+    ],
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "j",
+      ],
+    ],
+    "timestamp": 90,
+  },
+  {
+    "changes": [
+      [
+        0,
+        10,
+      ],
+      [
+        1,
+        "k",
+      ],
+    ],
+    "timestamp": 100,
+  },
+]
+`;
+
+exports[`listEdits: 12 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "j",
+      ],
+    ],
+    "timestamp": 90,
+  },
+  {
+    "changes": [
+      [
+        0,
+        10,
+      ],
+      [
+        1,
+        "k",
+      ],
+    ],
+    "timestamp": 100,
+  },
+  {
+    "changes": [
+      [
+        0,
+        11,
+      ],
+      [
+        1,
+        "l",
+      ],
+    ],
+    "timestamp": 110,
+  },
+]
+`;
+
+exports[`listEdits: 13 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        10,
+      ],
+      [
+        1,
+        "k",
+      ],
+    ],
+    "timestamp": 100,
+  },
+  {
+    "changes": [
+      [
+        0,
+        11,
+      ],
+      [
+        1,
+        "l",
+      ],
+    ],
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        12,
+      ],
+      [
+        1,
+        "m",
+      ],
+    ],
+    "timestamp": 120,
+  },
+]
+`;
+
+exports[`listEdits: 14 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        11,
+      ],
+      [
+        1,
+        "l",
+      ],
+    ],
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        12,
+      ],
+      [
+        1,
+        "m",
+      ],
+    ],
+    "timestamp": 120,
+  },
+  {
+    "changes": [
+      [
+        0,
+        13,
+      ],
+      [
+        1,
+        "n",
+      ],
+    ],
+    "timestamp": 130,
+  },
+]
+`;
+
+exports[`listEdits: 15 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "jkl",
+      ],
+    ],
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        12,
+      ],
+      [
+        1,
+        "m",
+      ],
+    ],
+    "timestamp": 120,
+  },
+  {
+    "changes": [
+      [
+        0,
+        13,
+      ],
+      [
+        1,
+        "n",
+      ],
+    ],
+    "timestamp": 130,
+  },
+  {
+    "changes": [
+      [
+        0,
+        14,
+      ],
+      [
+        1,
+        "o",
+      ],
+    ],
+    "timestamp": 140,
+  },
+]
+`;
+
+exports[`listEdits: 16 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "jkl",
+      ],
+    ],
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        13,
+      ],
+      [
+        1,
+        "n",
+      ],
+    ],
+    "timestamp": 130,
+  },
+  {
+    "changes": [
+      [
+        0,
+        14,
+      ],
+      [
+        1,
+        "o",
+      ],
+    ],
+    "timestamp": 140,
+  },
+  {
+    "changes": [
+      [
+        0,
+        15,
+      ],
+      [
+        1,
+        "p",
+      ],
+    ],
+    "timestamp": 150,
+  },
+]
+`;
+
+exports[`listEdits: 17 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "jkl",
+      ],
+    ],
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        14,
+      ],
+      [
+        1,
+        "o",
+      ],
+    ],
+    "timestamp": 140,
+  },
+  {
+    "changes": [
+      [
+        0,
+        15,
+      ],
+      [
+        1,
+        "p",
+      ],
+    ],
+    "timestamp": 150,
+  },
+  {
+    "changes": [
+      [
+        0,
+        16,
+      ],
+      [
+        1,
+        "q",
+      ],
+    ],
+    "timestamp": 160,
+  },
+]
+`;
+
+exports[`listEdits: 18 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "jkl",
+      ],
+    ],
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        12,
+      ],
+      [
+        1,
+        "mno",
+      ],
+    ],
+    "timestamp": 140,
+  },
+  {
+    "changes": [
+      [
+        0,
+        15,
+      ],
+      [
+        1,
+        "p",
+      ],
+    ],
+    "timestamp": 150,
+  },
+  {
+    "changes": [
+      [
+        0,
+        16,
+      ],
+      [
+        1,
+        "q",
+      ],
+    ],
+    "timestamp": 160,
+  },
+  {
+    "changes": [
+      [
+        0,
+        17,
+      ],
+      [
+        1,
+        "r",
+      ],
+    ],
+    "timestamp": 170,
+  },
+]
+`;
+
+exports[`listEdits: 19 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "jkl",
+      ],
+    ],
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        12,
+      ],
+      [
+        1,
+        "mno",
+      ],
+    ],
+    "timestamp": 140,
+  },
+  {
+    "changes": [
+      [
+        0,
+        16,
+      ],
+      [
+        1,
+        "q",
+      ],
+    ],
+    "timestamp": 160,
+  },
+  {
+    "changes": [
+      [
+        0,
+        17,
+      ],
+      [
+        1,
+        "r",
+      ],
+    ],
+    "timestamp": 170,
+  },
+  {
+    "changes": [
+      [
+        0,
+        18,
+      ],
+      [
+        1,
+        "s",
+      ],
+    ],
+    "timestamp": 180,
+  },
+]
+`;
