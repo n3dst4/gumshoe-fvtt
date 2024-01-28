@@ -4,7 +4,7 @@ import { DocumentMemory } from ".";
 import { getStacks } from "./getStacks";
 
 export function restoreVersion(memory: DocumentMemory, serial: number) {
-  const stacks = getStacks(memory).reverse(); // XXX
+  const stacks = getStacks(memory);
   const stackIndex = stacks.findIndex((stack) =>
     stack.edits.some((edit) => edit.serial === serial),
   );

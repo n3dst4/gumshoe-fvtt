@@ -5,6 +5,5 @@ export function getStacks(memory: DocumentMemory): Stack[] {
   for (let stack: Stack | null = memory.stack; stack; stack = stack.next) {
     stacks.push(stack);
   }
-  stacks.reverse();
   return stacks;
 }
