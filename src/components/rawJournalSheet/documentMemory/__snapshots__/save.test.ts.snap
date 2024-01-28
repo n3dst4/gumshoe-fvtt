@@ -7,10 +7,7 @@ exports[`stores a sequence of edits 1`] = `
   "serial": 3,
   "snapshots": [],
   "stack": {
-    "bombBay": [
-      null,
-      null,
-    ],
+    "bombBay": [],
     "edits": [
       {
         "changes": [
@@ -62,8 +59,15 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
   "snapshots": [],
   "stack": {
     "bombBay": [
-      null,
-      null,
+      {
+        "changes": [
+          [
+            1,
+            "a",
+          ],
+        ],
+        "timestamp": 0,
+      },
     ],
     "edits": [
       {
@@ -109,110 +113,5 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
     "next": null,
   },
   "state": "abcd",
-}
-`;
-
-exports[`stores a sequence of edits onto the third stack 1`] = `
-{
-  "maxDepth": 9007199254740991,
-  "period": 3,
-  "serial": 14,
-  "snapshots": [],
-  "stack": {
-    "bombBay": [
-      null,
-      null,
-    ],
-    "edits": [
-      {
-        "changes": [
-          [
-            0,
-            11,
-          ],
-          [
-            1,
-            "l",
-          ],
-        ],
-        "timestamp": 110,
-      },
-      {
-        "changes": [
-          [
-            0,
-            12,
-          ],
-          [
-            1,
-            "m",
-          ],
-        ],
-        "timestamp": 120,
-      },
-      {
-        "changes": [
-          [
-            0,
-            13,
-          ],
-          [
-            1,
-            "n",
-          ],
-        ],
-        "timestamp": 130,
-      },
-    ],
-    "next": {
-      "bombBay": [
-        null,
-        null,
-      ],
-      "edits": [
-        {
-          "changes": [
-            [
-              0,
-              5,
-            ],
-            [
-              1,
-              "f",
-            ],
-          ],
-          "timestamp": 40,
-        },
-        {
-          "changes": [
-            [
-              0,
-              8,
-            ],
-            [
-              1,
-              "i",
-            ],
-          ],
-          "timestamp": 70,
-        },
-        {
-          "changes": [
-            [
-              0,
-              11,
-            ],
-            [
-              1,
-              "l",
-            ],
-          ],
-          "timestamp": 100,
-        },
-      ],
-      "next": null,
-    },
-  },
-  "state": "abcdefghijklmn",
 }
 `;

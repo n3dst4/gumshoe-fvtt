@@ -1,4 +1,5 @@
-import createDiff, { Change } from "textdiff-create";
+import createDiff from "textdiff-create";
+import applyDiff from "textdiff-patch";
 
 import { createStack } from "./createStack";
 import { isMagicSerial } from "./isMagicSerial";
@@ -10,41 +11,58 @@ import { DocumentMemory, Edit, Stack } from "./types";
  */
 function push(
   stack: Stack,
-  changes: Change[],
+  newEdit: Edit,
   serial: number,
   period: number,
   depth: number,
-  timestamp: number,
   maxDepth: number | null,
   snapshots: string[],
 ): [Stack, string[]] {
-  const newEdit: Edit = {
-    changes,
-    timestamp,
-  };
-  let next = stack.next;
+  let nextStack = stack.next;
+
+  // the new bombBay is the old bombBay plus the overflow from edits
+  const bombBay: Edit[] = [...stack.bombBay];
+  if (stack.edits.length >= period) {
+    bombBay.push(stack.edits[0]);
+  }
+
+  // the new edits
+  const edits = [
+    ...stack.edits.slice(stack.edits.length === period ? 1 : 0),
+    newEdit,
+  ];
+
   if (
     isMagicSerial(period, depth, serial) &&
     (maxDepth === null || depth < maxDepth)
   ) {
-    const lastEditTimestamp =
-      stack.edits[stack.edits.length - 1]?.timestamp ?? 0;
-    [next, snapshots] = push(
-      next ?? createStack(period),
-      changes, // wrong
+    // calculate the current snapshot by applying edits
+    const snapShot = snapshots[depth];
+    let newState = snapShot;
+    for (const edit of stack.bombBay) {
+      newState = applyDiff(snapShot, edit.changes);
+    }
+    const editToPush: Edit = {
+      changes: createDiff(snapShot, newState),
+      timestamp: bombBay[bombBay.length - 1].timestamp,
+    };
+
+    [nextStack, snapshots] = push(
+      nextStack || createStack(period),
+      editToPush,
       serial,
       period,
       depth + 1,
-      lastEditTimestamp,
       maxDepth,
       snapshots,
     );
   }
+
   return [
     {
-      edits: [...stack.edits.slice(1), newEdit],
-      next,
-      bombBay: stack.bombBay,
+      bombBay,
+      edits,
+      next: nextStack,
     },
     snapshots,
   ];
@@ -55,14 +73,17 @@ function push(
  */
 export function save(memory: DocumentMemory, state: string): DocumentMemory {
   const serial = memory.serial + 1;
-  const diff = createDiff(memory.state, state);
+  const changes = createDiff(memory.state, state);
+  const edit: Edit = {
+    changes,
+    timestamp: Math.floor(Date.now() / 1000),
+  };
   const [stack, snapshots] = push(
     memory.stack,
-    diff,
+    edit,
     serial,
     memory.period,
     1,
-    Math.floor(Date.now() / 1000),
     memory.maxDepth,
     memory.snapshots,
   );

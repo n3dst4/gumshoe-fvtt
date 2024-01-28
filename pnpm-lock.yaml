@@ -46,6 +46,9 @@ dependencies:
   textdiff-create:
     specifier: ^1.1.10
     version: 1.1.10
+  textdiff-patch:
+    specifier: ^1.1.8
+    version: 1.1.8
   turndown:
     specifier: ^7.1.2
     version: 7.1.2
@@ -112,6 +115,9 @@ devDependencies:
     specifier: ^18.2.19
     version: 18.2.19
   '@types/textdiff-create':
+    specifier: ^1.0.2
+    version: 1.0.2
+  '@types/textdiff-patch':
     specifier: ^1.0.2
     version: 1.0.2
   '@types/turndown':
@@ -1539,6 +1545,10 @@ packages:
 
   /@types/textdiff-create@1.0.2:
     resolution: {integrity: sha512-RX8m1qqOtkM/5QQW327pIYscyF3gM0IuzH+DcLQ9D36BwpSGeavkTix/yLtMt1cmtliCmql0dYxaZBVc5GVZqA==}
+    dev: true
+
+  /@types/textdiff-patch@1.0.2:
+    resolution: {integrity: sha512-Gs+BskLlpP6qC148g4NxZ50aqEuJxsUwbQSWI9virgL9qT0JjeXL/i7OR8nouJ7jcIKA8ozJodHttmZ+wXkpKg==}
     dev: true
 
   /@types/turndown@5.0.4:
@@ -4784,6 +4794,10 @@ packages:
     resolution: {integrity: sha512-JEP6vIEWW2Ue4OdrsMUbSc8pICLDdvTkoTop6/MyXExXu15Y8/Fmp5RXt5nijW+tN9AUDIh5ejBkBpI49cBdwQ==}
     dependencies:
       fast-diff: 1.3.0
+    dev: false
+
+  /textdiff-patch@1.1.8:
+    resolution: {integrity: sha512-gd/kSyYSKQRtF58QQOs9cnbc6BHqctixC7OQAIrb1+hOm4TBXTDCFz0rkcLJge4QnmgDYF3fg4Xy7dk/ynKaDA==}
     dev: false
 
   /tiny-invariant@1.3.1:

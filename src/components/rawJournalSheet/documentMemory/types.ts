@@ -21,7 +21,7 @@ export interface Stack {
   /** The edits in this stack. Will always have length == period of the parent
    * memory
    */
-  edits: Array<Edit | null>;
+  edits: Array<Edit>;
   /**
    * The state of the document the last time this stack was pushed to. We store
    * this so that we can calculate a diff when a new state comes in. The
@@ -35,7 +35,7 @@ export interface Stack {
    * The state of the document the last time this stack pushed down to the
    * next stack.
    */
-  bombBay: Change[];
+  bombBay: Array<Edit>;
   /**
    * A pointer to the next stack, to which we will dump edits every time we have
    * recorded `period` edits.
