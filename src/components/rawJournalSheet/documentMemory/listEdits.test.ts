@@ -9,7 +9,13 @@ beforeEach(() => {
   vi.setSystemTime(new Date(epoch));
 });
 
-test.each(new Array(20).fill(null).map((_, i) => i))(
+test("listEdits: no edits", () => {
+  const memory = createDocumentMemory(3);
+  const edits = listEdits(memory);
+  expect(edits).toEqual([]);
+});
+
+test.each(new Array(20).fill(null).map((_, i) => i + 1))(
   "listEdits: %i edits",
   (i) => {
     let memory = createDocumentMemory(3);

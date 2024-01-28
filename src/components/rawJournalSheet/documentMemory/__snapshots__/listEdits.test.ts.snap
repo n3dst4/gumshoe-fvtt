@@ -1177,3 +1177,86 @@ exports[`listEdits: 19 edits 1`] = `
   },
 ]
 `;
+
+exports[`listEdits: 20 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "jkl",
+      ],
+    ],
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        12,
+      ],
+      [
+        1,
+        "mno",
+      ],
+    ],
+    "timestamp": 140,
+  },
+  {
+    "changes": [
+      [
+        0,
+        17,
+      ],
+      [
+        1,
+        "r",
+      ],
+    ],
+    "timestamp": 170,
+  },
+  {
+    "changes": [
+      [
+        0,
+        18,
+      ],
+      [
+        1,
+        "s",
+      ],
+    ],
+    "timestamp": 180,
+  },
+  {
+    "changes": [
+      [
+        0,
+        19,
+      ],
+      [
+        1,
+        "t",
+      ],
+    ],
+    "timestamp": 190,
+  },
+]
+`;

@@ -2,7 +2,7 @@ import { vi } from "vitest";
 
 export const epoch = 0;
 
-export function getAdditiveStates(count: number) {
+export function getAdditiveStates(count: number): string[] {
   if (count < 1 || count > 26) {
     throw new Error("count must be between 1 and 26");
   }
@@ -17,6 +17,6 @@ export function getAdditiveStates(count: number) {
   return result;
 }
 
-export function advanceTime10s() {
+export function advanceTime10s(): void {
   vi.setSystemTime(new Date().setSeconds(new Date().getSeconds() + 10));
 }
