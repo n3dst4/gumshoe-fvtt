@@ -17,7 +17,7 @@ describe("createDocumentMemory", () => {
         serial: 0,
         period,
         maxDepth: null,
-        snapshots: [],
+        snapshots: [""],
         state: "",
       });
     },
@@ -35,7 +35,7 @@ describe("createDocumentMemory", () => {
         serial: 0,
         period,
         maxDepth: 10,
-        snapshots: [],
+        snapshots: [""],
         state: "",
       });
     },

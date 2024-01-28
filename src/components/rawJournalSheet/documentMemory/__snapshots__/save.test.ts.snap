@@ -5,7 +5,9 @@ exports[`stores a sequence of edits 1`] = `
   "maxDepth": null,
   "period": 3,
   "serial": 3,
-  "snapshots": [],
+  "snapshots": [
+    "",
+  ],
   "stack": {
     "bombBay": [],
     "edits": [
@@ -61,6 +63,7 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
   "serial": 6,
   "snapshots": [
     "abc",
+    "",
   ],
   "stack": {
     "bombBay": [],
@@ -137,6 +140,7 @@ exports[`stores a sequence of edits onto the third stack 1`] = `
   "snapshots": [
     "abcdefghijklmnopqr",
     "abcdefghi",
+    "",
   ],
   "stack": {
     "bombBay": [],

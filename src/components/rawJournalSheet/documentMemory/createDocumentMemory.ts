@@ -14,6 +14,6 @@ export function createDocumentMemory(
     period,
     maxDepth,
     state: "",
-    snapshots: [],
+    snapshots: [""],
   };
 }

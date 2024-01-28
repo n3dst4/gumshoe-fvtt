@@ -17,7 +17,7 @@ test("starts", () => {
   const h1 = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
   const h2 = save(h1, "foo");
   expect(h2).toEqual<DocumentMemory>({
-    snapshots: [],
+    snapshots: [""],
     stack: {
       bombBay: [],
       edits: [

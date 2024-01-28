@@ -59,7 +59,7 @@ function push(
       period,
       depth + 1,
       maxDepth,
-      nextSnapshots,
+      nextSnapshots.length > 0 ? nextSnapshots : [""],
     );
     newSnapshots = [newState, ...newNextSnapshots];
   }
