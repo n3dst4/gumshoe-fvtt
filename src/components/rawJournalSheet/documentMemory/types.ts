@@ -25,15 +25,6 @@ export interface Stack {
    */
   edits: Array<Edit>;
   /**
-   * The state of the document the last time this stack was pushed to. We store
-   * this so that we can calculate a diff when a new state comes in. The
-   * alternative being to store reversible diffs, i.e. diffs that contain the
-   * actual text from deletions so they can be reversed, which could make diffs
-   * very large if there are lots of large changes.
-   * XXX can we do anything cleverer?
-   */
-  // lastPushSnapshot: string;
-  /**
    * The state of the document the last time this stack pushed down to the
    * next stack.
    */
