@@ -21,7 +21,7 @@ function push(
   let nextStack = stack.next;
 
   // the new bombBay is the old bombBay plus the overflow from edits
-  const bombBay: Edit[] = [...stack.bombBay];
+  let bombBay: Edit[] = [...stack.bombBay];
   if (stack.edits.length >= period) {
     bombBay.push(stack.edits[0]);
   }
@@ -32,30 +32,35 @@ function push(
     newEdit,
   ];
 
+  let newSnapshots = snapshots;
+
   if (
     isMagicSerial(period, depth, serial) &&
     (maxDepth === null || depth < maxDepth)
   ) {
     // calculate the current snapshot by applying edits
-    const snapShot = snapshots[depth];
-    let newState = snapShot;
-    for (const edit of stack.bombBay) {
-      newState = applyDiff(snapShot, edit.changes);
+    const [oldState = "", ...nextSnapshots] = snapshots;
+    let newState = oldState;
+    for (const edit of bombBay) {
+      newState = applyDiff(newState, edit.changes);
     }
     const editToPush: Edit = {
-      changes: createDiff(snapShot, newState),
+      changes: createDiff(oldState, newState),
       timestamp: bombBay[bombBay.length - 1].timestamp,
     };
+    bombBay = [];
 
-    [nextStack, snapshots] = push(
+    let newNextSnapshots = [];
+    [nextStack, newNextSnapshots] = push(
       nextStack || createStack(period),
       editToPush,
       serial,
       period,
       depth + 1,
       maxDepth,
-      snapshots,
+      nextSnapshots,
     );
+    newSnapshots = [newState, ...newNextSnapshots];
   }
 
   return [
@@ -64,7 +69,7 @@ function push(
       edits,
       next: nextStack,
     },
-    snapshots,
+    newSnapshots,
   ];
 }
 

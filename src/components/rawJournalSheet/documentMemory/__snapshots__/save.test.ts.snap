@@ -2,7 +2,7 @@
 
 exports[`stores a sequence of edits 1`] = `
 {
-  "maxDepth": 9007199254740991,
+  "maxDepth": null,
   "period": 3,
   "serial": 3,
   "snapshots": [],
@@ -53,49 +53,15 @@ exports[`stores a sequence of edits 1`] = `
 
 exports[`stores a sequence of edits onto the next stack 1`] = `
 {
-  "maxDepth": 9007199254740991,
+  "maxDepth": null,
   "period": 3,
-  "serial": 4,
-  "snapshots": [],
+  "serial": 6,
+  "snapshots": [
+    "abc",
+  ],
   "stack": {
-    "bombBay": [
-      {
-        "changes": [
-          [
-            1,
-            "a",
-          ],
-        ],
-        "timestamp": 0,
-      },
-    ],
+    "bombBay": [],
     "edits": [
-      {
-        "changes": [
-          [
-            0,
-            1,
-          ],
-          [
-            1,
-            "b",
-          ],
-        ],
-        "timestamp": 10,
-      },
-      {
-        "changes": [
-          [
-            0,
-            2,
-          ],
-          [
-            1,
-            "c",
-          ],
-        ],
-        "timestamp": 20,
-      },
       {
         "changes": [
           [
@@ -109,9 +75,165 @@ exports[`stores a sequence of edits onto the next stack 1`] = `
         ],
         "timestamp": 30,
       },
+      {
+        "changes": [
+          [
+            0,
+            4,
+          ],
+          [
+            1,
+            "e",
+          ],
+        ],
+        "timestamp": 40,
+      },
+      {
+        "changes": [
+          [
+            0,
+            5,
+          ],
+          [
+            1,
+            "f",
+          ],
+        ],
+        "timestamp": 50,
+      },
     ],
-    "next": null,
+    "next": {
+      "bombBay": [],
+      "edits": [
+        {
+          "changes": [
+            [
+              1,
+              "abc",
+            ],
+          ],
+          "timestamp": 20,
+        },
+      ],
+      "next": null,
+    },
   },
-  "state": "abcd",
+  "state": "abcdef",
+}
+`;
+
+exports[`stores a sequence of edits onto the third stack 1`] = `
+{
+  "maxDepth": null,
+  "period": 3,
+  "serial": 21,
+  "snapshots": [
+    "abcdefghijklmnopqr",
+    "abcdefghi",
+  ],
+  "stack": {
+    "bombBay": [],
+    "edits": [
+      {
+        "changes": [
+          [
+            0,
+            18,
+          ],
+          [
+            1,
+            "s",
+          ],
+        ],
+        "timestamp": 180,
+      },
+      {
+        "changes": [
+          [
+            0,
+            19,
+          ],
+          [
+            1,
+            "t",
+          ],
+        ],
+        "timestamp": 190,
+      },
+      {
+        "changes": [
+          [
+            0,
+            20,
+          ],
+          [
+            1,
+            "u",
+          ],
+        ],
+        "timestamp": 200,
+      },
+    ],
+    "next": {
+      "bombBay": [],
+      "edits": [
+        {
+          "changes": [
+            [
+              0,
+              9,
+            ],
+            [
+              1,
+              "jkl",
+            ],
+          ],
+          "timestamp": 110,
+        },
+        {
+          "changes": [
+            [
+              0,
+              12,
+            ],
+            [
+              1,
+              "mno",
+            ],
+          ],
+          "timestamp": 140,
+        },
+        {
+          "changes": [
+            [
+              0,
+              15,
+            ],
+            [
+              1,
+              "pqr",
+            ],
+          ],
+          "timestamp": 170,
+        },
+      ],
+      "next": {
+        "bombBay": [],
+        "edits": [
+          {
+            "changes": [
+              [
+                1,
+                "abcdefghi",
+              ],
+            ],
+            "timestamp": 80,
+          },
+        ],
+        "next": null,
+      },
+    },
+  },
+  "state": "abcdefghijklmnopqrstu",
 }
 `;

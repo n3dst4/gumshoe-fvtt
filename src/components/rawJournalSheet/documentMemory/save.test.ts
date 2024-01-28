@@ -16,26 +16,26 @@ test("starts", () => {
   const h1 = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
   const h2 = save(h1, "foo");
   expect(h2).toEqual({
+    snapshots: [],
     stack: {
+      bombBay: [],
       edits: [
-        null,
-        null,
         {
-          change: [[1, "foo"]],
-          timestamp: expect.closeTo(epoch),
+          changes: [[1, "foo"]],
+          timestamp: 0,
         },
       ],
-      snapshot: "foo",
       next: null,
     },
     serial: 1,
     period: 3,
     maxDepth: Number.MAX_SAFE_INTEGER,
+    state: "foo",
   });
 });
 
 test("stores a sequence of edits", () => {
-  let h = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
+  let h = createDocumentMemory(3);
   const states = getAdditiveStates(3);
   for (const state of states) {
     h = save(h, state);
@@ -45,8 +45,8 @@ test("stores a sequence of edits", () => {
 });
 
 test("stores a sequence of edits onto the next stack", () => {
-  let h = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
-  const states = getAdditiveStates(4);
+  let h = createDocumentMemory(3);
+  const states = getAdditiveStates(6);
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();
@@ -55,8 +55,8 @@ test("stores a sequence of edits onto the next stack", () => {
 });
 
 test("stores a sequence of edits onto the third stack", () => {
-  let h = createDocumentMemory(3, Number.MAX_SAFE_INTEGER);
-  const states = getAdditiveStates(14);
+  let h = createDocumentMemory(3);
+  const states = getAdditiveStates(21);
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();
@@ -66,7 +66,7 @@ test("stores a sequence of edits onto the third stack", () => {
 
 test("stores a sequence of edits that hits the depth limit", () => {
   let h = createDocumentMemory(3, 2);
-  const states = getAdditiveStates(14);
+  const states = getAdditiveStates(21);
   for (const state of states) {
     h = save(h, state);
     advanceTime10s();
