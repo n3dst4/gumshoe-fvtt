@@ -38,8 +38,9 @@ export interface Stack {
 
 /**
  * A document's edit memory. Older edits are stored with less granularity.
+ * Any commit can be restored by walking the stacks from the start.
  */
-export interface DocumentMemory {
+export interface BareDocumentMemory {
   /**
    * A pointer to the first stack in the memory, the one which will contain the
    * most recent edits.
@@ -60,12 +61,19 @@ export interface DocumentMemory {
    * total edits.
    */
   maxDepth: number | null;
-  /**
-   * A snapshot of the most recent state of the document
-   */
-  state: string;
+}
+
+/**
+ * A document's edit memory. Older edits are stored with less granularity.
+ * Contains snapshots of each stack to accelerate pushes and restores.
+ */
+export interface DocumentMemory extends BareDocumentMemory {
   /**
    * a cache of snapshots of each level of the document
    */
   snapshots: string[];
+  /**
+   * A snapshot of the most recent state of the document
+   */
+  state: string;
 }
