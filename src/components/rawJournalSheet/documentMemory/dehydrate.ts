@@ -1,5 +1,8 @@
 import { BareDocumentMemory, DocumentMemory } from "./types";
 
+/**
+ * Convert the working memory into one with the state and snapshots removed
+ */
 export function dehydrate(documentMemory: DocumentMemory): BareDocumentMemory {
   return {
     stack: documentMemory.stack,

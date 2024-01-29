@@ -3,6 +3,10 @@ import applyDiff from "textdiff-patch";
 import { getStacks } from "./getStacks";
 import { BareDocumentMemory, DocumentMemory } from "./types";
 
+/**
+ * Convert a shrunken memory back into a working one by walking the stacks and
+ * rebuilding the state for each level
+ */
 export function rehydrate(
   bareDocumentMemory: BareDocumentMemory,
 ): DocumentMemory {
