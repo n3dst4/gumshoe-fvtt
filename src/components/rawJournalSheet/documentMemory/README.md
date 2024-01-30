@@ -1,4 +1,166 @@
 # Document memory
 
-One current snapshot at the top level
-A cache of snapshots per level
+A weekend project gone awry.
+
+An over-engineered solution to a problem that never existed.
+
+## Background
+
+So, I'm writing the fancy new HTML editor for journals and it strikes me that I want some kind of version-saving mechanism, so that mistakes can be safely corrected, and we can review the history of a document.
+
+There are two questions to answer:
+
+* What mechanism or algorithm will we use?
+* Where will be store the data?
+
+The second one (where to store it) is a question for another day.
+
+The first one (algorithm) is where this mini-project comes in. Ideas I rapidly dropped:
+
+* Just store the last *n* state! REJECTED - I want to be able to store a decent age of history, like at least 100 and maybe a thousand? If the document is a megabyte (which is huge but possible) you're looking at a *gigabyte* of backups!
+* Store a long list of diffs - this is a lot better! But you're still going to be dealing with monotonically increasing storage until you hit that history limit.
+
+I want to say now that actually a simple history of the last 1000 diffs would have be *fine*. If I was launching a startup that's what I would have done.
+
+But I figured we could do better. What I envisioned was something where older states were stored with decreasing granularity, getting collapsed together as they age. So you can always go back to *near* the start, but the number of individual states you can restore to gets less the older you go. And the moist recent states are all individually addressable.
+
+So I had the idea of a series of stacks. The top-level stack is where the most recent diffs get pushed. When there are *n* diffs built up, we combine them together and push them onto the next stack down.
+
+My first jab at this had the problem that the number of accessible edits would fluctuate.
+
+To illustrate, imagine a document where I'm typing in the letters of the alphabet, a to z.
+
+* First state: "a".
+* Second state: "ab".
+* Third state: "abc".
+* etc.
+
+Now imagine that we're using a stack size of 3.
+
+First state: "a"
+
+```
+Stack
+-----
++a
+```
+
+Second state: "ab"
+
+```
+Stack
+-----
++a
++b
+```
+
+Third state: "abc"
+
+```
+Stack
+-----
++a
++b
++c
+```
+
+Fourth state: "abcd"
+
+```
+Stack
+-----
++a
++b
++c
++d
+```
+
+But because we hit our "stack size" limit of 3, we roll the first three into a combined edit on the next stack:
+
+```
+Stack 1    Stack 2
+-------    -------
++d         +abc
+```
+
+After a bunch more edits we have something like:
+
+```
+Stack 1    Stack 2    Stack 3
+-------    -------    -------
++r         +lmn       +abcdefijk
++s         +opq
++t
+```
+
+The problem is we lose fidelity on each stack every time we "push" a combined commit up to the next one.
+
+I went through a bunch of options here, and here's where I ended up: each stack has a list of edits, of size n, and a second list, called the "bomb bay" of commits which will be pushed onto the next stack in due course. Only the main list of edits is addressable in terms of restoring history. This uses more space, but gives much nicer behaviour. You will always have the most recent n edits, then every n^2th edit for the next n commits, then every n^3th commits etc.
+
+```
+Stack 1    Stack 2
+=======    =======
+Bomb bay   Bomb bay
+--------   --------
++p          +abc
++q          +def
+
+Edits      Edits
+-----      -----
++r          +ghi
++s          +jkl
++t          +nmo
+```
+
+What this shows is that stack 1 has two edits waiting to combined and pushed to stack 2 when the next edit comes in. Stack 2 likewise has two edits waiting to go to stack three. So on the very next keystroke, we add the letter u. Lets walk though this. First it gets added to the stack 1 edits, and +r gets moved into the bomb bay:
+
+```
+Stack 1    Stack 2    Stack 3
+=======    =======    =======
+Bomb bay   Bomb bay   Bomb bay
+--------   --------   --------
++p         +abc
++q         +def
++r
+
+Edits      Edits      Edits
+-----      -----      -----
++s         +ghi
++t         +jkl
++u         +nmo
+```
+
+But now the stack 1 bomb bay is full, so we push "+pqr" to stack 2 (and +ghi gets moved into the bomb bay):
+
+```
+Stack 1    Stack 2
+=======    =======
+Bomb bay   Bomb bay
+--------   --------
+           +abc
+           +def
+           +ghi
+
+Edits      Edits
+-----      -----
++s         +jkl
++t         +nmo
++u         +pqr
+```
+
+And the same happens in stack 2, in the process, creating stack 3:
+
+```
+Stack 1    Stack 2    Stack 3
+=======    =======    =======
+Bomb bay   Bomb bay   Bomb bay
+--------   --------   --------
+
+Edits      Edits      Edits
+-----      -----      -----
++s         +jkl       +abcdefghi
++t         +nmo
++u         +pqr
+```
+
+Stack three is new so there's nothing in the bomb bay yet.
