@@ -26,6 +26,8 @@ But I figured we could do better. What I envisioned was something where older st
 
 So I had the idea of a series of stacks. The top-level stack is where the most recent diffs get pushed. When there are *n* diffs built up, we combine them together and push them onto the next stack down.
 
+## The first version
+
 My first jab at this had the problem that the number of accessible edits would fluctuate.
 
 To illustrate, imagine a document where I'm typing in the letters of the alphabet, a to z.
@@ -94,6 +96,9 @@ Stack 1    Stack 2    Stack 3
 ```
 
 The problem is we lose fidelity on each stack every time we "push" a combined commit up to the next one.
+
+
+## The bomb bay system
 
 I went through a bunch of options here, and here's where I ended up: each stack has a list of edits, of size n, and a second list, called the "bomb bay" of commits which will be pushed onto the next stack in due course. Only the main list of edits is addressable in terms of restoring history. This uses more space, but gives much nicer behaviour. You will always have the most recent n edits, then every n^2th edit for the next n commits, then every n^3th commits etc.
 
@@ -164,3 +169,52 @@ Edits      Edits      Edits
 ```
 
 Stack three is new so there's nothing in the bomb bay yet.
+
+
+## Serial numbers
+
+The memory has a property called `serial` which is a monotonically increasing number. Each new edit is tagged with the current serial. When edits get squashed and pushed, the squashed edit is tagged with the most recent serial in the squash.
+
+This magic serial allows us to do something epically stupid, and that's what I did. See, looking at that algo above, it's pretty obvious that the moment to squash and push is "when the bomb bay is full". However... you can also work it out mathematically. If the stack period is p, each stack will push every `p^d` edits, where d is the dept of the stack (starting at 1.)
+
+So stack 1 pushes every 3 edits; stack 2 pushes every 9 edits; stack 3 pushes every 27 edits. You can see that intuitively looking at those ascii diagrams - how many letters are in the bomb bay when we push?
+
+There's also an offset, because these pushes don'#t start straight away. Think about ti - stack 1 pushes every 3, but doesn't start until 6. Stack 2 pushes every 9, but doesn't start until 21.
+
+Wait what, 21? Yeah. The formula for the "offset" is
+
+```
+(p^d) + (p^d + p^d-1 + ... + p^1)
+```
+
+So if p is 3, and d is 2:
+
+```
+3^2 + 3^2 + 3^1
+= 9 + 9 + 3
+= 21
+```
+
+If p is 3 and d is 3:
+
+```
+3^3 + 3^3 + 3^2 + 3^1
+= 27 + 27 + 9 + 3
+= 66
+```
+
+You can think of this as "each stack needs to fill its own size *twice* and the size of all the higher stacks *once each* before pushing downwards.
+
+Just to be look at bigger numbers, if we had p = 100 and d = 4 (plausible production numbers for a large document with lots of edits):
+
+```
+100^4 + 100^4 + 100^3 + 100^2 + 100^1
+= 100000000 + 100000000 + 1000000 + 10000 + 100
+= 201010100
+```
+
+And because I can do it with maths, I did.
+
+
+## Snapshots and state
+
