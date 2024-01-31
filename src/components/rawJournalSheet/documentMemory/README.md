@@ -171,7 +171,7 @@ Bomb bay   Bomb bay   Bomb bay
 --------   --------   --------
 ```
 
-Stack three is new so there's nothing in the bomb bay yet. And the other two bomb b ays are empty because they've been squashed and pushed over.
+Stack three is new so there's nothing in the bomb bay yet. And the other two bomb bays are empty because they've been squashed and pushed over.
 
 
 ## Serial numbers
