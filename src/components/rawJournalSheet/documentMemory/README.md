@@ -273,3 +273,8 @@ These are stored at the top level and passed down in the push function. The reas
 Somewhat fancy words for what we're doing. Dehydrate takes a working document memory and returns an equivalent object with the current state and the snapshots stripped out. This form is optimised for serialisation, because the state and snapshots can be restored from the diffs.
 
 Rehydrate does what you'd expect - it takes the denuded object from `dehydrate` and rebuilds the state and snapshots by walking the edits from right to left, top to bottom, giving you a working object memory ready to be used in a text editor.
+
+
+## TL;DR
+
+We're using [textdiff-create][textdiff-create] and [textdiff-patch][textdiff-patch] to create diffs whenever the document changes. We have a configurable "period" (p) and we condense individual diffs together every *p* edits, so the size of the history doesn't just grow monotonically.
