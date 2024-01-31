@@ -163,8 +163,8 @@ devDependencies:
     specifier: ^11.2.0
     version: 11.2.0
   happy-dom:
-    specifier: ^13.1.0
-    version: 13.1.0
+    specifier: ^13.3.8
+    version: 13.3.8
   jest-diff:
     specifier: ^29.7.0
     version: 29.7.0
@@ -191,7 +191,7 @@ devDependencies:
     version: 0.6.2(eslint@8.56.0)(typescript@5.3.3)(vite@5.0.11)
   vitest:
     specifier: ^1.2.0
-    version: 1.2.0(@vitest/ui@1.2.0)(happy-dom@13.1.0)(less@4.2.0)
+    version: 1.2.0(@vitest/ui@1.2.0)(happy-dom@13.3.8)(less@4.2.0)
   yargs:
     specifier: ^17.7.2
     version: 17.7.2
@@ -1708,7 +1708,7 @@ packages:
       pathe: 1.1.1
       picocolors: 1.0.0
       sirv: 2.0.4
-      vitest: 1.2.0(@vitest/ui@1.2.0)(happy-dom@13.1.0)(less@4.2.0)
+      vitest: 1.2.0(@vitest/ui@1.2.0)(happy-dom@13.3.8)(less@4.2.0)
     dev: true
 
   /@vitest/utils@1.2.0:
@@ -2184,10 +2184,6 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
-    dev: true
-
-  /css.escape@1.5.1:
-    resolution: {integrity: sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg==}
     dev: true
 
   /cssfilter@0.0.10:
@@ -3133,14 +3129,12 @@ packages:
       uglify-js: 3.17.4
     dev: true
 
-  /happy-dom@13.1.0:
-    resolution: {integrity: sha512-jJnCMLB0J5eMq9Q1h2zWm86iVf7tPGXjNxA4wwhSf5Tx5Us4VwiPyj2ln95IOcyPNNOg8vfCzygwtBiAs2460A==}
+  /happy-dom@13.3.8:
+    resolution: {integrity: sha512-RAbq4oYfJNkVan1m1F3jfA4YEyRY0/ASoNvZsNJbuX85jIypidmsz9jQZD7Tqz0VXA2MhAGfcsh5oshwmwNYSg==}
+    engines: {node: '>=16.0.0'}
     dependencies:
-      css.escape: 1.5.1
       entities: 4.5.0
-      iconv-lite: 0.6.3
       webidl-conversions: 7.0.0
-      whatwg-encoding: 2.0.0
       whatwg-mimetype: 3.0.0
     dev: true
 
@@ -3217,9 +3211,11 @@ packages:
   /iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       safer-buffer: 2.1.2
     dev: true
+    optional: true
 
   /ignore@5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
@@ -4465,6 +4461,7 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     requiresBuild: true
     dev: true
+    optional: true
 
   /sax@1.2.4:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
@@ -5062,7 +5059,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@1.2.0(@vitest/ui@1.2.0)(happy-dom@13.1.0)(less@4.2.0):
+  /vitest@1.2.0(@vitest/ui@1.2.0)(happy-dom@13.3.8)(less@4.2.0):
     resolution: {integrity: sha512-Ixs5m7BjqvLHXcibkzKRQUvD/XLw0E3rvqaCMlrm/0LMsA0309ZqYvTlPzkhh81VlEyVZXFlwWnkhb6/UMtcaQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -5098,7 +5095,7 @@ packages:
       chai: 4.3.10
       debug: 4.3.4
       execa: 8.0.1
-      happy-dom: 13.1.0
+      happy-dom: 13.3.8
       local-pkg: 0.5.0
       magic-string: 0.30.5
       pathe: 1.1.1
@@ -5163,13 +5160,6 @@ packages:
   /webidl-conversions@7.0.0:
     resolution: {integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==}
     engines: {node: '>=12'}
-    dev: true
-
-  /whatwg-encoding@2.0.0:
-    resolution: {integrity: sha512-p41ogyeMUrw3jWclHWTQg1k05DSVXPLcVxRTYsXUk+ZooOCZLcoYgPZ/HL/D/N+uQPOtcp1me1WhBEaX02mhWg==}
-    engines: {node: '>=12'}
-    dependencies:
-      iconv-lite: 0.6.3
     dev: true
 
   /whatwg-mimetype@3.0.0:
