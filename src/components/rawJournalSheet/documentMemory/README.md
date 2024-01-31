@@ -24,7 +24,7 @@ I want to say now that actually a simple history of the last 1000 diffs would ha
 
 But I figured we could do better. What I envisioned was something where older states were stored with decreasing granularity, getting collapsed together as they age. So you can always go back to *near* the start, but the number of individual states you can restore to gets less the older you go. And the moist recent states are all individually addressable.
 
-So I had the idea of a series of stacks. The top-level stack is where the most recent diffs get pushed. When there are *n* diffs built up, we combine them together and push them onto the next stack down.
+So I had the idea of a series of stacks. The top-level stack is where the most recent diffs get pushed. When there are *p* diffs built up, we combine them together and push them onto the next stack down. We call *p* the "period" of the memory - it's the base size for each stack and therefore controls the frequency with which "something happens" when you push.
 
 ## The first version
 
@@ -37,9 +37,9 @@ To illustrate, imagine a document where I'm typing in the letters of the alphabe
 * Third state: "abc".
 * etc.
 
-Now imagine that we're using a stack size of 3.
+Now imagine that we're using a period (stack size) of 3.
 
-First state: "a"
+First state: "a" (most recent edits are at the top of the stack):
 
 ```
 Stack
@@ -52,8 +52,8 @@ Second state: "ab"
 ```
 Stack
 -----
-+a
 +b
++a
 ```
 
 Third state: "abc"
@@ -61,9 +61,9 @@ Third state: "abc"
 ```
 Stack
 -----
-+a
-+b
 +c
++b
++a
 ```
 
 Fourth state: "abcd"
@@ -71,10 +71,10 @@ Fourth state: "abcd"
 ```
 Stack
 -----
-+a
-+b
-+c
 +d
++c
++b
++a
 ```
 
 But because we hit our "stack size" limit of 3, we roll the first three into a combined edit on the next stack:
@@ -90,9 +90,9 @@ After a bunch more edits we have something like:
 ```
 Stack 1    Stack 2    Stack 3
 -------    -------    -------
-+r         +lmn       +abcdefijk
-+s         +opq
-+t
++t         +opq       +abcdefijk
++s         +lmn
++r
 ```
 
 The problem is we lose fidelity on each stack every time we "push" a combined commit up to the next one.
@@ -105,16 +105,16 @@ I went through a bunch of options here, and here's where I ended up: each stack 
 ```
 Stack 1    Stack 2
 =======    =======
-Bomb bay   Bomb bay
---------   --------
-+p          +abc
-+q          +def
-
 Edits      Edits
 -----      -----
-+r          +ghi
-+s          +jkl
 +t          +nmo
++s          +jkl
++r          +ghi
+
+Bomb bay   Bomb bay
+--------   --------
++q          +def
++p          +abc
 ```
 
 What this shows is that stack 1 has two edits waiting to combined and pushed to stack 2 when the next edit comes in. Stack 2 likewise has two edits waiting to go to stack three. So on the very next keystroke, we add the letter u. Lets walk though this. First it gets added to the stack 1 edits, and +r gets moved into the bomb bay:
@@ -122,17 +122,17 @@ What this shows is that stack 1 has two edits waiting to combined and pushed to 
 ```
 Stack 1    Stack 2    Stack 3
 =======    =======    =======
-Bomb bay   Bomb bay   Bomb bay
---------   --------   --------
-+p         +abc
-+q         +def
-+r
-
 Edits      Edits      Edits
 -----      -----      -----
-+s         +ghi
-+t         +jkl
 +u         +nmo
++t         +jkl
++s         +ghi
+
+Bomb bay   Bomb bay   Bomb bay
+--------   --------   --------
++r         +def
++q         +abc
++p
 ```
 
 But now the stack 1 bomb bay is full, so we push "+pqr" to stack 2 (and +ghi gets moved into the bomb bay):
@@ -140,17 +140,17 @@ But now the stack 1 bomb bay is full, so we push "+pqr" to stack 2 (and +ghi get
 ```
 Stack 1    Stack 2
 =======    =======
-Bomb bay   Bomb bay
---------   --------
-           +abc
-           +def
-           +ghi
-
 Edits      Edits
 -----      -----
-+s         +jkl
-+t         +nmo
 +u         +pqr
++t         +nmo
++s         +jkl
+
+Bomb bay   Bomb bay
+--------   --------
+           +ghi
+           +def
+           +abc
 ```
 
 And the same happens in stack 2, in the process, creating stack 3:
@@ -158,14 +158,14 @@ And the same happens in stack 2, in the process, creating stack 3:
 ```
 Stack 1    Stack 2    Stack 3
 =======    =======    =======
-Bomb bay   Bomb bay   Bomb bay
---------   --------   --------
-
 Edits      Edits      Edits
 -----      -----      -----
-+s         +jkl       +abcdefghi
++u         +pqr       +abcdefghi
 +t         +nmo
-+u         +pqr
++s         +jkl
+
+Bomb bay   Bomb bay   Bomb bay
+--------   --------   --------
 ```
 
 Stack three is new so there's nothing in the bomb bay yet.
@@ -216,5 +216,58 @@ Just to be look at bigger numbers, if we had p = 100 and d = 4 (plausible produc
 And because I can do it with maths, I did.
 
 
+## Diffing algorithm
+
+Classic patch files are going to be way to big and cumbersome for this job. Luckily this is a well-explored field.
+
+Google publishes an algorithm for syncing text state called [diff-match-patch][diff-match-patch]. There is an alternative implementation of the same idea called [fast-diff][fast-diff] which is a little faster. I suggest looking at the diff-match-patch docs for an intro but the TLDR is:
+
+* Myers-based text diffing (same stragedy as `diff` in git)
+* The output is a list up tuples of `(type, text)`, where
+  * `type` is -1 for a deletion, 0 for an equality, +1 for an insertion
+* To apply a diff, you just imagine a cursor in the source text,iterate over the tuples and follow the instructions.
+  * For a deletion (-1), delete the matching text.
+  * For and equality (0), skip the cursor forward over the matching text.
+  * For an insertion (+1), insert the text.
+
+Both of those implementations create full diffs, which means that the content of deletions and matches. is stored in the diff. This gives you very complete data, and means that diffs can be reversed. But for append-only history like what we're doing, we really only need the *size* of deletions and equalities.
+
+That's where [textdiff-create][textdiff-create] and [textdiff-patch][textdiff-patch] come in. The first is a thin wrapper around fast-diff which strips out the full text for deletions and equalities and replaces it with a number, being the length of the deletion or equality. The second is a small function to apply these compacted diffs to a source text.
+
+These compacted diffs give us enough information to store a forwards-only history (i.e. you can start from an empty string and apply changes forwards through the history to restore to any state, but you can't "roll back" an individual diff.)
+
+
+[diff-match-patch]: https://github.com/google/diff-match-patch
+[fast-diff]: https://github.com/jhchen/fast-diff
+[textdiff-create]: https://www.npmjs.com/package/textdiff-create
+[textdiff-patch]: https://github.com/icflorescu/textdiff-patch
+
+
+
 ## Snapshots and state
 
+Given the structure above, you can restore any recorded state by applying the edits from right to left, bottom to top. By applying all the edits in this order, you get a snapshot of the current state.
+
+And "a snapshot of the current state" is what you need every time a new state gets saved. Remember that at the top level, we ned to accept the entire state, because that's what we will get from our editing component.
+
+(Sidebar: Monaco can actually give us change events, which we could possibly convert directly into diff-match-patch so avoid having to run a full diff every time. But we're not doing that right now.)
+
+To avoid having to do a full restore every time, we store a state at the top level, so when a new state comes in from the editor we can just diff the two.
+
+Also, when we push from a stack onto a deeper stack, we want to condense all the changes into one. Note that for a while I was thinking in terms of some kind of simple append - like, you have change x, change y, and change z. It would be pretty simple to imagine some extension to the diff structure that would allow you to just concatenate x, y, and z into one long diff. But the problem there is you're not saving anything. The whole idea of the receding horizon memory is that you discard granularity as edits get older. It's okay to lose a bunch of interstitial states; what you're saving is space. But if we're just concatenating diffs, we're barely saving any space, we're just losing access to some states. To combine a series of diffs, what we really need to do is:
+
+* Take the initial state
+* Apply each diff one by to create a final state
+* Now diff the initial state against the final state
+
+This will give us a diff that actually does discard all the in-between states and thus save space.
+
+Do do this we need to store a snapshot for each stack, *OR* rebuild the history from scratch each time we push. Clearly that's suboptimal, so we store snapshots for each stack.
+
+These are stored at the top level and passed down in the push function. The reason they are store at the top level is that it makes it much easier to strip them out for serialisation.
+
+## Dehydrate/rehydrate
+
+Somewhat fancy words for what we're doing. Dehydrate takes a working document memory and returns an equivalent object with the current state and the snapshots stripped out. This form is optimised for serialisation, because the state and snapshots can be restored from the diffs.
+
+Rehydrate does what you'd expect - it takes the denuded object from `dehydrate` and rebuilds the state and snapshots by walking the edits from right to left, top to bottom, giving you a working object memory ready to be used in a text editor.
