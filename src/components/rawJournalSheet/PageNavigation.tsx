@@ -2,6 +2,7 @@ import React from "react";
 import { FaBarsStaggered, FaImage } from "react-icons/fa6";
 
 import { useTheme } from "../../hooks/useTheme";
+import { MagicToolbarContent } from "./MagicToolbar";
 import { Toolbar } from "./Toolbar";
 // import { useTheme } from "../../hooks/useTheme";
 import { ToolbarButton } from "./ToolbarButton";
@@ -89,18 +90,18 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
         // backgroundColor: theme.colors.backgroundPrimary,
       }}
     >
-      <div
-        css={
-          {
-            // padding: "1em",
-            // backgroundColor: theme.colors.,
-            // color: "white",s
-          }
-        }
-      >
-        {journal.name}
-      </div>
-
+      <MagicToolbarContent>
+        <ToolbarButton
+          onClick={handleAddNewTextPage}
+          icon={FaBarsStaggered}
+          text="Text"
+        />
+        <ToolbarButton
+          onClick={handleAddNewImagePage}
+          icon={FaImage}
+          text="Image"
+        />
+      </MagicToolbarContent>
       <div
         css={{
           padding: "1px",
@@ -155,31 +156,6 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
           );
         })}
       </div>
-      <Toolbar header="Add new:">
-        <ToolbarButton
-          onClick={handleAddNewTextPage}
-          icon={FaBarsStaggered}
-          text="Text"
-        />
-        <ToolbarButton
-          onClick={handleAddNewImagePage}
-          icon={FaImage}
-          text="Image"
-        />
-        <ToolbarButton
-          onClick={() => {
-            console.log(journal);
-            const SotsSheet: JournalSheet = Journal.registeredSheets.find(
-              // @ts-expect-error Journal types are effed
-              (sheet) => sheet.name === "SwordsOfTheSerpentineJournalSheet",
-            ) as unknown as JournalSheet;
-            // @ts-expect-error Journal types are effed
-            new SotsSheet(journal).render(true);
-          }}
-          icon={FaImage}
-          text="View"
-        />
-      </Toolbar>
     </div>
   );
 };

@@ -1,10 +1,19 @@
 import React from "react";
+import { FaImage } from "react-icons/fa6";
 
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings/settings";
+import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
+import {
+  MagicToolbar,
+  MagicToolbarContent,
+  MagicToolbarProvider,
+} from "./MagicToolbar";
 import { PageEditor } from "./PageEditor";
 import { PageNavigation } from "./PageNavigation";
+import { flexRow } from "./styles";
+import { ToolbarButton } from "./ToolbarButton";
 
 type RawJournalSheetProps = {
   journal: JournalEntry;
@@ -33,42 +42,59 @@ export const RawJournalSheet = ({
       theme={theme}
       mode="large"
       css={{
-        position: "absolute",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
+        ...absoluteCover,
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
       }}
     >
-      <div
-        data-testid="page-navigation"
-        css={{
-          flexBasis: "20em",
-          minWidth: "20em",
-          position: "relative",
-        }}
-      >
-        <PageNavigation
-          journal={journal}
-          onNavigate={handlePageClick}
-          activePageId={activePageId}
-        />
-      </div>
-      <div
-        data-testid="page-editor"
-        css={{
-          flex: 1,
-          overflow: "hidden",
-        }}
-      >
-        {activePageId !== null && journal.pages.has(activePageId) ? (
-          <PageEditor page={journal.pages.get(activePageId)} />
-        ) : (
-          "Select a page to view its content"
-        )}
-      </div>
+      <MagicToolbarProvider>
+        <div>title</div>
+        <MagicToolbar />
+        <MagicToolbarContent>
+          <ToolbarButton
+            onClick={() => {
+              console.log(journal);
+              const SotsSheet: JournalSheet = Journal.registeredSheets.find(
+                // @ts-expect-error Journal types are effed
+                (sheet) => sheet.name === "SwordsOfTheSerpentineJournalSheet",
+              ) as unknown as JournalSheet;
+              // @ts-expect-error Journal types are effed
+              new SotsSheet(journal).render(true);
+            }}
+            icon={FaImage}
+            text="View"
+          />
+        </MagicToolbarContent>
+        <div data-testid="flexrow" css={{ ...flexRow, flex: 1 }}>
+          <div
+            data-testid="page-navigation"
+            css={{
+              flexBasis: "20em",
+              minWidth: "20em",
+              position: "relative",
+            }}
+          >
+            <PageNavigation
+              journal={journal}
+              onNavigate={handlePageClick}
+              activePageId={activePageId}
+            />
+          </div>
+          <div
+            data-testid="page-editor"
+            css={{
+              flex: 1,
+              overflow: "hidden",
+            }}
+          >
+            {activePageId !== null && journal.pages.has(activePageId) ? (
+              <PageEditor page={journal.pages.get(activePageId)} />
+            ) : (
+              "Select a page to view its content"
+            )}
+          </div>
+        </div>
+      </MagicToolbarProvider>
     </CSSReset>
   );
 };
