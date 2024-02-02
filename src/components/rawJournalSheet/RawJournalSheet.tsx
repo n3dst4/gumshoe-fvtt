@@ -7,6 +7,7 @@ import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { MagicToolbar, MagicToolbarProvider } from "./MagicToolbar";
+import { NoPageSelected } from "./NoPageSelected";
 import { PageEditor } from "./PageEditor";
 import { PageNavigation } from "./PageNavigation";
 import { flexRow } from "./styles";
@@ -72,13 +73,13 @@ export const RawJournalSheet = ({
           flexDirection: "column",
         }}
       >
+        <MagicToolbar>{toolBarContent}</MagicToolbar>
         <div>
           <AsyncTextInput
             value={journal.name ?? ""}
             onChange={handleTitleChange}
           />
         </div>
-        <MagicToolbar>{toolBarContent}</MagicToolbar>
         <div css={{ ...flexRow, gap: "0.5em", flex: 1 }}>
           <div
             data-testid="page-navigation"
@@ -99,12 +100,13 @@ export const RawJournalSheet = ({
             css={{
               flex: 1,
               overflow: "hidden",
+              position: "relative",
             }}
           >
             {activePageId !== null && journal.pages.has(activePageId) ? (
               <PageEditor page={journal.pages.get(activePageId)} />
             ) : (
-              "Select a page to view its content"
+              <NoPageSelected />
             )}
           </div>
         </div>

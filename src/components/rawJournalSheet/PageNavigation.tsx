@@ -83,7 +83,7 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
           <ToolbarButton
             onClick={handleAddNewTextPage}
             icon={FaBarsStaggered}
-            text="Add Page"
+            text="Add Text"
           />
           <ToolbarButton
             onClick={handleAddNewImagePage}

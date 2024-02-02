@@ -1,6 +1,5 @@
 import React from "react";
 
-import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { HTMLEditor } from "./HTMLEditor";
 
 interface HTMLPageProps {
@@ -8,8 +7,6 @@ interface HTMLPageProps {
 }
 
 export const HTMLPage: React.FC<HTMLPageProps> = ({ page }) => {
-  // return <div>{page.text.content}</div>;
-
   return (
     <div
       data-testid="editor"
@@ -22,19 +19,6 @@ export const HTMLPage: React.FC<HTMLPageProps> = ({ page }) => {
         gap: "0.5em",
       }}
     >
-      <div data-testid="name">
-        <AsyncTextInput
-          value={page.name}
-          onChange={async (value) => {
-            await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
-              {
-                _id: page.id,
-                name: value,
-              },
-            ]);
-          }}
-        />
-      </div>
       <div
         data-testid="main-area"
         css={{

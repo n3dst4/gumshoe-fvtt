@@ -7,7 +7,6 @@ interface ImagePageProps {
 export const ImagePage: React.FC<ImagePageProps> = ({ page }) => {
   return (
     <div>
-      <div>{page.name}</div>
       <a
         onClick={() => {
           page.sheet.render(true);
