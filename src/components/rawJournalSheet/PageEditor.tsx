@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import { FaTrash } from "react-icons/fa6";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
+import { systemLogger } from "../../functions/utilities";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { HTMLPage } from "./HTMLPage";
 import { ImagePage } from "./ImagePage";
@@ -40,13 +41,21 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
   );
 
   const handleRename = useCallback(
-    async (value: string) => {
-      await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
-        {
-          _id: page.id,
-          name: value,
-        },
-      ]);
+    async (name: string) => {
+      try {
+        const result = await page.parent.updateEmbeddedDocuments(
+          "JournalEntryPage",
+          [
+            {
+              _id: page.id,
+              name,
+            },
+          ],
+        );
+        systemLogger.log(result);
+      } catch (error) {
+        ui.notifications?.error((error as Error).message);
+      }
     },
     [page.id, page.parent],
   );
@@ -70,6 +79,7 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
         data-testid="main-area"
         css={{
           flex: 1,
+          position: "relative",
         }}
       >
         {page.type === "image" ? (

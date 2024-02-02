@@ -4,7 +4,7 @@ import prettier from "prettier/standalone";
 import React, { useCallback, useMemo, useRef } from "react";
 import { FaIndent } from "react-icons/fa6";
 
-import { throttle } from "../../functions/utilities";
+import { systemLogger, throttle } from "../../functions/utilities";
 import { useToolbarContent } from "./MagicToolbar";
 import { ToolbarButton } from "./ToolbarButton";
 
@@ -25,12 +25,16 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
 
   const doSave = useCallback(async () => {
     try {
-      await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
-        {
-          _id: page.id,
-          text: { content: editorRef.current?.getValue() ?? "" },
-        },
-      ]);
+      const result = await page.parent.updateEmbeddedDocuments(
+        "JournalEntryPage",
+        [
+          {
+            _id: page.id,
+            text: { content: editorRef.current?.getValue() ?? "" },
+          },
+        ],
+      );
+      systemLogger.log(result);
     } catch (error) {
       ui.notifications?.error((error as Error).message);
     }
