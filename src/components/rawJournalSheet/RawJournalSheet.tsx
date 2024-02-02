@@ -53,19 +53,20 @@ export const RawJournalSheet = ({
   );
 
   return (
-    <CSSReset
-      theme={theme}
-      mode="large"
-      css={{
-        ...absoluteCover,
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <MagicToolbarProvider>
+    <MagicToolbarProvider>
+      <CSSReset
+        theme={theme}
+        mode="large"
+        css={{
+          ...absoluteCover,
+          display: "flex",
+          gap: "0.5em",
+          flexDirection: "column",
+        }}
+      >
         <div>title</div>
         <MagicToolbar>{toolBarContent}</MagicToolbar>
-        <div data-testid="flexrow" css={{ ...flexRow, flex: 1 }}>
+        <div css={{ ...flexRow, gap: "0.5em", flex: 1 }}>
           <div
             data-testid="page-navigation"
             css={{
@@ -94,8 +95,8 @@ export const RawJournalSheet = ({
             )}
           </div>
         </div>
-      </MagicToolbarProvider>
-    </CSSReset>
+      </CSSReset>
+    </MagicToolbarProvider>
   );
 };
 

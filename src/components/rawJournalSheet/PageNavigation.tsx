@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { FaBarsStaggered, FaImage } from "react-icons/fa6";
 
 import { useTheme } from "../../hooks/useTheme";
+import { absoluteCover } from "../absoluteCover";
 import { useToolbarContent } from "./MagicToolbar";
 // import { useTheme } from "../../hooks/useTheme";
 import { ToolbarButton } from "./ToolbarButton";
@@ -99,71 +100,58 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
   return (
     <div
       css={{
-        position: "absolute",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        display: "flex",
-        flexDirection: "column",
-        padding: "0.5em",
-        // backgroundColor: theme.colors.backgroundPrimary,
+        ...absoluteCover,
+        padding: "1px",
+        overflowY: "auto",
+        flex: 1,
+        backgroundColor: theme.colors.backgroundPrimary,
+        border: `1px solid ${theme.colors.accent}`,
+        // borderBottom: `1px solid ${theme.colors.accent}`,
       }}
     >
-      <div
-        css={{
-          padding: "1px",
-          overflowY: "auto",
-          flex: 1,
-          backgroundColor: theme.colors.backgroundPrimary,
-          border: `1px solid ${theme.colors.accent}`,
-          // borderBottom: `1px solid ${theme.colors.accent}`,
-        }}
-      >
-        {pages.map((page) => {
-          return (
-            <a
-              data-pageid={page.id}
-              key={page.id}
-              onClick={handlePageClick}
+      {pages.map((page) => {
+        return (
+          <a
+            data-pageid={page.id}
+            key={page.id}
+            onClick={handlePageClick}
+            css={{
+              textAlign: "left",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "block",
+              padding: "0.5em",
+              cursor: "pointer",
+              textDecoration: "none",
+              color: "inherit",
+              backgroundColor:
+                page.id === activePageId
+                  ? theme.colors.backgroundButton
+                  : "transparent",
+              border: "1px solid transparent",
+              "&:hover": {
+                // backgroundColor: theme.colors.backgroundButton,
+                border: `1px solid ${theme.colors.accent}`,
+              },
+              // border: `1px solid ${
+              //   page.id === activePageId ? theme.colors.accent : "transparent"
+              // }`,
+            }}
+          >
+            <span
               css={{
-                textAlign: "left",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "block",
-                padding: "0.5em",
-                cursor: "pointer",
-                textDecoration: "none",
-                color: "inherit",
-                backgroundColor:
-                  page.id === activePageId
-                    ? theme.colors.backgroundButton
-                    : "transparent",
-                border: "1px solid transparent",
-                "&:hover": {
-                  // backgroundColor: theme.colors.backgroundButton,
-                  border: `1px solid ${theme.colors.accent}`,
-                },
-                // border: `1px solid ${
-                //   page.id === activePageId ? theme.colors.accent : "transparent"
-                // }`,
+                display: "inline-block",
+                width: "2em",
+                verticalAlign: "baseline",
               }}
             >
-              <span
-                css={{
-                  display: "inline-block",
-                  width: "2em",
-                  verticalAlign: "baseline",
-                }}
-              >
-                {page.type === "text" ? <FaBarsStaggered /> : <FaImage />}
-              </span>
-              {page.name}
-            </a>
-          );
-        })}
-      </div>
+              {page.type === "text" ? <FaBarsStaggered /> : <FaImage />}
+            </span>
+            {page.name}
+          </a>
+        );
+      })}
     </div>
   );
 };

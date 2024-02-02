@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { ThemeContext } from "../../themes/ThemeContext";
 
 type ToolbarButtonProps = {
   text?: React.ReactNode;
@@ -11,6 +13,8 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
   text,
   icon: Icon,
 }) => {
+  const theme = useContext(ThemeContext);
+
   // Use props in your component
   const handleClick = React.useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -25,10 +29,13 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
       css={{
         padding: "0.3em",
         lineHeight: "1em",
-        display: "block",
-        width: "4em",
-        // flex: 1,
-        // maxWidth: "33%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        flexBasis: "max-content",
+        minWidth: "4em",
+        color: theme.colors.text,
+        // aspectRatio: "1",
       }}
       onClick={handleClick}
     >
@@ -38,7 +45,7 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
         </div>
       )}
 
-      <div>{text}</div>
+      <div css={{}}>{text}</div>
     </button>
   );
 };
