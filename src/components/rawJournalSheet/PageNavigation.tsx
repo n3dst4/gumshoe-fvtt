@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { FaBarsStaggered, FaImage } from "react-icons/fa6";
 
 import { useTheme } from "../../hooks/useTheme";
-import { MagicToolbarContent } from "./MagicToolbar";
-import { Toolbar } from "./Toolbar";
+import { useToolbarContent } from "./MagicToolbar";
 // import { useTheme } from "../../hooks/useTheme";
 import { ToolbarButton } from "./ToolbarButton";
 
@@ -76,6 +75,27 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
     addPage(journal, "image", "New image");
   }, [journal]);
 
+  useToolbarContent(
+    useMemo(
+      () => (
+        <>
+          <ToolbarButton
+            onClick={handleAddNewTextPage}
+            icon={FaBarsStaggered}
+            text="Add Page"
+          />
+          <ToolbarButton
+            onClick={handleAddNewImagePage}
+            icon={FaImage}
+            text="Add Image"
+          />
+        </>
+      ),
+      [handleAddNewImagePage, handleAddNewTextPage],
+    ),
+    10,
+  );
+
   return (
     <div
       css={{
@@ -90,18 +110,6 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
         // backgroundColor: theme.colors.backgroundPrimary,
       }}
     >
-      <MagicToolbarContent>
-        <ToolbarButton
-          onClick={handleAddNewTextPage}
-          icon={FaBarsStaggered}
-          text="Text"
-        />
-        <ToolbarButton
-          onClick={handleAddNewImagePage}
-          icon={FaImage}
-          text="Image"
-        />
-      </MagicToolbarContent>
       <div
         css={{
           padding: "1px",

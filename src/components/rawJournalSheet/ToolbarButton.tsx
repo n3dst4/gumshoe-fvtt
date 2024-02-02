@@ -27,7 +27,7 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
         lineHeight: "1em",
         display: "block",
         width: "4em",
-        flex: 1,
+        // flex: 1,
         // maxWidth: "33%",
       }}
       onClick={handleClick}

@@ -5,7 +5,7 @@ import React, { useCallback, useMemo, useRef } from "react";
 import { FaIndent } from "react-icons/fa6";
 
 import { throttle } from "../../functions/utilities";
-import { Toolbar } from "./Toolbar";
+import { useToolbarContent } from "./MagicToolbar";
 import { ToolbarButton } from "./ToolbarButton";
 
 interface HTMLEditorProps {
@@ -90,6 +90,16 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
     await doFormat();
   }, [doFormat]);
 
+  useToolbarContent(
+    useMemo(
+      () => (
+        <ToolbarButton onClick={handleFormat} text="Format" icon={FaIndent} />
+      ),
+      [handleFormat],
+    ),
+    10,
+  );
+
   return (
     <div
       css={{
@@ -101,16 +111,6 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
         gap: "0.5em",
       }}
     >
-      <div
-        data-testid="toolbar"
-        css={{
-          flexBasis: "4em",
-        }}
-      >
-        <Toolbar>
-          <ToolbarButton onClick={handleFormat} text="Format" icon={FaIndent} />
-        </Toolbar>
-      </div>
       <div css={{ flex: 1, overflow: "hidden" }}>
         <MonacoEditor
           key={page.id}

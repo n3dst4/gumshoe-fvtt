@@ -1,15 +1,11 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { FaImage } from "react-icons/fa6";
 
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings/settings";
 import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
-import {
-  MagicToolbar,
-  MagicToolbarContent,
-  MagicToolbarProvider,
-} from "./MagicToolbar";
+import { MagicToolbar, MagicToolbarProvider } from "./MagicToolbar";
 import { PageEditor } from "./PageEditor";
 import { PageNavigation } from "./PageNavigation";
 import { flexRow } from "./styles";
@@ -37,6 +33,25 @@ export const RawJournalSheet = ({
     [setActivePageId],
   );
 
+  const toolBarContent = useMemo(
+    () => (
+      <ToolbarButton
+        onClick={() => {
+          console.log(journal);
+          const SotsSheet: JournalSheet = Journal.registeredSheets.find(
+            // @ts-expect-error Journal types are effed
+            (sheet) => sheet.name === "SwordsOfTheSerpentineJournalSheet",
+          ) as unknown as JournalSheet;
+          // @ts-expect-error Journal types are effed
+          new SotsSheet(journal).render(true);
+        }}
+        icon={FaImage}
+        text="View"
+      />
+    ),
+    [journal],
+  );
+
   return (
     <CSSReset
       theme={theme}
@@ -49,22 +64,7 @@ export const RawJournalSheet = ({
     >
       <MagicToolbarProvider>
         <div>title</div>
-        <MagicToolbar />
-        <MagicToolbarContent>
-          <ToolbarButton
-            onClick={() => {
-              console.log(journal);
-              const SotsSheet: JournalSheet = Journal.registeredSheets.find(
-                // @ts-expect-error Journal types are effed
-                (sheet) => sheet.name === "SwordsOfTheSerpentineJournalSheet",
-              ) as unknown as JournalSheet;
-              // @ts-expect-error Journal types are effed
-              new SotsSheet(journal).render(true);
-            }}
-            icon={FaImage}
-            text="View"
-          />
-        </MagicToolbarContent>
+        <MagicToolbar>{toolBarContent}</MagicToolbar>
         <div data-testid="flexrow" css={{ ...flexRow, flex: 1 }}>
           <div
             data-testid="page-navigation"
