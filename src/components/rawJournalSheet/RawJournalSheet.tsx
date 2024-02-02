@@ -5,6 +5,7 @@ import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings/settings";
 import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { MagicToolbar, MagicToolbarProvider } from "./MagicToolbar";
 import { PageEditor } from "./PageEditor";
 import { PageNavigation } from "./PageNavigation";
@@ -52,6 +53,13 @@ export const RawJournalSheet = ({
     [journal],
   );
 
+  const handleTitleChange = React.useCallback(
+    (name: string) => {
+      journal.update({ name });
+    },
+    [journal],
+  );
+
   return (
     <MagicToolbarProvider>
       <CSSReset
@@ -64,7 +72,12 @@ export const RawJournalSheet = ({
           flexDirection: "column",
         }}
       >
-        <div>title</div>
+        <div>
+          <AsyncTextInput
+            value={journal.name ?? ""}
+            onChange={handleTitleChange}
+          />
+        </div>
         <MagicToolbar>{toolBarContent}</MagicToolbar>
         <div css={{ ...flexRow, gap: "0.5em", flex: 1 }}>
           <div
