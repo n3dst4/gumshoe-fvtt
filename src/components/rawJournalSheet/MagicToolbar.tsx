@@ -1,4 +1,5 @@
 import React, {
+  Fragment,
   ReactNode,
   useCallback,
   useContext,
@@ -112,7 +113,7 @@ interface MagicToolbarProps extends React.PropsWithChildren {}
 export const MagicToolbar: React.FC<MagicToolbarProps> = ({ children }) => {
   const content = Object.values(useContext(MagicToolbarContentContext))
     .sort((a, b) => a.sort - b.sort)
-    .map((c) => c.content);
+    .map((c, i) => <Fragment key={i}>{c.content} </Fragment>);
   return (
     <Toolbar>
       {children}
