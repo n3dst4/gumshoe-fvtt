@@ -50,12 +50,11 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
   onNavigate,
   activePageId,
 }) => {
-  const theme = useTheme(null);
+  const theme = useTheme();
 
   const pages = Array.from(journal.pages.values()).sort((a, b) => {
     return a.sort - b.sort;
   });
-  // const theme = useTheme();
 
   const handlePageClick = React.useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
