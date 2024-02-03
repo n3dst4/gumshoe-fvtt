@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { FaImage } from "react-icons/fa6";
 
 import { runtimeConfig } from "../../runtime";
@@ -13,16 +13,31 @@ import { PageNavigation } from "./PageNavigation";
 import { flexRow } from "./styles";
 import { ToolbarButton } from "./ToolbarButton";
 
+const KEEPALIVE_INTERVAL_MS = 30_000;
+
 type RawJournalSheetProps = {
-  journal: JournalEntry;
+  journalEntry: JournalEntry;
   foundryApplication: JournalSheet;
 };
 
 export const RawJournalSheet = ({
-  journal,
+  journalEntry: journal,
   foundryApplication,
 }: RawJournalSheetProps) => {
   // assertNPCActor(actor);
+
+  // keepalive - without this, if this journal entry is inside a compendium,
+  // foundry will kill the in-memory references to it so normal UI updates stop
+  // coming through. An empty update doesn't send any network traffic but it's
+  // enough to keep the journal entry alive. The timeout in foundry is 5 minutes
+  // so a 30 second keepalive is plenty.
+  useEffect(() => {
+    const interval = setInterval(() => {
+      journal.update({});
+    }, KEEPALIVE_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, [journal]);
+
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
     runtimeConfig.themes.tealTheme;
