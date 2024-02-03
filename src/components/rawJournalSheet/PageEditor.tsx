@@ -33,7 +33,13 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
   useToolbarContent(
     useMemo(
       () => (
-        <ToolbarButton onClick={deletePage} text="Delete Page" icon={FaTrash} />
+        <>
+          <ToolbarButton
+            onClick={deletePage}
+            text="Delete Page"
+            icon={FaTrash}
+          />
+        </>
       ),
       [deletePage],
     ),
