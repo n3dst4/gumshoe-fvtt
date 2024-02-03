@@ -35,7 +35,10 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
         flexBasis: "max-content",
         minWidth: "4em",
         color: theme.colors.text,
-        // aspectRatio: "1",
+        ":hover": {
+          transform: "scale(1.1)",
+        },
+        transition: "transform 0.1s ease",
       }}
       onClick={handleClick}
     >
