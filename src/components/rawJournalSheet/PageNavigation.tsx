@@ -20,7 +20,7 @@ function addPage(
 ) {
   const sort =
     // @ts-expect-error the journal types are so fucked
-    Math.max(...journalEntry.pages.contents.map((p) => p.sort)) +
+    Math.max(0, ...journalEntry.pages.contents.map((p) => p.sort)) +
     CONST.SORT_INTEGER_DENSITY;
   const nameRegex = new RegExp(`^${name}\\s+(\\d+)$`, "i");
   // @ts-expect-error urrrrrgh
