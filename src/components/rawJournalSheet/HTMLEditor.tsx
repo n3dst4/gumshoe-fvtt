@@ -2,7 +2,7 @@ import MonacoEditor, { Monaco, OnMount } from "@monaco-editor/react";
 import htmlParser from "prettier/plugins/html";
 import prettier from "prettier/standalone";
 import React, { useCallback, useMemo, useRef } from "react";
-import { FaIndent } from "react-icons/fa6";
+import { AiOutlineFormatPainter } from "react-icons/ai";
 
 import { throttle } from "../../functions/utilities";
 import { useToolbarContent } from "./MagicToolbar";
@@ -89,7 +89,11 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
   useToolbarContent(
     useMemo(
       () => (
-        <ToolbarButton onClick={handleFormat} text="Format" icon={FaIndent} />
+        <ToolbarButton
+          onClick={handleFormat}
+          text="Format"
+          icon={AiOutlineFormatPainter}
+        />
       ),
       [handleFormat],
     ),

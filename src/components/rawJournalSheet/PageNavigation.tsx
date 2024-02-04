@@ -1,5 +1,7 @@
 import React, { useMemo } from "react";
+import { BsImage } from "react-icons/bs";
 import { FaBarsStaggered, FaImage } from "react-icons/fa6";
+import { VscOutput } from "react-icons/vsc";
 
 import { useTheme } from "../../hooks/useTheme";
 import { absoluteCover } from "../absoluteCover";
@@ -81,12 +83,12 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
         <>
           <ToolbarButton
             onClick={handleAddNewTextPage}
-            icon={FaBarsStaggered}
+            icon={VscOutput}
             text="Add Text"
           />
           <ToolbarButton
             onClick={handleAddNewImagePage}
-            icon={FaImage}
+            icon={BsImage}
             text="Add Image"
           />
         </>
