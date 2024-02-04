@@ -5,9 +5,9 @@ import { VscOutput } from "react-icons/vsc";
 
 import { useTheme } from "../../hooks/useTheme";
 import { absoluteCover } from "../absoluteCover";
-import { useToolbarContent } from "./MagicToolbar";
+import { useToolbarContent } from "./magicToolbar";
 // import { useTheme } from "../../hooks/useTheme";
-import { ToolbarButton } from "./ToolbarButton";
+import { ToolbarButton } from "./magicToolbar/ToolbarButton";
 
 interface PageNavigationProps {
   journal: JournalEntry;

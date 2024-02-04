@@ -8,12 +8,12 @@ export const Toolbar: React.FC<ToolbarProps> = ({ children, header }) => {
   return (
     <div
       css={{
-        display: "flex",
-        flexDirection: "column",
+        display: "grid",
+        gridTemplateRows: "auto 1fr",
         // padding: "0.5em",
       }}
     >
-      {header}
+      {header}asdas
       <div
         css={{
           display: "flex",

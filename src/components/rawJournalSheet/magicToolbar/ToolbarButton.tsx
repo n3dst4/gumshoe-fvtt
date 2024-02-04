@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { ThemeContext } from "../../themes/ThemeContext";
+import { ThemeContext } from "../../../themes/ThemeContext";
 
 type ToolbarButtonProps = {
   text?: React.ReactNode;

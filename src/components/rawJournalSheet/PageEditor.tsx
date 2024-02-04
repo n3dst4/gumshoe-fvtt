@@ -7,8 +7,7 @@ import { systemLogger } from "../../functions/utilities";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { HTMLEditor } from "./HTMLEditor";
 import { ImageEditor } from "./ImageEditor";
-import { useToolbarContent } from "./MagicToolbar";
-import { ToolbarButton } from "./ToolbarButton";
+import { ToolbarButton, useToolbarContent } from "./magicToolbar";
 import { UnknownPageTypeEditor } from "./UnknownPageTypeEditor";
 
 interface PageEditorProps {

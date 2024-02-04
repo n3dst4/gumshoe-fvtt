@@ -5,12 +5,13 @@ import { useTheme } from "../../hooks/useTheme";
 import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
-import { MagicToolbar, MagicToolbarProvider } from "./MagicToolbar";
+import { MagicToolbar } from "./magicToolbar/MagicToolbar";
+import { MagicToolbarProvider } from "./magicToolbar/MagicToolbarProvider";
+import { ToolbarButton } from "./magicToolbar/ToolbarButton";
 import { NoPageSelected } from "./NoPageSelected";
 import { PageEditor } from "./PageEditor";
 import { PageNavigation } from "./PageNavigation";
 import { flexRow } from "./styles";
-import { ToolbarButton } from "./ToolbarButton";
 
 const KEEPALIVE_INTERVAL_MS = 30_000;
 

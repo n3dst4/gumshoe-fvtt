@@ -5,8 +5,8 @@ import React, { useCallback, useMemo, useRef } from "react";
 import { AiOutlineFormatPainter } from "react-icons/ai";
 
 import { throttle } from "../../functions/utilities";
-import { useToolbarContent } from "./MagicToolbar";
-import { ToolbarButton } from "./ToolbarButton";
+import { useToolbarContent } from "./magicToolbar";
+import { ToolbarButton } from "./magicToolbar/ToolbarButton";
 
 interface HTMLEditorProps {
   page: any;
