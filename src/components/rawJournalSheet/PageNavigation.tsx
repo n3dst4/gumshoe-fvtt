@@ -15,7 +15,7 @@ interface PageNavigationProps {
   activePageId: string | null;
 }
 
-function addPage(
+async function addPage(
   journalEntry: JournalEntry,
   type: "text" | "image",
   name: string,
@@ -34,7 +34,7 @@ function addPage(
 
   const newPageNumber = pageNumbers.length ? Math.max(...pageNumbers) + 1 : 1;
 
-  journalEntry.createEmbeddedDocuments(
+  return await journalEntry.createEmbeddedDocuments(
     "JournalEntryPage",
     [
       {
@@ -70,12 +70,16 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
   );
 
   const handleAddNewTextPage = React.useCallback(async () => {
-    addPage(journal, "text", "New page");
-  }, [journal]);
+    const newPage = await addPage(journal, "text", "New page");
+    // @ts-expect-error ???
+    onNavigate(newPage[0]._id);
+  }, [journal, onNavigate]);
 
-  const handleAddNewImagePage = React.useCallback(() => {
-    addPage(journal, "image", "New image");
-  }, [journal]);
+  const handleAddNewImagePage = React.useCallback(async () => {
+    const newPage = await addPage(journal, "image", "New image");
+    // @ts-expect-error ???
+    onNavigate(newPage[0]._id);
+  }, [journal, onNavigate]);
 
   useToolbarContent(
     "Create page",
