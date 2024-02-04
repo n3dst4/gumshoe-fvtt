@@ -87,7 +87,14 @@ export const RawJournalSheet = ({
         }}
       >
         <MagicToolbar
-          categories={["Create page", "Move Page", "Delete Page", "HTML"]}
+          categories={[
+            "Core",
+            "Create page",
+            "Move Page",
+            "Delete Page",
+            "HTML",
+          ]}
+          childrenCategory="Core"
         >
           {toolBarContent}
         </MagicToolbar>

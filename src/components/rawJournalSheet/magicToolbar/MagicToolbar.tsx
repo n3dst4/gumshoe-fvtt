@@ -4,6 +4,7 @@ import { MagicToolbarContentContext } from "./contexts";
 
 interface MagicToolbarProps extends React.PropsWithChildren {
   categories: string[];
+  childrenCategory: string;
 }
 
 function normalizeCategory(category: string) {
@@ -18,12 +19,15 @@ function normalizeCategory(category: string) {
 export const MagicToolbar: React.FC<MagicToolbarProps> = ({
   children,
   categories,
+  childrenCategory,
 }) => {
   // get all the content that's been registered, and group them by category
   const registeredContent = Object.values(
     useContext(MagicToolbarContentContext),
   );
-  const groupedContent: Record<string, ReactNode[]> = {};
+  const groupedContent: Record<string, ReactNode[]> = {
+    [childrenCategory]: [children],
+  };
   for (const entry of registeredContent) {
     if (groupedContent[entry.category] === undefined) {
       groupedContent[entry.category] = [];
