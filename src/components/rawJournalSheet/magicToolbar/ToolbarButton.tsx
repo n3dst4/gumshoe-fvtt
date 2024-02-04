@@ -6,12 +6,14 @@ type ToolbarButtonProps = {
   text?: React.ReactNode;
   icon?: React.ComponentType;
   onClick: () => void | Promise<void>;
+  disabled?: boolean;
 };
 
 export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
   onClick,
   text,
   icon: Icon,
+  disabled = false,
 }) => {
   const theme = useContext(ThemeContext);
 
@@ -26,6 +28,7 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
 
   return (
     <button
+      disabled={disabled}
       css={{
         padding: "0.3em",
         lineHeight: "1em",
@@ -36,7 +39,7 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
         minWidth: "4em",
         color: theme.colors.text,
         ":hover": {
-          transform: "scale(1.1)",
+          transform: disabled ? undefined : "scale(1.1)",
         },
         transition: "transform 0.1s ease",
       }}

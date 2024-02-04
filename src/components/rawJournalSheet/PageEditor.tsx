@@ -10,6 +10,9 @@ import { ImageEditor } from "./ImageEditor";
 import { ToolbarButton, useToolbarContent } from "./magicToolbar";
 import { UnknownPageTypeEditor } from "./UnknownPageTypeEditor";
 
+const MAX_INDENT = 3;
+const MIN_INDENT = 1;
+
 interface PageEditorProps {
   page: any;
 }
@@ -78,7 +81,7 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
   }, [page]);
 
   const handleIndent = useCallback(async () => {
-    if (page.title.level >= 10) {
+    if (page.title.level >= MAX_INDENT) {
       return;
     }
     await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
@@ -93,7 +96,7 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
   }, [page.id, page.parent, page.title]);
 
   const handleOutdent = useCallback(async () => {
-    if (page.title.level <= 1) {
+    if (page.title.level <= MIN_INDENT) {
       return;
     }
     page.parent.updateEmbeddedDocuments("JournalEntryPage", [
@@ -107,6 +110,16 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
     ]);
   }, [page.id, page.parent, page.title]);
 
+  const pages = page.parent.pages.contents.sort((a: any, b: any) => {
+    return a.sort - b.sort;
+  });
+  const thisIndex = pages.findIndex((p: any) => p._id === page._id);
+
+  const canMoveUp = thisIndex > 0;
+  const canMoveDown = thisIndex < pages.length - 1;
+  const canIndent = page.title.level < MAX_INDENT;
+  const canOutdent = page.title.level > MIN_INDENT;
+
   useToolbarContent(
     "Move page",
     useMemo(
@@ -116,32 +129,49 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
             onClick={handleMoveUp}
             text="Up"
             icon={AiOutlineArrowUp}
+            disabled={!canMoveUp}
           />
           <ToolbarButton
             onClick={handleMoveDown}
             text="Down"
             icon={AiOutlineArrowDown}
+            disabled={!canMoveDown}
           />
-          <ToolbarButton onClick={handleIndent} text="Indent" icon={BsIndent} />
+          <ToolbarButton
+            onClick={handleIndent}
+            text="Indent"
+            icon={BsIndent}
+            disabled={!canIndent}
+          />
           <ToolbarButton
             onClick={handleOutdent}
             text="Outdent"
             icon={BsUnindent}
+            disabled={!canOutdent}
           />
         </>
       ),
-      [handleIndent, handleMoveDown, handleMoveUp, handleOutdent],
+      [
+        canIndent,
+        canMoveDown,
+        canMoveUp,
+        canOutdent,
+        handleIndent,
+        handleMoveDown,
+        handleMoveUp,
+        handleOutdent,
+      ],
     ),
   );
 
   useToolbarContent(
-    "Delete",
+    "Delete Page",
     useMemo(
       () => (
         <>
           <ToolbarButton
             onClick={handleDeletePage}
-            text="Delete Page"
+            text="Delete"
             icon={BsTrash}
           />
         </>
