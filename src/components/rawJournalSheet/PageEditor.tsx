@@ -4,7 +4,7 @@ import { FaTrash } from "react-icons/fa6";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { HTMLEditor } from "./HTMLEditor";
-import { ImagePage } from "./ImagePage";
+import { ImageEditor } from "./ImageEditor";
 import { useToolbarContent } from "./MagicToolbar";
 import { ToolbarButton } from "./ToolbarButton";
 
@@ -80,7 +80,7 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
         }}
       >
         {page.type === "image" ? (
-          <ImagePage page={page} />
+          <ImageEditor page={page} />
         ) : page.type === "text" ? (
           <HTMLEditor page={page} />
         ) : (

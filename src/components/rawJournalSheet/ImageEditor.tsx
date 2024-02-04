@@ -2,36 +2,23 @@ import React from "react";
 
 import { absoluteCover } from "../absoluteCover";
 
-interface ImagePageProps {
+interface ImageEditorProps {
   page: any;
 }
 
-export const ImagePage: React.FC<ImagePageProps> = ({ page }) => {
+export const ImageEditor: React.FC<ImageEditorProps> = ({ page }) => {
   return (
     <div
       data-testid="image-container"
       css={{
         ...absoluteCover,
         overflow: "hidden",
-        // display: "flex",
-        // justifyContent: "center",
-        // alignItems: "center",
         textAlign: "center",
       }}
     >
       <a
         css={{
-          // maxWidth: "100%",
-          // maxHeight: "100%",
           margin: "auto",
-          // display: "block",
-          // flexBasis: "max-content",
-          // height: "100%",
-          // width: "100%",
-          // cursor: "pointer",
-          // ":hover": {
-          //   opacity: 0.5,
-          // },
         }}
         onClick={() => {
           page.sheet.render(true);
@@ -57,4 +44,4 @@ export const ImagePage: React.FC<ImagePageProps> = ({ page }) => {
   );
 };
 
-ImagePage.displayName = "ImageEditor";
+ImageEditor.displayName = "ImageEditor";
