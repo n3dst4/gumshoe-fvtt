@@ -77,6 +77,36 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
     await page.parent.updateEmbeddedDocuments("JournalEntryPage", updates);
   }, [page]);
 
+  const handleIndent = useCallback(async () => {
+    if (page.title.level >= 10) {
+      return;
+    }
+    await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
+      {
+        _id: page.id,
+        title: {
+          ...page.title,
+          level: page.title.level + 1,
+        },
+      },
+    ]);
+  }, [page.id, page.parent, page.title]);
+
+  const handleOutdent = useCallback(async () => {
+    if (page.title.level <= 1) {
+      return;
+    }
+    page.parent.updateEmbeddedDocuments("JournalEntryPage", [
+      {
+        _id: page.id,
+        title: {
+          ...page.title,
+          level: page.title.level - 1,
+        },
+      },
+    ]);
+  }, [page.id, page.parent, page.title]);
+
   useToolbarContent(
     useMemo(
       () => (
@@ -96,19 +126,21 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
             text="Move down"
             icon={AiOutlineArrowDown}
           />
+          <ToolbarButton onClick={handleIndent} text="Indent" icon={BsIndent} />
           <ToolbarButton
-            onClick={handleDeletePage}
-            text="Indent"
-            icon={BsIndent}
-          />
-          <ToolbarButton
-            onClick={handleDeletePage}
+            onClick={handleOutdent}
             text="Outdent"
             icon={BsUnindent}
           />
         </>
       ),
-      [handleDeletePage, handleMoveUp],
+      [
+        handleDeletePage,
+        handleIndent,
+        handleMoveDown,
+        handleMoveUp,
+        handleOutdent,
+      ],
     ),
     10,
   );
