@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { MdOutlinePreview } from "react-icons/md";
 
-import { runtimeConfig } from "../../runtime";
-import { settings } from "../../settings/settings";
+import { useTheme } from "../../hooks/useTheme";
 import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -38,9 +37,7 @@ export const RawJournalSheet = ({
     return () => clearInterval(interval);
   }, [journal]);
 
-  const theme =
-    runtimeConfig.themes[settings.defaultThemeName.get()] ||
-    runtimeConfig.themes.tealTheme;
+  const theme = useTheme();
 
   const [activePageId, setActivePageId] = React.useState<string | null>(null);
   const handlePageClick = React.useCallback(
