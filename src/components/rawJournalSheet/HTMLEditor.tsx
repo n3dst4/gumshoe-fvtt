@@ -102,40 +102,36 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
 
   return (
     <div
+      data-testid="html-editor"
       css={{
         position: "relative",
         width: "100%",
         height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        gap: "0.5em",
       }}
     >
-      <div css={{ flex: 1, overflow: "hidden" }}>
-        <MonacoEditor
-          key={page.id}
-          height="100%"
-          width="100%"
-          defaultLanguage="html"
-          defaultValue={page.text.content}
-          theme="vs-dark"
-          beforeMount={handleEditorWillMount}
-          onMount={handleEditorDidMount}
-          onChange={handleChange}
-          options={{
-            language: "html",
-            automaticLayout: true,
-            scrollbar: {
-              horizontal: "visible",
-            },
-            wordWrap: "off",
-            rulers: [80],
-            unicodeHighlight: {
-              ambiguousCharacters: false,
-            },
-          }}
-        />
-      </div>
+      <MonacoEditor
+        key={page.id}
+        height="100%"
+        width="100%"
+        defaultLanguage="html"
+        defaultValue={page.text.content}
+        theme="vs-dark"
+        beforeMount={handleEditorWillMount}
+        onMount={handleEditorDidMount}
+        onChange={handleChange}
+        options={{
+          language: "html",
+          automaticLayout: true,
+          scrollbar: {
+            horizontal: "visible",
+          },
+          wordWrap: "off",
+          rulers: [80],
+          unicodeHighlight: {
+            ambiguousCharacters: false,
+          },
+        }}
+      />
     </div>
   );
 };
