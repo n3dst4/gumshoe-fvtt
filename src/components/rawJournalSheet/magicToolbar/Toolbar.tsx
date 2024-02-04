@@ -1,28 +1,20 @@
 import React from "react";
 
-type ToolbarProps = React.PropsWithChildren<{
-  header?: React.ReactNode;
-}>;
+type ToolbarProps = React.PropsWithChildren;
 
-export const Toolbar: React.FC<ToolbarProps> = ({ children, header }) => {
+export const Toolbar: React.FC<ToolbarProps> = ({ children }) => {
   return (
     <div
       css={{
         display: "grid",
         gridTemplateRows: "auto 1fr",
+        justifyContent: "start",
+        columnGap: "1em",
+        rowGap: "0.5em",
         // padding: "0.5em",
       }}
     >
-      {header}asdas
-      <div
-        css={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "0.5em",
-        }}
-      >
-        {children}
-      </div>
+      {children}
     </div>
   );
 };

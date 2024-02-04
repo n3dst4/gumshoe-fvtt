@@ -7,16 +7,14 @@ import { MagicToolbarContentEntry } from "./types";
  * Register content with the magic toolbar. HIGHLY recommended to use `useMemo`
  * inside the call to this hook to stabilise the content.
  */
-export function useToolbarContent(content: ReactNode, sort: number = 0) {
-  // const content = useMemo(contentFn, []);
-
+export function useToolbarContent(category: string, content: ReactNode) {
   const id = useId();
 
   const { register, unregister } = useContext(MagicToolbarRegisterContext);
 
   const contentObject = useMemo<MagicToolbarContentEntry>(
-    () => ({ sort, content }),
-    [content, sort],
+    () => ({ category, content }),
+    [category, content],
   );
 
   useEffect(() => {

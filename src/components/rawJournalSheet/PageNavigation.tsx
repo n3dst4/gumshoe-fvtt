@@ -78,24 +78,24 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
   }, [journal]);
 
   useToolbarContent(
+    "Create page",
     useMemo(
       () => (
         <>
           <ToolbarButton
             onClick={handleAddNewTextPage}
             icon={VscOutput}
-            text="Add Text"
+            text="Text"
           />
           <ToolbarButton
             onClick={handleAddNewImagePage}
             icon={BsImage}
-            text="Add Image"
+            text="Image"
           />
         </>
       ),
       [handleAddNewImagePage, handleAddNewTextPage],
     ),
-    10,
   );
 
   return (

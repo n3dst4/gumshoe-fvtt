@@ -87,6 +87,7 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
   }, [doFormat]);
 
   useToolbarContent(
+    "HTML",
     useMemo(
       () => (
         <ToolbarButton
@@ -97,7 +98,6 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
       ),
       [handleFormat],
     ),
-    10,
   );
 
   return (

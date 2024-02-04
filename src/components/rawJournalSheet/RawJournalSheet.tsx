@@ -86,7 +86,7 @@ export const RawJournalSheet = ({
           flexDirection: "column",
         }}
       >
-        <MagicToolbar>{toolBarContent}</MagicToolbar>
+        <MagicToolbar categories={[]}>{toolBarContent}</MagicToolbar>
         <div>
           <AsyncTextInput
             value={journal.name ?? ""}

@@ -108,22 +108,18 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
   }, [page.id, page.parent, page.title]);
 
   useToolbarContent(
+    "Move page",
     useMemo(
       () => (
         <>
           <ToolbarButton
-            onClick={handleDeletePage}
-            text="Delete Page"
-            icon={BsTrash}
-          />
-          <ToolbarButton
             onClick={handleMoveUp}
-            text="Move  up"
+            text="Up"
             icon={AiOutlineArrowUp}
           />
           <ToolbarButton
             onClick={handleMoveDown}
-            text="Move down"
+            text="Down"
             icon={AiOutlineArrowDown}
           />
           <ToolbarButton onClick={handleIndent} text="Indent" icon={BsIndent} />
@@ -134,15 +130,24 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
           />
         </>
       ),
-      [
-        handleDeletePage,
-        handleIndent,
-        handleMoveDown,
-        handleMoveUp,
-        handleOutdent,
-      ],
+      [handleIndent, handleMoveDown, handleMoveUp, handleOutdent],
     ),
-    10,
+  );
+
+  useToolbarContent(
+    "Delete",
+    useMemo(
+      () => (
+        <>
+          <ToolbarButton
+            onClick={handleDeletePage}
+            text="Delete Page"
+            icon={BsTrash}
+          />
+        </>
+      ),
+      [handleDeletePage],
+    ),
   );
 
   const handleRename = useCallback(
