@@ -1,10 +1,13 @@
-import React, { Fragment, ReactNode, useContext } from "react";
+import React, { Fragment, ReactNode, useContext, useMemo } from "react";
 
 import { MagicToolbarContentContext } from "./contexts";
-import { Toolbar } from "./Toolbar";
 
 interface MagicToolbarProps extends React.PropsWithChildren {
   categories: string[];
+}
+
+function normalizeCategory(category: string) {
+  return category.toLowerCase().replace(/\W+/g, "-");
 }
 
 /**
@@ -28,10 +31,17 @@ export const MagicToolbar: React.FC<MagicToolbarProps> = ({
     groupedContent[entry.category].push(entry.content);
   }
 
+  const normalizedCategories = useMemo(() => {
+    return categories.map(normalizeCategory);
+  }, [categories]);
+
   // produce a list of all the actual categories, sorted to match the order of
   // the categories prop
   const sortedCategories = Object.keys(groupedContent).sort((a, b) => {
-    return categories.indexOf(a) - categories.indexOf(b);
+    return (
+      normalizedCategories.indexOf(normalizeCategory(a)) -
+      normalizedCategories.indexOf(normalizeCategory(b))
+    );
   });
 
   const content = sortedCategories.map((category, index) => {
