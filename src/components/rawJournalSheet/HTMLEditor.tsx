@@ -24,20 +24,16 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
   }, []);
 
   const doSave = useCallback(async () => {
-    try {
-      const result = await page.parent.updateEmbeddedDocuments(
-        "JournalEntryPage",
-        [
-          {
-            _id: page.id,
-            text: { content: editorRef.current?.getValue() ?? "" },
-          },
-        ],
-      );
-      systemLogger.log(result);
-    } catch (error) {
-      ui.notifications?.error((error as Error).message);
-    }
+    const result = await page.parent.updateEmbeddedDocuments(
+      "JournalEntryPage",
+      [
+        {
+          _id: page.id,
+          text: { content: editorRef.current?.getValue() ?? "" },
+        },
+      ],
+    );
+    systemLogger.log(result);
   }, [page.parent, page.id, editorRef]);
 
   const handleChange = useMemo(() => throttle(doSave, 500), [doSave]);

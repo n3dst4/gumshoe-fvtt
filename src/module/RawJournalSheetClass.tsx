@@ -28,7 +28,10 @@ export class RawJournalSheetClassBase extends JournalSheet {
 const render = (sheet: RawJournalSheetClassBase) => {
   return (
     <Suspense>
-      <RawJournalSheet journal={sheet.document} foundryApplication={sheet} />
+      <RawJournalSheet
+        journalEntry={sheet.document}
+        foundryApplication={sheet}
+      />
     </Suspense>
   );
 };
