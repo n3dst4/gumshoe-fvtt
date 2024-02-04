@@ -57,10 +57,18 @@ export const MagicToolbar: React.FC<MagicToolbarProps> = ({
     );
   });
   return (
-    <Toolbar>
+    <div
+      css={{
+        display: "grid",
+        gridTemplateRows: "auto 1fr",
+        justifyContent: "start",
+        columnGap: "1em",
+        rowGap: "0.5em",
+      }}
+    >
       {/* {children} */}
       {content}
-    </Toolbar>
+    </div>
   );
 };
 
