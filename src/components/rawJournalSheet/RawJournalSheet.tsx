@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import { FaImage } from "react-icons/fa6";
+import { MdOutlinePreview } from "react-icons/md";
 
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings/settings";
@@ -62,8 +62,8 @@ export const RawJournalSheet = ({
           // @ts-expect-error Journal types are effed
           new SotsSheet(journal).render(true);
         }}
-        icon={FaImage}
-        text="View"
+        icon={MdOutlinePreview}
+        text="Preview"
       />
     ),
     [journal],

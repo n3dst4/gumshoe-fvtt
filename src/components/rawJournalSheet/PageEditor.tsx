@@ -9,6 +9,7 @@ import { HTMLEditor } from "./HTMLEditor";
 import { ImageEditor } from "./ImageEditor";
 import { useToolbarContent } from "./MagicToolbar";
 import { ToolbarButton } from "./ToolbarButton";
+import { UnknownPageTypeEditor } from "./UnknownPageTypeEditor";
 
 interface PageEditorProps {
   page: any;
@@ -184,7 +185,7 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
         ) : page.type === "text" ? (
           <HTMLEditor page={page} />
         ) : (
-          <div>Unknown Page Type</div>
+          <UnknownPageTypeEditor page={page} />
         )}
       </div>
     </div>
