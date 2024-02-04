@@ -131,13 +131,10 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
                   ? theme.colors.backgroundButton
                   : "transparent",
               border: "1px solid transparent",
+              marginLeft: `${(page.title.level - 1) * 1.5}em`,
               "&:hover": {
-                // backgroundColor: theme.colors.backgroundButton,
                 border: `1px solid ${theme.colors.accent}`,
               },
-              // border: `1px solid ${
-              //   page.id === activePageId ? theme.colors.accent : "transparent"
-              // }`,
             }}
           >
             <span
