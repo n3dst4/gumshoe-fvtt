@@ -1,9 +1,9 @@
 // import ReactDOM from "react-dom";
 import React from "react";
 
+import { ReactApplicationMixin } from "../../subtrees/shared-fvtt-bits/src/ReactApplicationMixin";
 import { Suspense } from "../components/Suspense";
 import { reactTemplatePath, systemId } from "../constants";
-import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 // React stuff -----------------------------------------------------------------
 

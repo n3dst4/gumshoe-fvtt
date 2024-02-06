@@ -1,8 +1,8 @@
 import React from "react";
 
+import { ReactApplicationMixin } from "../../subtrees/shared-fvtt-bits/src/ReactApplicationMixin";
 import { Suspense } from "../components/Suspense";
 import { reactTemplatePath, systemId } from "../constants";
-import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 const NPCSheet = React.lazy(() =>
   import("../components/characters/NPCSheet").then(({ NPCSheet }) => ({

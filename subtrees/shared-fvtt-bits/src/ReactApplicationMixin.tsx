@@ -1,13 +1,13 @@
 import React from "react";
 import { createRoot, Root } from "react-dom/client";
 
-import { FoundryAppContext } from "../components/FoundryAppContext";
+import { FoundryAppContext } from "../../../src/components/FoundryAppContext";
 
 // type shenanigans to allow us to work backwards from a Class type to the type
 // of the objects which it constructs
 
 // a "Constructor of T" is the type of the class T, when used as a value
-export type Constructor<T> = new (...args: any[]) => T;
+type Constructor<T> = new (...args: any[]) => T;
 
 // so Constructor<Application> is any class which is an Application
 type ApplicationConstuctor = Constructor<Application>;

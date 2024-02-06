@@ -1,8 +1,8 @@
 import React from "react";
 
+import { ReactApplicationMixin } from "../../subtrees/shared-fvtt-bits/src/ReactApplicationMixin";
 import { PCSheet } from "../components/characters/PCSheet";
 import { reactTemplatePath, systemId } from "../constants";
-import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
