@@ -12,13 +12,13 @@ So, I'm writing the fancy new HTML editor for journals and it strikes me that I 
 There are two questions to answer:
 
 * What mechanism or algorithm will we use?
-* Where will be store the data?
+* Where will we store the data?
 
 The second one (where to store it) is a question for another day.
 
 The first one (algorithm) is where this mini-project comes in. Ideas I rapidly dropped:
 
-* Just store the last *n* state! REJECTED - I want to be able to store a decent age of history, like at least 100 and maybe a thousand? If the document is a megabyte (which is huge but possible) you're looking at a *gigabyte* of backups!
+* Just store the last *n* states! REJECTED - I want to be able to store a decent age of history, like at least 100 and maybe a thousand? If the document is a megabyte (which is huge but possible) you're looking at a *gigabyte* of backups!
 * Store a long list of diffs - this is a lot better! But you're still going to be dealing with monotonically increasing storage until you hit that history limit.
 
 I want to say now that actually a simple history of the last 1000 diffs would have be *fine*. If I was launching a startup that's what I would have done.
@@ -103,7 +103,7 @@ The problem is we lose fidelity on each stack every time we "push" a combined co
 
 ## The bomb bay system
 
-I went through a bunch of options here, and here's where I ended up: each stack has a list of edits, of size n, and a second list, called the "bomb bay" of commits which will be pushed onto the next stack in due course. Only the main list of edits is addressable in terms of restoring history. This uses more space, but gives much nicer behaviour. You will always have the most recent n edits, then every n^2th edit for the next n commits, then every n^3th commits etc.
+I went through a bunch of options here, and here's where I ended up: each stack has a list of edits, of size n, and a second list, called the "bomb bay" of commits which will be pushed onto the next stack in due course. Only the main list of edits is addressable in terms of restoring history. This uses more space, but gives much nicer behaviour. You will always have the most recent p edits, then every p^2'th edit for the next (p^2)*p commits, then every n^3th commits etc.
 
 ```
 Stack 1    Stack 2
