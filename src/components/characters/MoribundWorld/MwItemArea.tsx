@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from "react";
 
+import { FoundryAppContext } from "../../../../subtrees/shared-fvtt-bits/src/FoundryAppContext";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
-import { FoundryAppContext } from "../../FoundryAppContext";
 import { MwItemGroup } from "./MwItemGroup";
 
 type MwItemAreaProps = {

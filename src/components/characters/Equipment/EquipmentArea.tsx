@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 
+import { FoundryAppContext } from "../../../../subtrees/shared-fvtt-bits/src/FoundryAppContext";
 import { getTranslated } from "../../../functions/getTranslated";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { settings } from "../../../settings/settings";
 import { isEquipmentItem } from "../../../v10Types";
-import { FoundryAppContext } from "../../FoundryAppContext";
 import { EquipmentCategory } from "./EquipmentCategory";
 
 type EquipmentAreaProps = {

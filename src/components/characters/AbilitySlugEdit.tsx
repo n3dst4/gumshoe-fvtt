@@ -1,10 +1,10 @@
 import React, { Fragment, useCallback, useContext } from "react";
 
+import { FoundryAppContext } from "../../../subtrees/shared-fvtt-bits/src/FoundryAppContext";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityItem } from "../../v10Types";
 import { AbilityBadges } from "../abilities/AbilityBadges";
 import { SpecialityList } from "../abilities/SpecialityList";
-import { FoundryAppContext } from "../FoundryAppContext";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 

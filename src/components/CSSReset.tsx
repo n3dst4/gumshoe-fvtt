@@ -10,10 +10,10 @@ import React, {
   useState,
 } from "react";
 
+import { FoundryAppContext } from "../../subtrees/shared-fvtt-bits/src/FoundryAppContext";
 import { ThemeContext } from "../themes/ThemeContext";
 import { ThemeV1 } from "../themes/types";
 import { ErrorBoundary } from "./ErrorBoundary";
-import { FoundryAppContext } from "./FoundryAppContext";
 
 type CSSResetProps = {
   children: ReactNode;

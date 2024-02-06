@@ -1,8 +1,8 @@
 import React, { useCallback, useContext } from "react";
 
+import { FoundryAppContext } from "../../../subtrees/shared-fvtt-bits/src/FoundryAppContext";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { FoundryAppContext } from "../FoundryAppContext";
 
 interface SlugProps {
   onClick?: () => void;

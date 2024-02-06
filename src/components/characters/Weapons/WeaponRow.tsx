@@ -6,11 +6,11 @@ import React, {
   useState,
 } from "react";
 
+import { FoundryAppContext } from "../../../../subtrees/shared-fvtt-bits/src/FoundryAppContext";
 import { generalAbility } from "../../../constants";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { assertWeaponItem, isAbilityItem } from "../../../v10Types";
 import { performAttack } from "../../equipment/performAttack";
-import { FoundryAppContext } from "../../FoundryAppContext";
 import { CheckButtons } from "../../inputs/CheckButtons";
 
 type WeaponRowProps = {
