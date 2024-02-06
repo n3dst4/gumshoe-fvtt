@@ -23,7 +23,10 @@
     "format:fix": "prettier --write src",
     "lint:check": "pnpm format:check && pnpm eslint:check",
     "lint:fix": "pnpm format:fix && pnpm eslint:fix",
-    "compile-actions": "ncc build .github/actions/regex-match/src/index.ts -o .github/actions/regex-match/dist"
+    "compile-actions": "ncc build .github/actions/regex-match/src/index.ts -o .github/actions/regex-match/dist",
+    "subtree-push": "./scripts/subtree-push.sh",
+    "subtree-pull": "./scripts/subtree-pull.sh",
+    "subtree-split-rejoin": "./scripts/subtree-split-rejoin.sh"
   },
   "author": "",
   "license": "",
