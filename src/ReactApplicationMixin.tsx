@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot, Root } from "react-dom/client";
 
-import { FoundryAppContext } from "../../../src/components/FoundryAppContext";
+import { FoundryAppContext } from "./FoundryAppContext";
 
 // type shenanigans to allow us to work backwards from a Class type to the type
 // of the objects which it constructs
