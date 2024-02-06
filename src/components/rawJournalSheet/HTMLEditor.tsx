@@ -4,7 +4,9 @@ import prettier from "prettier/standalone";
 import React, { useCallback, useMemo, useRef } from "react";
 import { AiOutlineFormatPainter } from "react-icons/ai";
 
+import { extraCssClasses, systemId } from "../../constants";
 import { throttle } from "../../functions/utilities";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { useToolbarContent } from "./magicToolbar";
 import { ToolbarButton } from "./magicToolbar/ToolbarButton";
 
@@ -100,6 +102,15 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
     ),
   );
 
+  const htmlClasses = page.flags[systemId]?.[extraCssClasses] ?? "";
+
+  const handleChangeClasses = useCallback(
+    (classes: string) => {
+      page.setFlag(systemId, extraCssClasses, classes);
+    },
+    [page],
+  );
+
   return (
     <div
       data-testid="html-editor"
@@ -107,31 +118,44 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
         position: "relative",
         width: "100%",
         height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.5em",
       }}
     >
-      <MonacoEditor
-        key={page.id}
-        height="100%"
-        width="100%"
-        defaultLanguage="html"
-        defaultValue={page.text.content}
-        theme="vs-dark"
-        beforeMount={handleEditorWillMount}
-        onMount={handleEditorDidMount}
-        onChange={handleChange}
-        options={{
-          language: "html",
-          automaticLayout: true,
-          scrollbar: {
-            horizontal: "visible",
-          },
-          wordWrap: "off",
-          rulers: [80],
-          unicodeHighlight: {
-            ambiguousCharacters: false,
-          },
-        }}
-      />
+      <div data-testid="html-classes">
+        <AsyncTextInput
+          value={htmlClasses}
+          onChange={handleChangeClasses}
+          placeholder="Extra CSS Classes"
+        />
+      </div>
+
+      <div css={{ position: "relative", flex: 1 }}>
+        <MonacoEditor
+          key={page.id}
+          height="100%"
+          width="100%"
+          defaultLanguage="html"
+          defaultValue={page.text.content}
+          theme="vs-dark"
+          beforeMount={handleEditorWillMount}
+          onMount={handleEditorDidMount}
+          onChange={handleChange}
+          options={{
+            language: "html",
+            automaticLayout: true,
+            scrollbar: {
+              horizontal: "visible",
+            },
+            wordWrap: "off",
+            rulers: [80],
+            unicodeHighlight: {
+              ambiguousCharacters: false,
+            },
+          }}
+        />
+      </div>
     </div>
   );
 };
