@@ -2,7 +2,6 @@ import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { systemId } from "./constants";
 import { assertGame, systemLogger } from "./functions/utilities";
 import processedStyles from "./investigator.less?inline";
-import { RawJournalSheetClass } from "./module/RawJournalSheetClass";
 import { handleMwItemType } from "./startup/disableMwItemType";
 import { injectGlobalHelper } from "./startup/injectGlobalHelper";
 import { installAbilityCardChatWrangler } from "./startup/installAbilityCardChatWrangler";
@@ -48,11 +47,6 @@ Hooks.once("init", async function () {
   await preloadTemplates();
   registerSheetsAndClasses();
   registerBabele();
-  Journal.registerSheet("investigator", RawJournalSheetClass, {
-    types: ["base"],
-    makeDefault: false,
-    label: "Investigator.RawJournalSheet",
-  });
 });
 
 // Setup system

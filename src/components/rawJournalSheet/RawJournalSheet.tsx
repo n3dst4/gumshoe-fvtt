@@ -48,23 +48,25 @@ export const RawJournalSheet = ({
     [setActivePageId],
   );
 
+  const handlePreview = React.useCallback(() => {
+    console.log(journal);
+    const SotsSheet: JournalSheet = Journal.registeredSheets.find(
+      // @ts-expect-error Journal types are effed
+      (sheet) => sheet.name === "InvestigatorJournalSheet",
+    ) as unknown as JournalSheet;
+    // @ts-expect-error Journal types are effed
+    new SotsSheet(journal).render(true);
+  }, [journal]);
+
   const toolBarContent = useMemo(
     () => (
       <ToolbarButton
-        onClick={() => {
-          console.log(journal);
-          const SotsSheet: JournalSheet = Journal.registeredSheets.find(
-            // @ts-expect-error Journal types are effed
-            (sheet) => sheet.name === "SwordsOfTheSerpentineJournalSheet",
-          ) as unknown as JournalSheet;
-          // @ts-expect-error Journal types are effed
-          new SotsSheet(journal).render(true);
-        }}
+        onClick={handlePreview}
         icon={MdOutlinePreview}
         text="Preview"
       />
     ),
-    [journal],
+    [handlePreview],
   );
 
   const handleTitleChange = React.useCallback(
