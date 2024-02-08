@@ -1,34 +1,13 @@
 {
+	"extends": "./subtrees/shared-fvtt-bits/tsconfig.json",
+	// override include to include shared-fvtt-bits
+	"include": ["src", "subtrees/shared-fvtt-bits/src/"],
 	"compilerOptions": {
-		"target": "ES2019",
-		"lib": [
-			"DOM",
-			"ES6",
-			"ES2022",
-			"ES2023.Array"
-		],
-		"moduleResolution": "bundler",
-		"module": "esnext",
+		// override types to include vite
 		"types": [
 			"@league-of-foundry-developers/foundry-vtt-types",
 			"@lumphammer/investigator-fvtt-types",
 			"vite/client"
-		],
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"strict": true,
-		"jsx": "react-jsx",
-		"jsxImportSource": "@emotion/react",
-		"paths": {
-			// fix for when investigator-fvtt-types is symlinked in - we want it to
-			// see *our* @emotion/react not its own.
-			"@emotion/react": [
-				"./node_modules/@emotion/react"
-			],
-		},
-		"allowJs": true,
-
-	},
-	"exclude": ["**/node_modules", "**/.*/"],
-	"include": ["src", "subtrees/shared-fvtt-bits/src/ReactApplicationMixin.tsx", "subtrees/shared-fvtt-bits/src/FoundryAppContext.ts"]
+		]
+	}
 }
