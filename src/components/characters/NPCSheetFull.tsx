@@ -204,10 +204,37 @@ export const NPCSheetFull = ({
                 >
                   <NotesEditorWithControls
                     allowChangeFormat
-                    format={actor.getNotes().format}
-                    html={actor.getNotes().html}
-                    source={actor.getNotes().source}
+                    format={actor.system.notes.format}
+                    html={actor.system.notes.html}
+                    source={actor.system.notes.source}
                     onSave={actor.setNotes}
+                    css={{
+                      height: "100%",
+                      "&&": {
+                        resize: "none",
+                      },
+                    }}
+                  />
+                </InputGrid>
+              ),
+            },
+            {
+              id: "gmNotes",
+              label: "GM Notes",
+              content: (
+                <InputGrid
+                  css={{
+                    ...absoluteCover,
+                    gridTemplateRows: "1fr",
+                    padding: "0.5em",
+                  }}
+                >
+                  <NotesEditorWithControls
+                    allowChangeFormat
+                    format={actor.system.gmNotes.format}
+                    html={actor.system.gmNotes.html}
+                    source={actor.system.gmNotes.source}
+                    onSave={actor.setGMNotes}
                     css={{
                       height: "100%",
                       "&&": {

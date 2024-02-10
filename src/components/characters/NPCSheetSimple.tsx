@@ -19,7 +19,7 @@ export const NPCSheetSimple = ({
   assertNPCActor(actor);
   const themeName = actor.getSheetThemeName();
   const theme = useTheme(themeName);
-  const notes = actor.getNotes().html;
+  const notes = actor.system.notes.html;
   const hasNotes = notes.length > 0;
 
   return (

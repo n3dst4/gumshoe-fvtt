@@ -63,6 +63,11 @@
         "source": "",
         "html": ""
       },
+      "gmNotes": {
+        "format": "richText",
+        "source": "",
+        "html": ""
+      },
       "armor": 0,
       "alertness": 0,
       "stealth": 0,

@@ -293,14 +293,14 @@ export class InvestigatorActor extends Actor {
     this.update({ system: { sheetTheme } });
   };
 
-  getNotes = () => {
-    assertNPCActor(this);
-    return this.system.notes;
-  };
-
   setNotes = (notes: NoteWithFormat) => {
     assertNPCActor(this);
     return this.update({ system: { notes } });
+  };
+
+  setGMNotes = (gmNotes: NoteWithFormat) => {
+    assertNPCActor(this);
+    return this.update({ system: { gmNotes } });
   };
 
   getLongNote = (i: number) => {

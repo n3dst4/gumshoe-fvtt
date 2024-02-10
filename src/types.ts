@@ -80,6 +80,7 @@ export interface PCDataSourceData {
 
 export interface NPCDataSourceData {
   notes: NoteWithFormat;
+  gmNotes: NoteWithFormat;
   initiativeAbility: string;
   hideZeroRated: boolean;
   sheetTheme: string | null;
