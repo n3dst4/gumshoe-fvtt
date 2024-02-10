@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Unreleased
+
+* FIXED: Deleting a compendium that's selected for new PCs casues the Party sheet to crap out (#603).
+* ADDED: GM-Note-Field on NPC Sheet (#618) (thanks @muwak for the prod).
+
 ## 7.6.0 (2023-12-31)
 
 * Happy new year!
