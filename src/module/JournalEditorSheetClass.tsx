@@ -4,15 +4,15 @@ import { Suspense } from "../components/Suspense";
 import { reactTemplatePath } from "../constants";
 import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
-const RawJournalSheet = React.lazy(() =>
-  import("../components/rawJournalSheet/RawJournalSheet").then(
-    ({ RawJournalSheet }) => ({
-      default: RawJournalSheet,
+const JournalEditorSheet = React.lazy(() =>
+  import("../components/journalEditorSheet/JournalEditorSheet").then(
+    ({ JournalEditorSheet }) => ({
+      default: JournalEditorSheet,
     }),
   ),
 );
 
-export class RawJournalSheetClassBase extends JournalSheet {
+export class JournalEditorSheetClassBase extends JournalSheet {
   /** @override */
   static get defaultOptions() {
     const options = {
@@ -25,10 +25,10 @@ export class RawJournalSheetClassBase extends JournalSheet {
   }
 }
 
-const render = (sheet: RawJournalSheetClassBase) => {
+const render = (sheet: JournalEditorSheetClassBase) => {
   return (
     <Suspense>
-      <RawJournalSheet
+      <JournalEditorSheet
         journalEntry={sheet.document}
         foundryApplication={sheet}
       />
@@ -36,8 +36,8 @@ const render = (sheet: RawJournalSheetClassBase) => {
   );
 };
 
-export const RawJournalSheetClass = ReactApplicationMixin(
-  "RawJournalSheetClass",
-  RawJournalSheetClassBase,
+export const JournalEditorSheetClass = ReactApplicationMixin(
+  "JournalEditorSheetClass",
+  JournalEditorSheetClassBase,
   render,
 );

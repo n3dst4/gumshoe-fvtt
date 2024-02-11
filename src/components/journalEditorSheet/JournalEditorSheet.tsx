@@ -16,15 +16,15 @@ import { flexRow } from "./styles";
 
 const KEEPALIVE_INTERVAL_MS = 30_000;
 
-type RawJournalSheetProps = {
+type JournalEditorSheetProps = {
   journalEntry: JournalEntry;
   foundryApplication: JournalSheet;
 };
 
-export const RawJournalSheet = ({
+export const JournalEditorSheet = ({
   journalEntry: journal,
   foundryApplication,
-}: RawJournalSheetProps) => {
+}: JournalEditorSheetProps) => {
   // assertNPCActor(actor);
 
   // keepalive - without this, if this journal entry is inside a compendium,
@@ -50,13 +50,12 @@ export const RawJournalSheet = ({
   );
 
   const handlePreview = React.useCallback(() => {
-    console.log(journal);
-    const SotsSheet: JournalSheet = Journal.registeredSheets.find(
+    const JournalSheet: JournalSheet = Journal.registeredSheets.find(
       // @ts-expect-error Journal types are effed
       (sheet) => sheet.name === "InvestigatorJournalSheet",
     ) as unknown as JournalSheet;
     // @ts-expect-error Journal types are effed
-    new SotsSheet(journal).render(true);
+    new JournalSheet(journal).render(true);
   }, [journal]);
 
   const toolBarContent = useMemo(
@@ -163,4 +162,4 @@ export const RawJournalSheet = ({
   );
 };
 
-RawJournalSheet.displayName = "RawJournalSheet";
+JournalEditorSheet.displayName = "JournalEditorSheet";

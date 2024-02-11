@@ -7,10 +7,10 @@ import { InvestigatorCombatTracker } from "../module/InvestigatorCombatTracker";
 import { InvestigatorItem } from "../module/InvestigatorItem";
 import { ItemSheetClass } from "../module/InvestigatorItemSheetClass";
 import { InvestigatorJournalSheet } from "../module/InvestigatorJournalSheet";
+import { JournalEditorSheetClass } from "../module/JournalEditorSheetClass";
 import { NPCSheetClass } from "../module/NPCSheetClass";
 import { PartySheetClass } from "../module/PartySheetClass";
 import { PCSheetClass } from "../module/PCSheetClass";
-import { RawJournalSheetClass } from "../module/RawJournalSheetClass";
 
 export const registerSheetsAndClasses = () => {
   // XXX TS needs going over here
@@ -47,14 +47,14 @@ export const registerSheetsAndClasses = () => {
       constants.personalDetail,
     ],
   });
-  Journal.registerSheet("investigator", RawJournalSheetClass, {
+  Journal.registerSheet("investigator", JournalEditorSheetClass, {
     types: ["base"],
     makeDefault: false,
-    label: "Investigator.RawJournalSheet",
+    label: "Investigator Journal Editor",
   });
   Journal.registerSheet("investigator", InvestigatorJournalSheet, {
     types: ["base"],
     makeDefault: false,
-    label: "Investigator.InvestigatorJournalSheet",
+    label: "Investigator Journal Sheet",
   });
 };
