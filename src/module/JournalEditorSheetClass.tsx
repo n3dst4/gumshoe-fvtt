@@ -1,8 +1,8 @@
 import React from "react";
 
+import { ReactApplicationMixin } from "../../subtrees/shared-fvtt-bits/src/ReactApplicationMixin";
 import { Suspense } from "../components/Suspense";
 import { reactTemplatePath } from "../constants";
-import { ReactApplicationMixin } from "./ReactApplicationMixin";
 
 const JournalEditorSheet = React.lazy(() =>
   import("../components/journalEditorSheet/JournalEditorSheet").then(
