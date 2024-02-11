@@ -9,43 +9,27 @@ export class InvestigatorJournalSheet extends JournalSheet {
     return options;
   }
 
-  render(...args: any[]) {
-    systemLogger.log("RENDER", args);
-    super.render(...args);
-
-    return this;
-  }
-
-  protected _replaceHTML(
-    element: JQuery<HTMLElement>,
-    html: JQuery<HTMLElement>,
-  ): void {
-    systemLogger.log("REPLACE HTML", html);
-    super._replaceHTML(element, html);
-    // this.
-    // html.find(".rollable").click(this._onRoll.bind(this));
-  }
-
   /** @override */
   activateListeners(html: JQuery) {
     systemLogger.log("ACTIVATE LISTENERS", html);
     super.activateListeners(html);
+
+    // find the entry content element and add the journal entry's classes onto
+    // it
+    const journalEntryContentElement = this.element.find(
+      ".journal-entry-content",
+    );
+    const journalEntryClasses =
+      // @ts-expect-error sigh
+      this.document.flags[systemId]?.[extraCssClasses] ?? "";
+    journalEntryContentElement.addClass(journalEntryClasses);
+
+    // find the page element, work out which page is active, and add the page's
+    // classes onto it
     const contentElement = this.element.find(".journal-entry-content");
     // @ts-expect-error sigh
     const page = this.document.pages.contents[this._getCurrentPage()];
-    const classes = page.flags[systemId]?.[extraCssClasses] ?? "";
-    contentElement.addClass(classes);
-
-    // html.find(".rollable").click(this._onRoll.bind(this));
+    const pageClasses = page.flags[systemId]?.[extraCssClasses] ?? "";
+    contentElement.addClass(pageClasses);
   }
-
-  // _onRoll(event) {
-  //   event.preventDefault();
-  //   const element = event.currentTarget;
-  //   const formula = event.currentTarget.dataset.roll;
-  //   if (formula) {
-  //     const roll = new Roll(formula);
-  //     roll.toMessage();
-  //   }
-  // }
 }
