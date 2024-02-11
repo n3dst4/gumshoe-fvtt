@@ -127,7 +127,7 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
         <AsyncTextInput
           value={htmlClasses}
           onChange={handleChangeClasses}
-          placeholder="Extra CSS Classes"
+          placeholder="Page CSS Classes"
         />
       </div>
 

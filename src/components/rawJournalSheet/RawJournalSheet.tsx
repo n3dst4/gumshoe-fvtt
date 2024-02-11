@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { MdOutlinePreview } from "react-icons/md";
 
+import { extraCssClasses, systemId } from "../../constants";
 import { useTheme } from "../../hooks/useTheme";
 import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
@@ -76,6 +77,16 @@ export const RawJournalSheet = ({
     [journal],
   );
 
+  // @ts-expect-error - foundry types are bad
+  const globalClasses = journal.flags[systemId]?.[extraCssClasses] ?? "";
+
+  const handleGlobalClassesChange = React.useCallback(
+    (classes: string) => {
+      journal.setFlag(systemId, extraCssClasses, classes);
+    },
+    [journal],
+  );
+
   return (
     <MagicToolbarProvider>
       <CSSReset
@@ -100,10 +111,21 @@ export const RawJournalSheet = ({
         >
           {toolBarContent}
         </MagicToolbar>
-        <div>
+        <div
+          css={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "0.5em",
+          }}
+        >
           <AsyncTextInput
             value={journal.name ?? ""}
             onChange={handleTitleChange}
+          />
+          <AsyncTextInput
+            placeholder="Journal CSS Classes"
+            value={globalClasses}
+            onChange={handleGlobalClassesChange}
           />
         </div>
         <div css={{ ...flexRow, gap: "0.5em", flex: 1 }}>
