@@ -54,6 +54,11 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
       memoryRef.current = save(memoryRef.current, content);
     }
     systemLogger.log("Saved", memoryRef.current);
+    const journalMemoryCollection = {
+      ...settings.journalMemories.get(),
+      [page.id]: memoryRef.current,
+    };
+    settings.journalMemories.set(journalMemoryCollection);
   }, [page.parent, page.id, editorRef]);
 
   const handleChange = useMemo(
