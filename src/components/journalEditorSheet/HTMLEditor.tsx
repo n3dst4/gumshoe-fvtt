@@ -5,10 +5,19 @@ import React, { useCallback, useMemo, useRef } from "react";
 import { AiOutlineFormatPainter } from "react-icons/ai";
 
 import { extraCssClasses, systemId } from "../../constants";
-import { throttle } from "../../functions/utilities";
+import { systemLogger, throttle } from "../../functions/utilities";
+import { settings } from "../../settings/settings";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
+// these imports are going around the barrel export because I was getting some
+// weird "SyntaxError: Ambiguous import "DocumentMemory"" errors
+import { createDocumentMemory } from "./documentMemory/createDocumentMemory";
+import { rehydrate } from "./documentMemory/rehydrate";
+import { save } from "./documentMemory/save";
+import type { DocumentMemory } from "./documentMemory/types";
 import { useToolbarContent } from "./magicToolbar";
 import { ToolbarButton } from "./magicToolbar/ToolbarButton";
+
+const MEMORY_PERIOD = 10;
 
 interface HTMLEditorProps {
   page: any;
@@ -25,16 +34,35 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
     await editorRef.current?.getAction("editor.action.formatDocument")?.run();
   }, []);
 
+  const memoryRef = useRef<DocumentMemory>();
+
   const doSave = useCallback(async () => {
+    if (memoryRef.current === undefined) {
+      const bareMemory = settings.journalMemories.get()?.[page.id];
+      memoryRef.current = bareMemory
+        ? rehydrate(bareMemory)
+        : createDocumentMemory(MEMORY_PERIOD);
+    }
+    const content = editorRef.current?.getValue() || "";
     await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
       {
         _id: page.id,
-        text: { content: editorRef.current?.getValue() ?? "" },
+        text: { content },
       },
     ]);
+    if (memoryRef.current) {
+      memoryRef.current = save(memoryRef.current, content);
+    }
+    systemLogger.log("Saved", memoryRef.current);
   }, [page.parent, page.id, editorRef]);
 
-  const handleChange = useMemo(() => throttle(doSave, 500), [doSave]);
+  const handleChange = useMemo(
+    () =>
+      throttle(() => {
+        doSave();
+      }, 500),
+    [doSave],
+  );
 
   const handleEditorDidMount: OnMount = useCallback((editor, monaco) => {
     monacoRef.current = monaco;

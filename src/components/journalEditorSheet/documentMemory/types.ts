@@ -77,3 +77,9 @@ export interface DocumentMemory extends BareDocumentMemory {
    */
   state: string;
 }
+
+/**
+ * This type is used in to store the document memories globally. The key is the
+ * id of the document (aka JournalEntryPage) plus the id of the and the
+ */
+export type DocumentMemoryCollection = Record<string, BareDocumentMemory>;

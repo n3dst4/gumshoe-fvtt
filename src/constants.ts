@@ -95,6 +95,7 @@ export const defaultCustomThemePath = "investigator_themes";
 export const passingTurnsRemaining = "passingTurnsRemaining";
 export const extraPassingTurns = "extraPassingTurns";
 export const extraCssClasses = "extraCssClasses";
+export const journalMemories = "journalMemories";
 
 // magic values
 

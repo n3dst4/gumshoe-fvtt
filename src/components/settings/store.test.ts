@@ -85,6 +85,7 @@ const initialState: State = {
     abilityCategories: "",
     shortNotes: [],
     firstRun: true,
+    journalMemories: {},
   },
 };
 
