@@ -5,7 +5,7 @@ import { BsIndent, BsTrash, BsUnindent } from "react-icons/bs";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { systemLogger } from "../../functions/utilities";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
-import { HTMLEditor } from "./HTMLEditor";
+import { HTMLPage } from "./HTMLPage";
 import { ImageEditor } from "./ImageEditor";
 import { ToolbarButton, useToolbarContent } from "./magicToolbar";
 import { UnknownPageTypeEditor } from "./UnknownPageTypeEditor";
@@ -217,7 +217,7 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
         {page.type === "image" ? (
           <ImageEditor page={page} />
         ) : page.type === "text" ? (
-          <HTMLEditor page={page} />
+          <HTMLPage page={page} />
         ) : (
           <UnknownPageTypeEditor page={page} />
         )}
