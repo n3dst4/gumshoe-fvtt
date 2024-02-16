@@ -16,7 +16,9 @@ export const installCompendiumExportButton = () => {
     "renderCompendium",
     (app: Compendium<CompendiumCollection.Metadata>, jQ: JQuery, data: any) => {
       const entity = app.collection.metadata.type;
-      if (!(entity === "Item" || entity === "Actor")) {
+      if (
+        !(entity === "Item" || entity === "Actor" || entity === "JournalEntry")
+      ) {
         return;
       }
       const id = `investigator_export_${nanoid()}`;
@@ -31,12 +33,16 @@ export const installCompendiumExportButton = () => {
         const contents =
           (await game.packs.get(app.collection.collection)?.getDocuments()) ??
           [];
-        const mapped = contents.map(({ name, type, img, system }: any) => ({
-          name,
-          type,
-          img,
-          system,
-        }));
+        const mapped = contents.map(
+          ({ name, type, img, system, pages, flags }: any) => ({
+            name,
+            type,
+            img,
+            system,
+            pages,
+            flags,
+          }),
+        );
         const exportData: ExportedCompendium = {
           label: app.collection.metadata.label,
           name: app.collection.metadata.name,

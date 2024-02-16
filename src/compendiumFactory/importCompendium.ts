@@ -6,7 +6,7 @@ import { RecursivePartial } from "../types";
 export type ExportedCompendium = {
   name: string;
   label: string;
-  entity: "Item" | "Actor";
+  entity: "Item" | "Actor" | "JournalEntry";
   contents: any[];
 };
 
@@ -57,6 +57,7 @@ export const importCompendium = async (candidate: unknown) => {
   const maker = {
     Actor,
     Item,
+    JournalEntry,
   }[verified.entity];
 
   const entities = await maker.create(verified.contents as any, {
