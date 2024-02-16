@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 import { MdOutlineHistory } from "react-icons/md";
 
 import { HTMLEditor } from "./HTMLEditor";
@@ -37,12 +38,42 @@ export const HTMLPage: React.FC<HTMLPageProps> = ({ page }) => {
     [mode, setHistory],
   );
 
+  const cancelHistoryButton = useMemo(
+    () => (
+      <ToolbarButton
+        onClick={setEdit}
+        text="Cancel"
+        icon={AiOutlineClose}
+        disabled={mode === Mode.Edit}
+      />
+    ),
+    [mode, setEdit],
+  );
+
+  const handleSaveDocument = useCallback(
+    (state: string) => {
+      page.update({ content: state });
+    },
+    [page],
+  );
+
   useToolbarContent("HTML", historyButton);
+  useToolbarContent(
+    "History",
+    mode === Mode.History ? cancelHistoryButton : null,
+  );
 
   if (mode === Mode.Edit) {
     return <HTMLEditor key={page.id} page={page} />;
   } else {
-    return <HTMLHistory key={page.id} page={page} onDone={setEdit} />;
+    return (
+      <HTMLHistory
+        key={page.id}
+        page={page}
+        cancelHistoryMode={setEdit}
+        saveDocument={handleSaveDocument}
+      />
+    );
   }
 };
 

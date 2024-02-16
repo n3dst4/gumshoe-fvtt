@@ -1,29 +1,25 @@
 import MonacoEditor, { Monaco, OnMount } from "@monaco-editor/react";
 import htmlParser from "prettier/plugins/html";
 import prettier from "prettier/standalone";
-import React, { useCallback, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { AiOutlineFormatPainter } from "react-icons/ai";
 
 import { extraCssClasses, systemId } from "../../constants";
-import { systemLogger, throttle } from "../../functions/utilities";
-import { settings } from "../../settings/settings";
+import { debounce, systemLogger } from "../../functions/utilities";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 // these imports are going around the barrel export because I was getting some
 // weird "SyntaxError: Ambiguous import "DocumentMemory"" errors
-import { createDocumentMemory } from "./documentMemory/createDocumentMemory";
-import { rehydrate } from "./documentMemory/rehydrate";
-import { save } from "./documentMemory/save";
 import type { DocumentMemory } from "./documentMemory/types";
-import { getMemoryId } from "./getMemoryId";
 import { useToolbarContent } from "./magicToolbar";
 import { ToolbarButton } from "./magicToolbar/ToolbarButton";
-
-const MEMORY_PERIOD = 10;
+import { savePage } from "./savePage";
 
 interface HTMLEditorProps {
   page: any;
 }
 type IStandalonCodeEditor = Parameters<OnMount>[0];
+
+const SAVE_DEBOUNCE_MS = 1000;
 
 export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
   const monacoRef = useRef<Monaco | null>(null);
@@ -37,40 +33,26 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
 
   const memoryRef = useRef<DocumentMemory>();
 
-  const memoryId = useMemo(() => getMemoryId(page), [page]);
-
   const doSave = useCallback(async () => {
-    if (memoryRef.current === undefined) {
-      const bareMemory = settings.journalMemories.get()?.[memoryId];
-      memoryRef.current = bareMemory
-        ? rehydrate(bareMemory)
-        : createDocumentMemory(MEMORY_PERIOD);
-    }
-    const content = editorRef.current?.getValue() || "";
-    await page.parent.updateEmbeddedDocuments("JournalEntryPage", [
-      {
-        _id: page.id,
-        text: { content },
-      },
-    ]);
-    if (memoryRef.current) {
-      memoryRef.current = save(memoryRef.current, content);
-    }
-    systemLogger.log("Saved", memoryRef.current);
-    const journalMemoryCollection = {
-      ...settings.journalMemories.get(),
-      [memoryId]: memoryRef.current,
-    };
-    settings.journalMemories.set(journalMemoryCollection);
-  }, [memoryId, page.id, page.parent]);
+    systemLogger.info("Saving", memoryRef.current);
+    memoryRef.current = await savePage(
+      page,
+      editorRef.current?.getValue() ?? "",
+      memoryRef.current,
+    );
+  }, [page]);
 
   const handleChange = useMemo(
-    () =>
-      throttle(() => {
-        doSave();
-      }, 500),
+    () => debounce(doSave, SAVE_DEBOUNCE_MS),
     [doSave],
   );
+
+  useEffect(() => {
+    // save on exit
+    return function () {
+      doSave();
+    };
+  }, [doSave, handleChange]);
 
   const handleEditorDidMount: OnMount = useCallback((editor, monaco) => {
     monacoRef.current = monaco;

@@ -1,5 +1,6 @@
 import { DiffEditor } from "@monaco-editor/react";
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
+import { AiOutlineHeart } from "react-icons/ai";
 
 import { settings } from "../../settings/settings";
 import { createDocumentMemory } from "./documentMemory/createDocumentMemory";
@@ -7,13 +8,20 @@ import { getAccessibleEdits } from "./documentMemory/getAccessibleEdits";
 import { rehydrate } from "./documentMemory/rehydrate";
 import { restoreVersion } from "./documentMemory/restoreVersion";
 import { getMemoryId } from "./getMemoryId";
+import { ToolbarButton, useToolbarContent } from "./magicToolbar";
+import { savePage } from "./savePage";
 
 interface HTMLHistoryProps {
   page: any;
-  onDone: () => void;
+  cancelHistoryMode: () => void;
+  saveDocument: (state: string) => void;
 }
 
-export const HTMLHistory: React.FC<HTMLHistoryProps> = ({ page }) => {
+export const HTMLHistory: React.FC<HTMLHistoryProps> = ({
+  page,
+  saveDocument,
+  cancelHistoryMode,
+}) => {
   const memoryId = useMemo(() => getMemoryId(page), [page]);
   const memory = useMemo(() => {
     const storedBarememory = settings.journalMemories.get()?.[memoryId];
@@ -43,7 +51,29 @@ export const HTMLHistory: React.FC<HTMLHistoryProps> = ({ page }) => {
       revisions[activeDiffIndex].serial,
     );
     return [originalState, modifiedState];
-  }, [activeDiffIndex, memory, revisions]); //
+  }, [activeDiffIndex, memory, revisions]);
+
+  const handleRestore = useCallback(async () => {
+    const state = restoreVersion(memory, revisions[activeDiffIndex].serial);
+    await savePage(page, state, memory);
+    cancelHistoryMode();
+  }, [activeDiffIndex, cancelHistoryMode, memory, page, revisions]);
+
+  const restoreButton = useMemo(
+    () => (
+      <>
+        <ToolbarButton
+          onClick={handleRestore}
+          text="Restore"
+          icon={AiOutlineHeart}
+          disabled={activeDiffIndex === 0}
+        />
+      </>
+    ),
+    [activeDiffIndex, handleRestore],
+  );
+
+  useToolbarContent("History", restoreButton);
 
   return (
     <div

@@ -29,6 +29,10 @@ export const MagicToolbar: React.FC<MagicToolbarProps> = ({
     [childrenCategory]: [children],
   };
   for (const entry of registeredContent) {
+    if (entry.content === null) {
+      continue;
+    }
+
     if (groupedContent[entry.category] === undefined) {
       groupedContent[entry.category] = [];
     }

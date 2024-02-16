@@ -97,7 +97,7 @@ export const JournalEditorSheet = ({
         }}
       >
         <MagicToolbar
-          categories={["Core", "Create new", "Page", "HTML"]}
+          categories={["Core", "Create new", "Page", "HTML", "History"]}
           childrenCategory="Core"
         >
           {toolBarContent}
