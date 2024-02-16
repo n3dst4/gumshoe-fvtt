@@ -82,7 +82,7 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
   }, [journal, onNavigate]);
 
   useToolbarContent(
-    "Create page",
+    "Create new",
     useMemo(
       () => (
         <>

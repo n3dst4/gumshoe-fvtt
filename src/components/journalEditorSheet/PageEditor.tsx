@@ -4,6 +4,7 @@ import { BsIndent, BsTrash, BsUnindent } from "react-icons/bs";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { systemLogger } from "../../functions/utilities";
+import { useRefStash } from "../../hooks/useRefStash";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { HTMLPage } from "./HTMLPage";
 import { ImageEditor } from "./ImageEditor";
@@ -18,7 +19,12 @@ interface PageEditorProps {
 }
 
 export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
+  // optimize toolbar rendering by putting page in a ref so the callbacks are
+  // all stable
+  const pageRef = useRefStash(page);
+
   const handleDeletePage = useCallback(async () => {
+    const page = pageRef.current;
     const doDelete = await confirmADoodleDo({
       message: "Delete page {PageName}?",
       confirmText: "Delete",
@@ -32,9 +38,10 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
     if (doDelete) {
       await page.parent.deleteEmbeddedDocuments("JournalEntryPage", [page.id]);
     }
-  }, [page.id, page.name, page.parent]);
+  }, [pageRef]);
 
   const handleMoveUp = useCallback(async () => {
+    const page = pageRef.current;
     const pages = page.parent.pages.contents.sort((a: any, b: any) => {
       return a.sort - b.sort;
     });
@@ -55,9 +62,11 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
     ];
     systemLogger.log("move up", updates);
     await page.parent.updateEmbeddedDocuments("JournalEntryPage", updates);
-  }, [page]);
+  }, [pageRef]);
 
   const handleMoveDown = useCallback(async () => {
+    const page = pageRef.current;
+
     const pages = page.parent.pages.contents.sort((a: any, b: any) => {
       return a.sort - b.sort;
     });
@@ -78,9 +87,10 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
     ];
     systemLogger.log("move up", updates);
     await page.parent.updateEmbeddedDocuments("JournalEntryPage", updates);
-  }, [page]);
+  }, [pageRef]);
 
   const handleIndent = useCallback(async () => {
+    const page = pageRef.current;
     if (page.title.level >= MAX_INDENT) {
       return;
     }
@@ -93,9 +103,10 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
         },
       },
     ]);
-  }, [page.id, page.parent, page.title]);
+  }, [pageRef]);
 
   const handleOutdent = useCallback(async () => {
+    const page = pageRef.current;
     if (page.title.level <= MIN_INDENT) {
       return;
     }
@@ -108,7 +119,7 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
         },
       },
     ]);
-  }, [page.id, page.parent, page.title]);
+  }, [pageRef]);
 
   const pages = page.parent.pages.contents.sort((a: any, b: any) => {
     return a.sort - b.sort;
@@ -121,7 +132,7 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
   const canOutdent = page.title.level > MIN_INDENT;
 
   useToolbarContent(
-    "Move page",
+    "Page",
     useMemo(
       () => (
         <>
@@ -149,26 +160,6 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
             icon={BsUnindent}
             disabled={!canOutdent}
           />
-        </>
-      ),
-      [
-        canIndent,
-        canMoveDown,
-        canMoveUp,
-        canOutdent,
-        handleIndent,
-        handleMoveDown,
-        handleMoveUp,
-        handleOutdent,
-      ],
-    ),
-  );
-
-  useToolbarContent(
-    "Delete Page",
-    useMemo(
-      () => (
-        <>
           <ToolbarButton
             onClick={handleDeletePage}
             text="Delete"
@@ -176,7 +167,17 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
           />
         </>
       ),
-      [handleDeletePage],
+      [
+        canIndent,
+        canMoveDown,
+        canMoveUp,
+        canOutdent,
+        handleDeletePage,
+        handleIndent,
+        handleMoveDown,
+        handleMoveUp,
+        handleOutdent,
+      ],
     ),
   );
 
