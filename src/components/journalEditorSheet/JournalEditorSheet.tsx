@@ -22,11 +22,9 @@ type JournalEditorSheetProps = {
 };
 
 export const JournalEditorSheet = ({
-  journalEntry: journal,
+  journalEntry,
   foundryApplication,
 }: JournalEditorSheetProps) => {
-  // assertNPCActor(actor);
-
   // keepalive - without this, if this journal entry is inside a compendium,
   // foundry will kill the in-memory references to it so normal UI updates stop
   // coming through. An empty update doesn't send any network traffic but it's
@@ -34,10 +32,10 @@ export const JournalEditorSheet = ({
   // so a 30 second keepalive is plenty.
   useEffect(() => {
     const interval = setInterval(() => {
-      journal.update({});
+      journalEntry.update({});
     }, KEEPALIVE_INTERVAL_MS);
     return () => clearInterval(interval);
-  }, [journal]);
+  }, [journalEntry]);
 
   const theme = useTheme();
 
@@ -55,8 +53,8 @@ export const JournalEditorSheet = ({
       (sheet) => sheet.name === "InvestigatorJournalSheet",
     ) as unknown as JournalSheet;
     // @ts-expect-error Journal types are effed
-    new JournalSheet(journal).render(true);
-  }, [journal]);
+    new JournalSheet(journalEntry).render(true);
+  }, [journalEntry]);
 
   const toolBarContent = useMemo(
     () => (
@@ -71,19 +69,19 @@ export const JournalEditorSheet = ({
 
   const handleTitleChange = React.useCallback(
     (name: string) => {
-      journal.update({ name });
+      journalEntry.update({ name });
     },
-    [journal],
+    [journalEntry],
   );
 
   // @ts-expect-error - foundry types are bad
-  const globalClasses = journal.flags[systemId]?.[extraCssClasses] ?? "";
+  const globalClasses = journalEntry.flags[systemId]?.[extraCssClasses] ?? "";
 
   const handleGlobalClassesChange = React.useCallback(
     (classes: string) => {
-      journal.setFlag(systemId, extraCssClasses, classes);
+      journalEntry.setFlag(systemId, extraCssClasses, classes);
     },
-    [journal],
+    [journalEntry],
   );
 
   return (
@@ -112,7 +110,7 @@ export const JournalEditorSheet = ({
           }}
         >
           <AsyncTextInput
-            value={journal.name ?? ""}
+            value={journalEntry.name ?? ""}
             onChange={handleTitleChange}
           />
           <AsyncTextInput
@@ -131,7 +129,7 @@ export const JournalEditorSheet = ({
             }}
           >
             <PageNavigation
-              journal={journal}
+              journalEntry={journalEntry}
               onNavigate={handlePageClick}
               activePageId={activePageId}
             />
@@ -144,8 +142,8 @@ export const JournalEditorSheet = ({
               position: "relative",
             }}
           >
-            {activePageId !== null && journal.pages.has(activePageId) ? (
-              <PageEditor page={journal.pages.get(activePageId)} />
+            {activePageId !== null && journalEntry.pages.has(activePageId) ? (
+              <PageEditor page={journalEntry.pages.get(activePageId)} />
             ) : (
               <NoPageSelected />
             )}

@@ -10,7 +10,7 @@ import { useToolbarContent } from "./magicToolbar";
 import { ToolbarButton } from "./magicToolbar/ToolbarButton";
 
 interface PageNavigationProps {
-  journal: JournalEntry;
+  journalEntry: JournalEntry;
   onNavigate: (pageId: string) => void;
   activePageId: string | null;
 }
@@ -48,13 +48,13 @@ async function addPage(
 }
 
 export const PageNavigation: React.FC<PageNavigationProps> = ({
-  journal,
+  journalEntry,
   onNavigate,
   activePageId,
 }) => {
   const theme = useTheme();
 
-  const pages = Array.from(journal.pages.values()).sort((a, b) => {
+  const pages = Array.from(journalEntry.pages.values()).sort((a, b) => {
     return a.sort - b.sort;
   });
 
@@ -70,16 +70,16 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
   );
 
   const handleAddNewTextPage = React.useCallback(async () => {
-    const newPage = await addPage(journal, "text", "New page");
+    const newPage = await addPage(journalEntry, "text", "New page");
     // @ts-expect-error ???
     onNavigate(newPage[0]._id);
-  }, [journal, onNavigate]);
+  }, [journalEntry, onNavigate]);
 
   const handleAddNewImagePage = React.useCallback(async () => {
-    const newPage = await addPage(journal, "image", "New image");
+    const newPage = await addPage(journalEntry, "image", "New image");
     // @ts-expect-error ???
     onNavigate(newPage[0]._id);
-  }, [journal, onNavigate]);
+  }, [journalEntry, onNavigate]);
 
   useToolbarContent(
     "Create new",
