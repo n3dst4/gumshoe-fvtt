@@ -91,19 +91,6 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
 
     reactRoot: Root | undefined;
 
-    // async render(force: boolean, options?: Application.RenderOptions) {
-    //   // we don't want to call super._render, because that will call
-    //   // _replaceHTML and _injectHTML which we've overridden to do nothing.
-    //   // Instead we'll call activateListeners ourselves, which is the only
-    //   // other thing super._render does.
-    //   if (name === "RawJournalSheetClass") {
-    //     debugger;
-    //   }
-    //   super.render();
-
-    //   this.activateListeners(this.element);
-    // }
-
     /**
      * We need to pick somewhere to activate and render React. It would have
      * been nice to do this from `render` & friends but they happen before
@@ -137,9 +124,6 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
             </FoundryAppContext.Provider>
           </StrictMode>
         );
-        // if (name === "RawJournalSheetClass") {
-        //   debugger;
-        // }
         if (!this.reactRoot) {
           this.reactRoot = createRoot(el);
         }
