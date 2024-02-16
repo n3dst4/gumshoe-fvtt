@@ -14,6 +14,7 @@ import { createDocumentMemory } from "./documentMemory/createDocumentMemory";
 import { rehydrate } from "./documentMemory/rehydrate";
 import { save } from "./documentMemory/save";
 import type { DocumentMemory } from "./documentMemory/types";
+import { getMemoryId } from "./getMemoryId";
 import { useToolbarContent } from "./magicToolbar";
 import { ToolbarButton } from "./magicToolbar/ToolbarButton";
 
@@ -36,9 +37,11 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
 
   const memoryRef = useRef<DocumentMemory>();
 
+  const memoryId = useMemo(() => getMemoryId(page), [page]);
+
   const doSave = useCallback(async () => {
     if (memoryRef.current === undefined) {
-      const bareMemory = settings.journalMemories.get()?.[page.id];
+      const bareMemory = settings.journalMemories.get()?.[memoryId];
       memoryRef.current = bareMemory
         ? rehydrate(bareMemory)
         : createDocumentMemory(MEMORY_PERIOD);
@@ -56,10 +59,10 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
     systemLogger.log("Saved", memoryRef.current);
     const journalMemoryCollection = {
       ...settings.journalMemories.get(),
-      [page.id]: memoryRef.current,
+      [memoryId]: memoryRef.current,
     };
     settings.journalMemories.set(journalMemoryCollection);
-  }, [page.parent, page.id, editorRef]);
+  }, [memoryId, page.id, page.parent]);
 
   const handleChange = useMemo(
     () =>

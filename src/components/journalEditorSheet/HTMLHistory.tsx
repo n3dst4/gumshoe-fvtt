@@ -6,6 +6,7 @@ import { createDocumentMemory } from "./documentMemory/createDocumentMemory";
 import { getAccessibleEdits } from "./documentMemory/getAccessibleEdits";
 import { rehydrate } from "./documentMemory/rehydrate";
 import { restoreVersion } from "./documentMemory/restoreVersion";
+import { getMemoryId } from "./getMemoryId";
 
 interface HTMLHistoryProps {
   page: any;
@@ -13,14 +14,15 @@ interface HTMLHistoryProps {
 }
 
 export const HTMLHistory: React.FC<HTMLHistoryProps> = ({ page }) => {
+  const memoryId = useMemo(() => getMemoryId(page), [page]);
   const memory = useMemo(() => {
-    const storedBarememory = settings.journalMemories.get()?.[page.id];
+    const storedBarememory = settings.journalMemories.get()?.[memoryId];
     if (storedBarememory) {
       return rehydrate(storedBarememory);
     } else {
       return createDocumentMemory(30);
     }
-  }, [page.id]);
+  }, [memoryId]);
   const revisions = useMemo(
     () => getAccessibleEdits(memory).toReversed(),
     [memory],
