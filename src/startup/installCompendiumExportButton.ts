@@ -4,7 +4,7 @@ import {
   ExportedCompendium,
   importCompendium,
 } from "../compendiumFactory/importCompendium";
-import { saveJson } from "../functions/saveFile";
+import { saveAsJsonFile } from "../functions/saveFile";
 import { assertGame, getUserFile } from "../functions/utilities";
 
 const importButtonIconClass = "fa-cloud-upload-alt";
@@ -43,7 +43,7 @@ export const installCompendiumExportButton = () => {
           entity,
           contents: mapped,
         };
-        saveJson(exportData, data.collection.metadata.name);
+        saveAsJsonFile(exportData, data.collection.metadata.name);
       });
     },
   );

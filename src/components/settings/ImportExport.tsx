@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
-import { saveJson } from "../../functions/saveFile";
+import { saveAsJsonFile } from "../../functions/saveFile";
 import { getUserFile } from "../../functions/utilities";
 import { getExportableSettingsDict } from "../../settings/getExportableSettingsDict";
 import { validateImportedSettings } from "../../settings/validateImportedSettings";
@@ -22,7 +22,7 @@ export const ImportExport: React.FC = () => {
   const handleExport = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const exportableSettings = getExportableSettingsDict(settingsState);
-    saveJson(exportableSettings, filename);
+    saveAsJsonFile(exportableSettings, filename);
     ui.notifications?.info("Settings exported to file");
   };
 
