@@ -1,7 +1,6 @@
 import { nanoid } from "nanoid";
 
 import { extraCssClasses, systemId } from "../constants";
-import { systemLogger } from "../functions/utilities";
 
 const editButtonCssClass = "investigator-edit-button";
 
@@ -15,7 +14,6 @@ export class InvestigatorJournalSheet extends JournalSheet {
 
   /** @override */
   activateListeners(html: JQuery) {
-    systemLogger.log("ACTIVATE LISTENERS", html);
     super.activateListeners(html);
 
     // find the entry content element and add the journal entry's classes onto
