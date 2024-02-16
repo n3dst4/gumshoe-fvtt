@@ -40,9 +40,9 @@ export const HTMLPage: React.FC<HTMLPageProps> = ({ page }) => {
   useToolbarContent("HTML", historyButton);
 
   if (mode === Mode.Edit) {
-    return <HTMLEditor page={page} />;
+    return <HTMLEditor key={page.id} page={page} />;
   } else {
-    return <HTMLHistory page={page} onDone={setEdit} />;
+    return <HTMLHistory key={page.id} page={page} onDone={setEdit} />;
   }
 };
 
