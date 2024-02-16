@@ -80,3 +80,20 @@ test("stores a sequence of edits that hits the depth limit", () => {
 
   expect(stacks.length).toEqual(2);
 });
+
+test("does not append history if the state is equal", () => {
+  let h1 = createDocumentMemory(100);
+  h1 = save(h1, "foo");
+  h1 = save(h1, "bar");
+  h1 = save(h1, "bax");
+  h1 = save(h1, "corge");
+  h1 = save(h1, "grault");
+  expect(h1.stack.edits.length).toEqual(5);
+  let h2 = createDocumentMemory(100);
+  h2 = save(h2, "foo");
+  h2 = save(h2, "foo");
+  h2 = save(h2, "bar");
+  h2 = save(h2, "bar");
+  h2 = save(h2, "foo");
+  expect(h2.stack.edits.length).toEqual(3);
+});

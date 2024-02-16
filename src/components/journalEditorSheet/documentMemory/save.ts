@@ -78,6 +78,7 @@ function push(
  * Add a new state to the memory
  */
 export function save(memory: DocumentMemory, state: string): DocumentMemory {
+  if (state === memory.state) return memory;
   const serial = memory.serial + 1;
   const changes = createDiff(memory.state, state);
   const edit: Edit = {
