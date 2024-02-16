@@ -1,4 +1,4 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import { createRoot, Root } from "react-dom/client";
 
 import { FoundryAppContext } from "./FoundryAppContext";
@@ -112,17 +112,17 @@ export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
 
       if (el) {
         const content = (
-          // <StrictMode>
-          <FoundryAppContext.Provider
-            value={this}
-            key={"FoundryAppContextProvider"}
-          >
-            {render(
-              this as TBase extends Constructor<infer T2> ? T2 : TBase,
-              this.serial,
-            )}
-          </FoundryAppContext.Provider>
-          // </StrictMode>
+          <StrictMode>
+            <FoundryAppContext.Provider
+              value={this}
+              key={"FoundryAppContextProvider"}
+            >
+              {render(
+                this as TBase extends Constructor<infer T2> ? T2 : TBase,
+                this.serial,
+              )}
+            </FoundryAppContext.Provider>
+          </StrictMode>
         );
         if (!this.reactRoot) {
           this.reactRoot = createRoot(el);
