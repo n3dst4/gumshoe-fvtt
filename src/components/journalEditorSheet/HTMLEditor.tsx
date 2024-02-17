@@ -28,7 +28,11 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
   function handleEditorWillMount(monaco: Monaco) {}
 
   const doFormat = useCallback(async () => {
-    await editorRef.current?.getAction("editor.action.formatDocument")?.run();
+    try {
+      await editorRef.current?.getAction("editor.action.formatDocument")?.run();
+    } catch (e: any) {
+      ui.notifications?.error(`<pre>${e.message}<pre>`);
+    }
   }, []);
 
   const memoryRef = useRef<DocumentMemory>();
@@ -64,36 +68,40 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
     // use prettier to format html
     monaco.languages.registerDocumentFormattingEditProvider("html", {
       async provideDocumentFormattingEdits(model) {
-        const text1 = await prettier.format(model.getValue(), {
-          // wrapAttributes: "force",
-          parser: "html",
-          // plugins: [babel],
-          htmlWhitespaceSensitivity: "ignore",
-          arrowParens: "always",
-          bracketSpacing: true,
-          endOfLine: "lf",
-          insertPragma: false,
-          singleAttributePerLine: false,
-          bracketSameLine: false,
-          printWidth: 80,
-          proseWrap: "preserve",
-          quoteProps: "as-needed",
-          requirePragma: false,
-          semi: true,
-          singleQuote: true,
-          tabWidth: 2,
-          // trailingComma: 'es5',
-          useTabs: false,
-          vueIndentScriptAndStyle: false,
-          plugins: [htmlParser],
-        });
-        console.log(1);
-        return [
-          {
-            range: model.getFullModelRange(),
-            text: text1,
-          },
-        ];
+        try {
+          const text1 = await prettier.format(model.getValue(), {
+            // wrapAttributes: "force",
+            parser: "html",
+            // plugins: [babel],
+            htmlWhitespaceSensitivity: "ignore",
+            arrowParens: "always",
+            bracketSpacing: true,
+            endOfLine: "lf",
+            insertPragma: false,
+            singleAttributePerLine: false,
+            bracketSameLine: false,
+            printWidth: 80,
+            proseWrap: "preserve",
+            quoteProps: "as-needed",
+            requirePragma: false,
+            semi: true,
+            singleQuote: true,
+            tabWidth: 2,
+            // trailingComma: 'es5',
+            useTabs: false,
+            vueIndentScriptAndStyle: false,
+            plugins: [htmlParser],
+          });
+          return [
+            {
+              range: model.getFullModelRange(),
+              text: text1,
+            },
+          ];
+        } catch (e: any) {
+          // systemLogger.log(e);
+          ui.notifications?.error(e.message);
+        }
       },
     });
 
