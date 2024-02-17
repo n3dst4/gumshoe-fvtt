@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext } from "react";
 
-import { assertGame } from "../../functions/utilities";
+import { assertGame, systemLogger } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";
 import { absoluteCover } from "../absoluteCover";
@@ -39,6 +39,8 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
   const scopingContainerClass = theme.notesCssClasses?.scopingContainer ?? "";
   const contentClass =
     (cssClassKey ? theme.notesCssClasses?.[cssClassKey] : null) ?? "";
+
+  systemLogger.log(contentClass);
 
   if (showSource) {
     editor = (

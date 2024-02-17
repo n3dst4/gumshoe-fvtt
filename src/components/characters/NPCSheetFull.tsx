@@ -5,6 +5,7 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
 import { assertNPCActor, isNPCActor } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
+import { CssClassContext } from "../CssClassContext";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -202,19 +203,21 @@ export const NPCSheetFull = ({
                     padding: "0.5em",
                   }}
                 >
-                  <NotesEditorWithControls
-                    allowChangeFormat
-                    format={actor.system.notes.format}
-                    html={actor.system.notes.html}
-                    source={actor.system.notes.source}
-                    onSave={actor.setNotes}
-                    css={{
-                      height: "100%",
-                      "&&": {
-                        resize: "none",
-                      },
-                    }}
-                  />
+                  <CssClassContext.Provider value="npcNote">
+                    <NotesEditorWithControls
+                      allowChangeFormat
+                      format={actor.system.notes.format}
+                      html={actor.system.notes.html}
+                      source={actor.system.notes.source}
+                      onSave={actor.setNotes}
+                      css={{
+                        height: "100%",
+                        "&&": {
+                          resize: "none",
+                        },
+                      }}
+                    />
+                  </CssClassContext.Provider>
                 </InputGrid>
               ),
             },

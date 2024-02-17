@@ -6,6 +6,7 @@ import { useTheme } from "../hooks/useTheme";
 import { InvestigatorItem } from "../module/InvestigatorItem";
 import { isAbilityItem, isMwItem } from "../v10Types";
 import { AbilitySheet } from "./abilities/AbilitySheet";
+import { CssClassContext } from "./CssClassContext";
 import { CSSReset } from "./CSSReset";
 import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { MwItemSheet } from "./equipment/MwItemSheet";
@@ -41,19 +42,24 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
 
   return (
     <CSSReset theme={theme} mode="small" css={style}>
-      {isAbilityItem(item) ? (
-        <AbilitySheet ability={item} application={application} />
-      ) : item.type === equipment ? (
-        <EquipmentSheet equipment={item} application={application} />
-      ) : item.type === weapon ? (
-        <WeaponSheet weapon={item} application={application} />
-      ) : item.type === mwItem ? (
-        <MwItemSheet item={item} application={application} />
-      ) : item.type === "personalDetail" ? (
-        <PersonalDetailSheet personalDetail={item} application={application} />
-      ) : (
-        <ThrowError message={`No sheet defined for item type ${item.type}`} />
-      )}
+      <CssClassContext.Provider value="itemNote">
+        {isAbilityItem(item) ? (
+          <AbilitySheet ability={item} application={application} />
+        ) : item.type === equipment ? (
+          <EquipmentSheet equipment={item} application={application} />
+        ) : item.type === weapon ? (
+          <WeaponSheet weapon={item} application={application} />
+        ) : item.type === mwItem ? (
+          <MwItemSheet item={item} application={application} />
+        ) : item.type === "personalDetail" ? (
+          <PersonalDetailSheet
+            personalDetail={item}
+            application={application}
+          />
+        ) : (
+          <ThrowError message={`No sheet defined for item type ${item.type}`} />
+        )}
+      </CssClassContext.Provider>
     </CSSReset>
   );
 };
