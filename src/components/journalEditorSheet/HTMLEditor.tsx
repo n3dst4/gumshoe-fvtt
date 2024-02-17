@@ -5,7 +5,7 @@ import React, { useCallback, useMemo, useRef } from "react";
 import { AiOutlineFormatPainter } from "react-icons/ai";
 
 import { extraCssClasses, systemId } from "../../constants";
-import { debounce, systemLogger } from "../../functions/utilities";
+import { debounce } from "../../functions/utilities";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 // these imports are going around the barrel export because I was getting some
 // weird "SyntaxError: Ambiguous import "DocumentMemory"" errors
@@ -33,7 +33,8 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
 
   const memoryRef = useRef<DocumentMemory>();
 
-  const debouncedSave = useMemo(
+  // a debounced save function
+  const handleSaveContent = useMemo(
     () =>
       debounce(async (content: string) => {
         memoryRef.current = await savePage(page, content, memoryRef.current);
@@ -41,13 +42,14 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
     [page],
   );
 
+  // event handler
   const handleChange = useCallback(
-    (content: string) => {
-      if (editorRef.current !== null) {
-        debouncedSave(content);
+    (content: string | undefined) => {
+      if (content !== undefined) {
+        handleSaveContent(content);
       }
     },
-    [debouncedSave],
+    [handleSaveContent],
   );
 
   const handleEditorDidMount: OnMount = useCallback((editor, monaco) => {
