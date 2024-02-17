@@ -73,8 +73,8 @@ devDependencies:
     specifier: ^9.280.0
     version: 9.280.0(@pixi/constants@6.5.9)(@pixi/core@6.5.9)(@pixi/display@6.5.9)(@pixi/graphics@6.5.9)(@pixi/math@6.5.9)(@pixi/utils@6.5.9)
   '@lumphammer/investigator-fvtt-types':
-    specifier: ^1.11.0
-    version: 1.11.0(@types/react@18.2.55)(react@18.2.0)
+    specifier: ^1.12.1
+    version: 1.12.1(@types/react@18.2.55)(react@18.2.0)
   '@seald-io/nedb':
     specifier: ^4.0.4
     version: 4.0.4
@@ -678,8 +678,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@lumphammer/investigator-fvtt-types@1.11.0(@types/react@18.2.55)(react@18.2.0):
-    resolution: {integrity: sha512-JHQ9SXDA2zdhaxhfTgzuXoEgwXS92Q7HiRONyel3U7dE9e6JiaeoOADQCK3Hb+sdWuVJfo6mVBSnJ/UegjEQHg==}
+  /@lumphammer/investigator-fvtt-types@1.12.1(@types/react@18.2.55)(react@18.2.0):
+    resolution: {integrity: sha512-GRCIXeXJxhwKVMWm9dVqNf+DVueeK+zIJv/2hmVpUM3vcUciwkLviIne6v2mMmZ7WxfUbuoL/chMPMKE8RhePA==}
     dependencies:
       '@emotion/react': 11.11.3(@types/react@18.2.55)(react@18.2.0)
     transitivePeerDependencies:

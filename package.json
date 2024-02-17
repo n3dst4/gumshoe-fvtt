@@ -36,7 +36,7 @@
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.3",
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
-    "@lumphammer/investigator-fvtt-types": "^1.11.0",
+    "@lumphammer/investigator-fvtt-types": "^1.12.1",
     "@seald-io/nedb": "^4.0.4",
     "@swc/plugin-emotion": "^2.5.116",
     "@testing-library/react": "^14.2.1",
