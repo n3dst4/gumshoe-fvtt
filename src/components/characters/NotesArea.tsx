@@ -5,6 +5,7 @@ import { settings } from "../../settings/settings";
 import { NoteWithFormat } from "../../types";
 import { assertPCActor } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
+import { CssClassContext } from "../CssClassContext";
 import { IndexedNotesEditorWithControls } from "../inputs/IndexedNotesEditorWithControls";
 import { InputGrid } from "../inputs/InputGrid";
 
@@ -33,19 +34,22 @@ export const NotesArea: React.FC<NotesAreaProps> = ({ actor }) => {
     >
       {longNotesNames.map<JSX.Element>((name: string, i: number) => {
         assertPCActor(actor);
+
         return (
-          <InputGrid key={`${name}--${i}`} css={{ flex: 1, minHeight: "12em" }}>
-            <IndexedNotesEditorWithControls
-              title={name}
-              index={i}
-              allowChangeFormat={false}
-              format={actor.system.longNotesFormat}
-              html={actor.system.longNotes[i]?.html ?? ""}
-              source={actor.system.longNotes[i]?.source ?? ""}
-              onSave={updateLongNote}
-              h2
-            />
-          </InputGrid>
+          <CssClassContext.Provider key={`${name}--${i}`} value="pcNote">
+            <InputGrid css={{ flex: 1, minHeight: "12em" }}>
+              <IndexedNotesEditorWithControls
+                title={name}
+                index={i}
+                allowChangeFormat={false}
+                format={actor.system.longNotesFormat}
+                html={actor.system.longNotes[i]?.html ?? ""}
+                source={actor.system.longNotes[i]?.source ?? ""}
+                onSave={updateLongNote}
+                h2
+              />
+            </InputGrid>
+          </CssClassContext.Provider>
         );
       })}
     </div>

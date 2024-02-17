@@ -4,6 +4,7 @@ import { assertGame } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";
 import { absoluteCover } from "../absoluteCover";
+import { CssClassContext } from "../CssClassContext";
 import { AsyncTextArea } from "./AsyncTextArea";
 import { MarkdownEditor } from "./MarkdownEditor";
 import { RichTextEditor } from "./RichTextEditor";
@@ -34,6 +35,11 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
 
   let editor: ReactNode;
 
+  const cssClassKey = useContext(CssClassContext);
+  const scopingContainerClass = theme.notesCssClasses?.scopingContainer ?? "";
+  const contentClass =
+    (cssClassKey ? theme.notesCssClasses?.[cssClassKey] : null) ?? "";
+
   if (showSource) {
     editor = (
       <pre
@@ -51,7 +57,7 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
   } else if (!editMode) {
     editor = (
       <div
-        className="investigator-notes-editor"
+        className={`investigator-notes-editor ${scopingContainerClass}`}
         css={{
           ...absoluteCover,
           overflow: "auto",
@@ -60,7 +66,10 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
           border: `1px solid ${theme.colors.controlBorder}`,
         }}
       >
-        <div className="red-theme" dangerouslySetInnerHTML={{ __html: html }} />
+        <div
+          className={contentClass}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
       </div>
     );
   } else if (format === NoteFormat.plain) {
