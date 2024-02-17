@@ -1,7 +1,7 @@
 import MonacoEditor, { Monaco, OnMount } from "@monaco-editor/react";
 import htmlParser from "prettier/plugins/html";
 import prettier from "prettier/standalone";
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useMemo, useRef } from "react";
 import { AiOutlineFormatPainter } from "react-icons/ai";
 
 import { extraCssClasses, systemId } from "../../constants";
@@ -33,26 +33,22 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
 
   const memoryRef = useRef<DocumentMemory>();
 
-  const doSave = useCallback(async () => {
-    systemLogger.info("Saving", memoryRef.current);
-    memoryRef.current = await savePage(
-      page,
-      editorRef.current?.getValue() ?? "",
-      memoryRef.current,
-    );
-  }, [page]);
-
-  const handleChange = useMemo(
-    () => debounce(doSave, SAVE_DEBOUNCE_MS),
-    [doSave],
+  const debouncedSave = useMemo(
+    () =>
+      debounce(async (content: string) => {
+        memoryRef.current = await savePage(page, content, memoryRef.current);
+      }, SAVE_DEBOUNCE_MS),
+    [page],
   );
 
-  useEffect(() => {
-    // save on exit
-    return function () {
-      doSave();
-    };
-  }, [doSave, handleChange]);
+  const handleChange = useCallback(
+    (content: string) => {
+      if (editorRef.current !== null) {
+        debouncedSave(content);
+      }
+    },
+    [debouncedSave],
+  );
 
   const handleEditorDidMount: OnMount = useCallback((editor, monaco) => {
     monacoRef.current = monaco;
