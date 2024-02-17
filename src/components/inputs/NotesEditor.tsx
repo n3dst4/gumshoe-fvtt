@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext } from "react";
 
-import { assertGame, systemLogger } from "../../functions/utilities";
+import { assertGame } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";
 import { absoluteCover } from "../absoluteCover";
@@ -40,8 +40,6 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
   const contentClass =
     (cssClassKey ? theme.notesCssClasses?.[cssClassKey] : null) ?? "";
 
-  systemLogger.log(contentClass);
-
   if (showSource) {
     editor = (
       <pre
@@ -63,13 +61,17 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
         css={{
           ...absoluteCover,
           overflow: "auto",
-          background: theme.colors.backgroundPrimary,
-          padding: "0.5em",
+          ...(contentClass
+            ? {}
+            : { background: theme.colors.backgroundPrimary, padding: "0.5em" }),
           border: `1px solid ${theme.colors.controlBorder}`,
         }}
       >
         <div
           className={contentClass}
+          css={{
+            minHeight: "100%",
+          }}
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
