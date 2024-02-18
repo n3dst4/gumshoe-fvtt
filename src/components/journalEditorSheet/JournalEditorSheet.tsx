@@ -12,7 +12,6 @@ import { ToolbarButton } from "./magicToolbar/ToolbarButton";
 import { NoPageSelected } from "./NoPageSelected";
 import { PageEditor } from "./PageEditor";
 import { PageNavigation } from "./PageNavigation";
-import { flexRow } from "./styles";
 
 const KEEPALIVE_INTERVAL_MS = 30_000;
 
@@ -119,7 +118,9 @@ export const JournalEditorSheet = ({
             onChange={handleGlobalClassesChange}
           />
         </div>
-        <div css={{ ...flexRow, gap: "0.5em", flex: 1 }}>
+        <div
+          css={{ display: "flex", flexDirection: "row", gap: "0.5em", flex: 1 }}
+        >
           <div
             data-testid="page-navigation"
             css={{
