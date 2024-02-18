@@ -36,7 +36,11 @@ export const MagicToolbar: React.FC<MagicToolbarProps> = ({
     if (groupedContent[entry.category] === undefined) {
       groupedContent[entry.category] = [];
     }
-    groupedContent[entry.category].push(entry.content);
+    groupedContent[entry.category].push(
+      <Fragment key={groupedContent[entry.category].length}>
+        {entry.content}
+      </Fragment>,
+    );
   }
 
   const normalizedCategories = useMemo(() => {
@@ -84,7 +88,6 @@ export const MagicToolbar: React.FC<MagicToolbarProps> = ({
         rowGap: "0.5em",
       }}
     >
-      {/* {children} */}
       {content}
     </div>
   );
