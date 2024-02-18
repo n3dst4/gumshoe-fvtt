@@ -35,10 +35,10 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
 
   let editor: ReactNode;
 
-  const cssClassKey = useContext(NotesTypeContext);
-  const scopingContainerClass = theme.notesCssClasses?.scopingContainer ?? "";
+  const contentClassKey = useContext(NotesTypeContext);
   const contentClass =
-    (cssClassKey ? theme.notesCssClasses?.[cssClassKey] : null) ?? "";
+    (contentClassKey ? theme.notesCssClasses?.[contentClassKey] : null) ?? "";
+  const scopingContainerClass = theme.notesCssClasses?.scopingContainer ?? "";
 
   if (showSource) {
     editor = (
