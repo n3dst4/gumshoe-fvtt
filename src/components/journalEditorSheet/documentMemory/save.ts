@@ -53,7 +53,7 @@ function push(
 
     let newNextSnapshots = [];
     [nextStack, newNextSnapshots] = push(
-      nextStack || createStack(period),
+      nextStack || createStack(),
       editToPush,
       serial,
       period,

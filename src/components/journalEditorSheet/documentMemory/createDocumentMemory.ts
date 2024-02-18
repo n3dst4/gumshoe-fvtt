@@ -9,7 +9,7 @@ export function createDocumentMemory(
   maxDepth: number | null = null,
 ): DocumentMemory {
   return {
-    stack: createStack(period),
+    stack: createStack(),
     serial: 0,
     period,
     maxDepth,
