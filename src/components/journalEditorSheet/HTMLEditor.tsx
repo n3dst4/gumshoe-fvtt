@@ -19,7 +19,7 @@ interface HTMLEditorProps {
 }
 type IStandalonCodeEditor = Parameters<OnMount>[0];
 
-const SAVE_DEBOUNCE_MS = 1000;
+const SAVE_DEBOUNCE_MS = 600;
 
 /**
  * The actual Monaco-based HTML editor.
