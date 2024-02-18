@@ -7,3 +7,4 @@ build
 stats.html
 stats
 .swc
+tsconfig.vitest-temp.json

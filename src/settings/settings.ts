@@ -1,6 +1,7 @@
 import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
 import { z } from "zod";
 
+import { DocumentMemoryCollection } from "../components/journalEditorSheet/documentMemory";
 import * as c from "../constants";
 import { mapValues } from "../functions/utilities";
 import { MigrationFlags } from "../migrations/types";
@@ -211,6 +212,13 @@ export const settings = {
     key: "firstRun",
     name: "First run?",
     default: true,
+    exportable: false,
+  }),
+
+  journalMemories: createSetting<DocumentMemoryCollection>()(Object)({
+    key: c.journalMemories,
+    name: "Journal memories",
+    default: {},
     exportable: false,
   }),
 };

@@ -6,6 +6,8 @@ import { InvestigatorCombatant } from "../module/InvestigatorCombatant";
 import { InvestigatorCombatTracker } from "../module/InvestigatorCombatTracker";
 import { InvestigatorItem } from "../module/InvestigatorItem";
 import { ItemSheetClass } from "../module/InvestigatorItemSheetClass";
+import { InvestigatorJournalSheet } from "../module/InvestigatorJournalSheet";
+import { JournalEditorSheetClass } from "../module/JournalEditorSheetClass";
 import { NPCSheetClass } from "../module/NPCSheetClass";
 import { PartySheetClass } from "../module/PartySheetClass";
 import { PCSheetClass } from "../module/PCSheetClass";
@@ -44,5 +46,15 @@ export const registerSheetsAndClasses = () => {
       constants.mwItem,
       constants.personalDetail,
     ],
+  });
+  Journal.registerSheet("investigator", JournalEditorSheetClass, {
+    types: ["base"],
+    makeDefault: false,
+    label: "Investigator Journal Editor",
+  });
+  Journal.registerSheet("investigator", InvestigatorJournalSheet, {
+    types: ["base"],
+    makeDefault: false,
+    label: "Investigator Journal Sheet",
   });
 };

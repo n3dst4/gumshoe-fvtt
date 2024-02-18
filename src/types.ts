@@ -297,3 +297,9 @@ export type RecursiveRequired<T> = T extends Function
 export type EquipmentFieldType = Pick<EquipmentFieldMetadata, "type">["type"];
 
 export type Mandatory<T> = Exclude<T, undefined | null>;
+
+declare global {
+  interface JournalEntry {
+    pages: Map<string, any>;
+  }
+}

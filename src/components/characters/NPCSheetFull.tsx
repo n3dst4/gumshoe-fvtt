@@ -11,6 +11,7 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { NotesTypeContext } from "../NotesTypeContext";
 import { TabContainer } from "../TabContainer";
 import { Translate } from "../Translate";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
@@ -202,19 +203,21 @@ export const NPCSheetFull = ({
                     padding: "0.5em",
                   }}
                 >
-                  <NotesEditorWithControls
-                    allowChangeFormat
-                    format={actor.system.notes.format}
-                    html={actor.system.notes.html}
-                    source={actor.system.notes.source}
-                    onSave={actor.setNotes}
-                    css={{
-                      height: "100%",
-                      "&&": {
-                        resize: "none",
-                      },
-                    }}
-                  />
+                  <NotesTypeContext.Provider value="npcNote">
+                    <NotesEditorWithControls
+                      allowChangeFormat
+                      format={actor.system.notes.format}
+                      html={actor.system.notes.html}
+                      source={actor.system.notes.source}
+                      onSave={actor.setNotes}
+                      css={{
+                        height: "100%",
+                        "&&": {
+                          resize: "none",
+                        },
+                      }}
+                    />
+                  </NotesTypeContext.Provider>
                 </InputGrid>
               ),
             },
@@ -229,19 +232,21 @@ export const NPCSheetFull = ({
                     padding: "0.5em",
                   }}
                 >
-                  <NotesEditorWithControls
-                    allowChangeFormat
-                    format={actor.system.gmNotes.format}
-                    html={actor.system.gmNotes.html}
-                    source={actor.system.gmNotes.source}
-                    onSave={actor.setGMNotes}
-                    css={{
-                      height: "100%",
-                      "&&": {
-                        resize: "none",
-                      },
-                    }}
-                  />
+                  <NotesTypeContext.Provider value="npcNote">
+                    <NotesEditorWithControls
+                      allowChangeFormat
+                      format={actor.system.gmNotes.format}
+                      html={actor.system.gmNotes.html}
+                      source={actor.system.gmNotes.source}
+                      onSave={actor.setGMNotes}
+                      css={{
+                        height: "100%",
+                        "&&": {
+                          resize: "none",
+                        },
+                      }}
+                    />
+                  </NotesTypeContext.Provider>
                 </InputGrid>
               ),
             },

@@ -1,0 +1,1355 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`getAccessibleEdits: 1 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "a",
+      ],
+    ],
+    "serial": 1,
+    "timestamp": 0,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 2 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "a",
+      ],
+    ],
+    "serial": 1,
+    "timestamp": 0,
+  },
+  {
+    "changes": [
+      [
+        0,
+        1,
+      ],
+      [
+        1,
+        "b",
+      ],
+    ],
+    "serial": 2,
+    "timestamp": 10,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 3 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "a",
+      ],
+    ],
+    "serial": 1,
+    "timestamp": 0,
+  },
+  {
+    "changes": [
+      [
+        0,
+        1,
+      ],
+      [
+        1,
+        "b",
+      ],
+    ],
+    "serial": 2,
+    "timestamp": 10,
+  },
+  {
+    "changes": [
+      [
+        0,
+        2,
+      ],
+      [
+        1,
+        "c",
+      ],
+    ],
+    "serial": 3,
+    "timestamp": 20,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 4 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        1,
+      ],
+      [
+        1,
+        "b",
+      ],
+    ],
+    "serial": 2,
+    "timestamp": 10,
+  },
+  {
+    "changes": [
+      [
+        0,
+        2,
+      ],
+      [
+        1,
+        "c",
+      ],
+    ],
+    "serial": 3,
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "d",
+      ],
+    ],
+    "serial": 4,
+    "timestamp": 30,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 5 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        2,
+      ],
+      [
+        1,
+        "c",
+      ],
+    ],
+    "serial": 3,
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "d",
+      ],
+    ],
+    "serial": 4,
+    "timestamp": 30,
+  },
+  {
+    "changes": [
+      [
+        0,
+        4,
+      ],
+      [
+        1,
+        "e",
+      ],
+    ],
+    "serial": 5,
+    "timestamp": 40,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 6 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "serial": 3,
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "d",
+      ],
+    ],
+    "serial": 4,
+    "timestamp": 30,
+  },
+  {
+    "changes": [
+      [
+        0,
+        4,
+      ],
+      [
+        1,
+        "e",
+      ],
+    ],
+    "serial": 5,
+    "timestamp": 40,
+  },
+  {
+    "changes": [
+      [
+        0,
+        5,
+      ],
+      [
+        1,
+        "f",
+      ],
+    ],
+    "serial": 6,
+    "timestamp": 50,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 7 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "serial": 3,
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        4,
+      ],
+      [
+        1,
+        "e",
+      ],
+    ],
+    "serial": 5,
+    "timestamp": 40,
+  },
+  {
+    "changes": [
+      [
+        0,
+        5,
+      ],
+      [
+        1,
+        "f",
+      ],
+    ],
+    "serial": 6,
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "g",
+      ],
+    ],
+    "serial": 7,
+    "timestamp": 60,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 8 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "serial": 3,
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        5,
+      ],
+      [
+        1,
+        "f",
+      ],
+    ],
+    "serial": 6,
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "g",
+      ],
+    ],
+    "serial": 7,
+    "timestamp": 60,
+  },
+  {
+    "changes": [
+      [
+        0,
+        7,
+      ],
+      [
+        1,
+        "h",
+      ],
+    ],
+    "serial": 8,
+    "timestamp": 70,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 9 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "serial": 3,
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "serial": 6,
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "g",
+      ],
+    ],
+    "serial": 7,
+    "timestamp": 60,
+  },
+  {
+    "changes": [
+      [
+        0,
+        7,
+      ],
+      [
+        1,
+        "h",
+      ],
+    ],
+    "serial": 8,
+    "timestamp": 70,
+  },
+  {
+    "changes": [
+      [
+        0,
+        8,
+      ],
+      [
+        1,
+        "i",
+      ],
+    ],
+    "serial": 9,
+    "timestamp": 80,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 10 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "serial": 3,
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "serial": 6,
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        7,
+      ],
+      [
+        1,
+        "h",
+      ],
+    ],
+    "serial": 8,
+    "timestamp": 70,
+  },
+  {
+    "changes": [
+      [
+        0,
+        8,
+      ],
+      [
+        1,
+        "i",
+      ],
+    ],
+    "serial": 9,
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "j",
+      ],
+    ],
+    "serial": 10,
+    "timestamp": 90,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 11 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "serial": 3,
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "serial": 6,
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        8,
+      ],
+      [
+        1,
+        "i",
+      ],
+    ],
+    "serial": 9,
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "j",
+      ],
+    ],
+    "serial": 10,
+    "timestamp": 90,
+  },
+  {
+    "changes": [
+      [
+        0,
+        10,
+      ],
+      [
+        1,
+        "k",
+      ],
+    ],
+    "serial": 11,
+    "timestamp": 100,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 12 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "serial": 3,
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "serial": 6,
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "serial": 9,
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "j",
+      ],
+    ],
+    "serial": 10,
+    "timestamp": 90,
+  },
+  {
+    "changes": [
+      [
+        0,
+        10,
+      ],
+      [
+        1,
+        "k",
+      ],
+    ],
+    "serial": 11,
+    "timestamp": 100,
+  },
+  {
+    "changes": [
+      [
+        0,
+        11,
+      ],
+      [
+        1,
+        "l",
+      ],
+    ],
+    "serial": 12,
+    "timestamp": 110,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 13 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "serial": 3,
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "serial": 6,
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "serial": 9,
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        10,
+      ],
+      [
+        1,
+        "k",
+      ],
+    ],
+    "serial": 11,
+    "timestamp": 100,
+  },
+  {
+    "changes": [
+      [
+        0,
+        11,
+      ],
+      [
+        1,
+        "l",
+      ],
+    ],
+    "serial": 12,
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        12,
+      ],
+      [
+        1,
+        "m",
+      ],
+    ],
+    "serial": 13,
+    "timestamp": 120,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 14 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        1,
+        "abc",
+      ],
+    ],
+    "serial": 3,
+    "timestamp": 20,
+  },
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "serial": 6,
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "serial": 9,
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        11,
+      ],
+      [
+        1,
+        "l",
+      ],
+    ],
+    "serial": 12,
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        12,
+      ],
+      [
+        1,
+        "m",
+      ],
+    ],
+    "serial": 13,
+    "timestamp": 120,
+  },
+  {
+    "changes": [
+      [
+        0,
+        13,
+      ],
+      [
+        1,
+        "n",
+      ],
+    ],
+    "serial": 14,
+    "timestamp": 130,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 15 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "serial": 6,
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "serial": 9,
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "jkl",
+      ],
+    ],
+    "serial": 12,
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        12,
+      ],
+      [
+        1,
+        "m",
+      ],
+    ],
+    "serial": 13,
+    "timestamp": 120,
+  },
+  {
+    "changes": [
+      [
+        0,
+        13,
+      ],
+      [
+        1,
+        "n",
+      ],
+    ],
+    "serial": 14,
+    "timestamp": 130,
+  },
+  {
+    "changes": [
+      [
+        0,
+        14,
+      ],
+      [
+        1,
+        "o",
+      ],
+    ],
+    "serial": 15,
+    "timestamp": 140,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 16 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "serial": 6,
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "serial": 9,
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "jkl",
+      ],
+    ],
+    "serial": 12,
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        13,
+      ],
+      [
+        1,
+        "n",
+      ],
+    ],
+    "serial": 14,
+    "timestamp": 130,
+  },
+  {
+    "changes": [
+      [
+        0,
+        14,
+      ],
+      [
+        1,
+        "o",
+      ],
+    ],
+    "serial": 15,
+    "timestamp": 140,
+  },
+  {
+    "changes": [
+      [
+        0,
+        15,
+      ],
+      [
+        1,
+        "p",
+      ],
+    ],
+    "serial": 16,
+    "timestamp": 150,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 17 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        3,
+      ],
+      [
+        1,
+        "def",
+      ],
+    ],
+    "serial": 6,
+    "timestamp": 50,
+  },
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "serial": 9,
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "jkl",
+      ],
+    ],
+    "serial": 12,
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        14,
+      ],
+      [
+        1,
+        "o",
+      ],
+    ],
+    "serial": 15,
+    "timestamp": 140,
+  },
+  {
+    "changes": [
+      [
+        0,
+        15,
+      ],
+      [
+        1,
+        "p",
+      ],
+    ],
+    "serial": 16,
+    "timestamp": 150,
+  },
+  {
+    "changes": [
+      [
+        0,
+        16,
+      ],
+      [
+        1,
+        "q",
+      ],
+    ],
+    "serial": 17,
+    "timestamp": 160,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 18 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "serial": 9,
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "jkl",
+      ],
+    ],
+    "serial": 12,
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        12,
+      ],
+      [
+        1,
+        "mno",
+      ],
+    ],
+    "serial": 15,
+    "timestamp": 140,
+  },
+  {
+    "changes": [
+      [
+        0,
+        15,
+      ],
+      [
+        1,
+        "p",
+      ],
+    ],
+    "serial": 16,
+    "timestamp": 150,
+  },
+  {
+    "changes": [
+      [
+        0,
+        16,
+      ],
+      [
+        1,
+        "q",
+      ],
+    ],
+    "serial": 17,
+    "timestamp": 160,
+  },
+  {
+    "changes": [
+      [
+        0,
+        17,
+      ],
+      [
+        1,
+        "r",
+      ],
+    ],
+    "serial": 18,
+    "timestamp": 170,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 19 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "serial": 9,
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "jkl",
+      ],
+    ],
+    "serial": 12,
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        12,
+      ],
+      [
+        1,
+        "mno",
+      ],
+    ],
+    "serial": 15,
+    "timestamp": 140,
+  },
+  {
+    "changes": [
+      [
+        0,
+        16,
+      ],
+      [
+        1,
+        "q",
+      ],
+    ],
+    "serial": 17,
+    "timestamp": 160,
+  },
+  {
+    "changes": [
+      [
+        0,
+        17,
+      ],
+      [
+        1,
+        "r",
+      ],
+    ],
+    "serial": 18,
+    "timestamp": 170,
+  },
+  {
+    "changes": [
+      [
+        0,
+        18,
+      ],
+      [
+        1,
+        "s",
+      ],
+    ],
+    "serial": 19,
+    "timestamp": 180,
+  },
+]
+`;
+
+exports[`getAccessibleEdits: 20 edits 1`] = `
+[
+  {
+    "changes": [
+      [
+        0,
+        6,
+      ],
+      [
+        1,
+        "ghi",
+      ],
+    ],
+    "serial": 9,
+    "timestamp": 80,
+  },
+  {
+    "changes": [
+      [
+        0,
+        9,
+      ],
+      [
+        1,
+        "jkl",
+      ],
+    ],
+    "serial": 12,
+    "timestamp": 110,
+  },
+  {
+    "changes": [
+      [
+        0,
+        12,
+      ],
+      [
+        1,
+        "mno",
+      ],
+    ],
+    "serial": 15,
+    "timestamp": 140,
+  },
+  {
+    "changes": [
+      [
+        0,
+        17,
+      ],
+      [
+        1,
+        "r",
+      ],
+    ],
+    "serial": 18,
+    "timestamp": 170,
+  },
+  {
+    "changes": [
+      [
+        0,
+        18,
+      ],
+      [
+        1,
+        "s",
+      ],
+    ],
+    "serial": 19,
+    "timestamp": 180,
+  },
+  {
+    "changes": [
+      [
+        0,
+        19,
+      ],
+      [
+        1,
+        "t",
+      ],
+    ],
+    "serial": 20,
+    "timestamp": 190,
+  },
+]
+`;

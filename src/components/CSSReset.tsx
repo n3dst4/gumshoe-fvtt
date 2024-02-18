@@ -128,7 +128,11 @@ export const CSSReset: React.FC<CSSResetProps> = ({
               h4: {
                 fontSize: "1em",
               },
-              button: {
+              // fix specificity. The comma causes this to be intgerpreted as a
+              // new selector, i.e. it comes out as
+              // .abc123, :where(.abc123) button { ... }
+              // the :where makes this the same specificity as a regular style
+              ",:where(&) button": {
                 font: theme.displayFont,
                 color: theme.colors.accent,
                 "&[disabled]": {

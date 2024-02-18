@@ -1,0 +1,257 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`stores a sequence of edits 1`] = `
+{
+  "maxDepth": null,
+  "period": 3,
+  "serial": 3,
+  "snapshots": [
+    "",
+  ],
+  "stack": {
+    "bombBay": [],
+    "edits": [
+      {
+        "changes": [
+          [
+            1,
+            "a",
+          ],
+        ],
+        "serial": 1,
+        "timestamp": 0,
+      },
+      {
+        "changes": [
+          [
+            0,
+            1,
+          ],
+          [
+            1,
+            "b",
+          ],
+        ],
+        "serial": 2,
+        "timestamp": 10,
+      },
+      {
+        "changes": [
+          [
+            0,
+            2,
+          ],
+          [
+            1,
+            "c",
+          ],
+        ],
+        "serial": 3,
+        "timestamp": 20,
+      },
+    ],
+    "next": null,
+  },
+  "state": "abc",
+}
+`;
+
+exports[`stores a sequence of edits onto the next stack 1`] = `
+{
+  "maxDepth": null,
+  "period": 3,
+  "serial": 6,
+  "snapshots": [
+    "abc",
+    "",
+  ],
+  "stack": {
+    "bombBay": [],
+    "edits": [
+      {
+        "changes": [
+          [
+            0,
+            3,
+          ],
+          [
+            1,
+            "d",
+          ],
+        ],
+        "serial": 4,
+        "timestamp": 30,
+      },
+      {
+        "changes": [
+          [
+            0,
+            4,
+          ],
+          [
+            1,
+            "e",
+          ],
+        ],
+        "serial": 5,
+        "timestamp": 40,
+      },
+      {
+        "changes": [
+          [
+            0,
+            5,
+          ],
+          [
+            1,
+            "f",
+          ],
+        ],
+        "serial": 6,
+        "timestamp": 50,
+      },
+    ],
+    "next": {
+      "bombBay": [],
+      "edits": [
+        {
+          "changes": [
+            [
+              1,
+              "abc",
+            ],
+          ],
+          "serial": 3,
+          "timestamp": 20,
+        },
+      ],
+      "next": null,
+    },
+  },
+  "state": "abcdef",
+}
+`;
+
+exports[`stores a sequence of edits onto the third stack 1`] = `
+{
+  "maxDepth": null,
+  "period": 3,
+  "serial": 21,
+  "snapshots": [
+    "abcdefghijklmnopqr",
+    "abcdefghi",
+    "",
+  ],
+  "stack": {
+    "bombBay": [],
+    "edits": [
+      {
+        "changes": [
+          [
+            0,
+            18,
+          ],
+          [
+            1,
+            "s",
+          ],
+        ],
+        "serial": 19,
+        "timestamp": 180,
+      },
+      {
+        "changes": [
+          [
+            0,
+            19,
+          ],
+          [
+            1,
+            "t",
+          ],
+        ],
+        "serial": 20,
+        "timestamp": 190,
+      },
+      {
+        "changes": [
+          [
+            0,
+            20,
+          ],
+          [
+            1,
+            "u",
+          ],
+        ],
+        "serial": 21,
+        "timestamp": 200,
+      },
+    ],
+    "next": {
+      "bombBay": [],
+      "edits": [
+        {
+          "changes": [
+            [
+              0,
+              9,
+            ],
+            [
+              1,
+              "jkl",
+            ],
+          ],
+          "serial": 12,
+          "timestamp": 110,
+        },
+        {
+          "changes": [
+            [
+              0,
+              12,
+            ],
+            [
+              1,
+              "mno",
+            ],
+          ],
+          "serial": 15,
+          "timestamp": 140,
+        },
+        {
+          "changes": [
+            [
+              0,
+              15,
+            ],
+            [
+              1,
+              "pqr",
+            ],
+          ],
+          "serial": 18,
+          "timestamp": 170,
+        },
+      ],
+      "next": {
+        "bombBay": [],
+        "edits": [
+          {
+            "changes": [
+              [
+                1,
+                "abcdefghi",
+              ],
+            ],
+            "serial": 9,
+            "timestamp": 80,
+          },
+        ],
+        "next": null,
+      },
+    },
+  },
+  "state": "abcdefghijklmnopqrstu",
+}
+`;
