@@ -4,7 +4,6 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
 import { NoteWithFormat } from "../../types";
 import { assertPCActor } from "../../v10Types";
-import { absoluteCover } from "../absoluteCover";
 import { CssClassContext } from "../CssClassContext";
 import { IndexedNotesEditorWithControls } from "../inputs/IndexedNotesEditorWithControls";
 import { InputGrid } from "../inputs/InputGrid";
@@ -26,10 +25,11 @@ export const NotesArea: React.FC<NotesAreaProps> = ({ actor }) => {
   return (
     <div
       css={{
-        ...absoluteCover,
-        paddingTop: "1em",
+        position: "absolute",
+        inset: "0.5em",
         display: "flex",
         flexDirection: "column",
+        gap: "0.5em",
       }}
     >
       {longNotesNames.map<JSX.Element>((name: string, i: number) => {
