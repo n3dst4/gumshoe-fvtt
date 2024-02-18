@@ -4,7 +4,7 @@ import { assertGame } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";
 import { absoluteCover } from "../absoluteCover";
-import { CssClassContext } from "../CssClassContext";
+import { NotesTypeContext } from "../NotesTypeContext";
 import { AsyncTextArea } from "./AsyncTextArea";
 import { MarkdownEditor } from "./MarkdownEditor";
 import { RichTextEditor } from "./RichTextEditor";
@@ -35,7 +35,7 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
 
   let editor: ReactNode;
 
-  const cssClassKey = useContext(CssClassContext);
+  const cssClassKey = useContext(NotesTypeContext);
   const scopingContainerClass = theme.notesCssClasses?.scopingContainer ?? "";
   const contentClass =
     (cssClassKey ? theme.notesCssClasses?.[cssClassKey] : null) ?? "";

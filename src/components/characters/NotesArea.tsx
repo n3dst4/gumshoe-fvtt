@@ -4,9 +4,9 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
 import { NoteWithFormat } from "../../types";
 import { assertPCActor } from "../../v10Types";
-import { CssClassContext } from "../CssClassContext";
 import { IndexedNotesEditorWithControls } from "../inputs/IndexedNotesEditorWithControls";
 import { InputGrid } from "../inputs/InputGrid";
+import { NotesTypeContext } from "../NotesTypeContext";
 
 type NotesAreaProps = {
   actor: InvestigatorActor;
@@ -36,7 +36,7 @@ export const NotesArea: React.FC<NotesAreaProps> = ({ actor }) => {
         assertPCActor(actor);
 
         return (
-          <CssClassContext.Provider key={`${name}--${i}`} value="pcNote">
+          <NotesTypeContext.Provider key={`${name}--${i}`} value="pcNote">
             <InputGrid css={{ flex: 1, minHeight: "12em" }}>
               <IndexedNotesEditorWithControls
                 title={name}
@@ -49,7 +49,7 @@ export const NotesArea: React.FC<NotesAreaProps> = ({ actor }) => {
                 h2
               />
             </InputGrid>
-          </CssClassContext.Provider>
+          </NotesTypeContext.Provider>
         );
       })}
     </div>

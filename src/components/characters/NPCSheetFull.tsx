@@ -5,13 +5,13 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
 import { assertNPCActor, isNPCActor } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
-import { CssClassContext } from "../CssClassContext";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { NotesTypeContext } from "../NotesTypeContext";
 import { TabContainer } from "../TabContainer";
 import { Translate } from "../Translate";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
@@ -203,7 +203,7 @@ export const NPCSheetFull = ({
                     padding: "0.5em",
                   }}
                 >
-                  <CssClassContext.Provider value="npcNote">
+                  <NotesTypeContext.Provider value="npcNote">
                     <NotesEditorWithControls
                       allowChangeFormat
                       format={actor.system.notes.format}
@@ -217,7 +217,7 @@ export const NPCSheetFull = ({
                         },
                       }}
                     />
-                  </CssClassContext.Provider>
+                  </NotesTypeContext.Provider>
                 </InputGrid>
               ),
             },
@@ -232,7 +232,7 @@ export const NPCSheetFull = ({
                     padding: "0.5em",
                   }}
                 >
-                  <CssClassContext.Provider value="npcNote">
+                  <NotesTypeContext.Provider value="npcNote">
                     <NotesEditorWithControls
                       allowChangeFormat
                       format={actor.system.gmNotes.format}
@@ -246,7 +246,7 @@ export const NPCSheetFull = ({
                         },
                       }}
                     />
-                  </CssClassContext.Provider>
+                  </NotesTypeContext.Provider>
                 </InputGrid>
               ),
             },

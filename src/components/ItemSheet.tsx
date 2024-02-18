@@ -6,11 +6,11 @@ import { useTheme } from "../hooks/useTheme";
 import { InvestigatorItem } from "../module/InvestigatorItem";
 import { isAbilityItem, isMwItem } from "../v10Types";
 import { AbilitySheet } from "./abilities/AbilitySheet";
-import { CssClassContext } from "./CssClassContext";
 import { CSSReset } from "./CSSReset";
 import { EquipmentSheet } from "./equipment/EquipmentSheet";
 import { MwItemSheet } from "./equipment/MwItemSheet";
 import { WeaponSheet } from "./equipment/WeaponSheet";
+import { NotesTypeContext } from "./NotesTypeContext";
 import { PersonalDetailSheet } from "./personalDetails/PersonalDetailSheet";
 import { ThrowError } from "./ThrowError";
 
@@ -42,7 +42,7 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
 
   return (
     <CSSReset theme={theme} mode="small" css={style}>
-      <CssClassContext.Provider value="itemNote">
+      <NotesTypeContext.Provider value="itemNote">
         {isAbilityItem(item) ? (
           <AbilitySheet ability={item} application={application} />
         ) : item.type === equipment ? (
@@ -59,7 +59,7 @@ export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
         ) : (
           <ThrowError message={`No sheet defined for item type ${item.type}`} />
         )}
-      </CssClassContext.Provider>
+      </NotesTypeContext.Provider>
     </CSSReset>
   );
 };
