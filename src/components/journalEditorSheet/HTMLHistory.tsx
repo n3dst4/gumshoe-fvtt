@@ -2,6 +2,7 @@ import { DiffEditor } from "@monaco-editor/react";
 import React, { useCallback, useMemo } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 
+import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { settings } from "../../settings/settings";
 import { createDocumentMemory } from "./documentMemory/createDocumentMemory";
 import { getAccessibleEdits } from "./documentMemory/getAccessibleEdits";
@@ -58,9 +59,19 @@ export const HTMLHistory: React.FC<HTMLHistoryProps> = ({
   }, [activeDiffIndex, memory, revisions]);
 
   const handleRestore = useCallback(async () => {
-    const state = restoreVersion(memory, revisions[activeDiffIndex].serial);
-    await savePage(page, state, memory);
-    cancelHistoryMode();
+    const yes = await confirmADoodleDo({
+      message: "Are you sure you want to restore this revision?",
+      confirmText: "Restore",
+      cancelText: "Cancel",
+      confirmIconClass: "fa fa-heart",
+      resolveFalseOnCancel: true,
+      translate: false,
+    });
+    if (yes) {
+      const state = restoreVersion(memory, revisions[activeDiffIndex].serial);
+      await savePage(page, state, memory);
+      cancelHistoryMode();
+    }
   }, [activeDiffIndex, cancelHistoryMode, memory, page, revisions]);
 
   const restoreButton = useMemo(

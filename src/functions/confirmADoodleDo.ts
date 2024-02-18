@@ -8,6 +8,7 @@ interface confirmADoodleDoArgs {
   confirmIconClass: string;
   values?: Record<string, string | number>;
   resolveFalseOnCancel?: boolean;
+  translate?: boolean;
 }
 
 /**
@@ -24,11 +25,16 @@ export const confirmADoodleDo = ({
   confirmIconClass,
   values = {},
   resolveFalseOnCancel = false,
+  translate = true,
 }: confirmADoodleDoArgs) => {
   assertGame(game);
-  const tlMessage = getTranslated(message, values);
-  const tlConfirmText = getTranslated(confirmText, values);
-  const tlCancelText = getTranslated(cancelText, values);
+  const tlMessage = translate ? getTranslated(message, values) : message;
+  const tlConfirmText = translate
+    ? getTranslated(confirmText, values)
+    : confirmText;
+  const tlCancelText = translate
+    ? getTranslated(cancelText, values)
+    : cancelText;
   const promise = new Promise<boolean>((resolve) => {
     const onConfirm = () => {
       resolve(true);
