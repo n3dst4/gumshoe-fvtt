@@ -232,19 +232,21 @@ export const NPCSheetFull = ({
                     padding: "0.5em",
                   }}
                 >
-                  <NotesEditorWithControls
-                    allowChangeFormat
-                    format={actor.system.gmNotes.format}
-                    html={actor.system.gmNotes.html}
-                    source={actor.system.gmNotes.source}
-                    onSave={actor.setGMNotes}
-                    css={{
-                      height: "100%",
-                      "&&": {
-                        resize: "none",
-                      },
-                    }}
-                  />
+                  <CssClassContext.Provider value="npcNote">
+                    <NotesEditorWithControls
+                      allowChangeFormat
+                      format={actor.system.gmNotes.format}
+                      html={actor.system.gmNotes.html}
+                      source={actor.system.gmNotes.source}
+                      onSave={actor.setGMNotes}
+                      css={{
+                        height: "100%",
+                        "&&": {
+                          resize: "none",
+                        },
+                      }}
+                    />
+                  </CssClassContext.Provider>
                 </InputGrid>
               ),
             },
