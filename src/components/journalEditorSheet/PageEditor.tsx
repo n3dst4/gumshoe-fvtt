@@ -30,14 +30,12 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
   const handleDeletePage = useCallback(async () => {
     const page = pageRef.current;
     const doDelete = await confirmADoodleDo({
-      message: "Delete page {PageName}?",
+      message: `Delete page ${page.name}?`,
       confirmText: "Delete",
       cancelText: "Cancel",
       confirmIconClass: "fa fa-trash",
-      values: {
-        PageName: page.name,
-      },
       resolveFalseOnCancel: true,
+      translate: false,
     });
     if (doDelete) {
       await page.parent.deleteEmbeddedDocuments("JournalEntryPage", [page.id]);
