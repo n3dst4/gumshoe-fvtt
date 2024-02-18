@@ -94,6 +94,7 @@ export const HTMLHistory: React.FC<HTMLHistoryProps> = ({
       <div
         css={{
           width: "15em",
+          overflow: "auto",
         }}
       >
         <h3>Revisions</h3>
@@ -138,6 +139,7 @@ export const HTMLHistory: React.FC<HTMLHistoryProps> = ({
               ambiguousCharacters: false,
             },
             renderSideBySide: false,
+            smoothScrolling: true,
           }}
         />
       </div>
