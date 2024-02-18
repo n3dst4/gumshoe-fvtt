@@ -20,6 +20,9 @@ type JournalEditorSheetProps = {
   foundryApplication: JournalSheet;
 };
 
+/**
+ * Top-level react component for the journal editor sheet.
+ */
 export const JournalEditorSheet = ({
   journalEntry,
   foundryApplication,

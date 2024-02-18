@@ -3,6 +3,9 @@ import applyDiff from "textdiff-patch";
 import { DocumentMemory } from ".";
 import { getStacks } from "./getStacks";
 
+/**
+ * Given a memory and a serial number, return the state at that serial number
+ */
 export function restoreVersion(memory: DocumentMemory, serial: number) {
   const stacks = getStacks(memory);
   const stackIndex = stacks.findIndex((stack) =>

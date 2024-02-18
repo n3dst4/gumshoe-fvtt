@@ -21,6 +21,9 @@ type IStandalonCodeEditor = Parameters<OnMount>[0];
 
 const SAVE_DEBOUNCE_MS = 1000;
 
+/**
+ * The actual Monaco-based HTML editor.
+ */
 export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
   const monacoRef = useRef<Monaco | null>(null);
   const editorRef = useRef<IStandalonCodeEditor | null>(null);

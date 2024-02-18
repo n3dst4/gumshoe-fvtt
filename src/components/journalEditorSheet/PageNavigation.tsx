@@ -15,6 +15,9 @@ interface PageNavigationProps {
   activePageId: string | null;
 }
 
+/**
+ * Adds a new page to the journal entry
+ */
 async function addPage(
   journalEntry: JournalEntry,
   type: "text" | "image",
@@ -47,6 +50,9 @@ async function addPage(
   );
 }
 
+/**
+ * The left-hand page navigation bar for the journal editor
+ */
 export const PageNavigation: React.FC<PageNavigationProps> = ({
   journalEntry,
   onNavigate,

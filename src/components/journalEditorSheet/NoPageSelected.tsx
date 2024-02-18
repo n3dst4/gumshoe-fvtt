@@ -3,6 +3,9 @@ import { FaArrowLeft } from "react-icons/fa6";
 
 import { absoluteCover } from "../absoluteCover";
 
+/**
+ * Content to display when no page is selected
+ */
 export const NoPageSelected: React.FC = () => {
   return (
     <div

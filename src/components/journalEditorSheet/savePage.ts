@@ -7,8 +7,13 @@ import { save } from "./documentMemory/save";
 import { DocumentMemory } from "./documentMemory/types";
 import { getMemoryId } from "./getMemoryId";
 
-const MEMORY_PERIOD = 10;
+const MEMORY_PERIOD = 100;
 
+/**
+ * Save the content of a JournalEntryPage, update the memory stored against the
+ * world, and return the updated memory object. If the supplied memory was
+ * undefined a new one is created.
+ */
 export async function savePage(
   page: any,
   content: string,

@@ -1,6 +1,8 @@
 import { Stack } from "./types";
 
-export function createStack(periodicity: number): Stack {
+/**
+ * Create a new empty stack
+ */
 export function createStack(): Stack {
   return {
     edits: [],

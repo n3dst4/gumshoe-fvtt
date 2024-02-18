@@ -18,6 +18,10 @@ interface PageEditorProps {
   page: any;
 }
 
+/**
+ * Handles the edit area for any page. Delegates to the appropriate editor for
+ * the content type.
+ */
 export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
   // optimize toolbar rendering by putting page in a ref so the callbacks are
   // all stable

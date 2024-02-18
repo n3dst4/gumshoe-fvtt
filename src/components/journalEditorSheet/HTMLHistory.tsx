@@ -17,6 +17,10 @@ interface HTMLHistoryProps {
   saveDocument: (state: string) => void;
 }
 
+/**
+ * Display a list of revisions of the page, shows, a diff, and publish a restore
+ * button.
+ */
 export const HTMLHistory: React.FC<HTMLHistoryProps> = ({
   page,
   saveDocument,
