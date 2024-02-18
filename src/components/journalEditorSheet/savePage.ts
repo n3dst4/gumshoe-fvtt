@@ -7,7 +7,10 @@ import { save } from "./documentMemory/save";
 import { DocumentMemory } from "./documentMemory/types";
 import { getMemoryId } from "./getMemoryId";
 
-const MEMORY_PERIOD = 100;
+// this is definitely tuneable. my initial thought was something like 100, while
+// that gives great recent fidelity, you're suddenly losing huge chunks of
+// deltas after that. 10 seems fair for now.
+const MEMORY_PERIOD = 10;
 
 /**
  * Save the content of a JournalEntryPage, update the memory stored against the
