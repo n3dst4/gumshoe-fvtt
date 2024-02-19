@@ -78,6 +78,13 @@
       "system": "investigator",
       "path": "./packs/esoterroristsAbilities.db",
       "type": "Item"
+    },
+    {
+      "name": "moribundWorldAbilities",
+      "label": "Dying Earth (built-in)",
+      "system": "investigator",
+      "path": "./packs/moribundWorldAbilities.db",
+      "type": "Item"
     }
   ],
   "languages": [
