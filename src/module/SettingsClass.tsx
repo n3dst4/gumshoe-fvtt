@@ -10,11 +10,13 @@ const Settings = React.lazy(() =>
   })),
 );
 
-foundry.api.ApllicationV2;
-
 // eslint doesn't like object, but it's what foundry-vtt-types wants
 // eslint-disable-next-line @typescript-eslint/ban-types
-export class SettingsClassBase extends Application {
+export class SettingsClassBase extends FormApplication<
+  FormApplicationOptions,
+  object,
+  undefined
+> {
   // /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
@@ -48,4 +50,7 @@ export const SettingsClass = ReactApplicationMixin(
   render,
 );
 
-export const investigatorSettingsClassInstance = new SettingsClass(undefined);
+export const investigatorSettingsClassInstance = new SettingsClass(
+  undefined,
+  {},
+);
