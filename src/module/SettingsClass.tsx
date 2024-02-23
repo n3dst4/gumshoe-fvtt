@@ -10,8 +10,8 @@ const Settings = React.lazy(() =>
   })),
 );
 
-// eslint doesn't like object, but it's what foundry-vtt-types wants
-// eslint-disable-next-line @typescript-eslint/ban-types
+// this has to be a FormApplication so that we can "register" it as a "menu"
+// in settings
 export class SettingsClassBase extends FormApplication<
   FormApplicationOptions,
   object,
