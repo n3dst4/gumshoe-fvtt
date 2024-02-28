@@ -62,8 +62,8 @@ dependencies:
     specifier: ^3.22.4
     version: 3.22.4
   zod-validation-error:
-    specifier: ^3.0.1
-    version: 3.0.1(zod@3.22.4)
+    specifier: ^3.0.3
+    version: 3.0.3(zod@3.22.4)
 
 devDependencies:
   '@actions/core':
@@ -5396,8 +5396,8 @@ packages:
       readable-stream: 3.6.2
     dev: true
 
-  /zod-validation-error@3.0.1(zod@3.22.4):
-    resolution: {integrity: sha512-uFeiw9E7b26jY3Uk7m+Q8/SX5s11jOI1kw4WEcBRK3HrViH8p1k3pllSaFN8Ro1l89SH1LMGHiLOsKXx5eliPQ==}
+  /zod-validation-error@3.0.3(zod@3.22.4):
+    resolution: {integrity: sha512-cETTrcMq3Ze58vhdR0zD37uJm/694I6mAxcf/ei5bl89cC++fBNxrC2z8lkFze/8hVMPwrbtrwXHR2LB50fpHw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       zod: ^3.18.0
