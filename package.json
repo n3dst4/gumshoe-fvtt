@@ -96,7 +96,7 @@
     "textdiff-create": "^1.1.10",
     "textdiff-patch": "^1.1.8",
     "turndown": "^7.1.2",
-    "xss": "^1.0.14",
+    "xss": "^1.0.15",
     "yamljs": "^0.3.0",
     "zod": "^3.22.4",
     "zod-validation-error": "^3.0.1"
