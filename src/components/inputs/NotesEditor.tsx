@@ -7,6 +7,7 @@ import { absoluteCover } from "../absoluteCover";
 import { NotesTypeContext } from "../NotesTypeContext";
 import { AsyncTextArea } from "./AsyncTextArea";
 import { MarkdownEditor } from "./MarkdownEditor";
+import { NotesDisplay } from "./NotesDisplay";
 import { RichTextEditor } from "./RichTextEditor";
 
 interface NotesEditorProps {
@@ -67,13 +68,7 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
           border: `1px solid ${theme.colors.controlBorder}`,
         }}
       >
-        <div
-          className={contentClass}
-          css={{
-            minHeight: "100%",
-          }}
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <NotesDisplay html={html} />
       </div>
     );
   } else if (format === NoteFormat.plain) {
