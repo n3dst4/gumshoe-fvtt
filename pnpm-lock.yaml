@@ -76,8 +76,8 @@ devDependencies:
     specifier: ^11.11.2
     version: 11.11.2
   '@emotion/react':
-    specifier: ^11.11.3
-    version: 11.11.3(@types/react@18.2.63)(react@18.2.0)
+    specifier: ^11.11.4
+    version: 11.11.4(@types/react@18.2.63)(react@18.2.0)
   '@league-of-foundry-developers/foundry-vtt-types':
     specifier: ^9.280.0
     version: 9.280.0(@pixi/constants@6.5.9)(@pixi/core@6.5.9)(@pixi/display@6.5.9)(@pixi/graphics@6.5.9)(@pixi/math@6.5.9)(@pixi/utils@6.5.9)
@@ -327,8 +327,8 @@ packages:
     resolution: {integrity: sha512-W2P2c/VRW1/1tLox0mVUalvnWXxavmv/Oum2aPsRcoDJuob75FC3Y8FbpfLwUegRcxINtGUMPq0tFCvYNTBXNA==}
     dev: true
 
-  /@emotion/react@11.11.3(@types/react@18.2.63)(react@18.2.0):
-    resolution: {integrity: sha512-Cnn0kuq4DoONOMcnoVsTOR8E+AdnKFf//6kUWc4LCdnxj31pZWn7rIULd6Y7/Js1PiPHzn7SKCM9vB/jBni8eA==}
+  /@emotion/react@11.11.4(@types/react@18.2.63)(react@18.2.0):
+    resolution: {integrity: sha512-t8AjMlF0gHpvvxk5mAtCqR4vmxiGHCeJBaQO6gncUSdklELOgtwjerNY2yuJNfwnc6vi16U/+uMF+afIawJ9iw==}
     peerDependencies:
       '@types/react': '*'
       react: '>=16.8.0'
@@ -696,7 +696,7 @@ packages:
   /@lumphammer/investigator-fvtt-types@1.12.1(@types/react@18.2.63)(react@18.2.0):
     resolution: {integrity: sha512-GRCIXeXJxhwKVMWm9dVqNf+DVueeK+zIJv/2hmVpUM3vcUciwkLviIne6v2mMmZ7WxfUbuoL/chMPMKE8RhePA==}
     dependencies:
-      '@emotion/react': 11.11.3(@types/react@18.2.63)(react@18.2.0)
+      '@emotion/react': 11.11.4(@types/react@18.2.63)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
       - react
