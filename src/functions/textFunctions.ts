@@ -34,12 +34,12 @@ const createXss = memoizeNullaryOnce(async () => {
     escapeAttrValue,
   } = await import("xss");
 
-  // build a custom shitelist for xss that adds "style" to the allowed attributes
-  // for everything
+  // build a custom shitelist for xss that adds "style" and "class" to the
+  // allowed attributes for everything
   const newWhitelist = Object.fromEntries(
     Object.entries(defaultXssWhitelist).map(([tag, attrList = []]) => [
       tag,
-      [...attrList, "style"],
+      [...attrList, "style", "class"],
     ]),
   );
 
