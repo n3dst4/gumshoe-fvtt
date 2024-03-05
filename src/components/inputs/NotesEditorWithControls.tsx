@@ -48,7 +48,8 @@ export const NotesEditorWithControls: React.FC<
   const onEdit = useCallback(
     async (newSource: string) => {
       setLiveSource(newSource);
-      setLiveHtml(await toHtml(liveFormat, newSource));
+      const newHtml = await toHtml(liveFormat, newSource);
+      setLiveHtml(newHtml);
       setDirty(true);
     },
     [liveFormat, setLiveHtml, setLiveSource],
@@ -61,11 +62,13 @@ export const NotesEditorWithControls: React.FC<
   }, [origSource, setLiveSource]);
 
   const onClickSave = useCallback(() => {
-    onSave({
+    const result = {
       format: getLiveFormat(),
       html: getLiveHtml(),
       source: getLiveSource(),
-    });
+    };
+
+    onSave(result);
     setEditMode(false);
     setDirty(false);
   }, [getLiveFormat, getLiveHtml, getLiveSource, onSave]);
