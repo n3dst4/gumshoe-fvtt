@@ -66,6 +66,10 @@ async function enrichHtml(originalHtml: string): Promise<string> {
     const newHtml = await TextEditor.enrichHTML(originalHtml, {
       // @ts-expect-error foundry types don't know about `async` yet
       async: true,
+      // we will always include secrets ion the output; the other way ois to run
+      // this at render time and conditionally include secrets based on
+      // permission levels, but we handle that with styles
+      secrets: true,
     });
     return newHtml;
   } else {
