@@ -39,18 +39,22 @@ export const NotesDisplay: React.FC<NotesDisplayProps> = ({
 
   // this layout effect deals with adding reveal/hide buttons to secrets
   useLayoutEffect(() => {
+    if (!ref.current) {
+      return;
+    }
+
+    // equivalent of putting dangerouslySetInnerHTML={{ __html: html }} on the
+    // div, but this way the effect hook is properly dependant on the value of
+    // `html`
+    ref.current.innerHTML = html;
+
+    // we only continue if we're the owner and we have a toggleSecret function
     if (!isOwner || !toggleSecret) {
       return;
     }
-    // remove all existing buttons
-    ref.current
-      ?.querySelectorAll(`button.${secretToggleButtonClass}`)
-      .forEach((button) => {
-        button.remove();
-      });
 
-    // add buttons
-    ref.current?.querySelectorAll("section.secret").forEach((section, i) => {
+    // add one hide or reveal button to each section.secret
+    ref.current.querySelectorAll("section.secret").forEach((section, i) => {
       systemLogger.log("Adding reveal button", i);
       const toggleSecretButton = document.createElement("button");
       toggleSecretButton.textContent = getTranslated(
@@ -64,7 +68,7 @@ export const NotesDisplay: React.FC<NotesDisplayProps> = ({
       });
       section.append(toggleSecretButton);
     });
-  }, [isOwner, toggleSecret]);
+  }, [html, isOwner, toggleSecret]);
 
   return (
     <div
@@ -79,7 +83,6 @@ export const NotesDisplay: React.FC<NotesDisplayProps> = ({
           },
         },
       }}
-      dangerouslySetInnerHTML={{ __html: html }}
     />
   );
 };

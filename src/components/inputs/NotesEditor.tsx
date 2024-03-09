@@ -14,7 +14,7 @@ interface NotesEditorProps {
   source: string;
   html: string;
   format: NoteFormat;
-  setSource: (source: string) => Promise<void>;
+  onSetSource: (source: string) => Promise<void>;
   className?: string;
   editMode: boolean;
   showSource: boolean;
@@ -25,7 +25,7 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
   source,
   html,
   format,
-  setSource,
+  onSetSource: setSource,
   className,
   editMode,
   showSource,
