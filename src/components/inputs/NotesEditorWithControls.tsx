@@ -1,9 +1,13 @@
-import React, { Fragment, useCallback, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { getTranslated } from "../../functions/getTranslated";
 import { convertNotes, toHtml } from "../../functions/textFunctions";
-import { assertGame, getDevMode } from "../../functions/utilities";
+import {
+  assertGame,
+  getDevMode,
+  systemLogger,
+} from "../../functions/utilities";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { Translate } from "../Translate";
@@ -42,6 +46,24 @@ export const NotesEditorWithControls: React.FC<
   const [getLiveFormat, setLiveFormat, liveFormat] =
     useStateWithGetter(origFormat);
 
+  // update live state from props when we're not in edit mode
+  // need this to see live updates to notes from other sources
+  useEffect(() => {
+    if (!editMode) {
+      setLiveSource(origSource);
+      setLiveHtml(origHtml);
+      setLiveFormat(origFormat);
+    }
+  }, [
+    origSource,
+    origHtml,
+    origFormat,
+    setLiveSource,
+    setLiveHtml,
+    setLiveFormat,
+    editMode,
+  ]);
+
   const [dirty, setDirty] = useState(false);
   const isDebugging = getDevMode();
 
@@ -67,7 +89,7 @@ export const NotesEditorWithControls: React.FC<
       html: getLiveHtml(),
       source: getLiveSource(),
     };
-
+    systemLogger.log("Saving", result);
     onSave(result);
     setEditMode(false);
     setDirty(false);

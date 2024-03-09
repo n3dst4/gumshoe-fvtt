@@ -1,6 +1,6 @@
-import React, { ReactNode, useContext } from "react";
+import React, { ReactNode, useCallback, useContext } from "react";
 
-import { assertGame } from "../../functions/utilities";
+import { assertGame, systemLogger } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";
 import { absoluteCover } from "../absoluteCover";
@@ -14,7 +14,7 @@ interface NotesEditorProps {
   source: string;
   html: string;
   format: NoteFormat;
-  setSource: (source: string) => void;
+  setSource: (source: string) => Promise<void>;
   className?: string;
   editMode: boolean;
   showSource: boolean;
@@ -41,6 +41,29 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
     (contentClassKey ? theme.notesCssClasses?.[contentClassKey] : null) ?? "";
   const scopingContainerClass = theme.notesCssClasses?.scopingContainer ?? "";
 
+  const toggleSecret = useCallback(
+    async (index: number) => {
+      systemLogger.log("Toggling secret", index);
+      if (format !== NoteFormat.richText) {
+        // we don't support secrets in md or plain
+        return;
+      }
+      const el = document.createElement("div");
+      el.innerHTML = html;
+      const secret = el.querySelectorAll("section.secret")[index];
+      if (secret) {
+        if (secret.classList.contains("revealed")) {
+          secret.classList.remove("revealed");
+        } else {
+          secret.classList.add("revealed");
+        }
+        await setSource(el.innerHTML);
+        setTimeout(onSave, 100); // wait for source to update before onSave();
+      }
+    },
+    [format, html, onSave, setSource],
+  );
+
   if (showSource) {
     editor = (
       <pre
@@ -53,6 +76,8 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
         }}
       >
         {source}
+        <hr></hr>
+        {html}
       </pre>
     );
   } else if (!editMode) {
@@ -68,7 +93,7 @@ export const NotesEditor: React.FC<NotesEditorProps> = ({
           border: `1px solid ${theme.colors.controlBorder}`,
         }}
       >
-        <NotesDisplay html={html} />
+        <NotesDisplay html={html} toggleSecret={toggleSecret} />
       </div>
     );
   } else if (format === NoteFormat.plain) {

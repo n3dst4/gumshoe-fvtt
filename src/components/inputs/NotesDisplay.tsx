@@ -6,13 +6,13 @@ import { assertGame, systemLogger } from "../../functions/utilities";
 interface NotesDisplayProps {
   className?: string;
   html: string;
-  revealSecret: (index: number) => void;
+  toggleSecret: (index: number) => void;
 }
 
 export const NotesDisplay: React.FC<NotesDisplayProps> = ({
   className,
   html,
-  revealSecret,
+  toggleSecret,
 }) => {
   assertGame(game);
   const application = useContext(FoundryAppContext);
@@ -34,25 +34,33 @@ export const NotesDisplay: React.FC<NotesDisplayProps> = ({
 
   const ref = useRef<HTMLDivElement>(null);
 
+  // this layout effect deals with adding reveal/hiode buttons to secrets
   useLayoutEffect(() => {
+    if (!isOwner) {
+      return;
+    }
+    // remove all existing buttons
     ref.current?.querySelectorAll("section.secret").forEach((section, i) => {
-      if (section.querySelector("button[aria-label='Reveal secret']")) {
-        systemLogger.log("Reveal button already exists", i);
-        return;
-      }
+      section
+        .querySelectorAll("button[aria-label='Reveal secret']")
+        .forEach((button) => {
+          button.remove();
+        });
 
       systemLogger.log("Adding reveal button", i);
-      section.classList.contains("revealed");
       const revealButton = document.createElement("button");
       // add aria-label to reveal button
       revealButton.setAttribute("aria-label", "Reveal secret");
-      revealButton.textContent = "Reveal secret";
+      revealButton.textContent = section.classList.contains("revealed")
+        ? "Hide secret"
+        : "Reveal secret";
+      revealButton.classList.add("investigator-secret-reveal-button");
       revealButton.addEventListener("click", () => {
-        revealSecret(i);
+        toggleSecret(i);
       });
       section.append(revealButton);
     });
-  }, []);
+  }, [isOwner, toggleSecret]);
 
   return (
     <div
@@ -62,7 +70,7 @@ export const NotesDisplay: React.FC<NotesDisplayProps> = ({
         minHeight: "100%",
         "section.secret": {
           display: isOwner ? "block" : "none",
-          ".revealed": {
+          "&.revealed": {
             display: "block",
           },
         },
