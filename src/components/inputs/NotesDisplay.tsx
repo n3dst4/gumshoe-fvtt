@@ -6,7 +6,7 @@ import { assertGame, systemLogger } from "../../functions/utilities";
 interface NotesDisplayProps {
   className?: string;
   html: string;
-  toggleSecret: (index: number) => void;
+  toggleSecret?: (index: number) => void;
 }
 
 export const NotesDisplay: React.FC<NotesDisplayProps> = ({
@@ -36,7 +36,7 @@ export const NotesDisplay: React.FC<NotesDisplayProps> = ({
 
   // this layout effect deals with adding reveal/hiode buttons to secrets
   useLayoutEffect(() => {
-    if (!isOwner) {
+    if (!isOwner || !toggleSecret) {
       return;
     }
     // remove all existing buttons
