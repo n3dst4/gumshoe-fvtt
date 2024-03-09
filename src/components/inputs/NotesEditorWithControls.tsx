@@ -8,6 +8,7 @@ import {
   getDevMode,
   systemLogger,
 } from "../../functions/utilities";
+import { useIsDocumentOwner } from "../../hooks/useIsDocumentOwner";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { Translate } from "../Translate";
@@ -125,6 +126,8 @@ export const NotesEditorWithControls: React.FC<
     [liveFormat, liveSource, setLiveFormat, setLiveHtml, setLiveSource],
   );
 
+  const isOwner = useIsDocumentOwner();
+
   return (
     <div
       css={{
@@ -171,7 +174,7 @@ export const NotesEditorWithControls: React.FC<
             </button>
           )}
 
-          {!editMode && !showSource && (
+          {!editMode && !showSource && isOwner && (
             <button
               css={{
                 width: "auto",
