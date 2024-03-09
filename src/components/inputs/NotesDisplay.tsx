@@ -1,7 +1,10 @@
 import React, { useContext, useLayoutEffect, useMemo, useRef } from "react";
 
 import { FoundryAppContext } from "../../../subtrees/shared-fvtt-bits/src/FoundryAppContext";
+import { getTranslated } from "../../functions/getTranslated";
 import { assertGame, systemLogger } from "../../functions/utilities";
+
+const secretToggleButtonClass = "investigator-secret-hide-reveal-button";
 
 interface NotesDisplayProps {
   className?: string;
@@ -34,31 +37,32 @@ export const NotesDisplay: React.FC<NotesDisplayProps> = ({
 
   const ref = useRef<HTMLDivElement>(null);
 
-  // this layout effect deals with adding reveal/hiode buttons to secrets
+  // this layout effect deals with adding reveal/hide buttons to secrets
   useLayoutEffect(() => {
     if (!isOwner || !toggleSecret) {
       return;
     }
     // remove all existing buttons
-    ref.current?.querySelectorAll("section.secret").forEach((section, i) => {
-      section
-        .querySelectorAll("button[aria-label='Reveal secret']")
-        .forEach((button) => {
-          button.remove();
-        });
+    ref.current
+      ?.querySelectorAll(`button.${secretToggleButtonClass}`)
+      .forEach((button) => {
+        button.remove();
+      });
 
+    // add buttons
+    ref.current?.querySelectorAll("section.secret").forEach((section, i) => {
       systemLogger.log("Adding reveal button", i);
-      const revealButton = document.createElement("button");
-      // add aria-label to reveal button
-      revealButton.setAttribute("aria-label", "Reveal secret");
-      revealButton.textContent = section.classList.contains("revealed")
-        ? "Hide secret"
-        : "Reveal secret";
-      revealButton.classList.add("investigator-secret-reveal-button");
-      revealButton.addEventListener("click", () => {
+      const toggleSecretButton = document.createElement("button");
+      toggleSecretButton.textContent = getTranslated(
+        section.classList.contains("revealed")
+          ? "Hide secret"
+          : "Reveal secret",
+      );
+      toggleSecretButton.classList.add(secretToggleButtonClass);
+      toggleSecretButton.addEventListener("click", () => {
         toggleSecret(i);
       });
-      section.append(revealButton);
+      section.append(toggleSecretButton);
     });
   }, [isOwner, toggleSecret]);
 

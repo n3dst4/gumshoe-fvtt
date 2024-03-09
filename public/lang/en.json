@@ -177,5 +177,7 @@
   "investigator.ImportSettingsFromFile": "Import Settings from file",
   "investigator.Import": "Import",
   "investigator.Export": "Export",
-  "investigator.GMNotes": "GM Notes"
+  "investigator.GMNotes": "GM Notes",
+  "investigator.HideSecret": "Hide secret",
+  "investigator.RevealSecret": "Reveal secret"
 }
