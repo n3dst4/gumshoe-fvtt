@@ -1,9 +1,14 @@
-import React, { Fragment, useCallback, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { getTranslated } from "../../functions/getTranslated";
 import { convertNotes, toHtml } from "../../functions/textFunctions";
-import { assertGame, getDevMode } from "../../functions/utilities";
+import {
+  assertGame,
+  getDevMode,
+  systemLogger,
+} from "../../functions/utilities";
+import { useIsDocumentOwner } from "../../hooks/useIsDocumentOwner";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { Translate } from "../Translate";
@@ -42,35 +47,56 @@ export const NotesEditorWithControls: React.FC<
   const [getLiveFormat, setLiveFormat, liveFormat] =
     useStateWithGetter(origFormat);
 
+  // update live state from props when we're not in edit mode
+  // need this to see live updates to notes from other sources
+  useEffect(() => {
+    if (!editMode) {
+      setLiveSource(origSource);
+      setLiveHtml(origHtml);
+      setLiveFormat(origFormat);
+    }
+  }, [
+    origSource,
+    origHtml,
+    origFormat,
+    setLiveSource,
+    setLiveHtml,
+    setLiveFormat,
+    editMode,
+  ]);
+
   const [dirty, setDirty] = useState(false);
   const isDebugging = getDevMode();
 
-  const onEdit = useCallback(
+  const handleSetSource = useCallback(
     async (newSource: string) => {
       setLiveSource(newSource);
-      setLiveHtml(await toHtml(liveFormat, newSource));
+      const newHtml = await toHtml(liveFormat, newSource);
+      setLiveHtml(newHtml);
       setDirty(true);
     },
     [liveFormat, setLiveHtml, setLiveSource],
   );
 
-  const onClickEdit = useCallback(() => {
+  const handleClickEdit = useCallback(() => {
     setLiveSource(origSource);
     setEditMode(true);
     setDirty(false);
   }, [origSource, setLiveSource]);
 
-  const onClickSave = useCallback(() => {
-    onSave({
+  const handleSave = useCallback(() => {
+    const result = {
       format: getLiveFormat(),
       html: getLiveHtml(),
       source: getLiveSource(),
-    });
+    };
+    systemLogger.log("Saving", result);
+    onSave(result);
     setEditMode(false);
     setDirty(false);
   }, [getLiveFormat, getLiveHtml, getLiveSource, onSave]);
 
-  const onClickCancel = useCallback(async () => {
+  const handleClickCancel = useCallback(async () => {
     if (dirty) {
       await confirmADoodleDo({
         message: "Lose unsaved changes?",
@@ -84,7 +110,7 @@ export const NotesEditorWithControls: React.FC<
     setDirty(false);
   }, [dirty, origSource, setLiveSource]);
 
-  const onChangeFormat = useCallback(
+  const handleChangeFormat = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
       const newFormat = e.currentTarget.value as NoteFormat;
       const { newHtml, newSource } = await convertNotes(
@@ -99,6 +125,8 @@ export const NotesEditorWithControls: React.FC<
     },
     [liveFormat, liveSource, setLiveFormat, setLiveHtml, setLiveSource],
   );
+
+  const isOwner = useIsDocumentOwner();
 
   return (
     <div
@@ -146,13 +174,13 @@ export const NotesEditorWithControls: React.FC<
             </button>
           )}
 
-          {!editMode && !showSource && (
+          {!editMode && !showSource && isOwner && (
             <button
               css={{
                 width: "auto",
                 marginRight: "0.5em",
               }}
-              onClick={onClickEdit}
+              onClick={handleClickEdit}
             >
               <i className="fas fa-edit" />
               <Translate>Edit</Translate>
@@ -166,7 +194,7 @@ export const NotesEditorWithControls: React.FC<
                   width: "auto",
                   marginRight: "0.5em",
                 }}
-                onClick={onClickSave}
+                onClick={handleSave}
               >
                 <i className="fas fa-download" />
                 <Translate>Save</Translate>
@@ -176,7 +204,7 @@ export const NotesEditorWithControls: React.FC<
                   width: "auto",
                   marginRight: "0.5em",
                 }}
-                onClick={onClickCancel}
+                onClick={handleClickCancel}
               >
                 <i className="fas fa-ban" />
                 <Translate>Cancel</Translate>
@@ -185,7 +213,7 @@ export const NotesEditorWithControls: React.FC<
           )}
 
           {allowChangeFormat && editMode && !showSource && (
-            <select value={liveFormat} onChange={onChangeFormat}>
+            <select value={liveFormat} onChange={handleChangeFormat}>
               <option value={NoteFormat.plain}>{getTranslated("Plain")}</option>
               <option value={NoteFormat.markdown}>
                 {getTranslated("Markdown")}
@@ -210,8 +238,8 @@ export const NotesEditorWithControls: React.FC<
           className={className}
           editMode={editMode}
           showSource={showSource}
-          setSource={onEdit}
-          onSave={onClickSave}
+          onSetSource={handleSetSource}
+          onSave={handleSave}
         />
       </div>
     </div>

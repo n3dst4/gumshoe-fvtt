@@ -5,6 +5,7 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertNPCActor } from "../../v10Types";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
+import { NotesDisplay } from "../inputs/NotesDisplay";
 import { LogoEditable } from "./LogoEditable";
 
 type NPCSheetSimpleProps = {
@@ -85,12 +86,14 @@ export const NPCSheetSimple = ({
           />
         </div>
         {hasNotes && (
-          <div
+          <NotesDisplay
             css={{
               flex: 1,
               overflow: "auto",
+              background: theme.colors.backgroundPrimary,
+              padding: "1em",
             }}
-            dangerouslySetInnerHTML={{ __html: notes }}
+            html={notes}
           />
         )}
       </div>
