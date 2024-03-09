@@ -23,7 +23,8 @@ export const NotesDisplay: React.FC<NotesDisplayProps> = ({
 
   const ref = useRef<HTMLDivElement>(null);
 
-  // this layout effect deals with adding reveal/hide buttons to secrets
+  // this layout effect deals with injecting HTML and adding reveal/hide buttons
+  // to secrets
   useLayoutEffect(() => {
     if (!ref.current) {
       return;
