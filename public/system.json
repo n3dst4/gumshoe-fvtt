@@ -163,6 +163,10 @@
     {
       "type": "cover",
       "url": "https://raw.githubusercontent.com/n3dst4/gumshoe-fvtt/main/assets/cover.webp"
+    },
+    {
+      "type": "setup",
+      "url": "https://raw.githubusercontent.com/n3dst4/gumshoe-fvtt/main/assets/cover.webp"
     }
   ]
 }
