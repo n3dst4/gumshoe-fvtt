@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+* **BUG FIX**: Secrets may somewhat work in actor and items notes fields (#639).
+* **FEATURE**: Dying Earth RPG ability compendium is now included.
+* **ENHANCEMENT**: Foundry cover art is now the actual GUMSHOE logo
+
 ## 7.7.0 (2024-02-12)
 
 * FIXED: Deleting a compendium that's selected for new PCs causes the Party sheet to crap out (#603).
