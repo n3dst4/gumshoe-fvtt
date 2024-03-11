@@ -1,15 +1,15 @@
 # CHANGELOG
 
-## Unreleased
+## 7.8.0 (2024-03-11)
 
-* **BUG FIX**: Secrets may somewhat work in actor and items notes fields (#639).
+* **BUG FIX**: Secrets now work in actor and items notes fields (#639).
 * **FEATURE**: Dying Earth RPG ability compendium is now included.
-* **ENHANCEMENT**: Foundry cover art is now the actual GUMSHOE logo
+* **ENHANCEMENT**: Foundry cover art is now the actual GUMSHOE logo.
 
 ## 7.7.0 (2024-02-12)
 
-* FIXED: Deleting a compendium that's selected for new PCs causes the Party sheet to crap out (#603).
-* ADDED: GM-Note-Field on NPC Sheet (#618) (thanks @muwak for the prod).
+* **BUG IF**: Deleting a compendium that's selected for new PCs causes the Party sheet to crap out (#603).
+* **FEATURE**: GM-Note-Field on NPC Sheet (#618) (thanks @muwak for the prod).
 
 ## 7.6.0 (2023-12-31)
 
