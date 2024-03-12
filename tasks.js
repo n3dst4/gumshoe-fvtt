@@ -57,6 +57,8 @@ async function clean() {
   log("Done.");
 }
 
+clean.description = "Remove built files from `build` folder";
+
 /**
  * go though the compendium packs, and for each one, emit an untranslated
  * template file. once comitted and pushed, this will be picked up by transifex
@@ -112,6 +114,8 @@ async function buildPackTranslations() {
   }
 }
 
+buildPackTranslations.description = "Build pack translations";
+
 /**
  * Remove the link to foundrydata
  */
@@ -122,6 +126,8 @@ async function unlink() {
   log(chalk.yellow(`Removing build link from ${chalk.blueBright(linkDir)}`));
   return fs.remove(linkDir);
 }
+
+unlink.description = "Remove the link to foundrydata";
 
 /**
  * Link build to foundrydata
@@ -139,6 +145,8 @@ async function link() {
     log(chalk.magenta(`${chalk.blueBright(linkDir)} already exists`));
   }
 }
+
+link.description = "Link build to foundrydata";
 
 /**
  * Update the manifest in CI
@@ -160,6 +168,8 @@ async function updateManifestFromCITagPush() {
   log({ tag, path, manifest });
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 }
+
+updateManifestFromCITagPush.description = "Update manifest from CI tag push";
 
 /**
  * create a releasable package
@@ -192,44 +202,23 @@ async function packidge() {
   });
 }
 
-// yargs turns this into a usable script
-yargs(hideBin(process.argv))
-  .command(
-    "link",
-    "Create link to your Foundry install",
-    () => {},
-    () => link(),
-  )
-  .command(
-    "unlink",
-    "Remove link to your Foundry install",
-    () => {},
-    () => unlink(),
-  )
-  .command(
-    "clean",
-    "Remove all generated files",
-    () => {},
-    () => clean(),
-  )
-  .command(
-    "packidge",
-    "Build package file from scratch",
-    () => {},
-    () => packidge(),
-  )
-  .command(
-    "buildPackTranslations",
-    "Generate translation files for packs",
-    () => {},
-    () => buildPackTranslations(),
-  )
-  .command(
-    "updateManifestFromCITagPush",
-    "",
-    () => {},
-    () => updateManifestFromCITagPush(),
-  )
-  .completion()
-  .demandCommand(1)
-  .parse();
+packidge.description = "Create a releasable package";
+
+function boot(commands) {
+  const proc = yargs(hideBin(process.argv));
+  for (const command of commands) {
+    proc.command(command.name, command.description ?? "", () => {}, command);
+  }
+  proc.completion();
+  proc.demandCommand(1);
+  proc.parse();
+}
+
+boot([
+  link,
+  unlink,
+  clean,
+  packidge,
+  buildPackTranslations,
+  updateManifestFromCITagPush,
+]);
