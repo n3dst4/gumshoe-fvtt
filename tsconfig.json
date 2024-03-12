@@ -1,5 +1,5 @@
 {
-	"extends": "./subtrees/shared-fvtt-bits/tsconfig.json",
+	"extends": "./subtrees/shared-fvtt-bits/dotfiles/tsconfig.json",
 	// override include to include shared-fvtt-bits
 	"include": ["src", "subtrees/shared-fvtt-bits/src/"],
 	"compilerOptions": {
