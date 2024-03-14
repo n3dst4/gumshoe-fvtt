@@ -16,9 +16,6 @@ dependencies:
     version: 11.2.0
 
 devDependencies:
-  '@emotion/react':
-    specifier: ^11.11.3
-    version: 11.11.3(@types/react@18.2.65)(react@18.2.0)
   '@league-of-foundry-developers/foundry-vtt-types':
     specifier: ^9.280.0
     version: 9.280.0(@pixi/constants@6.5.10)(@pixi/core@6.5.10)(@pixi/display@6.5.10)(@pixi/graphics@6.5.10)(@pixi/math@6.5.10)(@pixi/utils@6.5.10)
