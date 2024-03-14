@@ -1,6 +1,6 @@
+import { FoundryAppContext } from "@lumphammer/shared-fvtt-bits/src/FoundryAppContext";
 import React, { useCallback, useContext } from "react";
 
-import { FoundryAppContext } from "../../../subtrees/shared-fvtt-bits/src/FoundryAppContext";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
 import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";

@@ -1,3 +1,4 @@
+import { FoundryAppContext } from "@lumphammer/shared-fvtt-bits/src/FoundryAppContext";
 import React, {
   Fragment,
   useCallback,
@@ -6,7 +7,6 @@ import React, {
   useState,
 } from "react";
 
-import { FoundryAppContext } from "../../../../subtrees/shared-fvtt-bits/src/FoundryAppContext";
 import { generalAbility } from "../../../constants";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { assertWeaponItem, isAbilityItem } from "../../../v10Types";

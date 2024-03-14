@@ -1,6 +1,6 @@
+import { FoundryAppContext } from "@lumphammer/shared-fvtt-bits/src/FoundryAppContext";
 import { useContext, useMemo } from "react";
 
-import { FoundryAppContext } from "../../subtrees/shared-fvtt-bits/src/FoundryAppContext";
 import { assertGame } from "../functions/utilities";
 
 /**
