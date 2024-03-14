@@ -24,9 +24,12 @@
     "lint:check": "pnpm format:check && pnpm eslint:check",
     "lint:fix": "pnpm format:fix && pnpm eslint:fix",
     "compile-actions": "ncc build .github/actions/regex-match/src/index.ts -o .github/actions/regex-match/dist",
-    "subtree-push": "./scripts/subtree-push.sh",
-    "subtree-pull": "./scripts/subtree-pull.sh",
-    "subtree-split-rejoin": "./scripts/subtree-split-rejoin.sh"
+    "subtree-push": "./subtrees/shared-fvtt-bits/scripts/subtree-push.sh",
+    "subtree-pull": "./subtrees/shared-fvtt-bits/scripts/subtree-pull.sh",
+    "subtree-split-rejoin": "./subtrees/shared-fvtt-bits/scripts/subtree-split-rejoin.sh",
+    "env": "env",
+    "pwd": "pwd",
+    "do-release": "./subtrees/shared-fvtt-bits/scripts/do-release.sh"
   },
   "author": "",
   "license": "",
