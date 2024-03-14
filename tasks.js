@@ -10,11 +10,15 @@ import {
   packidge,
   unlink,
   updateManifestFromCITagPush,
-} from "./subtrees/shared-fvtt-bits/task-core.js";
+} from "@lumphammer/shared-fvtt-bits/task-core.js";
 
 // This file replaces gulp/grunt/jake/whatever and just provides a place to put
 // little build-related chunks of code and way to run them from the command
 // line.
+
+function silly({ log }) {
+  log("silliness");
+}
 
 boot({
   config: {
@@ -31,5 +35,6 @@ boot({
     packidge,
     buildPackTranslations,
     updateManifestFromCITagPush,
+    silly,
   ],
 });
