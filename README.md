@@ -1,6 +1,6 @@
-# shared-fvtt-bits
+# @lumphammer/shared-fvtt-bits
 
-Common parts to be used across fvtt modules and systems
+Common parts to be used across Foundry VTT modules and systems
 
 
 ## Installation
