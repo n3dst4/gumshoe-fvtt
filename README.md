@@ -36,17 +36,23 @@ Using the `file:` protocol means that pnpm will work out the dependencies for yo
 
 ## pnpm dependency
 
-I use [pnpm](https://pnpm.io/) for dependency management. I like it because it's fast, uses PnP, and it makes me feel slightly hipster for not using npm or yarn.
+I use [pnpm](https://pnpm.io/) for dependency management. I like it because it's fast, uses PnP, and it makes me feel slightly hipster for not using npm or yarn. Plus yarn has just always been irritatingly smug.
 
 (As a side note, I'm also super excited about [bun](https://bun.sh/) for dependency management and a bunch of other things, but as of right now (2024-03)it's not ready for primetime.)
 
 Technically, pnpm is just one package manager. You could use another package manager for your own project, and still use this package, but you'll need to work out dependency management for yourself in that case.
 
-My intent is that you use pnpm for dependency management everywhere. The key advantage there is how pnpm handles `file:` dependencies -  see https://pnpm.io/cli/link#whats-the-difference-between-pnpm-link-and-using-the-file-protocol.
+My intent is to use pnpm for dependency management everywhere. There is a checked-in pnpm-lock.yaml file, for example.
 
-As a side note, npm and yarn do very different stuff with `file:` dependencies. npm XXX complete this XXX. yarn just copies the dependency into `node_modules` without packaging, but their docs promise that will change in future (https://yarnpkg.com/protocol/file).
+A key feature is how pnpm handles `file:` dependencies -  see https://pnpm.io/cli/link#whats-the-difference-between-pnpm-link-and-using-the-file-protocol.
 
-Whereas pnpm simply hard-links the dependency into `node_modules`, which is great because you can make changes to the source and they are instantly reflected in your project.
+npm handles `file:` dependencies similarly-ish. npm will symlink the dependency and install its sub-dependencies in the main project. From a quick test just now, it installed `archiver`, `chalk`, and `fs-extra` in the main project, and it ALSO installed `chalk` in the `subtrees/shared-fvtt-bits/node_modules` folder because it had a different version requirement to something else that was installed in the main project. So I guess `npm` would be usable for our purposes. `npm i` took 3m from a cold cache, 8s from warm.
+
+yarn just copies the dependency into `node_modules` without packaging, but their docs promise that will change in future (https://yarnpkg.com/protocol/file). The fact that it *copies* the dependency into `node_modules` means that changes to the source are not reflected in your project until you run `yarn` again. This is a deal-breaker for our purposes. Yarn took 3m from a cold cache, 4s from warm.
+
+pnpm hard-links the dependency into `node_modules`, which is great because you can make changes to the source and they are instantly reflected in your project, like with npm.
+
+TL;DR: npm and pnpm will both work, I am using and therefore testing pnpm and I'm checking in pnpm-lock.yaml. Yarn handles file: dependencies differently and will be annoying if you want to make subtree contributions from your main project, which is the whole point of using subtree.
 
 
 ## Adding dependencies
