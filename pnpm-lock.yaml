@@ -13,6 +13,9 @@ patchedDependencies:
     path: patches/tinymce@5.10.1.patch
 
 dependencies:
+  '@lumphammer/shared-fvtt-bits':
+    specifier: link:subtrees/shared-fvtt-bits
+    version: link:subtrees/shared-fvtt-bits
   '@monaco-editor/react':
     specifier: ^4.6.0
     version: 4.6.0(monaco-editor@0.45.0)(react-dom@18.2.0)(react@18.2.0)
