@@ -203,6 +203,7 @@ export async function boot({
     linkDir,
     rootPath,
     manifest,
+    log,
   };
   // log(finalConfig);
 
