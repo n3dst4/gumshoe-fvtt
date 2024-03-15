@@ -29,7 +29,8 @@
     "subtree-split-rejoin": "./subtrees/shared-fvtt-bits/scripts/subtree-split-rejoin.sh",
     "env": "env",
     "pwd": "pwd",
-    "do-release": "./subtrees/shared-fvtt-bits/scripts/do-release.sh"
+    "do-release": "./subtrees/shared-fvtt-bits/scripts/do-release.sh",
+    "update-legacy-release-branch": "./scripts/update-legacy-release-branch.sh"
   },
   "author": "",
   "license": "",
