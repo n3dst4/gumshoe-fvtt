@@ -1,4 +1,9 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S sh -c '"`dirname $0`/node_modules/.bin/ts-node" "$0" "$@"'
+
+// The above shebang line is a hack to run this under the locally installed
+// ts-node, without having to install it globally. See
+// https://stackoverflow.com/questions/20095351/shebang-use-interpreter-relative-to-the-script-path
+
 import { boot } from "@lumphammer/shared-fvtt-bits/task-core/boot.js";
 import {
   buildPackTranslations,
@@ -12,12 +17,12 @@ import {
 import path from "path";
 import { fileURLToPath } from "url";
 
+const rootPath = path.dirname(fileURLToPath(import.meta.url));
+process.chdir(rootPath);
+
 function silly({ log }) {
   log("silliness");
 }
-
-const rootPath = path.dirname(fileURLToPath(import.meta.url));
-process.chdir(rootPath);
 
 boot({
   config: {
