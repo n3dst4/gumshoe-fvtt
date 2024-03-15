@@ -1,4 +1,4 @@
-#!/usr/bin/env -S sh -c '"`dirname $0`/node_modules/.bin/ts-node" "$0" "$@"'
+#!/usr/bin/env -S sh -c '"`dirname $0`/node_modules/.bin/tsx" "$0" "$@"'
 
 // The above shebang line is a hack to run this under the locally installed
 // ts-node, without having to install it globally. See
