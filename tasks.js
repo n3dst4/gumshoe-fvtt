@@ -1,28 +1,27 @@
 #!/usr/bin/env node
-import path from "path";
-import { fileURLToPath } from "url";
-
+import { boot } from "@lumphammer/shared-fvtt-bits/task-core/boot.js";
 import {
-  boot,
   buildPackTranslations,
   clean,
+  helloWorld,
   link,
   packidge,
   unlink,
   updateManifestFromCITagPush,
-} from "@lumphammer/shared-fvtt-bits/task-core.js";
-
-// This file replaces gulp/grunt/jake/whatever and just provides a place to put
-// little build-related chunks of code and way to run them from the command
-// line.
+} from "@lumphammer/shared-fvtt-bits/task-core/tasks/index.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
 function silly({ log }) {
   log("silliness");
 }
 
+const rootPath = path.dirname(fileURLToPath(import.meta.url));
+process.chdir(rootPath);
+
 boot({
   config: {
-    rootPath: path.dirname(fileURLToPath(import.meta.url)),
+    rootPath,
     publicPath: "public",
     manifestName: "system.json",
     buildPath: "build",
@@ -36,5 +35,6 @@ boot({
     buildPackTranslations,
     updateManifestFromCITagPush,
     silly,
+    helloWorld,
   ],
 });
