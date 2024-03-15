@@ -2,8 +2,27 @@
 
 Common parts to be used across Foundry VTT modules and systems
 
+## Installation - TLDR version
 
-## Installation
+Run:
+
+```sh
+git remote add -f shared-fvtt-bits git@github.com:n3dst4/shared-fvtt-bits.git
+git subtree add --prefix subtrees/shared-fvtt-bits shared-fvtt-bits main
+pnpm add file:subtrees/shared-fvtt-bits
+```
+
+Add to your `scripts` in `package.json`:
+
+```json
+"subtree-push": "./subtrees/shared-fvtt-bits/scripts/subtree-push.sh",
+"subtree-pull": "./subtrees/shared-fvtt-bits/scripts/subtree-pull.sh",
+"subtree-split-rejoin": "./subtrees/shared-fvtt-bits/scripts/subtree-split-rejoin.sh",
+```
+
+
+
+## Installation - the long version
 
 This package is not published on npm. You could I *guess* install it as a git or github dependency, but the chief intent is that you will incorporate it into your project as [git subtree](https://www.atlassian.com/git/tutorials/git-subtree).
 
@@ -34,7 +53,7 @@ pnpm add file:subtrees/shared-fvtt-bits
 
 Using the `file:` protocol means that pnpm will work out the dependencies for you.
 
-## pnpm dependency
+## About pnpm
 
 I use [pnpm](https://pnpm.io/) for dependency management. I like it because it's fast, uses PnP, and it makes me feel slightly hipster for not using npm or yarn. Plus yarn has just always been irritatingly smug.
 
@@ -50,10 +69,24 @@ npm handles `file:` dependencies similarly-ish. npm will symlink the dependency 
 
 yarn just copies the dependency into `node_modules` without packaging, but their docs promise that will change in future (https://yarnpkg.com/protocol/file). The fact that it *copies* the dependency into `node_modules` means that changes to the source are not reflected in your project until you run `yarn` again. This is a deal-breaker for our purposes. Yarn took 3m from a cold cache, 4s from warm.
 
-pnpm hard-links the dependency into `node_modules`, which is great because you can make changes to the source and they are instantly reflected in your project, like with npm.
+pnpm hard-links the dependency into `node_modules`, which is great because you can make changes to the source and they are instantly reflected in your project, like with npm. **With the exception** that pnpm hardlinks each file individually, so if you **add** a file, you need to re-run `pnpm install` in your project.
 
 TL;DR: npm and pnpm will both work, I am using and therefore testing pnpm and I'm checking in pnpm-lock.yaml. Yarn handles file: dependencies differently and will be annoying if you want to make subtree contributions from your main project, which is the whole point of using subtree.
 
 
 ## Adding dependencies
+
+If you add a dependency to this project, think hard about whether it should be a peer dependency. Libraries which should be shared with the main project should be peer dependencies.
+
+If it's a peer dep, add it like:
+
+```sh
+pnpm add --save-peer foo
+```
+
+If it's not a peer dep, add it as normal like:
+
+```sh
+pnpm add foo
+```
 
