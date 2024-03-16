@@ -27,12 +27,9 @@
 			],
 		},
 		"allowJs": true,
+		"outDir": "dist",
 
 	},
 	"exclude": ["**/node_modules", "**/.*/"],
-	"include": ["src"],
-	"ts-node": {
-		"esm": true,
-		"experimentalSpecifierResolution": "node"
-	}
+	"include": ["src"]
 }

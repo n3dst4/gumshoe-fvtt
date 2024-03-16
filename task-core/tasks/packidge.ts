@@ -3,12 +3,14 @@ import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
 
+import { TaskArgs } from "../types";
+
 /**
  * create a releasable package
  * (package is a reserved word)
  */
-export async function packidge({ manifest, buildPath, log }) {
-  return new Promise((resolve, reject) => {
+export async function packidge({ manifest, buildPath, log }: TaskArgs) {
+  return new Promise<void>((resolve, reject) => {
     try {
       // Ensure there is a directory to hold all the packaged versions
       fs.ensureDirSync("package");
@@ -21,7 +23,7 @@ export async function packidge({ manifest, buildPath, log }) {
         log(chalk.green(`Zip file ${zipName} has been written`));
         return resolve();
       });
-      zip.on("error", (err) => {
+      zip.on("error", (err: any) => {
         throw err;
       });
       zip.pipe(zipFile);

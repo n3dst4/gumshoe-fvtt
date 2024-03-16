@@ -2,12 +2,18 @@ import chalk from "chalk";
 import { writeFile } from "fs/promises";
 import path from "path";
 
+import { TaskArgs } from "../types";
+
 /**
  * go though the compendium packs, and for each one, emit an untranslated
  * template file. once comitted and pushed, this will be picked up by transifex
  * and update the translation list.
  */
-export async function buildPackTranslations({ manifest, publicPath, log }) {
+export async function buildPackTranslations({
+  manifest,
+  publicPath,
+  log,
+}: TaskArgs) {
   log("Building pack translations");
   // load nedb async to avoid slowing unrelated tasks
   const { default: Datastore } = await import("@seald-io/nedb");
@@ -16,11 +22,11 @@ export async function buildPackTranslations({ manifest, publicPath, log }) {
     category: "system.category",
   };
 
-  const itemPacks = manifest.packs.filter((p) => p.type === "Item");
+  const itemPacks = manifest.packs.filter((p: any) => p.type === "Item");
 
   for (const pack of itemPacks) {
     log(`Processing ${chalk.green(pack.label)}... `);
-    const entries = {};
+    const entries: Record<string, any> = {};
 
     const store = new Datastore({
       filename: path.join(publicPath, pack.path),
@@ -28,8 +34,9 @@ export async function buildPackTranslations({ manifest, publicPath, log }) {
     });
 
     const docs = await store.find({});
-    docs.sort((a, b) => a.name.localeCompare(b.name));
-    for (const doc of docs) {
+    docs.sort((a: any, b: any) => a.name.localeCompare(b.name));
+    for (const docId in docs) {
+      const doc = docs[docId];
       entries[doc.name] = {
         name: doc.name,
         category: doc.system.category,

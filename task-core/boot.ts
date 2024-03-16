@@ -4,13 +4,15 @@ import path from "path";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
+import { BootArgs, TaskArgs } from "./types";
+
 // logging function
 export const log = console.log.bind(console, chalk.green("[task]"));
 
 export async function boot({
   config: { rootPath, publicPath, manifestName, buildPath },
   commands,
-}) {
+}: BootArgs) {
   const manifestPath = path.join(publicPath, manifestName);
   const manifest = JSON.parse((await fs.readFile(manifestPath)).toString());
 
@@ -25,7 +27,7 @@ export async function boot({
     linkDir = path.join(config.dataPath, "Data", linkRoot, manifest.id);
   }
 
-  const finalConfig = {
+  const finalConfig: TaskArgs = {
     publicPath,
     manifestName,
     manifestPath,
