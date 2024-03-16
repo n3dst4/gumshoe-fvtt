@@ -1,0 +1,11 @@
+{
+	"extends": "./dotfiles/tsconfig.json",
+	"include": ["task-core", "src"],
+	// "noEmit": true,
+	"compilerOptions": {
+		// "types": [
+		// ],
+		"paths": {
+		},
+	}
+}
