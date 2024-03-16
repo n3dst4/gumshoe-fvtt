@@ -1,10 +1,12 @@
 import chalk from "chalk";
 import fs from "fs-extra";
 
+import { TaskArgs } from "../types";
+
 /**
  * Remove the link to foundrydata
  */
-export async function unlink({ linkDir, log }) {
+export async function unlink({ linkDir, log }: TaskArgs) {
   if (!linkDir) {
     throw new Error("linkDir not set");
   }

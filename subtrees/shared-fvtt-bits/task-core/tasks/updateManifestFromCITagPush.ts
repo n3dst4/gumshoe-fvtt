@@ -1,7 +1,9 @@
 import fs from "fs-extra";
 
+import { TaskArgs } from "../types";
+
 // if subject is a semver string beginning with a v, remove the v
-const stripInitialv = (subject) =>
+const stripInitialv = (subject: string) =>
   subject.replace(/^v(\d+\.\d+\.\d+.*)/i, (_, ...[match]) => match);
 
 /**
@@ -11,7 +13,7 @@ export async function updateManifestFromCITagPush({
   manifest,
   manifestPath,
   log,
-}) {
+}: TaskArgs) {
   const tag = process.env.CI_COMMIT_TAG;
   const path = process.env.CI_PROJECT_PATH;
   if (!tag) {
