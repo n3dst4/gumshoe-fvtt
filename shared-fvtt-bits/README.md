@@ -7,35 +7,29 @@ Common parts to be used across Foundry VTT modules and systems
   - [Tour Guide](#tour-guide)
   - [Installation - the long version](#installation---the-long-version)
     - [About pnpm](#about-pnpm)
+  - [Why subrepo](#why-subrepo)
   - [Adding dependencies](#adding-dependencies)
 
 
 ## Installation - TLDR version
 
+Install [`git-subrepo`](https://github.com/ingydotnet/git-subrepo).
+
 Run:
 
 ```sh
-git remote add -f shared-fvtt-bits git@github.com:n3dst4/shared-fvtt-bits.git
-git subtree add --prefix subtrees/shared-fvtt-bits shared-fvtt-bits main
-pnpm add file:subtrees/shared-fvtt-bits
-```
-
-Add to your `scripts` in `package.json`:
-
-```json
-"subtree-push": "./subtrees/shared-fvtt-bits/scripts/subtree-push.sh",
-"subtree-pull": "./subtrees/shared-fvtt-bits/scripts/subtree-pull.sh",
-"subtree-split-rejoin": "./subtrees/shared-fvtt-bits/scripts/subtree-split-rejoin.sh",
+git subrepo clone git@github.com:n3dst4/shared-fvtt-bits.git shared-fvtt-bits
+pnpm add file:shared-fvtt-bits
 ```
 
 Optional:
 
-* Copy `patches` and the `pnpm/patchedDependencies` from `package.json` into your project.
+* Copy `pnpm.patchedDependencies` from `package.json` into your project (altering the paths to point into this folder).
 * Create your `tsconfig.json` extending the one from `dotfiles`.
     ```json
     {
-	    "extends": "./dotfiles/tsconfig.json",
-	    "include": ["task-core", "src"],
+	    "extends": "./shared-fvtt-bits/dotfiles/tsconfig.json",
+	    "include": ["src"],
     }
     ```
 
@@ -52,31 +46,26 @@ This repo a a stash for anything that might be useful to shared between FVTT pro
 
 ## Installation - the long version
 
-This package is not published on npm. You could I *guess* install it as a git or github dependency, but the chief intent is that you will incorporate it into your project as [git subtree](https://www.atlassian.com/git/tutorials/git-subtree).
+This package is not published on npm. You could I *guess* install it as a git or github dependency, but the chief intent is that you will incorporate it into your project as [git subrepo](https://github.com/ingydotnet/git-subrepo).
 
-First we add a remote that points to the shared code.
-
-```sh
-git remote add -f shared-fvtt-bits git@github.com:n3dst4/shared-fvtt-bits.git
-```
+First you need to install git subrepo as per the [instructions](https://github.com/ingydotnet/git-subrepo?tab=readme-ov-file#installation)
 
 Then we add the shared code to our project.
 
 ```sh
-git subtree add --prefix subtrees/shared-fvtt-bits shared-fvtt-bits main
+git subrepo clone git@github.com:n3dst4/shared-fvtt-bits.git shared-fvtt-bits
 ```
 
 To break that command down:
 
-* `git subtree add` asks the subtree command to incorporate the shared code into your project.
-* `--prefix subtrees/shared-fvtt-bits` is the folder it will be cloned into. We add the "subtrees" folder to make it abundantly clear that it is a subtree (otherwise it would just look like a normal folder.)
-* `shared-fvtt-bits` is the name of the remote we set up.
-* `main` is the name of the branch in the shared repo that we want to bring in.
+* `git subrepo clone` asks the subrepo command to incorporate the shared code into your project.
+* `git@github.com:n3dst4/shared-fvtt-bits.git` is the url of the new remote (there's no need to manually set up a remote.)
+* `shared-fvtt-bits` is the name of the folder we want to clone into.
 
 Now we need to tell pnpm "install" it into our project. We could just refer to it by path, e.g. `import {foo} from '../../subtrees/shared-fvtt-bits/foo'`, but that causes chaos with dependency management.
 
 ```sh
-pnpm add file:subtrees/shared-fvtt-bits
+pnpm add file:shared-fvtt-bits
 ```
 
 Using the `file:` protocol means that pnpm will work out the dependencies for you.
@@ -93,13 +82,18 @@ My intent is to use pnpm for dependency management everywhere. There is a checke
 
 A key feature is how pnpm handles `file:` dependencies -  see https://pnpm.io/cli/link#whats-the-difference-between-pnpm-link-and-using-the-file-protocol.
 
-npm handles `file:` dependencies similarly-ish. npm will symlink the dependency and install its sub-dependencies in the main project. From a quick test just now, it installed `archiver`, `chalk`, and `fs-extra` in the main project, and it ALSO installed `chalk` in the `subtrees/shared-fvtt-bits/node_modules` folder because it had a different version requirement to something else that was installed in the main project. So I guess `npm` would be usable for our purposes. `npm i` took 3m from a cold cache, 8s from warm.
+npm handles `file:` dependencies similarly-ish. npm will symlink the dependency and install its sub-dependencies in the main project. From a quick test just now, it installed `archiver`, `chalk`, and `fs-extra` in the main project, and it ALSO installed `chalk` in the `shared-fvtt-bits/node_modules` folder because it had a different version requirement to something else that was installed in the main project. So I guess `npm` would be usable for our purposes. `npm i` took 3m from a cold cache, 8s from warm.
 
 yarn just copies the dependency into `node_modules` without packaging, but their docs promise that will change in future (https://yarnpkg.com/protocol/file). The fact that it *copies* the dependency into `node_modules` means that changes to the source are not reflected in your project until you run `yarn` again. This is a deal-breaker for our purposes. Yarn took 3m from a cold cache, 4s from warm.
 
 pnpm hard-links the dependency into `node_modules`, which is great because you can make changes to the source and they are instantly reflected in your project, like with npm. **With the exception** that pnpm hardlinks each file individually, so if you **add** a file, you need to re-run `pnpm install` in your project.
 
 TL;DR: npm and pnpm will both work, I am using and therefore testing pnpm and I'm checking in pnpm-lock.yaml. Yarn handles file: dependencies differently and will be annoying if you want to make subtree contributions from your main project, which is the whole point of using subtree.
+
+
+## Why subrepo
+
+My first attempt used [git subtree](https://www.atlassian.com/git/tutorials/git-subtree). There are many better source of documentation on issues with subtree, but the one that broke me very quickly was the timeline clutter. There is the option to "squash" with subtree pushes and pulls, but you're still left with noise in the timeline, and a fragile experience. Git subrepo seems, at first blush, to be much nicer in every respect except that it needs to to be installed (doesn't ship with git.) The counterpoint to that is that only the maintainer (person who wants to add/push/pull subrepos) needs to have it installed; regular contributors can just clone your main project repo and they will have access to all the files.
 
 
 ## Adding dependencies
