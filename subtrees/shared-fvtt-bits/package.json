@@ -27,11 +27,20 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@seald-io/nedb": "^4.0.4",
     "@types/archiver": "^6.0.2",
     "@types/fs-extra": "^11.0.4",
     "@types/yargs": "^17.0.32",
     "archiver": "^7.0.1",
     "chalk": "^5.3.0",
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.2.0",
+    "rimraf": "^5.0.5",
+    "yargs": "^17.7.2"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "tinymce@5.10.1": "patches/tinymce@5.10.1.patch",
+      "@league-of-foundry-developers/foundry-vtt-types@9.280.0": "patches/@league-of-foundry-developers__foundry-vtt-types@9.280.0.patch"
+    }
   }
 }

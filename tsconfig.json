@@ -1,7 +1,7 @@
 {
 	"extends": "./subtrees/shared-fvtt-bits/dotfiles/tsconfig.json",
 	// override include to include shared-fvtt-bits
-	"include": ["src", "subtrees/shared-fvtt-bits/", "tasks.ts"],
+	"include": ["src", "tasks.ts"],
 	"noEmit": true,
 	"compilerOptions": {
 		// override types to include vite
