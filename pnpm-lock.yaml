@@ -7,15 +7,15 @@ settings:
 patchedDependencies:
   '@league-of-foundry-developers/foundry-vtt-types@9.280.0':
     hash: qespnwvtxzqk7sn4hr4fiyfwwe
-    path: patches/@league-of-foundry-developers__foundry-vtt-types@9.280.0.patch
+    path: shared-fvtt-bits/patches/@league-of-foundry-developers__foundry-vtt-types@9.280.0.patch
   tinymce@5.10.1:
     hash: 44owjxk7xhoqumikuzpwd43zjq
-    path: patches/tinymce@5.10.1.patch
+    path: shared-fvtt-bits/patches/tinymce@5.10.1.patch
 
 dependencies:
   '@lumphammer/shared-fvtt-bits':
-    specifier: file:subtrees/shared-fvtt-bits
-    version: file:subtrees/shared-fvtt-bits(@league-of-foundry-developers/foundry-vtt-types@9.280.0)(@lumphammer/investigator-fvtt-types@1.12.1)(@types/react-dom@18.2.22)(@types/react@18.2.65)(react-dom@18.2.0)(react@18.2.0)
+    specifier: file:shared-fvtt-bits
+    version: file:shared-fvtt-bits(@league-of-foundry-developers/foundry-vtt-types@9.280.0)(@lumphammer/investigator-fvtt-types@1.12.1)(@types/react-dom@18.2.22)(@types/react@18.2.65)(react-dom@18.2.0)(react@18.2.0)
   '@monaco-editor/react':
     specifier: ^4.6.0
     version: 4.6.0(monaco-editor@0.45.0)(react-dom@18.2.0)(react@18.2.0)
@@ -5896,9 +5896,9 @@ packages:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
 
-  file:subtrees/shared-fvtt-bits(@league-of-foundry-developers/foundry-vtt-types@9.280.0)(@lumphammer/investigator-fvtt-types@1.12.1)(@types/react-dom@18.2.22)(@types/react@18.2.65)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {directory: subtrees/shared-fvtt-bits, type: directory}
-    id: file:subtrees/shared-fvtt-bits
+  file:shared-fvtt-bits(@league-of-foundry-developers/foundry-vtt-types@9.280.0)(@lumphammer/investigator-fvtt-types@1.12.1)(@types/react-dom@18.2.22)(@types/react@18.2.65)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {directory: shared-fvtt-bits, type: directory}
+    id: file:shared-fvtt-bits
     name: '@lumphammer/shared-fvtt-bits'
     peerDependencies:
       '@league-of-foundry-developers/foundry-vtt-types': ^9.280.0
