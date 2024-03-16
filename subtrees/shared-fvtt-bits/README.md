@@ -2,6 +2,14 @@
 
 Common parts to be used across Foundry VTT modules and systems
 
+- [@lumphammer/shared-fvtt-bits](#lumphammershared-fvtt-bits)
+  - [Installation - TLDR version](#installation---tldr-version)
+  - [Tour Guide](#tour-guide)
+  - [Installation - the long version](#installation---the-long-version)
+    - [About pnpm](#about-pnpm)
+  - [Adding dependencies](#adding-dependencies)
+
+
 ## Installation - TLDR version
 
 Run:
@@ -20,6 +28,26 @@ Add to your `scripts` in `package.json`:
 "subtree-split-rejoin": "./subtrees/shared-fvtt-bits/scripts/subtree-split-rejoin.sh",
 ```
 
+Optional:
+
+* Copy `patches` and the `pnpm/patchedDependencies` from `package.json` into your project.
+* Create your `tsconfig.json` extending the one from `dotfiles`.
+    ```json
+    {
+	    "extends": "./dotfiles/tsconfig.json",
+	    "include": ["task-core", "src"],
+    }
+    ```
+
+## Tour Guide
+
+This repo a a stash for anything that might be useful to shared between FVTT projects.
+
+`src` is for shared code that will be incorporated into your project.
+
+`task-core` is the barely-there task runner framework I threw together to get away from Gulp, Grunt, etc.
+
+`dotfiles` is for tool configs that can be usefully shared between projects.
 
 
 ## Installation - the long version
@@ -53,7 +81,7 @@ pnpm add file:subtrees/shared-fvtt-bits
 
 Using the `file:` protocol means that pnpm will work out the dependencies for you.
 
-## About pnpm
+### About pnpm
 
 I use [pnpm](https://pnpm.io/) for dependency management. I like it because it's fast, uses PnP, and it makes me feel slightly hipster for not using npm or yarn. Plus yarn has just always been irritatingly smug.
 
