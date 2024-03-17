@@ -7,7 +7,7 @@ Common parts to be used across Foundry VTT modules and systems
   - [Tour Guide](#tour-guide)
   - [Installation - the long version](#installation---the-long-version)
     - [About pnpm](#about-pnpm)
-  - [Why subrepo](#why-subrepo)
+  - [Why subrepo, not subtree or submodule?](#why-subrepo-not-subtree-or-submodule)
   - [Adding dependencies](#adding-dependencies)
 
 
@@ -92,9 +92,18 @@ pnpm hard-links the dependency into `node_modules`, which is great because you c
 TL;DR: npm and pnpm will both work, I am using and therefore testing pnpm and I'm checking in pnpm-lock.yaml. Yarn handles file: dependencies differently and will be annoying if you want to make subtree contributions from your main project, which is the whole point of using subtree.
 
 
-## Why subrepo
+## Why subrepo, not subtree or submodule?
 
-My first attempt used [git subtree](https://www.atlassian.com/git/tutorials/git-subtree). There are many better source of documentation on issues with subtree, but the one that broke me very quickly was the timeline clutter. There is the option to "squash" with subtree pushes and pulls, but you're still left with noise in the timeline, and a fragile experience. Git subrepo seems, at first blush, to be much nicer in every respect except that it needs to to be installed (doesn't ship with git.) The counterpoint to that is that only the maintainer (person who wants to add/push/pull subrepos) needs to have it installed; regular contributors can just clone your main project repo and they will have access to all the files.
+My first attempt used [git subtree](https://www.atlassian.com/git/tutorials/git-subtree). There are many better source of documentation on issues with subtree, but the one that broke me very quickly was the timeline clutter. There is the option to "squash" with subtree pushes and pulls, but you're still left with:
+
+* Noise in the git timeline. Even if you `squash` you're still seeing extra parallel lines in your graph view.
+* A fragile experience (you have to `subtree pull` every time you `subtree push` or you get errors and have to `subtree split --rejoin` - and even then there are still scenarios that can break you.)
+* An awkward UX (it's fiddly enough that you'll want to boil it out into a script or something.)
+* No indication to contributors that the shared folder is shared. I "solved" this by putting my subtree in a folder called "subtrees".
+
+`git submodule` is just widely considered to be a mistake, and even its own docs recommend using subtree.
+
+Git subrepo seems to be much nicer in every respect except that it needs to to be installed (it doesn't ship with git.) The counterpoint to that is that only the maintainer (person who wants to add/push/pull subrepos) needs to have it installed; regular contributors can just clone your main project repo and they will have access to all the files.
 
 
 ## Adding dependencies
