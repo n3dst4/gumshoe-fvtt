@@ -1,0 +1,20 @@
+name: Add issues to bugs project
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  add-to-project:
+    name: Add issue to project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v0.6.0
+        with:
+          # You can target a project in a different organization
+          # to the issue
+          project-url: https://github.com/users/n3dst4/projects/2
+          github-token: ${{ secrets.ISSUES_PROJECTS_PAT }}
+          # labeled: bug, needs-triage
+          # label-operator: OR

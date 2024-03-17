@@ -1,0 +1,56 @@
+name: Publish
+description: 'Publish a release'
+inputs:
+  version:
+    description: 'The version to publish'
+    required: true
+  prerelease:
+    description: 'Pre-release signifier'
+    required: false
+  manifest_file_name:
+    description: 'The name of the manifest file'
+    required: true
+  package_file_name:
+    description: 'The name of the package file'
+    required: true
+  download_base:
+    description: 'The base URL for downloads'
+    required: true
+  github_token:
+    description: 'The GitHub token'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Download package
+      uses: actions/download-artifact@v4
+      with:
+        name: package-zip
+
+    - name: Download manifest
+      uses: actions/download-artifact@v4
+      with:
+        name: manifest
+
+    - name: Look around
+      shell: bash
+      run: |
+        pwd
+        ls -l
+
+    - name: Update Release With Files
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        name: ${{ inputs.version }}
+        prerelease: ${{ inputs.prerelease != '' }}
+        token: ${{ inputs.github_token }}
+        removeArtifacts: true
+        replacesArtifacts: true
+        artifacts: './${{inputs.manifest_file_name}}, ./${{inputs.package_file_name}}'
+        tag: ${{ inputs.version }}
+        body: >
+          **Installation:** To manually install this release, please use the
+          following manifest URL:
+          ${{inputs.download_base}}/${{inputs.version}}/${{inputs.manifest_file_name}}
