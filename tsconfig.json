@@ -1,5 +1,5 @@
 {
-	"extends": "./shared-fvtt-bits/dotfiles/tsconfig.json",
+	"extends": "./shared-fvtt-bits/dotfiles/tsconfig.fvtt.json",
 	// override include to include shared-fvtt-bits
 	"include": ["src", "tasks.ts"],
 	"noEmit": true,

@@ -1,5 +1,5 @@
 {
-	"extends": "./dotfiles/tsconfig.json",
+	"extends": "./dotfiles/tsconfig.fvtt.json",
 	"include": ["task-core", "src"],
 	// "noEmit": true,
 	"compilerOptions": {
