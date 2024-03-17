@@ -13,7 +13,7 @@ Common parts to be used across Foundry VTT modules and systems
 
 ## Installation - TLDR version
 
-Install [`git-subrepo`](https://github.com/ingydotnet/git-subrepo).
+Install [`git-subrepo`](https://github.com/ingydotnet/git-subrepo) if you don't already have it.
 
 Run:
 
@@ -32,6 +32,7 @@ Optional:
 	    "include": ["src"],
     }
     ```
+* Check out the `dotfiles` and symlink or reference them from you project root.
 
 ## Tour Guide
 
