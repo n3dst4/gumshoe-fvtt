@@ -12,8 +12,12 @@ env:
 
 jobs:
   ci-cd:
-    uses: ./shared-fvtt-bits/.github/workflows/ci-cd.yml
+    uses: ./.github/workflows/ci-cd-reusable.yml
     with:
       manifest_file_name: "system.json"
       public_path: "public"
       package_file_name: "investigator.zip"
+  echo:
+    uses: ./.github/workflows/echo-reusable.yml
+    with:
+      text: "Hello World!"
