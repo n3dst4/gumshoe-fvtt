@@ -13,9 +13,6 @@ on:
         required: true
         type: string
 
-permissions:
-  contents: write
-
 env:
   MANIFEST_FILE_NAME: ${{ inputs.manifest_file_name }}
   PUBLIC_PATH: ${{ inputs.public_path }}
