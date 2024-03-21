@@ -5,15 +5,15 @@
   "type": "module",
   "description": "Official GUMSHOE support for FoundryVTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
   "scripts": {
-    "package": "vite build && ./tasks.js packidge",
+    "package": "vite build && ./tasks.ts packidge",
     "build": "vite build",
     "build:dev": "vite build --mode dev",
     "build:watch": "vite build --watch --mode dev",
-    "link": "./tasks.js link",
+    "link": "./tasks.ts link",
     "dev": "vite dev",
     "start": "pnpm dev",
-    "clean": "./tasks.js clean",
-    "build-pack-translations": "./tasks.js buildPackTranslations",
+    "clean": "./tasks.ts clean",
+    "build-pack-translations": "./tasks.ts buildPackTranslations",
     "pull-translations": "tx pull --workers 16 --force -all",
     "test-types": "vitest --typecheck.only",
     "test": "vitest --typecheck",
@@ -24,9 +24,10 @@
     "lint:check": "pnpm format:check && pnpm eslint:check",
     "lint:fix": "pnpm format:fix && pnpm eslint:fix",
     "compile-actions": "ncc build .github/actions/regex-match/src/index.ts -o .github/actions/regex-match/dist",
-    "subtree-push": "./scripts/subtree-push.sh",
-    "subtree-pull": "./scripts/subtree-pull.sh",
-    "subtree-split-rejoin": "./scripts/subtree-split-rejoin.sh"
+    "env": "env",
+    "pwd": "pwd",
+    "do-release": "./shared-fvtt-bits/scripts/do-release.sh",
+    "update-legacy-release-branch": "./scripts/update-legacy-release-branch.sh"
   },
   "author": "",
   "license": "",
@@ -37,7 +38,6 @@
     "@emotion/react": "^11.11.4",
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
     "@lumphammer/investigator-fvtt-types": "^1.12.1",
-    "@seald-io/nedb": "^4.0.4",
     "@swc/plugin-emotion": "^2.5.116",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
@@ -56,32 +56,25 @@
     "@vercel/ncc": "^0.38.1",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "@vitest/ui": "^1.3.1",
-    "archiver": "^7.0.1",
-    "chalk": "^5.3.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^12.0.0",
-    "fs-extra": "^11.2.0",
     "happy-dom": "^13.8.2",
     "jest-diff": "^29.7.0",
     "less": "^4.2.0",
     "prettier": "^3.2.5",
-    "rimraf": "^5.0.5",
     "rollup-plugin-visualizer": "^5.12.0",
+    "tsx": "^4.7.1",
     "typescript": "~5.4.2",
     "vite": "^5.1.6",
     "vite-plugin-checker": "^0.6.4",
-    "vitest": "^1.3.1",
-    "yargs": "^17.7.2",
-    "yargs-parser": ">=21.1.1"
+    "vitest": "^1.3.1"
   },
   "dependencies": {
+    "@lumphammer/shared-fvtt-bits": "file:shared-fvtt-bits",
     "@monaco-editor/react": "^4.6.0",
     "case": "^1.6.3",
     "d3-ease": "^3.0.1",
@@ -103,8 +96,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "tinymce@5.10.1": "patches/tinymce@5.10.1.patch",
-      "@league-of-foundry-developers/foundry-vtt-types@9.280.0": "patches/@league-of-foundry-developers__foundry-vtt-types@9.280.0.patch"
+      "tinymce@5.10.1": "shared-fvtt-bits/patches/tinymce@5.10.1.patch",
+      "@league-of-foundry-developers/foundry-vtt-types@9.280.0": "shared-fvtt-bits/patches/@league-of-foundry-developers__foundry-vtt-types@9.280.0.patch"
     }
   },
   "engines": {

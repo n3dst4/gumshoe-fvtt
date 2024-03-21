@@ -1,6 +1,6 @@
+import { ReactApplicationMixin } from "@lumphammer/shared-fvtt-bits/src/ReactApplicationMixin";
 import React from "react";
 
-import { ReactApplicationMixin } from "../../subtrees/shared-fvtt-bits/src/ReactApplicationMixin";
 import { Tracker as ReactCombatTracker } from "../components/combat/Tracker";
 import { ErrorBoundary } from "../components/ErrorBoundary";
 import { reactifiedCombatSidebarTemplatePath } from "../constants";

@@ -1,6 +1,6 @@
+import { ReactApplicationMixin } from "@lumphammer/shared-fvtt-bits/src/ReactApplicationMixin";
 import React from "react";
 
-import { ReactApplicationMixin } from "../../subtrees/shared-fvtt-bits/src/ReactApplicationMixin";
 import { Suspense } from "../components/Suspense";
 import { reactTemplatePath } from "../constants";
 

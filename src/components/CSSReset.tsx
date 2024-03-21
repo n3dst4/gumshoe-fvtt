@@ -1,6 +1,7 @@
 import createCache from "@emotion/cache";
 import { css } from "@emotion/css";
 import { CacheProvider as EmotionCacheProvider, Global } from "@emotion/react";
+import { FoundryAppContext } from "@lumphammer/shared-fvtt-bits/src/FoundryAppContext";
 import React, {
   ReactNode,
   useContext,
@@ -10,7 +11,6 @@ import React, {
   useState,
 } from "react";
 
-import { FoundryAppContext } from "../../subtrees/shared-fvtt-bits/src/FoundryAppContext";
 import { ThemeContext } from "../themes/ThemeContext";
 import { ThemeV1 } from "../themes/types";
 import { ErrorBoundary } from "./ErrorBoundary";

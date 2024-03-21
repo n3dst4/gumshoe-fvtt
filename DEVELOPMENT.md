@@ -187,8 +187,8 @@ To perform a release:
 4. Update the [`CHANGELOG`](CHANGELOG.md).
 5. Run this one handy command, which will commit, push, and create a new tag and push it also:
 
-    ```
-    scripts/do-release.sh
+    ```sh
+    pnpm run do-release
     ```
 
 6. If this is a test release, stop here. You can find the manifest URL to install this test release on [the GitHub releases page][gh-releases].
@@ -196,9 +196,9 @@ To perform a release:
    Otherwise, continue.
 
 7. Fast-forward `release` to `main` (yes this is a funky use of `fetch`):
-
-    ```
-    scripts/update-legacy-release-branch.sh
+4
+    ```sh
+    pnpm run update-legacy-release-branch
     ```
 
 8. Head over to the [CI page][gh-ci] and wait for the pipeline to finish.
