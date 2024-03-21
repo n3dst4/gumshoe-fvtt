@@ -176,5 +176,8 @@
   "investigator.ExportSettingsToFile": "Eksportuj ustawienia do pliku",
   "investigator.ImportSettingsFromFile": "Importuj ustawienia z pliku",
   "investigator.Import": "Importuj",
-  "investigator.Export": "Eksportuj"
+  "investigator.Export": "Eksportuj",
+  "investigator.GMNotes": "Notatki MG",
+  "investigator.HideSecret": "Ukryj sekret",
+  "investigator.RevealSecret": "Ujawnij sekret"
 }

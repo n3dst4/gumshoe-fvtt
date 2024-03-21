@@ -1,0 +1,248 @@
+{
+    "label": "Umiejętności Dying Earth (wbudowane)",
+    "mapping": {
+        "category": "system.category"
+    },
+    "entries": {
+        "Appraisal": {
+            "name": "Wycena",
+            "category": "Ogólne"
+        },
+        "Arrogance": {
+            "name": "Arogancja",
+            "category": "Opieranie się"
+        },
+        "Athletics": {
+            "name": "Wysportowanie",
+            "category": "Ogólne"
+        },
+        "Avarice": {
+            "name": "Chciwość",
+            "category": "Opieranie się"
+        },
+        "Caution": {
+            "name": "Ostrożność",
+            "category": "Atak"
+        },
+        "Charming": {
+            "name": "Oczarowanie",
+            "category": "Perswazja"
+        },
+        "Concealment": {
+            "name": "Ukrywanie",
+            "category": "Ogólne"
+        },
+        "Contrary": {
+            "name": "Asertywność",
+            "category": "Odmowa"
+        },
+        "Craftsmanship": {
+            "name": "Rzemiosło",
+            "category": "Ogólne"
+        },
+        "Cunning": {
+            "name": "Spryt",
+            "category": "Atak"
+        },
+        "Curious": {
+            "name": "Ciekawość",
+            "category": "Magia"
+        },
+        "Daring": {
+            "name": "Śmiałość",
+            "category": "Magia"
+        },
+        "Devious": {
+            "name": "Przebiegłość",
+            "category": "Magia"
+        },
+        "Dodge": {
+            "name": "Unik",
+            "category": "Obrona"
+        },
+        "Driving": {
+            "name": "Prowadzenie",
+            "category": "Ogólne"
+        },
+        "Eloquent": {
+            "name": "Elokwencja",
+            "category": "Perswazja"
+        },
+        "Engineering": {
+            "name": "Inżynieria",
+            "category": "Ogólne"
+        },
+        "Etiquette": {
+            "name": "Etykieta",
+            "category": "Ogólne"
+        },
+        "Ferocity": {
+            "name": "Okrucieństwo",
+            "category": "Atak"
+        },
+        "Finesse": {
+            "name": "Gracja",
+            "category": "Atak"
+        },
+        "Forceful": {
+            "name": "Dominacja",
+            "category": "Magia"
+        },
+        "Forthright": {
+            "name": "Szczerość",
+            "category": "Perswazja"
+        },
+        "Gambling": {
+            "name": "Hazard",
+            "category": "Ogólne"
+        },
+        "Glib": {
+            "name": "Łgarstwo",
+            "category": "Perswazja"
+        },
+        "Gourmandism": {
+            "name": "Obżarstwo",
+            "category": "Opieranie się"
+        },
+        "Health": {
+            "name": "Zdrowie",
+            "category": "Ogólne"
+        },
+        "Imposture": {
+            "name": "Podszywanie się",
+            "category": "Ogólne"
+        },
+        "Indolence": {
+            "name": "Lenistwo",
+            "category": "Opieranie się"
+        },
+        "Insightful": {
+            "name": "Wnikliwość",
+            "category": "Magia"
+        },
+        "Intimidating": {
+            "name": "Zastraszanie",
+            "category": "Perswazja"
+        },
+        "Intuition": {
+            "name": "Intuicja",
+            "category": "Obrona"
+        },
+        "Lawyerly": {
+            "name": "Analityczność",
+            "category": "Odmowa"
+        },
+        "Living Rough": {
+            "name": "Sztuka przetrwania",
+            "category": "Ogólne"
+        },
+        "Misdirection": {
+            "name": "Finta",
+            "category": "Obrona"
+        },
+        "Obfuscatory": {
+            "name": "Sofizm",
+            "category": "Perswazja"
+        },
+        "Obtuse": {
+            "name": "Udawanie głupiego",
+            "category": "Odmowa"
+        },
+        "Parry": {
+            "name": "Parowanie",
+            "category": "Obrona"
+        },
+        "Pedantry": {
+            "name": "Oczytanie",
+            "category": "Ogólne"
+        },
+        "Penetrating": {
+            "name": "Wnikliwość",
+            "category": "Odmowa"
+        },
+        "Perception": {
+            "name": "Spostrzegawczość",
+            "category": "Ogólne"
+        },
+        "Pettifoggery": {
+            "name": "Małostkowość",
+            "category": "Opieranie się"
+        },
+        "Physician": {
+            "name": "Pierwsza pomoc",
+            "category": "Ogólne"
+        },
+        "Pure-Hearted": {
+            "name": "Nieskazitelność",
+            "category": "Odmowa"
+        },
+        "Quick Fingers": {
+            "name": "Zwinne palce",
+            "category": "Ogólne"
+        },
+        "Rakishness": {
+            "name": "Rozpusta",
+            "category": "Opieranie się"
+        },
+        "Riding": {
+            "name": "Jeździectwo",
+            "category": "Ogólne"
+        },
+        "Scuttlebutt": {
+            "name": "Znajomość półświatka",
+            "category": "Ogólne"
+        },
+        "Seamanship": {
+            "name": "Żeglarstwo",
+            "category": "Ogólne"
+        },
+        "Seduction": {
+            "name": "Uwodzenie",
+            "category": "Ogólne"
+        },
+        "Speed": {
+            "name": "Szybkość",
+            "category": "Atak"
+        },
+        "Stealth": {
+            "name": "Ukrywanie się",
+            "category": "Ogólne"
+        },
+        "Stewardship": {
+            "name": "Zarządzanie",
+            "category": "Ogólne"
+        },
+        "Strength": {
+            "name": "Siła",
+            "category": "Atak"
+        },
+        "Studious": {
+            "name": "Wykształcenie",
+            "category": "Magia"
+        },
+        "Sure-Footedness": {
+            "name": "Amortyzacja",
+            "category": "Obrona"
+        },
+        "Tracking": {
+            "name": "Tropienie",
+            "category": "Ogólne"
+        },
+        "Vexation": {
+            "name": "Urąganie",
+            "category": "Obrona"
+        },
+        "Wary": {
+            "name": "Ostrożność",
+            "category": "Odmowa"
+        },
+        "Wealth": {
+            "name": "Stan majątkowy",
+            "category": "Ogólne"
+        },
+        "Wherewithal": {
+            "name": "Zimna krew",
+            "category": "Ogólne"
+        }
+    }
+}
