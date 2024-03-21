@@ -1,5 +1,5 @@
 {
-    "label": "Ashen Stars Abilities",
+    "label": "Ashen Stars Fähigkeiten",
     "mapping": {
         "category": "system.category"
     },
@@ -13,11 +13,11 @@
             "category": "Akademisch"
         },
         "Astronomy": {
-            "name": "Astronomy",
-            "category": "Technical"
+            "name": "Astronomie",
+            "category": "Technisch"
         },
         "Athletics": {
-            "name": "Athletics",
+            "name": "Athletik",
             "category": "Allgemein"
         },
         "Battle Console": {
@@ -26,27 +26,27 @@
         },
         "Bio Signatures": {
             "name": "Bio Signatures",
-            "category": "Technical"
+            "category": "Technisch"
         },
         "Botany": {
-            "name": "Botany",
+            "name": "Botanik",
             "category": "Akademisch"
         },
         "Bullshit Detector": {
-            "name": "Bullshit Detector",
-            "category": "Interpersonal"
+            "name": "Bullshit Detektor",
+            "category": "Sozial"
         },
         "Bureaucracy": {
-            "name": "Bureaucracy",
-            "category": "Interpersonal"
+            "name": "Bürokratie",
+            "category": "Sozial"
         },
         "Business Affairs": {
-            "name": "Business Affairs",
+            "name": "Geschäftssinn",
             "category": "Allgemein"
         },
         "Chemistry": {
-            "name": "Chemistry",
-            "category": "Technical"
+            "name": "Chemie",
+            "category": "Technisch"
         },
         "Communications Intercept": {
             "name": "Communications Intercept",
@@ -57,24 +57,24 @@
             "category": "Special"
         },
         "Cop Talk": {
-            "name": "Cop Talk",
-            "category": "Interpersonal"
+            "name": "Polizeijargon",
+            "category": "Sozial"
         },
         "Cybe Culture": {
             "name": "Cybe Culture",
             "category": "Akademisch"
         },
         "Data Retrieval": {
-            "name": "Data Retrieval",
-            "category": "Technical"
+            "name": "Datenrettung",
+            "category": "Technisch"
         },
         "Decryption": {
-            "name": "Decryption",
-            "category": "Technical"
+            "name": "Entschlüsseln",
+            "category": "Technisch"
         },
         "Downside": {
             "name": "Downside",
-            "category": "Interpersonal"
+            "category": "Sozial"
         },
         "Dreamsight": {
             "name": "Dreamsight",
@@ -86,54 +86,54 @@
         },
         "Energy Signatures": {
             "name": "Energy Signatures",
-            "category": "Technical"
+            "category": "Technisch"
         },
         "Enhancement Integration (Cybe)": {
             "name": "Enhancement Integration (Cybe)",
             "category": "Allgemein"
         },
         "Evidence Collection": {
-            "name": "Evidence Collection",
-            "category": "Technical"
+            "name": "Spurensicherung",
+            "category": "Technisch"
         },
         "Explosive Devices": {
-            "name": "Explosive Devices",
-            "category": "Technical"
+            "name": "Sprengen",
+            "category": "Technisch"
         },
         "Farsight (Vas Mal)": {
             "name": "Farsight (Vas Mal)",
             "category": "Allgemein"
         },
         "Filch": {
-            "name": "Filch",
+            "name": "Taschendiebstahl",
             "category": "Allgemein"
         },
         "Flattery": {
-            "name": "Flattery",
-            "category": "Interpersonal"
+            "name": "Schmeicheln",
+            "category": "Sozial"
         },
         "Flirting": {
-            "name": "Flirting",
-            "category": "Interpersonal"
+            "name": "Flirten",
+            "category": "Sozial"
         },
         "Forensic Accounting": {
-            "name": "Forensic Accounting",
+            "name": "Wirtschaftsprüfung",
             "category": "Akademisch"
         },
         "Forensic Anthropology": {
-            "name": "Forensic Anthropology",
-            "category": "Technical"
+            "name": "Forensische Anthropologie",
+            "category": "Technisch"
         },
         "Forensic Engineering": {
             "name": "Forensic Engineering",
-            "category": "Technical"
+            "category": "Technisch"
         },
         "Forensic Psychology": {
-            "name": "Forensic Psychology",
+            "name": "Forensische Psychologie",
             "category": "Akademisch"
         },
         "Geology": {
-            "name": "Geology",
+            "name": "Geologie",
             "category": "Akademisch"
         },
         "Ground Craft": {
@@ -141,7 +141,7 @@
             "category": "Allgemein"
         },
         "Health": {
-            "name": "Health",
+            "name": "Gesundheit",
             "category": "Allgemein"
         },
         "Helm Control": {
@@ -149,7 +149,7 @@
             "category": "Allgemein"
         },
         "History, Balla": {
-            "name": "History, Balla",
+            "name": "Geschichte, Balla",
             "category": "Akademisch"
         },
         "History, Combine": {
@@ -157,36 +157,36 @@
             "category": "Akademisch"
         },
         "History, Durugh": {
-            "name": "History, Durugh",
+            "name": "Geschichte, Durugh",
             "category": "Akademisch"
         },
         "History, Human": {
-            "name": "History, Human",
+            "name": "Geschichte, Mensch",
             "category": "Akademisch"
         },
         "History, Kch-Thk": {
-            "name": "History, Kch-Thk",
+            "name": "Geschichte, Kch-Thk",
             "category": "Akademisch"
         },
         "History, Tavak": {
-            "name": "History, Tavak",
+            "name": "Geschichte, Tavak",
             "category": "Akademisch"
         },
         "Holo Surveillance": {
-            "name": "Holo Surveillance",
-            "category": "Technical"
+            "name": "Holo Überwachung",
+            "category": "Technisch"
         },
         "Imaging": {
             "name": "Imaging",
-            "category": "Technical"
+            "category": "Technisch"
         },
         "Impersonate": {
-            "name": "Impersonate",
-            "category": "Interpersonal"
+            "name": "Nachahmung",
+            "category": "Sozial"
         },
         "Industrial Design": {
             "name": "Industrial Design",
-            "category": "Technical"
+            "category": "Technisch"
         },
         "Infiltration": {
             "name": "Infiltration",
@@ -194,30 +194,30 @@
         },
         "Inspiration": {
             "name": "Inspiration",
-            "category": "Interpersonal"
+            "category": "Sozial"
         },
         "Interrogation": {
-            "name": "Interrogation",
-            "category": "Interpersonal"
+            "name": "Verhören",
+            "category": "Sozial"
         },
         "Intimidation": {
-            "name": "Intimidation",
-            "category": "Interpersonal"
+            "name": "Einschüchtern",
+            "category": "Sozial"
         },
         "Kinetics": {
-            "name": "Kinetics",
-            "category": "Technical"
+            "name": "Kinetik",
+            "category": "Technisch"
         },
         "Law": {
-            "name": "Law",
+            "name": "Gesetze",
             "category": "Akademisch"
         },
         "Linguistics": {
-            "name": "Linguistics",
+            "name": "Linguistik",
             "category": "Akademisch"
         },
         "Medic": {
-            "name": "Medic",
+            "name": "Erste Hilfe",
             "category": "Allgemein"
         },
         "Migrate Consciousness (Kch-Thk)": {
@@ -229,8 +229,8 @@
             "category": "Allgemein"
         },
         "Negotiation": {
-            "name": "Negotiation",
-            "category": "Interpersonal"
+            "name": "Verhandeln",
+            "category": "Sozial"
         },
         "Neural Rewiring (Cybe)": {
             "name": "Neural Rewiring (Cybe)",
@@ -249,7 +249,7 @@
             "category": "Allgemein"
         },
         "Preparedness": {
-            "name": "Preparedness",
+            "name": "Vorbereitung",
             "category": "Allgemein"
         },
         "Probability Override (Vas Mal)": {
@@ -265,27 +265,27 @@
             "category": "Allgemein"
         },
         "Reassurance": {
-            "name": "Reassurance",
-            "category": "Interpersonal"
+            "name": "Beruhigen",
+            "category": "Sozial"
         },
         "Resist Battle Frenzy (Tavak)": {
             "name": "Resist Battle Frenzy (Tavak)",
             "category": "Allgemein"
         },
         "Respect": {
-            "name": "Respect",
-            "category": "Interpersonal"
+            "name": "Respekt",
+            "category": "Sozial"
         },
         "Scuffling": {
-            "name": "Scuffling",
+            "name": "Handgemenge",
             "category": "Allgemein"
         },
         "Sense Trouble": {
-            "name": "Sense Trouble",
+            "name": "Gefahrensinn",
             "category": "Allgemein"
         },
         "Shooting": {
-            "name": "Shooting",
+            "name": "Schießen",
             "category": "Allgemein"
         },
         "Shuttle Craft": {
@@ -293,7 +293,7 @@
             "category": "Allgemein"
         },
         "Surveillance": {
-            "name": "Surveillance",
+            "name": "Beschatten",
             "category": "Allgemein"
         },
         "Systems Design": {
@@ -317,15 +317,15 @@
             "category": "Allgemein"
         },
         "Virology": {
-            "name": "Virology",
-            "category": "Technical"
+            "name": "Virologie",
+            "category": "Technisch"
         },
         "Xenoculture": {
-            "name": "Xenoculture",
+            "name": "Xenokultur",
             "category": "Akademisch"
         },
         "Zoology": {
-            "name": "Zoology",
+            "name": "Zoologie",
             "category": "Akademisch"
         }
     }

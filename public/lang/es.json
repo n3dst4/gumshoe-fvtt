@@ -176,5 +176,8 @@
   "investigator.ExportSettingsToFile": "Exportar fichero de configuración",
   "investigator.ImportSettingsFromFile": "Importar Configuración desde fichero",
   "investigator.Import": "Importar",
-  "investigator.Export": "Exportar"
+  "investigator.Export": "Exportar",
+  "investigator.GMNotes": "GM Notes",
+  "investigator.HideSecret": "Hide secret",
+  "investigator.RevealSecret": "Reveal secret"
 }
