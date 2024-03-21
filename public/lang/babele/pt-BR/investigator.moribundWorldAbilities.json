@@ -1,0 +1,248 @@
+{
+    "label": "Dying Earth (built-in)",
+    "mapping": {
+        "category": "data.category"
+    },
+    "entries": {
+        "Appraisal": {
+            "name": "Appraisal",
+            "category": "Geral"
+        },
+        "Arrogance": {
+            "name": "Arrogance",
+            "category": "Resist"
+        },
+        "Athletics": {
+            "name": "Atletismo",
+            "category": "Geral"
+        },
+        "Avarice": {
+            "name": "Avarice",
+            "category": "Resist"
+        },
+        "Caution": {
+            "name": "Caution",
+            "category": "Attack"
+        },
+        "Charming": {
+            "name": "Charming",
+            "category": "Persuade"
+        },
+        "Concealment": {
+            "name": "Concealment",
+            "category": "Geral"
+        },
+        "Contrary": {
+            "name": "Contrary",
+            "category": "Rebuff"
+        },
+        "Craftsmanship": {
+            "name": "Craftsmanship",
+            "category": "Geral"
+        },
+        "Cunning": {
+            "name": "Cunning",
+            "category": "Attack"
+        },
+        "Curious": {
+            "name": "Curious",
+            "category": "Magic"
+        },
+        "Daring": {
+            "name": "Daring",
+            "category": "Magic"
+        },
+        "Devious": {
+            "name": "Devious",
+            "category": "Magic"
+        },
+        "Dodge": {
+            "name": "Dodge",
+            "category": "Defense"
+        },
+        "Driving": {
+            "name": "Condução",
+            "category": "Geral"
+        },
+        "Eloquent": {
+            "name": "Eloquent",
+            "category": "Persuade"
+        },
+        "Engineering": {
+            "name": "Engineering",
+            "category": "Geral"
+        },
+        "Etiquette": {
+            "name": "Etiquette",
+            "category": "Geral"
+        },
+        "Ferocity": {
+            "name": "Ferocity",
+            "category": "Attack"
+        },
+        "Finesse": {
+            "name": "Finesse",
+            "category": "Attack"
+        },
+        "Forceful": {
+            "name": "Forceful",
+            "category": "Magic"
+        },
+        "Forthright": {
+            "name": "Forthright",
+            "category": "Persuade"
+        },
+        "Gambling": {
+            "name": "Jogatina",
+            "category": "Geral"
+        },
+        "Glib": {
+            "name": "Glib",
+            "category": "Persuade"
+        },
+        "Gourmandism": {
+            "name": "Gourmandism",
+            "category": "Resist"
+        },
+        "Health": {
+            "name": "Vitalidade",
+            "category": "Geral"
+        },
+        "Imposture": {
+            "name": "Imposture",
+            "category": "Geral"
+        },
+        "Indolence": {
+            "name": "Indolence",
+            "category": "Resist"
+        },
+        "Insightful": {
+            "name": "Insightful",
+            "category": "Magic"
+        },
+        "Intimidating": {
+            "name": "Intimidating",
+            "category": "Persuade"
+        },
+        "Intuition": {
+            "name": "Intuição",
+            "category": "Defense"
+        },
+        "Lawyerly": {
+            "name": "Lawyerly",
+            "category": "Rebuff"
+        },
+        "Living Rough": {
+            "name": "Living Rough",
+            "category": "Geral"
+        },
+        "Misdirection": {
+            "name": "Misdirection",
+            "category": "Defense"
+        },
+        "Obfuscatory": {
+            "name": "Obfuscatory",
+            "category": "Persuade"
+        },
+        "Obtuse": {
+            "name": "Obtuse",
+            "category": "Rebuff"
+        },
+        "Parry": {
+            "name": "Parry",
+            "category": "Defense"
+        },
+        "Pedantry": {
+            "name": "Pedantry",
+            "category": "Geral"
+        },
+        "Penetrating": {
+            "name": "Penetrating",
+            "category": "Rebuff"
+        },
+        "Perception": {
+            "name": "Perception",
+            "category": "Geral"
+        },
+        "Pettifoggery": {
+            "name": "Pettifoggery",
+            "category": "Resist"
+        },
+        "Physician": {
+            "name": "Physician",
+            "category": "Geral"
+        },
+        "Pure-Hearted": {
+            "name": "Pure-Hearted",
+            "category": "Rebuff"
+        },
+        "Quick Fingers": {
+            "name": "Quick Fingers",
+            "category": "Geral"
+        },
+        "Rakishness": {
+            "name": "Rakishness",
+            "category": "Resist"
+        },
+        "Riding": {
+            "name": "Equitação",
+            "category": "Geral"
+        },
+        "Scuttlebutt": {
+            "name": "Scuttlebutt",
+            "category": "Geral"
+        },
+        "Seamanship": {
+            "name": "Seamanship",
+            "category": "Geral"
+        },
+        "Seduction": {
+            "name": "Seduction",
+            "category": "Geral"
+        },
+        "Speed": {
+            "name": "Speed",
+            "category": "Attack"
+        },
+        "Stealth": {
+            "name": "Furtividade",
+            "category": "Geral"
+        },
+        "Stewardship": {
+            "name": "Stewardship",
+            "category": "Geral"
+        },
+        "Strength": {
+            "name": "Strength",
+            "category": "Attack"
+        },
+        "Studious": {
+            "name": "Studious",
+            "category": "Magic"
+        },
+        "Sure-Footedness": {
+            "name": "Sure-Footedness",
+            "category": "Defense"
+        },
+        "Tracking": {
+            "name": "Tracking",
+            "category": "Geral"
+        },
+        "Vexation": {
+            "name": "Vexation",
+            "category": "Defense"
+        },
+        "Wary": {
+            "name": "Wary",
+            "category": "Rebuff"
+        },
+        "Wealth": {
+            "name": "Wealth",
+            "category": "Geral"
+        },
+        "Wherewithal": {
+            "name": "Wherewithal",
+            "category": "Geral"
+        }
+    }
+}
