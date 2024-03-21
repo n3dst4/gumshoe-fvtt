@@ -1,29 +1,29 @@
 {
-    "label": "Opponent Abilities",
+    "label": "Gegner Fähigkeiten",
     "mapping": {
         "category": "system.category"
     },
     "entries": {
         "Athletics": {
-            "name": "Athletics",
+            "name": "Athletik",
             "category": "Allgemein"
         },
         "Health": {
-            "name": "Health",
+            "name": "Gesundheit",
             "category": "Allgemein"
         },
         "Melee Attack": {
-            "name": "Melee Attack"
+            "name": "Nahkampf Angriff"
         },
         "Ranged Attack": {
-            "name": "Ranged Attack"
+            "name": "Fernkampf Angriff"
         },
         "Scuffling": {
-            "name": "Scuffling",
+            "name": "Handgemenge",
             "category": "Allgemein"
         },
         "Shooting": {
-            "name": "Shooting",
+            "name": "Schießen",
             "category": "Allgemein"
         }
     }

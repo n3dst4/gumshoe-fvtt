@@ -1,11 +1,11 @@
 {
-    "label": "Trail of Cthulhu Abilities",
+    "label": "Trail of Cthulhu Fähigkeiten",
     "mapping": {
         "category": "system.category"
     },
     "entries": {
         "Accounting": {
-            "name": "Accounting",
+            "name": "Buchführung",
             "category": "Akademisch"
         },
         "Anthropology": {
@@ -22,218 +22,218 @@
         },
         "Art": {
             "name": "Kunst",
-            "category": "Technical"
+            "category": "Technisch"
         },
         "Art History": {
-            "name": "Art History",
+            "name": "Kunstgeschichte",
             "category": "Akademisch"
         },
         "Assess Honesty": {
-            "name": "Assess Honesty",
-            "category": "Interpersonal"
+            "name": "Menschenkenntnis",
+            "category": "Sozial"
         },
         "Astronomy": {
-            "name": "Astronomy",
-            "category": "Technical"
+            "name": "Astronomie",
+            "category": "Technisch"
         },
         "Athletics": {
-            "name": "Athletics",
+            "name": "Athletik",
             "category": "Allgemein"
         },
         "Bargain": {
-            "name": "Bargain",
-            "category": "Interpersonal"
+            "name": "Feilschen",
+            "category": "Sozial"
         },
         "Biology": {
-            "name": "Biology",
+            "name": "Biologie",
             "category": "Akademisch"
         },
         "Bureaucracy": {
-            "name": "Bureaucracy",
-            "category": "Interpersonal"
+            "name": "Bürokratie",
+            "category": "Sozial"
         },
         "Chemistry": {
-            "name": "Chemistry",
-            "category": "Technical"
+            "name": "Chemie",
+            "category": "Technisch"
         },
         "Conceal": {
-            "name": "Conceal",
+            "name": "Kaschieren",
             "category": "Allgemein"
         },
         "Cop Talk": {
-            "name": "Cop Talk",
-            "category": "Interpersonal"
+            "name": "Polizeijargon",
+            "category": "Sozial"
         },
         "Craft": {
-            "name": "Craft",
-            "category": "Technical"
+            "name": "Handwerk",
+            "category": "Technisch"
         },
         "Credit Rating": {
-            "name": "Credit Rating",
-            "category": "Interpersonal"
+            "name": "Finanzkraft",
+            "category": "Sozial"
         },
         "Cryptography": {
-            "name": "Cryptography",
+            "name": "Kryptografie",
             "category": "Akademisch"
         },
         "Cthulhu Mythos": {
-            "name": "Cthulhu Mythos",
+            "name": "Cthulhu-Mythos",
             "category": "Akademisch"
         },
         "Disguise": {
-            "name": "Disguise",
+            "name": "Verkleiden",
             "category": "Allgemein"
         },
         "Driving": {
-            "name": "Driving",
+            "name": "Fahren",
             "category": "Allgemein"
         },
         "Electrical Repair": {
-            "name": "Electrical Repair",
+            "name": "Elektrische Reparaturen",
             "category": "Allgemein"
         },
         "Evidence Collection": {
-            "name": "Evidence Collection",
-            "category": "Technical"
+            "name": "Spurensicherung",
+            "category": "Technisch"
         },
         "Explosives": {
-            "name": "Explosives",
+            "name": "Sprengen",
             "category": "Allgemein"
         },
         "Filch": {
-            "name": "Filch",
+            "name": "Taschendiebstahl",
             "category": "Allgemein"
         },
         "Firearms": {
-            "name": "Firearms",
+            "name": "Feuerwaffen",
             "category": "Allgemein"
         },
         "First Aid": {
-            "name": "First Aid",
+            "name": "Erste Hilfe",
             "category": "Allgemein"
         },
         "Flattery": {
-            "name": "Flattery",
-            "category": "Interpersonal"
+            "name": "Schmeicheln",
+            "category": "Sozial"
         },
         "Fleeing": {
-            "name": "Fleeing",
+            "name": "Flüchten",
             "category": "Allgemein"
         },
         "Forensics": {
-            "name": "Forensics",
-            "category": "Technical"
+            "name": "Forensik",
+            "category": "Technisch"
         },
         "Geology": {
-            "name": "Geology",
+            "name": "Geologie",
             "category": "Akademisch"
         },
         "Health": {
-            "name": "Health",
+            "name": "Gesundheit",
             "category": "Allgemein"
         },
         "History": {
-            "name": "History",
+            "name": "Geschichte",
             "category": "Akademisch"
         },
         "Hypnosis": {
-            "name": "Hypnosis",
+            "name": "Hypnose",
             "category": "Allgemein"
         },
         "Interrogation": {
-            "name": "Interrogation",
-            "category": "Interpersonal"
+            "name": "Verhören",
+            "category": "Sozial"
         },
         "Intimidation": {
-            "name": "Intimidation",
-            "category": "Interpersonal"
+            "name": "Einschüchtern",
+            "category": "Sozial"
         },
         "Languages": {
-            "name": "Languages",
+            "name": "Sprachen",
             "category": "Akademisch"
         },
         "Law": {
-            "name": "Law",
+            "name": "Gesetze",
             "category": "Akademisch"
         },
         "Library Use": {
-            "name": "Library Use",
+            "name": "Bibliotheksnutzung",
             "category": "Akademisch"
         },
         "Locksmith": {
-            "name": "Locksmith",
-            "category": "Technical"
+            "name": "Schließtechnik",
+            "category": "Technisch"
         },
         "Mechanical Repair": {
-            "name": "Mechanical Repair",
+            "name": "Mechanische Reparaturen",
             "category": "Allgemein"
         },
         "Medicine": {
-            "name": "Medicine",
+            "name": "Medizin",
             "category": "Akademisch"
         },
         "Occult": {
-            "name": "Occult",
+            "name": "Okkultismus",
             "category": "Akademisch"
         },
         "Oral History": {
-            "name": "Oral History",
-            "category": "Interpersonal"
+            "name": "Zeugenbefragung",
+            "category": "Sozial"
         },
         "Outdoorsman": {
-            "name": "Outdoorsman",
-            "category": "Technical"
+            "name": "Naturkunde",
+            "category": "Technisch"
         },
         "Pharmacy": {
-            "name": "Pharmacy",
-            "category": "Technical"
+            "name": "Pharmazie",
+            "category": "Technisch"
         },
         "Photography": {
-            "name": "Photography",
-            "category": "Technical"
+            "name": "Fotografie",
+            "category": "Technisch"
         },
         "Physics": {
-            "name": "Physics",
+            "name": "Physik",
             "category": "Akademisch"
         },
         "Piloting": {
-            "name": "Piloting",
+            "name": "Pilot",
             "category": "Allgemein"
         },
         "Preparedness": {
-            "name": "Preparedness",
+            "name": "Vorbereitung",
             "category": "Allgemein"
         },
         "Psychoanalysis": {
-            "name": "Psychoanalysis",
+            "name": "Psychoanalyse",
             "category": "Allgemein"
         },
         "Reassurance": {
-            "name": "Reassurance",
-            "category": "Interpersonal"
+            "name": "Beruhigen",
+            "category": "Sozial"
         },
         "Riding": {
-            "name": "Riding",
+            "name": "Reiten",
             "category": "Allgemein"
         },
         "Sanity": {
-            "name": "Sanity",
+            "name": "Geistige Gesundheit",
             "category": "Allgemein"
         },
         "Scuffling": {
-            "name": "Scuffling",
+            "name": "Handgemenge",
             "category": "Allgemein"
         },
         "Sense Trouble": {
-            "name": "Sense Trouble",
+            "name": "Gefahrensinn",
             "category": "Allgemein"
         },
         "Shadowing": {
-            "name": "Shadowing",
+            "name": "Beschatten",
             "category": "Allgemein"
         },
         "Stability": {
-            "name": "Stability",
+            "name": "Stabilität",
             "category": "Allgemein"
         },
         "Stealth": {
@@ -241,11 +241,11 @@
             "category": "Allgemein"
         },
         "Streetwise": {
-            "name": "Streetwise",
-            "category": "Interpersonal"
+            "name": "Straßenwissen",
+            "category": "Sozial"
         },
         "Theology": {
-            "name": "Theology",
+            "name": "Religion",
             "category": "Akademisch"
         },
         "Weapons": {

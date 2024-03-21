@@ -1,5 +1,5 @@
 {
-    "label": "Esoterrorists Abilities (built-in)",
+    "label": "Esoterrorists Fähigkeiten",
     "mapping": {
         "category": "system.category"
     },
@@ -17,203 +17,203 @@
             "category": "Akademisch"
         },
         "Art History": {
-            "name": "Art History",
+            "name": "Kunstgeschichte",
             "category": "Akademisch"
         },
         "Astronomy": {
-            "name": "Astronomy",
-            "category": "Technical"
+            "name": "Astronomie",
+            "category": "Technisch"
         },
         "Athletics": {
-            "name": "Athletics",
+            "name": "Athletik",
             "category": "Allgemein"
         },
         "Ballistics": {
-            "name": "Ballistics",
-            "category": "Technical"
+            "name": "Ballistik",
+            "category": "Technisch"
         },
         "Bullshit Detector": {
-            "name": "Bullshit Detector",
-            "category": "Interpersonal"
+            "name": "Bullshit Detektor",
+            "category": "Sozial"
         },
         "Bureaucracy": {
-            "name": "Bureaucracy",
-            "category": "Interpersonal"
+            "name": "Bürokratie",
+            "category": "Sozial"
         },
         "Chemistry": {
-            "name": "Chemistry",
-            "category": "Technical"
+            "name": "Chemie",
+            "category": "Technisch"
         },
         "Cop Talk": {
-            "name": "Cop Talk",
-            "category": "Interpersonal"
+            "name": "Polizeijargon",
+            "category": "Sozial"
         },
         "Cryptography": {
-            "name": "Cryptography",
-            "category": "Technical"
+            "name": "Kryptografie",
+            "category": "Technisch"
         },
         "Data Retrival": {
-            "name": "Data Retrival",
-            "category": "Technical"
+            "name": "Datenrettung",
+            "category": "Technisch"
         },
         "Document Analysis": {
-            "name": "Document Analysis",
-            "category": "Technical"
+            "name": "Dokumentenanalyse",
+            "category": "Technisch"
         },
         "Driving": {
-            "name": "Driving",
+            "name": "Fahren",
             "category": "Allgemein"
         },
         "Electronic Surveillance": {
-            "name": "Electronic Surveillance",
-            "category": "Technical"
+            "name": "Elektr. Überwachung",
+            "category": "Technisch"
         },
         "Evidence Collection": {
-            "name": "Evidence Collection",
-            "category": "Technical"
+            "name": "Spurensicherung",
+            "category": "Technisch"
         },
         "Explosive Devices": {
-            "name": "Explosive Devices",
-            "category": "Technical"
+            "name": "Sprengen",
+            "category": "Technisch"
         },
         "Filch": {
-            "name": "Filch",
+            "name": "Taschendiebstahl",
             "category": "Allgemein"
         },
         "Fingerprinting": {
-            "name": "Fingerprinting",
-            "category": "Technical"
+            "name": "Fingerabdruck",
+            "category": "Technisch"
         },
         "Flattery": {
-            "name": "Flattery",
-            "category": "Interpersonal"
+            "name": "Schmeicheln",
+            "category": "Sozial"
         },
         "Flirting": {
-            "name": "Flirting",
-            "category": "Interpersonal"
+            "name": "Flirten",
+            "category": "Sozial"
         },
         "Forensic Accounting": {
-            "name": "Forensic Accounting",
+            "name": "Wirtschaftsprüfung",
             "category": "Akademisch"
         },
         "Forensic Anthropology": {
-            "name": "Forensic Anthropology",
-            "category": "Technical"
+            "name": "Forensische Anthropologie",
+            "category": "Technisch"
         },
         "Forensic Entomology": {
-            "name": "Forensic Entomology",
-            "category": "Technical"
+            "name": "Forensische Entomologie",
+            "category": "Technisch"
         },
         "Forensic Psychology": {
-            "name": "Forensic Psychology",
+            "name": "Rechtspsychologie",
             "category": "Akademisch"
         },
         "Health": {
-            "name": "Health",
+            "name": "Gesundheit",
             "category": "Allgemein"
         },
         "History": {
-            "name": "History",
+            "name": "Geschichte",
             "category": "Akademisch"
         },
         "Impersonate": {
-            "name": "Impersonate",
-            "category": "Interpersonal"
+            "name": "Nachahmung",
+            "category": "Sozial"
         },
         "Infiltration": {
             "name": "Infiltration",
             "category": "Allgemein"
         },
         "Interrogation": {
-            "name": "Interrogation",
-            "category": "Interpersonal"
+            "name": "Verhören",
+            "category": "Sozial"
         },
         "Intimidation": {
-            "name": "Intimidation",
-            "category": "Interpersonal"
+            "name": "Einschüchtern",
+            "category": "Sozial"
         },
         "Languages": {
-            "name": "Languages",
+            "name": "Sprachen",
             "category": "Akademisch"
         },
         "Law": {
-            "name": "Law",
+            "name": "Gesetze",
             "category": "Akademisch"
         },
         "Linguistics": {
-            "name": "Linguistics",
+            "name": "Linguistik",
             "category": "Akademisch"
         },
         "Local Knowledge": {
-            "name": "Local Knowledge",
+            "name": "Ortskenntnis",
             "category": "Akademisch"
         },
         "Mechanics": {
-            "name": "Mechanics",
+            "name": "Mechanik",
             "category": "Allgemein"
         },
         "Medic": {
-            "name": "Medic",
+            "name": "Erste Hilfe",
             "category": "Allgemein"
         },
         "Natural History": {
-            "name": "Natural History",
+            "name": "Naturgeschichte",
             "category": "Akademisch"
         },
         "Negotiation": {
-            "name": "Negotiation",
-            "category": "Interpersonal"
+            "name": "Verhandeln",
+            "category": "Sozial"
         },
         "Occult Studies": {
-            "name": "Occult Studies",
+            "name": "Okkultismus",
             "category": "Akademisch"
         },
         "Pathology": {
-            "name": "Pathology",
+            "name": "Pathologie",
             "category": "Akademisch"
         },
         "Photography": {
-            "name": "Photography",
-            "category": "Technical"
+            "name": "Fotografie",
+            "category": "Technisch"
         },
         "Preparedness": {
-            "name": "Preparedness",
+            "name": "Vorbereitung",
             "category": "Allgemein"
         },
         "Reassurance": {
-            "name": "Reassurance",
-            "category": "Interpersonal"
+            "name": "Beruhigen",
+            "category": "Sozial"
         },
         "Research": {
-            "name": "Research",
+            "name": "Recherche",
             "category": "Akademisch"
         },
         "Scuffling": {
-            "name": "Scuffling",
+            "name": "Handgemenge",
             "category": "Allgemein"
         },
         "Shooting": {
-            "name": "Shooting",
+            "name": "Schießen",
             "category": "Allgemein"
         },
         "Shrink": {
-            "name": "Shrink",
+            "name": "Psychotherapie",
             "category": "Allgemein"
         },
         "Stability": {
-            "name": "Stability",
+            "name": "Stabilität",
             "category": "Allgemein"
         },
         "Streetwise": {
-            "name": "Streetwise",
-            "category": "Interpersonal"
+            "name": "Straßenwissen",
+            "category": "Sozial"
         },
         "Surveillance": {
-            "name": "Surveillance",
+            "name": "Beschatten",
             "category": "Allgemein"
         },
         "Textual Analysis": {
-            "name": "Textual Analysis",
+            "name": "Textanalyse",
             "category": "Akademisch"
         },
         "Trivia": {

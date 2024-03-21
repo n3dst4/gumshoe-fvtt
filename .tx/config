@@ -79,3 +79,9 @@ source_lang  = en
 type         = KEYVALUEJSON
 minimum_perc = 0
 
+[o:investigator-system:p:investigator-system:r:moribund-world-abilities]
+file_filter  = public/lang/babele/<lang>/investigator.moribundWorldAbilities.json
+source_file  = public/lang/babele-sources/investigator.moribundWorldAbilities.json
+source_lang  = en
+type         = KEYVALUEJSON
+minimum_perc = 0
