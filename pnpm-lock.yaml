@@ -158,13 +158,13 @@ devDependencies:
     version: 9.1.0(eslint@8.57.0)
   eslint-config-standard:
     specifier: ^17.1.0
-    version: 17.1.0(eslint-plugin-import@2.29.1)(eslint-plugin-n@15.7.0)(eslint-plugin-promise@6.1.1)(eslint@8.57.0)
+    version: 17.1.0(eslint-plugin-import@2.29.1)(eslint-plugin-n@14.0.0)(eslint-plugin-promise@6.1.1)(eslint@8.57.0)
   eslint-plugin-import:
     specifier: ^2.29.1
     version: 2.29.1(@typescript-eslint/parser@7.2.0)(eslint@8.57.0)
-  eslint-plugin-node:
-    specifier: ^11.1.0
-    version: 11.1.0(eslint@8.57.0)
+  eslint-plugin-n:
+    specifier: ^14.0.0
+    version: 14.0.0(eslint@8.57.0)
   eslint-plugin-promise:
     specifier: ^6.1.1
     version: 6.1.1(eslint@8.57.0)
@@ -2099,12 +2099,6 @@ packages:
       ieee754: 1.2.1
     dev: true
 
-  /builtins@5.0.1:
-    resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
-    dependencies:
-      semver: 7.5.4
-    dev: true
-
   /cac@6.7.14:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
     engines: {node: '>=8'}
@@ -2724,7 +2718,7 @@ packages:
       eslint: 8.57.0
     dev: true
 
-  /eslint-config-standard@17.1.0(eslint-plugin-import@2.29.1)(eslint-plugin-n@15.7.0)(eslint-plugin-promise@6.1.1)(eslint@8.57.0):
+  /eslint-config-standard@17.1.0(eslint-plugin-import@2.29.1)(eslint-plugin-n@14.0.0)(eslint-plugin-promise@6.1.1)(eslint@8.57.0):
     resolution: {integrity: sha512-IwHwmaBNtDK4zDHQukFDW5u/aTb8+meQWZvNFWkiGmbWjD6bqyuSSBxxXKkCftCUzc1zwCH2m/baCNDLGmuO5Q==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -2735,7 +2729,7 @@ packages:
     dependencies:
       eslint: 8.57.0
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0)(eslint@8.57.0)
-      eslint-plugin-n: 15.7.0(eslint@8.57.0)
+      eslint-plugin-n: 14.0.0(eslint@8.57.0)
       eslint-plugin-promise: 6.1.1(eslint@8.57.0)
     dev: true
 
@@ -2776,17 +2770,6 @@ packages:
       eslint-import-resolver-node: 0.3.9
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /eslint-plugin-es@3.0.1(eslint@8.57.0):
-    resolution: {integrity: sha512-GUmAsJaN4Fc7Gbtl8uOBlayo2DqhwWvEzykMHSCZHU3XdJ+NSzzZcVhXh3VxX5icqQ+oQdIEawXX8xkR3mIFmQ==}
-    engines: {node: '>=8.10.0'}
-    peerDependencies:
-      eslint: '>=4.19.1'
-    dependencies:
-      eslint: 8.57.0
-      eslint-utils: 2.1.0
-      regexpp: 3.2.0
     dev: true
 
   /eslint-plugin-es@4.1.0(eslint@8.57.0):
@@ -2835,13 +2818,12 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-n@15.7.0(eslint@8.57.0):
-    resolution: {integrity: sha512-jDex9s7D/Qial8AGVIHq4W7NswpUD5DPDL2RH8Lzd9EloWUuvUkHfv4FRLMipH5q2UtyurorBkPeNi1wVWNh3Q==}
+  /eslint-plugin-n@14.0.0(eslint@8.57.0):
+    resolution: {integrity: sha512-mNwplPLsbaKhHyA0fa/cy8j+oF6bF6l81hzBTWa6JOvPcMNAuIogk2ih6d9tYvWYzyUG+7ZFeChqbzdFpg2QrQ==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       eslint: '>=7.0.0'
     dependencies:
-      builtins: 5.0.1
       eslint: 8.57.0
       eslint-plugin-es: 4.1.0(eslint@8.57.0)
       eslint-utils: 3.0.0(eslint@8.57.0)
@@ -2849,22 +2831,7 @@ packages:
       is-core-module: 2.13.1
       minimatch: 3.1.2
       resolve: 1.22.8
-      semver: 7.5.4
-    dev: true
-
-  /eslint-plugin-node@11.1.0(eslint@8.57.0):
-    resolution: {integrity: sha512-oUwtPJ1W0SKD0Tr+wqu92c5xuCeQqB3hSCHasn/ZgjFdA9iDGNkNf2Zi9ztY7X+hNuMib23LNGRm6+uN+KLE3g==}
-    engines: {node: '>=8.10.0'}
-    peerDependencies:
-      eslint: '>=5.16.0'
-    dependencies:
-      eslint: 8.57.0
-      eslint-plugin-es: 3.0.1(eslint@8.57.0)
-      eslint-utils: 2.1.0
-      ignore: 5.2.4
-      minimatch: 3.1.2
-      resolve: 1.22.1
-      semver: 6.3.0
+      semver: 6.3.1
     dev: true
 
   /eslint-plugin-promise@6.1.1(eslint@8.57.0):
@@ -4608,15 +4575,6 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /resolve@1.22.1:
-    resolution: {integrity: sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw==}
-    hasBin: true
-    dependencies:
-      is-core-module: 2.13.1
-      path-parse: 1.0.7
-      supports-preserve-symlinks-flag: 1.0.0
-    dev: true
-
   /resolve@1.22.8:
     resolution: {integrity: sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==}
     hasBin: true
@@ -4772,11 +4730,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /semver@6.3.0:
-    resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
-    hasBin: true
-    dev: true
 
   /semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
