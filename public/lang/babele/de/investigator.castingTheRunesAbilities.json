@@ -18,54 +18,54 @@
         },
         "Art": {
             "name": "Kunst",
-            "category": "Technical"
+            "category": "Technisch"
         },
         "Art History": {
-            "name": "Art History",
+            "name": "Kunstgeschichte",
             "category": "Akademisch"
         },
         "Assess Honesty": {
-            "name": "Assess Honesty",
-            "category": "Interpersonal"
+            "name": "Menschenkenntnis",
+            "category": "Sozial"
         },
         "Astronomy": {
-            "name": "Astronomy",
-            "category": "Technical"
+            "name": "Astronomie",
+            "category": "Technisch"
         },
         "Athletics": {
-            "name": "Athletics",
+            "name": "Athletik",
             "category": "Allgemein"
         },
         "Bargain": {
-            "name": "Bargain",
-            "category": "Interpersonal"
+            "name": "Feilschen",
+            "category": "Sozial"
         },
         "Biology": {
-            "name": "Biology",
+            "name": "Biologie",
             "category": "Akademisch"
         },
         "Bookkeeping": {
             "name": "Bookkeeping",
-            "category": "Technical"
+            "category": "Technisch"
         },
         "Bureaucracy": {
-            "name": "Bureaucracy",
+            "name": "Bürokratie",
             "category": "Allgemein"
         },
         "Charm": {
-            "name": "Charm",
-            "category": "Interpersonal"
+            "name": "Charme",
+            "category": "Sozial"
         },
         "Chemistry": {
-            "name": "Chemistry",
-            "category": "Technical"
+            "name": "Chemie",
+            "category": "Technisch"
         },
         "Class": {
             "name": "Class",
-            "category": "Interpersonal"
+            "category": "Sozial"
         },
         "Conceal": {
-            "name": "Conceal",
+            "name": "Kaschieren",
             "category": "Allgemein"
         },
         "Connections": {
@@ -77,51 +77,51 @@
             "category": "Akademisch"
         },
         "Craft": {
-            "name": "Craft",
-            "category": "Technical"
+            "name": "Handwerk",
+            "category": "Technisch"
         },
         "Criminology": {
-            "name": "Criminology",
+            "name": "Kriminologie",
             "category": "Akademisch"
         },
         "Cryptography": {
-            "name": "Cryptography",
-            "category": "Technical"
+            "name": "Kryptografie",
+            "category": "Technisch"
         },
         "Demolition": {
             "name": "Demolition",
             "category": "Allgemein"
         },
         "Disguise": {
-            "name": "Disguise",
+            "name": "Verkleiden",
             "category": "Allgemein"
         },
         "Driving": {
-            "name": "Driving",
+            "name": "Fahren",
             "category": "Allgemein"
         },
         "Evidence Collection": {
-            "name": "Evidence Collection",
-            "category": "Technical"
+            "name": "Spurensicherung",
+            "category": "Technisch"
         },
         "Fieldcraft": {
             "name": "Fieldcraft",
-            "category": "Technical"
+            "category": "Technisch"
         },
         "Filch": {
-            "name": "Filch",
+            "name": "Taschendiebstahl",
             "category": "Allgemein"
         },
         "Firearms": {
-            "name": "Firearms",
+            "name": "Feuerwaffen",
             "category": "Allgemein"
         },
         "First Aid": {
-            "name": "First Aid",
+            "name": "Erste Hilfe",
             "category": "Allgemein"
         },
         "Fleeing": {
-            "name": "Fleeing",
+            "name": "Flüchten",
             "category": "Allgemein"
         },
         "Folklore": {
@@ -129,55 +129,55 @@
             "category": "Akademisch"
         },
         "Forensics": {
-            "name": "Forensics",
-            "category": "Technical"
+            "name": "Forensik",
+            "category": "Technisch"
         },
         "Gambling": {
-            "name": "Gambling",
+            "name": "Glücksspiel",
             "category": "Allgemein"
         },
         "Geology": {
-            "name": "Geology",
+            "name": "Geologie",
             "category": "Akademisch"
         },
         "Health": {
-            "name": "Health",
+            "name": "Gesundheit",
             "category": "Allgemein"
         },
         "History": {
-            "name": "History",
+            "name": "Geschichte",
             "category": "Akademisch"
         },
         "Hypnosis": {
-            "name": "Hypnosis",
+            "name": "Hypnose",
             "category": "Allgemein"
         },
         "Interrogation": {
-            "name": "Interrogation",
-            "category": "Interpersonal"
+            "name": "Verhören",
+            "category": "Sozial"
         },
         "Intimidation": {
-            "name": "Intimidation",
-            "category": "Interpersonal"
+            "name": "Einschüchtern",
+            "category": "Sozial"
         },
         "Language": {
-            "name": "Language",
+            "name": "Sprache",
             "category": "Akademisch"
         },
         "Law": {
-            "name": "Law",
+            "name": "Gesetze",
             "category": "Akademisch"
         },
         "Library Use": {
-            "name": "Library Use",
+            "name": "Bibliotheksnutzung",
             "category": "Akademisch"
         },
         "Mechanics": {
-            "name": "Mechanics",
+            "name": "Mechanik",
             "category": "Allgemein"
         },
         "Medicine": {
-            "name": "Medicine",
+            "name": "Medizin",
             "category": "Akademisch"
         },
         "Navigation": {
@@ -185,35 +185,35 @@
             "category": "Allgemein"
         },
         "Occult": {
-            "name": "Occult",
+            "name": "Okkultismus",
             "category": "Akademisch"
         },
         "Pharmacy": {
-            "name": "Pharmacy",
-            "category": "Technical"
+            "name": "Pharmazie",
+            "category": "Technisch"
         },
         "Photography": {
-            "name": "Photography",
-            "category": "Technical"
+            "name": "Fotografie",
+            "category": "Technisch"
         },
         "Physics": {
-            "name": "Physics",
+            "name": "Physik",
             "category": "Akademisch"
         },
         "Preparedness": {
-            "name": "Preparedness",
+            "name": "Vorbereitung",
             "category": "Allgemein"
         },
         "Psychoanalysis": {
-            "name": "Psychoanalysis",
+            "name": "Psychoanalyse",
             "category": "Allgemein"
         },
         "Reassurance": {
-            "name": "Reassurance",
-            "category": "Interpersonal"
+            "name": "Beruhigen",
+            "category": "Sozial"
         },
         "Riding": {
-            "name": "Riding",
+            "name": "Reiten",
             "category": "Allgemein"
         },
         "Sailing": {
@@ -221,19 +221,19 @@
             "category": "Allgemein"
         },
         "Scuffling": {
-            "name": "Scuffling",
+            "name": "Handgemenge",
             "category": "Allgemein"
         },
         "Sense Trouble": {
-            "name": "Sense Trouble",
+            "name": "Gefahrensinn",
             "category": "Allgemein"
         },
         "Shadowing": {
-            "name": "Shadowing",
+            "name": "Beschatten",
             "category": "Allgemein"
         },
         "Stability": {
-            "name": "Stability",
+            "name": "Stabilität",
             "category": "Allgemein"
         },
         "Stealth": {
@@ -241,11 +241,11 @@
             "category": "Allgemein"
         },
         "Streetwise": {
-            "name": "Streetwise",
-            "category": "Interpersonal"
+            "name": "Straßenwissen",
+            "category": "Sozial"
         },
         "Theology": {
-            "name": "Theology",
+            "name": "Religion",
             "category": "Akademisch"
         },
         "Trade": {
