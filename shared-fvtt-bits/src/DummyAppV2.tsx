@@ -1,8 +1,11 @@
 import React from "react";
 import { createRoot, Root } from "react-dom/client";
 
-import { systemLogger } from "../../src/functions/utilities";
-import { RecursivePartial } from "../../src/types";
+export type RecursivePartial<T> = T extends () => any
+  ? T
+  : {
+      [P in keyof T]?: RecursivePartial<T[P]>;
+    };
 
 interface DummyAppV2ComponentProps extends React.PropsWithChildren {}
 
@@ -73,7 +76,7 @@ class DummyAppV2 extends foundry.applications.api.ApplicationV2<void> {
   // _renderHTML is the semantically appropriate place to render updates to the
   // HTML of the app.
   override async _renderHTML() {
-    systemLogger.log("DummyAppV2._renderHTML");
+    console.log("DummyAppV2._renderHTML");
 
     this.reactRoot?.render(
       <DummyAppV2Component>
