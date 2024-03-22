@@ -154,7 +154,7 @@ https://github.com/ingydotnet/git-subrepo/issues/503
 
 Prevention:
 
-???
+When a branch contains subrepo push/pull commits, avoid rebasing it. Try to just merge with the parent branch. Less than ideal but will save you from this.
 
 
 ### Huge long list of type errors
