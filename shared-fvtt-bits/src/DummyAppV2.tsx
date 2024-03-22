@@ -1,8 +1,8 @@
 import React from "react";
 import { createRoot, Root } from "react-dom/client";
 
-import { systemLogger } from "../../../src/functions/utilities";
-import { RecursivePartial } from "../../../src/types";
+import { systemLogger } from "../../src/functions/utilities";
+import { RecursivePartial } from "../../src/types";
 
 interface DummyAppV2ComponentProps extends React.PropsWithChildren {}
 
