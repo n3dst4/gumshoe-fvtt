@@ -9,6 +9,8 @@ Common parts to be used across Foundry VTT modules and systems
     - [About pnpm](#about-pnpm)
   - [Why subrepo, not subtree or submodule?](#why-subrepo-not-subtree-or-submodule)
   - [Adding dependencies](#adding-dependencies)
+  - [Troubleshooting](#troubleshooting)
+    - [`fatal: Not a valid object name: ''.`](#fatal-not-a-valid-object-name-)
 
 
 ## Installation - TLDR version
@@ -121,4 +123,35 @@ If it's not a peer dep, add it as normal like:
 ```sh
 pnpm add foo
 ```
+
+## Troubleshooting
+
+
+### `fatal: Not a valid object name: ''.`
+
+Problem:
+
+```
+$ git subrepo pull shared-fvtt-bits
+git-subrepo: Command failed: 'git branch subrepo/shared-fvtt-bits '.
+fatal: Not a valid object name: ''.
+```
+
+Cause:
+
+You've rebase a commit that was created by `git subrepo push`. When you push or pull a subrepo, it records the parent commit SHA in the subrepo `.gitrrepo` file. If you rebase that commit, that SHA will be a DAMNED LIE.
+
+Fix:
+
+Look at your git history. If you still have a record of the pre-rebase commit, you can look at its **parent** and you will see it has the commit SHA that's currently in the .gitrepo file under `parent`.
+
+Find the equivalent commit in the rebased branch (i.e. the commit before the `.gitrepo` file got modified), copy out its SHA, and paste that into the `.gitrepo` file under `parent`. Commit that, and then try `git subrepo pull/push` again.
+
+Link:
+
+https://github.com/ingydotnet/git-subrepo/issues/503
+
+Prevention:
+
+???
 

@@ -27,7 +27,7 @@ jobs:
       tag_version: ${{ steps.get_tag_version.outputs.group1 }}
       tag_prerelease: ${{ steps.get_tag_version.outputs.group2 }}
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4
 
       - name: Get tag versions
         if: github.ref_type == 'tag'
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: parse_tag
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4
 
       - uses: actions/setup-node@v4
         with:
@@ -120,7 +120,7 @@ jobs:
       contents: write
     if: needs.parse_tag.outputs.tag_version != '' && needs.parse_tag.outputs.tag_prerelease == ''
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4
 
       - name: publish
         uses: ./.github/actions/publish
@@ -142,7 +142,7 @@ jobs:
       contents: write
     if: needs.parse_tag.outputs.tag_version != '' && needs.parse_tag.outputs.tag_prerelease != ''
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4
 
       - name: publish
         uses: ./.github/actions/publish

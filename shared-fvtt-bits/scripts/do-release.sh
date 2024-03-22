@@ -9,8 +9,15 @@ if [ "$branch" != "main" ]; then
   exit 1
 fi
 
-v=v$(jq .version public/system.json -r)
+if [ -e public/system.json ]; then
+  manifest=public/system.json
+elif [ -e public/module.json ]; then
+  manifest=public/module.json
+fi
+
+v=v$(jq .version "$manifest" -r)
+
 git commit -am $v --allow-empty
 git push
 git tag $v
-git push origin $v 
+git push origin $v
