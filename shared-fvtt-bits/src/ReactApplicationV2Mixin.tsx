@@ -2,7 +2,7 @@
 // import { createRoot, Root } from "react-dom/client";
 
 // import { FoundryApplicationContext } from "./FoundryAppContext";
-import { Constructor, Render } from "./types";
+import { Constructor, RecursivePartial, Render } from "./types";
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // WORK IN VERY PROGRESS
@@ -33,7 +33,7 @@ export function ReactApplicationV2Mixin<TBase extends ApplicationV2Constuctor>(
   render: Render<TBase>,
 ) {
   class Reactified extends Base {
-    static DEFAULT_OPTIONS: Partial<foundry.applications.types.ApplicationConfiguration> =
+    static DEFAULT_OPTIONS: RecursivePartial<foundry.applications.types.ApplicationConfiguration> =
       {
         ...foundry.applications.api.ApplicationV2.DEFAULT_OPTIONS,
         classes: ["document-sheet"],

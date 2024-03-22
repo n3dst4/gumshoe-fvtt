@@ -5,12 +5,13 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@emotion/react": "^11.11.4",
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
     "@lumphammer/investigator-fvtt-types": "^1.12.1",
     "@types/react": "^18.2.67",
@@ -28,6 +29,7 @@
     "typescript": "^5.4.3"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.11.4",
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
     "@lumphammer/investigator-fvtt-types": "^1.12.1",
     "@types/react": "^18.2.67",

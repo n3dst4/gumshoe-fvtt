@@ -15,3 +15,9 @@ export type Render<T> = (
 ) => JSX.Element;
 
 declare global {}
+
+export type RecursivePartial<T> = T extends () => any
+  ? T
+  : {
+      [P in keyof T]?: RecursivePartial<T[P]>;
+    };

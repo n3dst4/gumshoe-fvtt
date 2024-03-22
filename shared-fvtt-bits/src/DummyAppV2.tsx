@@ -1,11 +1,6 @@
 import React from "react";
 import { createRoot, Root } from "react-dom/client";
-
-export type RecursivePartial<T> = T extends () => any
-  ? T
-  : {
-      [P in keyof T]?: RecursivePartial<T[P]>;
-    };
+import { RecursivePartial } from "./types";
 
 interface DummyAppV2ComponentProps extends React.PropsWithChildren {}
 
