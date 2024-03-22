@@ -1,4 +1,4 @@
-import { RecursivePartial } from "../../src/types";
+import { RecursivePartial } from "./types";
 
 declare global {
   namespace foundry {
