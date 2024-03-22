@@ -1,3 +1,4 @@
+import { makeDummyAppV2 } from "../subtrees/shared-fvtt-bits/src/DummyAppV2";
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { systemId } from "./constants";
 import { assertGame, systemLogger } from "./functions/utilities";
@@ -84,3 +85,5 @@ installResourceUpdateHookHandler();
 installNewCharacterPacksHookHandler();
 installKeepTokenImageInSyncWithActor();
 installNewCharacterDefaultOccupationHookHandler();
+
+makeDummyAppV2();
