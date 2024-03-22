@@ -1,4 +1,5 @@
-import { makeDummyAppV2 } from "../shared-fvtt-bits/src/DummyAppV2";
+import { makeDummyAppV2 } from "@lumphammer/shared-fvtt-bits/src/DummyAppV2";
+
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { systemId } from "./constants";
 import { assertGame, systemLogger } from "./functions/utilities";
