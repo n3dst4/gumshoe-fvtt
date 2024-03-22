@@ -5417,11 +5417,11 @@ packages:
     name: '@lumphammer/shared-fvtt-bits'
     peerDependencies:
       '@league-of-foundry-developers/foundry-vtt-types': ^9.280.0
-      '@lumphammer/investigator-fvtt-types': ^1.11.0
-      '@types/react': ^18.2.65
+      '@lumphammer/investigator-fvtt-types': ^1.12.1
+      '@types/react': ^18.2.67
       '@types/react-dom': ^18.2.22
-      '@typescript-eslint/eslint-plugin': ^7.2.0
-      '@typescript-eslint/parser': ^7.2.0
+      '@typescript-eslint/eslint-plugin': ^7.3.1
+      '@typescript-eslint/parser': ^7.3.1
       eslint: ^8.57.0
       eslint-config-prettier: ^9.1.0
       eslint-config-standard: ^17.1.0
@@ -5430,7 +5430,7 @@ packages:
       eslint-plugin-simple-import-sort: ^12.0.0
       react: ^18.2.0
       react-dom: ^18.2.0
-      typescript: ^5.4.2
+      typescript: ^5.4.3
     dependencies:
       '@league-of-foundry-developers/foundry-vtt-types': 9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.9)(@pixi/core@6.5.9)(@pixi/display@6.5.9)(@pixi/graphics@6.5.9)(@pixi/math@6.5.9)(@pixi/utils@6.5.9)
       '@lumphammer/investigator-fvtt-types': 1.12.1(@types/react@18.2.65)(react@18.2.0)
