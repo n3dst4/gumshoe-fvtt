@@ -67,7 +67,7 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
   const handlePageClick = React.useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
-      const pageId = event.currentTarget.dataset.pageid;
+      const pageId = event.currentTarget.dataset["pageid"];
       if (pageId !== undefined) {
         onNavigate(pageId);
       }

@@ -23,7 +23,7 @@ export const PartySheet: React.FC<{
 }> = ({ foundryApplication, party }) => {
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
-    runtimeConfig.themes.tealTheme;
+    runtimeConfig.themes["tealTheme"];
   const [abilities, setAbilities] = useState<AbilityItem[]>([]);
   const [actors, setActors] = useState<InvestigatorActor[]>([]);
   const [rowData, setRowData] = useState<RowData[]>([]);
@@ -111,7 +111,7 @@ export const PartySheet: React.FC<{
   const onClickRemoveActor = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-      const actorId = e.currentTarget.dataset.actorId;
+      const actorId = e.currentTarget.dataset["actorId"];
       if (actorId !== undefined) {
         party.removeActorId(actorId);
       }

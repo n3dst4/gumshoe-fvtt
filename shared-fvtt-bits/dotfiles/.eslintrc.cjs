@@ -75,6 +75,14 @@ module.exports = {
     ],
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
+    "dot-notation": "off",
+    "@typescript-eslint/dot-notation": [
+      "error",
+      // we also have noPropertyAccessFromIndexSignature: true in tsconfig which
+      // effectively forces this on. See
+      // https://typescript-eslint.io/rules/dot-notation#allowindexsignaturepropertyaccess
+      { allowIndexSignaturePropertyAccess: true },
+    ],
   },
   overrides: [
     {

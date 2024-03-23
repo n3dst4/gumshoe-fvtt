@@ -59,7 +59,7 @@ export class InvestigatorItem extends Item {
     const rollValues: Record<string, number> = { spend };
     if (isBoosted) {
       rollExpression += " + @boost";
-      rollValues.boost = boost;
+      rollValues["boost"] = boost;
     }
     for (const situationalModifier of situationalModifiers) {
       if (situationalModifier === undefined) {

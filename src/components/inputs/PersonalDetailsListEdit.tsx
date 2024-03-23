@@ -16,12 +16,12 @@ export const PersonalDetailsListEdit: React.FC<
 > = ({ personalDetails, onChange }) => {
   const handleTextInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (!e.currentTarget.dataset.index) {
+      if (!e.currentTarget.dataset["index"]) {
         return;
       }
       const newList = [...personalDetails];
-      newList[Number(e.currentTarget.dataset.index)] = {
-        ...newList[Number(e.currentTarget.dataset.index)],
+      newList[Number(e.currentTarget.dataset["index"])] = {
+        ...newList[Number(e.currentTarget.dataset["index"])],
         name: e.currentTarget.value,
       };
       onChange(newList);
@@ -31,12 +31,12 @@ export const PersonalDetailsListEdit: React.FC<
 
   const handleSelectChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      if (!e.currentTarget.dataset.index) {
+      if (!e.currentTarget.dataset["index"]) {
         return;
       }
       const newList = [...personalDetails];
-      newList[Number(e.currentTarget.dataset.index)] = {
-        ...newList[Number(e.currentTarget.dataset.index)],
+      newList[Number(e.currentTarget.dataset["index"])] = {
+        ...newList[Number(e.currentTarget.dataset["index"])],
         type: e.currentTarget.value as PersonalDetailType,
       };
       onChange(newList);
@@ -47,11 +47,11 @@ export const PersonalDetailsListEdit: React.FC<
   const onClickDelete = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-      if (!e.currentTarget.dataset.index) {
+      if (!e.currentTarget.dataset["index"]) {
         return;
       }
       const newList = [...personalDetails];
-      newList.splice(Number(e.currentTarget.dataset.index), 1);
+      newList.splice(Number(e.currentTarget.dataset["index"]), 1);
       onChange(newList);
     },
     [onChange, personalDetails],

@@ -20,7 +20,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
 }) => {
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
-    runtimeConfig.themes.tealTheme;
+    runtimeConfig.themes["tealTheme"];
 
   const zero = abilityRowData.total === 0;
   const odd = index % 2 === 0;

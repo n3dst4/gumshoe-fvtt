@@ -68,7 +68,7 @@ export const Tracker: React.FC = () => {
       assertGame(game);
       event.preventDefault();
       const btn = event.currentTarget;
-      const combatId = btn.dataset.combatId;
+      const combatId = btn.dataset["combatId"];
       if (combatId === undefined) return;
       const combat = game.combats?.get(combatId);
       if (!combat) return;

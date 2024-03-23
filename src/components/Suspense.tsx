@@ -8,7 +8,7 @@ import { CSSReset } from "./CSSReset";
 const Fallback: React.FC = () => {
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
-    runtimeConfig.themes.tealTheme;
+    runtimeConfig.themes["tealTheme"];
   return (
     <CSSReset
       theme={theme}
