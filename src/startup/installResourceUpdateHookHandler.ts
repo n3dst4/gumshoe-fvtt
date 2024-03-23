@@ -23,7 +23,7 @@ export function installResourceUpdateHookHandler() {
         ["Sanity", "Stability", "Health", "Magic"].includes(item.name ?? "") &&
         (diff.system?.pool !== undefined || diff.system?.rating !== undefined)
       ) {
-        item.actor?.update({
+        void item.actor?.update({
           system: {
             resources: {
               [item.name.toLowerCase()]: {
