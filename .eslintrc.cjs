@@ -1,5 +1,6 @@
 module.exports = {
   extends: ["./shared-fvtt-bits/dotfiles/.eslintrc.cjs"],
+  ignorePatterns: [".eslintrc.cjs", "src/investigator.js"],
   rules: {
     // All these no-unsafe-* rules are turned off because we have so many
     // situations we're interacting with FVTT or something else third party and
