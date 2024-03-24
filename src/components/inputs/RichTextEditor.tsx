@@ -48,7 +48,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
   useEffect(() => {
     let tinyMceEditor: TinyMceEditor | null = null;
     if (ref.current) {
-      TextEditor.create(
+      void TextEditor.create(
         {
           target: ref.current,
           save_onsavecallback: myOnSave,

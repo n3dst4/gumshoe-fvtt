@@ -19,7 +19,7 @@ export class InvestigatorCombat extends Combat {
   ) {
     super._onCreate(data, options, userId);
     if (settings.useTurnPassingInitiative.get()) {
-      this.update({
+      void this.update({
         round: 1,
       });
     }
@@ -60,7 +60,7 @@ export class InvestigatorCombat extends Combat {
   }
 
   set activeTurnPassingCombatant(id: string | null) {
-    this.setFlag(constants.systemId, "activeTurnPassingCombatant", id);
+    void this.setFlag(constants.systemId, "activeTurnPassingCombatant", id);
   }
 }
 

@@ -30,29 +30,31 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
   const name = useAsyncUpdate(item.name || "", item.setName);
   const nameInput = useAsyncUpdate(item.name || "", item.setName);
 
-  const onClickDelete = useCallback(() => {
+  const onClickDelete = useCallback(async () => {
     assertGame(game);
     const message = item.actor
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
-    confirmADoodleDo({
+    const aye = await confirmADoodleDo({
       message,
       confirmText: "Delete",
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",
+      resolveFalseOnCancel: true,
       values: {
         ActorName: item.actor?.name ?? "",
         EquipmentName: item.name ?? "",
       },
-    }).then(() => {
-      item.delete();
     });
+    if (aye) {
+      await item.delete();
+    }
   }, [item]);
 
   const onChangeType = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      item.setMwType(e.currentTarget.value as MwType);
+      void item.setMwType(e.currentTarget.value as MwType);
     },
     [item],
   );
@@ -105,7 +107,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
           gridArea: "trash",
         }}
         onClick={() => {
-          onClickDelete();
+          void onClickDelete();
         }}
       >
         <i className={"fa fa-trash"} />

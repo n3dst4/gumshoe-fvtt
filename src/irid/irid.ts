@@ -21,7 +21,7 @@ export class Irid {
   /**
    * utility constructor for creating an Irid instance from a CSS color string
    */
-  static create(value: string | Irid | Color): Irid {
+  static create(this: void, value: string | Irid | Color): Irid {
     if (value instanceof Irid) {
       return value;
     }

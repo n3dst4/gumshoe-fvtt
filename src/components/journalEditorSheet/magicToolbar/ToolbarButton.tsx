@@ -21,7 +21,7 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
   const handleClick = React.useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
-      onClick();
+      void onClick();
     },
     [onClick],
   );

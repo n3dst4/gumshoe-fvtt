@@ -22,7 +22,7 @@ export const EquipmentField: React.FC<EquipmentFieldProps> = ({
 }) => {
   const onChange = useCallback(
     (newValue: string | number | boolean) => {
-      equipment.setField(fieldId, newValue);
+      void equipment.setField(fieldId, newValue);
     },
     [equipment, fieldId],
   );

@@ -24,7 +24,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       const value = e.currentTarget.value;
       const themeName = value === "default" ? null : value;
-      actor.setSheetTheme(themeName);
+      void actor.setSheetTheme(themeName);
     },
     [actor],
   );
@@ -52,7 +52,9 @@ export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
           <select
             value={actor.system.longNotesFormat}
             onChange={(e) => {
-              actor.setLongNotesFormat(e.currentTarget.value as NoteFormat);
+              void actor.setLongNotesFormat(
+                e.currentTarget.value as NoteFormat,
+              );
             }}
           >
             <option value={NoteFormat.plain}>{getTranslated("Plain")}</option>

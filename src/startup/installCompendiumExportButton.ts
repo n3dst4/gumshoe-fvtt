@@ -73,7 +73,7 @@ export const installCompendiumExportButton = () => {
         .addClass(importButtonSpinnerClass);
       try {
         const text = await getUserFile(".json");
-        importCompendium(JSON.parse(text));
+        await importCompendium(JSON.parse(text));
       } catch (e: any) {
         ui.notifications?.error(`Compendium pack import failed: ${e.message}`, {
           permanent: true,

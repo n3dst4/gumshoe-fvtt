@@ -92,7 +92,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
                     abilityRowData.abilityItem.toJSON(),
                   ])
                 )[0] as AbilityItem;
-                if (isAbilityItem(newAbility as AbilityItem)) {
+                if (isAbilityItem(newAbility)) {
                   newAbility.sheet?.render(true);
                 }
               }

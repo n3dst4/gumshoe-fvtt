@@ -108,7 +108,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
     }
   }, [ability, spend, weapon, bonusPool]);
   const onAttack = () => {
-    basePerformAttack({
+    void basePerformAttack({
       rangeName: rangeInfo[rangeSelected].hover,
       rangeDamage: rangeInfo[rangeSelected].rangeDamage,
     });

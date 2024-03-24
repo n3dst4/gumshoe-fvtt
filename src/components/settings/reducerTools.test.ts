@@ -7,7 +7,7 @@ type ErrorTestTuple = [
   string,
   EquipmentFieldMetadata | undefined,
   string,
-  unknown | undefined,
+  unknown,
   string,
 ];
 
@@ -15,7 +15,7 @@ type OkayTestTuple = [
   string,
   EquipmentFieldMetadata | undefined,
   string,
-  unknown | undefined,
+  unknown,
 ];
 
 describe("assertNumericFieldOkayness", () => {

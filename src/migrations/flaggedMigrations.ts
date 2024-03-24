@@ -105,7 +105,7 @@ export const flaggedMigrations: FlaggedMigrations = {
      * Personal details are like short notes 2.0. This migration will take the
      * old short notes and turn them into personal details.
      */
-    convertShortNotesToPersonalDetails: () => {
+    convertShortNotesToPersonalDetails: async () => {
       assertGame(game);
       const shortNotes: string[] = game.settings.get(
         "investigator",
@@ -117,7 +117,11 @@ export const flaggedMigrations: FlaggedMigrations = {
           type: "item",
         }),
       );
-      game.settings.set("investigator", "personalDetails", personalDetails);
+      await game.settings.set(
+        "investigator",
+        "personalDetails",
+        personalDetails,
+      );
     },
   },
   compendium: {},

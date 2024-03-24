@@ -45,7 +45,7 @@ export class InvestigatorJournalSheet extends JournalSheet {
         .before(
           `<a class="${editButtonCssClass}"id="${id}"><i class="fas fa-code"></i>Edit</a>`,
         );
-      document.querySelector(`#${id}`)?.addEventListener("click", async () => {
+      document.querySelector(`#${id}`)?.addEventListener("click", () => {
         const EditSheet: JournalSheet = Journal.registeredSheets.find(
           // @ts-expect-error Journal types are effed
           (sheet) => sheet.name === "JournalEditorSheetClass",

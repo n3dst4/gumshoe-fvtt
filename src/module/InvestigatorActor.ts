@@ -41,37 +41,47 @@ export class InvestigatorActor extends Actor {
     return !game.user?.isGM || this.type === pc;
   }
 
-  confirmRefresh = () => {
-    confirmADoodleDo({
+  confirmRefresh = async () => {
+    const yes = await confirmADoodleDo({
       message: "Refresh all of (actor name)'s abilities?",
       confirmText: "Refresh",
       cancelText: "Cancel",
       confirmIconClass: "fa-sync",
       values: { ActorName: this.name ?? "" },
-    }).then(this.refresh);
+    });
+    if (yes) {
+      await this.refresh();
+    }
   };
 
-  confirm24hRefresh = () => {
-    confirmADoodleDo({
+  confirm24hRefresh = async () => {
+    const yes = await confirmADoodleDo({
       message:
         "Refresh all of (actor name)'s abilities which refresh every 24h?",
       confirmText: "Refresh",
       cancelText: "Cancel",
       confirmIconClass: "fa-sync",
       values: { ActorName: this.name ?? "" },
-    }).then(this.refresh24h);
+      resolveFalseOnCancel: true,
+    });
+    if (yes) {
+      await this.refresh24h();
+    }
   };
 
   confirmMwRefresh(group: MwRefreshGroup) {
-    return () => {
-      confirmADoodleDo({
+    return async () => {
+      const yes = await confirmADoodleDo({
         message:
           "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?",
         confirmText: "Refresh",
         cancelText: "Cancel",
         confirmIconClass: "fa-sync",
         values: { ActorName: this.name ?? "", Hours: group },
-      }).then(() => this.mWrefresh(group));
+      });
+      if (yes) {
+        await this.mWrefresh(group);
+      }
     };
   }
 
@@ -79,7 +89,7 @@ export class InvestigatorActor extends Actor {
   confirmMw4Refresh = this.confirmMwRefresh(4);
   confirmMw8Refresh = this.confirmMwRefresh(8);
 
-  refresh = () => {
+  refresh = async () => {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
         isAbilityItem(item) &&
@@ -99,12 +109,12 @@ export class InvestigatorActor extends Actor {
       }
     });
     if (this.shouldBrodcastRefreshes()) {
-      this.broadcastUserMessage("RefreshedAllOfActorNamesAbilities");
+      await this.broadcastUserMessage("RefreshedAllOfActorNamesAbilities");
     }
-    return this.updateEmbeddedDocuments("Item", updates);
+    await this.updateEmbeddedDocuments("Item", updates);
   };
 
-  mWrefresh(group: MwRefreshGroup) {
+  async mWrefresh(group: MwRefreshGroup) {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
         isGeneralAbilityItem(item) &&
@@ -125,19 +135,19 @@ export class InvestigatorActor extends Actor {
       }
     });
     if (this.shouldBrodcastRefreshes()) {
-      this.broadcastUserMessage(
+      await this.broadcastUserMessage(
         "RefreshedAllOfActorNamesHoursHoursRefreshAbilities",
         {
           Hours: group.toString(),
         },
       );
     }
-    return this.updateEmbeddedDocuments("Item", updates);
+    await this.updateEmbeddedDocuments("Item", updates);
   }
 
   // if we end up with even more types of refresh it may be worth factoring out
   // the actual refresh code but until then - rule of three
-  refresh24h = () => {
+  refresh24h = async () => {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
         isAbilityItem(item) &&
@@ -157,12 +167,14 @@ export class InvestigatorActor extends Actor {
       }
     });
     if (this.shouldBrodcastRefreshes()) {
-      this.broadcastUserMessage("RefreshedAllOfActorNames24hRefreshAbilities");
+      await this.broadcastUserMessage(
+        "RefreshedAllOfActorNames24hRefreshAbilities",
+      );
     }
-    this.updateEmbeddedDocuments("Item", updates);
+    await this.updateEmbeddedDocuments("Item", updates);
   };
 
-  broadcastUserMessage = (
+  broadcastUserMessage = async (
     text: string,
     extraData: Record<string, string> = {},
   ) => {
@@ -178,18 +190,22 @@ export class InvestigatorActor extends Actor {
           ...extraData,
         }),
       };
-      ChatMessage.create(chatData, {});
+      await ChatMessage.create(chatData, {});
     }
   };
 
-  confirmNuke = () => {
-    confirmADoodleDo({
+  confirmNuke = async () => {
+    const yes = await confirmADoodleDo({
       message: "NukeAllOfActorNamesAbilitiesAndEquipment",
       confirmText: "Nuke it from orbit",
       cancelText: "Whoops no!",
       confirmIconClass: "fa-radiation",
+      resolveFalseOnCancel: true,
       values: { ActorName: this.name ?? "" },
-    }).then(() => this.nuke());
+    });
+    if (yes) {
+      await this.nuke();
+    }
   };
 
   nuke = async () => {
@@ -289,8 +305,8 @@ export class InvestigatorActor extends Actor {
       : settings.defaultThemeName.get();
   }
 
-  setSheetTheme = (sheetTheme: string | null) => {
-    this.update({ system: { sheetTheme } });
+  setSheetTheme = async (sheetTheme: string | null) => {
+    await this.update({ system: { sheetTheme } });
   };
 
   setNotes = (notes: NoteWithFormat) => {

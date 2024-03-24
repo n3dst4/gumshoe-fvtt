@@ -12,13 +12,13 @@ import { InvestigatorItem } from "./InvestigatorItem";
  * Override base Combatant class to override the initiative formula.
  */
 export class InvestigatorCombatant extends Combatant {
-  doGumshoeInitiative = () => {
+  doGumshoeInitiative = async () => {
     // @ts-expect-error v10 types
     if (this._id) {
       const initiative = this.actor
         ? InvestigatorCombatant.getGumshoeInitiative(this.actor)
         : 0;
-      this.update({ initiative });
+      await this.update({ initiative });
     }
   };
 
@@ -48,7 +48,7 @@ export class InvestigatorCombatant extends Combatant {
       "";
     // and if it was null, set it on the actor now.
     if (actor && isNullOrEmptyString(actor.system.initiativeAbility)) {
-      actor.update({ system: { initiativeAbility: abilityName } });
+      void actor.update({ system: { initiativeAbility: abilityName } });
     }
     const ability = actor.items.find(
       (item: InvestigatorItem) =>
@@ -84,7 +84,7 @@ export class InvestigatorCombatant extends Combatant {
   set passingTurnsRemaining(turns: number) {
     assertGame(game);
     if (game.user && this.canUserModify(game.user, "update")) {
-      this.setFlag(constants.systemId, "passingTurnsRemaining", turns);
+      void this.setFlag(constants.systemId, "passingTurnsRemaining", turns);
     }
   }
 }

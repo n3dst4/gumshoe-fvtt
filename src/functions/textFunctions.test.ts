@@ -27,7 +27,7 @@ describe("toHtml", async () => {
     const result = await toHtml(NoteFormat.plain, markdownSample);
     expect(result).toMatchSnapshot();
   });
-  test("converts markdown to html", async () => {
+  test("converts markdown to html", () => {
     expect(html).toMatchSnapshot();
   });
   test("converts rich text to html", async () => {

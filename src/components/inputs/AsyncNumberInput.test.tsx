@@ -52,36 +52,33 @@ describe.each<[string, string, string | undefined, string | undefined]>([
   ["too low", Number.MIN_SAFE_INTEGER.toString(), "0", undefined],
   ["too low", "0", "1", undefined],
   ["too low", "100", "200", undefined],
-])(
-  "when input is %s (input %s, min %s, max %s)",
-  async (_, input, min, max) => {
-    async function setup() {
-      const onChange = vi.fn();
-      const { getByRole } = render(
-        <AsyncNumberInput
-          value={2}
-          onChange={onChange}
-          min={isNullOrEmptyString(min) ? undefined : Number(min)}
-          max={isNullOrEmptyString(max) ? undefined : Number(max)}
-          className="test"
-        />,
-      );
-      const inputEl = getByRole("text-input");
-      inputEl.focus();
-      await user.keyboard("{backspace}" + input);
-      return { inputEl, onChange };
-    }
+])("when input is %s (input %s, min %s, max %s)", (_, input, min, max) => {
+  async function setup() {
+    const onChange = vi.fn();
+    const { getByRole } = render(
+      <AsyncNumberInput
+        value={2}
+        onChange={onChange}
+        min={isNullOrEmptyString(min) ? undefined : Number(min)}
+        max={isNullOrEmptyString(max) ? undefined : Number(max)}
+        className="test"
+      />,
+    );
+    const inputEl = getByRole("text-input");
+    inputEl.focus();
+    await user.keyboard("{backspace}" + input);
+    return { inputEl, onChange };
+  }
 
-    it("should enter error mode", async () => {
-      const { inputEl, onChange } = await setup();
-      expect(inputEl.getAttribute("value")).toBe(input);
-      expect(onChange).toHaveBeenCalledTimes(0);
-      vi.advanceTimersByTime(inputThrottleTime * 2);
-      expect(onChange).toHaveBeenCalledTimes(0);
-    });
-    it("should show error state", async () => {
-      const { inputEl } = await setup();
-      expect(inputEl.className.split(" ")).toContain("error");
-    });
-  },
-);
+  it("should enter error mode", async () => {
+    const { inputEl, onChange } = await setup();
+    expect(inputEl.getAttribute("value")).toBe(input);
+    expect(onChange).toHaveBeenCalledTimes(0);
+    vi.advanceTimersByTime(inputThrottleTime * 2);
+    expect(onChange).toHaveBeenCalledTimes(0);
+  });
+  it("should show error state", async () => {
+    const { inputEl } = await setup();
+    expect(inputEl.className.split(" ")).toContain("error");
+  });
+});

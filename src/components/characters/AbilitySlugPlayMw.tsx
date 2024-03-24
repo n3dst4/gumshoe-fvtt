@@ -25,7 +25,7 @@ export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({
   const [boonLevy, setBoonlevy] = useState(0);
 
   const onTest = useCallback(() => {
-    ability.mwTestAbility(0, boonLevy);
+    void ability.mwTestAbility(0, boonLevy);
     setBoonlevy(0);
   }, [ability, boonLevy]);
 

@@ -31,7 +31,7 @@ export const PersonalDetailField: React.FC<{
       {personalDetailItems.length === 0 && (
         <Slug
           onClick={() => {
-            actor.createPersonalDetail(slotIndex); //
+            void actor.createPersonalDetail(slotIndex); //
           }}
         >
           Create

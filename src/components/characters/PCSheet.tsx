@@ -53,15 +53,15 @@ export const PCSheet: React.FC<PCSheetProps> = ({
   assertPCActor(actor);
 
   const updateShortNote = useCallback(
-    (value: string, index: number) => {
-      actor.setShortNote(index, value);
+    async (value: string, index: number) => {
+      await actor.setShortNote(index, value);
     },
     [actor],
   );
 
   const updateMwHiddenShortNote = useCallback(
-    (value: string, index: number) => {
-      actor.setMwHiddenShortNote(index, value);
+    async (value: string, index: number) => {
+      await actor.setMwHiddenShortNote(index, value);
     },
     [actor],
   );

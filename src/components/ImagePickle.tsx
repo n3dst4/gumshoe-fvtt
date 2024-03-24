@@ -38,7 +38,7 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
       type: "image",
       current: subject.img ?? undefined,
       callback: (path: string) => {
-        subject.update({
+        void subject.update({
           img: path,
         });
       },

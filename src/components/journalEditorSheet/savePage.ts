@@ -45,7 +45,7 @@ export async function savePage(
     ...settings.journalMemories.get(),
     [memoryId]: dehydrate(memory),
   };
-  settings.journalMemories.set(journalMemoryCollection);
+  await settings.journalMemories.set(journalMemoryCollection);
   systemLogger.log("Saved page", page.id, content);
   return memory;
 }

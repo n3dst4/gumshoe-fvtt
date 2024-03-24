@@ -58,7 +58,7 @@ export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(
     const deets = results[effectiveResult];
 
     const onClickReRoll = useCallback(() => {
-      ability?.mwTestAbility(difficulty, boonLevy, effectiveResult);
+      void ability?.mwTestAbility(difficulty, boonLevy, effectiveResult);
     }, [ability, boonLevy, difficulty, effectiveResult]);
 
     const boonLevyFactor =

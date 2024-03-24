@@ -2,7 +2,7 @@ import { MigrationFlags } from "../migrations/types";
 import { settings } from "../settings/settings";
 
 export function installFlaggedMigrationSplatter() {
-  function splatMigration(type: string, migration: string) {
+  async function splatMigration(type: string, migration: string) {
     const newFlags = {
       ...settings.migrationFlags.get(),
       [type]: {
@@ -10,13 +10,13 @@ export function installFlaggedMigrationSplatter() {
         [migration]: true,
       },
     };
-    settings.migrationFlags.set(newFlags);
+    await settings.migrationFlags.set(newFlags);
   }
   window.splatMigration = splatMigration;
 }
 
 declare global {
   interface Window {
-    splatMigration: (type: string, migration: string) => void;
+    splatMigration: (type: string, migration: string) => Promise<void>;
   }
 }

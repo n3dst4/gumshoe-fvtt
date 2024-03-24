@@ -30,17 +30,20 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
       ? 'Delete {ActorName}\'s "{AbilityName}" ability?'
       : 'Delete the "{AbilityName}" ability?';
 
-    confirmADoodleDo({
+    void confirmADoodleDo({
       message,
       confirmText: "Delete",
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",
+      resolveFalseOnCancel: true,
       values: {
         ActorName: ability.actor?.name ?? "",
         AbilityName: ability.name ?? "",
       },
-    }).then(() => {
-      ability.delete();
+    }).then((yes) => {
+      if (yes) {
+        void ability.delete();
+      }
     });
   }, [ability]);
 
@@ -60,7 +63,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
         setSelectCustomOption(true);
       } else {
         setSelectCustomOption(false);
-        ability.setCategory(e.currentTarget.value);
+        void ability.setCategory(e.currentTarget.value);
       }
     },
     [ability],
@@ -143,7 +146,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
         <AsyncCheckbox
           checked={ability.system.hasSpecialities}
           onChange={(t) => {
-            ability.setHasSpecialities(t);
+            void ability.setHasSpecialities(t);
           }}
         />
       </GridField>
@@ -152,7 +155,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
           <select
             value={ability.system.specialitiesMode}
             onChange={(t) => {
-              ability.setSpecialitiesMode(
+              void ability.setSpecialitiesMode(
                 t.currentTarget.value as SpecialitiesMode,
               );
             }}
@@ -215,7 +218,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
           <select
             value={ability.system.mwRefreshGroup}
             onChange={(e) => {
-              ability.setMwRefreshGroup(
+              void ability.setMwRefreshGroup(
                 Number(e.currentTarget.value) as MwRefreshGroup,
               );
             }}

@@ -134,10 +134,10 @@ describe("settings", () => {
   function makeValidatorTest<T>(validator: z.ZodType<T> | undefined) {
     expect(validator).toBeDefined();
     return {
-      expectParseOkay(value: unknown) {
+      expectParseOkay(this: void, value: unknown) {
         expect(validator!.parse(value)).toEqual(value);
       },
-      expectParseError(value: unknown) {
+      expectParseError(this: void, value: unknown) {
         expect(() => validator!.parse(value)).toThrowError();
       },
     };

@@ -20,15 +20,15 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
   const [boonLevy, setBoonLevy] = useState(0);
 
   const onTest = useCallback(() => {
-    ability.mwTestAbility(difficulty, boonLevy);
+    void ability.mwTestAbility(difficulty, boonLevy);
   }, [ability, boonLevy, difficulty]);
 
   const onWallop = useCallback(() => {
-    ability.mWWallop();
+    void ability.mWWallop();
   }, [ability]);
 
   const onNegateIllustrious = useCallback(() => {
-    ability.mWNegateIllustrious();
+    void ability.mWNegateIllustrious();
   }, [ability]);
 
   const onChangeDifficulty = (e: React.ChangeEvent<HTMLSelectElement>) => {

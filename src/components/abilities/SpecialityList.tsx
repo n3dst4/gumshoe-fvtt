@@ -12,7 +12,7 @@ export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
     (newVal: string, index: number) => {
       const newSpecs = [...ability.getSpecialities()];
       newSpecs[index] = newVal;
-      ability.setSpecialities(newSpecs);
+      void ability.setSpecialities(newSpecs);
     },
     [ability],
   );

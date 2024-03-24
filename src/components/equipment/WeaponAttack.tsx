@@ -68,7 +68,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
 
   const onPointBlank = useCallback(() => {
     assertWeaponItem(weapon);
-    basePerformAttack({
+    void basePerformAttack({
       rangeName: "point blank",
       rangeDamage: weapon.system.pointBlankDamage,
     });
@@ -76,7 +76,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
 
   const onCloseRange = useCallback(() => {
     assertWeaponItem(weapon);
-    basePerformAttack({
+    void basePerformAttack({
       rangeName: "close range",
       rangeDamage: weapon.system.closeRangeDamage,
     });
@@ -84,7 +84,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
 
   const onNearRange = useCallback(() => {
     assertWeaponItem(weapon);
-    basePerformAttack({
+    void basePerformAttack({
       rangeName: "near range",
       rangeDamage: weapon.system.nearRangeDamage,
     });
@@ -92,7 +92,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
 
   const onLongRange = useCallback(() => {
     assertWeaponItem(weapon);
-    basePerformAttack({
+    void basePerformAttack({
       rangeName: "long range",
       rangeDamage: weapon.system.longRangeDamage,
     });
@@ -131,7 +131,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
       if (ability) {
-        weapon.actor?.update({
+        void weapon.actor?.update({
           system: {
             initiativeAbility: ability.name || "",
           },

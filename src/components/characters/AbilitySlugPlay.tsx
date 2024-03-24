@@ -30,12 +30,12 @@ export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
   const [spend, setSpend] = useState(0);
 
   const onTest = useCallback(() => {
-    ability.testAbility(spend);
+    void ability.testAbility(spend);
     setSpend(0);
   }, [ability, spend]);
 
   const onSpend = useCallback(() => {
-    ability.spendAbility(spend);
+    void ability.spendAbility(spend);
     setSpend(0);
   }, [ability, spend]);
 

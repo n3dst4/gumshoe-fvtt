@@ -86,7 +86,7 @@ export const performAttack =
     // @ts-expect-error v10 types
     const weaponId = weapon._id;
 
-    actualRoll.toMessage({
+    void actualRoll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: weapon.actor }),
       content: `
     <div
@@ -109,5 +109,7 @@ export const performAttack =
     await ability?.setPool(newPool);
     setBonusPool(newBonusPool);
     setSpend(0);
-    weapon.setAmmo(Math.max(0, weapon.getAmmo() - weapon.getAmmoPerShot()));
+    await weapon.setAmmo(
+      Math.max(0, weapon.getAmmo() - weapon.getAmmoPerShot()),
+    );
   };

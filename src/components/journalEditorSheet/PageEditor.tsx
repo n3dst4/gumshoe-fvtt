@@ -107,7 +107,7 @@ export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
     ]);
   }, [pageRef]);
 
-  const handleOutdent = useCallback(async () => {
+  const handleOutdent = useCallback(() => {
     const page = pageRef.current;
     if (page.title.level <= MIN_INDENT) {
       return;
