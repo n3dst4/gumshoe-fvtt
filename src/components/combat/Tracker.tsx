@@ -68,7 +68,7 @@ export const Tracker: React.FC = () => {
       assertGame(game);
       event.preventDefault();
       const btn = event.currentTarget;
-      const combatId = btn.dataset.combatId;
+      const combatId = btn.dataset["combatId"];
       if (combatId === undefined) return;
       const combat = game.combats?.get(combatId);
       if (!combat) return;
@@ -78,17 +78,17 @@ export const Tracker: React.FC = () => {
   );
 
   const onDeleteCombat = useCallback(
-    async (event: MouseEvent) => {
+    (event: MouseEvent) => {
       event.preventDefault();
-      combatRef.current?.delete();
+      void combatRef.current?.delete();
     },
     [combatRef],
   );
 
   const onToggleSceneLink = useCallback(
-    async (event: MouseEvent) => {
+    (event: MouseEvent) => {
       event.preventDefault();
-      combatRef.current?.toggleSceneLink();
+      void combatRef.current?.toggleSceneLink();
     },
     [combatRef],
   );
@@ -96,7 +96,7 @@ export const Tracker: React.FC = () => {
   const onPreviousRound = useCallback(
     (event: MouseEvent) => {
       event.preventDefault();
-      combatRef.current?.previousRound();
+      void combatRef.current?.previousRound();
     },
     [combatRef],
   );
@@ -104,7 +104,7 @@ export const Tracker: React.FC = () => {
   const onPreviousTurn = useCallback(
     (event: MouseEvent) => {
       event.preventDefault();
-      combatRef.current?.previousTurn();
+      void combatRef.current?.previousTurn();
     },
     [combatRef],
   );
@@ -112,7 +112,7 @@ export const Tracker: React.FC = () => {
   const onEndCombat = useCallback(
     (event: MouseEvent) => {
       event.preventDefault();
-      combatRef.current?.endCombat();
+      void combatRef.current?.endCombat();
     },
     [combatRef],
   );
@@ -120,7 +120,7 @@ export const Tracker: React.FC = () => {
   const onNextTurn = useCallback(
     (event: MouseEvent) => {
       event.preventDefault();
-      combatRef.current?.nextTurn();
+      void combatRef.current?.nextTurn();
     },
     [combatRef],
   );
@@ -128,7 +128,7 @@ export const Tracker: React.FC = () => {
   const onNextRound = useCallback(
     (event: MouseEvent) => {
       event.preventDefault();
-      combatRef.current?.nextRound();
+      void combatRef.current?.nextRound();
     },
     [combatRef],
   );
@@ -136,7 +136,7 @@ export const Tracker: React.FC = () => {
   const onStartCombat = useCallback(
     (event: MouseEvent) => {
       event.preventDefault();
-      combatRef.current?.startCombat();
+      void combatRef.current?.startCombat();
     },
     [combatRef],
   );

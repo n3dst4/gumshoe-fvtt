@@ -14,7 +14,7 @@ export function installInitiativeUpdateHookHandler() {
       if (settings.useTurnPassingInitiative.get()) {
         combatant.resetPassingTurns();
       } else {
-        combatant.doGumshoeInitiative();
+        void combatant.doGumshoeInitiative();
       }
     },
   );

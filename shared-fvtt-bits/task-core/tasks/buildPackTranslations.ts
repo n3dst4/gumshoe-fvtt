@@ -34,7 +34,7 @@ export async function buildPackTranslations({
     });
 
     const docs = await store.find({});
-    docs.sort((a: any, b: any) => a.name.localeCompare(b.name));
+    docs["sort"]((a: any, b: any) => a.name.localeCompare(b.name));
     for (const docId in docs) {
       const doc = docs[docId];
       entries[doc.name] = {

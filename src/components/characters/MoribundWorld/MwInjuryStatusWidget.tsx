@@ -18,7 +18,7 @@ export const MwInjuryStatusWidget: React.FC<MwInjuryStatusWidgetProps> = ({
   const [display, setDisplay] = useState(status);
 
   useEffect(() => {
-    setStatus(display);
+    void setStatus(display);
   }, [display, setStatus]);
 
   const color =

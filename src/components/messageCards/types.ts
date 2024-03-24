@@ -13,7 +13,7 @@ export type AbilityCardMode =
   | typeof constants.htmlDataModeMwWallop;
 
 export const isAbilityCardMode = (
-  candidate: string | AbilityCardMode,
+  candidate: string,
 ): candidate is AbilityCardMode => {
   return (
     candidate === constants.htmlDataModeTest ||

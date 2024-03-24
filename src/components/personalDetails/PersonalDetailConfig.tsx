@@ -13,13 +13,13 @@ interface PersonalDetailConfigProps {
 export const PersonalDetailConfig: React.FC<PersonalDetailConfigProps> = ({
   item,
 }) => {
-  const onClickDelete = useCallback(() => {
+  const onClickDelete = useCallback(async () => {
     assertGame(game);
     const message = item.actor
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
-    confirmADoodleDo({
+    const aye = await confirmADoodleDo({
       message,
       confirmText: "Delete",
       cancelText: "Cancel",
@@ -28,9 +28,11 @@ export const PersonalDetailConfig: React.FC<PersonalDetailConfigProps> = ({
         ActorName: item.actor?.name ?? "",
         EquipmentName: item.name ?? "",
       },
-    }).then(() => {
-      item.delete();
+      resolveFalseOnCancel: true,
     });
+    if (aye) {
+      await item.delete();
+    }
   }, [item]);
 
   return (

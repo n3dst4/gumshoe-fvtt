@@ -22,7 +22,7 @@ export const CoreSettings: React.FC<CoreSettingsProps> = ({ setters }) => {
   const dispatch = useContext(DispatchContext);
 
   const onSelectPreset = useCallback(
-    async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
       assertGame(game);
       const presetId = e.currentTarget.value;
       if (presetId === constants.customSystem) {

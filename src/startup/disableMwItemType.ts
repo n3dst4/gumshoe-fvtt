@@ -12,17 +12,17 @@ function mwItemOnOrOff() {
   assertGame(game);
   if (settings.mwUseAlternativeItemTypes.get()) {
     if (oldMwItemTypelabel !== null && oldMwItemIndex !== null) {
-      CONFIG.Item.typeLabels.mwItem = oldMwItemTypelabel;
+      CONFIG.Item.typeLabels["mwItem"] = oldMwItemTypelabel;
       game.system.documentTypes.Item.splice(oldMwItemIndex, 0, "mwItem");
       oldMwItemTypelabel = null;
       oldMwItemIndex = null;
     }
   } else {
-    const label = CONFIG.Item.typeLabels.mwItem;
+    const label = CONFIG.Item.typeLabels["mwItem"];
     const index = game.system.documentTypes.Item.indexOf("mwItem");
     if (index !== -1) {
       oldMwItemTypelabel = label;
-      delete CONFIG.Item.typeLabels.mwItem;
+      delete CONFIG.Item.typeLabels["mwItem"];
       oldMwItemIndex = index;
       game.system.documentTypes.Item.splice(index, 1);
     }

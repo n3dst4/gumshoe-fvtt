@@ -44,8 +44,8 @@ export const OrphanedField: React.FC<OrphanedFieldProps> = ({
           gridColumn: 3,
           gridRow: index * gridRowsPerField + 1,
         }}
-        onClick={() => {
-          navigator.clipboard.writeText(fieldId);
+        onClick={async () => {
+          await navigator.clipboard.writeText(fieldId);
           ui.notifications?.info(`Copied field ID "${fieldId}" to clipboard`);
         }}
       >
@@ -76,8 +76,8 @@ export const OrphanedField: React.FC<OrphanedFieldProps> = ({
           gridColumn: 3,
           gridRow: index * gridRowsPerField + 2,
         }}
-        onClick={() => {
-          navigator.clipboard.writeText(String(fieldValue));
+        onClick={async () => {
+          await navigator.clipboard.writeText(String(fieldValue));
           ui.notifications?.info("Copied value to clipboard");
         }}
       >

@@ -83,7 +83,7 @@ export const migrateWorld = async function (
   }
 
   // Set the migration as complete
-  settings.systemMigrationVersion.set(system.version);
+  await settings.systemMigrationVersion.set(system.version);
   ui.notifications?.info(
     `${system.title} system migration to version ${system.version} completed!`,
     { permanent: true },

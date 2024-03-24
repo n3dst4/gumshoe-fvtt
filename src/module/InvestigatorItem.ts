@@ -59,7 +59,7 @@ export class InvestigatorItem extends Item {
     const rollValues: Record<string, number> = { spend };
     if (isBoosted) {
       rollExpression += " + @boost";
-      rollValues.boost = boost;
+      rollValues["boost"] = boost;
     }
     for (const situationalModifier of situationalModifiers) {
       if (situationalModifier === undefined) {
@@ -71,9 +71,9 @@ export class InvestigatorItem extends Item {
 
     const roll = new Roll(rollExpression, rollValues);
     await roll.evaluate({ async: true });
-    roll.toMessage({
+    await roll.toMessage({
       speaker: ChatMessage.getSpeaker({
-        actor: this.actor as InvestigatorActor,
+        actor: this.actor,
       }),
       content: `
         <div
@@ -88,7 +88,7 @@ export class InvestigatorItem extends Item {
       `,
     });
     const pool = this.system.pool - (Number(spend) || 0);
-    this.update({ system: { pool } });
+    await this.update({ system: { pool } });
   }
 
   /**
@@ -102,9 +102,9 @@ export class InvestigatorItem extends Item {
     }
     const roll = new Roll("@spend", { spend });
     await roll.evaluate({ async: true });
-    roll.toMessage({
+    await roll.toMessage({
       speaker: ChatMessage.getSpeaker({
-        actor: this.actor as InvestigatorActor,
+        actor: this.actor,
       }),
       content: `
         <div
@@ -120,7 +120,7 @@ export class InvestigatorItem extends Item {
     });
     const boost = settings.useBoost.get() && this.getBoost() ? 1 : 0;
     const pool = this.system.pool - (Number(spend) || 0) + boost;
-    this.update({ system: { pool } });
+    await this.update({ system: { pool } });
   }
 
   /**
@@ -156,9 +156,9 @@ export class InvestigatorItem extends Item {
       return;
     }
     const newPool = Math.max(0, this.system.pool - cost);
-    roll.toMessage({
+    await roll.toMessage({
       speaker: ChatMessage.getSpeaker({
-        actor: this.actor as InvestigatorActor,
+        actor: this.actor,
       }),
       content: `
         <div
@@ -174,13 +174,13 @@ export class InvestigatorItem extends Item {
         />
       `,
     });
-    this.update({ system: { pool: newPool } });
+    await this.update({ system: { pool: newPool } });
   }
 
-  mWNegateIllustrious() {
+  async mWNegateIllustrious() {
     assertAbilityItem(this);
     const newPool = Math.max(0, this.system.pool - constants.mwNegateCost);
-    ChatMessage.create({
+    await ChatMessage.create({
       content: `
         <div
           class="${constants.abilityChatMessageClassName}"
@@ -191,13 +191,13 @@ export class InvestigatorItem extends Item {
         />
       `,
     });
-    this.update({ system: { pool: newPool } });
+    await this.update({ system: { pool: newPool } });
   }
 
   async mWWallop() {
     assertAbilityItem(this);
     const newPool = Math.max(0, this.system.pool - constants.mwWallopCost);
-    ChatMessage.create({
+    await ChatMessage.create({
       content: `
         <div
           class="${constants.abilityChatMessageClassName}"
@@ -208,15 +208,15 @@ export class InvestigatorItem extends Item {
         />
       `,
     });
-    this.update({ system: { pool: newPool } });
+    await this.update({ system: { pool: newPool } });
   }
 
   /**
    * reset the pool to the rating
    */
-  refreshPool() {
+  async refreshPool() {
     assertAbilityItem(this);
-    this.update({
+    await this.update({
       system: {
         pool: this.system.rating ?? 0,
       },
@@ -858,18 +858,18 @@ export class InvestigatorItem extends Item {
     await this.update({ system: { damageBonus } });
   };
 
-  setSlotIndex = (slotIndex: number) => {
+  setSlotIndex = async (slotIndex: number) => {
     assertPersonalDetailItem(this);
-    this.update({
+    await this.update({
       system: {
         slotIndex,
       },
     });
   };
 
-  setCompendiumPack = (id: string | null) => {
+  setCompendiumPack = async (id: string | null) => {
     assertPersonalDetailItem(this);
-    this.update({
+    await this.update({
       system: {
         compendiumPackId: id,
       },

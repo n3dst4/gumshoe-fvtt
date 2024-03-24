@@ -24,31 +24,31 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
 
   const theme = useContext(ThemeContext);
 
-  const weaponRangeReduce = useCallback(() => {
+  const weaponRangeReduce = useCallback(async () => {
     if (weapon.getIsLongRange()) {
-      weapon.setIsLongRange(false);
+      await weapon.setIsLongRange(false);
     } else if (weapon.getIsNearRange()) {
-      weapon.setIsNearRange(false);
+      await weapon.setIsNearRange(false);
     } else if (weapon.getIsCloseRange()) {
-      weapon.setIsCloseRange(false);
+      await weapon.setIsCloseRange(false);
     }
   }, [weapon]);
-  const weaponRangeExpand = useCallback(() => {
+  const weaponRangeExpand = useCallback(async () => {
     if (!weapon.getIsCloseRange()) {
-      weapon.setIsCloseRange(true);
+      await weapon.setIsCloseRange(true);
     } else if (!weapon.getIsNearRange()) {
-      weapon.setIsNearRange(true);
+      await weapon.setIsNearRange(true);
     } else if (!weapon.getIsLongRange()) {
-      weapon.setIsLongRange(true);
+      await weapon.setIsLongRange(true);
     }
   }, [weapon]);
-  const onClickDelete = useCallback(() => {
+  const onClickDelete = useCallback(async () => {
     assertGame(game);
     const message = weapon.actor
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
-    confirmADoodleDo({
+    (await confirmADoodleDo({
       message,
       confirmText: "Delete",
       cancelText: "Cancel",
@@ -57,9 +57,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         ActorName: weapon.actor?.name ?? "",
         EquipmentName: weapon.name ?? "",
       },
-    }).then(() => {
-      weapon.delete();
-    });
+    })) && (await weapon.delete());
   }, [weapon]);
 
   const gridRow = index * 3 + 3;

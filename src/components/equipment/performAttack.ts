@@ -42,7 +42,7 @@ export const performAttack =
     const hitParams: { [name: string]: number } = { spend };
     if (isBoosted) {
       hitTerm += " + @boost";
-      hitParams.boost = boost;
+      hitParams["boost"] = boost;
     }
 
     const useNpcBonuses =
@@ -54,9 +54,9 @@ export const performAttack =
 
     if (useNpcBonuses) {
       hitTerm += " + @npcCombatBonus";
-      hitParams.npcCombatBonus = ability.parent.system.combatBonus;
+      hitParams["npcCombatBonus"] = ability.parent.system.combatBonus;
       hitTerm += " + @abilityCombatBonus";
-      hitParams.abilityCombatBonus = ability.system.combatBonus;
+      hitParams["abilityCombatBonus"] = ability.system.combatBonus;
     }
     const hitRoll = new Roll(hitTerm, hitParams);
 
@@ -67,9 +67,9 @@ export const performAttack =
     const damageParams: { [name: string]: number } = { damage, rangeDamage };
     if (useNpcBonuses) {
       damageTerm += " + @npcDamageBonus";
-      damageParams.npcDamageBonus = ability.parent.system.damageBonus;
+      damageParams["npcDamageBonus"] = ability.parent.system.damageBonus;
       damageTerm += " + @abilityDamageBonus";
-      damageParams.abilityDamageBonus = ability.system.damageBonus;
+      damageParams["abilityDamageBonus"] = ability.system.damageBonus;
     }
 
     const damageRoll = new Roll(damageTerm, damageParams);
@@ -86,7 +86,7 @@ export const performAttack =
     // @ts-expect-error v10 types
     const weaponId = weapon._id;
 
-    actualRoll.toMessage({
+    void actualRoll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: weapon.actor }),
       content: `
     <div
@@ -109,5 +109,7 @@ export const performAttack =
     await ability?.setPool(newPool);
     setBonusPool(newBonusPool);
     setSpend(0);
-    weapon.setAmmo(Math.max(0, weapon.getAmmo() - weapon.getAmmoPerShot()));
+    await weapon.setAmmo(
+      Math.max(0, weapon.getAmmo() - weapon.getAmmoPerShot()),
+    );
   };

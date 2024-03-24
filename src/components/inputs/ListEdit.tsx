@@ -15,11 +15,11 @@ export const ListEdit: React.FC<ListEditProps> = ({
 }) => {
   const onInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (!e.currentTarget.dataset.index) {
+      if (!e.currentTarget.dataset["index"]) {
         return;
       }
       const newList = [...value];
-      newList[Number(e.currentTarget.dataset.index)] = e.currentTarget.value;
+      newList[Number(e.currentTarget.dataset["index"])] = e.currentTarget.value;
       onChange(newList);
     },
     [onChange, value],
@@ -28,11 +28,11 @@ export const ListEdit: React.FC<ListEditProps> = ({
   const onClickDelete = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-      if (!e.currentTarget.dataset.index) {
+      if (!e.currentTarget.dataset["index"]) {
         return;
       }
       const newList = [...value];
-      newList.splice(Number(e.currentTarget.dataset.index), 1);
+      newList.splice(Number(e.currentTarget.dataset["index"]), 1);
       onChange(newList);
     },
     [onChange, value],

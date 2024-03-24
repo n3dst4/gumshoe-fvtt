@@ -20,24 +20,23 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
 }) => {
   assertEquipmentItem(equipment);
 
-  const onClickDelete = useCallback(() => {
+  const onClickDelete = useCallback(async () => {
     assertGame(game);
     const message = equipment.actor
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
-    confirmADoodleDo({
+    (await confirmADoodleDo({
       message,
       confirmText: "Delete",
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",
+      resolveFalseOnCancel: true,
       values: {
         ActorName: equipment.actor?.name ?? "",
         EquipmentName: equipment.name ?? "",
       },
-    }).then(() => {
-      equipment.delete();
-    });
+    })) && (await equipment.delete());
   }, [equipment]);
 
   const allFields = equipment.system.fields;
@@ -65,9 +64,9 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
               css={{
                 gridArea: "cog",
               }}
-              onClick={() => {
+              onClick={async () => {
                 assertEquipmentItem(equipment);
-                navigator.clipboard.writeText(equipment.system.category);
+                await navigator.clipboard.writeText(equipment.system.category);
                 ui.notifications?.info(
                   `Copied category ID "${equipment.system.category}" to clipboard`,
                 );
@@ -102,7 +101,7 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
             fieldValue={allFields[fieldId]}
             index={index}
             onDelete={(id) => {
-              equipment.deleteField(id);
+              void equipment.deleteField(id);
             }}
           />
         ))}

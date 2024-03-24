@@ -30,15 +30,15 @@ export const useInititative = (
   );
 
   const onClearInitiative = useCallback(() => {
-    combatantStash.current?.update({ initiative: null });
+    void combatantStash.current?.update({ initiative: null });
   }, [combatantStash]);
 
   const onDoInitiative = useCallback(() => {
-    combatantStash.current?.doGumshoeInitiative();
+    void combatantStash.current?.doGumshoeInitiative();
   }, [combatantStash]);
 
   const onRemoveCombatant = useCallback(() => {
-    combatantStash.current?.delete();
+    void combatantStash.current?.delete();
   }, [combatantStash]);
 
   const localize = game.i18n.localize.bind(game.i18n);

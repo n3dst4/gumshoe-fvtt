@@ -33,10 +33,10 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
       const value = e.currentTarget.value;
       if (value === "") {
         // setIsUncategorized(true);
-        equipment.setCategory("");
+        void equipment.setCategory("");
       } else {
         // setIsUncategorized(false);
-        equipment.setCategory(e.currentTarget.value);
+        void equipment.setCategory(e.currentTarget.value);
       }
     },
     [equipment],

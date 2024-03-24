@@ -65,11 +65,11 @@ export function installPersonalDetailHookHandler() {
           const onAdd = () => {
             resolve(true);
           };
-          const onReplace = () => {
+          const onReplace = async () => {
             const itemIds =
               itemsAlreadyInSlot?.map((item) => item.id ?? "") ?? [];
 
-            itemsAlreadyInSlot?.[0].actor?.deleteEmbeddedDocuments(
+            await itemsAlreadyInSlot?.[0].actor?.deleteEmbeddedDocuments(
               "Item",
               itemIds,
             );

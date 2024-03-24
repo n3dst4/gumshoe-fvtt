@@ -20,7 +20,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
 }) => {
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
-    runtimeConfig.themes.tealTheme;
+    runtimeConfig.themes["tealTheme"];
 
   const zero = abilityRowData.total === 0;
   const odd = index % 2 === 0;
@@ -92,7 +92,7 @@ export const AbilityRow: React.FC<AbilityRowProps> = ({
                     abilityRowData.abilityItem.toJSON(),
                   ])
                 )[0] as AbilityItem;
-                if (isAbilityItem(newAbility as AbilityItem)) {
+                if (isAbilityItem(newAbility)) {
                   newAbility.sheet?.render(true);
                 }
               }

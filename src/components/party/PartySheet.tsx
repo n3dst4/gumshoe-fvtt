@@ -23,7 +23,7 @@ export const PartySheet: React.FC<{
 }> = ({ foundryApplication, party }) => {
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
-    runtimeConfig.themes.tealTheme;
+    runtimeConfig.themes["tealTheme"];
   const [abilities, setAbilities] = useState<AbilityItem[]>([]);
   const [actors, setActors] = useState<InvestigatorActor[]>([]);
   const [rowData, setRowData] = useState<RowData[]>([]);
@@ -32,7 +32,7 @@ export const PartySheet: React.FC<{
   // effect 1: keep our "abilityTuples" in sync with system setting for
   // "newPCPacks"
   useEffect(() => {
-    getSystemAbilities().then(setAbilities);
+    void getSystemAbilities().then(setAbilities);
 
     const onNewPCPacksUpdated = async (newPacks: string[]) => {
       setAbilities(await getSystemAbilities());
@@ -47,7 +47,7 @@ export const PartySheet: React.FC<{
       const actorIds = party.system.actorIds.filter(
         (id) => id !== deletedActor.id,
       );
-      party.update({ actorIds });
+      void party.update({ actorIds });
     };
 
     const onUpdateDeleteCreateItem = async (
@@ -85,7 +85,7 @@ export const PartySheet: React.FC<{
 
   // effect 2: keep our row data in sync with abilities and actors
   useEffect(() => {
-    const getAbs = async () => {
+    const getAbs = () => {
       const rowData = buildRowData(abilities, actors);
       // setting row data is slow - presumably this includes rendering time
       setRowData(rowData);
@@ -111,9 +111,9 @@ export const PartySheet: React.FC<{
   const onClickRemoveActor = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-      const actorId = e.currentTarget.dataset.actorId;
+      const actorId = e.currentTarget.dataset["actorId"];
       if (actorId !== undefined) {
-        party.removeActorId(actorId);
+        void party.removeActorId(actorId);
       }
     },
     [party],

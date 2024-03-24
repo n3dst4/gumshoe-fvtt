@@ -14,8 +14,8 @@ export async function updateManifestFromCITagPush({
   manifestPath,
   log,
 }: TaskArgs) {
-  const tag = process.env.CI_COMMIT_TAG;
-  const path = process.env.CI_PROJECT_PATH;
+  const tag = process.env["CI_COMMIT_TAG"];
+  const path = process.env["CI_PROJECT_PATH"];
   if (!tag) {
     throw new Error(
       "This task should only be run from a CI tag push, but $CI_COMMIT_TAG was empty or undefined",

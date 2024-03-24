@@ -175,7 +175,7 @@ describe("throttle", () => {
   afterAll(() => {
     vi.useRealTimers();
   });
-  test("should do a simple call", async () => {
+  test("should do a simple call", () => {
     const fn = vi.fn();
     const throttled = throttle(fn, 100);
     throttled(1);
@@ -188,7 +188,7 @@ describe("throttle", () => {
     vi.advanceTimersByTime(200);
     expect(fn).toHaveBeenCalledTimes(1);
   });
-  test("should handle multiple calls leading up to one execution", async () => {
+  test("should handle multiple calls leading up to one execution", () => {
     const fn = vi.fn();
     const throttled = throttle(fn, 100);
     throttled(1);
@@ -206,7 +206,7 @@ describe("throttle", () => {
     vi.advanceTimersByTime(200);
     expect(fn).toHaveBeenCalledTimes(1);
   });
-  test("should handle one execution, and then another one soon after", async () => {
+  test("should handle one execution, and then another one soon after", () => {
     const fn = vi.fn();
     const throttled = throttle(fn, 100);
     throttled(1);
@@ -229,7 +229,7 @@ describe("throttle", () => {
     expect(fn).toHaveBeenCalledTimes(2);
     expect(fn).toHaveBeenCalledWith(5);
   });
-  test("should handle one execution, and then another one after a long pause", async () => {
+  test("should handle one execution, and then another one after a long pause", () => {
     const fn = vi.fn();
     const throttled = throttle(fn, 100);
     throttled(1);
@@ -254,7 +254,7 @@ describe("throttle", () => {
     expect(fn).toHaveBeenCalledTimes(2);
     expect(fn).toHaveBeenCalledWith(6);
   });
-  test("should only call the function once per interval", async () => {
+  test("should only call the function once per interval", () => {
     const fn = vi.fn();
     const throttled = throttle(fn, 100);
     throttled(1);
@@ -288,7 +288,7 @@ describe("debounce", () => {
   afterAll(() => {
     vi.useRealTimers();
   });
-  test("should only call the function after the interval has elapsed", async () => {
+  test("should only call the function after the interval has elapsed", () => {
     const fn = vi.fn();
     const throttled = debounce(fn, 100);
     throttled();

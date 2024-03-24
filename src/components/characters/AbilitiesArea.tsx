@@ -51,7 +51,7 @@ export const AbilitiesArea: React.FC<AbilitiesAreaProps> = ({
 
   const onChangeHideZero = useCallback(
     (hideZeroRated: boolean) => {
-      actor.update({ system: { hideZeroRated } });
+      void actor.update({ system: { hideZeroRated } });
     },
     [actor],
   );

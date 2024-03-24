@@ -1,9 +1,7 @@
 import { hasOwnProperty } from "./functions/utilities";
 import { EquipmentFieldType, SocketHookAction } from "./types";
 
-export function isSocketHookAction<T>(
-  x: SocketHookAction<T> | unknown,
-): x is SocketHookAction<T> {
+export function isSocketHookAction<T>(x: unknown): x is SocketHookAction<T> {
   return hasOwnProperty(x, "hook") && hasOwnProperty(x, "payload");
 }
 

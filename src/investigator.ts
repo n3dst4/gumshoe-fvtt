@@ -54,9 +54,9 @@ Hooks.once("setup", function () {
   installShowThemeFarmHack();
 });
 
-Hooks.once("ready", () => {
-  migrateWorldIfNeeded();
-  installDSNFix();
+Hooks.once("ready", async () => {
+  await migrateWorldIfNeeded();
+  await installDSNFix();
 
   assertGame(game);
   for (const combat of game.combats?.values() ?? []) {

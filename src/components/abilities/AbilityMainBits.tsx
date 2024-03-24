@@ -29,7 +29,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
   assertAbilityItem(ability);
 
   const onClickRefresh = useCallback(() => {
-    ability.refreshPool();
+    void ability.refreshPool();
   }, [ability]);
 
   const useBoost = settings.useBoost.get();
@@ -67,7 +67,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
       assertActiveCharacterActor(ability?.actor);
-      ability?.actor?.update({
+      void ability?.actor?.update({
         system: {
           initiativeAbility: ability.name,
         },

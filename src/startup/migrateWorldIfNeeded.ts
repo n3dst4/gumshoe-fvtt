@@ -63,7 +63,7 @@ export const migrateWorldIfNeeded = async () => {
     getNeedsMigrationBasedOnLegacyVersionSystem() ||
     needsMigrationBasedOnFlags
   ) {
-    migrateWorld(filteredMigrations);
-    settings.migrationFlags.set(newMigrationFlags);
+    await migrateWorld(filteredMigrations);
+    await settings.migrationFlags.set(newMigrationFlags);
   }
 };

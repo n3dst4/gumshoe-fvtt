@@ -34,7 +34,7 @@ export const JournalEditorSheet = ({
   // so a 30 second keepalive is plenty.
   useEffect(() => {
     const interval = setInterval(() => {
-      journalEntry.update({});
+      void journalEntry.update({});
     }, KEEPALIVE_INTERVAL_MS);
     return () => clearInterval(interval);
   }, [journalEntry]);
@@ -71,7 +71,7 @@ export const JournalEditorSheet = ({
 
   const handleTitleChange = React.useCallback(
     (name: string) => {
-      journalEntry.update({ name });
+      void journalEntry.update({ name });
     },
     [journalEntry],
   );
@@ -81,7 +81,7 @@ export const JournalEditorSheet = ({
 
   const handleGlobalClassesChange = React.useCallback(
     (classes: string) => {
-      journalEntry.setFlag(systemId, extraCssClasses, classes);
+      void journalEntry.setFlag(systemId, extraCssClasses, classes);
     },
     [journalEntry],
   );

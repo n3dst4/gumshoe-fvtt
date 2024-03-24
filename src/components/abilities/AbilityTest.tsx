@@ -22,13 +22,13 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({ ability }) => {
   const theme = useContext(ThemeContext);
   const [spend, setSpend] = useState(0);
 
-  const onTest = useCallback(async () => {
-    ability.testAbility(spend);
+  const onTest = useCallback(() => {
+    void ability.testAbility(spend);
     setSpend(0);
   }, [ability, spend]);
 
   const onSpend = useCallback(() => {
-    ability.spendAbility(spend);
+    void ability.spendAbility(spend);
     setSpend(0);
   }, [ability, spend]);
 

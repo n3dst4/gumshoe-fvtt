@@ -7,7 +7,7 @@ module.exports = {
     "standard",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
     "prettier",
   ],
   parser: "@typescript-eslint/parser",
@@ -17,6 +17,8 @@ module.exports = {
     },
     ecmaVersion: 12,
     sourceType: "module",
+    project: true,
+    // tsconfigRootDir: __dirname,
   },
   plugins: ["react", "@typescript-eslint", "simple-import-sort"],
   rules: {
@@ -75,6 +77,16 @@ module.exports = {
     ],
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
+    "dot-notation": "off",
+    "@typescript-eslint/dot-notation": [
+      "error",
+      // we also have noPropertyAccessFromIndexSignature: true in tsconfig which
+      // effectively forces this on. See
+      // https://typescript-eslint.io/rules/dot-notation#allowindexsignaturepropertyaccess
+      { allowIndexSignaturePropertyAccess: true },
+    ],
+    // typescript-eslint enforces using void to explicitely not await a promise
+    "no-void": "off",
   },
   overrides: [
     {

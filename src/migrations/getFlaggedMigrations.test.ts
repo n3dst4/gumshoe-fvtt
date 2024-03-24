@@ -103,13 +103,13 @@ const result1: [boolean, FlaggedMigrations, MigrationFlags] = [
   true,
   {
     item: {
-      itemMigration2: sampleFlaggedMigrations.item.itemMigration2,
+      itemMigration2: sampleFlaggedMigrations.item["itemMigration2"],
     },
     actor: {
-      actorMigration2: sampleFlaggedMigrations.actor.actorMigration2,
+      actorMigration2: sampleFlaggedMigrations.actor["actorMigration2"],
     },
     world: {
-      worldMigration2: sampleFlaggedMigrations.world.worldMigration2,
+      worldMigration2: sampleFlaggedMigrations.world["worldMigration2"],
     },
     compendium: {},
     journal: {},

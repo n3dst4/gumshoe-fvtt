@@ -79,9 +79,10 @@ export const emptyPack = async (
   pack: CompendiumCollection<CompendiumCollection.Metadata>,
 ) => {
   const content = await pack.getDocuments();
-  content.forEach((item) => {
-    item.delete();
+  const promises = content.map(async (item) => {
+    await item.delete();
   });
+  await Promise.all(promises);
 };
 
 export const findPack = (packName: string) => {
@@ -99,7 +100,7 @@ export const generatePacks = async <
   template: T,
   pack: any,
 ) => {
-  Object.keys(abilityData).forEach(
+  const promises = Object.keys(abilityData).map(
     async (category: keyof typeof abilityData) => {
       const abilityDatas = abilityData[category].map((data) => {
         const { name, type, img, ...rest } = data;
@@ -107,7 +108,6 @@ export const generatePacks = async <
           type: template.type,
           name,
           img: img ?? template.img,
-          // folder: folder.id,
           data: {
             ...template,
             category,
@@ -116,7 +116,6 @@ export const generatePacks = async <
         };
       });
       const items = await Item.create(abilityDatas as any, { temporary: true });
-      // await pack.importEntity(folder);//
       for (const item of items as any) {
         await pack.importDocument(item);
         systemLogger.log(
@@ -125,6 +124,7 @@ export const generatePacks = async <
       }
     },
   );
+  await Promise.all(promises);
 };
 
 export const initializePackGenerators = () => {
@@ -134,7 +134,7 @@ export const initializePackGenerators = () => {
       if (pack === undefined) {
         return;
       }
-      emptyPack(pack);
+      await emptyPack(pack);
       await generatePacks(
         pathOfCthulhuData.investigativeAbilities,
         investigativeTemplate,
@@ -151,7 +151,7 @@ export const initializePackGenerators = () => {
       if (pack === undefined) {
         return;
       }
-      emptyPack(pack);
+      await emptyPack(pack);
       await generatePacks(
         niceBlackAgentsData.investigativeAbilities,
         investigativeTemplate,
@@ -168,7 +168,7 @@ export const initializePackGenerators = () => {
       if (pack === undefined) {
         return;
       }
-      emptyPack(pack);
+      await emptyPack(pack);
       await generatePacks(
         nothingToFearData.investigativeAbilities,
         investigativeTemplate,
@@ -185,7 +185,7 @@ export const initializePackGenerators = () => {
       if (pack === undefined) {
         return;
       }
-      emptyPack(pack);
+      await emptyPack(pack);
       await generatePacks(
         pallidStarsData.investigativeAbilities,
         investigativeTemplate,
@@ -202,7 +202,7 @@ export const initializePackGenerators = () => {
       if (pack === undefined) {
         return;
       }
-      emptyPack(pack);
+      await emptyPack(pack);
       await generatePacks(
         srdAbilitiesData.investigativeAbilities,
         investigativeTemplate,
@@ -219,7 +219,7 @@ export const initializePackGenerators = () => {
       if (pack === undefined) {
         return;
       }
-      emptyPack(pack);
+      await emptyPack(pack);
       await generatePacks(
         moribundWorldData.investigativeAbilities,
         investigativeTemplate,

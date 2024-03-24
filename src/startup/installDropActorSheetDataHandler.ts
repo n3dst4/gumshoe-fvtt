@@ -59,7 +59,7 @@ export const installDropActorSheetDataHandler = () => {
                 .map((actor) => (actor as any).id)
             : [];
 
-      targetActor.addActorIds(actorIds);
+      void targetActor.addActorIds(actorIds);
     },
   );
 };

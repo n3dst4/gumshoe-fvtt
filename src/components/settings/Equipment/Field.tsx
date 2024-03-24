@@ -75,8 +75,8 @@ export const Field: React.FC<FieldProps> = ({
     dispatch(store.creators.moveFieldDown({ categoryId, fieldId }));
   }, [dispatch, categoryId, fieldId]);
 
-  const handleDelete = useCallback(async () => {
-    const aye = await getTranslated("Delete Field");
+  const handleDelete = useCallback(() => {
+    const aye = getTranslated("Delete Field");
     if (aye) {
       dispatch(store.creators.deleteField({ categoryId, fieldId }));
     }

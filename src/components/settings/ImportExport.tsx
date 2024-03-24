@@ -50,6 +50,7 @@ export const ImportExport: React.FC = () => {
       dispatch(store.creators.setSome({ newSettings }));
       ui.notifications?.info("Successfully imported settings");
     } catch (e) {
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       ui.notifications?.error(`Error importing settings: ${e}`);
     }
   };

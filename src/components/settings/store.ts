@@ -29,8 +29,10 @@ const defaultStoreArgs: CreateSliceArgs = {
   },
   onError(e) {
     systemLogger.error("Reducer error", e);
-    if (ui) {
-      ui.notifications?.error(`Settings error: ${e}`, { permanent: true });
+    if (ui && e instanceof Error) {
+      ui.notifications?.error(`Settings error: ${e.toString()}`, {
+        permanent: true,
+      });
     }
   },
 };

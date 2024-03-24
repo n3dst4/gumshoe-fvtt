@@ -23,13 +23,13 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
   assertWeaponItem(weapon);
   const name = useAsyncUpdate(weapon.name || "", weapon.setName);
 
-  const onClickDelete = useCallback(() => {
+  const onClickDelete = useCallback(async () => {
     assertGame(game);
     const message = weapon.actor
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
-    confirmADoodleDo({
+    const aye = await confirmADoodleDo({
       message,
       confirmText: "Delete",
       cancelText: "Cancel",
@@ -38,9 +38,11 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
         ActorName: weapon.actor?.name ?? "",
         EquipmentName: weapon.name ?? "",
       },
-    }).then(() => {
-      weapon.delete();
+      resolveFalseOnCancel: true,
     });
+    if (aye) {
+      await weapon.delete();
+    }
   }, [weapon]);
 
   const abilities = settings.combatAbilities.get();

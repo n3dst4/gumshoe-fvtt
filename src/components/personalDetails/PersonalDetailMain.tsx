@@ -51,7 +51,7 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
             width: "100%",
           }}
           onChange={(e) => {
-            item.setSlotIndex(+e.currentTarget.value);
+            void item.setSlotIndex(+e.currentTarget.value);
           }}
         >
           <option value={occupationSlotIndex}>
@@ -75,7 +75,7 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
               e.currentTarget.value === "~~~NULL~~~"
                 ? null
                 : e.currentTarget.value;
-            item.setCompendiumPack(value);
+            void item.setCompendiumPack(value);
           }}
         >
           <option value={"~~~NULL~~~"}>None</option>

@@ -40,7 +40,7 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
           resolveFalseOnCancel: true,
         }));
       if (aye) {
-        foundryApplication.close();
+        await foundryApplication.close();
       }
     },
     [foundryApplication, isDirty],
@@ -55,8 +55,8 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
         await settings[k].set(tempStateRef.current.settings[k]);
       });
       await Promise.all(proms);
-      foundryApplication.close();
       Hooks.call(settingsSaved);
+      await foundryApplication.close();
     },
     [foundryApplication, tempStateRef],
   );

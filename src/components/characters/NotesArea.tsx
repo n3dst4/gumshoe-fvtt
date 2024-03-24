@@ -17,7 +17,7 @@ export const NotesArea: React.FC<NotesAreaProps> = ({ actor }) => {
 
   const updateLongNote = useCallback(
     (value: NoteWithFormat, index: number) => {
-      actor.setLongNote(index, value);
+      void actor.setLongNote(index, value);
     },
     [actor],
   );
