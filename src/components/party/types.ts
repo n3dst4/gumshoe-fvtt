@@ -1,9 +1,9 @@
 import { AbilityType } from "../../types";
 import { AbilityItem } from "../../v10Types";
 
-export const typeHeaderKey = "typeHeader" as const;
-export const categoryHeaderKey = "categoryHeader" as const;
-export const abilityRowKey = "abilityRowString" as const;
+export const typeHeaderKey = "typeHeader";
+export const categoryHeaderKey = "categoryHeader";
+export const abilityRowKey = "abilityRowString";
 export type TypeHeaderData = {
   rowType: typeof typeHeaderKey;
   abilityType: AbilityType;

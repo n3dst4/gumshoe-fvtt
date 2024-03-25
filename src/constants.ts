@@ -2,28 +2,28 @@ import system from "../public/system.json";
 
 export const systemId = system.id;
 export const version = system.version;
-export const defaultMigratedSystemVersion = "0.0.0" as const;
+export const defaultMigratedSystemVersion = "0.0.0";
 export const defaultSystemPreset = "pathOfCthulhuPreset";
 export const templatesPath = `systems/${systemId}/templates` as const;
 export const reactTemplatePath =
   `${templatesPath}/react-application.hbs` as const;
 export const reactifiedCombatSidebarTemplatePath =
   `${templatesPath}/reactified-combat-sidebar.hbs` as const;
-export const customSystem = "customSystem" as const;
+export const customSystem = "customSystem";
 export const genericOccupationDefault = "Investigator";
 export const showEmptyInvestigativeCategoriesDefault = true;
 export const inputThrottleTime = 500;
 
 // item types
-export const investigativeAbility = "investigativeAbility" as const;
-export const generalAbility = "generalAbility" as const;
-export const equipment = "equipment" as const;
-export const weapon = "weapon" as const;
-export const pc = "pc" as const;
-export const npc = "npc" as const;
-export const party = "party" as const;
-export const mwItem = "mwItem" as const;
-export const personalDetail = "personalDetail" as const;
+export const investigativeAbility = "investigativeAbility";
+export const generalAbility = "generalAbility";
+export const equipment = "equipment";
+export const weapon = "weapon";
+export const pc = "pc";
+export const npc = "npc";
+export const party = "party";
+export const mwItem = "mwItem";
+export const personalDetail = "personalDetail";
 
 // assets
 export const investigativeAbilityIcon =
@@ -55,7 +55,7 @@ export const packNames = {
   esoterroristsAbilities: "esoterroristsAbilities" as const,
 };
 
-export const npcPackName = "opponentAbilities" as const;
+export const npcPackName = "opponentAbilities";
 
 // hooks
 export const newPCPacksUpdated = `${systemId}.newPCPacksUpdated` as const;
@@ -65,25 +65,25 @@ export const requestTurnPass = `${systemId}.requestTurnPass`;
 export const socketScope = `system.${systemId}` as const;
 
 // css classes
-export const abilityChatMessageClassName = "investigator-ability-test" as const;
-export const htmlDataItemId = "data-item-id" as const;
-export const htmlDataActorId = "data-actor-id" as const;
-export const htmlDataMode = "data-mode" as const;
-export const htmlDataModeTest = "test" as const;
-export const htmlDataModeSpend = "spend" as const;
-export const htmlDataModeAttack = "attack" as const;
-export const htmlDataModeMwTest = "mw-test" as const;
-export const htmlDataModeMwWallop = "mw-wallop" as const;
-export const htmlDataModeMwNegate = "mw-negate" as const;
-export const htmlDataRange = "data-range" as const;
-export const htmlDataWeaponId = "data-weapon-id" as const;
-export const htmlDataName = "data-name" as const;
-export const htmlDataImageUrl = "data-image-url" as const;
-export const htmlDataMwDifficulty = "data-mw-difficulty" as const;
-export const htmlDataMwBoonLevy = "data-mw-boon-levy" as const;
-export const htmlDataMwReRoll = "data-mw-re-roll" as const;
-export const htmlDataMwPool = "data-mw-pool" as const;
-export const htmlDataTokenId = "data-token-id" as const;
+export const abilityChatMessageClassName = "investigator-ability-test";
+export const htmlDataItemId = "data-item-id";
+export const htmlDataActorId = "data-actor-id";
+export const htmlDataMode = "data-mode";
+export const htmlDataModeTest = "test";
+export const htmlDataModeSpend = "spend";
+export const htmlDataModeAttack = "attack";
+export const htmlDataModeMwTest = "mw-test";
+export const htmlDataModeMwWallop = "mw-wallop";
+export const htmlDataModeMwNegate = "mw-negate";
+export const htmlDataRange = "data-range";
+export const htmlDataWeaponId = "data-weapon-id";
+export const htmlDataName = "data-name";
+export const htmlDataImageUrl = "data-image-url";
+export const htmlDataMwDifficulty = "data-mw-difficulty";
+export const htmlDataMwBoonLevy = "data-mw-boon-levy";
+export const htmlDataMwReRoll = "data-mw-re-roll";
+export const htmlDataMwPool = "data-mw-pool";
+export const htmlDataTokenId = "data-token-id";
 
 // other?
 export const mwWallopCost = 5;
