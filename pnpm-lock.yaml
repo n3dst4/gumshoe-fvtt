@@ -15,7 +15,7 @@ patchedDependencies:
 dependencies:
   '@lumphammer/shared-fvtt-bits':
     specifier: file:shared-fvtt-bits
-    version: file:shared-fvtt-bits(@league-of-foundry-developers/foundry-vtt-types@9.280.0)(@lumphammer/investigator-fvtt-types@1.12.1)(@types/react-dom@18.2.22)(@types/react@18.2.65)(@typescript-eslint/eslint-plugin@7.2.0)(@typescript-eslint/parser@7.2.0)(eslint-config-prettier@9.1.0)(eslint-config-standard@17.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react@7.34.1)(eslint-plugin-simple-import-sort@12.0.0)(eslint@8.57.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.3)
+    version: file:shared-fvtt-bits(@league-of-foundry-developers/foundry-vtt-types@9.280.0)(@lumphammer/investigator-fvtt-types@1.12.1)(@types/react-dom@18.2.22)(@types/react@18.2.70)(@typescript-eslint/eslint-plugin@7.2.0)(@typescript-eslint/parser@7.2.0)(eslint-config-prettier@9.1.0)(eslint-config-standard@17.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react@7.34.1)(eslint-plugin-simple-import-sort@12.0.0)(eslint@8.57.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.3)
   '@monaco-editor/react':
     specifier: ^4.6.0
     version: 4.6.0(monaco-editor@0.45.0)(react-dom@18.2.0)(react@18.2.0)
@@ -83,13 +83,13 @@ devDependencies:
     version: 11.11.2
   '@emotion/react':
     specifier: ^11.11.4
-    version: 11.11.4(@types/react@18.2.65)(react@18.2.0)
+    version: 11.11.4(@types/react@18.2.70)(react@18.2.0)
   '@league-of-foundry-developers/foundry-vtt-types':
     specifier: ^9.280.0
     version: 9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.9)(@pixi/core@6.5.9)(@pixi/display@6.5.9)(@pixi/graphics@6.5.9)(@pixi/math@6.5.9)(@pixi/utils@6.5.9)
   '@lumphammer/investigator-fvtt-types':
     specifier: ^1.12.1
-    version: 1.12.1(@types/react@18.2.65)(react@18.2.0)
+    version: 1.12.1(@types/react@18.2.70)(react@18.2.0)
   '@swc/plugin-emotion':
     specifier: ^2.5.116
     version: 2.5.116
@@ -112,10 +112,10 @@ devDependencies:
     specifier: ^2.1.0
     version: 2.1.0
   '@types/react':
-    specifier: ^18.2.65
-    version: 18.2.65
+    specifier: ^18.2.70
+    version: 18.2.70
   '@types/react-dom':
-    specifier: ^18.2.21
+    specifier: ^18.2.22
     version: 18.2.22
   '@types/textdiff-create':
     specifier: ^1.0.2
@@ -294,7 +294,7 @@ packages:
   /@emotion/memoize@0.8.1:
     resolution: {integrity: sha512-W2P2c/VRW1/1tLox0mVUalvnWXxavmv/Oum2aPsRcoDJuob75FC3Y8FbpfLwUegRcxINtGUMPq0tFCvYNTBXNA==}
 
-  /@emotion/react@11.11.4(@types/react@18.2.65)(react@18.2.0):
+  /@emotion/react@11.11.4(@types/react@18.2.70)(react@18.2.0):
     resolution: {integrity: sha512-t8AjMlF0gHpvvxk5mAtCqR4vmxiGHCeJBaQO6gncUSdklELOgtwjerNY2yuJNfwnc6vi16U/+uMF+afIawJ9iw==}
     peerDependencies:
       '@types/react': '*'
@@ -310,7 +310,7 @@ packages:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.3.1
-      '@types/react': 18.2.65
+      '@types/react': 18.2.70
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
 
@@ -862,10 +862,10 @@ packages:
       - utf-8-validate
     patched: true
 
-  /@lumphammer/investigator-fvtt-types@1.12.1(@types/react@18.2.65)(react@18.2.0):
+  /@lumphammer/investigator-fvtt-types@1.12.1(@types/react@18.2.70)(react@18.2.0):
     resolution: {integrity: sha512-GRCIXeXJxhwKVMWm9dVqNf+DVueeK+zIJv/2hmVpUM3vcUciwkLviIne6v2mMmZ7WxfUbuoL/chMPMKE8RhePA==}
     dependencies:
-      '@emotion/react': 11.11.4(@types/react@18.2.65)(react@18.2.0)
+      '@emotion/react': 11.11.4(@types/react@18.2.70)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
       - react
@@ -1654,10 +1654,10 @@ packages:
   /@types/react-dom@18.2.22:
     resolution: {integrity: sha512-fHkBXPeNtfvri6gdsMYyW+dW7RXFo6Ad09nLFK0VQWR7yGLai/Cyvyj696gbwYvBnhGtevUG9cET0pmUbMtoPQ==}
     dependencies:
-      '@types/react': 18.2.65
+      '@types/react': 18.2.70
 
-  /@types/react@18.2.65:
-    resolution: {integrity: sha512-98TsY0aW4jqx/3RqsUXwMDZSWR1Z4CUlJNue8ueS2/wcxZOsz4xmW1X8ieaWVRHcmmQM3R8xVA4XWB3dJnWwDQ==}
+  /@types/react@18.2.70:
+    resolution: {integrity: sha512-hjlM2hho2vqklPhopNkXkdkeq6Lv8WSZTpr7956zY+3WS5cfYUewtCzsJLsbW5dEv3lfSeQ4W14ZFeKC437JRQ==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
@@ -5411,17 +5411,17 @@ packages:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
 
-  file:shared-fvtt-bits(@league-of-foundry-developers/foundry-vtt-types@9.280.0)(@lumphammer/investigator-fvtt-types@1.12.1)(@types/react-dom@18.2.22)(@types/react@18.2.65)(@typescript-eslint/eslint-plugin@7.2.0)(@typescript-eslint/parser@7.2.0)(eslint-config-prettier@9.1.0)(eslint-config-standard@17.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react@7.34.1)(eslint-plugin-simple-import-sort@12.0.0)(eslint@8.57.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.3):
+  file:shared-fvtt-bits(@league-of-foundry-developers/foundry-vtt-types@9.280.0)(@lumphammer/investigator-fvtt-types@1.12.1)(@types/react-dom@18.2.22)(@types/react@18.2.70)(@typescript-eslint/eslint-plugin@7.2.0)(@typescript-eslint/parser@7.2.0)(eslint-config-prettier@9.1.0)(eslint-config-standard@17.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react@7.34.1)(eslint-plugin-simple-import-sort@12.0.0)(eslint@8.57.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.3):
     resolution: {directory: shared-fvtt-bits, type: directory}
     id: file:shared-fvtt-bits
     name: '@lumphammer/shared-fvtt-bits'
     peerDependencies:
       '@league-of-foundry-developers/foundry-vtt-types': ^9.280.0
-      '@lumphammer/investigator-fvtt-types': ^1.11.0
-      '@types/react': ^18.2.65
+      '@lumphammer/investigator-fvtt-types': ^1.12.1
+      '@types/react': ^18.2.67
       '@types/react-dom': ^18.2.22
-      '@typescript-eslint/eslint-plugin': ^7.2.0
-      '@typescript-eslint/parser': ^7.2.0
+      '@typescript-eslint/eslint-plugin': ^7.3.1
+      '@typescript-eslint/parser': ^7.3.1
       eslint: ^8.57.0
       eslint-config-prettier: ^9.1.0
       eslint-config-standard: ^17.1.0
@@ -5430,14 +5430,14 @@ packages:
       eslint-plugin-simple-import-sort: ^12.0.0
       react: ^18.2.0
       react-dom: ^18.2.0
-      typescript: ^5.4.2
+      typescript: ^5.4.3
     dependencies:
       '@league-of-foundry-developers/foundry-vtt-types': 9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.9)(@pixi/core@6.5.9)(@pixi/display@6.5.9)(@pixi/graphics@6.5.9)(@pixi/math@6.5.9)(@pixi/utils@6.5.9)
-      '@lumphammer/investigator-fvtt-types': 1.12.1(@types/react@18.2.65)(react@18.2.0)
+      '@lumphammer/investigator-fvtt-types': 1.12.1(@types/react@18.2.70)(react@18.2.0)
       '@seald-io/nedb': 4.0.4
       '@types/archiver': 6.0.2
       '@types/fs-extra': 11.0.4
-      '@types/react': 18.2.65
+      '@types/react': 18.2.70
       '@types/react-dom': 18.2.22
       '@types/yargs': 17.0.32
       '@typescript-eslint/eslint-plugin': 7.2.0(@typescript-eslint/parser@7.2.0)(eslint@8.57.0)(typescript@5.4.3)
