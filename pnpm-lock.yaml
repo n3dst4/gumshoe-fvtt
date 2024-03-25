@@ -109,8 +109,8 @@ devDependencies:
     specifier: ^6.0.0
     version: 6.0.0
   '@types/nanoid':
-    specifier: ^2.1.0
-    version: 2.1.0
+    specifier: ^3.0.0
+    version: 3.0.0
   '@types/react':
     specifier: ^18.2.70
     version: 18.2.70
@@ -1633,10 +1633,11 @@ packages:
       marked: 12.0.1
     dev: true
 
-  /@types/nanoid@2.1.0:
-    resolution: {integrity: sha512-xdkn/oRTA0GSNPLIKZgHWqDTWZsVrieKomxJBOQUK9YDD+zfSgmwD5t4WJYra5S7XyhTw7tfvwznW+pFexaepQ==}
+  /@types/nanoid@3.0.0:
+    resolution: {integrity: sha512-UXitWSmXCwhDmAKe7D3hNQtQaHeHt5L8LO1CB8GF8jlYVzOv5cBWDNqiJ+oPEWrWei3i3dkZtHY/bUtd0R/uOQ==}
+    deprecated: This is a stub types definition. nanoid provides its own type definitions, so you do not need this installed.
     dependencies:
-      '@types/node': 18.15.11
+      nanoid: 5.0.6
     dev: true
 
   /@types/node@18.15.11:
@@ -3924,7 +3925,6 @@ packages:
     resolution: {integrity: sha512-rRq0eMHoGZxlvaFOUdK1Ev83Bd1IgzzR+WJ3IbDJ7QOSdAxYjlurSPqFs9s4lJg29RT6nPwizFtJhQS6V5xgiA==}
     engines: {node: ^18 || >=20}
     hasBin: true
-    dev: false
 
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
