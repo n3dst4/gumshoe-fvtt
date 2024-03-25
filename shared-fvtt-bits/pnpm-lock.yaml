@@ -53,10 +53,10 @@ devDependencies:
     version: 9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.10)(@pixi/core@6.5.10)(@pixi/display@6.5.10)(@pixi/graphics@6.5.10)(@pixi/math@6.5.10)(@pixi/utils@6.5.10)
   '@lumphammer/investigator-fvtt-types':
     specifier: ^1.12.1
-    version: 1.12.1(@types/react@18.2.67)(react@18.2.0)
+    version: 1.12.1(@types/react@18.2.69)(react@18.2.0)
   '@types/react':
-    specifier: ^18.2.67
-    version: 18.2.67
+    specifier: ^18.2.69
+    version: 18.2.69
   '@types/react-dom':
     specifier: ^18.2.22
     version: 18.2.22
@@ -201,7 +201,7 @@ packages:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.3.1
-      '@types/react': 18.2.67
+      '@types/react': 18.2.69
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
     dev: true
@@ -333,7 +333,7 @@ packages:
     dev: true
     patched: true
 
-  /@lumphammer/investigator-fvtt-types@1.12.1(@types/react@18.2.67)(react@18.2.0):
+  /@lumphammer/investigator-fvtt-types@1.12.1(@types/react@18.2.69)(react@18.2.0):
     resolution: {integrity: sha512-GRCIXeXJxhwKVMWm9dVqNf+DVueeK+zIJv/2hmVpUM3vcUciwkLviIne6v2mMmZ7WxfUbuoL/chMPMKE8RhePA==}
     dependencies:
       '@emotion/react': 11.11.4(@types/react@18.2.67)(react@18.2.0)
@@ -858,11 +858,11 @@ packages:
   /@types/react-dom@18.2.22:
     resolution: {integrity: sha512-fHkBXPeNtfvri6gdsMYyW+dW7RXFo6Ad09nLFK0VQWR7yGLai/Cyvyj696gbwYvBnhGtevUG9cET0pmUbMtoPQ==}
     dependencies:
-      '@types/react': 18.2.67
+      '@types/react': 18.2.69
     dev: true
 
-  /@types/react@18.2.67:
-    resolution: {integrity: sha512-vkIE2vTIMHQ/xL0rgmuoECBCkZFZeHr49HeWSc24AptMbNRo7pwSBvj73rlJJs9fGKj0koS+V7kQB1jHS0uCgw==}
+  /@types/react@18.2.69:
+    resolution: {integrity: sha512-W1HOMUWY/1Yyw0ba5TkCV+oqynRjG7BnteBB+B7JmAK7iw3l2SW+VGOxL+akPweix6jk2NNJtyJKpn4TkpfK3Q==}
     dependencies:
       '@types/prop-types': 15.7.11
       '@types/scheduler': 0.16.8
