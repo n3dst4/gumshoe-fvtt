@@ -49,7 +49,7 @@
             "category": "Interpersonales"
         },
         "Cover": {
-            "name": "Cover",
+            "name": "Tapadera",
             "category": "Generales"
         },
         "Criminology": {
@@ -61,7 +61,7 @@
             "category": "Técnicas"
         },
         "Data Recovery": {
-            "name": "Data Recovery",
+            "name": "Recuperar Datos",
             "category": "Técnicas"
         },
         "Diagnosis": {
@@ -81,11 +81,11 @@
             "category": "Generales"
         },
         "Electronic Surveillance": {
-            "name": "Electronic Surveillance",
+            "name": "Vigilancia Electrónica",
             "category": "Técnicas"
         },
         "Explosive Devices": {
-            "name": "Explosive Devices",
+            "name": "Explosivos",
             "category": "Generales"
         },
         "Filch": {
@@ -97,7 +97,7 @@
             "category": "Interpersonales"
         },
         "Flirting": {
-            "name": "Flirting",
+            "name": "Ligar",
             "category": "Interpersonales"
         },
         "Forgery": {
@@ -129,7 +129,7 @@
             "category": "Académicas"
         },
         "Infiltration": {
-            "name": "Infiltration",
+            "name": "Infiltración",
             "category": "Generales"
         },
         "Interrogation": {
@@ -153,7 +153,7 @@
             "category": "Generales"
         },
         "Medic": {
-            "name": "Medic",
+            "name": "Primeros Auxilios",
             "category": "Generales"
         },
         "Military Science": {
@@ -161,7 +161,7 @@
             "category": "Académicas"
         },
         "Negotiation": {
-            "name": "Negotiation",
+            "name": "Negociar",
             "category": "Interpersonales"
         },
         "Network": {
@@ -173,7 +173,7 @@
             "category": "Técnicas"
         },
         "Occult Studies": {
-            "name": "Occult Studies",
+            "name": "Ocultismo",
             "category": "Académicas"
         },
         "Outdoor Survival": {
@@ -201,7 +201,7 @@
             "category": "Interpersonales"
         },
         "Research": {
-            "name": "Research",
+            "name": "Investigar",
             "category": "Académicas"
         },
         "Sense Trouble": {
@@ -213,7 +213,7 @@
             "category": "Generales"
         },
         "Shrink": {
-            "name": "Shrink",
+            "name": "Psiquiatría",
             "category": "Generales"
         },
         "Stability": {
@@ -225,7 +225,7 @@
             "category": "Interpersonales"
         },
         "Surveillance": {
-            "name": "Surveillance",
+            "name": "Vigilancia",
             "category": "Generales"
         },
         "Tradecraft": {

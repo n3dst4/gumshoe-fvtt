@@ -97,7 +97,7 @@
             "category": "Técnicas"
         },
         "Explosive Devices": {
-            "name": "Explosive Devices",
+            "name": "Explosivos",
             "category": "Técnicas"
         },
         "Farsight (Vas Mal)": {
@@ -113,15 +113,15 @@
             "category": "Interpersonales"
         },
         "Flirting": {
-            "name": "Flirting",
+            "name": "Ligar",
             "category": "Interpersonales"
         },
         "Forensic Accounting": {
-            "name": "Forensic Accounting",
+            "name": "Contabilidad",
             "category": "Académicas"
         },
         "Forensic Anthropology": {
-            "name": "Forensic Anthropology",
+            "name": "Antropología",
             "category": "Técnicas"
         },
         "Forensic Engineering": {
@@ -129,7 +129,7 @@
             "category": "Técnicas"
         },
         "Forensic Psychology": {
-            "name": "Forensic Psychology",
+            "name": "Psicología Forense",
             "category": "Académicas"
         },
         "Geology": {
@@ -181,7 +181,7 @@
             "category": "Técnicas"
         },
         "Impersonate": {
-            "name": "Impersonate",
+            "name": "Suplantar",
             "category": "Interpersonales"
         },
         "Industrial Design": {
@@ -189,7 +189,7 @@
             "category": "Técnicas"
         },
         "Infiltration": {
-            "name": "Infiltration",
+            "name": "Infiltración",
             "category": "Generales"
         },
         "Inspiration": {
@@ -213,11 +213,11 @@
             "category": "Académicas"
         },
         "Linguistics": {
-            "name": "Linguistics",
+            "name": "Lingüística ",
             "category": "Académicas"
         },
         "Medic": {
-            "name": "Medic",
+            "name": "Primeros Auxilios",
             "category": "Generales"
         },
         "Migrate Consciousness (Kch-Thk)": {
@@ -229,7 +229,7 @@
             "category": "Generales"
         },
         "Negotiation": {
-            "name": "Negotiation",
+            "name": "Negociar",
             "category": "Interpersonales"
         },
         "Neural Rewiring (Cybe)": {
@@ -293,7 +293,7 @@
             "category": "Generales"
         },
         "Surveillance": {
-            "name": "Surveillance",
+            "name": "Vigilancia",
             "category": "Generales"
         },
         "Systems Design": {

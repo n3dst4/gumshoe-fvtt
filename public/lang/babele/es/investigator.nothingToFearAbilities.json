@@ -45,7 +45,7 @@
             "category": "Generales"
         },
         "Flirting": {
-            "name": "Flirting",
+            "name": "Ligar",
             "category": "Interpersonales"
         },
         "Health": {
@@ -65,11 +65,11 @@
             "category": "Académicas"
         },
         "Impersonate": {
-            "name": "Impersonate",
+            "name": "Suplantar",
             "category": "Interpersonales"
         },
         "Infiltration": {
-            "name": "Infiltration",
+            "name": "Infiltración",
             "category": "Generales"
         },
         "Interrogation": {
@@ -97,7 +97,7 @@
             "category": "Generales"
         },
         "Medic": {
-            "name": "Medic",
+            "name": "Primeros Auxilios",
             "category": "Generales"
         },
         "Medicine": {
@@ -113,7 +113,7 @@
             "category": "Psychic Powers"
         },
         "Negotiation": {
-            "name": "Negotiation",
+            "name": "Negociar",
             "category": "Interpersonales"
         },
         "Notice": {
@@ -121,7 +121,7 @@
             "category": "Técnicas"
         },
         "Occult Studies": {
-            "name": "Occult Studies",
+            "name": "Ocultismo",
             "category": "Académicas"
         },
         "Outdoor Survival": {
@@ -149,7 +149,7 @@
             "category": "Psychic Powers"
         },
         "Research": {
-            "name": "Research",
+            "name": "Investigar",
             "category": "Académicas"
         },
         "Science": {
@@ -173,7 +173,7 @@
             "category": "Generales"
         },
         "Shrink": {
-            "name": "Shrink",
+            "name": "Psiquiatría",
             "category": "Generales"
         },
         "Stability": {
@@ -189,7 +189,7 @@
             "category": "Psychic Powers"
         },
         "Trivia": {
-            "name": "Trivia",
+            "name": "Cultura General",
             "category": "Académicas"
         }
     }

@@ -1,5 +1,5 @@
 {
-    "label": "SRD Habilidades",
+    "label": "Habilidades SRD ",
     "mapping": {
         "category": "system.category"
     },
@@ -137,7 +137,7 @@
             "category": "Focus"
         },
         "Document Analysis": {
-            "name": "Document Analysis",
+            "name": "Análisis de Documentos",
             "category": "Técnicas"
         },
         "Driving": {
@@ -145,7 +145,7 @@
             "category": "Focus"
         },
         "Electronic Surveillance": {
-            "name": "Electronic Surveillance",
+            "name": "Vigilancia Electrónica",
             "category": "Técnicas"
         },
         "Evidence Collection": {
@@ -153,7 +153,7 @@
             "category": "Técnicas"
         },
         "Explosive Devices": {
-            "name": "Explosive Devices",
+            "name": "Explosivos",
             "category": "Técnicas"
         },
         "Explosives": {
@@ -177,7 +177,7 @@
             "category": "Focus"
         },
         "Fingerprinting": {
-            "name": "Fingerprinting",
+            "name": "Huellas Dactilares",
             "category": "Técnicas"
         },
         "First Aid": {
@@ -193,23 +193,23 @@
             "category": "Física "
         },
         "Flirting": {
-            "name": "Flirting",
+            "name": "Ligar",
             "category": "Interpersonales"
         },
         "Forensic Accounting": {
-            "name": "Forensic Accounting",
+            "name": "Contabilidad",
             "category": "Académicas"
         },
         "Forensic Anthropology": {
-            "name": "Forensic Anthropology",
+            "name": "Antropología",
             "category": "Técnicas"
         },
         "Forensic Entomology": {
-            "name": "Forensic Entomology",
+            "name": "Entomología Forense",
             "category": "Técnicas"
         },
         "Forensic Psychology": {
-            "name": "Forensic Psychology",
+            "name": "Psicología Forense",
             "category": "Académicas"
         },
         "Forgery": {
@@ -249,11 +249,11 @@
             "category": "Presence"
         },
         "Impersonate": {
-            "name": "Impersonate",
+            "name": "Suplantar",
             "category": "Interpersonales"
         },
         "Infiltration": {
-            "name": "Infiltration",
+            "name": "Infiltración",
             "category": "Física "
         },
         "Inspiration": {
@@ -289,7 +289,7 @@
             "category": "Interpersonales"
         },
         "Linguistics": {
-            "name": "Linguistics",
+            "name": "Lingüística ",
             "category": "Académicas"
         },
         "Locksmith": {
@@ -301,7 +301,7 @@
             "category": "Focus"
         },
         "Medic": {
-            "name": "Medic",
+            "name": "Primeros Auxilios",
             "category": "Focus"
         },
         "Medical Expertise": {
@@ -325,11 +325,11 @@
             "category": "Exótico"
         },
         "Natural History": {
-            "name": "Natural History",
+            "name": "Historia Natural",
             "category": "Académicas"
         },
         "Negotiation": {
-            "name": "Negotiation",
+            "name": "Negociar",
             "category": "Interpersonales"
         },
         "Network": {
@@ -341,7 +341,7 @@
             "category": "Técnicas"
         },
         "Occult Studies": {
-            "name": "Occult Studies",
+            "name": "Ocultismo",
             "category": "Académicas"
         },
         "Oral History": {
@@ -361,7 +361,7 @@
             "category": "Técnicas"
         },
         "Pathology": {
-            "name": "Pathology",
+            "name": "Patología",
             "category": "Académicas"
         },
         "Pathway Amplification": {
@@ -409,7 +409,7 @@
             "category": "Interpersonales"
         },
         "Research": {
-            "name": "Research",
+            "name": "Investigar",
             "category": "Académicas"
         },
         "Respect": {
@@ -449,7 +449,7 @@
             "category": "Física "
         },
         "Shrink": {
-            "name": "Shrink",
+            "name": "Psiquiatría",
             "category": "Presence"
         },
         "Society": {
@@ -469,7 +469,7 @@
             "category": "Interpersonales"
         },
         "Surveillance": {
-            "name": "Surveillance",
+            "name": "Vigilancia",
             "category": "Focus"
         },
         "Taunt": {
@@ -481,7 +481,7 @@
             "category": "Técnicas"
         },
         "Textual Analysis": {
-            "name": "Textual Analysis",
+            "name": "Análisis de Textos",
             "category": "Académicas"
         },
         "Timecraft": {
@@ -501,7 +501,7 @@
             "category": "Focus"
         },
         "Trivia": {
-            "name": "Trivia",
+            "name": "Cultura General",
             "category": "Académicas"
         },
         "Unobtrusiveness": {
