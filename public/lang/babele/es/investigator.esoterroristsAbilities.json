@@ -1,5 +1,5 @@
 {
-    "label": "Esoterrorists Abilities (built-in)",
+    "label": "Habilidades Esoterroristas (integradas)",
     "mapping": {
         "category": "system.category"
     },
@@ -45,7 +45,7 @@
             "category": "Técnicas"
         },
         "Cop Talk": {
-            "name": "Jerga policial",
+            "name": "Jerga Policial",
             "category": "Interpersonales"
         },
         "Cryptography": {
@@ -53,27 +53,27 @@
             "category": "Técnicas"
         },
         "Data Retrival": {
-            "name": "Data Retrival",
+            "name": "Recuperar Datos",
             "category": "Técnicas"
         },
         "Document Analysis": {
-            "name": "Document Analysis",
+            "name": "Análisis de Documentos",
             "category": "Técnicas"
         },
         "Driving": {
-            "name": "Conducción",
+            "name": "Conducir",
             "category": "Generales"
         },
         "Electronic Surveillance": {
-            "name": "Electronic Surveillance",
+            "name": "Vigilancia Electrónica",
             "category": "Técnicas"
         },
         "Evidence Collection": {
-            "name": "Recogida de pruebas",
+            "name": "Recoger Pruebas",
             "category": "Técnicas"
         },
         "Explosive Devices": {
-            "name": "Explosive Devices",
+            "name": "Explosivos",
             "category": "Técnicas"
         },
         "Filch": {
@@ -81,31 +81,31 @@
             "category": "Generales"
         },
         "Fingerprinting": {
-            "name": "Fingerprinting",
+            "name": "Huellas Dactilares",
             "category": "Técnicas"
         },
         "Flattery": {
-            "name": "Adulación",
+            "name": "Adular",
             "category": "Interpersonales"
         },
         "Flirting": {
-            "name": "Flirting",
+            "name": "Ligar",
             "category": "Interpersonales"
         },
         "Forensic Accounting": {
-            "name": "Forensic Accounting",
+            "name": "Contabilidad",
             "category": "Académicas"
         },
         "Forensic Anthropology": {
-            "name": "Forensic Anthropology",
+            "name": "Antropología Forense",
             "category": "Técnicas"
         },
         "Forensic Entomology": {
-            "name": "Forensic Entomology",
+            "name": "Entomología Forense",
             "category": "Técnicas"
         },
         "Forensic Psychology": {
-            "name": "Forensic Psychology",
+            "name": "Psicología Forense",
             "category": "Académicas"
         },
         "Health": {
@@ -117,11 +117,11 @@
             "category": "Académicas"
         },
         "Impersonate": {
-            "name": "Impersonate",
+            "name": "Suplantar",
             "category": "Interpersonales"
         },
         "Infiltration": {
-            "name": "Infiltration",
+            "name": "Infiltración",
             "category": "Generales"
         },
         "Interrogation": {
@@ -141,11 +141,11 @@
             "category": "Académicas"
         },
         "Linguistics": {
-            "name": "Linguistics",
+            "name": "Lingüística ",
             "category": "Académicas"
         },
         "Local Knowledge": {
-            "name": "Local Knowledge",
+            "name": "Conocimiento Local",
             "category": "Académicas"
         },
         "Mechanics": {
@@ -153,23 +153,23 @@
             "category": "Generales"
         },
         "Medic": {
-            "name": "Medic",
+            "name": "Primeros Auxilios",
             "category": "Generales"
         },
         "Natural History": {
-            "name": "Natural History",
+            "name": "Historia Natural",
             "category": "Académicas"
         },
         "Negotiation": {
-            "name": "Negotiation",
+            "name": "Negociar",
             "category": "Interpersonales"
         },
         "Occult Studies": {
-            "name": "Occult Studies",
+            "name": "Ocultismo",
             "category": "Académicas"
         },
         "Pathology": {
-            "name": "Pathology",
+            "name": "Patología",
             "category": "Académicas"
         },
         "Photography": {
@@ -181,11 +181,11 @@
             "category": "Generales"
         },
         "Reassurance": {
-            "name": "Consuelo",
+            "name": "Consolar",
             "category": "Interpersonales"
         },
         "Research": {
-            "name": "Research",
+            "name": "Investigar",
             "category": "Académicas"
         },
         "Scuffling": {
@@ -197,7 +197,7 @@
             "category": "Generales"
         },
         "Shrink": {
-            "name": "Shrink",
+            "name": "Psiquiatría",
             "category": "Generales"
         },
         "Stability": {
@@ -209,15 +209,15 @@
             "category": "Interpersonales"
         },
         "Surveillance": {
-            "name": "Surveillance",
+            "name": "Vigilancia",
             "category": "Generales"
         },
         "Textual Analysis": {
-            "name": "Textual Analysis",
+            "name": "Análisis de Textos",
             "category": "Académicas"
         },
         "Trivia": {
-            "name": "Trivia",
+            "name": "Cultura General",
             "category": "Académicas"
         }
     }
