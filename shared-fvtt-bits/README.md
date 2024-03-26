@@ -11,6 +11,7 @@ Common parts to be used across Foundry VTT modules and systems
   - [Adding dependencies](#adding-dependencies)
   - [Troubleshooting](#troubleshooting)
     - [`fatal: Not a valid object name: ''.`](#fatal-not-a-valid-object-name-)
+    - [Huge long list of type errors](#huge-long-list-of-type-errors)
 
 
 ## Installation - TLDR version
@@ -153,5 +154,43 @@ https://github.com/ingydotnet/git-subrepo/issues/503
 
 Prevention:
 
-???
+When a branch contains subrepo push/pull commits, avoid rebasing it. Try to just merge with the parent branch. Less than ideal but will save you from this.
 
+
+### Huge long list of type errors
+
+Problem:
+
+```
+Subsequent property declarations must have the same type.  Property 'use' must
+be of type 'SVGProps<SVGUseElement>', but here has type 'SVGProps<SVG
+UseElement>'.
+```
+
+Cause:
+
+The key is not notice that the conflict looks really weird - `SVGProps<SVGUseElement>`, does not match `SVGProps<SVGUseElement>`?
+
+What's happening is that you're accidentally importing the same type from different files. If you use `shared-fvtt-bits` correctly, you will always import it into your main project as `@lumphammer/shared-fvtt-bits`. This will cause the resolver to find the version that pnpm has hard-linked into your `node_modules` folder. This version overrides the `node_modules` folder within `shared-fvtt-bits`.
+
+As a side note, no amount of `tsconfig` tweaking can fix this. You are literally reaching down into the filesystem and the resolver is just doing its job - finding the closest neighbouring `node_modules` and resolving from there.
+
+Fix:
+
+Somewhere, you have done a direct import from the `shared-fvtt-bits` folder instead of referring to the package.
+
+Wrong:
+
+```ts
+import { makeDummyAppV2 } from "../shared-fvtt-bits/src/DummyAppV2";
+```
+
+Right:
+
+```ts
+import { makeDummyAppV2 } from "@lumphammer/shared-fvtt-bits/src/DummyAppV2";
+```
+
+Prevention:
+
+Always always always use `@lumphammer/shared-fvtt-bits` instead of `../../shared-fvtt-bits` in your TS code.
