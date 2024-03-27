@@ -2,10 +2,10 @@
     "label": "Trail of Cthulhu Fähigkeiten",
     "mapping": {
         "category": "system.category"
-    },
+    }, 
     "entries": {
         "Accounting": {
-            "name": "Buchhaltung",
+            "name": "Buchführung",
             "category": "Akademisch"
         },
         "Anthropology": {
@@ -41,7 +41,7 @@
             "category": "Allgemein"
         },
         "Bargain": {
-            "name": "Handel",
+            "name": "Feilschen",
             "category": "Zwischenmenschlich"
         },
         "Biology": {
