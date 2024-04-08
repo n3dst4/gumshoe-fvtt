@@ -2,7 +2,7 @@
     "label": "Trail of Cthulhu Fähigkeiten",
     "mapping": {
         "category": "system.category"
-    },
+    }, 
     "entries": {
         "Accounting": {
             "name": "Buchführung",
@@ -29,8 +29,8 @@
             "category": "Akademisch"
         },
         "Assess Honesty": {
-            "name": "Menschenkenntnis",
-            "category": "Sozial"
+            "name": "Ehrlichkeit beurteilen",
+            "category": "Zwischenmenschlich"
         },
         "Astronomy": {
             "name": "Astronomie",
@@ -42,7 +42,7 @@
         },
         "Bargain": {
             "name": "Feilschen",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Biology": {
             "name": "Biologie",
@@ -50,19 +50,19 @@
         },
         "Bureaucracy": {
             "name": "Bürokratie",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Chemistry": {
             "name": "Chemie",
             "category": "Technisch"
         },
         "Conceal": {
-            "name": "Kaschieren",
+            "name": "Tarnung",
             "category": "Allgemein"
         },
         "Cop Talk": {
             "name": "Polizeijargon",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Craft": {
             "name": "Handwerk",
@@ -70,7 +70,7 @@
         },
         "Credit Rating": {
             "name": "Finanzkraft",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Cryptography": {
             "name": "Kryptografie",
@@ -93,19 +93,19 @@
             "category": "Allgemein"
         },
         "Evidence Collection": {
-            "name": "Spurensicherung",
+            "name": "Beweissicherung",
             "category": "Technisch"
         },
         "Explosives": {
-            "name": "Sprengen",
+            "name": "Sprengstoffe",
             "category": "Allgemein"
         },
         "Filch": {
-            "name": "Taschendiebstahl",
+            "name": "Stehlen",
             "category": "Allgemein"
         },
         "Firearms": {
-            "name": "Feuerwaffen",
+            "name": "Schusswaffen",
             "category": "Allgemein"
         },
         "First Aid": {
@@ -114,10 +114,10 @@
         },
         "Flattery": {
             "name": "Schmeicheln",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Fleeing": {
-            "name": "Flüchten",
+            "name": "Fliehen",
             "category": "Allgemein"
         },
         "Forensics": {
@@ -142,18 +142,18 @@
         },
         "Interrogation": {
             "name": "Verhören",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Intimidation": {
             "name": "Einschüchtern",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Languages": {
             "name": "Sprachen",
             "category": "Akademisch"
         },
         "Law": {
-            "name": "Gesetze",
+            "name": "Rechtswesen",
             "category": "Akademisch"
         },
         "Library Use": {
@@ -177,11 +177,11 @@
             "category": "Akademisch"
         },
         "Oral History": {
-            "name": "Zeugenbefragung",
-            "category": "Sozial"
+            "name": "Mündliche Geschichte",
+            "category": "Zwischenmenschlich"
         },
         "Outdoorsman": {
-            "name": "Naturkunde",
+            "name": "Naturbursche",
             "category": "Technisch"
         },
         "Pharmacy": {
@@ -197,7 +197,7 @@
             "category": "Akademisch"
         },
         "Piloting": {
-            "name": "Pilot",
+            "name": "Steuern",
             "category": "Allgemein"
         },
         "Preparedness": {
@@ -210,7 +210,7 @@
         },
         "Reassurance": {
             "name": "Beruhigen",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Riding": {
             "name": "Reiten",
@@ -225,7 +225,7 @@
             "category": "Allgemein"
         },
         "Sense Trouble": {
-            "name": "Gefahrensinn",
+            "name": "Gefahreninstinkt",
             "category": "Allgemein"
         },
         "Shadowing": {
@@ -241,11 +241,11 @@
             "category": "Allgemein"
         },
         "Streetwise": {
-            "name": "Straßenwissen",
-            "category": "Sozial"
+            "name": "Gassenwissen",
+            "category": "Zwischenmenschlich"
         },
         "Theology": {
-            "name": "Religion",
+            "name": "Theologie",
             "category": "Akademisch"
         },
         "Weapons": {

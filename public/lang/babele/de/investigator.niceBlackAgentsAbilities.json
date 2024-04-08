@@ -30,23 +30,23 @@
         },
         "Bullshit Detector": {
             "name": "Bullshit Detektor",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Bureaucracy": {
             "name": "Bürokratie",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Chemistry": {
             "name": "Chemie",
             "category": "Technisch"
         },
         "Conceal": {
-            "name": "Kaschieren",
+            "name": "Tarnung",
             "category": "Allgemein"
         },
         "Cop Talk": {
             "name": "Polizeijargon",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Cover": {
             "name": "Cover",
@@ -85,20 +85,20 @@
             "category": "Technisch"
         },
         "Explosive Devices": {
-            "name": "Sprengen",
+            "name": "Sprengstoffe",
             "category": "Allgemein"
         },
         "Filch": {
-            "name": "Taschendiebstahl",
+            "name": "Stehlen",
             "category": "Allgemein"
         },
         "Flattery": {
             "name": "Schmeicheln",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Flirting": {
             "name": "Flirten",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Forgery": {
             "name": "Fälschen",
@@ -118,7 +118,7 @@
         },
         "High Society": {
             "name": "High Society",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "History": {
             "name": "Geschichte",
@@ -134,11 +134,11 @@
         },
         "Interrogation": {
             "name": "Verhören",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Intimidation": {
             "name": "Einschüchtern",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Languages": {
             "name": "Sprachen",
@@ -162,7 +162,7 @@
         },
         "Negotiation": {
             "name": "Verhandeln",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Network": {
             "name": "Netzwerk",
@@ -198,7 +198,7 @@
         },
         "Reassurance": {
             "name": "Beruhigen",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Research": {
             "name": "Recherche",
@@ -222,7 +222,7 @@
         },
         "Streetwise": {
             "name": "Straßenwissen",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Surveillance": {
             "name": "Beschatten",
@@ -230,7 +230,7 @@
         },
         "Tradecraft": {
             "name": "Agentenhandwerk",
-            "category": "Sozial"
+            "category": "Zwischenmenschlich"
         },
         "Traffic Analysis": {
             "name": "Datenanalyse",
