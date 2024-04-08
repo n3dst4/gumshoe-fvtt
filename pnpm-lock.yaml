@@ -38,8 +38,8 @@ dependencies:
     specifier: ^12.0.1
     version: 12.0.1
   nanoid:
-    specifier: ^5.0.6
-    version: 5.0.6
+    specifier: ^5.0.7
+    version: 5.0.7
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -1637,7 +1637,7 @@ packages:
     resolution: {integrity: sha512-UXitWSmXCwhDmAKe7D3hNQtQaHeHt5L8LO1CB8GF8jlYVzOv5cBWDNqiJ+oPEWrWei3i3dkZtHY/bUtd0R/uOQ==}
     deprecated: This is a stub types definition. nanoid provides its own type definitions, so you do not need this installed.
     dependencies:
-      nanoid: 5.0.6
+      nanoid: 5.0.7
     dev: true
 
   /@types/node@18.15.11:
@@ -3921,8 +3921,8 @@ packages:
     hasBin: true
     dev: true
 
-  /nanoid@5.0.6:
-    resolution: {integrity: sha512-rRq0eMHoGZxlvaFOUdK1Ev83Bd1IgzzR+WJ3IbDJ7QOSdAxYjlurSPqFs9s4lJg29RT6nPwizFtJhQS6V5xgiA==}
+  /nanoid@5.0.7:
+    resolution: {integrity: sha512-oLxFY2gd2IqnjcYyOXD8XGCftpGtZP2AbHbOkthDkvRywH5ayNtPVy9YlOPcHckXzbLTCHpkb7FB+yuxKV13pQ==}
     engines: {node: ^18 || >=20}
     hasBin: true
 
