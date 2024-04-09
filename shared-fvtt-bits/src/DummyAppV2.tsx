@@ -5,8 +5,6 @@ import { createRoot, Root } from "react-dom/client";
 
 import { RecursivePartial } from "./types";
 
-import { RecursivePartial } from "./types";
-
 interface DummyAppV2ComponentProps extends React.PropsWithChildren {}
 
 export const DummyAppV2Component: React.FC<DummyAppV2ComponentProps> = ({
