@@ -15,15 +15,16 @@ export const DummyAppV2Component: React.FC<DummyAppV2ComponentProps> = ({
     <div>
       <div>{children}</div>
       <div
-        css={{
-          border: "1px solid #7007",
-          padding: "0.5em",
-          textAlign: "center",
-          background: "#fff1",
-          fontSize: "2em",
-          margin: "0.5em",
-        }}
+      // css={{
+      //   border: "1px solid #7007",
+      //   padding: "0.5em",
+      //   textAlign: "center",
+      //   background: "#fff1",
+      //   fontSize: "2em",
+      //   margin: "0.5em",
+      // }}
       >
+        foo
         {count}
       </div>
       <button onClick={() => setCount(count + 1)}>Increment</button>
@@ -73,7 +74,7 @@ class DummyAppV2 extends foundry.applications.api.ApplicationV2<void> {
 
   // _renderHTML is the semantically appropriate place to render updates to the
   // HTML of the app.
-  override async _renderHTML() {
+  override _renderHTML() {
     console.log("DummyAppV2._renderHTML");
 
     this.reactRoot?.render(
@@ -81,20 +82,22 @@ class DummyAppV2 extends foundry.applications.api.ApplicationV2<void> {
         <div css={{ fontSize: "2em" }}>Hello from React</div>
       </DummyAppV2Component>,
     );
+
+    return Promise.resolve();
   }
 
   // XXX This override will be optional in P3
-  override _replaceHTML(result: any, content: HTMLElement, options: any) {}
+  // override _replaceHTML(result: any, content: HTMLElement, options: any) {}
 }
 
 export function makeDummyAppV2() {
-  Hooks.once("ready", () => {
+  Hooks.once("ready", async () => {
     const app = new DummyAppV2({
       position: {
         height: 300,
         width: 400,
       },
     });
-    app.render(true);
+    await app.render(true);
   });
 }
