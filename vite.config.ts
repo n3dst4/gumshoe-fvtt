@@ -1,12 +1,36 @@
 /// <reference types="vitest" />
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import type { HttpProxy } from "vite";
+import type { HttpProxy, PluginOption } from "vite";
 import { defineConfig } from "vite";
 // import { visualizer } from "rollup-plugin-visualizer";
 import checker from "vite-plugin-checker";
 
 import { id as name } from "./public/system.json";
+
+/**
+ * Absolute shenanigans because of this Viote isue:
+ * https://github.com/vitejs/vite/issues/8619
+ *
+ * Basically, you can't watch node_modules without this hack
+ */
+export function pluginWatchNodeModules(modules: string[]): PluginOption {
+  return {
+    name: "watch-node-modules",
+    config() {
+      return {
+        server: {
+          watch: {
+            ignored: modules.map((m) => `!**/node_modules/${m}/**`),
+          },
+        },
+        optimizeDeps: {
+          exclude: modules,
+        },
+      };
+    },
+  };
+}
 
 // original guide to using Vite for Foundry from the Lancer devs:
 // https://foundryvtt.wiki/en/development/guides/vite
@@ -111,7 +135,7 @@ const config = defineConfig(({ mode }) => {
     // https://vitejs.dev/guide/env-and-mode.html
     // https://github.com/vitejs/vite/issues/1973#issuecomment-787571499
     define: {
-      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+      "process.env.NODE_ENV": JSON.stringify(process.env["NODE_ENV"]),
     },
 
     // see https://github.com/vitejs/vite/issues/8644#issuecomment-1159308803
@@ -173,7 +197,7 @@ const config = defineConfig(({ mode }) => {
       // I can't work out why we don't see these warnings in any other mode
       // (vite dev, vite built, vitest --run, eslint directly etc.) but the
       // solution here is to not run checker in test mode.
-      mode === "test" || (process.env.CHECKER ?? "").toLowerCase() === "no"
+      mode === "test" || (process.env["CHECKER"] ?? "").toLowerCase() === "no"
         ? null
         : checker({
             typescript: true,
@@ -199,6 +223,7 @@ const config = defineConfig(({ mode }) => {
       //   template: "network",
       //   filename: "stats/network.html",
       // }),
+      pluginWatchNodeModules(["@lumphammer/shared-fvtt-bits"]),
     ],
   };
 });
