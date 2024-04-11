@@ -144,8 +144,6 @@
       "path": "lang/moribundWorld/pl.json"
     }
   ],
-  "gridDistance": 1,
-  "gridUnits": "",
   "compatibility": {
     "minimum": "11",
     "verified": "12",
