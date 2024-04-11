@@ -87,4 +87,6 @@ installNewCharacterPacksHookHandler();
 installKeepTokenImageInSyncWithActor();
 installNewCharacterDefaultOccupationHookHandler();
 
-makeDummyAppV2();
+if (game instanceof Game && /^12\./.test(game.version)) {
+  makeDummyAppV2();
+}
