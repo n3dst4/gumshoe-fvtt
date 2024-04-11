@@ -1,4 +1,4 @@
-import { makeDummyAppV2 } from "@lumphammer/shared-fvtt-bits/src/DummyAppV2";
+import { DummyAppV2 } from "@lumphammer/shared-fvtt-bits/src/DummyAppV2";
 
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { systemId } from "./constants";
@@ -87,6 +87,23 @@ installNewCharacterPacksHookHandler();
 installKeepTokenImageInSyncWithActor();
 installNewCharacterDefaultOccupationHookHandler();
 
-if (game instanceof Game && /^12\./.test(game.version)) {
-  makeDummyAppV2();
-}
+// if (game instanceof Game && /^12\./.test(game.version)) {
+//   try {
+//     makeDummyAppV2();
+//   } catch (e) {
+//     console.error(e);
+//   }
+//   // makeDummyAppV2();
+// }
+
+Hooks.on("ready", async () => {
+  if (game instanceof Game && /^12\./.test(game.version)) {
+    const app = new DummyAppV2({
+      position: {
+        height: 300,
+        width: 400,
+      },
+    });
+    await app.render(true);
+  }
+});
