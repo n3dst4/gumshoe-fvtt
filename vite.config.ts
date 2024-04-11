@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 import react from "@vitejs/plugin-react-swc";
+import fs from "fs";
 import path from "path";
 import type { HttpProxy, PluginOption } from "vite";
 import { defineConfig } from "vite";
@@ -35,10 +36,14 @@ export function pluginWatchNodeModules(modules: string[]): PluginOption {
 // original guide to using Vite for Foundry from the Lancer devs:
 // https://foundryvtt.wiki/en/development/guides/vite
 
-let foundryUrl = "http://localhost:30009";
-try {
-  foundryUrl = (await import("./foundryconfig.json")).url;
-} catch (e) {
+let foundryUrl = "http://localhost:30000";
+
+// if foundryconfig.json exists, use that as the foundryUrl
+if (fs.existsSync("./foundryconfig.json")) {
+  foundryUrl = JSON.parse(
+    fs.readFileSync("./foundryconfig.json").toString(),
+  ).url;
+} else {
   console.log("No foundryconfig.json found, we're probably in CI");
 }
 
