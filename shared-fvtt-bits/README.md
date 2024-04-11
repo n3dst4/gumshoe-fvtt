@@ -10,6 +10,7 @@ Common parts to be used across Foundry VTT modules and systems
   - [Why subrepo, not subtree or submodule?](#why-subrepo-not-subtree-or-submodule)
   - [Adding dependencies](#adding-dependencies)
   - [Troubleshooting](#troubleshooting)
+    - [Checklist (*try these first*)](#checklist-try-these-first)
     - [`fatal: Not a valid object name: ''.`](#fatal-not-a-valid-object-name-)
     - [Huge long list of type errors](#huge-long-list-of-type-errors)
 
@@ -126,6 +127,13 @@ pnpm add foo
 ```
 
 ## Troubleshooting
+
+### Checklist (*try these first*)
+
+* Is `foundryconfig.json` pointing to the right foundry instance?
+* `pnpm i`
+* `pnpm run build`
+* Restart foundry (e.g. `pm2 reload foundry-v12`)
 
 
 ### `fatal: Not a valid object name: ''.`
