@@ -1,6 +1,6 @@
 {
 	"extends": "./shared-fvtt-bits/dotfiles/tsconfig.fvtt.json",
-	"include": ["src", "tasks.ts"],
+	"include": ["src", "tasks.ts", "vite.config.ts"],
 	"noEmit": true,
 	"compilerOptions": {
 		// override types to include vite
