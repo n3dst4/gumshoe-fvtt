@@ -18,7 +18,7 @@ const PartySheet = React.lazy(async () => {
 class PartySheetClassBase extends ActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: [systemId, "sheet", "actor"],
       template: reactTemplatePath,
       width: 660,

@@ -26,7 +26,7 @@ export const migrateSceneData = function (
         t.actorData = {};
       } else if (!t.actorLink) {
         const updateData = migrateActorData(token.actor, flaggedMigrations);
-        t.actorData = mergeObject(token.actor, updateData);
+        t.actorData = foundry.utils.mergeObject(token.actor, updateData);
       }
       return t;
     }),

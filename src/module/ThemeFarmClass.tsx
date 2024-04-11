@@ -7,7 +7,7 @@ import { ThemeFarm } from "../themes/components/ThemeFarm";
 class ThemeFarmClassBase extends FormApplication {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: [systemId, "sheet", "item", "dialog"],
       template: reactTemplatePath,
       width: window.innerWidth,

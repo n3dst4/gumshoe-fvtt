@@ -37,7 +37,7 @@ export const setTrackersForPreAlpha4Updates = (
 ) => {
   const currentlyMigratedVersion = settings.systemMigrationVersion.get();
   const needsMigrationVersion = "1.0.0-alpha.5";
-  const needsMigration = isNewerVersion(
+  const needsMigration = foundry.utils.isNewerVersion(
     needsMigrationVersion,
     currentlyMigratedVersion,
   );
