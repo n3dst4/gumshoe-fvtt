@@ -33,7 +33,7 @@ export const ItemSheetFramework: React.FC<ItemSheetFrameworkProps> = ({
 
   useEffect(() => {
     // XXX I'm sure we can do better but the types are weird right now
-    application.render(true);
+    void application.render(true);
   }, [application, configMode]);
 
   return (
