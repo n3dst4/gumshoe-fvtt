@@ -38,11 +38,12 @@ export function ReactApplicationV2Mixin<TBase extends ApplicationV2Constuctor>(
     static DEFAULT_OPTIONS: RecursivePartial<foundry.applications.types.ApplicationConfiguration> =
       {
         ...foundry.applications.api.ApplicationV2.DEFAULT_OPTIONS,
-        classes: ["document-sheet"],
+        // classes: ["document-sheet"],
 
         window: {
           ...foundry.applications.api.ApplicationV2.DEFAULT_OPTIONS.window,
           frame: true,
+          title: name,
         },
       };
 
