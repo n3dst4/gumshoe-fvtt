@@ -25,7 +25,10 @@ import { WeaponsAreaEdit } from "./Weapons/WeaponsAreaEdit";
 
 type NPCSheetFullProps = {
   actor: InvestigatorActor;
-  foundryApplication: ActorSheet;
+  foundryApplication:
+    | ActorSheet
+    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+    | foundry.applications.api.DocumentSheetV2<InvestigatorActor>;
 };
 
 export const NPCSheetFull = ({

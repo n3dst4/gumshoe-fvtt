@@ -8,7 +8,10 @@ import { NPCSheetSimple } from "./NPCSheetSimple";
 
 type NPCSheetProps = {
   actor: InvestigatorActor;
-  foundryApplication: ActorSheet;
+  foundryApplication:
+    | ActorSheet
+    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+    | foundry.applications.api.DocumentSheetV2<InvestigatorActor>;
 };
 
 export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {

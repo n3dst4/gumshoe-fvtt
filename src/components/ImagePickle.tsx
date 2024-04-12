@@ -17,7 +17,8 @@ const transitionTime = "0.3s";
 
 type ImagePickleProps = {
   subject: Actor | Item;
-  application: DocumentSheet;
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+  application: ActorSheet | foundry.applications.api.DocumentSheetV2<any>;
   className?: string;
 };
 

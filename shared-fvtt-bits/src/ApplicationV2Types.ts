@@ -63,7 +63,7 @@ declare global {
           // methods
 
           render(
-            options:
+            options?:
               | boolean
               | Partial<foundry.applications.types.ApplicationRenderOptions>,
             _options?: Partial<foundry.applications.types.ApplicationRenderOptions>,
@@ -128,6 +128,9 @@ declare global {
           >;
 
           parseCSSDimension(style: string, parentDimension: number): number;
+        }
+        export class DocumentSheetV2<TDocument> extends ApplicationV2 {
+          document: TDocument;
         }
       }
 

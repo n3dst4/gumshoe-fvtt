@@ -14,7 +14,8 @@ import { ItemSheetMode } from "./types";
 type ItemSheetFrameworkProps = PropsWithChildren<{
   supertitle?: ReactNode;
   item: InvestigatorItem;
-  application: DocumentSheet;
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+  application: DocumentSheet | foundry.applications.api.DocumentSheetV2<any>;
 }>;
 
 export const ItemSheetFramework: React.FC<ItemSheetFrameworkProps> = ({
@@ -31,7 +32,8 @@ export const ItemSheetFramework: React.FC<ItemSheetFrameworkProps> = ({
   const [configMode, setConfigMode] = useState(false);
 
   useEffect(() => {
-    application.render();
+    // XXX I'm sure we can do better but the types are weird right now
+    application.render(true);
   }, [application, configMode]);
 
   return (
@@ -74,6 +76,7 @@ export const ItemSheetFramework: React.FC<ItemSheetFrameworkProps> = ({
         {/* Image */}
         <ImagePickle
           subject={item}
+          // @ts-expect-error yikes
           application={application}
           css={{
             gridArea: "image",
