@@ -3,7 +3,7 @@ import "./ApplicationV2Types";
 import React from "react";
 import { createRoot, Root } from "react-dom/client";
 
-import { DummyAppV2Component } from "./DummyAppV2Component";
+import { DummyComponent } from "./DummyComponent";
 import { RecursivePartial } from "./types";
 
 export class DummyAppV2 extends foundry.applications.api.ApplicationV2<void> {
@@ -50,9 +50,9 @@ export class DummyAppV2 extends foundry.applications.api.ApplicationV2<void> {
     console.log("DummyAppV2._renderHTML");
 
     this.reactRoot?.render(
-      <DummyAppV2Component>
+      <DummyComponent>
         <div css={{ fontSize: "2em" }}>Hello from React</div>
-      </DummyAppV2Component>,
+      </DummyComponent>,
     );
 
     return Promise.resolve();

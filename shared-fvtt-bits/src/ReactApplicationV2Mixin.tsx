@@ -67,15 +67,15 @@ export function ReactApplicationV2Mixin<TBase extends ApplicationV2Constuctor>(
       return element;
     }
 
-    // _renderHTML is the semantically appropriate place to render updates to the
-    // HTML of the app.
+    // _renderHTML is the semantically appropriate place to render updates to
+    // the HTML of the app... or in our case, to ask to react to refresh.
     override _renderHTML() {
       this.reactRoot?.render(render(this as any, this.serial));
       this.serial += 1;
-      return Promise.resolve();
     }
 
-    // XXX This override will be optional in P3
+    // This override should be optional eventually but rn is needed to prevent
+    // foundry throwing a wobbly
     override _replaceHTML(result: any, content: HTMLElement, options: any) {}
   }
 

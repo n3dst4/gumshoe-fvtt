@@ -2,11 +2,9 @@ import "./ApplicationV2Types";
 
 import React from "react";
 
-interface DummyAppV2ComponentProps extends React.PropsWithChildren {}
+interface DummyComponentProps extends React.PropsWithChildren {}
 
-export const DummyAppV2Component: React.FC<DummyAppV2ComponentProps> = ({
-  children,
-}) => {
+export const DummyComponent: React.FC<DummyComponentProps> = ({ children }) => {
   const [count, setCount] = React.useState(0);
   return (
     <div>
@@ -28,4 +26,4 @@ export const DummyAppV2Component: React.FC<DummyAppV2ComponentProps> = ({
   );
 };
 
-DummyAppV2Component.displayName = "DummyAppV2Component";
+DummyComponent.displayName = "DummyComponent";

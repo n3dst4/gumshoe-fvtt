@@ -69,10 +69,12 @@ declare global {
             _options?: Partial<foundry.applications.types.ApplicationRenderOptions>,
           ): Promise<ApplicationV2>;
 
+          // return type is not what foundry docs say, but in fact you do not
+          // need to return anything
           _renderHTML(
             context: any,
             options: foundry.applications.types.ApplicationRenderOptions,
-          ): Promise<TRenderResult>;
+          ): Promise<TRenderResult> | void;
 
           _replaceHTML(
             result: TRenderResult,

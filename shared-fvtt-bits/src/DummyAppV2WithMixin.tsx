@@ -2,7 +2,7 @@ import "./ApplicationV2Types";
 
 import React from "react";
 
-import { DummyAppV2Component } from "./DummyAppV2Component";
+import { DummyComponent } from "./DummyComponent";
 import { ReactApplicationV2Mixin } from "./ReactApplicationV2Mixin";
 
 /**
@@ -21,7 +21,7 @@ class DummyAppV2WithMixinClassBase extends foundry.applications.api
 }
 
 const render = (sheet: foundry.applications.api.ApplicationV2) => {
-  return <DummyAppV2Component />;
+  return <DummyComponent>Hey from mixed in code</DummyComponent>;
 };
 
 export const DummyAppV2WithMixin = ReactApplicationV2Mixin(
