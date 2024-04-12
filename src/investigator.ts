@@ -1,4 +1,4 @@
-import { DummyAppV2 } from "@lumphammer/shared-fvtt-bits/src/DummyAppV2";
+import { DummyAppV2WithMixin } from "@lumphammer/shared-fvtt-bits/src/DummyAppV2WithMixin";
 
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { systemId } from "./constants";
@@ -98,7 +98,7 @@ installNewCharacterDefaultOccupationHookHandler();
 
 Hooks.on("ready", async () => {
   if (game instanceof Game && /^12\./.test(game.version)) {
-    const app = new DummyAppV2({
+    const app = new DummyAppV2WithMixin({
       position: {
         height: 300,
         width: 400,

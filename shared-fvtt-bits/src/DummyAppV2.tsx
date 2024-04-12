@@ -12,7 +12,7 @@ export class DummyAppV2 extends foundry.applications.api.ApplicationV2<void> {
     Omit<foundry.applications.types.ApplicationConfiguration, "uniqueId">
   > = {
     ...foundry.applications.api.ApplicationV2.DEFAULT_OPTIONS,
-    classes: ["document-sheet"],
+    // classes: ["document-sheet"],
     position: {
       height: 100,
       width: 200,
@@ -51,7 +51,7 @@ export class DummyAppV2 extends foundry.applications.api.ApplicationV2<void> {
 
     this.reactRoot?.render(
       <DummyAppV2Component>
-        <div css={{ fontSize: "2em" }}>Hello from React 7</div>
+        <div css={{ fontSize: "2em" }}>Hello from React</div>
       </DummyAppV2Component>,
     );
 

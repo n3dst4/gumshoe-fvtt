@@ -21,7 +21,6 @@ export const DummyAppV2Component: React.FC<DummyAppV2ComponentProps> = ({
           margin: "0.5em",
         }}
       >
-        foo234
         {count}
       </div>
       <button onClick={() => setCount(count + 1)}>Increment</button>

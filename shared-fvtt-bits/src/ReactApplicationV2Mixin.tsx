@@ -2,6 +2,8 @@
 // import { createRoot, Root } from "react-dom/client";
 
 // import { FoundryApplicationContext } from "./FoundryAppContext";
+import { createRoot, Root } from "react-dom/client";
+
 import { Constructor, RecursivePartial, Render } from "./types";
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -44,141 +46,41 @@ export function ReactApplicationV2Mixin<TBase extends ApplicationV2Constuctor>(
         },
       };
 
-    override async _renderHTML(
-      context: any,
-      options: foundry.applications.types.ApplicationRenderOptions,
-    ) {
-      console.log("hello from renderHTML");
-      const div = document.createElement("div");
-      div.innerHTML = "helloe from renderHTML";
-      return div;
+    // PROPERTIES
+
+    reactRoot: Root | undefined;
+
+    serial = 0;
+
+    // METHODS
+
+    // From Atropos: _renderFrame only occurs once and is the most natural point
+    // (given the current API) to bind the content div to your react component.
+    async _renderFrame(options: unknown) {
+      const element = await super._renderFrame(options);
+      const target = this.hasFrame
+        ? element.querySelector(".window-content")
+        : element;
+      if (target) {
+        this.reactRoot = createRoot(target);
+      }
+      return element;
     }
 
-    override _replaceHTML(
-      result: any,
-      content: HTMLElement,
-      options: foundry.applications.types.ApplicationRenderOptions,
-    ) {
-      content.replaceChildren(result);
-
-      // const div = document.createElement("div");
-      // div.innerHTML = "helloe from replaceHTML";
-      // return div;
-      // this.element.replaceChildren(result);
+    // _renderHTML is the semantically appropriate place to render updates to the
+    // HTML of the app.
+    override _renderHTML() {
+      this.reactRoot?.render(render(this as any, this.serial));
+      this.serial += 1;
+      return Promise.resolve();
     }
+
+    // XXX This override will be optional in P3
+    override _replaceHTML(result: any, content: HTMLElement, options: any) {}
   }
 
   // see comment on name arg above
-  Object.defineProperty(Reactified, "name", {
-    value: name,
-  });
+  Object.defineProperty(Reactified, "name", { value: name });
 
   return Reactified;
 }
-
-// -------------------------------------
-
-export default class DialogV2 extends foundry.applications.api.ApplicationV2 {
-  /** @inheritDoc */
-  static DEFAULT_OPTIONS = mergeObject(super.DEFAULT_OPTIONS, {
-    id: "dialog-{id}",
-    classes: ["dialog"],
-    tag: "aside",
-    window: {
-      frame: true,
-      positioned: true,
-      minimizable: false,
-    },
-  });
-
-  /** @inheritDoc */
-  _initializeApplicationOptions(
-    options: foundry.applications.types.ApplicationConfiguration,
-  ) {
-    options = super._initializeApplicationOptions(options);
-    // @ts-expect-error saddfsdfsd
-    if (!options.buttons.length)
-      throw new Error("You must define at least one entry in options.buttons");
-    // @ts-expect-error saddfsdfsd
-    for (const button of options.buttons) {
-      options.actions[button.action] = async (event, target) => {
-        const result = await button.callback?.(event, target);
-        // @ts-expect-error saddfsdfsd
-        await options.submit?.(result);
-        await this.close();
-      };
-    }
-    return options;
-  }
-
-  /** @override */
-  // @ts-expect-error saddfsdfsd
-  async _renderHTML(context, options) {
-    const form = document.createElement("form");
-    form.className = "dialog-form standard-form";
-    form.autocomplete = "off";
-    // @ts-expect-error saddfsdfsd
-    const buttons = this.options.buttons.map((b) => {
-      let buttonContent = b.label;
-      if (b.icon) buttonContent = `<i class="${b.icon}"></i>${buttonContent}`;
-      return `<button type="button" data-action="${b.action}">${buttonContent}</button>`;
-    });
-    // @ts-expect-error saddfsdfsd
-    form.innerHTML = `<div class="dialog-content">${this.options.content}</div>
-      <footer class="form-footer">${buttons.join("")}</footer>`;
-    return form;
-  }
-
-  /** @override */
-  // @ts-expect-error saddfsdfsd
-  _replaceHTML(result, content, options) {
-    content.replaceChildren(result);
-  }
-
-  /**
-   * Wrap the Dialog application in an enclosing promise which returns the result upon user input.
-   * @param {Partial<ApplicationConfiguration & DialogV2Configuration>} options
-   * @returns {Promise<any>}
-   */
-  // @ts-expect-error saddfsdfsd
-  static async prompt(options) {
-    return new Promise((resolve) => {
-      // @ts-expect-error saddfsdfsd
-      const submit = async (result) => resolve(result);
-      const dialog = new DialogV2({ ...options, submit });
-      dialog.render(true);
-    });
-  }
-}
-
-Hooks.on("ready", async () => {
-  // const linkElement = document.createElement("link");
-  // linkElement.rel = "stylesheet";
-  // linkElement.href = "/css/foundry2.css";
-  // document.head.appendChild(linkElement);
-  // @ ts-expect-error saddfsdfsd
-  // result = await DialogV2.prompt({
-  //   window: {
-  //     title: "My Dialog Prompt",
-  //     icon: "fa-solid fa-question",
-  //   },
-  //   content: `
-  //     <div class="form-group">
-  //       <label>Pick a Number</label>
-  //       <input name="pick" type="number" min="1" max="10" step="1">
-  //       <p class="hint">Pick a number between 1 and 10!</p>
-  //     </div>
-  //   `,
-  //   buttons: [
-  //     {
-  //       action: "submit",
-  //       label: "Submit",
-  //       icon: "fa-solid fa-check",
-  //       // @ts-expect-error saddfsdfsd
-  //       callback: (event, button) => {
-  //         return button.closest("form").pick.valueAsNumber;
-  //       },
-  //     },
-  //   ],
-  // });
-});

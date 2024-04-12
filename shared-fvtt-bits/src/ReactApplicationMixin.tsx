@@ -2,15 +2,13 @@ import React, { StrictMode } from "react";
 import { createRoot, Root } from "react-dom/client";
 
 import { FoundryAppContext } from "./FoundryAppContext";
+import { Constructor } from "./types";
 
 // type shenanigans to allow us to work backwards from a Class type to the type
 // of the objects which it constructs
 
-// a "Constructor of T" is the type of the class T, when used as a value
-type Constructor<T> = new (...args: any[]) => T;
-
 // so Constructor<Application> is any class which is an Application
-type ApplicationConstuctor = Constructor<Application>;
+type ApplicationConstructor = Constructor<Application>;
 
 // Render<T> T is a Constructor<T2>. It then expects its actual argument to be
 // a T2, i.e. the type of the thing the constructor constructs.
@@ -23,7 +21,7 @@ type Render<T> = (
  * Wrap an existing Foundry Application class in this Mixin to override the
  * normal rednering behaviour and and use React instead.
  */
-export function ReactApplicationMixin<TBase extends ApplicationConstuctor>(
+export function ReactApplicationMixin<TBase extends ApplicationConstructor>(
   /**
    * Name to be attached to the created class. This is needed because minified
    * classes have weird names which can break foundry when thney get used as
