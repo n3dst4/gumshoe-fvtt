@@ -18,6 +18,7 @@ const NPCSheet = React.lazy(() =>
  */
 class NPCSheetV2ClassBase extends foundry.applications.api
   .DocumentSheetV2<InvestigatorActor> {
+  // @ts-expect-error yawn
   static DEFAULT_OPTIONS: RecursivePartial<foundry.applications.types.ApplicationConfiguration> =
     {
       ...foundry.applications.api.ApplicationV2.DEFAULT_OPTIONS,
