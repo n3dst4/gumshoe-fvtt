@@ -19,7 +19,8 @@ export function useIsDocumentOwner() {
     let showSecrets = false;
     if (application instanceof DocumentSheet && user) {
       const myLevel = application.document.getUserLevel(user) ?? 0;
-      if (myLevel === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER) {
+      // @ts-expect-error types still have DOCUMENT_PERMISSION_LEVELS
+      if (myLevel === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
         showSecrets = true;
       }
     }
