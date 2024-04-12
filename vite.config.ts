@@ -69,7 +69,7 @@ const config = defineConfig(({ mode }) => {
               proxyRes.on("data", function (chunk) {
                 body.push(chunk);
               });
-              proxyRes.on("end", async function () {
+              proxyRes.on("end", function () {
                 const html = Buffer.concat(body).toString();
                 // this is the most future-proof way to get the preamble code.
                 const fixedHtml = html.replace(
@@ -79,9 +79,15 @@ const config = defineConfig(({ mode }) => {
                 res.statusCode = proxyRes.statusCode ?? 200;
                 // copy the headers from the proxy response to the real response
                 for (const [name, value] of Object.entries(proxyRes.headers)) {
-                  res.setHeader(name, value as unknown as string);
+                  if (value === undefined) continue;
+                  // because we're monkeying with the content length, we need to
+                  // update it to match the new length
+                  const newValue =
+                    name.toLowerCase() === "content-length"
+                      ? fixedHtml.length
+                      : value;
+                  res.setHeader(name, newValue);
                 }
-                console.log(proxyRes.headers);
                 res.end(fixedHtml);
               });
             });
