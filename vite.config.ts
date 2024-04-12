@@ -77,8 +77,11 @@ const config = defineConfig(({ mode }) => {
                   `${headTag}${preambleHtml}`,
                 );
                 res.statusCode = proxyRes.statusCode ?? 200;
-                // @ts-expect-error no idea
-                res.headers = proxyRes.headers;
+                // copy the headers from the proxy response to the real response
+                for (const [name, value] of Object.entries(proxyRes.headers)) {
+                  res.setHeader(name, value as unknown as string);
+                }
+                console.log(proxyRes.headers);
                 res.end(fixedHtml);
               });
             });
