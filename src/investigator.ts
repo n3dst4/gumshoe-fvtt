@@ -87,12 +87,3 @@ installResourceUpdateHookHandler();
 installNewCharacterPacksHookHandler();
 installKeepTokenImageInSyncWithActor();
 installNewCharacterDefaultOccupationHookHandler();
-
-// if (game instanceof Game && /^12\./.test(game.version)) {
-//   try {
-//     makeDummyAppV2();
-//   } catch (e) {
-//     console.error(e);
-//   }
-//   // makeDummyAppV2();
-// }
