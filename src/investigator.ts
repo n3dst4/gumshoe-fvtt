@@ -1,4 +1,5 @@
-import { DummyAppV2WithMixin } from "@lumphammer/shared-fvtt-bits/src/DummyAppV2WithMixin";
+// ned to bring in these global types manually
+import "@lumphammer/shared-fvtt-bits/src/ApplicationV2Types";
 
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { systemId } from "./constants";
@@ -95,15 +96,3 @@ installNewCharacterDefaultOccupationHookHandler();
 //   }
 //   // makeDummyAppV2();
 // }
-
-Hooks.on("ready", async () => {
-  if (game instanceof Game && /^12\./.test(game.version)) {
-    const app = new DummyAppV2WithMixin({
-      position: {
-        height: 300,
-        width: 400,
-      },
-    });
-    await app.render(true);
-  }
-});
