@@ -8,8 +8,8 @@ import { InvestigatorItem } from "../module/InvestigatorItem";
 import { ItemSheetClass } from "../module/InvestigatorItemSheetClass";
 import { InvestigatorJournalSheet } from "../module/InvestigatorJournalSheet";
 import { JournalEditorSheetClass } from "../module/JournalEditorSheetClass";
-// import { NPCSheetClass } from "../module/NPCSheetClass";
-import { NPCSheetClassV2 } from "../module/NPCSheetClassV2";
+import { NPCSheetClass } from "../module/NPCSheetClass";
+// import { NPCSheetClassV2 } from "../module/NPCSheetClassV2";
 import { PartySheetClass } from "../module/PartySheetClass";
 import { PCSheetClass } from "../module/PCSheetClass";
 
@@ -28,8 +28,7 @@ export const registerSheetsAndClasses = () => {
     makeDefault: true,
     types: [constants.pc],
   });
-  // @ts-expect-error yawn
-  Actors.registerSheet(constants.systemId, NPCSheetClassV2, {
+  Actors.registerSheet(constants.systemId, NPCSheetClass, {
     makeDefault: true,
     types: [constants.npc],
   });
