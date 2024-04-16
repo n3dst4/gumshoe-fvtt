@@ -12,6 +12,10 @@ on:
       package_file_name:
         required: true
         type: string
+      pnpm_version:
+        required: false
+        type: string
+        default: "9"
 
 env:
   MANIFEST_FILE_NAME: ${{ inputs.manifest_file_name }}
@@ -55,10 +59,12 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
 
       - name: Activate pnpm
-        run: corepack enable
+        run: |
+          corepack enable
+          corepack prepare pnpm@${{ inputs.pnpm_version }} --activate
 
       - name: Instrumentation
         run: |
@@ -70,7 +76,7 @@ jobs:
           pnpm --version
 
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm install
 
       - name: Instrument tsc version
         run: npx tsc --version
