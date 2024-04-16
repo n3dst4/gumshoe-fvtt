@@ -28,4 +28,5 @@ jobs:
       manifest_file_name: "system.json"
       public_path: "public"
       package_file_name: "investigator.zip"
+      pnpm_version: "9"
 
