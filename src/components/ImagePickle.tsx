@@ -34,18 +34,32 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
 
   const onClickEdit = useCallback(() => {
     setShowOverlay(false);
-    const fp = new FilePicker({
-      type: "image",
-      current: subject.img ?? undefined,
-      callback: (path: string) => {
-        void subject.update({
-          img: path,
-        });
-      },
-      top: (application.position.top ?? 0) + 40,
-      left: (application.position.left ?? 0) + 10,
-    });
-    return fp.browse(subject.img ?? "");
+    assertGame(game);
+    const tokenizerApi = (game.modules.get("vtta-tokenizer") as any)?.api;
+    const subjectIsActor = subject instanceof Actor;
+    // if tokenizer is available and the subject is an actor, use tokenizer
+    // see https://github.com/n3dst4/gumshoe-fvtt/issues/706
+    if (tokenizerApi && subjectIsActor) {
+      tokenizerApi.tokenizeActor(subject);
+    } else {
+      // You can also launch the filepicker with
+      // `application._onEditImage(event)` but 1. we don't care about event
+      // objects for the most part, and 2. that way is tightly coupled to the
+      // Foundry AppV1 model of imperative updates and does stuff like trying to
+      // update the image in the DOM on completion.
+      const fp = new FilePicker({
+        type: "image",
+        current: subject.img ?? undefined,
+        callback: (path: string) => {
+          void subject.update({
+            img: path,
+          });
+        },
+        top: (application.position.top ?? 0) + 40,
+        left: (application.position.left ?? 0) + 10,
+      });
+      return fp.browse(subject.img ?? "");
+    }
   }, [application.position.left, application.position.top, subject]);
 
   const showImage = useCallback(() => {
