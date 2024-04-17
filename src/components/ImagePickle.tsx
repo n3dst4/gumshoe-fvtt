@@ -1,5 +1,6 @@
 import React, { Fragment, useCallback, useContext, useState } from "react";
 
+import { getTokenizer } from "../functions/getTokenizer";
 import { assertGame } from "../functions/utilities";
 import { ThemeContext } from "../themes/ThemeContext";
 import { ImagePickerLink } from "./ImagePickerLink";
@@ -35,11 +36,11 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
   const onClickEdit = useCallback(() => {
     setShowOverlay(false);
     assertGame(game);
-    const tokenizerApi = (game.modules.get("vtta-tokenizer") as any)?.api;
+    const { tokenizerIsActive, tokenizerApi } = getTokenizer();
     const subjectIsActor = subject instanceof Actor;
     // if tokenizer is available and the subject is an actor, use tokenizer
     // see https://github.com/n3dst4/gumshoe-fvtt/issues/706
-    if (tokenizerApi && subjectIsActor) {
+    if (tokenizerIsActive && tokenizerApi !== undefined && subjectIsActor) {
       tokenizerApi.tokenizeActor(subject);
     } else {
       // You can also launch the filepicker with

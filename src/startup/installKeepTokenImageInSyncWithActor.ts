@@ -1,3 +1,4 @@
+import { getTokenizer } from "../functions/getTokenizer";
 import { assertGame } from "../functions/utilities";
 
 export function installKeepTokenImageInSyncWithActor() {
@@ -15,14 +16,23 @@ export function installKeepTokenImageInSyncWithActor() {
       userId: string,
     ) {
       assertGame(game);
-      if (game.userId !== userId || update.img === undefined) {
+      // if tokenizer is installed, it updates the token image and we don't want
+      // to break that - see https://github.com/n3dst4/gumshoe-fvtt/issues/706
+      const { tokenizerIsActive } = getTokenizer();
+
+      if (
+        tokenizerIsActive ||
+        game.userId !== userId ||
+        update.img === undefined
+      ) {
         return;
       }
+
       // @ts-expect-error prototypeToken not yetin types
       const token = actor.prototypeToken;
       if (["icons/svg/cowled.svg", actor.img].includes(token.texture.src)) {
         token.update({ texture: { src: update.img } });
       }
     },
-  );
+  ); //
 }
