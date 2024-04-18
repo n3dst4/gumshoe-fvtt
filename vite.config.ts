@@ -8,7 +8,7 @@ import checker from "vite-plugin-checker";
 
 import { id as name } from "./public/system.json";
 
-// guide to using Vite for Foundry from the Lancer guys:
+// original guide to using Vite for Foundry from the Lancer devs:
 // https://foundryvtt.wiki/en/development/guides/vite
 
 let foundryUrl = "http://localhost:30009";
@@ -20,7 +20,10 @@ try {
 
 const port = 40000;
 
-// this is lifted from https://github.com/vitejs/vite-plugin-react-swc/blob/main/src/index.ts
+// this is lifted from
+// https://github.com/vitejs/vite-plugin-react-swc/blob/21eef9eefd7ff3d46dc0a3132dac83d9bb49f980/src/index.ts
+// if it breaks with a future @vitejs/vite-plugin-react-swc update, we'll need
+// to update it or change behaviour to match the upstream.
 const preambleCode = `
   import { injectIntoGlobalHook } from "__PATH__";
   injectIntoGlobalHook(window);
