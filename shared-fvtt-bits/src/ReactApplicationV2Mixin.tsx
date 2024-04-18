@@ -7,7 +7,7 @@ import { createRoot, Root } from "react-dom/client";
 import { Constructor, RecursivePartial, Render } from "./types";
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// WORK IN VERY PROGRESS
+// WORK IN PROGRESS
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 // so Constructor<Application> is any class which is an Application
@@ -47,9 +47,17 @@ export function ReactApplicationV2Mixin<TBase extends ApplicationV2Constuctor>(
 
     // PROPERTIES
 
-    reactRoot: Root | undefined;
+    /**
+     * The React root for this application. This is our entry point to React's
+     * rendering system.
+     */
+    protected reactRoot: Root | undefined;
 
-    serial = 0;
+    /**
+     * A serial number to keep track of how many times we've rendered. This is
+     * just for debugging.
+     */
+    protected serial = 0;
 
     // METHODS
 
