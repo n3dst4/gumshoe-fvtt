@@ -31,15 +31,13 @@ export function ReactApplicationV2Mixin<TBase extends ApplicationV2Constuctor>(
   Base: TBase,
   /** A function which will be given an *instance* of Base and expected to
    * return some JSX.
-   * */
+   */
   render: Render<TBase>,
 ) {
   class Reactified extends Base {
     static DEFAULT_OPTIONS: RecursivePartial<foundry.applications.types.ApplicationConfiguration> =
       {
         ...foundry.applications.api.ApplicationV2.DEFAULT_OPTIONS,
-        // classes: ["document-sheet"],
-
         window: {
           ...foundry.applications.api.ApplicationV2.DEFAULT_OPTIONS.window,
           frame: true,
