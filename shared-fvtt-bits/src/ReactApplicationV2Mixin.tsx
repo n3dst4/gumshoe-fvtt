@@ -1,14 +1,9 @@
-// import React, { StrictMode } from "react";
-// import { createRoot, Root } from "react-dom/client";
-
-// import { FoundryApplicationContext } from "./FoundryAppContext";
+import React, { StrictMode } from "react";
 import { createRoot, Root } from "react-dom/client";
 
+// import { createRoot, Root } from "react-dom/client";
+// import { FoundryAppContext } from "./FoundryAppContext";
 import { Constructor, RecursivePartial, Render } from "./types";
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// WORK IN PROGRESS
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 // so Constructor<Application> is any class which is an Application
 type ApplicationV2Constuctor =
@@ -77,7 +72,21 @@ export function ReactApplicationV2Mixin<TBase extends ApplicationV2Constuctor>(
     // _renderHTML is the semantically appropriate place to render updates to
     // the HTML of the app... or in our case, to ask to react to refresh.
     override _renderHTML() {
-      this.reactRoot?.render(render(this as any, this.serial));
+      const content = (
+        <StrictMode>
+          {/* <FoundryAppContext.Provider */}
+          {/* value={this}
+            key={"FoundryAppContextProvider"}
+          > */}
+          {render(
+            this as TBase extends Constructor<infer T2> ? T2 : TBase,
+            this.serial,
+          )}
+          {/* </FoundryAppContext.Provider> */}
+        </StrictMode>
+      );
+
+      this.reactRoot?.render(content);
       this.serial += 1;
     }
 
