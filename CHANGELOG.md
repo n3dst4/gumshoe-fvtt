@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 7.9.0 (2024-04-20)
+
+**BUG FIX**: INVESTIGATOR now works with the [Tokenizer module](https://foundryvtt.com/packages/vtta-tokenizer/) (#706)
+**ENHANCEMENT**: Updated Polish translations for secrets and Moribund World Thanks @Marksjus (#711)
+**ENHANCEMENT**: Tweaked German translations for Night's Black Agents and Trail of Cthulhu. Thanks @Lhun and @Muwak (#712)
+
+This will probably be the last release that supports Foundry V10. Foundry V12 is about to enter its testing phase so I want to be sure to support V12 at launch.
+
 ## 7.8.0 (2024-03-11)
 
 * **BUG FIX**: Secrets now work in actor and items notes fields (#639).
