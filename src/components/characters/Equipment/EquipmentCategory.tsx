@@ -1,4 +1,5 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
+import { FoundryAppContext } from "@lumphammer/shared-fvtt-bits/src/FoundryAppContext";
 import React, { useCallback, useContext } from "react";
 
 import { sortEntitiesByName } from "../../../functions/utilities";
@@ -13,7 +14,6 @@ interface EquipmentCategoryProps {
   items: InvestigatorItem[];
   name: string;
   actor: InvestigatorActor;
-  app: Application<ApplicationOptions> | null;
   fields: Record<string, EquipmentFieldMetadata>;
 }
 
@@ -22,9 +22,10 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
   items,
   name,
   actor,
-  app,
   fields,
 }) => {
+  const app = useContext(FoundryAppContext);
+
   const onDragStart = useCallback(
     (e: React.DragEvent<HTMLElement>) => {
       if (app !== null) {
