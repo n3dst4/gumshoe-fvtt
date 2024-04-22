@@ -10,10 +10,12 @@ import checker from "vite-plugin-checker";
 import { id as name } from "./public/system.json";
 
 /**
- * Absolute shenanigans because of this Viote isue:
+ * Absolute shenanigans because of this Vite isue:
  * https://github.com/vitejs/vite/issues/8619
  *
- * Basically, you can't watch node_modules without this hack
+ * Basically, you can't watch node_modules without this hack, and while we're
+ * using the file: protocol for @lumphammer/shared-fvtt-bits, we need to watch
+ * it because it's a local package.
  */
 export function pluginWatchNodeModules(modules: string[]): PluginOption {
   return {
