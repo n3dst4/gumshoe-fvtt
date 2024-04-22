@@ -1,3 +1,6 @@
+// ned to bring in these global types manually
+import "@lumphammer/shared-fvtt-bits/src/ApplicationV2Types";
+
 import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { systemId } from "./constants";
 import { assertGame, systemLogger } from "./functions/utilities";

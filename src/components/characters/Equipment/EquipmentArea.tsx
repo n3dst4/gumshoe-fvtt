@@ -1,5 +1,4 @@
-import { FoundryAppContext } from "@lumphammer/shared-fvtt-bits/src/FoundryAppContext";
-import React, { useContext } from "react";
+import React from "react";
 
 import { getTranslated } from "../../../functions/getTranslated";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
@@ -12,8 +11,6 @@ type EquipmentAreaProps = {
 };
 
 export const EquipmentArea: React.FC<EquipmentAreaProps> = ({ actor }) => {
-  const app = useContext(FoundryAppContext);
-
   const items = actor.getEquipment();
   const categories = settings.equipmentCategories.get();
 
@@ -36,7 +33,6 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({ actor }) => {
             )}
             name={category.name}
             key={categoryId}
-            app={app}
             fields={category.fields}
           />
         );
@@ -47,7 +43,6 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({ actor }) => {
           categoryId={""}
           items={uncategorizedItems}
           name={getTranslated("Uncategorized equipment")}
-          app={app}
           fields={{}}
         />
       )}

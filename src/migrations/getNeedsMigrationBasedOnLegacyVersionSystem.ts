@@ -15,7 +15,7 @@ export function getNeedsMigrationBasedOnLegacyVersionSystem() {
   const NEEDS_MIGRATION_VERSION = "4.11.0";
   // oldest version which can be migrated reliably
   const COMPATIBLE_MIGRATION_VERSION = "3.0.0";
-  const needsMigrationBasedOnLegacyVersionSystem = isNewerVersion(
+  const needsMigrationBasedOnLegacyVersionSystem = foundry.utils.isNewerVersion(
     NEEDS_MIGRATION_VERSION,
     currentVersion,
   );
@@ -26,7 +26,7 @@ export function getNeedsMigrationBasedOnLegacyVersionSystem() {
     if (
       currentVersion &&
       currentVersion !== defaultMigratedSystemVersion &&
-      isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)
+      foundry.utils.isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)
     ) {
       const notificationText = `Your ${system.title} system data is from too old a version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
       (ui as any).notifications.error(notificationText, { permanent: true });

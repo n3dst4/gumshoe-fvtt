@@ -17,7 +17,7 @@ const NPCSheet = React.lazy(() =>
 class NPCSheetClassBase extends ActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: [systemId, "sheet", "actor"],
       template: reactTemplatePath,
       width: 700,

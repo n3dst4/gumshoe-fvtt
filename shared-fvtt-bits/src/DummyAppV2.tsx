@@ -3,43 +3,16 @@ import "./ApplicationV2Types";
 import React from "react";
 import { createRoot, Root } from "react-dom/client";
 
+import { DummyComponent } from "./DummyComponent";
 import { RecursivePartial } from "./types";
 
-interface DummyAppV2ComponentProps extends React.PropsWithChildren {}
-
-export const DummyAppV2Component: React.FC<DummyAppV2ComponentProps> = ({
-  children,
-}) => {
-  const [count, setCount] = React.useState(0);
-  return (
-    <div>
-      <div>{children}</div>
-      <div
-        css={{
-          border: "1px solid #7007",
-          padding: "0.5em",
-          textAlign: "center",
-          background: "#fff1",
-          fontSize: "2em",
-          margin: "0.5em",
-        }}
-      >
-        {count}
-      </div>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-    </div>
-  );
-};
-
-DummyAppV2Component.displayName = "DummyAppV2Component";
-
-class DummyAppV2 extends foundry.applications.api.ApplicationV2<void> {
+export class DummyAppV2 extends foundry.applications.api.ApplicationV2<void> {
   // STATICS
   static DEFAULT_OPTIONS: RecursivePartial<
     Omit<foundry.applications.types.ApplicationConfiguration, "uniqueId">
   > = {
     ...foundry.applications.api.ApplicationV2.DEFAULT_OPTIONS,
-    classes: ["document-sheet"],
+    // classes: ["document-sheet"],
     position: {
       height: 100,
       width: 200,
@@ -73,28 +46,18 @@ class DummyAppV2 extends foundry.applications.api.ApplicationV2<void> {
 
   // _renderHTML is the semantically appropriate place to render updates to the
   // HTML of the app.
-  override async _renderHTML() {
+  override _renderHTML() {
     console.log("DummyAppV2._renderHTML");
 
     this.reactRoot?.render(
-      <DummyAppV2Component>
+      <DummyComponent>
         <div css={{ fontSize: "2em" }}>Hello from React</div>
-      </DummyAppV2Component>,
+      </DummyComponent>,
     );
+
+    return Promise.resolve();
   }
 
   // XXX This override will be optional in P3
   override _replaceHTML(result: any, content: HTMLElement, options: any) {}
-}
-
-export function makeDummyAppV2() {
-  Hooks.once("ready", () => {
-    const app = new DummyAppV2({
-      position: {
-        height: 300,
-        width: 400,
-      },
-    });
-    app.render(true);
-  });
 }

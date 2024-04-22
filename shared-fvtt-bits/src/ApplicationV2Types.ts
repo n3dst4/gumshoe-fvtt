@@ -63,16 +63,18 @@ declare global {
           // methods
 
           render(
-            options:
+            options?:
               | boolean
               | Partial<foundry.applications.types.ApplicationRenderOptions>,
             _options?: Partial<foundry.applications.types.ApplicationRenderOptions>,
           ): Promise<ApplicationV2>;
 
+          // return type is not what foundry docs say, but in fact you do not
+          // need to return anything
           _renderHTML(
             context: any,
             options: foundry.applications.types.ApplicationRenderOptions,
-          ): Promise<TRenderResult>;
+          ): Promise<TRenderResult> | void;
 
           _replaceHTML(
             result: TRenderResult,
@@ -126,6 +128,9 @@ declare global {
           >;
 
           parseCSSDimension(style: string, parentDimension: number): number;
+        }
+        export class DocumentSheetV2<TDocument> extends ApplicationV2 {
+          document: TDocument;
         }
       }
 

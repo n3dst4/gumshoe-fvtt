@@ -18,7 +18,10 @@ import { Translate } from "../Translate";
 
 type MwItemSheetProps = {
   item: InvestigatorItem;
-  application: ItemSheet;
+  application:
+    | ItemSheet
+    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+    | foundry.applications.api.DocumentSheetV2<InvestigatorItem>;
 };
 
 export const MwItemSheet: React.FC<MwItemSheetProps> = ({
@@ -91,6 +94,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
       {/* Image */}
       <ImagePickle
         subject={item}
+        // @ts-expect-error yikes
         application={application}
         css={{
           gridArea: "image",

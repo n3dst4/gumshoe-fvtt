@@ -8,7 +8,10 @@ import { NPCSheetSimple } from "./NPCSheetSimple";
 
 type NPCSheetProps = {
   actor: InvestigatorActor;
-  foundryApplication: ActorSheet;
+  foundryApplication:
+    | ActorSheet
+    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+    | foundry.applications.api.DocumentSheetV2<InvestigatorActor>;
 };
 
 export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
@@ -18,7 +21,8 @@ export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
   const user = game.user;
   const myLevel = user ? actor.getUserLevel(user) ?? 0 : 0;
 
-  if (myLevel === CONST.DOCUMENT_PERMISSION_LEVELS.LIMITED) {
+  // @ts-expect-error types still have DOCUMENT_PERMISSION_LEVELS
+  if (myLevel === CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED) {
     return (
       <NPCSheetSimple actor={actor} foundryApplication={foundryApplication} />
     );

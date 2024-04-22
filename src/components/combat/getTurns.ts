@@ -20,7 +20,8 @@ export function getTurns(combat: Combat) {
 
     // Prepare turn data
     const resource =
-      combatant.permission >= CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER
+      // @ts-expect-error types still have DOCUMENT_PERMISSION_LEVELS
+      combatant.permission >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER
         ? combatant.resource
         : null;
 

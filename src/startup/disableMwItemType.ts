@@ -13,18 +13,21 @@ function mwItemOnOrOff() {
   if (settings.mwUseAlternativeItemTypes.get()) {
     if (oldMwItemTypelabel !== null && oldMwItemIndex !== null) {
       CONFIG.Item.typeLabels["mwItem"] = oldMwItemTypelabel;
-      game.system.documentTypes.Item.splice(oldMwItemIndex, 0, "mwItem");
+      // @ts-expect-error game.documentTypes exists
+      game.documentTypes.Item.splice(oldMwItemIndex, 0, "mwItem");
       oldMwItemTypelabel = null;
       oldMwItemIndex = null;
     }
   } else {
     const label = CONFIG.Item.typeLabels["mwItem"];
-    const index = game.system.documentTypes.Item.indexOf("mwItem");
+    // @ts-expect-error game.documentTypes exists
+    const index = game.documentTypes.Item.indexOf("mwItem");
     if (index !== -1) {
       oldMwItemTypelabel = label;
       delete CONFIG.Item.typeLabels["mwItem"];
       oldMwItemIndex = index;
-      game.system.documentTypes.Item.splice(index, 1);
+      // @ts-expect-error game.documentTypes exists
+      game.documentTypes.Item.splice(index, 1);
     }
   }
 }
