@@ -76,7 +76,7 @@
     "vitest": "^1.4.0"
   },
   "dependencies": {
-    "@lumphammer/shared-fvtt-bits": "file:shared-fvtt-bits",
+    "@lumphammer/shared-fvtt-bits": "workspace:^",
     "@monaco-editor/react": "^4.6.0",
     "case": "^1.6.3",
     "d3-ease": "^3.0.1",
@@ -98,8 +98,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "tinymce@5.10.1": "shared-fvtt-bits/patches/tinymce@5.10.1.patch",
-      "@league-of-foundry-developers/foundry-vtt-types@9.280.0": "shared-fvtt-bits/patches/@league-of-foundry-developers__foundry-vtt-types@9.280.0.patch"
+      "tinymce@5.10.1": "packages/shared-fvtt-bits/patches/tinymce@5.10.1.patch",
+      "@league-of-foundry-developers/foundry-vtt-types@9.280.0": "packages/shared-fvtt-bits/patches/@league-of-foundry-developers__foundry-vtt-types@9.280.0.patch"
     }
   },
   "engines": {
