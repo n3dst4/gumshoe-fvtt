@@ -28,7 +28,7 @@ function silly({ log }: TaskArgs) {
   log("silliness");
 }
 
-boot({
+void boot({
   config: {
     rootPath,
     publicPath: "public",

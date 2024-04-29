@@ -1,3 +1,9 @@
+// this entire task is going to stop working because of the switch to leveldb
+// so I cba to fix it
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import chalk from "chalk";
 import { writeFile } from "fs/promises";
 import path from "path";
@@ -22,9 +28,9 @@ export async function buildPackTranslations({
     category: "system.category",
   };
 
-  const itemPacks = manifest.packs.filter((p: any) => p.type === "Item");
+  const itemPacks = manifest.packs?.filter((p) => p.type === "Item");
 
-  for (const pack of itemPacks) {
+  for (const pack of itemPacks ?? []) {
     log(`Processing ${chalk.green(pack.label)}... `);
     const entries: Record<string, any> = {};
 

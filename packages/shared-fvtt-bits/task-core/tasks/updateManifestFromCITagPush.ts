@@ -4,12 +4,12 @@ import { TaskArgs } from "../types";
 
 // if subject is a semver string beginning with a v, remove the v
 const stripInitialv = (subject: string) =>
-  subject.replace(/^v(\d+\.\d+\.\d+.*)/i, (_, ...[match]) => match);
+  subject.replace(/^v(\d+\.\d+\.\d+.*)/i, (_, ...[match]) => match as string);
 
 /**
  * Update the manifest in CI
  */
-export async function updateManifestFromCITagPush({
+export function updateManifestFromCITagPush({
   manifest,
   manifestPath,
   log,
