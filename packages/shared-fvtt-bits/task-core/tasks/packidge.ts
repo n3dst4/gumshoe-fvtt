@@ -3,24 +3,25 @@ import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
 
-import { TaskArgs } from "../types";
-
-type Package = {
-  id: string;
-};
+import { Manifest, TaskArgs } from "../types";
 
 /**
  * create a releasable package
  * (package is a reserved word)
  */
-export async function packidge({ manifest, buildPath, log }: TaskArgs) {
+export async function packidge({
+  manifest,
+  buildPath,
+  log,
+  packagePath = "package",
+}: TaskArgs) {
   return new Promise<void>((resolve, reject) => {
-    const id = (manifest as Package).id;
+    const id = (manifest as Manifest).id;
     // Ensure there is a directory to hold all the packaged versions
-    fs.ensureDirSync("package");
+    fs.ensureDirSync(packagePath);
     // Initialize the zip file
     const zipName = process.env["ZIP_FILE_NAME"] ?? `${id}.zip`;
-    const zipFile = fs.createWriteStream(path.join("package", zipName));
+    const zipFile = fs.createWriteStream(path.join(packagePath, zipName));
     const zip = archiver("zip", { zlib: { level: 9 } });
     zipFile.on("close", () => {
       log(chalk.green(zip.pointer() + " total bytes"));

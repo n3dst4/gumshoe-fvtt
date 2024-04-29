@@ -34,6 +34,7 @@ void boot({
     publicPath: "public",
     manifestName: "system.json",
     buildPath: "build",
+    packagePath: "build_package",
   },
 
   commands: [

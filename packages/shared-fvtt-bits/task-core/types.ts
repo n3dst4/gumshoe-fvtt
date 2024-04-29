@@ -3,6 +3,7 @@ export interface Config {
   publicPath: string;
   manifestName: string;
   buildPath: string;
+  packagePath: string;
 }
 
 export interface TaskArgs extends Config {

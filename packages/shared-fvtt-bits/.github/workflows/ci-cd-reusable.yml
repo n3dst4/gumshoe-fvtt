@@ -16,12 +16,16 @@ on:
         required: false
         type: string
         default: "9"
+      package_path:
+        required: false
+        type: string
+        default: "package"
 
 env:
   MANIFEST_FILE_NAME: ${{ inputs.manifest_file_name }}
   PUBLIC_PATH: ${{ inputs.public_path }}
   PACKAGE_FILE_NAME: ${{ inputs.package_file_name }}
-  PACKAGE_PATH: package
+  PACKAGE_PATH: ${{ inputs.package_path }}
   DOWNLOAD_BASE: "https://github.com/${{github.repository}}/releases/download"
 
 jobs:
