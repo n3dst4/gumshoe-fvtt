@@ -44,11 +44,8 @@
     "@types/d3-ease": "^3.0.2",
     "@types/eslint": "^8.56.8",
     "@types/html-escaper": "^3.0.2",
-    "@types/marked": "^6.0.0",
-    "@types/nanoid": "^3.0.0",
-    "@types/react": "^18.2.70",
+    "@types/react": "^18.3.1",
     "@types/react-dom": "^18.2.22",
-    "@types/stylelint": "^14.0.0",
     "@types/textdiff-create": "^1.0.2",
     "@types/textdiff-patch": "^1.0.2",
     "@types/turndown": "^5.0.4",
@@ -76,7 +73,7 @@
     "vitest": "^1.4.0"
   },
   "dependencies": {
-    "@lumphammer/shared-fvtt-bits": "file:shared-fvtt-bits",
+    "@lumphammer/shared-fvtt-bits": "workspace:^",
     "@monaco-editor/react": "^4.6.0",
     "case": "^1.6.3",
     "d3-ease": "^3.0.1",
@@ -85,7 +82,7 @@
     "json5": "^2.2.3",
     "marked": "^12.0.1",
     "nanoid": "^5.0.7",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-dom": "^18.2.0",
     "react-icons": "^5.1.0",
     "textdiff-create": "^1.1.10",
@@ -98,8 +95,16 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "tinymce@5.10.1": "shared-fvtt-bits/patches/tinymce@5.10.1.patch",
-      "@league-of-foundry-developers/foundry-vtt-types@9.280.0": "shared-fvtt-bits/patches/@league-of-foundry-developers__foundry-vtt-types@9.280.0.patch"
+      "tinymce@5.10.1": "packages/shared-fvtt-bits/patches/tinymce@5.10.1.patch",
+      "@league-of-foundry-developers/foundry-vtt-types@9.280.0": "packages/shared-fvtt-bits/patches/@league-of-foundry-developers__foundry-vtt-types@9.280.0.patch"
+    },
+    "allowedDeprecatedVersions": {
+      "querystring": "*"
+    },
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "meow": "13"
+      }
     }
   },
   "engines": {

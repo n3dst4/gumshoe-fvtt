@@ -5,7 +5,7 @@ import path from "path";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-import { BootArgs, TaskArgs } from "./types";
+import { BootArgs, FoundryConfig, Manifest, TaskArgs } from "./types";
 
 // logging function
 export const log = console.log.bind(console, chalk.green("[task]"));
@@ -25,16 +25,16 @@ function synchronise(
       switch (eventName) {
         case "add":
           log(`File ${affectedPath} has been added`);
-          fs.copy(affectedPath, destPath);
+          fs.copySync(affectedPath, destPath);
           break;
         case "change": {
           log(`File ${affectedPath} has been changed`);
-          fs.copy(affectedPath, destPath);
+          fs.copySync(affectedPath, destPath);
           break;
         }
         case "unlink":
           log(`File ${affectedPath} has been removed`);
-          fs.remove(destPath);
+          fs.removeSync(destPath);
           break;
       }
     });
@@ -44,21 +44,23 @@ function synchronise(
 }
 
 export async function boot({
-  config: { rootPath, publicPath, manifestName, buildPath },
+  config: { rootPath, publicPath, manifestName, buildPath, packagePath },
   commands,
 }: BootArgs) {
   const manifestPath = path.join(publicPath, manifestName);
-  const manifest = JSON.parse((await fs.readFile(manifestPath)).toString());
+  const manifest = JSON.parse(
+    (await fs.readFile(manifestPath)).toString(),
+  ) as Manifest;
 
-  let config, linkDir;
+  let foundryConfig, linkDir;
   try {
-    config = await fs.readJSON("foundryconfig.json");
+    foundryConfig = (await fs.readJSON("foundryconfig.json")) as FoundryConfig;
   } catch (e) {
     log(chalk.magenta("foundryconfig.json not found - assuming CI"));
   }
-  if (config?.dataPath) {
+  if (foundryConfig?.dataPath) {
     const linkRoot = manifestName === "system.json" ? "systems" : "modules";
-    linkDir = path.join(config.dataPath, "Data", linkRoot, manifest.id);
+    linkDir = path.join(foundryConfig.dataPath, "Data", linkRoot, manifest.id);
   }
 
   const finalConfig: TaskArgs = {
@@ -69,10 +71,10 @@ export async function boot({
     linkDir,
     rootPath,
     manifest,
+    packagePath,
     log,
     synchronise,
   };
-  // log(finalConfig);
 
   const proc = yargs(hideBin(process.argv));
   for (const command of commands) {
@@ -86,5 +88,5 @@ export async function boot({
   proc.completion();
   proc.demandCommand(1);
   proc.strict();
-  proc.parse();
+  await proc.parse();
 }

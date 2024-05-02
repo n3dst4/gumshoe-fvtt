@@ -1,5 +1,5 @@
 {
-	"extends": "./shared-fvtt-bits/dotfiles/tsconfig.fvtt.json",
+	"extends": "./packages/shared-fvtt-bits/dotfiles/tsconfig.fvtt.json",
 	"include": ["src", "tasks.ts", "vite.config.ts"],
 	"noEmit": true,
 	"compilerOptions": {

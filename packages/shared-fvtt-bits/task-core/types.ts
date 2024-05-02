@@ -3,16 +3,13 @@ export interface Config {
   publicPath: string;
   manifestName: string;
   buildPath: string;
+  packagePath: string;
 }
 
-export interface TaskArgs {
-  publicPath: string;
-  manifestName: string;
+export interface TaskArgs extends Config {
   manifestPath: string;
-  buildPath: string;
   linkDir: string | undefined;
-  rootPath: string;
-  manifest: any;
+  manifest: Manifest;
   log: (...args: any[]) => void;
   synchronise: (
     srcDirPath: string,
@@ -28,4 +25,27 @@ export type TaskFunction = ((args: TaskArgs) => void | Promise<void>) & {
 export interface BootArgs {
   config: Config;
   commands: TaskFunction[];
+}
+
+export interface PackDefinition {
+  name: string;
+  label: string;
+  system: string;
+  path: string;
+  type: string;
+}
+
+/**
+ * A dumb manifest type which just has the parts we need
+ */
+export interface Manifest {
+  id: string;
+  version: string;
+  packs?: PackDefinition[];
+  download?: string;
+}
+
+export interface FoundryConfig {
+  dataPath: string;
+  url?: string;
 }

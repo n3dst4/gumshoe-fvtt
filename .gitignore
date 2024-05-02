@@ -1,7 +1,7 @@
 node_modules
 foundryconfig.json
 /dist
-package
+build_package
 stats.json
 build
 stats.html

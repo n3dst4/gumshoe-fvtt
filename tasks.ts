@@ -28,12 +28,13 @@ function silly({ log }: TaskArgs) {
   log("silliness");
 }
 
-boot({
+void boot({
   config: {
     rootPath,
     publicPath: "public",
     manifestName: "system.json",
     buildPath: "build",
+    packagePath: "build_package",
   },
 
   commands: [
