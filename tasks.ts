@@ -1,7 +1,7 @@
 #!/usr/bin/env -S sh -c '"`dirname $0`/node_modules/.bin/tsx" "$0" "$@"'
 
 // The above shebang line is a hack to run this under the locally installed
-// ts-node, without having to install it globally. See
+// tsx, without having to install it globally. See
 // https://stackoverflow.com/questions/20095351/shebang-use-interpreter-relative-to-the-script-path
 //
 // tsx is a wrapper around node that allows you to run typescript.
