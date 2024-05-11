@@ -8,6 +8,43 @@
   "esmodules": ["investigator.js"],
   "styles": [],
   "socket": true,
+  "packFolders": [
+    {
+      "name": "GUMSHOE",
+      "sorting": "m",
+      "packs": ["missingAbilitiesNote"],
+      "color": "#7a150a",
+      "folders": [
+        {
+          "name": "PC Abilities",
+          "sorting": "a",
+          "color": "#460c06",
+          "packs": [
+            "pathOfCthulhuAbilities",
+            "niceBlackAgentsAbilities",
+            "nothingToFearAbilities",
+            "pallidStarsAbilities",
+            "srdAbilities",
+            "castingTheRunesAbilities",
+            "esoterroristsAbilities",
+            "moribundWorldAbilities"
+          ]
+        },
+        {
+          "name": "NPC Abilities",
+          "color": "#460c06",
+          "sorting": "a",
+          "packs": ["opponentAbilities", "niceBlackAgentsNPCAbilities"]
+        },
+        {
+          "name": "Equipment",
+          "color": "#460c06",
+          "sorting": "a",
+          "packs": ["srdWeapons"]
+        }
+      ]
+    }
+  ],
   "packs": [
     {
       "name": "pathOfCthulhuAbilities",
@@ -74,16 +111,23 @@
     },
     {
       "name": "esoterroristsAbilities",
-      "label": "Esoterrorists Abilities (built-in)",
+      "label": "Esoterrorists Abilities",
       "system": "investigator",
       "path": "./packs/esoterroristsAbilities.db",
       "type": "Item"
     },
     {
       "name": "moribundWorldAbilities",
-      "label": "Dying Earth (built-in)",
+      "label": "Dying Earth Abilities",
       "system": "investigator",
       "path": "./packs/moribundWorldAbilities.db",
+      "type": "Item"
+    },
+    {
+      "name": "niceBlackAgentsNPCAbilities",
+      "label": "Night's Black Agents NPC Abilities",
+      "system": "investigator",
+      "path": "./packs/niceBlackAgentsNPCAbilities",
       "type": "Item"
     }
   ],
