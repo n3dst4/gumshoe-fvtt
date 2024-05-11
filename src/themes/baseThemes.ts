@@ -3,6 +3,7 @@ import { deltaGroovyTheme } from "./deltaGroovyTheme";
 import { fearTheme } from "./fearTheme";
 import { greenTriangleTheme } from "./greenTriangleTheme";
 import { highContrastTheme } from "./highContrastTheme";
+import { mutantCityBlueTheme } from "./mutantCityBlueTheme";
 import { niceTheme } from "./niceTheme";
 import { niceThemeDark } from "./niceThemeDark";
 import { olderThanMemoryTheme } from "./olderThanMemoryTheme";
@@ -24,6 +25,7 @@ export const baseThemes: { [themeName: string]: ThemeV1 } = {
   antiquarianTheme,
   olderThanMemoryTheme,
   unsafeRealityTheme,
+  mutantCityBlueTheme,
 };
 
 export const reregisterBaseTheme = (name: string, theme: ThemeV1) => {
@@ -31,7 +33,7 @@ export const reregisterBaseTheme = (name: string, theme: ThemeV1) => {
 };
 
 // HMR for themes
-// we can only trigger HMR from the modudule that directly imports the module
+// we can only trigger HMR from the module that directly imports the module
 // being replaced. we call CONFIG.Investigator?.installTheme to replace it in
 // runtime config and then call a (Foundry) hook to notify the (React) useTheme
 // hook about the change.
@@ -52,9 +54,10 @@ if (import.meta.hot) {
         "antiquarianTheme.ts",
         "olderThanMemoryTheme.ts",
         "unsafeRealityTheme.ts",
+        "mutantCityBlueTheme.ts",
       ],
       // keep this list in sync with the exports above.
-      // unfortunately the HMP API is staticaly analysed so we can't do anything
+      // unfortunately the HMR API is staticaly analysed so we can't do anything
       // clever - this *must* be a string literal array in the source code.
       // also this comment should be above the list, but doing so breaks said
       // static analysis.
