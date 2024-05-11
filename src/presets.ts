@@ -92,7 +92,10 @@ export const niceBlackAgentsPreset: PresetV1 = {
   ],
   longNotes: ["Covers", "Network Contacts", "Trust"],
   newPCPacks: [`${systemId}.${packNames.niceBlackAgentsAbilities}`],
-  newNPCPacks: [`${systemId}.${npcPackName}`],
+  newNPCPacks: [
+    `${systemId}.${npcPackName}`,
+    `${systemId}.${packNames.niceBlackAgentsNPCAbilities}`,
+  ],
   useBoost: false,
   useMwStyleAbilities: false,
   mwUseAlternativeItemTypes: false,
