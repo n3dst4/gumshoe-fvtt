@@ -71,3 +71,9 @@ hr {
 button.investigator-secret-hide-reveal-button {
   width: fit-content;
 }
+
+// foundry v12 adds "position: relative" to .directory-item, which breaks our
+// absolutely-positioned combat tracker
+.investigator-combatant-list .directory-item {
+  position: absolute;
+}
