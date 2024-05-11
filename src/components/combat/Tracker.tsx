@@ -289,7 +289,8 @@ export const Tracker: React.FC = () => {
       {/* ACTUAL COMBATANTS, or "turns" in early-medieval foundry-speak */}
       <ol
         id="combat-tracker"
-        className="directory-list"
+        // see investigator-combatant-list in the LESS for why we add this class
+        className="directory-list investigator-combatant-list"
         css={{
           position: "relative",
         }}
