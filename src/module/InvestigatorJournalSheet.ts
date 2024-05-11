@@ -30,7 +30,11 @@ export class InvestigatorJournalSheet extends JournalSheet {
     // classes onto it
     const contentElement = this.element.find(".journal-entry-page");
     // @ts-expect-error sigh
-    const page = this.document.pages.contents[this._getCurrentPage()];
+    const pages = (this.document.pages.contents as JournalEntryPage[]).toSorted(
+      (a, b) => a.sort - b.sort,
+    );
+    // @ts-expect-error sigh
+    const page = pages[this._getCurrentPage()];
     const pageClasses = page.flags[systemId]?.[extraCssClasses] ?? "";
     contentElement.addClass(pageClasses);
 
