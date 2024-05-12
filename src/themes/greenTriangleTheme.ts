@@ -1,13 +1,13 @@
 import { systemId } from "../constants";
+import { averiaLibre } from "./constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
-// import { ThemeV1 } from "./types";
 
 export const greenTriangleTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Green triangle",
   global: `
-    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    ${averiaLibre.importStatement}
     @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@900&family=Big+Shoulders+Stencil+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');
   `,
   largeSheetRootStyle: {
@@ -16,7 +16,7 @@ export const greenTriangleTheme: ThemeV1 = themeFactory({
   smallSheetRootStyle: {
     backgroundImage: `linear-gradient( to right, #fff9,#fff9), url(systems/${systemId}/assets/wallpaper/annie-spratt-xTaOPMa6wAE-unsplash.webp)`,
   },
-  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  bodyFont: averiaLibre.fontFamily,
   displayFont:
     "900 small-caps normal 1.1em 'Big Shoulders Stencil Text', serif",
   logo: {

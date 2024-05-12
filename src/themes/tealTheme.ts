@@ -1,4 +1,5 @@
 import { systemId } from "../constants";
+import { averiaLibre } from "./constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
@@ -7,12 +8,12 @@ export const tealTheme: ThemeV1 = themeFactory({
   displayName: "Teal of Cthulhu",
   global: `
     @import url("https://fonts.googleapis.com/css2?family=Federo&display=swap");
-    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    ${averiaLibre.importStatement}
   `,
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemId}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   },
-  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  bodyFont: averiaLibre.fontFamily,
   displayFont: "normal small-caps normal 1em 'Federo', serif",
   logo: {
     frontTextElementStyle: {

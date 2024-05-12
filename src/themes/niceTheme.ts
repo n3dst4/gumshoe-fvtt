@@ -1,4 +1,5 @@
 import { systemId } from "../constants";
+import { averiaLibre } from "./constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
@@ -8,12 +9,12 @@ export const niceTheme: ThemeV1 = themeFactory({
   global: `
     @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100;200;300;400;500;600;700;800;900&family=Big+Shoulders+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    ${averiaLibre.importStatement}
   `,
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemId}/assets/wallpaper/marjanblan-5Ft4NWTmeJE-unsplash.webp)`,
   },
-  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  bodyFont: averiaLibre.fontFamily,
   displayFont: "normal normal 400 1.2em 'Big Shoulders Text', serif",
   logo: {
     fontScaleFactor: 18,
