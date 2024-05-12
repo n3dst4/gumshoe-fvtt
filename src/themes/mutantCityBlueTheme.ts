@@ -1,30 +1,39 @@
-import { systemId } from "../constants";
+import { averiaLibre } from "./constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
+
+const bg1 = "#e2e3e4";
+const bg2 = "#ececed";
+const accent = "#258";
+const accentTrans = "#2587";
 
 export const mutantCityBlueTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Mutant City Blue",
   global: `
-  @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Playfair:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');    ${averiaLibre.importStatement}
   `,
   largeSheetRootStyle: {
-    backgroundImage: `url("systems/${systemId}/assets/wallpaper/mcb wallpaper.webp")`,
+    backgroundImage: `
+      radial-gradient(closest-side, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%),
+      repeating-linear-gradient(45deg, ${bg1} 0px, ${bg1} 20px, ${bg2} 20px, ${bg2} 40px)
+    `,
   },
-  bodyFont: "16px 'Patrick Hand SC', sans-serif",
-  displayFont: "normal small-caps normal 1em 'Julius Sans One', serif",
+  bodyFont: averiaLibre.fontFamily,
+  displayFont: "normal normal normal 1em 'Russo One', serif",
   logo: {
     frontTextElementStyle: {
-      background: "linear-gradient(135deg, #efb183 0%,#222 30%,#efb183 90%)",
+      background: `repeating-linear-gradient(180deg, ${accentTrans} 0,${accentTrans} 2px, ${accent} 2px, ${accent} 4px)`,
+      // filter: "blur(0.5px)",
       backgroundClip: "text",
     },
     rearTextElementStyle: {
-      textShadow:
-        "2px 0px 1px black, 6px 0px 4px rgba(0,0,0,0.5), -1px 0px 0px rgba(255,255,255,0.5)",
+      // display: "none",
+      textShadow: "2px 0px 1px white, 6px 0px 4px #fff7, -1px 0px 0px #fff7",
     },
     textElementsStyle: {
       // transform: "rotateY(-30deg) rotateZ(-1deg) translateX(-5%)",
+      font: "normal normal normal 1em 'Russo One', serif",
     },
     backdropStyle: {
       perspective: "500px",
@@ -34,7 +43,7 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
     },
   },
   colors: {
-    accent: "#28a",
+    accent,
     accentContrast: "white",
     glow: "#5effff",
     wallpaper: "#ddd",
