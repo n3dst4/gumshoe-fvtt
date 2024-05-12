@@ -1,4 +1,5 @@
 import { systemId } from "../constants";
+import { averiaLibre } from "./constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
@@ -6,9 +7,9 @@ export const niceThemeDark: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Nice Dark Red Agents",
   global: `
-  @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100;200;300;400;500;600;700;800;900&family=Big+Shoulders+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100;200;300;400;500;600;700;800;900&family=Big+Shoulders+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    ${averiaLibre.importStatement}
   `,
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemId}/assets/wallpaper/nice_red_agents.webp)`,
@@ -19,7 +20,7 @@ export const niceThemeDark: ThemeV1 = themeFactory({
   appWindowStyle: {
     boxShadow: "0 0 20px #f00",
   },
-  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  bodyFont: averiaLibre.fontFamily,
   displayFont: "normal normal 400 1.2em 'Big Shoulders Text', serif",
   logo: {
     fontScaleFactor: 18,
@@ -48,9 +49,6 @@ export const niceThemeDark: ThemeV1 = themeFactory({
 
     backgroundSecondary: "#0004",
     backgroundPrimary: "#0007",
-
-    // bgTransDangerPrimary: "rgba(255,128,0,0.2)",
-    // bgTransDangerSecondary: "rgba(255,128,0,0.3)",
 
     backgroundButton: "rgba(255,255,255,0.1)",
     text: "#ccc",

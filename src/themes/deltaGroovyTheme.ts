@@ -1,4 +1,5 @@
 import { systemId } from "../constants";
+import { averiaLibre } from "./constants";
 import { createStarburstGradient, themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
@@ -24,7 +25,7 @@ export const deltaGroovyTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Delta Groovy",
   global: `
-    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    ${averiaLibre.importStatement}
     @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
   `,
   smallSheetRootStyle: {
@@ -47,7 +48,7 @@ export const deltaGroovyTheme: ThemeV1 = themeFactory({
   largeSheetRootStyle: {
     backgroundImage: `url(systems/${systemId}/assets/wallpaper/pulpy_paper.webp)`,
   },
-  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  bodyFont: averiaLibre.fontFamily,
   displayFont: "normal normal normal 1.1em 'Spicy Rice', serif",
   logo: {
     frontTextElementStyle: {
@@ -58,14 +59,12 @@ export const deltaGroovyTheme: ThemeV1 = themeFactory({
       // front style clips weirdly, this stops it showing through
       color: "#fff",
       textShadow:
-        // "0 0 0.3em #fff, " +
         "-0.01em -0.01em 0 #000, " +
         "0.01em 0.01em 0 #000, " +
         "0.1em  0.1em  0 #d22fe5ff, " +
         "0.11em 0.11em 0 #000, " +
         "0.2em 0.2em 0 #e5762fff, " +
         "0.21em 0.21em 0 #000 " +
-        // "0.3em 0.3em 0 #a9c47c" +
         "",
     },
     textElementsStyle: {

@@ -1,5 +1,5 @@
-// import { css } from "@emotion/react";
 import { systemId } from "../constants";
+import { averiaLibre } from "./constants";
 import { themeFactory } from "./functions";
 import { ThemeV1 } from "./types";
 
@@ -7,7 +7,7 @@ export const antiquarianTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Antiquarian",
   global: `
-    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+    ${averiaLibre.importStatement}
     @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');
   `,
   largeSheetRootStyle: {
@@ -15,10 +15,7 @@ export const antiquarianTheme: ThemeV1 = themeFactory({
     backgroundPosition: "center",
     backgroundSize: "cover",
   },
-  // smallSheetRootStyle: {
-  //   backgroundImage: `url(systems/${systemName}/assets/wallpaper/scott-webb-UjupleczBOY-unsplash.webp)`,
-  // },
-  bodyFont: "16px 'Patrick Hand SC', sans-serif",
+  bodyFont: averiaLibre.fontFamily,
   displayFont: "normal small-caps normal 1.1em 'IM Fell English', serif",
   logo: {
     fontScaleFactor: 24,
