@@ -81,6 +81,9 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
         textShadow: `0 0 0.3em ${seed.colors.glow}`,
       },
     },
+    tabSpacerStyle: seed.tabSpacerStyle ?? {
+      width: "0.5em",
+    },
     panelStylePrimary: seed.panelStylePrimary || {
       backgroundColor: seed.colors.backgroundPrimary,
     },
