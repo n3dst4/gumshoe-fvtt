@@ -26,6 +26,7 @@ export const mwItem = "mwItem";
 export const personalDetail = "personalDetail";
 
 // assets
+// all generated through https://game-icons.net/
 export const investigativeAbilityIcon =
   `/systems/${systemId}/assets/icons/magnifying-glass.webp` as const;
 export const generalAbilityIcon =
