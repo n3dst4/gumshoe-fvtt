@@ -9,6 +9,9 @@ const accent = "#005d89";
 const accentTrans = `${accent}77`;
 const backgroundSecondary = "#9992";
 const backgroundPrimary = "#fff7";
+const shadowBase = "#000000";
+const shadow1 = `${shadowBase}17`;
+const shadow2 = `${shadowBase}00`;
 
 export const mutantCityBlueTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
@@ -49,7 +52,7 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
     ...tealTheme.tabStyle,
     border: `1px solid ${accent}`,
     backgroundColor: backgroundSecondary,
-    backgroundImage: "linear-gradient(to top, #3332 0%, #3330 20%)",
+    backgroundImage: `linear-gradient(to top, ${shadow1} 0%, ${shadow1} 10%, ${shadow2} 10%)`,
   },
   tabActiveStyle: {
     ...tealTheme.tabActiveStyle,
@@ -60,6 +63,11 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
     borderBottom: `1px solid ${accent}`,
   },
   panelStylePrimary: {
+    ...tealTheme.panelStylePrimary,
+    border: `1px solid ${accent}`,
+    // borderStyle: "none solid solid solid",
+  },
+  tabContainerStyle: {
     ...tealTheme.panelStylePrimary,
     border: `1px solid ${accent}`,
     borderStyle: "none solid solid solid",

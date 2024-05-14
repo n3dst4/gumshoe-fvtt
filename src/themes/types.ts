@@ -8,6 +8,7 @@ export interface ThemeV1 extends ThemeSeedV1 {
   tabSpacerStyle: CSSObject;
   panelStylePrimary: CSSObject;
   panelStyleSecondary: CSSObject;
+  tabContainerStyle: CSSObject;
 
   colors: ThemeSeedV1["colors"] & {
     bgOpaquePrimary: string;
