@@ -2,6 +2,10 @@ import * as constants from "../constants";
 import { assertGame } from "../functions/utilities";
 import { isSocketHookAction } from "../typeAssertions";
 
+/**
+ * Installs a socket handler that listens for socket messages and calls the
+ * appropriate hook.
+ */
 export function installSocketActionHandler() {
   Hooks.on("ready", () => {
     assertGame(game);

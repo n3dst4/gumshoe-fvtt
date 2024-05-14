@@ -1,5 +1,5 @@
 import * as constants from "../constants";
-import { PickByType, SocketHookAction } from "../types";
+import { PickByType, RequestTurnPassArgs, SocketHookAction } from "../types";
 
 interface NameHaver {
   name: string | null;
@@ -139,7 +139,11 @@ export function renameProperty<T>(
   return result;
 }
 
-export function broadcastHook<T>(hook: string, payload: T) {
+/**
+ * Send out a socket message to all clients, causing them to call the given hook
+ * with the given payload.
+ */
+function broadcastHook<T>(hook: string, payload: T) {
   assertGame(game);
   const socketHookAction: SocketHookAction<T> = {
     hook,
@@ -147,6 +151,16 @@ export function broadcastHook<T>(hook: string, payload: T) {
   };
   game.socket?.emit(constants.socketScope, socketHookAction);
   Hooks.call(hook, payload);
+}
+
+/**
+ * request the GM's client to pass the turn to the given combatant
+ */
+export function requestTurnPass(combatantId: string | null | undefined) {
+  assertGame(game);
+  if (!combatantId) return;
+  const payload: RequestTurnPassArgs = { combatantId };
+  broadcastHook(constants.requestTurnPass, payload);
 }
 
 export const makeLogger = (name: string) =>
