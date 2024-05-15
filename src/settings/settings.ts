@@ -20,14 +20,6 @@ import { personalDetailsValidator } from "./validators/personalDetailsValidator"
 import { statsValidator } from "./validators/statsValidator";
 
 export const settings = {
-  /**
-   * @deprecated
-   */
-  abilityCategories: createSettingString({
-    key: "abilityCategories",
-    name: "Ability categories",
-    default: "Academic,Interpersonal,Technical",
-  }),
   combatAbilities: createSettingArrayOfString({
     key: "combatAbilities",
     name: "Combat abilities",
