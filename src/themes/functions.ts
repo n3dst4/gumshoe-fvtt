@@ -87,7 +87,7 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
     panelStylePrimary: seed.panelStylePrimary || {
       backgroundColor: seed.colors.backgroundPrimary,
     },
-    tabContainerStyle: seed.tabContainerStyle || {
+    tabContentStyle: seed.tabContentStyle || {
       backgroundColor: seed.colors.backgroundPrimary,
     },
     panelStyleSecondary: seed.panelStyleSecondary ||

@@ -67,7 +67,7 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
     border: `1px solid ${accent}`,
     // borderStyle: "none solid solid solid",
   },
-  tabContainerStyle: {
+  tabContentStyle: {
     ...tealTheme.panelStylePrimary,
     border: `1px solid ${accent}`,
     borderStyle: "none solid solid solid",
