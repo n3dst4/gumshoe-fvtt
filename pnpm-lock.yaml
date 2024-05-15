@@ -90,8 +90,8 @@ importers:
         specifier: ^9.280.0
         version: 9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/sprite@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
       '@lumphammer/investigator-fvtt-types':
-        specifier: ^1.12.1
-        version: link:../investigator-fvtt-types
+        specifier: ^1.13.2
+        version: 1.13.2
       '@swc/plugin-emotion':
         specifier: ^2.5.116
         version: 2.5.116
@@ -187,7 +187,7 @@ importers:
         version: 5.2.8(@types/node@18.15.11)(less@4.2.0)
       vite-plugin-checker:
         specifier: ^0.6.4
-        version: 0.6.4(eslint@8.57.0)(meow@13.2.0)(optionator@0.9.3)(stylelint@16.3.1(typescript@5.4.3))(typescript@5.4.3)(vite@5.2.8(@types/node@18.15.11)(less@4.2.0))
+        version: 0.6.4(eslint@8.57.0)(optionator@0.9.3)(stylelint@16.3.1(typescript@5.4.3))(typescript@5.4.3)(vite@5.2.8(@types/node@18.15.11)(less@4.2.0))
       vitest:
         specifier: ^1.4.0
         version: 1.4.0(@types/node@18.15.11)(@vitest/ui@1.4.0)(happy-dom@14.7.1)(less@4.2.0)
@@ -233,7 +233,7 @@ importers:
         version: 9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/sprite@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
       '@lumphammer/investigator-fvtt-types':
         specifier: ^1.12.1
-        version: link:../../../investigator-fvtt-types
+        version: 1.13.2
       '@types/react':
         specifier: ^18.3.0
         version: 18.3.1
@@ -709,6 +709,9 @@ packages:
 
   '@league-of-foundry-developers/foundry-vtt-types@9.280.0':
     resolution: {integrity: sha512-Dv8/+kgAnI2F5snSWcnMnZsgO/87AFyBruflluZkWDbP7Pm5qi32GlNYCDEg7HMKybzyKmgLV2qXMmYPHtCT7w==}
+
+  '@lumphammer/investigator-fvtt-types@1.13.2':
+    resolution: {integrity: sha512-8rzXhXTiaynhAIGxyecOYsB4SU9EH9ZEgISOEK+sRsjImcqrrFCeCuZpPR+YJfg9j2+My2AanY76isLAgZf+JA==}
 
   '@monaco-editor/loader@1.4.0':
     resolution: {integrity: sha512-00ioBig0x642hytVspPl7DbQyaSWRaolYie/UFNjoTdvoKPzo6xrXLhTk9ixgIKcLH5b5vDOjVNiGyY+uDCUlg==}
@@ -3853,6 +3856,10 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  '@lumphammer/investigator-fvtt-types@1.13.2':
+    dependencies:
+      '@lumphammer/shared-fvtt-bits': link:packages/shared-fvtt-bits
+
   '@monaco-editor/loader@1.4.0(monaco-editor@0.45.0)':
     dependencies:
       monaco-editor: 0.45.0
@@ -6907,7 +6914,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-checker@0.6.4(eslint@8.57.0)(meow@13.2.0)(optionator@0.9.3)(stylelint@16.3.1(typescript@5.4.3))(typescript@5.4.3)(vite@5.2.8(@types/node@18.15.11)(less@4.2.0)):
+  vite-plugin-checker@0.6.4(eslint@8.57.0)(optionator@0.9.3)(stylelint@16.3.1(typescript@5.4.3))(typescript@5.4.3)(vite@5.2.8(@types/node@18.15.11)(less@4.2.0)):
     dependencies:
       '@babel/code-frame': 7.22.5
       ansi-escapes: 4.3.2
@@ -6927,7 +6934,6 @@ snapshots:
       vscode-uri: 3.0.7
     optionalDependencies:
       eslint: 8.57.0
-      meow: 13.2.0
       optionator: 0.9.3
       stylelint: 16.3.1(typescript@5.4.3)
       typescript: 5.4.3
