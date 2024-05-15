@@ -54,7 +54,6 @@ export const TabContainer: React.FC<TabContainerProps> = ({
         ".tab-strip": {
           display: "flex",
           flexDirection: "row",
-          gap: "0.5em",
         },
         "input[type=radio]": {
           display: "none",
@@ -69,12 +68,8 @@ export const TabContainer: React.FC<TabContainerProps> = ({
         },
       }}
     >
-      {["foo", "bar"].map<JSX.Element>((x) => (
-        <span key={x} />
-      ))}
-
       <div className="tab-strip">
-        {tabs.map<JSX.Element>(({ id, label }) => {
+        {tabs.map<JSX.Element>(({ id, label }, index) => {
           const htmlId = nanoid();
           return (
             <Fragment key={id}>
@@ -102,6 +97,9 @@ export const TabContainer: React.FC<TabContainerProps> = ({
                   label
                 )}
               </label>
+              {index < tabs.length - 1 && (
+                <div css={theme.tabSpacerStyle}></div>
+              )}
             </Fragment>
           );
         })}
@@ -113,7 +111,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
           position: "relative",
           overflow: "auto",
           padding: "0.5em",
-          ...theme.panelStylePrimary,
+          ...theme.tabContentStyle,
         }}
       >
         {activeTabDef?.content}
