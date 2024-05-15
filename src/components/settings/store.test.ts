@@ -82,7 +82,6 @@ const initialState: State = {
     personalDetails: [],
     showEmptyInvestigativeCategories: false,
     systemMigrationVersion: "",
-    abilityCategories: "",
     shortNotes: [],
     firstRun: true,
     journalMemories: {},

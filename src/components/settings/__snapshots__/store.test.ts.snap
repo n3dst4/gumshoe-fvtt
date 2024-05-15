@@ -130,7 +130,7 @@ exports[`reducer > should apply a preset 1`] = `
       "migrationFlags": Object {
         "actor": Object {},
         "item": Object {},
-@@ -61,20 +63,40 @@
+@@ -61,19 +63,39 @@
         "world": Object {},
       },
       "useTurnPassingInitiative": false,
@@ -170,7 +170,6 @@ exports[`reducer > should apply a preset 1`] = `
 +     ],
       "showEmptyInvestigativeCategories": false,
       "systemMigrationVersion": "",
-      "abilityCategories": "",
       "shortNotes": Array [],
       "firstRun": true,
       "journalMemories": Object {},

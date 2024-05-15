@@ -1,5 +1,4 @@
 {
-  "abilityCategories": "Academic,Interpersonal,Technical",
   "combatAbilities": ["Scuffling", "Shooting"],
   "defaultThemeName": "pallidTheme",
   "generalAbilityCategories": ["General"],
