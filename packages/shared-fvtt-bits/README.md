@@ -3,9 +3,10 @@
 Common parts to be used across Foundry VTT modules and systems
 
 - [@lumphammer/shared-fvtt-bits](#lumphammershared-fvtt-bits)
-  - [Installation - TLDR version](#installation---tldr-version)
+  - [Installation](#installation)
+    - [Optional steps](#optional-steps)
   - [Tour Guide](#tour-guide)
-  - [Installation - the long version](#installation---the-long-version)
+  - [Architectural notes](#architectural-notes)
     - [About pnpm](#about-pnpm)
   - [Why subrepo, not subtree or submodule?](#why-subrepo-not-subtree-or-submodule)
   - [Adding dependencies](#adding-dependencies)
@@ -15,28 +16,63 @@ Common parts to be used across Foundry VTT modules and systems
     - [Huge long list of type errors](#huge-long-list-of-type-errors)
 
 
-## Installation - TLDR version
+## Installation
 
 Install [`git-subrepo`](https://github.com/ingydotnet/git-subrepo) if you don't already have it.
 
-Run:
+Create the subrepo:
 
 ```sh
-git subrepo clone git@github.com:n3dst4/shared-fvtt-bits.git shared-fvtt-bits
-pnpm add file:shared-fvtt-bits
+git subrepo clone git@github.com:n3dst4/shared-fvtt-bits.git packages/shared-fvtt-bits
 ```
 
-Optional:
+Create a `pnpm-workspace.yaml` file if you don't already have one. Contents:
 
-* Copy `pnpm.patchedDependencies` from `package.json` into your project (altering the paths to point into this folder).
-* Create your `tsconfig.json` extending the one from `dotfiles`.
-    ```json
-    {
-	    "extends": "./shared-fvtt-bits/dotfiles/tsconfig.json",
-	    "include": ["src"],
-    }
-    ```
-* Check out the `dotfiles` and symlink or reference them from you project root.
+```yaml
+packages:
+  - 'packages/*'
+```
+
+Create a `.npmrc` file if you don't already have one. Contents:
+
+```
+ignore-workspace-root-check=true
+```
+
+(This allows you to install packages into your root project without having to
+add -w to every install command.)
+
+Install the package into your project:
+
+```sh
+pnpm add @lumphammer/shared-fvtt-bits --workspace
+```
+
+### Optional steps
+
+Copy `pnpm.patchedDependencies` from `package.json` into your project (altering the paths to point into this folder).
+
+Create your `tsconfig.json` extending the one from `dotfiles`.
+
+```json
+{
+  "extends": "./shared-fvtt-bits/dotfiles/tsconfig.json",
+  "include": ["src"],
+}
+```
+
+Similarly, your .eslintrc.cjs should extend the one from `dotfiles`:
+
+```js
+module.exports = {
+  extends: ["./packages/shared-fvtt-bits/dotfiles/.eslintrc.cjs"],
+  // whatever other config you need for your project
+};
+```
+
+Symlink `dotfiles/.prettierrc.json` into your project root.
+
+Check out the `dotfiles` and symlink or reference them from you project root.
 
 ## Tour Guide
 
@@ -49,7 +85,7 @@ This repo a a stash for anything that might be useful to shared between FVTT pro
 `dotfiles` is for tool configs that can be usefully shared between projects.
 
 
-## Installation - the long version
+## Architectural notes
 
 This package is not published on npm. You could I *guess* install it as a git or github dependency, but the chief intent is that you will incorporate it into your project as [git subrepo](https://github.com/ingydotnet/git-subrepo).
 
@@ -67,13 +103,7 @@ To break that command down:
 * `git@github.com:n3dst4/shared-fvtt-bits.git` is the url of the new remote (there's no need to manually set up a remote.)
 * `shared-fvtt-bits` is the name of the folder we want to clone into.
 
-Now we need to tell pnpm "install" it into our project. We could just refer to it by path, e.g. `import {foo} from '../../subtrees/shared-fvtt-bits/foo'`, but that causes chaos with dependency management.
-
-```sh
-pnpm add file:shared-fvtt-bits
-```
-
-Using the `file:` protocol means that pnpm will work out the dependencies for you.
+Now we need to tell pnpm "install" it into our project. We could just refer to it by path, e.g. `import {foo} from '../../subtrees/shared-fvtt-bits/foo'`, but that causes chaos with dependency management. We use the workspace protocol because it's the best fit for us. We get the whole package symlinked in to our node_modules so changes are immediately visible etc.
 
 ### About pnpm
 
@@ -81,19 +111,11 @@ I use [pnpm](https://pnpm.io/) for dependency management. I like it because it's
 
 (As a side note, I'm also super excited about [bun](https://bun.sh/) for dependency management and a bunch of other things, but as of right now (2024-03)it's not ready for primetime.)
 
-Technically, pnpm is just one package manager. You could use another package manager for your own project, and still use this package, but you'll need to work out dependency management for yourself in that case.
+Technically, pnpm is just one package manager. You could use another package manager for your own project, and still use this package, but you'll need to work out the details for yourself in that case.
 
 My intent is to use pnpm for dependency management everywhere. There is a checked-in pnpm-lock.yaml file, for example.
 
-A key feature is how pnpm handles `file:` dependencies -  see https://pnpm.io/cli/link#whats-the-difference-between-pnpm-link-and-using-the-file-protocol.
-
-npm handles `file:` dependencies similarly-ish. npm will symlink the dependency and install its sub-dependencies in the main project. From a quick test just now, it installed `archiver`, `chalk`, and `fs-extra` in the main project, and it ALSO installed `chalk` in the `shared-fvtt-bits/node_modules` folder because it had a different version requirement to something else that was installed in the main project. So I guess `npm` would be usable for our purposes. `npm i` took 3m from a cold cache, 8s from warm.
-
-yarn just copies the dependency into `node_modules` without packaging, but their docs promise that will change in future (https://yarnpkg.com/protocol/file). The fact that it *copies* the dependency into `node_modules` means that changes to the source are not reflected in your project until you run `yarn` again. This is a deal-breaker for our purposes. Yarn took 3m from a cold cache, 4s from warm.
-
-pnpm hard-links the dependency into `node_modules`, which is great because you can make changes to the source and they are instantly reflected in your project, like with npm. **With the exception** that pnpm hardlinks each file individually, so if you **add** a file, you need to re-run `pnpm install` in your project.
-
-TL;DR: npm and pnpm will both work, I am using and therefore testing pnpm and I'm checking in pnpm-lock.yaml. Yarn handles file: dependencies differently and will be annoying if you want to make subtree contributions from your main project, which is the whole point of using subtree.
+`npm` and `yarn` can both handle workspace setups these days, but `pnpm` is what I'm using.
 
 
 ## Why subrepo, not subtree or submodule?
