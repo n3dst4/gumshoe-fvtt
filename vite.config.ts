@@ -1,5 +1,5 @@
 /// <reference types="vitest" />
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import fs from "fs";
 import path from "path";
 import type { HttpProxy, PluginOption } from "vite";
@@ -8,6 +8,12 @@ import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
 
 import { id as name } from "./public/system.json";
+
+const ReactCompilerConfig = {};
+
+const preambleJS = react.preambleCode.replace("__BASE__", `/systems/${name}/`);
+const preambleHtml =
+  '\n<script type="module">\n' + preambleJS + "\n</script>\n";
 
 /**
  * Absolute shenanigans because of this Vite isue:
@@ -55,15 +61,15 @@ const port = 40000;
 // https://github.com/vitejs/vite-plugin-react-swc/blob/21eef9eefd7ff3d46dc0a3132dac83d9bb49f980/src/index.ts
 // if it breaks with a future @vitejs/vite-plugin-react-swc update, we'll need
 // to update it or change behaviour to match the upstream.
-const preambleCode = `
-  import { injectIntoGlobalHook } from "__PATH__";
-  injectIntoGlobalHook(window);
-  window.$RefreshReg$ = () => {};
-  window.$RefreshSig$ = () => (type) => type;`;
-const preambleHtml =
-  '\n<script type="module">\n' +
-  preambleCode.replace("__PATH__", `/systems/${name}/@react-refresh`) +
-  "\n</script>\n";
+// const preambleCode = `
+//   import { injectIntoGlobalHook } from "__PATH__";
+//   injectIntoGlobalHook(window);
+//   window.$RefreshReg$ = () => {};
+//   window.$RefreshSig$ = () => (type) => type;`;
+// const preambleHtml =
+//   '\n<script type="module">\n' +
+//   preambleCode.replace("__PATH__", `/systems/${name}/@react-refresh`) +
+//   "\n</script>\n";
 const headTag = "<head>";
 
 const config = defineConfig(({ mode }) => {
@@ -185,14 +191,12 @@ const config = defineConfig(({ mode }) => {
     plugins: [
       react({
         jsxImportSource: "@emotion/react",
-        plugins: [
-          [
-            "@swc/plugin-emotion",
-            {
-              autoLabel: "always",
-            },
+        babel: {
+          plugins: [
+            "@emotion/babel-plugin",
+            ["babel-plugin-react-compiler", ReactCompilerConfig],
           ],
-        ],
+        },
       }),
       // don't run checker in test mode, because it's slow and we are checking
       // types and linting elsewhere. Also there's a weird interaction where
