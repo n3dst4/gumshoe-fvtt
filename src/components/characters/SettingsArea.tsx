@@ -17,6 +17,8 @@ type SettingAreaProps = {
   actor: InvestigatorActor;
 };
 
+const settingsUseTurnPassingInitiative = settings.useTurnPassingInitiative;
+
 export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
   assertGame(game);
   assertPCActor(actor);
@@ -67,7 +69,7 @@ export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
           </select>
         </GridField>
 
-        {settings.useTurnPassingInitiative.get() && (
+        {settingsUseTurnPassingInitiative.get() && (
           <GridField label="Number of turns">
             <AsyncNumberInput
               value={actor.system.initiativePassingTurns}

@@ -31,6 +31,10 @@ type NPCSheetFullProps = {
     | foundry.applications.api.DocumentSheetV2<InvestigatorActor>;
 };
 
+const settingsUseMwInjuryStatus = settings.useMwInjuryStatus;
+const settingsUseNpcCombatBonuses = settings.useNpcCombatBonuses;
+const settingsUseTurnPassingInitiative = settings.useTurnPassingInitiative;
+
 export const NPCSheetFull = ({
   actor,
   foundryApplication,
@@ -98,7 +102,7 @@ export const NPCSheetFull = ({
           <Translate>Full Refresh</Translate>
         </button>
 
-        {settings.useMwInjuryStatus.get() && (
+        {settingsUseMwInjuryStatus.get() && (
           <div css={{ marginBottom: "0.5em" }}>
             <MwInjuryStatusWidget
               status={actor.getMwInjuryStatus()}
@@ -110,7 +114,7 @@ export const NPCSheetFull = ({
         {/* Stats */}
         <hr />
         {/* SotS NPC Combat bonus */}
-        {settings.useNpcCombatBonuses.get() && isNPCActor(actor) && (
+        {settingsUseNpcCombatBonuses.get() && isNPCActor(actor) && (
           <Fragment>
             <h3 css={{ gridColumn: "start / end" }}>
               <Translate>Combat bonus</Translate>
@@ -144,7 +148,7 @@ export const NPCSheetFull = ({
           value={actor.getInitiativeAbility()}
           onChange={actor.setInitiativeAbility}
         />
-        {settings.useTurnPassingInitiative.get() && (
+        {settingsUseTurnPassingInitiative.get() && (
           <Fragment>
             <h4 css={{ width: "8em" }}>
               <Translate>Number of turns</Translate>

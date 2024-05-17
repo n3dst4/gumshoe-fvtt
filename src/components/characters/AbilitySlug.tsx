@@ -9,6 +9,8 @@ type AbilitySlugProps = {
   ability: InvestigatorItem;
 };
 
+const settingUseBoost = settings.useBoost;
+
 export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
   assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
@@ -20,7 +22,7 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
     },
     [app],
   );
-  const boost = settings.useBoost.get() && ability.getBoost();
+  const boost = settingUseBoost.get() && ability.getBoost();
 
   return (
     <a

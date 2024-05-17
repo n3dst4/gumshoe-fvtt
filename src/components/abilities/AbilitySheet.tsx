@@ -18,13 +18,15 @@ type AbilitySheetProps = {
   application: ItemSheet;
 };
 
+const settingsUseMwStyleAbilities = settings.useMwStyleAbilities;
+
 export const AbilitySheet: React.FC<AbilitySheetProps> = ({
   ability,
   application,
 }) => {
   const isGeneral = isGeneralAbilityItem(ability);
 
-  const useMwStyleAbilities = settings.useMwStyleAbilities.get();
+  const useMwStyleAbilities = settingsUseMwStyleAbilities.get();
 
   return (
     <ItemSheetFramework
@@ -51,7 +53,7 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
             <AbilityTest ability={ability} />
           )}
           <AbilityMainBits ability={ability} />
-          {settings.useMwStyleAbilities.get() && (
+          {settingsUseMwStyleAbilities.get() && (
             <AbilityMwExtraFields ability={ability} />
           )}
         </Fragment>

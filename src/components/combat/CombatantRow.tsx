@@ -14,6 +14,7 @@ interface CombatantRowProps {
   combat: StoredDocument<InvestigatorCombat>;
   index: number;
 }
+const settingsUseTurnPassingInitiative = settings.useTurnPassingInitiative;
 
 export const CombatantRow: React.FC<CombatantRowProps> = ({
   turn,
@@ -30,7 +31,7 @@ export const CombatantRow: React.FC<CombatantRowProps> = ({
     onDoubleClick,
   } = useCombatant(combat, turn.id);
 
-  const turnPassing = settings.useTurnPassingInitiative.get();
+  const turnPassing = settingsUseTurnPassingInitiative.get();
   const active = combat.activeTurnPassingCombatant === turn.id;
   const depleted = turn.passingTurnsRemaining <= 0;
 

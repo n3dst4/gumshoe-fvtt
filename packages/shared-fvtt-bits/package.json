@@ -22,10 +22,11 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-compiler": "0.0.0-experimental-53bb89e-20240515",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-simple-import-sort": "^12.1.0",
-    "react": "^18.3.0",
-    "react-dom": "^18.2.0",
+    "react": "19.0.0-beta-26f2496093-20240514",
+    "react-dom": "19.0.0-beta-26f2496093-20240514",
     "typescript": "^5.4.5"
   },
   "peerDependencies": {
@@ -40,10 +41,11 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-compiler": "0.0.0-experimental-53bb89e-20240515",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-simple-import-sort": "^12.1.0",
-    "react": "^18.3.0",
-    "react-dom": "^18.2.0",
+    "react": "19.0.0-beta-26f2496093-20240514",
+    "react-dom": "19.0.0-beta-26f2496093-20240514",
     "typescript": "^5.4.5"
   },
   "dependencies": {

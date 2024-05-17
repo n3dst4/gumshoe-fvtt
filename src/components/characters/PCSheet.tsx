@@ -45,6 +45,8 @@ interface PCSheetProps {
   foundryApplication: ActorSheet;
 }
 
+const settingsUseMwStyleAbilities = settings.useMwStyleAbilities;
+
 export const PCSheet: React.FC<PCSheetProps> = ({
   actor,
   foundryApplication,
@@ -203,7 +205,7 @@ export const PCSheet: React.FC<PCSheetProps> = ({
           ...theme.panelStylePrimary,
         }}
       >
-        {settings.useMwStyleAbilities.get() && (
+        {settingsUseMwStyleAbilities.get() && (
           <Fragment>
             <button onClick={actor.confirmMw2Refresh}>
               <Translate>2h Refresh</Translate>
@@ -223,7 +225,7 @@ export const PCSheet: React.FC<PCSheetProps> = ({
           <Translate>Full Refresh</Translate>
         </button>
         <hr />
-        {settings.useMwStyleAbilities.get() || (
+        {settingsUseMwStyleAbilities.get() || (
           <Fragment>
             <button onClick={actor.confirm24hRefresh}>
               <Translate>24h Refresh</Translate>
@@ -231,7 +233,7 @@ export const PCSheet: React.FC<PCSheetProps> = ({
             <hr />
           </Fragment>
         )}
-        {settings.useMwInjuryStatus.get() && (
+        {settingsUseMwStyleAbilities.get() && (
           <Fragment>
             <MwInjuryStatusWidget
               status={actor.getMwInjuryStatus()}
@@ -270,7 +272,7 @@ export const PCSheet: React.FC<PCSheetProps> = ({
             {
               id: "abilities",
               label: "Abilities",
-              content: settings.useMwStyleAbilities.get() ? (
+              content: settingsUseMwStyleAbilities.get() ? (
                 <AbilitiesAreaMW actor={actor} />
               ) : (
                 <AbilitiesAreaPlay actor={actor} />

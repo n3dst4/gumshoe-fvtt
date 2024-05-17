@@ -15,6 +15,8 @@ type AbilitiesAreaEditProps = {
   showOcc?: boolean;
 };
 
+const settingsUseMwStyleAbilities = settings.useMwStyleAbilities;
+
 export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
   actor,
   flipLeftRight,
@@ -26,7 +28,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
     actor,
     false,
   );
-  const hideInv = settings.useMwStyleAbilities.get();
+  const hideInv = settingsUseMwStyleAbilities.get();
   const showOcc = showOccProp && !hideInv;
 
   return (

@@ -23,6 +23,9 @@ type AbilityMainBitsProps = {
   ability: InvestigatorItem;
 };
 
+const settingsUseBoost = settings.useBoost;
+const settingsUseMwStyleAbilities = settings.useMwStyleAbilities;
+
 export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
   ability,
 }) => {
@@ -32,7 +35,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     void ability.refreshPool();
   }, [ability]);
 
-  const useBoost = settings.useBoost.get();
+  const useBoost = settingsUseBoost.get();
 
   const isCombatAbility = settings.combatAbilities
     .get()
@@ -76,7 +79,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     [ability?.actor, ability.name],
   );
 
-  const useMwStyleAbilities = settings.useMwStyleAbilities.get();
+  const useMwStyleAbilities = settingsUseMwStyleAbilities.get();
 
   return (
     <InputGrid

@@ -20,6 +20,9 @@ type AbilityConfigProps = {
   ability: InvestigatorItem;
 };
 
+const settingsUseNpcCombatBonuses = settings.useNpcCombatBonuses;
+const settingsUseMwStyleAbilities = settings.useMwStyleAbilities;
+
 export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
   assertGame(game);
   assertAbilityItem(ability);
@@ -126,7 +129,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
           onChange={ability.setMax}
         />
       </GridField>
-      {settings.useNpcCombatBonuses.get() && isGeneralAbilityItem(ability) && (
+      {settingsUseNpcCombatBonuses.get() && isGeneralAbilityItem(ability) && (
         <Fragment>
           <GridField label="Combat bonus">
             <AsyncNumberInput
@@ -213,7 +216,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
           />
         </GridField>
       )}
-      {settings.useMwStyleAbilities.get() && isGeneralAbilityItem(ability) && (
+      {settingsUseMwStyleAbilities.get() && isGeneralAbilityItem(ability) && (
         <GridField label="Refresh group">
           <select
             value={ability.system.mwRefreshGroup}

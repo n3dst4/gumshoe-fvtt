@@ -20,8 +20,14 @@ module.exports = {
     project: true,
     // tsconfigRootDir: __dirname,
   },
-  plugins: ["react", "@typescript-eslint", "simple-import-sort"],
+  plugins: [
+    "react",
+    "@typescript-eslint",
+    "simple-import-sort",
+    "eslint-plugin-react-compiler",
+  ],
   rules: {
+    "react-compiler/react-compiler": "error",
     quotes: ["error", "double", { avoidEscape: true }],
     semi: ["error", "always"],
     "no-use-before-define": "off",
