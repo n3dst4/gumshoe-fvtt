@@ -1,17 +1,29 @@
+import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
+
 import { averiaLibre } from "./constants";
-import { themeFactory } from "./functions";
+import { createBasicTabStyle, themeFactory } from "./functions";
 import { tealTheme } from "./tealTheme";
 import { ThemeV1 } from "./types";
 
 const stripe1 = "#e2e3e4";
 const stripe2 = "#ececed";
-const accent = "#005d89";
-const accentTrans = `${accent}77`;
-const backgroundSecondary = "#9992";
-const backgroundPrimary = "#fff7";
+
 const shadowBase = "#000000";
 const shadow1 = `${shadowBase}17`;
 const shadow2 = `${shadowBase}00`;
+
+const colors: ThemeSeedV1["colors"] = {
+  accent: "#005d89",
+  accentContrast: "white",
+  glow: "#5effff",
+  wallpaper: "#ddd",
+  backgroundSecondary: "#9992",
+  backgroundPrimary: "#fff7",
+  backgroundButton: "rgba(0,0,0,0.1)",
+  text: "#433",
+};
+
+const accentTrans = `${colors.accent}77`;
 
 export const mutantCityBlueTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
@@ -29,7 +41,7 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
   displayFont: "normal normal normal 1em 'Russo One', serif",
   logo: {
     frontTextElementStyle: {
-      background: `repeating-linear-gradient(180deg, ${accentTrans} 0,${accentTrans} 2px, ${accent} 2px, ${accent} 4px)`,
+      background: `repeating-linear-gradient(180deg, ${accentTrans} 0,${accentTrans} 2px, ${colors.accent} 2px, ${colors.accent} 4px)`,
       // filter: "blur(0.5px)",
       backgroundClip: "text",
     },
@@ -49,9 +61,10 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
     },
   },
   tabStyle: {
-    ...tealTheme.tabStyle,
-    border: `1px solid ${accent}`,
-    backgroundColor: backgroundSecondary,
+    ...createBasicTabStyle(colors),
+    color: colors.accent,
+    border: `1px solid ${colors.accent}`,
+    backgroundColor: colors.backgroundSecondary,
     backgroundImage: `linear-gradient(to top, ${shadow1} 0%, ${shadow1} 10%, ${shadow2} 10%)`,
   },
   tabActiveStyle: {
@@ -60,26 +73,17 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
   },
   tabSpacerStyle: {
     ...tealTheme.tabSpacerStyle,
-    borderBottom: `1px solid ${accent}`,
+    borderBottom: `1px solid ${colors.accent}`,
   },
   panelStylePrimary: {
     ...tealTheme.panelStylePrimary,
-    border: `1px solid ${accent}`,
+    border: `1px solid ${colors.accent}`,
     // borderStyle: "none solid solid solid",
   },
   tabContentStyle: {
     ...tealTheme.panelStylePrimary,
-    border: `1px solid ${accent}`,
+    border: `1px solid ${colors.accent}`,
     borderStyle: "none solid solid solid",
   },
-  colors: {
-    accent,
-    accentContrast: "white",
-    glow: "#5effff",
-    wallpaper: "#ddd",
-    backgroundSecondary,
-    backgroundPrimary,
-    backgroundButton: "rgba(0,0,0,0.1)",
-    text: "#433",
-  },
+  colors,
 });
