@@ -1,4 +1,4 @@
-import { ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
+import { CSSObject, ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
 
 import { irid } from "../irid/irid";
 import { ThemeV1 } from "./types";
@@ -16,6 +16,28 @@ const overlay = (baseString: string, layerString: string): string => {
   const result = irid(baseString).blend(layerOpaque, opacity);
   return result.toRGBString();
 };
+
+/**
+ * Generate a basic tab style from a seed.
+ *
+ * This is exposed so that themes can use this and them apply their own
+ * customisations.
+ */
+export function createBasicTabStyle(colors: ThemeSeedV1["colors"]): CSSObject {
+  return {
+    flex: 1,
+    padding: "0.3em",
+    display: "inline-block",
+    textAlign: "center",
+    fontSize: "1.4em",
+    background: colors.backgroundSecondary,
+    borderRadius: "0.2em 0.2em 0 0",
+    color: colors.accent,
+    ":hover": {
+      textShadow: `0 0 0.3em ${colors.glow}`,
+    },
+  };
+}
 
 /**
  * Turn a ThemeSeed (bare basics for defining a theme) into a fully usable
@@ -68,19 +90,7 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
         textShadow: "none",
       },
     },
-    tabStyle: seed.tabStyle || {
-      flex: 1,
-      padding: "0.3em",
-      display: "inline-block",
-      textAlign: "center",
-      fontSize: "1.4em",
-      background: seed.colors.backgroundSecondary,
-      borderRadius: "0.2em 0.2em 0 0",
-      color: seed.colors.accent,
-      ":hover": {
-        textShadow: `0 0 0.3em ${seed.colors.glow}`,
-      },
-    },
+    tabStyle: seed.tabStyle || createBasicTabStyle(seed.colors),
     tabSpacerStyle: seed.tabSpacerStyle ?? {
       width: "0.5em",
     },
