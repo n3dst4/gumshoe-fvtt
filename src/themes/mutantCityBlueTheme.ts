@@ -68,6 +68,7 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
   },
   tabStyle: {
     ...createBasicTabStyle(colors),
+    fontSize: "1.2em",
     color: colors.accent,
     border: `1px solid ${colors.accent}`,
     backgroundColor: colors.backgroundSecondary,
