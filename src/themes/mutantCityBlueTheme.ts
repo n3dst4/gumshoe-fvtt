@@ -5,7 +5,7 @@ import { createBasicTabStyle, themeFactory } from "./functions";
 import { tealTheme } from "./tealTheme";
 import { ThemeV1 } from "./types";
 
-const stripe1 = "#e2e3e4";
+const stripe1 = "#e2e3e9";
 const stripe2 = "#ececed";
 
 const shadowBase = "#000000";
@@ -29,11 +29,18 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
   schemaVersion: "v1",
   displayName: "Mutant City Blue",
   global: `
-  @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');    ${averiaLibre.importStatement}
+    @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+    ${averiaLibre.importStatement}
   `,
   largeSheetRootStyle: {
+    fontSize: "1.1em",
     backgroundImage: `
-      radial-gradient(closest-side, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%),
+      radial-gradient(
+        farthest-corner,
+        #fffb 0%,
+        #fffb 50%,
+        #fff0 100%
+      ),
       repeating-linear-gradient(45deg, ${stripe1} 0px, ${stripe1} 20px, ${stripe2} 20px, ${stripe2} 40px)
     `,
   },
@@ -62,6 +69,7 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
   },
   tabStyle: {
     ...createBasicTabStyle(colors),
+    fontSize: "1.2em",
     color: colors.accent,
     border: `1px solid ${colors.accent}`,
     backgroundColor: colors.backgroundSecondary,
