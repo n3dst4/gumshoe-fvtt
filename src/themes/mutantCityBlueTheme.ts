@@ -33,6 +33,7 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
     ${averiaLibre.importStatement}
   `,
   largeSheetRootStyle: {
+    fontSize: "1.1em",
     backgroundImage: `
       radial-gradient(
         farthest-corner,
