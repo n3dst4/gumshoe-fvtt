@@ -1,10 +1,19 @@
 # CHANGELOG
 
+## 8.0.0-alpha.1 (2024-05-26)
+
+* **Foundry VTT v12 Support.** This release drops support for v10 and adds support for v12. v11 should continue to work, if you're trapped on that version due to other modules not having updated yet. For those who move to v12, let me know how it goes! (#711)
+* **Compendium packs now live in neatly organised folders.** Now we've dropped v10, the increasing number of compendium packs are now tucked away in folders so they don't clutter up your sidebar so much. (#776)
+* **Replaced Patrick Hand with Averia.** The beloved handwriting font from version 1.0.0 has gone to live on a farm and been replaced with something hopefully more legible. (#778)
+* **BUG FIX: NBA abilities now include Forensic Pathology.** Thanks, @Monkeyboy! (#768)
+* **BUG FIX: Night's Black Agents now includes Aberrance as an NPC ability.** Thanks, @csmacdougall!
+
+
 ## 7.9.0 (2024-04-20)
 
-**BUG FIX**: INVESTIGATOR now works with the [Tokenizer module](https://foundryvtt.com/packages/vtta-tokenizer/) (#706)
-**ENHANCEMENT**: Updated Polish translations for secrets and Moribund World Thanks @Marksjus (#711)
-**ENHANCEMENT**: Tweaked German translations for Night's Black Agents and Trail of Cthulhu. Thanks @Lhun and @Muwak (#712)
+* **BUG FIX**: INVESTIGATOR now works with the [Tokenizer module](https://foundryvtt.com/packages/vtta-tokenizer/) (#706)
+* **ENHANCEMENT**: Updated Polish translations for secrets and Moribund World Thanks @Marksjus (#711)
+* **ENHANCEMENT**: Tweaked German translations for Night's Black Agents and Trail of Cthulhu. Thanks @Lhun and @Muwak (#712)
 
 This will probably be the last release that supports Foundry V10. Foundry V12 is about to enter its testing phase so I want to be sure to support V12 at launch.
 
