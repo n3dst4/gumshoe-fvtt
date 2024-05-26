@@ -26,7 +26,7 @@
     "compile-actions": "ncc build .github/actions/regex-match/src/index.ts -o .github/actions/regex-match/dist",
     "env": "env",
     "pwd": "pwd",
-    "do-release": "./shared-fvtt-bits/scripts/do-release.sh",
+    "do-release": "./packages/shared-fvtt-bits/scripts/do-release.sh",
     "update-legacy-release-branch": "./scripts/update-legacy-release-branch.sh"
   },
   "author": "",
