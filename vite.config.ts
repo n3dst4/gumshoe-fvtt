@@ -178,7 +178,7 @@ const config = defineConfig(({ mode }) => {
       },
       optimizeDeps: {
         // https://stackoverflow.com/a/75922488/212676
-        entries: ["src/index.ts"],
+        entries: ["src/index.ts", "src/components/settings/Settings.tsx"],
       },
     },
 
