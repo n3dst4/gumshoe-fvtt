@@ -54,7 +54,7 @@
     "@typescript-eslint/parser": "^7.3.1",
     "@vercel/ncc": "^0.38.1",
     "@vitejs/plugin-react-swc": "^3.6.0",
-    "@vitest/ui": "^1.4.0",
+    "@vitest/ui": "^1.6.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
@@ -70,7 +70,7 @@
     "typescript": "~5.4.3",
     "vite": "^5.2.8",
     "vite-plugin-checker": "^0.6.4",
-    "vitest": "^1.4.0"
+    "vitest": "^1.6.0"
   },
   "dependencies": {
     "@lumphammer/shared-fvtt-bits": "workspace:^",
