@@ -22,9 +22,11 @@ const obj = {
 describe("moveKeyUp", () => {
   test.each([
     ["b", { b: 2, a: 1, c: 3 }],
-    ["c", { c: 3, a: 1, b: 2 }],
+    ["c", { a: 1, c: 3, b: 2 }],
   ])("move %s up", (key, expected) => {
-    expect(moveKeyUp(obj, key)).toEqual(expected);
+    expect(JSON.stringify(moveKeyUp(obj, key))).toEqual(
+      JSON.stringify(expected),
+    );
   });
   test("move a up", () => {
     expect(() => moveKeyUp(obj, "a")).toThrow();
@@ -36,7 +38,9 @@ describe("moveKeyDown", () => {
     ["b", { a: 1, c: 3, b: 2 }],
     ["a", { b: 2, a: 1, c: 3 }],
   ])("move %s down", (key, expected) => {
-    expect(moveKeyDown(obj, key)).toEqual(expected);
+    expect(JSON.stringify(moveKeyDown(obj, key))).toEqual(
+      JSON.stringify(expected),
+    );
   });
   test("move c up", () => {
     expect(() => moveKeyDown(obj, "c")).toThrow();
