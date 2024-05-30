@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 8.0.0-alpha.1 (2024-05-26)
+## 8.0.0 (2024-05-30)
 
 * **Foundry VTT v12 Support.** This release drops support for v10 and adds support for v12. v11 should continue to work, if you're trapped on that version due to other modules not having updated yet. For those who move to v12, let me know how it goes! (#711)
 * **Compendium packs now live in neatly organised folders.** Now we've dropped v10, the increasing number of compendium packs are now tucked away in folders so they don't clutter up your sidebar so much. (#776)
