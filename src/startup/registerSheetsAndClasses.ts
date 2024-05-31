@@ -23,7 +23,7 @@ export const registerSheetsAndClasses = () => {
   CONFIG.ui.combat = InvestigatorCombatTracker;
 
   // Register custom sheets (if any)
-  // Actors.unregisterSheet("core", ActorSheet);
+  Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(constants.systemId, PCSheetClass, {
     makeDefault: true,
     types: [constants.pc],
