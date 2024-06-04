@@ -1,20 +1,16 @@
 import React from "react";
 
 import { absoluteCover } from "../../absoluteCover";
-import { InputGrid } from "../../inputs/InputGrid";
+// import { InputGrid } from "../../inputs/InputGrid";
 import { TabContainer } from "../../TabContainer";
 import { StatsSettingsEditor } from "./StatsSettingsEditor";
 
 export const StatsSettings: React.FC = () => {
-  const idx = 0;
-
   return (
     <div
       css={{
         ...absoluteCover,
         margin: "1em",
-        // backgroundColor: "rgba(0, 0, 0, 0.5)",
-        col,
       }}
     >
       <TabContainer

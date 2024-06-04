@@ -1,9 +1,11 @@
+import { RouterProvider } from "@tanstack/react-router";
 import React, { useCallback } from "react";
 
 import { settingsSaved } from "../../constants";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
 import { useTheme } from "../../hooks/useTheme";
+import { router } from "../../router";
 import { settings } from "../../settings/settings";
 import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
@@ -109,6 +111,12 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                     id: "misc",
                     label: "Misc",
                     content: <MiscSettings setters={setters} />,
+                  },
+                  {
+                    id: "router",
+                    label: "Router",
+
+                    content: <RouterProvider router={router} />,
                   },
                 ]}
               />

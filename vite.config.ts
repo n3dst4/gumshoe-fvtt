@@ -1,9 +1,10 @@
 /// <reference types="vitest" />
+import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
 import react from "@vitejs/plugin-react-swc";
 import fs from "fs";
 import path from "path";
 import { visualizer } from "rollup-plugin-visualizer";
-import type { HttpProxy, PluginOption } from "vite";
+import type { HttpProxy } from "vite";
 import { defineConfig } from "vite";
 
 import { id as name } from "./public/system.json";
@@ -174,6 +175,14 @@ const config = defineConfig(({ mode }) => {
         template: "treemap",
         filename: "stats/treemap.html",
       }),
+      mode === "test"
+        ? null
+        : TanStackRouterVite({
+            routesDirectory: "./src/routes",
+            generatedRouteTree: "./src/routeTree.gen.ts",
+            routeFileIgnorePrefix: "-",
+            quoteStyle: "double",
+          }),
     ],
   };
 });
