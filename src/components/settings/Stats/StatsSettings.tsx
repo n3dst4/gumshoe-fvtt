@@ -1,7 +1,6 @@
 import React from "react";
 
 import { absoluteCover } from "../../absoluteCover";
-// import { InputGrid } from "../../inputs/InputGrid";
 import { TabContainer } from "../../TabContainer";
 import { StatsSettingsEditor } from "./StatsSettingsEditor";
 
