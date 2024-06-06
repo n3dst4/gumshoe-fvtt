@@ -6,6 +6,7 @@ import React, {
   useContext,
   useMemo,
   useState,
+  useTransition,
 } from "react";
 
 import { ThemeContext } from "../themes/ThemeContext";
@@ -28,12 +29,17 @@ export const TabContainer: React.FC<TabContainerProps> = ({
   defaultTab,
 }) => {
   const [selected, setSelected] = useState(defaultTab);
+  const [optimistic, setOptimistic] = useState(defaultTab);
+  const [pending, startTransition] = useTransition();
   const activeTabDef = useMemo(
     () => tabs.find((t) => t.id === selected),
     [selected, tabs],
   );
   const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setSelected(e.currentTarget.value);
+    setOptimistic(e.currentTarget.value);
+    startTransition(() => {
+      setSelected(e.currentTarget.value);
+    });
   }, []);
 
   const theme = useContext(ThemeContext);
@@ -89,6 +95,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
+                  opacity: pending && id === optimistic ? 0.5 : 1,
                 }}
               >
                 {typeof label === "string" ? (
