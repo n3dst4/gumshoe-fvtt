@@ -17,6 +17,7 @@ type TabDefinition = {
   id: string;
   label: string | JSX.Element;
   content: JSX.Element;
+  translate?: boolean;
 };
 
 type TabContainerProps = {
@@ -75,7 +76,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
       }}
     >
       <div className="tab-strip">
-        {tabs.map<JSX.Element>(({ id, label }, index) => {
+        {tabs.map<JSX.Element>(({ id, label, translate = true }, index) => {
           const htmlId = nanoid();
           return (
             <Fragment key={id}>
@@ -99,7 +100,11 @@ export const TabContainer: React.FC<TabContainerProps> = ({
                 }}
               >
                 {typeof label === "string" ? (
-                  <Translate>{label}</Translate>
+                  translate ? (
+                    <Translate>{label}</Translate>
+                  ) : (
+                    label
+                  )
                 ) : (
                   label
                 )}
