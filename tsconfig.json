@@ -3,6 +3,9 @@
 	"include": ["src", "tasks.ts", "vite.config.ts"],
 	"noEmit": true,
 	"compilerOptions": {
+		"isolatedDeclarations": true,
+		"allowJs": false,
+		"composite": true,
 		// override types to include vite
 		"types": [
 			"@league-of-foundry-developers/foundry-vtt-types",
