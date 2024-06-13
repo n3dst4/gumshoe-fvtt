@@ -8,3 +8,4 @@ stats.html
 stats
 .swc
 tsconfig.vitest-temp.json
+tsconfig.tsbuildinfo
