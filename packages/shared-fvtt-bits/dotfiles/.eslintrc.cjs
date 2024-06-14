@@ -22,19 +22,43 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint", "simple-import-sort"],
   rules: {
+    //
+    //core rules
+    "comma-dangle": ["error", "always-multiline"],
+    "dot-notation": "off",
     quotes: ["error", "double", { avoidEscape: true }],
     semi: ["error", "always"],
     "no-use-before-define": "off",
+    "no-restricted-globals": [
+      "error",
+      {
+        name: "logger",
+        message:
+          "This is a Foundry global which breaks tests.\n" +
+          "Import `systemLogger` from `functions` instead.",
+      },
+    ],
+    "no-useless-constructor": "off",
+    // need to replace this with @typescript-eslint/no-restricted-imports so we
+    // can allow type imports from lodash but this will require some eslint etc
+    // version bumps
+    // "no-restricted-imports": ["error", "lodash"],
+    // typescript-eslint enforces using void to explicitely not await a promise
+    "no-void": "off",
+
+    //
+    // TS
     "@typescript-eslint/no-use-before-define": ["error"],
-    "comma-dangle": ["error", "always-multiline"],
     "@typescript-eslint/no-explicit-any": ["off"],
+    // XXX ?
     "@typescript-eslint/explicit-module-boundary-types": ["off"],
     "@typescript-eslint/no-unused-vars": [
       "error",
       { args: "none", ignoreRestSiblings: true },
     ],
-    "react/prop-types": ["off"],
+    // stylistic
     "@typescript-eslint/no-empty-function": "off",
+
     "@typescript-eslint/no-namespace": ["warn", { allowDeclarations: true }],
     "@typescript-eslint/member-delimiter-style": [
       "error",
@@ -61,23 +85,6 @@ module.exports = {
         },
       },
     ],
-    "react/no-unknown-property": ["error", { ignore: ["css"] }],
-    // need to replace this with @typescript-eslint/no-restricted-imports so we
-    // can allow type imports from lodash but this willr equire some eslint etc
-    // version bumps
-    // "no-restricted-imports": ["error", "lodash"],
-    "no-restricted-globals": [
-      "error",
-      {
-        name: "logger",
-        message:
-          "This is a Foundry global which breaks tests.\n" +
-          "Import `systemLogger` from `functions` instead.",
-      },
-    ],
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
-    "dot-notation": "off",
     "@typescript-eslint/dot-notation": [
       "error",
       // we also have noPropertyAccessFromIndexSignature: true in tsconfig which
@@ -85,8 +92,13 @@ module.exports = {
       // https://typescript-eslint.io/rules/dot-notation#allowindexsignaturepropertyaccess
       { allowIndexSignaturePropertyAccess: true },
     ],
-    // typescript-eslint enforces using void to explicitely not await a promise
-    "no-void": "off",
+
+    //
+    // react
+    "react/prop-types": ["off"],
+    "react/no-unknown-property": ["error", { ignore: ["css"] }],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
   },
   overrides: [
     {
