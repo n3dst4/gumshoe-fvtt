@@ -6,7 +6,10 @@ import { State } from "./types";
 /**
  * Context for settings dispatch funtion
  */
-export const DispatchContext = createContext<React.Dispatch<any>>(() => {});
+export const DispatchContext = createContext<React.Dispatch<any>>(() => {
+  // do nothing if out of context
+  // XXX should throw
+});
 
 /**
  * Context for settings state

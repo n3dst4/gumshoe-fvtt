@@ -11,6 +11,12 @@ export const MagicToolbarContentContext = createContext<MagicToolbarContent>(
 
 export const MagicToolbarRegisterContext =
   createContext<MagicToolbarRegisterContextDataValue>({
-    register: () => {},
-    unregister: () => {},
+    register: () => {
+      // do nothing if out of context
+      // XXX should throw
+    },
+    unregister: () => {
+      // do nothing if out of context
+      // XXX should throw
+    },
   });

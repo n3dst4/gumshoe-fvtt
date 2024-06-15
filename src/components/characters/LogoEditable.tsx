@@ -77,7 +77,13 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
     onBlur: onBlurSubtext,
     contentEditableRef: contentEditableRefSubtext,
     display: displaySubtext,
-  } = useAsyncUpdate(subText || defaultSubText, onChangeSubText || (() => {}));
+  } = useAsyncUpdate(
+    subText || defaultSubText,
+    onChangeSubText ||
+      (() => {
+        // do nothing if no onChangeSubText
+      }),
+  );
 
   return (
     // outer - set the transform origin

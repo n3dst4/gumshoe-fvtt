@@ -1,3 +1,5 @@
+// we're using a lot of empty functions here because we're testing
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { describe, expect, test } from "vitest";
 
 import { getFlaggedMigrations } from "./getFlaggedMigrations";

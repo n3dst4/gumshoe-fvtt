@@ -67,8 +67,9 @@ module.exports = {
       "error",
       { args: "none", ignoreRestSiblings: true },
     ],
-    // stylistic
-    "@typescript-eslint/no-empty-function": "off",
+
+    // this would be enabled via extends: ['plugin:@typescript-eslint/stylistic'],
+    "@typescript-eslint/no-empty-function": "error",
 
     // we need to use global namespaces for league types
     "@typescript-eslint/no-namespace": ["warn", { allowDeclarations: true }],
@@ -106,6 +107,9 @@ module.exports = {
       "error",
       { allowIndexSignaturePropertyAccess: true },
     ],
+
+    // ts-aware version, allows `public` constructor parameters
+    "@typescript-eslint/no-useless-constructor": "error",
 
     // I tried https://typescript-eslint.io/rules/no-unnecessary-condition/ but
     // it causes more problems than it solves - for example indexed access in TS
