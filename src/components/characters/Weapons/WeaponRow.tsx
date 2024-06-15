@@ -104,7 +104,10 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
         weapon,
       });
     } else {
-      return () => {};
+      return () => {
+        // do nothing if there's no ability
+        // XXX should throw
+      };
     }
   }, [ability, spend, weapon, bonusPool]);
   const onAttack = () => {

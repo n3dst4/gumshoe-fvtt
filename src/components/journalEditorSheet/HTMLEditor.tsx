@@ -28,8 +28,6 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
   const monacoRef = useRef<Monaco | null>(null);
   const editorRef = useRef<IStandalonCodeEditor | null>(null);
 
-  function handleEditorWillMount(monaco: Monaco) {}
-
   const doFormat = useCallback(async () => {
     try {
       await editorRef.current?.getAction("editor.action.formatDocument")?.run();
@@ -166,7 +164,6 @@ export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
           defaultLanguage="html"
           defaultValue={page.text.content}
           theme="vs-dark"
-          beforeMount={handleEditorWillMount}
           onMount={handleEditorDidMount}
           onChange={handleChange}
           options={{
