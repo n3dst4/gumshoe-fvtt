@@ -4,9 +4,8 @@ import fs from "fs";
 import path from "path";
 import type { HttpProxy, PluginOption } from "vite";
 import { defineConfig } from "vite";
-// import { visualizer } from "rollup-plugin-visualizer";
-import checker from "vite-plugin-checker";
 
+// import { visualizer } from "rollup-plugin-visualizer";
 import { id as name } from "./public/system.json";
 
 /**
@@ -194,27 +193,6 @@ const config = defineConfig(({ mode }) => {
           ],
         ],
       }),
-      // don't run checker in test mode, because it's slow and we are checking
-      // types and linting elsewhere. Also there's a weird interaction where
-      // *under vitest watch mode only*, eslint-plugin-react throws a zillion
-      // deprecation warnings. See
-      // https://github.com/jsx-eslint/eslint-plugin-react/issues/3602
-      // and
-      // https://typescript-eslint.io/linting/troubleshooting/#the-key-property-is-deprecated-on-type-nodes-use-key-instead-warnings
-      // I can't work out why we don't see these warnings in any other mode
-      // (vite dev, vite built, vitest --run, eslint directly etc.) but the
-      // solution here is to not run checker in test mode.
-      mode === "test" || (process.env["CHECKER"] ?? "").toLowerCase() === "no"
-        ? null
-        : checker({
-            typescript: true,
-            eslint: {
-              lintCommand: `eslint "${path.join(
-                __dirname,
-                "/src/**/*.{ts,tsx}",
-              )}"`,
-            },
-          }),
       // visualizer({
       //   gzipSize: true,
       //   template: "treemap",
