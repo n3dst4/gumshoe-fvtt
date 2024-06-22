@@ -16,7 +16,7 @@ import { CoreSettings } from "./CoreSettings";
 import { EquipmentSettings } from "./Equipment/EquipmentSettings";
 import { useSettingsState } from "./hooks";
 import { MiscSettings } from "./MiscSettings";
-import { RouterExperiment } from "./RouterExperiment/RouterExperiment";
+import { ExampleApp } from "./router/Example";
 import { StatsSettings } from "./Stats/StatsSettings";
 
 type SettingsProps = {
@@ -114,7 +114,7 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                   {
                     id: "router",
                     label: "Router",
-                    content: <RouterExperiment />,
+                    content: <ExampleApp />,
                     translate: false,
                   },
                 ]}
