@@ -1,27 +1,37 @@
 import React from "react";
 
+import { absoluteCover } from "../../absoluteCover";
 import { InputGrid } from "../../inputs/InputGrid";
-import { SettingsGridField } from "../SettingsGridField";
+import { TabContainer } from "../../TabContainer";
 import { StatsSettingsEditor } from "./StatsSettingsEditor";
 
 export const StatsSettings: React.FC = () => {
-  let idx = 0;
+  const idx = 0;
 
   return (
-    <div>
-      <InputGrid
-        css={{
-          flex: 1,
-          overflow: "auto",
-        }}
-      >
-        <SettingsGridField label="PC Stats" index={idx++}>
-          <StatsSettingsEditor which="pcStats" />
-        </SettingsGridField>
-        <SettingsGridField label="NPC Stats" index={idx++}>
-          <StatsSettingsEditor which="npcStats" />
-        </SettingsGridField>
-      </InputGrid>
+    <div
+      css={{
+        ...absoluteCover,
+        margin: "1em",
+        // backgroundColor: "rgba(0, 0, 0, 0.5)",
+        col,
+      }}
+    >
+      <TabContainer
+        defaultTab="pcStats"
+        tabs={[
+          {
+            id: "pcStats",
+            label: "PC Stats",
+            content: <StatsSettingsEditor which="npcStats" />,
+          },
+          {
+            id: "npcStats",
+            label: "NPC Stats",
+            content: <StatsSettingsEditor which="pcStats" />,
+          },
+        ]}
+      />
     </div>
   );
 };

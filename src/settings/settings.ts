@@ -213,6 +213,20 @@ export const settings = {
     default: {},
     exportable: false,
   }),
+
+  useCards: createSettingBoolean({
+    key: "useCards",
+    name: "Use cards?",
+    default: false,
+  }),
+
+  cardCategories: createSetting<Mandatory<PresetV1["cardCategories"]>>()(
+    Object,
+  )({
+    key: "cardCategories",
+    name: "What stats should PCs have?",
+    default: pathOfCthulhuPreset.cardCategories,
+  }),
 };
 
 // -----------------------------------------------------------------------------

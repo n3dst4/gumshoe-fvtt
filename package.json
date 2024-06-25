@@ -39,7 +39,7 @@
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
-    "@lumphammer/investigator-fvtt-types": "^1.13.2",
+    "@lumphammer/investigator-fvtt-types": "github:n3dst4/investigator-fvtt-types#cards-support-types",
     "@swc/plugin-emotion": "^2.5.116",
     "@testing-library/react": "^15.0.2",
     "@testing-library/user-event": "^14.5.2",

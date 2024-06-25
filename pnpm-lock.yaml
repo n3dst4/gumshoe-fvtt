@@ -90,8 +90,8 @@ importers:
         specifier: ^9.280.0
         version: 9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/sprite@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
       '@lumphammer/investigator-fvtt-types':
-        specifier: ^1.13.2
-        version: 1.13.2
+        specifier: github:n3dst4/investigator-fvtt-types#cards-support-types
+        version: https://codeload.github.com/n3dst4/investigator-fvtt-types/tar.gz/b54a99ac83b71e5bcfa9407e0ef4099548eef547
       '@swc/plugin-emotion':
         specifier: ^2.5.116
         version: 2.5.116
@@ -683,6 +683,10 @@ packages:
 
   '@lumphammer/investigator-fvtt-types@1.13.2':
     resolution: {integrity: sha512-8rzXhXTiaynhAIGxyecOYsB4SU9EH9ZEgISOEK+sRsjImcqrrFCeCuZpPR+YJfg9j2+My2AanY76isLAgZf+JA==}
+
+  '@lumphammer/investigator-fvtt-types@https://codeload.github.com/n3dst4/investigator-fvtt-types/tar.gz/b54a99ac83b71e5bcfa9407e0ef4099548eef547':
+    resolution: {tarball: https://codeload.github.com/n3dst4/investigator-fvtt-types/tar.gz/b54a99ac83b71e5bcfa9407e0ef4099548eef547}
+    version: 1.13.2
 
   '@monaco-editor/loader@1.4.0':
     resolution: {integrity: sha512-00ioBig0x642hytVspPl7DbQyaSWRaolYie/UFNjoTdvoKPzo6xrXLhTk9ixgIKcLH5b5vDOjVNiGyY+uDCUlg==}
@@ -3565,6 +3569,10 @@ snapshots:
       - utf-8-validate
 
   '@lumphammer/investigator-fvtt-types@1.13.2':
+    dependencies:
+      '@lumphammer/shared-fvtt-bits': link:packages/shared-fvtt-bits
+
+  '@lumphammer/investigator-fvtt-types@https://codeload.github.com/n3dst4/investigator-fvtt-types/tar.gz/b54a99ac83b71e5bcfa9407e0ef4099548eef547':
     dependencies:
       '@lumphammer/shared-fvtt-bits': link:packages/shared-fvtt-bits
 

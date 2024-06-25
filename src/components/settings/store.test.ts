@@ -85,6 +85,8 @@ const initialState: State = {
     shortNotes: [],
     firstRun: true,
     journalMemories: {},
+    cardCategories: [],
+    useCards: false,
   },
 };
 

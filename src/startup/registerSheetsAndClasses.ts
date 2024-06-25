@@ -46,6 +46,7 @@ export const registerSheetsAndClasses = () => {
       constants.generalAbility,
       constants.mwItem,
       constants.personalDetail,
+      constants.card,
     ],
   });
   Journal.registerSheet("investigator", JournalEditorSheetClass, {

@@ -17,6 +17,7 @@ import {
 import {
   assertAbilityItem,
   assertAnyItem,
+  assertCardItem,
   assertEquipmentItem,
   assertEquipmentOrAbilityItem,
   assertGeneralAbilityItem,
@@ -652,6 +653,11 @@ export class InvestigatorItem extends Item {
   setHideIfZeroRated = async (hideIfZeroRated: boolean) => {
     assertAbilityItem(this);
     await this.update({ system: { hideIfZeroRated } });
+  };
+
+  setActive = async (active: boolean) => {
+    assertCardItem(this);
+    await this.update({ system: { active } });
   };
 
   // ---------------------------------------------------------------------------

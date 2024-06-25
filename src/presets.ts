@@ -76,6 +76,8 @@ export const pathOfCthulhuPreset: Required<PresetV1> = {
     //   fields: {},
     // },
   },
+  useCards: false,
+  cardCategories: [],
 };
 
 export const niceBlackAgentsPreset: PresetV1 = {
@@ -290,6 +292,45 @@ export const esoterroristsPreset: PresetV1 = {
   equipmentCategories: { general: { name: "General", fields: {} } },
 };
 
+export const mutantCityBluesPreset: PresetV1 = {
+  schemaVersion: "v1",
+  displayName: "Mutant City Blues (built-in)",
+  defaultThemeName: "mutantCityBlueTheme",
+  investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
+  generalAbilityCategories: ["General"],
+  combatAbilities: ["Scuffling", "Shooting"],
+  occupationLabel: "Concept",
+  personalDetails: [],
+  longNotes: ["Notes"],
+  newPCPacks: [`${systemId}.${packNames.mutantCityBluesAbilities}`],
+  newNPCPacks: [`${systemId}.${npcPackName}`],
+  useBoost: false,
+  useMwStyleAbilities: false,
+  mwUseAlternativeItemTypes: false,
+  useMwInjuryStatus: false,
+  genericOccupation: "Detective",
+  pcStats: {
+    hitThreshold: {
+      name: "Hit threshold",
+      default: 3,
+    },
+  },
+  npcStats: {
+    hitThreshold: {
+      name: "Hit threshold",
+      default: 3,
+    },
+  },
+  equipmentCategories: { general: { name: "General", fields: {} } },
+  useCards: true,
+  cardCategories: [
+    {
+      id: "stress",
+      name: "Stress",
+    },
+  ],
+};
+
 export const basePresets = {
   pathOfCthulhuPreset,
   niceBlackAgentsPreset,
@@ -298,4 +339,5 @@ export const basePresets = {
   castingTheRunesPreset,
   moribundWorldPreset,
   esoterroristsPreset,
+  mutantCityBluesPreset,
 };

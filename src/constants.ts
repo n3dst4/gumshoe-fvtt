@@ -24,6 +24,7 @@ export const npc = "npc";
 export const party = "party";
 export const mwItem = "mwItem";
 export const personalDetail = "personalDetail";
+export const card = "card";
 
 // assets
 // all generated through https://game-icons.net/
@@ -42,6 +43,7 @@ export const partyIcon =
   `/systems/${systemId}/assets/icons/dark-squad.webp` as const;
 export const personalDetailIcon =
   `/systems/${systemId}/assets/icons/notebook.webp` as const;
+export const cardIcon = `/systems/${systemId}/assets/icons/card.webp` as const;
 
 // packs
 
@@ -55,6 +57,8 @@ export const packNames = {
   moribundWorldAbilities: "moribundWorldAbilities" as const,
   esoterroristsAbilities: "esoterroristsAbilities" as const,
   niceBlackAgentsNPCAbilities: "niceBlackAgentsNPCAbilities" as const,
+  mutantCityBluesAbilities: "mutantCityBluesAbilities" as const,
+  mutantCityBluesNPCAbilities: "mutantCityBluesNPCAbilities" as const,
 };
 
 export const npcPackName = "opponentAbilities";
