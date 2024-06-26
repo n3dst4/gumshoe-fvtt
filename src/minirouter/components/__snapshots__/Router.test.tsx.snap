@@ -1,0 +1,322 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`navigation story > 001 initial state 1`] = `
+<div>
+  <h1>
+    Terrific company website
+  </h1>
+  <a>
+    About
+  </a>
+  <a>
+    Contact
+  </a>
+  <a>
+    Values
+  </a>
+  <a>
+    Product Categories
+  </a>
+  5
+</div>
+`;
+
+exports[`navigation story > 002 about page 1`] = `
+<div>
+  <h1>
+    Terrific company website
+  </h1>
+  <a>
+    About
+  </a>
+  <a>
+    Contact
+  </a>
+  <a>
+    Values
+  </a>
+  <a>
+    Product Categories
+  </a>
+  5
+  <div
+    class="about"
+    data-testid="about-page"
+  >
+    <h2>
+      About
+    </h2>
+    <p>
+      Learn more about our
+    </p>
+    <ul>
+      <li>
+        <a>
+          Values
+        </a>
+      </li>
+      <li>
+        <a>
+          Team
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`navigation story > 003 values page 1`] = `
+<div>
+  <h1>
+    Terrific company website
+  </h1>
+  <a>
+    About
+  </a>
+  <a>
+    Contact
+  </a>
+  <a>
+    Values
+  </a>
+  <a>
+    Product Categories
+  </a>
+  5
+  <div
+    class="about"
+    data-testid="about-page"
+  >
+    <h2>
+      About
+    </h2>
+    <p>
+      Learn more about our
+    </p>
+    <ul>
+      <li>
+        <a>
+          Values
+        </a>
+      </li>
+      <li>
+        <a>
+          Team
+        </a>
+      </li>
+    </ul>
+    <div
+      data-testid="values-page"
+    >
+      <h2>
+        Values
+      </h2>
+      Our values are important to our
+       
+      <a>
+        team
+      </a>
+      and you can
+      <a>
+        contact us
+      </a>
+      about them.
+    </div>
+  </div>
+</div>
+`;
+
+exports[`navigation story > 004 team page 1`] = `
+<div>
+  <h1>
+    Terrific company website
+  </h1>
+  <a>
+    About
+  </a>
+  <a>
+    Contact
+  </a>
+  <a>
+    Values
+  </a>
+  <a>
+    Product Categories
+  </a>
+  5
+  <div
+    class="about"
+    data-testid="about-page"
+  >
+    <h2>
+      About
+    </h2>
+    <p>
+      Learn more about our
+    </p>
+    <ul>
+      <li>
+        <a>
+          Values
+        </a>
+      </li>
+      <li>
+        <a>
+          Team
+        </a>
+      </li>
+    </ul>
+    <div
+      data-testid="team-page"
+    >
+      <h2>
+        Team
+      </h2>
+      Our team is great
+      <a>
+        Alice
+      </a>
+      <a>
+        Bob
+      </a>
+      <a>
+        Carla
+      </a>
+      <a>
+        Home
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`navigation story > 005 alice page 1`] = `
+<div>
+  <h1>
+    Terrific company website
+  </h1>
+  <a>
+    About
+  </a>
+  <a>
+    Contact
+  </a>
+  <a>
+    Values
+  </a>
+  <a>
+    Product Categories
+  </a>
+  5
+  <div
+    class="about"
+    data-testid="about-page"
+  >
+    <h2>
+      About
+    </h2>
+    <p>
+      Learn more about our
+    </p>
+    <ul>
+      <li>
+        <a>
+          Values
+        </a>
+      </li>
+      <li>
+        <a>
+          Team
+        </a>
+      </li>
+    </ul>
+    <div
+      data-testid="team-page"
+    >
+      <h2>
+        Team
+      </h2>
+      Our team is great
+      <a>
+        Alice
+      </a>
+      <a>
+        Bob
+      </a>
+      <a>
+        Carla
+      </a>
+      <a>
+        Home
+      </a>
+    </div>
+    <div>
+      <h2>
+        Alice
+         is a member of our team
+      </h2>
+      <a>
+        back to team
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`navigation story > 006 home page 1`] = `
+<div>
+  <h1>
+    Terrific company website
+  </h1>
+  <a>
+    About
+  </a>
+  <a>
+    Contact
+  </a>
+  <a>
+    Values
+  </a>
+  <a>
+    Product Categories
+  </a>
+  5
+</div>
+`;
+
+exports[`navigation story > 007 contact page 1`] = `
+<div>
+  <h1>
+    Terrific company website
+  </h1>
+  <a>
+    About
+  </a>
+  <a>
+    Contact
+  </a>
+  <a>
+    Values
+  </a>
+  <a>
+    Product Categories
+  </a>
+  5
+  <div
+    data-testid="contact-page"
+  >
+    <h2>
+      Contact us
+    </h2>
+    <a>
+      Email us
+    </a>
+    <a>
+      Phone us
+    </a>
+    <a>
+      Social media
+    </a>
+  </div>
+</div>
+`;

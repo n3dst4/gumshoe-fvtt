@@ -11,10 +11,10 @@ export type AnyDirection = Direction<string, any>;
  * A Step is a concrete piece of the current state of the router. It contains
  * a direction, and the params (if any) that go with it.
  */
-export interface Step<TDirection extends AnyDirection> {
+export type Step<TDirection extends AnyDirection> = {
   direction: TDirection;
   params: TDirection extends Direction<any, infer TParams> ? TParams : never;
-}
+};
 
 /**
  * A general type that can accept any Step<...>
@@ -38,7 +38,7 @@ export type DirectionType = AnyDirection | LogicalDirection;
  * Each layer of trhe router is wrapped in a context. This is the value of that
  * context.
  */
-export interface NavigationContextValue {
+export type NavigationContextValue = {
   /**
    * Change the state of the router. This is the only way to change the current
    * state of the router.
@@ -50,7 +50,7 @@ export interface NavigationContextValue {
   currentStep: AnyStep | undefined;
   parentSteps: AnyStep[];
   childSteps: AnyStep[];
-}
+};
 
 /**
  * Convenience type for the props of a Route implementation
@@ -64,7 +64,7 @@ export type PropsWithChildrenAndDirection<T = unknown> =
  * An Outlet is a bit of context-driven magic that allows you to control
  * rendering child routes. This is the context value that it uses.
  */
-export interface OutletContextValue {
+export type OutletContextValue = {
   register: (id: string, content: React.ReactNode) => void;
   unregister: (id: string) => void;
-}
+};

@@ -7,9 +7,9 @@ import { useOutletRoute } from "./outlets/useOutletRoute";
 import { AnyDirection, AnyStep, NavigationContextValue } from "./types";
 import { useNavigationContext } from "./useNavigationContext";
 
-interface UseRouteArgs extends PropsWithChildren {
+type UseRouteArgs = PropsWithChildren<{
   direction: AnyDirection;
-}
+}>;
 
 export function useRoute({ direction, children }: UseRouteArgs) {
   const outerContext = useNavigationContext();
@@ -19,15 +19,29 @@ export function useRoute({ direction, children }: UseRouteArgs) {
         const isUp = to === "up";
         const toArray = isUp ? [] : Array.isArray(to) ? to : [to];
         let rootTo: AnyStep[];
+
+        // if we're navigating from the root, this is easy
         if (from === "root") {
           rootTo = toArray;
         } else if (from === "here") {
+          // if we're navigating from "here", we nned to do  some array gluing
           rootTo = [
             ...outerContext.parentSteps,
             ...(outerContext.currentStep ? [outerContext.currentStep] : []),
             ...toArray,
           ];
+        } else if (from.id === outerContext.currentStep?.direction.id) {
+          // if we're navigating from a particular direction, but that direction
+          // is the current step, we can just use the parent steps and add the
+          // "to" array
+          rootTo = [
+            ...outerContext.parentSteps,
+            outerContext.currentStep,
+            ...toArray,
+          ];
         } else {
+          // otherwise if we're navigating from a parent step we need to do
+          // a bit more surgery
           const fromIndex = outerContext.parentSteps.findLastIndex(
             (step) => step.direction.id === from.id,
           );
