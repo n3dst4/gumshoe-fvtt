@@ -6,7 +6,7 @@ import { useNavigationContext } from "../useNavigationContext";
 type LinkProps = React.RefAttributes<HTMLAnchorElement> &
   PropsWithChildren<{
     from?: DirectionType;
-    to: AnyStep | AnyStep[] | "up";
+    to?: AnyStep | AnyStep[] | "up";
   }>;
 
 // thanks to TS 5.5 this is a type guard even without the `: x is y` syntax
@@ -22,7 +22,7 @@ function isDirection(x: DirectionType) {
  * @param to The step or steps to link to, or "up" to go up a level.
  */
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ children, from = "here", to, ...otherProps }, ref) => {
+  ({ children, from = "here", to = [], ...otherProps }, ref) => {
     const { navigate, parentSteps, currentStep } = useNavigationContext();
     if (isDirection(from)) {
       if (
