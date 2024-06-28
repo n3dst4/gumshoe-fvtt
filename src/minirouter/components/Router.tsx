@@ -16,10 +16,10 @@ export const Router: React.FC<PropsWithChildren> = ({ children }) => {
             newPath = toArray;
           } else {
             const fromIndex = currentPath.findLastIndex(
-              (step) => step.direction.id === from.id,
+              (step) => step.direction === from,
             );
             if (fromIndex === -1) {
-              throw new Error(`Cannot navigate from ${from.id}`);
+              throw new Error(`Cannot navigate from ${from.description}`);
             }
             return [...currentPath.slice(0, fromIndex + 1), ...toArray];
           }

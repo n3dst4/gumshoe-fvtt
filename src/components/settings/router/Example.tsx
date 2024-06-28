@@ -14,10 +14,10 @@ import { SlideInNestedPanelRoute } from "./SlideInNestedPanelRoute";
 
 // Components
 
-const aboutDirection = createDirection("about")();
-const contactDirection = createDirection("contact")();
-const cardsDirection = createDirection("cards")();
-const cardsDetailsDirection = createDirection("cardsDetails")<number>();
+const aboutDirection = createDirection("about");
+const contactDirection = createDirection("contact");
+const cardsDirection = createDirection("cards");
+const cardsDetailsDirection = createDirection<number>("cardsDetails");
 
 const Root: React.FC = () => {
   return (
@@ -77,27 +77,27 @@ const Cards: React.FC = () => {
       <h1>Cards</h1>
       <ul>
         <li>
-          <Link from="here" to={cardsDetailsDirection.go(1)}>
+          <Link from="here" to={cardsDetailsDirection(1)}>
             Card 1
           </Link>
         </li>
         <li>
-          <Link from="here" to={cardsDetailsDirection.go(2)}>
+          <Link from="here" to={cardsDetailsDirection(2)}>
             Card 2
           </Link>
         </li>
         <li>
-          <Link from="here" to={cardsDetailsDirection.go(3)}>
+          <Link from="here" to={cardsDetailsDirection(3)}>
             Card 3
           </Link>
         </li>
         <li>
-          <Link from="here" to={cardsDetailsDirection.go(4)}>
+          <Link from="here" to={cardsDetailsDirection(4)}>
             Card 4
           </Link>
         </li>
         <li>
-          <Link from="here" to={cardsDetailsDirection.go(5)}>
+          <Link from="here" to={cardsDetailsDirection(5)}>
             Card 5
           </Link>
         </li>
@@ -114,13 +114,13 @@ export const ExampleApp: React.FC = () => {
     <Router>
       <h1>Root</h1>
       <div>
-        <Link from="root" to={aboutDirection.go()}>
+        <Link from="root" to={aboutDirection()}>
           [About]
         </Link>{" "}
-        <Link from="root" to={cardsDirection.go()}>
+        <Link from="root" to={cardsDirection()}>
           [Cards]
         </Link>{" "}
-        <Link from="root" to={contactDirection.go()}>
+        <Link from="root" to={contactDirection()}>
           [Contact]
         </Link>{" "}
       </div>

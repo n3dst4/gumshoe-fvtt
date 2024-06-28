@@ -6,11 +6,11 @@ export const DevTools: React.FC = () => {
   const { currentStep, childSteps, parentSteps } = useNavigationContext();
   return (
     <div css={{ padding: "1em", opacity: 0.5 }}>
-      {parentSteps.map((s) => s.direction.id).join("→")}
+      {parentSteps.map((s) => s.direction.description).join("→")}
       {" / "}
-      {currentStep?.direction.id ?? "none"}
+      {currentStep?.direction.description ?? "none"}
       {" / "}
-      {childSteps.map((s) => s.direction.id).join("→")}
+      {childSteps.map((s) => s.direction.description).join("→")}
     </div>
   );
 };

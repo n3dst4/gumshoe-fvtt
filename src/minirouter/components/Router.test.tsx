@@ -46,7 +46,7 @@ describe("single route", () => {
   test("should show content when a link is clicked", async () => {
     const { container } = render(
       <Router>
-        <Link data-testid="link" from="root" to={direction1.go()}></Link>
+        <Link data-testid="link" from="root" to={direction1()}></Link>
         <Route direction={direction1}>
           <p>route</p>
         </Route>

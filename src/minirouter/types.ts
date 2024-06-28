@@ -1,25 +1,29 @@
 import { PropsWithChildren } from "react";
 
-import { Direction } from "./createDirection";
+export type Direction<TParams = void> = {
+  description: string;
+  match: (step: AnyStep | undefined) => step is Step<TParams>;
+} & ((params: TParams) => Step<TParams>);
 
 /**
  * What it says - this type can accept any Direction<...>
  */
-export type AnyDirection = Direction<string, any>;
+export type AnyDirection = Direction<any>;
 
 /**
  * A Step is a concrete piece of the current state of the router. It contains
  * a direction, and the params (if any) that go with it.
  */
-export type Step<TDirection extends AnyDirection> = {
-  direction: TDirection;
-  params: TDirection extends Direction<any, infer TParams> ? TParams : never;
+export type Step<TParams = void> = {
+  direction: AnyDirection;
+  params: TParams;
+  id: string;
 };
 
 /**
  * A general type that can accept any Step<...>
  */
-export type AnyStep = Step<AnyDirection>;
+export type AnyStep = Step<any>;
 
 /**
  * Options for the "from" prop of a Link or the first argument to `navigate`.

@@ -8,21 +8,21 @@ import { Link } from "./Link";
 import { Route } from "./Route";
 import { Router } from "./Router";
 
-const d1 = createDirection("d1")();
-const d2 = createDirection("d2")();
+const d1 = createDirection("d1");
+const d2 = createDirection("d2");
 
 const user = userEvent.setup();
 
 describe("Outside of Router", () => {
   it("throws", () => {
-    expect(() => render(<Link to={d1.go()}>Example</Link>)).toThrow();
+    expect(() => render(<Link to={d1()}>Example</Link>)).toThrow();
   });
 });
 
 it("renders a link", () => {
   const { getByText } = render(
     <Router>
-      <Link to={d1.go()}>Example</Link>
+      <Link to={d1()}>Example</Link>
     </Router>,
   );
   expect(getByText("Example", { selector: "a" })).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe("navigate from route", () => {
     expect(() =>
       render(
         <Router>
-          <Link from={d2} to={d1.go()}>
+          <Link from={d2} to={d1()}>
             Example
           </Link>
         </Router>,
@@ -47,7 +47,7 @@ describe("navigate from route", () => {
     it("no from", async () => {
       const { getByText, container } = render(
         <Router>
-          <Link to={d1.go()}>[d1]</Link>
+          <Link to={d1()}>[d1]</Link>
           <Route direction={d1}>d1</Route>
         </Router>,
       );
@@ -59,7 +59,7 @@ describe("navigate from route", () => {
     it("from=here", async () => {
       const { getByText, container } = render(
         <Router>
-          <Link from="here" to={d1.go()}>
+          <Link from="here" to={d1()}>
             [d1]
           </Link>
           <Route direction={d1}>d1</Route>
@@ -73,7 +73,7 @@ describe("navigate from route", () => {
     it("from=root", async () => {
       const { getByText, container } = render(
         <Router>
-          <Link from="root" to={d1.go()}>
+          <Link from="root" to={d1()}>
             [d1]
           </Link>
           <Route direction={d1}>d1</Route>
@@ -88,7 +88,7 @@ describe("navigate from route", () => {
   it("to is an array of one step", async () => {
     const { getByText, container } = render(
       <Router>
-        <Link to={[d1.go()]}>[d1]</Link>
+        <Link to={[d1()]}>[d1]</Link>
         <Route direction={d1}>d1</Route>
       </Router>,
     );
@@ -100,7 +100,7 @@ describe("navigate from route", () => {
   it("to is an array of two steps", async () => {
     const { getByText, container } = render(
       <Router>
-        <Link to={[d1.go(), d2.go()]}>[d1, d2]</Link>
+        <Link to={[d1(), d2()]}>[d1, d2]</Link>
         <Route direction={d1}>
           d1
           <Route direction={d2}>d2</Route>
@@ -117,10 +117,10 @@ describe("from a child route", () => {
   it("no from", async () => {
     const { getByText, container } = render(
       <Router>
-        <Link to={d1.go()}>[d1]</Link>
+        <Link to={d1()}>[d1]</Link>
         <Route direction={d1}>
           d1
-          <Link to={d2.go()}>[d2]</Link>
+          <Link to={d2()}>[d2]</Link>
           <Route direction={d2}>d2</Route>
         </Route>
       </Router>,
@@ -133,12 +133,12 @@ describe("from a child route", () => {
   it("from=here", async () => {
     const { getByText, container } = render(
       <Router>
-        <Link from="here" to={d1.go()}>
+        <Link from="here" to={d1()}>
           [d1]
         </Link>
         <Route direction={d1}>
           d1
-          <Link from="here" to={d2.go()}>
+          <Link from="here" to={d2()}>
             [d2]
           </Link>
           <Route direction={d2}>d2</Route>
@@ -154,10 +154,10 @@ describe("from a child route", () => {
   it("from=root to a non-existant route goes nowhere", async () => {
     const { getByText, container } = render(
       <Router>
-        <Link to={d1.go()}>[d1]</Link>
+        <Link to={d1()}>[d1]</Link>
         <Route direction={d1}>
           d1
-          <Link from="root" to={d2.go()}>
+          <Link from="root" to={d2()}>
             [d2]
           </Link>
           <Route direction={d2}>d2</Route>

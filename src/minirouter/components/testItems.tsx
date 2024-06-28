@@ -46,32 +46,31 @@ root
     category(id)
       product(id, variant)
 */
-export const direction1 = createDirection("foo")();
-
-export const about = createDirection("about")();
-export const values = createDirection("values")();
-export const team = createDirection("team")();
-export const member = createDirection("member")<string>();
-export const contact = createDirection("contact")();
-export const email = createDirection("email")();
-export const phone = createDirection("phone")();
-export const social = createDirection("social")();
-export const categories = createDirection("categories")();
-export const category = createDirection("category")<number>();
-export const product = createDirection("product")<{
+export const direction1 = createDirection("foo");
+export const about = createDirection("about");
+export const values = createDirection("values");
+export const team = createDirection("team");
+export const member = createDirection<string>("member");
+export const contact = createDirection("contact");
+export const email = createDirection("email");
+export const phone = createDirection("phone");
+export const social = createDirection("social");
+export const categories = createDirection("categories");
+export const category = createDirection<number>("category");
+export const product = createDirection<{
   id: number;
   variant: string;
-}>();
+}>("product");
 
 const Values = () => (
   <div data-testid="values-page">
     <h2>Values</h2>
     Our values are important to our{" "}
-    <Link from={about} to={team.go()}>
+    <Link from={about} to={team()}>
       team
     </Link>
     and you can
-    <Link to={contact.go()}>contact us</Link>
+    <Link to={contact()}>contact us</Link>
     about them.
   </div>
 );
@@ -98,7 +97,7 @@ const Category = () => {
       <Link to="up">back to categories</Link>
       <Link
         from={category}
-        to={product.go({
+        to={product({
           id: 1,
           variant: "beige",
         })}
@@ -107,7 +106,7 @@ const Category = () => {
       </Link>
       <Link
         from={category}
-        to={product.go({
+        to={product({
           id: 1,
           variant: "blue",
         })}
@@ -116,7 +115,7 @@ const Category = () => {
       </Link>
       <Link
         from={category}
-        to={product.go({
+        to={product({
           id: 2,
           variant: "red",
         })}
@@ -125,7 +124,7 @@ const Category = () => {
       </Link>
       <Link
         from={category}
-        to={product.go({
+        to={product({
           id: 3,
           variant: "yellow",
         })}
@@ -134,7 +133,7 @@ const Category = () => {
       </Link>
       <Link
         from={category}
-        to={product.go({
+        to={product({
           id: 3,
           variant: "green",
         })}
@@ -153,17 +152,17 @@ const Categories = () => (
     <h2>Categories</h2>
     <ul>
       <li>
-        <Link from={categories} to={category.go(1)}>
+        <Link from={categories} to={category(1)}>
           Category 1
         </Link>
       </li>
       <li>
-        <Link from={categories} to={category.go(2)}>
+        <Link from={categories} to={category(2)}>
           Category 2
         </Link>
       </li>
       <li>
-        <Link from={categories} to={category.go(3)}>
+        <Link from={categories} to={category(3)}>
           Category 3
         </Link>
       </li>
@@ -187,9 +186,9 @@ const Member = () => {
 const Contact = () => (
   <div data-testid="contact-page">
     <h2>Contact us</h2>
-    <Link to={email.go()}>Email us</Link>
-    <Link to={phone.go()}>Phone us</Link>
-    <Link to={social.go()}>Social media</Link>
+    <Link to={email()}>Email us</Link>
+    <Link to={phone()}>Phone us</Link>
+    <Link to={social()}>Social media</Link>
     <Outlet>
       <Route direction={email}>
         <div>foo@example.com</div>
@@ -208,22 +207,22 @@ export const App = () => (
   <Router>
     <h1>Terrific company website</h1>
     {/* top level nav */}
-    <Link to={about.go()}>About</Link>
-    <Link from="root" to={contact.go()}>
+    <Link to={about()}>About</Link>
+    <Link from="root" to={contact()}>
       Contact
     </Link>
-    <Link to={[about.go(), values.go()]}>Values</Link>
-    <Link to={[categories.go()]}>Product Categories</Link>5
+    <Link to={[about(), values()]}>Values</Link>
+    <Link to={[categories()]}>Product Categories</Link>5
     <Route direction={about}>
       <div data-testid="about-page" className="about">
         <h2>About</h2>
         <p>Learn more about our</p>
         <ul>
           <li>
-            <Link to={values.go()}>Values</Link>
+            <Link to={values()}>Values</Link>
           </li>
           <li>
-            <Link to={team.go()}>Team</Link>
+            <Link to={team()}>Team</Link>
           </li>
         </ul>
 
@@ -235,9 +234,9 @@ export const App = () => (
           <div data-testid="team-page">
             <h2>Team</h2>
             Our team is great
-            <Link to={member.go("Alice")}>Alice</Link>
-            <Link to={member.go("Bob")}>Bob</Link>
-            <Link to={member.go("Carla")}>Carla</Link>
+            <Link to={member("Alice")}>Alice</Link>
+            <Link to={member("Bob")}>Bob</Link>
+            <Link to={member("Carla")}>Carla</Link>
             <Link from="root" to={[]}>
               Home
             </Link>

@@ -30,7 +30,7 @@ export function useRoute({ direction, children }: UseRouteArgs) {
             ...(outerContext.currentStep ? [outerContext.currentStep] : []),
             ...toArray,
           ];
-        } else if (from.id === outerContext.currentStep?.direction.id) {
+        } else if (from.match(outerContext.currentStep)) {
           // if we're navigating from a particular direction, but that direction
           // is the current step, we can just use the parent steps and add the
           // "to" array
@@ -43,10 +43,10 @@ export function useRoute({ direction, children }: UseRouteArgs) {
           // otherwise if we're navigating from a parent step we need to do
           // a bit more surgery
           const fromIndex = outerContext.parentSteps.findLastIndex(
-            (step) => step.direction.id === from.id,
+            (step) => step.direction === from,
           );
           if (fromIndex === -1) {
-            throw new Error(`Cannot navigate from ${from.id}`);
+            throw new Error(`Cannot navigate from ${from.description}`);
           }
           rootTo = [
             ...outerContext.parentSteps.slice(0, fromIndex + 1),
@@ -71,7 +71,7 @@ export function useRoute({ direction, children }: UseRouteArgs) {
   );
 
   const content =
-    outerContext.currentStep?.direction.id === direction.id ? (
+    outerContext.currentStep?.direction === direction ? (
       <>
         <NavigationContext.Provider value={navigationContextValue}>
           <OutletContext.Provider value={null}>

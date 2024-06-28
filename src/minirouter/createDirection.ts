@@ -1,28 +1,22 @@
-import { AnyStep, Step } from "./types";
+import { nanoid } from "nanoid";
 
-type ParamsBase = Record<string, number | string> | string | number | void;
+import { AnyStep, Direction, Step } from "./types";
 
-export class Direction<TId extends string, TParams extends ParamsBase = void> {
-  constructor(public id: string) {}
-
-  match = (other: AnyStep): other is Step<this> => {
-    return this.id === other.direction.id;
-  };
-
-  go(params: TParams): Step<Direction<TId, TParams>> {
+export const createDirection = function <TParams = void>(
+  description: string,
+): Direction<TParams> {
+  const direction = (params: TParams): Step<TParams> => {
     return {
-      direction: this,
+      direction,
       params,
+      id: nanoid(),
     };
-  }
-}
-
-// sorry about the function statements, this could be () => () => Direction
-// but something gets screwed up in my syntax highlighting
-export const createDirection = function <TId extends string = string>(id: TId) {
-  type NewType<TParams extends ParamsBase> = Direction<TId, TParams>;
-
-  return function <TParams extends ParamsBase = void>(): NewType<TParams> {
-    return new Direction<TId, TParams>(id);
   };
+
+  direction.description = description;
+  direction.match = (step: AnyStep | undefined): step is Step<TParams> => {
+    return step?.direction === direction;
+  };
+
+  return direction;
 };

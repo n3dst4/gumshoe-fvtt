@@ -1,6 +1,5 @@
 import React, { forwardRef, PropsWithChildren, useCallback } from "react";
 
-import { Direction } from "../createDirection";
 import { AnyStep, DirectionType } from "../types";
 import { useNavigationContext } from "../useNavigationContext";
 
@@ -12,7 +11,7 @@ type LinkProps = React.RefAttributes<HTMLAnchorElement> &
 
 // thanks to TS 5.5 this is a type guard even without the `: x is y` syntax
 function isDirection(x: DirectionType) {
-  return x instanceof Direction;
+  return typeof x !== "string";
 }
 
 /**
@@ -27,11 +26,11 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     const { navigate, parentSteps, currentStep } = useNavigationContext();
     if (isDirection(from)) {
       if (
-        currentStep?.direction.id !== from.id &&
-        !parentSteps.some((s) => s.direction.id === from.id)
+        currentStep?.direction !== from &&
+        !parentSteps.some((s) => s.direction === from)
       ) {
         throw new Error(
-          `Link has "from" set to ${from.id} but the current step is not a descendant of that step`,
+          `Link has "from" set to ${from.description} but the current step is not a descendant of that step`,
         );
       }
     }

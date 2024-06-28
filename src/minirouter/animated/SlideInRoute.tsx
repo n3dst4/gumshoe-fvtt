@@ -4,22 +4,22 @@ import React, { memo } from "react";
 import { absoluteCover } from "../../components/absoluteCover";
 import { duration } from "../constants";
 import { PropsWithChildrenAndDirection } from "../types";
-import { useParamsSafe } from "../useParams";
+import { useNavigationContext } from "../useNavigationContext";
 import { useRoute } from "../useRoute";
 import { easeInCubic, easeOutCubic } from "./easings";
 
 export const SlideInRoute = memo<PropsWithChildrenAndDirection>(
   ({ children, direction }) => {
     const result = useRoute({ direction, children });
-    const params = useParamsSafe(direction);
+    const { currentStep } = useNavigationContext();
     return (
       <div
         css={{ ...absoluteCover, overflow: "hidden", pointerEvents: "none" }}
       >
         <AnimatePresence mode="wait">
-          {result && (
+          {result && currentStep && (
             <motion.div
-              key={`direction.id ${params ? JSON.stringify(params) : ""}`}
+              key={currentStep.id}
               css={{
                 ...absoluteCover,
                 width: "100%",
