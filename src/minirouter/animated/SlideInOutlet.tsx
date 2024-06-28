@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { memo, PropsWithChildren } from "react";
 
 import { absoluteCover } from "../../components/absoluteCover";
-import { duration } from "../constants";
 import { useOutletProvider } from "../outlets/useOutletProvider";
+import { duration } from "./constants";
 import { easeInCubic, easeOutCubic } from "./easings";
 
 export const SlideInOutlet = memo<PropsWithChildren>(({ children }) => {

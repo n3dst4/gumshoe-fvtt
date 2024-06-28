@@ -2,10 +2,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { memo } from "react";
 
 import { absoluteCover } from "../../components/absoluteCover";
-import { duration } from "../constants";
 import { PropsWithChildrenAndDirection } from "../types";
 import { useNavigationContext } from "../useNavigationContext";
 import { useRoute } from "../useRoute";
+import { duration } from "./constants";
 import { easeInCubic, easeOutCubic } from "./easings";
 
 export const SlideInRoute = memo<PropsWithChildrenAndDirection>(
