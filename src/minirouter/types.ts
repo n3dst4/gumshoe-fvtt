@@ -40,15 +40,23 @@ export type DirectionType = AnyDirection | LogicalDirection;
  */
 export type NavigationContextValue = {
   /**
-   * Change the state of the router. This is the only way to change the current
-   * state of the router.
+   * Move the current state of the router.
    *
    * @param from Where to start navigation from.
    * @param to The step or steps to go to.
    */
   navigate: (from: DirectionType, to: AnyStep | AnyStep[] | "up") => void;
+  /**
+   * The current step of the router that brought us where we are
+   */
   currentStep: AnyStep | undefined;
+  /**
+   * Steps from the root of the router down to the current step
+   */
   parentSteps: AnyStep[];
+  /**
+   * further steps below the current step (you usually won't have to thjink about this)
+   */
   childSteps: AnyStep[];
 };
 
