@@ -265,6 +265,11 @@ export class InvestigatorItem extends Item {
     await this.update({ [`system.fields.-=${field}`]: null });
   };
 
+  // if you get a weird error here about "TypeCheckError: Function implicitly
+  // has return type 'any' because it does not have a return type annotation and
+  // is referenced directly or indirectly in one of its return expressions."
+  // then I feel bad for you. Nuking node_modules and restatring the TS server
+  // may help.
   getMin = () => {
     assertAbilityItem(this);
     return this.system.min;
