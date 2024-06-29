@@ -209,6 +209,12 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
+      vite:
+        specifier: ^5.2.8
+        version: 5.2.8(@types/node@18.15.11)(less@4.2.0)
+      vitest:
+        specifier: ^1.6.0
+        version: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.7.1)(less@4.2.0)
 
   packages/shared-fvtt-bits:
     dependencies:
