@@ -1,0 +1,29 @@
+{
+  "name": "@lumphammer/minirouter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    },
+    "./animated": {
+      "import": "./src/animated/index.ts"
+    },
+    "./outlets": {
+      "import": "./src/outlets/index.ts"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@emotion/react": "^11.11.4",
+    "@types/react": "^18.3.3",
+    "react": "^18.3.1"
+  }
+}

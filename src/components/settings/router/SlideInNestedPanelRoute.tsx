@@ -1,7 +1,7 @@
+import type { PropsWithChildrenAndDirection } from "@lumphammer/minirouter";
+import { SlideInRoute } from "@lumphammer/minirouter/animated";
 import React from "react";
 
-import { SlideInRoute } from "../../../minirouter/animated/SlideInRoute";
-import { PropsWithChildrenAndDirection } from "../../../minirouter/types";
 import { NestedPanel } from "./NestedPanel";
 
 export const SlideInNestedPanelRoute =

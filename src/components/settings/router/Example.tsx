@@ -1,14 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // /////////////////////////////////////////////////////////////////////////////
 // Example
+import {
+  createDirection,
+  Link,
+  Route,
+  Router,
+  useParams,
+} from "@lumphammer/minirouter";
+import { SlideInOutlet } from "@lumphammer/minirouter/animated";
 import React from "react";
 
-import { SlideInOutlet } from "../../../minirouter/animated/SlideInOutlet";
-import { Link } from "../../../minirouter/components/Link";
-import { Route } from "../../../minirouter/components/Route";
-import { Router } from "../../../minirouter/components/Router";
-import { createDirection } from "../../../minirouter/createDirection";
-import { useParams } from "../../../minirouter/useParams";
 import { NestedPanel } from "./NestedPanel";
 import { SlideInNestedPanelRoute } from "./SlideInNestedPanelRoute";
 

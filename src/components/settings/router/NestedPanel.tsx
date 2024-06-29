@@ -1,7 +1,7 @@
+import { Link } from "@lumphammer/minirouter";
 import React, { memo, PropsWithChildren, useContext } from "react";
 import { FaXmark } from "react-icons/fa6";
 
-import { Link } from "../../../minirouter/components/Link";
 import { ThemeContext } from "../../../themes/ThemeContext";
 
 const panelMargin = "3em";

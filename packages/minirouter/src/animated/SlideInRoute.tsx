@@ -1,12 +1,20 @@
+import { CSSObject } from "@emotion/react";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { memo } from "react";
 
-import { absoluteCover } from "../../components/absoluteCover";
 import { PropsWithChildrenAndDirection } from "../types";
 import { useNavigationContext } from "../useNavigationContext";
 import { useRoute } from "../useRoute";
 import { duration } from "./constants";
 import { easeInCubic, easeOutCubic } from "./easings";
+
+const absoluteCover: CSSObject = {
+  position: "absolute",
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+};
 
 export const SlideInRoute = memo<PropsWithChildrenAndDirection>(
   ({ children, direction }) => {
