@@ -19,14 +19,6 @@ const contactDirection = createDirection("contact");
 const cardsDirection = createDirection("cards");
 const cardsDetailsDirection = createDirection<number>("cardsDetails");
 
-const Root: React.FC = () => {
-  return (
-    <div>
-      <h1>Root</h1>
-    </div>
-  );
-};
-
 const About: React.FC = () => {
   return (
     <div>
