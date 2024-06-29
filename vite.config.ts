@@ -2,37 +2,11 @@
 import react from "@vitejs/plugin-react-swc";
 import fs from "fs";
 import path from "path";
+import { visualizer } from "rollup-plugin-visualizer";
 import type { HttpProxy, PluginOption } from "vite";
 import { defineConfig } from "vite";
 
-// import { visualizer } from "rollup-plugin-visualizer";
 import { id as name } from "./public/system.json";
-
-/**
- * Absolute shenanigans because of this Vite isue:
- * https://github.com/vitejs/vite/issues/8619
- *
- * Basically, you can't watch node_modules without this hack, and while we're
- * using the file: protocol for @lumphammer/shared-fvtt-bits, we need to watch
- * it because it's a local package.
- */
-export function pluginWatchNodeModules(modules: string[]): PluginOption {
-  return {
-    name: "watch-node-modules",
-    config() {
-      return {
-        server: {
-          watch: {
-            ignored: modules.map((m) => `!**/node_modules/${m}/**`),
-          },
-        },
-        optimizeDeps: {
-          exclude: modules,
-        },
-      };
-    },
-  };
-}
 
 // original guide to using Vite for Foundry from the Lancer devs:
 // https://foundryvtt.wiki/en/development/guides/vite
@@ -175,10 +149,12 @@ const config = defineConfig(({ mode }) => {
         formats: ["es"],
         fileName: name,
       },
-      optimizeDeps: {
-        // https://stackoverflow.com/a/75922488/212676
-        entries: ["src/index.ts", "src/components/settings/Settings.tsx"],
-      },
+    },
+
+    optimizeDeps: {
+      // this prevents a whole-page reload when we open the settings window
+      // https://vitejs.dev/config/dep-optimization-options.html#optimizedeps-entries
+      entries: ["src/index.ts", "src/components/settings/Settings.tsx"],
     },
 
     plugins: [
@@ -193,22 +169,11 @@ const config = defineConfig(({ mode }) => {
           ],
         ],
       }),
-      // visualizer({
-      //   gzipSize: true,
-      //   template: "treemap",
-      //   filename: "stats/treemap.html",
-      // }),
-      // visualizer({
-      //   gzipSize: true,
-      //   template: "sunburst",
-      //   filename: "stats/sunburst.html",
-      // }),
-      // visualizer({
-      //   gzipSize: true,
-      //   template: "network",
-      //   filename: "stats/network.html",
-      // }),
-      pluginWatchNodeModules(["@lumphammer/shared-fvtt-bits"]),
+      visualizer({
+        gzipSize: true,
+        template: "treemap",
+        filename: "stats/treemap.html",
+      }),
     ],
   };
 });
