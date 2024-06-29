@@ -91,7 +91,7 @@ importers:
         version: 11.11.4(@types/react@18.3.3)(react@18.3.1)
       '@league-of-foundry-developers/foundry-vtt-types':
         specifier: ^9.280.0
-        version: 9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(3yrsl4l32tifgz3kwatt4spkrm))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
+        version: 9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/sprite@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
       '@lumphammer/investigator-fvtt-types':
         specifier: github:n3dst4/investigator-fvtt-types#cards-support-types
         version: https://codeload.github.com/n3dst4/investigator-fvtt-types/tar.gz/b54a99ac83b71e5bcfa9407e0ef4099548eef547
@@ -136,10 +136,10 @@ importers:
         version: 0.2.34
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.3.1
-        version: 7.3.1(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.0-beta))(eslint@8.57.0)(typescript@5.5.0-beta)
+        version: 7.3.1(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.2))(eslint@8.57.0)(typescript@5.5.2)
       '@typescript-eslint/parser':
         specifier: ^7.3.1
-        version: 7.3.1(eslint@8.57.0)(typescript@5.5.0-beta)
+        version: 7.3.1(eslint@8.57.0)(typescript@5.5.2)
       '@vercel/ncc':
         specifier: ^0.38.1
         version: 0.38.1
@@ -157,7 +157,7 @@ importers:
         version: 9.1.0(eslint@8.57.0)
       eslint-config-standard:
         specifier: ^17.1.0
-        version: 17.1.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.0-beta))(eslint@8.57.0))(eslint-plugin-n@15.7.0(eslint@8.57.0))(eslint-plugin-promise@6.1.1(eslint@8.57.0))(eslint@8.57.0)
+        version: 17.1.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.2))(eslint@8.57.0))(eslint-plugin-n@15.7.0(eslint@8.57.0))(eslint-plugin-promise@6.1.1(eslint@8.57.0))(eslint@8.57.0)
       eslint-plugin-react:
         specifier: ^7.34.1
         version: 7.34.1(eslint@8.57.0)
@@ -186,8 +186,8 @@ importers:
         specifier: ^4.7.2
         version: 4.7.2
       typescript:
-        specifier: 5.5.0-beta
-        version: 5.5.0-beta
+        specifier: 5.5.2
+        version: 5.5.2
       vite:
         specifier: ^5.2.8
         version: 5.2.8(@types/node@18.15.11)(less@4.2.0)
@@ -260,7 +260,7 @@ importers:
         version: 11.11.4(@types/react@18.3.3)(react@18.3.1)
       '@league-of-foundry-developers/foundry-vtt-types':
         specifier: ^9.280.0
-        version: 9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(3yrsl4l32tifgz3kwatt4spkrm))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
+        version: 9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/sprite@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
       '@lumphammer/investigator-fvtt-types':
         specifier: ^1.12.1
         version: 1.13.2
@@ -3134,8 +3134,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.5.0-beta:
-    resolution: {integrity: sha512-FRg3e/aQg3olEG3ff8YjHOERsO4IM0m4qGrsE4UMvILaq4TdDZ6gQX4+2Rq9SjTpfSe/ebwiHcsjm/7FfWWQ6Q==}
+  typescript@5.5.2:
+    resolution: {integrity: sha512-NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3651,9 +3651,9 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.4.15': {}
 
-  '@league-of-foundry-developers/foundry-vtt-types@9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(3yrsl4l32tifgz3kwatt4spkrm))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))':
-    dependencies:
-      '@pixi/graphics-smooth': 0.0.22(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(3yrsl4l32tifgz3kwatt4spkrm))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
+  ? '@league-of-foundry-developers/foundry-vtt-types@9.280.0(patch_hash=qespnwvtxzqk7sn4hr4fiyfwwe)(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/sprite@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))'
+  : dependencies:
+      '@pixi/graphics-smooth': 0.0.22(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/sprite@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
       '@types/jquery': 3.5.16
       '@types/simple-peer': 9.11.5
       handlebars: 4.7.7
@@ -3786,12 +3786,12 @@ snapshots:
     dependencies:
       '@pixi/core': 5.3.11
 
-  '@pixi/graphics-smooth@0.0.22(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(3yrsl4l32tifgz3kwatt4spkrm))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))':
-    dependencies:
+  ? '@pixi/graphics-smooth@0.0.22(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/sprite@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))'
+  : dependencies:
       '@pixi/constants': 6.5.9
       '@pixi/core': 6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
       '@pixi/display': 6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
-      '@pixi/graphics': 6.5.9(3yrsl4l32tifgz3kwatt4spkrm)
+      '@pixi/graphics': 6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/sprite@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
       '@pixi/math': 6.5.9
       '@pixi/utils': 6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))
 
@@ -3804,8 +3804,8 @@ snapshots:
       '@pixi/sprite': 5.3.11
       '@pixi/utils': 5.3.11
 
-  '@pixi/graphics@6.5.9(3yrsl4l32tifgz3kwatt4spkrm)':
-    dependencies:
+  ? '@pixi/graphics@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/sprite@6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))'
+  : dependencies:
       '@pixi/constants': 6.5.9
       '@pixi/core': 6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
       '@pixi/display': 6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
@@ -4226,13 +4226,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/eslint-plugin@7.3.1(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.0-beta))(eslint@8.57.0)(typescript@5.5.0-beta)':
+  '@typescript-eslint/eslint-plugin@7.3.1(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.2))(eslint@8.57.0)(typescript@5.5.2)':
     dependencies:
       '@eslint-community/regexpp': 4.6.2
-      '@typescript-eslint/parser': 7.3.1(eslint@8.57.0)(typescript@5.5.0-beta)
+      '@typescript-eslint/parser': 7.3.1(eslint@8.57.0)(typescript@5.5.2)
       '@typescript-eslint/scope-manager': 7.3.1
-      '@typescript-eslint/type-utils': 7.3.1(eslint@8.57.0)(typescript@5.5.0-beta)
-      '@typescript-eslint/utils': 7.3.1(eslint@8.57.0)(typescript@5.5.0-beta)
+      '@typescript-eslint/type-utils': 7.3.1(eslint@8.57.0)(typescript@5.5.2)
+      '@typescript-eslint/utils': 7.3.1(eslint@8.57.0)(typescript@5.5.2)
       '@typescript-eslint/visitor-keys': 7.3.1
       debug: 4.3.4
       eslint: 8.57.0
@@ -4240,9 +4240,9 @@ snapshots:
       ignore: 5.2.4
       natural-compare: 1.4.0
       semver: 7.5.4
-      ts-api-utils: 1.0.1(typescript@5.5.0-beta)
+      ts-api-utils: 1.0.1(typescript@5.5.2)
     optionalDependencies:
-      typescript: 5.5.0-beta
+      typescript: 5.5.2
     transitivePeerDependencies:
       - supports-color
 
@@ -4259,16 +4259,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.0-beta)':
+  '@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.2)':
     dependencies:
       '@typescript-eslint/scope-manager': 7.3.1
       '@typescript-eslint/types': 7.3.1
-      '@typescript-eslint/typescript-estree': 7.3.1(typescript@5.5.0-beta)
+      '@typescript-eslint/typescript-estree': 7.3.1(typescript@5.5.2)
       '@typescript-eslint/visitor-keys': 7.3.1
       debug: 4.3.4
       eslint: 8.57.0
     optionalDependencies:
-      typescript: 5.5.0-beta
+      typescript: 5.5.2
     transitivePeerDependencies:
       - supports-color
 
@@ -4294,15 +4294,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/type-utils@7.3.1(eslint@8.57.0)(typescript@5.5.0-beta)':
+  '@typescript-eslint/type-utils@7.3.1(eslint@8.57.0)(typescript@5.5.2)':
     dependencies:
-      '@typescript-eslint/typescript-estree': 7.3.1(typescript@5.5.0-beta)
-      '@typescript-eslint/utils': 7.3.1(eslint@8.57.0)(typescript@5.5.0-beta)
+      '@typescript-eslint/typescript-estree': 7.3.1(typescript@5.5.2)
+      '@typescript-eslint/utils': 7.3.1(eslint@8.57.0)(typescript@5.5.2)
       debug: 4.3.4
       eslint: 8.57.0
-      ts-api-utils: 1.0.1(typescript@5.5.0-beta)
+      ts-api-utils: 1.0.1(typescript@5.5.2)
     optionalDependencies:
-      typescript: 5.5.0-beta
+      typescript: 5.5.2
     transitivePeerDependencies:
       - supports-color
 
@@ -4325,7 +4325,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/typescript-estree@7.3.1(typescript@5.5.0-beta)':
+  '@typescript-eslint/typescript-estree@7.3.1(typescript@5.5.2)':
     dependencies:
       '@typescript-eslint/types': 7.3.1
       '@typescript-eslint/visitor-keys': 7.3.1
@@ -4334,9 +4334,9 @@ snapshots:
       is-glob: 4.0.3
       minimatch: 9.0.3
       semver: 7.5.4
-      ts-api-utils: 1.0.1(typescript@5.5.0-beta)
+      ts-api-utils: 1.0.1(typescript@5.5.2)
     optionalDependencies:
-      typescript: 5.5.0-beta
+      typescript: 5.5.2
     transitivePeerDependencies:
       - supports-color
 
@@ -4351,14 +4351,14 @@ snapshots:
       - supports-color
       - typescript
 
-  '@typescript-eslint/utils@7.3.1(eslint@8.57.0)(typescript@5.5.0-beta)':
+  '@typescript-eslint/utils@7.3.1(eslint@8.57.0)(typescript@5.5.2)':
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
       '@types/json-schema': 7.0.12
       '@types/semver': 7.5.0
       '@typescript-eslint/scope-manager': 7.3.1
       '@typescript-eslint/types': 7.3.1
-      '@typescript-eslint/typescript-estree': 7.3.1(typescript@5.5.0-beta)
+      '@typescript-eslint/typescript-estree': 7.3.1(typescript@5.5.2)
       eslint: 8.57.0
       semver: 7.5.4
     transitivePeerDependencies:
@@ -4989,10 +4989,10 @@ snapshots:
       eslint-plugin-n: 15.7.0(eslint@8.57.0)
       eslint-plugin-promise: 6.1.1(eslint@8.57.0)
 
-  eslint-config-standard@17.1.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.0-beta))(eslint@8.57.0))(eslint-plugin-n@15.7.0(eslint@8.57.0))(eslint-plugin-promise@6.1.1(eslint@8.57.0))(eslint@8.57.0):
+  eslint-config-standard@17.1.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.2))(eslint@8.57.0))(eslint-plugin-n@15.7.0(eslint@8.57.0))(eslint-plugin-promise@6.1.1(eslint@8.57.0))(eslint@8.57.0):
     dependencies:
       eslint: 8.57.0
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.0-beta))(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.2))(eslint@8.57.0)
       eslint-plugin-n: 15.7.0(eslint@8.57.0)
       eslint-plugin-promise: 6.1.1(eslint@8.57.0)
 
@@ -5014,11 +5014,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.8.0(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.0-beta))(eslint-import-resolver-node@0.3.9)(eslint@8.57.0):
+  eslint-module-utils@2.8.0(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.2))(eslint-import-resolver-node@0.3.9)(eslint@8.57.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
-      '@typescript-eslint/parser': 7.3.1(eslint@8.57.0)(typescript@5.5.0-beta)
+      '@typescript-eslint/parser': 7.3.1(eslint@8.57.0)(typescript@5.5.2)
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
     transitivePeerDependencies:
@@ -5057,7 +5057,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.0-beta))(eslint@8.57.0):
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.2))(eslint@8.57.0):
     dependencies:
       array-includes: 3.1.7
       array.prototype.findlastindex: 1.2.3
@@ -5067,7 +5067,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.0(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.0-beta))(eslint-import-resolver-node@0.3.9)(eslint@8.57.0)
+      eslint-module-utils: 2.8.0(@typescript-eslint/parser@7.3.1(eslint@8.57.0)(typescript@5.5.2))(eslint-import-resolver-node@0.3.9)(eslint@8.57.0)
       hasown: 2.0.1
       is-core-module: 2.13.1
       is-glob: 4.0.3
@@ -5078,7 +5078,7 @@ snapshots:
       semver: 6.3.1
       tsconfig-paths: 3.15.0
     optionalDependencies:
-      '@typescript-eslint/parser': 7.3.1(eslint@8.57.0)(typescript@5.5.0-beta)
+      '@typescript-eslint/parser': 7.3.1(eslint@8.57.0)(typescript@5.5.2)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -6412,9 +6412,9 @@ snapshots:
 
   totalist@3.0.1: {}
 
-  ts-api-utils@1.0.1(typescript@5.5.0-beta):
+  ts-api-utils@1.0.1(typescript@5.5.2):
     dependencies:
-      typescript: 5.5.0-beta
+      typescript: 5.5.2
 
   ts-api-utils@1.3.0(typescript@5.4.5):
     dependencies:
@@ -6484,7 +6484,7 @@ snapshots:
 
   typescript@5.4.5: {}
 
-  typescript@5.5.0-beta: {}
+  typescript@5.5.2: {}
 
   ufo@1.3.2: {}
 
