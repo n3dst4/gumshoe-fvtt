@@ -149,10 +149,12 @@ const config = defineConfig(({ mode }) => {
         formats: ["es"],
         fileName: name,
       },
-      optimizeDeps: {
-        // https://stackoverflow.com/a/75922488/212676
-        entries: ["src/index.ts", "src/components/settings/Settings.tsx"],
-      },
+    },
+
+    optimizeDeps: {
+      // this prevents a whole-page reload when we open the settings window
+      // https://vitejs.dev/config/dep-optimization-options.html#optimizedeps-entries
+      entries: ["src/index.ts", "src/components/settings/Settings.tsx"],
     },
 
     plugins: [
