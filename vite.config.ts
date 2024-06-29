@@ -2,10 +2,10 @@
 import react from "@vitejs/plugin-react-swc";
 import fs from "fs";
 import path from "path";
+import { visualizer } from "rollup-plugin-visualizer";
 import type { HttpProxy, PluginOption } from "vite";
 import { defineConfig } from "vite";
 
-// import { visualizer } from "rollup-plugin-visualizer";
 import { id as name } from "./public/system.json";
 
 // original guide to using Vite for Foundry from the Lancer devs:
@@ -169,21 +169,11 @@ const config = defineConfig(({ mode }) => {
           ],
         ],
       }),
-      // visualizer({
-      //   gzipSize: true,
-      //   template: "treemap",
-      //   filename: "stats/treemap.html",
-      // }),
-      // visualizer({
-      //   gzipSize: true,
-      //   template: "sunburst",
-      //   filename: "stats/sunburst.html",
-      // }),
-      // visualizer({
-      //   gzipSize: true,
-      //   template: "network",
-      //   filename: "stats/network.html",
-      // }),
+      visualizer({
+        gzipSize: true,
+        template: "treemap",
+        filename: "stats/treemap.html",
+      }),
     ],
   };
 });
