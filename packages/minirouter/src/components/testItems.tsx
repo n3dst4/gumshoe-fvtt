@@ -7,45 +7,6 @@ import { Link } from "./Link";
 import { Route } from "./Route";
 import { Router } from "./Router";
 
-/*
-router
-link
-route
-
-single-level routes
-nested routes in one tsx block
-routes in child components
-
-from a direction
-from a direction when it doesn't exist
-
-from root
-from here
-
-to a route that doesn't exist
-to a route that exists
-to an array of routes
-to an array of routes that don't all exist
-
-to up
-to up from root
-
-*/
-
-/*
-root
-  about
-    values
-    team
-      member(id)
-  contact
-    email
-    phone
-    social
-  categories
-    category(id)
-      product(id, variant)
-*/
 export const direction1 = createDirection("foo");
 export const about = createDirection("about");
 export const values = createDirection("values");

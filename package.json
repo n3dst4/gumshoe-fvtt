@@ -80,7 +80,6 @@
     "@monaco-editor/react": "^4.6.0",
     "case": "^1.6.3",
     "d3-ease": "^3.0.1",
-    "framer-motion": "^11.2.10",
     "html-escaper": "^3.0.3",
     "immer": "^10.0.4",
     "json5": "^2.2.3",
