@@ -18,6 +18,9 @@ type ItemSheetFrameworkProps = PropsWithChildren<{
   application: DocumentSheet | foundry.applications.api.DocumentSheetV2<any>;
 }>;
 
+/**
+ * A framework for item sheets.
+ */
 export const ItemSheetFramework: React.FC<ItemSheetFrameworkProps> = ({
   supertitle,
   item,

@@ -1,0 +1,38 @@
+{
+  "name": "@lumphammer/minirouter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    },
+    "./animated": {
+      "import": "./src/animated/index.ts"
+    },
+    "./outlets": {
+      "import": "./src/outlets/index.ts"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@emotion/react": "^11.11.4",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@types/react": "^18.3.3",
+    "framer-motion": "^11.2.12",
+    "react": "^18.3.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "vite": "^5.2.8",
+    "vitest": "^1.6.0"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.11.4",
+    "react": "^18.3.1"
+  }
+}

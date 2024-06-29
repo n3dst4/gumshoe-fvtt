@@ -179,5 +179,9 @@
   "investigator.Export": "Export",
   "investigator.GMNotes": "GM Notes",
   "investigator.HideSecret": "Hide secret",
-  "investigator.RevealSecret": "Reveal secret"
+  "investigator.RevealSecret": "Reveal secret",
+  "investigator.Cards": "Cards",
+  "investigator.Card": "Card",
+  "investigator.UseCards": "Use cards?",
+  "investigator.CardCategories": "Card categories"
 }

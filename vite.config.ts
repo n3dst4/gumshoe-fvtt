@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import fs from "fs";
 import path from "path";
 import { visualizer } from "rollup-plugin-visualizer";
-import type { HttpProxy, PluginOption } from "vite";
+import type { HttpProxy } from "vite";
 import { defineConfig } from "vite";
 
 import { id as name } from "./public/system.json";

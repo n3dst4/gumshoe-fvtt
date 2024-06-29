@@ -2,6 +2,7 @@ import * as constants from "./constants";
 import { InvestigatorActor } from "./module/InvestigatorActor";
 import { InvestigatorItem } from "./module/InvestigatorItem";
 import {
+  CardSystemData,
   EquipmentSystemData,
   GeneralAbilitySystemData,
   InvestigativeAbilitySystemData,
@@ -71,6 +72,11 @@ export type MwItem = InvestigatorItemSystem<
 export type PersonalDetailItem = InvestigatorItemSystem<
   typeof constants.personalDetail,
   PersonalDetailSystemData
+>;
+
+export type CardItem = InvestigatorItemSystem<
+  typeof constants.card,
+  CardSystemData
 >;
 
 export type AbilityItem = GeneralAbilityItem | InvestigativeAbilityItem;
@@ -174,6 +180,14 @@ export function assertPersonalDetailItem(
   item: Optional<Item>,
 ): asserts item is PersonalDetailItem {
   assertPredicate(isPersonalDetailItem, item);
+}
+
+export function isCardItem(item: Optional<Item>): item is CardItem {
+  return item?.type === "card";
+}
+
+export function assertCardItem(item: Optional<Item>): asserts item is CardItem {
+  assertPredicate(isCardItem, item);
 }
 
 // /////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,18 @@
+,
+"card"
+
+
+
+,
+    "card": {
+      "templates": ["notes"],
+      "effectsNotes": {
+        "format": "richText",
+        "source": "",
+        "html": ""
+      },
+      "title": "",
+      "type": "",
+      "flags": [],
+      "active": true
+    }

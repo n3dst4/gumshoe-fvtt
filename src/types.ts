@@ -268,6 +268,15 @@ export interface PersonalDetailSystemData {
   compendiumPackId: string | null;
 }
 
+export interface CardSystemData {
+  effectsNotes: NoteWithFormat;
+  notes: NoteWithFormat;
+  title: string;
+  type: string;
+  flags: string[];
+  active: boolean;
+}
+
 // #############################################################################
 // #############################################################################
 // UTILITY LIBRARY
