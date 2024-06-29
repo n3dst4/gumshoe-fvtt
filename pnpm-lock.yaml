@@ -209,6 +209,9 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
+      rollup-plugin-peer-deps-external:
+        specifier: ^2.2.4
+        version: 2.2.4(rollup@4.13.0)
       vite:
         specifier: ^5.2.8
         version: 5.2.8(@types/node@18.15.11)(less@4.2.0)
@@ -2820,6 +2823,11 @@ packages:
     resolution: {integrity: sha512-nV6YcJo5wbLW77m+8KjH8aB/7/rxQy9SZ0HY5shnwULfS+9nmTtVXAJET5NdZmCzA4fPI/Hm1wo/Po/4mopOdg==}
     engines: {node: '>=14.18'}
     hasBin: true
+
+  rollup-plugin-peer-deps-external@2.2.4:
+    resolution: {integrity: sha512-AWdukIM1+k5JDdAqV/Cxd+nejvno2FVLVeZ74NKggm3Q5s9cbbcOgUPGdbxPi4BXu7xGaZ8HG12F+thImYu/0g==}
+    peerDependencies:
+      rollup: '*'
 
   rollup-plugin-visualizer@5.12.0:
     resolution: {integrity: sha512-8/NU9jXcHRs7Nnj07PF2o4gjxmm9lXIrZ8r175bT9dK8qoLlvKTwRMArRCMgpMGlq8CTLugRvEmyMeMXIU2pNQ==}
@@ -6127,6 +6135,10 @@ snapshots:
   rimraf@5.0.7:
     dependencies:
       glob: 10.3.12
+
+  rollup-plugin-peer-deps-external@2.2.4(rollup@4.13.0):
+    dependencies:
+      rollup: 4.13.0
 
   rollup-plugin-visualizer@5.12.0(rollup@4.13.0):
     dependencies:

@@ -2,8 +2,10 @@
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { defineConfig } from "vite";
+import { visualizer } from "rollup-plugin-visualizer";
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
-import { name } from "./package.json";
+const name = "minirouter";
 
 const config = defineConfig(({ mode }) => {
   console.log(mode);
@@ -11,7 +13,6 @@ const config = defineConfig(({ mode }) => {
     root: "src/",
     publicDir: path.resolve(__dirname, "public"),
 
-    // configure vitest
     test: {
       // fix "document is not defined"
       environment: "happy-dom",
@@ -26,7 +27,7 @@ const config = defineConfig(({ mode }) => {
       minify: mode === "production",
       lib: {
         name,
-        entry: `${name}.ts`,
+        entry: "index.ts",
         formats: ["es"],
         fileName: name,
       },
@@ -43,6 +44,12 @@ const config = defineConfig(({ mode }) => {
             },
           ],
         ],
+      }),
+      peerDepsExternal(),
+      visualizer({
+        gzipSize: true,
+        template: "treemap",
+        filename: "stats/treemap.html",
       }),
     ],
   };
