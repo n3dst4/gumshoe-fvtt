@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { assertAbilityItem } from "../../v10Types";
 import { SpecListItem } from "./SpecListItem";
 
 type SpecialityListProps = {
@@ -8,6 +9,7 @@ type SpecialityListProps = {
 };
 
 export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
+  assertAbilityItem(ability);
   const updateSpecialities = useCallback(
     (newVal: string, index: number) => {
       const newSpecs = [...ability.getSpecialities()];
@@ -35,7 +37,7 @@ export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
           value={spec}
           onChange={updateSpecialities}
           index={i}
-          disabled={!ability.getHasSpecialities()}
+          disabled={!ability.system.hasSpecialities}
         />
       ))}
       {ability.getSpecialitesCount() === 0 && (

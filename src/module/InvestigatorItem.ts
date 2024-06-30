@@ -19,7 +19,6 @@ import {
   assertAnyItem,
   assertCardItem,
   assertEquipmentItem,
-  assertEquipmentOrAbilityItem,
   assertGeneralAbilityItem,
   assertMwItem,
   assertPersonalDetailItem,
@@ -46,7 +45,7 @@ export class InvestigatorItem extends Item {
     if (this.actor === null) {
       return;
     }
-    const isBoosted = settings.useBoost.get() && this.getBoost();
+    const isBoosted = settings.useBoost.get() && this.system.boost;
     const boost = isBoosted ? 1 : 0;
     const situationalModifiers = this.activeSituationalModifiers.map((id) => {
       assertAbilityItem(this);
@@ -119,7 +118,7 @@ export class InvestigatorItem extends Item {
         />
       `,
     });
-    const boost = settings.useBoost.get() && this.getBoost() ? 1 : 0;
+    const boost = settings.useBoost.get() && this.system.boost ? 1 : 0;
     const pool = this.system.pool - (Number(spend) || 0) + boost;
     await this.update({ system: { pool } });
   }
@@ -231,11 +230,6 @@ export class InvestigatorItem extends Item {
   // used as handy callbacks in the component tree
   // ###########################################################################
 
-  getCategory = (): string => {
-    assertEquipmentOrAbilityItem(this);
-    return this.system.category;
-  };
-
   setCategory = async (category: string): Promise<void> => {
     isEquipmentOrAbilityItem(this);
     const updateData: Pick<EquipmentSystemData, "category" | "fields"> = {
@@ -265,24 +259,9 @@ export class InvestigatorItem extends Item {
     await this.update({ [`system.fields.-=${field}`]: null });
   };
 
-  // if you get a weird error here about "TypeCheckError: Function implicitly
-  // has return type 'any' because it does not have a return type annotation and
-  // is referenced directly or indirectly in one of its return expressions."
-  // then I feel bad for you. Nuking node_modules and restatring the TS server
-  // may help.
-  getMin = () => {
-    assertAbilityItem(this);
-    return this.system.min;
-  };
-
   setMin = (min: number) => {
     assertAbilityItem(this);
     return this.update({ system: { min } });
-  };
-
-  getMax = () => {
-    assertAbilityItem(this);
-    return this.system.max;
   };
 
   setMax = (max: number) => {
@@ -290,19 +269,9 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { max } });
   };
 
-  getOccupational = () => {
-    assertAbilityItem(this);
-    return this.system.occupational;
-  };
-
   setOccupational = (occupational: boolean) => {
     assertAbilityItem(this);
     return this.update({ system: { occupational } });
-  };
-
-  getCanBeInvestigative = () => {
-    assertGeneralAbilityItem(this);
-    return this.system.canBeInvestigative;
   };
 
   setCanBeInvestigative = (canBeInvestigative: boolean) => {
@@ -310,19 +279,9 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { canBeInvestigative } });
   };
 
-  getShowTracker = () => {
-    assertAbilityItem(this);
-    return this.system.showTracker;
-  };
-
   setShowTracker = (showTracker: boolean) => {
     assertAbilityItem(this);
     return this.update({ system: { showTracker } });
-  };
-
-  getExcludeFromGeneralRefresh = () => {
-    assertAbilityItem(this);
-    return this.system.excludeFromGeneralRefresh;
   };
 
   setExcludeFromGeneralRefresh = (excludeFromGeneralRefresh: boolean) => {
@@ -330,19 +289,9 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { excludeFromGeneralRefresh } });
   };
 
-  getRefreshesDaily = () => {
-    assertAbilityItem(this);
-    return this.system.refreshesDaily;
-  };
-
   setRefreshesDaily = (refreshesDaily: boolean) => {
     assertAbilityItem(this);
     return this.update({ system: { refreshesDaily } });
-  };
-
-  getGoesFirstInCombat = () => {
-    assertGeneralAbilityItem(this);
-    return this.system.goesFirstInCombat;
   };
 
   setGoesFirstInCombat = (goesFirstInCombat: boolean) => {
@@ -350,12 +299,12 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { goesFirstInCombat } });
   };
 
-  getSpecialities = () => {
+  getSpecialities = (): string[] => {
     assertAbilityItem(this);
     return fixLength(this.system.specialities, this.getSpecialitesCount(), "");
   };
 
-  getSpecialitesCount = () => {
+  getSpecialitesCount = (): number => {
     assertAbilityItem(this);
     if (!this.system.hasSpecialities) {
       return 0;
@@ -385,11 +334,6 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  getRating = (): number => {
-    assertAbilityItem(this);
-    return this.system.rating ?? 0;
-  };
-
   setRating = (newRating: number) => {
     assertAbilityItem(this);
     return this.update({
@@ -409,11 +353,6 @@ export class InvestigatorItem extends Item {
         specialities: fixLength(this.system.specialities, newRating, ""),
       },
     });
-  };
-
-  getHasSpecialities = () => {
-    assertAbilityItem(this);
-    return this.system.hasSpecialities ?? false;
   };
 
   setHasSpecialities = (hasSpecialities: boolean) => {
@@ -449,11 +388,6 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  getAmmoMax = (): number => {
-    assertWeaponItem(this);
-    return this.system.ammo?.max || 0;
-  };
-
   setAmmo = (value: number) => {
     return this.update({
       system: {
@@ -464,25 +398,15 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  getAmmo = (): number => {
-    assertWeaponItem(this);
-    return this.system.ammo?.value || 0;
-  };
-
   reload = async () => {
     assertWeaponItem(this);
     await this.update({
       system: {
         ammo: {
-          value: this.getAmmoMax(),
+          value: this.system.ammo.max,
         },
       },
     });
-  };
-
-  getAmmoPerShot = (): number => {
-    assertWeaponItem(this);
-    return this.system.ammoPerShot ?? 1;
   };
 
   setAmmoPerShot = async (ammoPerShot: number) => {
@@ -490,11 +414,6 @@ export class InvestigatorItem extends Item {
     await this.update({
       system: { ammoPerShot },
     });
-  };
-
-  getUsesAmmo = (): boolean => {
-    assertWeaponItem(this);
-    return this.system.usesAmmo ?? false;
   };
 
   setUsesAmmo = async (usesAmmo: boolean) => {
@@ -530,19 +449,9 @@ export class InvestigatorItem extends Item {
     await this.update({ system: { notes: newNotes } });
   };
 
-  getAbility = (): string => {
-    assertWeaponItem(this);
-    return this.system.ability ?? "";
-  };
-
   setAbility = async (ability: string) => {
     assertWeaponItem(this);
     await this.update({ system: { ability } });
-  };
-
-  getPool = () => {
-    assertAbilityItem(this);
-    return this.system.pool ?? 0;
   };
 
   setPool = (pool: number) => {
@@ -550,19 +459,9 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { pool } });
   };
 
-  getBoost = () => {
-    assertAbilityItem(this);
-    return this.system.boost ?? 0;
-  };
-
   setBoost = (boost: boolean) => {
     assertAbilityItem(this);
     return this.update({ system: { boost } });
-  };
-
-  getDamage = (): number => {
-    assertWeaponItem(this);
-    return this.system.damage ?? 0;
   };
 
   setDamage = async (damage: number) => {
@@ -570,19 +469,9 @@ export class InvestigatorItem extends Item {
     await this.update({ system: { damage } });
   };
 
-  getPointBlankDamage = (): number => {
-    assertWeaponItem(this);
-    return this.system.pointBlankDamage ?? 0;
-  };
-
   setPointBlankDamage = async (pointBlankDamage: number) => {
     assertWeaponItem(this);
     await this.update({ system: { pointBlankDamage } });
-  };
-
-  getCloseRangeDamage = (): number => {
-    assertWeaponItem(this);
-    return this.system.closeRangeDamage ?? 0;
   };
 
   setCloseRangeDamage = async (closeRangeDamage: number) => {
@@ -590,19 +479,9 @@ export class InvestigatorItem extends Item {
     await this.update({ system: { closeRangeDamage } });
   };
 
-  getNearRangeDamage = (): number => {
-    assertWeaponItem(this);
-    return this.system.nearRangeDamage ?? 0;
-  };
-
   setNearRangeDamage = async (nearRangeDamage: number) => {
     assertWeaponItem(this);
     await this.update({ system: { nearRangeDamage } });
-  };
-
-  getLongRangeDamage = (): number => {
-    assertWeaponItem(this);
-    return this.system.longRangeDamage ?? 0;
   };
 
   setLongRangeDamage = async (longRangeDamage: number) => {
@@ -610,19 +489,9 @@ export class InvestigatorItem extends Item {
     await this.update({ system: { longRangeDamage } });
   };
 
-  getIsPointBlank = (): boolean => {
-    assertWeaponItem(this);
-    return this.system.isPointBlank;
-  };
-
   setIsPointBlank = async (isPointBlank: boolean) => {
     assertWeaponItem(this);
     await this.update({ system: { isPointBlank } });
-  };
-
-  getIsCloseRange = (): boolean => {
-    assertWeaponItem(this);
-    return this.system.isCloseRange;
   };
 
   setIsCloseRange = async (isCloseRange: boolean) => {
@@ -630,29 +499,14 @@ export class InvestigatorItem extends Item {
     await this.update({ system: { isCloseRange } });
   };
 
-  getIsNearRange = (): boolean => {
-    assertWeaponItem(this);
-    return this.system.isNearRange;
-  };
-
   setIsNearRange = async (isNearRange: boolean) => {
     assertWeaponItem(this);
     await this.update({ system: { isNearRange } });
   };
 
-  getIsLongRange = (): boolean => {
-    assertWeaponItem(this);
-    return this.system.isLongRange;
-  };
-
   setIsLongRange = async (isLongRange: boolean) => {
     assertWeaponItem(this);
     await this.update({ system: { isLongRange } });
-  };
-
-  getHideIfZeroRated = (): boolean => {
-    assertAbilityItem(this);
-    return this.system.hideIfZeroRated;
   };
 
   setHideIfZeroRated = async (hideIfZeroRated: boolean) => {
@@ -668,19 +522,9 @@ export class InvestigatorItem extends Item {
   // ---------------------------------------------------------------------------
   // MW specific fields
 
-  getMwTrumps = () => {
-    assertGeneralAbilityItem(this);
-    return this.system.mwTrumps;
-  };
-
   setMwTrumps = (mwTrumps: string) => {
     assertGeneralAbilityItem(this);
     return this.update({ system: { mwTrumps } });
-  };
-
-  getMwTrumpedBy = () => {
-    assertGeneralAbilityItem(this);
-    return this.system.mwTrumpedBy;
   };
 
   setMwTrumpedBy = (mwTrumpedBy: string) => {
@@ -688,29 +532,14 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { mwTrumpedBy } });
   };
 
-  getMwType = (): MwType => {
-    assertMwItem(this);
-    return this.system.mwType;
-  };
-
   setMwType = async (mwType: MwType) => {
     assertMwItem(this);
     await this.update({ system: { mwType } });
   };
 
-  getCharges = (): number => {
-    assertMwItem(this);
-    return this.system.charges;
-  };
-
   setCharges = async (charges: number) => {
     assertMwItem(this);
     await this.update({ system: { charges } });
-  };
-
-  getRanges = (): RangeTuple => {
-    assertMwItem(this);
-    return this.system.ranges;
   };
 
   getRange = (range: 0 | 1 | 2 | 3): number => {
@@ -730,17 +559,12 @@ export class InvestigatorItem extends Item {
     await this.update({ system: { ranges } });
   };
 
-  getMwRefreshGroup = () => {
-    assertGeneralAbilityItem(this);
-    return this.system.mwRefreshGroup;
-  };
-
   setMwRefreshGroup = async (mwRefreshGroup: MwRefreshGroup) => {
     assertGeneralAbilityItem(this);
     await this.update({ system: { mwRefreshGroup } });
   };
 
-  getActiveUnlocks = () => {
+  getActiveUnlocks = (): Unlock[] => {
     assertAbilityItem(this);
     return this.system.unlocks.filter(
       ({ rating: targetRating, description }) => {
@@ -750,7 +574,7 @@ export class InvestigatorItem extends Item {
     );
   };
 
-  getVisibleSituationalModifiers = () => {
+  getVisibleSituationalModifiers = (): SituationalModifier[] => {
     assertAbilityItem(this);
     return this.system.situationalModifiers.filter(({ situation }) => {
       assertAbilityItem(this);
@@ -774,7 +598,7 @@ export class InvestigatorItem extends Item {
     this.actor?.sheet?.render();
   };
 
-  isSituationalModifierActive = (id: string) => {
+  isSituationalModifierActive = (id: string): boolean => {
     assertAbilityItem(this);
     return this.activeSituationalModifiers.includes(id);
   };

@@ -141,7 +141,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
           },
         }}
       />
-      {ability.getHasSpecialities() && (
+      {ability.system.hasSpecialities && (
         <GridFieldStacked
           label={
             ability.getSpecialities().length === 1
@@ -162,7 +162,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
       {useBoost && (
         <GridField label="Boost?">
           <AsyncCheckbox
-            checked={ability.getBoost()}
+            checked={ability.system.boost}
             onChange={ability.setBoost}
           />
         </GridField>

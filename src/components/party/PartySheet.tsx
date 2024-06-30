@@ -164,10 +164,7 @@ export const PartySheet: React.FC<{
         }}
       >
         <GridField label="Party Name">
-          <AsyncTextInput
-            value={party.getName() || ""}
-            onChange={party.setName}
-          />
+          <AsyncTextInput value={party.name || ""} onChange={party.setName} />
         </GridField>
       </InputGrid>
 

@@ -182,7 +182,7 @@ export const MwItemSheet: React.FC<MwItemSheetProps> = ({
           <GridField label="Charges">
             <AsyncNumberInput
               onChange={item.setCharges}
-              value={item.getCharges()}
+              value={item.system.charges}
               min={0}
             />
           </GridField>

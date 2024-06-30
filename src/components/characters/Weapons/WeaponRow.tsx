@@ -42,7 +42,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
     id: number,
     hover: string,
   ) => {
-    const totalDamage = weapon.getDamage() + rangeDamage;
+    const totalDamage = weapon.system.damage + rangeDamage;
     const label = isRange
       ? (totalDamage >= 0 ? "+" : "") + totalDamage.toString()
       : "-";
@@ -50,32 +50,32 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
   };
   const rangeInfo = [
     makeRangeOption(
-      weapon.getIsPointBlank(),
-      weapon.getPointBlankDamage(),
+      weapon.system.isPointBlank,
+      weapon.system.pointBlankDamage,
       0,
       "Point Blank",
     ),
     makeRangeOption(
-      weapon.getIsCloseRange(),
-      weapon.getCloseRangeDamage(),
+      weapon.system.isCloseRange,
+      weapon.system.closeRangeDamage,
       1,
       "Close Range",
     ),
     makeRangeOption(
-      weapon.getIsNearRange(),
-      weapon.getNearRangeDamage(),
+      weapon.system.isNearRange,
+      weapon.system.nearRangeDamage,
       2,
       "Near Range",
     ),
     makeRangeOption(
-      weapon.getIsLongRange(),
-      weapon.getLongRangeDamage(),
+      weapon.system.isLongRange,
+      weapon.system.longRangeDamage,
       3,
       "Long Range",
     ),
   ];
   const [rangeSelected, setRangeSelected] = useState(0);
-  const ammoFail = weapon.getUsesAmmo() && weapon.getAmmo() <= 0;
+  const ammoFail = weapon.system.usesAmmo && weapon.system.ammo.value <= 0;
 
   const abilityName = weapon.system.ability;
   const ability: InvestigatorItem | undefined = weapon.actor?.items.find(
@@ -131,7 +131,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
       >
         {weapon.name}
       </a>
-      {weapon.getUsesAmmo() ? (
+      {weapon.system.usesAmmo ? (
         <div css={{ gridColumn: 2 }}>
           <button
             css={{ width: "1.5em", padding: "0" }}
@@ -140,7 +140,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
             <i className="fa fa-redo fa-xs" />
           </button>
           &nbsp;
-          {weapon.getAmmo()}/{weapon.getAmmoMax()}
+          {weapon.system.ammo.value}/{weapon.system.ammo.max}
         </div>
       ) : (
         <div css={{ gridColumn: 2, textAlign: "center" }}>&mdash;</div>

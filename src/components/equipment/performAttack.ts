@@ -2,7 +2,12 @@ import * as constants from "../../constants";
 import { assertGame } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
-import { isGeneralAbilityItem, isNPCActor } from "../../v10Types";
+import {
+  assertAbilityItem,
+  assertWeaponItem,
+  isGeneralAbilityItem,
+  isNPCActor,
+} from "../../v10Types";
 
 type PerformAttackArgs1 = {
   spend: number;
@@ -29,13 +34,15 @@ export const performAttack =
   }: PerformAttackArgs1) =>
   async ({ rangeName, rangeDamage }: PerformAttackArgs2) => {
     assertGame(game);
+    assertWeaponItem(weapon);
+    assertAbilityItem(ability);
     if (weapon.actor === null) {
       return;
     }
-    const damage = weapon.getDamage();
+    const damage = weapon.system.damage;
 
     const useBoost = settings.useBoost.get();
-    const isBoosted = useBoost && ability !== undefined && ability.getBoost();
+    const isBoosted = useBoost && ability !== undefined && ability.system.boost;
     const boost = isBoosted ? 1 : 0;
 
     let hitTerm = "1d6 + @spend";
@@ -102,7 +109,7 @@ export const performAttack =
   `,
     });
 
-    const currentPool = ability?.getPool() ?? 0;
+    const currentPool = ability?.system.pool ?? 0;
     const poolHit = Math.max(0, Number(spend) - bonusPool);
     const newPool = Math.max(0, currentPool - poolHit);
     const newBonusPool = Math.max(0, bonusPool - Number(spend));
@@ -110,6 +117,6 @@ export const performAttack =
     setBonusPool(newBonusPool);
     setSpend(0);
     await weapon.setAmmo(
-      Math.max(0, weapon.getAmmo() - weapon.getAmmoPerShot()),
+      Math.max(0, weapon.system.ammo.value - weapon.system.ammoPerShot),
     );
   };

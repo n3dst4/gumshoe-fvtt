@@ -68,41 +68,41 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
       </GridField>
       <GridField label="Base Damage">
         <AsyncNumberInput
-          value={weapon.getDamage()}
+          value={weapon.system.damage}
           onChange={weapon.setDamage}
         />
       </GridField>
       <WeaponRange
         label="Point Blank"
-        damage={weapon.getPointBlankDamage()}
-        enabled={weapon.getIsPointBlank()}
+        damage={weapon.system.pointBlankDamage ?? 0}
+        enabled={weapon.system.isPointBlank}
         setDamage={weapon.setPointBlankDamage}
         setEnabled={weapon.setIsPointBlank}
       />
       <WeaponRange
         label="Close range"
-        damage={weapon.getCloseRangeDamage()}
-        enabled={weapon.getIsCloseRange()}
+        damage={weapon.system.closeRangeDamage ?? 0}
+        enabled={weapon.system.isCloseRange}
         setDamage={weapon.setCloseRangeDamage}
         setEnabled={weapon.setIsCloseRange}
       />
       <WeaponRange
         label="Near range"
-        damage={weapon.getNearRangeDamage()}
-        enabled={weapon.getIsNearRange()}
+        damage={weapon.system.nearRangeDamage ?? 0}
+        enabled={weapon.system.isNearRange}
         setDamage={weapon.setNearRangeDamage}
         setEnabled={weapon.setIsNearRange}
       />
       <WeaponRange
         label="Long range"
-        damage={weapon.getLongRangeDamage()}
-        enabled={weapon.getIsLongRange()}
+        damage={weapon.system.longRangeDamage ?? 0}
+        enabled={weapon.system.isLongRange}
         setDamage={weapon.setLongRangeDamage}
         setEnabled={weapon.setIsLongRange}
       />
       <GridField label="Uses ammo?">
         <AsyncCheckbox
-          checked={weapon.getUsesAmmo()}
+          checked={weapon.system.usesAmmo}
           onChange={weapon.setUsesAmmo}
         />
       </GridField>
@@ -111,14 +111,14 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
           <GridField label="Ammo capacity">
             <AsyncNumberInput
               min={0}
-              value={weapon.getAmmoMax()}
+              value={weapon.system.ammo.max}
               onChange={weapon.setAmmoMax}
             />
           </GridField>
           <GridField label="Ammo per attack">
             <AsyncNumberInput
               min={0}
-              value={weapon.getAmmoPerShot()}
+              value={weapon.system.ammoPerShot}
               onChange={weapon.setAmmoPerShot}
             />
           </GridField>
