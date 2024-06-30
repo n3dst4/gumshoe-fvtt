@@ -28,7 +28,12 @@
 		},
 		"allowJs": true,
 		"noEmit": true,
-		"noPropertyAccessFromIndexSignature": true
+		"noPropertyAccessFromIndexSignature": true,
+		// https://www.typescriptlang.org/tsconfig/#skipLibCheck
+		// https://discord.com/channels/732325252788387980/793933527065690184/1242919548383002756
+		// https://youtu.be/zu-EgnbmcLY?si=-xh17c1DbuPcA256&t=123
+		"skipLibCheck": true
+
 	},
 	"exclude": ["**/node_modules", "**/.*/"],
 	"include": ["src"]
