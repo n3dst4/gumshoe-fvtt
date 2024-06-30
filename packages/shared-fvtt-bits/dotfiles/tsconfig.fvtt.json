@@ -26,14 +26,17 @@
 				"./node_modules/@emotion/react"
 			],
 		},
-		"allowJs": true,
+		"allowJs": false,
 		"noEmit": true,
 		"noPropertyAccessFromIndexSignature": true,
 		// https://www.typescriptlang.org/tsconfig/#skipLibCheck
 		// https://discord.com/channels/732325252788387980/793933527065690184/1242919548383002756
 		// https://youtu.be/zu-EgnbmcLY?si=-xh17c1DbuPcA256&t=123
 		"skipLibCheck": true,
-		"isolatedModules": true
+		"isolatedModules": true,
+		// https://devblogs.microsoft.com/typescript/announcing-typescript-5-5/#isolated-declarations
+		"isolatedDeclarations": true,
+		"composite": true
 
 	},
 	"exclude": ["**/node_modules", "**/.*/"],
