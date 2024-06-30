@@ -1,3 +1,6 @@
+// enabling this rule because ts 5.5.x is having some issues with deep types
+// that seem to come out here
+/* eslint "@typescript-eslint/explicit-function-return-type": "error" */
 import {
   equipment,
   occupationSlotIndex,
@@ -38,12 +41,12 @@ import {
 import { InvestigatorItem } from "./InvestigatorItem";
 
 export class InvestigatorActor extends Actor {
-  shouldBrodcastRefreshes() {
+  shouldBrodcastRefreshes(): boolean {
     assertGame(game);
     return !game.user?.isGM || this.type === pc;
   }
 
-  confirmRefresh = async () => {
+  confirmRefresh = async (): Promise<void> => {
     const yes = await confirmADoodleDo({
       message: "Refresh all of (actor name)'s abilities?",
       confirmText: "Refresh",
@@ -56,7 +59,7 @@ export class InvestigatorActor extends Actor {
     }
   };
 
-  confirm24hRefresh = async () => {
+  confirm24hRefresh = async (): Promise<void> => {
     const yes = await confirmADoodleDo({
       message:
         "Refresh all of (actor name)'s abilities which refresh every 24h?",
@@ -72,7 +75,7 @@ export class InvestigatorActor extends Actor {
   };
 
   confirmMwRefresh(group: MwRefreshGroup) {
-    return async () => {
+    return async (): Promise<void> => {
       const yes = await confirmADoodleDo({
         message:
           "Refresh all of {ActorName}'s abilities which refresh every {Hours} Hours?",
@@ -91,7 +94,7 @@ export class InvestigatorActor extends Actor {
   confirmMw4Refresh = this.confirmMwRefresh(4);
   confirmMw8Refresh = this.confirmMwRefresh(8);
 
-  refresh = async () => {
+  refresh = async (): Promise<void> => {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
         isAbilityItem(item) &&
@@ -116,7 +119,7 @@ export class InvestigatorActor extends Actor {
     await this.updateEmbeddedDocuments("Item", updates);
   };
 
-  async mWrefresh(group: MwRefreshGroup) {
+  async mWrefresh(group: MwRefreshGroup): Promise<void> {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
         isGeneralAbilityItem(item) &&
@@ -149,7 +152,7 @@ export class InvestigatorActor extends Actor {
 
   // if we end up with even more types of refresh it may be worth factoring out
   // the actual refresh code but until then - rule of three
-  refresh24h = async () => {
+  refresh24h = async (): Promise<void> => {
     const updates = Array.from(this.items).flatMap((item) => {
       if (
         isAbilityItem(item) &&
@@ -179,7 +182,7 @@ export class InvestigatorActor extends Actor {
   broadcastUserMessage = async (
     text: string,
     extraData: Record<string, string> = {},
-  ) => {
+  ): Promise<void> => {
     if (isGame(game)) {
       const chatData = {
         user: game.user?.id,
@@ -196,7 +199,7 @@ export class InvestigatorActor extends Actor {
     }
   };
 
-  confirmNuke = async () => {
+  confirmNuke = async (): Promise<void> => {
     const yes = await confirmADoodleDo({
       message: "NukeAllOfActorNamesAbilitiesAndEquipment",
       confirmText: "Nuke it from orbit",
@@ -210,7 +213,7 @@ export class InvestigatorActor extends Actor {
     }
   };
 
-  nuke = async () => {
+  nuke = async (): Promise<void> => {
     await this.deleteEmbeddedDocuments(
       "Item",
       this.items.map((i) => i.id).filter((i) => i !== null) as string[],
@@ -280,7 +283,7 @@ export class InvestigatorActor extends Actor {
   // used as handy callbacks in the component tree
   // ###########################################################################
 
-  setName = (name: string) => {
+  setName = (name: string): Promise<this | undefined> => {
     return this.update({ name });
   };
 
@@ -304,7 +307,7 @@ export class InvestigatorActor extends Actor {
       : settings.defaultThemeName.get();
   }
 
-  setSheetTheme = async (sheetTheme: string | null) => {
+  setSheetTheme = async (sheetTheme: string | null): Promise<void> => {
     await this.update({ system: { sheetTheme } });
   };
 
@@ -313,7 +316,7 @@ export class InvestigatorActor extends Actor {
     return this.update({ system: { notes } });
   };
 
-  setGMNotes = (gmNotes: NoteWithFormat) => {
+  setGMNotes = (gmNotes: NoteWithFormat): Promise<this | undefined> => {
     assertNPCActor(this);
     return this.update({ system: { gmNotes } });
   };
@@ -323,14 +326,16 @@ export class InvestigatorActor extends Actor {
     return this.system.longNotes?.[i] ?? "";
   };
 
-  setLongNote = (i: number, note: BaseNote) => {
+  setLongNote = (i: number, note: BaseNote): Promise<this | undefined> => {
     assertPCActor(this);
     const longNotes = [...(this.system.longNotes || [])];
     longNotes[i] = note;
     return this.update({ system: { longNotes } });
   };
 
-  setLongNotesFormat = async (longNotesFormat: NoteFormat) => {
+  setLongNotesFormat = async (
+    longNotesFormat: NoteFormat,
+  ): Promise<this | undefined> => {
     assertPCActor(this);
     const longNotesPromises = (this.system.longNotes || []).map<
       Promise<BaseNote>
@@ -355,7 +360,7 @@ export class InvestigatorActor extends Actor {
     return this.system.shortNotes?.[i] ?? "";
   };
 
-  setShortNote = (i: number, text: string) => {
+  setShortNote = (i: number, text: string): Promise<this | undefined> => {
     assertPCActor(this);
     const newNotes = [...(this.system.shortNotes || [])];
     newNotes[i] = text;
@@ -366,7 +371,10 @@ export class InvestigatorActor extends Actor {
     });
   };
 
-  setMwHiddenShortNote = (i: number, text: string) => {
+  setMwHiddenShortNote = (
+    i: number,
+    text: string,
+  ): Promise<this | undefined> => {
     assertPCActor(this);
     const newNotes = [...(this.system.hiddenShortNotes || [])];
     newNotes[i] = text;
@@ -377,12 +385,12 @@ export class InvestigatorActor extends Actor {
     });
   };
 
-  setHitThreshold = (hitThreshold: number) => {
+  setHitThreshold = (hitThreshold: number): Promise<this | undefined> => {
     assertActiveCharacterActor(this);
     return this.update({ system: { hitThreshold } });
   };
 
-  setInitiativeAbility = async (initiativeAbility: string) => {
+  setInitiativeAbility = async (initiativeAbility: string): Promise<void> => {
     assertGame(game);
     assertActiveCharacterActor(this);
     await this.update({ system: { initiativeAbility } });
@@ -392,24 +400,24 @@ export class InvestigatorActor extends Actor {
     }
   };
 
-  setCombatBonus = async (combatBonus: number) => {
+  setCombatBonus = async (combatBonus: number): Promise<void> => {
     assertNPCActor(this);
     await this.update({ system: { combatBonus } });
   };
 
-  setDamageBonus = async (damageBonus: number) => {
+  setDamageBonus = async (damageBonus: number): Promise<void> => {
     assertNPCActor(this);
     await this.update({ system: { damageBonus } });
   };
 
-  setPassingTurns = async (initiativePassingTurns: number) => {
+  setPassingTurns = async (initiativePassingTurns: number): Promise<void> => {
     assertActiveCharacterActor(this);
     await this.update({ system: { initiativePassingTurns } });
   };
 
   // ###########################################################################
   // Moribund World stuff
-  setMwInjuryStatus = async (mwInjuryStatus: MwInjuryStatus) => {
+  setMwInjuryStatus = async (mwInjuryStatus: MwInjuryStatus): Promise<void> => {
     assertActiveCharacterActor(this);
     await this.update({ system: { mwInjuryStatus } });
   };
@@ -426,7 +434,7 @@ export class InvestigatorActor extends Actor {
     return this.update({ system: { actorIds } });
   };
 
-  getActors = () => {
+  getActors = (): Actor[] => {
     return this.getActorIds()
       .map((id) => {
         assertGame(game);
@@ -435,7 +443,7 @@ export class InvestigatorActor extends Actor {
       .filter((actor) => actor !== undefined) as Actor[];
   };
 
-  addActorIds = (newIds: string[]) => {
+  addActorIds = (newIds: string[]): Promise<this | undefined> => {
     const currentIds = this.getActorIds();
     const effectiveIds = (
       newIds
@@ -454,11 +462,11 @@ export class InvestigatorActor extends Actor {
     return this.setActorIds([...currentIds, ...effectiveIds]);
   };
 
-  removeActorId = (id: string) => {
+  removeActorId = (id: string): Promise<this | undefined> => {
     return this.setActorIds(this.getActorIds().filter((x) => x !== id));
   };
 
-  createEquipment = async (categoryId: string) => {
+  createEquipment = async (categoryId: string): Promise<void> => {
     await this.createEmbeddedDocuments(
       "Item",
       [
@@ -476,7 +484,10 @@ export class InvestigatorActor extends Actor {
     );
   };
 
-  createPersonalDetail = async (slotIndex: number, renderSheet = true) => {
+  createPersonalDetail = async (
+    slotIndex: number,
+    renderSheet = true,
+  ): Promise<void> => {
     const name =
       slotIndex === occupationSlotIndex
         ? settings.genericOccupation.get()
