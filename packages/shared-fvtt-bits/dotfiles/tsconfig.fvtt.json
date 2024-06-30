@@ -35,7 +35,8 @@
 		"skipLibCheck": true,
 		"isolatedModules": true,
 		// https://devblogs.microsoft.com/typescript/announcing-typescript-5-5/#isolated-declarations
-		"isolatedDeclarations": true,
+		// this causes a problem with eslint (probably typescript-eslint?)
+		//"isolatedDeclarations": true,
 		"composite": true
 
 	},
