@@ -235,7 +235,7 @@ export const PCSheet: React.FC<PCSheetProps> = ({
         {settings.useMwInjuryStatus.get() && (
           <Fragment>
             <MwInjuryStatusWidget
-              status={actor.getMwInjuryStatus()}
+              status={actor.system.mwInjuryStatus}
               setStatus={actor.setMwInjuryStatus}
             />
             <hr />
@@ -253,7 +253,7 @@ export const PCSheet: React.FC<PCSheetProps> = ({
           <Translate>Combat Order</Translate>
         </h3>
         <CombatAbilityDropDown
-          value={actor.getInitiativeAbility()}
+          value={actor.system.initiativeAbility}
           onChange={actor.setInitiativeAbility}
         />
       </div>

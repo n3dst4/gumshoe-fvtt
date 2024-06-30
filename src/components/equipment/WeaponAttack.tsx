@@ -141,7 +141,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
     [ability, weapon.actor],
   );
 
-  const ammoFail = weapon.getUsesAmmo() && weapon.getAmmo() <= 0;
+  const ammoFail = weapon.system.usesAmmo && weapon.system.ammo.value <= 0;
 
   return (
     <div css={{ ...absoluteCover, display: "flex", flexDirection: "column" }}>
@@ -242,8 +242,8 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
               <AsyncNumberInput
                 css={{ flex: 1 }}
                 min={0}
-                max={weapon.getAmmoMax()}
-                value={weapon.getAmmo()}
+                max={weapon.system.ammo.max}
+                value={weapon.system.ammo.value}
                 onChange={weapon.setAmmo}
               />
             </div>

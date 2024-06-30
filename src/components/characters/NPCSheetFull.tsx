@@ -101,7 +101,7 @@ export const NPCSheetFull = ({
         {settings.useMwInjuryStatus.get() && (
           <div css={{ marginBottom: "0.5em" }}>
             <MwInjuryStatusWidget
-              status={actor.getMwInjuryStatus()}
+              status={actor.system.mwInjuryStatus}
               setStatus={actor.setMwInjuryStatus}
             />
           </div>
@@ -141,7 +141,7 @@ export const NPCSheetFull = ({
           <Translate>Combat Order</Translate>
         </h4>
         <CombatAbilityDropDown
-          value={actor.getInitiativeAbility()}
+          value={actor.system.initiativeAbility}
           onChange={actor.setInitiativeAbility}
         />
         {settings.useTurnPassingInitiative.get() && (

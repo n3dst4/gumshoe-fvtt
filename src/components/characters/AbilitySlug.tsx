@@ -20,7 +20,7 @@ export const AbilitySlug: React.FC<AbilitySlugProps> = ({ ability }) => {
     },
     [app],
   );
-  const boost = settings.useBoost.get() && ability.getBoost();
+  const boost = settings.useBoost.get() && ability.system.boost;
 
   return (
     <a

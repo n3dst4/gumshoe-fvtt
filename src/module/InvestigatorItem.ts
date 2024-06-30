@@ -1,3 +1,6 @@
+// enabling this rule because ts 5.5.x is having some issues with deep types
+// that seem to come out here
+/* eslint "@typescript-eslint/explicit-function-return-type": "error" */
 import { nanoid } from "nanoid";
 
 import * as constants from "../constants";
@@ -19,7 +22,6 @@ import {
   assertAnyItem,
   assertCardItem,
   assertEquipmentItem,
-  assertEquipmentOrAbilityItem,
   assertGeneralAbilityItem,
   assertMwItem,
   assertPersonalDetailItem,
@@ -40,13 +42,13 @@ export class InvestigatorItem extends Item {
    * classic gumshoe test: spend a number of points from the pool, and add that
    * to a d6
    */
-  async testAbility(spend: number) {
+  async testAbility(spend: number): Promise<void> {
     assertGame(game);
     assertAbilityItem(this);
     if (this.actor === null) {
       return;
     }
-    const isBoosted = settings.useBoost.get() && this.getBoost();
+    const isBoosted = settings.useBoost.get() && this.system.boost;
     const boost = isBoosted ? 1 : 0;
     const situationalModifiers = this.activeSituationalModifiers.map((id) => {
       assertAbilityItem(this);
@@ -96,7 +98,7 @@ export class InvestigatorItem extends Item {
    * gumshoe spend - no dice, just spend a number of points in exchange for some
    * goodies
    */
-  async spendAbility(spend: number) {
+  async spendAbility(spend: number): Promise<void> {
     assertAbilityItem(this);
     if (this.actor === null) {
       return;
@@ -119,7 +121,7 @@ export class InvestigatorItem extends Item {
         />
       `,
     });
-    const boost = settings.useBoost.get() && this.getBoost() ? 1 : 0;
+    const boost = settings.useBoost.get() && this.system.boost ? 1 : 0;
     const pool = this.system.pool - (Number(spend) || 0) + boost;
     await this.update({ system: { pool } });
   }
@@ -132,7 +134,7 @@ export class InvestigatorItem extends Item {
     difficulty: MWDifficulty,
     boonLevy: number,
     reRoll: number | null = null,
-  ) {
+  ): Promise<void> {
     assertGame(game);
     assertAbilityItem(this);
     if (this.actor === null) {
@@ -178,7 +180,7 @@ export class InvestigatorItem extends Item {
     await this.update({ system: { pool: newPool } });
   }
 
-  async mWNegateIllustrious() {
+  async mWNegateIllustrious(): Promise<void> {
     assertAbilityItem(this);
     const newPool = Math.max(0, this.system.pool - constants.mwNegateCost);
     await ChatMessage.create({
@@ -195,7 +197,7 @@ export class InvestigatorItem extends Item {
     await this.update({ system: { pool: newPool } });
   }
 
-  async mWWallop() {
+  async mWWallop(): Promise<void> {
     assertAbilityItem(this);
     const newPool = Math.max(0, this.system.pool - constants.mwWallopCost);
     await ChatMessage.create({
@@ -215,7 +217,7 @@ export class InvestigatorItem extends Item {
   /**
    * reset the pool to the rating
    */
-  async refreshPool() {
+  async refreshPool(): Promise<void> {
     assertAbilityItem(this);
     await this.update({
       system: {
@@ -230,11 +232,6 @@ export class InvestigatorItem extends Item {
   // basically we have a getter/setter pair for every attribute so they can be
   // used as handy callbacks in the component tree
   // ###########################################################################
-
-  getCategory = (): string => {
-    assertEquipmentOrAbilityItem(this);
-    return this.system.category;
-  };
 
   setCategory = async (category: string): Promise<void> => {
     isEquipmentOrAbilityItem(this);
@@ -260,102 +257,63 @@ export class InvestigatorItem extends Item {
     await this.update({ system: { fields: { [field]: value } } });
   };
 
-  deleteField = async (field: string) => {
+  deleteField = async (field: string): Promise<this | undefined> => {
     assertEquipmentItem(this);
-    await this.update({ [`system.fields.-=${field}`]: null });
+    return await this.update({ [`system.fields.-=${field}`]: null });
   };
 
-  // if you get a weird error here about "TypeCheckError: Function implicitly
-  // has return type 'any' because it does not have a return type annotation and
-  // is referenced directly or indirectly in one of its return expressions."
-  // then I feel bad for you. Nuking node_modules and restatring the TS server
-  // may help.
-  getMin = () => {
-    assertAbilityItem(this);
-    return this.system.min;
-  };
-
-  setMin = (min: number) => {
+  setMin = (min: number): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({ system: { min } });
   };
 
-  getMax = () => {
-    assertAbilityItem(this);
-    return this.system.max;
-  };
-
-  setMax = (max: number) => {
+  setMax = (max: number): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({ system: { max } });
   };
 
-  getOccupational = () => {
-    assertAbilityItem(this);
-    return this.system.occupational;
-  };
-
-  setOccupational = (occupational: boolean) => {
+  setOccupational = (occupational: boolean): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({ system: { occupational } });
   };
 
-  getCanBeInvestigative = () => {
-    assertGeneralAbilityItem(this);
-    return this.system.canBeInvestigative;
-  };
-
-  setCanBeInvestigative = (canBeInvestigative: boolean) => {
+  setCanBeInvestigative = (
+    canBeInvestigative: boolean,
+  ): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({ system: { canBeInvestigative } });
   };
 
-  getShowTracker = () => {
-    assertAbilityItem(this);
-    return this.system.showTracker;
-  };
-
-  setShowTracker = (showTracker: boolean) => {
+  setShowTracker = (showTracker: boolean): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({ system: { showTracker } });
   };
 
-  getExcludeFromGeneralRefresh = () => {
-    assertAbilityItem(this);
-    return this.system.excludeFromGeneralRefresh;
-  };
-
-  setExcludeFromGeneralRefresh = (excludeFromGeneralRefresh: boolean) => {
+  setExcludeFromGeneralRefresh = (
+    excludeFromGeneralRefresh: boolean,
+  ): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({ system: { excludeFromGeneralRefresh } });
   };
 
-  getRefreshesDaily = () => {
-    assertAbilityItem(this);
-    return this.system.refreshesDaily;
-  };
-
-  setRefreshesDaily = (refreshesDaily: boolean) => {
+  setRefreshesDaily = (refreshesDaily: boolean): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({ system: { refreshesDaily } });
   };
 
-  getGoesFirstInCombat = () => {
-    assertGeneralAbilityItem(this);
-    return this.system.goesFirstInCombat;
-  };
-
-  setGoesFirstInCombat = (goesFirstInCombat: boolean) => {
+  setGoesFirstInCombat = (
+    goesFirstInCombat: boolean,
+  ): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({ system: { goesFirstInCombat } });
   };
 
-  getSpecialities = () => {
+  getSpecialities = (): string[] => {
     assertAbilityItem(this);
     return fixLength(this.system.specialities, this.getSpecialitesCount(), "");
   };
 
-  getSpecialitesCount = () => {
+  getSpecialitesCount = (): number => {
     assertAbilityItem(this);
     if (!this.system.hasSpecialities) {
       return 0;
@@ -385,12 +343,7 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  getRating = (): number => {
-    assertAbilityItem(this);
-    return this.system.rating ?? 0;
-  };
-
-  setRating = (newRating: number) => {
+  setRating = (newRating: number): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({
       system: {
@@ -400,7 +353,7 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  setRatingRefresh = (newRating: number) => {
+  setRatingRefresh = (newRating: number): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({
       system: {
@@ -411,12 +364,9 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  getHasSpecialities = () => {
-    assertAbilityItem(this);
-    return this.system.hasSpecialities ?? false;
-  };
-
-  setHasSpecialities = (hasSpecialities: boolean) => {
+  setHasSpecialities = (
+    hasSpecialities: boolean,
+  ): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({
       system: {
@@ -425,13 +375,13 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  setName = (name: string) => {
+  setName = (name: string): Promise<this | undefined> => {
     return this.update({
       name,
     });
   };
 
-  setCost = (cost: number) => {
+  setCost = (cost: number): Promise<this | undefined> => {
     return this.update({
       system: {
         cost,
@@ -439,7 +389,7 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  setAmmoMax = (max: number) => {
+  setAmmoMax = (max: number): Promise<this | undefined> => {
     return this.update({
       system: {
         ammo: {
@@ -449,12 +399,7 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  getAmmoMax = (): number => {
-    assertWeaponItem(this);
-    return this.system.ammo?.max || 0;
-  };
-
-  setAmmo = (value: number) => {
+  setAmmo = (value: number): Promise<this | undefined> => {
     return this.update({
       system: {
         ammo: {
@@ -464,40 +409,25 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  getAmmo = (): number => {
-    assertWeaponItem(this);
-    return this.system.ammo?.value || 0;
-  };
-
-  reload = async () => {
+  reload = async (): Promise<void> => {
     assertWeaponItem(this);
     await this.update({
       system: {
         ammo: {
-          value: this.getAmmoMax(),
+          value: this.system.ammo.max,
         },
       },
     });
   };
 
-  getAmmoPerShot = (): number => {
-    assertWeaponItem(this);
-    return this.system.ammoPerShot ?? 1;
-  };
-
-  setAmmoPerShot = async (ammoPerShot: number) => {
+  setAmmoPerShot = async (ammoPerShot: number): Promise<void> => {
     assertWeaponItem(this);
     await this.update({
       system: { ammoPerShot },
     });
   };
 
-  getUsesAmmo = (): boolean => {
-    assertWeaponItem(this);
-    return this.system.usesAmmo ?? false;
-  };
-
-  setUsesAmmo = async (usesAmmo: boolean) => {
+  setUsesAmmo = async (usesAmmo: boolean): Promise<void> => {
     assertWeaponItem(this);
     await this.update({
       system: { usesAmmo },
@@ -526,141 +456,76 @@ export class InvestigatorItem extends Item {
     );
   };
 
-  setNotes = async (newNotes: NoteWithFormat) => {
+  setNotes = async (newNotes: NoteWithFormat): Promise<void> => {
     await this.update({ system: { notes: newNotes } });
   };
 
-  getAbility = (): string => {
-    assertWeaponItem(this);
-    return this.system.ability ?? "";
-  };
-
-  setAbility = async (ability: string) => {
+  setAbility = async (ability: string): Promise<void> => {
     assertWeaponItem(this);
     await this.update({ system: { ability } });
   };
 
-  getPool = () => {
-    assertAbilityItem(this);
-    return this.system.pool ?? 0;
-  };
-
-  setPool = (pool: number) => {
+  setPool = (pool: number): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({ system: { pool } });
   };
 
-  getBoost = () => {
-    assertAbilityItem(this);
-    return this.system.boost ?? 0;
-  };
-
-  setBoost = (boost: boolean) => {
+  setBoost = (boost: boolean): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({ system: { boost } });
   };
 
-  getDamage = (): number => {
-    assertWeaponItem(this);
-    return this.system.damage ?? 0;
-  };
-
-  setDamage = async (damage: number) => {
+  setDamage = async (damage: number): Promise<void> => {
     assertWeaponItem(this);
     await this.update({ system: { damage } });
   };
 
-  getPointBlankDamage = (): number => {
-    assertWeaponItem(this);
-    return this.system.pointBlankDamage ?? 0;
-  };
-
-  setPointBlankDamage = async (pointBlankDamage: number) => {
+  setPointBlankDamage = async (pointBlankDamage: number): Promise<void> => {
     assertWeaponItem(this);
     await this.update({ system: { pointBlankDamage } });
   };
 
-  getCloseRangeDamage = (): number => {
-    assertWeaponItem(this);
-    return this.system.closeRangeDamage ?? 0;
-  };
-
-  setCloseRangeDamage = async (closeRangeDamage: number) => {
+  setCloseRangeDamage = async (closeRangeDamage: number): Promise<void> => {
     assertWeaponItem(this);
     await this.update({ system: { closeRangeDamage } });
   };
 
-  getNearRangeDamage = (): number => {
-    assertWeaponItem(this);
-    return this.system.nearRangeDamage ?? 0;
-  };
-
-  setNearRangeDamage = async (nearRangeDamage: number) => {
+  setNearRangeDamage = async (nearRangeDamage: number): Promise<void> => {
     assertWeaponItem(this);
     await this.update({ system: { nearRangeDamage } });
   };
 
-  getLongRangeDamage = (): number => {
-    assertWeaponItem(this);
-    return this.system.longRangeDamage ?? 0;
-  };
-
-  setLongRangeDamage = async (longRangeDamage: number) => {
+  setLongRangeDamage = async (longRangeDamage: number): Promise<void> => {
     assertWeaponItem(this);
     await this.update({ system: { longRangeDamage } });
   };
 
-  getIsPointBlank = (): boolean => {
-    assertWeaponItem(this);
-    return this.system.isPointBlank;
-  };
-
-  setIsPointBlank = async (isPointBlank: boolean) => {
+  setIsPointBlank = async (isPointBlank: boolean): Promise<void> => {
     assertWeaponItem(this);
     await this.update({ system: { isPointBlank } });
   };
 
-  getIsCloseRange = (): boolean => {
-    assertWeaponItem(this);
-    return this.system.isCloseRange;
-  };
-
-  setIsCloseRange = async (isCloseRange: boolean) => {
+  setIsCloseRange = async (isCloseRange: boolean): Promise<void> => {
     assertWeaponItem(this);
     await this.update({ system: { isCloseRange } });
   };
 
-  getIsNearRange = (): boolean => {
-    assertWeaponItem(this);
-    return this.system.isNearRange;
-  };
-
-  setIsNearRange = async (isNearRange: boolean) => {
+  setIsNearRange = async (isNearRange: boolean): Promise<void> => {
     assertWeaponItem(this);
     await this.update({ system: { isNearRange } });
   };
 
-  getIsLongRange = (): boolean => {
-    assertWeaponItem(this);
-    return this.system.isLongRange;
-  };
-
-  setIsLongRange = async (isLongRange: boolean) => {
+  setIsLongRange = async (isLongRange: boolean): Promise<void> => {
     assertWeaponItem(this);
     await this.update({ system: { isLongRange } });
   };
 
-  getHideIfZeroRated = (): boolean => {
-    assertAbilityItem(this);
-    return this.system.hideIfZeroRated;
-  };
-
-  setHideIfZeroRated = async (hideIfZeroRated: boolean) => {
+  setHideIfZeroRated = async (hideIfZeroRated: boolean): Promise<void> => {
     assertAbilityItem(this);
     await this.update({ system: { hideIfZeroRated } });
   };
 
-  setActive = async (active: boolean) => {
+  setActive = async (active: boolean): Promise<void> => {
     assertCardItem(this);
     await this.update({ system: { active } });
   };
@@ -668,49 +533,24 @@ export class InvestigatorItem extends Item {
   // ---------------------------------------------------------------------------
   // MW specific fields
 
-  getMwTrumps = () => {
-    assertGeneralAbilityItem(this);
-    return this.system.mwTrumps;
-  };
-
-  setMwTrumps = (mwTrumps: string) => {
+  setMwTrumps = (mwTrumps: string): Promise<this | undefined> => {
     assertGeneralAbilityItem(this);
     return this.update({ system: { mwTrumps } });
   };
 
-  getMwTrumpedBy = () => {
-    assertGeneralAbilityItem(this);
-    return this.system.mwTrumpedBy;
-  };
-
-  setMwTrumpedBy = (mwTrumpedBy: string) => {
+  setMwTrumpedBy = (mwTrumpedBy: string): Promise<this | undefined> => {
     assertGeneralAbilityItem(this);
     return this.update({ system: { mwTrumpedBy } });
   };
 
-  getMwType = (): MwType => {
-    assertMwItem(this);
-    return this.system.mwType;
-  };
-
-  setMwType = async (mwType: MwType) => {
+  setMwType = async (mwType: MwType): Promise<void> => {
     assertMwItem(this);
     await this.update({ system: { mwType } });
   };
 
-  getCharges = (): number => {
-    assertMwItem(this);
-    return this.system.charges;
-  };
-
-  setCharges = async (charges: number) => {
+  setCharges = async (charges: number): Promise<void> => {
     assertMwItem(this);
     await this.update({ system: { charges } });
-  };
-
-  getRanges = (): RangeTuple => {
-    assertMwItem(this);
-    return this.system.ranges;
   };
 
   getRange = (range: 0 | 1 | 2 | 3): number => {
@@ -718,29 +558,28 @@ export class InvestigatorItem extends Item {
     return this.system.ranges[range];
   };
 
-  setRanges = async (ranges: [number, number, number, number]) => {
+  setRanges = async (
+    ranges: [number, number, number, number],
+  ): Promise<void> => {
     assertMwItem(this);
     await this.update({ system: { ranges } });
   };
 
-  setRange = (range: 0 | 1 | 2 | 3) => async (value: number) => {
-    assertMwItem(this);
-    const ranges = [...this.system.ranges] as RangeTuple;
-    ranges[range] = value;
-    await this.update({ system: { ranges } });
-  };
+  setRange =
+    (range: 0 | 1 | 2 | 3) =>
+    async (value: number): Promise<void> => {
+      assertMwItem(this);
+      const ranges = [...this.system.ranges] as RangeTuple;
+      ranges[range] = value;
+      await this.update({ system: { ranges } });
+    };
 
-  getMwRefreshGroup = () => {
-    assertGeneralAbilityItem(this);
-    return this.system.mwRefreshGroup;
-  };
-
-  setMwRefreshGroup = async (mwRefreshGroup: MwRefreshGroup) => {
+  setMwRefreshGroup = async (mwRefreshGroup: MwRefreshGroup): Promise<void> => {
     assertGeneralAbilityItem(this);
     await this.update({ system: { mwRefreshGroup } });
   };
 
-  getActiveUnlocks = () => {
+  getActiveUnlocks = (): Unlock[] => {
     assertAbilityItem(this);
     return this.system.unlocks.filter(
       ({ rating: targetRating, description }) => {
@@ -750,7 +589,7 @@ export class InvestigatorItem extends Item {
     );
   };
 
-  getVisibleSituationalModifiers = () => {
+  getVisibleSituationalModifiers = (): SituationalModifier[] => {
     assertAbilityItem(this);
     return this.system.situationalModifiers.filter(({ situation }) => {
       assertAbilityItem(this);
@@ -758,7 +597,7 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  toggleSituationalModifier = (id: string) => {
+  toggleSituationalModifier = (id: string): void => {
     assertAbilityItem(this);
     if (this.isSituationalModifierActive(id)) {
       const index = this.activeSituationalModifiers.indexOf(id);
@@ -774,12 +613,15 @@ export class InvestigatorItem extends Item {
     this.actor?.sheet?.render();
   };
 
-  isSituationalModifierActive = (id: string) => {
+  isSituationalModifierActive = (id: string): boolean => {
     assertAbilityItem(this);
     return this.activeSituationalModifiers.includes(id);
   };
 
-  setUnlockDescription = (index: number, description: string) => {
+  setUnlockDescription = (
+    index: number,
+    description: string,
+  ): Promise<this | undefined> => {
     assertAbilityItem(this);
     const unlocks = [...this.system.unlocks];
     unlocks[index] = {
@@ -789,7 +631,10 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { unlocks } });
   };
 
-  setUnlockRating = (index: number, rating: number) => {
+  setUnlockRating = (
+    index: number,
+    rating: number,
+  ): Promise<this | undefined> => {
     assertAbilityItem(this);
     const unlocks = [...this.system.unlocks];
     unlocks[index] = {
@@ -799,14 +644,14 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { unlocks } });
   };
 
-  deleteUnlock = (index: number) => {
+  deleteUnlock = (index: number): Promise<this | undefined> => {
     assertAbilityItem(this);
     const unlocks = [...this.system.unlocks];
     unlocks.splice(index, 1);
     return this.update({ system: { unlocks } });
   };
 
-  addUnlock = () => {
+  addUnlock = (): Promise<this | undefined> => {
     assertAbilityItem(this);
     const unlocks: Unlock[] = [
       ...this.system.unlocks,
@@ -819,7 +664,10 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { unlocks } });
   };
 
-  setSituationalModifierSituation = (index: number, situation: string) => {
+  setSituationalModifierSituation = (
+    index: number,
+    situation: string,
+  ): Promise<this | undefined> => {
     assertAbilityItem(this);
     const situationalModifiers = [...this.system.situationalModifiers];
     situationalModifiers[index] = {
@@ -829,7 +677,10 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { situationalModifiers } });
   };
 
-  setSituationalModifierModifier = (index: number, modifier: number) => {
+  setSituationalModifierModifier = (
+    index: number,
+    modifier: number,
+  ): Promise<this | undefined> => {
     assertAbilityItem(this);
     const situationalModifiers = [...this.system.situationalModifiers];
     situationalModifiers[index] = {
@@ -839,14 +690,14 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { situationalModifiers } });
   };
 
-  deleteSituationalModifier = (index: number) => {
+  deleteSituationalModifier = (index: number): Promise<this | undefined> => {
     assertAbilityItem(this);
     const situationalModifiers = [...this.system.situationalModifiers];
     situationalModifiers.splice(index, 1);
     return this.update({ system: { situationalModifiers } });
   };
 
-  addSituationalModifier = () => {
+  addSituationalModifier = (): Promise<this | undefined> => {
     assertAbilityItem(this);
     const situationalModifiers: SituationalModifier[] = [
       ...this.system.situationalModifiers,
@@ -859,17 +710,17 @@ export class InvestigatorItem extends Item {
     return this.update({ system: { situationalModifiers } });
   };
 
-  setCombatBonus = async (combatBonus: number) => {
+  setCombatBonus = async (combatBonus: number): Promise<void> => {
     assertGeneralAbilityItem(this);
     await this.update({ system: { combatBonus } });
   };
 
-  setDamageBonus = async (damageBonus: number) => {
+  setDamageBonus = async (damageBonus: number): Promise<void> => {
     assertGeneralAbilityItem(this);
     await this.update({ system: { damageBonus } });
   };
 
-  setSlotIndex = async (slotIndex: number) => {
+  setSlotIndex = async (slotIndex: number): Promise<void> => {
     assertPersonalDetailItem(this);
     await this.update({
       system: {
@@ -878,7 +729,7 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  setCompendiumPack = async (id: string | null) => {
+  setCompendiumPack = async (id: string | null): Promise<void> => {
     assertPersonalDetailItem(this);
     await this.update({
       system: {
@@ -887,7 +738,7 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  setSpecialitiesMode = (mode: SpecialitiesMode) => {
+  setSpecialitiesMode = (mode: SpecialitiesMode): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({ system: { specialitiesMode: mode } });
   };

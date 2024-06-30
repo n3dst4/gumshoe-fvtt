@@ -25,20 +25,20 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
   const theme = useContext(ThemeContext);
 
   const weaponRangeReduce = useCallback(async () => {
-    if (weapon.getIsLongRange()) {
+    if (weapon.system.isLongRange) {
       await weapon.setIsLongRange(false);
-    } else if (weapon.getIsNearRange()) {
+    } else if (weapon.system.isNearRange) {
       await weapon.setIsNearRange(false);
-    } else if (weapon.getIsCloseRange()) {
+    } else if (weapon.system.isCloseRange) {
       await weapon.setIsCloseRange(false);
     }
   }, [weapon]);
   const weaponRangeExpand = useCallback(async () => {
-    if (!weapon.getIsCloseRange()) {
+    if (!weapon.system.isCloseRange) {
       await weapon.setIsCloseRange(true);
-    } else if (!weapon.getIsNearRange()) {
+    } else if (!weapon.system.isNearRange) {
       await weapon.setIsNearRange(true);
-    } else if (!weapon.getIsLongRange()) {
+    } else if (!weapon.system.isLongRange) {
       await weapon.setIsLongRange(true);
     }
   }, [weapon]);
@@ -90,38 +90,38 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         onChange={weapon.setName}
       />
       <AsyncNumberInput
-        value={weapon.getDamage()}
+        value={weapon.system.damage}
         onChange={weapon.setDamage}
         noPlusMinus
         css={{ gridColumn: "base", gridRow }}
       />
-      {weapon.getIsPointBlank() && (
+      {weapon.system.isPointBlank && (
         <AsyncNumberInput
-          value={weapon.getPointBlankDamage()}
+          value={weapon.system.pointBlankDamage}
           onChange={weapon.setPointBlankDamage}
           noPlusMinus
           css={{ gridColumn: "pb", gridRow }}
         />
       )}
-      {weapon.getIsCloseRange() && (
+      {weapon.system.isCloseRange && (
         <AsyncNumberInput
-          value={weapon.getCloseRangeDamage()}
+          value={weapon.system.closeRangeDamage}
           onChange={weapon.setCloseRangeDamage}
           noPlusMinus
           css={{ gridColumn: "cr", gridRow }}
         />
       )}
-      {weapon.getIsNearRange() && (
+      {weapon.system.isNearRange && (
         <AsyncNumberInput
-          value={weapon.getNearRangeDamage()}
+          value={weapon.system.nearRangeDamage}
           onChange={weapon.setNearRangeDamage}
           noPlusMinus
           css={{ gridColumn: "nr", gridRow }}
         />
       )}
-      {weapon.getIsLongRange() && (
+      {weapon.system.isLongRange && (
         <AsyncNumberInput
-          value={weapon.getLongRangeDamage()}
+          value={weapon.system.longRangeDamage}
           onChange={weapon.setLongRangeDamage}
           noPlusMinus
           css={{ gridColumn: "lr", gridRow }}
@@ -131,13 +131,13 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
       {/* left/right arrows */}
       <div
         css={{
-          gridColumn: weapon.getIsLongRange()
+          gridColumn: weapon.system.isLongRange
             ? "back"
-            : weapon.getIsNearRange()
+            : weapon.system.isNearRange
               ? "lr"
-              : weapon.getIsCloseRange()
+              : weapon.system.isCloseRange
                 ? "nr"
-                : weapon.getIsPointBlank()
+                : weapon.system.isPointBlank
                   ? "cr"
                   : "pb",
           gridRow,
@@ -149,7 +149,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         >
           <i className="fa fa-chevron-left" />
         </button>
-        {weapon.getIsLongRange() || (
+        {weapon.system.isLongRange || (
           <button
             css={{ width: "1em", padding: "0.2em 0.1em" }}
             onClick={weaponRangeExpand}
@@ -189,23 +189,23 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           <label>
             Use ammo?
             <AsyncCheckbox
-              checked={weapon.getUsesAmmo()}
+              checked={weapon.system.usesAmmo}
               onChange={weapon.setUsesAmmo}
             />
           </label>
         </div>
-        {weapon.getUsesAmmo() && (
+        {weapon.system.usesAmmo && (
           <Fragment>
             Current
             <AsyncNumberInput
               min={0}
-              value={weapon.getAmmo()}
+              value={weapon.system.ammo.value}
               onChange={weapon.setAmmo}
             />
             Maximum
             <AsyncNumberInput
               min={0}
-              value={weapon.getAmmoMax()}
+              value={weapon.system.ammo.max}
               onChange={weapon.setAmmoMax}
             />
           </Fragment>
