@@ -1,9 +1,13 @@
+import { Router } from "@lumphammer/minirouter";
+import { SlideInOutlet } from "@lumphammer/minirouter/animated";
+import { Outlet } from "@lumphammer/minirouter/outlets";
 import React, { useCallback, useContext } from "react";
 
+import { absoluteCover } from "../../absoluteCover";
 import { Checkbox } from "../../inputs/Checkbox";
 import { GridField } from "../../inputs/GridField";
-import { GridFieldStacked } from "../../inputs/GridFieldStacked";
 import { InputGrid } from "../../inputs/InputGrid";
+import { Translate } from "../../Translate";
 import { StateContext } from "../contexts";
 // import { store } from "../store";
 import { Setters } from "../types";
@@ -24,26 +28,45 @@ export const CardsSettings: React.FC<CardsSettingsProps> = ({ setters }) => {
   );
 
   return (
-    <InputGrid
-      css={{
-        flex: 1,
-        overflow: "auto",
-      }}
-    >
-      <GridField label="Use cards?">
-        <Checkbox checked={settings.useCards} onChange={handleChangeUseCards} />
-      </GridField>
-      {settings.useCards && (
-        <>
-          <GridFieldStacked>
-            <hr />
-          </GridFieldStacked>
-          <GridFieldStacked label="Card categories">
-            <Categories />
-          </GridFieldStacked>
-        </>
-      )}
-    </InputGrid>
+    <Router>
+      <SlideInOutlet after>
+        <div
+          data-testid="cards-settings"
+          css={{
+            ...absoluteCover,
+            display: "flex",
+            flexDirection: "column",
+            padding: "0.5em",
+            pointerEvents: "auto",
+          }}
+        >
+          <div>
+            <InputGrid css={{}}>
+              <GridField label="Use cards?">
+                <Checkbox
+                  checked={settings.useCards}
+                  onChange={handleChangeUseCards}
+                />
+              </GridField>
+            </InputGrid>
+          </div>
+          {settings.useCards && (
+            <>
+              <div>
+                <hr />
+                <h2>
+                  <Translate>Card categories</Translate>
+                </h2>
+              </div>
+              <div css={{ flex: 1, position: "relative", overflow: "auto" }}>
+                <Categories />
+              </div>
+            </>
+          )}
+          {/* <DevTools /> */}
+        </div>
+      </SlideInOutlet>
+    </Router>
     // <div>
     //   {settings.cardCategories.map(({ name }) => (
     //     <div key={name}>{name}</div>

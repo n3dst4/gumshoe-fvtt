@@ -326,6 +326,12 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
     throwError: (draft: State, { message }: { message: string }) => {
       throw new Error(message);
     },
+    addCardCategory: (draft: State) => {
+      draft.settings.cardCategories.push({
+        id: nanoid(),
+        name: "New category",
+      });
+    },
   });
 
 export const store = createSystemSlice(defaultStoreArgs);
