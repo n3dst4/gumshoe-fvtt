@@ -1,4 +1,4 @@
-import { Link } from "@lumphammer/minirouter";
+import { DevTools, Link } from "@lumphammer/minirouter";
 import React, { memo, PropsWithChildren, useContext } from "react";
 import { FaXmark } from "react-icons/fa6";
 
@@ -36,6 +36,7 @@ export const NestedPanel = memo<PropsWithChildren>(({ children }) => {
       <div className="children-box" css={{ flex: 1 }}>
         {children}
       </div>
+      <DevTools />
     </div>
   );
 });
