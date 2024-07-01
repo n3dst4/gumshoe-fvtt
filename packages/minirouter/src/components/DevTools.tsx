@@ -7,9 +7,9 @@ export const DevTools: React.FC = () => {
   return (
     <div css={{ padding: "1em", opacity: 0.5 }}>
       {parentSteps.map((s) => s.direction.description).join("→")}
-      {" / "}
+      {" [ "}
       {currentStep?.direction.description ?? "none"}
-      {" / "}
+      {" ] "}
       {childSteps.map((s) => s.direction.description).join("→")}
     </div>
   );
