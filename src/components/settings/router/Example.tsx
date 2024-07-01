@@ -3,6 +3,7 @@
 // Example
 import {
   createDirection,
+  DevTools,
   Link,
   Route,
   Router,
@@ -117,6 +118,7 @@ export const ExampleApp: React.FC = () => {
         <Link from="root" to={contactDirection()}>
           [Contact]
         </Link>{" "}
+        <DevTools />
       </div>
       {/* <SlideInNestedPanelRoute direction={aboutDirection}>
         <About />
