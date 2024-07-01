@@ -332,6 +332,12 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
         name: "New category",
       });
     },
+    renameCardCategory: (
+      draft: State,
+      { id, newName }: { id: string; newName: string },
+    ) => {
+      draft.settings.cardCategories.find((c) => c.id === id)!.name = newName;
+    },
   });
 
 export const store = createSystemSlice(defaultStoreArgs);
