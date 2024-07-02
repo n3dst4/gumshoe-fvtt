@@ -2,9 +2,9 @@ import { Link, Route } from "@lumphammer/minirouter";
 import React, { MouseEventHandler, useContext } from "react";
 import { FaArrowRight } from "react-icons/fa";
 
+import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
 import { NestedPanel } from "../router/NestedPanel";
-import { SlideInNestedPanelRoute } from "../router/SlideInNestedPanelRoute";
 import { store } from "../store";
 import { Category } from "./Category";
 import { cardCategory } from "./directions";
@@ -21,7 +21,12 @@ export const Categories: React.FC<CategoriesProps> = () => {
   };
 
   return (
-    <>
+    <div css={{}}>
+      <hr />
+      <h2>
+        <Translate>Card categories</Translate>
+      </h2>
+
       <p>
         <button css={{ width: "auto" }} onClick={handleClickAddCategory}>
           Add category
@@ -42,7 +47,7 @@ export const Categories: React.FC<CategoriesProps> = () => {
           <Category />
         </NestedPanel>
       </Route>
-    </>
+    </div>
   );
 };
 
