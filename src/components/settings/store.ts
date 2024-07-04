@@ -14,11 +14,8 @@ import {
 import { pathOfCthulhuPreset } from "../../presets";
 import { SettingsDict } from "../../settings/settings";
 import { EquipmentFieldType } from "../../types";
-import {
-  assertNumericFieldOkayness,
-  createSlice,
-  CreateSliceArgs,
-} from "./reducerTools";
+import { assertNumericFieldOkayness } from "./functions";
+import { createSlice, CreateSliceArgs } from "./reducerTools";
 import { PcOrNpc, State } from "./types";
 
 const defaultStoreArgs: CreateSliceArgs = {
@@ -326,11 +323,22 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
     throwError: (draft: State, { message }: { message: string }) => {
       throw new Error(message);
     },
-    addCardCategory: (draft: State) => {
+    addCardCategory: (draft: State, payload: { id: string }) => {
       draft.settings.cardCategories.push({
-        id: nanoid(),
+        id: payload.id,
         name: "New category",
       });
+    },
+    renameCardCategory: (
+      draft: State,
+      { id, newName }: { id: string; newName: string },
+    ) => {
+      draft.settings.cardCategories.find((c) => c.id === id)!.name = newName;
+    },
+    deleteCardCategory: (draft: State, { id }: { id: string }) => {
+      draft.settings.cardCategories = draft.settings.cardCategories.filter(
+        (c) => c.id !== id,
+      );
     },
   });
 

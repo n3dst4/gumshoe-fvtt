@@ -1,10 +1,13 @@
-import { Link, Route } from "@lumphammer/minirouter";
+import { Link, Route, useNavigationContext } from "@lumphammer/minirouter";
+import { nanoid } from "nanoid";
 import React, { MouseEventHandler, useContext } from "react";
 import { FaArrowRight } from "react-icons/fa";
 
+import { ThemeContext } from "../../../themes/ThemeContext";
+import { absoluteCover } from "../../absoluteCover";
+import { NestedPanel } from "../../nestedPanels/NestedPanel";
+import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
-import { NestedPanel } from "../router/NestedPanel";
-import { SlideInNestedPanelRoute } from "../router/SlideInNestedPanelRoute";
 import { store } from "../store";
 import { Category } from "./Category";
 import { cardCategory } from "./directions";
@@ -14,14 +17,33 @@ interface CategoriesProps {}
 export const Categories: React.FC<CategoriesProps> = () => {
   const { settings } = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
+  const { navigate } = useNavigationContext();
+  const theme = useContext(ThemeContext);
 
   const handleClickAddCategory: MouseEventHandler = (e) => {
     e.preventDefault();
-    dispatch(store.creators.addCardCategory());
+    const id = nanoid();
+    dispatch(store.creators.addCardCategory({ id }));
+    navigate("here", cardCategory(id));
   };
 
   return (
-    <>
+    <div
+      css={{
+        ...absoluteCover,
+        display: "flex",
+        flexDirection: "column",
+        // overflow: "auto",
+        backgroundColor: theme.colors.backgroundPrimary,
+        border: `1px solid ${theme.colors.controlBorder}`,
+        padding: "0.5em",
+        marginTop: "0.5em",
+      }}
+    >
+      <h2>
+        <Translate>Card categories</Translate>
+      </h2>
+
       <p>
         <button css={{ width: "auto" }} onClick={handleClickAddCategory}>
           Add category
@@ -30,19 +52,39 @@ export const Categories: React.FC<CategoriesProps> = () => {
       {settings.cardCategories.length === 0 && (
         <p>No card categories have been added yet.</p>
       )}
-      {settings.cardCategories.map((category) => (
-        <p key={category.id}>
-          <Link to={cardCategory(category.id)}>
-            {category.name} <FaArrowRight css={{ verticalAlign: "middle" }} />
-          </Link>
-        </p>
-      ))}
+
+      <div
+        css={{
+          flex: 1,
+          overflow: "auto",
+          display: "grid",
+          gridTemplateColumns: "auto auto",
+        }}
+      >
+        {settings.cardCategories.map((category) => (
+          <div key={category.id}>
+            <Link to={cardCategory(category.id)}>
+              {category.name} <FaArrowRight css={{ verticalAlign: "middle" }} />
+            </Link>
+          </div>
+        ))}
+      </div>
+
+      <div css={{ flex: 1, overflow: "auto" }}>
+        {settings.cardCategories.map((category) => (
+          <p key={category.id}>
+            <Link to={cardCategory(category.id)}>
+              {category.name} <FaArrowRight css={{ verticalAlign: "middle" }} />
+            </Link>
+          </p>
+        ))}
+      </div>
       <Route direction={cardCategory}>
-        <NestedPanel>
+        <NestedPanel margin="15em">
           <Category />
         </NestedPanel>
       </Route>
-    </>
+    </div>
   );
 };
 

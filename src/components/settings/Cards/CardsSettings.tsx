@@ -1,13 +1,11 @@
 import { Router } from "@lumphammer/minirouter";
 import { SlideInOutlet } from "@lumphammer/minirouter/animated";
-import { Outlet } from "@lumphammer/minirouter/outlets";
 import React, { useCallback, useContext } from "react";
 
 import { absoluteCover } from "../../absoluteCover";
 import { Checkbox } from "../../inputs/Checkbox";
 import { GridField } from "../../inputs/GridField";
 import { InputGrid } from "../../inputs/InputGrid";
-import { Translate } from "../../Translate";
 import { StateContext } from "../contexts";
 // import { store } from "../store";
 import { Setters } from "../types";
@@ -52,13 +50,7 @@ export const CardsSettings: React.FC<CardsSettingsProps> = ({ setters }) => {
           </div>
           {settings.useCards && (
             <>
-              <div>
-                <hr />
-                <h2>
-                  <Translate>Card categories</Translate>
-                </h2>
-              </div>
-              <div css={{ flex: 1, position: "relative", overflow: "auto" }}>
+              <div css={{ flex: 1, position: "relative" }}>
                 <Categories />
               </div>
             </>
@@ -67,11 +59,6 @@ export const CardsSettings: React.FC<CardsSettingsProps> = ({ setters }) => {
         </div>
       </SlideInOutlet>
     </Router>
-    // <div>
-    //   {settings.cardCategories.map(({ name }) => (
-    //     <div key={name}>{name}</div>
-    //   ))}
-    // </div>
   );
 };
 

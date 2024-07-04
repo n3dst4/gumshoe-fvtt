@@ -3,6 +3,7 @@ import { useCallback, useContext, useMemo, useReducer } from "react";
 import { useRefStash } from "../../hooks/useRefStash";
 import { getSettingsDict } from "../../settings/settings";
 import { StateContext } from "./contexts";
+import { createUseSelectorHook } from "./reducerTools";
 import { store } from "./store";
 import { Setters, State } from "./types";
 
@@ -39,8 +40,7 @@ export const useSettingsState = () => {
   };
 };
 
-export const useSettingsStateSelector = <T>(selector: (state: State) => T) => {
-  const state = useContext(StateContext);
-  const t = selector(state);
-  return t;
-};
+/**
+ * A hook retrieve data from the state
+ */
+export const useStateSelector = createUseSelectorHook(StateContext);
