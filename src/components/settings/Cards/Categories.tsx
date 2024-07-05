@@ -58,27 +58,28 @@ export const Categories: React.FC<CategoriesProps> = () => {
           flex: 1,
           overflow: "auto",
           display: "grid",
-          gridTemplateColumns: "auto auto",
+          gridTemplateColumns: "auto 1fr",
+          columnGap: "0.5em",
+          gridAutoRows: "2em",
         }}
       >
         {settings.cardCategories.map((category) => (
-          <div key={category.id}>
-            <Link to={cardCategory(category.id)}>
+          <div
+            key={category.id}
+            css={{
+              gridColumn: "1/-1",
+              display: "grid",
+              gridTemplateColumns: "subgrid",
+            }}
+          >
+            <Link to={cardCategory(category.id)} css={{}}>
               {category.name} <FaArrowRight css={{ verticalAlign: "middle" }} />
             </Link>
+            asdasdads
           </div>
         ))}
       </div>
 
-      <div css={{ flex: 1, overflow: "auto" }}>
-        {settings.cardCategories.map((category) => (
-          <p key={category.id}>
-            <Link to={cardCategory(category.id)}>
-              {category.name} <FaArrowRight css={{ verticalAlign: "middle" }} />
-            </Link>
-          </p>
-        ))}
-      </div>
       <Route direction={cardCategory}>
         <NestedPanel margin="15em">
           <Category />
