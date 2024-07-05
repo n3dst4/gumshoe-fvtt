@@ -216,7 +216,7 @@ export class InvestigatorActor extends Actor {
   nuke = async (): Promise<void> => {
     await this.deleteEmbeddedDocuments(
       "Item",
-      this.items.map((i) => i.id).filter((i) => i !== null) as string[],
+      this.items.map((i) => i.id).filter((i) => i !== null),
     );
     ui.notifications?.info(`Nuked ${this.name}.`);
   };

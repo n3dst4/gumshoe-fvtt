@@ -30,9 +30,7 @@ export const getSystemAbilities = async (): Promise<AbilityItem[]> => {
       (p) => p.metadata.type === "Item" && p.collection === packId,
     );
     const content = ((await pack?.getDocuments()) ?? []) as AnyItem[];
-    const tuples: AbilityItem[] = content.filter((item) =>
-      isAbilityItem(item),
-    ) as AbilityItem[];
+    const tuples: AbilityItem[] = content.filter((item) => isAbilityItem(item));
     return tuples;
   });
   const results = await Promise.all(proms);
