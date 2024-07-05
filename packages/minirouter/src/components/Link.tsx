@@ -3,7 +3,7 @@ import React, { forwardRef, PropsWithChildren, useCallback } from "react";
 import { AnyStep, DirectionType } from "../types";
 import { useNavigationContext } from "../useNavigationContext";
 
-type LinkProps = React.RefAttributes<HTMLAnchorElement> &
+type LinkProps = React.ComponentProps<"a"> &
   PropsWithChildren<{
     from?: DirectionType;
     to?: AnyStep | AnyStep[] | "up";
