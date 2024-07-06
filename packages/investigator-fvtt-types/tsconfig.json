@@ -1,0 +1,10 @@
+{
+  "extends": "../shared-fvtt-bits/dotfiles/tsconfig.fvtt.json",
+  "include": ["./index.d.ts", "./.eslintrc.cjs"],
+  "noEmit": true,
+  "compilerOptions": {
+    "types": [
+      "@league-of-foundry-developers/foundry-vtt-types"
+    ]
+  },
+}

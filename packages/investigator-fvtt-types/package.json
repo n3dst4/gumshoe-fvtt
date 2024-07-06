@@ -1,0 +1,38 @@
+{
+  "name": "@lumphammer/investigator-fvtt-types",
+  "version": "1.14.0-alpha.2",
+  "description": "",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts"
+    }
+  },
+  "scripts": {
+    "test": "tsc",
+    "lint:check": "eslint ./*.ts",
+    "lint:fix": "eslint ./*.ts --fix",
+    "format:check": "prettier --check ./*.ts",
+    "format:fix": "prettier --write ./*.ts"
+  },
+  "keywords": [],
+  "author": "Neil de Carteret <neil@lumphammer.net",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/n3dst4/investigator-fvtt-types"
+  },
+  "homepage": "https://gitlab.com/n3dst4/investigator-fvtt-types",
+  "license": "ISC",
+  "devDependencies": {
+    "@emotion/react": "^11.11.4",
+    "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
+    "@lumphammer/shared-fvtt-bits": "workspace:*",
+    "@tsconfig/recommended": "^1.0.1",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.4"
+  },
+  "dependencies": {},
+  "volta": {
+    "pnpm": "9.4.0",
+    "node": "20.13.0"
+  }
+}
