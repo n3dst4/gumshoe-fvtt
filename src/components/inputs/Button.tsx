@@ -16,7 +16,13 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <button className={className} onClick={handleClick} css={{}}>
+    <button
+      className={className}
+      css={{
+        width: "max-content",
+      }}
+      onClick={handleClick}
+    >
       {children}
     </button>
   );

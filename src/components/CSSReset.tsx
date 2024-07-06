@@ -112,6 +112,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
               "h1, h2, h3, h4": {
                 border: "none",
                 margin: "0.3em 0 0 0",
+                marginBottom: "0.3em",
                 padding: 0,
                 fontWeight: "inherit",
                 font: theme.displayFont,
