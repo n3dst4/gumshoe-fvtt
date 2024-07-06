@@ -1,6 +1,6 @@
 import { DevTools, Link } from "@lumphammer/minirouter";
 import React, { memo, PropsWithChildren, useContext } from "react";
-import { FaXmark } from "react-icons/fa6";
+import { FaArrowLeft } from "react-icons/fa6";
 
 import { ThemeContext } from "../../themes/ThemeContext";
 
@@ -35,7 +35,7 @@ export const NestedPanel = memo<NestedPanelProps>(
       >
         <div className="nav-bar">
           <Link to="up">
-            <FaXmark />
+            <FaArrowLeft /> <span css={{ verticalAlign: "top" }}>Back</span>
           </Link>
         </div>
         {/* actual children */}

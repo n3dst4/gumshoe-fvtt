@@ -1,8 +1,8 @@
 import { Link, Route, useNavigationContext } from "@lumphammer/minirouter";
 import { nanoid } from "nanoid";
-import React, { MouseEventHandler, useContext } from "react";
-import { FaArrowRight } from "react-icons/fa";
+import React, { MouseEventHandler, useContext, useMemo } from "react";
 
+import { irid } from "../../../irid/irid";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { absoluteCover } from "../../absoluteCover";
 import { NestedPanel } from "../../nestedPanels/NestedPanel";
@@ -17,8 +17,12 @@ interface CategoriesProps {}
 export const Categories: React.FC<CategoriesProps> = () => {
   const { settings } = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
-  const { navigate } = useNavigationContext();
+  const { navigate, currentStep } = useNavigationContext();
   const theme = useContext(ThemeContext);
+
+  const activeChildId = cardCategory.match(currentStep)
+    ? currentStep.params
+    : null;
 
   const handleClickAddCategory: MouseEventHandler = (e) => {
     e.preventDefault();
@@ -26,6 +30,18 @@ export const Categories: React.FC<CategoriesProps> = () => {
     dispatch(store.creators.addCardCategory({ id }));
     navigate("here", cardCategory(id));
   };
+
+  const { hoverBg, selectedBg, selectedHoverBg } = useMemo(() => {
+    return {
+      hoverBg: theme.colors.bgOpaquePrimary,
+      selectedBg: irid(theme.colors.glow)
+        .blend(theme.colors.bgOpaquePrimary, 0.8)
+        .toString(),
+      selectedHoverBg: irid(theme.colors.glow)
+        .blend(theme.colors.bgOpaquePrimary, 0.9)
+        .toString(),
+    };
+  }, [theme]);
 
   return (
     <div
@@ -58,25 +74,61 @@ export const Categories: React.FC<CategoriesProps> = () => {
           flex: 1,
           overflow: "auto",
           display: "grid",
-          gridTemplateColumns: "auto 1fr",
+          gridTemplateColumns: "fit-content(50%) 1fr",
           columnGap: "0.5em",
           gridAutoRows: "2em",
         }}
       >
         {settings.cardCategories.map((category) => (
-          <div
+          <Link
             key={category.id}
+            to={cardCategory(category.id)}
             css={{
               gridColumn: "1/-1",
               display: "grid",
               gridTemplateColumns: "subgrid",
+              borderBottom: `1px solid ${theme.colors.controlBorder}`,
+              "&:hover": {
+                backgroundColor: hoverBg,
+              },
+              "&:last-child": {
+                borderBottom: "none",
+              },
+              ...(activeChildId === category.id
+                ? {
+                    backgroundColor: selectedBg,
+                    "&:hover": {
+                      backgroundColor: selectedHoverBg,
+                    },
+                  }
+                : {}),
             }}
           >
-            <Link to={cardCategory(category.id)} css={{}}>
-              {category.name} <FaArrowRight css={{ verticalAlign: "middle" }} />
-            </Link>
-            asdasdads
-          </div>
+            <div
+              css={{
+                gridColumn: "1",
+                padding: "0.3em",
+                textShadow: "none",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {category.name}
+            </div>
+            <div
+              css={{
+                gridColumn: "2",
+                padding: "0.3em",
+                textShadow: "none",
+                color: theme.colors.text,
+                fontStyle: "italic",
+                opacity: 0.7,
+              }}
+            >
+              {category.cssClass}
+            </div>
+          </Link>
         ))}
       </div>
 
