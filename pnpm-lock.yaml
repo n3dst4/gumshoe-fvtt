@@ -85,8 +85,8 @@ importers:
         specifier: ^9.280.0
         version: 9.280.0(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(3yrsl4l32tifgz3kwatt4spkrm))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
       '@lumphammer/investigator-fvtt-types':
-        specifier: 1.14.0-alpha.2
-        version: 1.14.0-alpha.2
+        specifier: workspace:^
+        version: link:packages/investigator-fvtt-types
       '@swc/plugin-emotion':
         specifier: ^2.5.116
         version: 2.5.116
@@ -186,6 +186,27 @@ importers:
       vitest:
         specifier: ^1.6.0
         version: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.7.1)(less@4.2.0)
+
+  packages/investigator-fvtt-types:
+    devDependencies:
+      '@emotion/react':
+        specifier: ^11.11.4
+        version: 11.11.4(@types/react@18.3.3)(react@18.3.1)
+      '@league-of-foundry-developers/foundry-vtt-types':
+        specifier: ^9.280.0
+        version: 9.280.0(@pixi/constants@6.5.9)(@pixi/core@6.5.9(@pixi/constants@6.5.9)(@pixi/extensions@6.5.9)(@pixi/math@6.5.9)(@pixi/runner@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/ticker@6.5.9(@pixi/extensions@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/display@6.5.9(@pixi/constants@6.5.9)(@pixi/math@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9))))(@pixi/graphics@6.5.9(3yrsl4l32tifgz3kwatt4spkrm))(@pixi/math@6.5.9)(@pixi/utils@6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9(@pixi/constants@6.5.9)))
+      '@lumphammer/shared-fvtt-bits':
+        specifier: workspace:*
+        version: link:../shared-fvtt-bits
+      '@tsconfig/recommended':
+        specifier: ^1.0.1
+        version: 1.0.7
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
+      typescript:
+        specifier: ^5.4.4
+        version: 5.5.3
 
   packages/minirouter:
     devDependencies:
@@ -714,9 +735,6 @@ packages:
   '@lumphammer/investigator-fvtt-types@1.13.2':
     resolution: {integrity: sha512-8rzXhXTiaynhAIGxyecOYsB4SU9EH9ZEgISOEK+sRsjImcqrrFCeCuZpPR+YJfg9j2+My2AanY76isLAgZf+JA==}
 
-  '@lumphammer/investigator-fvtt-types@1.14.0-alpha.2':
-    resolution: {integrity: sha512-Z/l7AwTdZ7hVwgg/TxA5SUUIGYdYrOXlRGqCayrhp1QLbsub0R8E7jV+H2kVUYQmExoKyLgd3haOiW4dUpH+fw==}
-
   '@monaco-editor/loader@1.4.0':
     resolution: {integrity: sha512-00ioBig0x642hytVspPl7DbQyaSWRaolYie/UFNjoTdvoKPzo6xrXLhTk9ixgIKcLH5b5vDOjVNiGyY+uDCUlg==}
     peerDependencies:
@@ -1120,6 +1138,9 @@ packages:
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
+
+  '@tsconfig/recommended@1.0.7':
+    resolution: {integrity: sha512-xiNMgCuoy4mCL4JTywk9XFs5xpRUcKxtWEcMR6FNMtsgewYTIgIR+nvlP4A4iRCAzRsHMnPhvTRrzp4AGcRTEA==}
 
   '@types/archiver@6.0.2':
     resolution: {integrity: sha512-KmROQqbQzKGuaAbmK+ZcytkJ51+YqDa7NmbXjmtC5YBLSyQYo21YaUnQ3HbaPFKL1ooo6RQ6OPYPIDyxfpDDXw==}
@@ -3714,8 +3735,6 @@ snapshots:
     dependencies:
       '@lumphammer/shared-fvtt-bits': link:packages/shared-fvtt-bits
 
-  '@lumphammer/investigator-fvtt-types@1.14.0-alpha.2': {}
-
   '@monaco-editor/loader@1.4.0(monaco-editor@0.45.0)':
     dependencies:
       monaco-editor: 0.45.0
@@ -4164,6 +4183,8 @@ snapshots:
   '@testing-library/user-event@14.5.2(@testing-library/dom@10.0.0)':
     dependencies:
       '@testing-library/dom': 10.0.0
+
+  '@tsconfig/recommended@1.0.7': {}
 
   '@types/archiver@6.0.2':
     dependencies:
