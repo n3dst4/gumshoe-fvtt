@@ -1,9 +1,14 @@
-import React, { forwardRef, PropsWithChildren, useCallback } from "react";
+import React, {
+  ComponentProps,
+  forwardRef,
+  PropsWithChildren,
+  useCallback,
+} from "react";
 
 import { AnyStep, DirectionType } from "../types";
 import { useNavigationContext } from "../useNavigationContext";
 
-type LinkProps = React.ComponentProps<"a"> &
+type LinkProps = ComponentProps<"a"> &
   PropsWithChildren<{
     from?: DirectionType;
     to?: AnyStep | AnyStep[] | "up";
