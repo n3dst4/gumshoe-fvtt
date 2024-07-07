@@ -347,6 +347,12 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
       draft.settings.cardCategories.find((c) => c.id === id)!.cssClass =
         newCssClass;
     },
+    setCardCategoryId: (
+      draft: State,
+      { id, newId }: { id: string; newId: string },
+    ) => {
+      draft.settings.cardCategories.find((c) => c.id === id)!.id = newId;
+    },
   });
 
 export const store = createSystemSlice(defaultStoreArgs);

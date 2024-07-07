@@ -185,5 +185,8 @@
   "investigator.UseCards": "Use cards?",
   "investigator.CardCategories": "Card categories",
   "investigator.CSSClass": "CSS Class",
-  "investigator.DangerZone": "Danger Zone"
+  "investigator.DangerZone": "Danger Zone",
+  "investigator.UniqueId": "Unique Id",
+  "investigator.Lock": "Lock",
+  "investigator.Unlock": "Unlock"
 }

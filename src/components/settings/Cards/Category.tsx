@@ -1,17 +1,18 @@
-import { useNavigationContext, useParams } from "@lumphammer/minirouter";
+import { Link, useNavigationContext, useParams } from "@lumphammer/minirouter";
 import React, { useCallback, useContext } from "react";
+import { FaArrowRight } from "react-icons/fa6";
 
 import { confirmADoodleDo } from "../../../functions/confirmADoodleDo";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
-import { Button } from "../../inputs/Button";
 import { GridField } from "../../inputs/GridField";
 import { InputGrid } from "../../inputs/InputGrid";
-import { Translate } from "../../Translate";
+import { SlideInNestedPanelRoute } from "../../nestedPanels/SlideInNestedPanelRoute";
 import { DispatchContext } from "../contexts";
 import { useStateSelector } from "../hooks";
 import { store } from "../store";
-import { cardCategory } from "./directions";
+import { CategoryDangerZone } from "./CategoryDangerZone";
+import { cardCategory, categoryDangerZone } from "./directions";
 
 export const Category: React.FC = () => {
   const id = useParams(cardCategory);
@@ -28,6 +29,10 @@ export const Category: React.FC = () => {
 
   const handleCssClassChange = (newCssClass: string) => {
     dispatch(store.creators.setCardCategoryCssClass({ id, newCssClass }));
+  };
+
+  const handleIdChange = (newId: string) => {
+    dispatch(store.creators.setCardCategoryId({ id, newId }));
   };
 
   const handleDelete = useCallback(async () => {
@@ -48,8 +53,6 @@ export const Category: React.FC = () => {
     }
   }, [category?.name, dispatch, freeze, id, navigate]);
 
-  console.log(theme.colors);
-
   return (
     <>
       <h2>Card category</h2>
@@ -63,20 +66,31 @@ export const Category: React.FC = () => {
             onChange={handleCssClassChange}
           />
         </GridField>
-        <GridField label="Danger Zone">
-          <Button
-            onClick={handleDelete}
-            css={{
-              // color: theme.colors.text,
-              "&&": {
-                color: theme.colors.danger,
-              },
-            }}
-          >
-            <Translate>Delete</Translate>
-          </Button>
-        </GridField>
       </InputGrid>
+      <hr />
+      <p css={{ textAlign: "right" }}>
+        <Link
+          to={categoryDangerZone()}
+          css={{
+            verticalAlign: "middle",
+            "&&": {
+              color: theme.colors.danger,
+            },
+            // backgroundColor: "red",
+          }}
+        >
+          <span css={{ verticalAlign: "top" }}>Danger Zone</span>
+          {"   "}
+          <FaArrowRight />
+        </Link>
+      </p>
+      <SlideInNestedPanelRoute direction={categoryDangerZone}>
+        <CategoryDangerZone
+          category={category}
+          onDelete={handleDelete}
+          onChangeId={handleIdChange}
+        />
+      </SlideInNestedPanelRoute>
     </>
   );
 };
