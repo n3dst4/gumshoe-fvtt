@@ -178,6 +178,11 @@ export const CSSReset: React.FC<CSSResetProps> = ({
                   outline: "none",
                   boxShadow: `0 0 0.5em ${theme.colors.glow}`,
                 },
+                "&:hover": {
+                  borderStyle: "solid",
+                  borderWidth: "1px",
+                  borderColor: theme.colors.controlBorder,
+                },
               },
               select: {
                 color: theme.colors.text,
