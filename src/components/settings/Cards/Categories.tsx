@@ -116,6 +116,7 @@ export const Categories: React.FC<CategoriesProps> = () => {
             >
               {category.name}
             </div>
+
             <div
               css={{
                 gridColumn: "2",

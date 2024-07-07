@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { ThemeContext } from "../../../themes/ThemeContext";
+// import { ThemeContext } from "../../../themes/ThemeContext";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Button } from "../../inputs/Button";
 import { GridField } from "../../inputs/GridField";
@@ -18,17 +18,14 @@ export const CategoryDangerZone: React.FC<CategoryDangerZoneProps> = ({
   onDelete,
   onChangeId,
 }) => {
-  const theme = useContext(ThemeContext);
+  // const theme = useContext(ThemeContext);
 
   return (
     <>
       <h2>
-        <Translate>Danger Zone</Translate>
+        <Translate>Danger Zone</Translate> ({category?.name})
       </h2>
       <InputGrid>
-        <GridField label="Category">
-          <span css={{ verticalAlign: "middle" }}>{category?.name}</span>
-        </GridField>
         <GridField label="Unique Id">
           <AsyncTextInput value={category?.id} onChange={onChangeId} />
         </GridField>
@@ -37,7 +34,7 @@ export const CategoryDangerZone: React.FC<CategoryDangerZoneProps> = ({
             onClick={onDelete}
             css={{
               "&&": {
-                color: theme.colors.danger,
+                // color: theme.colors.danger,
               },
             }}
           >

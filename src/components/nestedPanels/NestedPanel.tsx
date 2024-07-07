@@ -42,7 +42,8 @@ export const NestedPanel = memo<NestedPanelProps>(
         <div className="children-box" css={{ flex: 1, paddingTop: "1em" }}>
           {children}
         </div>
-        <DevTools />
+        {false && <DevTools />}
+        {/* <DevTools /> */}
       </div>
     );
   },

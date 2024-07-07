@@ -67,7 +67,6 @@ export const Category: React.FC = () => {
           />
         </GridField>
       </InputGrid>
-      <hr />
       <p css={{ textAlign: "right" }}>
         <Link
           to={categoryDangerZone()}
@@ -84,7 +83,12 @@ export const Category: React.FC = () => {
           <FaArrowRight />
         </Link>
       </p>
-      <SlideInNestedPanelRoute direction={categoryDangerZone}>
+      <SlideInNestedPanelRoute
+        direction={categoryDangerZone}
+        css={{
+          backgroundColor: theme.colors.bgOpaqueDangerSecondary,
+        }}
+      >
         <CategoryDangerZone
           category={category}
           onDelete={handleDelete}
