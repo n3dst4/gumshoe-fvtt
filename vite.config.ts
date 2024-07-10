@@ -52,6 +52,10 @@ const config = defineConfig(({ mode }) => {
       environment: "happy-dom",
       // equivalent to jest.setup.js
       setupFiles: ["../vitest.setup.js"],
+      // https://vitest.dev/config/#silent
+      // without this we get a bunch of noise from react whenever we test for
+      // a react error
+      silent: true,
     },
 
     server: {
