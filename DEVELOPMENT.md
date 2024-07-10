@@ -29,16 +29,22 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 ### Prerequisites
 
 * Have [Node.js](https://nodejs.org/) installed.
+* Have `pnpm` available. You can do this by running `corepack enable` after you've installed Node.
 
 ### Getting started
 
 1. Clone the repo.
-2. Copy `foundryconfig_template.json` to `foundryconfig.json` and edit it to fill in the `dataPath`, e.g.  `"dataPath" "/home/ndc/foundrydata",`.
-3. `pnpm i` to install dependencies
-4. `pnpm run build` to do a build
-5. `pnpm run link` to link it into your foundry data folder
-6. `pnpm start` to start a live incremental build (so you don't need to keep running `pnpm run build` after every change).
-7. Open your local foundry server and create a world using this as the system.
+2. Copy `foundryconfig_template.json` to `foundryconfig.json` and edit it to fill in the `dataPath` and `url`, e.g.
+    ```
+    {
+      "dataPath": "/home/ndc/foundrydata",
+      "url": "http://localhost:30000/"
+    }
+    ```
+4. `pnpm i` to install dependencies
+5. `pnpm run build` to do a build
+6. `pnpm run link` to link it into your foundry data folder
+7. `pnpm dev` to start a live dev server (so you don't need to keep running `pnpm run build` after every change).
 
 ### pnpm
 
