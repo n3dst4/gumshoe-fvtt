@@ -100,7 +100,7 @@ export const PCSheetSimple: React.FC<PCSheetProps> = ({
   const occupationLabel = settings.occupationLabel.get();
   const stats = settings.pcStats.get();
 
-  return ( <CSSReset
+  return (  <CSSReset
     theme={theme}
     mode="large"
     css={{
@@ -109,96 +109,58 @@ export const PCSheetSimple: React.FC<PCSheetProps> = ({
       right: 0,
       bottom: 0,
       left: 0,
-      display: "grid",
-      gridTemplateRows: "min-content max-content 1fr",
-      gridTemplateColumns: "10em 1fr 10em",
-      gap: "0.5em",
-      gridTemplateAreas:
-        '"title title image" ' +
-        '"pools stats image" ' +
-        '"pools body  body" ',
+      display: "flex",
+      alignItems: "stretch",
+      alignContent: "flex-start",
+      flexWrap: "wrap",
+      flexDirection: "column",
+      justifyContent: "flex-start",
     }}
   >
-    <div
+    <LogoEditable
+      mainText={actor.name ?? ""}
+      onChangeMainText={actor.setName}
       css={{
-        gridArea: "title",
-        textAlign: "center",
-        position: "relative",
-      }}
-    >
-      <LogoEditable
-        mainText={actor.name ?? ""}
-        subText={occupation?.name ?? genericOccupation}
-        defaultSubText={settings.genericOccupation.get()}
-        onChangeMainText={actor.setName}
-        onChangeSubText={occupation?.setName}
-      />
-    </div>
-    <ImagePickle
-      subject={actor}
-      application={foundryApplication}
-      css={{
-        gridArea: "image",
-        transform: "rotateZ(2deg)",
+        fontSize: "0.66em",
+        width: "100%",
       }}
     />
-
     <div
-      className={theme.panelClass}
       css={{
-        gridArea: "stats",
-        padding: "0.5em",
-        position: "relative",
-        ...theme.panelStyleSecondary,
+        flex: 1,
+        overflow: "auto",
+        display: "flex",
+        flexDirection: "row",
+        gap: "1em",
       }}
     >
-      <InputGrid>
-      
-        <PersonalDetailField
-          name={occupationLabel}
-          actor={actor}
-          slotIndex={occupationSlotIndex}
+      <div
+        css={{
+          containerType: "size",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "start",
+
+          flex: 1,
+          padding: "1em",
+        }}
+      >
+        <ImagePickle
+          subject={actor}
+          application={foundryApplication}
+          css={{
+            width: "100%",
+            height: "auto",
+            aspectRatio: "1/1",
+            "@container (aspect-ratio > 1/1)": {
+              width: "auto",
+              height: "100%",
+            },
+
+            transform: "rotateZ(-1deg)",
+          }}
         />
-        
-        {game.user?.isGM &&
-          shortHiddenNotesNames.map((name: string, i: number) => (
-            <GridField noTranslate key={`${name}--${i}`} label={name}>
-              <IndexedAsyncTextInput
-                value={
-                  isPCActor(actor) ? actor.system.hiddenShortNotes[i] : ""
-                }
-                onChange={updateMwHiddenShortNote}
-                index={i}
-              />
-            </GridField>
-          ))}
-      </InputGrid>
-    </div>
-
-    <div
-      className={theme.panelClass}
-      css={{
-        gridArea: "pools",
-        position: "relative",
-        overflowX: "visible",
-        overflowY: "auto",
-        padding: "0.5em",
-        ...theme.panelStylePrimary,
-      }}
-    >
-     
-      
- 
-    </div>
-
-    <div
-      css={{
-        gridArea: "body",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      
+      </div>      
     </div>
   </CSSReset>
   );
