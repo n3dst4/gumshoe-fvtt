@@ -37,8 +37,8 @@ If you're a developer and you'd like to hack on this code, please be aware it us
 2. Copy `foundryconfig_template.json` to `foundryconfig.json` and edit it to fill in the `dataPath` and `url`, e.g.
     ```
     {
-      "dataPath": "/home/ndc/foundrydata/v11",
-      "url": "http://localhost:30012/"
+      "dataPath": "/home/ndc/foundrydata",
+      "url": "http://localhost:30000/"
     }
     ```
 4. `pnpm i` to install dependencies
