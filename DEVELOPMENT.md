@@ -1,9 +1,10 @@
 # Development notes
 
 - [Development notes](#development-notes)
-  - [Development \& general hacking](#development--general-hacking)
+  - [Contributing \& general hacking](#contributing--general-hacking)
     - [Prerequisites](#prerequisites)
     - [Getting started](#getting-started)
+    - [Linting and formatting](#linting-and-formatting)
     - [pnpm](#pnpm)
   - [Migrations](#migrations)
   - [Flagged migrations](#flagged-migrations)
@@ -22,29 +23,48 @@
   - [Patched packages](#patched-packages)
   - [@league-of-foundry-developers/foundry-vtt-types](#league-of-foundry-developersfoundry-vtt-types)
 
-## Development & general hacking
 
-If you're a developer and you'd like to hack on this code, please be aware it uses Webpack and React so some of it will not look like normal Handlebars + JQuery Foundry stuff. Also it's set up to use **[pnpm](#pnpm)** instead of npm, so you'll need to install that.
+## Contributing & general hacking
+
+If you'd like to contribute this code, please be aware it uses various modern front-end tools like Vite and React, so some of it will not look like normal Handlebars + JQuery Foundry stuff.
+
+That said, please read on!
+
+These docs were mostly written for my own benefit, so feel free to reach out to me on Discord if you have questions. Head to the [Pelgrane's Virtual Tabletops Discord channel][pelgrane-discord] and ask for `@n3dst4`.
+
 
 ### Prerequisites
 
 * Have [Node.js](https://nodejs.org/) installed.
 * Have `pnpm` available. You can do this by running `corepack enable` after you've installed Node.
 
+
 ### Getting started
 
 1. Clone the repo.
-2. Copy `foundryconfig_template.json` to `foundryconfig.json` and edit it to fill in the `dataPath` and `url`, e.g.
-    ```
-    {
-      "dataPath": "/home/ndc/foundrydata",
-      "url": "http://localhost:30000/"
-    }
-    ```
-4. `pnpm i` to install dependencies
-5. `pnpm run build` to do a build
-6. `pnpm run link` to link it into your foundry data folder
-7. `pnpm dev` to start a live dev server (so you don't need to keep running `pnpm run build` after every change).
+2. Copy `foundryconfig_template.json` to `foundryconfig.json` and edit it to fill in
+  * `dataPath` is the path to your foundry data folder
+  * `url` is the URL of your foundry instance
+
+    Example:
+      ```json
+      {
+        "dataPath": "/home/ndc/foundrydata",
+        "url": "http://localhost:30000/"
+      }
+      ```
+3. Run `pnpm install` to install dependencies.
+4. Run `pnpm run build` to do a build.
+5. Run `pnpm run link` to link it into your foundry data folder.
+6. Run `pnpm dev` to start a live dev server (so you don't need to keep running `pnpm run build` after every change.)
+
+
+### Linting and formatting
+
+We use [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) for linting and formatting. You can run these tools with `pnpm run lint:check` and `pnpm run format:check` to check for errors and `pnpm run lint:fix` and `pnpm run format:fix` to fix them.
+
+Even better (and more reliable) is to install a plugin for your editor that will run these tools automatically. For example, for VSCode, you can install the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions. Personally I have my IDE set uip to "format on save" so I don't have to think about it.
+
 
 ### pnpm
 
