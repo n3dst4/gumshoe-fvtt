@@ -1,7 +1,8 @@
 name: CI/CD
 
 on:
-  push
+  - push
+  - pull_request
 
 env:
   MANIFEST_FILE_NAME: "system.json"
