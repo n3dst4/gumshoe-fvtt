@@ -13,6 +13,7 @@ import { AbilitySettings } from "./AbilitySettings";
 import { CardsSettings } from "./Cards/CardsSettings";
 import { DirtyContext, DispatchContext, StateContext } from "./contexts";
 import { CoreSettings } from "./CoreSettings";
+import { DragDrop } from "./DragDrop/DragDrop";
 import { EquipmentSettings } from "./Equipment/EquipmentSettings";
 import { useSettingsState } from "./hooks";
 import { MiscSettings } from "./MiscSettings";
@@ -109,6 +110,12 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                     id: "misc",
                     label: "Misc",
                     content: <MiscSettings setters={setters} />,
+                  },
+                  {
+                    id: "dragdrop",
+                    label: "DragDrop",
+                    translate: false,
+                    content: <DragDrop />,
                   },
                 ]}
               />

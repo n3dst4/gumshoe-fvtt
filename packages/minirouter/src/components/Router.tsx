@@ -3,6 +3,10 @@ import React, { PropsWithChildren, useMemo, useState } from "react";
 import { NavigationContext } from "../NavigationContext";
 import { AnyStep, NavigationContextValue } from "../types";
 
+function deepEquals(a: any, b: any) {
+  return JSON.stringify(a) === JSON.stringify(b);
+}
+
 export const Router: React.FC<PropsWithChildren> = ({ children }) => {
   const [currentPath, setCurrentPath] = useState<AnyStep[]>([]);
   const navigationContextValue = useMemo<NavigationContextValue>(
@@ -11,6 +15,8 @@ export const Router: React.FC<PropsWithChildren> = ({ children }) => {
         const isUp = to === "up";
         const toArray = isUp ? [] : Array.isArray(to) ? to : [to];
         setCurrentPath((currentPath) => {
+          // first we build up the "new path" according to whatever "from" mode
+          // we're in
           let newPath: AnyStep[];
           if (from === "root" || from === "here") {
             newPath = toArray;
@@ -29,6 +35,22 @@ export const Router: React.FC<PropsWithChildren> = ({ children }) => {
             }
             newPath = currentPath.slice(0, currentPath.length - 1);
           }
+          // now we map the newpath, and if any step elements match the old
+          // path in all but id, we replace them with the old one.
+          // we do this because steps are recreated on every render, so they can
+          // have different ids, and we want navigation to remain stable.
+          newPath = newPath.map((step, i) => {
+            if (
+              currentPath[i] &&
+              step.direction === currentPath[i].direction &&
+              (step.params === currentPath[i].params ||
+                deepEquals(step.params, currentPath[i].params))
+            ) {
+              return currentPath[i];
+            } else {
+              return step;
+            }
+          });
           return newPath;
         });
       },

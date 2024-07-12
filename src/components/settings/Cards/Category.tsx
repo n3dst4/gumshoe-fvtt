@@ -53,6 +53,9 @@ export const Category: React.FC = () => {
     }
   }, [category?.name, dispatch, freeze, id, navigate]);
 
+  const shade1 = "#f002";
+  const shade2 = "#f001";
+
   return (
     <>
       <h2>Card category</h2>
@@ -86,7 +89,10 @@ export const Category: React.FC = () => {
       <SlideInNestedPanelRoute
         direction={categoryDangerZone}
         css={{
-          backgroundColor: theme.colors.bgOpaqueDangerSecondary,
+          background: `
+          repeating-linear-gradient(135deg, ${shade1}, ${shade1} 30px, ${shade2} 10px, ${shade2} 60px),
+          linear-gradient(135deg, ${theme.colors.bgOpaquePrimary}, ${theme.colors.bgOpaquePrimary} )
+          `,
         }}
       >
         <CategoryDangerZone
