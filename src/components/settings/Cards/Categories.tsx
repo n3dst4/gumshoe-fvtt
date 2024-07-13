@@ -146,9 +146,6 @@ export const Categories: React.FC<CategoriesProps> = () => {
           Add category
         </button>
       </p>
-      {settings.cardCategories.length === 0 && (
-        <p>No card categories have been added yet.</p>
-      )}
 
       <SortableTable
         css={{
@@ -165,6 +162,11 @@ export const Categories: React.FC<CategoriesProps> = () => {
           { label: "Category", id: "category" },
           { label: "CSS Class", id: "cssClass" },
         ]}
+        emptyMessage={
+          <p>
+            <Translate>No card categories have been added yet.</Translate>
+          </p>
+        }
       />
 
       <Route direction={cardCategory}>

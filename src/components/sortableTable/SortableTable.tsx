@@ -39,6 +39,7 @@ type SortableTableProps = {
   headers: Header[];
   gridTemplateColumns?: string;
   className?: string;
+  emptyMessage?: React.ReactNode;
 };
 
 export const SortableTable: React.FC<SortableTableProps> = ({
@@ -48,6 +49,7 @@ export const SortableTable: React.FC<SortableTableProps> = ({
   headers,
   gridTemplateColumns = "1fr",
   className,
+  emptyMessage,
 }) => {
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -84,6 +86,10 @@ export const SortableTable: React.FC<SortableTableProps> = ({
   const {
     colors: { controlBorder },
   } = useContext(ThemeContext);
+
+  if (items.length === 0 && emptyMessage) {
+    return emptyMessage;
+  }
 
   return (
     <div
