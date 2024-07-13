@@ -19,7 +19,7 @@ type CSSResetProps = {
   children: ReactNode;
   className?: string;
   theme: ThemeV1;
-  mode: "large" | "small";
+  mode: "large" | "small" | "none";
   noStyleAppWindow?: boolean;
 };
 
@@ -81,7 +81,11 @@ export const CSSReset: React.FC<CSSResetProps> = ({
   }, [head]);
 
   const rootStyle =
-    mode === "large" ? theme.largeSheetRootStyle : theme.smallSheetRootStyle;
+    mode === "large"
+      ? theme.largeSheetRootStyle
+      : mode === "small"
+        ? theme.smallSheetRootStyle
+        : {};
 
   return (
     <ErrorBoundary>
@@ -93,9 +97,10 @@ export const CSSReset: React.FC<CSSResetProps> = ({
             className={className}
             css={{
               font: theme.bodyFont,
-              padding: "0.5em",
+              padding: mode === "none" ? "0" : "0.5em",
               color: theme.colors.text,
-              backgroundColor: theme.colors.wallpaper,
+              backgroundColor:
+                mode === "none" ? "transparent" : theme.colors.wallpaper,
               height: "100%",
               accentColor: theme.colors.accent,
               "*": {
