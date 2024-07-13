@@ -22,9 +22,9 @@ import {
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 
-import { absoluteCover } from "../../../absoluteCover";
+import { absoluteCover } from "../absoluteCover";
 import { ActiveIdContext } from "./ActiveIdContext";
-import { DraggableRow } from "./DraggableRow";
+import { SortableRow } from "./SortableRow";
 
 type Header = {
   id: string;
@@ -106,9 +106,9 @@ export const SortableTable: React.FC<SortableTableProps> = ({
                 ))}
               </div>
               {items.map((id) => (
-                <DraggableRow key={id} id={id}>
+                <SortableRow key={id} id={id}>
                   {renderItem(id)}
-                </DraggableRow>
+                </SortableRow>
               ))}
             </div>
           </SortableContext>

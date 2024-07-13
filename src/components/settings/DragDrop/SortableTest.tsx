@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
+import { SortableTable } from "../../sortableTable";
 import { Item } from "./Item";
-import { SortableTable } from "./SortableKit/SortableTable";
 
 export function SortableTest() {
   const [items, setItems] = useState(

@@ -2,14 +2,14 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import React, { PropsWithChildren, useContext } from "react";
 
-import { DragHandle } from "../DragHandle";
+import { DragHandle } from "../settings/DragDrop/DragHandle";
 import { ActiveIdContext } from "./ActiveIdContext";
 
-type DraggableRowProps = PropsWithChildren<{
+type SortableRowProps = PropsWithChildren<{
   id: string;
 }>;
 
-export const DraggableRow: React.FC<DraggableRowProps> = ({ children, id }) => {
+export const SortableRow: React.FC<SortableRowProps> = ({ children, id }) => {
   const {
     attributes,
     listeners,
