@@ -20,6 +20,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 
 import { absoluteCover } from "../../../absoluteCover";
 import { ActiveIdContext } from "./ActiveIdContext";
@@ -83,7 +84,7 @@ export const SortableTable: React.FC<SortableTableProps> = ({
           modifiers={[restrictToVerticalAxis, restrictToParentElement]}
         >
           <SortableContext items={items} strategy={verticalListSortingStrategy}>
-            <DragOverlay />
+            {createPortal(<DragOverlay />, document.body)}
             <div
               css={{
                 display: "grid",
