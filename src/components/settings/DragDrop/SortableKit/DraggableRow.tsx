@@ -1,19 +1,15 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useContext } from "react";
 
 import { DragHandle } from "../DragHandle";
+import { ActiveIdContext } from "./ActiveIdContext";
 
 type DraggableRowProps = PropsWithChildren<{
   id: string;
-  active: boolean;
 }>;
 
-export const DraggableRow: React.FC<DraggableRowProps> = ({
-  children,
-  id,
-  active,
-}) => {
+export const DraggableRow: React.FC<DraggableRowProps> = ({ children, id }) => {
   const {
     attributes,
     listeners,
@@ -22,6 +18,8 @@ export const DraggableRow: React.FC<DraggableRowProps> = ({
     transition,
     setActivatorNodeRef,
   } = useSortable({ id });
+
+  const active = useContext(ActiveIdContext) === id;
 
   return (
     <div
