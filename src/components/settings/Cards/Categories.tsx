@@ -74,12 +74,8 @@ export const Categories: React.FC<CategoriesProps> = () => {
             gridColumn: "1/-1",
             display: "grid",
             gridTemplateColumns: "subgrid",
-            borderBottom: `1px solid ${theme.colors.controlBorder}`,
             "&:hover": {
               backgroundColor: hoverBg,
-            },
-            "&:last-child": {
-              borderBottom: "none",
             },
             ...(activeChildId === id
               ? {
@@ -125,7 +121,6 @@ export const Categories: React.FC<CategoriesProps> = () => {
       selectedBg,
       selectedHoverBg,
       settings.cardCategories,
-      theme.colors.controlBorder,
       theme.colors.text,
     ],
   );
