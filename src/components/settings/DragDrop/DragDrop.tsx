@@ -2,7 +2,7 @@ import React from "react";
 
 import { TabContainer } from "../../TabContainer";
 import { Experiment1 } from "./Experiment1";
-import { SortableTest } from "./SortableKit/SortableTest";
+import { SortableTest } from "./SortableTest";
 
 export const DragDrop: React.FC = () => {
   return (
