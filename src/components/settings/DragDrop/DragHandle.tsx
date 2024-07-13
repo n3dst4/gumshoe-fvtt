@@ -18,17 +18,17 @@ export const DragHandle: React.FC<DragHandleProps> = ({
 
   const gripColor = useMemo(
     () =>
-      irid(theme.colors.text)
+      irid(theme.colors.accent)
         .blend(theme.colors.bgOpaquePrimary, 0.4)
         .toString(),
-    [theme.colors.bgOpaquePrimary, theme.colors.text],
+    [theme.colors.accent, theme.colors.bgOpaquePrimary],
   );
 
   return (
     <div
       css={{
-        aspectRatio: "3/1",
-        height: "1.1em",
+        height: "100%",
+        width: "3em",
         cursor: "n-resize",
         borderRadius: "0.35em",
         color: gripColor,
@@ -36,6 +36,9 @@ export const DragHandle: React.FC<DragHandleProps> = ({
         backgroundColor: theme.colors.bgOpaquePrimary,
         opacity: 0.7,
         gridColumn: "1",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         ":hover": {
           opacity: 1,
           transform: "scale(1.1)",
