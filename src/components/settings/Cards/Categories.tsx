@@ -154,9 +154,6 @@ export const Categories: React.FC<CategoriesProps> = () => {
         css={{
           flex: 1,
           overflow: "auto",
-          // display: "grid",
-          // gridTemplateColumns: "fit-content(50%) 1fr",
-          // columnGap: "0.5em",
           gridAutoRows: "2em",
           position: "relative",
         }}
