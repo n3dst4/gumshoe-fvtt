@@ -6,15 +6,9 @@ type ItemProps = {
 
 export const Item: React.FC<ItemProps> = ({ id }) => {
   return (
-    <div
-      css={{
-        display: "grid",
-        gridTemplateColumns: "subgrid",
-        gridColumn: "1/-1",
-      }}
-    >
+    <>
       <div>Item {id}</div>
-      <div>C</div>
-    </div>
+      <div>C!</div>
+    </>
   );
 };

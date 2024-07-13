@@ -19,9 +19,10 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import React, { useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 
+import { ThemeContext } from "../../themes/ThemeContext";
 import { absoluteCover } from "../absoluteCover";
 import { ActiveIdContext } from "./ActiveIdContext";
 import { SortableRow } from "./SortableRow";
@@ -36,6 +37,7 @@ type SortableTableProps = {
   setItems: (items: string[] | ((items: string[]) => string[])) => void;
   renderItem: (id: string) => React.ReactNode;
   headers: Header[];
+  gridTemplateColumns?: string;
 };
 
 export const SortableTable: React.FC<SortableTableProps> = ({
@@ -43,6 +45,7 @@ export const SortableTable: React.FC<SortableTableProps> = ({
   setItems,
   renderItem,
   headers,
+  gridTemplateColumns = "1fr",
 }) => {
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -52,26 +55,36 @@ export const SortableTable: React.FC<SortableTableProps> = ({
   );
   const [activeId, setActiveId] = useState<string | null>(null);
 
-  function handleDragStart(event: DragStartEvent) {
-    setActiveId(event.active.id.toString());
-  }
+  const handleDragStart = useCallback(
+    (event: DragStartEvent) => {
+      setActiveId(event.active.id.toString());
+    },
+    [setActiveId],
+  );
 
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
-    if (!active || !over) {
-      return;
-    }
-    setActiveId(null);
+  const handleDragEnd = useCallback(
+    (event: DragEndEvent) => {
+      const { active, over } = event;
+      if (!active || !over) {
+        return;
+      }
+      setActiveId(null);
 
-    if (active.id !== over.id) {
-      setItems((items) => {
-        const oldIndex = items.indexOf(active.id.toString());
-        const newIndex = items.indexOf(over.id.toString());
+      if (active.id !== over.id) {
+        setItems((items) => {
+          const oldIndex = items.indexOf(active.id.toString());
+          const newIndex = items.indexOf(over.id.toString());
 
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  }
+          return arrayMove(items, oldIndex, newIndex);
+        });
+      }
+    },
+    [setItems],
+  );
+
+  const {
+    colors: { controlBorder },
+  } = useContext(ThemeContext);
 
   return (
     <div className="sortable-table" css={{ ...absoluteCover, padding: "1em" }}>
@@ -88,7 +101,7 @@ export const SortableTable: React.FC<SortableTableProps> = ({
             <div
               css={{
                 display: "grid",
-                gridTemplateColumns: "max-content 1fr 1fr",
+                gridTemplateColumns: `max-content ${gridTemplateColumns}`,
                 gap: "0.5em",
               }}
             >
@@ -97,7 +110,7 @@ export const SortableTable: React.FC<SortableTableProps> = ({
                   gridColumn: "1/-1",
                   display: "grid",
                   gridTemplateColumns: "subgrid",
-                  borderBottom: "1px solid black",
+                  borderBottom: `1px solid ${controlBorder}`,
                 }}
               >
                 <div />
