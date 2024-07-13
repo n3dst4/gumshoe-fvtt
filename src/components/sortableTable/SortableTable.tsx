@@ -34,10 +34,11 @@ type Header = {
 
 type SortableTableProps = {
   items: string[];
-  setItems: (items: string[] | ((items: string[]) => string[])) => void;
+  setItems: (items: string[]) => void;
   renderItem: (id: string) => React.ReactNode;
   headers: Header[];
   gridTemplateColumns?: string;
+  className?: string;
 };
 
 export const SortableTable: React.FC<SortableTableProps> = ({
@@ -46,6 +47,7 @@ export const SortableTable: React.FC<SortableTableProps> = ({
   renderItem,
   headers,
   gridTemplateColumns = "1fr",
+  className,
 }) => {
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -71,15 +73,12 @@ export const SortableTable: React.FC<SortableTableProps> = ({
       setActiveId(null);
 
       if (active.id !== over.id) {
-        setItems((items) => {
-          const oldIndex = items.indexOf(active.id.toString());
-          const newIndex = items.indexOf(over.id.toString());
-
-          return arrayMove(items, oldIndex, newIndex);
-        });
+        const oldIndex = items.indexOf(active.id.toString());
+        const newIndex = items.indexOf(over.id.toString());
+        setItems(arrayMove(items, oldIndex, newIndex));
       }
     },
-    [setItems],
+    [items, setItems],
   );
 
   const {
@@ -87,7 +86,10 @@ export const SortableTable: React.FC<SortableTableProps> = ({
   } = useContext(ThemeContext);
 
   return (
-    <div className="sortable-table" css={{ ...absoluteCover, padding: "1em" }}>
+    <div
+      className={`sortable-table ${className}`}
+      css={{ ...absoluteCover, padding: "1em" }}
+    >
       <ActiveIdContext.Provider value={activeId}>
         <DndContext
           sensors={sensors}

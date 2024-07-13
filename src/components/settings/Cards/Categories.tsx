@@ -1,11 +1,17 @@
 import { Link, Route, useNavigationContext } from "@lumphammer/minirouter";
 import { nanoid } from "nanoid";
-import React, { MouseEventHandler, useContext, useMemo } from "react";
+import React, {
+  MouseEventHandler,
+  useCallback,
+  useContext,
+  useMemo,
+} from "react";
 
 import { irid } from "../../../irid/irid";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { absoluteCover } from "../../absoluteCover";
 import { NestedPanel } from "../../nestedPanels/NestedPanel";
+import { SortableTable } from "../../sortableTable";
 import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
 import { store } from "../store";
@@ -31,6 +37,17 @@ export const Categories: React.FC<CategoriesProps> = () => {
     navigate("here", cardCategory(id));
   };
 
+  const setCardCategories = useCallback(
+    (newCardCategoryIds: string[]) => {
+      const newCardCategories = settings.cardCategories.toSorted(
+        (a, b) =>
+          newCardCategoryIds.indexOf(a.id) - newCardCategoryIds.indexOf(b.id),
+      );
+      dispatch(store.creators.setCardCategories({ newCardCategories }));
+    },
+    [dispatch, settings.cardCategories],
+  );
+
   const { hoverBg, selectedBg, selectedHoverBg } = useMemo(() => {
     return {
       hoverBg: theme.colors.bgOpaquePrimary,
@@ -43,13 +60,82 @@ export const Categories: React.FC<CategoriesProps> = () => {
     };
   }, [theme]);
 
+  const renderRow = useCallback(
+    (id: string) => {
+      const category = settings.cardCategories.find((c) => c.id === id);
+      if (category === undefined) {
+        return null;
+      }
+      return (
+        <Link
+          key={id}
+          to={cardCategory(id)}
+          css={{
+            gridColumn: "1/-1",
+            display: "grid",
+            gridTemplateColumns: "subgrid",
+            borderBottom: `1px solid ${theme.colors.controlBorder}`,
+            "&:hover": {
+              backgroundColor: hoverBg,
+            },
+            "&:last-child": {
+              borderBottom: "none",
+            },
+            ...(activeChildId === id
+              ? {
+                  backgroundColor: selectedBg,
+                  "&:hover": {
+                    backgroundColor: selectedHoverBg,
+                  },
+                }
+              : {}),
+          }}
+        >
+          <div
+            css={{
+              gridColumn: "1",
+              padding: "0.3em",
+              textShadow: "none",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {category.name}
+          </div>
+
+          <div
+            css={{
+              gridColumn: "2",
+              padding: "0.3em",
+              textShadow: "none",
+              color: theme.colors.text,
+              fontStyle: "italic",
+              opacity: 0.7,
+            }}
+          >
+            {category.cssClass}
+          </div>
+        </Link>
+      );
+    },
+    [
+      activeChildId,
+      hoverBg,
+      selectedBg,
+      selectedHoverBg,
+      settings.cardCategories,
+      theme.colors.controlBorder,
+      theme.colors.text,
+    ],
+  );
+
   return (
     <div
       css={{
         ...absoluteCover,
         display: "flex",
         flexDirection: "column",
-        // overflow: "auto",
         backgroundColor: theme.colors.backgroundPrimary,
         border: `1px solid ${theme.colors.controlBorder}`,
         padding: "0.5em",
@@ -69,69 +155,25 @@ export const Categories: React.FC<CategoriesProps> = () => {
         <p>No card categories have been added yet.</p>
       )}
 
-      <div
+      <SortableTable
         css={{
           flex: 1,
           overflow: "auto",
-          display: "grid",
-          gridTemplateColumns: "fit-content(50%) 1fr",
-          columnGap: "0.5em",
+          // display: "grid",
+          // gridTemplateColumns: "fit-content(50%) 1fr",
+          // columnGap: "0.5em",
           gridAutoRows: "2em",
+          position: "relative",
         }}
-      >
-        {settings.cardCategories.map((category) => (
-          <Link
-            key={category.id}
-            to={cardCategory(category.id)}
-            css={{
-              gridColumn: "1/-1",
-              display: "grid",
-              gridTemplateColumns: "subgrid",
-              borderBottom: `1px solid ${theme.colors.controlBorder}`,
-              "&:hover": {
-                backgroundColor: hoverBg,
-              },
-              "&:last-child": {
-                borderBottom: "none",
-              },
-              ...(activeChildId === category.id
-                ? {
-                    backgroundColor: selectedBg,
-                    "&:hover": {
-                      backgroundColor: selectedHoverBg,
-                    },
-                  }
-                : {}),
-            }}
-          >
-            <div
-              css={{
-                gridColumn: "1",
-                padding: "0.3em",
-                textShadow: "none",
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {category.name}
-            </div>
-
-            <div
-              css={{
-                gridColumn: "2",
-                padding: "0.3em",
-                textShadow: "none",
-                color: theme.colors.text,
-                fontStyle: "italic",
-                opacity: 0.7,
-              }}
-            >
-              {category.cssClass}
-            </div>
-          </Link>
-        ))}
-      </div>
+        items={settings.cardCategories.map((c) => c.id)}
+        setItems={setCardCategories}
+        renderItem={renderRow}
+        gridTemplateColumns="1fr 1fr"
+        headers={[
+          { label: "Category", id: "category" },
+          { label: "CSS Class", id: "cssClass" },
+        ]}
+      />
 
       <Route direction={cardCategory}>
         <NestedPanel margin="15em">

@@ -1,4 +1,5 @@
 import {
+  CardCategory,
   EquipmentFieldMetadata,
   PresetV1,
 } from "@lumphammer/investigator-fvtt-types";
@@ -352,6 +353,12 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
       { id, newId }: { id: string; newId: string },
     ) => {
       draft.settings.cardCategories.find((c) => c.id === id)!.id = newId;
+    },
+    setCardCategories: (
+      draft: State,
+      { newCardCategories }: { newCardCategories: CardCategory[] },
+    ) => {
+      draft.settings.cardCategories = newCardCategories;
     },
   });
 
