@@ -19,22 +19,29 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import React, { PropsWithChildren, useState } from "react";
+import React, { useState } from "react";
 
 import { absoluteCover } from "../../../absoluteCover";
-import { Item } from "../Item";
 import { ActiveIdContext } from "./ActiveIdContext";
 import { DraggableRow } from "./DraggableRow";
 
-type SortableTableProps = PropsWithChildren<{
+type Header = {
+  id: string;
+  label: string;
+};
+
+type SortableTableProps = {
   items: string[];
   setItems: (items: string[] | ((items: string[]) => string[])) => void;
-}>;
+  renderItem: (id: string) => React.ReactNode;
+  headers: Header[];
+};
 
 export const SortableTable: React.FC<SortableTableProps> = ({
   items,
   setItems,
-  children,
+  renderItem,
+  headers,
 }) => {
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -92,13 +99,14 @@ export const SortableTable: React.FC<SortableTableProps> = ({
                   borderBottom: "1px solid black",
                 }}
               >
-                <div></div>
-                <div>Item Header</div>
-                <div>C Header</div>
+                <div />
+                {headers.map((header) => (
+                  <div key={header.label}>{header.label}</div>
+                ))}
               </div>
               {items.map((id) => (
                 <DraggableRow key={id} id={id}>
-                  <Item id={id} />
+                  {renderItem(id)}
                 </DraggableRow>
               ))}
             </div>
