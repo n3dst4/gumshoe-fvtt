@@ -48,8 +48,8 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(react@18.3.1)
       textdiff-create:
-        specifier: ^1.1.10
-        version: 1.1.10
+        specifier: ^1.1.11
+        version: 1.1.11
       textdiff-patch:
         specifier: ^1.1.10
         version: 1.1.10
@@ -3144,8 +3144,8 @@ packages:
   text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
 
-  textdiff-create@1.1.10:
-    resolution: {integrity: sha512-JEP6vIEWW2Ue4OdrsMUbSc8pICLDdvTkoTop6/MyXExXu15Y8/Fmp5RXt5nijW+tN9AUDIh5ejBkBpI49cBdwQ==}
+  textdiff-create@1.1.11:
+    resolution: {integrity: sha512-8/OXOCv0v6enH/isAutZ1dTvqIuDOWnh3QUGHKYD+1TgMzDI0xg3L4oz37kzPFjgc//VVTOW5QPmf8PtXKDk2Q==}
 
   textdiff-patch@1.1.10:
     resolution: {integrity: sha512-kHWBNftiWaE9knM+DIpN15mSHWYNzQmwLZqh+LH73hcBHnyj9NHg5uL55KRz4odEjgZe/y9JfL/Y1jPAyljHgg==}
@@ -6610,7 +6610,7 @@ snapshots:
 
   text-table@0.2.0: {}
 
-  textdiff-create@1.1.10:
+  textdiff-create@1.1.11:
     dependencies:
       fast-diff: 1.3.0
 
