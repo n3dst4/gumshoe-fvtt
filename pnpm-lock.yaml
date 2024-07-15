@@ -92,7 +92,7 @@ importers:
         version: 2.5.116
       '@testing-library/jest-dom':
         specifier: ^6.4.6
-        version: 6.4.6(vitest@1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.7.1)(less@4.2.0))
+        version: 6.4.6(vitest@1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.12.3)(less@4.2.0))
       '@testing-library/react':
         specifier: ^15.0.2
         version: 15.0.2(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
@@ -160,8 +160,8 @@ importers:
         specifier: ^12.0.0
         version: 12.0.0(eslint@8.57.0)
       happy-dom:
-        specifier: ^14.7.1
-        version: 14.7.1
+        specifier: ^14.12.3
+        version: 14.12.3
       jest-diff:
         specifier: ^29.7.0
         version: 29.7.0
@@ -185,7 +185,7 @@ importers:
         version: 5.3.3(@types/node@18.15.11)(less@4.2.0)
       vitest:
         specifier: ^1.6.0
-        version: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.7.1)(less@4.2.0)
+        version: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.12.3)(less@4.2.0)
 
   packages/investigator-fvtt-types:
     devDependencies:
@@ -215,7 +215,7 @@ importers:
         version: 11.11.4(@types/react@18.3.3)(react@18.3.1)
       '@testing-library/jest-dom':
         specifier: ^6.4.6
-        version: 6.4.6(vitest@1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.7.1)(less@4.2.0))
+        version: 6.4.6(vitest@1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.12.3)(less@4.2.0))
       '@types/react':
         specifier: ^18.3.3
         version: 18.3.3
@@ -233,7 +233,7 @@ importers:
         version: 5.3.3(@types/node@18.15.11)(less@4.2.0)
       vitest:
         specifier: ^1.6.0
-        version: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.7.1)(less@4.2.0)
+        version: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.12.3)(less@4.2.0)
 
   packages/shared-fvtt-bits:
     dependencies:
@@ -2128,8 +2128,8 @@ packages:
     engines: {node: '>=0.4.7'}
     hasBin: true
 
-  happy-dom@14.7.1:
-    resolution: {integrity: sha512-v60Q0evZ4clvMcrAh5/F8EdxDdfHdFrtffz/CNe10jKD+nFweZVxM91tW+UyY2L4AtpgIaXdZ7TQmiO1pfcwbg==}
+  happy-dom@14.12.3:
+    resolution: {integrity: sha512-vsYlEs3E9gLwA1Hp+w3qzu+RUDFf4VTT8cyKqVICoZ2k7WM++Qyd2LwzyTi5bqMJFiIC/vNpTDYuxdreENRK/g==}
     engines: {node: '>=16.0.0'}
 
   has-bigints@1.0.2:
@@ -4193,7 +4193,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@6.4.6(vitest@1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.7.1)(less@4.2.0))':
+  '@testing-library/jest-dom@6.4.6(vitest@1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.12.3)(less@4.2.0))':
     dependencies:
       '@adobe/css-tools': 4.4.0
       '@babel/runtime': 7.21.0
@@ -4204,7 +4204,7 @@ snapshots:
       lodash: 4.17.21
       redent: 3.0.0
     optionalDependencies:
-      vitest: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.7.1)(less@4.2.0)
+      vitest: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.12.3)(less@4.2.0)
 
   '@testing-library/react@15.0.2(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -4501,7 +4501,7 @@ snapshots:
       pathe: 1.1.1
       picocolors: 1.0.0
       sirv: 2.0.4
-      vitest: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.7.1)(less@4.2.0)
+      vitest: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.12.3)(less@4.2.0)
 
   '@vitest/utils@1.6.0':
     dependencies:
@@ -5571,7 +5571,7 @@ snapshots:
     optionalDependencies:
       uglify-js: 3.17.4
 
-  happy-dom@14.7.1:
+  happy-dom@14.12.3:
     dependencies:
       entities: 4.5.0
       webidl-conversions: 7.0.0
@@ -6790,7 +6790,7 @@ snapshots:
       fsevents: 2.3.3
       less: 4.2.0
 
-  vitest@1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.7.1)(less@4.2.0):
+  vitest@1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@14.12.3)(less@4.2.0):
     dependencies:
       '@vitest/expect': 1.6.0
       '@vitest/runner': 1.6.0
@@ -6815,7 +6815,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 18.15.11
       '@vitest/ui': 1.6.0(vitest@1.6.0)
-      happy-dom: 14.7.1
+      happy-dom: 14.12.3
     transitivePeerDependencies:
       - less
       - lightningcss
