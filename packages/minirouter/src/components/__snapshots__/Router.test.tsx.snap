@@ -5,16 +5,24 @@ exports[`navigation story > 001 initial state 1`] = `
   <h1>
     Terrific company website
   </h1>
-  <a>
+  <a
+    tabindex="0"
+  >
     About
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Contact
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Values
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Product Categories
   </a>
   5
@@ -26,16 +34,24 @@ exports[`navigation story > 002 about page 1`] = `
   <h1>
     Terrific company website
   </h1>
-  <a>
+  <a
+    tabindex="0"
+  >
     About
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Contact
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Values
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Product Categories
   </a>
   5
@@ -51,12 +67,16 @@ exports[`navigation story > 002 about page 1`] = `
     </p>
     <ul>
       <li>
-        <a>
+        <a
+          tabindex="0"
+        >
           Values
         </a>
       </li>
       <li>
-        <a>
+        <a
+          tabindex="0"
+        >
           Team
         </a>
       </li>
@@ -70,16 +90,24 @@ exports[`navigation story > 003 values page 1`] = `
   <h1>
     Terrific company website
   </h1>
-  <a>
+  <a
+    tabindex="0"
+  >
     About
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Contact
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Values
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Product Categories
   </a>
   5
@@ -95,12 +123,16 @@ exports[`navigation story > 003 values page 1`] = `
     </p>
     <ul>
       <li>
-        <a>
+        <a
+          tabindex="0"
+        >
           Values
         </a>
       </li>
       <li>
-        <a>
+        <a
+          tabindex="0"
+        >
           Team
         </a>
       </li>
@@ -113,11 +145,15 @@ exports[`navigation story > 003 values page 1`] = `
       </h2>
       Our values are important to our
        
-      <a>
+      <a
+        tabindex="0"
+      >
         team
       </a>
       and you can
-      <a>
+      <a
+        tabindex="0"
+      >
         contact us
       </a>
       about them.
@@ -131,16 +167,24 @@ exports[`navigation story > 004 team page 1`] = `
   <h1>
     Terrific company website
   </h1>
-  <a>
+  <a
+    tabindex="0"
+  >
     About
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Contact
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Values
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Product Categories
   </a>
   5
@@ -156,12 +200,16 @@ exports[`navigation story > 004 team page 1`] = `
     </p>
     <ul>
       <li>
-        <a>
+        <a
+          tabindex="0"
+        >
           Values
         </a>
       </li>
       <li>
-        <a>
+        <a
+          tabindex="0"
+        >
           Team
         </a>
       </li>
@@ -173,16 +221,24 @@ exports[`navigation story > 004 team page 1`] = `
         Team
       </h2>
       Our team is great
-      <a>
+      <a
+        tabindex="0"
+      >
         Alice
       </a>
-      <a>
+      <a
+        tabindex="0"
+      >
         Bob
       </a>
-      <a>
+      <a
+        tabindex="0"
+      >
         Carla
       </a>
-      <a>
+      <a
+        tabindex="0"
+      >
         Home
       </a>
     </div>
@@ -195,16 +251,24 @@ exports[`navigation story > 005 alice page 1`] = `
   <h1>
     Terrific company website
   </h1>
-  <a>
+  <a
+    tabindex="0"
+  >
     About
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Contact
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Values
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Product Categories
   </a>
   5
@@ -220,12 +284,16 @@ exports[`navigation story > 005 alice page 1`] = `
     </p>
     <ul>
       <li>
-        <a>
+        <a
+          tabindex="0"
+        >
           Values
         </a>
       </li>
       <li>
-        <a>
+        <a
+          tabindex="0"
+        >
           Team
         </a>
       </li>
@@ -237,16 +305,24 @@ exports[`navigation story > 005 alice page 1`] = `
         Team
       </h2>
       Our team is great
-      <a>
+      <a
+        tabindex="0"
+      >
         Alice
       </a>
-      <a>
+      <a
+        tabindex="0"
+      >
         Bob
       </a>
-      <a>
+      <a
+        tabindex="0"
+      >
         Carla
       </a>
-      <a>
+      <a
+        tabindex="0"
+      >
         Home
       </a>
     </div>
@@ -255,7 +331,9 @@ exports[`navigation story > 005 alice page 1`] = `
         Alice
          is a member of our team
       </h2>
-      <a>
+      <a
+        tabindex="0"
+      >
         back to team
       </a>
     </div>
@@ -268,16 +346,24 @@ exports[`navigation story > 006 home page 1`] = `
   <h1>
     Terrific company website
   </h1>
-  <a>
+  <a
+    tabindex="0"
+  >
     About
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Contact
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Values
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Product Categories
   </a>
   5
@@ -289,16 +375,24 @@ exports[`navigation story > 007 contact page 1`] = `
   <h1>
     Terrific company website
   </h1>
-  <a>
+  <a
+    tabindex="0"
+  >
     About
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Contact
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Values
   </a>
-  <a>
+  <a
+    tabindex="0"
+  >
     Product Categories
   </a>
   5
@@ -308,13 +402,19 @@ exports[`navigation story > 007 contact page 1`] = `
     <h2>
       Contact us
     </h2>
-    <a>
+    <a
+      tabindex="0"
+    >
       Email us
     </a>
-    <a>
+    <a
+      tabindex="0"
+    >
       Phone us
     </a>
-    <a>
+    <a
+      tabindex="0"
+    >
       Social media
     </a>
   </div>

@@ -4,13 +4,18 @@ import React from "react";
 
 import { NestedPanel } from "./NestedPanel";
 
-export const SlideInNestedPanelRoute =
-  React.memo<PropsWithChildrenAndDirection>(({ children, direction }) => {
+type SlideInNestedPanelRouteProps = PropsWithChildrenAndDirection<{
+  className?: string;
+}>;
+
+export const SlideInNestedPanelRoute = React.memo<SlideInNestedPanelRouteProps>(
+  ({ children, direction, className }) => {
     return (
       <SlideInRoute direction={direction}>
-        <NestedPanel>{children}</NestedPanel>
+        <NestedPanel className={className}>{children}</NestedPanel>
       </SlideInRoute>
     );
-  });
+  },
+);
 
 SlideInNestedPanelRoute.displayName = "SlideInNestedPanelRoute";

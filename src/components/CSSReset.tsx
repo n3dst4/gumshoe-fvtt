@@ -19,7 +19,7 @@ type CSSResetProps = {
   children: ReactNode;
   className?: string;
   theme: ThemeV1;
-  mode: "large" | "small";
+  mode: "large" | "small" | "none";
   noStyleAppWindow?: boolean;
 };
 
@@ -81,7 +81,11 @@ export const CSSReset: React.FC<CSSResetProps> = ({
   }, [head]);
 
   const rootStyle =
-    mode === "large" ? theme.largeSheetRootStyle : theme.smallSheetRootStyle;
+    mode === "large"
+      ? theme.largeSheetRootStyle
+      : mode === "small"
+        ? theme.smallSheetRootStyle
+        : {};
 
   return (
     <ErrorBoundary>
@@ -93,9 +97,10 @@ export const CSSReset: React.FC<CSSResetProps> = ({
             className={className}
             css={{
               font: theme.bodyFont,
-              padding: "0.5em",
+              padding: mode === "none" ? "0" : "0.5em",
               color: theme.colors.text,
-              backgroundColor: theme.colors.wallpaper,
+              backgroundColor:
+                mode === "none" ? "transparent" : theme.colors.wallpaper,
               height: "100%",
               accentColor: theme.colors.accent,
               "*": {
@@ -112,6 +117,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
               "h1, h2, h3, h4": {
                 border: "none",
                 margin: "0.3em 0 0 0",
+                marginBottom: "0.3em",
                 padding: 0,
                 fontWeight: "inherit",
                 font: theme.displayFont,
@@ -176,6 +182,11 @@ export const CSSReset: React.FC<CSSResetProps> = ({
                   borderColor: theme.colors.accent,
                   outline: "none",
                   boxShadow: `0 0 0.5em ${theme.colors.glow}`,
+                },
+                "&:hover": {
+                  borderStyle: "solid",
+                  borderWidth: "1px",
+                  borderColor: theme.colors.controlBorder,
                 },
               },
               select: {

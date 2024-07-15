@@ -113,6 +113,7 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
       bgOpaqueDangerPrimary,
       bgOpaqueDangerSecondary,
       controlBorder,
+      danger: danger.toString(),
     },
     logo: {
       ...seed.logo,

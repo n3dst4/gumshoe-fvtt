@@ -1,6 +1,6 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 
-import { settingsSaved } from "../../constants";
+import { settingsCloseAttempted, settingsSaved } from "../../constants";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
 import { useTheme } from "../../hooks/useTheme";
@@ -10,13 +10,11 @@ import { CSSReset } from "../CSSReset";
 import { TabContainer } from "../TabContainer";
 import { Translate } from "../Translate";
 import { AbilitySettings } from "./AbilitySettings";
-// import { CardsSettings } from "./Cards/CardsSettings";
 import { DirtyContext, DispatchContext, StateContext } from "./contexts";
 import { CoreSettings } from "./CoreSettings";
 import { EquipmentSettings } from "./Equipment/EquipmentSettings";
 import { useSettingsState } from "./hooks";
 import { MiscSettings } from "./MiscSettings";
-// import { ExampleApp } from "./router/Example";
 import { StatsSettings } from "./Stats/StatsSettings";
 
 type SettingsProps = {
@@ -29,23 +27,27 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
     useSettingsState();
   const theme = useTheme(tempState.settings.defaultThemeName);
 
+  const handleClose = useCallback(async () => {
+    const aye =
+      !isDirty() ||
+      (await confirmADoodleDo({
+        message: "You have unsaved changes. Are you sure you want to close?",
+        confirmText: "Yes, discard my changes",
+        cancelText: "Whoops, No!",
+        confirmIconClass: "fas fa-times",
+        resolveFalseOnCancel: true,
+      }));
+    if (aye) {
+      await foundryApplication.close({ approved: true });
+    }
+  }, [foundryApplication, isDirty]);
+
   const handleClickClose = useCallback(
-    async (e: React.MouseEvent<HTMLButtonElement>) => {
+    (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-      const aye =
-        !isDirty() ||
-        (await confirmADoodleDo({
-          message: "You have unsaved changes. Are you sure you want to close?",
-          confirmText: "Yes, discard my changes",
-          cancelText: "Whoops, No!",
-          confirmIconClass: "fas fa-times",
-          resolveFalseOnCancel: true,
-        }));
-      if (aye) {
-        await foundryApplication.close();
-      }
+      return handleClose();
     },
-    [foundryApplication, isDirty],
+    [handleClose],
   );
 
   const handleClickSave = useCallback(
@@ -58,10 +60,19 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
       });
       await Promise.all(proms);
       Hooks.call(settingsSaved);
-      await foundryApplication.close();
+      await foundryApplication.close({ approved: true });
     },
     [foundryApplication, tempStateRef],
   );
+
+  // if anything attempts to close the window without our approval, we block it
+  // in the SettingsClass and fire this event for us to handle here
+  useEffect(() => {
+    Hooks.on(settingsCloseAttempted, handleClose);
+    return () => {
+      Hooks.off(settingsCloseAttempted, handleClose);
+    };
+  }, [handleClose]);
 
   return (
     <DispatchContext.Provider value={dispatch}>
@@ -101,22 +112,11 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                     label: "Stats",
                     content: <StatsSettings />,
                   },
-                  // {
-                  //   id: "cards",
-                  //   label: "Cards",
-                  //   content: <CardsSettings setters={setters} />,
-                  // },
                   {
                     id: "misc",
                     label: "Misc",
                     content: <MiscSettings setters={setters} />,
                   },
-                  // {
-                  //   id: "router",
-                  //   label: "Router",
-                  //   content: <ExampleApp />,
-                  //   translate: false,
-                  // },
                 ]}
               />
             </div>

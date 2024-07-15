@@ -1,4 +1,5 @@
 import {
+  CardCategory,
   EquipmentFieldMetadata,
   PresetV1,
 } from "@lumphammer/investigator-fvtt-types";
@@ -14,11 +15,8 @@ import {
 import { pathOfCthulhuPreset } from "../../presets";
 import { SettingsDict } from "../../settings/settings";
 import { EquipmentFieldType } from "../../types";
-import {
-  assertNumericFieldOkayness,
-  createSlice,
-  CreateSliceArgs,
-} from "./reducerTools";
+import { assertNumericFieldOkayness } from "./functions";
+import { createSlice, CreateSliceArgs } from "./reducerTools";
 import { PcOrNpc, State } from "./types";
 
 const defaultStoreArgs: CreateSliceArgs = {
@@ -325,6 +323,42 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
     },
     throwError: (draft: State, { message }: { message: string }) => {
       throw new Error(message);
+    },
+    addCardCategory: (draft: State, payload: { id: string }) => {
+      draft.settings.cardCategories.push({
+        id: payload.id,
+        name: "New category",
+      });
+    },
+    renameCardCategory: (
+      draft: State,
+      { id, newName }: { id: string; newName: string },
+    ) => {
+      draft.settings.cardCategories.find((c) => c.id === id)!.name = newName;
+    },
+    deleteCardCategory: (draft: State, { id }: { id: string }) => {
+      draft.settings.cardCategories = draft.settings.cardCategories.filter(
+        (c) => c.id !== id,
+      );
+    },
+    setCardCategoryCssClass: (
+      draft: State,
+      { id, newCssClass }: { id: string; newCssClass: string },
+    ) => {
+      draft.settings.cardCategories.find((c) => c.id === id)!.cssClass =
+        newCssClass;
+    },
+    setCardCategoryId: (
+      draft: State,
+      { id, newId }: { id: string; newId: string },
+    ) => {
+      draft.settings.cardCategories.find((c) => c.id === id)!.id = newId;
+    },
+    setCardCategories: (
+      draft: State,
+      { newCardCategories }: { newCardCategories: CardCategory[] },
+    ) => {
+      draft.settings.cardCategories = newCardCategories;
     },
   });
 

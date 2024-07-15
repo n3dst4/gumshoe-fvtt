@@ -1,5 +1,12 @@
-import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import { Draft, produce } from "immer";
+import {
+  Context,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 /**
  * A minimal case for all actions - there will always be a `type` and a
@@ -120,21 +127,22 @@ export const createSlice =
     };
   };
 
-export function assertNumericFieldOkayness(
-  field: EquipmentFieldMetadata | undefined,
-  id: string,
-  value: unknown,
-): asserts field is Extract<EquipmentFieldMetadata, { type: "number" }> {
-  if (field === undefined) {
-    throw new Error(`No field with id ${id}`);
-  }
-  if (field.type !== "number") {
-    throw new Error(`Cannot set min/max on field type ${field.type}`);
-  }
-  if (typeof value !== "number" && value !== undefined) {
-    throw new Error(
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      `Invalid value ${value} for field ${field.name} (must be a number)`,
-    );
-  }
-}
+/**
+ * Create a `useSelector` hook that uses the given `context`.
+ */
+export const createUseSelectorHook = <TState>(context: Context<TState>) => {
+  return <TValue>(selector: (state: TState) => TValue) => {
+    const state = useContext(context);
+    const [value, setValue] = useState<TValue>(selector(state));
+    const frozenRef = useRef(false);
+    useEffect(() => {
+      if (!frozenRef.current) {
+        setValue(selector(state));
+      }
+    }, [selector, state]);
+    const freeze = useCallback(() => {
+      frozenRef.current = true;
+    }, []);
+    return { value, freeze };
+  };
+};

@@ -1,9 +1,14 @@
-import React, { forwardRef, PropsWithChildren, useCallback } from "react";
+import React, {
+  ComponentProps,
+  forwardRef,
+  PropsWithChildren,
+  useCallback,
+} from "react";
 
 import { AnyStep, DirectionType } from "../types";
 import { useNavigationContext } from "../useNavigationContext";
 
-type LinkProps = React.RefAttributes<HTMLAnchorElement> &
+type LinkProps = ComponentProps<"a"> &
   PropsWithChildren<{
     from?: DirectionType;
     to?: AnyStep | AnyStep[] | "up";
@@ -35,16 +40,39 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       }
     }
 
-    const onClick = useCallback<React.MouseEventHandler<HTMLAnchorElement>>(
-      (e) => {
-        e.preventDefault();
-        navigate(from, to);
-      },
+    const followLink = useCallback(
+      () => navigate(from, to),
       [from, navigate, to],
     );
 
+    const onKeyDown = useCallback<
+      React.KeyboardEventHandler<HTMLAnchorElement>
+    >(
+      (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          followLink();
+        }
+      },
+      [followLink],
+    );
+
+    const onClick = useCallback<React.MouseEventHandler<HTMLAnchorElement>>(
+      (e) => {
+        e.preventDefault();
+        followLink();
+      },
+      [followLink],
+    );
+
     return (
-      <a onClick={onClick} ref={ref} {...otherProps}>
+      <a
+        tabIndex={0}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+        ref={ref}
+        {...otherProps}
+      >
         {children}
       </a>
     );

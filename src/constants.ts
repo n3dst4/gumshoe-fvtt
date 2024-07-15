@@ -69,6 +69,7 @@ export const newNPCPacksUpdated = `${systemId}.newNPCPacksUpdated` as const;
 export const settingsSaved = `${systemId}.settingsSaved` as const;
 export const requestTurnPass = `${systemId}.requestTurnPass`;
 export const socketScope = `system.${systemId}` as const;
+export const settingsCloseAttempted = `${systemId}.settingsCloseAttempted`;
 
 // css classes
 export const abilityChatMessageClassName = "investigator-ability-test";

@@ -183,5 +183,11 @@
   "investigator.Cards": "Cards",
   "investigator.Card": "Card",
   "investigator.UseCards": "Use cards?",
-  "investigator.CardCategories": "Card categories"
+  "investigator.CardCategories": "Card categories",
+  "investigator.CSSClass": "CSS Class",
+  "investigator.DangerZone": "Danger Zone",
+  "investigator.UniqueId": "Unique Id",
+  "investigator.Lock": "Lock",
+  "investigator.Unlock": "Unlock",
+  "investigator.NoCardCategoriesHaveBeenAddedYet": "No card categories have been added yet."
 }
