@@ -84,6 +84,7 @@
     "@monaco-editor/react": "^4.6.0",
     "case": "^1.6.3",
     "d3-ease": "^3.0.1",
+    "focusable-selectors": "^0.8.4",
     "html-escaper": "^3.0.3",
     "immer": "^10.0.4",
     "json5": "^2.2.3",

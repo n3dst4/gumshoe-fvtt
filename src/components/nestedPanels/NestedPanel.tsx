@@ -1,8 +1,16 @@
-import { DevTools, Link } from "@lumphammer/minirouter";
-import React, { memo, PropsWithChildren, useContext } from "react";
+import { DevTools, Link, useNavigationContext } from "@lumphammer/minirouter";
+import React, {
+  memo,
+  PropsWithChildren,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+} from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 
 import { ThemeContext } from "../../themes/ThemeContext";
+import { focusableSelector } from "./focusableSelector";
 
 const defaultPanelMargin = "3em";
 
@@ -14,9 +22,44 @@ type NestedPanelProps = PropsWithChildren<{
 export const NestedPanel = memo<NestedPanelProps>(
   ({ children, className, margin = defaultPanelMargin }) => {
     const theme = useContext(ThemeContext);
+    const { navigate, currentStep } = useNavigationContext();
+    const childrenAreaRef = useRef<HTMLDivElement>(null);
+    const ref = useRef<HTMLDivElement>(null);
+
+    const handleKeyDown = useCallback(
+      (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          e.stopPropagation();
+          navigate("here", "up");
+        }
+      },
+      [navigate],
+    );
+
+    // focus the first element in the panel when it's a leaf route
+    useEffect(() => {
+      // if there's anything below us (currentStep is a little confusing, it's
+      // the step that will be routed if we mount a `<Route>`), we bail out.
+      if (currentStep) {
+        return;
+      }
+      const firstElement =
+        childrenAreaRef.current?.querySelectorAll<HTMLElement>(
+          focusableSelector,
+        )[0];
+      // preventScroll is needed to avoid some crazy interactions with panel
+      // animations - without it, the browser will try to scroll the parent left
+      // to bring the focused element into view while it's already animating
+      // into position
+      firstElement?.focus({ preventScroll: true });
+    }, [currentStep]);
+
     return (
-      <div
+      <section
+        ref={ref}
         className={className}
+        onKeyDown={handleKeyDown}
         css={{
           position: "absolute",
           top: 0,
@@ -39,12 +82,16 @@ export const NestedPanel = memo<NestedPanelProps>(
           </Link>
         </div>
         {/* actual children */}
-        <div className="children-box" css={{ flex: 1, paddingTop: "1em" }}>
+        <div
+          ref={childrenAreaRef}
+          className="children-box"
+          css={{ flex: 1, paddingTop: "1em" }}
+        >
           {children}
         </div>
         {false && <DevTools />}
         {/* <DevTools /> */}
-      </div>
+      </section>
     );
   },
 );

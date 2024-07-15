@@ -30,6 +30,7 @@ export const SortableRow: React.FC<SortableRowProps> = ({ children, id }) => {
         opacity: active ? 0.5 : 1,
       }}
       {...attributes}
+      tabIndex={undefined}
       ref={setNodeRef}
       style={{
         transform: CSS.Transform.toString(transform),

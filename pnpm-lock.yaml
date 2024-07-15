@@ -35,6 +35,9 @@ importers:
       d3-ease:
         specifier: ^3.0.1
         version: 3.0.1
+      focusable-selectors:
+        specifier: ^0.8.4
+        version: 0.8.4
       html-escaper:
         specifier: ^3.0.3
         version: 3.0.3
@@ -2065,6 +2068,9 @@ packages:
 
   flatted@3.2.9:
     resolution: {integrity: sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==}
+
+  focusable-selectors@0.8.4:
+    resolution: {integrity: sha512-0XxbkD0KhOnX10qmnfF9U8DkDD8N/e4M77wMYw2Itoi4vdcoRjSkqXLZFIzkrLIOxzmzCGy88fNG1EbeXMD/zw==}
 
   for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -5515,6 +5521,8 @@ snapshots:
       rimraf: 3.0.2
 
   flatted@3.2.9: {}
+
+  focusable-selectors@0.8.4: {}
 
   for-each@0.3.3:
     dependencies:

@@ -26,6 +26,7 @@ export const DragHandle: React.FC<DragHandleProps> = ({
 
   return (
     <div
+      tabIndex={0}
       css={{
         height: "100%",
         width: "3em",

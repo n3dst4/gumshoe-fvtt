@@ -1,8 +1,7 @@
-import { Link, useNavigationContext, useParams } from "@lumphammer/minirouter";
-import React, { useCallback, useContext } from "react";
+import { Link, useParams } from "@lumphammer/minirouter";
+import React, { useContext } from "react";
 import { FaArrowRight } from "react-icons/fa6";
 
-import { confirmADoodleDo } from "../../../functions/confirmADoodleDo";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { GridField } from "../../inputs/GridField";
@@ -16,11 +15,10 @@ import { cardCategory, categoryDangerZone } from "./directions";
 
 export const Category: React.FC = () => {
   const id = useParams(cardCategory);
-  const { value: category, freeze } = useStateSelector((s) =>
+  const { value: category } = useStateSelector((s) =>
     s.settings.cardCategories.find((c) => c.id === id),
   );
   const dispatch = useContext(DispatchContext);
-  const { navigate } = useNavigationContext();
   const theme = useContext(ThemeContext);
 
   const handleNameChange = (newName: string) => {
@@ -30,28 +28,6 @@ export const Category: React.FC = () => {
   const handleCssClassChange = (newCssClass: string) => {
     dispatch(store.creators.setCardCategoryCssClass({ id, newCssClass }));
   };
-
-  const handleIdChange = (newId: string) => {
-    dispatch(store.creators.setCardCategoryId({ id, newId }));
-  };
-
-  const handleDelete = useCallback(async () => {
-    const aye = await confirmADoodleDo({
-      message: "Delete category",
-      confirmText: "Delete",
-      cancelText: "Cancel",
-      confirmIconClass: "fa-trash",
-      resolveFalseOnCancel: true,
-      values: {
-        ActorName: category?.name ?? "",
-      },
-    });
-    if (aye) {
-      freeze();
-      navigate("here", "up");
-      dispatch(store.creators.deleteCardCategory({ id }));
-    }
-  }, [category?.name, dispatch, freeze, id, navigate]);
 
   const shade1 = "#f002";
   const shade2 = "#f001";
@@ -95,11 +71,7 @@ export const Category: React.FC = () => {
           `,
         }}
       >
-        <CategoryDangerZone
-          category={category}
-          onDelete={handleDelete}
-          onChangeId={handleIdChange}
-        />
+        <CategoryDangerZone id={id} />
       </SlideInNestedPanelRoute>
     </>
   );

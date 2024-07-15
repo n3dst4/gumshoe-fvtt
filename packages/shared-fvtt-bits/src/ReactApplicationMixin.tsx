@@ -131,11 +131,23 @@ export function ReactApplicationMixin<TBase extends ApplicationConstructor>(
     }
 
     async close(options?: Application.CloseOptions) {
-      if (this.reactRoot) {
-        this.reactRoot.unmount();
-        this.reactRoot = undefined;
+      // we're inverting the normal order of inherited calls here. the class
+      // produced by this mixin is effectively a subclass of the class passed
+      // in, but we want a way for the base class to determine whether we
+      // actually unmount the app etc. so we call the base class's close method
+      // first, and if it doesn't throw, we assume it's okay to unmount our
+      // react tree.
+      try {
+        await super.close(options);
+        if (this.reactRoot) {
+          this.reactRoot.unmount();
+          this.reactRoot = undefined;
+        }
+      } catch (e: any) {
+        // if it does throw, we don;t want that to reach the console, so we do
+        // nothing. This is an async function to that's equivalent to returning
+        // a promise that resolves to undefined.
       }
-      return super.close(options);
     }
   }
   // see comment on name arg above
