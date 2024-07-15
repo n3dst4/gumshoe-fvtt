@@ -10,6 +10,7 @@ import { CSSReset } from "../CSSReset";
 import { TabContainer } from "../TabContainer";
 import { Translate } from "../Translate";
 import { AbilitySettings } from "./AbilitySettings";
+import { CardsSettings } from "./Cards/CardsSettings";
 import { DirtyContext, DispatchContext, StateContext } from "./contexts";
 import { CoreSettings } from "./CoreSettings";
 import { EquipmentSettings } from "./Equipment/EquipmentSettings";
@@ -111,6 +112,11 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                     id: "stats",
                     label: "Stats",
                     content: <StatsSettings />,
+                  },
+                  {
+                    id: "cards",
+                    label: "Cards",
+                    content: <CardsSettings setters={setters} />,
                   },
                   {
                     id: "misc",

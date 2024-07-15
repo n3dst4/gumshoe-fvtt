@@ -87,7 +87,8 @@
       "equipment",
       "weapon",
       "mwItem",
-      "personalDetail"
+      "personalDetail",
+      "card"
     ],
     "templates": {
       "notes": {
@@ -166,6 +167,18 @@
       "templates": ["notes"],
       "slotIndex": 0,
       "compendiumPackId": null
+    },
+    "card": {
+      "templates": ["notes"],
+      "effectsNotes": {
+        "format": "richText",
+        "source": "",
+        "html": ""
+      },
+      "title": "",
+      "type": "",
+      "flags": [],
+      "active": true
     }
   }
 }

@@ -3,7 +3,7 @@ import { deltaGroovyTheme } from "./deltaGroovyTheme";
 import { fearTheme } from "./fearTheme";
 import { greenTriangleTheme } from "./greenTriangleTheme";
 import { highContrastTheme } from "./highContrastTheme";
-// import { mutantCityBlueTheme } from "./mutantCityBlueTheme";
+import { mutantCityBlueTheme } from "./mutantCityBlueTheme";
 import { niceTheme } from "./niceTheme";
 import { niceThemeDark } from "./niceThemeDark";
 import { olderThanMemoryTheme } from "./olderThanMemoryTheme";
@@ -25,7 +25,7 @@ export const baseThemes: { [themeName: string]: ThemeV1 } = {
   antiquarianTheme,
   olderThanMemoryTheme,
   unsafeRealityTheme,
-  // mutantCityBlueTheme,
+  mutantCityBlueTheme,
 };
 
 export const reregisterBaseTheme = (name: string, theme: ThemeV1) => {
