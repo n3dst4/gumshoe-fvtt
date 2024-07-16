@@ -354,3 +354,34 @@ export function throttle<T extends (...args: any[]) => any>(
     }, delay);
   };
 }
+
+/**
+ * Get an item from an array by its id
+ * @param items the array to search
+ * @param id the id of the item to find
+ * @returns the item, or undefined if not found
+ */
+export function getById<T extends { id: string }>(
+  items: T[],
+  id: string,
+): T | undefined {
+  return items.find((item) => item.id === id);
+}
+
+/**
+ * Get an item from an array by its id, throwing if not found
+ * @param items the array to search
+ * @param id the id of the item to find
+ * @returns the item
+ * @throws if not found
+ */
+export function getByIdOrThrow<T extends { id: string }>(
+  items: T[],
+  id: string,
+): T {
+  const item = getById(items, id);
+  if (!item) {
+    throw new Error(`Could not find item with id ${id}`);
+  }
+  return item;
+}
