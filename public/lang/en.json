@@ -149,7 +149,6 @@
   "investigator.MoveUp": "Move up",
   "investigator.MoveDown": "Move down",
   "investigator.Default": "Default",
-  "investigator.UncategorizedEquipment": "Uncategorized equipment",
   "investigator.CategoryName": "Category Name",
   "investigator.ViewChangeID": "View/change ID",
   "investigator.CategoryId": "Category ID",
@@ -187,5 +186,6 @@
   "investigator.CSSClass": "CSS Class",
   "investigator.DangerZone": "Danger Zone",
   "investigator.UniqueId": "Unique Id",
-  "investigator.NoCardCategoriesHaveBeenAddedYet": "No card categories have been added yet."
+  "investigator.NoCardCategoriesHaveBeenAddedYet": "No card categories have been added yet.",
+  "investigator.Uncategorized": "Uncategorized"
 }

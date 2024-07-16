@@ -78,9 +78,7 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
                   {cat.name}
                 </option>
               ))}
-              <option value="">
-                {getTranslated("Uncategorized equipment")}
-              </option>
+              <option value="">{getTranslated("Uncategorized")}</option>
             </select>
           </div>
         </div>
