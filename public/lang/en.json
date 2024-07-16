@@ -189,5 +189,6 @@
   "investigator.NoCardCategoriesHaveBeenAddedYet": "No card categories have been added yet.",
   "investigator.ItemNameAddedToActorName": "{ItemName} added to {ActorName}",
   "investigator.ItemAddedNotifications": "Item added notifications",
-  "investigator.Uncategorized": "Uncategorized"
+  "investigator.Uncategorized": "Uncategorized",
+  "investigator.StyleKey": "Style Key"
 }

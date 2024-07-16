@@ -188,6 +188,14 @@ export interface ThemeSeedV1 {
      * the text elements.
      */
     backdropStyle: CSSObject;
+    /**
+     * Styles that apply to all cards
+     */
+    cardStyles?: CardStyles;
+    /**
+     * Styles that apply to specific card categories
+     */
+    cardCategoryStyles?: Record<string, CardStyles>;
   };
 
   /**
@@ -201,6 +209,22 @@ export interface ThemeSeedV1 {
     npcNote?: string;
     itemNote?: string;
   };
+}
+
+/** Styles for a card */
+interface CardStyles {
+  /** The style for the card itself */
+  backdropStyle: CSSObject;
+  /** The style for the bit of text above the main card content */
+  supertitleStyle: CSSObject;
+  /** The style for the title of the card */
+  titleStyle: CSSObject;
+  /** The style for the subtitle of the card */
+  subtitleStyle: CSSObject;
+  /** The style for the content of the card */
+  descriptionStyle: CSSObject;
+  /** The style for the effect of the card */
+  effectStyle: CSSObject;
 }
 
 /**
@@ -373,6 +397,7 @@ export interface HasId {
 export interface CardCategory extends HasId {
   name: string;
   cssClass?: string;
+  styleKey?: string;
 }
 
 declare global {

@@ -17,7 +17,7 @@ import {
   isPCActor,
   PersonalDetailItem,
 } from "../../v10Types";
-// import CardsArea from "../cards/CardsArea";
+import { CardsArea } from "../cards/CardsArea";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -277,11 +277,11 @@ export const PCSheet: React.FC<PCSheetProps> = ({
                 <AbilitiesAreaPlay actor={actor} />
               ),
             },
-            // {
-            //   id: "cards",
-            //   label: "Cards",
-            //   content: <CardsArea actor={actor} />,
-            // },
+            {
+              id: "cards",
+              label: "Cards",
+              content: <CardsArea actor={actor} />,
+            },
             settings.mwUseAlternativeItemTypes.get()
               ? {
                   id: "items",

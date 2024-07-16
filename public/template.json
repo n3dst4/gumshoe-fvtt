@@ -170,6 +170,7 @@
     },
     "card": {
       "templates": ["notes"],
+      "category": "",
       "effectsNotes": {
         "format": "richText",
         "source": "",

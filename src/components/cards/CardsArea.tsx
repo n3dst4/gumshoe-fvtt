@@ -7,7 +7,7 @@ interface CardsAreaProps {
   actor: InvestigatorActor;
 }
 
-const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
+export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
   return (
     <div>
       <h2>
@@ -17,5 +17,3 @@ const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
     </div>
   );
 };
-
-export default CardsArea;
