@@ -42,7 +42,7 @@ export const EquipmentArea: React.FC<EquipmentAreaProps> = ({ actor }) => {
           actor={actor}
           categoryId={""}
           items={uncategorizedItems}
-          name={getTranslated("Uncategorized equipment")}
+          name={getTranslated("Uncategorized")}
           fields={{}}
         />
       )}
