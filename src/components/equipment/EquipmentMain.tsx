@@ -30,14 +30,7 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
 
   const onChangeCategory = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
-      const value = e.currentTarget.value;
-      if (value === "") {
-        // setIsUncategorized(true);
-        void equipment.setCategory("");
-      } else {
-        // setIsUncategorized(false);
-        void equipment.setCategory(e.currentTarget.value);
-      }
+      void equipment.setCategory(e.currentTarget.value);
     },
     [equipment],
   );
