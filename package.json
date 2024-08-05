@@ -42,7 +42,7 @@
     "@lumphammer/investigator-fvtt-types": "workspace:^",
     "@swc/plugin-emotion": "^2.5.116",
     "@testing-library/jest-dom": "^6.4.6",
-    "@testing-library/react": "^15.0.2",
+    "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/d3-ease": "^3.0.2",
     "@types/eslint": "^8.56.8",
