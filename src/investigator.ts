@@ -5,6 +5,7 @@ import { initializePackGenerators } from "./compendiumFactory/generatePacks";
 import { systemId } from "./constants";
 import { assertGame, systemLogger } from "./functions/utilities";
 import processedStyles from "./investigator.less?inline";
+import processedStyles2 from "./scss-experiment.scss?inline";
 import { handleMwItemType } from "./startup/disableMwItemType";
 import { injectGlobalHelper } from "./startup/injectGlobalHelper";
 import { installAbilityCardChatWrangler } from "./startup/installAbilityCardChatWrangler";
@@ -48,7 +49,7 @@ injectGlobalHelper();
 // foundry itself and vite's css injection never kicks in. So we have to
 // import the css as a string and inject it ourselves.
 const styleElement = document.createElement("style");
-styleElement.innerHTML = processedStyles;
+styleElement.innerHTML = processedStyles + "\n" + processedStyles2;
 document.head.appendChild(styleElement);
 
 // Initialize system

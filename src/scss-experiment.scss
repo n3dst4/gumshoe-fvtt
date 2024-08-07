@@ -1,0 +1,4 @@
+@use "@picocss/pico/scss" with (
+  $theme-color: "violet",
+  $parent-selector: ".pico"
+);
