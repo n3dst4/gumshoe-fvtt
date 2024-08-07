@@ -112,6 +112,18 @@ export const Categories: React.FC<CategoriesProps> = () => {
           >
             {category.cssClass}
           </div>
+          <div
+            css={{
+              gridColumn: "3",
+              padding: "0.3em",
+              textShadow: "none",
+              color: theme.colors.text,
+              fontStyle: "italic",
+              opacity: 0.7,
+            }}
+          >
+            {category.styleKey}
+          </div>
         </Link>
       );
     },
@@ -157,9 +169,10 @@ export const Categories: React.FC<CategoriesProps> = () => {
         items={settings.cardCategories.map((c) => c.id)}
         setItems={setCardCategories}
         renderItem={renderRow}
-        gridTemplateColumns="1fr 1fr"
+        gridTemplateColumns="1fr 1fr 1fr"
         headers={[
           { label: "Category", id: "category" },
+          { label: "Style Key", id: "styleKey" },
           { label: "CSS Class", id: "cssClass" },
         ]}
         emptyMessage={
