@@ -7,7 +7,7 @@ import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { GridField } from "../../inputs/GridField";
 import { InputGrid } from "../../inputs/InputGrid";
 import { SlideInNestedPanelRoute } from "../../nestedPanels/SlideInNestedPanelRoute";
-import { DispatchContext } from "../contexts";
+import { DispatchContext, ModifyContext } from "../contexts";
 import { useStateSelector } from "../hooks";
 import { store } from "../store";
 import { CategoryDangerZone } from "./CategoryDangerZone";
@@ -19,6 +19,7 @@ export const Category: React.FC = () => {
     s.settings.cardCategories.find((c) => c.id === id),
   );
   const dispatch = useContext(DispatchContext);
+  const modify = useContext(ModifyContext);
   const theme = useContext(ThemeContext);
 
   const handleNameChange = (newName: string) => {
@@ -27,6 +28,15 @@ export const Category: React.FC = () => {
 
   const handleCssClassChange = (newCssClass: string) => {
     dispatch(store.creators.setCardCategoryCssClass({ id, newCssClass }));
+  };
+
+  const handleStyleKeyChange = (newStyleKey: string) => {
+    modify((s) => {
+      const category = s.cardCategories.find((c) => c.id === id);
+      if (category) {
+        category.styleKey = newStyleKey;
+      }
+    });
   };
 
   const shade1 = "#f002";
@@ -38,6 +48,12 @@ export const Category: React.FC = () => {
       <InputGrid>
         <GridField label="Item Name">
           <AsyncTextInput value={category?.name} onChange={handleNameChange} />
+        </GridField>
+        <GridField label="Style Key">
+          <AsyncTextInput
+            value={category?.styleKey ?? ""}
+            onChange={handleStyleKeyChange}
+          />
         </GridField>
         <GridField label="CSS Class">
           <AsyncTextInput
