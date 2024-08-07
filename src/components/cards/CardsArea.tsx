@@ -1,19 +1,32 @@
 import React from "react";
 
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { Translate } from "../Translate";
+import { isCardItem } from "../../v10Types";
+import { absoluteCover } from "../absoluteCover";
+import { CardDisplay } from "./CardDisplay";
 
 interface CardsAreaProps {
   actor: InvestigatorActor;
 }
 
 export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
+  const cards = actor.items.filter((item) => isCardItem(item));
+
   return (
-    <div>
-      <h2>
-        <Translate>Good</Translate>
-      </h2>
-      <ul></ul>
+    <div
+      css={{
+        ...absoluteCover,
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gridAutoRows: "auto",
+        padding: "0.5em",
+        columnGap: "0.5em",
+        rowGap: "0.5em",
+      }}
+    >
+      {cards.map((card) => (
+        <CardDisplay key={card.id} card={card} />
+      ))}
     </div>
   );
 };
