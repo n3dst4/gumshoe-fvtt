@@ -188,15 +188,15 @@ export interface ThemeSeedV1 {
      * the text elements.
      */
     backdropStyle: CSSObject;
-    /**
-     * Styles that apply to all cards
-     */
-    cardStyles?: CardStyles;
-    /**
-     * Styles that apply to specific card categories
-     */
-    cardCategoryStyles?: Record<string, CardStyles>;
   };
+  /**
+   * Styles that apply to all cards
+   */
+  cardStyles?: CardStyles;
+  /**
+   * Styles that apply to specific card categories
+   */
+  cardCategoryStyles?: Record<string, CardStyles>;
 
   /**
    * All the values in this collection should be parseable as CSS colors
@@ -212,7 +212,7 @@ export interface ThemeSeedV1 {
 }
 
 /** Styles for a card */
-interface CardStyles {
+export interface CardStyles {
   /** The style for the card itself */
   backdropStyle: CSSObject;
   /** The style for the bit of text above the main card content */

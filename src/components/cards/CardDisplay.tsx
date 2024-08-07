@@ -13,7 +13,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
   return (
     <div
       css={{
-        ...theme.smallSheetRootStyle,
+        ...theme.cardStyles.backdropStyle,
         border: "1px solid black",
         aspectRatio: "4/5",
       }}
