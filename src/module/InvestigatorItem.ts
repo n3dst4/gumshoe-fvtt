@@ -29,7 +29,6 @@ import {
   assertPersonalDetailItem,
   assertWeaponItem,
   isEquipmentItem,
-  isEquipmentOrAbilityItem,
 } from "../v10Types";
 import { InvestigatorActor } from "./InvestigatorActor";
 
