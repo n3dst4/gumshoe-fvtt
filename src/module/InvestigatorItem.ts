@@ -742,6 +742,28 @@ export class InvestigatorItem extends Item {
     assertAbilityItem(this);
     return this.update({ system: { specialitiesMode: mode } });
   };
+
+  // cards stuff
+
+  setSupertitle = (supertitle: string): Promise<this | undefined> => {
+    assertCardItem(this);
+    return this.update({ system: { supertitle } });
+  };
+
+  setSubtitle = (subtitle: string): Promise<this | undefined> => {
+    assertCardItem(this);
+    return this.update({ system: { subtitle } });
+  };
+
+  setDescription = (description: NoteWithFormat): Promise<this | undefined> => {
+    assertCardItem(this);
+    return this.update({ system: { description } });
+  };
+
+  setEffects = (effects: NoteWithFormat): Promise<this | undefined> => {
+    assertCardItem(this);
+    return this.update({ system: { effects } });
+  };
 }
 
 declare global {

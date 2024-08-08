@@ -169,14 +169,19 @@
       "compendiumPackId": null
     },
     "card": {
-      "templates": ["notes"],
       "category": "",
-      "effectsNotes": {
+      "supertitle": "",
+      "subtitle": "",
+      "description": {
         "format": "richText",
         "source": "",
         "html": ""
       },
-      "title": "",
+      "effects": {
+        "format": "richText",
+        "source": "",
+        "html": ""
+      },
       "type": "",
       "flags": [],
       "active": true
