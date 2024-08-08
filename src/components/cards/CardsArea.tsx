@@ -62,8 +62,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
               {cat.name}
             </option>
           ))}
-        </select>
-
+        </select>{" "}
         {/* sort order */}
         <select
           value={sortOrder}
@@ -75,8 +74,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           <option value="oldest">{getTranslated("Oldest")}</option>
           <option value="atoz">{"A — Z"}</option>
           <option value="ztoa">{"Z — A"}</option>
-        </select>
-
+        </select>{" "}
         {/* view mode */}
         <select
           value={viewMode}
