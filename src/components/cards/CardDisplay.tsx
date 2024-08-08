@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 
+import { isNullOrEmptyString } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertCardItem, CardItem } from "../../v10Types";
 
@@ -10,24 +11,40 @@ interface CardDisplayProps {
 export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
   assertCardItem(card);
   const theme = useContext(ThemeContext);
+
+  const handleClick = useCallback(() => {
+    card.sheet?.render(true);
+  }, [card.sheet]);
+
   return (
     <div
       tabIndex={0}
-      onClick={() => card.sheet?.render(true)}
+      onClick={handleClick}
       className="card-display"
       css={{
         ...theme.cardStyles.backdropStyle,
-        border: "1px solid black",
         aspectRatio: "4/5",
       }}
     >
-      <p>{card.system.supertitle}</p>
-      <h2>{card.name}</h2>
-      <p>{card.system.subtitle}</p>
-      <p>{card.system.description.html}</p>
-      <a onClick={() => card.sheet?.render(true)}>
-        <i className="fa fa-edit" />
-      </a>
+      {!isNullOrEmptyString(card.system.supertitle) && (
+        <p css={theme.cardStyles.supertitleStyle}>{card.system.supertitle}</p>
+      )}
+      <h2 css={theme.cardStyles.titleStyle}>{card.name}</h2>
+      {!isNullOrEmptyString(card.system.subtitle) && (
+        <p css={theme.cardStyles.subtitleStyle}>{card.system.subtitle}</p>
+      )}
+      {!isNullOrEmptyString(card.system.description.html) && (
+        <p
+          css={theme.cardStyles.descriptionStyle}
+          dangerouslySetInnerHTML={{ __html: card.system.description.html }}
+        ></p>
+      )}
+      {!isNullOrEmptyString(card.system.effects.html) && (
+        <p
+          css={theme.cardStyles.effectStyle}
+          dangerouslySetInnerHTML={{ __html: card.system.effects.html }}
+        ></p>
+      )}
     </div>
   );
 };
