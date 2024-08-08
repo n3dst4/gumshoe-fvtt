@@ -191,5 +191,7 @@
   "investigator.ItemAddedNotifications": "Item added notifications",
   "investigator.Uncategorized": "Uncategorized",
   "investigator.StyleKey": "Style Key",
-  "investigator.Effects": "Effects"
+  "investigator.Effects": "Effects",
+  "investigator.Supertitle": "Supertitle",
+  "investigator.Subtitle": "Subtitle"
 }
