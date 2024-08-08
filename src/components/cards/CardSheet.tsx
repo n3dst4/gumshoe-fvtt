@@ -22,9 +22,9 @@ export const CardSheet: React.FC<CardSheetProps> = ({ card, application }) => {
       application={application}
     >
       <ModeSelect mode={ItemSheetMode.Main}>
-        <CardMain card={card} name={card.name ?? ""} />
+        <CardMain card={card} />
       </ModeSelect>
-      <ModeSelect mode={ItemSheetMode.Config}>Crad config</ModeSelect>
+      <ModeSelect mode={ItemSheetMode.Config}>Card config</ModeSelect>
     </ItemSheetFramework>
   );
 };

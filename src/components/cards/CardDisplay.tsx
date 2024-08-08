@@ -21,8 +21,10 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
         aspectRatio: "4/5",
       }}
     >
+      <p>{card.system.supertitle}</p>
       <h2>{card.name}</h2>
-      <p>{card.system.notes.html}</p>
+      <p>{card.system.subtitle}</p>
+      <p>{card.system.description.html}</p>
       <a onClick={() => card.sheet?.render(true)}>
         <i className="fa fa-edit" />
       </a>
@@ -30,4 +32,4 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
   );
 };
 
-CardDisplay.displayName = "Card";
+CardDisplay.displayName = "CardDisplay";
