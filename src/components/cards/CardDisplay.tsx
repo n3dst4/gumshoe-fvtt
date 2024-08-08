@@ -1,6 +1,7 @@
 import React, { useCallback, useContext } from "react";
 
-import { isNullOrEmptyString } from "../../functions/utilities";
+import { getById, isNullOrEmptyString } from "../../functions/utilities";
+import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertCardItem, CardItem } from "../../v10Types";
 
@@ -11,6 +12,10 @@ interface CardDisplayProps {
 export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
   assertCardItem(card);
   const theme = useContext(ThemeContext);
+  const category = getById(
+    settings.cardCategories.get(),
+    card.system.categoryId,
+  );
 
   const handleClick = useCallback(() => {
     card.sheet?.render(true);
@@ -26,9 +31,11 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
         aspectRatio: "4/5",
       }}
     >
-      {!isNullOrEmptyString(card.system.supertitle) && (
-        <p css={theme.cardStyles.supertitleStyle}>{card.system.supertitle}</p>
-      )}
+      <p css={theme.cardStyles.supertitleStyle}>
+        {category ? category.name : ""}
+        {"  "}
+        {!isNullOrEmptyString(card.system.supertitle) && card.system.supertitle}
+      </p>
       <h2 css={theme.cardStyles.titleStyle}>{card.name}</h2>
       {!isNullOrEmptyString(card.system.subtitle) && (
         <p css={theme.cardStyles.subtitleStyle}>{card.system.subtitle}</p>
