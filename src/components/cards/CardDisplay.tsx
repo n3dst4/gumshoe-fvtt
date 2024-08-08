@@ -14,7 +14,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
     <div
       tabIndex={0}
       onClick={() => card.sheet?.render(true)}
-      className="card pico"
+      className="card-display"
       css={{
         ...theme.cardStyles.backdropStyle,
         border: "1px solid black",
