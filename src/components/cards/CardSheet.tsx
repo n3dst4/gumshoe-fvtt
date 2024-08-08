@@ -6,6 +6,7 @@ import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
 import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";
 import { ItemSheetMode } from "../ItemSheetFramework/types";
 import { Translate } from "../Translate";
+import { CardConfig } from "./CardConfig";
 import { CardMain } from "./CardMain";
 
 type CardSheetProps = {
@@ -24,7 +25,9 @@ export const CardSheet: React.FC<CardSheetProps> = ({ card, application }) => {
       <ModeSelect mode={ItemSheetMode.Main}>
         <CardMain card={card} />
       </ModeSelect>
-      <ModeSelect mode={ItemSheetMode.Config}>Card config</ModeSelect>
+      <ModeSelect mode={ItemSheetMode.Config}>
+        <CardConfig card={card} />
+      </ModeSelect>
     </ItemSheetFramework>
   );
 };
