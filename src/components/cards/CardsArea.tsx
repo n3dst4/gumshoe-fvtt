@@ -24,7 +24,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
 
   const filteredCards = allCards.filter((card) => {
     if (category !== undefined) {
-      return card.system.category === category;
+      return card.system.categoryId === category;
     }
     return true;
   });

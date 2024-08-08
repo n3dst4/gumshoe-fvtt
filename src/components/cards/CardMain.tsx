@@ -21,17 +21,17 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
   assertCardItem(card);
 
   const categories = settings.cardCategories.get();
-  const categoryMetadata = getById(categories, card.system.category);
-  const isRealCategory = categoryMetadata !== undefined;
+  const category = getById(categories, card.system.categoryId);
+  const isRealCategory = category !== undefined;
 
   const onChangeCategory = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
-      void card.setCategory(e.currentTarget.value);
+      void card.setCategoryId(e.currentTarget.value);
     },
     [card],
   );
 
-  const selectedCat = isRealCategory ? card.system.category : "";
+  const selectedCat = isRealCategory ? card.system.categoryId : "";
 
   return (
     <>
@@ -65,8 +65,8 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
                   height: "inherit",
                 }}
               >
-                {Object.entries(categories).map<JSX.Element>(([id, cat]) => (
-                  <option key={id} value={id}>
+                {categories.map<JSX.Element>((cat) => (
+                  <option key={cat.id} value={cat.id}>
                     {cat.name}
                   </option>
                 ))}
