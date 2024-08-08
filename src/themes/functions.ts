@@ -5,17 +5,6 @@ import { ThemeV1 } from "./types";
 
 const defaultFontScaleFactor = 14;
 
-const defaultCardStyles: ThemeV1["cardStyles"] = {
-  backdropStyle: {
-    background: "white",
-  },
-  supertitleStyle: {},
-  titleStyle: {},
-  subtitleStyle: {},
-  descriptionStyle: {},
-  effectStyle: {},
-};
-
 /**
  * Given two colors, create a third which is the result of overlaying the second
  * on the first
@@ -130,7 +119,17 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
       ...seed.logo,
       fontScaleFactor: seed.logo.fontScaleFactor ?? defaultFontScaleFactor,
     },
-    cardStyles: seed.cardStyles ?? defaultCardStyles,
+    cardStyles: seed.cardStyles ?? {
+      backdropStyle: {
+        border: `1px solid ${controlBorder}`,
+        padding: "0.5em",
+      },
+      supertitleStyle: { fontSize: "0.9em" },
+      titleStyle: {},
+      subtitleStyle: { fontWeight: "bold" },
+      descriptionStyle: {},
+      effectStyle: { fontStyle: "italic" },
+    },
     cardCategoryStyles: {},
   };
 };
