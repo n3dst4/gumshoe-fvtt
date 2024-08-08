@@ -12,6 +12,9 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
   const theme = useContext(ThemeContext);
   return (
     <div
+      tabIndex={0}
+      onClick={() => card.sheet?.render(true)}
+      className="card pico"
       css={{
         ...theme.cardStyles.backdropStyle,
         border: "1px solid black",
@@ -20,6 +23,9 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
     >
       <h2>{card.name}</h2>
       <p>{card.system.notes.html}</p>
+      <a onClick={() => card.sheet?.render(true)}>
+        <i className="fa fa-edit" />
+      </a>
     </div>
   );
 };
