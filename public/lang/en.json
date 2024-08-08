@@ -189,5 +189,7 @@
   "investigator.NoCardCategoriesHaveBeenAddedYet": "No card categories have been added yet.",
   "investigator.Uncategorized": "Uncategorized",
   "investigator.StyleKey": "Style Key",
-  "investigator.Effects": "Effects"
+  "investigator.Effects": "Effects",
+  "investigator.Supertitle": "Supertitle",
+  "investigator.Subtitle": "Subtitle"
 }
