@@ -6,7 +6,7 @@ interface NameHaver {
 }
 
 export const sortEntitiesByName = <T extends NameHaver>(ents: T[]) => {
-  return ents.sort((a, b) => {
+  return ents.toSorted((a, b) => {
     const aName = a.name || "";
     const bName = b.name || "";
     return aName.localeCompare(bName);
