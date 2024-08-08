@@ -270,9 +270,11 @@ export interface PersonalDetailSystemData {
 
 export interface CardSystemData {
   category: string;
-  effectsNotes: NoteWithFormat;
-  notes: NoteWithFormat;
+  supertitle: string;
   title: string;
+  subtitle: string;
+  effects: NoteWithFormat;
+  description: NoteWithFormat;
   type: string;
   flags: string[];
   active: boolean;
