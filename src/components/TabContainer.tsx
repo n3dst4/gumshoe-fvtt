@@ -49,6 +49,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
 
   return (
     <div
+      className="tab-container-outer"
       key={selected}
       css={{
         position: "absolute",
@@ -117,7 +118,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
         })}
       </div>
       <div
-        className={theme.panelClass}
+        className={`tab-content ${theme.panelClass ?? ""}`}
         css={{
           flex: 1,
           position: "relative",
