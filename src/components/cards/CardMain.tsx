@@ -81,14 +81,12 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
         </GridField>
       </InputGrid>
       <div
+        className="notes-container"
         css={{
           flex: 1,
           position: "relative",
-          display: "grid",
-          gridTemplateRows: "1fr",
-          gridTemplateColumns: "1fr",
+          margin: "0.5em",
         }}
-        className="notes-container"
       >
         <TabContainer
           defaultTab="description"
@@ -97,12 +95,11 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
               id: "description",
               label: "Description",
               content: (
-                <div
+                <InputGrid
                   css={{
                     ...absoluteCover,
-                    display: "grid",
                     gridTemplateRows: "1fr",
-                    gridTemplateColumns: "[label]1fr[end]",
+                    margin: "0.5em",
                   }}
                 >
                   <NotesEditorWithControls
@@ -112,32 +109,39 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
                     source={card.system.description.source}
                     onSave={card.setDescription}
                     css={{
-                      // ...absoluteCover,
                       "&&": {
                         resize: "none",
                       },
                     }}
                   />
-                </div>
+                </InputGrid>
               ),
             },
             {
               id: "effects",
               label: "Effects",
               content: (
-                <NotesEditorWithControls
-                  allowChangeFormat
-                  format={card.system.effects.format}
-                  html={card.system.effects.html}
-                  source={card.system.effects.source}
-                  onSave={card.setEffects}
+                <InputGrid
                   css={{
-                    height: "100%",
-                    "&&": {
-                      resize: "none",
-                    },
+                    ...absoluteCover,
+                    gridTemplateRows: "1fr",
+                    margin: "0.5em",
                   }}
-                />
+                >
+                  <NotesEditorWithControls
+                    allowChangeFormat
+                    format={card.system.effects.format}
+                    html={card.system.effects.html}
+                    source={card.system.effects.source}
+                    onSave={card.setEffects}
+                    css={{
+                      height: "100%",
+                      "&&": {
+                        resize: "none",
+                      },
+                    }}
+                  />
+                </InputGrid>
               ),
             },
           ]}

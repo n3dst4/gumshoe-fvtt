@@ -188,5 +188,6 @@
   "investigator.UniqueId": "Unique Id",
   "investigator.NoCardCategoriesHaveBeenAddedYet": "No card categories have been added yet.",
   "investigator.Uncategorized": "Uncategorized",
-  "investigator.StyleKey": "Style Key"
+  "investigator.StyleKey": "Style Key",
+  "investigator.Effects": "Effects"
 }
