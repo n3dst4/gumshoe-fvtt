@@ -17,7 +17,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
       css={{
         ...absoluteCover,
         display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
+        gridTemplateColumns: "repeat(2, 1fr)",
         gridAutoRows: "auto",
         padding: "0.5em",
         columnGap: "0.5em",
