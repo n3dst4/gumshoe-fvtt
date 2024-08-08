@@ -18,15 +18,16 @@ type ViewMode = "compact" | "expanded";
 export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
   const allCards = actor.items.filter((item) => isCardItem(item));
   const categories = settings.cardCategories.get();
-  const [category, setCategory] = React.useState<string | undefined>(undefined);
+  const [category, setCategory] = React.useState<string>("");
   const [sortOrder, setSortOrder] = React.useState<SortOrder>("newest");
   const [viewMode, setViewMode] = React.useState<ViewMode>("compact");
 
   const filteredCards = allCards.filter((card) => {
-    if (category !== undefined) {
+    if (category === "") {
+      return true;
+    } else {
       return card.system.categoryId === category;
     }
-    return true;
   });
 
   let cards =
@@ -55,9 +56,9 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
             setCategory(e.currentTarget.value);
           }}
         >
-          <option value={undefined}>{getTranslated("All")}</option>
-          {Object.entries(categories).map(([id, cat]) => (
-            <option key={id} value={id}>
+          <option value={""}>{getTranslated("All")}</option>
+          {categories.map((cat) => (
+            <option key={cat.id} value={cat.id}>
               {cat.name}
             </option>
           ))}
