@@ -1,4 +1,4 @@
-import React, { ReactNode, useLayoutEffect } from "react";
+import React, { ReactNode, useLayoutEffect, useState } from "react";
 
 import { useElementSize } from "./useElementSize";
 
@@ -22,28 +22,44 @@ export const createMasonry = <TData,>() => {
   }) {
     const containerRef = React.useRef<HTMLDivElement>(null);
     const [width] = useElementSize(containerRef);
+    const [dataHeights, setDataHeights] = useState(
+      new Array(data.length).fill(0),
+    );
 
     useLayoutEffect(() => {
-      //
-    }, []);
+      if (!containerRef.current) {
+        return;
+      }
+      console.log("layout effect");
+      const wrappers = containerRef.current.querySelectorAll(
+        ".masonry-item-wrapper",
+      );
+      if (wrappers.length !== data.length) {
+        return;
+      }
+      const heights = Array.from(wrappers).map(
+        (wrapper) => wrapper.getBoundingClientRect().height,
+      );
+      setDataHeights(heights);
+    }, [data.length]);
 
     const columnCount = 1;
     const columnHeights = new Array<number>(columnCount).fill(0);
-    const dataHeights = new Array(data.length).fill(0);
     let children: ReactNode = null;
 
     if (containerRef.current) {
       const columnCount = Math.max(Math.floor(width / minColumnWidth), 1);
       const columnWidth = width / columnCount;
 
-      const columnarData = new Array<Array<number>>(columnCount).fill([]);
+      const columnarData = new Array<Array<number>>(columnCount)
+        .fill([])
+        .map((): number[] => []);
 
       data.forEach((datum, index) => {
         const height = dataHeights[index];
         const shortestColumnIndex = columnHeights.indexOf(
           Math.min(...columnHeights),
         );
-        console.log(shortestColumnIndex, columnHeights[shortestColumnIndex]);
         columnHeights[shortestColumnIndex] += height;
         columnarData[shortestColumnIndex].push(index);
       });
@@ -56,6 +72,11 @@ export const createMasonry = <TData,>() => {
               className="masonry-item-wrapper"
               css={{
                 position: "absolute",
+                width: columnWidth,
+                top: indicesinColumn
+                  .slice(0, indexInColumn)
+                  .reduce((sum, index) => sum + dataHeights[index], 0),
+                left: columnIndex * columnWidth,
               }}
             >
               {render({
@@ -76,6 +97,7 @@ export const createMasonry = <TData,>() => {
           width: "100%",
           height: Math.max(...columnHeights) + 200 + "px",
           overflow: "hidden",
+          position: "relative",
         }}
         ref={containerRef}
       >
