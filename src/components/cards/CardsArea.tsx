@@ -1,12 +1,20 @@
+import {
+  RenderComponentProps,
+  useMasonry,
+  usePositioner,
+  useResizeObserver,
+} from "masonic";
 import React from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
-import { isCardItem } from "../../v10Types";
+import { CardItem, isCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { CardDisplay } from "./CardDisplay";
+import { useElementSize } from "./useElementSize";
+import { useScroller } from "./useScroller";
 
 interface CardsAreaProps {
   actor: InvestigatorActor;
@@ -14,6 +22,12 @@ interface CardsAreaProps {
 
 type SortOrder = "atoz" | "ztoa" | "newest" | "oldest";
 type ViewMode = "compact" | "expanded";
+
+const MasonryCard = ({
+  index,
+  data: card,
+  width,
+}: RenderComponentProps<CardItem>) => <CardDisplay key={card.id} card={card} />;
 
 export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
   const allCards = actor.items.filter((item) => isCardItem(item));
@@ -38,6 +52,27 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
   if (sortOrder === "newest" || sortOrder === "ztoa") {
     cards = cards.reverse();
   }
+
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [width, height] = useElementSize(containerRef);
+  const { scrollTop, isScrolling } = useScroller(containerRef);
+  const positioner = usePositioner({
+    width,
+    columnWidth: 172,
+    columnGutter: 8,
+  });
+  const resizeObserver = useResizeObserver(positioner);
+
+  const content = useMasonry({
+    positioner,
+    resizeObserver,
+    items: cards,
+    height,
+    scrollTop,
+    isScrolling,
+    overscanBy: 6,
+    render: MasonryCard,
+  });
 
   return (
     <div
@@ -87,18 +122,14 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
         </select>
       </div>
       <div
+        className="container-ref-haver"
+        ref={containerRef}
         css={{
           flex: 1,
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gridAutoRows: "auto",
-          columnGap: "0.5em",
-          rowGap: "0.5em",
+          overflow: "auto",
         }}
       >
-        {cards.map((card) => (
-          <CardDisplay key={card.id} card={card} />
-        ))}
+        {content}
       </div>
     </div>
   );
