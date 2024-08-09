@@ -1,9 +1,9 @@
-import {
-  RenderComponentProps,
-  useMasonry,
-  usePositioner,
-  useResizeObserver,
-} from "masonic";
+// import {
+//   RenderComponentProps,
+//   useMasonry,
+//   usePositioner,
+//   useResizeObserver,
+// } from "masonic";
 import React from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
@@ -13,8 +13,9 @@ import { settings } from "../../settings/settings";
 import { CardItem, isCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { CardDisplay } from "./CardDisplay";
-import { useElementSize } from "./useElementSize";
-import { useScroller } from "./useScroller";
+import { createMasonry, RenderComponentProps } from "./Masonry";
+// import { useElementSize } from "./useElementSize";
+// import { useScroller } from "./useScroller";
 
 interface CardsAreaProps {
   actor: InvestigatorActor;
@@ -28,6 +29,8 @@ const MasonryCard = ({
   data: card,
   width,
 }: RenderComponentProps<CardItem>) => <CardDisplay key={card.id} card={card} />;
+
+const Masonry = createMasonry<CardItem>();
 
 export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
   const allCards = actor.items.filter((item) => isCardItem(item));
@@ -54,25 +57,25 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
   }
 
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const [width, height] = useElementSize(containerRef);
-  const { scrollTop, isScrolling } = useScroller(containerRef);
-  const positioner = usePositioner({
-    width,
-    columnWidth: 172,
-    columnGutter: 8,
-  });
-  const resizeObserver = useResizeObserver(positioner);
+  // const [width, height] = useElementSize(containerRef);
+  // const { scrollTop, isScrolling } = useScroller(containerRef);
+  // const positioner = usePositioner({
+  //   width,
+  //   columnWidth: 172,
+  //   columnGutter: 8,
+  // });
+  // const resizeObserver = useResizeObserver(positioner);
 
-  const content = useMasonry({
-    positioner,
-    resizeObserver,
-    items: cards,
-    height,
-    scrollTop,
-    isScrolling,
-    overscanBy: 6,
-    render: MasonryCard,
-  });
+  // const content = useMasonry({
+  //   positioner,
+  //   resizeObserver,
+  //   items: cards,
+  //   height,
+  //   scrollTop,
+  //   isScrolling,
+  //   overscanBy: 6,
+  //   render: MasonryCard,
+  // });
 
   return (
     <div
@@ -129,7 +132,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           overflow: "auto",
         }}
       >
-        {content}
+        <Masonry data={cards} render={MasonryCard} />
       </div>
     </div>
   );

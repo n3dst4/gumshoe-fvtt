@@ -28,7 +28,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
       className="card-display"
       css={{
         ...theme.cardStyles.backdropStyle,
-        aspectRatio: "4/5",
+        // aspectRatio: "4/5",
       }}
     >
       <p css={theme.cardStyles.supertitleStyle}>
