@@ -193,5 +193,10 @@
   "investigator.StyleKey": "Style Key",
   "investigator.Effects": "Effects",
   "investigator.Supertitle": "Supertitle",
-  "investigator.Subtitle": "Subtitle"
+  "investigator.Subtitle": "Subtitle",
+  "investigator.All": "All",
+  "investigator.Newest": "Newest",
+  "investigator.Oldest": "Oldest",
+  "investigator.Compact": "Compact",
+  "investigator.Expanded": "Expanded"
 }

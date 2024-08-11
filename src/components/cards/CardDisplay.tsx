@@ -1,6 +1,7 @@
 import React, { useCallback, useContext } from "react";
 
-import { isNullOrEmptyString } from "../../functions/utilities";
+import { getById, isNullOrEmptyString } from "../../functions/utilities";
+import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertCardItem, CardItem } from "../../v10Types";
 
@@ -11,10 +12,20 @@ interface CardDisplayProps {
 export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
   assertCardItem(card);
   const theme = useContext(ThemeContext);
+  const category = getById(
+    settings.cardCategories.get(),
+    card.system.categoryId,
+  );
+
+  // const [expanded, setExpanded] = useState(false);
 
   const handleClick = useCallback(() => {
     card.sheet?.render(true);
   }, [card.sheet]);
+
+  // const handleClickExpand = useCallback(() => {
+  //   setExpanded((expanded) => !expanded);
+  // }, []);
 
   return (
     <div
@@ -23,12 +34,17 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
       className="card-display"
       css={{
         ...theme.cardStyles.backdropStyle,
-        aspectRatio: "4/5",
+        overflow: "hidden",
+        // margin: "0.5em",
+        // boxSizing: "border-box",
+        // aspectRatio: expanded ? undefined : "1/1",
       }}
     >
-      {!isNullOrEmptyString(card.system.supertitle) && (
-        <p css={theme.cardStyles.supertitleStyle}>{card.system.supertitle}</p>
-      )}
+      <p css={theme.cardStyles.supertitleStyle}>
+        {category ? category.name : ""}
+        {"  "}
+        {!isNullOrEmptyString(card.system.supertitle) && card.system.supertitle}
+      </p>
       <h2 css={theme.cardStyles.titleStyle}>{card.name}</h2>
       {!isNullOrEmptyString(card.system.subtitle) && (
         <p css={theme.cardStyles.subtitleStyle}>{card.system.subtitle}</p>
@@ -45,6 +61,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
           dangerouslySetInnerHTML={{ __html: card.system.effects.html }}
         ></p>
       )}
+      {/* <Button onClick={handleClickExpand}>expand</Button> */}
     </div>
   );
 };

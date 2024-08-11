@@ -269,7 +269,7 @@ export interface PersonalDetailSystemData {
 }
 
 export interface CardSystemData {
-  category: string;
+  categoryId: string;
   supertitle: string;
   title: string;
   subtitle: string;

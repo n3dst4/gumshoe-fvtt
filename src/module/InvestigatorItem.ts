@@ -7,6 +7,7 @@ import * as constants from "../constants";
 import { assertGame, fixLength } from "../functions/utilities";
 import { settings } from "../settings/settings";
 import {
+  CardSystemData,
   EquipmentSystemData,
   MWDifficulty,
   MwRefreshGroup,
@@ -22,12 +23,12 @@ import {
   assertAnyItem,
   assertCardItem,
   assertEquipmentItem,
+  assertEquipmentOrAbilityItem,
   assertGeneralAbilityItem,
   assertMwItem,
   assertPersonalDetailItem,
   assertWeaponItem,
   isEquipmentItem,
-  isEquipmentOrAbilityItem,
 } from "../v10Types";
 import { InvestigatorActor } from "./InvestigatorActor";
 
@@ -233,8 +234,17 @@ export class InvestigatorItem extends Item {
   // used as handy callbacks in the component tree
   // ###########################################################################
 
+  /**
+   * What a pavlova!
+   *
+   * For historical reasons, we have a "category" field on equipment and
+   * abilities, but we have a "categoryId" field on cards.
+   *
+   * There is a ticket to migrate to `categoryId` on all items:
+   * https://github.com/n3dst4/gumshoe-fvtt/issues/845
+   */
   setCategory = async (category: string): Promise<void> => {
-    isEquipmentOrAbilityItem(this);
+    assertEquipmentOrAbilityItem(this);
     const updateData: Pick<EquipmentSystemData, "category" | "fields"> = {
       category,
       fields: {},
@@ -246,6 +256,17 @@ export class InvestigatorItem extends Item {
           this.system.fields[field] ?? fields[field].default;
       }
     }
+    await this.update({ system: updateData });
+  };
+
+  /**
+   * Right now this is *only* used for cards
+   */
+  setCategoryId = async (categoryId: string): Promise<void> => {
+    assertCardItem(this);
+    const updateData: Pick<CardSystemData, "categoryId"> = {
+      categoryId,
+    };
     await this.update({ system: updateData });
   };
 
