@@ -1,4 +1,5 @@
 import React, { useLayoutEffect } from "react";
+import { flushSync } from "react-dom";
 
 import { systemLogger } from "../../functions/utilities";
 
@@ -8,28 +9,37 @@ export const parseToNumber = (val: string) => {
   return Number(val.replace("px", ""));
 };
 
-function isHTMLElement(node: Node): node is HTMLElement {
-  return node instanceof HTMLElement;
-}
-
 function isLinebreak(element: HTMLElement) {
   return element.dataset["class"] === "line-break";
 }
 
 function isValidElement(node: Node): node is HTMLElement {
-  return isHTMLElement(node) && !isLinebreak(node);
+  return node instanceof HTMLElement && !isLinebreak(node);
 }
 
 type MasonryProps = React.PropsWithChildren<{
   numColumns: number;
+  columnGap?: string;
 }>;
 
 export const Masonry = function Masonry({
   children,
   numColumns,
+  columnGap = "0px",
 }: MasonryProps) {
   const masonryRef = React.useRef<HTMLDivElement>(null);
   const [maxColumnHeight, setMaxColumnHeight] = React.useState(0);
+
+  // the base width of a column: 100% / the number of columns
+  const baseColumnWidth = `${100 / numColumns}%`;
+
+  // we adjust column width in a css calc based on the column gap * this factor
+  // e.g. in a 3-column grid we subtract columnGap * ( 2/3 ) from the width
+  // in a 4-column grid we subtract columnGap * ( 3/4 ) from the width
+  // ... because there's no gap after the last column
+  const columnGapSizingFactor = (numColumns - 1) / numColumns;
+
+  const widthExpression = `calc(${baseColumnWidth} - (${columnGap} * ${columnGapSizingFactor}))`;
 
   // handle resize - the masonry engine
   const handleResize = React.useCallback(() => {
@@ -40,13 +50,24 @@ export const Masonry = function Masonry({
 
     const columnHeights = new Array(numColumns).fill(0);
 
+    const heights = Array.from(masonryRef.current.childNodes).map(
+      (child: Node) => {
+        if (isValidElement(child)) {
+          return getComputedStyle(child).height;
+        }
+        return -1;
+      },
+    );
+
+    systemLogger.log("heights", heights);
+
     // iterate through children
     masonryRef.current.childNodes.forEach((child: Node) => {
       // skip non-elements and linebreaks
       if (!isValidElement(child)) {
         return;
       }
-      const computedStyle = window.getComputedStyle(child);
+      const computedStyle = getComputedStyle(child);
       const childHeight =
         Math.ceil(parseToNumber(computedStyle.height)) +
         parseToNumber(computedStyle.marginTop) +
@@ -57,23 +78,28 @@ export const Masonry = function Masonry({
         Math.min(...columnHeights),
       );
       columnHeights[currentMinColumnIndex] += childHeight;
-      const order = currentMinColumnIndex + 1;
-      child.style.order = `${order}`;
+
+      // update child styles
+      child.style.boxSizing = "border-box";
+      child.style.order = `${currentMinColumnIndex + 1}`;
+      child.style.marginRight =
+        currentMinColumnIndex === numColumns - 1 ? "0px" : columnGap;
     });
-    setMaxColumnHeight(Math.max(...columnHeights));
-  }, [numColumns]);
+    // mui wraps this in flushSync
+    flushSync(() => {
+      setMaxColumnHeight(Math.max(...columnHeights));
+    });
+    // setMaxColumnHeight(Math.max(...columnHeights));
+  }, [columnGap, numColumns]);
 
   useLayoutEffect(() => {
-    // IE and old browsers are not supported
-    if (typeof ResizeObserver === "undefined") {
-      return undefined;
-    }
-
     let animationFrame: number;
 
-    const resizeObserver = new ResizeObserver(() => {
-      // see https://github.com/mui/material-ui/issues/36909
+    const resizeObserver = new ResizeObserver((entries) => {
+      // mui wraps this in a requestAnimationFrame
+      systemLogger.log("resizeObserver", entries);
       animationFrame = requestAnimationFrame(handleResize);
+      // handleResize();
     });
 
     if (masonryRef.current) {
@@ -115,7 +141,7 @@ export const Masonry = function Masonry({
         height: maxColumnHeight,
         alignContent: "flex-start",
         "> *": {
-          width: `${100 / numColumns}%`,
+          width: widthExpression,
         },
       }}
       ref={masonryRef}
