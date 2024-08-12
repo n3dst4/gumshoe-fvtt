@@ -123,6 +123,7 @@ export const Masonry = function Masonry({
 
       // update child styles
       child.style.order = `${currentMinColumnIndex + 1}`;
+      child.style.flexShrink = "0";
       child.style.marginRight =
         currentMinColumnIndex === numColumns - 1 ? "0px" : columnGap;
     });
