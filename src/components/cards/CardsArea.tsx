@@ -6,9 +6,9 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
 import { isCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
+import { Masonry } from "../Masonry";
 import { CardDisplay } from "./CardDisplay";
 import { CardsAreaSettingsContext } from "./contexts";
-import { Masonry } from "./Masonry";
 import { CardsSortOrder, CardsViewMode } from "./types";
 
 interface CardsAreaProps {
