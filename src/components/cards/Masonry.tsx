@@ -55,6 +55,7 @@ export const Masonry = function Masonry({
   const [maxColumnHeight, setMaxColumnHeight] = React.useState(0);
   const [numColumns, setNumColumns] = React.useState(1);
 
+  // ///////////////////////////////////////////////////////////////////////////
   // compare the measurer to the container to work out how many columns we can
   // fit in.
   const handleCalculateNumColumns = React.useCallback(() => {
@@ -79,18 +80,7 @@ export const Masonry = function Masonry({
     };
   }, [handleCalculateNumColumns]);
 
-  // the base width of a column: 100% / the number of columns
-  const baseColumnWidth = numColumns === 0 ? "100%" : `${100 / numColumns}%`;
-
-  // we adjust column width in a css calc based on the column gap * this factor
-  // e.g. in a 3-column grid we subtract columnGap * ( 2/3 ) from the width
-  // in a 4-column grid we subtract columnGap * ( 3/4 ) from the width
-  // ... because there's no gap after the last column
-  const columnGapSizingFactor =
-    numColumns === 0 ? 0 : (numColumns - 1) / numColumns;
-
-  const widthExpression = `calc(${baseColumnWidth} - (${columnGap} * ${columnGapSizingFactor}))`;
-
+  // ///////////////////////////////////////////////////////////////////////////
   // handle resize - the core of the masonry engine
   const handleResize = React.useCallback(() => {
     if (
@@ -134,6 +124,7 @@ export const Masonry = function Masonry({
     });
   }, [columnGap, numColumns]);
 
+  // call handleResize when any children resize
   useLayoutEffect(() => {
     // let animationFrame: number;
 
@@ -162,11 +153,28 @@ export const Masonry = function Masonry({
     // depends on children even though they're not mentioned by name
   }, [handleResize, children]);
 
-  // linebreaks force the flex-wrap to move everything after into a new column
+  // ///////////////////////////////////////////////////////////////////////////
+  // knit some values we'll need for the render
+
+  // the base width of a column: 100% / the number of columns
+  const baseColumnWidth = numColumns === 0 ? "100%" : `${100 / numColumns}%`;
+
+  // we adjust column width in a css calc based on the column gap * this factor
+  // e.g. in a 3-column grid we subtract columnGap * ( 2/3 ) from the width
+  // in a 4-column grid we subtract columnGap * ( 3/4 ) from the width
+  // ... because there's no gap after the last column
+  const columnGapSizingFactor =
+    numColumns === 0 ? 0 : (numColumns - 1) / numColumns;
+
+  // the final css expression for the width of each column
+  const widthExpression = `calc(${baseColumnWidth} - (${columnGap} * ${columnGapSizingFactor}))`;
+
+  // linebreak divs force the flex-wrap to start a new column
   const lineBreaks = new Array(numColumns - 1).fill("").map((_, index) => (
     <span
       key={index}
       data-class={lineBreakDataClass}
+      // using style not css to ensure we override css from the container
       style={{
         flexBasis: "100%",
         width: "0px",
@@ -177,8 +185,10 @@ export const Masonry = function Masonry({
     />
   ));
 
+  // and render...
   return (
     <div
+      ref={containerRef}
       css={{
         display: "flex",
         flexFlow: "column wrap",
@@ -190,12 +200,11 @@ export const Masonry = function Masonry({
           width: widthExpression,
         },
       }}
-      ref={containerRef}
     >
       <div
         data-class={columnMeasurerDataClass}
         ref={measurerRef}
-        // using style not css to ensure we override the parent styles
+        // using style not css to ensure we override css from the container
         style={{
           width: minColumnWidth,
           visibility: "hidden",

@@ -36,9 +36,6 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
         ...theme.cardStyles.backdropStyle,
         overflow: "hidden",
         marginBottom: "0.5em",
-        // margin: "0.5em",
-        // boxSizing: "border-box",
-        // aspectRatio: expanded ? undefined : "1/1",
       }}
     >
       <p css={theme.cardStyles.supertitleStyle}>
