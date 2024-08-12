@@ -48,8 +48,8 @@ importers:
         specifier: ^2.2.3
         version: 2.2.3
       marked:
-        specifier: ^13.0.1
-        version: 13.0.1
+        specifier: ^14.0.0
+        version: 14.0.0
       nanoid:
         specifier: ^5.0.7
         version: 5.0.7
@@ -768,6 +768,7 @@ packages:
 
   '@pixi/graphics-smooth@0.0.22':
     resolution: {integrity: sha512-qq2u+BJBIDBuuSTc2Xzm1D/8RiiKBdxnVDiMb7Go5v8achnV5ctC6m+rf8Mq0sWm66mbOqu1aq/9efT4A4sPrA==}
+    engines: {node: '>=14', npm: '>=7'}
     peerDependencies:
       '@pixi/constants': ^6.0.4
       '@pixi/core': ^6.0.4
@@ -2417,8 +2418,8 @@ packages:
     resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
     engines: {node: '>=6'}
 
-  marked@13.0.1:
-    resolution: {integrity: sha512-7kBohS6GrZKvCsNXZyVVXSW7/hGBHe49ng99YPkDCckSUrrG7MSFLCexsRxptzOmyW2eT5dySh4Md1V6my52fA==}
+  marked@14.0.0:
+    resolution: {integrity: sha512-uIj4+faQ+MgHgwUW1l2PsPglZLOLOT1uErt06dAPtx2kjteLAkbsd/0FiYg/MGS+i7ZKLb7w2WClxHkzOOuryQ==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -5876,7 +5877,7 @@ snapshots:
       semver: 5.7.1
     optional: true
 
-  marked@13.0.1: {}
+  marked@14.0.0: {}
 
   merge-stream@2.0.0: {}
 
