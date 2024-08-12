@@ -80,26 +80,26 @@ export const Masonry = function Masonry({
       columnHeights[currentMinColumnIndex] += childHeight;
 
       // update child styles
-      child.style.boxSizing = "border-box";
       child.style.order = `${currentMinColumnIndex + 1}`;
       child.style.marginRight =
         currentMinColumnIndex === numColumns - 1 ? "0px" : columnGap;
     });
-    // mui wraps this in flushSync
+    // wrap this in flushSync so the container get resized immediately - without
+    // this there will be a flash of the wrong size
     flushSync(() => {
       setMaxColumnHeight(Math.max(...columnHeights));
     });
-    // setMaxColumnHeight(Math.max(...columnHeights));
   }, [columnGap, numColumns]);
 
   useLayoutEffect(() => {
-    let animationFrame: number;
+    // let animationFrame: number;
 
     const resizeObserver = new ResizeObserver((entries) => {
-      // mui wraps this in a requestAnimationFrame
       systemLogger.log("resizeObserver", entries);
-      animationFrame = requestAnimationFrame(handleResize);
-      // handleResize();
+      // mui wraps this in a requestAnimationFrame
+      // see https://github.com/mui/material-ui/issues/36909
+      // animationFrame = requestAnimationFrame(handleResize);
+      handleResize();
     });
 
     if (masonryRef.current) {
@@ -109,9 +109,10 @@ export const Masonry = function Masonry({
     }
 
     return () => {
-      if (animationFrame) {
-        window.cancelAnimationFrame(animationFrame);
-      }
+      // see above
+      // if (animationFrame) {
+      //   window.cancelAnimationFrame(animationFrame);
+      // }
       if (resizeObserver) {
         resizeObserver.disconnect();
       }
@@ -138,7 +139,7 @@ export const Masonry = function Masonry({
         display: "flex",
         flexFlow: "column wrap",
         width: "100%",
-        height: maxColumnHeight,
+        height: maxColumnHeight === 0 ? "auto" : maxColumnHeight + "px",
         alignContent: "flex-start",
         "> *": {
           width: widthExpression,
