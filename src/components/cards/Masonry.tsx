@@ -9,57 +9,86 @@ export const parseToNumber = (val: string) => {
   return Number(val.replace("px", ""));
 };
 
-function isLinebreak(element: HTMLElement) {
-  return element.dataset["class"] === "line-break";
-}
+const columnMeasurerDataClass = "column-measurer";
+const lineBreakDataClass = "line-break";
 
 function isValidElement(node: Node): node is HTMLElement {
-  return node instanceof HTMLElement && !isLinebreak(node);
+  if (!(node instanceof HTMLElement)) {
+    return false;
+  }
+  const dataClass = node.dataset["class"];
+  return (
+    dataClass !== columnMeasurerDataClass && dataClass !== lineBreakDataClass
+  );
 }
 
 type MasonryProps = React.PropsWithChildren<{
-  numColumns: number;
+  columnWidth: string;
   columnGap?: string;
+  // numColumns: number;
 }>;
 
 export const Masonry = function Masonry({
   children,
-  numColumns,
+  columnWidth,
+  // numColumns,
   columnGap = "0px",
 }: MasonryProps) {
   const masonryRef = React.useRef<HTMLDivElement>(null);
   const [maxColumnHeight, setMaxColumnHeight] = React.useState(0);
+  const [numColumns, setNumColumns] = React.useState(1);
+
+  const measurerRef = React.useRef<HTMLDivElement>(null);
+
+  const calculateNumColumns = React.useCallback(() => {
+    if (!measurerRef.current || !masonryRef.current) {
+      return;
+    }
+    const outerWidth = masonryRef.current.clientWidth;
+    const innerWidth = measurerRef.current.clientWidth;
+    const numColumns = Math.floor(outerWidth / innerWidth);
+    systemLogger.log("calculateColumns", outerWidth, innerWidth, numColumns);
+    setNumColumns(numColumns);
+  }, []);
+
+  useLayoutEffect(() => {
+    const resizeObserver = new ResizeObserver((entries) => {
+      calculateNumColumns();
+    });
+    resizeObserver.observe(masonryRef.current!);
+    resizeObserver.observe(measurerRef.current!);
+    return () => {
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
+    calculateNumColumns();
+  }, [calculateNumColumns]);
 
   // the base width of a column: 100% / the number of columns
-  const baseColumnWidth = `${100 / numColumns}%`;
+  const baseColumnWidth = numColumns === 0 ? "100%" : `${100 / numColumns}%`;
 
   // we adjust column width in a css calc based on the column gap * this factor
   // e.g. in a 3-column grid we subtract columnGap * ( 2/3 ) from the width
   // in a 4-column grid we subtract columnGap * ( 3/4 ) from the width
   // ... because there's no gap after the last column
-  const columnGapSizingFactor = (numColumns - 1) / numColumns;
+  const columnGapSizingFactor =
+    numColumns === 0 ? 0 : (numColumns - 1) / numColumns;
 
   const widthExpression = `calc(${baseColumnWidth} - (${columnGap} * ${columnGapSizingFactor}))`;
 
   // handle resize - the masonry engine
   const handleResize = React.useCallback(() => {
-    systemLogger.log("handleResize");
-    if (!masonryRef.current || masonryRef.current.clientWidth === 0) {
+    // systemLogger.log("handleResize");
+    if (
+      !masonryRef.current ||
+      masonryRef.current.clientWidth === 0 ||
+      numColumns === 0
+    ) {
       return;
     }
 
     const columnHeights = new Array(numColumns).fill(0);
-
-    const heights = Array.from(masonryRef.current.childNodes).map(
-      (child: Node) => {
-        if (isValidElement(child)) {
-          return getComputedStyle(child).height;
-        }
-        return -1;
-      },
-    );
-
-    systemLogger.log("heights", heights);
 
     // iterate through children
     masonryRef.current.childNodes.forEach((child: Node) => {
@@ -95,7 +124,6 @@ export const Masonry = function Masonry({
     // let animationFrame: number;
 
     const resizeObserver = new ResizeObserver((entries) => {
-      systemLogger.log("resizeObserver", entries);
       // mui wraps this in a requestAnimationFrame
       // see https://github.com/mui/material-ui/issues/36909
       // animationFrame = requestAnimationFrame(handleResize);
@@ -117,12 +145,12 @@ export const Masonry = function Masonry({
         resizeObserver.disconnect();
       }
     };
-  }, [numColumns, children, handleResize]);
+  }, [handleResize]);
 
   const lineBreaks = new Array(numColumns - 1).fill("").map((_, index) => (
     <span
       key={index}
-      data-class="line-break"
+      data-class={lineBreakDataClass}
       style={{
         flexBasis: "100%",
         width: "0px",
@@ -147,6 +175,12 @@ export const Masonry = function Masonry({
       }}
       ref={masonryRef}
     >
+      <div
+        data-class={columnMeasurerDataClass}
+        ref={measurerRef}
+        className="width-measurer"
+        style={{ width: columnWidth, visibility: "hidden" }}
+      />
       {children}
       {lineBreaks}
     </div>
