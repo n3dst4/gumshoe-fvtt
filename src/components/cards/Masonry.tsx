@@ -1,18 +1,24 @@
 import React, { useLayoutEffect } from "react";
 import { flushSync } from "react-dom";
 
-import { systemLogger } from "../../functions/utilities";
-
 // adapted from https://github.com/mui/material-ui/blob/next/packages/mui-lab/src/Masonry/Masonry.js
-
-export const parseToNumber = (val: string) => {
-  return Number(val.replace("px", ""));
-};
 
 const columnMeasurerDataClass = "column-measurer";
 const lineBreakDataClass = "line-break";
 
-function isValidElement(node: Node): node is HTMLElement {
+/**
+ * Parse a string like "100px" to a number
+ */
+const parsePxToNumber = (pxString: string): number =>
+  // no checking the source string here because we're only using this for
+  // values that are coming from `getComputedStyle`
+  Number(pxString.replace("px", ""));
+
+/**
+ * We only want to measure and position HTML elements that we didn't add
+ * ourselves.
+ */
+const isValidElement = (node: Node): node is HTMLElement => {
   if (!(node instanceof HTMLElement)) {
     return false;
   }
@@ -20,50 +26,58 @@ function isValidElement(node: Node): node is HTMLElement {
   return (
     dataClass !== columnMeasurerDataClass && dataClass !== lineBreakDataClass
   );
-}
+};
 
 type MasonryProps = React.PropsWithChildren<{
-  columnWidth: string;
+  /**
+   * The minimum width of a column. Any valid CSS length value. To achieve a
+   * fixed column count, specify this as a percentage, e.g. 33.33% for three
+   * columns.
+   */
+  minColumnWidth: string;
+  /** The gap between columns. Any valid CSS length value. */
   columnGap?: string;
-  // numColumns: number;
 }>;
 
+/**
+ * A simple masonry layout component. It will layout children in columns,
+ * starting from the top left and adding children to the shortest column.
+ *
+ * Uses flexbox with wrapping and a fixed height to flow the layout.
+ */
 export const Masonry = function Masonry({
   children,
-  columnWidth,
-  // numColumns,
+  minColumnWidth,
   columnGap = "0px",
 }: MasonryProps) {
-  const masonryRef = React.useRef<HTMLDivElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const measurerRef = React.useRef<HTMLDivElement>(null);
   const [maxColumnHeight, setMaxColumnHeight] = React.useState(0);
   const [numColumns, setNumColumns] = React.useState(1);
 
-  const measurerRef = React.useRef<HTMLDivElement>(null);
-
-  const calculateNumColumns = React.useCallback(() => {
-    if (!measurerRef.current || !masonryRef.current) {
+  // compare the measurer to the container to work out how many columns we can
+  // fit in.
+  const handleCalculateNumColumns = React.useCallback(() => {
+    if (!measurerRef.current || !containerRef.current) {
       return;
     }
-    const outerWidth = masonryRef.current.clientWidth;
+    const outerWidth = containerRef.current.clientWidth;
     const innerWidth = measurerRef.current.clientWidth;
-    const numColumns = Math.floor(outerWidth / innerWidth);
-    systemLogger.log("calculateColumns", outerWidth, innerWidth, numColumns);
+    const numColumns = Math.max(1, Math.floor(outerWidth / innerWidth));
     setNumColumns(numColumns);
   }, []);
 
+  // run handleCalculateNumColumns when the container or the measurer changes
   useLayoutEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
-      calculateNumColumns();
+      handleCalculateNumColumns();
     });
-    resizeObserver.observe(masonryRef.current!);
+    resizeObserver.observe(containerRef.current!);
     resizeObserver.observe(measurerRef.current!);
     return () => {
-      if (resizeObserver) {
-        resizeObserver.disconnect();
-      }
+      resizeObserver.disconnect();
     };
-    calculateNumColumns();
-  }, [calculateNumColumns]);
+  }, [handleCalculateNumColumns]);
 
   // the base width of a column: 100% / the number of columns
   const baseColumnWidth = numColumns === 0 ? "100%" : `${100 / numColumns}%`;
@@ -77,12 +91,11 @@ export const Masonry = function Masonry({
 
   const widthExpression = `calc(${baseColumnWidth} - (${columnGap} * ${columnGapSizingFactor}))`;
 
-  // handle resize - the masonry engine
+  // handle resize - the core of the masonry engine
   const handleResize = React.useCallback(() => {
-    // systemLogger.log("handleResize");
     if (
-      !masonryRef.current ||
-      masonryRef.current.clientWidth === 0 ||
+      !containerRef.current ||
+      containerRef.current.clientWidth === 0 ||
       numColumns === 0
     ) {
       return;
@@ -91,16 +104,16 @@ export const Masonry = function Masonry({
     const columnHeights = new Array(numColumns).fill(0);
 
     // iterate through children
-    masonryRef.current.childNodes.forEach((child: Node) => {
+    containerRef.current.childNodes.forEach((child: Node) => {
       // skip non-elements and linebreaks
       if (!isValidElement(child)) {
         return;
       }
       const computedStyle = getComputedStyle(child);
       const childHeight =
-        Math.ceil(parseToNumber(computedStyle.height)) +
-        parseToNumber(computedStyle.marginTop) +
-        parseToNumber(computedStyle.marginBottom);
+        Math.ceil(parsePxToNumber(computedStyle.height)) +
+        parsePxToNumber(computedStyle.marginTop) +
+        parsePxToNumber(computedStyle.marginBottom);
 
       // find the current shortest column (where the current item will be placed)
       const currentMinColumnIndex = columnHeights.indexOf(
@@ -130,8 +143,8 @@ export const Masonry = function Masonry({
       handleResize();
     });
 
-    if (masonryRef.current) {
-      masonryRef.current.childNodes.forEach((childNode: ChildNode) => {
+    if (containerRef.current) {
+      containerRef.current.childNodes.forEach((childNode: ChildNode) => {
         resizeObserver.observe(childNode as Element);
       });
     }
@@ -145,8 +158,10 @@ export const Masonry = function Masonry({
         resizeObserver.disconnect();
       }
     };
-  }, [handleResize]);
+    // depends on children even though they're not mentioned by name
+  }, [handleResize, children]);
 
+  // linebreaks force the flex-wrap to move everything after into a new column
   const lineBreaks = new Array(numColumns - 1).fill("").map((_, index) => (
     <span
       key={index}
@@ -169,17 +184,22 @@ export const Masonry = function Masonry({
         width: "100%",
         height: maxColumnHeight === 0 ? "auto" : maxColumnHeight + "px",
         alignContent: "flex-start",
+        position: "relative",
         "> *": {
           width: widthExpression,
         },
       }}
-      ref={masonryRef}
+      ref={containerRef}
     >
       <div
         data-class={columnMeasurerDataClass}
         ref={measurerRef}
-        className="width-measurer"
-        style={{ width: columnWidth, visibility: "hidden" }}
+        // using style not css to ensure we override the parent styles
+        style={{
+          width: minColumnWidth,
+          visibility: "hidden",
+          position: "absolute",
+        }}
       />
       {children}
       {lineBreaks}

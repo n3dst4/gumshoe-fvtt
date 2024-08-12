@@ -99,11 +99,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           overflow: "auto",
         }}
       >
-        <Masonry
-          // numColumns={3}
-          columnWidth="12em"
-          columnGap="0.5em"
-        >
+        <Masonry minColumnWidth="12em" columnGap="0.5em">
           {cards.map((card) => (
             <CardDisplay key={card.id} card={card} />
           ))}
