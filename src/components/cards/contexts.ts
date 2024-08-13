@@ -1,5 +1,6 @@
 import { createContext } from "react";
 
+import { showAllCardsToken } from "./consts";
 import { CardsAreaSettings } from "./types";
 
 type CardsAreaSettingsContextData = {
@@ -10,7 +11,7 @@ type CardsAreaSettingsContextData = {
 export const CardsAreaSettingsContext =
   createContext<CardsAreaSettingsContextData>({
     cardsAreaSettings: {
-      category: "",
+      category: showAllCardsToken,
       sortOrder: "newest",
       viewMode: "compact",
     },

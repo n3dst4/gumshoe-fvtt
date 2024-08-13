@@ -18,6 +18,7 @@ import {
   PersonalDetailItem,
 } from "../../v10Types";
 import { CardsArea } from "../cards/CardsArea";
+import { showAllCardsToken } from "../cards/consts";
 import { CardsAreaSettingsContext } from "../cards/contexts";
 import { CardsAreaSettings } from "../cards/types";
 import { CSSReset } from "../CSSReset";
@@ -95,7 +96,7 @@ export const PCSheet: React.FC<PCSheetProps> = ({
 
   const [cardsAreaSettings, setCardsAreaSettings] = useState<CardsAreaSettings>(
     {
-      category: "",
+      category: showAllCardsToken,
       sortOrder: "newest",
       viewMode: "compact",
     },

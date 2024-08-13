@@ -8,6 +8,7 @@ import { isCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { CardArray } from "./CardArray";
 import { CategorizedCards } from "./CategorizedCards";
+import { showAllCardsToken, showCategorizedCardsToken } from "./consts";
 import { CardsAreaSettingsContext } from "./contexts";
 import { CardsSortOrder, CardsViewMode } from "./types";
 
@@ -23,7 +24,10 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
     updateCardsAreaSettings,
   } = useContext(CardsAreaSettingsContext);
   const filteredCards = allCards.filter((card) => {
-    if (category === "" || category === "__categorized") {
+    if (
+      category === showAllCardsToken ||
+      category === showCategorizedCardsToken
+    ) {
       return true;
     } else {
       return card.system.categoryId === category;
@@ -60,8 +64,8 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
             });
           }}
         >
-          <option value={""}>{getTranslated("All")}</option>
-          <option value={"__categorized"}>
+          <option value={showAllCardsToken}>{getTranslated("All")}</option>
+          <option value={showCategorizedCardsToken}>
             {getTranslated("Categorized")}
           </option>
           {categories.map((cat) => (
@@ -105,7 +109,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           overflow: "auto",
         }}
       >
-        {category === "__categorized" ? (
+        {category === showCategorizedCardsToken ? (
           <CategorizedCards cards={cards} />
         ) : (
           <CardArray cards={cards} />
