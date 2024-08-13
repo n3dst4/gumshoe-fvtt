@@ -198,5 +198,8 @@
   "investigator.Newest": "Newest",
   "investigator.Oldest": "Oldest",
   "investigator.Compact": "Compact",
-  "investigator.Expanded": "Expanded"
+  "investigator.Expanded": "Expanded",
+  "investigator.Categorized": "Categorized",
+  "investigator.NoCards": "No cards",
+  "investigator.NoCardsInThisCategory": "No cards in this category"
 }

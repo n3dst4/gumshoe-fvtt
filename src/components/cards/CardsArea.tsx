@@ -6,8 +6,8 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
 import { isCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
-import { Masonry } from "../Masonry";
-import { CardDisplay } from "./CardDisplay";
+import { CardArray } from "./CardArray";
+import { CategorizedCards } from "./CategorizedCards";
 import { CardsAreaSettingsContext } from "./contexts";
 import { CardsSortOrder, CardsViewMode } from "./types";
 
@@ -23,7 +23,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
     updateCardsAreaSettings,
   } = useContext(CardsAreaSettingsContext);
   const filteredCards = allCards.filter((card) => {
-    if (category === "") {
+    if (category === "" || category === "__categorized") {
       return true;
     } else {
       return card.system.categoryId === category;
@@ -61,6 +61,9 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           }}
         >
           <option value={""}>{getTranslated("All")}</option>
+          <option value={"__categorized"}>
+            {getTranslated("Categorized")}
+          </option>
           {categories.map((cat) => (
             <option key={cat.id} value={cat.id}>
               {cat.name}
@@ -102,11 +105,11 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           overflow: "auto",
         }}
       >
-        <Masonry minColumnWidth="12em" columnGap="0.5em">
-          {cards.map((card) => (
-            <CardDisplay key={card.id} card={card} />
-          ))}
-        </Masonry>
+        {category === "__categorized" ? (
+          <CategorizedCards cards={cards} />
+        ) : (
+          <CardArray cards={cards} />
+        )}
       </div>
     </div>
   );
