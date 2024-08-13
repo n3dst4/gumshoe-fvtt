@@ -3,8 +3,10 @@ import { flushSync } from "react-dom";
 
 // adapted from https://github.com/mui/material-ui/blob/next/packages/mui-lab/src/Masonry/Masonry.js
 
-const columnMeasurerDataClass = "column-measurer";
-const lineBreakDataClass = "line-break";
+const helperDataToken = "masonryHelper";
+const helperDataProps = {
+  "data-masonry-helper": true,
+};
 
 /**
  * Parse a string like "100px" to a number
@@ -22,10 +24,9 @@ const isValidElement = (node: Node): node is HTMLElement => {
   if (!(node instanceof HTMLElement)) {
     return false;
   }
-  const dataClass = node.dataset["class"];
-  return (
-    dataClass !== columnMeasurerDataClass && dataClass !== lineBreakDataClass
-  );
+  console.log(node.dataset);
+  const isHelper = Boolean(node.dataset[helperDataToken]);
+  return isHelper === false;
 };
 
 type MasonryProps = React.PropsWithChildren<{
@@ -173,7 +174,7 @@ export const Masonry = function Masonry({
   const lineBreaks = new Array(numColumns - 1).fill("").map((_, index) => (
     <span
       key={index}
-      data-class={lineBreakDataClass}
+      {...helperDataProps}
       // using style not css to ensure we override css from the container
       style={{
         flexBasis: "100%",
@@ -202,7 +203,7 @@ export const Masonry = function Masonry({
       }}
     >
       <div
-        data-class={columnMeasurerDataClass}
+        {...helperDataProps}
         ref={measurerRef}
         // using style not css to ensure we override css from the container
         style={{
