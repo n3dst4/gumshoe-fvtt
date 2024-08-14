@@ -14,21 +14,19 @@ interface CardDisplayProps {
 export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
   assertCardItem(card);
   const theme = useContext(ThemeContext);
-  const { cardsAreaSettings } = useContext(CardsAreaSettingsContext);
+  const {
+    cardsAreaSettings: { category: categorySetting, viewMode },
+  } = useContext(CardsAreaSettingsContext);
   const category = getById(
     settings.cardCategories.get(),
     card.system.categoryId,
   );
 
-  // const [expanded, setExpanded] = useState(false);
-
   const handleClick = useCallback(() => {
     card.sheet?.render(true);
   }, [card.sheet]);
 
-  // const handleClickExpand = useCallback(() => {
-  //   setExpanded((expanded) => !expanded);
-  // }, []);
+  const showText = viewMode === "expanded";
 
   return (
     <div
@@ -42,7 +40,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
       }}
     >
       <p css={theme.cardStyles.supertitleStyle}>
-        {category && !(cardsAreaSettings.category === showCategorizedCardsToken)
+        {category && !(categorySetting === showCategorizedCardsToken)
           ? category.singleName
           : ""}
         {"  "}
@@ -52,13 +50,13 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
       {!isNullOrEmptyString(card.system.subtitle) && (
         <p css={theme.cardStyles.subtitleStyle}>{card.system.subtitle}</p>
       )}
-      {!isNullOrEmptyString(card.system.description.html) && (
+      {showText && !isNullOrEmptyString(card.system.description.html) && (
         <p
           css={theme.cardStyles.descriptionStyle}
           dangerouslySetInnerHTML={{ __html: card.system.description.html }}
         ></p>
       )}
-      {!isNullOrEmptyString(card.system.effects.html) && (
+      {showText && !isNullOrEmptyString(card.system.effects.html) && (
         <p
           css={theme.cardStyles.effectStyle}
           dangerouslySetInnerHTML={{ __html: card.system.effects.html }}
