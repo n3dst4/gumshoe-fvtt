@@ -24,7 +24,6 @@ const isValidElement = (node: Node): node is HTMLElement => {
   if (!(node instanceof HTMLElement)) {
     return false;
   }
-  console.log(node.dataset);
   const isHelper = Boolean(node.dataset[helperDataToken]);
   return isHelper === false;
 };
