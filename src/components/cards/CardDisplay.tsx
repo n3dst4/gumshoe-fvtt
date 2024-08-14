@@ -4,6 +4,8 @@ import { getById, isNullOrEmptyString } from "../../functions/utilities";
 import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertCardItem, CardItem } from "../../v10Types";
+import { showCategorizedCardsToken } from "./consts";
+import { CardsAreaSettingsContext } from "./contexts";
 
 interface CardDisplayProps {
   card: CardItem;
@@ -12,6 +14,7 @@ interface CardDisplayProps {
 export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
   assertCardItem(card);
   const theme = useContext(ThemeContext);
+  const { cardsAreaSettings } = useContext(CardsAreaSettingsContext);
   const category = getById(
     settings.cardCategories.get(),
     card.system.categoryId,
@@ -39,7 +42,9 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
       }}
     >
       <p css={theme.cardStyles.supertitleStyle}>
-        {category ? category.name : ""}
+        {category && !(cardsAreaSettings.category === showCategorizedCardsToken)
+          ? category.singleName
+          : ""}
         {"  "}
         {!isNullOrEmptyString(card.system.supertitle) && card.system.supertitle}
       </p>

@@ -30,7 +30,7 @@ export const CategoryDangerZone: React.FC<CategoryDangerZoneProps> = ({
       return;
     }
     const newId = prompt(
-      `Change ID string for "${category?.name}"\n\n` +
+      `Change ID string for "${category?.singleName}"\n\n` +
         "⚠️ Careful! This will break the link with anything that references this ID.",
       category.id,
     );
@@ -54,7 +54,7 @@ export const CategoryDangerZone: React.FC<CategoryDangerZoneProps> = ({
       confirmIconClass: "fa-trash",
       resolveFalseOnCancel: true,
       values: {
-        ActorName: category?.name ?? "",
+        ActorName: category?.singleName ?? "",
       },
     });
     if (aye) {
@@ -62,12 +62,12 @@ export const CategoryDangerZone: React.FC<CategoryDangerZoneProps> = ({
       navigate("root", []);
       dispatch(store.creators.deleteCardCategory({ id }));
     }
-  }, [category?.name, dispatch, freeze, id, navigate]);
+  }, [category?.singleName, dispatch, freeze, id, navigate]);
 
   return (
     <>
       <h2>
-        <Translate>Danger Zone</Translate> ({category?.name})
+        <Translate>Danger Zone</Translate> ({category?.singleName})
       </h2>
       <InputGrid>
         <GridField label="Unique Id">

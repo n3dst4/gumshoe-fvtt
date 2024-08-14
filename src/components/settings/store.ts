@@ -327,14 +327,16 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
     addCardCategory: (draft: State, payload: { id: string }) => {
       draft.settings.cardCategories.push({
         id: payload.id,
-        name: "New category",
+        singleName: "New category",
+        pluralName: "New category",
       });
     },
     renameCardCategory: (
       draft: State,
       { id, newName }: { id: string; newName: string },
     ) => {
-      draft.settings.cardCategories.find((c) => c.id === id)!.name = newName;
+      draft.settings.cardCategories.find((c) => c.id === id)!.singleName =
+        newName;
     },
     deleteCardCategory: (draft: State, { id }: { id: string }) => {
       draft.settings.cardCategories = draft.settings.cardCategories.filter(

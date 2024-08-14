@@ -22,7 +22,7 @@ export const CategorizedCards: React.FC<CategorizedCardsProps> = ({
     <Fragment key={cat.id}>
       {i !== 0 && <hr css={{ margin: "3em 0em 0em" }} />}
       {/* <hr css={{ margin: "3em 0em 0em" }} /> */}
-      <h2>{cat.name}</h2>
+      <h2>{cat.pluralName}</h2>
       <CardArray cards={categoriesMap[cat.id]} />
       {/* <Masonry minColumnWidth="12em" columnGap="0.5em">
         {categoriesMap[cat.id].map((card) => (

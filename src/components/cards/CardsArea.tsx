@@ -70,7 +70,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           </option>
           {categories.map((cat) => (
             <option key={cat.id} value={cat.id}>
-              {cat.name}
+              {cat.singleName}
             </option>
           ))}
         </select>{" "}

@@ -97,7 +97,7 @@ export const Categories: React.FC<CategoriesProps> = () => {
               textOverflow: "ellipsis",
             }}
           >
-            {category.name}
+            {category.singleName}
           </div>
 
           <div

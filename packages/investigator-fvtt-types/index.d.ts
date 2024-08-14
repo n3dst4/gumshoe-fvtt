@@ -395,7 +395,8 @@ export interface HasId {
 }
 
 export interface CardCategory extends HasId {
-  name: string;
+  singleName: string;
+  pluralName: string;
   cssClass?: string;
   styleKey?: string;
 }

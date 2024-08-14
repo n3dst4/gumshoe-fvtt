@@ -201,5 +201,7 @@
   "investigator.Expanded": "Expanded",
   "investigator.Categorized": "Categorized",
   "investigator.NoCards": "No cards",
-  "investigator.NoCardsInThisCategory": "No cards in this category"
+  "investigator.NoCardsInThisCategory": "No cards in this category",
+  "investigator.ItemNameSingle": "Name (singular)",
+  "investigator.ItemNamePlural": "Name (plural)"
 }

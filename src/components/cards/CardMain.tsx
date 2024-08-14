@@ -67,7 +67,7 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
               >
                 {categories.map<JSX.Element>((cat) => (
                   <option key={cat.id} value={cat.id}>
-                    {cat.name}
+                    {cat.singleName}
                   </option>
                 ))}
                 <option value="">{getTranslated("Uncategorized")}</option>

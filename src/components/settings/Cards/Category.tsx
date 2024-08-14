@@ -22,8 +22,22 @@ export const Category: React.FC = () => {
   const modify = useContext(ModifyContext);
   const theme = useContext(ThemeContext);
 
-  const handleNameChange = (newName: string) => {
-    dispatch(store.creators.renameCardCategory({ id, newName }));
+  const handleSingleNameChange = (newName: string) => {
+    modify((s) => {
+      const category = s.cardCategories.find((c) => c.id === id);
+      if (category) {
+        category.singleName = newName;
+      }
+    });
+  };
+
+  const handlePluralNameChange = (newName: string) => {
+    modify((s) => {
+      const category = s.cardCategories.find((c) => c.id === id);
+      if (category) {
+        category.pluralName = newName;
+      }
+    });
   };
 
   const handleCssClassChange = (newCssClass: string) => {
@@ -46,8 +60,17 @@ export const Category: React.FC = () => {
     <>
       <h2>Card category</h2>
       <InputGrid>
-        <GridField label="Item Name">
-          <AsyncTextInput value={category?.name} onChange={handleNameChange} />
+        <GridField label="Item Name (single)">
+          <AsyncTextInput
+            value={category?.singleName}
+            onChange={handleSingleNameChange}
+          />
+        </GridField>
+        <GridField label="Item Name (plural)">
+          <AsyncTextInput
+            value={category?.pluralName}
+            onChange={handlePluralNameChange}
+          />
         </GridField>
         <GridField label="Style Key">
           <AsyncTextInput
