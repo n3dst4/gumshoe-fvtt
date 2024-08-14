@@ -5,13 +5,25 @@ import { CardItem } from "../../v10Types";
 import { Masonry } from "../Masonry";
 import { Translate } from "../Translate";
 import { CardDisplay } from "./CardDisplay";
+import { CardsAreaSettingsContext } from "./contexts";
+import { CardsColumnWidth } from "./types";
 
 interface CardArrayProps {
   cards: CardItem[];
 }
 
+const columndWidths: Record<CardsColumnWidth, string> = {
+  narrow: "12em",
+  wide: "18em",
+  full: "100%",
+};
+
 export const CardArray: React.FC<CardArrayProps> = ({ cards }) => {
   const theme = useContext(ThemeContext);
+  const {
+    cardsAreaSettings: { columnWidth: columnWidthSetting },
+  } = useContext(CardsAreaSettingsContext);
+
   if (cards.length === 0) {
     return (
       <div
@@ -32,7 +44,10 @@ export const CardArray: React.FC<CardArrayProps> = ({ cards }) => {
   }
 
   return (
-    <Masonry minColumnWidth="12em" columnGap="0.5em">
+    <Masonry
+      minColumnWidth={columndWidths[columnWidthSetting]}
+      columnGap="0.5em"
+    >
       {cards.map((card) => (
         <CardDisplay key={card.id} card={card} />
       ))}

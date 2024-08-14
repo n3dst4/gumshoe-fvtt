@@ -14,6 +14,7 @@ export const CardsAreaSettingsContext =
       category: showAllCardsToken,
       sortOrder: "newest",
       viewMode: "compact",
+      columnWidth: "narrow",
     },
     updateCardsAreaSettings: () => {
       throw new Error("setSettings used outside of context");

@@ -10,7 +10,7 @@ import { CardArray } from "./CardArray";
 import { CategorizedCards } from "./CategorizedCards";
 import { showAllCardsToken, showCategorizedCardsToken } from "./consts";
 import { CardsAreaSettingsContext } from "./contexts";
-import { CardsSortOrder, CardsViewMode } from "./types";
+import { CardsColumnWidth, CardsSortOrder, CardsViewMode } from "./types";
 
 interface CardsAreaProps {
   actor: InvestigatorActor;
@@ -20,7 +20,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
   const allCards = actor.items.filter((item) => isCardItem(item));
   const categories = settings.cardCategories.get();
   const {
-    cardsAreaSettings: { category, sortOrder, viewMode },
+    cardsAreaSettings: { category, sortOrder, viewMode, columnWidth },
     updateCardsAreaSettings,
   } = useContext(CardsAreaSettingsContext);
   const filteredCards = allCards.filter((card) => {
@@ -70,7 +70,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           </option>
           {categories.map((cat) => (
             <option key={cat.id} value={cat.id}>
-              {cat.singleName}
+              {cat.pluralName}
             </option>
           ))}
         </select>{" "}
@@ -99,6 +99,19 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
         >
           <option value="compact">{getTranslated("Compact")}</option>
           <option value="expanded">{getTranslated("Expanded")}</option>
+        </select>{" "}
+        {/* column width */}
+        <select
+          value={columnWidth}
+          onChange={(e) => {
+            updateCardsAreaSettings({
+              columnWidth: e.currentTarget.value as CardsColumnWidth,
+            });
+          }}
+        >
+          <option value="narrow">{getTranslated("Narrow")}</option>
+          <option value="wide">{getTranslated("Wide")}</option>
+          <option value="full">{getTranslated("Full width")}</option>
         </select>
       </div>
       <div

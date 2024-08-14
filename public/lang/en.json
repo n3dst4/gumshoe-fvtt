@@ -203,5 +203,8 @@
   "investigator.NoCards": "No cards",
   "investigator.NoCardsInThisCategory": "No cards in this category",
   "investigator.ItemNameSingle": "Name (singular)",
-  "investigator.ItemNamePlural": "Name (plural)"
+  "investigator.ItemNamePlural": "Name (plural)",
+  "investigator.Narrow": "Narrow",
+  "investigator.Wide": "Wide",
+  "investigator.FullWidth": "Full width"
 }
