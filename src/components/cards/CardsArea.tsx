@@ -56,24 +56,28 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
     >
       <div css={{ paddingBottom: "0.5em" }}>
         {/* category */}
-        <select
-          value={category}
-          onChange={(e) => {
-            updateCardsAreaSettings({
-              category: e.currentTarget.value,
-            });
-          }}
-        >
-          <option value={showAllCardsToken}>{getTranslated("All")}</option>
-          <option value={showCategorizedCardsToken}>
-            {getTranslated("Categorized")}
-          </option>
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.pluralName}
-            </option>
-          ))}
-        </select>{" "}
+        {categories.length > 1 && (
+          <>
+            <select
+              value={category}
+              onChange={(e) => {
+                updateCardsAreaSettings({
+                  category: e.currentTarget.value,
+                });
+              }}
+            >
+              <option value={showAllCardsToken}>{getTranslated("All")}</option>
+              <option value={showCategorizedCardsToken}>
+                {getTranslated("Categorized")}
+              </option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.pluralName}
+                </option>
+              ))}
+            </select>{" "}
+          </>
+        )}
         {/* sort order */}
         <select
           value={sortOrder}
