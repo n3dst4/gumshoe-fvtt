@@ -1,6 +1,11 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 
-import { getById, isNullOrEmptyString } from "../../functions/utilities";
+import { cleanAndEnrichHtml } from "../../functions/textFunctions";
+import {
+  callFromPromise,
+  getById,
+  isNullOrEmptyString,
+} from "../../functions/utilities";
 import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertCardItem, CardItem } from "../../v10Types";
@@ -17,6 +22,8 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
   const {
     cardsAreaSettings: { category: categorySetting, viewMode },
   } = useContext(CardsAreaSettingsContext);
+  const [descriptionHTML, setDescriptionHTML] = useState("");
+  const [effectsHTML, setEffectsHTML] = useState("");
   const category = getById(
     settings.cardCategories.get(),
     card.system.categoryId,
@@ -27,6 +34,20 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
   }, [card.sheet]);
 
   const showText = viewMode === "expanded";
+
+  useEffect(() => {
+    void callFromPromise(
+      cleanAndEnrichHtml(card.system.description.html),
+      setDescriptionHTML,
+    );
+  }, [card.system.description.html]);
+
+  useEffect(() => {
+    void callFromPromise(
+      cleanAndEnrichHtml(card.system.effects.html),
+      setEffectsHTML,
+    );
+  }, [card.system.effects.html]);
 
   return (
     <div
@@ -50,16 +71,16 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
       {!isNullOrEmptyString(card.system.subtitle) && (
         <p css={theme.cardStyles.subtitleStyle}>{card.system.subtitle}</p>
       )}
-      {showText && !isNullOrEmptyString(card.system.description.html) && (
+      {showText && !isNullOrEmptyString(descriptionHTML) && (
         <p
           css={theme.cardStyles.descriptionStyle}
-          dangerouslySetInnerHTML={{ __html: card.system.description.html }}
+          dangerouslySetInnerHTML={{ __html: descriptionHTML }}
         ></p>
       )}
-      {showText && !isNullOrEmptyString(card.system.effects.html) && (
+      {showText && !isNullOrEmptyString(effectsHTML) && (
         <p
           css={theme.cardStyles.effectStyle}
-          dangerouslySetInnerHTML={{ __html: card.system.effects.html }}
+          dangerouslySetInnerHTML={{ __html: effectsHTML }}
         ></p>
       )}
       {/* <Button onClick={handleClickExpand}>expand</Button> */}

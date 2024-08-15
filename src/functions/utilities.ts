@@ -385,3 +385,14 @@ export function getByIdOrThrow<T extends { id: string }>(
   }
   return item;
 }
+
+/**
+ * Await a proimise and call a callback with the result
+ */
+export async function callFromPromise<T>(
+  prom: Promise<T>,
+  setter: (t: T) => void,
+) {
+  const result = await prom;
+  setter(result);
+}

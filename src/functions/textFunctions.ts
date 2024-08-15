@@ -70,7 +70,7 @@ async function enrichHtml(originalHtml: string): Promise<string> {
     const newHtml = await TextEditor.enrichHTML(originalHtml, {
       // @ts-expect-error foundry types don't know about `async` yet
       async: true,
-      // we will always include secrets ion the output; the other way ois to run
+      // we will always include secrets in the output; the other way is to run
       // this at render time and conditionally include secrets based on
       // permission levels, but we handle that with styles
       secrets: true,
@@ -80,6 +80,13 @@ async function enrichHtml(originalHtml: string): Promise<string> {
     return originalHtml;
   }
 }
+
+export const cleanAndEnrichHtml = async (originalHtml: string) => {
+  const xss = await createXss();
+  const xssedHtml = xss.process(originalHtml);
+  const newHtml = await enrichHtml(xssedHtml);
+  return newHtml;
+};
 
 // /////////////////////////////////////////////////////////////////////////////
 // Converters
@@ -114,17 +121,15 @@ function htmlToPlaintext(html: string) {
  * end-consumer function to convert a note to HTML.
  */
 export async function toHtml(format: NoteFormat, source: string) {
-  let newHtml = "";
+  let rawHtml = "";
   if (format === NoteFormat.plain) {
-    newHtml = plainTextToHtml(source);
+    rawHtml = plainTextToHtml(source);
   } else if (format === NoteFormat.markdown) {
-    newHtml = await markdownToHtml(source);
+    rawHtml = await markdownToHtml(source);
   } else if (format === NoteFormat.richText) {
-    newHtml = source;
+    rawHtml = source;
   }
-  const xss = await createXss();
-  const xssed = xss.process(newHtml);
-  const html = await enrichHtml(xssed);
+  const html = await cleanAndEnrichHtml(rawHtml);
   return html;
 }
 
@@ -137,21 +142,21 @@ export async function convertNotes(
   oldSource: string,
 ) {
   let newSource = "";
-  let unsafeNewHtml = "";
+  let rawHtml = "";
   if (newFormat === NoteFormat.plain) {
     if (oldFormat === NoteFormat.markdown || oldFormat === NoteFormat.plain) {
       newSource = oldSource;
     } else if (oldFormat === NoteFormat.richText) {
       newSource = await htmlToPlaintext(oldSource);
     }
-    unsafeNewHtml = plainTextToHtml(newSource);
+    rawHtml = plainTextToHtml(newSource);
   } else if (newFormat === NoteFormat.markdown) {
     if (oldFormat === NoteFormat.plain || oldFormat === NoteFormat.markdown) {
       newSource = oldSource;
     } else if (oldFormat === NoteFormat.richText) {
       newSource = await htmlToMarkdown(oldSource);
     }
-    unsafeNewHtml = await markdownToHtml(newSource);
+    rawHtml = await markdownToHtml(newSource);
   } else if (newFormat === NoteFormat.richText) {
     if (oldFormat === NoteFormat.plain) {
       newSource = plainTextToHtml(oldSource);
@@ -160,9 +165,8 @@ export async function convertNotes(
     } else if (oldFormat === NoteFormat.richText) {
       newSource = oldSource;
     }
-    unsafeNewHtml = newSource;
+    rawHtml = newSource;
   }
-  const xss = await createXss();
-  const newHtml = await enrichHtml(xss.process(unsafeNewHtml));
+  const newHtml = await cleanAndEnrichHtml(rawHtml);
   return { newSource, newHtml };
 }
