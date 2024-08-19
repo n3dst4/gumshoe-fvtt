@@ -91,7 +91,7 @@
     "marked": "^14.0.0",
     "nanoid": "^5.0.7",
     "react": "^18.3.1",
-    "react-dom": "^18.2.0",
+    "react-dom": "^18.3.1",
     "react-icons": "^5.1.0",
     "textdiff-create": "^1.1.11",
     "textdiff-patch": "^1.1.10",
