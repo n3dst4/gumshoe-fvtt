@@ -125,7 +125,7 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
         padding: "0.5em",
         transformOrigin: "top",
         backgroundColor: bgOpaquePrimary,
-        boxShadow: `0 0 0.3em ${controlBorder}`,
+        // boxShadow: `0 0 0.3em ${controlBorder}`,
       },
       supertitleStyle: { fontSize: "0.9em" },
       titleStyle: {},
