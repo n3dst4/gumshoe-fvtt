@@ -1,11 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { cleanAndEnrichHtml } from "../../functions/textFunctions";
-import {
-  callFromPromise,
-  getById,
-  isNullOrEmptyString,
-} from "../../functions/utilities";
+import { getById, isNullOrEmptyString } from "../../functions/utilities";
 import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertCardItem, CardItem } from "../../v10Types";
@@ -40,17 +36,13 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
   const showText = viewMode === "expanded";
 
   useEffect(() => {
-    void callFromPromise(
-      cleanAndEnrichHtml(card.system.description.html),
+    void cleanAndEnrichHtml(card.system.description.html).then(
       setDescriptionHTML,
     );
   }, [card.system.description.html]);
 
   useEffect(() => {
-    void callFromPromise(
-      cleanAndEnrichHtml(card.system.effects.html),
-      setEffectsHTML,
-    );
+    void cleanAndEnrichHtml(card.system.effects.html).then(setEffectsHTML);
   }, [card.system.effects.html]);
 
   return (
