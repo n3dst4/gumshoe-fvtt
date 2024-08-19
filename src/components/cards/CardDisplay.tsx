@@ -33,7 +33,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
     card.sheet?.render(true);
   }, [card.sheet]);
 
-  const showText = viewMode === "expanded";
+  const showText = viewMode === "full";
 
   useEffect(() => {
     void cleanAndEnrichHtml(card.system.description.html).then(

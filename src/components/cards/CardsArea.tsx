@@ -101,8 +101,8 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
             });
           }}
         >
-          <option value="compact">{getTranslated("Compact")}</option>
-          <option value="expanded">{getTranslated("Expanded")}</option>
+          <option value="short">{getTranslated("Short")}</option>
+          <option value="full">{getTranslated("Full")}</option>
         </select>{" "}
         {/* column width */}
         <select
