@@ -225,6 +225,8 @@ export interface CardStyles {
   descriptionStyle: CSSObject;
   /** The style for the effect of the card */
   effectStyle: CSSObject;
+  /** Styles applied when hovering over the card */
+  hoverStyle: CSSObject;
 }
 
 /**

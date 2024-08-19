@@ -14,9 +14,13 @@ import { CardsAreaSettingsContext } from "./contexts";
 
 interface CardDisplayProps {
   card: CardItem;
+  className?: string;
 }
 
-export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
+export const CardDisplay: React.FC<CardDisplayProps> = ({
+  card,
+  className,
+}) => {
   assertCardItem(card);
   const theme = useContext(ThemeContext);
   const {
@@ -53,10 +57,9 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({ card }) => {
     <div
       tabIndex={0}
       onClick={handleClick}
-      className="card-display"
+      className={`card-display ${className}`}
       css={{
         ...theme.cardStyles.backdropStyle,
-        overflow: "hidden",
         marginBottom: "0.5em",
       }}
     >

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { flushSync } from "react-dom";
 
 // adapted from https://github.com/mui/material-ui/blob/next/packages/mui-lab/src/Masonry/Masonry.js
@@ -37,6 +37,7 @@ type MasonryProps = React.PropsWithChildren<{
   minColumnWidth: string;
   /** The gap between columns. Any valid CSS length value. */
   columnGap?: string;
+  className?: string;
 }>;
 
 /**
@@ -49,11 +50,12 @@ export const Masonry = function Masonry({
   children,
   minColumnWidth,
   columnGap = "0px",
+  className,
 }: MasonryProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const measurerRef = React.useRef<HTMLDivElement>(null);
-  const [maxColumnHeight, setMaxColumnHeight] = React.useState(0);
-  const [numColumns, setNumColumns] = React.useState(1);
+  const [maxColumnHeight, setMaxColumnHeight] = useState(0);
+  const [numColumns, setNumColumns] = useState(1);
 
   // ///////////////////////////////////////////////////////////////////////////
   // compare the measurer to the container to work out how many columns we can
@@ -62,9 +64,9 @@ export const Masonry = function Masonry({
     if (!measurerRef.current || !containerRef.current) {
       return;
     }
-    const outerWidth = containerRef.current.clientWidth;
-    const innerWidth = measurerRef.current.clientWidth;
-    const numColumns = Math.max(1, Math.floor(outerWidth / innerWidth));
+    const containerWidth = containerRef.current.clientWidth;
+    const measurerWidth = measurerRef.current.clientWidth;
+    const numColumns = Math.max(1, Math.floor(containerWidth / measurerWidth));
     setNumColumns(numColumns);
   }, []);
 
@@ -189,10 +191,10 @@ export const Masonry = function Masonry({
   return (
     <div
       ref={containerRef}
+      className={className}
       css={{
         display: "flex",
         flexFlow: "column wrap",
-        width: "100%",
         height: maxColumnHeight === 0 ? "auto" : maxColumnHeight + "px",
         alignContent: "flex-start",
         position: "relative",
