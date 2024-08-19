@@ -123,8 +123,9 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
       backdropStyle: {
         border: `1px solid ${controlBorder}`,
         padding: "0.5em",
-        transition: "transform 0.05s linear",
+        transformOrigin: "top",
         backgroundColor: bgOpaquePrimary,
+        boxShadow: `0 0 0.3em ${controlBorder}`,
       },
       supertitleStyle: { fontSize: "0.9em" },
       titleStyle: {},
@@ -132,8 +133,10 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
       descriptionStyle: {},
       effectStyle: { fontStyle: "italic" },
       hoverStyle: {
-        transform: "scale(1.05)",
+        boxShadow: `0 0 0.3em 0.2em ${seed.colors.glow}`,
       },
+      horizontalSpacing: "0.5em",
+      verticalSpacing: "0.5em",
     },
     cardCategoryStyles: {},
   };

@@ -50,10 +50,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       tabIndex={0}
       onClick={handleClick}
       className={`card-display ${className}`}
-      css={{
-        ...theme.cardStyles.backdropStyle,
-        marginBottom: "0.5em",
-      }}
+      css={theme.cardStyles.backdropStyle}
     >
       <p css={theme.cardStyles.supertitleStyle}>
         {category && !(categorySetting === showCategorizedCardsToken)

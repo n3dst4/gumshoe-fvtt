@@ -46,9 +46,12 @@ export const CardArray: React.FC<CardArrayProps> = ({ cards }) => {
   return (
     <Masonry
       minColumnWidth={columndWidths[columnWidthSetting]}
-      columnGap="0.5em"
+      columnGap={theme.cardStyles.horizontalSpacing}
       css={{
-        margin: "0.5em",
+        marginTop: theme.cardStyles.verticalSpacing,
+        marginBottom: theme.cardStyles.verticalSpacing,
+        marginLeft: theme.cardStyles.horizontalSpacing,
+        marginRight: theme.cardStyles.horizontalSpacing,
       }}
     >
       {cards.map((card) => (
@@ -56,10 +59,8 @@ export const CardArray: React.FC<CardArrayProps> = ({ cards }) => {
           key={card.id}
           css={{
             cursor: "pointer",
-            ":hover": {
-              ...theme.cardStyles.hoverStyle,
-              zIndex: 10,
-            },
+            marginBottom: theme.cardStyles.verticalSpacing,
+            ":hover": theme.cardStyles.hoverStyle,
           }}
           card={card}
         />

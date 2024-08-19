@@ -227,6 +227,10 @@ export interface CardStyles {
   effectStyle: CSSObject;
   /** Styles applied when hovering over the card */
   hoverStyle: CSSObject;
+  /** Horizontal spacing between cards */
+  horizontalSpacing: string;
+  /** Vertical spacing between cards */
+  verticalSpacing: string;
 }
 
 /**
