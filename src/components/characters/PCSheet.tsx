@@ -98,7 +98,7 @@ export const PCSheet: React.FC<PCSheetProps> = ({
     {
       category: showAllCardsToken,
       sortOrder: "newest",
-      viewMode: "compact",
+      viewMode: "short",
       columnWidth: "narrow",
     },
   );

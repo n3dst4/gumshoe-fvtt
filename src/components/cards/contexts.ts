@@ -13,7 +13,7 @@ export const CardsAreaSettingsContext =
     cardsAreaSettings: {
       category: showAllCardsToken,
       sortOrder: "newest",
-      viewMode: "compact",
+      viewMode: "short",
       columnWidth: "narrow",
     },
     updateCardsAreaSettings: () => {
