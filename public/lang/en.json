@@ -206,5 +206,6 @@
   "investigator.ItemNamePlural": "Name (plural)",
   "investigator.Narrow": "Narrow",
   "investigator.Wide": "Wide",
-  "investigator.FullWidth": "Full width"
+  "investigator.FullWidth": "Full width",
+  "investigator.Active": "Active"
 }
