@@ -33,6 +33,13 @@ import { registerDevModeDebugFlag } from "./startup/registerDevModeDebugFlag";
 import { registerSettingsMenu } from "./startup/registerSettingsMenu";
 import { registerSheetsAndClasses } from "./startup/registerSheetsAndClasses";
 
+// @emotion/react 11.13 introduced a ~breaking change that labelling is now
+// opt-in. There are good perf reasons for this, but personally I like it
+// see https://emotion.sh/docs/labels#automatic-labeling-at-runtime
+// see https://github.com/emotion-js/emotion/blob/main/packages/react/CHANGELOG.md#11120
+// @ts-expect-error nonstandard global
+globalThis.EMOTION_RUNTIME_AUTO_LABEL = true;
+
 injectGlobalHelper();
 
 // Inject CSS
