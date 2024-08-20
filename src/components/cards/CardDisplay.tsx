@@ -5,23 +5,23 @@ import { getById, isNullOrEmptyString } from "../../functions/utilities";
 import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertCardItem, CardItem } from "../../v10Types";
-import { showCategorizedCardsToken } from "./consts";
-import { CardsAreaSettingsContext } from "./contexts";
+import { CardsViewMode } from "./types";
 
 interface CardDisplayProps {
   card: CardItem;
   className?: string;
+  viewMode: CardsViewMode;
+  showCategory: boolean;
 }
 
 export const CardDisplay: React.FC<CardDisplayProps> = ({
   card,
   className,
+  viewMode,
+  showCategory,
 }) => {
   assertCardItem(card);
   const theme = useContext(ThemeContext);
-  const {
-    cardsAreaSettings: { category: categorySetting, viewMode },
-  } = useContext(CardsAreaSettingsContext);
   const [descriptionHTML, setDescriptionHTML] = useState("");
   const [effectsHTML, setEffectsHTML] = useState("");
   const category = getById(
@@ -53,9 +53,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       css={theme.cardStyles.backdropStyle}
     >
       <p css={theme.cardStyles.supertitleStyle}>
-        {category && !(categorySetting === showCategorizedCardsToken)
-          ? category.singleName
-          : ""}
+        {category && showCategory ? category.singleName : ""}
         {"  "}
         {!isNullOrEmptyString(card.system.supertitle) && card.system.supertitle}
       </p>

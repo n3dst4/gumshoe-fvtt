@@ -4,7 +4,7 @@ import { ThemeContext } from "../../themes/ThemeContext";
 import { CardItem } from "../../v10Types";
 import { Masonry } from "../Masonry";
 import { Translate } from "../Translate";
-import { CardDisplay } from "./CardDisplay";
+import { CardArrayCard } from "./CardArrayCard";
 import { CardsAreaSettingsContext } from "./contexts";
 import { CardsColumnWidth } from "./types";
 
@@ -55,15 +55,7 @@ export const CardArray: React.FC<CardArrayProps> = ({ cards }) => {
       }}
     >
       {cards.map((card) => (
-        <CardDisplay
-          key={card.id}
-          css={{
-            cursor: "pointer",
-            marginBottom: theme.cardStyles.verticalSpacing,
-            ":hover": theme.cardStyles.hoverStyle,
-          }}
-          card={card}
-        />
+        <CardArrayCard key={card.id} card={card} />
       ))}
     </Masonry>
   );

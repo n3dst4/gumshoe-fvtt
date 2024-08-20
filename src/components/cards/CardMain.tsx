@@ -6,7 +6,6 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
-import { Checkbox } from "../inputs/Checkbox";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
@@ -74,10 +73,6 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
               </select>
             </div>
           </div>
-        </GridField>
-
-        <GridField label="Active">
-          <Checkbox checked={card.system.active} onChange={card.setActive} />
         </GridField>
       </InputGrid>
       <div

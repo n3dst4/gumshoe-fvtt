@@ -207,5 +207,10 @@
   "investigator.Narrow": "Narrow",
   "investigator.Wide": "Wide",
   "investigator.FullWidth": "Full width",
-  "investigator.Active": "Active"
+  "investigator.Active": "Active",
+  "investigator.Deactivate": "Deactivate",
+  "investigator.Activate": "Activate",
+  "investigator.DiscardActorNamesCardNameCard": "Discard {ActorName}'s \"{CardName}\" card?",
+  "investigator.Discard": "Discard",
+  "investigator.DeleteCardName": "Delete \"{CardName}\"?"
 }
