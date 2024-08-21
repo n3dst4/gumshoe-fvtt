@@ -5,10 +5,14 @@ interface NameHaver {
   name: string | null;
 }
 
+export function trimLeadingPunctuation(s: string) {
+  return s.replace(/^[\s\p{P}]+/gu, "");
+}
+
 export const sortEntitiesByName = <T extends NameHaver>(ents: T[]) => {
   return ents.toSorted((a, b) => {
-    const aName = a.name || "";
-    const bName = b.name || "";
+    const aName = trimLeadingPunctuation(a.name || "");
+    const bName = trimLeadingPunctuation(b.name || "");
     return aName.localeCompare(bName);
   });
 };

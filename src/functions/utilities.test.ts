@@ -11,6 +11,7 @@ import {
   sortByKey,
   sortEntitiesByName,
   throttle,
+  trimLeadingPunctuation,
 } from "./utilities";
 
 const obj = {
@@ -313,5 +314,36 @@ describe("debounce", () => {
     expect(fn).toHaveBeenCalledTimes(1);
     vi.advanceTimersByTime(100);
     expect(fn).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe("trimLeadingPunctuation", () => {
+  test("return the same string if there's no punctuation", () => {
+    expect(trimLeadingPunctuation("foo")).toBe("foo");
+  });
+
+  test("removes leading whitespace", () => {
+    expect(trimLeadingPunctuation(" foo")).toBe("foo");
+    expect(trimLeadingPunctuation("\tfoo")).toBe("foo");
+    expect(trimLeadingPunctuation("\nfoo")).toBe("foo");
+    expect(trimLeadingPunctuation("\r\nfoo")).toBe("foo");
+  });
+
+  test("removes leading punctuation", () => {
+    expect(trimLeadingPunctuation("!foo")).toBe("foo");
+    expect(trimLeadingPunctuation("?foo")).toBe("foo");
+    expect(trimLeadingPunctuation(";foo")).toBe("foo");
+    expect(trimLeadingPunctuation(":foo")).toBe("foo");
+    expect(trimLeadingPunctuation("-foo")).toBe("foo");
+    expect(trimLeadingPunctuation('"foo')).toBe("foo");
+  });
+
+  test("removes leading multiplepunctuation", () => {
+    expect(trimLeadingPunctuation("!!foo")).toBe("foo");
+    expect(trimLeadingPunctuation("??foo")).toBe("foo");
+    expect(trimLeadingPunctuation(";;foo")).toBe("foo");
+    expect(trimLeadingPunctuation("::foo")).toBe("foo");
+    expect(trimLeadingPunctuation("--foo")).toBe("foo");
+    expect(trimLeadingPunctuation('""foo')).toBe("foo");
   });
 });
