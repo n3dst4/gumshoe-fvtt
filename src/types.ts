@@ -317,17 +317,3 @@ declare global {
     pages: Map<string, any>;
   }
 }
-
-// I can't see how to import this from the league types, so here's some
-// ts magic to get it
-export type ChatMessageDataConstructorData =
-  // 4. exclude the confusing Record from the union
-  Exclude<
-    // 2. get the params (args) of the function
-    Parameters<
-      // 1. get the type of the function (have to give it the type param which
-      // would be defaulted when you call the function)
-      typeof ChatMessage.create<typeof ChatMessage>
-    >[0], // 3. we only want the first one
-    Record<string, unknown>
-  >;
