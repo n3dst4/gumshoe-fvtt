@@ -4,6 +4,7 @@ import * as constants from "../../constants";
 import { assertGame } from "../../functions/utilities";
 import { runtimeConfig } from "../../runtime";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { Checkbox } from "../inputs/Checkbox";
 import { InputGrid } from "../inputs/InputGrid";
 import { ListEdit } from "../inputs/ListEdit";
 import { PersonalDetailsListEdit } from "../inputs/PersonalDetailsListEdit";
@@ -97,6 +98,13 @@ export const CoreSettings: React.FC<CoreSettingsProps> = ({ setters }) => {
         <AsyncTextInput
           onChange={setters.genericOccupation}
           value={settings.genericOccupation}
+        />
+      </SettingsGridField>
+
+      <SettingsGridField label="ItemAddedNotifications" index={idx++}>
+        <Checkbox
+          checked={settings.notifyItemAddedToActor}
+          onChange={setters.notifyItemAddedToActor}
         />
       </SettingsGridField>
     </InputGrid>

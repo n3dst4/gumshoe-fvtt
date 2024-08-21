@@ -227,6 +227,12 @@ export const settings = {
     name: "What stats should PCs have?",
     default: pathOfCthulhuPreset.cardCategories,
   }),
+
+  notifyItemAddedToActor: createSettingBoolean({
+    key: "notifyItemAddedToActor",
+    name: "Notify when an item is added to an actor",
+    default: false,
+  }),
 };
 
 // -----------------------------------------------------------------------------

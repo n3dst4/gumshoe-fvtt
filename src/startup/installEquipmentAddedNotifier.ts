@@ -1,5 +1,6 @@
 import { getTranslated } from "../functions/getTranslated";
 import { assertGame } from "../functions/utilities";
+import { settings } from "../settings/settings";
 import { isPCActor } from "../v10Types";
 
 // /src/foundry/common/data/data.mjs/chatMessageData.d.ts
@@ -8,12 +9,12 @@ export function installEquipmentAddedNotifier() {
     assertGame(game);
     const isNotOwned = !item.parent && isPCActor(item.parent);
     const gameHasNoUsers = !game.users;
+    const notMyFault = game.userId !== userId;
+    const settingsOff = !settings.notifyItemAddedToActor.get();
 
-    if (isNotOwned || gameHasNoUsers) {
+    if (isNotOwned || gameHasNoUsers || notMyFault || settingsOff) {
       return;
     }
-
-    if (game.userId !== userId) return;
 
     const recipientIds = (game.users ?? [])
       .filter((user) => {
