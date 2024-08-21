@@ -87,6 +87,7 @@ const initialState: State = {
     journalMemories: {},
     cardCategories: [],
     useCards: false,
+    notifyItemAddedToActor: false,
   },
 };
 

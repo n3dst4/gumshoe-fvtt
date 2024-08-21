@@ -187,5 +187,7 @@
   "investigator.CSSClass": "CSS Class",
   "investigator.DangerZone": "Danger Zone",
   "investigator.UniqueId": "Unique Id",
-  "investigator.NoCardCategoriesHaveBeenAddedYet": "No card categories have been added yet."
+  "investigator.NoCardCategoriesHaveBeenAddedYet": "No card categories have been added yet.",
+  "investigator.ItemNameAddedToActorName": "{ItemName} added to {ActorName}",
+  "investigator.ItemAddedNotifications": "Item added notifications"
 }
