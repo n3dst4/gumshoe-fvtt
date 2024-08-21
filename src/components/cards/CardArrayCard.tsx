@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { CardItem } from "../../v10Types";
 import { CardDisplay } from "./CardDisplay";
-import { showCategorizedCardsToken } from "./consts";
 import { CardsAreaSettingsContext } from "./contexts";
 
 interface CardArrayCardProps {
@@ -20,7 +19,7 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
     cardsAreaSettings: { category: categorySetting, viewMode },
   } = useContext(CardsAreaSettingsContext);
 
-  const showCategory = !(categorySetting === showCategorizedCardsToken);
+  const showCategory = !(categorySetting === "categorized");
 
   return (
     <CardDisplay

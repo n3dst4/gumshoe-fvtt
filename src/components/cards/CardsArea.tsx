@@ -8,9 +8,13 @@ import { isCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { CardArray } from "./CardArray";
 import { CategorizedCards } from "./CategorizedCards";
-import { showAllCardsToken, showCategorizedCardsToken } from "./consts";
 import { CardsAreaSettingsContext } from "./contexts";
-import { CardsColumnWidth, CardsSortOrder, CardsViewMode } from "./types";
+import {
+  CardsCategoryMode,
+  CardsColumnWidth,
+  CardsSortOrder,
+  CardsViewMode,
+} from "./types";
 
 interface CardsAreaProps {
   actor: InvestigatorActor;
@@ -23,21 +27,11 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
     cardsAreaSettings: { category, sortOrder, viewMode, columnWidth },
     updateCardsAreaSettings,
   } = useContext(CardsAreaSettingsContext);
-  const filteredCards = allCards.filter((card) => {
-    if (
-      category === showAllCardsToken ||
-      category === showCategorizedCardsToken
-    ) {
-      return true;
-    } else {
-      return card.system.categoryId === category;
-    }
-  });
 
   let cards =
     sortOrder === "atoz" || sortOrder === "ztoa"
-      ? sortEntitiesByName(filteredCards)
-      : filteredCards;
+      ? sortEntitiesByName(allCards)
+      : allCards;
 
   if (sortOrder === "newest" || sortOrder === "ztoa") {
     cards = cards.reverse();
@@ -62,19 +56,14 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
               value={category}
               onChange={(e) => {
                 updateCardsAreaSettings({
-                  category: e.currentTarget.value,
+                  category: e.currentTarget.value as CardsCategoryMode,
                 });
               }}
             >
-              <option value={showAllCardsToken}>{getTranslated("All")}</option>
-              <option value={showCategorizedCardsToken}>
+              <option value="all">{getTranslated("All")}</option>
+              <option value="categorized">
                 {getTranslated("Categorized")}
               </option>
-              {categories.map((cat) => (
-                <option key={cat.id} value={cat.id}>
-                  {cat.pluralName}
-                </option>
-              ))}
             </select>{" "}
           </>
         )}
@@ -126,7 +115,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           overflow: "auto",
         }}
       >
-        {category === showCategorizedCardsToken ? (
+        {category === "categorized" ? (
           <CategorizedCards cards={cards} />
         ) : (
           <CardArray cards={cards} />
