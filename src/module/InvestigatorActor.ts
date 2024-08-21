@@ -2,6 +2,7 @@
 // that seem to come out here
 /* eslint "@typescript-eslint/explicit-function-return-type": "error" */
 import {
+  card,
   equipment,
   occupationSlotIndex,
   pc,
@@ -475,6 +476,21 @@ export class InvestigatorActor extends Actor {
           system: {
             category: categoryId,
           },
+        },
+      ],
+      {
+        renderSheet: true,
+      },
+    );
+  };
+
+  createCard = async (): Promise<void> => {
+    await this.createEmbeddedDocuments(
+      "Item",
+      [
+        {
+          type: card,
+          name: "New card",
         },
       ],
       {

@@ -212,5 +212,6 @@
   "investigator.Activate": "Activate",
   "investigator.DiscardActorNamesCardNameCard": "Discard {ActorName}'s \"{CardName}\" card?",
   "investigator.Discard": "Discard",
-  "investigator.DeleteCardName": "Delete \"{CardName}\"?"
+  "investigator.DeleteCardName": "Delete \"{CardName}\"?",
+  "investigator.CreateCard": "Create card"
 }

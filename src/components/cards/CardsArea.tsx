@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { sortEntitiesByName } from "../../functions/utilities";
@@ -6,6 +6,7 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
 import { isCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
+import { Button } from "../inputs/Button";
 import { CardArray } from "./CardArray";
 import { CategorizedCards } from "./CategorizedCards";
 import { CardsAreaSettingsContext } from "./contexts";
@@ -28,6 +29,10 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
     updateCardsAreaSettings,
   } = useContext(CardsAreaSettingsContext);
 
+  const handleClickCreateCard = useCallback(() => {
+    void actor.createCard();
+  }, [actor]);
+
   let cards =
     sortOrder === "atoz" || sortOrder === "ztoa"
       ? sortEntitiesByName(allCards)
@@ -48,24 +53,26 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
         padding: "0.5em",
       }}
     >
-      <div css={{ paddingBottom: "0.5em" }}>
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "0.5em",
+        }}
+      >
         {/* category */}
         {categories.length > 1 && (
-          <>
-            <select
-              value={category}
-              onChange={(e) => {
-                updateCardsAreaSettings({
-                  category: e.currentTarget.value as CardsCategoryMode,
-                });
-              }}
-            >
-              <option value="all">{getTranslated("All")}</option>
-              <option value="categorized">
-                {getTranslated("Categorized")}
-              </option>
-            </select>{" "}
-          </>
+          <select
+            value={category}
+            onChange={(e) => {
+              updateCardsAreaSettings({
+                category: e.currentTarget.value as CardsCategoryMode,
+              });
+            }}
+          >
+            <option value="all">{getTranslated("All")}</option>
+            <option value="categorized">{getTranslated("Categorized")}</option>
+          </select>
         )}
         {/* sort order */}
         <select
@@ -80,7 +87,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           <option value="oldest">{getTranslated("Oldest")}</option>
           <option value="atoz">{"A — Z"}</option>
           <option value="ztoa">{"Z — A"}</option>
-        </select>{" "}
+        </select>
         {/* view mode */}
         <select
           value={viewMode}
@@ -92,7 +99,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
         >
           <option value="short">{getTranslated("Short")}</option>
           <option value="full">{getTranslated("Full")}</option>
-        </select>{" "}
+        </select>
         {/* column width */}
         <select
           value={columnWidth}
@@ -106,6 +113,10 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           <option value="wide">{getTranslated("Wide")}</option>
           <option value="full">{getTranslated("Full width")}</option>
         </select>
+        <div css={{ flex: 1 }} />
+        <Button onClick={handleClickCreateCard}>
+          {getTranslated("Create card")}
+        </Button>
       </div>
       <div
         className="container-ref-haver"
