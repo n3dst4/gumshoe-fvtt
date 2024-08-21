@@ -13,6 +13,7 @@ import { installActorImageHookHandler } from "./startup/installActorImageHookHan
 import { installCompendiumExportButton } from "./startup/installCompendiumExportButton";
 import { installDropActorSheetDataHandler } from "./startup/installDropActorSheetDataHandler";
 import { installDSNFix } from "./startup/installDSNFix";
+import { installEquipmentAddedNotifier } from "./startup/installEquipmentAddedNotifier";
 import { installEquipmentCategoryHookHandler } from "./startup/installEquipmentCategoryHookHandler";
 import { installInitiativeUpdateHookHandler } from "./startup/installInitiativeUpdateHookHandler";
 import { installItemImageHookHandler } from "./startup/installItemImageHookHandler";
@@ -94,3 +95,4 @@ installResourceUpdateHookHandler();
 installNewCharacterPacksHookHandler();
 installKeepTokenImageInSyncWithActor();
 installNewCharacterDefaultOccupationHookHandler();
+installEquipmentAddedNotifier();

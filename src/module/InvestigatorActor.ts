@@ -183,20 +183,19 @@ export class InvestigatorActor extends Actor {
     text: string,
     extraData: Record<string, string> = {},
   ): Promise<void> => {
-    if (isGame(game)) {
-      const chatData = {
-        user: game.user?.id,
-        speaker: ChatMessage.getSpeaker({
-          alias: game.user?.name ?? "",
-        }),
-        content: getTranslated(text, {
-          ActorName: this.name ?? "",
-          UserName: game.user?.name ?? "",
-          ...extraData,
-        }),
-      };
-      await ChatMessage.create(chatData, {});
-    }
+    assertGame(game);
+    const chatData = {
+      user: game.user?.id,
+      speaker: ChatMessage.getSpeaker({
+        alias: game.user?.name ?? "",
+      }),
+      content: getTranslated(text, {
+        ActorName: this.name ?? "",
+        UserName: game.user?.name ?? "",
+        ...extraData,
+      }),
+    };
+    await ChatMessage.create(chatData, {});
   };
 
   confirmNuke = async (): Promise<void> => {
