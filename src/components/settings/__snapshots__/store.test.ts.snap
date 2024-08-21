@@ -171,10 +171,10 @@ exports[`reducer > should apply a preset 1`] = `
       "showEmptyInvestigativeCategories": false,
       "systemMigrationVersion": "",
       "shortNotes": Array [],
-@@ -77,5 +97,7 @@
-      "journalMemories": Object {},
+@@ -78,5 +98,7 @@
       "cardCategories": Array [],
       "useCards": false,
+      "notifyItemAddedToActor": false,
 +     "schemaVersion": "v1",
 +     "displayName": "Trail of Cthulhu (built-in)",
     },
