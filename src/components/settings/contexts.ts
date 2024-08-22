@@ -1,5 +1,6 @@
 import { createContext } from "react";
 
+import { systemLogger } from "../../functions/utilities";
 import { getSettingsDict, SettingsDict } from "../../settings/settings";
 import { State } from "./types";
 
@@ -7,8 +8,7 @@ import { State } from "./types";
  * Context for settings dispatch funtion
  */
 export const DispatchContext = createContext<React.Dispatch<any>>(() => {
-  // do nothing if out of context
-  // XXX should throw
+  systemLogger.warn("DispatchContext used without a provider");
 });
 
 /**
@@ -23,10 +23,13 @@ export const StateContext = createContext<State>({
 /**
  * Context for whether the settings are dirty
  */
-export const DirtyContext = createContext<() => boolean>(() => false);
+export const DirtyContext = createContext<() => boolean>(() => {
+  systemLogger.warn("DirtyContext used without a provider");
+  return false;
+});
 
 export const ModifyContext = createContext<
   (fn: (state: SettingsDict) => void) => void
 >(() => {
-  throw new Error("modifyContext used without a provider");
+  systemLogger.warn("ModifyContext used without a provider");
 });
