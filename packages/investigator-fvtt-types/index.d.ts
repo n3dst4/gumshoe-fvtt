@@ -196,7 +196,7 @@ export interface ThemeSeedV1 {
     /**
      * Styles that apply to all cards
      */
-    base?: Partial<CarddStyles>;
+    base?: Partial<CardStyles>;
     /**
      * Styles that apply to the area containing cards
      */
