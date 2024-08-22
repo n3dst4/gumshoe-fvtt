@@ -1,6 +1,7 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
+import { cleanAndEnrichHtml } from "../../functions/textFunctions";
 import { assertGame, systemLogger } from "../../functions/utilities";
 import { useIsDocumentOwner } from "../../hooks/useIsDocumentOwner";
 
@@ -14,7 +15,7 @@ interface NotesDisplayProps {
 
 export const NotesDisplay: React.FC<NotesDisplayProps> = ({
   className,
-  html,
+  html: rawHtml,
   toggleSecret,
 }) => {
   assertGame(game);
@@ -22,6 +23,11 @@ export const NotesDisplay: React.FC<NotesDisplayProps> = ({
   const isOwner = useIsDocumentOwner();
 
   const ref = useRef<HTMLDivElement>(null);
+  const [sanitizedHtml, setSanitizedHtml] = useState("");
+
+  useEffect(() => {
+    void cleanAndEnrichHtml(rawHtml).then(setSanitizedHtml);
+  }, [rawHtml]);
 
   // this layout effect deals with injecting HTML and adding reveal/hide buttons
   // to secrets
@@ -33,7 +39,7 @@ export const NotesDisplay: React.FC<NotesDisplayProps> = ({
     // equivalent of putting dangerouslySetInnerHTML={{ __html: html }} on the
     // div, but this way the effect hook is properly dependant on the value of
     // `html`
-    ref.current.innerHTML = html;
+    ref.current.innerHTML = sanitizedHtml;
 
     // we only continue if we're the owner and we have a toggleSecret function
     if (!isOwner || !toggleSecret) {
@@ -55,7 +61,7 @@ export const NotesDisplay: React.FC<NotesDisplayProps> = ({
       });
       section.append(toggleSecretButton);
     });
-  }, [html, isOwner, toggleSecret]);
+  }, [sanitizedHtml, isOwner, toggleSecret]);
 
   return (
     <div
