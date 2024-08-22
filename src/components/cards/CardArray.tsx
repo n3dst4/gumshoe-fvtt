@@ -20,9 +20,9 @@ const columndWidths: Record<CardsColumnWidth, string> = {
 
 export const CardArray: React.FC<CardArrayProps> = ({ cards }) => {
   const theme = useContext(ThemeContext);
-  const {
-    cardsAreaSettings: { columnWidth: columnWidthSetting },
-  } = useContext(CardsAreaSettingsContext);
+  const { columnWidth: columnWidthSetting } = useContext(
+    CardsAreaSettingsContext,
+  );
 
   if (cards.length === 0) {
     return (

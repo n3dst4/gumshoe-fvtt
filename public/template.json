@@ -54,7 +54,13 @@
       "longNotes": [],
       "buildPoints": 28,
       "hideZeroRated": false,
-      "sheetTheme": null
+      "sheetTheme": null,
+      "cardsAreaSettings": {
+        "category": "all",
+        "sortOrder": "newest",
+        "viewMode": "short",
+        "columnWidth": "narrow"
+      }
     },
     "npc": {
       "templates": ["activeCharacter"],

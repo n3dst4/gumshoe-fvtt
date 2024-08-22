@@ -18,8 +18,6 @@ import {
   PersonalDetailItem,
 } from "../../v10Types";
 import { CardsArea } from "../cards/CardsArea";
-import { CardsAreaSettingsContext } from "../cards/contexts";
-import { CardsAreaSettings } from "../cards/types";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -93,25 +91,6 @@ export const PCSheet: React.FC<PCSheetProps> = ({
     };
   }, [actor]);
 
-  const [cardsAreaSettings, setCardsAreaSettings] = useState<CardsAreaSettings>(
-    {
-      category: "all",
-      sortOrder: "newest",
-      viewMode: "short",
-      columnWidth: "narrow",
-    },
-  );
-
-  const updateCardsAreaSettings = useCallback(
-    (update: Partial<CardsAreaSettings>) => {
-      setCardsAreaSettings((current: CardsAreaSettings) => ({
-        ...current,
-        ...update,
-      }));
-    },
-    [],
-  );
-
   const themeName = actor.getSheetThemeName();
   const theme = useTheme(themeName);
   const personalDetails = settings.personalDetails.get();
@@ -139,229 +118,219 @@ export const PCSheet: React.FC<PCSheetProps> = ({
           '"pools body  body" ',
       }}
     >
-      <CardsAreaSettingsContext.Provider
-        value={{
-          cardsAreaSettings,
-          updateCardsAreaSettings,
+      <div
+        css={{
+          gridArea: "title",
+          textAlign: "center",
+          position: "relative",
         }}
       >
-        <div
-          css={{
-            gridArea: "title",
-            textAlign: "center",
-            position: "relative",
-          }}
-        >
-          <LogoEditable
-            mainText={actor.name ?? ""}
-            subText={occupation?.name ?? genericOccupation}
-            onChangeMainText={actor.setName}
-            onChangeSubText={occupation?.setName}
-          />
-        </div>
-        <div
-          css={{
-            gridArea: "title",
-            textAlign: "center",
-            position: "relative",
-          }}
-        >
-          <LogoEditable
-            mainText={actor.name ?? ""}
-            subText={occupation?.name ?? genericOccupation}
-            defaultSubText={settings.genericOccupation.get()}
-            onChangeMainText={actor.setName}
-            onChangeSubText={occupation?.setName}
-          />
-        </div>
-        <ImagePickle
-          subject={actor}
-          application={foundryApplication}
-          css={{
-            gridArea: "image",
-            transform: "rotateZ(2deg)",
-          }}
+        <LogoEditable
+          mainText={actor.name ?? ""}
+          subText={occupation?.name ?? genericOccupation}
+          onChangeMainText={actor.setName}
+          onChangeSubText={occupation?.setName}
         />
+      </div>
+      <div
+        css={{
+          gridArea: "title",
+          textAlign: "center",
+          position: "relative",
+        }}
+      >
+        <LogoEditable
+          mainText={actor.name ?? ""}
+          subText={occupation?.name ?? genericOccupation}
+          defaultSubText={settings.genericOccupation.get()}
+          onChangeMainText={actor.setName}
+          onChangeSubText={occupation?.setName}
+        />
+      </div>
+      <ImagePickle
+        subject={actor}
+        application={foundryApplication}
+        css={{
+          gridArea: "image",
+          transform: "rotateZ(2deg)",
+        }}
+      />
 
-        <div
-          className={theme.panelClass}
-          css={{
-            gridArea: "stats",
-            padding: "0.5em",
-            position: "relative",
-            ...theme.panelStyleSecondary,
-          }}
-        >
-          <InputGrid>
-            <GridField label="Person Name">
-              <AsyncTextInput
-                value={actor.name ?? ""}
-                onChange={actor.setName}
-              />
-            </GridField>
-            <PersonalDetailField
-              name={occupationLabel}
-              actor={actor}
-              slotIndex={occupationSlotIndex}
-            />
-            {personalDetails.map(({ name, type }, i) =>
-              type === "text" ? (
-                <GridField noTranslate key={`${name}--${i}`} label={name}>
-                  <IndexedAsyncTextInput
-                    value={isPCActor(actor) ? actor.system.shortNotes[i] : ""}
-                    onChange={updateShortNote}
-                    index={i}
-                  />
-                </GridField>
-              ) : (
-                <PersonalDetailField
-                  key={`${name}--${i}`}
-                  name={name}
-                  actor={actor}
-                  slotIndex={i}
+      <div
+        className={theme.panelClass}
+        css={{
+          gridArea: "stats",
+          padding: "0.5em",
+          position: "relative",
+          ...theme.panelStyleSecondary,
+        }}
+      >
+        <InputGrid>
+          <GridField label="Person Name">
+            <AsyncTextInput value={actor.name ?? ""} onChange={actor.setName} />
+          </GridField>
+          <PersonalDetailField
+            name={occupationLabel}
+            actor={actor}
+            slotIndex={occupationSlotIndex}
+          />
+          {personalDetails.map(({ name, type }, i) =>
+            type === "text" ? (
+              <GridField noTranslate key={`${name}--${i}`} label={name}>
+                <IndexedAsyncTextInput
+                  value={isPCActor(actor) ? actor.system.shortNotes[i] : ""}
+                  onChange={updateShortNote}
+                  index={i}
                 />
-              ),
-            )}
-            {game.user?.isGM &&
-              shortHiddenNotesNames.map((name: string, i: number) => (
-                <GridField noTranslate key={`${name}--${i}`} label={name}>
-                  <IndexedAsyncTextInput
-                    value={
-                      isPCActor(actor) ? actor.system.hiddenShortNotes[i] : ""
-                    }
-                    onChange={updateMwHiddenShortNote}
-                    index={i}
-                  />
-                </GridField>
-              ))}
-          </InputGrid>
-        </div>
-
-        <div
-          className={theme.panelClass}
-          css={{
-            gridArea: "pools",
-            position: "relative",
-            overflowX: "visible",
-            overflowY: "auto",
-            padding: "0.5em",
-            ...theme.panelStylePrimary,
-          }}
-        >
-          {settings.useMwStyleAbilities.get() && (
-            <Fragment>
-              <button onClick={actor.confirmMw2Refresh}>
-                <Translate>2h Refresh</Translate>
-              </button>
-              <hr />
-              <button onClick={actor.confirmMw4Refresh}>
-                <Translate>4h Refresh</Translate>
-              </button>
-              <hr />
-              <button onClick={actor.confirmMw8Refresh}>
-                <Translate>8h Refresh</Translate>
-              </button>
-              <hr />
-            </Fragment>
-          )}
-          <button onClick={actor.confirmRefresh}>
-            <Translate>Full Refresh</Translate>
-          </button>
-          <hr />
-          {settings.useMwStyleAbilities.get() || (
-            <Fragment>
-              <button onClick={actor.confirm24hRefresh}>
-                <Translate>24h Refresh</Translate>
-              </button>
-              <hr />
-            </Fragment>
-          )}
-          {settings.useMwInjuryStatus.get() && (
-            <Fragment>
-              <MwInjuryStatusWidget
-                status={actor.system.mwInjuryStatus}
-                setStatus={actor.setMwInjuryStatus}
+              </GridField>
+            ) : (
+              <PersonalDetailField
+                key={`${name}--${i}`}
+                name={name}
+                actor={actor}
+                slotIndex={i}
               />
-              <hr />
-            </Fragment>
+            ),
           )}
-          <TrackersArea actor={actor} />
-          <hr />
-          {Object.keys(stats).map<ReactNode>((key) => {
-            return (
-              <StatField key={key} id={key} actor={actor} stat={stats[key]} />
-            );
-          })}
-          <hr />
-          <h3 css={{ gridColumn: "start / end" }}>
-            <Translate>Combat Order</Translate>
-          </h3>
-          <CombatAbilityDropDown
-            value={actor.system.initiativeAbility}
-            onChange={actor.setInitiativeAbility}
-          />
-        </div>
-
-        <div
-          css={{
-            gridArea: "body",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          <TabContainer
-            defaultTab="abilities"
-            tabs={[
-              {
-                id: "abilities",
-                label: "Abilities",
-                content: settings.useMwStyleAbilities.get() ? (
-                  <AbilitiesAreaMW actor={actor} />
-                ) : (
-                  <AbilitiesAreaPlay actor={actor} />
-                ),
-              },
-              {
-                id: "cards",
-                label: "Cards",
-                content: <CardsArea actor={actor} />,
-              },
-              settings.mwUseAlternativeItemTypes.get()
-                ? {
-                    id: "items",
-                    label: "MWItems",
-                    content: <MwItemArea actor={actor} />,
+          {game.user?.isGM &&
+            shortHiddenNotesNames.map((name: string, i: number) => (
+              <GridField noTranslate key={`${name}--${i}`} label={name}>
+                <IndexedAsyncTextInput
+                  value={
+                    isPCActor(actor) ? actor.system.hiddenShortNotes[i] : ""
                   }
-                : {
-                    id: "equipment",
-                    label: "Equipment",
-                    content: (
-                      <Fragment>
-                        <WeaponsArea actor={actor} />
-                        <div css={{ height: "1em" }} />
-                        <EquipmentArea actor={actor} />
-                      </Fragment>
-                    ),
-                  },
-              {
-                id: "notes",
-                label: "Notes",
-                content: <NotesArea actor={actor} />,
-              },
-              {
-                id: "abilities-edit",
-                label: "Edit",
-                content: <AbilitiesAreaEdit actor={actor} />,
-              },
-              {
-                id: "settings",
-                label: <i className="fa fa-cog" />,
-                content: <SettingArea actor={actor} />,
-              },
-            ]}
-          />
-        </div>
-      </CardsAreaSettingsContext.Provider>
+                  onChange={updateMwHiddenShortNote}
+                  index={i}
+                />
+              </GridField>
+            ))}
+        </InputGrid>
+      </div>
+
+      <div
+        className={theme.panelClass}
+        css={{
+          gridArea: "pools",
+          position: "relative",
+          overflowX: "visible",
+          overflowY: "auto",
+          padding: "0.5em",
+          ...theme.panelStylePrimary,
+        }}
+      >
+        {settings.useMwStyleAbilities.get() && (
+          <Fragment>
+            <button onClick={actor.confirmMw2Refresh}>
+              <Translate>2h Refresh</Translate>
+            </button>
+            <hr />
+            <button onClick={actor.confirmMw4Refresh}>
+              <Translate>4h Refresh</Translate>
+            </button>
+            <hr />
+            <button onClick={actor.confirmMw8Refresh}>
+              <Translate>8h Refresh</Translate>
+            </button>
+            <hr />
+          </Fragment>
+        )}
+        <button onClick={actor.confirmRefresh}>
+          <Translate>Full Refresh</Translate>
+        </button>
+        <hr />
+        {settings.useMwStyleAbilities.get() || (
+          <Fragment>
+            <button onClick={actor.confirm24hRefresh}>
+              <Translate>24h Refresh</Translate>
+            </button>
+            <hr />
+          </Fragment>
+        )}
+        {settings.useMwInjuryStatus.get() && (
+          <Fragment>
+            <MwInjuryStatusWidget
+              status={actor.system.mwInjuryStatus}
+              setStatus={actor.setMwInjuryStatus}
+            />
+            <hr />
+          </Fragment>
+        )}
+        <TrackersArea actor={actor} />
+        <hr />
+        {Object.keys(stats).map<ReactNode>((key) => {
+          return (
+            <StatField key={key} id={key} actor={actor} stat={stats[key]} />
+          );
+        })}
+        <hr />
+        <h3 css={{ gridColumn: "start / end" }}>
+          <Translate>Combat Order</Translate>
+        </h3>
+        <CombatAbilityDropDown
+          value={actor.system.initiativeAbility}
+          onChange={actor.setInitiativeAbility}
+        />
+      </div>
+
+      <div
+        css={{
+          gridArea: "body",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <TabContainer
+          defaultTab="abilities"
+          tabs={[
+            {
+              id: "abilities",
+              label: "Abilities",
+              content: settings.useMwStyleAbilities.get() ? (
+                <AbilitiesAreaMW actor={actor} />
+              ) : (
+                <AbilitiesAreaPlay actor={actor} />
+              ),
+            },
+            {
+              id: "cards",
+              label: "Cards",
+              content: <CardsArea actor={actor} />,
+            },
+            settings.mwUseAlternativeItemTypes.get()
+              ? {
+                  id: "items",
+                  label: "MWItems",
+                  content: <MwItemArea actor={actor} />,
+                }
+              : {
+                  id: "equipment",
+                  label: "Equipment",
+                  content: (
+                    <Fragment>
+                      <WeaponsArea actor={actor} />
+                      <div css={{ height: "1em" }} />
+                      <EquipmentArea actor={actor} />
+                    </Fragment>
+                  ),
+                },
+            {
+              id: "notes",
+              label: "Notes",
+              content: <NotesArea actor={actor} />,
+            },
+            {
+              id: "abilities-edit",
+              label: "Edit",
+              content: <AbilitiesAreaEdit actor={actor} />,
+            },
+            {
+              id: "settings",
+              label: <i className="fa fa-cog" />,
+              content: <SettingArea actor={actor} />,
+            },
+          ]}
+        />
+      </div>
     </CSSReset>
   );
 };

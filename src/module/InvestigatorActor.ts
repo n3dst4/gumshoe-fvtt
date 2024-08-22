@@ -1,6 +1,7 @@
 // enabling this rule because ts 5.5.x is having some issues with deep types
 // that seem to come out here
 /* eslint "@typescript-eslint/explicit-function-return-type": "error" */
+import { CardsAreaSettings } from "../components/cards/types";
 import {
   card,
   equipment,
@@ -497,6 +498,13 @@ export class InvestigatorActor extends Actor {
         renderSheet: true,
       },
     );
+  };
+
+  setCardsAreaSettings = async (
+    cardsAreaSettings: CardsAreaSettings,
+  ): Promise<void> => {
+    assertPCActor(this);
+    await this.update({ system: { cardsAreaSettings } });
   };
 
   createPersonalDetail = async (

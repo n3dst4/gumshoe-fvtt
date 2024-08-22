@@ -1,5 +1,6 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 
+import { CardsAreaSettings } from "./components/cards/types";
 import * as constants from "./constants";
 
 // SOCKET STUFF ----------------------------------------------------------------
@@ -104,6 +105,7 @@ export interface PCSystemData {
   };
   stats: Record<string, number>;
   initiativePassingTurns: number;
+  cardsAreaSettings: CardsAreaSettings;
 }
 
 export interface NPCSystemData {

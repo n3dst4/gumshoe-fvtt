@@ -18,9 +18,9 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
   const theme = useContext(ThemeContext);
   const app = useContext(FoundryAppContext);
 
-  const {
-    cardsAreaSettings: { category: categorySetting, viewMode },
-  } = useContext(CardsAreaSettingsContext);
+  const { category: categorySetting, viewMode } = useContext(
+    CardsAreaSettingsContext,
+  );
 
   const handleDragStart = useCallback(
     (e: React.DragEvent<HTMLElement>) => {
