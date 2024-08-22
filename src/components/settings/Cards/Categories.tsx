@@ -110,7 +110,7 @@ export const Categories: React.FC<CategoriesProps> = () => {
               opacity: 0.7,
             }}
           >
-            {category.cssClass}
+            {category.styleKey}
           </div>
           <div
             css={{
@@ -122,7 +122,7 @@ export const Categories: React.FC<CategoriesProps> = () => {
               opacity: 0.7,
             }}
           >
-            {category.styleKey}
+            {category.cssClass}
           </div>
         </Link>
       );
