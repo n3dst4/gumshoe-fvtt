@@ -1,7 +1,8 @@
+import { produce } from "immer";
 import { useCallback, useMemo, useReducer } from "react";
 
 import { useRefStash } from "../../hooks/useRefStash";
-import { getSettingsDict } from "../../settings/settings";
+import { getSettingsDict, SettingsDict } from "../../settings/settings";
 import { StateContext } from "./contexts";
 import { createUseSelectorHook } from "./reducerTools";
 import { store } from "./store";
@@ -31,12 +32,21 @@ export const useSettingsState = () => {
       JSON.stringify(tempStateRef.current) !== JSON.stringify(initialState)
     );
   }, [initialState, tempStateRef]);
+
+  function modify(fn: (state: SettingsDict) => void) {
+    const newState = produce(tempStateRef.current.settings, (draft) => {
+      fn(draft);
+    });
+    dispatch(store.creators.setSome({ newSettings: newState }));
+  }
+
   return {
     tempState,
     tempStateRef,
     setters,
     dispatch,
     isDirty,
+    modify,
   };
 };
 

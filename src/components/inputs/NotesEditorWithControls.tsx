@@ -130,6 +130,7 @@ export const NotesEditorWithControls: React.FC<
 
   return (
     <div
+      className="notes-editor-with-controls"
       css={{
         gridColumn: "label / end",
         position: "relative",

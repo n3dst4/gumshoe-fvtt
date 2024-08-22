@@ -17,7 +17,7 @@ import {
   isPCActor,
   PersonalDetailItem,
 } from "../../v10Types";
-// import CardsArea from "../cards/CardsArea";
+import { CardsArea } from "../cards/CardsArea";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -118,6 +118,20 @@ export const PCSheet: React.FC<PCSheetProps> = ({
           '"pools body  body" ',
       }}
     >
+      <div
+        css={{
+          gridArea: "title",
+          textAlign: "center",
+          position: "relative",
+        }}
+      >
+        <LogoEditable
+          mainText={actor.name ?? ""}
+          subText={occupation?.name ?? genericOccupation}
+          onChangeMainText={actor.setName}
+          onChangeSubText={occupation?.setName}
+        />
+      </div>
       <div
         css={{
           gridArea: "title",
@@ -277,11 +291,11 @@ export const PCSheet: React.FC<PCSheetProps> = ({
                 <AbilitiesAreaPlay actor={actor} />
               ),
             },
-            // {
-            //   id: "cards",
-            //   label: "Cards",
-            //   content: <CardsArea actor={actor} />,
-            // },
+            settings.useCards.get() && {
+              id: "cards",
+              label: "Cards",
+              content: <CardsArea actor={actor} />,
+            },
             settings.mwUseAlternativeItemTypes.get()
               ? {
                   id: "items",

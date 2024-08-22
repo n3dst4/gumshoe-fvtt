@@ -54,7 +54,13 @@
       "longNotes": [],
       "buildPoints": 28,
       "hideZeroRated": false,
-      "sheetTheme": null
+      "sheetTheme": null,
+      "cardsAreaSettings": {
+        "category": "all",
+        "sortOrder": "newest",
+        "viewMode": "short",
+        "columnWidth": "narrow"
+      }
     },
     "npc": {
       "templates": ["activeCharacter"],
@@ -87,7 +93,8 @@
       "equipment",
       "weapon",
       "mwItem",
-      "personalDetail"
+      "personalDetail",
+      "card"
     ],
     "templates": {
       "notes": {
@@ -166,6 +173,24 @@
       "templates": ["notes"],
       "slotIndex": 0,
       "compendiumPackId": null
+    },
+    "card": {
+      "categoryId": "",
+      "supertitle": "",
+      "subtitle": "",
+      "description": {
+        "format": "richText",
+        "source": "",
+        "html": ""
+      },
+      "effects": {
+        "format": "richText",
+        "source": "",
+        "html": ""
+      },
+      "type": "",
+      "flags": [],
+      "active": true
     }
   }
 }

@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import { getSettingsDict } from "../../settings/settings";
+import { getSettingsDict, SettingsDict } from "../../settings/settings";
 import { State } from "./types";
 
 /**
@@ -24,3 +24,9 @@ export const StateContext = createContext<State>({
  * Context for whether the settings are dirty
  */
 export const DirtyContext = createContext<() => boolean>(() => false);
+
+export const ModifyContext = createContext<
+  (fn: (state: SettingsDict) => void) => void
+>(() => {
+  throw new Error("modifyContext used without a provider");
+});

@@ -7,7 +7,7 @@ import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { GridField } from "../../inputs/GridField";
 import { InputGrid } from "../../inputs/InputGrid";
 import { SlideInNestedPanelRoute } from "../../nestedPanels/SlideInNestedPanelRoute";
-import { DispatchContext } from "../contexts";
+import { DispatchContext, ModifyContext } from "../contexts";
 import { useStateSelector } from "../hooks";
 import { store } from "../store";
 import { CategoryDangerZone } from "./CategoryDangerZone";
@@ -19,14 +19,38 @@ export const Category: React.FC = () => {
     s.settings.cardCategories.find((c) => c.id === id),
   );
   const dispatch = useContext(DispatchContext);
+  const modify = useContext(ModifyContext);
   const theme = useContext(ThemeContext);
 
-  const handleNameChange = (newName: string) => {
-    dispatch(store.creators.renameCardCategory({ id, newName }));
+  const handleSingleNameChange = (newName: string) => {
+    modify((s) => {
+      const category = s.cardCategories.find((c) => c.id === id);
+      if (category) {
+        category.singleName = newName;
+      }
+    });
+  };
+
+  const handlePluralNameChange = (newName: string) => {
+    modify((s) => {
+      const category = s.cardCategories.find((c) => c.id === id);
+      if (category) {
+        category.pluralName = newName;
+      }
+    });
   };
 
   const handleCssClassChange = (newCssClass: string) => {
     dispatch(store.creators.setCardCategoryCssClass({ id, newCssClass }));
+  };
+
+  const handleStyleKeyChange = (newStyleKey: string) => {
+    modify((s) => {
+      const category = s.cardCategories.find((c) => c.id === id);
+      if (category) {
+        category.styleKey = newStyleKey;
+      }
+    });
   };
 
   const shade1 = "#f002";
@@ -36,8 +60,23 @@ export const Category: React.FC = () => {
     <>
       <h2>Card category</h2>
       <InputGrid>
-        <GridField label="Item Name">
-          <AsyncTextInput value={category?.name} onChange={handleNameChange} />
+        <GridField label="Item Name (single)">
+          <AsyncTextInput
+            value={category?.singleName}
+            onChange={handleSingleNameChange}
+          />
+        </GridField>
+        <GridField label="Item Name (plural)">
+          <AsyncTextInput
+            value={category?.pluralName}
+            onChange={handlePluralNameChange}
+          />
+        </GridField>
+        <GridField label="Style Key">
+          <AsyncTextInput
+            value={category?.styleKey ?? ""}
+            onChange={handleStyleKeyChange}
+          />
         </GridField>
         <GridField label="CSS Class">
           <AsyncTextInput

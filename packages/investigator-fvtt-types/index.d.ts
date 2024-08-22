@@ -189,6 +189,23 @@ export interface ThemeSeedV1 {
      */
     backdropStyle: CSSObject;
   };
+  /**
+   * Styles that apply to cards
+   */
+  cards?: {
+    /**
+     * Styles that apply to all cards
+     */
+    base?: Partial<CarddStyles>;
+    /**
+     * Styles that apply to the area containing cards
+     */
+    area?: Partial<CardsAreaStyles>;
+    /**
+     * Styles that apply to specific card categories
+     */
+    categories?: Record<string, Partial<CardStyles>>;
+  };
 
   /**
    * All the values in this collection should be parseable as CSS colors
@@ -201,6 +218,31 @@ export interface ThemeSeedV1 {
     npcNote?: string;
     itemNote?: string;
   };
+}
+
+export interface CardsAreaStyles {
+  /** Horizontal spacing between cards */
+  horizontalSpacing: string;
+  /** Vertical spacing between cards */
+  verticalSpacing: string;
+}
+
+/** Styles for a card */
+export interface CardStyles {
+  /** The style for the card itself */
+  backdropStyle: CSSObject;
+  /** The style for the bit of text above the main card content */
+  supertitleStyle: CSSObject;
+  /** The style for the title of the card */
+  titleStyle: CSSObject;
+  /** The style for the subtitle of the card */
+  subtitleStyle: CSSObject;
+  /** The style for the content of the card */
+  descriptionStyle: CSSObject;
+  /** The style for the effect of the card */
+  effectStyle: CSSObject;
+  /** Styles applied when hovering over the card */
+  hoverStyle: CSSObject;
 }
 
 /**
@@ -371,8 +413,10 @@ export interface HasId {
 }
 
 export interface CardCategory extends HasId {
-  name: string;
+  singleName: string;
+  pluralName: string;
   cssClass?: string;
+  styleKey?: string;
 }
 
 declare global {
