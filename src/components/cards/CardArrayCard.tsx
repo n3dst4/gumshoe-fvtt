@@ -42,10 +42,13 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
       card={card}
       css={{
         cursor: "pointer",
-        marginBottom: theme.cardStyles.verticalSpacing,
+        marginBottom: theme.cards.area.verticalSpacing,
         opacity: card.system.active ? 1 : 0.5,
         transition: "opacity 0.2s ease-in-out",
-        ":hover": theme.cardStyles.hoverStyle,
+        ":hover": {
+          ...theme.cards.base.hoverStyle,
+          ...theme.cards.categories[card.system.categoryId]?.hoverStyle,
+        },
       }}
       showCategory={showCategory}
       viewMode={viewMode}

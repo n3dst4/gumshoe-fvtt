@@ -119,26 +119,33 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
       ...seed.logo,
       fontScaleFactor: seed.logo.fontScaleFactor ?? defaultFontScaleFactor,
     },
-    cardStyles: seed.cardStyles ?? {
-      backdropStyle: {
-        border: `1px solid ${controlBorder}`,
-        padding: "0.5em",
-        transformOrigin: "top",
-        backgroundColor: bgOpaquePrimary,
-        // boxShadow: `0 0 0.3em ${controlBorder}`,
+    cards: {
+      base: {
+        backdropStyle: {
+          border: `1px solid ${controlBorder}`,
+          padding: "0.5em",
+          transformOrigin: "top",
+          backgroundColor: bgOpaquePrimary,
+          // boxShadow: `0 0 0.3em ${controlBorder}`,
+        },
+        supertitleStyle: { fontSize: "0.9em" },
+        titleStyle: {},
+        subtitleStyle: { fontWeight: "bold" },
+        descriptionStyle: {},
+        effectStyle: { fontStyle: "italic" },
+        hoverStyle: {
+          boxShadow: `0 0 0.3em 0.2em ${seed.colors.glow}`,
+        },
+        ...seed.cards?.base,
       },
-      supertitleStyle: { fontSize: "0.9em" },
-      titleStyle: {},
-      subtitleStyle: { fontWeight: "bold" },
-      descriptionStyle: {},
-      effectStyle: { fontStyle: "italic" },
-      hoverStyle: {
-        boxShadow: `0 0 0.3em 0.2em ${seed.colors.glow}`,
+      area: {
+        horizontalSpacing: "0.5em",
+        verticalSpacing: "0.5em",
       },
-      horizontalSpacing: "0.5em",
-      verticalSpacing: "0.5em",
+      categories: {
+        ...seed.cards?.categories,
+      },
     },
-    cardCategoryStyles: {},
   };
 };
 

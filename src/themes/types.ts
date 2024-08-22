@@ -1,5 +1,9 @@
 import { CSSObject } from "@emotion/react";
-import { CardStyles, ThemeSeedV1 } from "@lumphammer/investigator-fvtt-types";
+import {
+  CardsAreaStyles,
+  CardStyles,
+  ThemeSeedV1,
+} from "@lumphammer/investigator-fvtt-types";
 
 export interface ThemeV1 extends ThemeSeedV1 {
   smallSheetRootStyle: CSSObject;
@@ -24,6 +28,9 @@ export interface ThemeV1 extends ThemeSeedV1 {
     fontScaleFactor: number;
   };
 
-  cardStyles: CardStyles;
-  cardCategoryStyles: Record<string, CardStyles>;
+  cards: {
+    base: CardStyles;
+    area: CardsAreaStyles;
+    categories: Record<string, Partial<CardStyles>>;
+  };
 }

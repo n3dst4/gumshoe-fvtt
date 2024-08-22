@@ -190,13 +190,22 @@ export interface ThemeSeedV1 {
     backdropStyle: CSSObject;
   };
   /**
-   * Styles that apply to all cards
+   * Styles that apply to cards
    */
-  cardStyles?: CardStyles;
-  /**
-   * Styles that apply to specific card categories
-   */
-  cardCategoryStyles?: Record<string, CardStyles>;
+  cards?: {
+    /**
+     * Styles that apply to all cards
+     */
+    base?: Partial<CarddStyles>;
+    /**
+     * Styles that apply to the area containing cards
+     */
+    area?: Partial<CardsAreaStyles>;
+    /**
+     * Styles that apply to specific card categories
+     */
+    categories?: Record<string, Partial<CardStyles>>;
+  };
 
   /**
    * All the values in this collection should be parseable as CSS colors
@@ -209,6 +218,13 @@ export interface ThemeSeedV1 {
     npcNote?: string;
     itemNote?: string;
   };
+}
+
+export interface CardsAreaStyles {
+  /** Horizontal spacing between cards */
+  horizontalSpacing: string;
+  /** Vertical spacing between cards */
+  verticalSpacing: string;
 }
 
 /** Styles for a card */
@@ -227,10 +243,6 @@ export interface CardStyles {
   effectStyle: CSSObject;
   /** Styles applied when hovering over the card */
   hoverStyle: CSSObject;
-  /** Horizontal spacing between cards */
-  horizontalSpacing: string;
-  /** Vertical spacing between cards */
-  verticalSpacing: string;
 }
 
 /**

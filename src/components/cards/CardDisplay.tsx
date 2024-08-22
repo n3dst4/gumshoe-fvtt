@@ -57,30 +57,57 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       tabIndex={0}
       onClick={handleClick}
       className={`card-display ${className}`}
-      css={theme.cardStyles.backdropStyle}
+      css={{
+        ...theme.cards.base.backdropStyle,
+        ...theme.cards.categories[card.system.categoryId]?.backdropStyle,
+      }}
     >
-      <p css={theme.cardStyles.supertitleStyle}>
+      <p
+        css={{
+          ...theme.cards.base.supertitleStyle,
+          ...theme.cards.categories[card.system.categoryId]?.supertitleStyle,
+        }}
+      >
         {category && showCategory ? category.singleName : ""}
         {"  "}
         {!isNullOrEmptyString(card.system.supertitle) && card.system.supertitle}
       </p>
-      <h2 css={theme.cardStyles.titleStyle}>{card.name}</h2>
+      <h2
+        css={{
+          ...theme.cards.base.titleStyle,
+          ...theme.cards.categories[card.system.categoryId]?.titleStyle,
+        }}
+      >
+        {card.name}
+      </h2>
       {!isNullOrEmptyString(card.system.subtitle) && (
-        <p css={theme.cardStyles.subtitleStyle}>{card.system.subtitle}</p>
+        <p
+          css={{
+            ...theme.cards.base.subtitleStyle,
+            ...theme.cards.categories[card.system.categoryId]?.subtitleStyle,
+          }}
+        >
+          {card.system.subtitle}
+        </p>
       )}
       {showText && !isNullOrEmptyString(descriptionHTML) && (
         <p
-          css={theme.cardStyles.descriptionStyle}
+          css={{
+            ...theme.cards.base.descriptionStyle,
+            ...theme.cards.categories[card.system.categoryId]?.descriptionStyle,
+          }}
           dangerouslySetInnerHTML={{ __html: descriptionHTML }}
         ></p>
       )}
       {showText && !isNullOrEmptyString(effectsHTML) && (
         <p
-          css={theme.cardStyles.effectStyle}
+          css={{
+            ...theme.cards.base.effectStyle,
+            ...theme.cards.categories[card.system.categoryId]?.effectStyle,
+          }}
           dangerouslySetInnerHTML={{ __html: effectsHTML }}
         ></p>
       )}
-      {/* <Button onClick={handleClickExpand}>expand</Button> */}
     </div>
   );
 };
