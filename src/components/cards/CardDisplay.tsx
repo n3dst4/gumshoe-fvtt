@@ -12,6 +12,8 @@ interface CardDisplayProps {
   className?: string;
   viewMode: CardsViewMode;
   showCategory: boolean;
+  draggable?: boolean;
+  onDragStart?: (event: React.DragEvent<HTMLElement>) => void;
 }
 
 export const CardDisplay: React.FC<CardDisplayProps> = ({
@@ -19,6 +21,8 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
   className,
   viewMode,
   showCategory,
+  draggable,
+  onDragStart,
 }) => {
   assertCardItem(card);
   const theme = useContext(ThemeContext);
@@ -47,6 +51,9 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
 
   return (
     <div
+      draggable={draggable}
+      onDragStart={onDragStart}
+      data-item-id={card.id}
       tabIndex={0}
       onClick={handleClick}
       className={`card-display ${className}`}
