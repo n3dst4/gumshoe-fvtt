@@ -3,11 +3,13 @@ import React, {
   Fragment,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
 
 import { generalAbility } from "../../../constants";
+import { cleanAndEnrichHtml } from "../../../functions/textFunctions";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { assertWeaponItem, isAbilityItem } from "../../../v10Types";
 import { performAttack } from "../../equipment/performAttack";
@@ -110,6 +112,15 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
       };
     }
   }, [ability, spend, weapon, bonusPool]);
+
+  const rawHtml = weapon.getNotes().html;
+
+  const [html, setHtml] = useState("");
+
+  useEffect(() => {
+    void cleanAndEnrichHtml(rawHtml).then(setHtml);
+  }, [rawHtml]);
+
   const onAttack = () => {
     void basePerformAttack({
       rangeName: rangeInfo[rangeSelected].hover,
@@ -192,7 +203,7 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
           marginBottom: "1em",
         }}
       >
-        <div dangerouslySetInnerHTML={{ __html: weapon.getNotes().html }} />
+        <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
     </Fragment>
   );
