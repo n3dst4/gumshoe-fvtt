@@ -77,3 +77,11 @@ button.investigator-secret-hide-reveal-button {
 .investigator-combatant-list .directory-item {
   position: absolute;
 }
+
+// foundry's default styles mean our compendium pack names get cut off
+.compendium-sidebar .directory-item.compendium[data-pack*="investigator"] h3 {
+  // was 16px
+  font-size: 1em;
+  // was 80%
+  max-width: 100%;
+}
