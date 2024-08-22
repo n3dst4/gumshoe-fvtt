@@ -291,7 +291,7 @@ export const PCSheet: React.FC<PCSheetProps> = ({
                 <AbilitiesAreaPlay actor={actor} />
               ),
             },
-            {
+            settings.useCards.get() && {
               id: "cards",
               label: "Cards",
               content: <CardsArea actor={actor} />,

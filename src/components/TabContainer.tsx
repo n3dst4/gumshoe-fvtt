@@ -21,20 +21,21 @@ type TabDefinition = {
 };
 
 type TabContainerProps = {
-  tabs: TabDefinition[];
+  tabs: (TabDefinition | null | false | undefined)[];
   defaultTab: string;
 };
 
 export const TabContainer: React.FC<TabContainerProps> = ({
-  tabs,
+  tabs: rawTabsDefs,
   defaultTab,
 }) => {
   const [selected, setSelected] = useState(defaultTab);
   const [optimistic, setOptimistic] = useState(defaultTab);
   const [pending, startTransition] = useTransition();
+  const tabDefs = useMemo(() => rawTabsDefs.filter((t) => !!t), [rawTabsDefs]);
   const activeTabDef = useMemo(
-    () => tabs.find((t) => t.id === selected),
-    [selected, tabs],
+    () => tabDefs.find((t) => t.id === selected),
+    [selected, tabDefs],
   );
   const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setOptimistic(e.currentTarget.value);
@@ -77,7 +78,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
       }}
     >
       <div className="tab-strip">
-        {tabs.map<JSX.Element>(({ id, label, translate = true }, index) => {
+        {tabDefs.map<JSX.Element>(({ id, label, translate = true }, index) => {
           const htmlId = nanoid();
           return (
             <Fragment key={id}>
@@ -110,7 +111,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
                   label
                 )}
               </label>
-              {index < tabs.length - 1 && (
+              {index < tabDefs.length - 1 && (
                 <div css={theme.tabSpacerStyle}></div>
               )}
             </Fragment>
