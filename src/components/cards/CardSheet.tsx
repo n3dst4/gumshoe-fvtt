@@ -7,12 +7,8 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { Button } from "../inputs/Button";
-import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
-import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";
-import { ItemSheetMode } from "../ItemSheetFramework/types";
 import { SlideInNestedPanelRoute } from "../nestedPanels/SlideInNestedPanelRoute";
 import { Translate } from "../Translate";
-import { CardConfig } from "./CardConfig";
 import { CardDisplay } from "./CardDisplay";
 import { CardMain } from "./CardMain";
 import { edit } from "./directions";
@@ -20,24 +16,6 @@ import { edit } from "./directions";
 type CardSheetProps = {
   card: InvestigatorItem;
   application: ItemSheet;
-};
-
-export const CardSheetX: React.FC<CardSheetProps> = ({ card, application }) => {
-  assertCardItem(card);
-  return (
-    <ItemSheetFramework
-      supertitle={<Translate>Card</Translate>}
-      item={card}
-      application={application}
-    >
-      <ModeSelect mode={ItemSheetMode.Main}>
-        <CardMain card={card} />
-      </ModeSelect>
-      <ModeSelect mode={ItemSheetMode.Config}>
-        <CardConfig card={card} />
-      </ModeSelect>
-    </ItemSheetFramework>
-  );
 };
 
 export const CardSheet: React.FC<CardSheetProps> = ({ card, application }) => {
