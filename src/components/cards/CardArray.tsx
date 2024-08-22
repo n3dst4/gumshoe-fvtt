@@ -13,8 +13,8 @@ interface CardArrayProps {
 }
 
 const columndWidths: Record<CardsColumnWidth, string> = {
-  narrow: "12em",
-  wide: "18em",
+  narrow: "11em",
+  wide: "17em",
   full: "100%",
 };
 
