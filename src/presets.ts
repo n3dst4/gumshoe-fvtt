@@ -340,5 +340,5 @@ export const basePresets = {
   castingTheRunesPreset,
   moribundWorldPreset,
   esoterroristsPreset,
-  mutantCityBluesPreset,
+  // mutantCityBluesPreset,
 };
