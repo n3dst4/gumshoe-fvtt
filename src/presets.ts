@@ -328,6 +328,7 @@ export const mutantCityBluesPreset: PresetV1 = {
       id: "stress",
       singleName: "Stress Card",
       pluralName: "Stress Cards",
+      styleKey: "stress",
     },
   ],
 };
@@ -340,5 +341,5 @@ export const basePresets = {
   castingTheRunesPreset,
   moribundWorldPreset,
   esoterroristsPreset,
-  // mutantCityBluesPreset,
+  mutantCityBluesPreset,
 };
