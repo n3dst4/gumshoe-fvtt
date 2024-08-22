@@ -56,7 +56,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       data-item-id={card.id}
       tabIndex={0}
       onClick={handleClick}
-      className={`card-display ${className}`}
+      className={`card-display ${className} ${category?.cssClass}`}
       css={{
         ...theme.cards.base.backdropStyle,
         ...theme.cards.categories[card.system.categoryId]?.backdropStyle,
