@@ -52,6 +52,9 @@ export const CardArray: React.FC<CardArrayProps> = ({ cards }) => {
         marginBottom: theme.cards.area.verticalSpacing,
         marginLeft: theme.cards.area.horizontalSpacing,
         marginRight: theme.cards.area.horizontalSpacing,
+        // create a stacking context
+        position: "relative",
+        zIndex: 0,
       }}
     >
       {cards.map((card) => (
