@@ -21,6 +21,7 @@ const colors: ThemeSeedV1["colors"] = {
   backgroundPrimary: "#fff7",
   backgroundButton: "rgba(0,0,0,0.1)",
   text: "#433",
+  controlBorder: "#433",
 };
 
 const accentTrans = `${colors.accent}77`;
@@ -94,4 +95,45 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
     borderStyle: "none solid solid solid",
   },
   colors,
+  cards: {
+    base: {
+      backdropStyle: {
+        // backgroundColor: "red",
+        backgroundColor: "#fff",
+        border: `1px solid ${colors.controlBorder}`,
+        padding: "0.5em",
+        position: "relative",
+
+        ":before, :after": {
+          // ":after": {
+          content: '""',
+          display: "block",
+          boxShadow: "0 2em 0.5em -1em #0002",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "transparent",
+          zIndex: -1,
+          transform: "rotate(5deg) translateY(-0.8em) translateX(1em)",
+        },
+
+        ":after": {
+          transform: "rotate(5deg) translateY(-0.8em) translateX(1em)",
+        },
+
+        ":before": {
+          transform: "rotate(-5deg) translateY(-0.8em) translateX(-1em)",
+        },
+      },
+      titleStyle: {
+        // backgroundColor: "red",
+      },
+    },
+    area: {
+      horizontalSpacing: "0.5em",
+      verticalSpacing: "1em",
+    },
+  },
 });
