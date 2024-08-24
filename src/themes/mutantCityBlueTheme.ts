@@ -105,6 +105,9 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
         position: "relative",
         borderRadius: "1em 0 1em 0",
         // transformStyle: "preserve-3d",
+        marginBottom: "4em",
+        // containerType: "size",
+        // zIndex: 1,
 
         ":before, :after": {
           content: '""',
@@ -112,7 +115,7 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
           boxShadow: "0 2em 0.5em -1em #0004",
           position: "absolute",
           // top: 0,
-          height: "3em",
+          height: "6em",
           left: 0,
           right: 0,
           bottom: 0,
@@ -122,11 +125,14 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
         },
 
         ":after": {
-          transform: "rotate(5deg) translateY(-0.8em) translateX(1em)",
+          borderBottomRightRadius: "2em",
+          transform:
+            "rotate(calc(4deg + 1deg)) translateY(-0.8em) translateX(1em) translateZ(-10px)",
         },
 
         ":before": {
-          transform: "rotate(-5deg) translateY(-0.8em) translateX(-1em)",
+          transform:
+            "rotate(-5deg) translateY(-0.8em) translateX(-1em) translateZ(-10px)",
         },
       },
       titleStyle: {
