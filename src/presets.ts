@@ -330,6 +330,12 @@ export const mutantCityBluesPreset: PresetV1 = {
       pluralName: "Stress Cards",
       styleKey: "stress",
     },
+    {
+      id: "grf",
+      singleName: "Genetic Risk Factor",
+      pluralName: "Genetic Risk Factors",
+      styleKey: "grf",
+    },
   ],
 };
 
