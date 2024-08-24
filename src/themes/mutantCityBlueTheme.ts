@@ -105,6 +105,11 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
         borderRadius: "1em 0 1em 0",
         transformStyle: "preserve-3d",
         marginBottom: "4em",
+        // we use a container query to set --shadow-rotate based on the width of
+        // the containing block. it would be sick if we could use a calc() here
+        // to calculate the ration of the width to a fioxed value and use that
+        // to scale the angle dynamically, but `\` in calc always produces a
+        // value with units (length in this case) so we can't use that.
         "--shadow-rotate": "5deg",
         "@container (width > 200px)": {
           "--shadow-rotate": "4deg",
@@ -143,9 +148,6 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
           transform:
             "rotate(calc(var(--shadow-rotate) * -1)) translateY(-0.8em) translateX(-1em) translateZ(-10px)",
         },
-      },
-      titleStyle: {
-        // backgroundColor: "red",
       },
       hoverStyle: {
         background: "radial-gradient(circle at 50% 20%, #fff 0%, #dee5f1 100%)",

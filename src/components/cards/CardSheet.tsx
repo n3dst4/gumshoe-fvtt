@@ -94,7 +94,7 @@ export const CardSheet: React.FC<CardSheetProps> = ({ card, application }) => {
             display: "flex",
             flexDirection: "column",
             overflow: "auto",
-            // create a stacking context
+            // create a containment context so the card can read themes
             containerType: "inline-size",
           }}
         >
