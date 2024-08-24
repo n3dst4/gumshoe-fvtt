@@ -136,6 +136,13 @@
       "system": "investigator",
       "path": "./packs/mutantCityBluesAbilities",
       "type": "Item"
+    },
+    {
+      "name": "mutantCityBluesCards",
+      "label": "Mutant City Blues Cards",
+      "system": "investigator",
+      "path": "./packs/mutantCityBluesCards",
+      "type": "Item"
     }
   ],
   "languages": [
