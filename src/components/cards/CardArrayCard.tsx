@@ -34,6 +34,8 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
   const showCategory = !(categorySetting === "categorized");
 
   return (
+    // opacity has to be applied on a wrapper otherwise we break transform-style
+    // (if used.) See https://stackoverflow.com/a/70627306/212676
     <div css={{ opacity: card.system.active ? 0.99 : 0.5 }}>
       <CardDisplay
         key={card.id}
