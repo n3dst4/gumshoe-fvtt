@@ -27,7 +27,8 @@
             "srdAbilities",
             "castingTheRunesAbilities",
             "esoterroristsAbilities",
-            "moribundWorldAbilities"
+            "moribundWorldAbilities",
+            "mutantCityBluesAbilities"
           ]
         },
         {
@@ -41,6 +42,12 @@
           "color": "#460c06",
           "sorting": "a",
           "packs": ["srdWeapons"]
+        },
+        {
+          "name": "Cards",
+          "color": "#460c06",
+          "sorting": "a",
+          "packs": ["mutantCityBluesStressCards"]
         }
       ]
     }
@@ -138,10 +145,10 @@
       "type": "Item"
     },
     {
-      "name": "mutantCityBluesCards",
-      "label": "Mutant City Blues Cards",
+      "name": "mutantCityBluesStressCards",
+      "label": "Mutant City Blues StressCards",
       "system": "investigator",
-      "path": "./packs/mutantCityBluesCards",
+      "path": "./packs/mutantCityBluesStressCards",
       "type": "Item"
     }
   ],
