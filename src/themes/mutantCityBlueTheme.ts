@@ -99,16 +99,19 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
     base: {
       backdropStyle: {
         // backgroundColor: "red",
-        backgroundColor: "#fff",
-        border: `1px solid ${colors.controlBorder}`,
+        background: "radial-gradient(circle at 50% 10%, #fff 0%, #eee 100%)",
+        border: "3px solid #999",
         padding: "0.5em",
         position: "relative",
+        borderRadius: "1em 0 1em 0",
+        // transformStyle: "preserve-3d",
 
         ":before, :after": {
           // ":after": {
           content: '""',
+          // opacity: 1,
           display: "block",
-          boxShadow: "0 2em 0.5em -1em #0002",
+          boxShadow: "0 2em 0.5em -1em #0004",
           position: "absolute",
           top: 0,
           left: 0,
@@ -129,6 +132,13 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
       },
       titleStyle: {
         // backgroundColor: "red",
+      },
+      hoverStyle: {
+        background: "radial-gradient(circle at 50% 20%, #fff 0%, #dee5f1 100%)",
+        border: "3px solid #666",
+        ":before, :after": {
+          boxShadow: "0 2em 0.5em -1em #0008",
+        },
       },
     },
     area: {
