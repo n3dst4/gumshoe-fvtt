@@ -34,25 +34,26 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
   const showCategory = !(categorySetting === "categorized");
 
   return (
-    <CardDisplay
-      key={card.id}
-      draggable
-      onDragStart={handleDragStart}
-      className={className}
-      card={card}
-      css={{
-        cursor: "pointer",
-        marginBottom: theme.cards.area.verticalSpacing,
-        opacity: card.system.active ? 1 : 0.5,
-        transition: "opacity 0.2s ease-in-out",
-        ":hover": {
-          ...theme.cards.base.hoverStyle,
-          ...theme.cards.categories[card.system.categoryId]?.hoverStyle,
-        },
-      }}
-      showCategory={showCategory}
-      viewMode={viewMode}
-    />
+    <div css={{ opacity: card.system.active ? 0.99 : 0.5 }}>
+      <CardDisplay
+        key={card.id}
+        draggable
+        onDragStart={handleDragStart}
+        className={`investigator-card-array-card ${className}`}
+        card={card}
+        css={{
+          cursor: "pointer",
+          marginBottom: theme.cards.area.verticalSpacing,
+          transition: "opacity 0.2s ease-in-out",
+          ":hover": {
+            ...theme.cards.base.hoverStyle,
+            ...theme.cards.categories[card.system.categoryId]?.hoverStyle,
+          },
+        }}
+        showCategory={showCategory}
+        viewMode={viewMode}
+      />
+    </div>
   );
 };
 
