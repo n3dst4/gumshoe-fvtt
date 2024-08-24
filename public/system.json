@@ -129,6 +129,13 @@
       "system": "investigator",
       "path": "./packs/niceBlackAgentsNPCAbilities",
       "type": "Item"
+    },
+    {
+      "name": "mutantCityBluesAbilities",
+      "label": "Mutant City Blues Abilities",
+      "system": "investigator",
+      "path": "./packs/mutantCityBluesAbilities",
+      "type": "Item"
     }
   ],
   "languages": [
