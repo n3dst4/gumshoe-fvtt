@@ -303,9 +303,10 @@ export class InvestigatorActor extends Actor {
   };
 
   getSheetThemeName(): string | null {
-    return isActiveCharacterActor(this)
-      ? this.system.sheetTheme
-      : settings.defaultThemeName.get();
+    return (
+      (isActiveCharacterActor(this) && this.system.sheetTheme) ||
+      settings.defaultThemeName.get()
+    );
   }
 
   setSheetTheme = async (sheetTheme: string | null): Promise<void> => {
