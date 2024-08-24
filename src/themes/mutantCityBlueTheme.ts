@@ -98,16 +98,26 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
   cards: {
     base: {
       backdropStyle: {
-        // backgroundColor: "red",
         background: "radial-gradient(circle at 50% 10%, #fff 0%, #eee 100%)",
         border: "3px solid #999",
         padding: "0.5em",
         position: "relative",
         borderRadius: "1em 0 1em 0",
-        // transformStyle: "preserve-3d",
+        transformStyle: "preserve-3d",
         marginBottom: "4em",
-        // containerType: "size",
-        // zIndex: 1,
+        "--shadow-rotate": "5deg",
+        "@container (width > 200px)": {
+          "--shadow-rotate": "4deg",
+        },
+        "@container (width > 400px)": {
+          "--shadow-rotate": "3deg",
+        },
+        "@container (width > 600px)": {
+          "--shadow-rotate": "2deg",
+        },
+        "@container (width > 800px)": {
+          "--shadow-rotate": "1deg",
+        },
 
         ":before, :after": {
           content: '""',
@@ -121,18 +131,17 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
           bottom: 0,
           backgroundColor: "transparent",
           zIndex: -1,
-          transform: "rotate(5deg) translateY(-0.8em) translateX(1em)",
         },
 
         ":after": {
           borderBottomRightRadius: "2em",
           transform:
-            "rotate(calc(4deg + 1deg)) translateY(-0.8em) translateX(1em) translateZ(-10px)",
+            "rotate(var(--shadow-rotate)) translateY(-0.8em) translateX(1em) translateZ(-10px)",
         },
 
         ":before": {
           transform:
-            "rotate(-5deg) translateY(-0.8em) translateX(-1em) translateZ(-10px)",
+            "rotate(calc(var(--shadow-rotate) * -1)) translateY(-0.8em) translateX(-1em) translateZ(-10px)",
         },
       },
       titleStyle: {
