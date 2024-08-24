@@ -297,7 +297,7 @@ export const mutantCityBluesPreset: PresetV1 = {
   displayName: "Mutant City Blues (built-in)",
   defaultThemeName: "mutantCityBlueTheme",
   investigativeAbilityCategories: ["Academic", "Interpersonal", "Technical"],
-  generalAbilityCategories: ["General"],
+  generalAbilityCategories: ["Focus", "Physical", "Presence"],
   combatAbilities: ["Scuffling", "Shooting"],
   occupationLabel: "Concept",
   personalDetails: [],
