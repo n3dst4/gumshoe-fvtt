@@ -24,6 +24,7 @@ import {
   NoteWithFormat,
 } from "../types";
 import {
+  AbilityItem,
   assertActiveCharacterActor,
   assertMwItem,
   assertNPCActor,
@@ -225,14 +226,13 @@ export class InvestigatorActor extends Actor {
   // ###########################################################################
   // ITEMS
 
-  getAbilityByName(
-    name: string,
-    type?: AbilityType,
-  ): InvestigatorItem | undefined {
+  getAbilityByName(name: string, type?: AbilityType): AbilityItem | undefined {
     return this.items.find(
       (item) =>
-        (type ? item.type === type : isAbilityItem(item)) && item.name === name,
-    );
+        isAbilityItem(item) &&
+        (type ? item.type === type : true) &&
+        item.name === name,
+    ) as AbilityItem | undefined;
   }
 
   getEquipment(): InvestigatorItem[] {

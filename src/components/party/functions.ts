@@ -3,12 +3,7 @@ import { assertGame } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
 import { AbilityType } from "../../types";
-import {
-  AbilityItem,
-  AnyItem,
-  assertAbilityItem,
-  isAbilityItem,
-} from "../../v10Types";
+import { AbilityItem, AnyItem, isAbilityItem } from "../../v10Types";
 import {
   abilityRowKey,
   ActorAbilityInfo,
@@ -118,7 +113,6 @@ export const buildRowData = (
       }
       const ability = actor.getAbilityByName(name ?? "", abilityType);
       if (actor.id !== null) {
-        assertAbilityItem(ability);
         const rating = ability?.system.rating ?? 0;
         actorInfo[actor.id] = {
           abilityId: ability?.id ?? undefined,
