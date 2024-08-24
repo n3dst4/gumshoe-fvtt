@@ -95,8 +95,7 @@ export const CardSheet: React.FC<CardSheetProps> = ({ card, application }) => {
             flexDirection: "column",
             overflow: "auto",
             // create a stacking context
-            position: "relative",
-            zIndex: 0,
+            containerType: "inline-size",
           }}
         >
           <CardDisplay card={card} showCategory={true} viewMode="full" />

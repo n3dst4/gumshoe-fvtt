@@ -36,7 +36,13 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
   return (
     // opacity has to be applied on a wrapper otherwise we break transform-style
     // (if used.) See https://stackoverflow.com/a/70627306/212676
-    <div css={{ opacity: card.system.active ? 0.99 : 0.5 }}>
+    <div
+      css={{
+        opacity: card.system.active ? 1 : 0.5,
+        transition: "opacity 0.2s ease-in-out",
+        containerType: "inline-size",
+      }}
+    >
       <CardDisplay
         key={card.id}
         draggable
@@ -46,7 +52,6 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
         css={{
           cursor: "pointer",
           marginBottom: theme.cards.area.verticalSpacing,
-          transition: "opacity 0.2s ease-in-out",
           ":hover": {
             ...theme.cards.base.hoverStyle,
             ...theme.cards.categories[card.system.categoryId]?.hoverStyle,
