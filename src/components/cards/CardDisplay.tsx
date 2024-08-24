@@ -56,13 +56,14 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       data-item-id={card.id}
       tabIndex={0}
       onClick={handleClick}
-      className={`card-display ${className} ${category?.cssClass}`}
+      className={`investigator-card-display ${className} ${category?.cssClass}`}
       css={{
         ...theme.cards.base.backdropStyle,
         ...theme.cards.categories[card.system.categoryId]?.backdropStyle,
       }}
     >
       <p
+        className="supertitle"
         css={{
           ...theme.cards.base.supertitleStyle,
           ...theme.cards.categories[card.system.categoryId]?.supertitleStyle,
@@ -73,6 +74,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
         {!isNullOrEmptyString(card.system.supertitle) && card.system.supertitle}
       </p>
       <h2
+        className="title"
         css={{
           ...theme.cards.base.titleStyle,
           ...theme.cards.categories[card.system.categoryId]?.titleStyle,
@@ -82,6 +84,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       </h2>
       {!isNullOrEmptyString(card.system.subtitle) && (
         <p
+          className="subtitle"
           css={{
             ...theme.cards.base.subtitleStyle,
             ...theme.cards.categories[card.system.categoryId]?.subtitleStyle,
@@ -92,6 +95,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       )}
       {showText && !isNullOrEmptyString(descriptionHTML) && (
         <p
+          className="description"
           css={{
             ...theme.cards.base.descriptionStyle,
             ...theme.cards.categories[card.system.categoryId]?.descriptionStyle,
@@ -101,6 +105,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       )}
       {showText && !isNullOrEmptyString(effectsHTML) && (
         <p
+          className="effects"
           css={{
             ...theme.cards.base.effectStyle,
             ...theme.cards.categories[card.system.categoryId]?.effectStyle,
