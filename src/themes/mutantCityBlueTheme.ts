@@ -107,13 +107,12 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
         // transformStyle: "preserve-3d",
 
         ":before, :after": {
-          // ":after": {
           content: '""',
-          // opacity: 1,
           display: "block",
           boxShadow: "0 2em 0.5em -1em #0004",
           position: "absolute",
-          top: 0,
+          // top: 0,
+          height: "3em",
           left: 0,
           right: 0,
           bottom: 0,
