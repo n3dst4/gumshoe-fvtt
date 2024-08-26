@@ -103,8 +103,8 @@ importers:
         specifier: workspace:^
         version: link:packages/investigator-fvtt-types
       '@swc/plugin-emotion':
-        specifier: ^3.0.10
-        version: 3.0.10
+        specifier: ^4.0.0
+        version: 4.0.0
       '@testing-library/jest-dom':
         specifier: ^6.4.8
         version: 6.4.8
@@ -766,6 +766,7 @@ packages:
 
   '@pixi/graphics-smooth@0.0.22':
     resolution: {integrity: sha512-qq2u+BJBIDBuuSTc2Xzm1D/8RiiKBdxnVDiMb7Go5v8achnV5ctC6m+rf8Mq0sWm66mbOqu1aq/9efT4A4sPrA==}
+    engines: {node: '>=14', npm: '>=7'}
     peerDependencies:
       '@pixi/constants': ^6.0.4
       '@pixi/core': ^6.0.4
@@ -1039,8 +1040,8 @@ packages:
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
 
-  '@swc/plugin-emotion@3.0.10':
-    resolution: {integrity: sha512-IIYGws4w7tUPISuzLjSykaY6JGoADh3Z350PZMvOGLEC+Yuxa8c6LERT+ljFl5BBs8kE/fZeS2msNK/KduxI9w==}
+  '@swc/plugin-emotion@4.0.0':
+    resolution: {integrity: sha512-lfsFPrOz0CHAV+n1ienEHL2nC3shJbN1t95eSvJWTGzf6Sues+Y0LF6Uo3Lc5/GXj1GaasmcagdqHBY9P0m73A==}
 
   '@swc/types@0.1.12':
     resolution: {integrity: sha512-wBJA+SdtkbFhHjTMYH+dEH1y4VpfGdAc2Kw/LK09i9bXd/K6j6PkDcFCEzb6iVfZMkPRrl/q0e3toqTAJdkIVA==}
@@ -4056,7 +4057,7 @@ snapshots:
 
   '@swc/counter@0.1.3': {}
 
-  '@swc/plugin-emotion@3.0.10':
+  '@swc/plugin-emotion@4.0.0':
     dependencies:
       '@swc/counter': 0.1.3
 
