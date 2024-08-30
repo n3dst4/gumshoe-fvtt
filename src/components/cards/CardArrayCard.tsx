@@ -1,6 +1,8 @@
 import { FoundryAppContext } from "@lumphammer/shared-fvtt-bits/src/FoundryAppContext";
 import React, { useCallback, useContext } from "react";
 
+import { getById } from "../../functions/utilities";
+import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { CardItem } from "../../v10Types";
 import { CardDisplay } from "./CardDisplay";
@@ -22,6 +24,11 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
     CardsAreaSettingsContext,
   );
 
+  const category = getById(
+    settings.cardCategories.get(),
+    card.system.categoryId,
+  );
+
   const handleDragStart = useCallback(
     (e: React.DragEvent<HTMLElement>) => {
       if (app !== null) {
@@ -32,6 +39,10 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
   );
 
   const showCategory = !(categorySetting === "categorized");
+
+  const categoryTheme = category?.styleKey
+    ? theme.cards.categories[category?.styleKey]
+    : null;
 
   return (
     // opacity has to be applied on a wrapper otherwise we break transform-style
@@ -54,7 +65,7 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
           marginBottom: theme.cards.area.verticalSpacing,
           ":hover": {
             ...theme.cards.base.hoverStyle,
-            ...theme.cards.categories[card.system.categoryId]?.hoverStyle,
+            ...categoryTheme?.hoverStyle,
           },
         }}
         showCategory={showCategory}

@@ -49,6 +49,10 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
     void cleanAndEnrichHtml(card.system.effects.html).then(setEffectsHTML);
   }, [card.system.effects.html]);
 
+  const categoryTheme = category?.styleKey
+    ? theme.cards.categories[category?.styleKey]
+    : null;
+
   return (
     <div
       draggable={draggable}
@@ -59,14 +63,14 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       className={`investigator-card-display ${className} ${category?.cssClass}`}
       css={{
         ...theme.cards.base.backdropStyle,
-        ...theme.cards.categories[card.system.categoryId]?.backdropStyle,
+        ...categoryTheme?.backdropStyle,
       }}
     >
       <p
         className="supertitle"
         css={{
           ...theme.cards.base.supertitleStyle,
-          ...theme.cards.categories[card.system.categoryId]?.supertitleStyle,
+          ...categoryTheme?.supertitleStyle,
         }}
       >
         {category && showCategory ? category.singleName : ""}
@@ -77,7 +81,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
         className="title"
         css={{
           ...theme.cards.base.titleStyle,
-          ...theme.cards.categories[card.system.categoryId]?.titleStyle,
+          ...categoryTheme?.titleStyle,
         }}
       >
         {card.name}
@@ -87,7 +91,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
           className="subtitle"
           css={{
             ...theme.cards.base.subtitleStyle,
-            ...theme.cards.categories[card.system.categoryId]?.subtitleStyle,
+            ...categoryTheme?.subtitleStyle,
           }}
         >
           {card.system.subtitle}
@@ -98,7 +102,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
           className="description"
           css={{
             ...theme.cards.base.descriptionStyle,
-            ...theme.cards.categories[card.system.categoryId]?.descriptionStyle,
+            ...categoryTheme?.descriptionStyle,
           }}
           dangerouslySetInnerHTML={{ __html: descriptionHTML }}
         ></p>
@@ -108,7 +112,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
           className="effects"
           css={{
             ...theme.cards.base.effectStyle,
-            ...theme.cards.categories[card.system.categoryId]?.effectStyle,
+            ...categoryTheme?.effectStyle,
           }}
           dangerouslySetInnerHTML={{ __html: effectsHTML }}
         ></p>
