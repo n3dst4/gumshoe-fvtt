@@ -98,13 +98,38 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
   cards: {
     base: {
       backdropStyle: {
-        background: "radial-gradient(circle at 50% 10%, #fff 0%, #eee 100%)",
+        // background: "radial-gradient(circle at 50% 10%, #fff 0%, #eee 100%)",
         border: "3px solid #999",
         padding: "0.5em",
         position: "relative",
         borderRadius: "1em 0 1em 0",
         transformStyle: "preserve-3d",
         marginBottom: "4em",
+
+        "--stripe1": stripe1,
+        "--stripe2": stripe2,
+        "--shine": "#fffb",
+        background: `
+          radial-gradient(
+            circle at 50% 10%,
+            var(--shine) 0%,
+            #fff0 100%
+          ),
+          repeating-linear-gradient(
+            45deg,
+            var(--stripe1) 0px,
+            var(--stripe1) 20px,
+            var(--stripe2) 20px,
+            var(--stripe2) 40px
+          ),
+          linear-gradient(
+            to bottom,
+            #fff 0%,
+            #fff 100%
+          )
+        `,
+        // backgroundBlendMode: "1 1 1",
+
         // we use a container query to set --shadow-rotate based on the width of
         // the containing block. it would be sick if we could use a calc() here
         // to calculate the ration of the width to a fioxed value and use that
@@ -150,7 +175,8 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
         },
       },
       hoverStyle: {
-        background: "radial-gradient(circle at 50% 20%, #fff 0%, #dee5f1 100%)",
+        // background: "radial-gradient(circle at 50% 20%, #fff 0%, #dee5f1 100%)",
+        "--shine": "#ffff",
         border: "3px solid #666",
         ":before, :after": {
           boxShadow: "0 2em 0.5em -1em #0008",
@@ -162,29 +188,20 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
         backdropStyle: {
           "--stripe1": "#f002",
           "--stripe2": "#f001",
-          background: `
-            radial-gradient(
-              circle at 50% 10%,
-              #ffff 0%,
-              #fff0 100%
-            ),
-            repeating-linear-gradient(
-              45deg,
-              var(--stripe1) 0px,
-              var(--stripe1) 20px,
-              var(--stripe2) 20px,
-              var(--stripe2) 40px
-            ),
-            linear-gradient(
-              to bottom,
-              #fff 0%,
-              #fff 100%
-            )
-          `,
           borderColor: "#633",
         },
         hoverStyle: {
           // background: "none",
+        },
+      },
+      stress: {
+        backdropStyle: {
+          "--stripe1": "#04b2",
+          "--stripe2": "#04b1",
+          borderColor: "#057",
+        },
+        hoverStyle: {
+          borderColor: "#068",
         },
       },
     },
