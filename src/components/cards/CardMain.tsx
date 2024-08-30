@@ -6,10 +6,10 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
-import { TextInput } from "../inputs/TextInput";
 import { TabContainer } from "../TabContainer";
 
 interface CardMainProps {
@@ -36,16 +36,19 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
     <>
       <InputGrid>
         <GridField label="Item Name">
-          <TextInput value={card.name ?? ""} onChange={card.setName} />
+          <AsyncTextInput value={card.name ?? ""} onChange={card.setName} />
         </GridField>
         <GridField label="Supertitle">
-          <TextInput
+          <AsyncTextInput
             value={card.system.supertitle}
             onChange={card.setSupertitle}
           />
         </GridField>
         <GridField label="Subtitle">
-          <TextInput value={card.system.subtitle} onChange={card.setSubtitle} />
+          <AsyncTextInput
+            value={card.system.subtitle}
+            onChange={card.setSubtitle}
+          />
         </GridField>
 
         <GridField label="Category">
