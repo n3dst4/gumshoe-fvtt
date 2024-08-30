@@ -157,6 +157,37 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
         },
       },
     },
+    categories: {
+      grf: {
+        backdropStyle: {
+          "--stripe1": "#f002",
+          "--stripe2": "#f001",
+          background: `
+            radial-gradient(
+              circle at 50% 10%,
+              #ffff 0%,
+              #fff0 100%
+            ),
+            repeating-linear-gradient(
+              45deg,
+              var(--stripe1) 0px,
+              var(--stripe1) 20px,
+              var(--stripe2) 20px,
+              var(--stripe2) 40px
+            ),
+            linear-gradient(
+              to bottom,
+              #fff 0%,
+              #fff 100%
+            )
+          `,
+          borderColor: "#633",
+        },
+        hoverStyle: {
+          // background: "none",
+        },
+      },
+    },
     area: {
       horizontalSpacing: "0.5em",
       verticalSpacing: "1em",
