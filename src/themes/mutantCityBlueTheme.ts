@@ -148,6 +148,12 @@ export const mutantCityBlueTheme: ThemeV1 = themeFactory({
         "@container (width > 800px)": {
           "--shadow-rotate": "1deg",
         },
+        "@container (width > 1200px)": {
+          "--shadow-rotate": "0.6deg",
+        },
+        "@container (width > 1600px)": {
+          "--shadow-rotate": "0.3deg",
+        },
 
         ":before, :after": {
           content: '""',
