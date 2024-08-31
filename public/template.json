@@ -190,7 +190,8 @@
       },
       "type": "",
       "flags": [],
-      "active": true
+      "active": true,
+      "continuity": false
     }
   }
 }

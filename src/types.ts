@@ -280,6 +280,7 @@ export interface CardSystemData {
   type: string;
   flags: string[];
   active: boolean;
+  continuity: boolean;
 }
 
 // #############################################################################
