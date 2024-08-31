@@ -7,6 +7,7 @@ import { settings } from "../../settings/settings";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { Checkbox } from "../inputs/Checkbox";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
@@ -76,6 +77,12 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
               </select>
             </div>
           </div>
+        </GridField>
+        <GridField label="Continuity">
+          <Checkbox
+            checked={card.system.continuity}
+            onChange={card.setContinuity}
+          />
         </GridField>
       </InputGrid>
       <div

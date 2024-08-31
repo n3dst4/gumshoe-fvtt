@@ -551,6 +551,11 @@ export class InvestigatorItem extends Item {
     await this.update({ system: { active } });
   };
 
+  setContinuity = async (continuity: boolean): Promise<void> => {
+    assertCardItem(this);
+    await this.update({ system: { continuity } });
+  };
+
   // ---------------------------------------------------------------------------
   // MW specific fields
 
