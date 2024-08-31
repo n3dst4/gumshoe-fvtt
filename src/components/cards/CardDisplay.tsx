@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
+import { getTranslated } from "../../functions/getTranslated";
 import { cleanAndEnrichHtml } from "../../functions/textFunctions";
 import { getById, isNullOrEmptyString } from "../../functions/utilities";
 import { settings } from "../../settings/settings";
@@ -53,6 +54,21 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
     ? theme.cards.categories[category?.styleKey]
     : null;
 
+  const supertitleText = [
+    // category name
+    category && showCategory ? category.singleName : null,
+    // active
+    !card.system.active ? getTranslated("Inactive") : null,
+    // continuity
+    card.system.continuity ? getTranslated("Continuity") : null,
+    // supertitle text
+    !isNullOrEmptyString(card.system.supertitle)
+      ? card.system.supertitle
+      : null,
+  ]
+    .filter(Boolean)
+    .join(" / ");
+
   return (
     <div
       draggable={draggable}
@@ -73,9 +89,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
           ...categoryTheme?.supertitleStyle,
         }}
       >
-        {category && showCategory ? category.singleName : ""}
-        {"  "}
-        {!isNullOrEmptyString(card.system.supertitle) && card.system.supertitle}
+        {supertitleText}
       </p>
       <h2
         className="title"
