@@ -56,42 +56,44 @@ export const NestedPanel = memo<NestedPanelProps>(
     }, [currentStep]);
 
     return (
-      <section
-        ref={ref}
-        className={className}
-        onKeyDown={handleKeyDown}
-        css={{
-          position: "absolute",
-          top: 0,
-          left: margin,
-          right: 0,
-          bottom: 0,
-          padding: "1em",
-          backgroundColor: theme.colors.bgOpaquePrimary,
-          boxShadow: `0 0 min(${margin}, ${defaultPanelMargin}) 0 #0007`,
-          overflow: "auto",
-          borderLeft: `1px solid ${theme.colors.controlBorder}`,
-          display: "flex",
-          flexDirection: "column",
-          pointerEvents: "all",
-        }}
-      >
-        <div className="nav-bar">
-          <Link to="up">
-            <FaArrowLeft /> <span css={{ verticalAlign: "top" }}>Back</span>
-          </Link>
-        </div>
-        {/* actual children */}
-        <div
-          ref={childrenAreaRef}
-          className="children-box"
-          css={{ flex: 1, paddingTop: "1em" }}
+      <>
+        <section
+          ref={ref}
+          className={className}
+          onKeyDown={handleKeyDown}
+          css={{
+            position: "absolute",
+            top: 0,
+            left: margin,
+            right: 0,
+            bottom: 0,
+            padding: "1em",
+            backgroundColor: theme.colors.bgOpaquePrimary,
+            boxShadow: `0 0 min(${margin}, ${defaultPanelMargin}) 0 #0007`,
+            overflow: "auto",
+            borderLeft: `1px solid ${theme.colors.controlBorder}`,
+            display: "flex",
+            flexDirection: "column",
+            pointerEvents: "all",
+          }}
         >
-          {children}
-        </div>
-        {false && <DevTools />}
-        {/* <DevTools /> */}
-      </section>
+          <div className="nav-bar">
+            <Link to="up">
+              <FaArrowLeft /> <span css={{ verticalAlign: "top" }}>Back</span>
+            </Link>
+          </div>
+          {/* actual children */}
+          <div
+            ref={childrenAreaRef}
+            className="children-box"
+            css={{ flex: 1, paddingTop: "1em" }}
+          >
+            {children}
+          </div>
+          {false && <DevTools />}
+          {/* <DevTools /> */}
+        </section>
+      </>
     );
   },
 );

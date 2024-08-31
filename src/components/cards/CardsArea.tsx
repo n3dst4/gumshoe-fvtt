@@ -1,5 +1,6 @@
 import { createDirection, Link, Router } from "@lumphammer/minirouter";
 import React, { useCallback, useEffect, useState } from "react";
+import { FaArrowRight } from "react-icons/fa6";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { sortEntitiesByName } from "../../functions/utilities";
@@ -99,11 +100,13 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
               gap: "0.5em",
             }}
           >
-            <div css={{ flex: 1 }} />
-            <Link to={settingsDirection()}>Settings </Link>
             <Button onClick={handleClickCreateCard}>
               {getTranslated("Create card")}
             </Button>
+            <div css={{ flex: 1 }} />
+            <Link to={settingsDirection()}>
+              Settings <FaArrowRight css={{ verticalAlign: "bottom" }} />
+            </Link>
           </div>
           <div
             className="container-ref-haver"
@@ -124,6 +127,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           margin={"10em"}
           direction={settingsDirection}
           css={{ display: "flex", flexDirection: "column" }}
+          closeOnClickOutside
         >
           <CardsAreaSettingsSheet
             settings={cardsAreaSettings}
@@ -134,3 +138,4 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
     </CardsAreaSettingsContext.Provider>
   );
 };
+//
