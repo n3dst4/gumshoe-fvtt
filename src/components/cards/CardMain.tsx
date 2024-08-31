@@ -83,7 +83,7 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
         css={{
           flex: 1,
           position: "relative",
-          margin: "0.5em",
+          marginTop: "0.5em",
         }}
       >
         <TabContainer
