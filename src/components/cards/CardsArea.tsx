@@ -1,31 +1,28 @@
+import { createDirection, Link, Router } from "@lumphammer/minirouter";
 import React, { useCallback, useEffect, useState } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import { settings } from "../../settings/settings";
 import { assertPCActor, isCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { Button } from "../inputs/Button";
+import { SlideInNestedPanelRoute } from "../nestedPanels/SlideInNestedPanelRoute";
 import { CardArray } from "./CardArray";
+import { CardsAreaSettingsSheet } from "./CardsAreaSettings";
 import { CategorizedCards } from "./CategorizedCards";
 import { CardsAreaSettingsContext } from "./contexts";
-import {
-  CardsAreaSettings,
-  CardsCategoryMode,
-  CardsColumnWidth,
-  CardsSortOrder,
-  CardsViewMode,
-} from "./types";
+import { CardsAreaSettings } from "./types";
 
 interface CardsAreaProps {
   actor: InvestigatorActor;
 }
 
+const settingsDirection = createDirection("settings");
+
 export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
   assertPCActor(actor);
   const allCards = actor.items.filter((item) => isCardItem(item));
-  const categories = settings.cardCategories.get();
 
   // local settings state for rapid updates
   const [cardsAreaSettings, setCardsAreaSettings] = useState<CardsAreaSettings>(
@@ -84,96 +81,56 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
 
   return (
     <CardsAreaSettingsContext.Provider value={cardsAreaSettings}>
-      <div
-        css={{
-          ...absoluteCover,
-          display: "flex",
-          flexDirection: "column",
-          padding: "0.5em",
-        }}
-      >
+      <Router>
         <div
           css={{
+            ...absoluteCover,
             display: "flex",
-            flexDirection: "row",
-            gap: "0.5em",
+            flexDirection: "column",
+            padding: "0.5em",
           }}
         >
-          {/* category */}
-          {categories.length > 1 && (
-            <select
-              value={cardsAreaSettings.category}
-              onChange={(e) => {
-                updateCardsAreaSettings({
-                  category: e.currentTarget.value as CardsCategoryMode,
-                });
-              }}
-            >
-              <option value="all">{getTranslated("All")}</option>
-              <option value="categorized">
-                {getTranslated("Categorized")}
-              </option>
-            </select>
-          )}
-          {/* sort order */}
-          <select
-            value={cardsAreaSettings.sortOrder}
-            onChange={(e) => {
-              updateCardsAreaSettings({
-                sortOrder: e.currentTarget.value as CardsSortOrder,
-              });
+          <div
+            css={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "end",
+              flexDirection: "row",
+              gap: "0.5em",
             }}
           >
-            <option value="newest">{getTranslated("Newest")}</option>
-            <option value="oldest">{getTranslated("Oldest")}</option>
-            <option value="atoz">{"A — Z"}</option>
-            <option value="ztoa">{"Z — A"}</option>
-          </select>
-          {/* view mode */}
-          <select
-            value={cardsAreaSettings.viewMode}
-            onChange={(e) => {
-              updateCardsAreaSettings({
-                viewMode: e.currentTarget.value as CardsViewMode,
-              });
+            <div css={{ flex: 1 }} />
+            <Link to={settingsDirection()}>Settings </Link>
+            <Button onClick={handleClickCreateCard}>
+              {getTranslated("Create card")}
+            </Button>
+          </div>
+          <div
+            className="container-ref-haver"
+            ref={containerRef}
+            css={{
+              flex: 1,
+              overflow: "auto",
             }}
           >
-            <option value="short">{getTranslated("Short")}</option>
-            <option value="full">{getTranslated("Full")}</option>
-          </select>
-          {/* column width */}
-          <select
-            value={cardsAreaSettings.columnWidth}
-            onChange={(e) => {
-              updateCardsAreaSettings({
-                columnWidth: e.currentTarget.value as CardsColumnWidth,
-              });
-            }}
-          >
-            <option value="narrow">{getTranslated("Narrow")}</option>
-            <option value="wide">{getTranslated("Wide")}</option>
-            <option value="full">{getTranslated("Full width")}</option>
-          </select>
-          <div css={{ flex: 1 }} />
-          <Button onClick={handleClickCreateCard}>
-            {getTranslated("Create card")}
-          </Button>
+            {cardsAreaSettings.category === "categorized" ? (
+              <CategorizedCards cards={cards} />
+            ) : (
+              <CardArray cards={cards} />
+            )}
+          </div>
         </div>
-        <div
-          className="container-ref-haver"
-          ref={containerRef}
-          css={{
-            flex: 1,
-            overflow: "auto",
-          }}
+        <SlideInNestedPanelRoute
+          margin={"10em"}
+          direction={settingsDirection}
+          css={{ display: "flex", flexDirection: "column" }}
         >
-          {cardsAreaSettings.category === "categorized" ? (
-            <CategorizedCards cards={cards} />
-          ) : (
-            <CardArray cards={cards} />
-          )}
-        </div>
-      </div>
+          <CardsAreaSettingsSheet
+            settings={cardsAreaSettings}
+            onChangeSettings={updateCardsAreaSettings}
+          />
+        </SlideInNestedPanelRoute>
+      </Router>
     </CardsAreaSettingsContext.Provider>
   );
 };

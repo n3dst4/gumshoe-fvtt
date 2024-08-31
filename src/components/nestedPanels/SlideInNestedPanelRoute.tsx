@@ -6,13 +6,16 @@ import { NestedPanel } from "./NestedPanel";
 
 type SlideInNestedPanelRouteProps = PropsWithChildrenAndDirection<{
   className?: string;
+  margin?: string | number;
 }>;
 
 export const SlideInNestedPanelRoute = React.memo<SlideInNestedPanelRouteProps>(
-  ({ children, direction, className }) => {
+  ({ children, direction, className, margin }) => {
     return (
       <SlideInRoute direction={direction}>
-        <NestedPanel className={className}>{children}</NestedPanel>
+        <NestedPanel className={className} margin={margin}>
+          {children}
+        </NestedPanel>
       </SlideInRoute>
     );
   },

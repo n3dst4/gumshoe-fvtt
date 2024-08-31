@@ -215,5 +215,16 @@
   "investigator.DeleteCardName": "Delete \"{CardName}\"?",
   "investigator.CreateCard": "Create card",
   "investigator.Continuity": "Continuity",
-  "investigator.Inactive": "Inactive"
+  "investigator.Inactive": "Inactive",
+  "investigator.Settings": "Settings",
+  "investigator.SortOrder": "Sort order",
+  "investigator.ViewMode": "View mode",
+  "investigator.ColumnWidth": "Column width",
+  "investigator.Together": "Together",
+  "investigator.Separate": "Separate",
+  "investigator.Categories": "Categories",
+  "investigator.NewestFirst": "Newest first",
+  "investigator.OldestFirst": "Oldest first",
+  "investigator.A—Z": "A — Z",
+  "investigator.Z—A": "Z — A"
 }
