@@ -135,7 +135,8 @@
       "mwTrumpedBy": "",
       "mwRefreshGroup": 2,
       "combatBonus": 0,
-      "damageBonus": 0
+      "damageBonus": 0,
+      "isPushPool": false
     },
     "equipment": {
       "templates": ["notes"],

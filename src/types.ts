@@ -241,6 +241,7 @@ export interface GeneralAbilitySystemData extends BaseAbilitySystemData {
   mwRefreshGroup: MwRefreshGroup;
   combatBonus: number;
   damageBonus: number;
+  isPushPool: boolean;
 }
 
 export type MwType =

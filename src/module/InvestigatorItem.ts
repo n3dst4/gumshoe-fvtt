@@ -790,6 +790,11 @@ export class InvestigatorItem extends Item {
     assertCardItem(this);
     return this.update({ system: { effects } });
   };
+
+  setIsPushPool = async (isPushPool: boolean): Promise<void> => {
+    assertGeneralAbilityItem(this);
+    await this.update({ system: { isPushPool } });
+  };
 }
 
 declare global {
