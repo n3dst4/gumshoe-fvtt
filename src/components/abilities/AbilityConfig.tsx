@@ -213,6 +213,15 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
           />
         </GridField>
       )}
+      {isGeneralAbilityItem(ability) && (
+        <GridField label="IsAPushPool">
+          <AsyncCheckbox
+            checked={ability.system.isPushPool}
+            onChange={ability.setIsPushPool}
+          />
+        </GridField>
+      )}
+
       {settings.useMwStyleAbilities.get() && isGeneralAbilityItem(ability) && (
         <GridField label="Refresh group">
           <select
