@@ -226,5 +226,7 @@
   "investigator.NewestFirst": "Newest first",
   "investigator.OldestFirst": "Oldest first",
   "investigator.A—Z": "A — Z",
-  "investigator.Z—A": "Z — A"
+  "investigator.Z—A": "Z — A",
+  "investigator.EndScenario": "End scenario",
+  "investigator.EndScenarioDiscardCountNonContinuityCards": "End Scenario (discard {Count} non-continuity cards)?"
 }

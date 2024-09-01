@@ -31,8 +31,10 @@ import {
   assertPartyActor,
   assertPCActor,
   assertPersonalDetailItem,
+  CardItem,
   isAbilityItem,
   isActiveCharacterActor,
+  isCardItem,
   isEquipmentItem,
   isGeneralAbilityItem,
   isMwItem,
@@ -506,6 +508,23 @@ export class InvestigatorActor extends Actor {
   ): Promise<void> => {
     assertPCActor(this);
     await this.update({ system: { cardsAreaSettings } });
+  };
+
+  getNonContinuityCards = (): CardItem[] => {
+    assertPCActor(this);
+    return this.items.filter(
+      (item): item is CardItem => isCardItem(item) && !item.system.continuity,
+    );
+  };
+
+  endScenario = async (): Promise<void> => {
+    assertPCActor(this);
+    const nonContinuityCards = this.getNonContinuityCards();
+    const ids = nonContinuityCards
+      .map((c) => c.id)
+      .filter((id): id is string => id !== null);
+    await this.deleteEmbeddedDocuments("Item", ids);
+    await this.update({ system: { scenario: null } });
   };
 
   createPersonalDetail = async (

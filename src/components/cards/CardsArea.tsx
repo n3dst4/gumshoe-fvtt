@@ -2,6 +2,7 @@ import { createDirection, Link, Router } from "@lumphammer/minirouter";
 import React, { useCallback, useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
 
+import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { getTranslated } from "../../functions/getTranslated";
 import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
@@ -65,6 +66,24 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
     void actor.createCard();
   }, [actor]);
 
+  const handleClickEndScenario = useCallback(async () => {
+    const cardsCount = actor.getNonContinuityCards().length;
+    const yes = await confirmADoodleDo({
+      message: "EndScenarioDiscardCountNonContinuityCards",
+      confirmText: "EndScenario",
+      cancelText: "Cancel",
+      confirmIconClass: "fa-fire",
+      resolveFalseOnCancel: true,
+      values: {
+        ActorName: actor.name ?? "",
+        Count: cardsCount,
+      },
+    });
+    if (yes) {
+      void actor.endScenario();
+    }
+  }, [actor]);
+
   let cards =
     cardsAreaSettings.sortOrder === "atoz" ||
     cardsAreaSettings.sortOrder === "ztoa"
@@ -102,6 +121,9 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
           >
             <Button onClick={handleClickCreateCard}>
               {getTranslated("Create card")}
+            </Button>
+            <Button onClick={handleClickEndScenario}>
+              {getTranslated("End scenario")}
             </Button>
             <div css={{ flex: 1 }} />
             <Link to={settingsDirection()}>
