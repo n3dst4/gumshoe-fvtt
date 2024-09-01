@@ -78,6 +78,12 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
 
   const useMwStyleAbilities = settings.useMwStyleAbilities.get();
 
+  const poolMax = useMwStyleAbilities
+    ? undefined
+    : ability.system.allowPoolToExceedRating
+      ? ability.system.max
+      : ability.system.rating - 1;
+
   return (
     <InputGrid
       css={{
@@ -94,7 +100,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
         >
           <AsyncNumberInput
             min={0}
-            max={useMwStyleAbilities ? undefined : ability.system.rating}
+            max={poolMax}
             value={ability.system.pool}
             onChange={ability.setPool}
             css={{
