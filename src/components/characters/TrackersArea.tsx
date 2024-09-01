@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 
 import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { isGeneralAbilityItem } from "../../v10Types";
 import { PoolTracker } from "../abilities/PoolTracker";
 
 type TrackersAreaProps = {
@@ -8,11 +9,21 @@ type TrackersAreaProps = {
 };
 
 export const TrackersArea: React.FC<TrackersAreaProps> = ({ actor }) => {
-  const abs = actor.getTrackerAbilities();
+  const abilities = actor.getTrackerAbilities().toSorted((a, b) => {
+    const aIsPushPool = isGeneralAbilityItem(a) && a.system.isPushPool;
+    const bIsPushPool = isGeneralAbilityItem(b) && b.system.isPushPool;
+    if (aIsPushPool && !bIsPushPool) {
+      return -1;
+    } else if (!aIsPushPool && bIsPushPool) {
+      return 1;
+    } else {
+      return (a.name ?? "").localeCompare(b.name ?? "");
+    }
+  });
 
   return (
     <Fragment>
-      {abs.map<JSX.Element>((ability, i) => (
+      {abilities.map<JSX.Element>((ability, i) => (
         <PoolTracker key={`${ability.name}-- ${i}`} ability={ability} />
       ))}
     </Fragment>

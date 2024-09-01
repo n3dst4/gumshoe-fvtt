@@ -24,11 +24,13 @@ type PoolTrackerProps = {
 export const PoolTracker: React.FC<PoolTrackerProps> = ({ ability }) => {
   assertAbilityItem(ability);
   const min = ability?.system.min ?? 0;
-  const max = ability?.system.rating;
+  const max = ability.system.allowPoolToExceedRating
+    ? ability.system.max
+    : ability?.system.rating;
   const vals = range(min, max);
 
   const handleClickPush = React.useCallback(() => {
-    void ability.setPool(ability.system.pool - 1);
+    void ability.setPool(Math.max(0, ability.system.pool - 1));
   }, [ability]);
 
   return (
@@ -63,6 +65,7 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({ ability }) => {
             width: "auto",
             marginTop: "0.5em",
           }}
+          disabled={ability.system.pool === 0}
           onClick={handleClickPush}
         >
           Push

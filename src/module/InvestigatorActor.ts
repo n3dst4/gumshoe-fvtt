@@ -273,9 +273,10 @@ export class InvestigatorActor extends Actor {
     return items;
   }
 
-  getTrackerAbilities(): InvestigatorItem[] {
+  getTrackerAbilities(): AbilityItem[] {
     return this.getAbilities().filter(
-      (item) => isAbilityItem(item) && item.system.showTracker,
+      (item): item is AbilityItem =>
+        isAbilityItem(item) && item.system.showTracker,
     );
   }
 
