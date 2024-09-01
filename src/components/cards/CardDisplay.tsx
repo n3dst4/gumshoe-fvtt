@@ -82,15 +82,17 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
         ...categoryTheme?.backdropStyle,
       }}
     >
-      <p
-        className="supertitle"
-        css={{
-          ...theme.cards.base.supertitleStyle,
-          ...categoryTheme?.supertitleStyle,
-        }}
-      >
-        {supertitleText}
-      </p>
+      {supertitleText && (
+        <p
+          className="supertitle"
+          css={{
+            ...theme.cards.base.supertitleStyle,
+            ...categoryTheme?.supertitleStyle,
+          }}
+        >
+          {supertitleText}
+        </p>
+      )}
       <h2
         className="title"
         css={{
