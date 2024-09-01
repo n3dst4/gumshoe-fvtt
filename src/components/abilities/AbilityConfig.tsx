@@ -221,6 +221,12 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
           />
         </GridField>
       )}
+      <GridField label="AllowPoolToExceedRating">
+        <AsyncCheckbox
+          checked={ability.system.allowPoolToExceedRating}
+          onChange={ability.setAllowPoolToExceedRating}
+        />
+      </GridField>
 
       {settings.useMwStyleAbilities.get() && isGeneralAbilityItem(ability) && (
         <GridField label="Refresh group">

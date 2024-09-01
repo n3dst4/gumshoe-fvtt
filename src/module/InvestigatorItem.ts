@@ -795,6 +795,13 @@ export class InvestigatorItem extends Item {
     assertGeneralAbilityItem(this);
     await this.update({ system: { isPushPool } });
   };
+
+  setAllowPoolToExceedRating = async (
+    allowPoolToExceedRating: boolean,
+  ): Promise<void> => {
+    assertGeneralAbilityItem(this);
+    await this.update({ system: { allowPoolToExceedRating } });
+  };
 }
 
 declare global {

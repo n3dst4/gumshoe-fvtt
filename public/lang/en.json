@@ -229,5 +229,6 @@
   "investigator.Z—A": "Z — A",
   "investigator.EndScenario": "End scenario",
   "investigator.EndScenarioDiscardCountNonContinuityCards": "End Scenario (discard {Count} non-continuity cards)?",
-  "investigator.IsAPushPool": "Is a Push Pool?"
+  "investigator.IsAPushPool": "Is a Push Pool?",
+  "investigator.AllowPoolToExceedRating": "Allow pool to exceed rating?"
 }

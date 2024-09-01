@@ -119,7 +119,8 @@
         "excludeFromGeneralRefresh": false,
         "refreshesDaily": false,
         "unlocks": [],
-        "situationalModifiers": []
+        "situationalModifiers": [],
+        "allowPoolToExceedRating": false
       }
     },
     "investigativeAbility": {

@@ -223,6 +223,7 @@ interface BaseAbilitySystemData {
   hideIfZeroRated: boolean;
   unlocks: Unlock[];
   situationalModifiers: SituationalModifier[];
+  allowPoolToExceedRating: boolean;
 }
 
 /** system data forinvestigative abilities */
