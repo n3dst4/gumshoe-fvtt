@@ -213,12 +213,6 @@ export const NPCSheetFull = ({
                       html={actor.system.notes.html}
                       source={actor.system.notes.source}
                       onSave={actor.setNotes}
-                      css={{
-                        height: "100%",
-                        "&&": {
-                          resize: "none",
-                        },
-                      }}
                     />
                   </NotesTypeContext.Provider>
                 </InputGrid>
@@ -242,12 +236,6 @@ export const NPCSheetFull = ({
                       html={actor.system.gmNotes.html}
                       source={actor.system.gmNotes.source}
                       onSave={actor.setGMNotes}
-                      css={{
-                        height: "100%",
-                        "&&": {
-                          resize: "none",
-                        },
-                      }}
                     />
                   </NotesTypeContext.Provider>
                 </InputGrid>

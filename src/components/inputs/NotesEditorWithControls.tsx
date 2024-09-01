@@ -130,7 +130,7 @@ export const NotesEditorWithControls: React.FC<
 
   return (
     <div
-      className="notes-editor-with-controls"
+      className={`notes-editor-with-controls ${className}`}
       css={{
         gridColumn: "label / end",
         position: "relative",
@@ -236,7 +236,7 @@ export const NotesEditorWithControls: React.FC<
           source={liveSource}
           html={liveHtml}
           format={liveFormat}
-          className={className}
+          // className={className}
           editMode={editMode}
           showSource={showSource}
           onSetSource={handleSetSource}

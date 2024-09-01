@@ -139,12 +139,6 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
                     html={card.system.effects.html}
                     source={card.system.effects.source}
                     onSave={card.setEffects}
-                    css={{
-                      height: "100%",
-                      "&&": {
-                        resize: "none",
-                      },
-                    }}
                   />
                 </InputGrid>
               ),

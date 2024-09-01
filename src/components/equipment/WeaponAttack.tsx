@@ -256,12 +256,6 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
           html={weapon.system.notes.html}
           source={weapon.system.notes.source}
           onSave={weapon.setNotes}
-          css={{
-            height: "100%",
-            "&&": {
-              resize: "none",
-            },
-          }}
         />
         <GridField label="Bonus pool">
           <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />

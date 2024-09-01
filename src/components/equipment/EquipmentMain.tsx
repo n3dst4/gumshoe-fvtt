@@ -97,12 +97,6 @@ export const EquipmentMain: React.FC<EquipmentMainProps> = ({
         html={equipment.system.notes.html}
         source={equipment.system.notes.source}
         onSave={equipment.setNotes}
-        css={{
-          height: "100%",
-          "&&": {
-            resize: "none",
-          },
-        }}
       />
     </InputGrid>
   );

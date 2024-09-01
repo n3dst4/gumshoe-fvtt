@@ -2,7 +2,10 @@ import React, { Fragment } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
-import { isGeneralAbilityItem } from "../../v10Types";
+import {
+  isGeneralAbilityItem,
+  isInvestigativeAbilityItem,
+} from "../../v10Types";
 import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
 import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";
 import { ItemSheetMode } from "../ItemSheetFramework/types";
@@ -47,7 +50,8 @@ export const AbilitySheet: React.FC<AbilitySheetProps> = ({
           {/* Spending/testing area */}
           {ability.isOwned && useMwStyleAbilities ? (
             <AbilityTestMW ability={ability} />
-          ) : (
+          ) : isInvestigativeAbilityItem(ability) &&
+            ability.system.isQuickShock ? null : (
             <AbilityTest ability={ability} />
           )}
           <AbilityMainBits ability={ability} />
