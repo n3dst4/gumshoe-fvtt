@@ -227,8 +227,9 @@ interface BaseAbilitySystemData {
 }
 
 /** system data forinvestigative abilities */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface InvestigativeAbilitySystemData extends BaseAbilitySystemData {}
+export interface InvestigativeAbilitySystemData extends BaseAbilitySystemData {
+  isQuickShock: boolean;
+}
 
 export type MwRefreshGroup = 2 | 4 | 8;
 

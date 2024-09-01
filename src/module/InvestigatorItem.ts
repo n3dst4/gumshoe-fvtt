@@ -25,6 +25,7 @@ import {
   assertEquipmentItem,
   assertEquipmentOrAbilityItem,
   assertGeneralAbilityItem,
+  assertInvestigativeAbilityItem,
   assertMwItem,
   assertPersonalDetailItem,
   assertWeaponItem,
@@ -801,6 +802,11 @@ export class InvestigatorItem extends Item {
   ): Promise<void> => {
     assertGeneralAbilityItem(this);
     await this.update({ system: { allowPoolToExceedRating } });
+  };
+
+  setIsQuickShock = async (isQuickShock: boolean): Promise<void> => {
+    assertInvestigativeAbilityItem(this);
+    await this.update({ system: { isQuickShock } });
   };
 }
 

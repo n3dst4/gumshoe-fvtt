@@ -125,7 +125,8 @@
     },
     "investigativeAbility": {
       "templates": ["notes", "ability"],
-      "hideIfZeroRated": true
+      "hideIfZeroRated": true,
+      "isQuickShock": false
     },
     "generalAbility": {
       "templates": ["notes", "ability"],
