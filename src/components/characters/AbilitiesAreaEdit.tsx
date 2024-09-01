@@ -25,6 +25,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
   const { investigativeAbilities, generalAbilities } = useAbilities(
     actor,
     false,
+    false,
   );
   const hideInv = settings.useMwStyleAbilities.get();
   const showOcc = showOccProp && !hideInv;

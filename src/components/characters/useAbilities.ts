@@ -3,7 +3,14 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
 import { isAbilityItem } from "../../v10Types";
 
-export const useAbilities = (actor: Actor, hideZeroRated: boolean) => {
+export const useAbilities = (
+  actor: Actor,
+  hideZeroRated: boolean,
+  hidePushPool: boolean,
+) => {
+  // why is this a hook? what was I thinking 3 years ago? it's lieterally just
+  // a function.
+
   const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
   const generalAbilities: { [category: string]: InvestigatorItem[] } = {};
   const systemInvestigativeCats = settings.investigativeAbilityCategories.get();
@@ -33,6 +40,9 @@ export const useAbilities = (actor: Actor, hideZeroRated: boolean) => {
       }
       investigativeAbilities[cat].push(item);
     } else if (item.type === generalAbility) {
+      if (hidePushPool && item.system.isPushPool) {
+        continue;
+      }
       const cat = item.system.category || "Uncategorised";
       if (generalAbilities[cat] === undefined) {
         generalAbilities[cat] = [];

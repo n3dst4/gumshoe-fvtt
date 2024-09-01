@@ -21,6 +21,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
   const { investigativeAbilities, generalAbilities } = useAbilities(
     actor,
     true,
+    true,
   );
   const showEmpty = settings.showEmptyInvestigativeCategories.get();
 
