@@ -3,10 +3,7 @@ import React, { Fragment } from "react";
 import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
-import {
-  assertActiveCharacterActor,
-  isInvestigativeAbilityItem,
-} from "../../v10Types";
+import { assertActiveCharacterActor } from "../../v10Types";
 import { AbilitySlugPlayNormal } from "./AbilitySlugPlayNormal";
 import { AbilitySlugPlayQuickShockInvestigative } from "./AbilitySlugPlayQuickShockInvestigative";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
