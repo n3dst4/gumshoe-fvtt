@@ -28,7 +28,8 @@
             "castingTheRunesAbilities",
             "esoterroristsAbilities",
             "moribundWorldAbilities",
-            "mutantCityBluesAbilities"
+            "mutantCityBluesAbilities",
+            "mutantCityBluesPowers"
           ]
         },
         {
@@ -47,7 +48,10 @@
           "name": "Cards",
           "color": "#460c06",
           "sorting": "a",
-          "packs": ["mutantCityBluesStressCards"]
+          "packs": [
+            "mutantCityBluesStressCards",
+            "mutantCityBluesGeneticRiskFactors"
+          ]
         }
       ]
     }
@@ -145,10 +149,24 @@
       "type": "Item"
     },
     {
+      "name": "mutantCityBluesPowers",
+      "label": "Mutant City Blues Mutant Powers",
+      "system": "investigator",
+      "path": "./packs/mutantCityBluesPowers",
+      "type": "Item"
+    },
+    {
       "name": "mutantCityBluesStressCards",
-      "label": "Mutant City Blues StressCards",
+      "label": "Mutant City Blues Stress Cards",
       "system": "investigator",
       "path": "./packs/mutantCityBluesStressCards",
+      "type": "Item"
+    },
+    {
+      "name": "mutantCityBluesGeneticRiskFactors",
+      "label": "Mutant City Blues Genetic Risk Factors",
+      "system": "investigator",
+      "path": "./packs/mutantCityBluesGeneticRiskFactors",
       "type": "Item"
     }
   ],
