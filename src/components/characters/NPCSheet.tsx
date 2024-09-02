@@ -19,7 +19,7 @@ export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
   assertGame(game);
 
   const user = game.user;
-  const myLevel = user ? actor.getUserLevel(user) ?? 0 : 0;
+  const myLevel = user ? (actor.getUserLevel(user) ?? 0) : 0;
 
   // @ts-expect-error types still have DOCUMENT_PERMISSION_LEVELS
   if (myLevel === CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED) {

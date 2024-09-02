@@ -27,7 +27,7 @@
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
     "@lumphammer/shared-fvtt-bits": "workspace:*",
     "@tsconfig/recommended": "^1.0.1",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.3",
     "typescript": "^5.4.4"
   },
   "dependencies": {},
