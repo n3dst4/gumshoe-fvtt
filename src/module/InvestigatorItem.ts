@@ -149,6 +149,9 @@ export class InvestigatorItem extends Item {
     if (this.actor === null) {
       return;
     }
+    if (this.system.pool === 0) {
+      return;
+    }
     const roll = new Roll("1");
     await roll.evaluate({ async: true });
     await roll.toMessage({
