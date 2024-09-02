@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 
 import { ThemeContext } from "../../themes/ThemeContext";
-import { GeneralAbilityItem } from "../../v10Types";
+import { AbilityItem } from "../../v10Types";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 
 interface PushPoolButtonProps {
-  ability: GeneralAbilityItem;
+  ability: AbilityItem;
 }
 
 export const PushPoolButton: React.FC<PushPoolButtonProps> = ({ ability }) => {

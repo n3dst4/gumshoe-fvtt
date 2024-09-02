@@ -30,15 +30,9 @@ function getTopAreaContent(ability: InvestigatorItem) {
   ) {
     return <AbilityTestMW ability={ability} />;
   } else if (
-    // QS abilities get nothing - they just sit there, existing
-    isInvestigativeAbilityItem(ability) &&
-    ability.system.isQuickShock
-  ) {
-    return null;
-  } else if (
     // push pools get a PUSH button
-    isGeneralAbilityItem(ability) &&
-    ability.system.isPushPool
+    (isGeneralAbilityItem(ability) && ability.system.isPushPool) ||
+    (isInvestigativeAbilityItem(ability) && ability.system.isQuickShock)
   ) {
     return <PushPoolButton ability={ability} />;
   } else {
