@@ -436,7 +436,7 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  setRatingRefresh = (newRating: number): Promise<this | undefined> => {
+  setRatingAndRefreshPool = (newRating: number): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({
       system: {

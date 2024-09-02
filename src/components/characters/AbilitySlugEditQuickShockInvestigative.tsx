@@ -7,16 +7,15 @@ import { AbilityBadges } from "../abilities/AbilityBadges";
 import { SpecialityList } from "../abilities/SpecialityList";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { Toggle } from "../inputs/Toggle";
 
-type AbilitySlugEditProps = {
+type AbilitySlugEditQuickShockInvestigativeProps = {
   ability: InvestigatorItem;
-  showOcc?: boolean;
 };
 
-export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
-  ability,
-  showOcc = true,
-}) => {
+export const AbilitySlugEditQuickShockInvestigative: React.FC<
+  AbilitySlugEditQuickShockInvestigativeProps
+> = ({ ability }) => {
   assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(
@@ -27,23 +26,20 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
     },
     [app],
   );
-  const updateRating = useCallback(
-    (rating: number) => {
-      void ability.setRatingAndRefreshPool(rating);
+
+  const handleToggle = useCallback(
+    (checked: boolean) => {
+      if (checked) {
+        void ability.setRatingAndRefreshPool(1);
+      } else {
+        void ability.setRatingAndRefreshPool(0);
+      }
     },
     [ability],
   );
 
   return (
     <Fragment key={ability.id}>
-      {showOcc && (
-        <div css={{ gridColumn: "isocc", justifySelf: "center" }}>
-          <AsyncCheckbox
-            checked={ability.system.occupational}
-            onChange={ability.setOccupational}
-          />
-        </div>
-      )}
       <a
         onClick={() => {
           ability.sheet?.render(true);
@@ -51,18 +47,12 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
         data-item-id={ability.id}
         onDragStart={onDragStart}
         draggable="true"
-        css={{ gridColumn: "ability" }}
+        css={{ gridColumn: "isocc / ability", marginBottom: "0.5em" }}
       >
         {ability.name}
       </a>
       <div css={{ gridColumn: "rating", justifySelf: "center" }}>
-        <AsyncNumberInput
-          min={0}
-          max={ability.system.max}
-          value={ability.system.rating}
-          onChange={updateRating}
-          smallButtons
-        />
+        <Toggle checked={ability.system.rating > 0} onChange={handleToggle} />
       </div>
       <AbilityBadges ability={ability} css={{ gridColumn: "1/-1" }} />
       {ability.system.hasSpecialities && ability.getSpecialitesCount() > 0 && (

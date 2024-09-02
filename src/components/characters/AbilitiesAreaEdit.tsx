@@ -6,6 +6,7 @@ import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertActiveCharacterActor } from "../../v10Types";
 import { AbilitySlugEdit } from "./AbilitySlugEdit";
+import { AbilitySlugEditQuickShockInvestigative } from "./AbilitySlugEditQuickShockInvestigative";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
 import { useAbilities } from "./useAbilities";
 
@@ -87,13 +88,25 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
                 <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
                 {sortEntitiesByName(
                   investigativeAbilities[cat],
-                ).map<JSX.Element>((ability) => (
-                  <AbilitySlugEdit
-                    key={ability.id}
-                    ability={ability}
-                    showOcc={showOcc}
-                  />
-                ))}
+                ).map<JSX.Element>((ability) => {
+                  if (ability.system.isQuickShock) {
+                    return (
+                      <AbilitySlugEditQuickShockInvestigative
+                        key={ability.id}
+                        ability={ability}
+                        showOcc={showOcc}
+                      />
+                    );
+                  } else {
+                    return (
+                      <AbilitySlugEdit
+                        key={ability.id}
+                        ability={ability}
+                        showOcc={showOcc}
+                      />
+                    );
+                  }
+                })}
                 {investigativeAbilities[cat].length === 0 && (
                   <NoAbilitiesNote />
                 )}
