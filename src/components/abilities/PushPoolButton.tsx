@@ -14,8 +14,8 @@ export const PushPoolButton: React.FC<PushPoolButtonProps> = ({ ability }) => {
   const theme = useContext(ThemeContext);
 
   const handleClickPush = React.useCallback(() => {
-    //
-  }, []);
+    void ability.push();
+  }, [ability]);
 
   return (
     <InputGrid

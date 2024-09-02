@@ -3,6 +3,7 @@ import React from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import {
   assertAbilityItem,
+  assertGeneralAbilityItem,
   isAbilityItem,
   isGeneralAbilityItem,
 } from "../../v10Types";
@@ -31,7 +32,8 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({ ability }) => {
   const vals = range(min, max);
 
   const handleClickPush = React.useCallback(() => {
-    void ability.setPool(Math.max(0, ability.system.pool - 1));
+    assertGeneralAbilityItem(ability);
+    void ability.push();
   }, [ability]);
 
   return (
