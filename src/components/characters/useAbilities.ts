@@ -1,7 +1,10 @@
 import { generalAbility, investigativeAbility } from "../../constants";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
-import { isAbilityItem } from "../../v10Types";
+import {
+  GeneralAbilityItem,
+  InvestigativeAbilityItem,
+  isAbilityItem,
+} from "../../v10Types";
 
 export const useAbilities = (
   actor: Actor,
@@ -11,8 +14,10 @@ export const useAbilities = (
   // why is this a hook? what was I thinking 3 years ago? it's lieterally just
   // a function.
 
-  const investigativeAbilities: { [category: string]: InvestigatorItem[] } = {};
-  const generalAbilities: { [category: string]: InvestigatorItem[] } = {};
+  const investigativeAbilities: {
+    [category: string]: InvestigativeAbilityItem[];
+  } = {};
+  const generalAbilities: { [category: string]: GeneralAbilityItem[] } = {};
   const systemInvestigativeCats = settings.investigativeAbilityCategories.get();
   const systemGeneralCats = settings.generalAbilityCategories.get();
   for (const cat of systemInvestigativeCats) {

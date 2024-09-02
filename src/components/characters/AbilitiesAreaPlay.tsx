@@ -3,8 +3,12 @@ import React, { Fragment } from "react";
 import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
-import { assertActiveCharacterActor } from "../../v10Types";
-import { AbilitySlugPlay } from "./AbilitySlugPlay";
+import {
+  assertActiveCharacterActor,
+  isInvestigativeAbilityItem,
+} from "../../v10Types";
+import { AbilitySlugPlayNormal } from "./AbilitySlugPlayNormal";
+import { AbilitySlugPlayQuickShockInvestigative } from "./AbilitySlugPlayQuickShockInvestigative";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
 import { useAbilities } from "./useAbilities";
 
@@ -23,6 +27,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
     true,
     true,
   );
+
   const showEmpty = settings.showEmptyInvestigativeCategories.get();
 
   return (
@@ -55,9 +60,23 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
                 <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
                 {sortEntitiesByName(
                   investigativeAbilities[cat],
-                ).map<JSX.Element>((ability) => (
-                  <AbilitySlugPlay key={ability.id} ability={ability} />
-                ))}
+                ).map<JSX.Element>((ability) => {
+                  if (ability.system.isQuickShock) {
+                    return (
+                      <AbilitySlugPlayQuickShockInvestigative
+                        key={ability.id}
+                        ability={ability}
+                      />
+                    );
+                  } else {
+                    return (
+                      <AbilitySlugPlayNormal
+                        key={ability.id}
+                        ability={ability}
+                      />
+                    );
+                  }
+                })}
                 {investigativeAbilities[cat].length === 0 && (
                   <NoAbilitiesNote />
                 )}
@@ -84,7 +103,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
               <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
               {sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>(
                 (ability) => (
-                  <AbilitySlugPlay key={ability.id} ability={ability} />
+                  <AbilitySlugPlayNormal key={ability.id} ability={ability} />
                 ),
               )}
               {generalAbilities[cat].length === 0 && <NoAbilitiesNote />}
