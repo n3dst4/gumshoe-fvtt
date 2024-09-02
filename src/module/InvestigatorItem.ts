@@ -30,6 +30,8 @@ import {
   assertPersonalDetailItem,
   assertWeaponItem,
   isEquipmentItem,
+  isGeneralAbilityItem,
+  isInvestigativeAbilityItem,
 } from "../v10Types";
 import { InvestigatorActor } from "./InvestigatorActor";
 
@@ -132,6 +134,14 @@ export class InvestigatorItem extends Item {
    * Expend one point from a push pool
    */
   async push(): Promise<void> {
+    if (isGeneralAbilityItem(this)) {
+      await this.pushPool();
+    } else if (isInvestigativeAbilityItem(this)) {
+      await this.pushInvestigative();
+    }
+  }
+
+  async pushPool(): Promise<void> {
     assertGeneralAbilityItem(this);
     if (!this.system.isPushPool) {
       throw new Error(`This ability ${this.name} is not a push pool`);
@@ -159,6 +169,24 @@ export class InvestigatorItem extends Item {
     });
     const pool = this.system.pool - 1;
     await this.update({ system: { pool } });
+  }
+
+  async pushInvestigative(): Promise<void> {
+    assertInvestigativeAbilityItem(this);
+    if (!this.system.isQuickShock) {
+      throw new Error(`The ability ${this.name} is not a quick shock`);
+    }
+    if (this.actor === null) {
+      throw new Error(`The ability ${this.name} is not owned`);
+    }
+    const poolAbility = this.actor.items.find(
+      (item: InvestigatorItem) =>
+        isGeneralAbilityItem(item) && item.system.isPushPool,
+    );
+    if (poolAbility === undefined) {
+      throw new Error(`The actor ${this.actor.name} has no push pool`);
+    }
+    await poolAbility.push();
   }
 
   /**
