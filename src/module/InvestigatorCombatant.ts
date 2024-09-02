@@ -25,7 +25,7 @@ export class InvestigatorCombatant extends Combatant {
   resetPassingTurns() {
     this.passingTurnsRemaining =
       this.actor && isActiveCharacterActor(this.actor)
-        ? this.actor?.system.initiativePassingTurns ?? 1
+        ? (this.actor?.system.initiativePassingTurns ?? 1)
         : 1;
   }
 

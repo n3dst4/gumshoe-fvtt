@@ -97,7 +97,7 @@ export function getTurns(combat: Combat) {
     }
 
     const totalPassingTurns = isActiveCharacterActor(combatant.actor)
-      ? combatant.actor?.system.initiativePassingTurns ?? 1
+      ? (combatant.actor?.system.initiativePassingTurns ?? 1)
       : 1;
 
     const turn: InvestigatorTurn = {
