@@ -129,6 +129,39 @@ export class InvestigatorItem extends Item {
   }
 
   /**
+   * Expend one point from a push pool
+   */
+  async push(): Promise<void> {
+    assertGeneralAbilityItem(this);
+    if (!this.system.isPushPool) {
+      throw new Error(`This ability ${this.name} is not a push pool`);
+    }
+    if (this.actor === null) {
+      return;
+    }
+    const roll = new Roll("1");
+    await roll.evaluate({ async: true });
+    await roll.toMessage({
+      speaker: ChatMessage.getSpeaker({
+        actor: this.actor,
+      }),
+      content: `
+        <div
+          class="${constants.abilityChatMessageClassName}"
+          ${constants.htmlDataItemId}="${this.id}"
+          ${constants.htmlDataActorId}="${this.parent?.id ?? ""}"
+          ${constants.htmlDataMode}="${constants.htmlDataModeSpend}"
+          ${constants.htmlDataName}="${this.name}"
+          ${constants.htmlDataImageUrl}="${this.img}"
+          ${constants.htmlDataTokenId}="${this.parent?.token?.id ?? ""}"
+        />
+      `,
+    });
+    const pool = this.system.pool - 1;
+    await this.update({ system: { pool } });
+  }
+
+  /**
    * DERPG/"Moribund World" style roll - d6 +/- a difficulty modifier, with an
    * additional boon or levy on the pool. can be re-rolled for one extra point.
    */

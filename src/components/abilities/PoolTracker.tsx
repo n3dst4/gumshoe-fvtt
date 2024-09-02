@@ -7,6 +7,7 @@ import {
   isGeneralAbilityItem,
 } from "../../v10Types";
 import { Button } from "../inputs/Button";
+import { Translate } from "../Translate";
 import { PoolCheckbox } from "./PoolCheckbox";
 
 const range = (from: number, to: number): number[] => {
@@ -68,7 +69,7 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({ ability }) => {
           disabled={ability.system.pool === 0}
           onClick={handleClickPush}
         >
-          Push
+          <Translate>Push</Translate>
         </Button>
       )}
     </div>

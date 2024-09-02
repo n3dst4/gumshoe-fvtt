@@ -231,5 +231,6 @@
   "investigator.EndScenarioDiscardCountNonContinuityCards": "End Scenario (discard {Count} non-continuity cards)?",
   "investigator.IsAPushPool": "Is a Push Pool?",
   "investigator.AllowPoolToExceedRating": "Allow pool to exceed rating?",
-  "investigator.IsQuickShock": "Is a QuickShock?"
+  "investigator.IsQuickShock": "Is a QuickShock?",
+  "investigator.Push": "Push"
 }
