@@ -232,5 +232,7 @@
   "investigator.IsAPushPool": "Is a Push Pool?",
   "investigator.AllowPoolToExceedRating": "Allow pool to exceed rating?",
   "investigator.IsQuickShock": "Is QuickShock?",
-  "investigator.Push": "Push"
+  "investigator.Push": "Push",
+  "investigator.Boosted": "Boosted",
+  "investigator.PushPool": "Push Pool"
 }

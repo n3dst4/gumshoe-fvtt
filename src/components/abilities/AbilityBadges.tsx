@@ -2,7 +2,8 @@ import React, { ReactNode, useContext } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { assertAbilityItem } from "../../v10Types";
+import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
+import { Translate } from "../Translate";
 import { SituationalModifierBadge } from "./SituationalModifierBadge";
 
 interface UnlockBadgesProps {
@@ -22,7 +23,7 @@ export const AbilityBadges: React.FC<UnlockBadgesProps> = ({
     <div className={className}>
       {/* Boost */}
       {ability.system.boost && (
-        <span
+        <Translate
           css={{
             background: theme.colors.accentContrast,
             color: theme.colors.accent,
@@ -35,7 +36,23 @@ export const AbilityBadges: React.FC<UnlockBadgesProps> = ({
           }}
         >
           Boosted
-        </span>
+        </Translate>
+      )}
+      {isGeneralAbilityItem(ability) && ability.system.isPushPool && (
+        <Translate
+          css={{
+            background: theme.colors.accentContrast,
+            color: theme.colors.accent,
+            outline: `1px solid ${theme.colors.accent}`,
+            fontSize: "0.9em",
+            lineHeight: "1",
+            borderRadius: "0.5em",
+            padding: "0 0.5em",
+            margin: "0 0.25em",
+          }}
+        >
+          Push Pool
+        </Translate>
       )}
       {/* Situational modifers */}
       <div
