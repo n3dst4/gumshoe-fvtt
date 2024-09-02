@@ -8,11 +8,12 @@ import { Translate } from "../Translate";
 
 type AbilitySlugPlayQuickShockInvestigativeProps = {
   ability: InvestigatorItem;
+  disabled: boolean;
 };
 
 export const AbilitySlugPlayQuickShockInvestigative: React.FC<
   AbilitySlugPlayQuickShockInvestigativeProps
-> = ({ ability }) => {
+> = ({ ability, disabled }) => {
   assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(
@@ -45,7 +46,11 @@ export const AbilitySlugPlayQuickShockInvestigative: React.FC<
         {ability.name}
       </a>
       <div css={{ gridColumn: "rating/-1", justifySelf: "right" }}>
-        <button css={{ width: "4.1em" }} onClick={handleClickPush}>
+        <button
+          css={{ width: "4.1em" }}
+          onClick={handleClickPush}
+          disabled={disabled}
+        >
           <Translate>Push</Translate>
         </button>
       </div>

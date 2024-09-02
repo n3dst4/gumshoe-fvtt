@@ -182,10 +182,7 @@ export class InvestigatorItem extends Item {
     if (this.actor === null) {
       throw new Error(`The ability ${this.name} is not owned`);
     }
-    const poolAbility = this.actor.items.find(
-      (item: InvestigatorItem) =>
-        isGeneralAbilityItem(item) && item.system.isPushPool,
-    );
+    const poolAbility = this.actor.getPushPool();
     if (poolAbility === undefined) {
       throw new Error(`The actor ${this.actor.name} has no push pool`);
     }

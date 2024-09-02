@@ -32,6 +32,7 @@ import {
   assertPCActor,
   assertPersonalDetailItem,
   CardItem,
+  GeneralAbilityItem,
   isAbilityItem,
   isActiveCharacterActor,
   isCardItem,
@@ -552,6 +553,14 @@ export class InvestigatorActor extends Actor {
       },
     );
   };
+
+  getPushPool(): GeneralAbilityItem | undefined {
+    assertActiveCharacterActor(this);
+    return this.items.find(
+      (item: InvestigatorItem): item is GeneralAbilityItem =>
+        isGeneralAbilityItem(item) && item.system.isPushPool,
+    );
+  }
 }
 
 declare global {

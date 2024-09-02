@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useMemo } from "react";
 
 import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
@@ -24,6 +24,9 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
     true,
     true,
   );
+
+  const pushPool = useMemo(() => actor.getPushPool(), [actor]);
+  const pushPoolIsZero = pushPool === undefined || pushPool.system.pool === 0;
 
   const showEmpty = settings.showEmptyInvestigativeCategories.get();
 
@@ -63,6 +66,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
                       <AbilitySlugPlayQuickShockInvestigative
                         key={ability.id}
                         ability={ability}
+                        disabled={pushPoolIsZero}
                       />
                     );
                   } else {
