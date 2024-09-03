@@ -2,7 +2,9 @@ import * as Switch from "@radix-ui/react-switch";
 import React, { useContext } from "react";
 
 import { systemLogger } from "../../functions/utilities";
+import { ThemeContext } from "../../themes/ThemeContext";
 import { IdContext } from "../IdContext";
+
 type ToggleProps = {
   checked: boolean;
   onChange: (checked: boolean) => void;
@@ -15,25 +17,28 @@ export const Toggle: React.FC<ToggleProps> = ({
   className,
 }) => {
   const id = useContext(IdContext);
-
+  const theme = useContext(ThemeContext);
   return (
     <Switch.Root
       id={id}
       className={className}
       css={{
-        width: "42px",
-        height: "25px",
-        backgroundColor: "var(--black-a9)",
+        fontSize: "0.9em",
+        width: "3em",
+        height: "1.5em",
+        padding: 0,
+        margin: 0,
+        backgroundColor: theme.colors.backgroundButton,
         borderRadius: "9999px",
         position: "relative",
-        boxShadow: "0 2px 10px var(--black-a7)",
-        "-webkit-tap-highlight-color": "rgba(0, 0, 0, 0)",
+        boxShadow: `0 0 2px 0 ${theme.colors.text}`,
         "&:focus": {
-          "box-shadow": "0 0 0 2px black",
+          boxShadow: `0 0 4px 0 ${theme.colors.text}`,
         },
         "&[data-state='checked']": {
-          "background-color": "black",
+          backgroundColor: theme.colors.accent,
         },
+        "&&": { border: "none" },
       }}
       checked={checked}
       onCheckedChange={(e) => {
@@ -44,16 +49,18 @@ export const Toggle: React.FC<ToggleProps> = ({
       <Switch.Thumb
         css={{
           display: "block",
-          width: "21px",
-          height: "21px",
-          backgroundColor: "white",
+          width: "1em",
+          height: "1em",
+          backgroundColor: theme.colors.text,
+          // background: `radial-gradient(circle at 50% 50%, ${theme.colors.accentContrast} 0%, ${theme.colors.controlBorder} 100%)`,
           borderRadius: "9999px",
-          boxShadow: "0 2px 2px var(--black-a7)",
+          boxShadow: `0 0 2px 0 ${theme.colors.text} inset`,
           transition: "transform 100ms",
           transform: "translateX(2px)",
           willChange: "transform",
           "&[data-state='checked']": {
-            transform: "translateX(19px)",
+            transform: "translateX(calc(2em - 5px))",
+            backgroundColor: theme.colors.accentContrast,
           },
         }}
       />
