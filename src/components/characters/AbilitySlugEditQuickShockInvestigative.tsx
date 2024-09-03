@@ -5,8 +5,6 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityItem } from "../../v10Types";
 import { AbilityBadges } from "../abilities/AbilityBadges";
 import { SpecialityList } from "../abilities/SpecialityList";
-import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
-import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Toggle } from "../inputs/Toggle";
 
 type AbilitySlugEditQuickShockInvestigativeProps = {
