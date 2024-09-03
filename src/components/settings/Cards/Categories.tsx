@@ -112,18 +112,6 @@ export const Categories: React.FC<CategoriesProps> = () => {
           >
             {category.styleKey}
           </div>
-          <div
-            css={{
-              gridColumn: "3",
-              padding: "0.3em",
-              textShadow: "none",
-              color: theme.colors.text,
-              fontStyle: "italic",
-              opacity: 0.7,
-            }}
-          >
-            {category.cssClass}
-          </div>
         </Link>
       );
     },
@@ -173,7 +161,6 @@ export const Categories: React.FC<CategoriesProps> = () => {
         headers={[
           { label: "Category", id: "category" },
           { label: "Style Key", id: "styleKey" },
-          { label: "CSS Class", id: "cssClass" },
         ]}
         emptyMessage={
           <p>
