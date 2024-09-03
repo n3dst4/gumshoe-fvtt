@@ -84,7 +84,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
     ? undefined
     : ability.system.allowPoolToExceedRating
       ? ability.system.max
-      : ability.system.rating - 1;
+      : ability.system.rating;
 
   const isQuickShock =
     isInvestigativeAbilityItem(ability) && ability.system.isQuickShock;
