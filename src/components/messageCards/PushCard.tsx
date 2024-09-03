@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 
+import { useTheme } from "../../hooks/useTheme";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { Translate } from "../Translate";
 import { AbilityCardMode } from "./types";
@@ -12,11 +13,13 @@ interface PushCardProps {
   imageUrl: string | null;
 }
 
-const shadowOffset = "2px";
-const shadowBlur = "2px";
+const shadowOffset = "1px";
+const shadowBlur = "1px";
 
 export const PushCard: React.FC<PushCardProps> = React.memo(
   ({ msg, ability, mode, name, imageUrl }) => {
+    const theme = useTheme();
+
     const onClickAbilityName = useCallback(() => {
       ability?.sheet?.render(true);
     }, [ability?.sheet]);
@@ -28,9 +31,10 @@ export const PushCard: React.FC<PushCardProps> = React.memo(
           position: "relative",
           display: "grid",
           gridTemplateColumns: "max-content 1fr",
-          gridTemplateRows: "auto auto",
-          gridTemplateAreas: '"image headline" ' + '"image terms" ',
+          gridTemplateRows: "auto",
+          gridTemplateAreas: '"image headline"',
           alignItems: "center",
+          justifyItems: "start",
         }}
       >
         {/* IMAGE */}
@@ -51,23 +55,31 @@ export const PushCard: React.FC<PushCardProps> = React.memo(
           }}
         />
         {/* TERMS */}
-        <div
+        <a
+          onClick={onClickAbilityName}
           css={{
-            gridArea: "terms",
-            fontSize: "2em",
-            fontWeight: "bold",
-            color: "#9b9",
+            gridArea: "headline",
+            fontSize: "1.5em",
+            color: theme.colors.accent,
             fontStyle: "italic",
             textShadow: `
-            -${shadowOffset} -${shadowOffset} ${shadowBlur} #0007,
+              -${shadowOffset} -${shadowOffset} ${shadowBlur} #0007,
               ${shadowOffset} ${shadowOffset} ${shadowBlur} #fff
             `,
+            ":hover": {
+              textShadow: `
+                0 0 10px #fff,
+                0 0 10px #fff,
+                -${shadowOffset} -${shadowOffset} ${shadowBlur} #0007,
+                ${shadowOffset} ${shadowOffset} ${shadowBlur} #fff
+              `,
+            },
           }}
         >
           <Translate values={{ AbilityName: ability?.name ?? "" }}>
             AbilityNamePush
           </Translate>
-        </div>
+        </a>
       </div>
     );
   },
