@@ -29,6 +29,7 @@ import {
   assertMwItem,
   assertPersonalDetailItem,
   assertWeaponItem,
+  InvestigativeAbilityItem,
   isEquipmentItem,
   isGeneralAbilityItem,
   isInvestigativeAbilityItem,
@@ -138,10 +139,14 @@ export class InvestigatorItem extends Item {
       await this.pushPool();
     } else if (isInvestigativeAbilityItem(this)) {
       await this.pushInvestigative();
+    } else {
+      throw new Error(
+        `Item ${this.name} is not a push pool or a QuickShock ability`,
+      );
     }
   }
 
-  async pushPool(): Promise<void> {
+  async pushPool(from?: InvestigativeAbilityItem): Promise<void> {
     assertGeneralAbilityItem(this);
     if (!this.system.isPushPool) {
       throw new Error(`This ability ${this.name} is not a push pool`);
@@ -161,10 +166,10 @@ export class InvestigatorItem extends Item {
       content: `
         <div
           class="${constants.abilityChatMessageClassName}"
-          ${constants.htmlDataItemId}="${this.id}"
+          ${constants.htmlDataItemId}="${from?.id ?? this.id}"
           ${constants.htmlDataActorId}="${this.parent?.id ?? ""}"
-          ${constants.htmlDataMode}="${constants.htmlDataModeSpend}"
-          ${constants.htmlDataName}="${this.name}"
+          ${constants.htmlDataMode}="${constants.htmlDataModePush}"
+          ${constants.htmlDataName}="${from?.name ?? this.name}"
           ${constants.htmlDataImageUrl}="${this.img}"
           ${constants.htmlDataTokenId}="${this.parent?.token?.id ?? ""}"
         />
@@ -186,7 +191,7 @@ export class InvestigatorItem extends Item {
     if (poolAbility === undefined) {
       throw new Error(`The actor ${this.actor.name} has no push pool`);
     }
-    await poolAbility.push();
+    await poolAbility.pushPool(this);
   }
 
   /**

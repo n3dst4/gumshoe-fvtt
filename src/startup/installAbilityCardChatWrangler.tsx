@@ -5,6 +5,7 @@ import { AbilityNegateOrWallopMwCard } from "../components/messageCards/AbilityN
 import { AbilityTestCard } from "../components/messageCards/AbilityTestCard";
 import { AbilityTestMwCard } from "../components/messageCards/AbilityTestMwCard";
 import { AttackCard } from "../components/messageCards/AttackCard";
+import { PushCard } from "../components/messageCards/PushCard";
 import { isAbilityCardMode } from "../components/messageCards/types";
 import * as constants from "../constants";
 import { assertGame, systemLogger } from "../functions/utilities";
@@ -107,6 +108,16 @@ export const installAbilityCardChatWrangler = () => {
           ability={ability}
           pool={pool}
           mode={mode}
+          name={name}
+        />
+      );
+    } else if (mode === constants.htmlDataModePush) {
+      content = (
+        <PushCard
+          msg={chatMessage}
+          ability={ability}
+          mode={mode}
+          imageUrl={imageUrl}
           name={name}
         />
       );

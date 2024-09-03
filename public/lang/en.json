@@ -235,5 +235,6 @@
   "investigator.Push": "Push",
   "investigator.Boosted": "Boosted",
   "investigator.PushPool": "Push Pool",
-  "investigator.Enabled": "Enabled"
+  "investigator.Enabled": "Enabled",
+  "investigator.AbilityNamePush": "{AbilityName} Push"
 }
