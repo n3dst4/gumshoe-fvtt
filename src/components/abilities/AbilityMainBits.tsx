@@ -16,6 +16,7 @@ import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { Toggle } from "../inputs/Toggle";
 import { Translate } from "../Translate";
 import { AbilityBadges } from "./AbilityBadges";
 import { SpecialityList } from "./SpecialityList";
@@ -88,6 +89,17 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
   const isQuickShock =
     isInvestigativeAbilityItem(ability) && ability.system.isQuickShock;
 
+  const handleQuickShockToggle = useCallback(
+    (checked: boolean) => {
+      if (checked) {
+        void ability.setRatingAndRefreshPool(1);
+      } else {
+        void ability.setRatingAndRefreshPool(0);
+      }
+    },
+    [ability],
+  );
+
   return (
     <InputGrid
       css={{
@@ -95,6 +107,14 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
         gridTemplateRows: "auto auto min-content [notes] 1fr",
       }}
     >
+      {isQuickShock && (
+        <GridField label="Enabled">
+          <Toggle
+            checked={ability.system.rating > 0}
+            onChange={handleQuickShockToggle}
+          />
+        </GridField>
+      )}
       {!isQuickShock && (
         <>
           <GridField label="Pool">

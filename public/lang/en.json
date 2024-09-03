@@ -234,5 +234,6 @@
   "investigator.IsQuickShock": "Is QuickShock?",
   "investigator.Push": "Push",
   "investigator.Boosted": "Boosted",
-  "investigator.PushPool": "Push Pool"
+  "investigator.PushPool": "Push Pool",
+  "investigator.Enabled": "Enabled"
 }
