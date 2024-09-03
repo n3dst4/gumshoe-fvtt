@@ -94,7 +94,6 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
                       <AbilitySlugEditQuickShockInvestigative
                         key={ability.id}
                         ability={ability}
-                        showOcc={showOcc}
                       />
                     );
                   } else {
