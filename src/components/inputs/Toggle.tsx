@@ -19,6 +19,7 @@ export const Toggle: React.FC<ToggleProps> = ({
   return (
     <Switch.Root
       id={id}
+      className={className}
       css={{
         width: "42px",
         height: "25px",
