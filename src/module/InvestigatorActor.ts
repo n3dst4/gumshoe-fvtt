@@ -33,11 +33,13 @@ import {
   assertPersonalDetailItem,
   CardItem,
   GeneralAbilityItem,
+  InvestigativeAbilityItem,
   isAbilityItem,
   isActiveCharacterActor,
   isCardItem,
   isEquipmentItem,
   isGeneralAbilityItem,
+  isInvestigativeAbilityItem,
   isMwItem,
   isPCActor,
   isPersonalDetailItem,
@@ -560,6 +562,29 @@ export class InvestigatorActor extends Actor {
       (item: InvestigatorItem): item is GeneralAbilityItem =>
         isGeneralAbilityItem(item) && item.system.isPushPool,
     );
+  }
+
+  getPushPoolWarnings(): string[] {
+    assertActiveCharacterActor(this);
+    const warnings: string[] = [];
+    const pools = this.items.filter(
+      (item: InvestigatorItem): item is GeneralAbilityItem =>
+        isGeneralAbilityItem(item) && item.system.isPushPool,
+    );
+    const quickShockAbilities = this.items.filter(
+      (item: InvestigatorItem): item is InvestigativeAbilityItem =>
+        isInvestigativeAbilityItem(item) && item.system.isQuickShock,
+    );
+    if (pools.length > 1) {
+      warnings.push(getTranslated("TooManyPushPools"));
+    }
+    if (quickShockAbilities.length > 1 && pools.length < 1) {
+      warnings.push(getTranslated("QuickShockAbilityWithoutPushPool"));
+    }
+    if (quickShockAbilities.length === 0 && pools.length > 0) {
+      warnings.push(getTranslated("PushPoolWithoutQuickShockAbility"));
+    }
+    return warnings;
   }
 }
 

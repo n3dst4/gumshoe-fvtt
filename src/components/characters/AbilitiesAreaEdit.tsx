@@ -31,6 +31,8 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
   const hideInv = settings.useMwStyleAbilities.get();
   const showOcc = showOccProp && !hideInv;
 
+  const pushPoolWarnings = actor.getPushPoolWarnings();
+
   return (
     <Fragment>
       <div
@@ -38,12 +40,30 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gridTemplateAreas:
-            flipLeftRight || hideInv
+            "'warnings warnings'" +
+            (flipLeftRight || hideInv
               ? "'general investigative'"
-              : "'investigative general'",
+              : "'investigative general'"),
           columnGap: "1em",
         }}
       >
+        <div css={{ gridArea: "warnings" }}>
+          {pushPoolWarnings.map<JSX.Element>((warning, i) => (
+            <div
+              key={i}
+              css={{
+                background: theme.colors.danger,
+                color: theme.colors.accentContrast,
+                borderRadius: "0.5em",
+                padding: "0.2em 0.7em",
+                marginBottom: "0.5em",
+              }}
+            >
+              ⚠️
+              {warning}
+            </div>
+          ))}
+        </div>
         {!hideInv && (
           <div
             css={{
