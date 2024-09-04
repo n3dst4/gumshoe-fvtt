@@ -20,6 +20,11 @@ jobs:
     outputs:
       should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
+      - name: Tag info
+        run: |
+          echo "GITHUB_REF_TYPE: ${{ github.ref_type }}"
+          echo "GITHUB_REF: ${{ github.ref }}"
+
       - id: skip_check
         uses: fkirc/skip-duplicate-actions@v5.3.1
         with:
