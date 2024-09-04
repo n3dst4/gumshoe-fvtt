@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## Unreleased
+
+* **HEADLINE**: GUMSHOE QuickShock is now supported! The number one feature request is now here. We have a new item type ("card"), and extra options on abilities:
+  * General abilities can now be marked as "Push Pools" and they will get special handling
+  * Investigative abilities can now be marked as "QuickShock" - instead of the usual "Spend" button you get a "push" button, which will spend a push from your push pool.
+  * New item type - cards!
+  * There is some documentation in the wiki about how to use these new features: https://github.com/n3dst4/gumshoe-fvtt/wiki/QuickShock-GUMSHOE-support-in-INVESTIGATOR
+  * I'm still considering this "experimental" - I haven't had an opportunity to play a proper game with it yet so **PLEASE COME TO THE PELGRANE DISCORD AND YELL AT ME IF YOU HAVE ANY QUESTIONS**.
+* **HEADLINE**: Mutant City Blues 2nd Edition is now included as a built-in system. This is the first QuickShockesque system to be included and comes with a cool new character sheet theme. Huge thanks to everyone who chipped in comments and info on this is QS Support.
+  * *NOTE: Just like other built-in systems, we can't include any book text, so abilities, powers, and cards only have a name.*
+* **NEAT NEW FEATURE**: There's a new option to automatically send a chat message to affected users when an item is added to an actor. This us useful with cards in particular.
+* **WAS IT A BUG, IS IT A FEATURE?**: Document types are now translated, so e.g. when you create a new actor, the options are "Player Character", "Non-Player Character", and "Party" (not "pc", "npc", "party"). Thanks @ChaosOS for the report and the code for the fix!
+* **BUG FIX**: There was something janky before where we weren't properly unregistering Foundry's default character sheet, which was causing problems for some people. Thank you to the person who reported this, I'm afraid I can't find their name.
+* **TINY BUG FIX** Hitting escape in the setting window would close it without saving or prompting for confirmation. Fixed.
+* **BTS STUFF**: Various stuff you don't care about.
+
+
+
 ## 8.0.0 (2024-05-30)
 
 * **Foundry VTT v12 Support.** This release drops support for v10 and adds support for v12. v11 should continue to work, if you're trapped on that version due to other modules not having updated yet. For those who move to v12, let me know how it goes! (#711)
