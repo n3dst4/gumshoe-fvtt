@@ -9,11 +9,11 @@ import {
 } from "../../v10Types";
 import { AbilityBadges } from "../abilities/AbilityBadges";
 
-type AbilitySlugPlayProps = {
+type AbilitySlugPlayNormalProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilitySlugPlay: React.FC<AbilitySlugPlayProps> = ({
+export const AbilitySlugPlayNormal: React.FC<AbilitySlugPlayNormalProps> = ({
   ability,
 }) => {
   assertAbilityItem(ability);

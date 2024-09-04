@@ -22,12 +22,12 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({ ability }) => {
   const theme = useContext(ThemeContext);
   const [spend, setSpend] = useState(0);
 
-  const onTest = useCallback(() => {
+  const handleClickTest = useCallback(() => {
     void ability.testAbility(spend);
     setSpend(0);
   }, [ability, spend]);
 
-  const onSpend = useCallback(() => {
+  const handleClickSpend = useCallback(() => {
     void ability.spendAbility(spend);
     setSpend(0);
   }, [ability, spend]);
@@ -65,11 +65,15 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({ ability }) => {
             flexDirection: "row",
           }}
         >
-          <button css={{ flex: 1 }} disabled={spend === 0} onClick={onSpend}>
+          <button
+            css={{ flex: 1 }}
+            disabled={spend === 0}
+            onClick={handleClickSpend}
+          >
             <Translate>{isGeneral ? "Simple Spend" : "Spend"}</Translate>
           </button>
           {isGeneral && (
-            <button css={{ flex: 1 }} onClick={onTest}>
+            <button css={{ flex: 1 }} onClick={handleClickTest}>
               <Translate>Test</Translate> <i className="fa fa-dice" />
             </button>
           )}

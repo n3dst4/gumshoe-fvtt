@@ -92,12 +92,6 @@ export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
         html={item.system.notes.html}
         source={item.system.notes.source}
         onSave={item.setNotes}
-        css={{
-          height: "100%",
-          "&&": {
-            resize: "none",
-          },
-        }}
       />
     </InputGrid>
   );

@@ -27,7 +27,9 @@
             "srdAbilities",
             "castingTheRunesAbilities",
             "esoterroristsAbilities",
-            "moribundWorldAbilities"
+            "moribundWorldAbilities",
+            "mutantCityBluesAbilities",
+            "mutantCityBluesPowers"
           ]
         },
         {
@@ -41,6 +43,15 @@
           "color": "#460c06",
           "sorting": "a",
           "packs": ["srdWeapons"]
+        },
+        {
+          "name": "Cards",
+          "color": "#460c06",
+          "sorting": "a",
+          "packs": [
+            "mutantCityBluesStressCards",
+            "mutantCityBluesGeneticRiskFactors"
+          ]
         }
       ]
     }
@@ -128,6 +139,34 @@
       "label": "Night's Black Agents NPC Abilities",
       "system": "investigator",
       "path": "./packs/niceBlackAgentsNPCAbilities",
+      "type": "Item"
+    },
+    {
+      "name": "mutantCityBluesAbilities",
+      "label": "Mutant City Blues Abilities",
+      "system": "investigator",
+      "path": "./packs/mutantCityBluesAbilities",
+      "type": "Item"
+    },
+    {
+      "name": "mutantCityBluesPowers",
+      "label": "Mutant City Blues Mutant Powers",
+      "system": "investigator",
+      "path": "./packs/mutantCityBluesPowers",
+      "type": "Item"
+    },
+    {
+      "name": "mutantCityBluesStressCards",
+      "label": "Mutant City Blues Stress Cards",
+      "system": "investigator",
+      "path": "./packs/mutantCityBluesStressCards",
+      "type": "Item"
+    },
+    {
+      "name": "mutantCityBluesGeneticRiskFactors",
+      "label": "Mutant City Blues Genetic Risk Factors",
+      "system": "investigator",
+      "path": "./packs/mutantCityBluesGeneticRiskFactors",
       "type": "Item"
     }
   ],

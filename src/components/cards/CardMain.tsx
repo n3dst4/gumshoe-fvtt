@@ -6,10 +6,11 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
+import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { Checkbox } from "../inputs/Checkbox";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
-import { TextInput } from "../inputs/TextInput";
 import { TabContainer } from "../TabContainer";
 
 interface CardMainProps {
@@ -36,16 +37,19 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
     <>
       <InputGrid>
         <GridField label="Item Name">
-          <TextInput value={card.name ?? ""} onChange={card.setName} />
+          <AsyncTextInput value={card.name ?? ""} onChange={card.setName} />
         </GridField>
         <GridField label="Supertitle">
-          <TextInput
+          <AsyncTextInput
             value={card.system.supertitle}
             onChange={card.setSupertitle}
           />
         </GridField>
         <GridField label="Subtitle">
-          <TextInput value={card.system.subtitle} onChange={card.setSubtitle} />
+          <AsyncTextInput
+            value={card.system.subtitle}
+            onChange={card.setSubtitle}
+          />
         </GridField>
 
         <GridField label="Category">
@@ -74,13 +78,19 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
             </div>
           </div>
         </GridField>
+        <GridField label="Continuity">
+          <Checkbox
+            checked={card.system.continuity}
+            onChange={card.setContinuity}
+          />
+        </GridField>
       </InputGrid>
       <div
         className="notes-container"
         css={{
           flex: 1,
           position: "relative",
-          margin: "0.5em",
+          marginTop: "0.5em",
         }}
       >
         <TabContainer
@@ -129,12 +139,6 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
                     html={card.system.effects.html}
                     source={card.system.effects.source}
                     onSave={card.setEffects}
-                    css={{
-                      height: "100%",
-                      "&&": {
-                        resize: "none",
-                      },
-                    }}
                   />
                 </InputGrid>
               ),

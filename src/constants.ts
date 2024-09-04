@@ -59,6 +59,7 @@ export const packNames = {
   niceBlackAgentsNPCAbilities: "niceBlackAgentsNPCAbilities" as const,
   mutantCityBluesAbilities: "mutantCityBluesAbilities" as const,
   mutantCityBluesNPCAbilities: "mutantCityBluesNPCAbilities" as const,
+  mutantCityBluesPowers: "mutantCityBluesPowers" as const,
 };
 
 export const npcPackName = "opponentAbilities";
@@ -82,6 +83,7 @@ export const htmlDataModeAttack = "attack";
 export const htmlDataModeMwTest = "mw-test";
 export const htmlDataModeMwWallop = "mw-wallop";
 export const htmlDataModeMwNegate = "mw-negate";
+export const htmlDataModePush = "push";
 export const htmlDataRange = "data-range";
 export const htmlDataWeaponId = "data-weapon-id";
 export const htmlDataName = "data-name";

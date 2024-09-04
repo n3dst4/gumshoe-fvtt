@@ -29,7 +29,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
   );
   const updateRating = useCallback(
     (rating: number) => {
-      void ability.setRatingRefresh(rating);
+      void ability.setRatingAndRefreshPool(rating);
     },
     [ability],
   );
@@ -58,6 +58,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
       <div css={{ gridColumn: "rating", justifySelf: "center" }}>
         <AsyncNumberInput
           min={0}
+          max={ability.system.max}
           value={ability.system.rating}
           onChange={updateRating}
           smallButtons

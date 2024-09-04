@@ -86,17 +86,20 @@ export const CardSheet: React.FC<CardSheetProps> = ({ card, application }) => {
             Edit <FaArrowRight css={{ verticalAlign: "bottom" }} />
           </Link>
         </div>
-        <CardDisplay
-          card={card}
-          showCategory={true}
-          viewMode="full"
+        <div
           css={{
             flex: 1,
-            overflow: "auto",
             opacity: card.system.active ? 1 : 0.5,
             transition: "opacity 200ms ease-in-out",
+            display: "flex",
+            flexDirection: "column",
+            overflow: "auto",
+            // create a containment context so the card can read themes
+            containerType: "inline-size",
           }}
-        />
+        >
+          <CardDisplay card={card} showCategory={true} viewMode="full" />
+        </div>
       </div>
       <SlideInNestedPanelRoute
         direction={edit}

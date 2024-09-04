@@ -1,6 +1,6 @@
 import { CSSObject } from "@emotion/react";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { memo } from "react";
+import React, { memo, ReactNode } from "react";
 
 import { PropsWithChildrenAndDirection } from "../types";
 import { useNavigationContext } from "../useNavigationContext";
@@ -16,38 +16,46 @@ const absoluteCover: CSSObject = {
   left: 0,
 };
 
-export const SlideInRoute = memo<PropsWithChildrenAndDirection>(
-  ({ children, direction }) => {
+type SlideInRouteProps = PropsWithChildrenAndDirection<{
+  backdropContent?: ReactNode;
+}>;
+
+export const SlideInRoute = memo<SlideInRouteProps>(
+  ({ children, direction, backdropContent }) => {
     const result = useRoute({ direction, children });
+    const backdropResult = useRoute({ direction, children: backdropContent });
     const { currentStep } = useNavigationContext();
     return (
       <div
         css={{ ...absoluteCover, overflow: "hidden", pointerEvents: "none" }}
       >
         <AnimatePresence mode="wait">
-          {result && currentStep && (
-            <motion.div
-              key={currentStep.id}
-              css={{
-                ...absoluteCover,
-                width: "100%",
-                zIndex: 2,
-              }}
-              initial={{
-                x: "100%",
-              }}
-              animate={{
-                x: 0,
-                transition: { duration, ease: easeOutCubic },
-              }}
-              exit={{
-                x: "100%",
-                zIndex: 1,
-                transition: { duration, ease: easeInCubic },
-              }}
-            >
-              {result}
-            </motion.div>
+          {backdropResult && currentStep && (
+            <>
+              {backdropResult}
+              <motion.div
+                key={currentStep.id}
+                css={{
+                  ...absoluteCover,
+                  width: "100%",
+                  zIndex: 2,
+                }}
+                initial={{
+                  x: "100%",
+                }}
+                animate={{
+                  x: 0,
+                  transition: { duration, ease: easeOutCubic },
+                }}
+                exit={{
+                  x: "100%",
+                  zIndex: 1,
+                  transition: { duration, ease: easeInCubic },
+                }}
+              >
+                {result}
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>

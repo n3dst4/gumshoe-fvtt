@@ -8,6 +8,7 @@ import {
   assertAbilityItem,
   assertActiveCharacterActor,
   isActiveCharacterActor,
+  isInvestigativeAbilityItem,
 } from "../../v10Types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -15,6 +16,7 @@ import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { Toggle } from "../inputs/Toggle";
 import { Translate } from "../Translate";
 import { AbilityBadges } from "./AbilityBadges";
 import { SpecialityList } from "./SpecialityList";
@@ -78,48 +80,80 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
 
   const useMwStyleAbilities = settings.useMwStyleAbilities.get();
 
+  const poolMax = useMwStyleAbilities
+    ? undefined
+    : ability.system.allowPoolToExceedRating
+      ? ability.system.max
+      : ability.system.rating;
+
+  const isQuickShock =
+    isInvestigativeAbilityItem(ability) && ability.system.isQuickShock;
+
+  const handleQuickShockToggle = useCallback(
+    (checked: boolean) => {
+      if (checked) {
+        void ability.setRatingAndRefreshPool(1);
+      } else {
+        void ability.setRatingAndRefreshPool(0);
+      }
+    },
+    [ability],
+  );
+
   return (
     <InputGrid
       css={{
         flex: 1,
-        gridTemplateRows: "auto auto min-content 1fr",
+        gridTemplateRows: "auto auto min-content [notes] 1fr",
       }}
     >
-      <GridField label="Pool">
-        <div
-          css={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <AsyncNumberInput
-            min={0}
-            max={useMwStyleAbilities ? undefined : ability.system.rating}
-            value={ability.system.pool}
-            onChange={ability.setPool}
-            css={{
-              flex: 1,
-            }}
+      {isQuickShock && (
+        <GridField label="Enabled">
+          <Toggle
+            checked={ability.system.rating > 0}
+            onChange={handleQuickShockToggle}
           />
-          <button
-            css={{
-              flexBasis: "min-content",
-              flex: 0,
-              lineHeight: "inherit",
-            }}
-            onClick={onClickRefresh}
-          >
-            <Translate>Refresh</Translate>
-          </button>
-        </div>
-      </GridField>
-      <GridField label="Rating">
-        <AsyncNumberInput
-          min={0}
-          value={ability.system.rating}
-          onChange={ability.setRating}
-        />
-      </GridField>
+        </GridField>
+      )}
+      {!isQuickShock && (
+        <>
+          <GridField label="Pool">
+            <div
+              css={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <AsyncNumberInput
+                min={0}
+                max={poolMax}
+                value={ability.system.pool}
+                onChange={ability.setPool}
+                css={{
+                  flex: 1,
+                }}
+              />
+              <button
+                css={{
+                  flexBasis: "min-content",
+                  flex: 0,
+                  lineHeight: "inherit",
+                }}
+                onClick={onClickRefresh}
+              >
+                <Translate>Refresh</Translate>
+              </button>
+            </div>
+          </GridField>
+          <GridField label="Rating">
+            <AsyncNumberInput
+              min={0}
+              value={ability.system.rating}
+              onChange={ability.setRating}
+            />
+          </GridField>
+        </>
+      )}
       <AbilityBadges
         css={{
           gridColumn: "1 / 4",
@@ -135,10 +169,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
         allowChangeFormat
         onSave={ability.setNotes}
         css={{
-          height: "100%",
-          "&&": {
-            resize: "none",
-          },
+          gridRow: "notes",
         }}
       />
       {ability.system.hasSpecialities && (

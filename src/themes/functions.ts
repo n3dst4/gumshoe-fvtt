@@ -76,7 +76,25 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
 
   const controlBorder = seed.colors.controlBorder ?? seed.colors.text;
 
-  return {
+  const cardBase = {
+    backdropStyle: {
+      border: `1px solid ${controlBorder}`,
+      padding: "0.5em",
+      transformOrigin: "top",
+      backgroundColor: bgOpaquePrimary,
+    },
+    supertitleStyle: { fontSize: "0.9em" },
+    titleStyle: {},
+    subtitleStyle: { fontWeight: "bold" },
+    descriptionStyle: {},
+    effectStyle: { fontStyle: "italic" },
+    hoverStyle: {
+      boxShadow: `0 0 0.3em 0.2em ${seed.colors.glow}`,
+    },
+    ...seed.cards?.base,
+  };
+
+  const final: ThemeV1 = {
     ...seed,
     largeSheetRootStyle: {
       backgroundSize: "cover",
@@ -120,33 +138,19 @@ export const themeFactory = (seed: ThemeSeedV1): ThemeV1 => {
       fontScaleFactor: seed.logo.fontScaleFactor ?? defaultFontScaleFactor,
     },
     cards: {
-      base: {
-        backdropStyle: {
-          border: `1px solid ${controlBorder}`,
-          padding: "0.5em",
-          transformOrigin: "top",
-          backgroundColor: bgOpaquePrimary,
-          // boxShadow: `0 0 0.3em ${controlBorder}`,
-        },
-        supertitleStyle: { fontSize: "0.9em" },
-        titleStyle: {},
-        subtitleStyle: { fontWeight: "bold" },
-        descriptionStyle: {},
-        effectStyle: { fontStyle: "italic" },
-        hoverStyle: {
-          boxShadow: `0 0 0.3em 0.2em ${seed.colors.glow}`,
-        },
-        ...seed.cards?.base,
-      },
+      base: cardBase,
       area: {
         horizontalSpacing: "0.5em",
         verticalSpacing: "0.5em",
+        ...seed.cards?.area,
       },
       categories: {
         ...seed.cards?.categories,
       },
     },
   };
+
+  return final;
 };
 
 export const createStarburstGradient = (

@@ -119,12 +119,14 @@
         "excludeFromGeneralRefresh": false,
         "refreshesDaily": false,
         "unlocks": [],
-        "situationalModifiers": []
+        "situationalModifiers": [],
+        "allowPoolToExceedRating": false
       }
     },
     "investigativeAbility": {
       "templates": ["notes", "ability"],
-      "hideIfZeroRated": true
+      "hideIfZeroRated": true,
+      "isQuickShock": false
     },
     "generalAbility": {
       "templates": ["notes", "ability"],
@@ -135,7 +137,8 @@
       "mwTrumpedBy": "",
       "mwRefreshGroup": 2,
       "combatBonus": 0,
-      "damageBonus": 0
+      "damageBonus": 0,
+      "isPushPool": false
     },
     "equipment": {
       "templates": ["notes"],
@@ -190,7 +193,8 @@
       },
       "type": "",
       "flags": [],
-      "active": true
+      "active": true,
+      "continuity": false
     }
   }
 }

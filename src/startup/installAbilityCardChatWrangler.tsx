@@ -5,6 +5,7 @@ import { AbilityNegateOrWallopMwCard } from "../components/messageCards/AbilityN
 import { AbilityTestCard } from "../components/messageCards/AbilityTestCard";
 import { AbilityTestMwCard } from "../components/messageCards/AbilityTestMwCard";
 import { AttackCard } from "../components/messageCards/AttackCard";
+import { PushCard } from "../components/messageCards/PushCard";
 import { isAbilityCardMode } from "../components/messageCards/types";
 import * as constants from "../constants";
 import { assertGame, systemLogger } from "../functions/utilities";
@@ -34,14 +35,16 @@ export const installAbilityCardChatWrangler = () => {
 
     if (actorId === null) {
       systemLogger.error(
-        `Missing or invalid '${constants.htmlDataItemId}' attribute.`,
+        `Missing or invalid '${constants.htmlDataActorId}' attribute.`,
         el,
       );
       return;
     }
     if (mode === null || !isAbilityCardMode(mode)) {
       systemLogger.error(
-        `Ability test chat message found without a valid '${constants.htmlDataMode}' attribute. (Valid values are "test", "spend", "combat"`,
+        "Ability test chat message found without a valid " +
+          `'${constants.htmlDataMode}' attribute. ` +
+          '(Valid values are "test", "spend", "combat", "push"',
         el,
       );
       return;
@@ -52,10 +55,17 @@ export const installAbilityCardChatWrangler = () => {
     const actor = tokenId
       ? canvas?.tokens?.get(tokenId)?.actor
       : game.actors?.get(actorId);
-    const ability = abilityId ? actor?.items.get(abilityId) : undefined;
+
+    if (actor === undefined || actor === null) {
+      systemLogger.error(`Could not find actor with id ${actorId}`, el);
+      return;
+    }
+
+    const ability = abilityId ? actor.items.get(abilityId) : undefined;
+
     let content: JSX.Element;
     if (mode === constants.htmlDataModeAttack) {
-      const weapon = weaponId ? actor?.items.get(weaponId) : undefined;
+      const weapon = weaponId ? actor.items.get(weaponId) : undefined;
       content = (
         <AttackCard
           msg={chatMessage}
@@ -101,6 +111,16 @@ export const installAbilityCardChatWrangler = () => {
           name={name}
         />
       );
+    } else if (mode === constants.htmlDataModePush) {
+      content = (
+        <PushCard
+          msg={chatMessage}
+          ability={ability}
+          mode={mode}
+          imageUrl={imageUrl}
+          name={name}
+        />
+      );
     } else {
       // REGULAR TEST /SPEND
       content = (
@@ -115,6 +135,7 @@ export const installAbilityCardChatWrangler = () => {
         </StrictMode>
       );
     }
+    systemLogger.log("Rendering", content);
     createRoot(el).render(content);
   });
 };

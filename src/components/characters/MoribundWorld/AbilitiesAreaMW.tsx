@@ -12,7 +12,7 @@ type AbilitiesAreaMWProps = {
 
 export const AbilitiesAreaMW: React.FC<AbilitiesAreaMWProps> = ({ actor }) => {
   assertActiveCharacterActor(actor);
-  const { generalAbilities } = useAbilities(actor, true);
+  const { generalAbilities } = useAbilities(actor, true, false);
 
   return (
     <div

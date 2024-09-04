@@ -24,16 +24,22 @@ import {
   NoteWithFormat,
 } from "../types";
 import {
+  AbilityItem,
   assertActiveCharacterActor,
   assertMwItem,
   assertNPCActor,
   assertPartyActor,
   assertPCActor,
   assertPersonalDetailItem,
+  CardItem,
+  GeneralAbilityItem,
+  InvestigativeAbilityItem,
   isAbilityItem,
   isActiveCharacterActor,
+  isCardItem,
   isEquipmentItem,
   isGeneralAbilityItem,
+  isInvestigativeAbilityItem,
   isMwItem,
   isPCActor,
   isPersonalDetailItem,
@@ -225,14 +231,13 @@ export class InvestigatorActor extends Actor {
   // ###########################################################################
   // ITEMS
 
-  getAbilityByName(
-    name: string,
-    type?: AbilityType,
-  ): InvestigatorItem | undefined {
+  getAbilityByName(name: string, type?: AbilityType): AbilityItem | undefined {
     return this.items.find(
       (item) =>
-        (type ? item.type === type : isAbilityItem(item)) && item.name === name,
-    );
+        isAbilityItem(item) &&
+        (type ? item.type === type : true) &&
+        item.name === name,
+    ) as AbilityItem | undefined;
   }
 
   getEquipment(): InvestigatorItem[] {
@@ -271,9 +276,10 @@ export class InvestigatorActor extends Actor {
     return items;
   }
 
-  getTrackerAbilities(): InvestigatorItem[] {
+  getTrackerAbilities(): AbilityItem[] {
     return this.getAbilities().filter(
-      (item) => isAbilityItem(item) && item.system.showTracker,
+      (item): item is AbilityItem =>
+        isAbilityItem(item) && item.system.showTracker,
     );
   }
 
@@ -303,9 +309,10 @@ export class InvestigatorActor extends Actor {
   };
 
   getSheetThemeName(): string | null {
-    return isActiveCharacterActor(this)
-      ? this.system.sheetTheme
-      : settings.defaultThemeName.get();
+    return (
+      (isActiveCharacterActor(this) && this.system.sheetTheme) ||
+      settings.defaultThemeName.get()
+    );
   }
 
   setSheetTheme = async (sheetTheme: string | null): Promise<void> => {
@@ -507,6 +514,23 @@ export class InvestigatorActor extends Actor {
     await this.update({ system: { cardsAreaSettings } });
   };
 
+  getNonContinuityCards = (): CardItem[] => {
+    assertPCActor(this);
+    return this.items.filter(
+      (item): item is CardItem => isCardItem(item) && !item.system.continuity,
+    );
+  };
+
+  endScenario = async (): Promise<void> => {
+    assertPCActor(this);
+    const nonContinuityCards = this.getNonContinuityCards();
+    const ids = nonContinuityCards
+      .map((c) => c.id)
+      .filter((id): id is string => id !== null);
+    await this.deleteEmbeddedDocuments("Item", ids);
+    await this.update({ system: { scenario: null } });
+  };
+
   createPersonalDetail = async (
     slotIndex: number,
     renderSheet = true,
@@ -531,6 +555,37 @@ export class InvestigatorActor extends Actor {
       },
     );
   };
+
+  getPushPool(): GeneralAbilityItem | undefined {
+    assertActiveCharacterActor(this);
+    return this.items.find(
+      (item: InvestigatorItem): item is GeneralAbilityItem =>
+        isGeneralAbilityItem(item) && item.system.isPushPool,
+    );
+  }
+
+  getPushPoolWarnings(): string[] {
+    assertActiveCharacterActor(this);
+    const warnings: string[] = [];
+    const pools = this.items.filter(
+      (item: InvestigatorItem): item is GeneralAbilityItem =>
+        isGeneralAbilityItem(item) && item.system.isPushPool,
+    );
+    const quickShockAbilities = this.items.filter(
+      (item: InvestigatorItem): item is InvestigativeAbilityItem =>
+        isInvestigativeAbilityItem(item) && item.system.isQuickShock,
+    );
+    if (pools.length > 1) {
+      warnings.push(getTranslated("TooManyPushPools"));
+    }
+    if (quickShockAbilities.length > 1 && pools.length < 1) {
+      warnings.push(getTranslated("QuickShockAbilityWithoutPushPool"));
+    }
+    if (quickShockAbilities.length === 0 && pools.length > 0) {
+      warnings.push(getTranslated("PushPoolWithoutQuickShockAbility"));
+    }
+    return warnings;
+  }
 }
 
 declare global {

@@ -25,10 +25,14 @@ import {
   assertEquipmentItem,
   assertEquipmentOrAbilityItem,
   assertGeneralAbilityItem,
+  assertInvestigativeAbilityItem,
   assertMwItem,
   assertPersonalDetailItem,
   assertWeaponItem,
+  InvestigativeAbilityItem,
   isEquipmentItem,
+  isGeneralAbilityItem,
+  isInvestigativeAbilityItem,
 } from "../v10Types";
 import { InvestigatorActor } from "./InvestigatorActor";
 
@@ -125,6 +129,69 @@ export class InvestigatorItem extends Item {
     const boost = settings.useBoost.get() && this.system.boost ? 1 : 0;
     const pool = this.system.pool - (Number(spend) || 0) + boost;
     await this.update({ system: { pool } });
+  }
+
+  /**
+   * Expend one point from a push pool
+   */
+  async push(): Promise<void> {
+    if (isGeneralAbilityItem(this)) {
+      await this.pushPool();
+    } else if (isInvestigativeAbilityItem(this)) {
+      await this.pushInvestigative();
+    } else {
+      throw new Error(
+        `Item ${this.name} is not a push pool or a QuickShock ability`,
+      );
+    }
+  }
+
+  async pushPool(from?: InvestigativeAbilityItem): Promise<void> {
+    assertGeneralAbilityItem(this);
+    if (!this.system.isPushPool) {
+      throw new Error(`This ability ${this.name} is not a push pool`);
+    }
+    if (this.actor === null) {
+      return;
+    }
+    if (this.system.pool === 0) {
+      return;
+    }
+    const roll = new Roll("1");
+    await roll.evaluate({ async: true });
+    await roll.toMessage({
+      speaker: ChatMessage.getSpeaker({
+        actor: this.actor,
+      }),
+      content: `
+        <div
+          class="${constants.abilityChatMessageClassName}"
+          ${constants.htmlDataItemId}="${from?.id ?? this.id}"
+          ${constants.htmlDataActorId}="${this.parent?.id ?? ""}"
+          ${constants.htmlDataMode}="${constants.htmlDataModePush}"
+          ${constants.htmlDataName}="${from?.name ?? this.name}"
+          ${constants.htmlDataImageUrl}="${this.img}"
+          ${constants.htmlDataTokenId}="${this.parent?.token?.id ?? ""}"
+        />
+      `,
+    });
+    const pool = this.system.pool - 1;
+    await this.update({ system: { pool } });
+  }
+
+  async pushInvestigative(): Promise<void> {
+    assertInvestigativeAbilityItem(this);
+    if (!this.system.isQuickShock) {
+      throw new Error(`The ability ${this.name} is not a quick shock`);
+    }
+    if (this.actor === null) {
+      throw new Error(`The ability ${this.name} is not owned`);
+    }
+    const poolAbility = this.actor.getPushPool();
+    if (poolAbility === undefined) {
+      throw new Error(`The actor ${this.actor.name} has no push pool`);
+    }
+    await poolAbility.pushPool(this);
   }
 
   /**
@@ -374,7 +441,7 @@ export class InvestigatorItem extends Item {
     });
   };
 
-  setRatingRefresh = (newRating: number): Promise<this | undefined> => {
+  setRatingAndRefreshPool = (newRating: number): Promise<this | undefined> => {
     assertAbilityItem(this);
     return this.update({
       system: {
@@ -549,6 +616,11 @@ export class InvestigatorItem extends Item {
   setActive = async (active: boolean): Promise<void> => {
     assertCardItem(this);
     await this.update({ system: { active } });
+  };
+
+  setContinuity = async (continuity: boolean): Promise<void> => {
+    assertCardItem(this);
+    await this.update({ system: { continuity } });
   };
 
   // ---------------------------------------------------------------------------
@@ -784,6 +856,23 @@ export class InvestigatorItem extends Item {
   setEffects = (effects: NoteWithFormat): Promise<this | undefined> => {
     assertCardItem(this);
     return this.update({ system: { effects } });
+  };
+
+  setIsPushPool = async (isPushPool: boolean): Promise<void> => {
+    assertGeneralAbilityItem(this);
+    await this.update({ system: { isPushPool } });
+  };
+
+  setAllowPoolToExceedRating = async (
+    allowPoolToExceedRating: boolean,
+  ): Promise<void> => {
+    assertGeneralAbilityItem(this);
+    await this.update({ system: { allowPoolToExceedRating } });
+  };
+
+  setIsQuickShock = async (isQuickShock: boolean): Promise<void> => {
+    assertInvestigativeAbilityItem(this);
+    await this.update({ system: { isQuickShock } });
   };
 }
 

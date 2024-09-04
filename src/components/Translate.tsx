@@ -9,12 +9,14 @@ type TranslateProps = {
   children: string;
   values?: { [key: string]: string };
   title?: string;
+  className?: string;
 };
 
 export const Translate: React.FC<TranslateProps> = ({
   children,
   values,
   title,
+  className,
 }) => {
   assertGame(game);
   const debug = settings.debugTranslations.get() && getDevMode();
@@ -31,6 +33,7 @@ export const Translate: React.FC<TranslateProps> = ({
 
   return (
     <span
+      className={className}
       title={title ?? (debug ? prefixed : local)}
       style={{
         background: debug ? (has ? "lightgreen" : "red") : "none",

@@ -223,11 +223,13 @@ interface BaseAbilitySystemData {
   hideIfZeroRated: boolean;
   unlocks: Unlock[];
   situationalModifiers: SituationalModifier[];
+  allowPoolToExceedRating: boolean;
 }
 
 /** system data forinvestigative abilities */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface InvestigativeAbilitySystemData extends BaseAbilitySystemData {}
+export interface InvestigativeAbilitySystemData extends BaseAbilitySystemData {
+  isQuickShock: boolean;
+}
 
 export type MwRefreshGroup = 2 | 4 | 8;
 
@@ -241,6 +243,7 @@ export interface GeneralAbilitySystemData extends BaseAbilitySystemData {
   mwRefreshGroup: MwRefreshGroup;
   combatBonus: number;
   damageBonus: number;
+  isPushPool: boolean;
 }
 
 export type MwType =
@@ -280,6 +283,7 @@ export interface CardSystemData {
   type: string;
   flags: string[];
   active: boolean;
+  continuity: boolean;
 }
 
 // #############################################################################

@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
+import { getTranslated } from "../../functions/getTranslated";
 import { cleanAndEnrichHtml } from "../../functions/textFunctions";
 import { getById, isNullOrEmptyString } from "../../functions/utilities";
 import { settings } from "../../settings/settings";
@@ -49,6 +50,25 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
     void cleanAndEnrichHtml(card.system.effects.html).then(setEffectsHTML);
   }, [card.system.effects.html]);
 
+  const categoryTheme = category?.styleKey
+    ? theme.cards.categories[category?.styleKey]
+    : null;
+
+  const supertitleText = [
+    // category name
+    category && showCategory ? category.singleName : null,
+    // active
+    !card.system.active ? getTranslated("Inactive") : null,
+    // continuity
+    card.system.continuity ? getTranslated("Continuity") : null,
+    // supertitle text
+    !isNullOrEmptyString(card.system.supertitle)
+      ? card.system.supertitle
+      : null,
+  ]
+    .filter(Boolean)
+    .join(" / ");
+
   return (
     <div
       draggable={draggable}
@@ -56,35 +76,38 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       data-item-id={card.id}
       tabIndex={0}
       onClick={handleClick}
-      className={`card-display ${className} ${category?.cssClass}`}
+      className={`investigator-card-display ${className} ${category?.styleKey}`}
       css={{
         ...theme.cards.base.backdropStyle,
-        ...theme.cards.categories[card.system.categoryId]?.backdropStyle,
+        ...categoryTheme?.backdropStyle,
       }}
     >
-      <p
-        css={{
-          ...theme.cards.base.supertitleStyle,
-          ...theme.cards.categories[card.system.categoryId]?.supertitleStyle,
-        }}
-      >
-        {category && showCategory ? category.singleName : ""}
-        {"  "}
-        {!isNullOrEmptyString(card.system.supertitle) && card.system.supertitle}
-      </p>
+      {supertitleText && (
+        <p
+          className="supertitle"
+          css={{
+            ...theme.cards.base.supertitleStyle,
+            ...categoryTheme?.supertitleStyle,
+          }}
+        >
+          {supertitleText}
+        </p>
+      )}
       <h2
+        className="title"
         css={{
           ...theme.cards.base.titleStyle,
-          ...theme.cards.categories[card.system.categoryId]?.titleStyle,
+          ...categoryTheme?.titleStyle,
         }}
       >
         {card.name}
       </h2>
       {!isNullOrEmptyString(card.system.subtitle) && (
         <p
+          className="subtitle"
           css={{
             ...theme.cards.base.subtitleStyle,
-            ...theme.cards.categories[card.system.categoryId]?.subtitleStyle,
+            ...categoryTheme?.subtitleStyle,
           }}
         >
           {card.system.subtitle}
@@ -92,18 +115,20 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       )}
       {showText && !isNullOrEmptyString(descriptionHTML) && (
         <p
+          className="description"
           css={{
             ...theme.cards.base.descriptionStyle,
-            ...theme.cards.categories[card.system.categoryId]?.descriptionStyle,
+            ...categoryTheme?.descriptionStyle,
           }}
           dangerouslySetInnerHTML={{ __html: descriptionHTML }}
         ></p>
       )}
       {showText && !isNullOrEmptyString(effectsHTML) && (
         <p
+          className="effects"
           css={{
             ...theme.cards.base.effectStyle,
-            ...theme.cards.categories[card.system.categoryId]?.effectStyle,
+            ...categoryTheme?.effectStyle,
           }}
           dangerouslySetInnerHTML={{ __html: effectsHTML }}
         ></p>

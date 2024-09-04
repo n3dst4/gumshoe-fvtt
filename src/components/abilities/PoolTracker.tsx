@@ -1,7 +1,14 @@
 import React from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { assertAbilityItem, isAbilityItem } from "../../v10Types";
+import {
+  assertAbilityItem,
+  assertGeneralAbilityItem,
+  isAbilityItem,
+  isGeneralAbilityItem,
+} from "../../v10Types";
+import { Button } from "../inputs/Button";
+import { Translate } from "../Translate";
 import { PoolCheckbox } from "./PoolCheckbox";
 
 const range = (from: number, to: number): number[] => {
@@ -19,8 +26,15 @@ type PoolTrackerProps = {
 export const PoolTracker: React.FC<PoolTrackerProps> = ({ ability }) => {
   assertAbilityItem(ability);
   const min = ability?.system.min ?? 0;
-  const max = ability?.system.rating;
+  const max = ability.system.allowPoolToExceedRating
+    ? ability.system.max
+    : ability?.system.rating;
   const vals = range(min, max);
+
+  const handleClickPush = React.useCallback(() => {
+    assertGeneralAbilityItem(ability);
+    void ability.push();
+  }, [ability]);
 
   return (
     <div
@@ -47,6 +61,19 @@ export const PoolTracker: React.FC<PoolTrackerProps> = ({ ability }) => {
           }
         />
       ))}
+      {isGeneralAbilityItem(ability) && ability.system.isPushPool && (
+        <Button
+          css={{
+            gridColumn: "start / end",
+            width: "auto",
+            marginTop: "0.5em",
+          }}
+          disabled={ability.system.pool === 0}
+          onClick={handleClickPush}
+        >
+          <Translate>Push</Translate>
+        </Button>
+      )}
     </div>
   );
 };

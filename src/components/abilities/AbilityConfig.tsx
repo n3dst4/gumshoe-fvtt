@@ -6,7 +6,11 @@ import { assertGame } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
 import { MwRefreshGroup, SpecialitiesMode } from "../../types";
-import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
+import {
+  assertAbilityItem,
+  isGeneralAbilityItem,
+  isInvestigativeAbilityItem,
+} from "../../v10Types";
 import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -213,6 +217,29 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
           />
         </GridField>
       )}
+      {isGeneralAbilityItem(ability) && (
+        <GridField label="IsAPushPool">
+          <AsyncCheckbox
+            checked={ability.system.isPushPool}
+            onChange={ability.setIsPushPool}
+          />
+        </GridField>
+      )}
+      <GridField label="AllowPoolToExceedRating">
+        <AsyncCheckbox
+          checked={ability.system.allowPoolToExceedRating}
+          onChange={ability.setAllowPoolToExceedRating}
+        />
+      </GridField>
+      {isInvestigativeAbilityItem(ability) && (
+        <GridField label="IsQuickShock">
+          <AsyncCheckbox
+            checked={ability.system.isQuickShock}
+            onChange={ability.setIsQuickShock}
+          />
+        </GridField>
+      )}
+
       {settings.useMwStyleAbilities.get() && isGeneralAbilityItem(ability) && (
         <GridField label="Refresh group">
           <select

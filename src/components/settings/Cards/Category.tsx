@@ -7,9 +7,8 @@ import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { GridField } from "../../inputs/GridField";
 import { InputGrid } from "../../inputs/InputGrid";
 import { SlideInNestedPanelRoute } from "../../nestedPanels/SlideInNestedPanelRoute";
-import { DispatchContext, ModifyContext } from "../contexts";
+import { ModifyContext } from "../contexts";
 import { useStateSelector } from "../hooks";
-import { store } from "../store";
 import { CategoryDangerZone } from "./CategoryDangerZone";
 import { cardCategory, categoryDangerZone } from "./directions";
 
@@ -18,7 +17,6 @@ export const Category: React.FC = () => {
   const { value: category } = useStateSelector((s) =>
     s.settings.cardCategories.find((c) => c.id === id),
   );
-  const dispatch = useContext(DispatchContext);
   const modify = useContext(ModifyContext);
   const theme = useContext(ThemeContext);
 
@@ -38,10 +36,6 @@ export const Category: React.FC = () => {
         category.pluralName = newName;
       }
     });
-  };
-
-  const handleCssClassChange = (newCssClass: string) => {
-    dispatch(store.creators.setCardCategoryCssClass({ id, newCssClass }));
   };
 
   const handleStyleKeyChange = (newStyleKey: string) => {
@@ -76,12 +70,6 @@ export const Category: React.FC = () => {
           <AsyncTextInput
             value={category?.styleKey ?? ""}
             onChange={handleStyleKeyChange}
-          />
-        </GridField>
-        <GridField label="CSS Class">
-          <AsyncTextInput
-            value={category?.cssClass ?? ""}
-            onChange={handleCssClassChange}
           />
         </GridField>
       </InputGrid>
