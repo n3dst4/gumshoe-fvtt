@@ -125,7 +125,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
               }}
             >
               <AsyncNumberInput
-                min={0}
+                min={ability.system.min}
                 max={poolMax}
                 value={ability.system.pool}
                 onChange={ability.setPool}
