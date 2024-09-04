@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from "react";
+import React, { Fragment } from "react";
 
 import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
@@ -25,7 +25,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
     true,
   );
 
-  const pushPool = useMemo(() => actor.getPushPool(), [actor]);
+  const pushPool = actor.getPushPool();
   const pushPoolIsZero = pushPool === undefined || pushPool.system.pool === 0;
 
   const showEmpty = settings.showEmptyInvestigativeCategories.get();
