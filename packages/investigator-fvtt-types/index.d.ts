@@ -416,6 +416,8 @@ export interface CardCategory extends HasId {
   singleName: string;
   pluralName: string;
   styleKey?: string;
+  threshold: number;
+  thresholdType: "goal" | "limit" | "none";
 }
 
 declare global {

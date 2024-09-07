@@ -329,6 +329,8 @@ export const createSystemSlice = (args: CreateSliceArgs) =>
         id: payload.id,
         singleName: "New category",
         pluralName: "New category",
+        threshold: 3,
+        thresholdType: "none",
       });
     },
     renameCardCategory: (

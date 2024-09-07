@@ -344,12 +344,16 @@ export const mutantCityBluesPreset: PresetV1 = {
       singleName: "Stress Card",
       pluralName: "Stress Cards",
       styleKey: "stress",
+      threshold: 3,
+      thresholdType: "none",
     },
     {
       id: "grf",
       singleName: "Genetic Risk Factor",
       pluralName: "Genetic Risk Factors",
       styleKey: "grf",
+      threshold: 3,
+      thresholdType: "none",
     },
   ],
 };

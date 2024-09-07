@@ -3,10 +3,12 @@ import React, { useContext } from "react";
 import { FaArrowRight } from "react-icons/fa6";
 
 import { ThemeContext } from "../../../themes/ThemeContext";
+import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { GridField } from "../../inputs/GridField";
 import { InputGrid } from "../../inputs/InputGrid";
 import { SlideInNestedPanelRoute } from "../../nestedPanels/SlideInNestedPanelRoute";
+import { Translate } from "../../Translate";
 import { ModifyContext } from "../contexts";
 import { useStateSelector } from "../hooks";
 import { CategoryDangerZone } from "./CategoryDangerZone";
@@ -47,31 +49,88 @@ export const Category: React.FC = () => {
     });
   };
 
+  const handleSoftLimitChange = (newSoftLimit: number) => {
+    modify((s) => {
+      const category = s.cardCategories.find((c) => c.id === id);
+      if (category) {
+        category.threshold = newSoftLimit;
+      }
+    });
+  };
+
+  const handleSoftLimitEnabledChange = (newSoftLimitEnabled: boolean) => {
+    modify((s) => {
+      const category = s.cardCategories.find((c) => c.id === id);
+      if (category) {
+        category.goalEnabled = newSoftLimitEnabled;
+      }
+    });
+  };
+
+  const handleGoalOrLimitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newGoalOrLimit = e.currentTarget.value as "goal" | "limit";
+    modify((s) => {
+      const category = s.cardCategories.find((c) => c.id === id);
+      if (category) {
+        category.thresholdType = newGoalOrLimit;
+      }
+    });
+  };
+
   const shade1 = "#f002";
   const shade2 = "#f001";
+
+  // const goalEnabled = category?.goalEnabled ?? false;
+
+  const limitType = category?.thresholdType ?? "none";
 
   return (
     <>
       <h2>Card category</h2>
       <InputGrid>
-        <GridField label="Item Name (single)">
+        <GridField label="ItemNameSingle">
           <AsyncTextInput
             value={category?.singleName}
             onChange={handleSingleNameChange}
           />
         </GridField>
-        <GridField label="Item Name (plural)">
+        <GridField label="ItemNamePlural">
           <AsyncTextInput
             value={category?.pluralName}
             onChange={handlePluralNameChange}
           />
         </GridField>
-        <GridField label="Style Key">
+        <GridField label="StyleKey">
           <AsyncTextInput
             value={category?.styleKey ?? ""}
             onChange={handleStyleKeyChange}
           />
         </GridField>
+        <GridField label="GoalOrLimit">
+          <select
+            value={category?.thresholdType ?? "none"}
+            onChange={handleGoalOrLimitChange}
+          >
+            <option value="none">
+              <Translate>None</Translate>
+            </option>
+            <option value="goal">
+              <Translate>Goal</Translate>
+            </option>
+            <option value="limit">
+              <Translate>Limit</Translate>
+            </option>
+          </select>
+        </GridField>
+
+        {limitType !== "none" && (
+          <GridField label={limitType === "goal" ? "Goal" : "Limit"}>
+            <AsyncNumberInput
+              value={category?.threshold ?? 3}
+              onChange={handleSoftLimitChange}
+            />
+          </GridField>
+        )}
       </InputGrid>
       <p css={{ textAlign: "right" }}>
         <Link
