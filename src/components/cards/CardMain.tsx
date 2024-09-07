@@ -11,7 +11,12 @@ import { Checkbox } from "../inputs/Checkbox";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { ArrowLink } from "../nestedPanels/ArrowLink";
+import { SlideInNestedPanelRoute } from "../nestedPanels/SlideInNestedPanelRoute";
 import { TabContainer } from "../TabContainer";
+import { Translate } from "../Translate";
+import { editCategoryMemberships } from "./directions";
+import { EditCategoryMemberships } from "./EditCategoryMemberships";
 
 interface CardMainProps {
   card: InvestigatorItem;
@@ -21,17 +26,6 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
   assertCardItem(card);
 
   const categories = settings.cardCategories.get();
-  const category = getById(categories, card.system.categoryId);
-  const isRealCategory = category !== undefined;
-
-  const onChangeCategory = useCallback(
-    (e: ChangeEvent<HTMLSelectElement>) => {
-      void card.setCategoryId(e.currentTarget.value);
-    },
-    [card],
-  );
-
-  const selectedCat = isRealCategory ? card.system.categoryId : "";
 
   return (
     <>
@@ -52,31 +46,10 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
           />
         </GridField>
 
-        <GridField label="Category">
-          <div
-            css={{
-              display: "flex",
-              flexDirection: "row",
-            }}
-          >
-            <div>
-              <select
-                value={selectedCat}
-                onChange={onChangeCategory}
-                css={{
-                  lineHeight: "inherit",
-                  height: "inherit",
-                }}
-              >
-                {categories.map<JSX.Element>((cat) => (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.singleName}
-                  </option>
-                ))}
-                <option value="">{getTranslated("Uncategorized")}</option>
-              </select>
-            </div>
-          </div>
+        <GridField label="Categories">
+          <ArrowLink to={editCategoryMemberships()}>
+            <Translate>Edit</Translate>
+          </ArrowLink>
         </GridField>
         <GridField label="Continuity">
           <Checkbox
@@ -146,6 +119,9 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
           ]}
         />
       </div>
+      <SlideInNestedPanelRoute direction={editCategoryMemberships}>
+        <EditCategoryMemberships card={card} />
+      </SlideInNestedPanelRoute>
     </>
   );
 };
