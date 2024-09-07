@@ -7,6 +7,7 @@ import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { GridField } from "../../inputs/GridField";
 import { InputGrid } from "../../inputs/InputGrid";
+import { ArrowLink } from "../../nestedPanels/ArrowLink";
 import { SlideInNestedPanelRoute } from "../../nestedPanels/SlideInNestedPanelRoute";
 import { Translate } from "../../Translate";
 import { ModifyContext } from "../contexts";
@@ -124,20 +125,9 @@ export const Category: React.FC = () => {
         )}
       </InputGrid>
       <p css={{ textAlign: "right" }}>
-        <Link
-          to={categoryDangerZone()}
-          css={{
-            verticalAlign: "middle",
-            "&&": {
-              color: theme.colors.danger,
-            },
-            // backgroundColor: "red",
-          }}
-        >
-          <span css={{ verticalAlign: "top" }}>Danger Zone</span>
-          {"   "}
-          <FaArrowRight />
-        </Link>
+        <ArrowLink danger to={categoryDangerZone()}>
+          Danger Zone
+        </ArrowLink>
       </p>
       <SlideInNestedPanelRoute
         direction={categoryDangerZone}
