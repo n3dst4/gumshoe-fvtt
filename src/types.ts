@@ -273,8 +273,14 @@ export interface PersonalDetailSystemData {
   compendiumPackId: string | null;
 }
 
-export interface CardSystemData {
+export interface CardCategoryMembership {
   categoryId: string;
+  nonlethal: boolean;
+  worth: number;
+}
+
+export interface CardSystemData {
+  categories: CardCategoryMembership[];
   supertitle: string;
   title: string;
   subtitle: string;

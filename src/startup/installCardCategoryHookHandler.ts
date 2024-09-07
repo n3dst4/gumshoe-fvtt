@@ -13,18 +13,28 @@ export const installCardCategoryHookHandler = () => {
       userId: string,
     ) => {
       assertGame(game);
-      if (game.userId !== userId) return;
+      const category = settings.cardCategories.get()[0];
+      if (
+        game.userId !== userId ||
+        category === undefined ||
+        !isCardItem(item) ||
+        item.system.categories.length > 0
+      ) {
+        return;
+      }
 
       // set category
-      if (isCardItem(item)) {
-        const cardCategories = settings.cardCategories.get();
-        const categoryId = cardCategories[0]?.id;
-        const updateData: Pick<CardSystemData, "categoryId"> = {
-          categoryId: item.system.categoryId || categoryId,
-        };
-        // @ts-expect-error "V10 api"
-        item.updateSource({ system: updateData });
-      }
+      const updateData: Pick<CardSystemData, "categories"> = {
+        categories: [
+          {
+            categoryId: category.id,
+            nonlethal: false,
+            worth: 1,
+          },
+        ],
+      };
+      // @ts-expect-error "V10 api"
+      item.updateSource({ system: updateData });
     },
   );
 };

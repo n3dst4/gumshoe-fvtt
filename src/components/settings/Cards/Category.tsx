@@ -58,15 +58,6 @@ export const Category: React.FC = () => {
     });
   };
 
-  const handleSoftLimitEnabledChange = (newSoftLimitEnabled: boolean) => {
-    modify((s) => {
-      const category = s.cardCategories.find((c) => c.id === id);
-      if (category) {
-        category.goalEnabled = newSoftLimitEnabled;
-      }
-    });
-  };
-
   const handleGoalOrLimitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newGoalOrLimit = e.currentTarget.value as "goal" | "limit";
     modify((s) => {
