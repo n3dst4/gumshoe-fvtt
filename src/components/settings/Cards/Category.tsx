@@ -1,6 +1,5 @@
-import { Link, useParams } from "@lumphammer/minirouter";
+import { useParams } from "@lumphammer/minirouter";
 import React, { useContext } from "react";
-import { FaArrowRight } from "react-icons/fa6";
 
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";

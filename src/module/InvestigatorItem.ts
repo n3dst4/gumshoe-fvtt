@@ -329,13 +329,13 @@ export class InvestigatorItem extends Item {
   /**
    * Right now this is *only* used for cards
    */
-  setCategoryId = async (categoryId: string): Promise<void> => {
-    assertCardItem(this);
-    const updateData: Pick<CardSystemData, "categoryId"> = {
-      categoryId,
-    };
-    await this.update({ system: updateData });
-  };
+  // setCategoryId = async (categoryId: string): Promise<void> => {
+  //   assertCardItem(this);
+  //   const updateData: Pick<CardSystemData, "categoryId"> = {
+  //     categoryId,
+  //   };
+  //   await this.update({ system: updateData });
+  // };
 
   setField = async (
     field: string,
@@ -873,6 +873,77 @@ export class InvestigatorItem extends Item {
   setIsQuickShock = async (isQuickShock: boolean): Promise<void> => {
     assertInvestigativeAbilityItem(this);
     await this.update({ system: { isQuickShock } });
+  };
+
+  addCardCategoryMembership = async (categoryId: string): Promise<void> => {
+    assertCardItem(this);
+    // bail if we already have this category
+    if (
+      this.system.categoryMemberships.some((m) => m.categoryId === categoryId)
+    ) {
+      return;
+    }
+    const updateData: Pick<CardSystemData, "categoryMemberships"> = {
+      categoryMemberships: [
+        ...this.system.categoryMemberships,
+        {
+          categoryId,
+          nonlethal: false,
+          worth: 1,
+        },
+      ],
+    };
+    await this.update({ system: updateData });
+  };
+
+  removeCardCategoryMembership = async (categoryId: string): Promise<void> => {
+    assertCardItem(this);
+    const updateData: Pick<CardSystemData, "categoryMemberships"> = {
+      categoryMemberships: this.system.categoryMemberships.filter(
+        (m) => m.categoryId !== categoryId,
+      ),
+    };
+    await this.update({ system: updateData });
+  };
+
+  setCardCategoryMembershipNonlethal = async (
+    categoryId: string,
+    nonlethal: boolean,
+  ): Promise<void> => {
+    assertCardItem(this);
+    const updateData: Pick<CardSystemData, "categoryMemberships"> = {
+      categoryMemberships: this.system.categoryMemberships.map((m) => {
+        if (m.categoryId === categoryId) {
+          return {
+            ...m,
+            nonlethal,
+          };
+        } else {
+          return m;
+        }
+      }),
+    };
+    await this.update({ system: updateData });
+  };
+
+  setCardCategoryMembershipWorth = async (
+    categoryId: string,
+    worth: number,
+  ): Promise<void> => {
+    assertCardItem(this);
+    const updateData: Pick<CardSystemData, "categoryMemberships"> = {
+      categoryMemberships: this.system.categoryMemberships.map((m) => {
+        if (m.categoryId === categoryId) {
+          return {
+            ...m,
+            worth,
+          };
+        } else {
+          return m;
+        }
+      }),
+    };
+    await this.update({ system: updateData });
   };
 }
 

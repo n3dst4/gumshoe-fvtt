@@ -26,7 +26,7 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
 
   const category = getById(
     settings.cardCategories.get(),
-    card.system.categoryId,
+    card.system.categoryMemberships[0].categoryId,
   );
 
   const handleDragStart = useCallback(

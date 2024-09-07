@@ -1,3 +1,4 @@
+import { CardStyles } from "@lumphammer/investigator-fvtt-types";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
@@ -29,10 +30,10 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
   const theme = useContext(ThemeContext);
   const [descriptionHTML, setDescriptionHTML] = useState("");
   const [effectsHTML, setEffectsHTML] = useState("");
-  const category = getById(
-    settings.cardCategories.get(),
-    card.system.categoryId,
-  );
+  const allCategories = settings.cardCategories.get();
+  const categories = card.system.categoryMemberships
+    .map((m) => getById(allCategories, m.categoryId))
+    .filter((c) => !!c);
 
   const handleClick = useCallback(() => {
     card.sheet?.render(true);
@@ -50,13 +51,21 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
     void cleanAndEnrichHtml(card.system.effects.html).then(setEffectsHTML);
   }, [card.system.effects.html]);
 
-  const categoryTheme = category?.styleKey
-    ? theme.cards.categories[category?.styleKey]
-    : null;
+  // const categoryTheme = category?.styleKey
+  //   ? theme.cards.categories[category?.styleKey]
+  //   : null;
+
+  // XXX
+  const categoryTheme = null as CardStyles | null;
+
+  // XXX
+  const styleKey = "";
 
   const supertitleText = [
     // category name
-    category && showCategory ? category.singleName : null,
+    categories && showCategory
+      ? categories.map((c) => c.singleName).join(", ")
+      : null,
     // active
     !card.system.active ? getTranslated("Inactive") : null,
     // continuity
@@ -76,7 +85,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       data-item-id={card.id}
       tabIndex={0}
       onClick={handleClick}
-      className={`investigator-card-display ${className} ${category?.styleKey}`}
+      className={`investigator-card-display ${className} ${styleKey}`}
       css={{
         ...theme.cards.base.backdropStyle,
         ...categoryTheme?.backdropStyle,

@@ -15,7 +15,9 @@ export const CategorizedCards: React.FC<CategorizedCardsProps> = ({
   const categoriesMap = Object.fromEntries(
     categories.map((cat) => [
       cat.id,
-      cards.filter((card) => card.system.categoryId === cat.id),
+      cards.filter((card) =>
+        card.system.categoryMemberships.some((m) => m.categoryId === cat.id),
+      ),
     ]),
   );
   return categories.map((cat, i) => (

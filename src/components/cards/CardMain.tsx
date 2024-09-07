@@ -1,9 +1,6 @@
-import React, { ChangeEvent, useCallback } from "react";
+import React from "react";
 
-import { getTranslated } from "../../functions/getTranslated";
-import { getById } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { settings } from "../../settings/settings";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -24,8 +21,6 @@ interface CardMainProps {
 
 export const CardMain: React.FC<CardMainProps> = ({ card }) => {
   assertCardItem(card);
-
-  const categories = settings.cardCategories.get();
 
   return (
     <>

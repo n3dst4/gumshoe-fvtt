@@ -18,14 +18,14 @@ export const installCardCategoryHookHandler = () => {
         game.userId !== userId ||
         category === undefined ||
         !isCardItem(item) ||
-        item.system.categories.length > 0
+        item.system.categoryMemberships.length > 0
       ) {
         return;
       }
 
       // set category
-      const updateData: Pick<CardSystemData, "categories"> = {
-        categories: [
+      const updateData: Pick<CardSystemData, "categoryMemberships"> = {
+        categoryMemberships: [
           {
             categoryId: category.id,
             nonlethal: false,

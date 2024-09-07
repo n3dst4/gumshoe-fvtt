@@ -253,5 +253,7 @@
   "investigator.GoalOrLimit": "Goal/Limit?",
   "investigator.Goal": "Goal",
   "investigator.Limit": "Limit",
-  "investigator.None": "None"
+  "investigator.None": "None",
+  "investigator.Nonlethal": "Nonlethal",
+  "investigator.Worth": "Worth"
 }
