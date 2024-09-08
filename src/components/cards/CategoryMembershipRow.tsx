@@ -53,17 +53,6 @@ export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
     [card, category.id],
   );
 
-  // const handleToggleUseForStyleKey = React.useCallback(
-  //   async (on: boolean) => {
-  //     if (on) {
-  //       await card.setCardStyleKeyCategoryId(category.id);
-  //     } else {
-  //       await card.unsetCardStyleKeyCategoryId();
-  //     }
-  //   },
-  //   [card, category.id],
-  // );
-
   // TODO this can go away if we redo grid labels
   const labelStyle: CSSObject = {
     "&&": {
@@ -83,29 +72,21 @@ export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
       <GridField label="Active" labelStyle={labelStyle}>
         <Toggle checked={!!membership} onChange={handleToggleActive} />
       </GridField>
-      {/* {membership && (
-        <GridField label="Appearance" labelStyle={labelStyle}>
-          <Toggle
-            checked={styleKeyCategoryId === category.id}
-            onChange={handleToggleUseForStyleKey}
+      {membership && category.thresholdType !== "none" && (
+        <GridField label="Worth" labelStyle={labelStyle}>
+          <AsyncNumberInput
+            value={membership.worth}
+            onChange={handleSetWorth}
           />
         </GridField>
-      )} */}
-      {membership && category.thresholdType !== "none" && (
-        <>
-          <GridField label="Worth" labelStyle={labelStyle}>
-            <AsyncNumberInput
-              value={membership.worth}
-              onChange={handleSetWorth}
-            />
-          </GridField>
-          <GridField label="Nonlethal" labelStyle={labelStyle}>
-            <Toggle
-              checked={membership.nonlethal}
-              onChange={handleToggleNonlethal}
-            />
-          </GridField>
-        </>
+      )}
+      {membership && category.thresholdType === "limit" && (
+        <GridField label="Nonlethal" labelStyle={labelStyle}>
+          <Toggle
+            checked={membership.nonlethal}
+            onChange={handleToggleNonlethal}
+          />
+        </GridField>
       )}
     </>
   );
