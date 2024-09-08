@@ -341,8 +341,8 @@ export const mutantCityBluesPreset: PresetV1 = {
   cardCategories: [
     {
       id: "stress",
-      singleName: "Stress Card",
-      pluralName: "Stress Cards",
+      singleName: "Stress",
+      pluralName: "Stresses",
       styleKey: "stress",
       threshold: 3,
       thresholdType: "none",
