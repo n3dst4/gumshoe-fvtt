@@ -1,9 +1,9 @@
-import { CardStyles } from "@lumphammer/investigator-fvtt-types";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { cleanAndEnrichHtml } from "../../functions/textFunctions";
 import { isNullOrEmptyString } from "../../functions/utilities";
+import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertCardItem, CardItem } from "../../v10Types";
 import { summarizeCategoryMemberships } from "./functions";
@@ -50,17 +50,10 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
     void cleanAndEnrichHtml(card.system.effects.html).then(setEffectsHTML);
   }, [card.system.effects.html]);
 
-  // const categoryTheme = category?.styleKey
-  //   ? theme.cards.categories[category?.styleKey]
-  //   : null;
-
-  // XXX
-  const categoryTheme = null as CardStyles | null;
-
-  // XXX
-  const styleKey = "";
-
-  // function getCategoryName() {
+  const styleKey = settings.cardCategories
+    .get()
+    .find((c) => c.id === card.system.styleKeyCategoryId)?.styleKey;
+  const categoryTheme = styleKey ? theme.cards.categories[styleKey] : null;
 
   const supertitleText = [
     // category name
