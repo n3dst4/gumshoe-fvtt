@@ -986,7 +986,9 @@ export class InvestigatorItem extends Item {
     await this.update({ system: updateData });
   };
 
-  setCardStyleKeyCategoryId = async (categoryId: string): Promise<void> => {
+  setCardStyleKeyCategoryId = async (
+    categoryId: string | null,
+  ): Promise<void> => {
     assertCardItem(this);
     const updateData: Pick<CardSystemData, "styleKeyCategoryId"> = {
       styleKeyCategoryId: categoryId,

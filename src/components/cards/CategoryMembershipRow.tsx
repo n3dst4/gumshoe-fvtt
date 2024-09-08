@@ -53,16 +53,16 @@ export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
     [card, category.id],
   );
 
-  const handleToggleUseForStyleKey = React.useCallback(
-    async (on: boolean) => {
-      if (on) {
-        await card.setCardStyleKeyCategoryId(category.id);
-      } else {
-        await card.unsetCardStyleKeyCategoryId();
-      }
-    },
-    [card, category.id],
-  );
+  // const handleToggleUseForStyleKey = React.useCallback(
+  //   async (on: boolean) => {
+  //     if (on) {
+  //       await card.setCardStyleKeyCategoryId(category.id);
+  //     } else {
+  //       await card.unsetCardStyleKeyCategoryId();
+  //     }
+  //   },
+  //   [card, category.id],
+  // );
 
   // TODO this can go away if we redo grid labels
   const labelStyle: CSSObject = {
@@ -83,14 +83,14 @@ export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
       <GridField label="Active" labelStyle={labelStyle}>
         <Toggle checked={!!membership} onChange={handleToggleActive} />
       </GridField>
-      {membership && (
+      {/* {membership && (
         <GridField label="Appearance" labelStyle={labelStyle}>
           <Toggle
             checked={styleKeyCategoryId === category.id}
             onChange={handleToggleUseForStyleKey}
           />
         </GridField>
-      )}
+      )} */}
       {membership && category.thresholdType !== "none" && (
         <>
           <GridField label="Worth" labelStyle={labelStyle}>
