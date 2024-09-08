@@ -23,8 +23,11 @@ export const installCardCategoryHookHandler = () => {
       }
 
       // set first category
-      if (item.system.categoryMemberships.length > 0) {
-        const updateData: Pick<CardSystemData, "categoryMemberships"> = {
+      if (item.system.categoryMemberships.length === 0) {
+        const updateData: Pick<
+          CardSystemData,
+          "categoryMemberships" | "styleKeyCategoryId"
+        > = {
           categoryMemberships: [
             {
               categoryId: category.id,
@@ -32,13 +35,6 @@ export const installCardCategoryHookHandler = () => {
               worth: 1,
             },
           ],
-        };
-        // @ts-expect-error "V10 api"
-        await item.updateSource({ system: updateData });
-      }
-      // set style key category
-      if (item.system.styleKeyCategoryId === null) {
-        const updateData: Pick<CardSystemData, "styleKeyCategoryId"> = {
           styleKeyCategoryId: category.id,
         };
         // @ts-expect-error "V10 api"
