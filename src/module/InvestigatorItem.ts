@@ -883,6 +883,9 @@ export class InvestigatorItem extends Item {
     ) {
       return;
     }
+    const useForStyleKey = !this.system.categoryMemberships.some(
+      (m) => m.useForStyleKey,
+    );
     const updateData: Pick<CardSystemData, "categoryMemberships"> = {
       categoryMemberships: [
         ...this.system.categoryMemberships,
@@ -890,6 +893,7 @@ export class InvestigatorItem extends Item {
           categoryId,
           nonlethal: false,
           worth: 1,
+          useForStyleKey,
         },
       ],
     };
@@ -903,6 +907,12 @@ export class InvestigatorItem extends Item {
         (m) => m.categoryId !== categoryId,
       ),
     };
+    if (
+      this.system.categoryMemberships.length > 0 &&
+      !this.system.categoryMemberships.some((m) => m.useForStyleKey)
+    ) {
+      updateData.categoryMemberships[0].useForStyleKey = true;
+    }
     await this.update({ system: updateData });
   };
 
@@ -942,6 +952,30 @@ export class InvestigatorItem extends Item {
           return m;
         }
       }),
+    };
+    await this.update({ system: updateData });
+  };
+
+  setCardCategoryMembershipUseForStyleKey = async (
+    categoryId: string,
+    useForStyleKey: boolean,
+  ): Promise<void> => {
+    assertCardItem(this);
+    const categoryMemberships = this.system.categoryMemberships.map((m) => {
+      if (m.categoryId === categoryId) {
+        return {
+          ...m,
+          useForStyleKey,
+        };
+      } else {
+        return {
+          ...m,
+          useForStyleKey: useForStyleKey ? false : m.useForStyleKey,
+        };
+      }
+    });
+    const updateData: Pick<CardSystemData, "categoryMemberships"> = {
+      categoryMemberships,
     };
     await this.update({ system: updateData });
   };

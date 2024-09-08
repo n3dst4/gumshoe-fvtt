@@ -277,6 +277,7 @@ export interface CardCategoryMembership {
   categoryId: string;
   nonlethal: boolean;
   worth: number;
+  useForStyleKey: boolean;
 }
 
 export interface CardSystemData {

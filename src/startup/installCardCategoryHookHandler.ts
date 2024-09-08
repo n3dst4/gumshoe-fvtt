@@ -30,6 +30,7 @@ export const installCardCategoryHookHandler = () => {
             categoryId: category.id,
             nonlethal: false,
             worth: 1,
+            useForStyleKey: true,
           },
         ],
       };
