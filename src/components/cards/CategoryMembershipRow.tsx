@@ -12,12 +12,14 @@ interface CategoryMembershipRowProps {
   category: CardCategory;
   card: CardItem;
   index: number;
+  styleKeyCategoryId: string | null;
 }
 
 export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
   category,
   card,
   index,
+  styleKeyCategoryId,
 }) => {
   const theme = useContext(ThemeContext);
 
@@ -52,11 +54,12 @@ export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
   );
 
   const handleToggleUseForStyleKey = React.useCallback(
-    async (useForStyleKey: boolean) => {
-      await card.setCardCategoryMembershipUseForStyleKey(
-        category.id,
-        useForStyleKey,
-      );
+    async (on: boolean) => {
+      if (on) {
+        await card.setCardStyleKeyCategoryId(category.id);
+      } else {
+        await card.unsetCardStyleKeyCategoryId();
+      }
     },
     [card, category.id],
   );
@@ -83,7 +86,7 @@ export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
       {membership && (
         <GridField label="Appearance" labelStyle={labelStyle}>
           <Toggle
-            checked={membership.useForStyleKey}
+            checked={styleKeyCategoryId === category.id}
             onChange={handleToggleUseForStyleKey}
           />
         </GridField>

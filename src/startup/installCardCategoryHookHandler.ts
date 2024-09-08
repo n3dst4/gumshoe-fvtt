@@ -6,7 +6,7 @@ import { isCardItem } from "../v10Types";
 export const installCardCategoryHookHandler = () => {
   Hooks.on(
     "preCreateItem",
-    (
+    async (
       item: Item,
       createData: { name: string; type: string; data?: any; img?: string },
       options: any,
@@ -17,25 +17,33 @@ export const installCardCategoryHookHandler = () => {
       if (
         game.userId !== userId ||
         category === undefined ||
-        !isCardItem(item) ||
-        item.system.categoryMemberships.length > 0
+        !isCardItem(item)
       ) {
         return;
       }
 
-      // set category
-      const updateData: Pick<CardSystemData, "categoryMemberships"> = {
-        categoryMemberships: [
-          {
-            categoryId: category.id,
-            nonlethal: false,
-            worth: 1,
-            useForStyleKey: true,
-          },
-        ],
-      };
-      // @ts-expect-error "V10 api"
-      item.updateSource({ system: updateData });
+      // set first category
+      if (item.system.categoryMemberships.length > 0) {
+        const updateData: Pick<CardSystemData, "categoryMemberships"> = {
+          categoryMemberships: [
+            {
+              categoryId: category.id,
+              nonlethal: false,
+              worth: 1,
+            },
+          ],
+        };
+        // @ts-expect-error "V10 api"
+        await item.updateSource({ system: updateData });
+      }
+      // set style key category
+      if (item.system.styleKeyCategoryId === null) {
+        const updateData: Pick<CardSystemData, "styleKeyCategoryId"> = {
+          styleKeyCategoryId: category.id,
+        };
+        // @ts-expect-error "V10 api"
+        await item.updateSource({ system: updateData });
+      }
     },
   );
 };

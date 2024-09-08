@@ -179,6 +179,7 @@
     },
     "card": {
       "categoryMemberships": [],
+      "styleKeyCategoryId": null,
       "nonlethal": false,
       "supertitle": "",
       "subtitle": "",

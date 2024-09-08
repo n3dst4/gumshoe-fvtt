@@ -277,11 +277,11 @@ export interface CardCategoryMembership {
   categoryId: string;
   nonlethal: boolean;
   worth: number;
-  useForStyleKey: boolean;
 }
 
 export interface CardSystemData {
   categoryMemberships: CardCategoryMembership[];
+  styleKeyCategoryId: string | null;
   supertitle: string;
   title: string;
   subtitle: string;

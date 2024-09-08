@@ -4,7 +4,7 @@
 import { nanoid } from "nanoid";
 
 import * as constants from "../constants";
-import { assertGame, fixLength } from "../functions/utilities";
+import { assertGame, fixLength, getById } from "../functions/utilities";
 import { settings } from "../settings/settings";
 import {
   CardSystemData,
@@ -875,43 +875,73 @@ export class InvestigatorItem extends Item {
     await this.update({ system: { isQuickShock } });
   };
 
-  addCardCategoryMembership = async (categoryId: string): Promise<void> => {
+  addCardCategoryMembership = async (
+    newStyleKeyCategoryId: string,
+  ): Promise<void> => {
     assertCardItem(this);
     // bail if we already have this category
     if (
-      this.system.categoryMemberships.some((m) => m.categoryId === categoryId)
+      this.system.categoryMemberships.some(
+        (m) => m.categoryId === newStyleKeyCategoryId,
+      )
     ) {
       return;
     }
-    const useForStyleKey = !this.system.categoryMemberships.some(
-      (m) => m.useForStyleKey,
-    );
-    const updateData: Pick<CardSystemData, "categoryMemberships"> = {
+    const existingStyleKeyCategoryId = this.system.styleKeyCategoryId;
+    const existingStyleKeyCategory =
+      existingStyleKeyCategoryId === null
+        ? null
+        : getById(settings.cardCategories.get(), existingStyleKeyCategoryId);
+    const existingStyleKeyCategoryMembership =
+      this.system.categoryMemberships.find(
+        (m) => m.categoryId === existingStyleKeyCategoryId,
+      );
+    // if we don't already have a styleKeyCategoryId,
+    // or (the styleKeyCategoryId doesn't map to a real category)
+    // or we don't have a memberhip for the styleKeyCategoryId
+    const styleKeyCategoryId =
+      existingStyleKeyCategoryId === null ||
+      !existingStyleKeyCategory ||
+      !existingStyleKeyCategoryMembership
+        ? newStyleKeyCategoryId
+        : existingStyleKeyCategoryId;
+
+    const updateData: Pick<
+      CardSystemData,
+      "categoryMemberships" | "styleKeyCategoryId"
+    > = {
       categoryMemberships: [
         ...this.system.categoryMemberships,
         {
-          categoryId,
+          categoryId: newStyleKeyCategoryId,
           nonlethal: false,
           worth: 1,
-          useForStyleKey,
         },
       ],
+      styleKeyCategoryId,
     };
     await this.update({ system: updateData });
   };
 
   removeCardCategoryMembership = async (categoryId: string): Promise<void> => {
     assertCardItem(this);
-    const updateData: Pick<CardSystemData, "categoryMemberships"> = {
+    const updateData: Pick<
+      CardSystemData,
+      "categoryMemberships" | "styleKeyCategoryId"
+    > = {
       categoryMemberships: this.system.categoryMemberships.filter(
         (m) => m.categoryId !== categoryId,
       ),
+      styleKeyCategoryId: this.system.styleKeyCategoryId,
     };
-    if (
-      this.system.categoryMemberships.length > 0 &&
-      !this.system.categoryMemberships.some((m) => m.useForStyleKey)
-    ) {
-      updateData.categoryMemberships[0].useForStyleKey = true;
+    if (this.system.styleKeyCategoryId === categoryId) {
+      const validMemberCategories = settings.cardCategories
+        .get()
+        .filter((m) =>
+          updateData.categoryMemberships.some((c) => c.categoryId === m.id),
+        );
+      updateData.styleKeyCategoryId =
+        validMemberCategories.length > 0 ? validMemberCategories[0].id : null;
     }
     await this.update({ system: updateData });
   };
@@ -956,26 +986,18 @@ export class InvestigatorItem extends Item {
     await this.update({ system: updateData });
   };
 
-  setCardCategoryMembershipUseForStyleKey = async (
-    categoryId: string,
-    useForStyleKey: boolean,
-  ): Promise<void> => {
+  setCardStyleKeyCategoryId = async (categoryId: string): Promise<void> => {
     assertCardItem(this);
-    const categoryMemberships = this.system.categoryMemberships.map((m) => {
-      if (m.categoryId === categoryId) {
-        return {
-          ...m,
-          useForStyleKey,
-        };
-      } else {
-        return {
-          ...m,
-          useForStyleKey: useForStyleKey ? false : m.useForStyleKey,
-        };
-      }
-    });
-    const updateData: Pick<CardSystemData, "categoryMemberships"> = {
-      categoryMemberships,
+    const updateData: Pick<CardSystemData, "styleKeyCategoryId"> = {
+      styleKeyCategoryId: categoryId,
+    };
+    await this.update({ system: updateData });
+  };
+
+  unsetCardStyleKeyCategoryId = async (): Promise<void> => {
+    assertCardItem(this);
+    const updateData: Pick<CardSystemData, "styleKeyCategoryId"> = {
+      styleKeyCategoryId: null,
     };
     await this.update({ system: updateData });
   };
