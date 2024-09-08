@@ -40,7 +40,6 @@ export const GridField: React.FC<GridFieldProps> = ({
           alignSelf: "center",
           overflowWrap: "anywhere",
         }}
-        // className={className}
         // drag handlers
         onDragOver={onDragOver}
         onDragLeave={onDragEnd}
