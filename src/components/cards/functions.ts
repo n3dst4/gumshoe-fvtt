@@ -6,6 +6,9 @@ import { CardCategoryMembership } from "../../types";
 export function summarizeCategoryMemberships(
   memberships: CardCategoryMembership[],
 ) {
+  if (memberships.length === 0) {
+    return getTranslated("Uncategorized");
+  }
   const allCategories = settings.cardCategories.get();
   const text = memberships
     .map((m) => {

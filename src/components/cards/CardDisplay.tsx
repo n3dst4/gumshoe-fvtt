@@ -13,7 +13,6 @@ interface CardDisplayProps {
   card: CardItem;
   className?: string;
   viewMode: CardsViewMode;
-  showCategory: boolean;
   draggable?: boolean;
   onDragStart?: (event: React.DragEvent<HTMLElement>) => void;
 }
@@ -22,7 +21,6 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
   card,
   className,
   viewMode,
-  showCategory,
   draggable,
   onDragStart,
 }) => {
@@ -57,7 +55,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
 
   const supertitleText = [
     // category name
-    categoryText && showCategory ? categoryText : null,
+    categoryText,
     // active
     !card.system.active ? getTranslated("Inactive") : null,
     // continuity
