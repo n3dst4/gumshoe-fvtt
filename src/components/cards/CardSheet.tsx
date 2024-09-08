@@ -96,7 +96,7 @@ export const CardSheet: React.FC<CardSheetProps> = ({ card, application }) => {
             containerType: "inline-size",
           }}
         >
-          <CardDisplay card={card} showCategory={true} viewMode="full" />
+          <CardDisplay card={card} viewMode="full" />
         </div>
       </div>
       <SlideInNestedPanelRoute
