@@ -1,6 +1,7 @@
-import { CardCategory } from "@lumphammer/investigator-fvtt-types";
-import React from "react";
+import { CardCategory, CSSObject } from "@lumphammer/investigator-fvtt-types";
+import React, { useContext } from "react";
 
+import { ThemeContext } from "../../themes/ThemeContext";
 import { CardItem } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridField } from "../inputs/GridField";
@@ -18,6 +19,8 @@ export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
   card,
   index,
 }) => {
+  const theme = useContext(ThemeContext);
+
   const membership = card.system.categoryMemberships.find(
     (m) => m.categoryId === category.id,
   );
@@ -48,24 +51,34 @@ export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
     [card, category.id],
   );
 
+  // TODO this can go away if we redo grid labels
+  const labelStyle: CSSObject = {
+    "&&": {
+      font: theme.bodyFont,
+      fontWeight: "bold",
+      paddingRight: "1em",
+      textAlign: "end",
+    },
+  };
+
   return (
     <>
       <GridFieldStacked key={category.id}>
         {index !== 0 && <hr css={{ margin: "1em 0em" }} />}
         <h2>{category.singleName}</h2>
       </GridFieldStacked>
-      <GridField label="Active">
+      <GridField label="Active" labelStyle={labelStyle}>
         <Toggle checked={!!membership} onChange={handleToggleActive} />
       </GridField>
       {membership && category.thresholdType !== "none" && (
         <>
-          <GridField label="Worth">
+          <GridField label="Worth" labelStyle={labelStyle}>
             <AsyncNumberInput
               value={membership.worth}
               onChange={handleSetWorth}
             />
           </GridField>
-          <GridField label="Nonlethal">
+          <GridField label="Nonlethal" labelStyle={labelStyle}>
             <Toggle
               checked={membership.nonlethal}
               onChange={handleToggleNonlethal}
