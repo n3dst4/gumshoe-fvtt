@@ -3,10 +3,10 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { cleanAndEnrichHtml } from "../../functions/textFunctions";
-import { getById, isNullOrEmptyString } from "../../functions/utilities";
-import { settings } from "../../settings/settings";
+import { isNullOrEmptyString } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertCardItem, CardItem } from "../../v10Types";
+import { summarizeCategoryMemberships } from "./functions";
 import { CardsViewMode } from "./types";
 
 interface CardDisplayProps {
@@ -30,10 +30,9 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
   const theme = useContext(ThemeContext);
   const [descriptionHTML, setDescriptionHTML] = useState("");
   const [effectsHTML, setEffectsHTML] = useState("");
-  const allCategories = settings.cardCategories.get();
-  const categories = card.system.categoryMemberships
-    .map((m) => getById(allCategories, m.categoryId))
-    .filter((c) => !!c);
+  const categoryText = summarizeCategoryMemberships(
+    card.system.categoryMemberships,
+  );
 
   const handleClick = useCallback(() => {
     card.sheet?.render(true);
@@ -61,11 +60,11 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
   // XXX
   const styleKey = "";
 
+  // function getCategoryName() {
+
   const supertitleText = [
     // category name
-    categories && showCategory
-      ? categories.map((c) => c.singleName).join(", ")
-      : null,
+    categoryText && showCategory ? categoryText : null,
     // active
     !card.system.active ? getTranslated("Inactive") : null,
     // continuity

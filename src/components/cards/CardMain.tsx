@@ -16,6 +16,7 @@ import { TabContainer } from "../TabContainer";
 import { Translate } from "../Translate";
 import { editCategoryMemberships } from "./directions";
 import { EditCategoryMemberships } from "./EditCategoryMemberships";
+import { summarizeCategoryMemberships } from "./functions";
 
 interface CardMainProps {
   card: InvestigatorItem;
@@ -29,12 +30,16 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
     .map((m) => getById(allCategories, m.categoryId)?.singleName)
     .filter((c) => !!c);
 
+  const categoryText = summarizeCategoryMemberships(
+    card.system.categoryMemberships,
+  );
+
   return (
     <>
       <InputGrid>
         <GridField label="Categories">
           <ArrowLink to={editCategoryMemberships()}>
-            {categories.join(", ")}
+            {categoryText}
             {categories.length === 0 && <Translate>Uncategorized</Translate>}
             {"  "}
           </ArrowLink>
