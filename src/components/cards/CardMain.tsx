@@ -1,6 +1,8 @@
 import React from "react";
 
+import { getById } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { settings } from "../../settings/settings";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -22,12 +24,19 @@ interface CardMainProps {
 export const CardMain: React.FC<CardMainProps> = ({ card }) => {
   assertCardItem(card);
 
+  const allCategories = settings.cardCategories.get();
+  const categories = card.system.categoryMemberships
+    .map((m) => getById(allCategories, m.categoryId)?.singleName)
+    .filter((c) => !!c);
+
   return (
     <>
       <InputGrid>
         <GridField label="Categories">
           <ArrowLink to={editCategoryMemberships()}>
-            <Translate>Edit</Translate>
+            {categories.join(", ")}
+            {categories.length === 0 && <Translate>Uncategorized</Translate>}
+            {"  "}
           </ArrowLink>
         </GridField>
         <GridField label="Item Name">
