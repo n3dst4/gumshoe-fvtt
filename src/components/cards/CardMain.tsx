@@ -25,6 +25,11 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
   return (
     <>
       <InputGrid>
+        <GridField label="Categories">
+          <ArrowLink to={editCategoryMemberships()}>
+            <Translate>Edit</Translate>
+          </ArrowLink>
+        </GridField>
         <GridField label="Item Name">
           <AsyncTextInput value={card.name ?? ""} onChange={card.setName} />
         </GridField>
@@ -41,11 +46,6 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
           />
         </GridField>
 
-        <GridField label="Categories">
-          <ArrowLink to={editCategoryMemberships()}>
-            <Translate>Edit</Translate>
-          </ArrowLink>
-        </GridField>
         <GridField label="Continuity">
           <Checkbox
             checked={card.system.continuity}

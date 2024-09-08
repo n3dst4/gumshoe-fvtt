@@ -3,16 +3,20 @@ import React from "react";
 
 import { CardItem } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { GridField } from "../inputs/GridField";
+import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { Toggle } from "../inputs/Toggle";
 
 interface CategoryMembershipRowProps {
   category: CardCategory;
   card: CardItem;
+  index: number;
 }
 
 export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
   category,
   card,
+  index,
 }) => {
   const membership = card.system.categoryMemberships.find(
     (m) => m.categoryId === category.id,
@@ -45,35 +49,31 @@ export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
   );
 
   return (
-    <div
-      css={{
-        display: "grid",
-        gridTemplateColumns: "subgrid",
-        gridColumn: "1 / -1",
-      }}
-    >
-      <div>{category.singleName}</div>
-      <div>
+    <>
+      <GridFieldStacked key={category.id}>
+        {index !== 0 && <hr css={{ margin: "1em 0em" }} />}
+        <h2>{category.singleName}</h2>
+      </GridFieldStacked>
+      <GridField label="Active">
         <Toggle checked={!!membership} onChange={handleToggleActive} />
-      </div>
-      {membership && (
+      </GridField>
+      {membership && category.thresholdType !== "none" && (
         <>
-          <div>
+          <GridField label="Worth">
+            <AsyncNumberInput
+              value={membership.worth}
+              onChange={handleSetWorth}
+            />
+          </GridField>
+          <GridField label="Nonlethal">
             <Toggle
               checked={membership.nonlethal}
               onChange={handleToggleNonlethal}
             />
-          </div>
-          <div>
-            <AsyncNumberInput
-              min={0}
-              value={membership.worth}
-              onChange={handleSetWorth}
-            />
-          </div>
+          </GridField>
         </>
       )}
-    </div>
+    </>
   );
 };
 
