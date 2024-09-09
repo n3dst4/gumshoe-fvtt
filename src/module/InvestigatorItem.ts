@@ -326,17 +326,6 @@ export class InvestigatorItem extends Item {
     await this.update({ system: updateData });
   };
 
-  /**
-   * Right now this is *only* used for cards
-   */
-  // setCategoryId = async (categoryId: string): Promise<void> => {
-  //   assertCardItem(this);
-  //   const updateData: Pick<CardSystemData, "categoryId"> = {
-  //     categoryId,
-  //   };
-  //   await this.update({ system: updateData });
-  // };
-
   setField = async (
     field: string,
     value: string | number | boolean,
