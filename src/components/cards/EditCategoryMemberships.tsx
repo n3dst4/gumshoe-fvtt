@@ -49,7 +49,7 @@ export const EditCategoryMemberships: React.FC<
             <option value={""}>{getTranslated("Uncategorized")}</option>
             {categories
               .filter((category) =>
-                card.system.categoryMemberships.some(
+                card.system.cardCategoryMemberships.some(
                   (m) => m.categoryId === category.id,
                 ),
               )

@@ -23,7 +23,7 @@ export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
 }) => {
   const theme = useContext(ThemeContext);
 
-  const membership = card.system.categoryMemberships.find(
+  const membership = card.system.cardCategoryMemberships.find(
     (m) => m.categoryId === category.id,
   );
 

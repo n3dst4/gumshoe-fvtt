@@ -23,7 +23,7 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
   assertCardItem(card);
 
   const categoryText = summarizeCategoryMemberships(
-    card.system.categoryMemberships,
+    card.system.cardCategoryMemberships,
   );
 
   return (

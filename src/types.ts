@@ -280,7 +280,7 @@ export interface CardCategoryMembership {
 }
 
 export interface CardSystemData {
-  categoryMemberships: CardCategoryMembership[];
+  cardCategoryMemberships: CardCategoryMembership[];
   styleKeyCategoryId: string | null;
   supertitle: string;
   title: string;

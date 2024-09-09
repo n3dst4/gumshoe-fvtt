@@ -29,7 +29,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
   const [descriptionHTML, setDescriptionHTML] = useState("");
   const [effectsHTML, setEffectsHTML] = useState("");
   const categoryText = summarizeCategoryMemberships(
-    card.system.categoryMemberships,
+    card.system.cardCategoryMemberships,
   );
 
   const handleClick = useCallback(() => {

@@ -23,12 +23,12 @@ export const installCardCategoryHookHandler = () => {
       }
 
       // set first category
-      if (item.system.categoryMemberships.length === 0) {
+      if (item.system.cardCategoryMemberships.length === 0) {
         const updateData: Pick<
           CardSystemData,
-          "categoryMemberships" | "styleKeyCategoryId"
+          "cardCategoryMemberships" | "styleKeyCategoryId"
         > = {
-          categoryMemberships: [
+          cardCategoryMemberships: [
             {
               categoryId: category.id,
               nonlethal: false,

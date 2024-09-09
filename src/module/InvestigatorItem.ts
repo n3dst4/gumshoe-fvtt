@@ -870,7 +870,7 @@ export class InvestigatorItem extends Item {
     assertCardItem(this);
     // bail if we already have this category
     if (
-      this.system.categoryMemberships.some(
+      this.system.cardCategoryMemberships.some(
         (m) => m.categoryId === newStyleKeyCategoryId,
       )
     ) {
@@ -882,7 +882,7 @@ export class InvestigatorItem extends Item {
         ? null
         : getById(settings.cardCategories.get(), existingStyleKeyCategoryId);
     const existingStyleKeyCategoryMembership =
-      this.system.categoryMemberships.find(
+      this.system.cardCategoryMemberships.find(
         (m) => m.categoryId === existingStyleKeyCategoryId,
       );
     // if we don't already have a styleKeyCategoryId,
@@ -897,10 +897,10 @@ export class InvestigatorItem extends Item {
 
     const updateData: Pick<
       CardSystemData,
-      "categoryMemberships" | "styleKeyCategoryId"
+      "cardCategoryMemberships" | "styleKeyCategoryId"
     > = {
-      categoryMemberships: [
-        ...this.system.categoryMemberships,
+      cardCategoryMemberships: [
+        ...this.system.cardCategoryMemberships,
         {
           categoryId: newStyleKeyCategoryId,
           nonlethal: false,
@@ -916,9 +916,9 @@ export class InvestigatorItem extends Item {
     assertCardItem(this);
     const updateData: Pick<
       CardSystemData,
-      "categoryMemberships" | "styleKeyCategoryId"
+      "cardCategoryMemberships" | "styleKeyCategoryId"
     > = {
-      categoryMemberships: this.system.categoryMemberships.filter(
+      cardCategoryMemberships: this.system.cardCategoryMemberships.filter(
         (m) => m.categoryId !== categoryId,
       ),
       styleKeyCategoryId: this.system.styleKeyCategoryId,
@@ -927,7 +927,7 @@ export class InvestigatorItem extends Item {
       const validMemberCategories = settings.cardCategories
         .get()
         .filter((m) =>
-          updateData.categoryMemberships.some((c) => c.categoryId === m.id),
+          updateData.cardCategoryMemberships.some((c) => c.categoryId === m.id),
         );
       updateData.styleKeyCategoryId =
         validMemberCategories.length > 0 ? validMemberCategories[0].id : null;
@@ -940,8 +940,8 @@ export class InvestigatorItem extends Item {
     nonlethal: boolean,
   ): Promise<void> => {
     assertCardItem(this);
-    const updateData: Pick<CardSystemData, "categoryMemberships"> = {
-      categoryMemberships: this.system.categoryMemberships.map((m) => {
+    const updateData: Pick<CardSystemData, "cardCategoryMemberships"> = {
+      cardCategoryMemberships: this.system.cardCategoryMemberships.map((m) => {
         if (m.categoryId === categoryId) {
           return {
             ...m,
@@ -960,8 +960,8 @@ export class InvestigatorItem extends Item {
     worth: number,
   ): Promise<void> => {
     assertCardItem(this);
-    const updateData: Pick<CardSystemData, "categoryMemberships"> = {
-      categoryMemberships: this.system.categoryMemberships.map((m) => {
+    const updateData: Pick<CardSystemData, "cardCategoryMemberships"> = {
+      cardCategoryMemberships: this.system.cardCategoryMemberships.map((m) => {
         if (m.categoryId === categoryId) {
           return {
             ...m,

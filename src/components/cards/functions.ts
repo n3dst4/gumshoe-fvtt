@@ -52,7 +52,7 @@ export function summarizeCategoryMemberships(
  */
 export function countCards(cards: CardItem[], categoryId: string): number {
   return cards.reduce((acc, card) => {
-    const membership = card.system.categoryMemberships.find(
+    const membership = card.system.cardCategoryMemberships.find(
       (m) => m.categoryId === categoryId,
     );
     return acc + (membership?.worth ?? 0);
@@ -84,7 +84,7 @@ export function summarizeCategoryCards(
 
   const indexOfLastLethalCard = cards
     .map((card) => {
-      const membership = card.system.categoryMemberships.find(
+      const membership = card.system.cardCategoryMemberships.find(
         (m) => m.categoryId === category.id,
       );
       return membership?.nonlethal ?? false;
@@ -122,14 +122,16 @@ export function categorizeCards(
     categories.map((cat) => [
       cat.id,
       cards.filter((card) =>
-        card.system.categoryMemberships.some((m) => m.categoryId === cat.id),
+        card.system.cardCategoryMemberships.some(
+          (m) => m.categoryId === cat.id,
+        ),
       ),
     ]),
   );
   const categoryIds = categories.map((cat) => cat.id);
   const uncategorized = cards.filter(
     (card) =>
-      !card.system.categoryMemberships.some((m) =>
+      !card.system.cardCategoryMemberships.some((m) =>
         categoryIds.includes(m.categoryId),
       ),
   );
