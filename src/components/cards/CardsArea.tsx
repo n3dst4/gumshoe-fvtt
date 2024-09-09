@@ -10,11 +10,11 @@ import { absoluteCover } from "../absoluteCover";
 import { Button } from "../inputs/Button";
 import { ArrowLink } from "../nestedPanels/ArrowLink";
 import { SlideInNestedPanelRoute } from "../nestedPanels/SlideInNestedPanelRoute";
-import { CardArray } from "./CardArray";
 import { CardsAreaSettingsSheet } from "./CardsAreaSettings";
-import { CategorizedCards } from "./CategorizedCards";
+import { CategorizedCardArray } from "./CategorizedCardArray";
 import { CardsAreaSettingsContext } from "./contexts";
 import { CardsAreaSettings } from "./types";
+import { UncategorizedCardArray } from "./UncategorizedCardArray";
 
 interface CardsAreaProps {
   actor: InvestigatorActor;
@@ -137,9 +137,9 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
             }}
           >
             {cardsAreaSettings.category === "categorized" ? (
-              <CategorizedCards cards={cards} />
+              <CategorizedCardArray cards={cards} />
             ) : (
-              <CardArray cards={cards} />
+              <UncategorizedCardArray cards={cards} />
             )}
           </div>
         </div>
