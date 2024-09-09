@@ -139,8 +139,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       '@types/turndown':
-        specifier: ^5.0.4
-        version: 5.0.4
+        specifier: ^5.0.5
+        version: 5.0.5
       '@types/yamljs':
         specifier: ^0.2.34
         version: 0.2.34
@@ -913,6 +913,7 @@ packages:
 
   '@pixi/graphics-smooth@0.0.22':
     resolution: {integrity: sha512-qq2u+BJBIDBuuSTc2Xzm1D/8RiiKBdxnVDiMb7Go5v8achnV5ctC6m+rf8Mq0sWm66mbOqu1aq/9efT4A4sPrA==}
+    engines: {node: '>=14', npm: '>=7'}
     peerDependencies:
       '@pixi/constants': ^6.0.4
       '@pixi/core': ^6.0.4
@@ -1394,8 +1395,8 @@ packages:
   '@types/textdiff-patch@1.0.2':
     resolution: {integrity: sha512-Gs+BskLlpP6qC148g4NxZ50aqEuJxsUwbQSWI9virgL9qT0JjeXL/i7OR8nouJ7jcIKA8ozJodHttmZ+wXkpKg==}
 
-  '@types/turndown@5.0.4':
-    resolution: {integrity: sha512-28GI33lCCkU4SGH1GvjDhFgOVr+Tym4PXGBIU1buJUa6xQolniPArtUT+kv42RR2N9MsMLInkr904Aq+ESHBJg==}
+  '@types/turndown@5.0.5':
+    resolution: {integrity: sha512-TL2IgGgc7B5j78rIccBtlYAnkuv8nUQqhQc+DSYV5j9Be9XOcm/SKOVRuA47xAVI3680Tk9B1d8flK2GWT2+4w==}
 
   '@types/yamljs@0.2.34':
     resolution: {integrity: sha512-gJvfRlv9ErxdOv7ux7UsJVePtX54NAvQyd8ncoiFqK8G5aeHIfQfGH2fbruvjAQ9657HwAaO54waS+Dsk2QTUQ==}
@@ -4542,7 +4543,7 @@ snapshots:
 
   '@types/textdiff-patch@1.0.2': {}
 
-  '@types/turndown@5.0.4': {}
+  '@types/turndown@5.0.5': {}
 
   '@types/yamljs@0.2.34': {}
 
