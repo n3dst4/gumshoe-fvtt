@@ -25,7 +25,7 @@ export const CategorizedCardArrayCategory: React.FC<
       <h2
         css={{
           color: isOverGoal
-            ? theme.colors.accent
+            ? theme.colors.success
             : isOverLimit
               ? theme.colors.danger
               : undefined,

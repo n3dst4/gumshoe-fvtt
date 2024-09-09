@@ -32,15 +32,15 @@ export const UncategorizedCardArray: React.FC<UncategorizedCardArrayProps> = ({
         <span
           key={categoryId}
           css={{
+            marginRight: "1em",
             color: isOverGoal
-              ? theme.colors.accent
+              ? theme.colors.success
               : isOverLimit
                 ? theme.colors.danger
                 : undefined,
           }}
         >
-          {i > 0 ? ", " : ""}
-          {category.singleName}: {summary}
+          {summary} {category.pluralName}
         </span>
       );
     },
@@ -48,13 +48,12 @@ export const UncategorizedCardArray: React.FC<UncategorizedCardArrayProps> = ({
 
   return (
     <>
-      <div>
+      <div css={{ marginTop: "0.5em" }}>
         {summary}
         {uncategorized.length > 0 &&
-          (categories.length > 0 ? ", " : "") +
-            getTranslated("Uncategorized") +
-            ": " +
-            summarizeCategoryCards(uncategorized, null)[0]}
+          summarizeCategoryCards(uncategorized, null)[0] +
+            " " +
+            getTranslated("Uncategorized")}
       </div>
       <CardArray cards={cards} />
     </>
