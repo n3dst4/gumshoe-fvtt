@@ -22,6 +22,8 @@ export interface ThemeV1 extends ThemeSeedV1 {
     bgOpaqueDangerPrimary: string;
     bgOpaqueDangerSecondary: string;
     controlBorder: string;
+    danger: string;
+    success: string;
   };
 
   logo: ThemeSeedV1["logo"] & {
