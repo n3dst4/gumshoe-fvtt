@@ -99,10 +99,10 @@ export function summarizeCategoryCards(
   let isOverLimit = false;
   if (category.thresholdType === "limit") {
     total = `${lethalCardsTotal}/${category.threshold}`;
-    isOverLimit = lethalCardsTotal > category.threshold;
+    isOverLimit = lethalCardsTotal >= category.threshold;
   } else if (category.thresholdType === "goal") {
     total = `${grandTotal}/${category.threshold}`;
-    isOverGoal = grandTotal > category.threshold;
+    isOverGoal = grandTotal >= category.threshold;
   } else {
     total = grandTotal.toString();
   }
