@@ -178,7 +178,9 @@
       "compendiumPackId": null
     },
     "card": {
-      "categoryId": "",
+      "cardCategoryMemberships": [],
+      "styleKeyCategoryId": null,
+      "nonlethal": false,
       "supertitle": "",
       "subtitle": "",
       "description": {

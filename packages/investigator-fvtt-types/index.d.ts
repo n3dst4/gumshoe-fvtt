@@ -20,10 +20,15 @@ export interface SeedColorsV1 {
   glow: string;
   /**
    * tinting color used to indicate danger. Should be given as a bold, opaque
-   * color, but will be blended in use.
+   * color, but may be blended in use.
    * @default red
    */
   danger?: string;
+  /**
+   * tinting color used to indicate success. Should be given as a bold, opaque
+   * color, but may be blended in use.
+   */
+  success?: string;
   /**
    * flat color to stand in as the background before images have loaded
    */
@@ -416,6 +421,8 @@ export interface CardCategory extends HasId {
   singleName: string;
   pluralName: string;
   styleKey?: string;
+  threshold: number;
+  thresholdType: "goal" | "limit" | "none";
 }
 
 declare global {

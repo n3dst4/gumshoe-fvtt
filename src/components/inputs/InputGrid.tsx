@@ -16,7 +16,6 @@ export const InputGrid: React.FC<InputGridProps> = ({
         gridTemplateColumns: "[label] fit-content(50%) [control] 1fr [end]",
         gridAutoRows: "auto",
         rowGap: "0.2em",
-        maxWidth: "100%",
       }}
       className={className}
     >

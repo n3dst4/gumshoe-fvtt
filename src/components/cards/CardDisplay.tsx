@@ -2,17 +2,17 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { cleanAndEnrichHtml } from "../../functions/textFunctions";
-import { getById, isNullOrEmptyString } from "../../functions/utilities";
+import { isNullOrEmptyString } from "../../functions/utilities";
 import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertCardItem, CardItem } from "../../v10Types";
+import { summarizeCategoryMemberships } from "./functions";
 import { CardsViewMode } from "./types";
 
 interface CardDisplayProps {
   card: CardItem;
   className?: string;
   viewMode: CardsViewMode;
-  showCategory: boolean;
   draggable?: boolean;
   onDragStart?: (event: React.DragEvent<HTMLElement>) => void;
 }
@@ -21,7 +21,6 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
   card,
   className,
   viewMode,
-  showCategory,
   draggable,
   onDragStart,
 }) => {
@@ -29,9 +28,8 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
   const theme = useContext(ThemeContext);
   const [descriptionHTML, setDescriptionHTML] = useState("");
   const [effectsHTML, setEffectsHTML] = useState("");
-  const category = getById(
-    settings.cardCategories.get(),
-    card.system.categoryId,
+  const categoryText = summarizeCategoryMemberships(
+    card.system.cardCategoryMemberships,
   );
 
   const handleClick = useCallback(() => {
@@ -50,13 +48,14 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
     void cleanAndEnrichHtml(card.system.effects.html).then(setEffectsHTML);
   }, [card.system.effects.html]);
 
-  const categoryTheme = category?.styleKey
-    ? theme.cards.categories[category?.styleKey]
-    : null;
+  const styleKey = settings.cardCategories
+    .get()
+    .find((c) => c.id === card.system.styleKeyCategoryId)?.styleKey;
+  const categoryTheme = styleKey ? theme.cards.categories[styleKey] : null;
 
   const supertitleText = [
     // category name
-    category && showCategory ? category.singleName : null,
+    categoryText,
     // active
     !card.system.active ? getTranslated("Inactive") : null,
     // continuity
@@ -76,7 +75,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
       data-item-id={card.id}
       tabIndex={0}
       onClick={handleClick}
-      className={`investigator-card-display ${className} ${category?.styleKey}`}
+      className={`investigator-card-display ${className} ${styleKey}`}
       css={{
         ...theme.cards.base.backdropStyle,
         ...categoryTheme?.backdropStyle,

@@ -249,5 +249,12 @@
   "investigator.AbilityNamePush": "{AbilityName} Push",
   "investigator.TooManyPushPools": "You have too many push pools. Only the first one will be used.",
   "investigator.QuickShockAbilityWithoutPushPool": "You have QuickShock abilities but no push pool.",
-  "investigator.PushPoolWithoutQuickShockAbility": "You have a push pool but no quick shock abilities."
+  "investigator.PushPoolWithoutQuickShockAbility": "You have a push pool but no quick shock abilities.",
+  "investigator.GoalOrLimit": "Goal/Limit?",
+  "investigator.Goal": "Goal",
+  "investigator.Limit": "Limit",
+  "investigator.None": "None",
+  "investigator.Nonlethal": "Nonlethal",
+  "investigator.Worth": "Worth",
+  "investigator.Appearance": "Appearance"
 }

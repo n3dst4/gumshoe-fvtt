@@ -1,4 +1,4 @@
-import { DevTools, Link, useNavigationContext } from "@lumphammer/minirouter";
+import { DevTools, useNavigationContext } from "@lumphammer/minirouter";
 import React, {
   memo,
   PropsWithChildren,
@@ -7,9 +7,9 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-import { FaArrowLeft } from "react-icons/fa6";
 
 import { ThemeContext } from "../../themes/ThemeContext";
+import { ArrowLink } from "./ArrowLink";
 import { focusableSelector } from "./focusableSelector";
 
 const defaultPanelMargin = "3em";
@@ -78,9 +78,9 @@ export const NestedPanel = memo<NestedPanelProps>(
           }}
         >
           <div className="nav-bar">
-            <Link to="up">
-              <FaArrowLeft /> <span css={{ verticalAlign: "top" }}>Back</span>
-            </Link>
+            <ArrowLink back to="up">
+              Back
+            </ArrowLink>
           </div>
           {/* actual children */}
           <div

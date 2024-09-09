@@ -1,3 +1,4 @@
+import { CSSObject } from "@lumphammer/investigator-fvtt-types";
 import { nanoid } from "nanoid";
 import React, { DragEventHandler, useMemo } from "react";
 
@@ -14,6 +15,7 @@ type GridFieldProps = {
   onDragOver?: DragEventHandler<HTMLElement>;
   onDragEnd?: DragEventHandler<HTMLElement>;
   onDrop?: DragEventHandler<HTMLElement>;
+  labelStyle?: CSSObject;
 };
 
 export const GridField: React.FC<GridFieldProps> = ({
@@ -26,6 +28,7 @@ export const GridField: React.FC<GridFieldProps> = ({
   onDragOver,
   onDragEnd,
   onDrop,
+  labelStyle,
 }) => {
   const id = useMemo(() => nanoid(), []);
   return (
@@ -37,8 +40,10 @@ export const GridField: React.FC<GridFieldProps> = ({
           gridColumn: "label",
           paddingTop: "0.3em",
           paddingRight: "0.5em",
+          alignSelf: "center",
+          overflowWrap: "anywhere",
+          ...labelStyle,
         }}
-        // className={className}
         // drag handlers
         onDragOver={onDragOver}
         onDragLeave={onDragEnd}
@@ -56,6 +61,7 @@ export const GridField: React.FC<GridFieldProps> = ({
         className={className}
         css={{
           gridColumn: "control",
+          alignSelf: "center",
         }}
         // drag handlers
         onDragOver={onDragOver}

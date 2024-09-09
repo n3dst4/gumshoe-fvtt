@@ -1,6 +1,5 @@
-import { createDirection, Link, Router } from "@lumphammer/minirouter";
+import { createDirection, Router } from "@lumphammer/minirouter";
 import React, { useCallback, useEffect, useState } from "react";
-import { FaArrowRight } from "react-icons/fa6";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { getTranslated } from "../../functions/getTranslated";
@@ -9,12 +8,13 @@ import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertPCActor, isCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { Button } from "../inputs/Button";
+import { ArrowLink } from "../nestedPanels/ArrowLink";
 import { SlideInNestedPanelRoute } from "../nestedPanels/SlideInNestedPanelRoute";
-import { CardArray } from "./CardArray";
 import { CardsAreaSettingsSheet } from "./CardsAreaSettings";
-import { CategorizedCards } from "./CategorizedCards";
+import { CategorizedCardArray } from "./CategorizedCardArray";
 import { CardsAreaSettingsContext } from "./contexts";
 import { CardsAreaSettings } from "./types";
+import { UncategorizedCardArray } from "./UncategorizedCardArray";
 
 interface CardsAreaProps {
   actor: InvestigatorActor;
@@ -126,9 +126,7 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
               {getTranslated("End scenario")}
             </Button>
             <div css={{ flex: 1 }} />
-            <Link to={settingsDirection()}>
-              Settings <FaArrowRight css={{ verticalAlign: "bottom" }} />
-            </Link>
+            <ArrowLink to={settingsDirection()}>Settings</ArrowLink>
           </div>
           <div
             className="container-ref-haver"
@@ -139,9 +137,9 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
             }}
           >
             {cardsAreaSettings.category === "categorized" ? (
-              <CategorizedCards cards={cards} />
+              <CategorizedCardArray cards={cards} />
             ) : (
-              <CardArray cards={cards} />
+              <UncategorizedCardArray cards={cards} />
             )}
           </div>
         </div>

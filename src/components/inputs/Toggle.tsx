@@ -31,6 +31,7 @@ export const Toggle: React.FC<ToggleProps> = ({
         backgroundColor: theme.colors.backgroundButton,
         borderRadius: "9999px",
         position: "relative",
+        top: "0.1em",
         boxShadow: `0 0 2px 0 ${theme.colors.text}`,
         "&:focus": {
           boxShadow: `0 0 4px 0 ${theme.colors.text}`,

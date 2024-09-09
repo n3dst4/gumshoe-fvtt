@@ -1,9 +1,6 @@
-import React, { ChangeEvent, useCallback } from "react";
+import React from "react";
 
-import { getTranslated } from "../../functions/getTranslated";
-import { getById } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
-import { settings } from "../../settings/settings";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -11,7 +8,12 @@ import { Checkbox } from "../inputs/Checkbox";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { ArrowLink } from "../nestedPanels/ArrowLink";
+import { SlideInNestedPanelRoute } from "../nestedPanels/SlideInNestedPanelRoute";
 import { TabContainer } from "../TabContainer";
+import { editCategoryMemberships } from "./directions";
+import { EditCategoryMemberships } from "./EditCategoryMemberships";
+import { summarizeCategoryMemberships } from "./functions";
 
 interface CardMainProps {
   card: InvestigatorItem;
@@ -20,22 +22,19 @@ interface CardMainProps {
 export const CardMain: React.FC<CardMainProps> = ({ card }) => {
   assertCardItem(card);
 
-  const categories = settings.cardCategories.get();
-  const category = getById(categories, card.system.categoryId);
-  const isRealCategory = category !== undefined;
-
-  const onChangeCategory = useCallback(
-    (e: ChangeEvent<HTMLSelectElement>) => {
-      void card.setCategoryId(e.currentTarget.value);
-    },
-    [card],
+  const categoryText = summarizeCategoryMemberships(
+    card.system.cardCategoryMemberships,
   );
-
-  const selectedCat = isRealCategory ? card.system.categoryId : "";
 
   return (
     <>
       <InputGrid>
+        <GridField label="Categories">
+          <ArrowLink to={editCategoryMemberships()}>
+            {categoryText}
+            {"  "}
+          </ArrowLink>
+        </GridField>
         <GridField label="Item Name">
           <AsyncTextInput value={card.name ?? ""} onChange={card.setName} />
         </GridField>
@@ -52,32 +51,6 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
           />
         </GridField>
 
-        <GridField label="Category">
-          <div
-            css={{
-              display: "flex",
-              flexDirection: "row",
-            }}
-          >
-            <div>
-              <select
-                value={selectedCat}
-                onChange={onChangeCategory}
-                css={{
-                  lineHeight: "inherit",
-                  height: "inherit",
-                }}
-              >
-                {categories.map<JSX.Element>((cat) => (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.singleName}
-                  </option>
-                ))}
-                <option value="">{getTranslated("Uncategorized")}</option>
-              </select>
-            </div>
-          </div>
-        </GridField>
         <GridField label="Continuity">
           <Checkbox
             checked={card.system.continuity}
@@ -146,6 +119,9 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
           ]}
         />
       </div>
+      <SlideInNestedPanelRoute direction={editCategoryMemberships}>
+        <EditCategoryMemberships card={card} />
+      </SlideInNestedPanelRoute>
     </>
   );
 };

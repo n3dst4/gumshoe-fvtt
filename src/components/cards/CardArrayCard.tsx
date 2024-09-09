@@ -20,14 +20,12 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
   const theme = useContext(ThemeContext);
   const app = useContext(FoundryAppContext);
 
-  const { category: categorySetting, viewMode } = useContext(
-    CardsAreaSettingsContext,
-  );
+  const { viewMode } = useContext(CardsAreaSettingsContext);
 
-  const category = getById(
-    settings.cardCategories.get(),
-    card.system.categoryId,
-  );
+  const category =
+    card.system.styleKeyCategoryId === null
+      ? undefined
+      : getById(settings.cardCategories.get(), card.system.styleKeyCategoryId);
 
   const handleDragStart = useCallback(
     (e: React.DragEvent<HTMLElement>) => {
@@ -37,8 +35,6 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
     },
     [app],
   );
-
-  const showCategory = !(categorySetting === "categorized");
 
   const categoryTheme = category?.styleKey
     ? theme.cards.categories[category?.styleKey]
@@ -68,7 +64,6 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
             ...categoryTheme?.hoverStyle,
           },
         }}
-        showCategory={showCategory}
         viewMode={viewMode}
       />
     </div>

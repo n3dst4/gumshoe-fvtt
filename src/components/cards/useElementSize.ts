@@ -10,7 +10,6 @@ export const useElementSize = <T extends HTMLElement = HTMLElement>(
     () =>
       new ResizeObserver((entries) => {
         const entry = entries[0];
-        // XXX width/heigh vs block/inline - this may be wrong
         setWidth(entry.contentBoxSize[0].inlineSize);
         setHeight(entry.contentBoxSize[0].blockSize);
       }),

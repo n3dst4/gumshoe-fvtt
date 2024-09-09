@@ -1,12 +1,12 @@
-import { Link, Router } from "@lumphammer/minirouter";
+import { Router } from "@lumphammer/minirouter";
 import React from "react";
-import { FaArrowRight } from "react-icons/fa6";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { Button } from "../inputs/Button";
+import { ArrowLink } from "../nestedPanels/ArrowLink";
 import { SlideInNestedPanelRoute } from "../nestedPanels/SlideInNestedPanelRoute";
 import { Translate } from "../Translate";
 import { CardDisplay } from "./CardDisplay";
@@ -82,9 +82,7 @@ export const CardSheet: React.FC<CardSheetProps> = ({ card, application }) => {
             </Button>
           )}
           <div css={{ flex: 1 }} />
-          <Link to={edit()}>
-            Edit <FaArrowRight css={{ verticalAlign: "bottom" }} />
-          </Link>
+          <ArrowLink to={edit()}>Edit</ArrowLink>
         </div>
         <div
           css={{
@@ -98,7 +96,7 @@ export const CardSheet: React.FC<CardSheetProps> = ({ card, application }) => {
             containerType: "inline-size",
           }}
         >
-          <CardDisplay card={card} showCategory={true} viewMode="full" />
+          <CardDisplay card={card} viewMode="full" />
         </div>
       </div>
       <SlideInNestedPanelRoute
