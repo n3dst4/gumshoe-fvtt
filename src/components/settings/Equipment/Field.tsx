@@ -54,13 +54,6 @@ export const Field: React.FC<FieldProps> = ({
     (e) => {
       e.preventDefault();
       const newType = e.currentTarget.value;
-      if (
-        newType !== "text" &&
-        newType !== "number" &&
-        newType !== "checkbox"
-      ) {
-        throw new Error("Invalid field type");
-      }
       assertIsEquipmentFieldType(newType);
       dispatch(store.creators.setFieldType({ categoryId, fieldId, newType }));
     },
@@ -129,7 +122,7 @@ export const Field: React.FC<FieldProps> = ({
           }}
           onChange={handleTypeChange}
         >
-          <option value="text">Text</option>
+          <option value="string">Text</option>
           <option value="number">Number</option>
           <option value="checkbox">Checkbox</option>
         </select>
