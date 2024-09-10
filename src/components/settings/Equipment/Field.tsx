@@ -55,7 +55,7 @@ export const Field: React.FC<FieldProps> = ({
       e.preventDefault();
       const newType = e.currentTarget.value;
       if (
-        newType !== "text" &&
+        newType !== "string" &&
         newType !== "number" &&
         newType !== "checkbox"
       ) {
@@ -129,7 +129,7 @@ export const Field: React.FC<FieldProps> = ({
           }}
           onChange={handleTypeChange}
         >
-          <option value="text">Text</option>
+          <option value="string">Text</option>
           <option value="number">Number</option>
           <option value="checkbox">Checkbox</option>
         </select>
