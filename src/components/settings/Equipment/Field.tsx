@@ -54,13 +54,6 @@ export const Field: React.FC<FieldProps> = ({
     (e) => {
       e.preventDefault();
       const newType = e.currentTarget.value;
-      if (
-        newType !== "string" &&
-        newType !== "number" &&
-        newType !== "checkbox"
-      ) {
-        throw new Error("Invalid field type");
-      }
       assertIsEquipmentFieldType(newType);
       dispatch(store.creators.setFieldType({ categoryId, fieldId, newType }));
     },
