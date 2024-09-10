@@ -53,7 +53,6 @@ export const Toggle: React.FC<ToggleProps> = ({
           width: "1em",
           height: "1em",
           backgroundColor: theme.colors.text,
-          // background: `radial-gradient(circle at 50% 50%, ${theme.colors.accentContrast} 0%, ${theme.colors.controlBorder} 100%)`,
           borderRadius: "9999px",
           boxShadow: `0 0 2px 0 ${theme.colors.text} inset`,
           transition: "transform 100ms",
