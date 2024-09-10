@@ -1,8 +1,8 @@
 import React from "react";
 
-import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridField } from "../inputs/GridField";
+import { Toggle } from "../inputs/Toggle";
 
 type WeaponRangeProps = {
   label: string;
@@ -24,10 +24,11 @@ export const WeaponRange: React.FC<WeaponRangeProps> = ({
       <div
         css={{
           display: "flex",
+          gap: "0.5em",
           flexDirection: "row",
         }}
       >
-        <AsyncCheckbox checked={enabled} onChange={setEnabled} />
+        <Toggle checked={enabled} onChange={setEnabled} />
         <AsyncNumberInput
           css={{ flex: 1 }}
           disabled={!enabled}

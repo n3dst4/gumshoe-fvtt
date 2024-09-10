@@ -4,8 +4,8 @@ import React, { useCallback } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
-import { Checkbox } from "../inputs/Checkbox";
 import { GridField } from "../inputs/GridField";
+import { Toggle } from "../inputs/Toggle";
 
 interface EquipmentFieldProps {
   fieldId: string;
@@ -41,7 +41,7 @@ export const EquipmentField: React.FC<EquipmentFieldProps> = ({
         <AsyncNumberInput value={value as number} onChange={onChange} />
       )}
       {fieldMetadata.type === "checkbox" && (
-        <Checkbox checked={value as boolean} onChange={onChange} />
+        <Toggle checked={value as boolean} onChange={onChange} />
       )}
     </GridField>
   );

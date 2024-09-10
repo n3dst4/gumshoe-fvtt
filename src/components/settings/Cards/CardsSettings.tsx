@@ -3,9 +3,9 @@ import { SlideInOutlet } from "@lumphammer/minirouter/animated";
 import React, { useCallback, useContext } from "react";
 
 import { absoluteCover } from "../../absoluteCover";
-import { Checkbox } from "../../inputs/Checkbox";
 import { GridField } from "../../inputs/GridField";
 import { InputGrid } from "../../inputs/InputGrid";
+import { Toggle } from "../../inputs/Toggle";
 import { StateContext } from "../contexts";
 // import { store } from "../store";
 import { Setters } from "../types";
@@ -41,7 +41,7 @@ export const CardsSettings: React.FC<CardsSettingsProps> = ({ setters }) => {
           <div>
             <InputGrid css={{}}>
               <GridField label="Use cards?">
-                <Checkbox
+                <Toggle
                   checked={settings.useCards}
                   onChange={handleChangeUseCards}
                 />

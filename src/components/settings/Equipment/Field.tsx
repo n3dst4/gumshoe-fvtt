@@ -122,9 +122,15 @@ export const Field: React.FC<FieldProps> = ({
           }}
           onChange={handleTypeChange}
         >
-          <option value="string">Text</option>
-          <option value="number">Number</option>
-          <option value="checkbox">Checkbox</option>
+          <option value="string">
+            <Translate>Text</Translate>
+          </option>
+          <option value="number">
+            <Translate>Number</Translate>
+          </option>
+          <option value="checkbox">
+            <Translate>Toggle</Translate>
+          </option>
         </select>
         <Dropdown
           showArrow={false}

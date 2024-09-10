@@ -4,10 +4,10 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
-import { Checkbox } from "../inputs/Checkbox";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { Toggle } from "../inputs/Toggle";
 import { ArrowLink } from "../nestedPanels/ArrowLink";
 import { SlideInNestedPanelRoute } from "../nestedPanels/SlideInNestedPanelRoute";
 import { TabContainer } from "../TabContainer";
@@ -52,7 +52,7 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
         </GridField>
 
         <GridField label="Continuity">
-          <Checkbox
+          <Toggle
             checked={card.system.continuity}
             onChange={card.setContinuity}
           />
