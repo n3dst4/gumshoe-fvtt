@@ -63,6 +63,7 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
           <AsyncCheckbox
             checked={ability.system.occupational}
             onChange={ability.setOccupational}
+            title="Occupational Ability?"
           />
         </div>
       )}

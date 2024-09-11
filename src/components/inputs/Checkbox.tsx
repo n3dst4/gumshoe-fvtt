@@ -7,18 +7,21 @@ type CheckboxProps = {
   checked: boolean;
   onChange: (checked: boolean) => void;
   className?: string;
+  title?: string;
 };
 
 export const Checkbox: React.FC<CheckboxProps> = ({
   checked,
   onChange,
   className,
+  title,
 }) => {
   const id = useContext(IdContext);
   const theme = useContext(ThemeContext);
 
   return (
     <label
+      title={title}
       css={{
         display: "inline-block",
         position: "relative",
