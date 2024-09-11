@@ -49,6 +49,7 @@ export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({
         css={{
           gridColumn: "ability",
           lineHeight: 0.9,
+          textAlign: "end",
         }}
       >
         {ability.name}

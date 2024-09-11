@@ -157,6 +157,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
               ? "1fr max-content"
               : "1fr max-content auto",
             columnGap: "0.5em",
+            rowGap: "0.1em",
             alignItems: "center",
             height: "0",
           }}

@@ -45,6 +45,8 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
         draggable="true"
         css={{
           gridColumn: "ability",
+          textAlign: "end",
+          lineHeight: "1",
         }}
       >
         {ability.name}
