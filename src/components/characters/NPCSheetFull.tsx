@@ -187,11 +187,7 @@ export const NPCSheetFull = ({
                 <Fragment>
                   <WeaponsAreaEdit actor={actor} />
                   <div css={{ height: "1em" }} />
-                  <AbilitiesAreaEdit
-                    actor={actor}
-                    flipLeftRight={true}
-                    showOcc={false}
-                  />
+                  <AbilitiesAreaEdit actor={actor} npcMode />
                 </Fragment>
               ),
             },
