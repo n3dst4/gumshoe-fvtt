@@ -185,9 +185,9 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           onChange={(e) => weapon.setAbility(e)}
           css={{ display: "block" }}
         />
-        <div>
+        <div css={{ marginTop: "0.5em" }}>
           <label>
-            Use ammo?
+            Use ammo?{" "}
             <Toggle
               checked={weapon.system.usesAmmo}
               onChange={weapon.setUsesAmmo}
