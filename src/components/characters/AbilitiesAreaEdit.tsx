@@ -60,6 +60,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
               ? "'general investigative'"
               : "'investigative general'"),
           columnGap: "1em",
+          marginBottom: "1em",
         }}
       >
         <div css={{ gridArea: "warnings" }}>
@@ -91,7 +92,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
               columnGap: "0.5em",
               rowGap: "0.1em",
               alignItems: "center",
-              height: "0",
+              alignContent: "start",
             }}
           >
             {simplifiedMode || (
@@ -170,7 +171,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
             columnGap: "0.5em",
             rowGap: "0.1em",
             alignItems: "center",
-            height: "0",
+            alignContent: "start",
           }}
         >
           {simplifiedMode || (
