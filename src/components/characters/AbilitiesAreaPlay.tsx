@@ -42,6 +42,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
             ? "'general investigative'"
             : "'investigative general'",
           columnGap: "1em",
+          marginBottom: "1em",
         }}
       >
         <div
@@ -53,7 +54,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
             columnGap: "0.2em",
             rowGap: "0.4em",
             alignItems: "center",
-            height: "0",
+            alignContent: "start",
           }}
         >
           {Object.keys(investigativeAbilities).map<JSX.Element>((cat) =>
@@ -109,7 +110,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
             columnGap: "0.2em",
             rowGap: "0.4em",
             alignItems: "center",
-            height: "0",
+            alignContent: "start",
           }}
         >
           {Object.keys(generalAbilities).map<JSX.Element>((cat) => (
