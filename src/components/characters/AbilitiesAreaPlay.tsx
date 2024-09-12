@@ -57,7 +57,14 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
           {Object.keys(investigativeAbilities).map<JSX.Element>((cat) =>
             showEmpty || investigativeAbilities[cat].length > 0 ? (
               <Fragment key={cat}>
-                <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
+                <h2
+                  css={{
+                    gridColumn: "1 / -1",
+                    "&&": { borderBottom: "1px solid black" },
+                  }}
+                >
+                  {cat}
+                </h2>
                 {sortEntitiesByName(
                   investigativeAbilities[cat],
                 ).map<JSX.Element>((ability) => {
@@ -101,7 +108,14 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
         >
           {Object.keys(generalAbilities).map<JSX.Element>((cat) => (
             <Fragment key={cat}>
-              <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
+              <h2
+                css={{
+                  gridColumn: "1 / -1",
+                  "&&": { borderBottom: "1px solid black" },
+                }}
+              >
+                {cat}
+              </h2>
               {sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>(
                 (ability) => (
                   <AbilitySlugPlayNormal key={ability.id} ability={ability} />

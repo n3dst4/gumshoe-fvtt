@@ -119,7 +119,14 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
             )}
             {Object.keys(investigativeAbilities).map<JSX.Element>((cat) => (
               <Fragment key={cat}>
-                <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
+                <h2
+                  css={{
+                    gridColumn: "1 / -1",
+                    "&&": { borderBottom: "1px solid black" },
+                  }}
+                >
+                  {cat}
+                </h2>
                 {sortEntitiesByName(
                   investigativeAbilities[cat],
                 ).map<JSX.Element>((ability) => {
@@ -188,7 +195,14 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
 
           {Object.keys(generalAbilities).map<JSX.Element>((cat) => (
             <Fragment key={cat}>
-              <h2 css={{ gridColumn: "1 / -1" }}>{cat}</h2>
+              <h2
+                css={{
+                  gridColumn: "1 / -1",
+                  "&&": { borderBottom: "1px solid black" },
+                }}
+              >
+                {cat}
+              </h2>
               {sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>(
                 (ability) => (
                   <AbilitySlugEdit
