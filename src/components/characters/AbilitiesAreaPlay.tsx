@@ -1,8 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 
 import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
+import { ThemeContext } from "../../themes/ThemeContext";
 import { assertActiveCharacterActor } from "../../v10Types";
 import { AbilitySlugPlayNormal } from "./AbilitySlugPlayNormal";
 import { AbilitySlugPlayQuickShockInvestigative } from "./AbilitySlugPlayQuickShockInvestigative";
@@ -24,6 +25,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
     true,
     true,
   );
+  const theme = useContext(ThemeContext);
 
   const pushPool = actor.getPushPool();
   const pushPoolIsZero = pushPool === undefined || pushPool.system.pool === 0;
@@ -60,7 +62,11 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
                 <h2
                   css={{
                     gridColumn: "1 / -1",
-                    "&&": { borderBottom: "1px solid black" },
+                    "&&": {
+                      borderWidth: "1px",
+                      borderStyle: "none none solid none",
+                      borderColor: theme.colors.text,
+                    },
                   }}
                 >
                   {cat}
@@ -111,7 +117,11 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
               <h2
                 css={{
                   gridColumn: "1 / -1",
-                  "&&": { borderBottom: "1px solid black" },
+                  "&&": {
+                    borderWidth: "1px",
+                    borderStyle: "none none solid none",
+                    borderColor: theme.colors.text,
+                  },
                 }}
               >
                 {cat}

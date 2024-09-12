@@ -122,7 +122,11 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
                 <h2
                   css={{
                     gridColumn: "1 / -1",
-                    "&&": { borderBottom: "1px solid black" },
+                    "&&": {
+                      borderWidth: "1px",
+                      borderStyle: "none none solid none",
+                      borderColor: theme.colors.text,
+                    },
                   }}
                 >
                   {cat}
@@ -198,7 +202,11 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
               <h2
                 css={{
                   gridColumn: "1 / -1",
-                  "&&": { borderBottom: "1px solid black" },
+                  "&&": {
+                    borderWidth: "1px",
+                    borderStyle: "none none solid none",
+                    borderColor: theme.colors.text,
+                  },
                 }}
               >
                 {cat}
