@@ -53,7 +53,7 @@ export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
       <div
         css={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: "minmax(33%, auto) minmax(33%, auto)",
           gridTemplateAreas:
             "'warnings warnings'" +
             (simplifiedMode

@@ -37,7 +37,7 @@ export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
       <div
         css={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: "minmax(33%, auto) minmax(33%, auto)",
           gridTemplateAreas: flipLeftRight
             ? "'general investigative'"
             : "'investigative general'",
