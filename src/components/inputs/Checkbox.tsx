@@ -10,6 +10,11 @@ type CheckboxProps = {
   title?: string;
 };
 
+/**
+ * A custom checkbox which uses a label to make it accessible
+ *
+ * Inspired by https://jsfiddle.net/maxshuty/2cs0dj54/
+ */
 export const Checkbox: React.FC<CheckboxProps> = ({
   checked,
   onChange,
@@ -47,7 +52,6 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           font: "16px sans-serif",
           color: "black",
           ":before": {
-            // display: "inline-block",
             content: "''",
             borderWidth: "2px",
             borderColor: "#ccc",
@@ -77,12 +81,6 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           "input[type=checkbox]:focus+&:before, input[type=checkbox]:not(:disabled)+&:hover:before":
             {
               boxShadow: `0px 0px 0px 2px ${theme.colors.glow}`,
-
-              /* Visible in Windows high-contrast themes
-                box-shadow will be hidden in these modes and
-                transparency will not be hidden in high-contrast
-                thus box-shadow will not show but the outline will
-               providing accessibility */
               outlineColor: "transparent",
               outlineWidth: "2px",
               outlineStyle: "dotted",
