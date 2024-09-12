@@ -6,11 +6,11 @@ import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
 import { assertWeaponItem } from "../../v10Types";
-import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { TextInput } from "../inputs/TextInput";
+import { Toggle } from "../inputs/Toggle";
 import { Translate } from "../Translate";
 import { WeaponRange } from "./WeaponRangeConfig";
 
@@ -101,7 +101,7 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
         setEnabled={weapon.setIsLongRange}
       />
       <GridField label="Uses ammo?">
-        <AsyncCheckbox
+        <Toggle
           checked={weapon.system.usesAmmo}
           onChange={weapon.setUsesAmmo}
         />

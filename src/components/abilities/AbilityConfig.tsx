@@ -11,11 +11,11 @@ import {
   isGeneralAbilityItem,
   isInvestigativeAbilityItem,
 } from "../../v10Types";
-import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
+import { Toggle } from "../inputs/Toggle";
 import { Translate } from "../Translate";
 import { SituationalModifiersEditor } from "./SituationalModifiersEditor";
 import { UnlocksEditor } from "./UnlocksEditor";
@@ -147,7 +147,7 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
         </Fragment>
       )}
       <GridField label="Has Specialities?">
-        <AsyncCheckbox
+        <Toggle
           checked={ability.system.hasSpecialities}
           onChange={(t) => {
             void ability.setHasSpecialities(t);
@@ -172,46 +172,46 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
         </GridField>
       )}
       <GridField label="Occupational?">
-        <AsyncCheckbox
+        <Toggle
           checked={ability.system.occupational}
           onChange={ability.setOccupational}
         />
       </GridField>
       {isGeneralAbilityItem(ability) && (
         <GridField label="Can be investigative?">
-          <AsyncCheckbox
+          <Toggle
             checked={ability.system.canBeInvestigative}
             onChange={ability.setCanBeInvestigative}
           />
         </GridField>
       )}
       <GridField label="Show tracker?">
-        <AsyncCheckbox
+        <Toggle
           checked={ability.system.showTracker}
           onChange={ability.setShowTracker}
         />
       </GridField>
       <GridField label="Exclude from general refresh?">
-        <AsyncCheckbox
+        <Toggle
           checked={ability.system.excludeFromGeneralRefresh}
           onChange={ability.setExcludeFromGeneralRefresh}
         />
       </GridField>
       <GridField label="Include in 24h refresh?">
-        <AsyncCheckbox
+        <Toggle
           checked={ability.system.refreshesDaily}
           onChange={ability.setRefreshesDaily}
         />
       </GridField>
       <GridField label="Hide if zero-rated?">
-        <AsyncCheckbox
+        <Toggle
           checked={ability.system.hideIfZeroRated}
           onChange={ability.setHideIfZeroRated}
         />
       </GridField>
       {isGeneralAbilityItem(ability) && (
         <GridField label="Goes first in combat?">
-          <AsyncCheckbox
+          <Toggle
             checked={ability.system.goesFirstInCombat}
             onChange={ability.setGoesFirstInCombat}
           />
@@ -219,21 +219,21 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
       )}
       {isGeneralAbilityItem(ability) && (
         <GridField label="IsAPushPool">
-          <AsyncCheckbox
+          <Toggle
             checked={ability.system.isPushPool}
             onChange={ability.setIsPushPool}
           />
         </GridField>
       )}
       <GridField label="AllowPoolToExceedRating">
-        <AsyncCheckbox
+        <Toggle
           checked={ability.system.allowPoolToExceedRating}
           onChange={ability.setAllowPoolToExceedRating}
         />
       </GridField>
       {isInvestigativeAbilityItem(ability) && (
         <GridField label="IsQuickShock">
-          <AsyncCheckbox
+          <Toggle
             checked={ability.system.isQuickShock}
             onChange={ability.setIsQuickShock}
           />

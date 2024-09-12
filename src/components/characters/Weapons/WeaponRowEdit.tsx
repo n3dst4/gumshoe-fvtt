@@ -5,11 +5,11 @@ import { assertGame } from "../../../functions/utilities";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { assertWeaponItem } from "../../../v10Types";
-import { AsyncCheckbox } from "../../inputs/AsyncCheckbox";
 import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { CombatAbilityDropDown } from "../../inputs/CombatAbilityDropDown";
 import { CompactNotesEditor } from "../../inputs/CompactNotesEditor";
+import { Toggle } from "../../inputs/Toggle";
 
 type WeaponRowEditProps = {
   weapon: InvestigatorItem;
@@ -185,10 +185,10 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           onChange={(e) => weapon.setAbility(e)}
           css={{ display: "block" }}
         />
-        <div>
+        <div css={{ marginTop: "0.5em" }}>
           <label>
-            Use ammo?
-            <AsyncCheckbox
+            Use ammo?{" "}
+            <Toggle
               checked={weapon.system.usesAmmo}
               onChange={weapon.setUsesAmmo}
             />

@@ -40,7 +40,8 @@ export const GridField: React.FC<GridFieldProps> = ({
           gridColumn: "label",
           paddingTop: "0.3em",
           paddingRight: "0.5em",
-          alignSelf: "center",
+          alignSelf: "start",
+          textAlign: "end",
           overflowWrap: "anywhere",
           ...labelStyle,
         }}

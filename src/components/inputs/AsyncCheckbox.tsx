@@ -6,12 +6,14 @@ type AsyncCheckboxProps = {
   checked: boolean;
   onChange: (checked: boolean) => void;
   className?: string;
+  title?: string;
 };
 
 export const AsyncCheckbox: React.FC<AsyncCheckboxProps> = ({
   checked: checkedProp,
   onChange: onChangeProp,
   className,
+  title,
 }) => {
   const [checked, setChecked] = useState(checkedProp);
   useEffect(() => {
@@ -27,6 +29,11 @@ export const AsyncCheckbox: React.FC<AsyncCheckboxProps> = ({
   );
 
   return (
-    <Checkbox checked={checked} onChange={onChange} className={className} />
+    <Checkbox
+      title={title}
+      checked={checked}
+      onChange={onChange}
+      className={className}
+    />
   );
 };

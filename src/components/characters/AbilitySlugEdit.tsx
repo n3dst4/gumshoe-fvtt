@@ -36,14 +36,6 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
 
   return (
     <Fragment key={ability.id}>
-      {showOcc && (
-        <div css={{ gridColumn: "isocc", justifySelf: "center" }}>
-          <AsyncCheckbox
-            checked={ability.system.occupational}
-            onChange={ability.setOccupational}
-          />
-        </div>
-      )}
       <a
         onClick={() => {
           ability.sheet?.render(true);
@@ -51,7 +43,11 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
         data-item-id={ability.id}
         onDragStart={onDragStart}
         draggable="true"
-        css={{ gridColumn: "ability" }}
+        css={{
+          gridColumn: "ability",
+          textAlign: "end",
+          lineHeight: "1",
+        }}
       >
         {ability.name}
       </a>
@@ -64,6 +60,16 @@ export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
           smallButtons
         />
       </div>
+      {showOcc && (
+        <div css={{ gridColumn: "isocc", justifySelf: "center" }}>
+          <AsyncCheckbox
+            checked={ability.system.occupational}
+            onChange={ability.setOccupational}
+            title="Occupational Ability?"
+          />
+        </div>
+      )}
+
       <AbilityBadges ability={ability} css={{ gridColumn: "1/-1" }} />
       {ability.system.hasSpecialities && ability.getSpecialitesCount() > 0 && (
         <div css={{ paddingLeft: "2em", gridColumn: "1/-1" }}>

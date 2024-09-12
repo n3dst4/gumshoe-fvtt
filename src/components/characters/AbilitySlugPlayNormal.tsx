@@ -59,6 +59,7 @@ export const AbilitySlugPlayNormal: React.FC<AbilitySlugPlayNormalProps> = ({
         css={{
           gridColumn: "ability",
           lineHeight: 0.9,
+          textAlign: "end",
         }}
       >
         {ability.name}

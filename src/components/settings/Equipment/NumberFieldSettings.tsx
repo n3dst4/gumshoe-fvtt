@@ -3,7 +3,7 @@ import React, { useCallback, useContext } from "react";
 
 import { useRefStash } from "../../../hooks/useRefStash";
 import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
-import { Checkbox } from "../../inputs/Checkbox";
+import { Toggle } from "../../inputs/Toggle";
 import { Translate } from "../../Translate";
 import { DispatchContext } from "../contexts";
 import { store } from "../store";
@@ -115,8 +115,8 @@ export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
       />
       <div css={{ gridArea: "minLbl" }}>
         <label>
-          <Translate>Min</Translate>
-          <Checkbox
+          <Translate>Min</Translate>{" "}
+          <Toggle
             checked={field.min !== undefined}
             onChange={handleToggleMin}
           />
@@ -131,8 +131,8 @@ export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
       )}
       <div css={{ gridArea: "maxLbl" }}>
         <label>
-          <Translate>Max</Translate>
-          <Checkbox
+          <Translate>Max</Translate>{" "}
+          <Toggle
             checked={field.max !== undefined}
             onChange={handleToggleMax}
           />

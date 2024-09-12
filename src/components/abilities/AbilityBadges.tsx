@@ -20,7 +20,16 @@ export const AbilityBadges: React.FC<UnlockBadgesProps> = ({
   const unlocks = ability.getActiveUnlocks();
   const theme = useContext(ThemeContext);
   return (
-    <div className={className}>
+    <div
+      className={className}
+      css={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "end",
+        flexWrap: "wrap",
+        marginBottom: unlocks.length > 0 ? "0.25em" : undefined,
+      }}
+    >
       {/* Boost */}
       {ability.system.boost && (
         <Translate
@@ -38,6 +47,8 @@ export const AbilityBadges: React.FC<UnlockBadgesProps> = ({
           Boosted
         </Translate>
       )}
+
+      {/* Push pool */}
       {isGeneralAbilityItem(ability) && ability.system.isPushPool && (
         <Translate
           css={{
@@ -54,55 +65,36 @@ export const AbilityBadges: React.FC<UnlockBadgesProps> = ({
           Push Pool
         </Translate>
       )}
-      {/* Situational modifers */}
-      <div
-        css={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          marginBottom: situationalModifiers.length > 0 ? "0.1em" : undefined,
-        }}
-      >
-        {situationalModifiers.map<ReactNode>((situationalModifer) => {
-          return (
-            <SituationalModifierBadge
-              key={situationalModifer.id}
-              situationalModifier={situationalModifer}
-              ability={ability}
-            />
-          );
-        })}
-      </div>
-      <div
-        css={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          marginBottom: unlocks.length > 0 ? "0.25em" : undefined,
-        }}
-      >
-        {/* Unlocks */}
-        {unlocks.map<ReactNode>(({ description }, i) => {
-          return (
-            <span
-              key={i}
-              css={{
-                background: theme.colors.accent,
-                color: theme.colors.accentContrast,
-                fontSize: "0.9em",
-                lineHeight: "1",
-                borderRadius: "0.5em",
-                padding: "0 0.5em",
-                margin: "0 0.25em",
-              }}
-            >
-              {description}
-            </span>
-          );
-        })}
-      </div>
+
+      {/* Unlocks */}
+      {unlocks.map<ReactNode>(({ description }, i) => {
+        return (
+          <span
+            key={i}
+            css={{
+              background: theme.colors.accent,
+              color: theme.colors.accentContrast,
+              fontSize: "0.9em",
+              lineHeight: "1",
+              borderRadius: "0.5em",
+              padding: "0 0.5em",
+              margin: "0 0.25em",
+            }}
+          >
+            {description}
+          </span>
+        );
+      })}
+
+      {situationalModifiers.map<ReactNode>((situationalModifer) => {
+        return (
+          <SituationalModifierBadge
+            key={situationalModifer.id}
+            situationalModifier={situationalModifer}
+            ability={ability}
+          />
+        );
+      })}
     </div>
   );
 };

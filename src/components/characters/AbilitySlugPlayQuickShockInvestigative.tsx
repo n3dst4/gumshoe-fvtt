@@ -41,6 +41,7 @@ export const AbilitySlugPlayQuickShockInvestigative: React.FC<
         css={{
           gridColumn: "ability",
           lineHeight: 0.9,
+          textAlign: "end",
         }}
       >
         {ability.name}

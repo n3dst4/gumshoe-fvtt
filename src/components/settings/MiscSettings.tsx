@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 
 import { getDevMode } from "../../functions/utilities";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
-import { Checkbox } from "../inputs/Checkbox";
 import { InputGrid } from "../inputs/InputGrid";
 import { ListEdit } from "../inputs/ListEdit";
+import { Toggle } from "../inputs/Toggle";
 import { Translate } from "../Translate";
 import { StateContext } from "./contexts";
 import { ImportExport } from "./ImportExport";
@@ -34,7 +34,7 @@ export const MiscSettings: React.FC<{
         />
       </SettingsGridField>
       <SettingsGridField label="Use turn-passing initiative?" index={idx++}>
-        <Checkbox
+        <Toggle
           checked={settings.useTurnPassingInitiative}
           onChange={setters.useTurnPassingInitiative}
         />
@@ -42,7 +42,7 @@ export const MiscSettings: React.FC<{
 
       {isDevMode && (
         <SettingsGridField label="Debug translations?" index={idx++}>
-          <Checkbox
+          <Toggle
             checked={settings.debugTranslations}
             onChange={setters.debugTranslations}
           />
@@ -61,13 +61,13 @@ export const MiscSettings: React.FC<{
         label="Use Moribund World-style abilities"
         index={idx++}
       >
-        <Checkbox
+        <Toggle
           checked={settings.useMwStyleAbilities}
           onChange={setters.useMwStyleAbilities}
         />
       </SettingsGridField>
       <SettingsGridField label="Use alternative item types" index={idx++}>
-        <Checkbox
+        <Toggle
           checked={settings.mwUseAlternativeItemTypes}
           onChange={setters.mwUseAlternativeItemTypes}
         />
@@ -79,7 +79,7 @@ export const MiscSettings: React.FC<{
         />
       </SettingsGridField>
       <SettingsGridField label="Use injury status" index={idx++}>
-        <Checkbox
+        <Toggle
           checked={settings.useMwInjuryStatus}
           onChange={setters.useMwInjuryStatus}
         />

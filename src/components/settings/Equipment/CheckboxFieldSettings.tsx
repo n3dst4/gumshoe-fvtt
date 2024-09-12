@@ -1,7 +1,7 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
 import React, { useCallback, useContext } from "react";
 
-import { AsyncCheckbox } from "../../inputs/AsyncCheckbox";
+import { Toggle } from "../../inputs/Toggle";
 import { Translate } from "../../Translate";
 import { DispatchContext } from "../contexts";
 import { store } from "../store";
@@ -41,8 +41,8 @@ export const CheckboxFieldSettings: React.FC<CheckboxFieldSettingsProps> = ({
       <div css={{ flex: 0, paddingRight: "1em" }}>
         <Translate>Default</Translate>
       </div>
-      <AsyncCheckbox
-        css={{ flex: 1 }}
+      <Toggle
+        // css={{ flex: 1 }}
         checked={field.default}
         onChange={handleChangeDefault}
       />

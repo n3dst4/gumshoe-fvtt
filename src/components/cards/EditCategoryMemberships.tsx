@@ -1,9 +1,7 @@
-import { CSSObject } from "@lumphammer/investigator-fvtt-types";
-import React, { useContext } from "react";
+import React from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { settings } from "../../settings/settings";
-import { ThemeContext } from "../../themes/ThemeContext";
 import { CardItem } from "../../v10Types";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
@@ -18,18 +16,6 @@ export const EditCategoryMemberships: React.FC<
 > = ({ card }) => {
   const categories = settings.cardCategories.get();
 
-  const theme = useContext(ThemeContext);
-
-  // TODO this can go away if we redo grid labels
-  const labelStyle: CSSObject = {
-    "&&": {
-      font: theme.bodyFont,
-      fontWeight: "bold",
-      paddingRight: "1em",
-      textAlign: "end",
-    },
-  };
-
   const handleChangeStyleKeyCategoryId = React.useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
       const value = e.currentTarget.value === "" ? null : e.currentTarget.value;
@@ -41,7 +27,7 @@ export const EditCategoryMemberships: React.FC<
   return (
     <>
       <InputGrid>
-        <GridField label="Appearance" labelStyle={labelStyle}>
+        <GridField label="Appearance">
           <select
             value={card.system.styleKeyCategoryId ?? ""}
             onChange={handleChangeStyleKeyCategoryId}

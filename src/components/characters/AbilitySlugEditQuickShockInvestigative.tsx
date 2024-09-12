@@ -45,7 +45,7 @@ export const AbilitySlugEditQuickShockInvestigative: React.FC<
         data-item-id={ability.id}
         onDragStart={onDragStart}
         draggable="true"
-        css={{ gridColumn: "isocc / ability", marginBottom: "0.5em" }}
+        css={{ gridColumn: "ability", marginBottom: "0.5em", textAlign: "end" }}
       >
         {ability.name}
       </a>

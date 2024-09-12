@@ -158,7 +158,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
                 },
               },
               label: {
-                font: theme.displayFont,
+                fontWeight: "bold",
               },
               "a, label.parp": {
                 color: theme.colors.accent,

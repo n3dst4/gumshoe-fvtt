@@ -256,5 +256,8 @@
   "investigator.None": "None",
   "investigator.Nonlethal": "Nonlethal",
   "investigator.Worth": "Worth",
-  "investigator.Appearance": "Appearance"
+  "investigator.Appearance": "Appearance",
+  "investigator.Text": "Text",
+  "investigator.Number": "Number",
+  "investigator.Toggle": "Toggle"
 }

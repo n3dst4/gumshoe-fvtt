@@ -10,7 +10,6 @@ import {
   isActiveCharacterActor,
   isInvestigativeAbilityItem,
 } from "../../v10Types";
-import { AsyncCheckbox } from "../inputs/AsyncCheckbox";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
@@ -192,10 +191,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
       )}
       {useBoost && (
         <GridField label="Boost?">
-          <AsyncCheckbox
-            checked={ability.system.boost}
-            onChange={ability.setBoost}
-          />
+          <Toggle checked={ability.system.boost} onChange={ability.setBoost} />
         </GridField>
       )}
 

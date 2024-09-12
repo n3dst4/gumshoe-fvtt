@@ -78,8 +78,6 @@ export function summarizeCategoryCards(
     return [cards.length.toString(), false, false];
   }
 
-  console.log("summarizeCategoryCards", category.id);
-
   const grandTotal = countCards(cards, category.id);
 
   const indexOfLastLethalCard = cards

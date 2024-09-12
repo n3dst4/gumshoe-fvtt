@@ -4,9 +4,9 @@ import React, { useContext } from "react";
 import { assertGame } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { IdContext } from "../IdContext";
-import { Checkbox } from "../inputs/Checkbox";
 import { InputGrid } from "../inputs/InputGrid";
 import { ListEdit } from "../inputs/ListEdit";
+import { Toggle } from "../inputs/Toggle";
 import { Translate } from "../Translate";
 import { StateContext } from "./contexts";
 import {
@@ -89,7 +89,7 @@ export const AbilitySettings: React.FC<{
                         }}
                       />
                     )}
-                    <Checkbox
+                    <Toggle
                       checked={pcSelected}
                       css={{
                         gridColumn: 1,
@@ -110,7 +110,7 @@ export const AbilitySettings: React.FC<{
                         }
                       }}
                     />
-                    <Checkbox
+                    <Toggle
                       css={{
                         gridColumn: 3,
                         gridRow,
@@ -175,19 +175,19 @@ export const AbilitySettings: React.FC<{
         />
       </SettingsGridField>
       <SettingsGridField label="Can Abilities be Boosted?" index={idx++}>
-        <Checkbox checked={settings.useBoost} onChange={setters.useBoost} />
+        <Toggle checked={settings.useBoost} onChange={setters.useBoost} />
       </SettingsGridField>
       <SettingsGridField
         label="Show empty Investigative categories?"
         index={idx++}
       >
-        <Checkbox
+        <Toggle
           checked={settings.showEmptyInvestigativeCategories}
           onChange={setters.showEmptyInvestigativeCategories}
         />
       </SettingsGridField>
       <SettingsGridField label="Use NPC Combat bonuses?" index={idx++}>
-        <Checkbox
+        <Toggle
           checked={settings.useNpcCombatBonuses}
           onChange={setters.useNpcCombatBonuses}
         />

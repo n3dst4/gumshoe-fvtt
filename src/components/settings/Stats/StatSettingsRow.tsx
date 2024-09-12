@@ -5,7 +5,7 @@ import { useRefStash } from "../../../hooks/useRefStash";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
-import { Checkbox } from "../../inputs/Checkbox";
+import { Toggle } from "../../inputs/Toggle";
 import { Translate } from "../../Translate";
 import { DispatchContext } from "../contexts";
 import { store } from "../store";
@@ -30,7 +30,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
   const statRef = useRefStash(stat);
   const idRef = useRefStash(id);
 
-  const handleChangeMinCheckbox = useCallback(
+  const handleChangeMinToggle = useCallback(
     (checked: boolean) => {
       const value = checked
         ? Math.min(statRef.current.default, statRef.current.max ?? 0)
@@ -46,7 +46,7 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
     [dispatch, which, idRef, statRef],
   );
 
-  const handleChangeMaxCheckbox = useCallback(
+  const handleChangeMaxToggle = useCallback(
     (checked: boolean) => {
       const value = checked
         ? Math.max(statRef.current.default, statRef.current.min ?? 0)
@@ -172,18 +172,18 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
       </span>
 
       <span css={{ gridArea: "minLbl" }}>
-        <Translate>Min</Translate>
-        <Checkbox
+        <Translate>Min</Translate>{" "}
+        <Toggle
           checked={stat.min !== undefined}
-          onChange={handleChangeMinCheckbox}
+          onChange={handleChangeMinToggle}
         />
       </span>
 
       <span css={{ gridArea: "maxLbl" }}>
-        <Translate>Max</Translate>
-        <Checkbox
+        <Translate>Max</Translate>{" "}
+        <Toggle
           checked={stat.max !== undefined}
-          onChange={handleChangeMaxCheckbox}
+          onChange={handleChangeMaxToggle}
         />
       </span>
 
