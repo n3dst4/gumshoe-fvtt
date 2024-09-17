@@ -23,7 +23,7 @@
   "homepage": "https://gitlab.com/n3dst4/investigator-fvtt-types",
   "license": "ISC",
   "devDependencies": {
-    "@emotion/react": "^11.13.0",
+    "@emotion/react": "^11.13.3",
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
     "@lumphammer/shared-fvtt-bits": "workspace:*",
     "@tsconfig/recommended": "^1.0.1",
