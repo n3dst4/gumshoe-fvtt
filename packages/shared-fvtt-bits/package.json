@@ -57,5 +57,6 @@
     "fs-extra": "^11.2.0",
     "rimraf": "^6.0.1",
     "yargs": "^17.7.2"
-  }
+  },
+  "packageManager": "pnpm@9.5.0-beta.3+sha512.8b0c4d7fd9937d73f06ad284e681ddfd0f08b8f792a4f854a3ea24d1c7ade57dfe952ce88ed174d57da694e8323f0bb5a25011f780ed2787759c647b35263fa1"
 }
