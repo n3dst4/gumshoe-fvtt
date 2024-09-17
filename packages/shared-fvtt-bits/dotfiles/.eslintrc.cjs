@@ -74,32 +74,6 @@ module.exports = {
     // we need to use global namespaces for league types
     "@typescript-eslint/no-namespace": ["warn", { allowDeclarations: true }],
 
-    // I just have OPINIONS about this one
-    "@typescript-eslint/member-delimiter-style": [
-      "error",
-      {
-        multiline: {
-          delimiter: "semi",
-          requireLast: true,
-        },
-        singleline: {
-          delimiter: "semi",
-          requireLast: false,
-        },
-        overrides: {
-          interface: {
-            multiline: {
-              delimiter: "semi",
-              requireLast: true,
-            },
-            singleline: {
-              delimiter: "semi",
-              requireLast: true,
-            },
-          },
-        },
-      },
-    ],
     // we also have noPropertyAccessFromIndexSignature: true in tsconfig which
     // effectively forces this on. See
     // https://typescript-eslint.io/rules/dot-notation#allowindexsignaturepropertyaccess
