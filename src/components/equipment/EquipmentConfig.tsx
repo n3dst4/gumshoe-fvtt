@@ -26,7 +26,7 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
-    (await confirmADoodleDo({
+    const yes = await confirmADoodleDo({
       message,
       confirmText: "Delete",
       cancelText: "Cancel",
@@ -36,7 +36,10 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
         ActorName: equipment.actor?.name ?? "",
         EquipmentName: equipment.name ?? "",
       },
-    })) && (await equipment.delete());
+    });
+    if (yes) {
+      await equipment.delete();
+    }
   }, [equipment]);
 
   const allFields = equipment.system.fields;

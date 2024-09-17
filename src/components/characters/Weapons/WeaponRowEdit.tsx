@@ -48,7 +48,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
-    (await confirmADoodleDo({
+    const yes = await confirmADoodleDo({
       message,
       confirmText: "Delete",
       cancelText: "Cancel",
@@ -57,7 +57,10 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         ActorName: weapon.actor?.name ?? "",
         EquipmentName: weapon.name ?? "",
       },
-    })) && (await weapon.delete());
+    });
+    if (yes) {
+      await weapon.delete();
+    }
   }, [weapon]);
 
   const gridRow = index * 3 + 3;

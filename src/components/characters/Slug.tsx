@@ -25,7 +25,9 @@ export const Slug: React.FC<SlugProps> = ({ onClick, item, children }) => {
   return (
     <a
       onClick={() => {
-        onClick && onClick();
+        if (onClick !== undefined) {
+          onClick();
+        }
       }}
       data-item-id={item?.id}
       onDragStart={onDragStart}

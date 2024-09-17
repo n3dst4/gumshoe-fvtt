@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { PropsWithChildren, useCallback, useState } from "react";
 
 import {
   MagicToolbarContentContext,
@@ -6,7 +6,7 @@ import {
 } from "./contexts";
 import { MagicToolbarContent, MagicToolbarContentEntry } from "./types";
 
-interface MagicToolbarProviderProps extends React.PropsWithChildren {}
+type MagicToolbarProviderProps = PropsWithChildren;
 
 /**
  * Provides the context for the magic toolbar content.
