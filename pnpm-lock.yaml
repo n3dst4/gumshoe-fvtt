@@ -172,8 +172,8 @@ importers:
         specifier: ^12.1.1
         version: 12.1.1(eslint@8.57.0)
       happy-dom:
-        specifier: ^15.7.3
-        version: 15.7.3
+        specifier: ^15.7.4
+        version: 15.7.4
       jest-diff:
         specifier: ^29.7.0
         version: 29.7.0
@@ -197,7 +197,7 @@ importers:
         version: 5.4.1(@types/node@18.15.11)(less@4.2.0)
       vitest:
         specifier: ^1.6.0
-        version: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@15.7.3)(less@4.2.0)
+        version: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@15.7.4)(less@4.2.0)
 
   packages/investigator-fvtt-types:
     devDependencies:
@@ -245,7 +245,7 @@ importers:
         version: 5.4.1(@types/node@18.15.11)(less@4.2.0)
       vitest:
         specifier: ^1.6.0
-        version: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@15.7.3)(less@4.2.0)
+        version: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@15.7.4)(less@4.2.0)
 
   packages/shared-fvtt-bits:
     dependencies:
@@ -2218,8 +2218,8 @@ packages:
     engines: {node: '>=0.4.7'}
     hasBin: true
 
-  happy-dom@15.7.3:
-    resolution: {integrity: sha512-w3RUaYNXFJX5LiNVhOJLK4GqCB1bFj1FvELtpon3HrN8gUpS09V0Vvm4/BBRRj7mLUE1+ch8PKv1JxEp/0IHjA==}
+  happy-dom@15.7.4:
+    resolution: {integrity: sha512-r1vadDYGMtsHAAsqhDuk4IpPvr6N8MGKy5ntBo7tSdim+pWDxus2PNqOcOt8LuDZ4t3KJHE+gCuzupcx/GKnyQ==}
     engines: {node: '>=18.0.0'}
 
   has-bigints@1.0.2:
@@ -4648,7 +4648,7 @@ snapshots:
       pathe: 1.1.1
       picocolors: 1.0.0
       sirv: 2.0.4
-      vitest: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@15.7.3)(less@4.2.0)
+      vitest: 1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@15.7.4)(less@4.2.0)
 
   '@vitest/utils@1.6.0':
     dependencies:
@@ -5606,7 +5606,7 @@ snapshots:
     optionalDependencies:
       uglify-js: 3.17.4
 
-  happy-dom@15.7.3:
+  happy-dom@15.7.4:
     dependencies:
       entities: 4.5.0
       webidl-conversions: 7.0.0
@@ -6761,7 +6761,7 @@ snapshots:
       fsevents: 2.3.3
       less: 4.2.0
 
-  vitest@1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@15.7.3)(less@4.2.0):
+  vitest@1.6.0(@types/node@18.15.11)(@vitest/ui@1.6.0)(happy-dom@15.7.4)(less@4.2.0):
     dependencies:
       '@vitest/expect': 1.6.0
       '@vitest/runner': 1.6.0
@@ -6786,7 +6786,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 18.15.11
       '@vitest/ui': 1.6.0(vitest@1.6.0)
-      happy-dom: 15.7.3
+      happy-dom: 15.7.4
     transitivePeerDependencies:
       - less
       - lightningcss
