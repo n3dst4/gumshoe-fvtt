@@ -18,14 +18,38 @@ import {
   updateManifestFromCITagPush,
 } from "@lumphammer/shared-fvtt-bits/task-core/tasks";
 import { TaskArgs } from "@lumphammer/shared-fvtt-bits/task-core/types";
+import fs from "fs";
+import { globSync } from "glob";
 import path from "path";
 import { fileURLToPath } from "url";
+import yaml from "yaml";
 
 const rootPath = path.dirname(fileURLToPath(import.meta.url));
 process.chdir(rootPath);
 
 function silly({ log }: TaskArgs) {
   log("silliness");
+}
+
+function validatePeerDependencies() {
+  const workspaceFilename = path.join(rootPath, "pnpm-workspace.yaml");
+  const workspaceYaml = fs.readFileSync(workspaceFilename, "utf8");
+  const workspaceData = yaml.parse(workspaceYaml);
+  const packageGlobs = workspaceData.packages;
+  const includePackageGlobs = packageGlobs.filter(
+    (packageGlob: string) => !packageGlob.startsWith("!"),
+  );
+  // const excludePackageGlobs = packageGlobs.filter((packageGlob) =>
+  //   packageGlob.startsWith("!"),
+  // );
+  const includePackageDirectories = includePackageGlobs.flatMap(
+    (packageGlob) => {
+      const qualifiedGlob = path.join(rootPath, packageGlob);
+      const folders = globSync(qualifiedGlob);
+    },
+  );
+
+  const workspacePackages;
 }
 
 void boot({
