@@ -3,6 +3,7 @@ import React, { useCallback } from "react";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { Button } from "../inputs/Button";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
@@ -38,9 +39,9 @@ export const PersonalDetailConfig: React.FC<PersonalDetailConfigProps> = ({
   return (
     <InputGrid>
       <GridFieldStacked label="Delete">
-        <button onClick={onClickDelete}>
+        <Button onClick={onClickDelete}>
           <Translate>Delete Item</Translate>
-        </button>
+        </Button>
       </GridFieldStacked>
     </InputGrid>
   );

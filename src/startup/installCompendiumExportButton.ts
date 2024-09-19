@@ -62,9 +62,9 @@ export const installCompendiumExportButton = () => {
     const id = `file-picker-button-${nanoid()}`;
     const content =
       $(`<div class="header-actions action-buttons flexrow import-file-picker">
-        <button id="${id}" class="import-compendium" type="submit">
+        <Button id="${id}" class="import-compendium" type="submit">
           <i class="fas ${importButtonIconClass}"></i> Import From JSON File
-        </button>
+        </Button>
     </div>`);
     $(app.element[0]).find(".directory-header").append(content);
     document.querySelector(`#${id}`)?.addEventListener("click", async () => {

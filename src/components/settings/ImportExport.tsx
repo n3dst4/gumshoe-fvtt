@@ -5,6 +5,7 @@ import { saveAsJsonFile } from "../../functions/saveFile";
 import { getUserFile } from "../../functions/utilities";
 import { getExportableSettingsDict } from "../../settings/getExportableSettingsDict";
 import { validateImportedSettings } from "../../settings/validateImportedSettings";
+import { Button } from "../inputs/Button";
 import { TextInput } from "../inputs/TextInput";
 import { Translate } from "../Translate";
 import { DirtyContext, DispatchContext, StateContext } from "./contexts";
@@ -19,17 +20,13 @@ export const ImportExport: React.FC = () => {
 
   const [filename, setFilename] = React.useState<string>("settings");
 
-  const handleExport = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
+  const handleExport = () => {
     const exportableSettings = getExportableSettingsDict(settingsState);
     saveAsJsonFile(exportableSettings, filename);
     ui.notifications?.info("Settings exported to file");
   };
 
-  const handleImport = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    e.preventDefault();
+  const handleImport = async () => {
     const aye =
       !isDirty() ||
       (await confirmADoodleDo({
@@ -64,14 +61,14 @@ export const ImportExport: React.FC = () => {
       <SettingsGridField label="Export settings to file" index={idx++}>
         <Translate>ItemName</Translate>
         <TextInput value={filename} onChange={setFilename} />
-        <button onClick={handleExport}>
+        <Button onClick={handleExport}>
           <Translate>Export</Translate>
-        </button>
+        </Button>
       </SettingsGridField>
       <SettingsGridField label="Import settings from file" index={idx++}>
-        <button onClick={handleImport}>
+        <Button onClick={handleImport}>
           <Translate>Import</Translate>
-        </button>
+        </Button>
       </SettingsGridField>
     </>
   );

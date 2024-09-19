@@ -20,10 +20,12 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       {...rest}
-      className={className}
-      css={{
-        width: "max-content",
-      }}
+      className={`${className} btn`}
+      css={
+        {
+          // width: "max-content",
+        }
+      }
       onClick={handleClick}
     >
       {children}

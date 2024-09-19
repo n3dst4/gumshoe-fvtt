@@ -8,6 +8,7 @@ import {
 } from "../../functions/utilities";
 import { useRefStash } from "../../hooks/useRefStash";
 import { settings } from "../../settings/settings";
+import { Button } from "../inputs/Button";
 import { CombatantRow } from "./CombatantRow";
 import { getTurns } from "./getTurns";
 
@@ -125,13 +126,9 @@ export const Tracker: React.FC = () => {
     [combatRef],
   );
 
-  const onNextRound = useCallback(
-    (event: MouseEvent) => {
-      event.preventDefault();
-      void combatRef.current?.nextRound();
-    },
-    [combatRef],
-  );
+  const onNextRound = useCallback(() => {
+    void combatRef.current?.nextRound();
+  }, [combatRef]);
 
   const onStartCombat = useCallback(
     (event: MouseEvent) => {
@@ -227,7 +224,7 @@ export const Tracker: React.FC = () => {
                 <h3 className="encounter-title noborder">
                   {localize("COMBAT.Round")} {combat.round}
                   {isTurnPassing && game.user.isGM && (
-                    <button
+                    <Button
                       title={localize("COMBAT.RoundNext")}
                       onClick={onNextRound}
                       css={{
@@ -240,7 +237,7 @@ export const Tracker: React.FC = () => {
                       {localize("COMBAT.RoundNext")}
                       &nbsp;
                       <i className="fas fa-arrow-right"></i>
-                    </button>
+                    </Button>
                   )}
                 </h3>
               ) : (

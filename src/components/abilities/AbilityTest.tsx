@@ -3,6 +3,7 @@ import React, { useCallback, useContext, useState } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
+import { Button } from "../inputs/Button";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
@@ -65,17 +66,17 @@ export const AbilityTest: React.FC<AbilityTestProps> = ({ ability }) => {
             flexDirection: "row",
           }}
         >
-          <button
+          <Button
             css={{ flex: 1 }}
             disabled={spend === 0}
             onClick={handleClickSpend}
           >
             <Translate>{isGeneral ? "Simple Spend" : "Spend"}</Translate>
-          </button>
+          </Button>
           {isGeneral && (
-            <button css={{ flex: 1 }} onClick={handleClickTest}>
+            <Button css={{ flex: 1 }} onClick={handleClickTest}>
               <Translate>Test</Translate> <i className="fa fa-dice" />
-            </button>
+            </Button>
           )}
         </div>
       </GridFieldStacked>

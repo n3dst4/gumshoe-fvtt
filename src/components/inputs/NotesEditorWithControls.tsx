@@ -12,6 +12,7 @@ import { useIsDocumentOwner } from "../../hooks/useIsDocumentOwner";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { Translate } from "../Translate";
+import { Button } from "./Button";
 import { NotesEditor } from "./NotesEditor";
 
 export interface NotesEditorWithControlsProps {
@@ -162,7 +163,7 @@ export const NotesEditorWithControls: React.FC<
 
         <div>
           {isDebugging && (
-            <button
+            <Button
               css={{
                 width: "auto",
                 marginRight: "0.5em",
@@ -172,11 +173,11 @@ export const NotesEditorWithControls: React.FC<
               <i
                 className={showSource ? "fas fa-window-close" : "fas fa-code"}
               />
-            </button>
+            </Button>
           )}
 
           {!editMode && !showSource && isOwner && (
-            <button
+            <Button
               css={{
                 width: "auto",
                 marginRight: "0.5em",
@@ -185,12 +186,12 @@ export const NotesEditorWithControls: React.FC<
             >
               <i className="fas fa-edit" />
               <Translate>Edit</Translate>
-            </button>
+            </Button>
           )}
 
           {editMode && !showSource && (
             <Fragment>
-              <button
+              <Button
                 css={{
                   width: "auto",
                   marginRight: "0.5em",
@@ -199,8 +200,8 @@ export const NotesEditorWithControls: React.FC<
               >
                 <i className="fas fa-download" />
                 <Translate>Save</Translate>
-              </button>
-              <button
+              </Button>
+              <Button
                 css={{
                   width: "auto",
                   marginRight: "0.5em",
@@ -209,7 +210,7 @@ export const NotesEditorWithControls: React.FC<
               >
                 <i className="fas fa-ban" />
                 <Translate>Cancel</Translate>
-              </button>
+              </Button>
             </Fragment>
           )}
 

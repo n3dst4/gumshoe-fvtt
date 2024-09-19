@@ -6,6 +6,7 @@ import { sortEntitiesByName } from "../../../functions/utilities";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { ThemeContext } from "../../../themes/ThemeContext";
+import { Button } from "../../inputs/Button";
 import { Translate } from "../../Translate";
 import { EquipmentItemRow } from "./EquipmentItemRow";
 
@@ -66,7 +67,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
           {name}
         </h2>
         {categoryId !== undefined && categoryId !== "" && (
-          <button
+          <Button
             css={{
               flexBasis: "max-content",
             }}
@@ -76,7 +77,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
           >
             <i className="fa fa-plus" />
             <Translate>Add Equipment</Translate>
-          </button>
+          </Button>
         )}
       </div>
 

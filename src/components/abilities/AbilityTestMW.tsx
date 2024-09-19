@@ -5,6 +5,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { MWDifficulty } from "../../types";
 import { assertGeneralAbilityItem } from "../../v10Types";
+import { Button } from "../inputs/Button";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
@@ -90,23 +91,23 @@ export const AbilityTestMW: React.FC<AbilityTestMWProps> = ({ ability }) => {
           flexDirection: "row",
         }}
       >
-        <button
+        <Button
           disabled={ability.system.pool < mwNegateCost}
           css={{ flex: "1" }}
           onClick={onNegateIllustrious}
         >
           <Translate>Negate</Translate>
-        </button>
-        <button
+        </Button>
+        <Button
           disabled={ability.system.pool < mwWallopCost}
           css={{ flex: "1" }}
           onClick={onWallop}
         >
           <Translate>Wallop</Translate>
-        </button>
-        <button css={{ flex: "2" }} onClick={onTest}>
+        </Button>
+        <Button css={{ flex: "2" }} onClick={onTest}>
           <Translate>Test</Translate>
-        </button>
+        </Button>
       </div>
     </div>
   );

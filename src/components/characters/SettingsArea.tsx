@@ -9,6 +9,7 @@ import { ThemeContext } from "../../themes/ThemeContext";
 import { NoteFormat } from "../../types";
 import { assertPCActor } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { Button } from "../inputs/Button";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
@@ -78,9 +79,9 @@ export const SettingArea: React.FC<SettingAreaProps> = ({ actor }) => {
 
         {isDevMode && (
           <GridField label="Nuke">
-            <button onClick={actor.confirmNuke}>
+            <Button onClick={actor.confirmNuke}>
               <Translate>Nuke</Translate>
-            </button>
+            </Button>
           </GridField>
         )}
       </InputGrid>

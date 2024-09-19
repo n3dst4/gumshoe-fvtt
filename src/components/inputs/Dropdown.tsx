@@ -14,6 +14,7 @@ import { FaChevronDown } from "react-icons/fa";
 
 import { systemLogger } from "../../functions/utilities";
 import { useShowHideTransition } from "../transitions/useShowHideTransition";
+import { Button } from "./Button";
 
 export const DropdownContainerContext =
   React.createContext<RefObject<HTMLElement> | null>(null);
@@ -67,9 +68,7 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
     },
     [handleClose],
   );
-  const handleClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleClick = useCallback(() => {
     setIsOpen((isOpen) => !isOpen);
   }, []);
 
@@ -110,7 +109,7 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
 
   return (
     <Fragment>
-      <button
+      <Button
         role={role}
         ref={buttonRef}
         onClick={handleClick}
@@ -125,7 +124,7 @@ export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
         {showArrow ? (
           <FaChevronDown style={{ verticalAlign: "middle" }} />
         ) : null}
-      </button>
+      </Button>
 
       {shouldMount &&
         ReactDOM.createPortal(

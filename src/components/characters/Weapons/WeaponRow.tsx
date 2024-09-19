@@ -13,6 +13,7 @@ import { cleanAndEnrichHtml } from "../../../functions/textFunctions";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { assertWeaponItem, isAbilityItem } from "../../../v10Types";
 import { performAttack } from "../../equipment/performAttack";
+import { Button } from "../../inputs/Button";
 import { CheckButtons } from "../../inputs/CheckButtons";
 
 type WeaponRowProps = {
@@ -144,12 +145,12 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
       </a>
       {weapon.system.usesAmmo ? (
         <div css={{ gridColumn: 2 }}>
-          <button
+          <Button
             css={{ width: "1.5em", padding: "0" }}
             onClick={weapon.reload}
           >
             <i className="fa fa-redo fa-xs" />
-          </button>
+          </Button>
           &nbsp;
           {weapon.system.ammo.value}/{weapon.system.ammo.max}
         </div>
@@ -171,27 +172,27 @@ export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
           gridTemplateColumns: "1.6em 1.6em",
         }}
       >
-        <button
+        <Button
           css={{ gridColumn: "1" }}
           onClick={onClickDec}
           disabled={spend <= 0}
         >
           <i css={{ fontSize: "x-small" }} className="fa fa-minus" />
-        </button>
-        <button
+        </Button>
+        <Button
           css={{ gridColumn: "2" }}
           onClick={onClickInc}
           disabled={spend >= pool}
         >
           <i css={{ fontSize: "x-small" }} className="fa fa-plus" />
-        </button>
-        <button
+        </Button>
+        <Button
           css={{ gridColumn: 3, width: "4.1em" }}
           onClick={onAttack}
           disabled={ammoFail}
         >
           <i className="fa fa-dice" title="Test" />+{spend}
-        </button>
+        </Button>
       </div>
       <div
         css={{

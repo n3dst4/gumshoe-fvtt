@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 
 import { ThemeContext } from "../../../themes/ThemeContext";
+import { Button } from "../../inputs/Button";
 
 type ToolbarButtonProps = {
   text?: React.ReactNode;
@@ -18,16 +19,12 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
   const theme = useContext(ThemeContext);
 
   // Use props in your component
-  const handleClick = React.useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      event.preventDefault();
-      void onClick();
-    },
-    [onClick],
-  );
+  const handleClick = React.useCallback(() => {
+    void onClick();
+  }, [onClick]);
 
   return (
-    <button
+    <Button
       disabled={disabled}
       css={{
         padding: "0.3em",
@@ -52,6 +49,6 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
       )}
 
       <div css={{}}>{text}</div>
-    </button>
+    </Button>
   );
 };

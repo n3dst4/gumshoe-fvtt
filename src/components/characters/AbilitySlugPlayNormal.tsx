@@ -8,6 +8,7 @@ import {
   isInvestigativeAbilityItem,
 } from "../../v10Types";
 import { AbilityBadges } from "../abilities/AbilityBadges";
+import { Button } from "../inputs/Button";
 
 type AbilitySlugPlayNormalProps = {
   ability: InvestigatorItem;
@@ -74,41 +75,41 @@ export const AbilitySlugPlayNormal: React.FC<AbilitySlugPlayNormalProps> = ({
           gridTemplateColumns: "1.6em 1.6em",
         }}
       >
-        <button
+        <Button
           css={{ gridColumn: "1" }}
           onClick={onClickDec}
           disabled={spend <= 0}
         >
           <i css={{ fontSize: "x-small" }} className="fa fa-minus" />
-        </button>
-        <button
+        </Button>
+        <Button
           css={{ gridColumn: "2" }}
           onClick={onClickInc}
           disabled={spend >= ability.system.pool}
         >
           <i css={{ fontSize: "x-small" }} className="fa fa-plus" />
-        </button>
+        </Button>
       </div>
       <div css={{ gridColumn: "spend" }}>
         {isInvestigativeAbilityItem(ability) && (
-          <button disabled={spend === 0} onClick={onSpend}>
+          <Button disabled={spend === 0} onClick={onSpend}>
             <i className="fa fa-search" title="Spend" />
             {spend}
-          </button>
+          </Button>
         )}
         {isGeneralAbilityItem(ability) && (
-          <button css={{ width: "4.1em" }} onClick={onTest}>
+          <Button css={{ width: "4.1em" }} onClick={onTest}>
             <i className="fa fa-dice" title="Test" />+{spend}
-          </button>
+          </Button>
         )}
         {isGeneralAbilityItem(ability) && ability.system.canBeInvestigative && (
-          <button
+          <Button
             css={{ width: "2em" }}
             disabled={spend === 0}
             onClick={onSpend}
           >
             <i className="fa fa-search" title="Spend" />
-          </button>
+          </Button>
         )}
       </div>
       <AbilityBadges ability={ability} css={{ gridColumn: "1/-1" }} />

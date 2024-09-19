@@ -7,6 +7,7 @@ import { ThemeContext } from "../../../themes/ThemeContext";
 import { assertWeaponItem } from "../../../v10Types";
 import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
+import { Button } from "../../inputs/Button";
 import { CombatAbilityDropDown } from "../../inputs/CombatAbilityDropDown";
 import { CompactNotesEditor } from "../../inputs/CompactNotesEditor";
 import { Toggle } from "../../inputs/Toggle";
@@ -146,24 +147,24 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
           gridRow,
         }}
       >
-        <button
+        <Button
           css={{ width: "1em", padding: "0.2em 0.1em" }}
           onClick={weaponRangeReduce}
         >
           <i className="fa fa-chevron-left" />
-        </button>
+        </Button>
         {weapon.system.isLongRange || (
-          <button
+          <Button
             css={{ width: "1em", padding: "0.2em 0.1em" }}
             onClick={weaponRangeExpand}
           >
             <i className="fa fa-chevron-right" />
-          </button>
+          </Button>
         )}
       </div>
 
       {/* delete */}
-      <button
+      <Button
         css={{
           gridColumn: "delete",
           gridRow,
@@ -174,7 +175,7 @@ export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
         onClick={onClickDelete}
       >
         <i className="fa fa-trash" />
-      </button>
+      </Button>
 
       {/* SIDEBAR */}
       <div

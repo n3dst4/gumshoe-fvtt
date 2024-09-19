@@ -1,6 +1,7 @@
-import React, { MouseEventHandler, useCallback, useContext } from "react";
+import React, { useCallback, useContext } from "react";
 
 import { assertGame } from "../../../functions/utilities";
+import { Button } from "../../inputs/Button";
 import { GridFieldStacked } from "../../inputs/GridFieldStacked";
 import { InputGrid } from "../../inputs/InputGrid";
 import { Translate } from "../../Translate";
@@ -11,13 +12,9 @@ import { Category } from "./Category";
 export const EquipmentSettings: React.FC = () => {
   assertGame(game);
   const dispatch = useContext(DispatchContext);
-  const handleAdd: MouseEventHandler = useCallback(
-    (e) => {
-      e.preventDefault();
-      dispatch(store.creators.addCategory());
-    },
-    [dispatch],
-  );
+  const handleAdd = useCallback(() => {
+    dispatch(store.creators.addCategory());
+  }, [dispatch]);
   const { settings } = useContext(StateContext);
 
   return (
@@ -34,10 +31,10 @@ export const EquipmentSettings: React.FC = () => {
         }}
       >
         <GridFieldStacked>
-          <button onClick={handleAdd}>
+          <Button onClick={handleAdd}>
             <i className="fas fa-plus" />
             <Translate>Add Category</Translate>
-          </button>
+          </Button>
         </GridFieldStacked>
       </InputGrid>
     </>

@@ -3,6 +3,7 @@ import React from "react";
 import { weapon } from "../../../constants";
 import { sortEntitiesByName } from "../../../functions/utilities";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
+import { Button } from "../../inputs/Button";
 import { Translate } from "../../Translate";
 import { WeaponRow } from "./WeaponRow";
 
@@ -30,7 +31,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({ actor }) => {
         >
           <Translate>Weapons</Translate>
         </h2>
-        <button
+        <Button
           css={{
             flexBasis: "max-content",
             alignSelf: "flex-start",
@@ -53,7 +54,7 @@ export const WeaponsArea: React.FC<WeaponsAreaProps> = ({ actor }) => {
         >
           <i className="fa fa-plus" />
           <Translate>Add Weapon</Translate>
-        </button>
+        </Button>
       </div>
 
       {items.length === 0 && (

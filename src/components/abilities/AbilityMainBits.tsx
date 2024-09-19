@@ -11,6 +11,7 @@ import {
   isInvestigativeAbilityItem,
 } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { Button } from "../inputs/Button";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
@@ -132,7 +133,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
                   flex: 1,
                 }}
               />
-              <button
+              <Button
                 css={{
                   flexBasis: "min-content",
                   flex: 0,
@@ -141,7 +142,7 @@ export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
                 onClick={onClickRefresh}
               >
                 <Translate>Refresh</Translate>
-              </button>
+              </Button>
             </div>
           </GridField>
           <GridField label="Rating">

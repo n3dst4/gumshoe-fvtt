@@ -17,6 +17,7 @@ import {
 } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { Button } from "../inputs/Button";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
@@ -184,34 +185,34 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
                 <Translate>Out of ammo</Translate>
               </div>
             )}
-            <button
+            <Button
               css={{ lineHeight: 1, flex: 1 }}
               disabled={ammoFail || !weapon.system.isPointBlank}
               onClick={onPointBlank}
             >
               <Translate>Point Blank</Translate>
-            </button>
-            <button
+            </Button>
+            <Button
               css={{ lineHeight: 1, flex: 1 }}
               disabled={ammoFail || !weapon.system.isCloseRange}
               onClick={onCloseRange}
             >
               <Translate>Close Range</Translate>
-            </button>
-            <button
+            </Button>
+            <Button
               css={{ lineHeight: 1, flex: 1 }}
               disabled={ammoFail || !weapon.system.isNearRange}
               onClick={onNearRange}
             >
               <Translate>Near Range</Translate>
-            </button>
-            <button
+            </Button>
+            <Button
               css={{ lineHeight: 1, flex: 1 }}
               disabled={ammoFail || !weapon.system.isLongRange}
               onClick={onLongRange}
             >
               <Translate>Long Range</Translate>
-            </button>
+            </Button>
           </div>
         </GridFieldStacked>
       </InputGrid>
@@ -229,7 +230,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
                 flexDirection: "row",
               }}
             >
-              <button
+              <Button
                 css={{
                   flexBasis: "min-content",
                   flex: 0,
@@ -238,7 +239,7 @@ export const WeaponAttack: React.FC<WeaponAttackProps> = ({ weapon }) => {
                 onClick={weapon.reload}
               >
                 <Translate>Reload</Translate>
-              </button>
+              </Button>
               <AsyncNumberInput
                 css={{ flex: 1 }}
                 min={0}

@@ -3,6 +3,7 @@ import React, { forwardRef, useCallback } from "react";
 import { Unlock } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { Button } from "../inputs/Button";
 
 interface UnlocksEditorRowProps {
   unlock: Unlock;
@@ -59,7 +60,7 @@ export const UnlocksEditorRow = forwardRef<
             value={rating}
             onChange={onChangeRatingCallback}
           />
-          <button
+          <Button
             css={{
               flexBasis: "min-content",
             }}
@@ -68,7 +69,7 @@ export const UnlocksEditorRow = forwardRef<
             }}
           >
             <i className="fas fa-trash" />
-          </button>
+          </Button>
         </div>
         <AsyncTextInput
           value={description}

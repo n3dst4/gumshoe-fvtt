@@ -5,6 +5,7 @@ import { useRefStash } from "../../../hooks/useRefStash";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
+import { Button } from "../../inputs/Button";
 import { Toggle } from "../../inputs/Toggle";
 import { Translate } from "../../Translate";
 import { DispatchContext } from "../contexts";
@@ -127,13 +128,9 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
     [dispatch, idRef, which],
   );
 
-  const handleDelete = useCallback(
-    (ev: React.MouseEvent<HTMLButtonElement>) => {
-      ev.preventDefault();
-      dispatch(store.creators.deleteStat({ which, statId: idRef.current }));
-    },
-    [dispatch, which, idRef],
-  );
+  const handleDelete = useCallback(() => {
+    dispatch(store.creators.deleteStat({ which, statId: idRef.current }));
+  }, [dispatch, which, idRef]);
 
   return (
     <div
@@ -222,9 +219,9 @@ export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
       ) : (
         <span css={{ gridArea: "max" }} />
       )}
-      <button css={{ gridArea: "delete" }} onClick={handleDelete}>
+      <Button css={{ gridArea: "delete" }} onClick={handleDelete}>
         <i className="fas fa-trash" />
-      </button>
+      </Button>
     </div>
   );
 };

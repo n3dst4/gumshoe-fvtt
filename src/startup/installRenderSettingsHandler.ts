@@ -9,7 +9,7 @@ export const installRenderSettingsHandler = () => {
     const text = getTranslated("SystemNameSystemSettings", {
       SystemName: systemNameTranslated,
     });
-    const button = $(`<button><i class="fas fa-search"></i>${text}</button>`);
+    const button = $(`<Button><i class="fas fa-search"></i>${text}</Button>`);
     html.find('button[data-action="configure"]').after(button);
 
     button.on("click", (ev) => {

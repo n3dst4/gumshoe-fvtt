@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
+import { Button } from "./Button";
 import { TextInput } from "./TextInput";
 import { ValidationResult } from "./types";
 
@@ -86,21 +87,13 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
     onChangeString,
   );
 
-  const onClickInc = useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault();
-      onChange(adjust(display, +1, min, max));
-    },
-    [display, max, min, onChange],
-  );
+  const onClickInc = useCallback(() => {
+    onChange(adjust(display, +1, min, max));
+  }, [display, max, min, onChange]);
 
-  const onClickDec = useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault();
-      onChange(adjust(display, -1, min, max));
-    },
-    [display, max, min, onChange],
-  );
+  const onClickDec = useCallback(() => {
+    onChange(adjust(display, -1, min, max));
+  }, [display, max, min, onChange]);
 
   const validationResult = validate(display);
 
@@ -120,14 +113,14 @@ export const AsyncNumberInput: React.FC<AsyncNumberInputProps> = ({
       className={className}
     >
       {(noPlusMinus === undefined || !noPlusMinus) && (
-        <button onClick={onClickDec} disabled={disabled}>
+        <Button onClick={onClickDec} disabled={disabled}>
           <i className="fa fa-minus" />
-        </button>
+        </Button>
       )}
       {(noPlusMinus === undefined || !noPlusMinus) && (
-        <button onClick={onClickInc} disabled={disabled}>
+        <Button onClick={onClickInc} disabled={disabled}>
           <i className="fa fa-plus" />
-        </button>
+        </Button>
       )}
       <TextInput
         validation={validationResult}

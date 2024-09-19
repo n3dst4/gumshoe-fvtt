@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 
 import { ThemeContext } from "../../themes/ThemeContext";
 import { AbilityItem } from "../../v10Types";
+import { Button } from "../inputs/Button";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
@@ -33,13 +34,9 @@ export const PushPoolButton: React.FC<PushPoolButtonProps> = ({ ability }) => {
             flexDirection: "row",
           }}
         >
-          <button
-            css={{ flex: 1 }}
-            // disabled={spend === 0}
-            onClick={handleClickPush}
-          >
+          <Button css={{ flex: 1 }} onClick={handleClickPush}>
             <Translate>Push</Translate>
-          </button>
+          </Button>
         </div>
       </GridFieldStacked>
     </InputGrid>

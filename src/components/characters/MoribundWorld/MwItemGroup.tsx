@@ -4,6 +4,7 @@ import { mwItem } from "../../../constants";
 import { sortEntitiesByName } from "../../../functions/utilities";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { MwType } from "../../../types";
+import { Button } from "../../inputs/Button";
 import { Translate } from "../../Translate";
 
 interface MwItemGroupProps {
@@ -38,7 +39,7 @@ export const MwItemGroup: React.FC<MwItemGroupProps> = ({
         >
           <Translate>{name}</Translate>
         </h1>
-        <button
+        <Button
           css={{
             float: "right",
             width: "auto",
@@ -63,7 +64,7 @@ export const MwItemGroup: React.FC<MwItemGroupProps> = ({
         >
           <i className="fa fa-plus" />
           <Translate>Add Item</Translate>
-        </button>
+        </Button>
       </div>
       {items.length === 0 && (
         <i

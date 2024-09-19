@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 
+import { Button } from "../inputs/Button";
 import { Translate } from "../Translate";
 
 interface OrphanedFieldProps {
@@ -83,7 +84,7 @@ export const OrphanedField: React.FC<OrphanedFieldProps> = ({
       >
         <i className={"fa fa-copy"} />
       </a>
-      <button
+      <Button
         css={{
           gridColumn: 4,
           gridRow: `${index * gridRowsPerField + 1} / ${
@@ -95,7 +96,7 @@ export const OrphanedField: React.FC<OrphanedFieldProps> = ({
         }}
       >
         <Translate>Delete</Translate>
-      </button>
+      </Button>
       <hr
         css={{
           gridColumn: "1 / -1",
