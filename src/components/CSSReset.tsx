@@ -172,6 +172,8 @@ export const CSSReset: React.FC<CSSResetProps> = ({
                   font: theme.displayFont,
                   color: theme.colors.accent,
                   borderRadius: "5px",
+                  // 100% was causing scrollbars in some places
+                  width: "99%",
                   "&[disabled]": {
                     opacity: 0.5,
                     color: theme.colors.text,

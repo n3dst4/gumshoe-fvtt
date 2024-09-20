@@ -46,7 +46,6 @@ export const NotesArea: React.FC<NotesAreaProps> = ({ actor }) => {
                 html={actor.system.longNotes[i]?.html ?? ""}
                 source={actor.system.longNotes[i]?.source ?? ""}
                 onSave={updateLongNote}
-                h2
               />
             </InputGrid>
           </NotesTypeContext.Provider>

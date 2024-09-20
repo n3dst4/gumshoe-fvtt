@@ -21,14 +21,33 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       {...rest}
       className={className}
-      css={
-        {
-          // width: "max-content",
-        }
-      }
       onClick={handleClick}
+      css={{
+        padding: "0.1em 0.3em",
+      }}
     >
       {children}
     </button>
+  );
+};
+
+export const ToolbarButton: React.FC<ButtonProps> = ({
+  children,
+  onClick,
+  className,
+  ...rest
+}) => {
+  return (
+    <Button
+      {...rest}
+      className={className}
+      css={{
+        display: "block",
+        width: "max-content",
+      }}
+      onClick={onClick}
+    >
+      {children}
+    </Button>
   );
 };

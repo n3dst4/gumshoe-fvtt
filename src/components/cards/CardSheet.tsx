@@ -5,7 +5,7 @@ import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
-import { Button } from "../inputs/Button";
+import { ToolbarButton } from "../inputs/Button";
 import { ArrowLink } from "../nestedPanels/ArrowLink";
 import { SlideInNestedPanelRoute } from "../nestedPanels/SlideInNestedPanelRoute";
 import { Translate } from "../Translate";
@@ -69,17 +69,17 @@ export const CardSheet: React.FC<CardSheetProps> = ({ card, application }) => {
             paddingBottom: "0.5em",
           }}
         >
-          <Button onClick={handleClickDiscard}>
+          <ToolbarButton onClick={handleClickDiscard}>
             <Translate>{card.actor ? "Discard" : "Delete"}</Translate>
-          </Button>{" "}
+          </ToolbarButton>{" "}
           {card.system.active ? (
-            <Button onClick={handleClickDeactivate}>
+            <ToolbarButton onClick={handleClickDeactivate}>
               <Translate>Deactivate</Translate>
-            </Button>
+            </ToolbarButton>
           ) : (
-            <Button onClick={handleClickActivate}>
+            <ToolbarButton onClick={handleClickActivate}>
               <Translate>Activate</Translate>
-            </Button>
+            </ToolbarButton>
           )}
           <div css={{ flex: 1 }} />
           <ArrowLink to={edit()}>Edit</ArrowLink>

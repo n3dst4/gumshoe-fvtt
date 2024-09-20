@@ -12,7 +12,7 @@ import { useIsDocumentOwner } from "../../hooks/useIsDocumentOwner";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
 import { NoteFormat, NoteWithFormat } from "../../types";
 import { Translate } from "../Translate";
-import { Button } from "./Button";
+import { ToolbarButton } from "./Button";
 import { NotesEditor } from "./NotesEditor";
 
 export interface NotesEditorWithControlsProps {
@@ -23,7 +23,6 @@ export interface NotesEditorWithControlsProps {
   onSave: (note: NoteWithFormat) => void;
   allowChangeFormat: boolean;
   title?: string;
-  h2?: boolean;
 }
 
 export const NotesEditorWithControls: React.FC<
@@ -36,7 +35,6 @@ export const NotesEditorWithControls: React.FC<
   className,
   allowChangeFormat,
   title,
-  h2 = false,
 }: NotesEditorWithControlsProps) => {
   assertGame(game);
   const [editMode, setEditMode] = useState(false);
@@ -137,95 +135,69 @@ export const NotesEditorWithControls: React.FC<
         position: "relative",
         display: "flex",
         flexDirection: "column",
+        gap: "0.3em",
       }}
     >
-      <div css={{ display: "flex", flexDirection: "row" }}>
-        {h2 ? (
-          <h2
-            css={{
-              "&&": {
-                marginTop: 0,
-              },
-              flex: 1,
-            }}
-          >
-            {title === undefined ? <Translate>Notes</Translate> : title}
-          </h2>
-        ) : (
-          <h3
-            css={{
-              flex: 1,
-            }}
-          >
-            {title === undefined ? <Translate>Notes</Translate> : title}
-          </h3>
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "0.5em",
+          alignItems: "end",
+        }}
+      >
+        <h3
+          css={{
+            flex: 1,
+            marginTop: 0,
+            marginBottom: 0,
+          }}
+        >
+          {title === undefined ? <Translate>Notes</Translate> : title}
+        </h3>
+
+        {isDebugging && (
+          <ToolbarButton onClick={() => setShowSource((e) => !e)}>
+            <i className={showSource ? "fas fa-window-close" : "fas fa-code"} />
+          </ToolbarButton>
         )}
 
-        <div>
-          {isDebugging && (
-            <Button
-              css={{
-                width: "auto",
-                marginRight: "0.5em",
-              }}
-              onClick={() => setShowSource((e) => !e)}
-            >
-              <i
-                className={showSource ? "fas fa-window-close" : "fas fa-code"}
-              />
-            </Button>
-          )}
+        {!editMode && !showSource && isOwner && (
+          <ToolbarButton onClick={handleClickEdit}>
+            <i className="fas fa-edit" />
+            <Translate>Edit</Translate>
+          </ToolbarButton>
+        )}
 
-          {!editMode && !showSource && isOwner && (
-            <Button
-              css={{
-                width: "auto",
-                marginRight: "0.5em",
-              }}
-              onClick={handleClickEdit}
-            >
-              <i className="fas fa-edit" />
-              <Translate>Edit</Translate>
-            </Button>
-          )}
+        {editMode && !showSource && (
+          <Fragment>
+            <ToolbarButton onClick={handleSave}>
+              <i className="fas fa-download" />
+              <Translate>Save</Translate>
+            </ToolbarButton>
+            <ToolbarButton onClick={handleClickCancel}>
+              <i className="fas fa-ban" />
+              <Translate>Cancel</Translate>
+            </ToolbarButton>
+          </Fragment>
+        )}
 
-          {editMode && !showSource && (
-            <Fragment>
-              <Button
-                css={{
-                  width: "auto",
-                  marginRight: "0.5em",
-                }}
-                onClick={handleSave}
-              >
-                <i className="fas fa-download" />
-                <Translate>Save</Translate>
-              </Button>
-              <Button
-                css={{
-                  width: "auto",
-                  marginRight: "0.5em",
-                }}
-                onClick={handleClickCancel}
-              >
-                <i className="fas fa-ban" />
-                <Translate>Cancel</Translate>
-              </Button>
-            </Fragment>
-          )}
-
-          {allowChangeFormat && editMode && !showSource && (
-            <select value={liveFormat} onChange={handleChangeFormat}>
-              <option value={NoteFormat.plain}>{getTranslated("Plain")}</option>
-              <option value={NoteFormat.markdown}>
-                {getTranslated("Markdown")}
-              </option>
-              <option value={NoteFormat.richText}>
-                {getTranslated("RichText")}
-              </option>
-            </select>
-          )}
-        </div>
+        {allowChangeFormat && editMode && !showSource && (
+          <select
+            value={liveFormat}
+            onChange={handleChangeFormat}
+            css={{ height: "auto" }}
+          >
+            <option value={NoteFormat.plain}>{getTranslated("Plain")}</option>
+            <option value={NoteFormat.markdown}>
+              {getTranslated("Markdown")}
+            </option>
+            <option value={NoteFormat.richText}>
+              {getTranslated("RichText")}
+            </option>
+          </select>
+        )}
+        {/* </div> */}
       </div>
       <div
         css={{

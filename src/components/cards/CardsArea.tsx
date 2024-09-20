@@ -7,7 +7,7 @@ import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertPCActor, isCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
-import { Button } from "../inputs/Button";
+import { ToolbarButton } from "../inputs/Button";
 import { ArrowLink } from "../nestedPanels/ArrowLink";
 import { SlideInNestedPanelRoute } from "../nestedPanels/SlideInNestedPanelRoute";
 import { CardsAreaSettingsSheet } from "./CardsAreaSettings";
@@ -116,15 +116,20 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
               flexWrap: "wrap",
               justifyContent: "end",
               flexDirection: "row",
+              flexBasis: "",
               gap: "0.5em",
             }}
           >
-            <Button onClick={handleClickCreateCard}>
+            {/* <select value={1} onChange={(e) => {}}>
+              <option value="all">All</option>
+            </select> */}
+
+            <ToolbarButton onClick={handleClickCreateCard}>
               {getTranslated("Create card")}
-            </Button>
-            <Button onClick={handleClickEndScenario}>
+            </ToolbarButton>
+            <ToolbarButton onClick={handleClickEndScenario}>
               {getTranslated("End scenario")}
-            </Button>
+            </ToolbarButton>
             <div css={{ flex: 1 }} />
             <ArrowLink to={settingsDirection()}>Settings</ArrowLink>
           </div>
