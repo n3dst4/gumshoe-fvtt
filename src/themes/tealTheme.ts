@@ -43,5 +43,6 @@ export const tealTheme: ThemeV1 = themeFactory({
     backgroundPrimary: "rgba(255,255,255,0.5)",
     backgroundButton: "rgba(0,0,0,0.1)",
     text: "#433",
+    controlBorder: "#766",
   },
 });

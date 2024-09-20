@@ -54,9 +54,7 @@ export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
           gridRow: "title",
           display: "flex",
           flexDirection: "row",
-          "&&": {
-            margin: "0 0 0 0",
-          },
+          margin: "0 0 0 0",
         }}
       >
         <h2

@@ -96,9 +96,6 @@ export const CSSReset: React.FC<CSSResetProps> = ({
       ? [groove1.toString(), groove2.toString()]
       : [groove2.toString(), groove1.toString()];
 
-  // const outsideGrooveColors = `${grooveDark} ${grooveLight} ${grooveLight} ${grooveDark}`;
-  // const insideGrooveColors = ;
-
   return (
     <ErrorBoundary>
       <EmotionCacheProvider value={cache}>
@@ -115,15 +112,35 @@ export const CSSReset: React.FC<CSSResetProps> = ({
                 mode === "none" ? "transparent" : theme.colors.wallpaper,
               height: "100%",
               accentColor: theme.colors.accent,
+              // this is outside the `:where` cluse below because we need to
+              // override Foundry's CSS for buttons, which use the
+              // selector `form button` (specificity 0 0 2).
+              // `:where(.abc123) button` has a specificity of 0 0 1.
+              // Putting this up here comes out as `.abc123 button` which is
+              // specificity 0 1 1.
+              "button, input[type=button]": {
+                borderStyle: "solid",
+                borderWidth: "1px",
+                borderColor: `${grooveLight} ${grooveDark} ${grooveDark} ${grooveLight}`,
+                background: theme.colors.backgroundButton,
+                boxShadow: ` -1px -1px 0 0 ${grooveLight} inset, 1px 1px 0 0 ${grooveDark} inset`,
+                borderRadius: "5px",
+                // padding: "2px 0.5em",
+              },
               // fix specificity. The comma causes this to be interpreted as a
               // new selector, i.e. it comes out as
               // ```
               // , :where(.abc123) button { ... }
               // ```
-              // the :where makes this the same specificity as a regular style
+              // the :where means that this selector does not add to specificity
+              // so we can override all these rules without having to use
+              // specificity hacks like `"&&": {...}`.
+              //
+              // The downside of controlling specificity this way is that these
+              // rules will *not* override Foundry's own styles in some
+              // circumstances.
               ",:where(&) ": {
                 "*": {
-                  // all: "initial",
                   scrollbarWidth: "thin",
                   userSelect: "auto",
                   boxSizing: "border-box",
@@ -153,14 +170,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
                 h4: {
                   fontSize: "1em",
                 },
-                "button, input[type=button], .btn.btn": {
-                  borderStyle: "solid",
-                  borderWidth: "1x",
-                  borderColor: `${grooveLight} ${grooveDark} ${grooveDark} ${grooveLight}`,
-                  background: theme.colors.backgroundButton,
-                  boxShadow: `1px 1px 0 0 ${grooveDark} inset, -1px -1px 0 0 ${grooveLight} inset`,
-                  borderRadius: "3px",
-                  padding: "2px 0.5em",
+                "button, input[type=button]": {
                   font: theme.displayFont,
                   color: theme.colors.accent,
                   "&[disabled]": {
