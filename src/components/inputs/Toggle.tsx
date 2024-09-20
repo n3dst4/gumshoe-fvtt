@@ -39,7 +39,10 @@ export const Toggle: React.FC<ToggleProps> = ({
         "&[data-state='checked']": {
           backgroundColor: theme.colors.accent,
         },
-        "&&": { border: "none" },
+        "&&": {
+          borderColor: theme.colors.controlBorder,
+          boxShadow: "none",
+        },
       }}
       checked={checked}
       onCheckedChange={(e) => {
