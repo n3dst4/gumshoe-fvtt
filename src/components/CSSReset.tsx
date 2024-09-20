@@ -124,8 +124,6 @@ export const CSSReset: React.FC<CSSResetProps> = ({
                 borderColor: `${grooveLight} ${grooveDark} ${grooveDark} ${grooveLight}`,
                 background: theme.colors.backgroundButton,
                 boxShadow: ` -1px -1px 0 0 ${grooveLight} inset, 1px 1px 0 0 ${grooveDark} inset`,
-                borderRadius: "5px",
-                // padding: "2px 0.5em",
               },
               // fix specificity. The comma causes this to be interpreted as a
               // new selector, i.e. it comes out as
@@ -173,6 +171,7 @@ export const CSSReset: React.FC<CSSResetProps> = ({
                 "button, input[type=button]": {
                   font: theme.displayFont,
                   color: theme.colors.accent,
+                  borderRadius: "5px",
                   "&[disabled]": {
                     opacity: 0.5,
                     color: theme.colors.text,
