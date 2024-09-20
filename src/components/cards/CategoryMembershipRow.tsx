@@ -11,14 +11,12 @@ interface CategoryMembershipRowProps {
   category: CardCategory;
   card: CardItem;
   index: number;
-  styleKeyCategoryId: string | null;
 }
 
 export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
   category,
   card,
   index,
-  styleKeyCategoryId,
 }) => {
   const membership = card.system.cardCategoryMemberships.find(
     (m) => m.categoryId === category.id,
