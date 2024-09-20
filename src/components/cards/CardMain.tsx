@@ -86,11 +86,6 @@ export const CardMain: React.FC<CardMainProps> = ({ card }) => {
                     html={card.system.description.html}
                     source={card.system.description.source}
                     onSave={card.setDescription}
-                    css={{
-                      "&&": {
-                        resize: "none",
-                      },
-                    }}
                   />
                 </InputGrid>
               ),
