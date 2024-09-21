@@ -7,25 +7,28 @@ type ButtonProps = ComponentProps<"button"> &
   }>;
 
 export const Button = React.memo<ButtonProps>(
-  ({ children, onClick, className, ...rest }) => {
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault();
-      onClick();
-    };
+  React.forwardRef<HTMLButtonElement, ButtonProps>(
+    ({ children, onClick, className, ...rest }, ref) => {
+      const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        onClick();
+      };
 
-    return (
-      <button
-        {...rest}
-        className={className}
-        onClick={handleClick}
-        css={{
-          padding: "0.1em 0.3em",
-        }}
-      >
-        {children}
-      </button>
-    );
-  },
+      return (
+        <button
+          ref={ref}
+          {...rest}
+          className={className}
+          onClick={handleClick}
+          css={{
+            padding: "0.1em 0.3em",
+          }}
+        >
+          {children}
+        </button>
+      );
+    },
+  ),
 );
 
 Button.displayName = "Button";
