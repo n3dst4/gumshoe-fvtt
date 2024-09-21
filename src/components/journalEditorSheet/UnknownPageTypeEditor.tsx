@@ -1,6 +1,7 @@
 import React from "react";
 
 import { absoluteCover } from "../absoluteCover";
+import { Button } from "../inputs/Button";
 
 interface UnknownPageTypeEditorProps {
   page: any;
@@ -24,9 +25,9 @@ export const UnknownPageTypeEditor: React.FC<UnknownPageTypeEditorProps> = ({
         // color: "gray",
       }}
     >
-      <button css={{ width: "auto" }} onClick={() => page.sheet.render(true)}>
+      <Button css={{ width: "auto" }} onClick={() => page.sheet.render(true)}>
         Open {page.type} page
-      </button>
+      </Button>
     </div>
   );
 };

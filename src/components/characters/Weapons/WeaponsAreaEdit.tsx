@@ -3,6 +3,7 @@ import React from "react";
 import { weapon } from "../../../constants";
 import { sortEntitiesByName } from "../../../functions/utilities";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
+import { Button } from "../../inputs/Button";
 import { Translate } from "../../Translate";
 import { WeaponRowEdit } from "./WeaponRowEdit";
 
@@ -27,7 +28,7 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({ actor }) => {
         >
           <Translate>Weapons</Translate>
         </h1>
-        <button
+        <Button
           css={{
             float: "right",
             width: "auto",
@@ -48,7 +49,7 @@ export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({ actor }) => {
         >
           <i className="fa fa-plus" />
           <Translate>Add Weapon</Translate>
-        </button>
+        </Button>
       </div>
       {items.length === 0 && (
         <i

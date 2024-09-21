@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 
 import { Translate } from "../Translate";
+import { Button } from "./Button";
 
 type ListEditProps = {
   value: string[];
@@ -38,14 +39,10 @@ export const ListEdit: React.FC<ListEditProps> = ({
     [onChange, value],
   );
 
-  const onClickAdd = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault();
-      const newList = [...value, ""];
-      onChange(newList);
-    },
-    [onChange, value],
-  );
+  const onClickAdd = useCallback(() => {
+    const newList = [...value, ""];
+    onChange(newList);
+  }, [onChange, value]);
 
   return (
     <div>
@@ -101,9 +98,9 @@ export const ListEdit: React.FC<ListEditProps> = ({
           width: "18em",
         }}
       >
-        <button onClick={onClickAdd}>
+        <Button onClick={onClickAdd}>
           <i className="fas fa-plus" /> <Translate>Add item</Translate>
-        </button>
+        </Button>
       </div>
     </div>
   );

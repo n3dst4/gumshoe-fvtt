@@ -8,6 +8,7 @@ import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { Button } from "../inputs/Button";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
@@ -94,9 +95,9 @@ export const NPCSheetFull = ({
           ...theme.panelStylePrimary,
         }}
       >
-        <button onClick={actor.confirmRefresh} css={{ marginBottom: "0.5em" }}>
+        <Button onClick={actor.confirmRefresh} css={{ marginBottom: "0.5em" }}>
           <Translate>Full Refresh</Translate>
-        </button>
+        </Button>
 
         {settings.useMwInjuryStatus.get() && (
           <div css={{ marginBottom: "0.5em" }}>

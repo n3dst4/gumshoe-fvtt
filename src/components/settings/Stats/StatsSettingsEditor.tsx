@@ -1,10 +1,6 @@
-import React, {
-  MouseEventHandler,
-  ReactNode,
-  useCallback,
-  useContext,
-} from "react";
+import React, { ReactNode, useCallback, useContext } from "react";
 
+import { Button } from "../../inputs/Button";
 import { Translate } from "../../Translate";
 import { DispatchContext, StateContext } from "../contexts";
 import { store } from "../store";
@@ -20,13 +16,9 @@ export const StatsSettingsEditor: React.FC<StatsSettingsEditorProps> = ({
 }: StatsSettingsEditorProps) => {
   const stats = useContext(StateContext).settings[which];
   const dispatch = useContext(DispatchContext);
-  const handleAdd: MouseEventHandler = useCallback(
-    (e) => {
-      e.preventDefault();
-      dispatch(store.creators.addStat({ which }));
-    },
-    [dispatch, which],
-  );
+  const handleAdd = useCallback(() => {
+    dispatch(store.creators.addStat({ which }));
+  }, [dispatch, which]);
 
   return (
     <div>
@@ -42,10 +34,10 @@ export const StatsSettingsEditor: React.FC<StatsSettingsEditorProps> = ({
           />
         );
       })}
-      <button onClick={handleAdd}>
+      <Button onClick={handleAdd}>
         <i className="fas fa-plus" />
         <Translate>Add Stat</Translate>
-      </button>
+      </Button>
     </div>
   );
 };

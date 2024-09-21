@@ -1,15 +1,11 @@
 import { Link, Route, useNavigationContext } from "@lumphammer/minirouter";
 import { nanoid } from "nanoid";
-import React, {
-  MouseEventHandler,
-  useCallback,
-  useContext,
-  useMemo,
-} from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 
 import { irid } from "../../../irid/irid";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { absoluteCover } from "../../absoluteCover";
+import { Button } from "../../inputs/Button";
 import { NestedPanel } from "../../nestedPanels/NestedPanel";
 import { SortableTable } from "../../sortableTable";
 import { Translate } from "../../Translate";
@@ -28,8 +24,7 @@ export const Categories: React.FC = () => {
     ? currentStep.params
     : null;
 
-  const handleClickAddCategory: MouseEventHandler = (e) => {
-    e.preventDefault();
+  const handleClickAddCategory = () => {
     const id = nanoid();
     dispatch(store.creators.addCardCategory({ id }));
     navigate("here", cardCategory(id));
@@ -140,9 +135,9 @@ export const Categories: React.FC = () => {
       </h2>
 
       <p>
-        <button css={{ width: "auto" }} onClick={handleClickAddCategory}>
+        <Button css={{ width: "auto" }} onClick={handleClickAddCategory}>
           Add category
-        </button>
+        </Button>
       </p>
 
       <SortableTable

@@ -7,6 +7,7 @@ import { useTheme } from "../../hooks/useTheme";
 import { settings } from "../../settings/settings";
 import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
+import { Button } from "../inputs/Button";
 import { TabContainer } from "../TabContainer";
 import { Translate } from "../Translate";
 import { AbilitySettings } from "./AbilitySettings";
@@ -48,28 +49,20 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
     }
   }, [foundryApplication, isDirty]);
 
-  const handleClickClose = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault();
-      return handleClose();
-    },
-    [handleClose],
-  );
+  const handleClickClose = useCallback(() => {
+    return handleClose();
+  }, [handleClose]);
 
-  const handleClickSave = useCallback(
-    async (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault();
-      const proms = Object.keys(settings).map(async (k) => {
-        // @ts-expect-error Too much work to explain to TS that these guys
-        // really do match up
-        await settings[k].set(tempStateRef.current.settings[k]);
-      });
-      await Promise.all(proms);
-      Hooks.call(settingsSaved);
-      await foundryApplication.close({ approved: true });
-    },
-    [foundryApplication, tempStateRef],
-  );
+  const handleClickSave = useCallback(async () => {
+    const proms = Object.keys(settings).map(async (k) => {
+      // @ts-expect-error Too much work to explain to TS that these guys
+      // really do match up
+      await settings[k].set(tempStateRef.current.settings[k]);
+    });
+    await Promise.all(proms);
+    Hooks.call(settingsSaved);
+    await foundryApplication.close({ approved: true });
+  }, [foundryApplication, tempStateRef]);
 
   // if anything attempts to close the window without our approval, we block it
   // in the SettingsClass and fire this event for us to handle here
@@ -140,19 +133,19 @@ export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
                   background: theme.colors.backgroundSecondary,
                 }}
               >
-                <button
+                <Button
                   css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
                   onClick={handleClickClose}
                 >
                   <i className="fas fa-times" /> <Translate>Cancel</Translate>
-                </button>
-                <button
+                </Button>
+                <Button
                   css={{ flex: 1, paddingTop: "0.5em", paddingBottom: "0.5em" }}
                   onClick={handleClickSave}
                 >
                   <i className="fas fa-save" />{" "}
                   <Translate>Save Changes</Translate>
-                </button>
+                </Button>
               </div>
             </CSSReset>
           </DirtyContext.Provider>

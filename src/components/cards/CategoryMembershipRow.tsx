@@ -1,7 +1,6 @@
-import { CardCategory, CSSObject } from "@lumphammer/investigator-fvtt-types";
-import React, { useContext } from "react";
+import { CardCategory } from "@lumphammer/investigator-fvtt-types";
+import React from "react";
 
-import { ThemeContext } from "../../themes/ThemeContext";
 import { CardItem } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridField } from "../inputs/GridField";
@@ -12,17 +11,13 @@ interface CategoryMembershipRowProps {
   category: CardCategory;
   card: CardItem;
   index: number;
-  styleKeyCategoryId: string | null;
 }
 
 export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
   category,
   card,
   index,
-  styleKeyCategoryId,
 }) => {
-  const theme = useContext(ThemeContext);
-
   const membership = card.system.cardCategoryMemberships.find(
     (m) => m.categoryId === category.id,
   );
@@ -53,27 +48,17 @@ export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
     [card, category.id],
   );
 
-  // TODO this can go away if we redo grid labels
-  const labelStyle: CSSObject = {
-    "&&": {
-      font: theme.bodyFont,
-      fontWeight: "bold",
-      paddingRight: "1em",
-      textAlign: "end",
-    },
-  };
-
   return (
     <>
       <GridFieldStacked key={category.id}>
         {index !== 0 && <hr css={{ margin: "1em 0em" }} />}
         <h2>{category.singleName}</h2>
       </GridFieldStacked>
-      <GridField label="Active" labelStyle={labelStyle}>
+      <GridField label="Active">
         <Toggle checked={!!membership} onChange={handleToggleActive} />
       </GridField>
       {membership && category.thresholdType !== "none" && (
-        <GridField label="Worth" labelStyle={labelStyle}>
+        <GridField label="Worth">
           <AsyncNumberInput
             value={membership.worth}
             onChange={handleSetWorth}
@@ -81,7 +66,7 @@ export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
         </GridField>
       )}
       {membership && category.thresholdType === "limit" && (
-        <GridField label="Nonlethal" labelStyle={labelStyle}>
+        <GridField label="Nonlethal">
           <Toggle
             checked={membership.nonlethal}
             onChange={handleToggleNonlethal}

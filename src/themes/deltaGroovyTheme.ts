@@ -86,5 +86,6 @@ export const deltaGroovyTheme: ThemeV1 = themeFactory({
     backgroundPrimary: "rgba(255,255,255,0.5)",
     backgroundButton: "rgba(0,0,0,0.1)",
     text: "#444",
+    controlBorder: "#774",
   },
 });

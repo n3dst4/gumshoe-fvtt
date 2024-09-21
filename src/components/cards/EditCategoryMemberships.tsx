@@ -52,7 +52,6 @@ export const EditCategoryMemberships: React.FC<
             card={card}
             category={category}
             index={index}
-            styleKeyCategoryId={card.system.styleKeyCategoryId}
           />
         ))}
       </InputGrid>

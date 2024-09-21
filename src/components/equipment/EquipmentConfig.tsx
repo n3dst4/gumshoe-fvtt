@@ -5,6 +5,7 @@ import { assertGame } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
 import { assertEquipmentItem } from "../../v10Types";
+import { Button } from "../inputs/Button";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
@@ -111,9 +112,9 @@ export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
       </GridFieldStacked>
 
       <GridFieldStacked label="Delete">
-        <button onClick={onClickDelete}>
+        <Button onClick={onClickDelete}>
           <Translate>Delete Item</Translate>
-        </button>
+        </Button>
       </GridFieldStacked>
     </InputGrid>
   );

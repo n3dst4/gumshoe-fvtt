@@ -13,6 +13,7 @@ import {
 } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { Button } from "../inputs/Button";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { Toggle } from "../inputs/Toggle";
@@ -263,14 +264,14 @@ export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
         <SituationalModifiersEditor ability={ability} />
       </GridField>
       <GridField label="Delete ability">
-        <button
+        <Button
           onClick={onClickDelete}
           css={{
             margin: 0,
           }}
         >
           <Translate>Delete</Translate>
-        </button>
+        </Button>
       </GridField>
     </InputGrid>
   );

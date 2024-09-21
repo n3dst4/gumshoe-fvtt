@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useCallback, useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import {
   FaArrowDown,
   FaArrowUp,
@@ -10,6 +10,7 @@ import {
 import { confirmADoodleDo } from "../../../functions/confirmADoodleDo";
 import { getTranslated } from "../../../functions/getTranslated";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
+import { Button } from "../../inputs/Button";
 import { Dropdown } from "../../inputs/Dropdown";
 import { GridField } from "../../inputs/GridField";
 import { InputGrid } from "../../inputs/InputGrid";
@@ -35,29 +36,17 @@ export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
     [dispatch, id],
   );
 
-  const handleAddField: MouseEventHandler = useCallback(
-    (e) => {
-      e.preventDefault();
-      dispatch(store.creators.addField({ categoryId: id }));
-    },
-    [dispatch, id],
-  );
+  const handleAddField = useCallback(() => {
+    dispatch(store.creators.addField({ categoryId: id }));
+  }, [dispatch, id]);
 
-  const handleUp: MouseEventHandler = useCallback(
-    (e) => {
-      e.preventDefault();
-      dispatch(store.creators.moveCategoryUp({ categoryId: id }));
-    },
-    [dispatch, id],
-  );
+  const handleUp = useCallback(() => {
+    dispatch(store.creators.moveCategoryUp({ categoryId: id }));
+  }, [dispatch, id]);
 
-  const handleDown: MouseEventHandler = useCallback(
-    (e) => {
-      e.preventDefault();
-      dispatch(store.creators.moveCategoryDown({ categoryId: id }));
-    },
-    [dispatch, id],
-  );
+  const handleDown = useCallback(() => {
+    dispatch(store.creators.moveCategoryDown({ categoryId: id }));
+  }, [dispatch, id]);
 
   const handleDelete = useCallback(async () => {
     const aye = await confirmADoodleDo({
@@ -153,10 +142,10 @@ export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
               );
             },
           )}
-          <button onClick={handleAddField}>
+          <Button onClick={handleAddField}>
             <i className="fas fa-plus" />
             <Translate>Add Field</Translate>
-          </button>
+          </Button>
         </GridField>
       </InputGrid>
       <hr

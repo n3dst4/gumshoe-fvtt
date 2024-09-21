@@ -44,5 +44,6 @@ export const greenTriangleTheme: ThemeV1 = themeFactory({
     backgroundPrimary: "#fff9",
     backgroundButton: "rgba(0,0,0,0.1)",
     text: "#000",
+    controlBorder: "#766",
   },
 });

@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityItem } from "../../v10Types";
+import { Button } from "../inputs/Button";
 import { useListShowHideTransition } from "../transitions/useListShowHideTransition";
 import { Translate } from "../Translate";
 import { getListTransitionStyles } from "./getListTransitionStyles";
@@ -53,14 +54,14 @@ export const SituationalModifiersEditor: React.FC<
         },
       )}
 
-      <button
+      <Button
         onClick={ability.addSituationalModifier}
         css={{
           margin: 0,
         }}
       >
         <i className="fas fa-plus" /> <Translate>Add item</Translate>
-      </button>
+      </Button>
     </div>
   );
 };

@@ -55,5 +55,6 @@ export const antiquarianTheme: ThemeV1 = themeFactory({
     backgroundPrimary: "#fff9",
     backgroundButton: "rgba(0,0,0,0.1)",
     text: "#222",
+    controlBorder: "#766",
   },
 });

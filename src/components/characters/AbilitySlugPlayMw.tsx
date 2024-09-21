@@ -3,6 +3,7 @@ import React, { Fragment, useCallback, useContext, useState } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
+import { Button } from "../inputs/Button";
 
 type AbilitySlugPlayMwProps = {
   ability: InvestigatorItem;
@@ -64,26 +65,26 @@ export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({
           gridTemplateColumns: "1.6em 1.6em",
         }}
       >
-        <button
+        <Button
           css={{ gridColumn: "1" }}
           onClick={onClickDec}
           disabled={boonLevy <= -2}
         >
           <i css={{ fontSize: "x-small" }} className="fa fa-minus" />
-        </button>
-        <button
+        </Button>
+        <Button
           css={{ gridColumn: "2" }}
           onClick={onClickInc}
           disabled={boonLevy >= 2}
         >
           <i css={{ fontSize: "x-small" }} className="fa fa-plus" />
-        </button>
+        </Button>
       </div>
       <div css={{ gridColumn: "spend" }}>
         {isGeneralAbilityItem(ability) && (
-          <button css={{ width: "4.1em" }} onClick={onTest}>
+          <Button css={{ width: "4.1em" }} onClick={onTest}>
             <i className="fa fa-dice" title="Test" />+{boonLevy}
-          </button>
+          </Button>
         )}
       </div>
       {ability.system.hasSpecialities && (

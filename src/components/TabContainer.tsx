@@ -99,9 +99,7 @@ export const TabContainer: React.FC<TabContainerProps> = ({
                   flexDirection: "column",
                   justifyContent: "center",
                   opacity: pending && id === optimistic ? 0.5 : 1,
-                  "&&": {
-                    font: theme.displayFont,
-                  },
+                  font: theme.displayFont,
                 }}
               >
                 {typeof label === "string" ? (

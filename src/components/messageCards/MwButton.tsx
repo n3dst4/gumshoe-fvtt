@@ -2,6 +2,7 @@ import { CSSObject } from "@emotion/react";
 import React, { Fragment } from "react";
 
 import { useHover } from "../../hooks/useHover";
+import { Button } from "../inputs/Button";
 import { useShowHideTransition } from "../transitions/useShowHideTransition";
 import { Translate } from "../Translate";
 import { MWResult } from "./types";
@@ -118,14 +119,14 @@ export const MwButton: React.FC<MwButtonProps> = ({
   );
 
   return onClickProp ? (
-    <button
+    <Button
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onClickProp}
       css={style}
     >
       {content}
-    </button>
+    </Button>
   ) : (
     <div css={style}>{content}</div>
   );

@@ -21,6 +21,7 @@ import { CardsArea } from "../cards/CardsArea";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { Button } from "../inputs/Button";
 import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { GridField } from "../inputs/GridField";
 import { IndexedAsyncTextInput } from "../inputs/IndexedAsyncTextInput";
@@ -220,29 +221,29 @@ export const PCSheet: React.FC<PCSheetProps> = ({
       >
         {settings.useMwStyleAbilities.get() && (
           <Fragment>
-            <button onClick={actor.confirmMw2Refresh}>
+            <Button onClick={actor.confirmMw2Refresh}>
               <Translate>2h Refresh</Translate>
-            </button>
+            </Button>
             <hr />
-            <button onClick={actor.confirmMw4Refresh}>
+            <Button onClick={actor.confirmMw4Refresh}>
               <Translate>4h Refresh</Translate>
-            </button>
+            </Button>
             <hr />
-            <button onClick={actor.confirmMw8Refresh}>
+            <Button onClick={actor.confirmMw8Refresh}>
               <Translate>8h Refresh</Translate>
-            </button>
+            </Button>
             <hr />
           </Fragment>
         )}
-        <button onClick={actor.confirmRefresh}>
+        <Button onClick={actor.confirmRefresh}>
           <Translate>Full Refresh</Translate>
-        </button>
+        </Button>
         <hr />
         {settings.useMwStyleAbilities.get() || (
           <Fragment>
-            <button onClick={actor.confirm24hRefresh}>
+            <Button onClick={actor.confirm24hRefresh}>
               <Translate>24h Refresh</Translate>
-            </button>
+            </Button>
             <hr />
           </Fragment>
         )}

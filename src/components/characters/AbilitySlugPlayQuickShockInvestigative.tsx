@@ -4,6 +4,7 @@ import React, { Fragment, useCallback, useContext } from "react";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityItem } from "../../v10Types";
 import { AbilityBadges } from "../abilities/AbilityBadges";
+import { Button } from "../inputs/Button";
 import { Translate } from "../Translate";
 
 type AbilitySlugPlayQuickShockInvestigativeProps = {
@@ -47,13 +48,13 @@ export const AbilitySlugPlayQuickShockInvestigative: React.FC<
         {ability.name}
       </a>
       <div css={{ gridColumn: "rating/-1", justifySelf: "right" }}>
-        <button
+        <Button
           css={{ width: "4.1em" }}
           onClick={handleClickPush}
           disabled={disabled}
         >
           <Translate>Push</Translate>
-        </button>
+        </Button>
       </div>
       <AbilityBadges ability={ability} css={{ gridColumn: "1/-1" }} />
       {ability.system.hasSpecialities && (

@@ -7,6 +7,7 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
 import { assertWeaponItem } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
+import { Button } from "../inputs/Button";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { TextInput } from "../inputs/TextInput";
@@ -125,9 +126,9 @@ export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
         </Fragment>
       )}
       <GridField label="Delete">
-        <button onClick={onClickDelete}>
+        <Button onClick={onClickDelete}>
           <Translate>Delete</Translate>
-        </button>
+        </Button>
       </GridField>
     </InputGrid>
   );

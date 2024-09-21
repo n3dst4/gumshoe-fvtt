@@ -6,27 +6,49 @@ type ButtonProps = ComponentProps<"button"> &
     className?: string;
   }>;
 
-export const Button: React.FC<ButtonProps> = ({
-  children,
-  onClick,
-  className,
-  ...rest
-}) => {
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    onClick();
-  };
+export const Button = React.memo<ButtonProps>(
+  React.forwardRef<HTMLButtonElement, ButtonProps>(
+    ({ children, onClick, className, ...rest }, ref) => {
+      const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        onClick();
+      };
 
-  return (
-    <button
-      {...rest}
-      className={className}
-      css={{
-        width: "max-content",
-      }}
-      onClick={handleClick}
-    >
-      {children}
-    </button>
-  );
-};
+      return (
+        <button
+          ref={ref}
+          {...rest}
+          className={className}
+          onClick={handleClick}
+          css={{
+            padding: "0.1em 0.3em",
+          }}
+        >
+          {children}
+        </button>
+      );
+    },
+  ),
+);
+
+Button.displayName = "Button";
+
+export const ToolbarButton = React.memo<ButtonProps>(
+  ({ children, onClick, className, ...rest }) => {
+    return (
+      <Button
+        {...rest}
+        className={className}
+        css={{
+          display: "block",
+          width: "max-content",
+        }}
+        onClick={onClick}
+      >
+        {children}
+      </Button>
+    );
+  },
+);
+
+ToolbarButton.displayName = "ToolbarButton";

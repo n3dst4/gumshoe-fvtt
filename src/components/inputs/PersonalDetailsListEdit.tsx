@@ -5,6 +5,7 @@ import {
 import React, { useCallback } from "react";
 
 import { Translate } from "../Translate";
+import { Button } from "./Button";
 
 type PersonalDetailsListEditProps = {
   personalDetails: PersonalDetail[];
@@ -57,17 +58,13 @@ export const PersonalDetailsListEdit: React.FC<
     [onChange, personalDetails],
   );
 
-  const onClickAdd = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault();
-      const newList: PersonalDetail[] = [
-        ...personalDetails,
-        { name: "", type: "item" },
-      ];
-      onChange(newList);
-    },
-    [onChange, personalDetails],
-  );
+  const onClickAdd = useCallback(() => {
+    const newList: PersonalDetail[] = [
+      ...personalDetails,
+      { name: "", type: "item" },
+    ];
+    onChange(newList);
+  }, [onChange, personalDetails]);
 
   return (
     <div>
@@ -130,9 +127,9 @@ export const PersonalDetailsListEdit: React.FC<
           width: "18em",
         }}
       >
-        <button onClick={onClickAdd}>
+        <Button onClick={onClickAdd}>
           <i className="fas fa-plus" /> <Translate>Add item</Translate>
-        </button>
+        </Button>
       </div>
     </div>
   );

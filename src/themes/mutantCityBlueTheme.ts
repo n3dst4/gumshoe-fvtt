@@ -21,7 +21,7 @@ const colors: ThemeSeedV1["colors"] = {
   backgroundPrimary: "#fff7",
   backgroundButton: "rgba(0,0,0,0.1)",
   text: "#433",
-  controlBorder: "#433",
+  controlBorder: "#766",
 };
 
 const accentTrans = `${colors.accent}77`;
