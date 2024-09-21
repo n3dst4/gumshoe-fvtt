@@ -120,10 +120,6 @@ export const CardsArea: React.FC<CardsAreaProps> = ({ actor }) => {
               gap: "0.5em",
             }}
           >
-            {/* <select value={1} onChange={(e) => {}}>
-              <option value="all">All</option>
-            </select> */}
-
             <ToolbarButton onClick={handleClickCreateCard}>
               {getTranslated("Create card")}
             </ToolbarButton>
