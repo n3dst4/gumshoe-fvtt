@@ -9,31 +9,30 @@ type AsyncCheckboxProps = {
   title?: string;
 };
 
-export const AsyncCheckbox: React.FC<AsyncCheckboxProps> = ({
-  checked: checkedProp,
-  onChange: onChangeProp,
-  className,
-  title,
-}) => {
-  const [checked, setChecked] = useState(checkedProp);
-  useEffect(() => {
-    setChecked(checkedProp);
-  }, [checkedProp]);
+export const AsyncCheckbox = React.memo<AsyncCheckboxProps>(
+  ({ checked: checkedProp, onChange: onChangeProp, className, title }) => {
+    const [checked, setChecked] = useState(checkedProp);
+    useEffect(() => {
+      setChecked(checkedProp);
+    }, [checkedProp]);
 
-  const onChange = useCallback(
-    (checked: boolean) => {
-      onChangeProp(checked);
-      setChecked(checked);
-    },
-    [onChangeProp],
-  );
+    const onChange = useCallback(
+      (checked: boolean) => {
+        onChangeProp(checked);
+        setChecked(checked);
+      },
+      [onChangeProp],
+    );
 
-  return (
-    <Checkbox
-      title={title}
-      checked={checked}
-      onChange={onChange}
-      className={className}
-    />
-  );
-};
+    return (
+      <Checkbox
+        title={title}
+        checked={checked}
+        onChange={onChange}
+        className={className}
+      />
+    );
+  },
+);
+
+AsyncCheckbox.displayName = "AsyncCheckbox";
