@@ -69,9 +69,9 @@ export function countCards(cards: CardItem[], categoryId: string): number {
  *
  * Examples:
  *
- * * "1"
- * * "2/Goal 3"
- * * "3/Limit 4"
+ * * "1"   (when there is no goal or limit)
+ * * "2/3" (when there is a goal or limit of 3)
+ * * "3/4" (when there is a goal or limit of 4)
  */
 export function summarizeCategoryCards(
   cards: CardItem[],
