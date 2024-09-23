@@ -52,6 +52,9 @@ export function summarizeCategoryMemberships(
  */
 export function countCards(cards: CardItem[], categoryId: string): number {
   return cards.reduce((acc, card) => {
+    if (!card.system.active) {
+      return acc;
+    }
     const membership = card.system.cardCategoryMemberships.find(
       (m) => m.categoryId === categoryId,
     );
