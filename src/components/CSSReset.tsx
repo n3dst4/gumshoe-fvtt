@@ -40,7 +40,6 @@ export const CSSReset: React.FC<CSSResetProps> = ({
   useEffect(() => {
     // interacting with Foundry's stuff with jQuery feels a bit 2001 but putting
     // it in a hook keeps is nice and encapsulated.
-    // @ts-expect-error mismatch between CSSObject types between emotion/react and emotion/css?
     const className = css(theme.appWindowStyle);
     if (ref.current !== null && !noStyleAppWindow) {
       const el = jQuery(ref.current).closest(".window-app");
