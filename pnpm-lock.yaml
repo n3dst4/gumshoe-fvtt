@@ -190,8 +190,8 @@ importers:
         specifier: ^4.19.0
         version: 4.19.0
       typescript:
-        specifier: 5.5.4
-        version: 5.5.4
+        specifier: 5.6.2
+        version: 5.6.2
       vite:
         specifier: ^5.4.1
         version: 5.4.1(@types/node@18.15.11)(less@4.2.0)
@@ -217,8 +217,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       typescript:
-        specifier: ^5.5.4
-        version: 5.5.4
+        specifier: ^5.6.2
+        version: 5.6.2
 
   packages/minirouter:
     devDependencies:
@@ -908,6 +908,7 @@ packages:
 
   '@pixi/graphics-smooth@0.0.22':
     resolution: {integrity: sha512-qq2u+BJBIDBuuSTc2Xzm1D/8RiiKBdxnVDiMb7Go5v8achnV5ctC6m+rf8Mq0sWm66mbOqu1aq/9efT4A4sPrA==}
+    engines: {node: '>=14', npm: '>=7'}
     peerDependencies:
       '@pixi/constants': ^6.0.4
       '@pixi/core': ^6.0.4
@@ -3264,11 +3265,6 @@ packages:
   typed-array-length@1.0.6:
     resolution: {integrity: sha512-/OxDN6OtAk5KBpGb28T+HZc2M+ADtvRxXrKKbUwtsLgdoxgX13hyy7ek6bFRl5+aBs2yZzB0c4CnQfAtVypW/g==}
     engines: {node: '>= 0.4'}
-
-  typescript@5.5.4:
-    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
-    engines: {node: '>=14.17'}
-    hasBin: true
 
   typescript@5.6.2:
     resolution: {integrity: sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==}
@@ -6844,8 +6840,6 @@ snapshots:
       has-proto: 1.0.3
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
-
-  typescript@5.5.4: {}
 
   typescript@5.6.2: {}
 
