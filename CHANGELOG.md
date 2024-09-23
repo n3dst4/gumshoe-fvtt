@@ -1,16 +1,14 @@
 # CHANGELOG
 
-## Unreleased
+## 8.1.0 (2024-09-23)
 
-* **HEADLINE**: GUMSHOE QuickShock is now supported! The number one feature request is now here. We have a new item type ("card"), and extra options on abilities:
-  * General abilities can now be marked as "Push Pools" and they will get special handling
-  * Investigative abilities can now be marked as "QuickShock" - instead of the usual "Spend" button you get a "push" button, which will spend a push from your push pool.
-  * New item type - cards!
+* **HEADLINE**: GUMSHOE QuickShock support! The number one feature request is now here. We have a new item type ("card"), and options to make abilities use pushes instead of points pools.
   * There is some documentation in the wiki about how to use these new features: https://github.com/n3dst4/gumshoe-fvtt/wiki/QuickShock-GUMSHOE-support-in-INVESTIGATOR
-  * I'm still considering this "experimental" - I haven't had an opportunity to play a proper game with it yet so **PLEASE COME TO THE PELGRANE DISCORD AND YELL AT ME IF YOU HAVE ANY QUESTIONS**.
+  * This is phase 1! It targets Mutant City Blues 2nd Edition, because it's a simpler version of the rules.  **PLEASE COME TO THE PELGRANE DISCORD AND YELL AT ME IF YOU HAVE ANY QUESTIONS**.
+  * Huge thanks to @jwmuk, @ElCucuy, and anyone else who chipped in comments and info on this.
 * **HEADLINE**: Mutant City Blues 2nd Edition is now included as a built-in system. This is the first QuickShockesque system to be included and comes with a cool new character sheet theme. Huge thanks to everyone who chipped in comments and info on this is QS Support.
   * *NOTE: Just like other built-in systems, we can't include any book text, so abilities, powers, and cards only have a name.*
-* **SMALLER HEADLINE**: Some general visual tweaks to input grids so they line up nicer and are easier to read. We're also using toggle switches instead of checkboxes almost everywhere.
+* **SMALLER HEADLINE**: Some general visual tweaks to input grids so they line up nicer and are easier to read. We're also using toggle switches instead of checkboxes almost everywhere. Cheers to @Deadairis for sharing an old-man moment with me.
 * **HANDY NEW FEATURE**: Abilities pools can now be allowed to exceed their rating. Enable "allow pool to exceed rating" in the settings. The new maximum pool is the "Max" value of the ability (which used to be just the maximum that the rating could go to). This will affect sidebar trackers and the "pool" input on the ability sheet.
 * **OBVIOUS NEW FEATURE**: Pools can now go down to the ability's "Min" value.
 * **NEAT NEW FEATURE**: There's a new option to automatically send a chat message to affected users when an item is added to an actor. This us useful with cards in particular.
