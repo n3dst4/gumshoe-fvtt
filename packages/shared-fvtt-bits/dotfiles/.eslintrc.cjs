@@ -108,15 +108,9 @@ module.exports = {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
 
-    // we have many situations where we need to supply a function to a  Foundry
-    // API and it feels more correct to able to declare the args we're getting
-    // even if we don't use them all.
-    // "@typescript-eslint/no-unused-vars": [
-    //   "error",
-    //   { args: "none", ignoreRestSiblings: true },
-    // ],
-
-    // auto-fixable
+    //
+    // auto-fixable version of no-unused imports
+    // see https://github.com/sweepline/eslint-plugin-unused-imports
     "@typescript-eslint/no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
@@ -124,6 +118,9 @@ module.exports = {
       {
         vars: "all",
         varsIgnorePattern: "^_",
+        // we have many situations where we need to supply a function to a  Foundry
+        // API and it feels more correct to able to declare the args we're getting
+        // even if we don't use them all.
         args: "none",
         ignoreRestSiblings: true,
       },
