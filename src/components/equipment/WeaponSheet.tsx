@@ -1,4 +1,3 @@
-
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
 import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";

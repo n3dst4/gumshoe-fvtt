@@ -1,4 +1,3 @@
-
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AbilitySlugPlayMw } from "./AbilitySlugPlayMw";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";

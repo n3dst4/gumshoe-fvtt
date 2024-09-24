@@ -1,4 +1,3 @@
-
 import { absoluteCover } from "../absoluteCover";
 
 interface ImageEditorProps {

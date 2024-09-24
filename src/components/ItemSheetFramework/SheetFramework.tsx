@@ -1,9 +1,4 @@
-import {
-  PropsWithChildren,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import { PropsWithChildren, ReactNode, useEffect, useState } from "react";
 
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";

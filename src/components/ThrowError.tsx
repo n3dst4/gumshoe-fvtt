@@ -1,4 +1,3 @@
-
 interface ThrowErrorProps {
   message: string;
 }

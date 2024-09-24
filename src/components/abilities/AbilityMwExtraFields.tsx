@@ -1,4 +1,3 @@
-
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertGeneralAbilityItem } from "../../v10Types";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";

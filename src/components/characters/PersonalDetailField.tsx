@@ -1,4 +1,3 @@
-
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { GridField } from "../inputs/GridField";
 import { PersonalDetailSlug } from "./PersonalDetailSlug";

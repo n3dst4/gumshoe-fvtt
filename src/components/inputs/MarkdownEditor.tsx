@@ -1,4 +1,3 @@
-
 import { AsyncTextArea } from "./AsyncTextArea";
 
 interface MarkdownEditorProps {

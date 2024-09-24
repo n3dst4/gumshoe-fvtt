@@ -1,4 +1,3 @@
-
 import { sortEntitiesByName } from "../../../functions/utilities";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { assertActiveCharacterActor } from "../../../v10Types";

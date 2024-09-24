@@ -1,4 +1,3 @@
-
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertPersonalDetailItem } from "../../v10Types";
 import { Slug } from "./Slug";

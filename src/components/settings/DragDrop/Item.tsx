@@ -1,4 +1,3 @@
-
 type ItemProps = {
   id: string | null;
 };

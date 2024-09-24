@@ -1,4 +1,3 @@
-
 import { Translate } from "../Translate";
 
 export const NoAbilitiesNote = () => {

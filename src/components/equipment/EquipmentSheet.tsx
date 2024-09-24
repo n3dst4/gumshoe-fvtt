@@ -1,4 +1,3 @@
-
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertEquipmentItem } from "../../v10Types";

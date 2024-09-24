@@ -1,4 +1,3 @@
-
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";

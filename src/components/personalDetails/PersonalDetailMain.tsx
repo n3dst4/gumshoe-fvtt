@@ -1,4 +1,3 @@
-
 import { occupationSlotIndex } from "../../constants";
 import { assertGame, padLength } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";

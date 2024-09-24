@@ -1,10 +1,4 @@
-import {
-  Fragment,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { Fragment, ReactNode, useCallback, useEffect, useState } from "react";
 
 import { occupationSlotIndex } from "../../constants";
 import { assertGame } from "../../functions/utilities";

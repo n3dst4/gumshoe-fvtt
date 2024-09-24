@@ -1,4 +1,3 @@
-
 import { getTranslated } from "../../../functions/getTranslated";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { settings } from "../../../settings/settings";
