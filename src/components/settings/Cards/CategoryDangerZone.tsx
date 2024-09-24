@@ -1,5 +1,5 @@
 import { useNavigationContext } from "@lumphammer/minirouter";
-import React, { useCallback, useContext } from "react";
+import { useCallback, useContext } from "react";
 
 import { confirmADoodleDo } from "../../../functions/confirmADoodleDo";
 import { Button } from "../../inputs/Button";
@@ -15,9 +15,7 @@ type CategoryDangerZoneProps = {
   id: string;
 };
 
-export const CategoryDangerZone: React.FC<CategoryDangerZoneProps> = ({
-  id,
-}) => {
+export const CategoryDangerZone = ({ id }: CategoryDangerZoneProps) => {
   const dispatch = useContext(DispatchContext);
   const { navigate } = useNavigationContext();
 

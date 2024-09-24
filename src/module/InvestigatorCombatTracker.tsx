@@ -1,5 +1,4 @@
 import { ReactApplicationMixin } from "@lumphammer/shared-fvtt-bits/src/ReactApplicationMixin";
-import React from "react";
 
 import { Tracker as ReactCombatTracker } from "../components/combat/Tracker";
 import { ErrorBoundary } from "../components/ErrorBoundary";

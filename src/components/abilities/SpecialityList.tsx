@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityItem } from "../../v10Types";
@@ -8,7 +8,7 @@ type SpecialityListProps = {
   ability: InvestigatorItem;
 };
 
-export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
+export const SpecialityList = ({ ability }: SpecialityListProps) => {
   assertAbilityItem(ability);
   const updateSpecialities = useCallback(
     (newVal: string, index: number) => {

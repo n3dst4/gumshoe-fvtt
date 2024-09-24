@@ -25,9 +25,7 @@ export interface NotesEditorWithControlsProps {
   title?: string;
 }
 
-export const NotesEditorWithControls: React.FC<
-  NotesEditorWithControlsProps
-> = ({
+export const NotesEditorWithControls = ({
   source: origSource,
   html: origHtml,
   format: origFormat,

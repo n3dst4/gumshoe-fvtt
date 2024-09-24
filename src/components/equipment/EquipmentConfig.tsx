@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
@@ -16,9 +16,7 @@ interface EquipmentConfigProps {
   equipment: InvestigatorItem;
 }
 
-export const EquipmentConfig: React.FC<EquipmentConfigProps> = ({
-  equipment,
-}) => {
+export const EquipmentConfig = ({ equipment }: EquipmentConfigProps) => {
   assertEquipmentItem(equipment);
 
   const onClickDelete = useCallback(async () => {

@@ -24,10 +24,7 @@ type MwItemSheetProps = {
     | foundry.applications.api.DocumentSheetV2<InvestigatorItem>;
 };
 
-export const MwItemSheet: React.FC<MwItemSheetProps> = ({
-  item,
-  application,
-}) => {
+export const MwItemSheet = ({ item, application }: MwItemSheetProps) => {
   assertMwItem(item);
 
   const name = useAsyncUpdate(item.name || "", item.setName);

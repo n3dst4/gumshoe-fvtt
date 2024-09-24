@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import { Fragment, useContext } from "react";
 
 import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
@@ -15,10 +15,10 @@ type AbilitiesAreaPlayProps = {
   flipLeftRight?: boolean;
 };
 
-export const AbilitiesAreaPlay: React.FC<AbilitiesAreaPlayProps> = ({
+export const AbilitiesAreaPlay = ({
   actor,
   flipLeftRight,
-}) => {
+}: AbilitiesAreaPlayProps) => {
   assertActiveCharacterActor(actor);
   const { investigativeAbilities, generalAbilities } = useAbilities(
     actor,

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { isGeneralAbilityItem } from "../../v10Types";
@@ -8,7 +8,7 @@ type TrackersAreaProps = {
   actor: InvestigatorActor;
 };
 
-export const TrackersArea: React.FC<TrackersAreaProps> = ({ actor }) => {
+export const TrackersArea = ({ actor }: TrackersAreaProps) => {
   const abilities = actor.getTrackerAbilities().toSorted((a, b) => {
     const aIsPushPool = isGeneralAbilityItem(a) && a.system.isPushPool;
     const bIsPushPool = isGeneralAbilityItem(b) && b.system.isPushPool;

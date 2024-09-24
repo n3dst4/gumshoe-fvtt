@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import { useCallback, useContext } from "react";
 
 import { ThemeContext } from "../../themes/ThemeContext";
 
@@ -8,11 +8,11 @@ type PoolCheckboxProps = {
   onClick: (value: number) => void;
 };
 
-export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
+export const PoolCheckbox = ({
   value,
   selected,
   onClick: onClickProp,
-}) => {
+}: PoolCheckboxProps) => {
   const onClick = useCallback(() => {
     onClickProp(value);
   }, [onClickProp, value]);

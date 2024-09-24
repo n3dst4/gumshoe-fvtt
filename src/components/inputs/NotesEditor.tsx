@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useContext } from "react";
+import { ReactNode, useCallback, useContext } from "react";
 
 import { assertGame, systemLogger } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";
@@ -21,7 +21,7 @@ interface NotesEditorProps {
   onSave: () => void;
 }
 
-export const NotesEditor: React.FC<NotesEditorProps> = ({
+export const NotesEditor = ({
   source,
   html,
   format,

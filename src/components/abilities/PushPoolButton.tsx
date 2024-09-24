@@ -11,7 +11,7 @@ interface PushPoolButtonProps {
   ability: AbilityItem;
 }
 
-export const PushPoolButton: React.FC<PushPoolButtonProps> = ({ ability }) => {
+export const PushPoolButton = ({ ability }: PushPoolButtonProps) => {
   const theme = useContext(ThemeContext);
 
   const handleClickPush = React.useCallback(() => {

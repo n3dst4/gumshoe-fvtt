@@ -1,6 +1,5 @@
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import React from "react";
 import { expect, it, vi } from "vitest";
 
 import { TextInput } from "./TextInput";

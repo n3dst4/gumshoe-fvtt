@@ -6,7 +6,7 @@ type ModeSelectProps = PropsWithChildren<{
   mode: ItemSheetMode;
 }>;
 
-export const ModeSelect: React.FC<ModeSelectProps> = ({ mode, children }) => {
+export const ModeSelect = ({ mode, children }: ModeSelectProps) => {
   const currentMode = React.useContext(ModeContext);
   return mode === currentMode ? <>{children}</> : null;
 };

@@ -1,5 +1,5 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
-import React, { useCallback, useContext } from "react";
+import { useCallback, useContext } from "react";
 
 import { useRefStash } from "../../../hooks/useRefStash";
 import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
@@ -14,11 +14,11 @@ interface NumberFieldSettingsProps {
   fieldId: string;
 }
 
-export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
+export const NumberFieldSettings = ({
   field,
   categoryId,
   fieldId,
-}) => {
+}: NumberFieldSettingsProps) => {
   const dispatch = useContext(DispatchContext);
   const fieldStash = useRefStash(field);
 

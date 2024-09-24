@@ -1,5 +1,5 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
-import React, { ChangeEventHandler, useCallback, useContext } from "react";
+import { ChangeEventHandler, useCallback, useContext } from "react";
 import {
   FaArrowDown,
   FaArrowUp,
@@ -28,12 +28,7 @@ interface FieldProps {
   idx: number;
 }
 
-export const Field: React.FC<FieldProps> = ({
-  field,
-  categoryId,
-  fieldId,
-  idx,
-}) => {
+export const Field = ({ field, categoryId, fieldId, idx }: FieldProps) => {
   const theme = useContext(ThemeContext);
   const dispatch = useContext(DispatchContext);
   const {

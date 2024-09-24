@@ -25,9 +25,7 @@ type AbilityMainBitsProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilityMainBits: React.FC<AbilityMainBitsProps> = ({
-  ability,
-}) => {
+export const AbilityMainBits = ({ ability }: AbilityMainBitsProps) => {
   assertAbilityItem(ability);
 
   const onClickRefresh = useCallback(() => {

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 import { NoteWithFormat } from "../../types";
 import {
@@ -14,9 +14,11 @@ type IndexedNotesEditorWithControlsProps = Omit<
   onSave: (note: NoteWithFormat, index: number) => void;
 };
 
-export const IndexedNotesEditorWithControls: React.FC<
-  IndexedNotesEditorWithControlsProps
-> = ({ index, onSave, ...rest }) => {
+export const IndexedNotesEditorWithControls = ({
+  index,
+  onSave,
+  ...rest
+}: IndexedNotesEditorWithControlsProps) => {
   const handleSave = useCallback(
     (note: NoteWithFormat) => {
       onSave(note, index);

@@ -9,11 +9,11 @@ type ListEditProps = {
   nonempty?: boolean;
 };
 
-export const ListEdit: React.FC<ListEditProps> = ({
+export const ListEdit = ({
   value,
   onChange,
   nonempty = false,
-}) => {
+}: ListEditProps) => {
   const onInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!e.currentTarget.dataset["index"]) {

@@ -23,7 +23,7 @@ type ImagePickleProps = {
   className?: string;
 };
 
-export const ImagePickle: React.FC<ImagePickleProps> = ({
+export const ImagePickle = ({
   subject,
   application,
   className,

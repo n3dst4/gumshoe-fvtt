@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Fragment, useCallback, useState } from "react";
+import { ChangeEvent, Fragment, useCallback, useState } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { getTranslated } from "../../functions/getTranslated";
@@ -25,7 +25,7 @@ type AbilityConfigProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
+export const AbilityConfig = ({ ability }: AbilityConfigProps) => {
   assertGame(game);
   assertAbilityItem(ability);
   const isGeneral = isGeneralAbilityItem(ability);

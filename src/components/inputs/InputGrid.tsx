@@ -1,13 +1,9 @@
-import React from "react";
 type InputGridProps = {
   children: any;
   className?: string;
 };
 
-export const InputGrid: React.FC<InputGridProps> = ({
-  children,
-  className,
-}) => {
+export const InputGrid = ({ children, className }: InputGridProps) => {
   return (
     <div
       css={{

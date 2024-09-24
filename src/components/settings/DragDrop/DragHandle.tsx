@@ -1,5 +1,5 @@
 import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
-import React, { useContext, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { FaGripLines } from "react-icons/fa6";
 
 import { irid } from "../../../irid/irid";
@@ -10,10 +10,10 @@ type DragHandleProps = {
   listeners?: SyntheticListenerMap | undefined;
 };
 
-export const DragHandle: React.FC<DragHandleProps> = ({
+export const DragHandle = ({
   setActivatorNodeRef,
   listeners,
-}) => {
+}: DragHandleProps) => {
   const theme = useContext(ThemeContext);
 
   const gripColor = useMemo(

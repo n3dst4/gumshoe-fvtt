@@ -10,12 +10,12 @@ type ToolbarButtonProps = {
   disabled?: boolean;
 };
 
-export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
+export const ToolbarButton = ({
   onClick,
   text,
   icon: Icon,
   disabled = false,
-}) => {
+}: ToolbarButtonProps) => {
   const theme = useContext(ThemeContext);
 
   // Use props in your component

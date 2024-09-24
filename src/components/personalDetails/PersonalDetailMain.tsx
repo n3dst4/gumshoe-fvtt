@@ -1,5 +1,3 @@
-import React from "react";
-
 import { occupationSlotIndex } from "../../constants";
 import { assertGame, padLength } from "../../functions/utilities";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
@@ -15,9 +13,7 @@ interface PersonalDetailMainProps {
   item: InvestigatorItem;
 }
 
-export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
-  item,
-}) => {
+export const PersonalDetailMain = ({ item }: PersonalDetailMainProps) => {
   assertGame(game);
   assertPersonalDetailItem(item);
   const name = item.name;

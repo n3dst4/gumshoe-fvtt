@@ -12,8 +12,8 @@ interface AttackCardProps {
   imageUrl: string | null;
 }
 
-export const AttackCard: React.FC<AttackCardProps> = React.memo(
-  ({ msg, rangeName, weapon, name, imageUrl }) => {
+export const AttackCard = React.memo(
+  ({ msg, rangeName, weapon, name, imageUrl }: AttackCardProps) => {
     const onClickWeaponName = useCallback(() => {
       weapon?.sheet?.render(true);
     }, [weapon?.sheet]);

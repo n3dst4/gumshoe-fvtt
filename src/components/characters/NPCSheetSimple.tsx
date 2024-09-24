@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useTheme } from "../../hooks/useTheme";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertNPCActor } from "../../v10Types";

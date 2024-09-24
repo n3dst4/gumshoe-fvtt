@@ -1,5 +1,3 @@
-import React from "react";
-
 import { sortEntitiesByName } from "../../../functions/utilities";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { assertActiveCharacterActor } from "../../../v10Types";
@@ -10,7 +8,7 @@ type AbilitiesAreaMWProps = {
   actor: InvestigatorActor;
 };
 
-export const AbilitiesAreaMW: React.FC<AbilitiesAreaMWProps> = ({ actor }) => {
+export const AbilitiesAreaMW = ({ actor }: AbilitiesAreaMWProps) => {
   assertActiveCharacterActor(actor);
   const { generalAbilities } = useAbilities(actor, true, false);
 

@@ -1,6 +1,6 @@
 import { Link, Route, useNavigationContext } from "@lumphammer/minirouter";
 import { nanoid } from "nanoid";
-import React, { useCallback, useContext, useMemo } from "react";
+import { useCallback, useContext, useMemo } from "react";
 
 import { irid } from "../../../irid/irid";
 import { ThemeContext } from "../../../themes/ThemeContext";
@@ -14,7 +14,7 @@ import { store } from "../store";
 import { Category } from "./Category";
 import { cardCategory } from "./directions";
 
-export const Categories: React.FC = () => {
+export const Categories = () => {
   const { settings } = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
   const { navigate, currentStep } = useNavigationContext();

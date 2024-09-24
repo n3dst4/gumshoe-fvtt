@@ -15,7 +15,7 @@ interface MwItemGroupProps {
   onDragStart: (e: React.DragEvent<HTMLAnchorElement>) => void;
 }
 
-export const MwItemGroup: React.FC<MwItemGroupProps> = ({
+export const MwItemGroup = ({
   actor,
   items,
   onDragStart,

@@ -6,7 +6,7 @@ type ImagePickerLinkProps = React.PropsWithChildren<{
   onClick: () => void;
 }>;
 
-export const ImagePickerLink: React.FC<ImagePickerLinkProps> = ({
+export const ImagePickerLink = ({
   onClick,
   children,
 }: ImagePickerLinkProps) => {

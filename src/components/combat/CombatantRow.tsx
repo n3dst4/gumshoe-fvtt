@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css";
-import React, { Fragment, ReactNode } from "react";
+import { Fragment, ReactNode } from "react";
 
 import { assertGame } from "../../functions/utilities";
 import { InvestigatorCombat } from "../../module/InvestigatorCombat";
@@ -15,11 +15,7 @@ interface CombatantRowProps {
   index: number;
 }
 
-export const CombatantRow: React.FC<CombatantRowProps> = ({
-  turn,
-  combat,
-  index,
-}: CombatantRowProps) => {
+export const CombatantRow = ({ turn, combat, index }: CombatantRowProps) => {
   assertGame(game);
   const {
     onToggleDefeatedStatus,

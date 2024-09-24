@@ -1,10 +1,4 @@
-import React, {
-  Fragment,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { Fragment, ReactNode, useCallback, useEffect, useState } from "react";
 
 import { occupationSlotIndex } from "../../constants";
 import { assertGame } from "../../functions/utilities";
@@ -47,10 +41,7 @@ interface PCSheetProps {
   foundryApplication: ActorSheet;
 }
 
-export const PCSheet: React.FC<PCSheetProps> = ({
-  actor,
-  foundryApplication,
-}) => {
+export const PCSheet = ({ actor, foundryApplication }: PCSheetProps) => {
   assertGame(game);
   assertPCActor(actor);
 

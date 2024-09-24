@@ -9,9 +9,7 @@ type AbilitySlugPlayMwProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilitySlugPlayMw: React.FC<AbilitySlugPlayMwProps> = ({
-  ability,
-}) => {
+export const AbilitySlugPlayMw = ({ ability }: AbilitySlugPlayMwProps) => {
   assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(

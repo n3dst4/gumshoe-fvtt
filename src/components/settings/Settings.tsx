@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import { settingsCloseAttempted, settingsSaved } from "../../constants";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
@@ -28,7 +28,7 @@ type SettingsProps = {
   foundryApplication: Application;
 };
 
-export const Settings: React.FC<SettingsProps> = ({ foundryApplication }) => {
+export const Settings = ({ foundryApplication }: SettingsProps) => {
   assertGame(game);
   const { tempState, setters, tempStateRef, dispatch, isDirty, modify } =
     useSettingsState();

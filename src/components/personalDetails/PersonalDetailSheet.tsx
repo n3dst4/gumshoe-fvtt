@@ -1,5 +1,3 @@
-import React from "react";
-
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertPersonalDetailItem } from "../../v10Types";
 import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
@@ -12,10 +10,10 @@ interface PersonalDetailSheetProps {
   personalDetail: InvestigatorItem;
 }
 
-export const PersonalDetailSheet: React.FC<PersonalDetailSheetProps> = ({
+export const PersonalDetailSheet = ({
   personalDetail,
   application,
-}) => {
+}: PersonalDetailSheetProps) => {
   assertPersonalDetailItem(personalDetail);
 
   return (

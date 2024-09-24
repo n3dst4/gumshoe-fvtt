@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import { settings } from "../../settings/settings";
 import { CardItem } from "../../v10Types";
@@ -9,9 +9,7 @@ interface CategorizedCardArrayProps {
   cards: CardItem[];
 }
 
-export const CategorizedCardArray: React.FC<CategorizedCardArrayProps> = ({
-  cards,
-}) => {
+export const CategorizedCardArray = ({ cards }: CategorizedCardArrayProps) => {
   const categories = settings.cardCategories.get();
   const [categoriesMap, uncategorized] = categorizeCards(cards, categories);
 

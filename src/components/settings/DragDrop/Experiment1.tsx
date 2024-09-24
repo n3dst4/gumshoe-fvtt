@@ -114,7 +114,7 @@ function assertDroppablekey(key: string): asserts key is DroppableKey {
  * Uses a drag overlay, activator nodes (aka drag handles), and two drop
  * targets.
  */
-export const Experiment1: React.FC = () => {
+export const Experiment1 = () => {
   // state is two buckets of strings
   const [state, setState] = useState({
     a: ["foo", "bar", "baz"],

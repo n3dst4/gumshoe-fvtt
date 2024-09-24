@@ -6,6 +6,7 @@ module.exports = {
   extends: [
     "standard",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended-type-checked",
     "prettier",
@@ -20,7 +21,12 @@ module.exports = {
     project: true,
     // tsconfigRootDir: __dirname,
   },
-  plugins: ["react", "@typescript-eslint", "simple-import-sort"],
+  plugins: [
+    "react",
+    "@typescript-eslint",
+    "simple-import-sort",
+    "unused-imports",
+  ],
   rules: {
     //
     //core rules
@@ -59,14 +65,6 @@ module.exports = {
 
     // this would be a huge pain to enable because there's no auto-fix
     "@typescript-eslint/explicit-module-boundary-types": ["off"],
-
-    // we have many situations where we need to supply a function to a  Foundry
-    // API and it feels more correct to able to declare the args we're getting
-    // even if we don't use them all.
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      { args: "none", ignoreRestSiblings: true },
-    ],
 
     // this would be enabled via extends: ['plugin:@typescript-eslint/stylistic'],
     "@typescript-eslint/no-empty-function": "error",
@@ -109,6 +107,24 @@ module.exports = {
     // simple-import-sort
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
+
+    //
+    // auto-fixable version of no-unused imports
+    // see https://github.com/sweepline/eslint-plugin-unused-imports
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "error",
+      {
+        vars: "all",
+        varsIgnorePattern: "^_",
+        // we have many situations where we need to supply a function to a  Foundry
+        // API and it feels more correct to able to declare the args we're getting
+        // even if we don't use them all.
+        args: "none",
+        ignoreRestSiblings: true,
+      },
+    ],
   },
   overrides: [
     {

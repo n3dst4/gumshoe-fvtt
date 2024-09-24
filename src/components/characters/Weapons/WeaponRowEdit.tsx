@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useContext } from "react";
+import { Fragment, useCallback, useContext } from "react";
 
 import { confirmADoodleDo } from "../../../functions/confirmADoodleDo";
 import { assertGame } from "../../../functions/utilities";
@@ -17,10 +17,7 @@ type WeaponRowEditProps = {
   index: number;
 };
 
-export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
-  weapon,
-  index,
-}) => {
+export const WeaponRowEdit = ({ weapon, index }: WeaponRowEditProps) => {
   assertWeaponItem(weapon);
 
   const theme = useContext(ThemeContext);

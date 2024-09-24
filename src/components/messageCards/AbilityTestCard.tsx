@@ -13,8 +13,8 @@ interface AbilityTestCardProps {
   imageUrl: string | null;
 }
 
-export const AbilityTestCard: React.FC<AbilityTestCardProps> = React.memo(
-  ({ msg, ability, mode, name, imageUrl }) => {
+export const AbilityTestCard = React.memo(
+  ({ msg, ability, mode, name, imageUrl }: AbilityTestCardProps) => {
     const onClickAbilityName = useCallback(() => {
       ability?.sheet?.render(true);
     }, [ability?.sheet]);

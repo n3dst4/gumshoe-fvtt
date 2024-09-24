@@ -1,5 +1,3 @@
-import React from "react";
-
 import { CSSReset } from "../../components/CSSReset";
 import { ThemeV1 } from "../types";
 
@@ -7,9 +5,7 @@ type ThemeSwatchProps = {
   theme: ThemeV1;
 };
 
-export const ThemeSwatch: React.FC<ThemeSwatchProps> = ({
-  theme,
-}: ThemeSwatchProps) => {
+export const ThemeSwatch = ({ theme }: ThemeSwatchProps) => {
   return (
     <div
       css={{

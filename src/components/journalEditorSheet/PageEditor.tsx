@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import { BsIndent, BsTrash, BsUnindent } from "react-icons/bs";
 
@@ -22,7 +22,7 @@ interface PageEditorProps {
  * Handles the edit area for any page. Delegates to the appropriate editor for
  * the content type.
  */
-export const PageEditor: React.FC<PageEditorProps> = ({ page }) => {
+export const PageEditor = ({ page }: PageEditorProps) => {
   // optimize toolbar rendering by putting page in a ref so the callbacks are
   // all stable
   const pageRef = useRefStash(page);

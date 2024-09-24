@@ -23,11 +23,11 @@ interface TransitionInOutProps {
  *
  * This is curently not used, use useShowHideTransition instead.
  */
-export const TransitionInOut: React.FC<TransitionInOutProps> = ({
+export const TransitionInOut = ({
   children,
   fadeTime = 300,
   fps = 30,
-}) => {
+}: TransitionInOutProps) => {
   const [progress, setProgress] = React.useState(0);
   const startTransition = useTransition()[1];
   const hasChildren = !!children && React.Children.count(children) > 0;

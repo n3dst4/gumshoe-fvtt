@@ -1,5 +1,5 @@
 import { Stat } from "@lumphammer/investigator-fvtt-types";
-import React, { useCallback, useContext } from "react";
+import { useCallback, useContext } from "react";
 
 import { useRefStash } from "../../../hooks/useRefStash";
 import { ThemeContext } from "../../../themes/ThemeContext";
@@ -19,12 +19,14 @@ interface StatSettingsRowProps {
   stat: Stat;
 }
 
-export const StatSettingsRow: React.FC<StatSettingsRowProps> = ({
-  id,
-  stat,
-  index,
-  which,
-}: StatSettingsRowProps) => {
+export const StatSettingsRow = (
+  {
+    id,
+    stat,
+    index,
+    which,
+  }: StatSettingsRowProps,
+) => {
   const dispatch = useContext(DispatchContext);
   const isEven = index % 2 === 0;
   const theme = useContext(ThemeContext);

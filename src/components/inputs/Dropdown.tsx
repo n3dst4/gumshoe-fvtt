@@ -35,7 +35,7 @@ type DropdownProps = {
 
 const duration = 300;
 
-export const Dropdown: React.FC<PropsWithChildren<DropdownProps>> = ({
+export const Dropdown = ({
   children,
   label,
   showArrow = true,

@@ -13,10 +13,7 @@ interface CardArrayCardProps {
   className?: string;
 }
 
-export const CardArrayCard: React.FC<CardArrayCardProps> = ({
-  card,
-  className,
-}) => {
+export const CardArrayCard = ({ card, className }: CardArrayCardProps) => {
   const theme = useContext(ThemeContext);
   const app = useContext(FoundryAppContext);
 

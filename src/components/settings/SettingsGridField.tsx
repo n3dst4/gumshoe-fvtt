@@ -1,4 +1,4 @@
-import React, { ComponentProps, useContext } from "react";
+import { ComponentProps, useContext } from "react";
 
 import { ThemeContext } from "../../themes/ThemeContext";
 import { GridField } from "../inputs/GridField";
@@ -8,10 +8,10 @@ type SettingsGridFieldProps = ComponentProps<typeof GridField> & {
   index?: number;
 };
 
-export const SettingsGridField: React.FC<SettingsGridFieldProps> = ({
+export const SettingsGridField = ({
   index = 0,
   ...props
-}) => {
+}: SettingsGridFieldProps) => {
   const tint = index % 2 === 0;
   const theme = useContext(ThemeContext);
   return (
@@ -27,10 +27,10 @@ export const SettingsGridField: React.FC<SettingsGridFieldProps> = ({
 
 SettingsGridField.displayName = "SettingsGridField";
 
-export const SettingsGridFieldStacked: React.FC<SettingsGridFieldProps> = ({
+export const SettingsGridFieldStacked = ({
   index = 0,
   ...props
-}) => {
+}: SettingsGridFieldProps) => {
   const tint = index % 2 === 0;
   const theme = useContext(ThemeContext);
   return (

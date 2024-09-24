@@ -1,5 +1,3 @@
-import React from "react";
-
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AbilitySlugPlayMw } from "./AbilitySlugPlayMw";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
@@ -8,9 +6,7 @@ interface AbilitiesColumnMWProps {
   abilities: InvestigatorItem[];
 }
 
-export const AbilitiesColumnMW: React.FC<AbilitiesColumnMWProps> = ({
-  abilities,
-}: AbilitiesColumnMWProps) => {
+export const AbilitiesColumnMW = ({ abilities }: AbilitiesColumnMWProps) => {
   return (
     <div
       css={{

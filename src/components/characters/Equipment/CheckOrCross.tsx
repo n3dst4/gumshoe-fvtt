@@ -1,11 +1,10 @@
-import React from "react";
 import { FaCheck, FaTimes } from "react-icons/fa";
 
 interface CheckOrCrossProps {
   checked: boolean;
 }
 
-export const CheckOrCross: React.FC<CheckOrCrossProps> = ({ checked }) => {
+export const CheckOrCross = ({ checked }: CheckOrCrossProps) => {
   return checked ? <FaCheck /> : <FaTimes />;
 };
 

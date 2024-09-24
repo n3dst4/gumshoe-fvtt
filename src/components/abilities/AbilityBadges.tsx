@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from "react";
+import { ReactNode, useContext } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
@@ -11,10 +11,7 @@ interface UnlockBadgesProps {
   className?: string;
 }
 
-export const AbilityBadges: React.FC<UnlockBadgesProps> = ({
-  ability,
-  className,
-}: UnlockBadgesProps) => {
+export const AbilityBadges = ({ ability, className }: UnlockBadgesProps) => {
   assertAbilityItem(ability);
   const situationalModifiers = ability.getVisibleSituationalModifiers();
   const unlocks = ability.getActiveUnlocks();

@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import { Fragment, useContext } from "react";
 
 import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
@@ -18,10 +18,10 @@ type AbilitiesAreaEditProps = {
   npcMode?: boolean;
 };
 
-export const AbilitiesAreaEdit: React.FC<AbilitiesAreaEditProps> = ({
+export const AbilitiesAreaEdit = ({
   actor,
   npcMode = false,
-}) => {
+}: AbilitiesAreaEditProps) => {
   assertActiveCharacterActor(actor);
   const theme = useContext(ThemeContext);
   const { investigativeAbilities, generalAbilities } = useAbilities(

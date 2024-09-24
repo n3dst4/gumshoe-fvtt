@@ -1,5 +1,3 @@
-import React from "react";
-
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
 import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";
@@ -13,10 +11,7 @@ type WeaponSheetProps = {
   application: ItemSheet;
 };
 
-export const WeaponSheet: React.FC<WeaponSheetProps> = ({
-  weapon,
-  application,
-}) => {
+export const WeaponSheet = ({ weapon, application }: WeaponSheetProps) => {
   return (
     <ItemSheetFramework
       supertitle={<Translate>Weapon</Translate>}

@@ -1,9 +1,4 @@
-import React, {
-  PropsWithChildren,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import { PropsWithChildren, ReactNode, useEffect, useState } from "react";
 
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
@@ -21,12 +16,12 @@ type ItemSheetFrameworkProps = PropsWithChildren<{
 /**
  * A framework for item sheets.
  */
-export const ItemSheetFramework: React.FC<ItemSheetFrameworkProps> = ({
+export const ItemSheetFramework = ({
   supertitle,
   item,
   application,
   children,
-}) => {
+}: ItemSheetFrameworkProps) => {
   const { contentEditableRef, onBlur, onFocus, onInput } = useAsyncUpdate(
     item.name ?? "",
     item.setName,

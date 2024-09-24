@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertEquipmentItem } from "../../v10Types";
@@ -15,10 +13,10 @@ type EquipmentSheetProps = {
   application: ItemSheet;
 };
 
-export const EquipmentSheet: React.FC<EquipmentSheetProps> = ({
+export const EquipmentSheet = ({
   equipment,
   application,
-}) => {
+}: EquipmentSheetProps) => {
   assertEquipmentItem(equipment);
   const name = useAsyncUpdate(equipment.name || "", equipment.setName);
 

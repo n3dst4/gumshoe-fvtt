@@ -1,5 +1,5 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -14,12 +14,12 @@ interface EquipmentFieldProps {
   equipment: InvestigatorItem;
 }
 
-export const EquipmentField: React.FC<EquipmentFieldProps> = ({
+export const EquipmentField = ({
   fieldId,
   fieldMetadata,
   value,
   equipment,
-}) => {
+}: EquipmentFieldProps) => {
   const onChange = useCallback(
     (newValue: string | number | boolean) => {
       void equipment.setField(fieldId, newValue);

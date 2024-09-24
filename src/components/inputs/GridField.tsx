@@ -1,6 +1,6 @@
 import { CSSObject } from "@lumphammer/investigator-fvtt-types";
 import { nanoid } from "nanoid";
-import React, { DragEventHandler, useMemo } from "react";
+import { DragEventHandler, useMemo } from "react";
 
 import { IdContext } from "../IdContext";
 import { Translate } from "../Translate";
@@ -18,7 +18,7 @@ type GridFieldProps = {
   labelStyle?: CSSObject;
 };
 
-export const GridField: React.FC<GridFieldProps> = ({
+export const GridField = ({
   label,
   className,
   children,
@@ -29,7 +29,7 @@ export const GridField: React.FC<GridFieldProps> = ({
   onDragEnd,
   onDrop,
   labelStyle,
-}) => {
+}: GridFieldProps) => {
   const id = useMemo(() => nanoid(), []);
   return (
     <IdContext.Provider value={id}>

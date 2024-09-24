@@ -1,5 +1,3 @@
-import React from "react";
-
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertGeneralAbilityItem } from "../../v10Types";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -10,9 +8,9 @@ type AbilityMwExtraFieldsProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilityMwExtraFields: React.FC<AbilityMwExtraFieldsProps> = ({
+export const AbilityMwExtraFields = ({
   ability,
-}) => {
+}: AbilityMwExtraFieldsProps) => {
   assertGeneralAbilityItem(ability);
 
   return (

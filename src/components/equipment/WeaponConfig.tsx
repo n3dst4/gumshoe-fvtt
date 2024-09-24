@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback } from "react";
+import { Fragment, useCallback } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
@@ -19,7 +19,7 @@ type WeaponConfigProps = {
   weapon: InvestigatorItem;
 };
 
-export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
+export const WeaponConfig = ({ weapon }: WeaponConfigProps) => {
   assertGame(game);
   assertWeaponItem(weapon);
   const name = useAsyncUpdate(weapon.name || "", weapon.setName);

@@ -1,15 +1,17 @@
-import React from "react";
-
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { GridField } from "../inputs/GridField";
 import { PersonalDetailSlug } from "./PersonalDetailSlug";
 import { Slug } from "./Slug";
 
-export const PersonalDetailField: React.FC<{
+export const PersonalDetailField = ({
+  actor,
+  name,
+  slotIndex,
+}: {
   actor: InvestigatorActor;
   name: string;
   slotIndex: number;
-}> = ({ actor, name, slotIndex }) => {
+}) => {
   const personalDetailItems = actor.getPersonalDetailsInSlotIndex(slotIndex);
 
   return (

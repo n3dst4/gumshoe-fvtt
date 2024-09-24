@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { getDevMode } from "../../functions/utilities";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -11,9 +11,7 @@ import { ImportExport } from "./ImportExport";
 import { SettingsGridField } from "./SettingsGridField";
 import { Setters } from "./types";
 
-export const MiscSettings: React.FC<{
-  setters: Setters;
-}> = ({ setters }) => {
+export const MiscSettings = ({ setters }: { setters: Setters }) => {
   const isDevMode = getDevMode();
 
   let idx = 0;

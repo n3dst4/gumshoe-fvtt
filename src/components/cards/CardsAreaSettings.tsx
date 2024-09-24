@@ -1,5 +1,3 @@
-import React from "react";
-
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
@@ -16,10 +14,10 @@ interface CardsAreaSettingsSheetProps {
   onChangeSettings: (settings: Partial<CardsAreaSettings>) => void;
 }
 
-export const CardsAreaSettingsSheet: React.FC<CardsAreaSettingsSheetProps> = ({
+export const CardsAreaSettingsSheet = ({
   settings,
   onChangeSettings,
-}) => {
+}: CardsAreaSettingsSheetProps) => {
   return (
     <InputGrid>
       <GridField label="Categories">

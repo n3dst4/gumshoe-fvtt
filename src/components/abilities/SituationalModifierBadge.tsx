@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
@@ -9,9 +9,10 @@ interface SituationalModifierBadgeProps {
   ability: InvestigatorItem;
 }
 
-export const SituationalModifierBadge: React.FC<
-  SituationalModifierBadgeProps
-> = ({ situationalModifier: { situation, modifier, id }, ability }) => {
+export const SituationalModifierBadge = ({
+  situationalModifier: { situation, modifier, id },
+  ability,
+}: SituationalModifierBadgeProps) => {
   const theme = useContext(ThemeContext);
   const isActive = ability.isSituationalModifierActive(id);
   return (

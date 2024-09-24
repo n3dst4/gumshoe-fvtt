@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityItem } from "../../v10Types";
@@ -14,9 +14,7 @@ interface UnlocksEditorProps {
 
 const transitionTime = 400;
 
-export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
-  ability,
-}: UnlocksEditorProps) => {
+export const UnlocksEditor = ({ ability }: UnlocksEditorProps) => {
   assertAbilityItem(ability);
 
   const transitionedUnlocks = useListShowHideTransition(

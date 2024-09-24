@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { assertGame } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";
@@ -15,9 +15,7 @@ import {
 } from "./SettingsGridField";
 import { Setters } from "./types";
 
-export const AbilitySettings: React.FC<{
-  setters: Setters;
-}> = ({ setters }) => {
+export const AbilitySettings = ({ setters }: { setters: Setters }) => {
   assertGame(game);
   const { settings } = useContext(StateContext);
   const theme = useContext(ThemeContext);

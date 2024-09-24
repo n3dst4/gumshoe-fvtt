@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
@@ -12,7 +12,7 @@ type NotesAreaProps = {
   actor: InvestigatorActor;
 };
 
-export const NotesArea: React.FC<NotesAreaProps> = ({ actor }) => {
+export const NotesArea = ({ actor }: NotesAreaProps) => {
   const longNotesNames = settings.longNotes.get();
 
   const updateLongNote = useCallback(

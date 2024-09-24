@@ -1,11 +1,9 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 type MwCostSlugProps = {
   children: ReactNode;
 };
 
-export const MwCostSlug: React.FC<MwCostSlugProps> = ({
-  children,
-}: MwCostSlugProps) => {
+export const MwCostSlug = ({ children }: MwCostSlugProps) => {
   return (
     <span
       css={{

@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css";
-import React, { Fragment, MouseEvent, ReactNode, useCallback } from "react";
+import { Fragment, MouseEvent, ReactNode, useCallback } from "react";
 
 import {
   assertGame,
@@ -12,7 +12,7 @@ import { Button } from "../inputs/Button";
 import { CombatantRow } from "./CombatantRow";
 import { getTurns } from "./getTurns";
 
-export const Tracker: React.FC = () => {
+export const Tracker = () => {
   assertGame(game);
   assertNotNull(game.user);
 
@@ -282,7 +282,6 @@ export const Tracker: React.FC = () => {
           )}
         </div>
       </header>
-
       {/* ACTUAL COMBATANTS, or "turns" in early-medieval foundry-speak */}
       <ol
         id="combat-tracker"
@@ -307,7 +306,6 @@ export const Tracker: React.FC = () => {
           ))
         }
       </ol>
-
       {/* BOTTOM BITS: |< < End combat > >| */}
       {!isTurnPassing && (
         <nav id="combat-controls" className="directory-footer flexrow">

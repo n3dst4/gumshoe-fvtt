@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import { Button } from "../inputs/Button";
 import { Translate } from "../Translate";
@@ -12,12 +12,12 @@ interface OrphanedFieldProps {
 
 const gridRowsPerField = 3;
 
-export const OrphanedField: React.FC<OrphanedFieldProps> = ({
+export const OrphanedField = ({
   fieldId,
   index,
   fieldValue,
   onDelete,
-}) => {
+}: OrphanedFieldProps) => {
   return (
     <Fragment key={fieldId}>
       <b

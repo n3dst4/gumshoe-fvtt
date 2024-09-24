@@ -14,7 +14,7 @@ import { useStateSelector } from "../hooks";
 import { CategoryDangerZone } from "./CategoryDangerZone";
 import { cardCategory, categoryDangerZone } from "./directions";
 
-export const Category: React.FC = () => {
+export const Category = () => {
   const id = useParams(cardCategory);
   const { value: category } = useStateSelector((s) =>
     s.settings.cardCategories.find((c) => c.id === id),

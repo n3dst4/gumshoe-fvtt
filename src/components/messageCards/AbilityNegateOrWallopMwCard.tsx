@@ -30,8 +30,8 @@ const deets: { [mode in WallopNegateMode]: MWResult } = {
   },
 };
 
-export const AbilityNegateOrWallopMwCard: React.FC<AbilityNegateOrWallopMwCardProps> =
-  React.memo(({ msg, ability, pool, mode, name }) => {
+export const AbilityNegateOrWallopMwCard = React.memo(
+  ({ msg, ability, pool, mode, name }: AbilityNegateOrWallopMwCardProps) => {
     const onClickAbilityName = useCallback(() => {
       ability?.sheet?.render(true);
     }, [ability?.sheet]);
@@ -84,6 +84,7 @@ export const AbilityNegateOrWallopMwCard: React.FC<AbilityNegateOrWallopMwCardPr
         <MwButton deets={deets[mode]} />
       </div>
     );
-  });
+  },
+);
 
 AbilityNegateOrWallopMwCard.displayName = "AbilityNegateOrWallopMwCard";

@@ -1,10 +1,8 @@
-import React from "react";
-
 type ItemProps = {
   id: string | null;
 };
 
-export const Item: React.FC<ItemProps> = ({ id }) => {
+export const Item = ({ id }: ItemProps) => {
   return (
     <>
       <div>Item {id}</div>

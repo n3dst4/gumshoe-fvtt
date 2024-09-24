@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
@@ -41,10 +41,7 @@ function getTopAreaContent(ability: InvestigatorItem) {
   }
 }
 
-export const AbilitySheet: React.FC<AbilitySheetProps> = ({
-  ability,
-  application,
-}) => {
+export const AbilitySheet = ({ ability, application }: AbilitySheetProps) => {
   const isGeneral = isGeneralAbilityItem(ability);
 
   return (

@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css";
-import React, { ChangeEvent, useCallback, useContext } from "react";
+import { ChangeEvent, useCallback, useContext } from "react";
 
 import { ThemeContext } from "../../themes/ThemeContext";
 import { IdContext } from "../IdContext";
@@ -17,7 +17,7 @@ type TextInputProps = {
   validation?: ValidationResult;
 };
 
-export const TextInput: React.FC<TextInputProps> = ({
+export const TextInput = ({
   className,
   value,
   defaultValue,
@@ -27,7 +27,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   disabled,
   placeholder,
   validation,
-}) => {
+}: TextInputProps) => {
   const id = useContext(IdContext);
 
   const onChangeCb = useCallback(

@@ -1,5 +1,5 @@
 import { Stat } from "@lumphammer/investigator-fvtt-types";
-import React, { Fragment, useCallback } from "react";
+import { Fragment, useCallback } from "react";
 
 import { assertActiveCharacterActor } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -10,11 +10,7 @@ interface StatFieldProps {
   id: string;
 }
 
-export const StatField: React.FC<StatFieldProps> = ({
-  stat,
-  actor,
-  id,
-}: StatFieldProps) => {
+export const StatField = ({ stat, actor, id }: StatFieldProps) => {
   assertActiveCharacterActor(actor);
   const onChange = useCallback(
     (newVal: number) => {

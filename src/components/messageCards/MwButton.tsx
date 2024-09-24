@@ -1,5 +1,5 @@
 import { CSSObject } from "@emotion/react";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import { useHover } from "../../hooks/useHover";
 import { Button } from "../inputs/Button";
@@ -14,10 +14,7 @@ type MwButtonProps = {
 
 const basicShadow = "0 0 0.5em 0 #0007";
 
-export const MwButton: React.FC<MwButtonProps> = ({
-  onClick: onClickProp,
-  deets,
-}: MwButtonProps) => {
+export const MwButton = ({ onClick: onClickProp, deets }: MwButtonProps) => {
   const { hover, onMouseEnter, onMouseLeave } = useHover();
 
   const style: CSSObject = {

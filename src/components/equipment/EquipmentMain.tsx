@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback } from "react";
+import { ChangeEvent, useCallback } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
@@ -17,11 +17,11 @@ interface EquipmentMainProps {
   onChangeName: (name: string) => void;
 }
 
-export const EquipmentMain: React.FC<EquipmentMainProps> = ({
+export const EquipmentMain = ({
   equipment,
   name,
   onChangeName,
-}) => {
+}: EquipmentMainProps) => {
   assertEquipmentItem(equipment);
 
   const categories = settings.equipmentCategories.get();

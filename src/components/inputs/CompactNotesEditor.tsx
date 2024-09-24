@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 
 import { toHtml } from "../../functions/textFunctions";
 import { useStateWithGetter } from "../../hooks/useStateWithGetter";
@@ -18,7 +18,7 @@ interface CompactNotesEditorProps {
  * format. Markdowm/plain are directly editable. Rich text just renders HTML
  * until clicked, then turns into a TinyMCE.
  */
-export const CompactNotesEditor: React.FC<CompactNotesEditorProps> = ({
+export const CompactNotesEditor = ({
   className,
   note,
   onChange: onSave,

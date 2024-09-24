@@ -1,5 +1,5 @@
 import { CSSObject } from "@emotion/react";
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { ThemeContext } from "../../themes/ThemeContext";
@@ -44,14 +44,14 @@ const textBearerStyle: CSSObject = {
  * It's is marked RESOLVED, I've tested in nightly (as of 2021-07-28) and it
  * seems okay, so I'm not going to sweat it.
  */
-export const LogoEditable: React.FC<LogoEditableProps> = ({
+export const LogoEditable = ({
   className,
   mainText,
   subText,
   defaultSubText = "",
   onChangeMainText,
   onChangeSubText,
-}) => {
+}: LogoEditableProps) => {
   const theme = useContext(ThemeContext);
 
   const textStyle: CSSObject = {

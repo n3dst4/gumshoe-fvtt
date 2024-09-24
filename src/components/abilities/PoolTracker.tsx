@@ -23,7 +23,7 @@ type PoolTrackerProps = {
   ability: InvestigatorItem;
 };
 
-export const PoolTracker: React.FC<PoolTrackerProps> = ({ ability }) => {
+export const PoolTracker = ({ ability }: PoolTrackerProps) => {
   assertAbilityItem(ability);
   const min = ability?.system.min ?? 0;
   const max = ability.system.allowPoolToExceedRating

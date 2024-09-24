@@ -1,5 +1,3 @@
-import React from "react";
-
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
@@ -19,7 +17,7 @@ interface CardMainProps {
   card: InvestigatorItem;
 }
 
-export const CardMain: React.FC<CardMainProps> = ({ card }) => {
+export const CardMain = ({ card }: CardMainProps) => {
   assertCardItem(card);
 
   const categoryText = summarizeCategoryMemberships(

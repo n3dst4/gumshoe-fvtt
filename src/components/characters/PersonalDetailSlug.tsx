@@ -1,5 +1,3 @@
-import React from "react";
-
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertPersonalDetailItem } from "../../v10Types";
 import { Slug } from "./Slug";
@@ -8,9 +6,7 @@ interface PersonalDetailSlugProps {
   item: InvestigatorItem;
 }
 
-export const PersonalDetailSlug: React.FC<PersonalDetailSlugProps> = ({
-  item,
-}) => {
+export const PersonalDetailSlug = ({ item }: PersonalDetailSlugProps) => {
   assertPersonalDetailItem(item);
 
   return (

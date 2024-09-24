@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { getTranslated } from "../../../functions/getTranslated";
 import { assertGame } from "../../../functions/utilities";
@@ -9,7 +9,7 @@ interface MwInjuryStatusWidgetProps {
   setStatus: (status: MwInjuryStatus) => Promise<void>;
 }
 
-export const MwInjuryStatusWidget: React.FC<MwInjuryStatusWidgetProps> = ({
+export const MwInjuryStatusWidget = ({
   status,
   setStatus,
 }: MwInjuryStatusWidgetProps) => {

@@ -1,5 +1,3 @@
-import React from "react";
-
 import { weapon } from "../../../constants";
 import { sortEntitiesByName } from "../../../functions/utilities";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
@@ -11,7 +9,7 @@ type WeaponsAreaProps = {
   actor: InvestigatorActor;
 };
 
-export const WeaponsArea: React.FC<WeaponsAreaProps> = ({ actor }) => {
+export const WeaponsArea = ({ actor }: WeaponsAreaProps) => {
   const items = actor.getWeapons();
   return (
     <div>

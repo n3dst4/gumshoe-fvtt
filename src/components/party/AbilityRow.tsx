@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
@@ -13,11 +13,11 @@ type AbilityRowProps = {
   actors: InvestigatorActor[];
 };
 
-export const AbilityRow: React.FC<AbilityRowProps> = ({
+export const AbilityRow = ({
   abilityRowData,
   index,
   actors,
-}) => {
+}: AbilityRowProps) => {
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
     runtimeConfig.themes["tealTheme"];

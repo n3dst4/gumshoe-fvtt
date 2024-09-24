@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertAbilityItem } from "../../v10Types";
@@ -14,9 +14,9 @@ interface SituationalModifiersEditorProps {
 
 const transitionTime = 400;
 
-export const SituationalModifiersEditor: React.FC<
-  SituationalModifiersEditorProps
-> = ({ ability }: SituationalModifiersEditorProps) => {
+export const SituationalModifiersEditor = ({
+  ability,
+}: SituationalModifiersEditorProps) => {
   assertAbilityItem(ability);
 
   const transitionedSituationalModifiers = useListShowHideTransition(

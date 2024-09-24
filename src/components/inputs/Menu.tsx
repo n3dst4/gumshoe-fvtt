@@ -6,10 +6,7 @@ interface MenuProps {
   className?: string;
 }
 
-export const Menu: React.FC<PropsWithChildren<MenuProps>> = ({
-  children,
-  className,
-}: PropsWithChildren<MenuProps>) => {
+export const Menu = ({ children, className }: PropsWithChildren<MenuProps>) => {
   return (
     <div
       className={`menu-outer ${className}`}
@@ -31,7 +28,7 @@ interface MenuItemProps {
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-export const MenuItem: React.FC<PropsWithChildren<MenuItemProps>> = ({
+export const MenuItem = ({
   icon,
   children,
   onClick: onClickOrig,

@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import React, {
+import {
   ChangeEvent,
   Fragment,
   useCallback,
@@ -25,10 +25,10 @@ type TabContainerProps = {
   defaultTab: string;
 };
 
-export const TabContainer: React.FC<TabContainerProps> = ({
+export const TabContainer = ({
   tabs: rawTabsDefs,
   defaultTab,
-}) => {
+}: TabContainerProps) => {
   const [selected, setSelected] = useState(defaultTab);
   const [optimistic, setOptimistic] = useState(defaultTab);
   const [pending, startTransition] = useTransition();

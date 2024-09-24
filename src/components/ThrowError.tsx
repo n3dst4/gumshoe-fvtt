@@ -1,10 +1,8 @@
-import React from "react";
-
 interface ThrowErrorProps {
   message: string;
 }
 
-export const ThrowError: React.FC<ThrowErrorProps> = ({ message }) => {
+export const ThrowError = ({ message }: ThrowErrorProps) => {
   throw new Error(message);
 };
 

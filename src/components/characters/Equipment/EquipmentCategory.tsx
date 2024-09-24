@@ -18,13 +18,13 @@ interface EquipmentCategoryProps {
   fields: Record<string, EquipmentFieldMetadata>;
 }
 
-export const EquipmentCategory: React.FC<EquipmentCategoryProps> = ({
+export const EquipmentCategory = ({
   categoryId,
   items,
   name,
   actor,
   fields,
-}) => {
+}: EquipmentCategoryProps) => {
   const app = useContext(FoundryAppContext);
 
   const onDragStart = useCallback(

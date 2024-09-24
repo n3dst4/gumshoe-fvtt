@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { cleanAndEnrichHtml } from "../../functions/textFunctions";
@@ -13,11 +13,11 @@ interface NotesDisplayProps {
   toggleSecret?: (index: number) => void;
 }
 
-export const NotesDisplay: React.FC<NotesDisplayProps> = ({
+export const NotesDisplay = ({
   className,
   html: rawHtml,
   toggleSecret,
-}) => {
+}: NotesDisplayProps) => {
   assertGame(game);
 
   const isOwner = useIsDocumentOwner();

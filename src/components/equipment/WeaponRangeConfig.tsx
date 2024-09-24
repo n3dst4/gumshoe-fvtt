@@ -1,5 +1,3 @@
-import React from "react";
-
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridField } from "../inputs/GridField";
 import { Toggle } from "../inputs/Toggle";
@@ -12,13 +10,13 @@ type WeaponRangeProps = {
   setEnabled: (enabled: boolean) => void;
 };
 
-export const WeaponRange: React.FC<WeaponRangeProps> = ({
+export const WeaponRange = ({
   label,
   damage,
   enabled,
   setDamage,
   setEnabled,
-}) => {
+}: WeaponRangeProps) => {
   return (
     <GridField label={label}>
       <div

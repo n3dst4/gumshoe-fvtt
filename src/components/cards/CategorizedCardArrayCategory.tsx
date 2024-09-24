@@ -1,5 +1,5 @@
 import { CardCategory } from "@lumphammer/investigator-fvtt-types";
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { ThemeContext } from "../../themes/ThemeContext";
@@ -12,9 +12,10 @@ interface CategorizedCardArrayCategoryProps {
   cards: CardItem[];
 }
 
-export const CategorizedCardArrayCategory: React.FC<
-  CategorizedCardArrayCategoryProps
-> = ({ category, cards }) => {
+export const CategorizedCardArrayCategory = ({
+  category,
+  cards,
+}: CategorizedCardArrayCategoryProps) => {
   const theme = useContext(ThemeContext);
   const [summary, isOverGoal, isOverLimit] = summarizeCategoryCards(
     cards,

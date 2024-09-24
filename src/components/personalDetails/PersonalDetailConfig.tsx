@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
@@ -11,9 +11,7 @@ interface PersonalDetailConfigProps {
   item: InvestigatorItem;
 }
 
-export const PersonalDetailConfig: React.FC<PersonalDetailConfigProps> = ({
-  item,
-}) => {
+export const PersonalDetailConfig = ({ item }: PersonalDetailConfigProps) => {
   const onClickDelete = useCallback(async () => {
     assertGame(game);
     const message = item.actor

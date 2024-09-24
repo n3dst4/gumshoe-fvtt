@@ -1,7 +1,7 @@
 import MonacoEditor, { Monaco, OnMount } from "@monaco-editor/react";
 import htmlParser from "prettier/plugins/html";
 import prettier from "prettier/standalone";
-import React, { useCallback, useMemo, useRef } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { AiOutlineFormatPainter } from "react-icons/ai";
 
 import { extraCssClasses, systemId } from "../../constants";
@@ -24,7 +24,7 @@ const SAVE_DEBOUNCE_MS = 600;
 /**
  * The actual Monaco-based HTML editor.
  */
-export const HTMLEditor: React.FC<HTMLEditorProps> = ({ page }) => {
+export const HTMLEditor = ({ page }: HTMLEditorProps) => {
   const monacoRef = useRef<Monaco | null>(null);
   const editorRef = useRef<IStandalonCodeEditor | null>(null);
 

@@ -16,8 +16,8 @@ interface PushCardProps {
 const shadowOffset = "1px";
 const shadowBlur = "1px";
 
-export const PushCard: React.FC<PushCardProps> = React.memo(
-  ({ msg, ability, mode, name, imageUrl }) => {
+export const PushCard = React.memo(
+  ({ msg, ability, mode, name, imageUrl }: PushCardProps) => {
     const theme = useTheme();
 
     const onClickAbilityName = useCallback(() => {
@@ -63,16 +63,16 @@ export const PushCard: React.FC<PushCardProps> = React.memo(
             color: theme.colors.accent,
             fontStyle: "italic",
             textShadow: `
+            -${shadowOffset} -${shadowOffset} ${shadowBlur} #0007,
+            ${shadowOffset} ${shadowOffset} ${shadowBlur} #fff
+          `,
+            ":hover": {
+              textShadow: `
+              0 0 10px #fff,
+              0 0 10px #fff,
               -${shadowOffset} -${shadowOffset} ${shadowBlur} #0007,
               ${shadowOffset} ${shadowOffset} ${shadowBlur} #fff
             `,
-            ":hover": {
-              textShadow: `
-                0 0 10px #fff,
-                0 0 10px #fff,
-                -${shadowOffset} -${shadowOffset} ${shadowBlur} #0007,
-                ${shadowOffset} ${shadowOffset} ${shadowBlur} #fff
-              `,
             },
           }}
         >

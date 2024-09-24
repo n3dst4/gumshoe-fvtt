@@ -1,5 +1,5 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
-import React, { useCallback, useContext } from "react";
+import { useCallback, useContext } from "react";
 
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Translate } from "../../Translate";
@@ -12,11 +12,11 @@ interface StringFieldSettingsProps {
   fieldId: string;
 }
 
-export const StringFieldSettings: React.FC<StringFieldSettingsProps> = ({
+export const StringFieldSettings = ({
   field,
   categoryId,
   fieldId,
-}) => {
+}: StringFieldSettingsProps) => {
   const dispatch = useContext(DispatchContext);
 
   const handleChangeDefault = useCallback(

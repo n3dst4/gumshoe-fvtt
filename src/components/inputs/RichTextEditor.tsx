@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { wait } from "../../functions/utilities";
 import { absoluteCover } from "../absoluteCover";
@@ -21,7 +21,7 @@ type TinyMceEditor = Awaited<ReturnType<typeof TextEditor.create>>;
  * reacty controls in that it triggers onChange whenever the user types, and
  * calls onSave if they click the save button.
  */
-export const RichTextEditor: React.FC<RichTextEditorProps> = ({
+export const RichTextEditor = ({
   value,
   className,
   onSave,

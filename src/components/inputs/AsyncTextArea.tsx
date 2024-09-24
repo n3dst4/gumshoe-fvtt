@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextArea } from "./TextArea";
 
@@ -11,13 +9,13 @@ type AsyncTextAreaProps = {
   index?: number;
 };
 
-export const AsyncTextArea: React.FC<AsyncTextAreaProps> = ({
+export const AsyncTextArea = ({
   className,
   value,
   onChange: onChangeOrig,
   disabled,
   index,
-}) => {
+}: AsyncTextAreaProps) => {
   const { onChange, onFocus, onBlur, display } = useAsyncUpdate(
     value,
     onChangeOrig,

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import {
   FaEdit,
   FaEllipsisH,
@@ -20,7 +20,7 @@ interface StandardInitiativeProps {
   combat: InvestigatorCombat;
 }
 
-export const StandardInitiative: React.FC<StandardInitiativeProps> = ({
+export const StandardInitiative = ({
   turn,
   combat,
 }: StandardInitiativeProps) => {

@@ -45,8 +45,16 @@ const results: { [value: number]: MWResult } = {
   },
 };
 
-export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(
-  ({ msg, ability, difficulty, boonLevy, reRoll, pool, name }) => {
+export const AbilityTestMwCard = React.memo(
+  ({
+    msg,
+    ability,
+    difficulty,
+    boonLevy,
+    reRoll,
+    pool,
+    name,
+  }: AbilityTestMwCardProps) => {
     const onClickAbilityName = useCallback(() => {
       ability?.sheet?.render(true);
     }, [ability?.sheet]);

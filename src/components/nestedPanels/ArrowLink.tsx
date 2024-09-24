@@ -1,5 +1,5 @@
 import { Link } from "@lumphammer/minirouter";
-import React, { ComponentProps, useContext } from "react";
+import { ComponentProps, useContext } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 import { ThemeContext } from "../../themes/ThemeContext";
@@ -9,12 +9,12 @@ type ArrowLinkProps = ComponentProps<typeof Link> & {
   danger?: boolean;
 };
 
-export const ArrowLink: React.FC<ArrowLinkProps> = ({
+export const ArrowLink = ({
   back = false,
   danger = false,
   children,
   ...rest
-}) => {
+}: ArrowLinkProps) => {
   const theme = useContext(ThemeContext);
 
   return (

@@ -1,5 +1,3 @@
-import React from "react";
-
 import { getTranslated } from "../../../functions/getTranslated";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";
 import { settings } from "../../../settings/settings";
@@ -10,7 +8,7 @@ type EquipmentAreaProps = {
   actor: InvestigatorActor;
 };
 
-export const EquipmentArea: React.FC<EquipmentAreaProps> = ({ actor }) => {
+export const EquipmentArea = ({ actor }: EquipmentAreaProps) => {
   const items = actor.getEquipment();
   const categories = settings.equipmentCategories.get();
 

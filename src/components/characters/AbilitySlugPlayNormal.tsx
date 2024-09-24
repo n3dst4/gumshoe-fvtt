@@ -14,9 +14,9 @@ type AbilitySlugPlayNormalProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilitySlugPlayNormal: React.FC<AbilitySlugPlayNormalProps> = ({
+export const AbilitySlugPlayNormal = ({
   ability,
-}) => {
+}: AbilitySlugPlayNormalProps) => {
   assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(

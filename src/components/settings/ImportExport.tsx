@@ -12,7 +12,7 @@ import { DirtyContext, DispatchContext, StateContext } from "./contexts";
 import { SettingsGridField } from "./SettingsGridField";
 import { store } from "./store";
 
-export const ImportExport: React.FC = () => {
+export const ImportExport = () => {
   let idx = 0;
   const dispatch = useContext(DispatchContext);
   const { settings: settingsState } = useContext(StateContext);

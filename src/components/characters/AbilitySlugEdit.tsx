@@ -13,10 +13,10 @@ type AbilitySlugEditProps = {
   showOcc?: boolean;
 };
 
-export const AbilitySlugEdit: React.FC<AbilitySlugEditProps> = ({
+export const AbilitySlugEdit = ({
   ability,
   showOcc = true,
-}) => {
+}: AbilitySlugEditProps) => {
   assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(

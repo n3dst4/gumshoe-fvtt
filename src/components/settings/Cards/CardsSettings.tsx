@@ -1,6 +1,6 @@
 import { Router } from "@lumphammer/minirouter";
 import { SlideInOutlet } from "@lumphammer/minirouter/animated";
-import React, { useCallback, useContext } from "react";
+import { useCallback, useContext } from "react";
 
 import { absoluteCover } from "../../absoluteCover";
 import { GridField } from "../../inputs/GridField";
@@ -15,7 +15,7 @@ interface CardsSettingsProps {
   setters: Setters;
 }
 
-export const CardsSettings: React.FC<CardsSettingsProps> = ({ setters }) => {
+export const CardsSettings = ({ setters }: CardsSettingsProps) => {
   const { settings } = useContext(StateContext);
 
   const handleChangeUseCards = useCallback(
