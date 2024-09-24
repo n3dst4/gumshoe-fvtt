@@ -1,33 +1,27 @@
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { assertPersonalDetailItem } from "../../v10Types";
 import { ModeSelect } from "../ItemSheetFramework/ModeSelect";
 import { ItemSheetFramework } from "../ItemSheetFramework/SheetFramework";
 import { ItemSheetMode } from "../ItemSheetFramework/types";
 import { PersonalDetailConfig } from "./PersonalDetailConfig";
 import { PersonalDetailMain } from "./PersonalDetailMain";
-interface PersonalDetailSheetProps {
-  application: DocumentSheet;
-  personalDetail: InvestigatorItem;
-}
 
-export const PersonalDetailSheet = ({
-  personalDetail,
-  application,
-}: PersonalDetailSheetProps) => {
-  assertPersonalDetailItem(personalDetail);
+export const PersonalDetailSheet = () => {
+  const { item } = useItemSheetContext();
+  assertPersonalDetailItem(item);
 
   return (
-    <ItemSheetFramework application={application} item={personalDetail}>
+    <ItemSheetFramework>
       <ModeSelect mode={ItemSheetMode.Main}>
-        <PersonalDetailMain item={personalDetail} />
+        <PersonalDetailMain item={item} />
       </ModeSelect>
       <ModeSelect mode={ItemSheetMode.Config}>
-        <PersonalDetailConfig item={personalDetail} />
+        <PersonalDetailConfig item={item} />
       </ModeSelect>
     </ItemSheetFramework>
   );
 
-  return <div>Personal detail: {personalDetail.name}</div>;
+  return <div>Personal detail: {item.name}</div>;
 };
 
 PersonalDetailSheet.displayName = "PersonalDetailSheet";

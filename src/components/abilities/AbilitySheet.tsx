@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
 import {
@@ -16,11 +17,6 @@ import { AbilityMwExtraFields } from "./AbilityMwExtraFields";
 import { AbilityTest } from "./AbilityTest";
 import { AbilityTestMW } from "./AbilityTestMW";
 import { PushPoolButton } from "./PushPoolButton";
-
-type AbilitySheetProps = {
-  ability: InvestigatorItem;
-  application: ItemSheet;
-};
 
 function getTopAreaContent(ability: InvestigatorItem) {
   if (
@@ -41,7 +37,9 @@ function getTopAreaContent(ability: InvestigatorItem) {
   }
 }
 
-export const AbilitySheet = ({ ability, application }: AbilitySheetProps) => {
+export const AbilitySheet = () => {
+  const { item: ability } = useItemSheetContext();
+
   const isGeneral = isGeneralAbilityItem(ability);
 
   return (
@@ -54,8 +52,6 @@ export const AbilitySheet = ({ ability, application }: AbilitySheetProps) => {
           {ability.actor && <span> ({ability.actor.name})</span>}
         </>
       }
-      item={ability}
-      application={application}
     >
       <ModeSelect mode={ItemSheetMode.Config}>
         <AbilityConfig ability={ability} />

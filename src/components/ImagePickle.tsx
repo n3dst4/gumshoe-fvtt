@@ -3,6 +3,7 @@ import React, { Fragment, useCallback, useContext, useState } from "react";
 import { getTokenizer } from "../functions/getTokenizer";
 import { assertGame } from "../functions/utilities";
 import { useIsDocumentOwner } from "../hooks/useIsDocumentOwner";
+import { useDocumentSheetContext } from "../hooks/useSheetContexts";
 import { ThemeContext } from "../themes/ThemeContext";
 import { ImagePickerLink } from "./ImagePickerLink";
 
@@ -17,17 +18,11 @@ const cover = {
 const transitionTime = "0.3s";
 
 type ImagePickleProps = {
-  subject: Actor | Item;
-  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-  application: ActorSheet | foundry.applications.api.DocumentSheetV2<any>;
   className?: string;
 };
 
-export const ImagePickle = ({
-  subject,
-  application,
-  className,
-}: ImagePickleProps) => {
+export const ImagePickle = ({ className }: ImagePickleProps) => {
+  const { doc, app } = useDocumentSheetContext();
   const [showOverlay, setShowOverlay] = useState(false);
   const theme = useContext(ThemeContext);
   assertGame(game);
@@ -37,11 +32,11 @@ export const ImagePickle = ({
     setShowOverlay(false);
     assertGame(game);
     const { tokenizerIsActive, tokenizerApi } = getTokenizer();
-    const subjectIsActor = subject instanceof Actor;
+    const subjectIsActor = doc instanceof Actor;
     // if tokenizer is available and the subject is an actor, use tokenizer
     // see https://github.com/n3dst4/gumshoe-fvtt/issues/706
     if (tokenizerIsActive && tokenizerApi !== undefined && subjectIsActor) {
-      tokenizerApi.tokenizeActor(subject);
+      tokenizerApi.tokenizeActor(doc);
     } else {
       // You can also launch the filepicker with
       // `application._onEditImage(event)` but 1. we don't care about event
@@ -50,26 +45,26 @@ export const ImagePickle = ({
       // update the image in the DOM on completion.
       const fp = new FilePicker({
         type: "image",
-        current: subject.img ?? undefined,
+        current: doc.img ?? undefined,
         callback: (path: string) => {
-          void subject.update({
+          void doc.update({
             img: path,
           });
         },
-        top: (application.position.top ?? 0) + 40,
-        left: (application.position.left ?? 0) + 10,
+        top: (app.position.top ?? 0) + 40,
+        left: (app.position.left ?? 0) + 10,
       });
-      return fp.browse(subject.img ?? "");
+      return fp.browse(doc.img ?? "");
     }
-  }, [application.position.left, application.position.top, subject]);
+  }, [app.position.left, app.position.top, doc]);
 
   const showImage = useCallback(() => {
-    const ip = new ImagePopout(subject.img ?? "", {
-      title: subject.img,
+    const ip = new ImagePopout(doc.img ?? "", {
+      title: doc.img,
       shareable: true,
     } as any);
     ip.render(true);
-  }, [subject.img]);
+  }, [doc.img]);
 
   const onClickShow = useCallback(() => {
     setShowOverlay(false);
@@ -115,7 +110,7 @@ export const ImagePickle = ({
         <div
           css={{
             ...cover,
-            backgroundImage: `url("${subject.img}")`,
+            backgroundImage: `url("${doc.img}")`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             filter: showOverlay ? "blur(0.7em)" : undefined,

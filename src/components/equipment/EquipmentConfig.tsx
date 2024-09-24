@@ -2,7 +2,7 @@ import { useCallback } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { settings } from "../../settings/settings";
 import { assertEquipmentItem } from "../../v10Types";
 import { Button } from "../inputs/Button";
@@ -12,16 +12,14 @@ import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 import { OrphanedField } from "./OrphanedField";
 
-interface EquipmentConfigProps {
-  equipment: InvestigatorItem;
-}
+export const EquipmentConfig = () => {
+  const { item } = useItemSheetContext();
 
-export const EquipmentConfig = ({ equipment }: EquipmentConfigProps) => {
-  assertEquipmentItem(equipment);
+  assertEquipmentItem(item);
 
   const onClickDelete = useCallback(async () => {
     assertGame(game);
-    const message = equipment.actor
+    const message = item.actor
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
@@ -32,18 +30,18 @@ export const EquipmentConfig = ({ equipment }: EquipmentConfigProps) => {
       confirmIconClass: "fa-trash",
       resolveFalseOnCancel: true,
       values: {
-        ActorName: equipment.actor?.name ?? "",
-        EquipmentName: equipment.name ?? "",
+        ActorName: item.actor?.name ?? "",
+        EquipmentName: item.name ?? "",
       },
     });
     if (yes) {
-      await equipment.delete();
+      await item.delete();
     }
-  }, [equipment]);
+  }, [item]);
 
-  const allFields = equipment.system.fields;
+  const allFields = item.system.fields;
   const knownFieldIds = Object.keys(
-    settings.equipmentCategories.get()[equipment.system.category]?.fields ?? {},
+    settings.equipmentCategories.get()[item.system.category]?.fields ?? {},
   );
   const unknownFields = Object.keys(allFields).filter(
     (fieldId) => !knownFieldIds.includes(fieldId),
@@ -52,7 +50,7 @@ export const EquipmentConfig = ({ equipment }: EquipmentConfigProps) => {
   return (
     <InputGrid>
       <GridField label="Category Id">
-        {equipment.system.category ? (
+        {item.system.category ? (
           <>
             <code
               css={{
@@ -60,17 +58,17 @@ export const EquipmentConfig = ({ equipment }: EquipmentConfigProps) => {
                 margin: "0.3em 1em 0.3em 0",
               }}
             >
-              {equipment.system.category}
+              {item.system.category}
             </code>
             <a
               css={{
                 gridArea: "cog",
               }}
               onClick={async () => {
-                assertEquipmentItem(equipment);
-                await navigator.clipboard.writeText(equipment.system.category);
+                assertEquipmentItem(item);
+                await navigator.clipboard.writeText(item.system.category);
                 ui.notifications?.info(
-                  `Copied category ID "${equipment.system.category}" to clipboard`,
+                  `Copied category ID "${item.system.category}" to clipboard`,
                 );
               }}
             >
@@ -103,7 +101,7 @@ export const EquipmentConfig = ({ equipment }: EquipmentConfigProps) => {
             fieldValue={allFields[fieldId]}
             index={index}
             onDelete={(id) => {
-              void equipment.deleteField(id);
+              void item.deleteField(id);
             }}
           />
         ))}

@@ -7,6 +7,7 @@ import React, {
 } from "react";
 
 import { generalAbility } from "../../constants";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
 import {
@@ -26,24 +27,22 @@ import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { Translate } from "../Translate";
 import { performAttack } from "./performAttack";
 
-type WeaponAttackProps = {
-  weapon: InvestigatorItem;
-};
-
 const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
   const label = i.toString();
   return { label, value: Number(label), enabled: true };
 });
 
-export const WeaponAttack = ({ weapon }: WeaponAttackProps) => {
-  assertWeaponItem(weapon);
+export const WeaponAttack = () => {
+  const { item } = useItemSheetContext();
+
+  assertWeaponItem(item);
   const [spend, setSpend] = useState(0);
   const [bonusPool, setBonusPool] = useState(0);
   const theme = useContext(ThemeContext);
 
-  const abilityName = weapon.system.ability;
+  const abilityName = item.system.ability;
 
-  const ability: InvestigatorItem | undefined = weapon.actor?.items.find(
+  const ability: InvestigatorItem | undefined = item.actor?.items.find(
     (item: InvestigatorItem) => {
       return item.type === generalAbility && item.name === abilityName;
     },
@@ -63,43 +62,43 @@ export const WeaponAttack = ({ weapon }: WeaponAttackProps) => {
       setSpend,
       setBonusPool,
       ability,
-      weapon,
+      weapon: item,
     });
-  }, [ability, bonusPool, spend, weapon]);
+  }, [ability, bonusPool, spend, item]);
 
   const onPointBlank = useCallback(() => {
-    assertWeaponItem(weapon);
+    assertWeaponItem(item);
     void basePerformAttack({
       rangeName: "point blank",
-      rangeDamage: weapon.system.pointBlankDamage,
+      rangeDamage: item.system.pointBlankDamage,
     });
-  }, [basePerformAttack, weapon]);
+  }, [basePerformAttack, item]);
 
   const onCloseRange = useCallback(() => {
-    assertWeaponItem(weapon);
+    assertWeaponItem(item);
     void basePerformAttack({
       rangeName: "close range",
-      rangeDamage: weapon.system.closeRangeDamage,
+      rangeDamage: item.system.closeRangeDamage,
     });
-  }, [basePerformAttack, weapon]);
+  }, [basePerformAttack, item]);
 
   const onNearRange = useCallback(() => {
-    assertWeaponItem(weapon);
+    assertWeaponItem(item);
     void basePerformAttack({
       rangeName: "near range",
-      rangeDamage: weapon.system.nearRangeDamage,
+      rangeDamage: item.system.nearRangeDamage,
     });
-  }, [basePerformAttack, weapon]);
+  }, [basePerformAttack, item]);
 
   const onLongRange = useCallback(() => {
-    assertWeaponItem(weapon);
+    assertWeaponItem(item);
     void basePerformAttack({
       rangeName: "long range",
-      rangeDamage: weapon.system.longRangeDamage,
+      rangeDamage: item.system.longRangeDamage,
     });
-  }, [basePerformAttack, weapon]);
+  }, [basePerformAttack, item]);
 
-  const weaponActor = weapon.actor;
+  const weaponActor = item.actor;
 
   const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
     weaponActor && isPCActor(weaponActor)
@@ -132,17 +131,17 @@ export const WeaponAttack = ({ weapon }: WeaponAttackProps) => {
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
       if (ability) {
-        void weapon.actor?.update({
+        void item.actor?.update({
           system: {
             initiativeAbility: ability.name || "",
           },
         });
       }
     },
-    [ability, weapon.actor],
+    [ability, item.actor],
   );
 
-  const ammoFail = weapon.system.usesAmmo && weapon.system.ammo.value <= 0;
+  const ammoFail = item.system.usesAmmo && item.system.ammo.value <= 0;
 
   return (
     <div css={{ ...absoluteCover, display: "flex", flexDirection: "column" }}>
@@ -187,28 +186,28 @@ export const WeaponAttack = ({ weapon }: WeaponAttackProps) => {
             )}
             <Button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={ammoFail || !weapon.system.isPointBlank}
+              disabled={ammoFail || !item.system.isPointBlank}
               onClick={onPointBlank}
             >
               <Translate>Point Blank</Translate>
             </Button>
             <Button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={ammoFail || !weapon.system.isCloseRange}
+              disabled={ammoFail || !item.system.isCloseRange}
               onClick={onCloseRange}
             >
               <Translate>Close Range</Translate>
             </Button>
             <Button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={ammoFail || !weapon.system.isNearRange}
+              disabled={ammoFail || !item.system.isNearRange}
               onClick={onNearRange}
             >
               <Translate>Near Range</Translate>
             </Button>
             <Button
               css={{ lineHeight: 1, flex: 1 }}
-              disabled={ammoFail || !weapon.system.isLongRange}
+              disabled={ammoFail || !item.system.isLongRange}
               onClick={onLongRange}
             >
               <Translate>Long Range</Translate>
@@ -219,10 +218,10 @@ export const WeaponAttack = ({ weapon }: WeaponAttackProps) => {
       <InputGrid
         css={{
           flex: 1,
-          gridTemplateRows: `${weapon.system.usesAmmo ? "auto " : ""}1fr`,
+          gridTemplateRows: `${item.system.usesAmmo ? "auto " : ""}1fr`,
         }}
       >
-        {weapon.system.usesAmmo && (
+        {item.system.usesAmmo && (
           <GridField label="Ammo">
             <div
               css={{
@@ -236,16 +235,16 @@ export const WeaponAttack = ({ weapon }: WeaponAttackProps) => {
                   flex: 0,
                   lineHeight: "inherit",
                 }}
-                onClick={weapon.reload}
+                onClick={item.reload}
               >
                 <Translate>Reload</Translate>
               </Button>
               <AsyncNumberInput
                 css={{ flex: 1 }}
                 min={0}
-                max={weapon.system.ammo.max}
-                value={weapon.system.ammo.value}
-                onChange={weapon.setAmmo}
+                max={item.system.ammo.max}
+                value={item.system.ammo.value}
+                onChange={item.setAmmo}
               />
             </div>
           </GridField>
@@ -253,10 +252,10 @@ export const WeaponAttack = ({ weapon }: WeaponAttackProps) => {
 
         <NotesEditorWithControls
           allowChangeFormat
-          format={weapon.system.notes.format}
-          html={weapon.system.notes.html}
-          source={weapon.system.notes.source}
-          onSave={weapon.setNotes}
+          format={item.system.notes.format}
+          html={item.system.notes.html}
+          source={item.system.notes.source}
+          onSave={item.setNotes}
         />
         <GridField label="Bonus pool">
           <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />
@@ -297,8 +296,8 @@ export const WeaponAttack = ({ weapon }: WeaponAttackProps) => {
         <GridField label="Cost">
           <AsyncNumberInput
             min={0}
-            value={weapon.system.cost}
-            onChange={weapon.setCost}
+            value={item.system.cost}
+            onChange={item.setCost}
           />
         </GridField>
       </InputGrid>

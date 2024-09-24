@@ -1,7 +1,7 @@
 import { ChangeEvent, useCallback } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { settings } from "../../settings/settings";
 import { assertEquipmentItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
@@ -12,30 +12,27 @@ import { TextInput } from "../inputs/TextInput";
 import { EquipmentField } from "./EquipmentField";
 
 interface EquipmentMainProps {
-  equipment: InvestigatorItem;
   name: string;
   onChangeName: (name: string) => void;
 }
 
-export const EquipmentMain = ({
-  equipment,
-  name,
-  onChangeName,
-}: EquipmentMainProps) => {
-  assertEquipmentItem(equipment);
+export const EquipmentMain = ({ name, onChangeName }: EquipmentMainProps) => {
+  const { item } = useItemSheetContext();
+
+  assertEquipmentItem(item);
 
   const categories = settings.equipmentCategories.get();
-  const categoryMetadata = categories[equipment.system.category];
+  const categoryMetadata = categories[item.system.category];
   const isRealCategory = categoryMetadata !== undefined;
 
   const onChangeCategory = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
-      void equipment.setCategory(e.currentTarget.value);
+      void item.setCategory(e.currentTarget.value);
     },
-    [equipment],
+    [item],
   );
 
-  const selectedCat = isRealCategory ? equipment.system.category : "";
+  const selectedCat = isRealCategory ? item.system.category : "";
 
   const fieldsLength = Object.keys(categoryMetadata?.fields ?? {}).length + 2;
 
@@ -84,8 +81,8 @@ export const EquipmentMain = ({
               key={fieldId}
               fieldId={fieldId}
               fieldMetadata={fieldMetadata}
-              value={equipment.system.fields?.[fieldId]}
-              equipment={equipment}
+              value={item.system.fields?.[fieldId]}
+              equipment={item}
             />
           );
         },
@@ -93,10 +90,10 @@ export const EquipmentMain = ({
 
       <NotesEditorWithControls
         allowChangeFormat
-        format={equipment.system.notes.format}
-        html={equipment.system.notes.html}
-        source={equipment.system.notes.source}
-        onSave={equipment.setNotes}
+        format={item.system.notes.format}
+        html={item.system.notes.html}
+        source={item.system.notes.source}
+        onSave={item.setNotes}
       />
     </InputGrid>
   );

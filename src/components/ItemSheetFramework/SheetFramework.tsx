@@ -1,16 +1,13 @@
 import { PropsWithChildren, ReactNode, useEffect, useState } from "react";
 
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { ImagePickle } from "../ImagePickle";
 import { ModeContext } from "./modeContext";
 import { ItemSheetMode } from "./types";
 
 type ItemSheetFrameworkProps = PropsWithChildren<{
   supertitle?: ReactNode;
-  item: InvestigatorItem;
-  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-  application: DocumentSheet | foundry.applications.api.DocumentSheetV2<any>;
 }>;
 
 /**
@@ -18,10 +15,10 @@ type ItemSheetFrameworkProps = PropsWithChildren<{
  */
 export const ItemSheetFramework = ({
   supertitle,
-  item,
-  application,
   children,
 }: ItemSheetFrameworkProps) => {
+  const { item, app } = useItemSheetContext();
+
   const { contentEditableRef, onBlur, onFocus, onInput } = useAsyncUpdate(
     item.name ?? "",
     item.setName,
@@ -31,8 +28,8 @@ export const ItemSheetFramework = ({
 
   useEffect(() => {
     // XXX I'm sure we can do better but the types are weird right now
-    void application.render(true);
-  }, [application, configMode]);
+    void app.render(true);
+  }, [app, configMode]);
 
   return (
     <ModeContext.Provider
@@ -73,9 +70,6 @@ export const ItemSheetFramework = ({
 
         {/* Image */}
         <ImagePickle
-          subject={item}
-          // @ts-expect-error yikes
-          application={application}
           css={{
             gridArea: "image",
             transform: "rotateZ(-2deg)",

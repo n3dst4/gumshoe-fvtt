@@ -3,7 +3,7 @@ import { Fragment, useCallback } from "react";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { settings } from "../../settings/settings";
 import { assertWeaponItem } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -15,18 +15,16 @@ import { Toggle } from "../inputs/Toggle";
 import { Translate } from "../Translate";
 import { WeaponRange } from "./WeaponRangeConfig";
 
-type WeaponConfigProps = {
-  weapon: InvestigatorItem;
-};
-
-export const WeaponConfig = ({ weapon }: WeaponConfigProps) => {
+export const WeaponConfig = () => {
   assertGame(game);
-  assertWeaponItem(weapon);
-  const name = useAsyncUpdate(weapon.name || "", weapon.setName);
+  const { item } = useItemSheetContext();
+
+  assertWeaponItem(item);
+  const name = useAsyncUpdate(item.name || "", item.setName);
 
   const onClickDelete = useCallback(async () => {
     assertGame(game);
-    const message = weapon.actor
+    const message = item.actor
       ? "DeleteActorNamesEquipmentName"
       : "DeleteEquipmentName";
 
@@ -36,15 +34,15 @@ export const WeaponConfig = ({ weapon }: WeaponConfigProps) => {
       cancelText: "Cancel",
       confirmIconClass: "fa-trash",
       values: {
-        ActorName: weapon.actor?.name ?? "",
-        EquipmentName: weapon.name ?? "",
+        ActorName: item.actor?.name ?? "",
+        EquipmentName: item.name ?? "",
       },
       resolveFalseOnCancel: true,
     });
     if (aye) {
-      await weapon.delete();
+      await item.delete();
     }
-  }, [weapon]);
+  }, [item]);
 
   const abilities = settings.combatAbilities.get();
 
@@ -55,8 +53,8 @@ export const WeaponConfig = ({ weapon }: WeaponConfigProps) => {
       </GridField>
       <GridField label="Ability">
         <select
-          value={weapon.system.ability}
-          onChange={(e) => weapon.setAbility(e.currentTarget.value)}
+          value={item.system.ability}
+          onChange={(e) => item.setAbility(e.currentTarget.value)}
           css={{
             lineHeight: "inherit",
             height: "inherit",
@@ -69,58 +67,55 @@ export const WeaponConfig = ({ weapon }: WeaponConfigProps) => {
       </GridField>
       <GridField label="Base Damage">
         <AsyncNumberInput
-          value={weapon.system.damage}
-          onChange={weapon.setDamage}
+          value={item.system.damage}
+          onChange={item.setDamage}
         />
       </GridField>
       <WeaponRange
         label="Point Blank"
-        damage={weapon.system.pointBlankDamage ?? 0}
-        enabled={weapon.system.isPointBlank}
-        setDamage={weapon.setPointBlankDamage}
-        setEnabled={weapon.setIsPointBlank}
+        damage={item.system.pointBlankDamage ?? 0}
+        enabled={item.system.isPointBlank}
+        setDamage={item.setPointBlankDamage}
+        setEnabled={item.setIsPointBlank}
       />
       <WeaponRange
         label="Close range"
-        damage={weapon.system.closeRangeDamage ?? 0}
-        enabled={weapon.system.isCloseRange}
-        setDamage={weapon.setCloseRangeDamage}
-        setEnabled={weapon.setIsCloseRange}
+        damage={item.system.closeRangeDamage ?? 0}
+        enabled={item.system.isCloseRange}
+        setDamage={item.setCloseRangeDamage}
+        setEnabled={item.setIsCloseRange}
       />
       <WeaponRange
         label="Near range"
-        damage={weapon.system.nearRangeDamage ?? 0}
-        enabled={weapon.system.isNearRange}
-        setDamage={weapon.setNearRangeDamage}
-        setEnabled={weapon.setIsNearRange}
+        damage={item.system.nearRangeDamage ?? 0}
+        enabled={item.system.isNearRange}
+        setDamage={item.setNearRangeDamage}
+        setEnabled={item.setIsNearRange}
       />
       <WeaponRange
         label="Long range"
-        damage={weapon.system.longRangeDamage ?? 0}
-        enabled={weapon.system.isLongRange}
-        setDamage={weapon.setLongRangeDamage}
-        setEnabled={weapon.setIsLongRange}
+        damage={item.system.longRangeDamage ?? 0}
+        enabled={item.system.isLongRange}
+        setDamage={item.setLongRangeDamage}
+        setEnabled={item.setIsLongRange}
       />
       <GridField label="Uses ammo?">
-        <Toggle
-          checked={weapon.system.usesAmmo}
-          onChange={weapon.setUsesAmmo}
-        />
+        <Toggle checked={item.system.usesAmmo} onChange={item.setUsesAmmo} />
       </GridField>
-      {weapon.system.usesAmmo && (
+      {item.system.usesAmmo && (
         <Fragment>
           <GridField label="Ammo capacity">
             <AsyncNumberInput
               min={0}
-              value={weapon.system.ammo.max}
-              onChange={weapon.setAmmoMax}
+              value={item.system.ammo.max}
+              onChange={item.setAmmoMax}
             />
           </GridField>
           <GridField label="Ammo per attack">
             <AsyncNumberInput
               min={0}
-              value={weapon.system.ammoPerShot}
-              onChange={weapon.setAmmoPerShot}
+              value={item.system.ammoPerShot}
+              onChange={item.setAmmoPerShot}
             />
           </GridField>
         </Fragment>

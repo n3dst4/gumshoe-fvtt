@@ -1,7 +1,7 @@
 import { CSSObject } from "@emotion/react";
 
+import { useItemSheetContext } from "../hooks/useSheetContexts";
 import { useTheme } from "../hooks/useTheme";
-import { InvestigatorItem } from "../module/InvestigatorItem";
 import {
   isAbilityItem,
   isCardItem,
@@ -20,16 +20,13 @@ import { NotesTypeContext } from "./NotesTypeContext";
 import { PersonalDetailSheet } from "./personalDetails/PersonalDetailSheet";
 import { ThrowError } from "./ThrowError";
 
-type ItemSheetProps = {
-  item: InvestigatorItem;
-  application: ItemSheet;
-};
-
 /**
  * We only register one "Item" sheet with foundry and then dispatch based on
  * type here.
  */
-export const ItemSheet = ({ item, application }: ItemSheetProps) => {
+export const ItemSheet = () => {
+  const { item } = useItemSheetContext();
+
   const themeName = item.getThemeName();
   const theme = useTheme(themeName);
 
@@ -50,20 +47,17 @@ export const ItemSheet = ({ item, application }: ItemSheetProps) => {
     <CSSReset theme={theme} mode="small" css={style}>
       <NotesTypeContext.Provider value="itemNote">
         {isAbilityItem(item) ? (
-          <AbilitySheet ability={item} application={application} />
+          <AbilitySheet />
         ) : isEquipmentItem(item) ? (
-          <EquipmentSheet equipment={item} application={application} />
+          <EquipmentSheet />
         ) : isWeaponItem(item) ? (
-          <WeaponSheet weapon={item} application={application} />
+          <WeaponSheet />
         ) : isMwItem(item) ? (
-          <MwItemSheet item={item} application={application} />
+          <MwItemSheet />
         ) : isPersonalDetailItem(item) ? (
-          <PersonalDetailSheet
-            personalDetail={item}
-            application={application}
-          />
+          <PersonalDetailSheet />
         ) : isCardItem(item) ? (
-          <CardSheet card={item} application={application} />
+          <CardSheet />
         ) : (
           <ThrowError message={`No sheet defined for item type ${item.type}`} />
         )}
