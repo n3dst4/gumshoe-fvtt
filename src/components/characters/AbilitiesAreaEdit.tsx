@@ -11,7 +11,6 @@ import {
 import { AbilitySlugEdit } from "./AbilitySlugEdit";
 import { AbilitySlugEditQuickShockInvestigative } from "./AbilitySlugEditQuickShockInvestigative";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
-import { useAbilities } from "./useAbilities";
 
 type AbilitiesAreaEditProps = {
   npcMode?: boolean;
@@ -23,11 +22,8 @@ export const AbilitiesAreaEdit = ({
   const { actor } = useActorSheetContext();
   assertActiveCharacterActor(actor);
   const theme = useContext(ThemeContext);
-  const { investigativeAbilities, generalAbilities } = useAbilities(
-    actor,
-    false,
-    false,
-  );
+  const { investigativeAbilities, generalAbilities } =
+    actor.getCategorizedAbilities(false, false);
 
   // this is all a bit iffy-elsey, but...
 
