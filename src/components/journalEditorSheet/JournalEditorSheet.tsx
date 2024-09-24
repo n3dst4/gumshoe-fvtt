@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { MdOutlinePreview } from "react-icons/md";
 
 import { extraCssClasses, systemId } from "../../constants";
+import { useJournalSheetContext } from "../../hooks/useSheetContexts";
 import { useTheme } from "../../hooks/useTheme";
 import { absoluteCover } from "../absoluteCover";
 import { CSSReset } from "../CSSReset";
@@ -15,18 +16,12 @@ import { PageNavigation } from "./PageNavigation";
 
 const KEEPALIVE_INTERVAL_MS = 30_000;
 
-type JournalEditorSheetProps = {
-  journalEntry: JournalEntry;
-  foundryApplication: JournalSheet;
-};
-
 /**
  * Top-level react component for the journal editor sheet.
  */
-export const JournalEditorSheet = ({
-  journalEntry,
-  foundryApplication,
-}: JournalEditorSheetProps) => {
+export const JournalEditorSheet = () => {
+  const { journalEntry } = useJournalSheetContext();
+
   // keepalive - without this, if this journal entry is inside a compendium,
   // foundry will kill the in-memory references to it so normal UI updates stop
   // coming through. An empty update doesn't send any network traffic but it's

@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";
 import {
@@ -17,31 +18,28 @@ import { AbilityTest } from "./AbilityTest";
 import { AbilityTestMW } from "./AbilityTestMW";
 import { PushPoolButton } from "./PushPoolButton";
 
-type AbilitySheetProps = {
-  ability: InvestigatorItem;
-  application: ItemSheet;
-};
-
 function getTopAreaContent(ability: InvestigatorItem) {
   if (
     // if we're doing WM, we show the MW test/spend box
     ability.isOwned &&
     settings.useMwStyleAbilities.get()
   ) {
-    return <AbilityTestMW ability={ability} />;
+    return <AbilityTestMW />;
   } else if (
     // push pools get a PUSH button
     (isGeneralAbilityItem(ability) && ability.system.isPushPool) ||
     (isInvestigativeAbilityItem(ability) && ability.system.isQuickShock)
   ) {
-    return <PushPoolButton ability={ability} />;
+    return <PushPoolButton />;
   } else {
     // everything else gets a spend/test box
-    return <AbilityTest ability={ability} />;
+    return <AbilityTest />;
   }
 }
 
-export const AbilitySheet = ({ ability, application }: AbilitySheetProps) => {
+export const AbilitySheet = () => {
+  const { item: ability } = useItemSheetContext();
+
   const isGeneral = isGeneralAbilityItem(ability);
 
   return (
@@ -54,11 +52,9 @@ export const AbilitySheet = ({ ability, application }: AbilitySheetProps) => {
           {ability.actor && <span> ({ability.actor.name})</span>}
         </>
       }
-      item={ability}
-      application={application}
     >
       <ModeSelect mode={ItemSheetMode.Config}>
-        <AbilityConfig ability={ability} />
+        <AbilityConfig />
       </ModeSelect>
       <ModeSelect mode={ItemSheetMode.Main}>
         <Fragment>
@@ -66,10 +62,8 @@ export const AbilitySheet = ({ ability, application }: AbilitySheetProps) => {
           {getTopAreaContent(ability)}
 
           {/* Other bits */}
-          <AbilityMainBits ability={ability} />
-          {settings.useMwStyleAbilities.get() && (
-            <AbilityMwExtraFields ability={ability} />
-          )}
+          <AbilityMainBits />
+          {settings.useMwStyleAbilities.get() && <AbilityMwExtraFields />}
         </Fragment>
       </ModeSelect>
     </ItemSheetFramework>

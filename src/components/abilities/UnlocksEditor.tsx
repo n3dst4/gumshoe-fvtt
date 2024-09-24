@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { assertAbilityItem } from "../../v10Types";
 import { Button } from "../inputs/Button";
 import { useListShowHideTransition } from "../transitions/useListShowHideTransition";
@@ -8,17 +8,14 @@ import { Translate } from "../Translate";
 import { getListTransitionStyles } from "./getListTransitionStyles";
 import { UnlocksEditorRow } from "./UnlocksEditorRow";
 
-interface UnlocksEditorProps {
-  ability: InvestigatorItem;
-}
-
 const transitionTime = 400;
 
-export const UnlocksEditor = ({ ability }: UnlocksEditorProps) => {
-  assertAbilityItem(ability);
+export const UnlocksEditor = () => {
+  const { item } = useItemSheetContext();
+  assertAbilityItem(item);
 
   const transitionedUnlocks = useListShowHideTransition(
-    ability.system.unlocks,
+    item.system.unlocks,
     (unlock) => unlock.id,
     transitionTime,
   );
@@ -43,16 +40,16 @@ export const UnlocksEditor = ({ ability }: UnlocksEditorProps) => {
               <UnlocksEditorRow
                 index={i}
                 unlock={unlock}
-                onChangeDescription={ability.setUnlockDescription}
-                onChangeRating={ability.setUnlockRating}
-                onDelete={ability.deleteUnlock}
+                onChangeDescription={item.setUnlockDescription}
+                onChangeRating={item.setUnlockRating}
+                onDelete={item.deleteUnlock}
               />
             </div>
           );
         },
       )}
       <Button
-        onClick={ability.addUnlock}
+        onClick={item.addUnlock}
         css={{
           margin: 0,
         }}

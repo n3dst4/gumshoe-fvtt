@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { getTranslated } from "../../functions/getTranslated";
 import { sortEntitiesByName } from "../../functions/utilities";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { useActorSheetContext } from "../../hooks/useSheetContexts";
 import { assertPCActor, isCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { ToolbarButton } from "../inputs/Button";
@@ -16,13 +16,10 @@ import { CardsAreaSettingsContext } from "./contexts";
 import { CardsAreaSettings } from "./types";
 import { UncategorizedCardArray } from "./UncategorizedCardArray";
 
-interface CardsAreaProps {
-  actor: InvestigatorActor;
-}
-
 const settingsDirection = createDirection("settings");
 
-export const CardsArea = ({ actor }: CardsAreaProps) => {
+export const CardsArea = () => {
+  const { actor } = useActorSheetContext();
   assertPCActor(actor);
   const allCards = actor.items.filter((item) => isCardItem(item));
 

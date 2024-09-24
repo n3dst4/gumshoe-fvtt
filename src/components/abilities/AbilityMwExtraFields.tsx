@@ -1,17 +1,12 @@
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { assertGeneralAbilityItem } from "../../v10Types";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 
-type AbilityMwExtraFieldsProps = {
-  ability: InvestigatorItem;
-};
-
-export const AbilityMwExtraFields = ({
-  ability,
-}: AbilityMwExtraFieldsProps) => {
-  assertGeneralAbilityItem(ability);
+export const AbilityMwExtraFields = () => {
+  const { item } = useItemSheetContext();
+  assertGeneralAbilityItem(item);
 
   return (
     <InputGrid
@@ -21,14 +16,14 @@ export const AbilityMwExtraFields = ({
     >
       <GridField label="Trumps">
         <AsyncTextInput
-          value={ability.system.mwTrumps}
-          onChange={ability.setMwTrumps}
+          value={item.system.mwTrumps}
+          onChange={item.setMwTrumps}
         />
       </GridField>
       <GridField label="Trumped by">
         <AsyncTextInput
-          value={ability.system.mwTrumpedBy}
-          onChange={ability.setMwTrumpedBy}
+          value={item.system.mwTrumpedBy}
+          onChange={item.setMwTrumpedBy}
         />
       </GridField>
     </InputGrid>

@@ -49,7 +49,7 @@ class NPCSheetV2ClassBase extends foundry.applications.api
 const render = (sheet: NPCSheetV2ClassBase) => {
   return (
     <Suspense>
-      <NPCSheet actor={sheet.document} foundryApplication={sheet} />
+      <NPCSheet />
     </Suspense>
   );
 };

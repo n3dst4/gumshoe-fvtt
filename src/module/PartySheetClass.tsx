@@ -30,7 +30,7 @@ class PartySheetClassBase extends ActorSheet {
 const render = (sheet: PartySheetClassBase) => {
   return (
     <Suspense>
-      <PartySheet party={sheet.document} foundryApplication={sheet} />
+      <PartySheet />
     </Suspense>
   );
 };

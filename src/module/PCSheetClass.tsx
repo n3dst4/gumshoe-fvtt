@@ -20,7 +20,7 @@ class PCSheetClassBase extends ActorSheet {
 }
 
 const render = (sheet: PCSheetClassBase) => {
-  return <PCSheet actor={sheet.document} foundryApplication={sheet} />;
+  return <PCSheet />;
 };
 
 export const PCSheetClass = ReactApplicationMixin(

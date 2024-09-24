@@ -1,7 +1,7 @@
 import { Fragment, useContext } from "react";
 
 import { sortEntitiesByName } from "../../functions/utilities";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { useActorSheetContext } from "../../hooks/useSheetContexts";
 import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import {
@@ -14,14 +14,13 @@ import { NoAbilitiesNote } from "./NoAbilitiesNote";
 import { useAbilities } from "./useAbilities";
 
 type AbilitiesAreaEditProps = {
-  actor: InvestigatorActor;
   npcMode?: boolean;
 };
 
 export const AbilitiesAreaEdit = ({
-  actor,
   npcMode = false,
 }: AbilitiesAreaEditProps) => {
+  const { actor } = useActorSheetContext();
   assertActiveCharacterActor(actor);
   const theme = useContext(ThemeContext);
   const { investigativeAbilities, generalAbilities } = useAbilities(

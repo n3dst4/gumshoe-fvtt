@@ -1,6 +1,6 @@
 import { useCallback, useContext, useState } from "react";
 
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertAbilityItem, isGeneralAbilityItem } from "../../v10Types";
 import { Button } from "../inputs/Button";
@@ -10,38 +10,35 @@ import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 
-type AbilityTestProps = {
-  ability: InvestigatorItem;
-};
-
 const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
   const label = i.toString();
   return { label, value: Number(label), enabled: true };
 });
 
-export const AbilityTest = ({ ability }: AbilityTestProps) => {
+export const AbilityTest = () => {
+  const { item } = useItemSheetContext();
   const theme = useContext(ThemeContext);
   const [spend, setSpend] = useState(0);
 
   const handleClickTest = useCallback(() => {
-    void ability.testAbility(spend);
+    void item.testAbility(spend);
     setSpend(0);
-  }, [ability, spend]);
+  }, [item, spend]);
 
   const handleClickSpend = useCallback(() => {
-    void ability.spendAbility(spend);
+    void item.spendAbility(spend);
     setSpend(0);
-  }, [ability, spend]);
+  }, [item, spend]);
 
   const spendOptions = defaultSpendOptions.map((option) => {
-    assertAbilityItem(ability);
+    assertAbilityItem(item);
     return {
       ...option,
-      enabled: option.value <= ability.system.pool,
+      enabled: option.value <= item.system.pool,
     };
   });
 
-  const isGeneral = isGeneralAbilityItem(ability);
+  const isGeneral = isGeneralAbilityItem(item);
 
   return (
     <InputGrid

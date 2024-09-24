@@ -1,15 +1,12 @@
 import { weapon } from "../../../constants";
 import { sortEntitiesByName } from "../../../functions/utilities";
-import { InvestigatorActor } from "../../../module/InvestigatorActor";
+import { useActorSheetContext } from "../../../hooks/useSheetContexts";
 import { Button } from "../../inputs/Button";
 import { Translate } from "../../Translate";
 import { WeaponRowEdit } from "./WeaponRowEdit";
 
-type WeaponsAreaEditProps = {
-  actor: InvestigatorActor;
-};
-
-export const WeaponsAreaEdit = ({ actor }: WeaponsAreaEditProps) => {
+export const WeaponsAreaEdit = () => {
+  const { actor } = useActorSheetContext();
   const items = actor.getWeapons();
   return (
     <div>

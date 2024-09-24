@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { MwType } from "../../types";
 import { assertMwItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
@@ -16,15 +16,9 @@ import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { TextInput } from "../inputs/TextInput";
 import { Translate } from "../Translate";
 
-type MwItemSheetProps = {
-  item: InvestigatorItem;
-  application:
-    | ItemSheet
-    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-    | foundry.applications.api.DocumentSheetV2<InvestigatorItem>;
-};
+export const MwItemSheet = () => {
+  const { item } = useItemSheetContext();
 
-export const MwItemSheet = ({ item, application }: MwItemSheetProps) => {
   assertMwItem(item);
 
   const name = useAsyncUpdate(item.name || "", item.setName);
@@ -90,9 +84,6 @@ export const MwItemSheet = ({ item, application }: MwItemSheetProps) => {
 
       {/* Image */}
       <ImagePickle
-        subject={item}
-        // @ts-expect-error yikes
-        application={application}
         css={{
           gridArea: "image",
           transform: "rotateZ(-2deg)",

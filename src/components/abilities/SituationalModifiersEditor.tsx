@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { assertAbilityItem } from "../../v10Types";
 import { Button } from "../inputs/Button";
 import { useListShowHideTransition } from "../transitions/useListShowHideTransition";
@@ -8,19 +8,14 @@ import { Translate } from "../Translate";
 import { getListTransitionStyles } from "./getListTransitionStyles";
 import { SituationalModifiersEditorRow } from "./SituationalModifiersEditorRow";
 
-interface SituationalModifiersEditorProps {
-  ability: InvestigatorItem;
-}
-
 const transitionTime = 400;
 
-export const SituationalModifiersEditor = ({
-  ability,
-}: SituationalModifiersEditorProps) => {
-  assertAbilityItem(ability);
+export const SituationalModifiersEditor = () => {
+  const { item } = useItemSheetContext();
+  assertAbilityItem(item);
 
   const transitionedSituationalModifiers = useListShowHideTransition(
-    ability.system.situationalModifiers,
+    item.system.situationalModifiers,
     (situationalModifier) => situationalModifier.id,
     transitionTime,
   );
@@ -45,9 +40,9 @@ export const SituationalModifiersEditor = ({
               <SituationalModifiersEditorRow
                 index={i}
                 situationalModifier={situationalModifier}
-                onChangeSituation={ability.setSituationalModifierSituation}
-                onChangeModifier={ability.setSituationalModifierModifier}
-                onDelete={ability.deleteSituationalModifier}
+                onChangeSituation={item.setSituationalModifierSituation}
+                onChangeModifier={item.setSituationalModifierModifier}
+                onDelete={item.deleteSituationalModifier}
               />
             </div>
           );
@@ -55,7 +50,7 @@ export const SituationalModifiersEditor = ({
       )}
 
       <Button
-        onClick={ability.addSituationalModifier}
+        onClick={item.addSituationalModifier}
         css={{
           margin: 0,
         }}

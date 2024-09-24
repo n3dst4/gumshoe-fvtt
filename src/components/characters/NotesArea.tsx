@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { useActorSheetContext } from "../../hooks/useSheetContexts";
 import { settings } from "../../settings/settings";
 import { NoteWithFormat } from "../../types";
 import { assertPCActor } from "../../v10Types";
@@ -8,11 +8,8 @@ import { IndexedNotesEditorWithControls } from "../inputs/IndexedNotesEditorWith
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesTypeContext } from "../NotesTypeContext";
 
-type NotesAreaProps = {
-  actor: InvestigatorActor;
-};
-
-export const NotesArea = ({ actor }: NotesAreaProps) => {
+export const NotesArea = () => {
+  const { actor } = useActorSheetContext();
   const longNotesNames = settings.longNotes.get();
 
   const updateLongNote = useCallback(

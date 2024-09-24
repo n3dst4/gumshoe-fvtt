@@ -1,4 +1,5 @@
-import { useCallback, useEffect } from "react";
+import { FoundryAppContext } from "@lumphammer/shared-fvtt-bits/src/FoundryAppContext";
+import { useCallback, useContext, useEffect } from "react";
 
 import { settingsCloseAttempted, settingsSaved } from "../../constants";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
@@ -24,12 +25,12 @@ import { useSettingsState } from "./hooks";
 import { MiscSettings } from "./MiscSettings";
 import { StatsSettings } from "./Stats/StatsSettings";
 
-type SettingsProps = {
-  foundryApplication: Application;
-};
-
-export const Settings = ({ foundryApplication }: SettingsProps) => {
+export const Settings = () => {
   assertGame(game);
+  const foundryApplication = useContext(FoundryAppContext);
+  if (foundryApplication === null) {
+    throw new Error("Settings must be used within a FoundryAppContext");
+  }
   const { tempState, setters, tempStateRef, dispatch, isDirty, modify } =
     useSettingsState();
   const theme = useTheme(tempState.settings.defaultThemeName);

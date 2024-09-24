@@ -2,7 +2,7 @@ import React, { Fragment, useCallback, useContext } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { assertGame, getDevMode } from "../../functions/utilities";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { useActorSheetContext } from "../../hooks/useSheetContexts";
 import { runtimeConfig } from "../../runtime";
 import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
@@ -14,11 +14,8 @@ import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 
-type SettingAreaProps = {
-  actor: InvestigatorActor;
-};
-
-export const SettingArea = ({ actor }: SettingAreaProps) => {
+export const SettingArea = () => {
+  const { actor } = useActorSheetContext();
   assertGame(game);
   assertPCActor(actor);
   const onSetTheme = useCallback(

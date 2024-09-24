@@ -1,7 +1,7 @@
 import { Fragment, ReactNode } from "react";
 
+import { useActorSheetContext } from "../../hooks/useSheetContexts";
 import { useTheme } from "../../hooks/useTheme";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
 import { assertNPCActor, isNPCActor } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
@@ -24,18 +24,9 @@ import { TrackersArea } from "./TrackersArea";
 import { WeaponsArea } from "./Weapons/WeaponsArea";
 import { WeaponsAreaEdit } from "./Weapons/WeaponsAreaEdit";
 
-type NPCSheetFullProps = {
-  actor: InvestigatorActor;
-  foundryApplication:
-    | ActorSheet
-    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-    | foundry.applications.api.DocumentSheetV2<InvestigatorActor>;
-};
+export const NPCSheetFull = () => {
+  const { actor } = useActorSheetContext();
 
-export const NPCSheetFull = ({
-  actor,
-  foundryApplication,
-}: NPCSheetFullProps) => {
   assertNPCActor(actor);
   const themeName = actor.getSheetThemeName();
   const theme = useTheme(themeName);
@@ -75,8 +66,6 @@ export const NPCSheetFull = ({
       </div>
 
       <ImagePickle
-        subject={actor}
-        application={foundryApplication}
         css={{
           gridArea: "image",
           transform: "rotateZ(2deg)",
@@ -130,13 +119,11 @@ export const NPCSheetFull = ({
           </Fragment>
         )}
         {Object.keys(stats).map<ReactNode>((key) => {
-          return (
-            <StatField key={key} id={key} actor={actor} stat={stats[key]} />
-          );
+          return <StatField key={key} id={key} stat={stats[key]} />;
         })}
 
         <hr />
-        <TrackersArea actor={actor} />
+        <TrackersArea />
         <hr />
         <h4 css={{ width: "8em" }}>
           <Translate>Combat Order</Translate>
@@ -175,9 +162,9 @@ export const NPCSheetFull = ({
               label: "Play",
               content: (
                 <Fragment>
-                  <WeaponsArea actor={actor} />
+                  <WeaponsArea />
                   <div css={{ height: "1em" }} />
-                  <AbilitiesAreaPlay actor={actor} flipLeftRight={true} />
+                  <AbilitiesAreaPlay flipLeftRight={true} />
                 </Fragment>
               ),
             },
@@ -186,9 +173,9 @@ export const NPCSheetFull = ({
               label: "Edit",
               content: (
                 <Fragment>
-                  <WeaponsAreaEdit actor={actor} />
+                  <WeaponsAreaEdit />
                   <div css={{ height: "1em" }} />
-                  <AbilitiesAreaEdit actor={actor} npcMode />
+                  <AbilitiesAreaEdit npcMode />
                 </Fragment>
               ),
             },

@@ -1,6 +1,6 @@
 import { occupationSlotIndex } from "../../constants";
 import { assertGame, padLength } from "../../functions/utilities";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { settings } from "../../settings/settings";
 import { assertPersonalDetailItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
@@ -9,11 +9,8 @@ import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 
-interface PersonalDetailMainProps {
-  item: InvestigatorItem;
-}
-
-export const PersonalDetailMain = ({ item }: PersonalDetailMainProps) => {
+export const PersonalDetailMain = () => {
+  const { item } = useItemSheetContext();
   assertGame(game);
   assertPersonalDetailItem(item);
   const name = item.name;

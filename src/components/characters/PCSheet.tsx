@@ -2,8 +2,8 @@ import { Fragment, ReactNode, useCallback, useEffect, useState } from "react";
 
 import { occupationSlotIndex } from "../../constants";
 import { assertGame } from "../../functions/utilities";
+import { useActorSheetContext } from "../../hooks/useSheetContexts";
 import { useTheme } from "../../hooks/useTheme";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
 import {
   AnyItem,
@@ -36,12 +36,9 @@ import { StatField } from "./StatField";
 import { TrackersArea } from "./TrackersArea";
 import { WeaponsArea } from "./Weapons/WeaponsArea";
 
-interface PCSheetProps {
-  actor: InvestigatorActor;
-  foundryApplication: ActorSheet;
-}
+export const PCSheet = () => {
+  const { actor } = useActorSheetContext();
 
-export const PCSheet = ({ actor, foundryApplication }: PCSheetProps) => {
   assertGame(game);
   assertPCActor(actor);
 
@@ -140,8 +137,6 @@ export const PCSheet = ({ actor, foundryApplication }: PCSheetProps) => {
         />
       </div>
       <ImagePickle
-        subject={actor}
-        application={foundryApplication}
         css={{
           gridArea: "image",
           transform: "rotateZ(2deg)",
@@ -247,12 +242,10 @@ export const PCSheet = ({ actor, foundryApplication }: PCSheetProps) => {
             <hr />
           </Fragment>
         )}
-        <TrackersArea actor={actor} />
+        <TrackersArea />
         <hr />
         {Object.keys(stats).map<ReactNode>((key) => {
-          return (
-            <StatField key={key} id={key} actor={actor} stat={stats[key]} />
-          );
+          return <StatField key={key} id={key} stat={stats[key]} />;
         })}
         <hr />
         <h3 css={{ gridColumn: "start / end" }}>
@@ -278,47 +271,47 @@ export const PCSheet = ({ actor, foundryApplication }: PCSheetProps) => {
               id: "abilities",
               label: "Abilities",
               content: settings.useMwStyleAbilities.get() ? (
-                <AbilitiesAreaMW actor={actor} />
+                <AbilitiesAreaMW />
               ) : (
-                <AbilitiesAreaPlay actor={actor} />
+                <AbilitiesAreaPlay />
               ),
             },
             settings.useCards.get() && {
               id: "cards",
               label: "Cards",
-              content: <CardsArea actor={actor} />,
+              content: <CardsArea />,
             },
             settings.mwUseAlternativeItemTypes.get()
               ? {
                   id: "items",
                   label: "MWItems",
-                  content: <MwItemArea actor={actor} />,
+                  content: <MwItemArea />,
                 }
               : {
                   id: "equipment",
                   label: "Equipment",
                   content: (
                     <Fragment>
-                      <WeaponsArea actor={actor} />
+                      <WeaponsArea />
                       <div css={{ height: "1em" }} />
-                      <EquipmentArea actor={actor} />
+                      <EquipmentArea />
                     </Fragment>
                   ),
                 },
             {
               id: "notes",
               label: "Notes",
-              content: <NotesArea actor={actor} />,
+              content: <NotesArea />,
             },
             {
               id: "abilities-edit",
               label: "Edit",
-              content: <AbilitiesAreaEdit actor={actor} />,
+              content: <AbilitiesAreaEdit />,
             },
             {
               id: "settings",
               label: <i className="fa fa-cog" />,
-              content: <SettingArea actor={actor} />,
+              content: <SettingArea />,
             },
           ]}
         />

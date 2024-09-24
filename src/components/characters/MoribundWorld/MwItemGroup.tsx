@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 
 import { mwItem } from "../../../constants";
 import { sortEntitiesByName } from "../../../functions/utilities";
+import { useActorSheetContext } from "../../../hooks/useSheetContexts";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { MwType } from "../../../types";
 import { Button } from "../../inputs/Button";
 import { Translate } from "../../Translate";
 
 interface MwItemGroupProps {
-  actor: Actor;
   items: Item[];
   name: string;
   mwType: MwType;
@@ -16,12 +16,12 @@ interface MwItemGroupProps {
 }
 
 export const MwItemGroup = ({
-  actor,
   items,
   onDragStart,
   name,
   mwType,
 }: MwItemGroupProps) => {
+  const { actor } = useActorSheetContext();
   const theme = useContext(ThemeContext);
   return (
     <div

@@ -2,7 +2,7 @@ import { Router } from "@lumphammer/minirouter";
 import React from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { ToolbarButton } from "../inputs/Button";
@@ -13,20 +13,17 @@ import { CardDisplay } from "./CardDisplay";
 import { CardMain } from "./CardMain";
 import { edit } from "./directions";
 
-type CardSheetProps = {
-  card: InvestigatorItem;
-  application: ItemSheet;
-};
+export const CardSheet = () => {
+  const { item } = useItemSheetContext();
 
-export const CardSheet = ({ card, application }: CardSheetProps) => {
-  assertCardItem(card);
+  assertCardItem(item);
 
   const handleClickDiscard = React.useCallback(async () => {
-    const message = card.actor
+    const message = item.actor
       ? "DiscardActorNamesCardNameCard"
       : "DeleteCardName";
 
-    const confirmText = card.actor ? "Discard" : "Delete";
+    const confirmText = item.actor ? "Discard" : "Delete";
 
     const yes = await confirmADoodleDo({
       message,
@@ -35,22 +32,22 @@ export const CardSheet = ({ card, application }: CardSheetProps) => {
       confirmIconClass: "fa-trash",
       resolveFalseOnCancel: true,
       values: {
-        ActorName: card.actor?.name ?? "",
-        CardName: card.name ?? "",
+        ActorName: item.actor?.name ?? "",
+        CardName: item.name ?? "",
       },
     });
     if (yes) {
-      void card.delete();
+      void item.delete();
     }
-  }, [card]);
+  }, [item]);
 
   const handleClickDeactivate = React.useCallback(async () => {
-    await card.update({ system: { active: false } });
-  }, [card]);
+    await item.update({ system: { active: false } });
+  }, [item]);
 
   const handleClickActivate = React.useCallback(async () => {
-    await card.update({ system: { active: true } });
-  }, [card]);
+    await item.update({ system: { active: true } });
+  }, [item]);
 
   return (
     <Router>
@@ -70,9 +67,9 @@ export const CardSheet = ({ card, application }: CardSheetProps) => {
           }}
         >
           <ToolbarButton onClick={handleClickDiscard}>
-            <Translate>{card.actor ? "Discard" : "Delete"}</Translate>
+            <Translate>{item.actor ? "Discard" : "Delete"}</Translate>
           </ToolbarButton>{" "}
-          {card.system.active ? (
+          {item.system.active ? (
             <ToolbarButton onClick={handleClickDeactivate}>
               <Translate>Deactivate</Translate>
             </ToolbarButton>
@@ -87,7 +84,7 @@ export const CardSheet = ({ card, application }: CardSheetProps) => {
         <div
           css={{
             flex: 1,
-            opacity: card.system.active ? 1 : 0.5,
+            opacity: item.system.active ? 1 : 0.5,
             transition: "opacity 200ms ease-in-out",
             display: "flex",
             flexDirection: "column",
@@ -96,7 +93,7 @@ export const CardSheet = ({ card, application }: CardSheetProps) => {
             containerType: "inline-size",
           }}
         >
-          <CardDisplay card={card} viewMode="full" />
+          <CardDisplay card={item} viewMode="full" />
         </div>
       </div>
       <SlideInNestedPanelRoute
@@ -112,7 +109,7 @@ export const CardSheet = ({ card, application }: CardSheetProps) => {
             flexDirection: "column",
           }}
         >
-          <CardMain card={card} />
+          <CardMain />
         </div>
       </SlideInNestedPanelRoute>
     </Router>

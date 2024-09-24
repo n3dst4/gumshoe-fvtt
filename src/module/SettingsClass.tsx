@@ -57,7 +57,7 @@ const render = (sheet: SettingsClassBase) => {
   $(sheet.element).find(".header-button.close").hide();
   return (
     <Suspense>
-      <Settings foundryApplication={sheet} />
+      <Settings />
     </Suspense>
   );
 };

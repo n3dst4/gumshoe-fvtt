@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import * as constants from "../../constants";
 import { assertGame, sortEntitiesByName } from "../../functions/utilities";
+import { useActorSheetContext } from "../../hooks/useSheetContexts";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { runtimeConfig } from "../../runtime";
@@ -17,13 +18,9 @@ import { AbilityRow } from "./AbilityRow";
 import { buildRowData, getSystemAbilities } from "./functions";
 import { isCategoryHeader, isTypeHeader, RowData } from "./types";
 
-export const PartySheet = ({
-  foundryApplication,
-  party,
-}: {
-  party: InvestigatorActor;
-  foundryApplication: ActorSheet;
-}) => {
+export const PartySheet = () => {
+  const { actor: party } = useActorSheetContext();
+
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
     runtimeConfig.themes["tealTheme"];
@@ -199,8 +196,6 @@ export const PartySheet = ({
           }}
         >
           <ImagePickle
-            subject={party}
-            application={foundryApplication}
             css={{
               height: "5em",
               width: "4em",

@@ -1,22 +1,19 @@
 import React, { useContext } from "react";
 
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { ThemeContext } from "../../themes/ThemeContext";
-import { AbilityItem } from "../../v10Types";
 import { Button } from "../inputs/Button";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 
-interface PushPoolButtonProps {
-  ability: AbilityItem;
-}
-
-export const PushPoolButton = ({ ability }: PushPoolButtonProps) => {
+export const PushPoolButton = () => {
+  const { item } = useItemSheetContext();
   const theme = useContext(ThemeContext);
 
   const handleClickPush = React.useCallback(() => {
-    void ability.push();
-  }, [ability]);
+    void item.push();
+  }, [item]);
 
   return (
     <InputGrid
