@@ -2,12 +2,11 @@ import { sortEntitiesByName } from "../../../functions/utilities";
 import { useActorSheetContext } from "../../../hooks/useSheetContexts";
 import { assertActiveCharacterActor } from "../../../v10Types";
 import { AbilitiesColumnMW } from "../AbilitiesColumnMW";
-import { useAbilities } from "../useAbilities";
 
 export const AbilitiesAreaMW = () => {
   const { actor } = useActorSheetContext();
   assertActiveCharacterActor(actor);
-  const { generalAbilities } = useAbilities(actor, true, false);
+  const { generalAbilities } = actor.getCategorizedAbilities(true, false);
 
   return (
     <div

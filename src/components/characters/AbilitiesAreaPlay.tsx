@@ -8,7 +8,6 @@ import { assertActiveCharacterActor } from "../../v10Types";
 import { AbilitySlugPlayNormal } from "./AbilitySlugPlayNormal";
 import { AbilitySlugPlayQuickShockInvestigative } from "./AbilitySlugPlayQuickShockInvestigative";
 import { NoAbilitiesNote } from "./NoAbilitiesNote";
-import { useAbilities } from "./useAbilities";
 
 type AbilitiesAreaPlayProps = {
   flipLeftRight?: boolean;
@@ -19,11 +18,8 @@ export const AbilitiesAreaPlay = ({
 }: AbilitiesAreaPlayProps) => {
   const { actor } = useActorSheetContext();
   assertActiveCharacterActor(actor);
-  const { investigativeAbilities, generalAbilities } = useAbilities(
-    actor,
-    true,
-    true,
-  );
+  const { investigativeAbilities, generalAbilities } =
+    actor.getCategorizedAbilities(true, true);
   const theme = useContext(ThemeContext);
 
   const pushPool = actor.getPushPool();
