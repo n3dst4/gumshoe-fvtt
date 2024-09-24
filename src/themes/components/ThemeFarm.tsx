@@ -4,11 +4,7 @@ import { runtimeConfig } from "../../runtime";
 import { TextInputTest } from "./TextInputTest";
 import { ThemeSwatch } from "./ThemeSwatch";
 
-type ThemeFarmProps = {
-  foundryApplication: Application;
-};
-
-export const ThemeFarm = ({ foundryApplication }: ThemeFarmProps) => {
+export const ThemeFarm = () => {
   return (
     <div
       css={{

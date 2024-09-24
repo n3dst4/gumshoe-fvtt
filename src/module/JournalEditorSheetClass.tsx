@@ -28,10 +28,7 @@ export class JournalEditorSheetClassBase extends JournalSheet {
 const render = (sheet: JournalEditorSheetClassBase) => {
   return (
     <Suspense>
-      <JournalEditorSheet
-        journalEntry={sheet.document}
-        foundryApplication={sheet}
-      />
+      <JournalEditorSheet />
     </Suspense>
   );
 };

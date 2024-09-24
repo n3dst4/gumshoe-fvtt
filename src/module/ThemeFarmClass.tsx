@@ -25,7 +25,7 @@ class ThemeFarmClassBase extends FormApplication {
 }
 
 const render = (sheet: ThemeFarmClassBase) => {
-  return <ThemeFarm foundryApplication={sheet} />;
+  return <ThemeFarm />;
 };
 
 export const ThemeFarmClass = ReactApplicationMixin(

@@ -33,6 +33,23 @@ export const useActorSheetContext = () => {
   return { app, actor };
 };
 
+export const useJournalSheetContext = () => {
+  const app = useContext(FoundryAppContext);
+  if (app === null) {
+    throw new Error(
+      "useJournalSheetContext must be used within a FoundryAppContext",
+    );
+  }
+  if (!(app instanceof JournalSheet)) {
+    throw new Error(
+      "useJournalSheetContext must be used within a JournalSheet",
+    );
+  }
+  const journalEntry = app.document as JournalEntry;
+
+  return { app, journalEntry };
+};
+
 export const useDocumentSheetContext = () => {
   const app = useContext(FoundryAppContext);
   if (app === null) {
