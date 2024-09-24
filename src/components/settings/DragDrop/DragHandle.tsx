@@ -10,12 +10,10 @@ type DragHandleProps = {
   listeners?: SyntheticListenerMap | undefined;
 };
 
-export const DragHandle = (
-  {
-    setActivatorNodeRef,
-    listeners
-  }: DragHandleProps
-) => {
+export const DragHandle = ({
+  setActivatorNodeRef,
+  listeners,
+}: DragHandleProps) => {
   const theme = useContext(ThemeContext);
 
   const gripColor = useMemo(

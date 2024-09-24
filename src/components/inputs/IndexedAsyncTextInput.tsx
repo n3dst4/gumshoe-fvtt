@@ -13,13 +13,11 @@ type IndexedAsyncTextInputProps = Omit<AsyncTextInputProps, "onChange"> & {
  * this is the same as AsyncTextInput, but with an index prop which will get
  * passed back to the onChange handler.
  */
-export const IndexedAsyncTextInput = (
-  {
-    index,
-    onChange,
-    ...props
-  }: IndexedAsyncTextInputProps
-) => {
+export const IndexedAsyncTextInput = ({
+  index,
+  onChange,
+  ...props
+}: IndexedAsyncTextInputProps) => {
   const handleChange = useCallback(
     (newValue: string) => {
       onChange(newValue, index);

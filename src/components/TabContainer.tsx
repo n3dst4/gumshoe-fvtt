@@ -25,12 +25,10 @@ type TabContainerProps = {
   defaultTab: string;
 };
 
-export const TabContainer = (
-  {
-    tabs: rawTabsDefs,
-    defaultTab
-  }: TabContainerProps
-) => {
+export const TabContainer = ({
+  tabs: rawTabsDefs,
+  defaultTab,
+}: TabContainerProps) => {
   const [selected, setSelected] = useState(defaultTab);
   const [optimistic, setOptimistic] = useState(defaultTab);
   const [pending, startTransition] = useTransition();

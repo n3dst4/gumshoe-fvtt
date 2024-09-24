@@ -17,15 +17,13 @@ import { AbilityRow } from "./AbilityRow";
 import { buildRowData, getSystemAbilities } from "./functions";
 import { isCategoryHeader, isTypeHeader, RowData } from "./types";
 
-export const PartySheet = (
-  {
-    foundryApplication,
-    party
-  }: {
-    party: InvestigatorActor;
-    foundryApplication: ActorSheet;
-  }
-) => {
+export const PartySheet = ({
+  foundryApplication,
+  party,
+}: {
+  party: InvestigatorActor;
+  foundryApplication: ActorSheet;
+}) => {
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
     runtimeConfig.themes["tealTheme"];

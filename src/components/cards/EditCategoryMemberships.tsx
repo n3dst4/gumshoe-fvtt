@@ -11,11 +11,9 @@ interface EditCategoryMembershipsProps {
   card: CardItem;
 }
 
-export const EditCategoryMemberships = (
-  {
-    card
-  }: EditCategoryMembershipsProps
-) => {
+export const EditCategoryMemberships = ({
+  card,
+}: EditCategoryMembershipsProps) => {
   const categories = settings.cardCategories.get();
 
   const handleChangeStyleKeyCategoryId = React.useCallback(

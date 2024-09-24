@@ -12,13 +12,11 @@ interface StringFieldSettingsProps {
   fieldId: string;
 }
 
-export const StringFieldSettings = (
-  {
-    field,
-    categoryId,
-    fieldId
-  }: StringFieldSettingsProps
-) => {
+export const StringFieldSettings = ({
+  field,
+  categoryId,
+  fieldId,
+}: StringFieldSettingsProps) => {
   const dispatch = useContext(DispatchContext);
 
   const handleChangeDefault = useCallback(

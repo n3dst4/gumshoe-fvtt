@@ -11,15 +11,13 @@ type AsyncTextAreaProps = {
   index?: number;
 };
 
-export const AsyncTextArea = (
-  {
-    className,
-    value,
-    onChange: onChangeOrig,
-    disabled,
-    index
-  }: AsyncTextAreaProps
-) => {
+export const AsyncTextArea = ({
+  className,
+  value,
+  onChange: onChangeOrig,
+  disabled,
+  index,
+}: AsyncTextAreaProps) => {
   const { onChange, onFocus, onBlur, display } = useAsyncUpdate(
     value,
     onChangeOrig,

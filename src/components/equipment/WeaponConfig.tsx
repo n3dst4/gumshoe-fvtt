@@ -19,11 +19,7 @@ type WeaponConfigProps = {
   weapon: InvestigatorItem;
 };
 
-export const WeaponConfig = (
-  {
-    weapon
-  }: WeaponConfigProps
-) => {
+export const WeaponConfig = ({ weapon }: WeaponConfigProps) => {
   assertGame(game);
   assertWeaponItem(weapon);
   const name = useAsyncUpdate(weapon.name || "", weapon.setName);

@@ -18,13 +18,11 @@ interface CompactNotesEditorProps {
  * format. Markdowm/plain are directly editable. Rich text just renders HTML
  * until clicked, then turns into a TinyMCE.
  */
-export const CompactNotesEditor = (
-  {
-    className,
-    note,
-    onChange: onSave
-  }: CompactNotesEditorProps
-) => {
+export const CompactNotesEditor = ({
+  className,
+  note,
+  onChange: onSave,
+}: CompactNotesEditorProps) => {
   const [liveHtml, setLiveHtml] = useState(note.html);
 
   const onChange = useCallback(

@@ -15,13 +15,7 @@ interface CombatantRowProps {
   index: number;
 }
 
-export const CombatantRow = (
-  {
-    turn,
-    combat,
-    index
-  }: CombatantRowProps
-) => {
+export const CombatantRow = ({ turn, combat, index }: CombatantRowProps) => {
   assertGame(game);
   const {
     onToggleDefeatedStatus,

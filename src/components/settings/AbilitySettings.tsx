@@ -15,13 +15,7 @@ import {
 } from "./SettingsGridField";
 import { Setters } from "./types";
 
-export const AbilitySettings = (
-  {
-    setters
-  }: {
-    setters: Setters;
-  }
-) => {
+export const AbilitySettings = ({ setters }: { setters: Setters }) => {
   assertGame(game);
   const { settings } = useContext(StateContext);
   const theme = useContext(ThemeContext);

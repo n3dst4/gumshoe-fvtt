@@ -25,11 +25,7 @@ type AbilityMainBitsProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilityMainBits = (
-  {
-    ability
-  }: AbilityMainBitsProps
-) => {
+export const AbilityMainBits = ({ ability }: AbilityMainBitsProps) => {
   assertAbilityItem(ability);
 
   const onClickRefresh = useCallback(() => {

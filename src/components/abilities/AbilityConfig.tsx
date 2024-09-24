@@ -25,11 +25,7 @@ type AbilityConfigProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilityConfig = (
-  {
-    ability
-  }: AbilityConfigProps
-) => {
+export const AbilityConfig = ({ ability }: AbilityConfigProps) => {
   assertGame(game);
   assertAbilityItem(ability);
   const isGeneral = isGeneralAbilityItem(ability);

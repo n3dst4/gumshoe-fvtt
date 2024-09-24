@@ -19,11 +19,7 @@ const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
   return { label, value: Number(label), enabled: true };
 });
 
-export const AbilityTest = (
-  {
-    ability
-  }: AbilityTestProps
-) => {
+export const AbilityTest = ({ ability }: AbilityTestProps) => {
   const theme = useContext(ThemeContext);
   const [spend, setSpend] = useState(0);
 

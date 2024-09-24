@@ -18,11 +18,7 @@ type SettingAreaProps = {
   actor: InvestigatorActor;
 };
 
-export const SettingArea = (
-  {
-    actor
-  }: SettingAreaProps
-) => {
+export const SettingArea = ({ actor }: SettingAreaProps) => {
   assertGame(game);
   assertPCActor(actor);
   const onSetTheme = useCallback(

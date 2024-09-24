@@ -5,17 +5,15 @@ import { GridField } from "../inputs/GridField";
 import { PersonalDetailSlug } from "./PersonalDetailSlug";
 import { Slug } from "./Slug";
 
-export const PersonalDetailField = (
-  {
-    actor,
-    name,
-    slotIndex
-  }: {
-    actor: InvestigatorActor;
-    name: string;
-    slotIndex: number;
-  }
-) => {
+export const PersonalDetailField = ({
+  actor,
+  name,
+  slotIndex,
+}: {
+  actor: InvestigatorActor;
+  name: string;
+  slotIndex: number;
+}) => {
   const personalDetailItems = actor.getPersonalDetailsInSlotIndex(slotIndex);
 
   return (

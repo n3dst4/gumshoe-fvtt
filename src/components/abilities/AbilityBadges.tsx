@@ -11,12 +11,7 @@ interface UnlockBadgesProps {
   className?: string;
 }
 
-export const AbilityBadges = (
-  {
-    ability,
-    className
-  }: UnlockBadgesProps
-) => {
+export const AbilityBadges = ({ ability, className }: UnlockBadgesProps) => {
   assertAbilityItem(ability);
   const situationalModifiers = ability.getVisibleSituationalModifiers();
   const unlocks = ability.getActiveUnlocks();

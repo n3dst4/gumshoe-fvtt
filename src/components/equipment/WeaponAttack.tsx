@@ -35,11 +35,7 @@ const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
   return { label, value: Number(label), enabled: true };
 });
 
-export const WeaponAttack = (
-  {
-    weapon
-  }: WeaponAttackProps
-) => {
+export const WeaponAttack = ({ weapon }: WeaponAttackProps) => {
   assertWeaponItem(weapon);
   const [spend, setSpend] = useState(0);
   const [bonusPool, setBonusPool] = useState(0);

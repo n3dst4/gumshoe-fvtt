@@ -17,19 +17,17 @@ type TextInputProps = {
   validation?: ValidationResult;
 };
 
-export const TextInput = (
-  {
-    className,
-    value,
-    defaultValue,
-    onChange,
-    onFocus,
-    onBlur,
-    disabled,
-    placeholder,
-    validation
-  }: TextInputProps
-) => {
+export const TextInput = ({
+  className,
+  value,
+  defaultValue,
+  onChange,
+  onFocus,
+  onBlur,
+  disabled,
+  placeholder,
+  validation,
+}: TextInputProps) => {
   const id = useContext(IdContext);
 
   const onChangeCb = useCallback(

@@ -9,12 +9,7 @@ type SortableRowProps = PropsWithChildren<{
   id: string;
 }>;
 
-export const SortableRow = (
-  {
-    children,
-    id
-  }: SortableRowProps
-) => {
+export const SortableRow = ({ children, id }: SortableRowProps) => {
   const {
     attributes,
     listeners,

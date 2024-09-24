@@ -12,14 +12,12 @@ interface OrphanedFieldProps {
 
 const gridRowsPerField = 3;
 
-export const OrphanedField = (
-  {
-    fieldId,
-    index,
-    fieldValue,
-    onDelete
-  }: OrphanedFieldProps
-) => {
+export const OrphanedField = ({
+  fieldId,
+  index,
+  fieldValue,
+  onDelete,
+}: OrphanedFieldProps) => {
   return (
     <Fragment key={fieldId}>
       <b

@@ -20,11 +20,7 @@ type WeaponRowProps = {
   weapon: InvestigatorItem;
 };
 
-export const WeaponRow = (
-  {
-    weapon
-  }: WeaponRowProps
-) => {
+export const WeaponRow = ({ weapon }: WeaponRowProps) => {
   assertWeaponItem(weapon);
 
   const app = useContext(FoundryAppContext);

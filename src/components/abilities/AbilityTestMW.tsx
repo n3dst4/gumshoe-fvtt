@@ -14,11 +14,7 @@ type AbilityTestMWProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilityTestMW = (
-  {
-    ability
-  }: AbilityTestMWProps
-) => {
+export const AbilityTestMW = ({ ability }: AbilityTestMWProps) => {
   assertGeneralAbilityItem(ability);
   const theme = useContext(ThemeContext);
   const [difficulty, setDifficulty] = useState<MWDifficulty>(0);

@@ -8,11 +8,7 @@ interface AbilitiesColumnMWProps {
   abilities: InvestigatorItem[];
 }
 
-export const AbilitiesColumnMW = (
-  {
-    abilities
-  }: AbilitiesColumnMWProps
-) => {
+export const AbilitiesColumnMW = ({ abilities }: AbilitiesColumnMWProps) => {
   return (
     <div
       css={{

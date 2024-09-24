@@ -33,8 +33,6 @@ const Fallback = () => {
   );
 };
 
-export const Suspense = (
-  {
-    children
-  }: PropsWithChildren
-) => (<React.Suspense fallback={<Fallback />}>{children}</React.Suspense>);
+export const Suspense = ({ children }: PropsWithChildren) => (
+  <React.Suspense fallback={<Fallback />}>{children}</React.Suspense>
+);

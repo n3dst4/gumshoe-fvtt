@@ -12,12 +12,10 @@ interface CategorizedCardArrayCategoryProps {
   cards: CardItem[];
 }
 
-export const CategorizedCardArrayCategory = (
-  {
-    category,
-    cards
-  }: CategorizedCardArrayCategoryProps
-) => {
+export const CategorizedCardArrayCategory = ({
+  category,
+  cards,
+}: CategorizedCardArrayCategoryProps) => {
   const theme = useContext(ThemeContext);
   const [summary, isOverGoal, isOverLimit] = summarizeCategoryCards(
     cards,

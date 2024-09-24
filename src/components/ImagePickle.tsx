@@ -23,13 +23,11 @@ type ImagePickleProps = {
   className?: string;
 };
 
-export const ImagePickle = (
-  {
-    subject,
-    application,
-    className
-  }: ImagePickleProps
-) => {
+export const ImagePickle = ({
+  subject,
+  application,
+  className,
+}: ImagePickleProps) => {
   const [showOverlay, setShowOverlay] = useState(false);
   const theme = useContext(ThemeContext);
   assertGame(game);

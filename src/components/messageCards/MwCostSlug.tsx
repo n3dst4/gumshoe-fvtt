@@ -3,11 +3,7 @@ type MwCostSlugProps = {
   children: ReactNode;
 };
 
-export const MwCostSlug = (
-  {
-    children
-  }: MwCostSlugProps
-) => {
+export const MwCostSlug = ({ children }: MwCostSlugProps) => {
   return (
     <span
       css={{

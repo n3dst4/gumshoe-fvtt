@@ -6,12 +6,7 @@ type DiceTermsProps = {
   parp?: DiceTerm;
 };
 
-export const DiceTerms = (
-  {
-    terms = [],
-    className
-  }: DiceTermsProps
-) => {
+export const DiceTerms = ({ terms = [], className }: DiceTermsProps) => {
   return (
     <span
       className={className}

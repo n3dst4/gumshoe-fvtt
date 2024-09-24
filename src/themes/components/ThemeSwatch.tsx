@@ -7,11 +7,7 @@ type ThemeSwatchProps = {
   theme: ThemeV1;
 };
 
-export const ThemeSwatch = (
-  {
-    theme
-  }: ThemeSwatchProps
-) => {
+export const ThemeSwatch = ({ theme }: ThemeSwatchProps) => {
   return (
     <div
       css={{

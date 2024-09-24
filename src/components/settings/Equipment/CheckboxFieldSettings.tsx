@@ -12,13 +12,11 @@ interface CheckboxFieldSettingsProps {
   fieldId: string;
 }
 
-export const CheckboxFieldSettings = (
-  {
-    field,
-    categoryId,
-    fieldId
-  }: CheckboxFieldSettingsProps
-) => {
+export const CheckboxFieldSettings = ({
+  field,
+  categoryId,
+  fieldId,
+}: CheckboxFieldSettingsProps) => {
   const dispatch = useContext(DispatchContext);
 
   const handleChangeDefault = useCallback(

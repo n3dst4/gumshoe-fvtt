@@ -25,17 +25,15 @@ export interface NotesEditorWithControlsProps {
   title?: string;
 }
 
-export const NotesEditorWithControls = (
-  {
-    source: origSource,
-    html: origHtml,
-    format: origFormat,
-    onSave,
-    className,
-    allowChangeFormat,
-    title
-  }: NotesEditorWithControlsProps
-) => {
+export const NotesEditorWithControls = ({
+  source: origSource,
+  html: origHtml,
+  format: origFormat,
+  onSave,
+  className,
+  allowChangeFormat,
+  title,
+}: NotesEditorWithControlsProps) => {
   assertGame(game);
   const [editMode, setEditMode] = useState(false);
   const [showSource, setShowSource] = useState(false);

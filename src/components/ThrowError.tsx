@@ -4,11 +4,7 @@ interface ThrowErrorProps {
   message: string;
 }
 
-export const ThrowError = (
-  {
-    message
-  }: ThrowErrorProps
-) => {
+export const ThrowError = ({ message }: ThrowErrorProps) => {
   throw new Error(message);
 };
 

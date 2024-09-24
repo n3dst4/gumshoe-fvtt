@@ -17,11 +17,7 @@ interface CoreSettingsProps {
   setters: Setters;
 }
 
-export const CoreSettings = (
-  {
-    setters
-  }: CoreSettingsProps
-) => {
+export const CoreSettings = ({ setters }: CoreSettingsProps) => {
   const presets = runtimeConfig.presets;
   const { settings } = useContext(StateContext);
   const dispatch = useContext(DispatchContext);

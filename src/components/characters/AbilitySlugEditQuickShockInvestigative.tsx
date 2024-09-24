@@ -11,11 +11,9 @@ type AbilitySlugEditQuickShockInvestigativeProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilitySlugEditQuickShockInvestigative = (
-  {
-    ability
-  }: AbilitySlugEditQuickShockInvestigativeProps
-) => {
+export const AbilitySlugEditQuickShockInvestigative = ({
+  ability,
+}: AbilitySlugEditQuickShockInvestigativeProps) => {
   assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(

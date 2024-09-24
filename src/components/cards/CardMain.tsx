@@ -19,11 +19,7 @@ interface CardMainProps {
   card: InvestigatorItem;
 }
 
-export const CardMain = (
-  {
-    card
-  }: CardMainProps
-) => {
+export const CardMain = ({ card }: CardMainProps) => {
   assertCardItem(card);
 
   const categoryText = summarizeCategoryMemberships(

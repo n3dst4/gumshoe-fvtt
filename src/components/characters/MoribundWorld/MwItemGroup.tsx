@@ -15,15 +15,13 @@ interface MwItemGroupProps {
   onDragStart: (e: React.DragEvent<HTMLAnchorElement>) => void;
 }
 
-export const MwItemGroup = (
-  {
-    actor,
-    items,
-    onDragStart,
-    name,
-    mwType
-  }: MwItemGroupProps
-) => {
+export const MwItemGroup = ({
+  actor,
+  items,
+  onDragStart,
+  name,
+  mwType,
+}: MwItemGroupProps) => {
   const theme = useContext(ThemeContext);
   return (
     <div

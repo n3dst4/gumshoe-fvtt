@@ -16,13 +16,11 @@ function normalizeCategory(category: string) {
  * want to provide more content woth sorting options, use a samll wrapper
  * component which calls useToolbarContent.
  */
-export const MagicToolbar = (
-  {
-    children,
-    categories,
-    childrenCategory
-  }: MagicToolbarProps
-) => {
+export const MagicToolbar = ({
+  children,
+  categories,
+  childrenCategory,
+}: MagicToolbarProps) => {
   // get all the content that's been registered, and group them by category
   const registeredContent = Object.values(
     useContext(MagicToolbarContentContext),

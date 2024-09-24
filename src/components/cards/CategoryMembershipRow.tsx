@@ -13,13 +13,11 @@ interface CategoryMembershipRowProps {
   index: number;
 }
 
-export const CategoryMembershipRow = (
-  {
-    category,
-    card,
-    index
-  }: CategoryMembershipRowProps
-) => {
+export const CategoryMembershipRow = ({
+  category,
+  card,
+  index,
+}: CategoryMembershipRowProps) => {
   const membership = card.system.cardCategoryMemberships.find(
     (m) => m.categoryId === category.id,
   );

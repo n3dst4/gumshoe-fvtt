@@ -12,11 +12,7 @@ type NotesAreaProps = {
   actor: InvestigatorActor;
 };
 
-export const NotesArea = (
-  {
-    actor
-  }: NotesAreaProps
-) => {
+export const NotesArea = ({ actor }: NotesAreaProps) => {
   const longNotesNames = settings.longNotes.get();
 
   const updateLongNote = useCallback(

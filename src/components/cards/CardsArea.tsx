@@ -22,11 +22,7 @@ interface CardsAreaProps {
 
 const settingsDirection = createDirection("settings");
 
-export const CardsArea = (
-  {
-    actor
-  }: CardsAreaProps
-) => {
+export const CardsArea = ({ actor }: CardsAreaProps) => {
   assertPCActor(actor);
   const allCards = actor.items.filter((item) => isCardItem(item));
 

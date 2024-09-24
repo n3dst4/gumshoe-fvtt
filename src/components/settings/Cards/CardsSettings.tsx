@@ -15,11 +15,7 @@ interface CardsSettingsProps {
   setters: Setters;
 }
 
-export const CardsSettings = (
-  {
-    setters
-  }: CardsSettingsProps
-) => {
+export const CardsSettings = ({ setters }: CardsSettingsProps) => {
   const { settings } = useContext(StateContext);
 
   const handleChangeUseCards = useCallback(

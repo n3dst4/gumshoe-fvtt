@@ -12,12 +12,10 @@ type PersonalDetailsListEditProps = {
   onChange: (value: PersonalDetail[]) => void;
 };
 
-export const PersonalDetailsListEdit = (
-  {
-    personalDetails,
-    onChange
-  }: PersonalDetailsListEditProps
-) => {
+export const PersonalDetailsListEdit = ({
+  personalDetails,
+  onChange,
+}: PersonalDetailsListEditProps) => {
   const handleTextInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!e.currentTarget.dataset["index"]) {

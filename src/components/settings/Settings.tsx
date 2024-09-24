@@ -28,11 +28,7 @@ type SettingsProps = {
   foundryApplication: Application;
 };
 
-export const Settings = (
-  {
-    foundryApplication
-  }: SettingsProps
-) => {
+export const Settings = ({ foundryApplication }: SettingsProps) => {
   assertGame(game);
   const { tempState, setters, tempStateRef, dispatch, isDirty, modify } =
     useSettingsState();

@@ -8,11 +8,7 @@ type MwItemAreaProps = {
   actor: InvestigatorActor;
 };
 
-export const MwItemArea = (
-  {
-    actor
-  }: MwItemAreaProps
-) => {
+export const MwItemArea = ({ actor }: MwItemAreaProps) => {
   const app = useContext(FoundryAppContext);
 
   const onDragStart = useCallback(

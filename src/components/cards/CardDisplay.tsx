@@ -17,15 +17,13 @@ interface CardDisplayProps {
   onDragStart?: (event: React.DragEvent<HTMLElement>) => void;
 }
 
-export const CardDisplay = (
-  {
-    card,
-    className,
-    viewMode,
-    draggable,
-    onDragStart
-  }: CardDisplayProps
-) => {
+export const CardDisplay = ({
+  card,
+  className,
+  viewMode,
+  draggable,
+  onDragStart,
+}: CardDisplayProps) => {
   assertCardItem(card);
   const theme = useContext(ThemeContext);
   const [descriptionHTML, setDescriptionHTML] = useState("");

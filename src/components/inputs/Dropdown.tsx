@@ -35,16 +35,14 @@ type DropdownProps = {
 
 const duration = 300;
 
-export const Dropdown = (
-  {
-    children,
-    label,
-    showArrow = true,
-    style,
-    role,
-    className
-  }: PropsWithChildren<DropdownProps>
-) => {
+export const Dropdown = ({
+  children,
+  label,
+  showArrow = true,
+  style,
+  role,
+  className,
+}: PropsWithChildren<DropdownProps>) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = useCallback(() => setIsOpen(false), []);
   const dropdownRef = useRef<HTMLDivElement>(null);

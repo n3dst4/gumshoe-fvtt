@@ -8,11 +8,7 @@ type SpecialityListProps = {
   ability: InvestigatorItem;
 };
 
-export const SpecialityList = (
-  {
-    ability
-  }: SpecialityListProps
-) => {
+export const SpecialityList = ({ ability }: SpecialityListProps) => {
   assertAbilityItem(ability);
   const updateSpecialities = useCallback(
     (newVal: string, index: number) => {

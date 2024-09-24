@@ -14,13 +14,11 @@ type IndexedNotesEditorWithControlsProps = Omit<
   onSave: (note: NoteWithFormat, index: number) => void;
 };
 
-export const IndexedNotesEditorWithControls = (
-  {
-    index,
-    onSave,
-    ...rest
-  }: IndexedNotesEditorWithControlsProps
-) => {
+export const IndexedNotesEditorWithControls = ({
+  index,
+  onSave,
+  ...rest
+}: IndexedNotesEditorWithControlsProps) => {
   const handleSave = useCallback(
     (note: NoteWithFormat) => {
       onSave(note, index);

@@ -16,11 +16,7 @@ interface EquipmentConfigProps {
   equipment: InvestigatorItem;
 }
 
-export const EquipmentConfig = (
-  {
-    equipment
-  }: EquipmentConfigProps
-) => {
+export const EquipmentConfig = ({ equipment }: EquipmentConfigProps) => {
   assertEquipmentItem(equipment);
 
   const onClickDelete = useCallback(async () => {

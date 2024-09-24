@@ -15,12 +15,10 @@ type EquipmentSheetProps = {
   application: ItemSheet;
 };
 
-export const EquipmentSheet = (
-  {
-    equipment,
-    application
-  }: EquipmentSheetProps
-) => {
+export const EquipmentSheet = ({
+  equipment,
+  application,
+}: EquipmentSheetProps) => {
   assertEquipmentItem(equipment);
   const name = useAsyncUpdate(equipment.name || "", equipment.setName);
 

@@ -14,12 +14,7 @@ type MwButtonProps = {
 
 const basicShadow = "0 0 0.5em 0 #0007";
 
-export const MwButton = (
-  {
-    onClick: onClickProp,
-    deets
-  }: MwButtonProps
-) => {
+export const MwButton = ({ onClick: onClickProp, deets }: MwButtonProps) => {
   const { hover, onMouseEnter, onMouseLeave } = useHover();
 
   const style: CSSObject = {

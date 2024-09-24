@@ -8,13 +8,11 @@ type PoolCheckboxProps = {
   onClick: (value: number) => void;
 };
 
-export const PoolCheckbox = (
-  {
-    value,
-    selected,
-    onClick: onClickProp
-  }: PoolCheckboxProps
-) => {
+export const PoolCheckbox = ({
+  value,
+  selected,
+  onClick: onClickProp,
+}: PoolCheckboxProps) => {
   const onClick = useCallback(() => {
     onClickProp(value);
   }, [onClickProp, value]);

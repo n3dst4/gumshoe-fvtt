@@ -44,16 +44,14 @@ const textBearerStyle: CSSObject = {
  * It's is marked RESOLVED, I've tested in nightly (as of 2021-07-28) and it
  * seems okay, so I'm not going to sweat it.
  */
-export const LogoEditable = (
-  {
-    className,
-    mainText,
-    subText,
-    defaultSubText = "",
-    onChangeMainText,
-    onChangeSubText
-  }: LogoEditableProps
-) => {
+export const LogoEditable = ({
+  className,
+  mainText,
+  subText,
+  defaultSubText = "",
+  onChangeMainText,
+  onChangeSubText,
+}: LogoEditableProps) => {
   const theme = useContext(ThemeContext);
 
   const textStyle: CSSObject = {
@@ -89,7 +87,7 @@ export const LogoEditable = (
 
   return (
     // outer - set the transform origin
-    (<div
+    <div
       className={`logo ${className}`}
       css={{
         display: "block",
@@ -195,6 +193,6 @@ export const LogoEditable = (
           )}
         </div>
       </div>
-    </div>)
+    </div>
   );
 };

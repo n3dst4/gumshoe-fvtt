@@ -13,12 +13,7 @@ type WeaponSheetProps = {
   application: ItemSheet;
 };
 
-export const WeaponSheet = (
-  {
-    weapon,
-    application
-  }: WeaponSheetProps
-) => {
+export const WeaponSheet = ({ weapon, application }: WeaponSheetProps) => {
   return (
     <ItemSheetFramework
       supertitle={<Translate>Weapon</Translate>}

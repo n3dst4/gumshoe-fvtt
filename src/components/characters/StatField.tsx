@@ -10,13 +10,7 @@ interface StatFieldProps {
   id: string;
 }
 
-export const StatField = (
-  {
-    stat,
-    actor,
-    id
-  }: StatFieldProps
-) => {
+export const StatField = ({ stat, actor, id }: StatFieldProps) => {
   assertActiveCharacterActor(actor);
   const onChange = useCallback(
     (newVal: number) => {

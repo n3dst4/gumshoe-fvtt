@@ -10,11 +10,9 @@ type AbilityMwExtraFieldsProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilityMwExtraFields = (
-  {
-    ability
-  }: AbilityMwExtraFieldsProps
-) => {
+export const AbilityMwExtraFields = ({
+  ability,
+}: AbilityMwExtraFieldsProps) => {
   assertGeneralAbilityItem(ability);
 
   return (

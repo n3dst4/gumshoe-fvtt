@@ -9,11 +9,7 @@ interface CategorizedCardArrayProps {
   cards: CardItem[];
 }
 
-export const CategorizedCardArray = (
-  {
-    cards
-  }: CategorizedCardArrayProps
-) => {
+export const CategorizedCardArray = ({ cards }: CategorizedCardArrayProps) => {
   const categories = settings.cardCategories.get();
   const [categoriesMap, uncategorized] = categorizeCards(cards, categories);
 

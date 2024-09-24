@@ -15,11 +15,7 @@ interface PersonalDetailMainProps {
   item: InvestigatorItem;
 }
 
-export const PersonalDetailMain = (
-  {
-    item
-  }: PersonalDetailMainProps
-) => {
+export const PersonalDetailMain = ({ item }: PersonalDetailMainProps) => {
   assertGame(game);
   assertPersonalDetailItem(item);
   const name = item.name;

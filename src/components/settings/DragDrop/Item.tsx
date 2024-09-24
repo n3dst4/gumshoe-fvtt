@@ -4,11 +4,7 @@ type ItemProps = {
   id: string | null;
 };
 
-export const Item = (
-  {
-    id
-  }: ItemProps
-) => {
+export const Item = ({ id }: ItemProps) => {
   return (
     <>
       <div>Item {id}</div>

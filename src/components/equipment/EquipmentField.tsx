@@ -14,14 +14,12 @@ interface EquipmentFieldProps {
   equipment: InvestigatorItem;
 }
 
-export const EquipmentField = (
-  {
-    fieldId,
-    fieldMetadata,
-    value,
-    equipment
-  }: EquipmentFieldProps
-) => {
+export const EquipmentField = ({
+  fieldId,
+  fieldMetadata,
+  value,
+  equipment,
+}: EquipmentFieldProps) => {
   const onChange = useCallback(
     (newValue: string | number | boolean) => {
       void equipment.setField(fieldId, newValue);

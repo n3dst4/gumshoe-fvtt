@@ -8,13 +8,11 @@ type CombatAbilityDropDownProps = {
   className?: string;
 };
 
-export const CombatAbilityDropDown = (
-  {
-    value,
-    onChange: onChangeOrig,
-    className
-  }: CombatAbilityDropDownProps
-) => {
+export const CombatAbilityDropDown = ({
+  value,
+  onChange: onChangeOrig,
+  className,
+}: CombatAbilityDropDownProps) => {
   // spread here because settings are read-only and .sort() mutates the array
   const combatAbilities = [...settings.combatAbilities.get()].sort();
 

@@ -22,11 +22,7 @@ interface PageEditorProps {
  * Handles the edit area for any page. Delegates to the appropriate editor for
  * the content type.
  */
-export const PageEditor = (
-  {
-    page
-  }: PageEditorProps
-) => {
+export const PageEditor = ({ page }: PageEditorProps) => {
   // optimize toolbar rendering by putting page in a ref so the callbacks are
   // all stable
   const pageRef = useRefStash(page);

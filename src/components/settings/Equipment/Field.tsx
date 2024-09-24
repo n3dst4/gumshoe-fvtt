@@ -28,14 +28,7 @@ interface FieldProps {
   idx: number;
 }
 
-export const Field = (
-  {
-    field,
-    categoryId,
-    fieldId,
-    idx
-  }: FieldProps
-) => {
+export const Field = ({ field, categoryId, fieldId, idx }: FieldProps) => {
   const theme = useContext(ThemeContext);
   const dispatch = useContext(DispatchContext);
   const {

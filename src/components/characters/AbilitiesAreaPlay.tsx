@@ -15,12 +15,10 @@ type AbilitiesAreaPlayProps = {
   flipLeftRight?: boolean;
 };
 
-export const AbilitiesAreaPlay = (
-  {
-    actor,
-    flipLeftRight
-  }: AbilitiesAreaPlayProps
-) => {
+export const AbilitiesAreaPlay = ({
+  actor,
+  flipLeftRight,
+}: AbilitiesAreaPlayProps) => {
   assertActiveCharacterActor(actor);
   const { investigativeAbilities, generalAbilities } = useAbilities(
     actor,

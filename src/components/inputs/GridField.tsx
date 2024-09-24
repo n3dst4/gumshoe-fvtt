@@ -18,20 +18,18 @@ type GridFieldProps = {
   labelStyle?: CSSObject;
 };
 
-export const GridField = (
-  {
-    label,
-    className,
-    children,
-    noLabel = false,
-    noTranslate = false,
-    labelTitle,
-    onDragOver,
-    onDragEnd,
-    onDrop,
-    labelStyle
-  }: GridFieldProps
-) => {
+export const GridField = ({
+  label,
+  className,
+  children,
+  noLabel = false,
+  noTranslate = false,
+  labelTitle,
+  onDragOver,
+  onDragEnd,
+  onDrop,
+  labelStyle,
+}: GridFieldProps) => {
   const id = useMemo(() => nanoid(), []);
   return (
     <IdContext.Provider value={id}>

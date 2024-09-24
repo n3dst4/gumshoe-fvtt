@@ -18,12 +18,10 @@ type AbilitiesAreaEditProps = {
   npcMode?: boolean;
 };
 
-export const AbilitiesAreaEdit = (
-  {
-    actor,
-    npcMode = false
-  }: AbilitiesAreaEditProps
-) => {
+export const AbilitiesAreaEdit = ({
+  actor,
+  npcMode = false,
+}: AbilitiesAreaEditProps) => {
   assertActiveCharacterActor(actor);
   const theme = useContext(ThemeContext);
   const { investigativeAbilities, generalAbilities } = useAbilities(

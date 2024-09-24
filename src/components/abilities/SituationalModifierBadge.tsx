@@ -9,12 +9,10 @@ interface SituationalModifierBadgeProps {
   ability: InvestigatorItem;
 }
 
-export const SituationalModifierBadge = (
-  {
-    situationalModifier: { situation, modifier, id },
-    ability
-  }: SituationalModifierBadgeProps
-) => {
+export const SituationalModifierBadge = ({
+  situationalModifier: { situation, modifier, id },
+  ability,
+}: SituationalModifierBadgeProps) => {
   const theme = useContext(ThemeContext);
   const isActive = ability.isSituationalModifierActive(id);
   return (

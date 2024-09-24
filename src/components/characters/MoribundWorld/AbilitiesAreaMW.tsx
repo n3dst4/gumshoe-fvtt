@@ -10,11 +10,7 @@ type AbilitiesAreaMWProps = {
   actor: InvestigatorActor;
 };
 
-export const AbilitiesAreaMW = (
-  {
-    actor
-  }: AbilitiesAreaMWProps
-) => {
+export const AbilitiesAreaMW = ({ actor }: AbilitiesAreaMWProps) => {
   assertActiveCharacterActor(actor);
   const { generalAbilities } = useAbilities(actor, true, false);
 

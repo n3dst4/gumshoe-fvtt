@@ -15,11 +15,7 @@ type CategoryDangerZoneProps = {
   id: string;
 };
 
-export const CategoryDangerZone = (
-  {
-    id
-  }: CategoryDangerZoneProps
-) => {
+export const CategoryDangerZone = ({ id }: CategoryDangerZoneProps) => {
   const dispatch = useContext(DispatchContext);
   const { navigate } = useNavigationContext();
 

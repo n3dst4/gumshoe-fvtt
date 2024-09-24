@@ -14,11 +14,9 @@ type AbilitySlugPlayNormalProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilitySlugPlayNormal = (
-  {
-    ability
-  }: AbilitySlugPlayNormalProps
-) => {
+export const AbilitySlugPlayNormal = ({
+  ability,
+}: AbilitySlugPlayNormalProps) => {
   assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(

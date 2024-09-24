@@ -41,12 +41,7 @@ function getTopAreaContent(ability: InvestigatorItem) {
   }
 }
 
-export const AbilitySheet = (
-  {
-    ability,
-    application
-  }: AbilitySheetProps
-) => {
+export const AbilitySheet = ({ ability, application }: AbilitySheetProps) => {
   const isGeneral = isGeneralAbilityItem(ability);
 
   return (

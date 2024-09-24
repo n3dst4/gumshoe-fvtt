@@ -24,11 +24,7 @@ const SAVE_DEBOUNCE_MS = 600;
 /**
  * The actual Monaco-based HTML editor.
  */
-export const HTMLEditor = (
-  {
-    page
-  }: HTMLEditorProps
-) => {
+export const HTMLEditor = ({ page }: HTMLEditorProps) => {
   const monacoRef = useRef<Monaco | null>(null);
   const editorRef = useRef<IStandalonCodeEditor | null>(null);
 

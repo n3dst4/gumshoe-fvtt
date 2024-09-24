@@ -42,19 +42,17 @@ function squirtTextIntoTextarea(
  * Simple synchronous <textarea> which understand's foundry's droppable link
  * magic.
  */
-export const TextArea = (
-  {
-    className,
-    value,
-    defaultValue,
-    onChange,
-    onFocus,
-    onBlur,
-    disabled,
-    placeholder,
-    index
-  }: TextAreaProps
-) => {
+export const TextArea = ({
+  className,
+  value,
+  defaultValue,
+  onChange,
+  onFocus,
+  onBlur,
+  disabled,
+  placeholder,
+  index,
+}: TextAreaProps) => {
   const id = useContext(IdContext);
 
   const onChangeCb = useCallback(

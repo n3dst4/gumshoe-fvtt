@@ -12,12 +12,10 @@ interface PersonalDetailSheetProps {
   personalDetail: InvestigatorItem;
 }
 
-export const PersonalDetailSheet = (
-  {
-    personalDetail,
-    application
-  }: PersonalDetailSheetProps
-) => {
+export const PersonalDetailSheet = ({
+  personalDetail,
+  application,
+}: PersonalDetailSheetProps) => {
   assertPersonalDetailItem(personalDetail);
 
   return (

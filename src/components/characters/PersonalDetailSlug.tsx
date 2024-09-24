@@ -8,11 +8,7 @@ interface PersonalDetailSlugProps {
   item: InvestigatorItem;
 }
 
-export const PersonalDetailSlug = (
-  {
-    item
-  }: PersonalDetailSlugProps
-) => {
+export const PersonalDetailSlug = ({ item }: PersonalDetailSlugProps) => {
   assertPersonalDetailItem(item);
 
   return (

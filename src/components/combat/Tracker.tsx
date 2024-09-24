@@ -154,7 +154,7 @@ export const Tracker = () => {
   // }
 
   return (
-    (<Fragment>
+    <Fragment>
       {/* TOP ROW: + < Encounter 2/3 > X */}
       <header id="combat-round" className="combat-tracker-header">
         {game.user.isGM && (
@@ -248,9 +248,9 @@ export const Tracker = () => {
             </Fragment>
           ) : (
             // encounter-title noborder
-            (<h3 className="encounter-title noborder">
+            <h3 className="encounter-title noborder">
               {localize("COMBAT.None")}
-            </h3>)
+            </h3>
           )}
 
           {game.user.isGM && (
@@ -384,6 +384,6 @@ export const Tracker = () => {
             ))}
         </nav>
       )}
-    </Fragment>)
+    </Fragment>
   );
 };

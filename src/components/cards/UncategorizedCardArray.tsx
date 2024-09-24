@@ -11,11 +11,9 @@ interface UncategorizedCardArrayProps {
   cards: CardItem[];
 }
 
-export const UncategorizedCardArray = (
-  {
-    cards
-  }: UncategorizedCardArrayProps
-) => {
+export const UncategorizedCardArray = ({
+  cards,
+}: UncategorizedCardArrayProps) => {
   const categories = settings.cardCategories.get();
   const [categorizedCards, uncategorized] = categorizeCards(cards, categories);
   const theme = useContext(ThemeContext);

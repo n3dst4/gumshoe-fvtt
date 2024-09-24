@@ -17,12 +17,7 @@ type WeaponRowEditProps = {
   index: number;
 };
 
-export const WeaponRowEdit = (
-  {
-    weapon,
-    index
-  }: WeaponRowEditProps
-) => {
+export const WeaponRowEdit = ({ weapon, index }: WeaponRowEditProps) => {
   assertWeaponItem(weapon);
 
   const theme = useContext(ThemeContext);

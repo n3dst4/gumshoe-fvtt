@@ -16,12 +16,10 @@ interface CardsAreaSettingsSheetProps {
   onChangeSettings: (settings: Partial<CardsAreaSettings>) => void;
 }
 
-export const CardsAreaSettingsSheet = (
-  {
-    settings,
-    onChangeSettings
-  }: CardsAreaSettingsSheetProps
-) => {
+export const CardsAreaSettingsSheet = ({
+  settings,
+  onChangeSettings,
+}: CardsAreaSettingsSheetProps) => {
   return (
     <InputGrid>
       <GridField label="Categories">

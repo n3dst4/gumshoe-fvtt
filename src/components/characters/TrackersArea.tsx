@@ -8,11 +8,7 @@ type TrackersAreaProps = {
   actor: InvestigatorActor;
 };
 
-export const TrackersArea = (
-  {
-    actor
-  }: TrackersAreaProps
-) => {
+export const TrackersArea = ({ actor }: TrackersAreaProps) => {
   const abilities = actor.getTrackerAbilities().toSorted((a, b) => {
     const aIsPushPool = isGeneralAbilityItem(a) && a.system.isPushPool;
     const bIsPushPool = isGeneralAbilityItem(b) && b.system.isPushPool;

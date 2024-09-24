@@ -10,11 +10,7 @@ type EquipmentAreaProps = {
   actor: InvestigatorActor;
 };
 
-export const EquipmentArea = (
-  {
-    actor
-  }: EquipmentAreaProps
-) => {
+export const EquipmentArea = ({ actor }: EquipmentAreaProps) => {
   const items = actor.getEquipment();
   const categories = settings.equipmentCategories.get();
 

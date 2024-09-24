@@ -18,11 +18,7 @@ const columndWidths: Record<CardsColumnWidth, string> = {
   full: "100%",
 };
 
-export const CardArray = (
-  {
-    cards
-  }: CardArrayProps
-) => {
+export const CardArray = ({ cards }: CardArrayProps) => {
   const theme = useContext(ThemeContext);
   const { columnWidth: columnWidthSetting } = useContext(
     CardsAreaSettingsContext,

@@ -18,12 +18,7 @@ type CardSheetProps = {
   application: ItemSheet;
 };
 
-export const CardSheet = (
-  {
-    card,
-    application
-  }: CardSheetProps
-) => {
+export const CardSheet = ({ card, application }: CardSheetProps) => {
   assertCardItem(card);
 
   const handleClickDiscard = React.useCallback(async () => {

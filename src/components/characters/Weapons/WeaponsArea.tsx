@@ -11,11 +11,7 @@ type WeaponsAreaProps = {
   actor: InvestigatorActor;
 };
 
-export const WeaponsArea = (
-  {
-    actor
-  }: WeaponsAreaProps
-) => {
+export const WeaponsArea = ({ actor }: WeaponsAreaProps) => {
   const items = actor.getWeapons();
   return (
     <div>

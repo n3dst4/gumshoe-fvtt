@@ -11,11 +11,7 @@ interface PushPoolButtonProps {
   ability: AbilityItem;
 }
 
-export const PushPoolButton = (
-  {
-    ability
-  }: PushPoolButtonProps
-) => {
+export const PushPoolButton = ({ ability }: PushPoolButtonProps) => {
   const theme = useContext(ThemeContext);
 
   const handleClickPush = React.useCallback(() => {

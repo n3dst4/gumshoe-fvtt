@@ -11,13 +11,7 @@ import { ImportExport } from "./ImportExport";
 import { SettingsGridField } from "./SettingsGridField";
 import { Setters } from "./types";
 
-export const MiscSettings = (
-  {
-    setters
-  }: {
-    setters: Setters;
-  }
-) => {
+export const MiscSettings = ({ setters }: { setters: Setters }) => {
   const isDevMode = getDevMode();
 
   let idx = 0;

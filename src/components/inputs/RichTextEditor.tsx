@@ -21,14 +21,12 @@ type TinyMceEditor = Awaited<ReturnType<typeof TextEditor.create>>;
  * reacty controls in that it triggers onChange whenever the user types, and
  * calls onSave if they click the save button.
  */
-export const RichTextEditor = (
-  {
-    value,
-    className,
-    onSave,
-    onChange
-  }: RichTextEditorProps
-) => {
+export const RichTextEditor = ({
+  value,
+  className,
+  onSave,
+  onChange,
+}: RichTextEditorProps) => {
   // useWhyDidYouUpdate("RichTextEditor", {
   //   value,
   //   className,

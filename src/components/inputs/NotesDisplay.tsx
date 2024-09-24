@@ -13,13 +13,11 @@ interface NotesDisplayProps {
   toggleSecret?: (index: number) => void;
 }
 
-export const NotesDisplay = (
-  {
-    className,
-    html: rawHtml,
-    toggleSecret
-  }: NotesDisplayProps
-) => {
+export const NotesDisplay = ({
+  className,
+  html: rawHtml,
+  toggleSecret,
+}: NotesDisplayProps) => {
   assertGame(game);
 
   const isOwner = useIsDocumentOwner();

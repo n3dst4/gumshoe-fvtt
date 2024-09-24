@@ -4,12 +4,7 @@ type InputGridProps = {
   className?: string;
 };
 
-export const InputGrid = (
-  {
-    children,
-    className
-  }: InputGridProps
-) => {
+export const InputGrid = ({ children, className }: InputGridProps) => {
   return (
     <div
       css={{

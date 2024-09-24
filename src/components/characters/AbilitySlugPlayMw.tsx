@@ -9,11 +9,7 @@ type AbilitySlugPlayMwProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilitySlugPlayMw = (
-  {
-    ability
-  }: AbilitySlugPlayMwProps
-) => {
+export const AbilitySlugPlayMw = ({ ability }: AbilitySlugPlayMwProps) => {
   assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(

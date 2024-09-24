@@ -12,16 +12,14 @@ export type AsyncTextInputProps = {
   placeholder?: string;
 };
 
-export const AsyncTextInput = (
-  {
-    value = "",
-    onChange: onChangeOrig,
-    className,
-    disabled,
-    placeholder,
-    index
-  }: AsyncTextInputProps
-) => {
+export const AsyncTextInput = ({
+  value = "",
+  onChange: onChangeOrig,
+  className,
+  disabled,
+  placeholder,
+  index,
+}: AsyncTextInputProps) => {
   const { onChange, onFocus, onBlur, display } = useAsyncUpdate(
     value,
     onChangeOrig,

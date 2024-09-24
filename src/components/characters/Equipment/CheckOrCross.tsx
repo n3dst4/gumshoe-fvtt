@@ -5,11 +5,7 @@ interface CheckOrCrossProps {
   checked: boolean;
 }
 
-export const CheckOrCross = (
-  {
-    checked
-  }: CheckOrCrossProps
-) => {
+export const CheckOrCross = ({ checked }: CheckOrCrossProps) => {
   return checked ? <FaCheck /> : <FaTimes />;
 };
 

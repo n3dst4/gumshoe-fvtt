@@ -11,11 +11,7 @@ interface PersonalDetailConfigProps {
   item: InvestigatorItem;
 }
 
-export const PersonalDetailConfig = (
-  {
-    item
-  }: PersonalDetailConfigProps
-) => {
+export const PersonalDetailConfig = ({ item }: PersonalDetailConfigProps) => {
   const onClickDelete = useCallback(async () => {
     assertGame(game);
     const message = item.actor

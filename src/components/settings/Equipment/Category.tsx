@@ -25,12 +25,7 @@ interface CategoryProps {
   idx: number;
 }
 
-export const Category = (
-  {
-    id,
-    idx
-  }: CategoryProps
-) => {
+export const Category = ({ id, idx }: CategoryProps) => {
   const dispatch = useContext(DispatchContext);
   const { settings } = useContext(StateContext);
 

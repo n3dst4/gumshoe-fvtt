@@ -22,13 +22,11 @@ interface HTMLHistoryProps {
  * Display a list of revisions of the page, shows, a diff, and publish a restore
  * button.
  */
-export const HTMLHistory = (
-  {
-    page,
-    saveDocument,
-    cancelHistoryMode
-  }: HTMLHistoryProps
-) => {
+export const HTMLHistory = ({
+  page,
+  saveDocument,
+  cancelHistoryMode,
+}: HTMLHistoryProps) => {
   const memoryId = useMemo(() => getMemoryId(page), [page]);
   const memory = useMemo(() => {
     const storedBarememory = settings.journalMemories.get()?.[memoryId];

@@ -15,14 +15,12 @@ type CheckButtonsProps = {
   onChange: (newValue: number) => void;
 };
 
-export const CheckButtons = (
-  {
-    options,
-    selected,
-    size = 1.4,
-    onChange: onChangeOrig
-  }: CheckButtonsProps
-) => {
+export const CheckButtons = ({
+  options,
+  selected,
+  size = 1.4,
+  onChange: onChangeOrig,
+}: CheckButtonsProps) => {
   const theme = useContext(ThemeContext);
   const onChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
