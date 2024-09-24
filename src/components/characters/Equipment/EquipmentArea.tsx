@@ -1,14 +1,11 @@
 import { getTranslated } from "../../../functions/getTranslated";
-import { InvestigatorActor } from "../../../module/InvestigatorActor";
+import { useActorSheetContext } from "../../../hooks/useSheetContexts";
 import { settings } from "../../../settings/settings";
 import { isEquipmentItem } from "../../../v10Types";
 import { EquipmentCategory } from "./EquipmentCategory";
 
-type EquipmentAreaProps = {
-  actor: InvestigatorActor;
-};
-
-export const EquipmentArea = ({ actor }: EquipmentAreaProps) => {
+export const EquipmentArea = () => {
+  const { actor } = useActorSheetContext();
   const items = actor.getEquipment();
   const categories = settings.equipmentCategories.get();
 

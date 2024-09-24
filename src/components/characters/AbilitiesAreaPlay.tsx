@@ -1,7 +1,7 @@
 import { Fragment, useContext } from "react";
 
 import { sortEntitiesByName } from "../../functions/utilities";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
+import { useActorSheetContext } from "../../hooks/useSheetContexts";
 import { settings } from "../../settings/settings";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { assertActiveCharacterActor } from "../../v10Types";
@@ -11,14 +11,13 @@ import { NoAbilitiesNote } from "./NoAbilitiesNote";
 import { useAbilities } from "./useAbilities";
 
 type AbilitiesAreaPlayProps = {
-  actor: InvestigatorActor;
   flipLeftRight?: boolean;
 };
 
 export const AbilitiesAreaPlay = ({
-  actor,
   flipLeftRight,
 }: AbilitiesAreaPlayProps) => {
+  const { actor } = useActorSheetContext();
   assertActiveCharacterActor(actor);
   const { investigativeAbilities, generalAbilities } = useAbilities(
     actor,

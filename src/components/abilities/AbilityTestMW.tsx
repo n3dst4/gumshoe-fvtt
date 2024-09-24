@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from "react";
 
 import { mwNegateCost, mwWallopCost } from "../../constants";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { MWDifficulty } from "../../types";
 import { assertGeneralAbilityItem } from "../../v10Types";
@@ -10,27 +10,24 @@ import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
 import { Translate } from "../Translate";
 
-type AbilityTestMWProps = {
-  ability: InvestigatorItem;
-};
-
-export const AbilityTestMW = ({ ability }: AbilityTestMWProps) => {
-  assertGeneralAbilityItem(ability);
+export const AbilityTestMW = () => {
+  const { item } = useItemSheetContext();
+  assertGeneralAbilityItem(item);
   const theme = useContext(ThemeContext);
   const [difficulty, setDifficulty] = useState<MWDifficulty>(0);
   const [boonLevy, setBoonLevy] = useState(0);
 
   const onTest = useCallback(() => {
-    void ability.mwTestAbility(difficulty, boonLevy);
-  }, [ability, boonLevy, difficulty]);
+    void item.mwTestAbility(difficulty, boonLevy);
+  }, [item, boonLevy, difficulty]);
 
   const onWallop = useCallback(() => {
-    void ability.mWWallop();
-  }, [ability]);
+    void item.mWWallop();
+  }, [item]);
 
   const onNegateIllustrious = useCallback(() => {
-    void ability.mWNegateIllustrious();
-  }, [ability]);
+    void item.mWNegateIllustrious();
+  }, [item]);
 
   const onChangeDifficulty = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.currentTarget.value;
@@ -92,14 +89,14 @@ export const AbilityTestMW = ({ ability }: AbilityTestMWProps) => {
         }}
       >
         <Button
-          disabled={ability.system.pool < mwNegateCost}
+          disabled={item.system.pool < mwNegateCost}
           css={{ flex: "1" }}
           onClick={onNegateIllustrious}
         >
           <Translate>Negate</Translate>
         </Button>
         <Button
-          disabled={ability.system.pool < mwWallopCost}
+          disabled={item.system.pool < mwWallopCost}
           css={{ flex: "1" }}
           onClick={onWallop}
         >

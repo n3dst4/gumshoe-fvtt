@@ -24,16 +24,16 @@ function getTopAreaContent(ability: InvestigatorItem) {
     ability.isOwned &&
     settings.useMwStyleAbilities.get()
   ) {
-    return <AbilityTestMW ability={ability} />;
+    return <AbilityTestMW />;
   } else if (
     // push pools get a PUSH button
     (isGeneralAbilityItem(ability) && ability.system.isPushPool) ||
     (isInvestigativeAbilityItem(ability) && ability.system.isQuickShock)
   ) {
-    return <PushPoolButton ability={ability} />;
+    return <PushPoolButton />;
   } else {
     // everything else gets a spend/test box
-    return <AbilityTest ability={ability} />;
+    return <AbilityTest />;
   }
 }
 
@@ -54,7 +54,7 @@ export const AbilitySheet = () => {
       }
     >
       <ModeSelect mode={ItemSheetMode.Config}>
-        <AbilityConfig ability={ability} />
+        <AbilityConfig />
       </ModeSelect>
       <ModeSelect mode={ItemSheetMode.Main}>
         <Fragment>
@@ -62,10 +62,8 @@ export const AbilitySheet = () => {
           {getTopAreaContent(ability)}
 
           {/* Other bits */}
-          <AbilityMainBits ability={ability} />
-          {settings.useMwStyleAbilities.get() && (
-            <AbilityMwExtraFields ability={ability} />
-          )}
+          <AbilityMainBits />
+          {settings.useMwStyleAbilities.get() && <AbilityMwExtraFields />}
         </Fragment>
       </ModeSelect>
     </ItemSheetFramework>

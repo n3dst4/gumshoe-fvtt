@@ -242,12 +242,10 @@ export const PCSheet = () => {
             <hr />
           </Fragment>
         )}
-        <TrackersArea actor={actor} />
+        <TrackersArea />
         <hr />
         {Object.keys(stats).map<ReactNode>((key) => {
-          return (
-            <StatField key={key} id={key} actor={actor} stat={stats[key]} />
-          );
+          return <StatField key={key} id={key} stat={stats[key]} />;
         })}
         <hr />
         <h3 css={{ gridColumn: "start / end" }}>
@@ -273,47 +271,47 @@ export const PCSheet = () => {
               id: "abilities",
               label: "Abilities",
               content: settings.useMwStyleAbilities.get() ? (
-                <AbilitiesAreaMW actor={actor} />
+                <AbilitiesAreaMW />
               ) : (
-                <AbilitiesAreaPlay actor={actor} />
+                <AbilitiesAreaPlay />
               ),
             },
             settings.useCards.get() && {
               id: "cards",
               label: "Cards",
-              content: <CardsArea actor={actor} />,
+              content: <CardsArea />,
             },
             settings.mwUseAlternativeItemTypes.get()
               ? {
                   id: "items",
                   label: "MWItems",
-                  content: <MwItemArea actor={actor} />,
+                  content: <MwItemArea />,
                 }
               : {
                   id: "equipment",
                   label: "Equipment",
                   content: (
                     <Fragment>
-                      <WeaponsArea actor={actor} />
+                      <WeaponsArea />
                       <div css={{ height: "1em" }} />
-                      <EquipmentArea actor={actor} />
+                      <EquipmentArea />
                     </Fragment>
                   ),
                 },
             {
               id: "notes",
               label: "Notes",
-              content: <NotesArea actor={actor} />,
+              content: <NotesArea />,
             },
             {
               id: "abilities-edit",
               label: "Edit",
-              content: <AbilitiesAreaEdit actor={actor} />,
+              content: <AbilitiesAreaEdit />,
             },
             {
               id: "settings",
               label: <i className="fa fa-cog" />,
-              content: <SettingArea actor={actor} />,
+              content: <SettingArea />,
             },
           ]}
         />

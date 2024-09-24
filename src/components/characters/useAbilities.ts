@@ -11,7 +11,7 @@ export const useAbilities = (
   hideZeroRated: boolean,
   hidePushPool: boolean,
 ) => {
-  // why is this a hook? what was I thinking 3 years ago? it's lieterally just
+  // why is this a hook? what was I thinking 3 years ago? it's literally just
   // a function.
 
   const investigativeAbilities: {

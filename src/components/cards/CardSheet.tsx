@@ -109,7 +109,7 @@ export const CardSheet = () => {
             flexDirection: "column",
           }}
         >
-          <CardMain card={item} />
+          <CardMain />
         </div>
       </SlideInNestedPanelRoute>
     </Router>

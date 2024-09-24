@@ -1,14 +1,11 @@
 import { sortEntitiesByName } from "../../../functions/utilities";
-import { InvestigatorActor } from "../../../module/InvestigatorActor";
+import { useActorSheetContext } from "../../../hooks/useSheetContexts";
 import { assertActiveCharacterActor } from "../../../v10Types";
 import { AbilitiesColumnMW } from "../AbilitiesColumnMW";
 import { useAbilities } from "../useAbilities";
 
-type AbilitiesAreaMWProps = {
-  actor: InvestigatorActor;
-};
-
-export const AbilitiesAreaMW = ({ actor }: AbilitiesAreaMWProps) => {
+export const AbilitiesAreaMW = () => {
+  const { actor } = useActorSheetContext();
   assertActiveCharacterActor(actor);
   const { generalAbilities } = useAbilities(actor, true, false);
 

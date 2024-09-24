@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { settings } from "../../settings/settings";
 import {
   ActorPayload,
@@ -21,26 +21,23 @@ import { Translate } from "../Translate";
 import { AbilityBadges } from "./AbilityBadges";
 import { SpecialityList } from "./SpecialityList";
 
-type AbilityMainBitsProps = {
-  ability: InvestigatorItem;
-};
-
-export const AbilityMainBits = ({ ability }: AbilityMainBitsProps) => {
-  assertAbilityItem(ability);
+export const AbilityMainBits = () => {
+  const { item } = useItemSheetContext();
+  assertAbilityItem(item);
 
   const onClickRefresh = useCallback(() => {
-    void ability.refreshPool();
-  }, [ability]);
+    void item.refreshPool();
+  }, [item]);
 
   const useBoost = settings.useBoost.get();
 
   const isCombatAbility = settings.combatAbilities
     .get()
-    .includes(ability.name ?? "");
+    .includes(item.name ?? "");
 
   const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
-    isActiveCharacterActor(ability?.actor) &&
-      ability?.actor?.system.initiativeAbility,
+    isActiveCharacterActor(item?.actor) &&
+      item?.actor?.system.initiativeAbility,
   );
 
   useEffect(() => {
@@ -50,10 +47,10 @@ export const AbilityMainBits = ({ ability }: AbilityMainBitsProps) => {
       options: unknown,
       id: string,
     ) => {
-      if (actor.id === ability?.actor?.id) {
+      if (actor.id === item?.actor?.id) {
         setActorInitiativeAbility(
-          isActiveCharacterActor(ability?.actor) &&
-            ability?.actor?.system.initiativeAbility,
+          isActiveCharacterActor(item?.actor) &&
+            item?.actor?.system.initiativeAbility,
         );
       }
     };
@@ -61,41 +58,41 @@ export const AbilityMainBits = ({ ability }: AbilityMainBitsProps) => {
     return () => {
       Hooks.off("updateActor", callback);
     };
-  }, [ability?.actor]);
+  }, [item?.actor]);
 
-  const isAbilityUsed = actorInitiativeAbility === ability.name;
+  const isAbilityUsed = actorInitiativeAbility === item.name;
   const onClickUseForInitiative = useCallback(
     (e: React.MouseEvent) => {
-      assertActiveCharacterActor(ability?.actor);
-      void ability?.actor?.update({
+      assertActiveCharacterActor(item?.actor);
+      void item?.actor?.update({
         system: {
-          initiativeAbility: ability.name,
+          initiativeAbility: item.name,
         },
       });
     },
-    [ability?.actor, ability.name],
+    [item?.actor, item.name],
   );
 
   const useMwStyleAbilities = settings.useMwStyleAbilities.get();
 
   const poolMax = useMwStyleAbilities
     ? undefined
-    : ability.system.allowPoolToExceedRating
-      ? ability.system.max
-      : ability.system.rating;
+    : item.system.allowPoolToExceedRating
+      ? item.system.max
+      : item.system.rating;
 
   const isQuickShock =
-    isInvestigativeAbilityItem(ability) && ability.system.isQuickShock;
+    isInvestigativeAbilityItem(item) && item.system.isQuickShock;
 
   const handleQuickShockToggle = useCallback(
     (checked: boolean) => {
       if (checked) {
-        void ability.setRatingAndRefreshPool(1);
+        void item.setRatingAndRefreshPool(1);
       } else {
-        void ability.setRatingAndRefreshPool(0);
+        void item.setRatingAndRefreshPool(0);
       }
     },
-    [ability],
+    [item],
   );
 
   return (
@@ -108,7 +105,7 @@ export const AbilityMainBits = ({ ability }: AbilityMainBitsProps) => {
       {isQuickShock && (
         <GridField label="Enabled">
           <Toggle
-            checked={ability.system.rating > 0}
+            checked={item.system.rating > 0}
             onChange={handleQuickShockToggle}
           />
         </GridField>
@@ -123,10 +120,10 @@ export const AbilityMainBits = ({ ability }: AbilityMainBitsProps) => {
               }}
             >
               <AsyncNumberInput
-                min={ability.system.min}
+                min={item.system.min}
                 max={poolMax}
-                value={ability.system.pool}
-                onChange={ability.setPool}
+                value={item.system.pool}
+                onChange={item.setPool}
                 css={{
                   flex: 1,
                 }}
@@ -146,8 +143,8 @@ export const AbilityMainBits = ({ ability }: AbilityMainBitsProps) => {
           <GridField label="Rating">
             <AsyncNumberInput
               min={0}
-              value={ability.system.rating}
-              onChange={ability.setRating}
+              value={item.system.rating}
+              onChange={item.setRating}
             />
           </GridField>
         </>
@@ -156,26 +153,24 @@ export const AbilityMainBits = ({ ability }: AbilityMainBitsProps) => {
         css={{
           gridColumn: "1 / 4",
         }}
-        ability={ability}
+        ability={item}
       />
       <NotesEditorWithControls
-        source={ability.getNotes().source}
-        format={ability.getNotes().format}
-        html={ability.getNotes().html}
+        source={item.getNotes().source}
+        format={item.getNotes().format}
+        html={item.getNotes().html}
         // setSource={ability.setNotesSource}
         // setFormat={ability.setNotesFormat}
         allowChangeFormat
-        onSave={ability.setNotes}
+        onSave={item.setNotes}
         css={{
           gridRow: "notes",
         }}
       />
-      {ability.system.hasSpecialities && (
+      {item.system.hasSpecialities && (
         <GridFieldStacked
           label={
-            ability.getSpecialities().length === 1
-              ? "Speciality"
-              : "Specialities"
+            item.getSpecialities().length === 1 ? "Speciality" : "Specialities"
           }
         >
           <div
@@ -184,13 +179,13 @@ export const AbilityMainBits = ({ ability }: AbilityMainBitsProps) => {
               flexDirection: "row",
             }}
           >
-            <SpecialityList ability={ability} />
+            <SpecialityList ability={item} />
           </div>
         </GridFieldStacked>
       )}
       {useBoost && (
         <GridField label="Boost?">
-          <Toggle checked={ability.system.boost} onChange={ability.setBoost} />
+          <Toggle checked={item.system.boost} onChange={item.setBoost} />
         </GridField>
       )}
 
@@ -205,7 +200,7 @@ export const AbilityMainBits = ({ ability }: AbilityMainBitsProps) => {
           ) : (
             <span>
               <a onClick={onClickUseForInitiative}>
-                <Translate values={{ AbilityName: ability?.name ?? "" }}>
+                <Translate values={{ AbilityName: item?.name ?? "" }}>
                   Use (ability name) for combat ordering
                 </Translate>
               </a>{" "}

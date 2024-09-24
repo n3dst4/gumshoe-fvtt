@@ -119,13 +119,11 @@ export const NPCSheetFull = () => {
           </Fragment>
         )}
         {Object.keys(stats).map<ReactNode>((key) => {
-          return (
-            <StatField key={key} id={key} actor={actor} stat={stats[key]} />
-          );
+          return <StatField key={key} id={key} stat={stats[key]} />;
         })}
 
         <hr />
-        <TrackersArea actor={actor} />
+        <TrackersArea />
         <hr />
         <h4 css={{ width: "8em" }}>
           <Translate>Combat Order</Translate>
@@ -164,9 +162,9 @@ export const NPCSheetFull = () => {
               label: "Play",
               content: (
                 <Fragment>
-                  <WeaponsArea actor={actor} />
+                  <WeaponsArea />
                   <div css={{ height: "1em" }} />
-                  <AbilitiesAreaPlay actor={actor} flipLeftRight={true} />
+                  <AbilitiesAreaPlay flipLeftRight={true} />
                 </Fragment>
               ),
             },
@@ -175,9 +173,9 @@ export const NPCSheetFull = () => {
               label: "Edit",
               content: (
                 <Fragment>
-                  <WeaponsAreaEdit actor={actor} />
+                  <WeaponsAreaEdit />
                   <div css={{ height: "1em" }} />
-                  <AbilitiesAreaEdit actor={actor} npcMode />
+                  <AbilitiesAreaEdit npcMode />
                 </Fragment>
               ),
             },

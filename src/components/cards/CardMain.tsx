@@ -1,4 +1,4 @@
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
@@ -13,15 +13,12 @@ import { editCategoryMemberships } from "./directions";
 import { EditCategoryMemberships } from "./EditCategoryMemberships";
 import { summarizeCategoryMemberships } from "./functions";
 
-interface CardMainProps {
-  card: InvestigatorItem;
-}
-
-export const CardMain = ({ card }: CardMainProps) => {
-  assertCardItem(card);
+export const CardMain = () => {
+  const { item } = useItemSheetContext();
+  assertCardItem(item);
 
   const categoryText = summarizeCategoryMemberships(
-    card.system.cardCategoryMemberships,
+    item.system.cardCategoryMemberships,
   );
 
   return (
@@ -34,25 +31,25 @@ export const CardMain = ({ card }: CardMainProps) => {
           </ArrowLink>
         </GridField>
         <GridField label="Item Name">
-          <AsyncTextInput value={card.name ?? ""} onChange={card.setName} />
+          <AsyncTextInput value={item.name ?? ""} onChange={item.setName} />
         </GridField>
         <GridField label="Supertitle">
           <AsyncTextInput
-            value={card.system.supertitle}
-            onChange={card.setSupertitle}
+            value={item.system.supertitle}
+            onChange={item.setSupertitle}
           />
         </GridField>
         <GridField label="Subtitle">
           <AsyncTextInput
-            value={card.system.subtitle}
-            onChange={card.setSubtitle}
+            value={item.system.subtitle}
+            onChange={item.setSubtitle}
           />
         </GridField>
 
         <GridField label="Continuity">
           <Toggle
-            checked={card.system.continuity}
-            onChange={card.setContinuity}
+            checked={item.system.continuity}
+            onChange={item.setContinuity}
           />
         </GridField>
       </InputGrid>
@@ -80,10 +77,10 @@ export const CardMain = ({ card }: CardMainProps) => {
                 >
                   <NotesEditorWithControls
                     allowChangeFormat
-                    format={card.system.description.format}
-                    html={card.system.description.html}
-                    source={card.system.description.source}
-                    onSave={card.setDescription}
+                    format={item.system.description.format}
+                    html={item.system.description.html}
+                    source={item.system.description.source}
+                    onSave={item.setDescription}
                   />
                 </InputGrid>
               ),
@@ -101,10 +98,10 @@ export const CardMain = ({ card }: CardMainProps) => {
                 >
                   <NotesEditorWithControls
                     allowChangeFormat
-                    format={card.system.effects.format}
-                    html={card.system.effects.html}
-                    source={card.system.effects.source}
-                    onSave={card.setEffects}
+                    format={item.system.effects.format}
+                    html={item.system.effects.html}
+                    source={item.system.effects.source}
+                    onSave={item.setEffects}
                   />
                 </InputGrid>
               ),
@@ -113,7 +110,7 @@ export const CardMain = ({ card }: CardMainProps) => {
         />
       </div>
       <SlideInNestedPanelRoute direction={editCategoryMemberships}>
-        <EditCategoryMemberships card={card} />
+        <EditCategoryMemberships card={item} />
       </SlideInNestedPanelRoute>
     </>
   );

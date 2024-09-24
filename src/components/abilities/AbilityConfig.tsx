@@ -3,7 +3,7 @@ import { ChangeEvent, Fragment, useCallback, useState } from "react";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { getTranslated } from "../../functions/getTranslated";
 import { assertGame } from "../../functions/utilities";
-import { InvestigatorItem } from "../../module/InvestigatorItem";
+import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { settings } from "../../settings/settings";
 import { MwRefreshGroup, SpecialitiesMode } from "../../types";
 import {
@@ -21,17 +21,14 @@ import { Translate } from "../Translate";
 import { SituationalModifiersEditor } from "./SituationalModifiersEditor";
 import { UnlocksEditor } from "./UnlocksEditor";
 
-type AbilityConfigProps = {
-  ability: InvestigatorItem;
-};
-
-export const AbilityConfig = ({ ability }: AbilityConfigProps) => {
+export const AbilityConfig = () => {
+  const { item } = useItemSheetContext();
   assertGame(game);
-  assertAbilityItem(ability);
-  const isGeneral = isGeneralAbilityItem(ability);
+  assertAbilityItem(item);
+  const isGeneral = isGeneralAbilityItem(item);
 
   const onClickDelete = useCallback(() => {
-    const message = ability.actor
+    const message = item.actor
       ? 'Delete {ActorName}\'s "{AbilityName}" ability?'
       : 'Delete the "{AbilityName}" ability?';
 
@@ -42,21 +39,21 @@ export const AbilityConfig = ({ ability }: AbilityConfigProps) => {
       confirmIconClass: "fa-trash",
       resolveFalseOnCancel: true,
       values: {
-        ActorName: ability.actor?.name ?? "",
-        AbilityName: ability.name ?? "",
+        ActorName: item.actor?.name ?? "",
+        AbilityName: item.name ?? "",
       },
     }).then((yes) => {
       if (yes) {
-        void ability.delete();
+        void item.delete();
       }
     });
-  }, [ability]);
+  }, [item]);
 
   const categories = isGeneral
     ? settings.generalAbilityCategories.get()
     : settings.investigativeAbilityCategories.get();
 
-  const isRealCategory = categories.includes(ability.system.category);
+  const isRealCategory = categories.includes(item.system.category);
   const [showCustomField, setShowCustomField] = useState(!isRealCategory);
   const [selectCustomOption, setSelectCustomOption] = useState(!isRealCategory);
 
@@ -68,18 +65,18 @@ export const AbilityConfig = ({ ability }: AbilityConfigProps) => {
         setSelectCustomOption(true);
       } else {
         setSelectCustomOption(false);
-        void ability.setCategory(e.currentTarget.value);
+        void item.setCategory(e.currentTarget.value);
       }
     },
-    [ability],
+    [item],
   );
 
-  const selectedCat = selectCustomOption ? "" : ability.system.category;
+  const selectedCat = selectCustomOption ? "" : item.system.category;
 
   return (
     <InputGrid>
       <GridField label="Item Name">
-        <AsyncTextInput value={ability.name ?? ""} onChange={ability.setName} />
+        <AsyncTextInput value={item.name ?? ""} onChange={item.setName} />
       </GridField>
       <GridField label="Category">
         <div
@@ -110,8 +107,8 @@ export const AbilityConfig = ({ ability }: AbilityConfigProps) => {
           >
             {showCustomField && (
               <AsyncTextInput
-                value={ability.system.category}
-                onChange={ability.setCategory}
+                value={item.system.category}
+                onChange={item.setCategory}
               />
             )}
           </div>
@@ -119,48 +116,48 @@ export const AbilityConfig = ({ ability }: AbilityConfigProps) => {
       </GridField>
       <GridField label="Min">
         <AsyncNumberInput
-          max={ability.system.max}
-          value={ability.system.min}
-          onChange={ability.setMin}
+          max={item.system.max}
+          value={item.system.min}
+          onChange={item.setMin}
         />
       </GridField>
       <GridField label="Max">
         <AsyncNumberInput
-          min={ability.system.min}
-          value={ability.system.max}
-          onChange={ability.setMax}
+          min={item.system.min}
+          value={item.system.max}
+          onChange={item.setMax}
         />
       </GridField>
-      {settings.useNpcCombatBonuses.get() && isGeneralAbilityItem(ability) && (
+      {settings.useNpcCombatBonuses.get() && isGeneralAbilityItem(item) && (
         <Fragment>
           <GridField label="Combat bonus">
             <AsyncNumberInput
-              value={ability.system.combatBonus}
-              onChange={ability.setCombatBonus}
+              value={item.system.combatBonus}
+              onChange={item.setCombatBonus}
             />
           </GridField>
           <GridField label="Damage bonus">
             <AsyncNumberInput
-              value={ability.system.damageBonus}
-              onChange={ability.setDamageBonus}
+              value={item.system.damageBonus}
+              onChange={item.setDamageBonus}
             />
           </GridField>
         </Fragment>
       )}
       <GridField label="Has Specialities?">
         <Toggle
-          checked={ability.system.hasSpecialities}
+          checked={item.system.hasSpecialities}
           onChange={(t) => {
-            void ability.setHasSpecialities(t);
+            void item.setHasSpecialities(t);
           }}
         />
       </GridField>
-      {ability.system.hasSpecialities && (
+      {item.system.hasSpecialities && (
         <GridField label="Specialities Mode">
           <select
-            value={ability.system.specialitiesMode}
+            value={item.system.specialitiesMode}
             onChange={(t) => {
-              void ability.setSpecialitiesMode(
+              void item.setSpecialitiesMode(
                 t.currentTarget.value as SpecialitiesMode,
               );
             }}
@@ -174,79 +171,79 @@ export const AbilityConfig = ({ ability }: AbilityConfigProps) => {
       )}
       <GridField label="Occupational?">
         <Toggle
-          checked={ability.system.occupational}
-          onChange={ability.setOccupational}
+          checked={item.system.occupational}
+          onChange={item.setOccupational}
         />
       </GridField>
-      {isGeneralAbilityItem(ability) && (
+      {isGeneralAbilityItem(item) && (
         <GridField label="Can be investigative?">
           <Toggle
-            checked={ability.system.canBeInvestigative}
-            onChange={ability.setCanBeInvestigative}
+            checked={item.system.canBeInvestigative}
+            onChange={item.setCanBeInvestigative}
           />
         </GridField>
       )}
       <GridField label="Show tracker?">
         <Toggle
-          checked={ability.system.showTracker}
-          onChange={ability.setShowTracker}
+          checked={item.system.showTracker}
+          onChange={item.setShowTracker}
         />
       </GridField>
       <GridField label="Exclude from general refresh?">
         <Toggle
-          checked={ability.system.excludeFromGeneralRefresh}
-          onChange={ability.setExcludeFromGeneralRefresh}
+          checked={item.system.excludeFromGeneralRefresh}
+          onChange={item.setExcludeFromGeneralRefresh}
         />
       </GridField>
       <GridField label="Include in 24h refresh?">
         <Toggle
-          checked={ability.system.refreshesDaily}
-          onChange={ability.setRefreshesDaily}
+          checked={item.system.refreshesDaily}
+          onChange={item.setRefreshesDaily}
         />
       </GridField>
       <GridField label="Hide if zero-rated?">
         <Toggle
-          checked={ability.system.hideIfZeroRated}
-          onChange={ability.setHideIfZeroRated}
+          checked={item.system.hideIfZeroRated}
+          onChange={item.setHideIfZeroRated}
         />
       </GridField>
-      {isGeneralAbilityItem(ability) && (
+      {isGeneralAbilityItem(item) && (
         <GridField label="Goes first in combat?">
           <Toggle
-            checked={ability.system.goesFirstInCombat}
-            onChange={ability.setGoesFirstInCombat}
+            checked={item.system.goesFirstInCombat}
+            onChange={item.setGoesFirstInCombat}
           />
         </GridField>
       )}
-      {isGeneralAbilityItem(ability) && (
+      {isGeneralAbilityItem(item) && (
         <GridField label="IsAPushPool">
           <Toggle
-            checked={ability.system.isPushPool}
-            onChange={ability.setIsPushPool}
+            checked={item.system.isPushPool}
+            onChange={item.setIsPushPool}
           />
         </GridField>
       )}
       <GridField label="AllowPoolToExceedRating">
         <Toggle
-          checked={ability.system.allowPoolToExceedRating}
-          onChange={ability.setAllowPoolToExceedRating}
+          checked={item.system.allowPoolToExceedRating}
+          onChange={item.setAllowPoolToExceedRating}
         />
       </GridField>
-      {isInvestigativeAbilityItem(ability) && (
+      {isInvestigativeAbilityItem(item) && (
         <GridField label="IsQuickShock">
           <Toggle
-            checked={ability.system.isQuickShock}
-            onChange={ability.setIsQuickShock}
+            checked={item.system.isQuickShock}
+            onChange={item.setIsQuickShock}
           />
         </GridField>
       )}
 
-      {settings.useMwStyleAbilities.get() && isGeneralAbilityItem(ability) && (
+      {settings.useMwStyleAbilities.get() && isGeneralAbilityItem(item) && (
         <GridField label="Refresh group">
           <select
-            value={ability.system.mwRefreshGroup}
+            value={item.system.mwRefreshGroup}
             onChange={(e) => {
-              void ability.setMwRefreshGroup(
+              void item.setMwRefreshGroup(
                 Number(e.currentTarget.value) as MwRefreshGroup,
               );
             }}
@@ -258,10 +255,10 @@ export const AbilityConfig = ({ ability }: AbilityConfigProps) => {
         </GridField>
       )}
       <GridField label="Unlocks">
-        <UnlocksEditor ability={ability} />
+        <UnlocksEditor />
       </GridField>
       <GridField label="Situational Modifiers">
-        <SituationalModifiersEditor ability={ability} />
+        <SituationalModifiersEditor />
       </GridField>
       <GridField label="Delete ability">
         <Button
