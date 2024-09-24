@@ -13,10 +13,10 @@ export const PersonalDetailSheet = () => {
   return (
     <ItemSheetFramework>
       <ModeSelect mode={ItemSheetMode.Main}>
-        <PersonalDetailMain item={item} />
+        <PersonalDetailMain />
       </ModeSelect>
       <ModeSelect mode={ItemSheetMode.Config}>
-        <PersonalDetailConfig item={item} />
+        <PersonalDetailConfig />
       </ModeSelect>
     </ItemSheetFramework>
   );
