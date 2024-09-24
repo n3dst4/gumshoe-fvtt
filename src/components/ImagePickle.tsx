@@ -2,6 +2,7 @@ import React, { Fragment, useCallback, useContext, useState } from "react";
 
 import { getTokenizer } from "../functions/getTokenizer";
 import { assertGame } from "../functions/utilities";
+import { useIsDocumentOwner } from "../hooks/useIsDocumentOwner";
 import { ThemeContext } from "../themes/ThemeContext";
 import { ImagePickerLink } from "./ImagePickerLink";
 
@@ -30,10 +31,7 @@ export const ImagePickle: React.FC<ImagePickleProps> = ({
   const [showOverlay, setShowOverlay] = useState(false);
   const theme = useContext(ThemeContext);
   assertGame(game);
-  const user = game.user;
-  const myLevel = user ? (subject.getUserLevel(user) ?? 0) : 0;
-  // @ts-expect-error types still have DOCUMENT_PERMISSION_LEVELS
-  const isOwner = myLevel >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+  const isOwner = useIsDocumentOwner();
 
   const onClickEdit = useCallback(() => {
     setShowOverlay(false);
