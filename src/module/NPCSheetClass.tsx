@@ -29,7 +29,7 @@ class NPCSheetClassBase extends ActorSheet {
 const render = (sheet: NPCSheetClassBase) => {
   return (
     <Suspense>
-      <NPCSheet actor={sheet.document} foundryApplication={sheet} />
+      <NPCSheet />
     </Suspense>
   );
 };
