@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback } from "react";
+import { forwardRef, useCallback } from "react";
 
 import { Unlock } from "../../types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";

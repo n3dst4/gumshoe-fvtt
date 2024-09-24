@@ -1,5 +1,4 @@
 import { ReactApplicationMixin } from "@lumphammer/shared-fvtt-bits/src/ReactApplicationMixin";
-import React from "react";
 
 import { PCSheet } from "../components/characters/PCSheet";
 import { reactTemplatePath, systemId } from "../constants";

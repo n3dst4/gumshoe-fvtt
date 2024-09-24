@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import { SortableTable } from "../../sortableTable";
 import { Item } from "./Item";

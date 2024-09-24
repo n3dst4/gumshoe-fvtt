@@ -1,5 +1,4 @@
 import { ReactApplicationMixin } from "@lumphammer/shared-fvtt-bits/src/ReactApplicationMixin";
-import React from "react";
 
 import { reactTemplatePath, systemId } from "../constants";
 import { ThemeFarm } from "../themes/components/ThemeFarm";

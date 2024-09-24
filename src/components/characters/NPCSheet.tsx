@@ -1,5 +1,3 @@
-import React from "react";
-
 import { assertGame } from "../../functions/utilities";
 import { useIsDocumentLimited } from "../../hooks/useIsDocumentLimited";
 import { InvestigatorActor } from "../../module/InvestigatorActor";

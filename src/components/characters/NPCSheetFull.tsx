@@ -1,4 +1,4 @@
-import React, { Fragment, ReactNode } from "react";
+import { Fragment, ReactNode } from "react";
 
 import { useTheme } from "../../hooks/useTheme";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
