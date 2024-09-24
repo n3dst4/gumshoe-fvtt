@@ -59,5 +59,7 @@ export class DummyAppV2 extends foundry.applications.api.ApplicationV2<void> {
   }
 
   // XXX This override will be optional in P3
-  override _replaceHTML(result: any, content: HTMLElement, options: any) {}
+  override _replaceHTML(result: any, content: HTMLElement, options: any) {
+    // nothing to do here
+  }
 }

@@ -1,54 +1,46 @@
 {
-	"compilerOptions": {
-		"target": "ES2019",
-		"lib": [
-			"DOM",
-			"ES6",
-			"ES2022",
-			"ES2023.Array"
-		],
-		"moduleResolution": "bundler",
-		"module": "esnext",
-		"types": [
-			"@league-of-foundry-developers/foundry-vtt-types",
-			"@lumphammer/investigator-fvtt-types",
-			// "vite/client"
-		],
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"strict": true,
-		"jsx": "react-jsx",
-		"jsxImportSource": "@emotion/react",
-		"paths": {
-			// fix for when investigator-fvtt-types is symlinked in - we want it to
-			// see *our* @emotion/react not its own.
-			"@emotion/react": [
-				"./node_modules/@emotion/react"
-			],
-		},
-		"allowJs": false,
-		"noEmit": true,
-		"noPropertyAccessFromIndexSignature": true,
-		// https://www.typescriptlang.org/tsconfig/#skipLibCheck
-		// https://discord.com/channels/732325252788387980/793933527065690184/1242919548383002756
-		// https://youtu.be/zu-EgnbmcLY?si=-xh17c1DbuPcA256&t=123
-		"skipLibCheck": true,
-		"isolatedModules": true,
-		// https://devblogs.microsoft.com/typescript/announcing-typescript-5-5/#isolated-declarations
-		// this causes a problem with eslint (probably typescript-eslint?)
-		//"isolatedDeclarations": true,
-		//
-		// `"composite": true` causes phantom errors in TS Server along the lines of
-		// The inferred type of 'defaultOptions' cannot be named without a reference
-		// to '../../node_modules/@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/utils/helpers.mjs'.
-		// This is likely not portable. A type annotation is necessary.ts(2742)
-		//
-		// See this issue for more details:
-		// https://github.com/microsoft/TypeScript/issues/47663
-		"composite": false,
-		"declaration": false
-
-	},
-	"exclude": ["**/node_modules", "**/.*/"],
-	"include": ["src"]
+  "compilerOptions": {
+    "target": "ES2019",
+    "lib": ["DOM", "ES6", "ES2022", "ES2023.Array"],
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "types": [
+      "@league-of-foundry-developers/foundry-vtt-types",
+      "@lumphammer/investigator-fvtt-types"
+      // "vite/client"
+    ],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "paths": {
+      // fix for when investigator-fvtt-types is symlinked in - we want it to
+      // see *our* @emotion/react not its own.
+      "@emotion/react": ["./node_modules/@emotion/react"]
+    },
+    "allowJs": false,
+    "noEmit": true,
+    "noPropertyAccessFromIndexSignature": true,
+    // https://www.typescriptlang.org/tsconfig/#skipLibCheck
+    // https://discord.com/channels/732325252788387980/793933527065690184/1242919548383002756
+    // https://youtu.be/zu-EgnbmcLY?si=-xh17c1DbuPcA256&t=123
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    // https://devblogs.microsoft.com/typescript/announcing-typescript-5-5/#isolated-declarations
+    // this causes a problem with eslint (probably typescript-eslint?)
+    //"isolatedDeclarations": true,
+    //
+    // `"composite": true` causes phantom errors in TS Server along the lines of
+    // The inferred type of 'defaultOptions' cannot be named without a reference
+    // to '../../node_modules/@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/utils/helpers.mjs'.
+    // This is likely not portable. A type annotation is necessary.ts(2742)
+    //
+    // See this issue for more details:
+    // https://github.com/microsoft/TypeScript/issues/47663
+    "composite": false,
+    "declaration": false
+  },
+  "exclude": ["**/node_modules", "**/.*/"],
+  "include": ["src"]
 }

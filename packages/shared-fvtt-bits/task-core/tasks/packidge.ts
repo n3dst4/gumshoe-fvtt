@@ -3,7 +3,7 @@ import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
 
-import { Manifest, TaskArgs } from "../types";
+import { TaskArgs } from "../types";
 
 /**
  * create a releasable package
@@ -16,7 +16,7 @@ export async function packidge({
   packagePath = "package",
 }: TaskArgs) {
   return new Promise<void>((resolve, reject) => {
-    const id = (manifest as Manifest).id;
+    const id = manifest.id;
     // Ensure there is a directory to hold all the packaged versions
     fs.ensureDirSync(packagePath);
     // Initialize the zip file

@@ -91,7 +91,9 @@ export function ReactApplicationV2Mixin<TBase extends ApplicationV2Constuctor>(
 
     // This override should be optional eventually but rn is needed to prevent
     // foundry throwing a wobbly
-    override _replaceHTML(result: any, content: HTMLElement, options: any) {}
+    override _replaceHTML(result: any, content: HTMLElement, options: any) {
+      // nothing to do here
+    }
   }
 
   // see comment on name arg above

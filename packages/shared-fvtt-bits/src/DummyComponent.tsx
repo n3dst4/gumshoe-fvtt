@@ -2,7 +2,7 @@ import "./ApplicationV2Types";
 
 import React from "react";
 
-interface DummyComponentProps extends React.PropsWithChildren {}
+type DummyComponentProps = React.PropsWithChildren;
 
 export const DummyComponent: React.FC<DummyComponentProps> = ({ children }) => {
   const [count, setCount] = React.useState(0);
