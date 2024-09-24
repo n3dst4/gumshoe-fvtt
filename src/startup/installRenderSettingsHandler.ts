@@ -5,6 +5,10 @@ import { investigatorSettingsClassInstance } from "../module/SettingsClass";
 export const installRenderSettingsHandler = () => {
   Hooks.on("renderSettings", (app: Application, html: JQuery) => {
     assertGame(game);
+    const canModifySettings = game.user?.can("SETTINGS_MODIFY") ?? false;
+    if (!canModifySettings) {
+      return;
+    }
     const systemNameTranslated = getTranslated("SystemName");
     const text = getTranslated("SystemNameSystemSettings", {
       SystemName: systemNameTranslated,
