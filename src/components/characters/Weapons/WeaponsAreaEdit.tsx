@@ -11,7 +11,11 @@ type WeaponsAreaEditProps = {
   actor: InvestigatorActor;
 };
 
-export const WeaponsAreaEdit: React.FC<WeaponsAreaEditProps> = ({ actor }) => {
+export const WeaponsAreaEdit = (
+  {
+    actor
+  }: WeaponsAreaEditProps
+) => {
   const items = actor.getWeapons();
   return (
     <div>

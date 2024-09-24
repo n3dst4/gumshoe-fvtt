@@ -8,10 +8,12 @@ type SettingsGridFieldProps = ComponentProps<typeof GridField> & {
   index?: number;
 };
 
-export const SettingsGridField: React.FC<SettingsGridFieldProps> = ({
-  index = 0,
-  ...props
-}) => {
+export const SettingsGridField = (
+  {
+    index = 0,
+    ...props
+  }: SettingsGridFieldProps
+) => {
   const tint = index % 2 === 0;
   const theme = useContext(ThemeContext);
   return (
@@ -27,10 +29,12 @@ export const SettingsGridField: React.FC<SettingsGridFieldProps> = ({
 
 SettingsGridField.displayName = "SettingsGridField";
 
-export const SettingsGridFieldStacked: React.FC<SettingsGridFieldProps> = ({
-  index = 0,
-  ...props
-}) => {
+export const SettingsGridFieldStacked = (
+  {
+    index = 0,
+    ...props
+  }: SettingsGridFieldProps
+) => {
   const tint = index % 2 === 0;
   const theme = useContext(ThemeContext);
   return (

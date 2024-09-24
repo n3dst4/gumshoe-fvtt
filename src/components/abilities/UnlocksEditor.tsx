@@ -14,9 +14,11 @@ interface UnlocksEditorProps {
 
 const transitionTime = 400;
 
-export const UnlocksEditor: React.FC<UnlocksEditorProps> = ({
-  ability,
-}: UnlocksEditorProps) => {
+export const UnlocksEditor = (
+  {
+    ability
+  }: UnlocksEditorProps
+) => {
   assertAbilityItem(ability);
 
   const transitionedUnlocks = useListShowHideTransition(

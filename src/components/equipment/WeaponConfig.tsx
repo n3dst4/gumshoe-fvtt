@@ -19,7 +19,11 @@ type WeaponConfigProps = {
   weapon: InvestigatorItem;
 };
 
-export const WeaponConfig: React.FC<WeaponConfigProps> = ({ weapon }) => {
+export const WeaponConfig = (
+  {
+    weapon
+  }: WeaponConfigProps
+) => {
   assertGame(game);
   assertWeaponItem(weapon);
   const name = useAsyncUpdate(weapon.name || "", weapon.setName);

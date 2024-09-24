@@ -20,7 +20,11 @@ type WeaponRowProps = {
   weapon: InvestigatorItem;
 };
 
-export const WeaponRow: React.FC<WeaponRowProps> = ({ weapon }) => {
+export const WeaponRow = (
+  {
+    weapon
+  }: WeaponRowProps
+) => {
   assertWeaponItem(weapon);
 
   const app = useContext(FoundryAppContext);

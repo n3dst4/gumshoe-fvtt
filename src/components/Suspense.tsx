@@ -5,7 +5,7 @@ import { settings } from "../settings/settings";
 import { absoluteCover } from "./absoluteCover";
 import { CSSReset } from "./CSSReset";
 
-const Fallback: React.FC = () => {
+const Fallback = () => {
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
     runtimeConfig.themes["tealTheme"];
@@ -33,6 +33,8 @@ const Fallback: React.FC = () => {
   );
 };
 
-export const Suspense: React.FC<PropsWithChildren> = ({ children }) => (
-  <React.Suspense fallback={<Fallback />}>{children}</React.Suspense>
-);
+export const Suspense = (
+  {
+    children
+  }: PropsWithChildren
+) => (<React.Suspense fallback={<Fallback />}>{children}</React.Suspense>);

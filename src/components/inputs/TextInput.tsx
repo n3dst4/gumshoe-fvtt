@@ -17,17 +17,19 @@ type TextInputProps = {
   validation?: ValidationResult;
 };
 
-export const TextInput: React.FC<TextInputProps> = ({
-  className,
-  value,
-  defaultValue,
-  onChange,
-  onFocus,
-  onBlur,
-  disabled,
-  placeholder,
-  validation,
-}) => {
+export const TextInput = (
+  {
+    className,
+    value,
+    defaultValue,
+    onChange,
+    onFocus,
+    onBlur,
+    disabled,
+    placeholder,
+    validation
+  }: TextInputProps
+) => {
   const id = useContext(IdContext);
 
   const onChangeCb = useCallback(

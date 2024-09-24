@@ -47,10 +47,12 @@ interface PCSheetProps {
   foundryApplication: ActorSheet;
 }
 
-export const PCSheet: React.FC<PCSheetProps> = ({
-  actor,
-  foundryApplication,
-}) => {
+export const PCSheet = (
+  {
+    actor,
+    foundryApplication
+  }: PCSheetProps
+) => {
   assertGame(game);
   assertPCActor(actor);
 

@@ -13,12 +13,14 @@ interface EquipmentItemRowProps {
   fields: Record<string, EquipmentFieldMetadata>;
 }
 
-export const EquipmentItemRow: React.FC<EquipmentItemRowProps> = ({
-  item,
-  onDragStart,
-  gridRow,
-  fields,
-}) => {
+export const EquipmentItemRow = (
+  {
+    item,
+    onDragStart,
+    gridRow,
+    fields
+  }: EquipmentItemRowProps
+) => {
   const theme = useContext(ThemeContext);
   const [hover, setHover] = React.useState(false);
   const handleMouseOver = useCallback((e: React.MouseEvent<HTMLElement>) => {

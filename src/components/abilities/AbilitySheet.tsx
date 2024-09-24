@@ -41,10 +41,12 @@ function getTopAreaContent(ability: InvestigatorItem) {
   }
 }
 
-export const AbilitySheet: React.FC<AbilitySheetProps> = ({
-  ability,
-  application,
-}) => {
+export const AbilitySheet = (
+  {
+    ability,
+    application
+  }: AbilitySheetProps
+) => {
   const isGeneral = isGeneralAbilityItem(ability);
 
   return (

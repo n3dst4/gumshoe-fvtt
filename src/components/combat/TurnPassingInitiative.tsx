@@ -25,10 +25,12 @@ const scrollBg = keyframes({
   },
 });
 
-export const TurnPassingInitiative: React.FC<StandardInitiativeProps> = ({
-  turn,
-  combat,
-}: StandardInitiativeProps) => {
+export const TurnPassingInitiative = (
+  {
+    turn,
+    combat
+  }: StandardInitiativeProps
+) => {
   assertGame(game);
   const {
     onTakeTurn,

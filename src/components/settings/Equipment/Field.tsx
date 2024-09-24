@@ -28,12 +28,14 @@ interface FieldProps {
   idx: number;
 }
 
-export const Field: React.FC<FieldProps> = ({
-  field,
-  categoryId,
-  fieldId,
-  idx,
-}) => {
+export const Field = (
+  {
+    field,
+    categoryId,
+    fieldId,
+    idx
+  }: FieldProps
+) => {
   const theme = useContext(ThemeContext);
   const dispatch = useContext(DispatchContext);
   const {

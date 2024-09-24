@@ -13,10 +13,12 @@ type WeaponSheetProps = {
   application: ItemSheet;
 };
 
-export const WeaponSheet: React.FC<WeaponSheetProps> = ({
-  weapon,
-  application,
-}) => {
+export const WeaponSheet = (
+  {
+    weapon,
+    application
+  }: WeaponSheetProps
+) => {
   return (
     <ItemSheetFramework
       supertitle={<Translate>Weapon</Translate>}

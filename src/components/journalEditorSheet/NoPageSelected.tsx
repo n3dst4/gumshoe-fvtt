@@ -6,7 +6,7 @@ import { absoluteCover } from "../absoluteCover";
 /**
  * Content to display when no page is selected
  */
-export const NoPageSelected: React.FC = () => {
+export const NoPageSelected = () => {
   return (
     <div
       css={{

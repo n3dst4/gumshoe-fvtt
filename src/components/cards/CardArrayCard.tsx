@@ -13,10 +13,12 @@ interface CardArrayCardProps {
   className?: string;
 }
 
-export const CardArrayCard: React.FC<CardArrayCardProps> = ({
-  card,
-  className,
-}) => {
+export const CardArrayCard = (
+  {
+    card,
+    className
+  }: CardArrayCardProps
+) => {
   const theme = useContext(ThemeContext);
   const app = useContext(FoundryAppContext);
 
@@ -43,7 +45,7 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
   return (
     // opacity has to be applied on a wrapper otherwise we break transform-style
     // (if used.) See https://stackoverflow.com/a/70627306/212676
-    <div
+    (<div
       css={{
         opacity: card.system.active ? 1 : 0.5,
         transition: "opacity 0.2s ease-in-out",
@@ -66,7 +68,7 @@ export const CardArrayCard: React.FC<CardArrayCardProps> = ({
         }}
         viewMode={viewMode}
       />
-    </div>
+    </div>)
   );
 };
 

@@ -15,9 +15,13 @@ import {
 } from "./SettingsGridField";
 import { Setters } from "./types";
 
-export const AbilitySettings: React.FC<{
-  setters: Setters;
-}> = ({ setters }) => {
+export const AbilitySettings = (
+  {
+    setters
+  }: {
+    setters: Setters;
+  }
+) => {
   assertGame(game);
   const { settings } = useContext(StateContext);
   const theme = useContext(ThemeContext);

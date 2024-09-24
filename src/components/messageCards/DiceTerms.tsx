@@ -6,10 +6,12 @@ type DiceTermsProps = {
   parp?: DiceTerm;
 };
 
-export const DiceTerms: React.FC<DiceTermsProps> = ({
-  terms = [],
-  className,
-}: DiceTermsProps) => {
+export const DiceTerms = (
+  {
+    terms = [],
+    className
+  }: DiceTermsProps
+) => {
   return (
     <span
       className={className}

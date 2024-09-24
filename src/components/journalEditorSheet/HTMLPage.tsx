@@ -18,7 +18,11 @@ enum Mode {
 /**
  * Handle an HTML page - either editor of history mode.
  */
-export const HTMLPage: React.FC<HTMLPageProps> = ({ page }) => {
+export const HTMLPage = (
+  {
+    page
+  }: HTMLPageProps
+) => {
   const [mode, setMode] = React.useState(Mode.Edit);
 
   const setEdit = useCallback(() => setMode(Mode.Edit), []);

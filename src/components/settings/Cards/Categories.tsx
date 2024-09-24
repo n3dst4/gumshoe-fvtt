@@ -14,7 +14,7 @@ import { store } from "../store";
 import { Category } from "./Category";
 import { cardCategory } from "./directions";
 
-export const Categories: React.FC = () => {
+export const Categories = () => {
   const { settings } = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
   const { navigate, currentStep } = useNavigationContext();

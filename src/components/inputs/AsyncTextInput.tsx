@@ -12,14 +12,16 @@ export type AsyncTextInputProps = {
   placeholder?: string;
 };
 
-export const AsyncTextInput: React.FC<AsyncTextInputProps> = ({
-  value = "",
-  onChange: onChangeOrig,
-  className,
-  disabled,
-  placeholder,
-  index,
-}) => {
+export const AsyncTextInput = (
+  {
+    value = "",
+    onChange: onChangeOrig,
+    className,
+    disabled,
+    placeholder,
+    index
+  }: AsyncTextInputProps
+) => {
   const { onChange, onFocus, onBlur, display } = useAsyncUpdate(
     value,
     onChangeOrig,

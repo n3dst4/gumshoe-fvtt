@@ -19,7 +19,11 @@ interface CardMainProps {
   card: InvestigatorItem;
 }
 
-export const CardMain: React.FC<CardMainProps> = ({ card }) => {
+export const CardMain = (
+  {
+    card
+  }: CardMainProps
+) => {
   assertCardItem(card);
 
   const categoryText = summarizeCategoryMemberships(

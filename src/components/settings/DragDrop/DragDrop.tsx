@@ -4,7 +4,7 @@ import { TabContainer } from "../../TabContainer";
 import { Experiment1 } from "./Experiment1";
 import { SortableTest } from "./SortableTest";
 
-export const DragDrop: React.FC = () => {
+export const DragDrop = () => {
   return (
     <TabContainer
       defaultTab="SortableTest"

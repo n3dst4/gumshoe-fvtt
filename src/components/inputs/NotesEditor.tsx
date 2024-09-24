@@ -21,16 +21,18 @@ interface NotesEditorProps {
   onSave: () => void;
 }
 
-export const NotesEditor: React.FC<NotesEditorProps> = ({
-  source,
-  html,
-  format,
-  onSetSource: setSource,
-  className,
-  editMode,
-  showSource,
-  onSave,
-}: NotesEditorProps) => {
+export const NotesEditor = (
+  {
+    source,
+    html,
+    format,
+    onSetSource: setSource,
+    className,
+    editMode,
+    showSource,
+    onSave
+  }: NotesEditorProps
+) => {
   assertGame(game);
   const theme = useContext(ThemeContext);
 

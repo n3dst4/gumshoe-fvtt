@@ -53,11 +53,13 @@ async function addPage(
 /**
  * The left-hand page navigation bar for the journal editor
  */
-export const PageNavigation: React.FC<PageNavigationProps> = ({
-  journalEntry,
-  onNavigate,
-  activePageId,
-}) => {
+export const PageNavigation = (
+  {
+    journalEntry,
+    onNavigate,
+    activePageId
+  }: PageNavigationProps
+) => {
   const theme = useTheme();
 
   const pages = Array.from(journalEntry.pages.values()).sort((a, b) => {

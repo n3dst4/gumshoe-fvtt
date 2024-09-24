@@ -12,7 +12,11 @@ type NotesAreaProps = {
   actor: InvestigatorActor;
 };
 
-export const NotesArea: React.FC<NotesAreaProps> = ({ actor }) => {
+export const NotesArea = (
+  {
+    actor
+  }: NotesAreaProps
+) => {
   const longNotesNames = settings.longNotes.get();
 
   const updateLongNote = useCallback(

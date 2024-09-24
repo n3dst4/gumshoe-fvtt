@@ -8,7 +8,11 @@ type SpecialityListProps = {
   ability: InvestigatorItem;
 };
 
-export const SpecialityList: React.FC<SpecialityListProps> = ({ ability }) => {
+export const SpecialityList = (
+  {
+    ability
+  }: SpecialityListProps
+) => {
   assertAbilityItem(ability);
   const updateSpecialities = useCallback(
     (newVal: string, index: number) => {

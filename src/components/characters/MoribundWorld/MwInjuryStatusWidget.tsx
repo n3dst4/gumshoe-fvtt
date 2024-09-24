@@ -9,10 +9,12 @@ interface MwInjuryStatusWidgetProps {
   setStatus: (status: MwInjuryStatus) => Promise<void>;
 }
 
-export const MwInjuryStatusWidget: React.FC<MwInjuryStatusWidgetProps> = ({
-  status,
-  setStatus,
-}: MwInjuryStatusWidgetProps) => {
+export const MwInjuryStatusWidget = (
+  {
+    status,
+    setStatus
+  }: MwInjuryStatusWidgetProps
+) => {
   assertGame(game);
 
   const [display, setDisplay] = useState(status);

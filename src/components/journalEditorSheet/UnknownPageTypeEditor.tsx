@@ -11,9 +11,11 @@ interface UnknownPageTypeEditorProps {
  * Display for a  page type we don't handle (PDF or video, at the time of
  * writing.) Just displays a link to open Foundry's native editor.
  */
-export const UnknownPageTypeEditor: React.FC<UnknownPageTypeEditorProps> = ({
-  page,
-}) => {
+export const UnknownPageTypeEditor = (
+  {
+    page
+  }: UnknownPageTypeEditorProps
+) => {
   return (
     <div
       css={{

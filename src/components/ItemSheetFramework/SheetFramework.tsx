@@ -21,12 +21,14 @@ type ItemSheetFrameworkProps = PropsWithChildren<{
 /**
  * A framework for item sheets.
  */
-export const ItemSheetFramework: React.FC<ItemSheetFrameworkProps> = ({
-  supertitle,
-  item,
-  application,
-  children,
-}) => {
+export const ItemSheetFramework = (
+  {
+    supertitle,
+    item,
+    application,
+    children
+  }: ItemSheetFrameworkProps
+) => {
   const { contentEditableRef, onBlur, onFocus, onInput } = useAsyncUpdate(
     item.name ?? "",
     item.setName,

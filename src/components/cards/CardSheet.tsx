@@ -18,7 +18,12 @@ type CardSheetProps = {
   application: ItemSheet;
 };
 
-export const CardSheet: React.FC<CardSheetProps> = ({ card, application }) => {
+export const CardSheet = (
+  {
+    card,
+    application
+  }: CardSheetProps
+) => {
   assertCardItem(card);
 
   const handleClickDiscard = React.useCallback(async () => {

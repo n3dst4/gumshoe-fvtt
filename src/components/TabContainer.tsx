@@ -25,10 +25,12 @@ type TabContainerProps = {
   defaultTab: string;
 };
 
-export const TabContainer: React.FC<TabContainerProps> = ({
-  tabs: rawTabsDefs,
-  defaultTab,
-}) => {
+export const TabContainer = (
+  {
+    tabs: rawTabsDefs,
+    defaultTab
+  }: TabContainerProps
+) => {
   const [selected, setSelected] = useState(defaultTab);
   const [optimistic, setOptimistic] = useState(defaultTab);
   const [pending, startTransition] = useTransition();

@@ -27,7 +27,7 @@ type CSSResetProps = PropsWithChildren<{
   noStyleAppWindow?: boolean;
 }>;
 
-export const CSSReset: React.FC<CSSResetProps> = ({
+export const CSSReset = ({
   className,
   children,
   theme,

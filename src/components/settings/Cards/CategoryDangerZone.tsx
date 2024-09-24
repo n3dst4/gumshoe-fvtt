@@ -15,9 +15,11 @@ type CategoryDangerZoneProps = {
   id: string;
 };
 
-export const CategoryDangerZone: React.FC<CategoryDangerZoneProps> = ({
-  id,
-}) => {
+export const CategoryDangerZone = (
+  {
+    id
+  }: CategoryDangerZoneProps
+) => {
   const dispatch = useContext(DispatchContext);
   const { navigate } = useNavigationContext();
 

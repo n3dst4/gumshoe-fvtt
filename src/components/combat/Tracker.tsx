@@ -12,7 +12,7 @@ import { Button } from "../inputs/Button";
 import { CombatantRow } from "./CombatantRow";
 import { getTurns } from "./getTurns";
 
-export const Tracker: React.FC = () => {
+export const Tracker = () => {
   assertGame(game);
   assertNotNull(game.user);
 
@@ -154,7 +154,7 @@ export const Tracker: React.FC = () => {
   // }
 
   return (
-    <Fragment>
+    (<Fragment>
       {/* TOP ROW: + < Encounter 2/3 > X */}
       <header id="combat-round" className="combat-tracker-header">
         {game.user.isGM && (
@@ -248,9 +248,9 @@ export const Tracker: React.FC = () => {
             </Fragment>
           ) : (
             // encounter-title noborder
-            <h3 className="encounter-title noborder">
+            (<h3 className="encounter-title noborder">
               {localize("COMBAT.None")}
-            </h3>
+            </h3>)
           )}
 
           {game.user.isGM && (
@@ -282,7 +282,6 @@ export const Tracker: React.FC = () => {
           )}
         </div>
       </header>
-
       {/* ACTUAL COMBATANTS, or "turns" in early-medieval foundry-speak */}
       <ol
         id="combat-tracker"
@@ -307,7 +306,6 @@ export const Tracker: React.FC = () => {
           ))
         }
       </ol>
-
       {/* BOTTOM BITS: |< < End combat > >| */}
       {!isTurnPassing && (
         <nav id="combat-controls" className="directory-footer flexrow">
@@ -386,6 +384,6 @@ export const Tracker: React.FC = () => {
             ))}
         </nav>
       )}
-    </Fragment>
+    </Fragment>)
   );
 };

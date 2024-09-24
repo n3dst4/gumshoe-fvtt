@@ -5,7 +5,11 @@ interface CheckOrCrossProps {
   checked: boolean;
 }
 
-export const CheckOrCross: React.FC<CheckOrCrossProps> = ({ checked }) => {
+export const CheckOrCross = (
+  {
+    checked
+  }: CheckOrCrossProps
+) => {
   return checked ? <FaCheck /> : <FaTimes />;
 };
 

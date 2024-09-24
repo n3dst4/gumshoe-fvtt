@@ -17,11 +17,13 @@ interface EquipmentMainProps {
   onChangeName: (name: string) => void;
 }
 
-export const EquipmentMain: React.FC<EquipmentMainProps> = ({
-  equipment,
-  name,
-  onChangeName,
-}) => {
+export const EquipmentMain = (
+  {
+    equipment,
+    name,
+    onChangeName
+  }: EquipmentMainProps
+) => {
   assertEquipmentItem(equipment);
 
   const categories = settings.equipmentCategories.get();

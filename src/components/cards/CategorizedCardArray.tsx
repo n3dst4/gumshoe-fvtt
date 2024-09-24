@@ -9,9 +9,11 @@ interface CategorizedCardArrayProps {
   cards: CardItem[];
 }
 
-export const CategorizedCardArray: React.FC<CategorizedCardArrayProps> = ({
-  cards,
-}) => {
+export const CategorizedCardArray = (
+  {
+    cards
+  }: CategorizedCardArrayProps
+) => {
   const categories = settings.cardCategories.get();
   const [categoriesMap, uncategorized] = categorizeCards(cards, categories);
 

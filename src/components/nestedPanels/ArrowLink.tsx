@@ -9,12 +9,14 @@ type ArrowLinkProps = ComponentProps<typeof Link> & {
   danger?: boolean;
 };
 
-export const ArrowLink: React.FC<ArrowLinkProps> = ({
-  back = false,
-  danger = false,
-  children,
-  ...rest
-}) => {
+export const ArrowLink = (
+  {
+    back = false,
+    danger = false,
+    children,
+    ...rest
+  }: ArrowLinkProps
+) => {
   const theme = useContext(ThemeContext);
 
   return (

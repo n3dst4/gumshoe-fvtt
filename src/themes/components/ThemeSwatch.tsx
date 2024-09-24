@@ -7,9 +7,11 @@ type ThemeSwatchProps = {
   theme: ThemeV1;
 };
 
-export const ThemeSwatch: React.FC<ThemeSwatchProps> = ({
-  theme,
-}: ThemeSwatchProps) => {
+export const ThemeSwatch = (
+  {
+    theme
+  }: ThemeSwatchProps
+) => {
   return (
     <div
       css={{

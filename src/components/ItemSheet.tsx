@@ -30,7 +30,12 @@ type ItemSheetProps = {
  * We only register one "Item" sheet with foundry and then dispatch based on
  * type here.
  */
-export const ItemSheet: React.FC<ItemSheetProps> = ({ item, application }) => {
+export const ItemSheet = (
+  {
+    item,
+    application
+  }: ItemSheetProps
+) => {
   const themeName = item.getThemeName();
   const theme = useTheme(themeName);
 

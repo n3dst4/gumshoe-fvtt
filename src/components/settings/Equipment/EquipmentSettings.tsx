@@ -9,7 +9,7 @@ import { DispatchContext, StateContext } from "../contexts";
 import { store } from "../store";
 import { Category } from "./Category";
 
-export const EquipmentSettings: React.FC = () => {
+export const EquipmentSettings = () => {
   assertGame(game);
   const dispatch = useContext(DispatchContext);
   const handleAdd = useCallback(() => {

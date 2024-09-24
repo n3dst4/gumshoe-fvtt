@@ -9,7 +9,12 @@ type SortableRowProps = PropsWithChildren<{
   id: string;
 }>;
 
-export const SortableRow: React.FC<SortableRowProps> = ({ children, id }) => {
+export const SortableRow = (
+  {
+    children,
+    id
+  }: SortableRowProps
+) => {
   const {
     attributes,
     listeners,

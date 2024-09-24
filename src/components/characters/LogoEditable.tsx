@@ -44,14 +44,16 @@ const textBearerStyle: CSSObject = {
  * It's is marked RESOLVED, I've tested in nightly (as of 2021-07-28) and it
  * seems okay, so I'm not going to sweat it.
  */
-export const LogoEditable: React.FC<LogoEditableProps> = ({
-  className,
-  mainText,
-  subText,
-  defaultSubText = "",
-  onChangeMainText,
-  onChangeSubText,
-}) => {
+export const LogoEditable = (
+  {
+    className,
+    mainText,
+    subText,
+    defaultSubText = "",
+    onChangeMainText,
+    onChangeSubText
+  }: LogoEditableProps
+) => {
   const theme = useContext(ThemeContext);
 
   const textStyle: CSSObject = {
@@ -87,7 +89,7 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
 
   return (
     // outer - set the transform origin
-    <div
+    (<div
       className={`logo ${className}`}
       css={{
         display: "block",
@@ -193,6 +195,6 @@ export const LogoEditable: React.FC<LogoEditableProps> = ({
           )}
         </div>
       </div>
-    </div>
+    </div>)
   );
 };

@@ -13,11 +13,13 @@ interface CategoryMembershipRowProps {
   index: number;
 }
 
-export const CategoryMembershipRow: React.FC<CategoryMembershipRowProps> = ({
-  category,
-  card,
-  index,
-}) => {
+export const CategoryMembershipRow = (
+  {
+    category,
+    card,
+    index
+  }: CategoryMembershipRowProps
+) => {
   const membership = card.system.cardCategoryMemberships.find(
     (m) => m.categoryId === category.id,
   );

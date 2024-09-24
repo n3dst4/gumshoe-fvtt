@@ -2,7 +2,7 @@ import React from "react";
 
 import { TextInput } from "../../components/inputs/TextInput";
 
-export const TextInputTest: React.FC = () => {
+export const TextInputTest = () => {
   const [state, setState] = React.useState("foobar");
 
   const onChange = React.useCallback((v: string) => {

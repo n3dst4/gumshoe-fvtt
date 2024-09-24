@@ -14,7 +14,7 @@ type SlideInNestedPanelRouteProps = PropsWithChildrenAndDirection<{
   closeOnClickOutside?: boolean;
 }>;
 
-const BlurPanel: React.FC = () => {
+const BlurPanel = () => {
   const { navigate } = useNavigationContext();
   return (
     <div

@@ -8,9 +8,11 @@ type ThemeFarmProps = {
   foundryApplication: Application;
 };
 
-export const ThemeFarm: React.FC<ThemeFarmProps> = ({
-  foundryApplication,
-}: ThemeFarmProps) => {
+export const ThemeFarm = (
+  {
+    foundryApplication
+  }: ThemeFarmProps
+) => {
   return (
     <div
       css={{

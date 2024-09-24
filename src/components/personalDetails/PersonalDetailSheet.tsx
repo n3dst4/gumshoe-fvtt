@@ -12,10 +12,12 @@ interface PersonalDetailSheetProps {
   personalDetail: InvestigatorItem;
 }
 
-export const PersonalDetailSheet: React.FC<PersonalDetailSheetProps> = ({
-  personalDetail,
-  application,
-}) => {
+export const PersonalDetailSheet = (
+  {
+    personalDetail,
+    application
+  }: PersonalDetailSheetProps
+) => {
   assertPersonalDetailItem(personalDetail);
 
   return (

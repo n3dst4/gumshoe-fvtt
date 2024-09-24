@@ -20,10 +20,12 @@ interface StandardInitiativeProps {
   combat: InvestigatorCombat;
 }
 
-export const StandardInitiative: React.FC<StandardInitiativeProps> = ({
-  turn,
-  combat,
-}: StandardInitiativeProps) => {
+export const StandardInitiative = (
+  {
+    turn,
+    combat
+  }: StandardInitiativeProps
+) => {
   assertGame(game);
   const {
     onDoInitiative,

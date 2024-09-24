@@ -4,7 +4,7 @@ import { absoluteCover } from "../../absoluteCover";
 import { TabContainer } from "../../TabContainer";
 import { StatsSettingsEditor } from "./StatsSettingsEditor";
 
-export const StatsSettings: React.FC = () => {
+export const StatsSettings = () => {
   return (
     <div
       css={{

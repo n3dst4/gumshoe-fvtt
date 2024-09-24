@@ -12,9 +12,12 @@ type AbilitySlugPlayQuickShockInvestigativeProps = {
   disabled: boolean;
 };
 
-export const AbilitySlugPlayQuickShockInvestigative: React.FC<
-  AbilitySlugPlayQuickShockInvestigativeProps
-> = ({ ability, disabled }) => {
+export const AbilitySlugPlayQuickShockInvestigative = (
+  {
+    ability,
+    disabled
+  }: AbilitySlugPlayQuickShockInvestigativeProps
+) => {
   assertAbilityItem(ability);
   const app = useContext(FoundryAppContext);
   const onDragStart = useCallback(

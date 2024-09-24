@@ -8,11 +8,13 @@ type PoolCheckboxProps = {
   onClick: (value: number) => void;
 };
 
-export const PoolCheckbox: React.FC<PoolCheckboxProps> = ({
-  value,
-  selected,
-  onClick: onClickProp,
-}) => {
+export const PoolCheckbox = (
+  {
+    value,
+    selected,
+    onClick: onClickProp
+  }: PoolCheckboxProps
+) => {
   const onClick = useCallback(() => {
     onClickProp(value);
   }, [onClickProp, value]);

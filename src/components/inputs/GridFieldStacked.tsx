@@ -11,12 +11,14 @@ type GridFieldStackedProps = {
   noTranslate?: boolean;
 };
 
-export const GridFieldStacked: React.FC<GridFieldStackedProps> = ({
-  label,
-  className,
-  children,
-  noTranslate = false,
-}) => {
+export const GridFieldStacked = (
+  {
+    label,
+    className,
+    children,
+    noTranslate = false
+  }: GridFieldStackedProps
+) => {
   const htmlId = useMemo(() => nanoid(), []);
   return (
     <IdContext.Provider value={htmlId}>

@@ -12,13 +12,15 @@ type WeaponRangeProps = {
   setEnabled: (enabled: boolean) => void;
 };
 
-export const WeaponRange: React.FC<WeaponRangeProps> = ({
-  label,
-  damage,
-  enabled,
-  setDamage,
-  setEnabled,
-}) => {
+export const WeaponRange = (
+  {
+    label,
+    damage,
+    enabled,
+    setDamage,
+    setEnabled
+  }: WeaponRangeProps
+) => {
   return (
     <GridField label={label}>
       <div

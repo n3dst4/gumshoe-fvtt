@@ -10,9 +10,11 @@ type AbilityMwExtraFieldsProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilityMwExtraFields: React.FC<AbilityMwExtraFieldsProps> = ({
-  ability,
-}) => {
+export const AbilityMwExtraFields = (
+  {
+    ability
+  }: AbilityMwExtraFieldsProps
+) => {
   assertGeneralAbilityItem(ability);
 
   return (

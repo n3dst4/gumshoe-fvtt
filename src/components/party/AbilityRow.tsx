@@ -13,11 +13,13 @@ type AbilityRowProps = {
   actors: InvestigatorActor[];
 };
 
-export const AbilityRow: React.FC<AbilityRowProps> = ({
-  abilityRowData,
-  index,
-  actors,
-}) => {
+export const AbilityRow = (
+  {
+    abilityRowData,
+    index,
+    actors
+  }: AbilityRowProps
+) => {
   const theme =
     runtimeConfig.themes[settings.defaultThemeName.get()] ||
     runtimeConfig.themes["tealTheme"];

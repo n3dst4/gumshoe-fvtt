@@ -42,15 +42,17 @@ type SortableTableProps = {
   emptyMessage?: React.ReactNode;
 };
 
-export const SortableTable: React.FC<SortableTableProps> = ({
-  items,
-  setItems,
-  renderItem,
-  headers,
-  gridTemplateColumns = "1fr",
-  className,
-  emptyMessage,
-}) => {
+export const SortableTable = (
+  {
+    items,
+    setItems,
+    renderItem,
+    headers,
+    gridTemplateColumns = "1fr",
+    className,
+    emptyMessage
+  }: SortableTableProps
+) => {
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {

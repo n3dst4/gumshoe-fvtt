@@ -14,9 +14,11 @@ interface SituationalModifiersEditorProps {
 
 const transitionTime = 400;
 
-export const SituationalModifiersEditor: React.FC<
-  SituationalModifiersEditorProps
-> = ({ ability }: SituationalModifiersEditorProps) => {
+export const SituationalModifiersEditor = (
+  {
+    ability
+  }: SituationalModifiersEditorProps
+) => {
   assertAbilityItem(ability);
 
   const transitionedSituationalModifiers = useListShowHideTransition(

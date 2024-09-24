@@ -11,9 +11,11 @@ interface StatsSettingsEditorProps {
   which: PcOrNpc;
 }
 
-export const StatsSettingsEditor: React.FC<StatsSettingsEditorProps> = ({
-  which,
-}: StatsSettingsEditorProps) => {
+export const StatsSettingsEditor = (
+  {
+    which
+  }: StatsSettingsEditorProps
+) => {
   const stats = useContext(StateContext).settings[which];
   const dispatch = useContext(DispatchContext);
   const handleAdd = useCallback(() => {

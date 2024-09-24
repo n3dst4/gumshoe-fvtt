@@ -6,10 +6,12 @@ type ImagePickerLinkProps = React.PropsWithChildren<{
   onClick: () => void;
 }>;
 
-export const ImagePickerLink: React.FC<ImagePickerLinkProps> = ({
-  onClick,
-  children,
-}: ImagePickerLinkProps) => {
+export const ImagePickerLink = (
+  {
+    onClick,
+    children
+  }: ImagePickerLinkProps
+) => {
   const theme = useContext(ThemeContext);
 
   const onClickCb = useCallback(

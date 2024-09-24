@@ -25,7 +25,11 @@ type AbilityConfigProps = {
   ability: InvestigatorItem;
 };
 
-export const AbilityConfig: React.FC<AbilityConfigProps> = ({ ability }) => {
+export const AbilityConfig = (
+  {
+    ability
+  }: AbilityConfigProps
+) => {
   assertGame(game);
   assertAbilityItem(ability);
   const isGeneral = isGeneralAbilityItem(ability);

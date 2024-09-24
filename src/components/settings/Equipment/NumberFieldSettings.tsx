@@ -14,11 +14,13 @@ interface NumberFieldSettingsProps {
   fieldId: string;
 }
 
-export const NumberFieldSettings: React.FC<NumberFieldSettingsProps> = ({
-  field,
-  categoryId,
-  fieldId,
-}) => {
+export const NumberFieldSettings = (
+  {
+    field,
+    categoryId,
+    fieldId
+  }: NumberFieldSettingsProps
+) => {
   const dispatch = useContext(DispatchContext);
   const fieldStash = useRefStash(field);
 

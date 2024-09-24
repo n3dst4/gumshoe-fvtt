@@ -30,60 +30,67 @@ const deets: { [mode in WallopNegateMode]: MWResult } = {
   },
 };
 
-export const AbilityNegateOrWallopMwCard: React.FC<AbilityNegateOrWallopMwCardProps> =
-  React.memo(({ msg, ability, pool, mode, name }) => {
-    const onClickAbilityName = useCallback(() => {
-      ability?.sheet?.render(true);
-    }, [ability?.sheet]);
+export const AbilityNegateOrWallopMwCard = React.memo((
+  {
+    msg,
+    ability,
+    pool,
+    mode,
+    name
+  }: AbilityNegateOrWallopMwCardProps
+) => {
+  const onClickAbilityName = useCallback(() => {
+    ability?.sheet?.render(true);
+  }, [ability?.sheet]);
 
-    const costFactor =
-      mode === constants.htmlDataModeMwNegate ? (
-        <span>
-          <Translate>Negate</Translate>: -{constants.mwNegateCost}
-        </span>
-      ) : (
-        <span>
-          <Translate>Wallop</Translate>: -{constants.mwWallopCost}
-        </span>
-      );
+  const costFactor =
+    mode === constants.htmlDataModeMwNegate ? (
+      <span>
+        <Translate>Negate</Translate>: -{constants.mwNegateCost}
+      </span>
+    ) : (
+      <span>
+        <Translate>Wallop</Translate>: -{constants.mwWallopCost}
+      </span>
+    );
 
-    return (
+  return (
+    <div
+      className="dice-roll"
+      css={{
+        position: "relative",
+        display: "grid",
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "max-content minmax(0, max-content) max-content",
+        gridTemplateAreas: '"headline" ' + '"pool" ' + '"body" ',
+        alignItems: "center",
+      }}
+    >
+      {/* HEADLINE */}
       <div
-        className="dice-roll"
         css={{
-          position: "relative",
-          display: "grid",
-          gridTemplateColumns: "1fr",
-          gridTemplateRows: "max-content minmax(0, max-content) max-content",
-          gridTemplateAreas: '"headline" ' + '"pool" ' + '"body" ',
-          alignItems: "center",
+          gridArea: "headline",
         }}
       >
-        {/* HEADLINE */}
-        <div
-          css={{
-            gridArea: "headline",
-          }}
-        >
-          <b>
-            <a onClick={onClickAbilityName}>
-              {name ?? ability?.name ?? "Missing"}
-            </a>
-          </b>
-        </div>
-        {/* POOL */}
-        <div
-          css={{
-            gridArea: "pool",
-          }}
-        >
-          <Translate>Pool</Translate>: {pool}
-          <MwCostSlug>{costFactor}</MwCostSlug>
-        </div>
-        {/* RESULT */}
-        <MwButton deets={deets[mode]} />
+        <b>
+          <a onClick={onClickAbilityName}>
+            {name ?? ability?.name ?? "Missing"}
+          </a>
+        </b>
       </div>
-    );
-  });
+      {/* POOL */}
+      <div
+        css={{
+          gridArea: "pool",
+        }}
+      >
+        <Translate>Pool</Translate>: {pool}
+        <MwCostSlug>{costFactor}</MwCostSlug>
+      </div>
+      {/* RESULT */}
+      <MwButton deets={deets[mode]} />
+    </div>
+  );
+});
 
 AbilityNegateOrWallopMwCard.displayName = "AbilityNegateOrWallopMwCard";

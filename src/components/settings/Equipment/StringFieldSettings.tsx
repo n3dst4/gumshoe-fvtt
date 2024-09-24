@@ -12,11 +12,13 @@ interface StringFieldSettingsProps {
   fieldId: string;
 }
 
-export const StringFieldSettings: React.FC<StringFieldSettingsProps> = ({
-  field,
-  categoryId,
-  fieldId,
-}) => {
+export const StringFieldSettings = (
+  {
+    field,
+    categoryId,
+    fieldId
+  }: StringFieldSettingsProps
+) => {
   const dispatch = useContext(DispatchContext);
 
   const handleChangeDefault = useCallback(

@@ -10,10 +10,12 @@ type DragHandleProps = {
   listeners?: SyntheticListenerMap | undefined;
 };
 
-export const DragHandle: React.FC<DragHandleProps> = ({
-  setActivatorNodeRef,
-  listeners,
-}) => {
+export const DragHandle = (
+  {
+    setActivatorNodeRef,
+    listeners
+  }: DragHandleProps
+) => {
   const theme = useContext(ThemeContext);
 
   const gripColor = useMemo(

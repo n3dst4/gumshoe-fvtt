@@ -4,10 +4,12 @@ type InputGridProps = {
   className?: string;
 };
 
-export const InputGrid: React.FC<InputGridProps> = ({
-  children,
-  className,
-}) => {
+export const InputGrid = (
+  {
+    children,
+    className
+  }: InputGridProps
+) => {
   return (
     <div
       css={{

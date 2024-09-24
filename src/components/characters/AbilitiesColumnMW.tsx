@@ -8,9 +8,11 @@ interface AbilitiesColumnMWProps {
   abilities: InvestigatorItem[];
 }
 
-export const AbilitiesColumnMW: React.FC<AbilitiesColumnMWProps> = ({
-  abilities,
-}: AbilitiesColumnMWProps) => {
+export const AbilitiesColumnMW = (
+  {
+    abilities
+  }: AbilitiesColumnMWProps
+) => {
   return (
     <div
       css={{

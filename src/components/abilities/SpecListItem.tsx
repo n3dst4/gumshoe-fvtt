@@ -9,12 +9,14 @@ type SpecListItemProps = {
   disabled?: boolean;
 };
 
-export const SpecListItem: React.FC<SpecListItemProps> = ({
-  onChange: onChangeProp,
-  index,
-  value,
-  disabled = false,
-}) => {
+export const SpecListItem = (
+  {
+    onChange: onChangeProp,
+    index,
+    value,
+    disabled = false
+  }: SpecListItemProps
+) => {
   const onChange = useCallback(
     (newVal: string) => {
       onChangeProp(newVal, index);

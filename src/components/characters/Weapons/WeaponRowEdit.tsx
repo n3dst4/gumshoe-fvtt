@@ -17,10 +17,12 @@ type WeaponRowEditProps = {
   index: number;
 };
 
-export const WeaponRowEdit: React.FC<WeaponRowEditProps> = ({
-  weapon,
-  index,
-}) => {
+export const WeaponRowEdit = (
+  {
+    weapon,
+    index
+  }: WeaponRowEditProps
+) => {
   assertWeaponItem(weapon);
 
   const theme = useContext(ThemeContext);

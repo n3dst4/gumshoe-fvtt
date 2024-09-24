@@ -25,7 +25,12 @@ interface CategoryProps {
   idx: number;
 }
 
-export const Category: React.FC<CategoryProps> = ({ id, idx }) => {
+export const Category = (
+  {
+    id,
+    idx
+  }: CategoryProps
+) => {
   const dispatch = useContext(DispatchContext);
   const { settings } = useContext(StateContext);
 

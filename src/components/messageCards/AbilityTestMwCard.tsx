@@ -45,94 +45,102 @@ const results: { [value: number]: MWResult } = {
   },
 };
 
-export const AbilityTestMwCard: React.FC<AbilityTestMwCardProps> = React.memo(
-  ({ msg, ability, difficulty, boonLevy, reRoll, pool, name }) => {
-    const onClickAbilityName = useCallback(() => {
-      ability?.sheet?.render(true);
-    }, [ability?.sheet]);
+export const AbilityTestMwCard = React.memo((
+  {
+    msg,
+    ability,
+    difficulty,
+    boonLevy,
+    reRoll,
+    pool,
+    name
+  }: AbilityTestMwCardProps
+) => {
+  const onClickAbilityName = useCallback(() => {
+    ability?.sheet?.render(true);
+  }, [ability?.sheet]);
 
-    // @ts-expect-error v10 types
-    const cappedResult = Math.max(Math.min(msg.rolls?.[0]?.total ?? 1, 6), 1);
-    const effectiveResult =
-      difficulty === "easy" && cappedResult === 3 ? 4 : cappedResult;
-    const deets = results[effectiveResult];
+  // @ts-expect-error v10 types
+  const cappedResult = Math.max(Math.min(msg.rolls?.[0]?.total ?? 1, 6), 1);
+  const effectiveResult =
+    difficulty === "easy" && cappedResult === 3 ? 4 : cappedResult;
+  const deets = results[effectiveResult];
 
-    const onClickReRoll = useCallback(() => {
-      void ability?.mwTestAbility(difficulty, boonLevy, effectiveResult);
-    }, [ability, boonLevy, difficulty, effectiveResult]);
+  const onClickReRoll = useCallback(() => {
+    void ability?.mwTestAbility(difficulty, boonLevy, effectiveResult);
+  }, [ability, boonLevy, difficulty, effectiveResult]);
 
-    const boonLevyFactor =
-      boonLevy < 0 ? (
-        <MwCostSlug>
-          <Translate>Levy</Translate>: {boonLevy}
-        </MwCostSlug>
-      ) : boonLevy > 0 ? (
-        <MwCostSlug>
-          <Translate>Boon</Translate>: +{boonLevy}
-        </MwCostSlug>
-      ) : null;
-
-    const reRollFactor = reRoll && (
+  const boonLevyFactor =
+    boonLevy < 0 ? (
       <MwCostSlug>
-        <Translate>Re-roll</Translate>: {reRoll === 1 ? "-4" : "-1"}
+        <Translate>Levy</Translate>: {boonLevy}
       </MwCostSlug>
-    );
+    ) : boonLevy > 0 ? (
+      <MwCostSlug>
+        <Translate>Boon</Translate>: +{boonLevy}
+      </MwCostSlug>
+    ) : null;
 
-    return (
+  const reRollFactor = reRoll && (
+    <MwCostSlug>
+      <Translate>Re-roll</Translate>: {reRoll === 1 ? "-4" : "-1"}
+    </MwCostSlug>
+  );
+
+  return (
+    <div
+      className="dice-roll"
+      css={{
+        position: "relative",
+        display: "grid",
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "max-content minmax(0, max-content) max-content",
+        gridTemplateAreas: '"headline" ' + '"pool" ' + '"body" ',
+        alignItems: "center",
+      }}
+    >
+      {/* HEADLINE */}
       <div
-        className="dice-roll"
         css={{
-          position: "relative",
-          display: "grid",
-          gridTemplateColumns: "1fr",
-          gridTemplateRows: "max-content minmax(0, max-content) max-content",
-          gridTemplateAreas: '"headline" ' + '"pool" ' + '"body" ',
-          alignItems: "center",
+          gridArea: "headline",
         }}
       >
-        {/* HEADLINE */}
-        <div
-          css={{
-            gridArea: "headline",
-          }}
-        >
-          <b>
-            <a onClick={onClickAbilityName}>
-              {name ?? ability?.name ?? "Missing"}
-            </a>
-          </b>{" "}
-          <DiceTerms terms={msg.roll?.terms} />
-          {difficulty === "easy" && (
-            <span>
-              (<Translate>Easy</Translate>)
-            </span>
-          )}
-          {difficulty === -1 && (
-            <span>
-              (<Translate>Hard</Translate>)
-            </span>
-          )}
-          {difficulty !== "easy" && difficulty < -1 && (
-            <span>
-              (<Translate>Very Hard</Translate>)
-            </span>
-          )}
-        </div>
-        {/* POOL */}
-        <div
-          css={{
-            gridArea: "pool",
-          }}
-        >
-          <Translate>Pool</Translate>: {pool}
-          {boonLevyFactor}
-          {reRollFactor}
-        </div>
-        {/* RESULT */}
-        <MwButton onClick={onClickReRoll} deets={deets} />
+        <b>
+          <a onClick={onClickAbilityName}>
+            {name ?? ability?.name ?? "Missing"}
+          </a>
+        </b>{" "}
+        <DiceTerms terms={msg.roll?.terms} />
+        {difficulty === "easy" && (
+          <span>
+            (<Translate>Easy</Translate>)
+          </span>
+        )}
+        {difficulty === -1 && (
+          <span>
+            (<Translate>Hard</Translate>)
+          </span>
+        )}
+        {difficulty !== "easy" && difficulty < -1 && (
+          <span>
+            (<Translate>Very Hard</Translate>)
+          </span>
+        )}
       </div>
-    );
-  },
-);
+      {/* POOL */}
+      <div
+        css={{
+          gridArea: "pool",
+        }}
+      >
+        <Translate>Pool</Translate>: {pool}
+        {boonLevyFactor}
+        {reRollFactor}
+      </div>
+      {/* RESULT */}
+      <MwButton onClick={onClickReRoll} deets={deets} />
+    </div>
+  );
+});
 
 AbilityTestMwCard.displayName = "AbilityTestMwCard";

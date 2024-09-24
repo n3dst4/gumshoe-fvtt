@@ -11,13 +11,15 @@ type AsyncTextAreaProps = {
   index?: number;
 };
 
-export const AsyncTextArea: React.FC<AsyncTextAreaProps> = ({
-  className,
-  value,
-  onChange: onChangeOrig,
-  disabled,
-  index,
-}) => {
+export const AsyncTextArea = (
+  {
+    className,
+    value,
+    onChange: onChangeOrig,
+    disabled,
+    index
+  }: AsyncTextAreaProps
+) => {
   const { onChange, onFocus, onBlur, display } = useAsyncUpdate(
     value,
     onChangeOrig,

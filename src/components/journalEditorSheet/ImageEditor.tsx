@@ -10,7 +10,11 @@ interface ImageEditorProps {
  * A basic image page. Delegates to Foundry's native editor to do the heavy
  * lifting.
  */
-export const ImageEditor: React.FC<ImageEditorProps> = ({ page }) => {
+export const ImageEditor = (
+  {
+    page
+  }: ImageEditorProps
+) => {
   return (
     <div
       data-testid="image-container"

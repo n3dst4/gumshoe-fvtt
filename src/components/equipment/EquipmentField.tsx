@@ -14,12 +14,14 @@ interface EquipmentFieldProps {
   equipment: InvestigatorItem;
 }
 
-export const EquipmentField: React.FC<EquipmentFieldProps> = ({
-  fieldId,
-  fieldMetadata,
-  value,
-  equipment,
-}) => {
+export const EquipmentField = (
+  {
+    fieldId,
+    fieldMetadata,
+    value,
+    equipment
+  }: EquipmentFieldProps
+) => {
   const onChange = useCallback(
     (newValue: string | number | boolean) => {
       void equipment.setField(fieldId, newValue);

@@ -18,18 +18,20 @@ type GridFieldProps = {
   labelStyle?: CSSObject;
 };
 
-export const GridField: React.FC<GridFieldProps> = ({
-  label,
-  className,
-  children,
-  noLabel = false,
-  noTranslate = false,
-  labelTitle,
-  onDragOver,
-  onDragEnd,
-  onDrop,
-  labelStyle,
-}) => {
+export const GridField = (
+  {
+    label,
+    className,
+    children,
+    noLabel = false,
+    noTranslate = false,
+    labelTitle,
+    onDragOver,
+    onDragEnd,
+    onDrop,
+    labelStyle
+  }: GridFieldProps
+) => {
   const id = useMemo(() => nanoid(), []);
   return (
     <IdContext.Provider value={id}>

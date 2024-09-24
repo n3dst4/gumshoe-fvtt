@@ -10,7 +10,13 @@ interface SlugProps {
   children?: React.ReactNode;
 }
 
-export const Slug: React.FC<SlugProps> = ({ onClick, item, children }) => {
+export const Slug = (
+  {
+    onClick,
+    item,
+    children
+  }: SlugProps
+) => {
   const app = useContext(FoundryAppContext);
   const theme = useContext(ThemeContext);
   const onDragStart = useCallback(

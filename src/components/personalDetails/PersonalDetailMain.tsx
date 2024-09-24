@@ -15,9 +15,11 @@ interface PersonalDetailMainProps {
   item: InvestigatorItem;
 }
 
-export const PersonalDetailMain: React.FC<PersonalDetailMainProps> = ({
-  item,
-}) => {
+export const PersonalDetailMain = (
+  {
+    item
+  }: PersonalDetailMainProps
+) => {
   assertGame(game);
   assertPersonalDetailItem(item);
   const name = item.name;
