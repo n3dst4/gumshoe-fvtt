@@ -1,7 +1,7 @@
 import { Fragment, ReactNode } from "react";
 
+import { useActorSheetContext } from "../../hooks/useSheetContexts";
 import { useTheme } from "../../hooks/useTheme";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
 import { assertNPCActor, isNPCActor } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
@@ -24,18 +24,9 @@ import { TrackersArea } from "./TrackersArea";
 import { WeaponsArea } from "./Weapons/WeaponsArea";
 import { WeaponsAreaEdit } from "./Weapons/WeaponsAreaEdit";
 
-type NPCSheetFullProps = {
-  actor: InvestigatorActor;
-  foundryApplication:
-    | ActorSheet
-    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-    | foundry.applications.api.DocumentSheetV2<InvestigatorActor>;
-};
+export const NPCSheetFull = () => {
+  const { actor } = useActorSheetContext();
 
-export const NPCSheetFull = ({
-  actor,
-  foundryApplication,
-}: NPCSheetFullProps) => {
   assertNPCActor(actor);
   const themeName = actor.getSheetThemeName();
   const theme = useTheme(themeName);
@@ -75,8 +66,6 @@ export const NPCSheetFull = ({
       </div>
 
       <ImagePickle
-        subject={actor}
-        application={foundryApplication}
         css={{
           gridArea: "image",
           transform: "rotateZ(2deg)",

@@ -1,23 +1,14 @@
+import { useActorSheetContext } from "../../hooks/useSheetContexts";
 import { useTheme } from "../../hooks/useTheme";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertNPCActor } from "../../v10Types";
 import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { NotesDisplay } from "../inputs/NotesDisplay";
 import { LogoEditable } from "./LogoEditable";
 
-type NPCSheetSimpleProps = {
-  actor: InvestigatorActor;
-  foundryApplication:
-    | ActorSheet
-    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-    | foundry.applications.api.DocumentSheetV2<InvestigatorActor>;
-};
+export const NPCSheetSimple = () => {
+  const { actor } = useActorSheetContext();
 
-export const NPCSheetSimple = ({
-  actor,
-  foundryApplication,
-}: NPCSheetSimpleProps) => {
   assertNPCActor(actor);
   const themeName = actor.getSheetThemeName();
   const theme = useTheme(themeName);
@@ -71,8 +62,6 @@ export const NPCSheetSimple = ({
           }}
         >
           <ImagePickle
-            subject={actor}
-            application={foundryApplication}
             css={{
               width: "100%",
               height: "auto",

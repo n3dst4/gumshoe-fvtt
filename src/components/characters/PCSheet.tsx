@@ -2,8 +2,8 @@ import { Fragment, ReactNode, useCallback, useEffect, useState } from "react";
 
 import { occupationSlotIndex } from "../../constants";
 import { assertGame } from "../../functions/utilities";
+import { useActorSheetContext } from "../../hooks/useSheetContexts";
 import { useTheme } from "../../hooks/useTheme";
-import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { settings } from "../../settings/settings";
 import {
   AnyItem,
@@ -36,12 +36,9 @@ import { StatField } from "./StatField";
 import { TrackersArea } from "./TrackersArea";
 import { WeaponsArea } from "./Weapons/WeaponsArea";
 
-interface PCSheetProps {
-  actor: InvestigatorActor;
-  foundryApplication: ActorSheet;
-}
+export const PCSheet = () => {
+  const { actor } = useActorSheetContext();
 
-export const PCSheet = ({ actor, foundryApplication }: PCSheetProps) => {
   assertGame(game);
   assertPCActor(actor);
 
@@ -140,8 +137,6 @@ export const PCSheet = ({ actor, foundryApplication }: PCSheetProps) => {
         />
       </div>
       <ImagePickle
-        subject={actor}
-        application={foundryApplication}
         css={{
           gridArea: "image",
           transform: "rotateZ(2deg)",
