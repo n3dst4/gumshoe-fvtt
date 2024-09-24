@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css";
-import React, { Fragment, MouseEvent, ReactNode, useCallback } from "react";
+import { Fragment, MouseEvent, ReactNode, useCallback } from "react";
 
 import {
   assertGame,

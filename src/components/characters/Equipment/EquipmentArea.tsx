@@ -1,4 +1,3 @@
-import React from "react";
 
 import { getTranslated } from "../../../functions/getTranslated";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";

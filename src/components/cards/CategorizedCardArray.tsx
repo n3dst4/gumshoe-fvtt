@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import { settings } from "../../settings/settings";
 import { CardItem } from "../../v10Types";

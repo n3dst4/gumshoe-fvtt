@@ -1,4 +1,3 @@
-import React from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AbilitySlugPlayMw } from "./AbilitySlugPlayMw";

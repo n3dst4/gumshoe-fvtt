@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback } from "react";
+import { ChangeEvent, useCallback } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { InvestigatorItem } from "../../module/InvestigatorItem";

@@ -1,4 +1,3 @@
-import React from "react";
 
 import { TabContainer } from "../../TabContainer";
 import { Experiment1 } from "./Experiment1";

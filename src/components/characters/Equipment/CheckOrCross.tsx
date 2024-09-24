@@ -1,4 +1,3 @@
-import React from "react";
 import { FaCheck, FaTimes } from "react-icons/fa";
 
 interface CheckOrCrossProps {

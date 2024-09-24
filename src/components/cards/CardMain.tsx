@@ -1,4 +1,3 @@
-import React from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { assertCardItem } from "../../v10Types";

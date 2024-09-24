@@ -6,7 +6,7 @@ import {
   Global,
 } from "@emotion/react";
 import { FoundryAppContext } from "@lumphammer/shared-fvtt-bits/src/FoundryAppContext";
-import React, {
+import {
   PropsWithChildren,
   useContext,
   useEffect,

@@ -1,4 +1,3 @@
-import React from "react";
 
 import { useAsyncUpdate } from "../../hooks/useAsyncUpdate";
 import { TextArea } from "./TextArea";

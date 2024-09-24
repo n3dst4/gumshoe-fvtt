@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useContext } from "react";
+import { ReactNode, useCallback, useContext } from "react";
 
 import { Button } from "../../inputs/Button";
 import { Translate } from "../../Translate";
@@ -13,8 +13,8 @@ interface StatsSettingsEditorProps {
 
 export const StatsSettingsEditor = (
   {
-    which
-  }: StatsSettingsEditorProps
+    which,
+  }: StatsSettingsEditorProps,
 ) => {
   const stats = useContext(StateContext).settings[which];
   const dispatch = useContext(DispatchContext);

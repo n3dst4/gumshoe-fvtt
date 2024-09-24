@@ -1,5 +1,5 @@
 import { Stat } from "@lumphammer/investigator-fvtt-types";
-import React, { Fragment, useCallback } from "react";
+import { Fragment, useCallback } from "react";
 
 import { assertActiveCharacterActor } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";

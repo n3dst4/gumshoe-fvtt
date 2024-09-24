@@ -1,4 +1,3 @@
-import React from "react";
 
 import { occupationSlotIndex } from "../../constants";
 import { assertGame, padLength } from "../../functions/utilities";

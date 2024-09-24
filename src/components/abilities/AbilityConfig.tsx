@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Fragment, useCallback, useState } from "react";
+import { ChangeEvent, Fragment, useCallback, useState } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { getTranslated } from "../../functions/getTranslated";

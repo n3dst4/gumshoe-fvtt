@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";

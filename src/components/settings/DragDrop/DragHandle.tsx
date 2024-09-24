@@ -1,5 +1,5 @@
 import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
-import React, { useContext, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { FaGripLines } from "react-icons/fa6";
 
 import { irid } from "../../../irid/irid";

@@ -1,5 +1,5 @@
 import { CSSObject } from "@emotion/react";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import { useHover } from "../../hooks/useHover";
 import { Button } from "../inputs/Button";

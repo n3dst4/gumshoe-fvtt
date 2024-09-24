@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import { Fragment, useContext } from "react";
 
 import { sortEntitiesByName } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";

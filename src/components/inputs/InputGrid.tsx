@@ -1,4 +1,3 @@
-import React from "react";
 type InputGridProps = {
   children: any;
   className?: string;

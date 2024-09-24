@@ -1,4 +1,3 @@
-import React from "react";
 
 import { sortEntitiesByName } from "../../../functions/utilities";
 import { InvestigatorActor } from "../../../module/InvestigatorActor";

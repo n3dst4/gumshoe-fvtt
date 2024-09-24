@@ -1,6 +1,6 @@
 import { Router } from "@lumphammer/minirouter";
 import { SlideInOutlet } from "@lumphammer/minirouter/animated";
-import React, { useCallback, useContext } from "react";
+import { useCallback, useContext } from "react";
 
 import { absoluteCover } from "../../absoluteCover";
 import { GridField } from "../../inputs/GridField";

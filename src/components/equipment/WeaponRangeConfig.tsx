@@ -1,4 +1,3 @@
-import React from "react";
 
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { GridField } from "../inputs/GridField";

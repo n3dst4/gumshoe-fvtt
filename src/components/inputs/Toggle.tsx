@@ -1,5 +1,5 @@
 import * as Switch from "@radix-ui/react-switch";
-import React, { memo, useContext } from "react";
+import { memo, useContext } from "react";
 
 import { systemLogger } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";

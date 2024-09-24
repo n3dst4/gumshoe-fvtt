@@ -1,4 +1,3 @@
-import React from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ModeSelect } from "../ItemSheetFramework/ModeSelect";

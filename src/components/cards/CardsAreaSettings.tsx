@@ -1,4 +1,3 @@
-import React from "react";
 
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";

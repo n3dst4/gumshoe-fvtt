@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import { settingsCloseAttempted, settingsSaved } from "../../constants";
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";

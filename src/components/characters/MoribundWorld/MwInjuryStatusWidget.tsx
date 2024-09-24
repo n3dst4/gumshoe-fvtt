@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { getTranslated } from "../../../functions/getTranslated";
 import { assertGame } from "../../../functions/utilities";

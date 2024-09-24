@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { isGeneralAbilityItem } from "../../v10Types";

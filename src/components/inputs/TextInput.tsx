@@ -1,5 +1,5 @@
 import { cx } from "@emotion/css";
-import React, { ChangeEvent, useCallback, useContext } from "react";
+import { ChangeEvent, useCallback, useContext } from "react";
 
 import { ThemeContext } from "../../themes/ThemeContext";
 import { IdContext } from "../IdContext";

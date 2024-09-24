@@ -1,7 +1,7 @@
 import MonacoEditor, { Monaco, OnMount } from "@monaco-editor/react";
 import htmlParser from "prettier/plugins/html";
 import prettier from "prettier/standalone";
-import React, { useCallback, useMemo, useRef } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { AiOutlineFormatPainter } from "react-icons/ai";
 
 import { extraCssClasses, systemId } from "../../constants";

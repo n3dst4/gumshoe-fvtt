@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { assertGame } from "../../functions/utilities";
 import { ThemeContext } from "../../themes/ThemeContext";

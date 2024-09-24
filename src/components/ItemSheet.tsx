@@ -1,5 +1,4 @@
 import { CSSObject } from "@emotion/react";
-import React from "react";
 
 import { useTheme } from "../hooks/useTheme";
 import { InvestigatorItem } from "../module/InvestigatorItem";

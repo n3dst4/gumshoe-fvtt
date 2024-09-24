@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { wait } from "../../functions/utilities";
 import { absoluteCover } from "../absoluteCover";

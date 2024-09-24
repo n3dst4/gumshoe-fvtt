@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { settings } from "../../settings/settings";

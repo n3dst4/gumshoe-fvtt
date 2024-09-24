@@ -1,5 +1,5 @@
 import { keyframes } from "@emotion/react";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { FaEdit, FaEllipsisH, FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import { HiDocumentText } from "react-icons/hi";
 

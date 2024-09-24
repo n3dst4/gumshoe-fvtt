@@ -1,5 +1,5 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";

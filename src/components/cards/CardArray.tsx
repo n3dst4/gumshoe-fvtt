@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { ThemeContext } from "../../themes/ThemeContext";
 import { CardItem } from "../../v10Types";

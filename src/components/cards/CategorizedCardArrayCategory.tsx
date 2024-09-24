@@ -1,5 +1,5 @@
 import { CardCategory } from "@lumphammer/investigator-fvtt-types";
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { ThemeContext } from "../../themes/ThemeContext";

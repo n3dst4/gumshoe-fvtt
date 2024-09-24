@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
