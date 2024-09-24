@@ -1,6 +1,7 @@
 import React from "react";
 
 import { assertGame } from "../../functions/utilities";
+import { useIsDocumentLimited } from "../../hooks/useIsDocumentLimited";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
 import { assertNPCActor } from "../../v10Types";
 import { NPCSheetFull } from "./NPCSheetFull";
@@ -18,11 +19,9 @@ export const NPCSheet = ({ actor, foundryApplication }: NPCSheetProps) => {
   assertNPCActor(actor);
   assertGame(game);
 
-  const user = game.user;
-  const myLevel = user ? (actor.getUserLevel(user) ?? 0) : 0;
+  const isLimited = useIsDocumentLimited();
 
-  // @ts-expect-error types still have DOCUMENT_PERMISSION_LEVELS
-  if (myLevel === CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED) {
+  if (isLimited) {
     return (
       <NPCSheetSimple actor={actor} foundryApplication={foundryApplication} />
     );
