@@ -34,7 +34,7 @@ import {
 const investigativeTemplate: InvestigativeAbilityTemplate = {
   type: investigativeAbility,
   img: investigativeAbilityIcon,
-  category: "Academic",
+  categoryId: "Academic",
   hasSpecialities: false,
   specialities: [],
   rating: 0,
@@ -67,7 +67,7 @@ const generalTemplate: GeneralAbilityTemplate = {
   min: 0,
   max: 8,
   occupational: false,
-  category: "General",
+  categoryId: "General",
   showTracker: false,
   excludeFromGeneralRefresh: false,
   goesFirstInCombat: false,
@@ -110,7 +110,7 @@ export const generatePacks = async <
           img: img ?? template.img,
           data: {
             ...template,
-            category,
+            categoryId: category,
             ...rest,
           },
         };

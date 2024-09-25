@@ -321,7 +321,7 @@ export class InvestigatorActor extends Actor {
         continue;
       }
       if (item.type === investigativeAbility) {
-        const cat = item.system.category || "Uncategorised";
+        const cat = item.system.categoryId || "Uncategorised";
         if (investigativeAbilities[cat] === undefined) {
           investigativeAbilities[cat] = [];
         }
@@ -330,7 +330,7 @@ export class InvestigatorActor extends Actor {
         if (hidePushPool && item.system.isPushPool) {
           continue;
         }
-        const cat = item.system.category || "Uncategorised";
+        const cat = item.system.categoryId || "Uncategorised";
         if (generalAbilities[cat] === undefined) {
           generalAbilities[cat] = [];
         }

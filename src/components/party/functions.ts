@@ -63,8 +63,8 @@ const compareAbilityDataSources = (
     return typeComparison;
   }
   const categoryComparison = compareStrings(
-    a.system.category,
-    b.system.category,
+    a.system.categoryId,
+    b.system.categoryId,
   );
   if (categoryComparison !== 0) {
     return categoryComparison;
@@ -92,7 +92,7 @@ export const buildRowData = (
     const {
       type: abilityType,
       name,
-      system: { category },
+      system: { categoryId: category },
     } = abilityItem;
     // const abilityType = ability.type, category, name]
     if (abilityType !== lastType) {

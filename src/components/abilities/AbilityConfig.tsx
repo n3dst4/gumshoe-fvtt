@@ -53,7 +53,7 @@ export const AbilityConfig = () => {
     ? settings.generalAbilityCategories.get()
     : settings.investigativeAbilityCategories.get();
 
-  const isRealCategory = categories.includes(item.system.category);
+  const isRealCategory = categories.includes(item.system.categoryId);
   const [showCustomField, setShowCustomField] = useState(!isRealCategory);
   const [selectCustomOption, setSelectCustomOption] = useState(!isRealCategory);
 
@@ -65,13 +65,13 @@ export const AbilityConfig = () => {
         setSelectCustomOption(true);
       } else {
         setSelectCustomOption(false);
-        void item.setCategory(e.currentTarget.value);
+        void item.setCategoryId(e.currentTarget.value);
       }
     },
     [item],
   );
 
-  const selectedCat = selectCustomOption ? "" : item.system.category;
+  const selectedCat = selectCustomOption ? "" : item.system.categoryId;
 
   return (
     <InputGrid>
@@ -107,8 +107,8 @@ export const AbilityConfig = () => {
           >
             {showCustomField && (
               <AsyncTextInput
-                value={item.system.category}
-                onChange={item.setCategory}
+                value={item.system.categoryId}
+                onChange={item.setCategoryId}
               />
             )}
           </div>

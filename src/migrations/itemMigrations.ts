@@ -20,7 +20,7 @@ export const addCategoryToGeneralAbilities = (
 ) => {
   if (
     item.type === generalAbility &&
-    isNullOrEmptyString(item.system.category)
+    isNullOrEmptyString(item.system.categoryId)
   ) {
     const cat = getDefaultGeneralAbilityCategory();
     if (!updateData.system) {
@@ -88,7 +88,10 @@ export const setEquipmentCategory = (item: AnyItem, updateData: any) => {
     /// XXX WIP
   }
 
-  if (item.type === "equipment" && isNullOrEmptyString(item.system.category)) {
+  if (
+    item.type === "equipment" &&
+    isNullOrEmptyString(item.system.categoryId)
+  ) {
     if (!updateData.system) {
       updateData.system = {};
     }

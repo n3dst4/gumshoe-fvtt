@@ -41,7 +41,7 @@ export const EquipmentConfig = () => {
 
   const allFields = item.system.fields;
   const knownFieldIds = Object.keys(
-    settings.equipmentCategories.get()[item.system.category]?.fields ?? {},
+    settings.equipmentCategories.get()[item.system.categoryId]?.fields ?? {},
   );
   const unknownFields = Object.keys(allFields).filter(
     (fieldId) => !knownFieldIds.includes(fieldId),
@@ -50,7 +50,7 @@ export const EquipmentConfig = () => {
   return (
     <InputGrid>
       <GridField label="Category Id">
-        {item.system.category ? (
+        {item.system.categoryId ? (
           <>
             <code
               css={{
@@ -58,7 +58,7 @@ export const EquipmentConfig = () => {
                 margin: "0.3em 1em 0.3em 0",
               }}
             >
-              {item.system.category}
+              {item.system.categoryId}
             </code>
             <a
               css={{
@@ -66,9 +66,9 @@ export const EquipmentConfig = () => {
               }}
               onClick={async () => {
                 assertEquipmentItem(item);
-                await navigator.clipboard.writeText(item.system.category);
+                await navigator.clipboard.writeText(item.system.categoryId);
                 ui.notifications?.info(
-                  `Copied category ID "${item.system.category}" to clipboard`,
+                  `Copied category ID "${item.system.categoryId}" to clipboard`,
                 );
               }}
             >

@@ -1,6 +1,6 @@
 import system from "../../public/system.json";
 import * as constants from "../constants";
-import { assertGame } from "../functions/utilities";
+import { assertGame, systemLogger } from "../functions/utilities";
 import { settings } from "../settings/settings";
 import { AnyItem } from "../v10Types";
 import { flaggedMigrations } from "./flaggedMigrations";
@@ -76,10 +76,11 @@ export const migrateWorld = async function (
 
   // Migrate World Compendium Packs
   // XXX another any
-  for (const p of game.packs as any) {
-    if (p.metadata.package !== "world") continue;
-    if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
-    await migrateCompendium(p, flaggedMigrations);
+  for (const pack of game.packs as any) {
+    systemLogger.log(`Migrating Compendium pack ${pack.metadata.label}`);
+    if (pack.metadata.packageType !== "world") continue;
+    if (!["Actor", "Item", "Scene"].includes(pack.metadata.type)) continue;
+    await migrateCompendium(pack, flaggedMigrations);
   }
 
   // Set the migration as complete
@@ -93,8 +94,8 @@ export const migrateWorld = async function (
 (window as any).migrateSystemCompendiums = async () => {
   assertGame(game);
   for (const p of game.packs as any) {
-    if (p.metadata.package !== constants.systemId) continue;
-    if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
+    if (p.metadata.packageName !== constants.systemId) continue;
+    if (!["Actor", "Item", "Scene"].includes(p.metadata.type)) continue;
     await migrateCompendium(p, flaggedMigrations);
   }
 };

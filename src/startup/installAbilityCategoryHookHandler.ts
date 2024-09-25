@@ -1,4 +1,8 @@
-import { assertGame, isNullOrEmptyString } from "../functions/utilities";
+import {
+  assertGame,
+  isNullOrEmptyString,
+  systemLogger,
+} from "../functions/utilities";
 import {
   getDefaultGeneralAbilityCategory,
   getDefaultInvestigativeAbilityCategory,
@@ -21,16 +25,16 @@ export const installAbilityCategoryHookHandler = () => {
       if (isAbilityItem(item)) {
         const isGeneralAbility = isGeneralAbilityItem(item);
         // set category
-        if (isNullOrEmptyString(item.system.category)) {
-          const category = isGeneralAbility
+        if (isNullOrEmptyString(item.system.categoryId)) {
+          const categoryId = isGeneralAbility
             ? getDefaultGeneralAbilityCategory()
             : getDefaultInvestigativeAbilityCategory();
-          console.log(
-            `found ability "${createData.name}" with no category, updating to "${category}"`,
+          systemLogger.log(
+            `found ability "${createData.name}" with no category, updating to "${categoryId}"`,
           );
           // @ts-expect-error v10 types
           item.updateSource({
-            system: { category },
+            system: { categoryId },
           });
         }
       }

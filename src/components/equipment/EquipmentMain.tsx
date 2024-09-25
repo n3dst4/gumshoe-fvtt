@@ -22,17 +22,17 @@ export const EquipmentMain = ({ name, onChangeName }: EquipmentMainProps) => {
   assertEquipmentItem(item);
 
   const categories = settings.equipmentCategories.get();
-  const categoryMetadata = categories[item.system.category];
+  const categoryMetadata = categories[item.system.categoryId];
   const isRealCategory = categoryMetadata !== undefined;
 
   const onChangeCategory = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
-      void item.setCategory(e.currentTarget.value);
+      void item.setCategoryId(e.currentTarget.value);
     },
     [item],
   );
 
-  const selectedCat = isRealCategory ? item.system.category : "";
+  const selectedCat = isRealCategory ? item.system.categoryId : "";
 
   const fieldsLength = Object.keys(categoryMetadata?.fields ?? {}).length + 2;
 
