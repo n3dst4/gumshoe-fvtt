@@ -13,13 +13,13 @@ export const migrateCompendium = async function (
   pack: any,
   flaggedMigrations: FlaggedMigrations,
 ) {
-  const entity = pack.metadata.entity;
+  const docType = pack.metadata.type;
 
   for (const packMigration in flaggedMigrations.compendium) {
-    flaggedMigrations.compendium[packMigration](pack, entity);
+    flaggedMigrations.compendium[packMigration](pack, docType);
   }
 
-  if (!["Actor", "Item", "Scene"].includes(entity)) return;
+  if (!["Actor", "Item", "Scene"].includes(docType)) return;
 
   // Unlock the pack for editing
   const wasLocked = pack.locked;
@@ -33,7 +33,7 @@ export const migrateCompendium = async function (
   for (const ent of content) {
     let updateData: any = {};
     try {
-      switch (entity) {
+      switch (docType) {
         case "Actor":
           updateData = migrateActorData(ent, flaggedMigrations);
           break;
@@ -50,7 +50,7 @@ export const migrateCompendium = async function (
       updateData._id = ent.id;
       await ent.update(updateData);
       console.log(
-        `Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`,
+        `Migrated ${docType} entity ${ent.name} in Compendium ${pack.collection}`,
       );
     } catch (err: any) {
       // Handle migration failures
@@ -62,6 +62,6 @@ export const migrateCompendium = async function (
   // Apply the original locked status for the pack
   pack.configure({ locked: wasLocked });
   console.log(
-    `Migrated all ${entity} entities from Compendium ${pack.collection}`,
+    `Migrated all ${docType} entities from Compendium ${pack.collection}`,
   );
 };
