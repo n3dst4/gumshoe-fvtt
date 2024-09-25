@@ -94,8 +94,8 @@ export const migrateWorld = async function (
 (window as any).migrateSystemCompendiums = async () => {
   assertGame(game);
   for (const p of game.packs as any) {
-    if (p.metadata.package !== constants.systemId) continue;
-    if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
+    if (p.metadata.packageName !== constants.systemId) continue;
+    if (!["Actor", "Item", "Scene"].includes(p.metadata.type)) continue;
     await migrateCompendium(p, flaggedMigrations);
   }
 };
