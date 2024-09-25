@@ -55,6 +55,28 @@ export const flaggedMigrations: FlaggedMigrations = {
         };
       }
     },
+    switchCategoryToCategoryId: (item: any, updateData: any) => {
+      if (
+        item.type === c.generalAbility ||
+        item.type === c.investigativeAbility ||
+        item.type === c.equipment
+      ) {
+        // eslint-disable-next-line no-debugger
+        debugger;
+        systemLogger.info(
+          `Migrating item ${item.name}. category: ${item.system.category}, categoryId: ${item.system.categoryId}`,
+        );
+        if (!updateData.system) {
+          updateData.system = {};
+        }
+        updateData.system.categoryId = item.system.category;
+        delete updateData.system.category;
+        systemLogger.info(
+          `Done ${item.name}. updateData: ${JSON.stringify(updateData)}`,
+        );
+      }
+      return updateData;
+    },
   },
   actor: {
     /**
