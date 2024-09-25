@@ -113,7 +113,7 @@
         "min": 0,
         "max": 8,
         "occupational": false,
-        "category": "",
+        "categoryId": "",
         "showTracker": false,
         "boost": false,
         "excludeFromGeneralRefresh": false,
@@ -142,7 +142,7 @@
     },
     "equipment": {
       "templates": ["notes"],
-      "category": "",
+      "categoryId": "",
       "fields": {}
     },
     "weapon": {

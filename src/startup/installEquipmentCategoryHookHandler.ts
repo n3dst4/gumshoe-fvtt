@@ -19,9 +19,9 @@ export const installEquipmentCategoryHookHandler = () => {
       if (isEquipmentItem(item)) {
         const equipmentCategories = settings.equipmentCategories.get();
         const categoryId =
-          item.system.category || Object.keys(equipmentCategories)[0];
-        const updateData: Pick<EquipmentSystemData, "category" | "fields"> = {
-          category: item.system.category || categoryId,
+          item.system.categoryId || Object.keys(equipmentCategories)[0];
+        const updateData: Pick<EquipmentSystemData, "categoryId" | "fields"> = {
+          categoryId: item.system.categoryId || categoryId,
           fields: item.system.fields || {},
         };
         const fields = equipmentCategories[categoryId].fields;

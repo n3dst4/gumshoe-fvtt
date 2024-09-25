@@ -301,23 +301,15 @@ export class InvestigatorItem extends Item {
   // used as handy callbacks in the component tree
   // ###########################################################################
 
-  /**
-   * What a pavlova!
-   *
-   * For historical reasons, we have a "category" field on equipment and
-   * abilities, but we have a "categoryId" field on cards.
-   *
-   * There is a ticket to migrate to `categoryId` on all items:
-   * https://github.com/n3dst4/gumshoe-fvtt/issues/845
-   */
-  setCategory = async (category: string): Promise<void> => {
+  setCategoryId = async (categoryId: string): Promise<void> => {
     assertEquipmentOrAbilityItem(this);
-    const updateData: Pick<EquipmentSystemData, "category" | "fields"> = {
-      category,
+    const updateData: Pick<EquipmentSystemData, "categoryId" | "fields"> = {
+      categoryId,
       fields: {},
     };
     if (isEquipmentItem(this)) {
-      const fields = settings.equipmentCategories.get()[category]?.fields ?? {};
+      const fields =
+        settings.equipmentCategories.get()[categoryId]?.fields ?? {};
       for (const field in fields) {
         updateData.fields[field] =
           this.system.fields[field] ?? fields[field].default;

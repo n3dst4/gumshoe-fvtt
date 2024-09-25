@@ -162,7 +162,7 @@ export interface BaseEquipmentSystemData {
  * system data forequipment
  */
 export interface EquipmentSystemData extends BaseEquipmentSystemData {
-  category: string;
+  categoryId: string;
   fields: Record<string, string | number | boolean>;
 }
 
@@ -214,7 +214,7 @@ interface BaseAbilitySystemData {
   specialities: string[];
   showTracker: boolean;
   boost: boolean;
-  category: string;
+  categoryId: string;
   excludeFromGeneralRefresh: boolean;
   refreshesDaily: boolean;
   notes: NoteWithFormat;

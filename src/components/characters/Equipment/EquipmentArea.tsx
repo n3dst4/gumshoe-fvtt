@@ -12,7 +12,7 @@ export const EquipmentArea = () => {
   const uncategorizedItems = items.filter(
     (item) =>
       isEquipmentItem(item) &&
-      Object.keys(categories).indexOf(item.system.category) === -1,
+      Object.keys(categories).indexOf(item.system.categoryId) === -1,
   );
 
   return (
@@ -24,7 +24,7 @@ export const EquipmentArea = () => {
             categoryId={categoryId}
             items={items.filter(
               (item) =>
-                isEquipmentItem(item) && item.system.category === categoryId,
+                isEquipmentItem(item) && item.system.categoryId === categoryId,
             )}
             name={category.name}
             key={categoryId}
