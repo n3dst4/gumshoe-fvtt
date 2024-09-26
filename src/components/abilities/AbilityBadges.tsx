@@ -24,6 +24,7 @@ export const AbilityBadges = ({ ability, className }: UnlockBadgesProps) => {
         flexDirection: "row",
         justifyContent: "end",
         flexWrap: "wrap",
+        gap: "0.1em",
         marginBottom: unlocks.length > 0 ? "0.25em" : undefined,
       }}
     >
@@ -38,7 +39,7 @@ export const AbilityBadges = ({ ability, className }: UnlockBadgesProps) => {
             lineHeight: "1",
             borderRadius: "0.5em",
             padding: "0 0.5em",
-            margin: "0 0.25em",
+            margin: "0 0.24em",
           }}
         >
           Boosted
@@ -56,7 +57,7 @@ export const AbilityBadges = ({ ability, className }: UnlockBadgesProps) => {
             lineHeight: "1",
             borderRadius: "0.5em",
             padding: "0 0.5em",
-            margin: "0 0.25em",
+            margin: "0 0.24em",
           }}
         >
           Push Pool
@@ -75,7 +76,7 @@ export const AbilityBadges = ({ ability, className }: UnlockBadgesProps) => {
               lineHeight: "1",
               borderRadius: "0.5em",
               padding: "0 0.5em",
-              margin: "0 0.25em",
+              margin: "0 0.2em",
             }}
           >
             {description}

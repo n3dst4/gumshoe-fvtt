@@ -44,8 +44,8 @@ export const AbilityTest = () => {
     <InputGrid
       className={theme.panelClass}
       css={{
-        padding: "1em",
-        marginBottom: "1em",
+        padding: "0.5em",
+        marginBottom: "0.5em",
         ...theme.panelStyleSecondary,
       }}
     >

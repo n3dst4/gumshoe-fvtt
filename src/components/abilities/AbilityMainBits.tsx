@@ -11,7 +11,7 @@ import {
   isInvestigativeAbilityItem,
 } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { Button } from "../inputs/Button";
+import { Button, ToolbarButton } from "../inputs/Button";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
@@ -61,17 +61,14 @@ export const AbilityMainBits = () => {
   }, [item?.actor]);
 
   const isAbilityUsed = actorInitiativeAbility === item.name;
-  const onClickUseForInitiative = useCallback(
-    (e: React.MouseEvent) => {
-      assertActiveCharacterActor(item?.actor);
-      void item?.actor?.update({
-        system: {
-          initiativeAbility: item.name,
-        },
-      });
-    },
-    [item?.actor, item.name],
-  );
+  const onClickUseForInitiative = useCallback(() => {
+    assertActiveCharacterActor(item?.actor);
+    void item?.actor?.update({
+      system: {
+        initiativeAbility: item.name,
+      },
+    });
+  }, [item?.actor, item.name]);
 
   const useMwStyleAbilities = settings.useMwStyleAbilities.get();
 
@@ -99,7 +96,8 @@ export const AbilityMainBits = () => {
     <InputGrid
       css={{
         flex: 1,
-        gridTemplateRows: "auto auto min-content [notes] 1fr",
+        gridTemplateRows: "auto auto auto auto [notes] 1fr",
+        rowGap: "0.3em",
       }}
     >
       {isQuickShock && (
@@ -146,15 +144,35 @@ export const AbilityMainBits = () => {
               value={item.system.rating}
               onChange={item.setRating}
             />
+            <AbilityBadges
+              css={{
+                gridColumn: "1 / 4",
+                justifyContent: "start",
+                marginBottom: "0",
+                marginTop: "0.2em",
+              }}
+              ability={item}
+            />
           </GridField>
         </>
       )}
-      <AbilityBadges
-        css={{
-          gridColumn: "1 / 4",
-        }}
-        ability={item}
-      />
+      {isCombatAbility && (
+        <GridField label="Initiative">
+          {isAbilityUsed ? (
+            <span css={{ display: "inline-block", paddingTop: "0.2em" }}>
+              <Translate>Active</Translate> ✓
+            </span>
+          ) : (
+            <ToolbarButton
+              css={{ display: "inline", marginLeft: "0.5em" }}
+              onClick={onClickUseForInitiative}
+            >
+              Activate
+            </ToolbarButton>
+          )}
+        </GridField>
+      )}
+
       <NotesEditorWithControls
         source={item.getNotes().source}
         format={item.getNotes().format}
@@ -186,35 +204,6 @@ export const AbilityMainBits = () => {
       {useBoost && (
         <GridField label="Boost?">
           <Toggle checked={item.system.boost} onChange={item.setBoost} />
-        </GridField>
-      )}
-
-      {isCombatAbility && (
-        <GridField label="Combat order">
-          {isAbilityUsed ? (
-            <i>
-              <Translate>
-                This ability is currently being used for combat ordering
-              </Translate>
-            </i>
-          ) : (
-            <span>
-              <a onClick={onClickUseForInitiative}>
-                <Translate values={{ AbilityName: item?.name ?? "" }}>
-                  Use (ability name) for combat ordering
-                </Translate>
-              </a>{" "}
-              (
-              {actorInitiativeAbility ? (
-                <Translate values={{ AbilityName: actorInitiativeAbility }}>
-                  Currently using (ability name)
-                </Translate>
-              ) : (
-                <Translate>Currently using nothing</Translate>
-              )}
-              )
-            </span>
-          )}
         </GridField>
       )}
     </InputGrid>
