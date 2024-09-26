@@ -19,6 +19,9 @@ export const niceThemeDark: ThemeV1 = themeFactory({
   },
   appWindowStyle: {
     boxShadow: "0 0 20px #f00",
+    border: "1px solid red",
+    borderRadius: "0.5em",
+    overflow: "hidden",
   },
   bodyFont: averiaLibre.fontFamily,
   displayFont: "normal normal 400 1.2em 'Big Shoulders Text', serif",
