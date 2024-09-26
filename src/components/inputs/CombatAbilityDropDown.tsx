@@ -1,6 +1,10 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 
 import { settings } from "../../settings/settings";
+import { Translate } from "../Translate";
+import { AsyncTextInput } from "./AsyncTextInput";
+
+const customAbilityToken = "CUSTOM_ABILITY_TOKEN";
 
 type CombatAbilityDropDownProps = {
   value: string;
@@ -13,28 +17,50 @@ export const CombatAbilityDropDown = ({
   onChange: onChangeOrig,
   className,
 }: CombatAbilityDropDownProps) => {
-  // spread here because settings are read-only and .sort() mutates the array
-  const combatAbilities = [...settings.combatAbilities.get()].sort();
+  const combatAbilities = settings.combatAbilities.get().toSorted();
 
-  const onSelectInitiativeAbility = useCallback(
+  const [showCustomAbility, setShowCustomAbility] = useState(
+    !combatAbilities.includes(value),
+  );
+
+  const effectiveValue = showCustomAbility ? customAbilityToken : value;
+
+  const handleChangeInitiativeAbility = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      onChangeOrig(e.currentTarget.value);
+      if (e.currentTarget.value === customAbilityToken) {
+        setShowCustomAbility(true);
+      } else {
+        setShowCustomAbility(false);
+        onChangeOrig(e.currentTarget.value);
+      }
     },
     [onChangeOrig],
   );
 
   return (
-    <select
-      value={value}
-      onChange={onSelectInitiativeAbility}
-      css={{ width: "8.5em" }}
-      className={className}
-    >
-      {combatAbilities.map<JSX.Element>((ability) => (
-        <option key={ability} value={ability}>
-          {ability}
+    <div css={{ display: "flex", flexDirection: "column", gap: "0.3em" }}>
+      <select
+        value={effectiveValue}
+        onChange={handleChangeInitiativeAbility}
+        css={{ width: "8.5em" }}
+        className={className}
+      >
+        {combatAbilities.map<JSX.Element>((ability) => (
+          <option key={ability} value={ability}>
+            {ability}
+          </option>
+        ))}
+        <option value={customAbilityToken}>
+          <Translate>Other</Translate>
         </option>
-      ))}
-    </select>
+      </select>
+      {showCustomAbility && (
+        <AsyncTextInput
+          value={value}
+          onChange={onChangeOrig}
+          css={{ width: "8.5em" }}
+        />
+      )}
+    </div>
   );
 };

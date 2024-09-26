@@ -249,7 +249,7 @@ export const PCSheet = () => {
         })}
         <hr />
         <h3 css={{ gridColumn: "start / end" }}>
-          <Translate>Combat Order</Translate>
+          <Translate>Initiative</Translate>
         </h3>
         <CombatAbilityDropDown
           value={actor.system.initiativeAbility}
