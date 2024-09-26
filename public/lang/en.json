@@ -32,7 +32,6 @@
   "investigator.Category": "Category",
   "investigator.CloseRange": "Close range",
   "investigator.CombatAbilities": "Combat abilities",
-  "investigator.CombatOrder": "Combat order",
   "investigator.CompendiumPacksForNewCharacters": "Compendium packs for new characters",
   "investigator.Confirm": "Confirm",
   "investigator.CurrentlyUsingAbilityName": "Currently using {AbilityName}",
@@ -87,7 +86,6 @@
   "investigator.NukeItFromOrbit": "Nuke it from orbit",
   "investigator.OccupationLabel": "Occupation label",
   "investigator.Occupational": "Occupational?",
-  "investigator.OpenAbilityNameAbility": "Open {AbilityName} Ability",
   "investigator.OutOfAmmo": "Out of ammo",
   "investigator.PCs": "PCs",
   "investigator.PartyName": "Party name",
@@ -117,9 +115,7 @@
   "investigator.SystemPreset": "System preset",
   "investigator.Test": "Test",
   "investigator.Theme": "Theme",
-  "investigator.ThisAbilityIsCurrentlyBeingUsedForCombatOrdering": "This ability is currently being used for combat ordering",
   "investigator.Total": "Total",
-  "investigator.UseAbilityNameForCombatOrdering": "Use {AbilityName} for combat ordering",
   "investigator.UseSystemDefault": "Use system default",
   "investigator.UsesAmmo": "Uses ammo?",
   "investigator.VisualTheme": "Visual theme",
@@ -259,5 +255,6 @@
   "investigator.Appearance": "Appearance",
   "investigator.Text": "Text",
   "investigator.Number": "Number",
-  "investigator.Toggle": "Toggle"
+  "investigator.Toggle": "Toggle",
+  "investigator.Initiative": "Initiative"
 }

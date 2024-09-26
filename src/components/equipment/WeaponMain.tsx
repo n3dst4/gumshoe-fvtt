@@ -7,6 +7,7 @@ import React, {
 } from "react";
 
 import { generalAbility } from "../../constants";
+import { getTranslated } from "../../functions/getTranslated";
 import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { ThemeContext } from "../../themes/ThemeContext";
@@ -18,7 +19,7 @@ import {
 } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { Button } from "../inputs/Button";
+import { Button, ToolbarButton } from "../inputs/Button";
 import { CheckButtons } from "../inputs/CheckButtons";
 import { GridField } from "../inputs/GridField";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
@@ -32,7 +33,7 @@ const defaultSpendOptions = new Array(8).fill(null).map((_, i) => {
   return { label, value: Number(label), enabled: true };
 });
 
-export const WeaponAttack = () => {
+export const WeaponMain = () => {
   const { item } = useItemSheetContext();
 
   assertWeaponItem(item);
@@ -128,18 +129,15 @@ export const WeaponAttack = () => {
   }, [weaponActor]);
 
   const isAbilityUsed = actorInitiativeAbility === ability?.name;
-  const onClickUseForInitiative = useCallback(
-    (e: React.MouseEvent) => {
-      if (ability) {
-        void item.actor?.update({
-          system: {
-            initiativeAbility: ability.name || "",
-          },
-        });
-      }
-    },
-    [ability, item.actor],
-  );
+  const onClickUseForInitiative = useCallback(() => {
+    if (ability) {
+      void item.actor?.update({
+        system: {
+          initiativeAbility: ability.name || "",
+        },
+      });
+    }
+  }, [ability, item.actor]);
 
   const ammoFail = item.system.usesAmmo && item.system.ammo.value <= 0;
 
@@ -148,7 +146,7 @@ export const WeaponAttack = () => {
       <InputGrid
         className={theme.panelClass}
         css={{
-          padding: "1em",
+          padding: "0.5em",
           marginBottom: "0.5em",
           ...theme.panelStyleSecondary,
         }}
@@ -218,17 +216,32 @@ export const WeaponAttack = () => {
       <InputGrid
         css={{
           flex: 1,
-          gridTemplateRows: `${item.system.usesAmmo ? "auto " : ""}1fr`,
+          rowGap: "0.3em",
+          gridTemplateRows: `auto ${item.system.usesAmmo ? "auto " : ""} ${item.actor ? "auto " : ""} 1fr`,
         }}
       >
+        <GridField label="Bonus pool">
+          <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />
+        </GridField>
+
         {item.system.usesAmmo && (
-          <GridField label="Ammo">
+          <GridField
+            label={`${getTranslated("Ammo")}/${item.system.ammo.max}:`}
+            noTranslate
+          >
             <div
               css={{
                 display: "flex",
                 flexDirection: "row",
               }}
             >
+              <AsyncNumberInput
+                css={{ flex: 1 }}
+                min={0}
+                max={item.system.ammo.max}
+                value={item.system.ammo.value}
+                onChange={item.setAmmo}
+              />
               <Button
                 css={{
                   flexBasis: "min-content",
@@ -239,35 +252,29 @@ export const WeaponAttack = () => {
               >
                 <Translate>Reload</Translate>
               </Button>
-              <AsyncNumberInput
-                css={{ flex: 1 }}
-                min={0}
-                max={item.system.ammo.max}
-                value={item.system.ammo.value}
-                onChange={item.setAmmo}
-              />
             </div>
           </GridField>
         )}
 
-        <NotesEditorWithControls
-          allowChangeFormat
-          format={item.system.notes.format}
-          html={item.system.notes.html}
-          source={item.system.notes.source}
-          onSave={item.setNotes}
-        />
-        <GridField label="Bonus pool">
-          <AsyncNumberInput onChange={setBonusPool} value={bonusPool} />
+        <GridField label="Initiative">
+          <span css={{ display: "inline-block", paddingTop: "0.3em" }}>
+            <a onClick={() => ability?.sheet?.render(true)}>{ability?.name} </a>
+            {isAbilityUsed && (
+              <>
+                (<Translate>Active</Translate> ✓){" "}
+              </>
+            )}
+          </span>
+          {isAbilityUsed || (
+            <ToolbarButton
+              css={{ display: "inline", marginLeft: "0.5em" }}
+              onClick={onClickUseForInitiative}
+            >
+              Activate
+            </ToolbarButton>
+          )}
         </GridField>
-        <GridField noTranslate label={abilityName}>
-          <a onClick={() => ability?.sheet?.render(true)}>
-            <Translate values={{ AbilityName: ability?.name ?? "" }}>
-              Open (ability name) ability
-            </Translate>
-          </a>
-        </GridField>
-        <GridField label="">
+        {/* <GridField label="">
           {isAbilityUsed ? (
             <i>
               <Translate>
@@ -292,14 +299,15 @@ export const WeaponAttack = () => {
               )
             </span>
           )}
-        </GridField>
-        <GridField label="Cost">
-          <AsyncNumberInput
-            min={0}
-            value={item.system.cost}
-            onChange={item.setCost}
-          />
-        </GridField>
+        </GridField> */}
+
+        <NotesEditorWithControls
+          allowChangeFormat
+          format={item.system.notes.format}
+          html={item.system.notes.html}
+          source={item.system.notes.source}
+          onSave={item.setNotes}
+        />
       </InputGrid>
     </div>
   );

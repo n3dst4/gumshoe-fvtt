@@ -51,7 +51,15 @@ export const WeaponConfig = () => {
       <GridField label="Item Name">
         <TextInput value={name.display} onChange={name.onChange} />
       </GridField>
-      <GridField label="Ability">
+      <GridField label="Cost">
+        <AsyncNumberInput
+          min={0}
+          value={item.system.cost}
+          onChange={item.setCost}
+        />
+      </GridField>
+
+      <GridField label="Initiative">
         <select
           value={item.system.ability}
           onChange={(e) => item.setAbility(e.currentTarget.value)}
