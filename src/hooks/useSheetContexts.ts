@@ -1,8 +1,6 @@
 import { FoundryAppContext } from "@lumphammer/shared-fvtt-bits/src/FoundryAppContext";
 import { useContext } from "react";
 
-import { ItemSheetClass } from "../module/InvestigatorItemSheetClass";
-
 export const useItemSheetContext = () => {
   const app = useContext(FoundryAppContext);
   if (app === null) {
@@ -10,7 +8,7 @@ export const useItemSheetContext = () => {
       "useItemSheetContext must be used within a FoundryAppContext",
     );
   }
-  if (!(app instanceof ItemSheetClass)) {
+  if (!(app instanceof ItemSheet)) {
     throw new Error("useItemSheetContext must be used within an ItemSheet");
   }
   const item = app.document;
@@ -57,7 +55,7 @@ export const useDocumentSheetContext = () => {
       "useDocumentSheetContext must be used within a FoundryAppContext",
     );
   }
-  if (!(app instanceof ActorSheet || app instanceof ItemSheetClass)) {
+  if (!(app instanceof ActorSheet || app instanceof ItemSheet)) {
     throw new Error(
       "useDocumentSheetContext must be used within an ActorSheet or ItemSheet",
     );
