@@ -34,8 +34,6 @@
   "investigator.CombatAbilities": "Combat abilities",
   "investigator.CompendiumPacksForNewCharacters": "Compendium packs for new characters",
   "investigator.Confirm": "Confirm",
-  "investigator.CurrentlyUsingAbilityName": "Currently using {AbilityName}",
-  "investigator.CurrentlyUsingNothing": "Currently using nothing",
   "investigator.CustomThemesPath": "Custom themes path",
   "investigator.Damage": "Damage",
   "investigator.DamageAtRangeNameWithWeaponName": "Damage at {RangeName} with <b>{WeaponName}</b>",
