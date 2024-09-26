@@ -128,16 +128,15 @@ export const WeaponMain = () => {
     };
   }, [weaponActor]);
 
-  const isAbilityUsed = actorInitiativeAbility === ability?.name;
+  const isAbilityUsed = actorInitiativeAbility === abilityName;
+
   const onClickUseForInitiative = useCallback(() => {
-    if (ability) {
-      void item.actor?.update({
-        system: {
-          initiativeAbility: ability.name || "",
-        },
-      });
-    }
-  }, [ability, item.actor]);
+    void item.actor?.update({
+      system: {
+        initiativeAbility: abilityName,
+      },
+    });
+  }, [abilityName, item.actor]);
 
   const ammoFail = item.system.usesAmmo && item.system.ammo.value <= 0;
 
@@ -259,20 +258,38 @@ export const WeaponMain = () => {
         {item.actor && (
           <GridField label="Initiative">
             <span css={{ display: "inline-block", paddingTop: "0.3em" }}>
-              <a onClick={() => ability?.sheet?.render(true)}>
-                {ability?.name}{" "}
-              </a>
+              {/* Link to ability, if it exists */}
+              {ability && (
+                <a onClick={() => ability?.sheet?.render(true)}>
+                  {ability?.name}{" "}
+                </a>
+              )}
+              {/* Show "Not Found" if ability doesn't exist */}
+              {ability === undefined && (
+                <>
+                  {abilityName}
+                  <span
+                    css={{
+                      background: theme.colors.danger,
+                      color: theme.colors.accentContrast,
+                      display: "inline-block",
+                      padding: "0 0.2em",
+                      margin: "0 0.2em",
+                      borderRadius: "0.2em",
+                    }}
+                  >
+                    <Translate>NotFound!</Translate>
+                  </span>{" "}
+                </>
+              )}
+              {/* Show "Active" if ability is used */}
               {isAbilityUsed && (
                 <>
                   (<Translate>Active</Translate> ✓){" "}
                 </>
               )}
-              {ability === undefined && (
-                <>
-                  {abilityName} (<Translate>NotFound</Translate>)
-                </>
-              )}
             </span>
+            {/* Show "Activate" button if ability is not used */}
             {isAbilityUsed || (
               <ToolbarButton
                 css={{ display: "inline", marginLeft: "0.5em" }}
@@ -283,32 +300,6 @@ export const WeaponMain = () => {
             )}
           </GridField>
         )}
-        {/* <GridField label="">
-          {isAbilityUsed ? (
-            <i>
-              <Translate>
-                This ability is currently being used for combat ordering
-              </Translate>
-            </i>
-          ) : (
-            <span>
-              <a onClick={onClickUseForInitiative}>
-                <Translate values={{ AbilityName: ability?.name ?? "" }}>
-                  Use (ability name) for combat ordering
-                </Translate>
-              </a>{" "}
-              (
-              {actorInitiativeAbility ? (
-                <Translate values={{ AbilityName: actorInitiativeAbility }}>
-                  Currently using (ability name)
-                </Translate>
-              ) : (
-                <Translate>Currently using nothing</Translate>
-              )}
-              )
-            </span>
-          )}
-        </GridField> */}
 
         <NotesEditorWithControls
           allowChangeFormat
