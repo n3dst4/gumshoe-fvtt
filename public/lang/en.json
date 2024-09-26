@@ -254,5 +254,6 @@
   "investigator.Text": "Text",
   "investigator.Number": "Number",
   "investigator.Toggle": "Toggle",
-  "investigator.Initiative": "Initiative"
+  "investigator.Initiative": "Initiative",
+  "investigator.NotFound": "Not Found"
 }

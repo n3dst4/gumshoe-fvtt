@@ -267,7 +267,11 @@ export const WeaponMain = () => {
                   (<Translate>Active</Translate> ✓){" "}
                 </>
               )}
-              {ability === undefined && `${abilityName} (Not found)`}
+              {ability === undefined && (
+                <>
+                  {abilityName} (<Translate>NotFound</Translate>)
+                </>
+              )}
             </span>
             {isAbilityUsed || (
               <ToolbarButton

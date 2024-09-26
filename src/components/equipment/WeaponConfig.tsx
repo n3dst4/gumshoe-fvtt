@@ -71,6 +71,11 @@ export const WeaponConfig = () => {
           {abilities.map<JSX.Element>((cat: string) => (
             <option key={cat}>{cat}</option>
           ))}
+          {!abilities.includes(item.system.ability) && (
+            <option value={item.system.ability}>
+              <Translate>None</Translate>
+            </option>
+          )}
         </select>
       </GridField>
       <GridField label="Base Damage">
