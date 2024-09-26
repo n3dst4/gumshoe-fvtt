@@ -255,5 +255,6 @@
   "investigator.Number": "Number",
   "investigator.Toggle": "Toggle",
   "investigator.Initiative": "Initiative",
-  "investigator.NotFound": "Not Found!"
+  "investigator.NotFound": "Not Found!",
+  "investigator.Other": "Other"
 }
