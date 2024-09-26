@@ -256,25 +256,29 @@ export const WeaponMain = () => {
           </GridField>
         )}
 
-        <GridField label="Initiative">
-          <span css={{ display: "inline-block", paddingTop: "0.3em" }}>
-            <a onClick={() => ability?.sheet?.render(true)}>{ability?.name} </a>
-            {isAbilityUsed && (
-              <>
-                (<Translate>Active</Translate> ✓){" "}
-              </>
+        {item.actor && (
+          <GridField label="Initiative">
+            <span css={{ display: "inline-block", paddingTop: "0.3em" }}>
+              <a onClick={() => ability?.sheet?.render(true)}>
+                {ability?.name}{" "}
+              </a>
+              {isAbilityUsed && (
+                <>
+                  (<Translate>Active</Translate> ✓){" "}
+                </>
+              )}
+              {ability === undefined && `${abilityName} (Not found)`}
+            </span>
+            {isAbilityUsed || (
+              <ToolbarButton
+                css={{ display: "inline", marginLeft: "0.5em" }}
+                onClick={onClickUseForInitiative}
+              >
+                Activate
+              </ToolbarButton>
             )}
-            {ability === undefined && `${abilityName} (Not found)`}
-          </span>
-          {isAbilityUsed || (
-            <ToolbarButton
-              css={{ display: "inline", marginLeft: "0.5em" }}
-              onClick={onClickUseForInitiative}
-            >
-              Activate
-            </ToolbarButton>
-          )}
-        </GridField>
+          </GridField>
+        )}
         {/* <GridField label="">
           {isAbilityUsed ? (
             <i>
