@@ -68,6 +68,7 @@ export const WeaponConfig = () => {
           onChange={item.setAbility}
           pickerValues={validCombatAbilities}
           validValues={generalAbilityNames}
+          css={{ marginBottom: "0.3em" }}
         />
       </GridField>
       <GridField label="Base Damage">

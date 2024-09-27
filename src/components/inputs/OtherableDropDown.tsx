@@ -36,13 +36,11 @@ export const OtherableDropDown = ({
   });
 
   return (
-    <div css={{ display: "flex", flexDirection: "column", gap: "0.3em" }}>
-      <select
-        value={effectiveValue}
-        onChange={handleChange}
-        css={{ width: "8.5em" }}
-        className={className}
-      >
+    <div
+      css={{ display: "flex", flexDirection: "column", gap: "0.2em" }}
+      className={className}
+    >
+      <select value={effectiveValue} onChange={handleChange}>
         {pickerValues.map((value) => (
           <option key={value}>{value}</option>
         ))}
@@ -51,11 +49,7 @@ export const OtherableDropDown = ({
         </option>
       </select>
       {showCustomValue && (
-        <AsyncTextInput
-          value={selectedValue}
-          onChange={onChange}
-          css={{ width: "8.5em" }}
-        />
+        <AsyncTextInput value={selectedValue} onChange={onChange} />
       )}
       {notFound && (
         <span
@@ -64,7 +58,6 @@ export const OtherableDropDown = ({
             color: theme.colors.accentContrast,
             display: "inline-block",
             padding: "0 0.2em",
-            margin: "0 0.2em",
             borderRadius: "0.2em",
           }}
         >

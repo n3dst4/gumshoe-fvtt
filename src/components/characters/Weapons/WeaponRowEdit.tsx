@@ -186,7 +186,6 @@ export const WeaponRowEdit = ({ weapon, index }: WeaponRowEditProps) => {
           value={weapon.system.ability}
           onChange={(e) => weapon.setAbility(e)}
           pickerValues={settings.combatAbilities.get().toSorted()}
-          css={{ display: "block" }}
         />
         <div css={{ marginTop: "0.5em" }}>
           <label>
