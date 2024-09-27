@@ -27,7 +27,7 @@ export const AbilitySlugPlayQuickShockInvestigative = ({
     [app],
   );
 
-  const handleClickPush = React.useCallback(() => {
+  const handleClickPush = useCallback(() => {
     void ability.push();
   }, [ability]);
 

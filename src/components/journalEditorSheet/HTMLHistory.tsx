@@ -1,5 +1,5 @@
 import { DiffEditor } from "@monaco-editor/react";
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
@@ -41,7 +41,7 @@ export const HTMLHistory = ({
     [memory],
   );
 
-  const [activeDiffIndex, setActiveDiffIndex] = React.useState<number>(0);
+  const [activeDiffIndex, setActiveDiffIndex] = useState<number>(0);
 
   const [originalState, modifiedState] = useMemo(() => {
     if (revisions.length === 0) {

@@ -1,5 +1,5 @@
 import { CardCategory } from "@lumphammer/investigator-fvtt-types";
-import React from "react";
+import { useCallback } from "react";
 
 import { CardItem } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
@@ -22,7 +22,7 @@ export const CategoryMembershipRow = ({
     (m) => m.categoryId === category.id,
   );
 
-  const handleToggleActive = React.useCallback(
+  const handleToggleActive = useCallback(
     async (active: boolean) => {
       if (active) {
         await card.addCardCategoryMembership(category.id);
@@ -34,14 +34,14 @@ export const CategoryMembershipRow = ({
     [card, category.id],
   );
 
-  const handleToggleNonlethal = React.useCallback(
+  const handleToggleNonlethal = useCallback(
     async (nonlethal: boolean) => {
       await card.setCardCategoryMembershipNonlethal(category.id, nonlethal);
     },
     [card, category.id],
   );
 
-  const handleSetWorth = React.useCallback(
+  const handleSetWorth = useCallback(
     async (worth: number) => {
       await card.setCardCategoryMembershipWorth(category.id, worth);
     },

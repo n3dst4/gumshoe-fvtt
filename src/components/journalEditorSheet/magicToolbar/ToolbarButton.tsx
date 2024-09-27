@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { Button } from "../../inputs/Button";
@@ -19,7 +19,7 @@ export const ToolbarButton = ({
   const theme = useContext(ThemeContext);
 
   // Use props in your component
-  const handleClick = React.useCallback(() => {
+  const handleClick = useCallback(() => {
     void onClick();
   }, [onClick]);
 

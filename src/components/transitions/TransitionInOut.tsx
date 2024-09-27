@@ -3,6 +3,7 @@ import React, {
   createContext,
   useCallback,
   useEffect,
+  useState,
   useTransition,
 } from "react";
 
@@ -28,10 +29,10 @@ export const TransitionInOut = ({
   fadeTime = 300,
   fps = 30,
 }: TransitionInOutProps) => {
-  const [progress, setProgress] = React.useState(0);
+  const [progress, setProgress] = useState(0);
   const startTransition = useTransition()[1];
   const hasChildren = !!children && React.Children.count(children) > 0;
-  const [lastChildren, setLastChildren] = React.useState(children);
+  const [lastChildren, setLastChildren] = useState(children);
 
   // track the last "positive" children, so that we can fade them out
   useEffect(() => {

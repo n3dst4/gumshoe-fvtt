@@ -1,5 +1,5 @@
 import { Router } from "@lumphammer/minirouter";
-import React from "react";
+import { useCallback } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { useItemSheetContext } from "../../hooks/useSheetContexts";
@@ -18,7 +18,7 @@ export const CardSheet = () => {
 
   assertCardItem(item);
 
-  const handleClickDiscard = React.useCallback(async () => {
+  const handleClickDiscard = useCallback(async () => {
     const message = item.actor
       ? "DiscardActorNamesCardNameCard"
       : "DeleteCardName";
@@ -41,11 +41,11 @@ export const CardSheet = () => {
     }
   }, [item]);
 
-  const handleClickDeactivate = React.useCallback(async () => {
+  const handleClickDeactivate = useCallback(async () => {
     await item.update({ system: { active: false } });
   }, [item]);
 
-  const handleClickActivate = React.useCallback(async () => {
+  const handleClickActivate = useCallback(async () => {
     await item.update({ system: { active: true } });
   }, [item]);
 

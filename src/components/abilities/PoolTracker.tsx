@@ -1,4 +1,4 @@
-import React from "react";
+import { useCallback } from "react";
 
 import { InvestigatorItem } from "../../module/InvestigatorItem";
 import {
@@ -31,7 +31,7 @@ export const PoolTracker = ({ ability }: PoolTrackerProps) => {
     : ability?.system.rating;
   const vals = range(min, max);
 
-  const handleClickPush = React.useCallback(() => {
+  const handleClickPush = useCallback(() => {
     assertGeneralAbilityItem(ability);
     void ability.push();
   }, [ability]);

@@ -1,5 +1,5 @@
 import { EquipmentFieldMetadata } from "@lumphammer/investigator-fvtt-types";
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useState } from "react";
 
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
 import { ThemeContext } from "../../../themes/ThemeContext";
@@ -20,7 +20,7 @@ export const EquipmentItemRow = ({
   fields,
 }: EquipmentItemRowProps) => {
   const theme = useContext(ThemeContext);
-  const [hover, setHover] = React.useState(false);
+  const [hover, setHover] = useState(false);
   const handleMouseOver = useCallback((e: React.MouseEvent<HTMLElement>) => {
     setHover(true);
   }, []);

@@ -1,8 +1,8 @@
-import React, { useCallback, useContext } from "react";
+import React, { PropsWithChildren, useCallback, useContext } from "react";
 
 import { ThemeContext } from "../themes/ThemeContext";
 
-type ImagePickerLinkProps = React.PropsWithChildren<{
+type ImagePickerLinkProps = PropsWithChildren<{
   onClick: () => void;
 }>;
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { settings } from "../../settings/settings";
@@ -35,7 +35,7 @@ export const AbilityMainBits = () => {
     .get()
     .includes(item.name ?? "");
 
-  const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
+  const [actorInitiativeAbility, setActorInitiativeAbility] = useState(
     isActiveCharacterActor(item?.actor) &&
       item?.actor?.system.initiativeAbility,
   );

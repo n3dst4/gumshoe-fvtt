@@ -1,11 +1,11 @@
-import React from "react";
+import { useCallback, useState } from "react";
 
 import { TextInput } from "../../components/inputs/TextInput";
 
 export const TextInputTest = () => {
-  const [state, setState] = React.useState("foobar");
+  const [state, setState] = useState("foobar");
 
-  const onChange = React.useCallback((v: string) => {
+  const onChange = useCallback((v: string) => {
     setState(v);
   }, []);
 

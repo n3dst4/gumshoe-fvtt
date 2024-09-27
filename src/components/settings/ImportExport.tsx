@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { saveAsJsonFile } from "../../functions/saveFile";
@@ -18,7 +18,7 @@ export const ImportExport = () => {
   const { settings: settingsState } = useContext(StateContext);
   const isDirty = useContext(DirtyContext);
 
-  const [filename, setFilename] = React.useState<string>("settings");
+  const [filename, setFilename] = useState<string>("settings");
 
   const handleExport = () => {
     const exportableSettings = getExportableSettingsDict(settingsState);

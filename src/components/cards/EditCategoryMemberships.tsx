@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import { getTranslated } from "../../functions/getTranslated";
 import { settings } from "../../settings/settings";
@@ -16,7 +16,7 @@ export const EditCategoryMemberships = ({
 }: EditCategoryMembershipsProps) => {
   const categories = settings.cardCategories.get();
 
-  const handleChangeStyleKeyCategoryId = React.useCallback(
+  const handleChangeStyleKeyCategoryId = useCallback(
     async (e: React.ChangeEvent<HTMLSelectElement>) => {
       const value = e.currentTarget.value === "" ? null : e.currentTarget.value;
       await card.setCardStyleKeyCategoryId(value);

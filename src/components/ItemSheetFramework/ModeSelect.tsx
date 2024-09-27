@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren, useContext } from "react";
 
 import { ModeContext } from "./modeContext";
 import { ItemSheetMode } from "./types";
@@ -7,7 +7,7 @@ type ModeSelectProps = PropsWithChildren<{
 }>;
 
 export const ModeSelect = ({ mode, children }: ModeSelectProps) => {
-  const currentMode = React.useContext(ModeContext);
+  const currentMode = useContext(ModeContext);
   return mode === currentMode ? <>{children}</> : null;
 };
 

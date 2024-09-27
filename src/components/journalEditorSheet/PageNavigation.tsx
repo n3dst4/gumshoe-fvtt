@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { BsImage } from "react-icons/bs";
 import { FaBarsStaggered, FaImage } from "react-icons/fa6";
 import { VscOutput } from "react-icons/vsc";
@@ -64,7 +64,7 @@ export const PageNavigation = ({
     return a.sort - b.sort;
   });
 
-  const handlePageClick = React.useCallback(
+  const handlePageClick = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
       const pageId = event.currentTarget.dataset["pageid"];
@@ -75,13 +75,13 @@ export const PageNavigation = ({
     [onNavigate],
   );
 
-  const handleAddNewTextPage = React.useCallback(async () => {
+  const handleAddNewTextPage = useCallback(async () => {
     const newPage = await addPage(journalEntry, "text", "New page");
     // @ts-expect-error ???
     onNavigate(newPage[0]._id);
   }, [journalEntry, onNavigate]);
 
-  const handleAddNewImagePage = React.useCallback(async () => {
+  const handleAddNewImagePage = useCallback(async () => {
     const newPage = await addPage(journalEntry, "image", "New image");
     // @ts-expect-error ???
     onNavigate(newPage[0]._id);
