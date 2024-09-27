@@ -1,6 +1,6 @@
-import system from "../../public/system.json";
-import { defaultMigratedSystemVersion } from "../constants";
-import { settings } from "../settings/settings";
+import system from "../../../public/system.json";
+import { defaultMigratedSystemVersion } from "../../constants";
+import { settings } from "../../settings/settings";
 
 /**
  * This is the legacy migration system, based on the one in 5e when this project

@@ -1,7 +1,7 @@
 import { escape } from "html-escaper";
 
-import * as constants from "../constants";
-import { AnyActor, isNPCActor, isPCActor } from "../v10Types";
+import * as constants from "../../constants";
+import { AnyActor, isNPCActor, isPCActor } from "../../v10Types";
 
 export const upgradeLongNotesToRichText = (
   actor: AnyActor,

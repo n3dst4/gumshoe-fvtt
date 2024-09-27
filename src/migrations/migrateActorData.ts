@@ -1,4 +1,7 @@
-import { moveStats, upgradeLongNotesToRichText } from "./actorMigrations";
+import {
+  moveStats,
+  upgradeLongNotesToRichText,
+} from "./legacy/actorMigrations";
 import { migrateItemData } from "./migrateItemData";
 import { FlaggedMigrations } from "./types";
 

@@ -4,7 +4,7 @@ import {
   setIconForAbilities,
   setTrackersForPreAlpha4Updates,
   upgradeNotesToRichText,
-} from "./itemMigrations";
+} from "./legacy/itemMigrations";
 import { FlaggedMigrations } from "./types";
 
 /**
