@@ -29,7 +29,7 @@ export const NotesArea = () => {
         gap: "0.5em",
       }}
     >
-      {longNotesNames.map<JSX.Element>((name: string, i: number) => {
+      {longNotesNames.map((name: string, i: number) => {
         assertPCActor(actor);
 
         return (

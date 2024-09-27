@@ -59,7 +59,7 @@ export const EquipmentItemRow = ({
       >
         {item.name}
       </a>
-      {Object.entries(fields).map<JSX.Element>(([fieldId, field], j) => {
+      {Object.entries(fields).map(([fieldId, field], j) => {
         assertEquipmentItem(item);
         return (
           <a

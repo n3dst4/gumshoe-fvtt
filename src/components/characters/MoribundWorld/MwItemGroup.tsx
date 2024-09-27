@@ -82,7 +82,7 @@ export const MwItemGroup = ({
           columns: "auto 12em",
         }}
       >
-        {sortEntitiesByName(items).map<JSX.Element>((item) => (
+        {sortEntitiesByName(items).map((item) => (
           <a
             key={item.id}
             css={{

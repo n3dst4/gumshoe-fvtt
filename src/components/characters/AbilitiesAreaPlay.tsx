@@ -52,7 +52,7 @@ export const AbilitiesAreaPlay = ({
             alignContent: "start",
           }}
         >
-          {Object.keys(investigativeAbilities).map<JSX.Element>((cat) =>
+          {Object.keys(investigativeAbilities).map((cat) =>
             showEmpty || investigativeAbilities[cat].length > 0 ? (
               <Fragment key={cat}>
                 <h2
@@ -65,26 +65,26 @@ export const AbilitiesAreaPlay = ({
                 >
                   {cat}
                 </h2>
-                {sortEntitiesByName(
-                  investigativeAbilities[cat],
-                ).map<JSX.Element>((ability) => {
-                  if (ability.system.isQuickShock) {
-                    return (
-                      <AbilitySlugPlayQuickShockInvestigative
-                        key={ability.id}
-                        ability={ability}
-                        disabled={pushPoolIsZero}
-                      />
-                    );
-                  } else {
-                    return (
-                      <AbilitySlugPlayNormal
-                        key={ability.id}
-                        ability={ability}
-                      />
-                    );
-                  }
-                })}
+                {sortEntitiesByName(investigativeAbilities[cat]).map(
+                  (ability) => {
+                    if (ability.system.isQuickShock) {
+                      return (
+                        <AbilitySlugPlayQuickShockInvestigative
+                          key={ability.id}
+                          ability={ability}
+                          disabled={pushPoolIsZero}
+                        />
+                      );
+                    } else {
+                      return (
+                        <AbilitySlugPlayNormal
+                          key={ability.id}
+                          ability={ability}
+                        />
+                      );
+                    }
+                  },
+                )}
                 {investigativeAbilities[cat].length === 0 && (
                   <NoAbilitiesNote />
                 )}
@@ -106,7 +106,7 @@ export const AbilitiesAreaPlay = ({
             alignContent: "start",
           }}
         >
-          {Object.keys(generalAbilities).map<JSX.Element>((cat) => (
+          {Object.keys(generalAbilities).map((cat) => (
             <Fragment key={cat}>
               <h2
                 css={{
@@ -118,11 +118,9 @@ export const AbilitiesAreaPlay = ({
               >
                 {cat}
               </h2>
-              {sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>(
-                (ability) => (
-                  <AbilitySlugPlayNormal key={ability.id} ability={ability} />
-                ),
-              )}
+              {sortEntitiesByName(generalAbilities[cat]).map((ability) => (
+                <AbilitySlugPlayNormal key={ability.id} ability={ability} />
+              ))}
               {generalAbilities[cat].length === 0 && <NoAbilitiesNote />}
             </Fragment>
           ))}

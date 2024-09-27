@@ -63,7 +63,7 @@ export const AbilitySettings = ({ setters }: { setters: Setters }) => {
               (pack: CompendiumCollection<CompendiumCollection.Metadata>) =>
                 pack.metadata.type === "Item",
             )
-            .map<JSX.Element>(
+            .map(
               (
                 pack: CompendiumCollection<CompendiumCollection.Metadata>,
                 i,

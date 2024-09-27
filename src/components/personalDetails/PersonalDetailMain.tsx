@@ -50,7 +50,7 @@ export const PersonalDetailMain = () => {
           <option value={occupationSlotIndex}>
             {settings.occupationLabel.get()}
           </option>
-          {options.map<JSX.Element>((option, i) => (
+          {options.map((option, i) => (
             <option key={option} value={i}>
               {option}
             </option>
@@ -72,7 +72,7 @@ export const PersonalDetailMain = () => {
           }}
         >
           <option value={"~~~NULL~~~"}>None</option>
-          {compendiumPacks.map<JSX.Element>((pack, i) => (
+          {compendiumPacks.map((pack, i) => (
             <option key={pack.collection} value={pack.collection}>
               {pack.metadata.label}
             </option>

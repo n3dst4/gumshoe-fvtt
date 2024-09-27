@@ -63,7 +63,7 @@ export const EquipmentMain = ({ name, onChangeName }: EquipmentMainProps) => {
                 height: "inherit",
               }}
             >
-              {Object.entries(categories).map<JSX.Element>(([id, cat]) => (
+              {Object.entries(categories).map(([id, cat]) => (
                 <option key={id} value={id}>
                   {cat.name}
                 </option>

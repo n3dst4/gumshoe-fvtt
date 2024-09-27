@@ -90,7 +90,7 @@ export const EquipmentCategory = ({
       <div css={{ gridColumn: "1", gridRow: "headers" }}>
         <Translate>Item Name</Translate>
       </div>
-      {Object.entries(fields).map<JSX.Element>(([fieldId, field], i) => {
+      {Object.entries(fields).map(([fieldId, field], i) => {
         return (
           <div key={fieldId} css={{ gridColumn: i + 2, gridRow: "headers" }}>
             {field.name}
@@ -112,7 +112,7 @@ export const EquipmentCategory = ({
       )}
 
       {/* Items */}
-      {sortEntitiesByName(items).map<JSX.Element>((item, i) => (
+      {sortEntitiesByName(items).map((item, i) => (
         <EquipmentItemRow
           item={item}
           key={item.id}

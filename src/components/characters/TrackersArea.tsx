@@ -20,7 +20,7 @@ export const TrackersArea = () => {
 
   return (
     <Fragment>
-      {abilities.map<JSX.Element>((ability, i) => (
+      {abilities.map((ability, i) => (
         <PoolTracker key={`${ability.name}-- ${i}`} ability={ability} />
       ))}
     </Fragment>

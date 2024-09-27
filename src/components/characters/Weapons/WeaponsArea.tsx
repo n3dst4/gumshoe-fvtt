@@ -84,7 +84,7 @@ export const WeaponsArea = () => {
           <div className="header" css={{ gridColumn: 3 }}>
             <Translate>Damage</Translate>
           </div>
-          {sortEntitiesByName(items).map<JSX.Element>((item) => (
+          {sortEntitiesByName(items).map((item) => (
             <WeaponRow key={item.id} weapon={item} />
           ))}
         </div>

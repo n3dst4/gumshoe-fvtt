@@ -51,7 +51,7 @@ export const ListEdit = ({
           <Translate>Empty List</Translate>
         </i>
       )}
-      {value.map<JSX.Element>((s, i) => (
+      {value.map((s, i) => (
         <div
           key={i}
           css={{

@@ -74,7 +74,7 @@ export const PersonalDetailsListEdit = ({
           <Translate>Empty List</Translate>
         </i>
       )}
-      {personalDetails.map<JSX.Element>((personalDetail, i) => (
+      {personalDetails.map((personalDetail, i) => (
         <div
           key={i}
           css={{

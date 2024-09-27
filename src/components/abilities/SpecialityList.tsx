@@ -31,7 +31,7 @@ export const SpecialityList = ({ ability }: SpecialityListProps) => {
         flexWrap: "wrap",
       }}
     >
-      {ability.getSpecialities().map<JSX.Element>((spec, i) => (
+      {ability.getSpecialities().map((spec, i) => (
         <SpecListItem
           key={i}
           value={spec}

@@ -51,7 +51,7 @@ export const PoolTracker = ({ ability }: PoolTrackerProps) => {
         <a onClick={() => ability.sheet?.render(true)}>{ability.name}</a>
       </h2>
 
-      {vals.map<JSX.Element>((value) => (
+      {vals.map((value) => (
         <PoolCheckbox
           key={value}
           value={value}

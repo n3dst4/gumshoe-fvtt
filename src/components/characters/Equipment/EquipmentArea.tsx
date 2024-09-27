@@ -17,7 +17,7 @@ export const EquipmentArea = () => {
 
   return (
     <div>
-      {Object.entries(categories).map<JSX.Element>(([categoryId, category]) => {
+      {Object.entries(categories).map(([categoryId, category]) => {
         return (
           <EquipmentCategory
             actor={actor}
