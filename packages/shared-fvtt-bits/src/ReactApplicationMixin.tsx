@@ -1,4 +1,4 @@
-import React, { StrictMode } from "react";
+import { StrictMode } from "react";
 import { createRoot, Root } from "react-dom/client";
 
 import { FoundryAppContext } from "./FoundryAppContext";
@@ -143,7 +143,7 @@ export function ReactApplicationMixin<TBase extends ApplicationConstructor>(
           this.reactRoot.unmount();
           this.reactRoot = undefined;
         }
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars
       } catch (e: any) {
         // if it does throw, we don;t want that to reach the console, so we do
         // nothing. This is an async function to that's equivalent to returning

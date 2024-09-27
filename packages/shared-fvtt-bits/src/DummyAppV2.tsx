@@ -1,6 +1,5 @@
 import "./ApplicationV2Types";
 
-import React from "react";
 import { createRoot, Root } from "react-dom/client";
 
 import { DummyComponent } from "./DummyComponent";

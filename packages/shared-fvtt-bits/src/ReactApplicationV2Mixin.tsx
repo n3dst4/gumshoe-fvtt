@@ -1,4 +1,4 @@
-import React, { StrictMode } from "react";
+import { StrictMode } from "react";
 import { createRoot, Root } from "react-dom/client";
 
 import { FoundryAppV2Context } from "./FoundryAppV2Context";

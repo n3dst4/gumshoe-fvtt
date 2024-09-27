@@ -18,7 +18,7 @@ jobs:
   #     tag_version: ${{ steps.get_tag_version.outputs.group1 }}
   #     tag_prerelease: ${{ steps.get_tag_version.outputs.group2 }}
   #   steps:
-  #     - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+  #     - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4
 
   #     - name: Get tag versions
   #       if: github.ref_type == 'tag'
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     # needs: parse_tag
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4
 
       - uses: actions/setup-node@v4
         with:
@@ -119,7 +119,7 @@ jobs:
   #     contents: write
   #   if: needs.parse_tag.outputs.tag_version != '' && needs.parse_tag.outputs.tag_prerelease == ''
   #   steps:
-  #     - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+  #     - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4
 
   #     - name: publish
   #       uses: lumphammer/gh-actions/.github/actions/publish@2024-09-18
@@ -141,7 +141,7 @@ jobs:
   #     contents: write
   #   if: needs.parse_tag.outputs.tag_version != '' && needs.parse_tag.outputs.tag_prerelease != ''
   #   steps:
-  #     - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+  #     - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4
 
   #     - name: publish
   #       uses: lumphammer/gh-actions/.github/actions/publish@2024-09-18
