@@ -33,7 +33,7 @@ export const useOtherable = ({
     [onChange],
   );
 
-  const notFound = validValues?.includes(effectiveValue) === false;
+  const notFound = validValues?.includes(value) === false;
 
   return {
     effectiveValue,
