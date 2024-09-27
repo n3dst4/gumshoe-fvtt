@@ -1,4 +1,5 @@
 import { PersonalDetail } from "@lumphammer/investigator-fvtt-types";
+import { nanoid } from "nanoid";
 
 import * as c from "../constants";
 import {
@@ -75,6 +76,40 @@ export const flaggedMigrations: FlaggedMigrations = {
           `Done ${item.name}. updateData: ${JSON.stringify(updateData)}`,
         );
       }
+      return updateData;
+    },
+
+    /*
+     * Once up a time, cherries (unlocks) did not have ids. This made it hard to
+     * manage them except by index.
+     *
+     * A while later, we added ids to the unlock model, but never did a
+     * migration ,leaving older abilities with invalid but still weirdly
+     * functional cherries.
+     *
+     * This migration finally fixes that.
+     */
+    addIdToCherries: (item: any, updateData: any) => {
+      if (item.type !== c.generalAbility) {
+        return;
+      }
+      const needsFix =
+        item.system?.unlocks?.some((unlock: any) => unlock.id === undefined) ??
+        false;
+      if (!needsFix) {
+        return;
+      }
+      if (!updateData.system) {
+        updateData.system = {};
+      }
+      updateData.system.unlocks =
+        item.system?.unlocks?.map((unlock: any) => {
+          if (unlock.id === undefined) {
+            unlock.id = nanoid();
+          }
+          return unlock;
+        }) ?? [];
+
       return updateData;
     },
   },

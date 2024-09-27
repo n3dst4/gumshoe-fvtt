@@ -5,14 +5,14 @@ import {
   generalAbilityIcon,
   investigativeAbility,
   investigativeAbilityIcon,
-} from "../constants";
-import { isNullOrEmptyString } from "../functions/utilities";
-import { niceBlackAgentsPreset } from "../presets";
+} from "../../constants";
+import { isNullOrEmptyString } from "../../functions/utilities";
+import { niceBlackAgentsPreset } from "../../presets";
 import {
   getDefaultGeneralAbilityCategory,
   settings,
-} from "../settings/settings";
-import { AnyItem } from "../v10Types";
+} from "../../settings/settings";
+import { AnyItem } from "../../v10Types";
 
 export const addCategoryToGeneralAbilities = (
   item: AnyItem,
