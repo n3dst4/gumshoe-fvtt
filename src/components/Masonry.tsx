@@ -1,4 +1,10 @@
-import React, { useLayoutEffect, useState } from "react";
+import {
+  PropsWithChildren,
+  useCallback,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { flushSync } from "react-dom";
 
 // adapted from https://github.com/mui/material-ui/blob/next/packages/mui-lab/src/Masonry/Masonry.js
@@ -28,7 +34,7 @@ const isValidElement = (node: Node): node is HTMLElement => {
   return isHelper === false;
 };
 
-type MasonryProps = React.PropsWithChildren<{
+type MasonryProps = PropsWithChildren<{
   /**
    * The minimum width of a column. Any valid CSS length value. To achieve a
    * fixed column count, specify this as a percentage, e.g. 33.33% for three
@@ -52,15 +58,15 @@ export const Masonry = function Masonry({
   columnGap = "0px",
   className,
 }: MasonryProps) {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const measurerRef = React.useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const measurerRef = useRef<HTMLDivElement>(null);
   const [maxColumnHeight, setMaxColumnHeight] = useState(0);
   const [numColumns, setNumColumns] = useState(1);
 
   // ///////////////////////////////////////////////////////////////////////////
   // compare the measurer to the container to work out how many columns we can
   // fit in.
-  const handleCalculateNumColumns = React.useCallback(() => {
+  const handleCalculateNumColumns = useCallback(() => {
     if (!measurerRef.current || !containerRef.current) {
       return;
     }
@@ -84,7 +90,7 @@ export const Masonry = function Masonry({
 
   // ///////////////////////////////////////////////////////////////////////////
   // handle resize - the core of the masonry engine
-  const handleResize = React.useCallback(() => {
+  const handleResize = useCallback(() => {
     if (
       !containerRef.current ||
       containerRef.current.clientWidth === 0 ||

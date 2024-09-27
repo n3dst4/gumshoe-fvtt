@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { MdOutlinePreview } from "react-icons/md";
 
 import { extraCssClasses, systemId } from "../../constants";
@@ -36,15 +36,15 @@ export const JournalEditorSheet = () => {
 
   const theme = useTheme();
 
-  const [activePageId, setActivePageId] = React.useState<string | null>(null);
-  const handlePageClick = React.useCallback(
+  const [activePageId, setActivePageId] = useState<string | null>(null);
+  const handlePageClick = useCallback(
     (pageId: string) => {
       setActivePageId(pageId);
     },
     [setActivePageId],
   );
 
-  const handlePreview = React.useCallback(() => {
+  const handlePreview = useCallback(() => {
     const JournalSheet: JournalSheet = Journal.registeredSheets.find(
       // @ts-expect-error Journal types are effed
       (sheet) => sheet.name === "InvestigatorJournalSheet",
@@ -64,7 +64,7 @@ export const JournalEditorSheet = () => {
     [handlePreview],
   );
 
-  const handleTitleChange = React.useCallback(
+  const handleTitleChange = useCallback(
     (name: string) => {
       void journalEntry.update({ name });
     },
@@ -74,7 +74,7 @@ export const JournalEditorSheet = () => {
   // @ts-expect-error - foundry types are bad
   const globalClasses = journalEntry.flags[systemId]?.[extraCssClasses] ?? "";
 
-  const handleGlobalClassesChange = React.useCallback(
+  const handleGlobalClassesChange = useCallback(
     (classes: string) => {
       void journalEntry.setFlag(systemId, extraCssClasses, classes);
     },

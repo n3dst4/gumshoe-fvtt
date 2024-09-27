@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { runtimeConfig } from "../runtime";
 import { settings } from "../settings/settings";
@@ -17,7 +17,7 @@ function getThemeByName(name: string | null) {
  * changes in dev using HMR (see baseThemes.ts for where that gets initiated.)
  */
 export const useTheme = (name: string | null = null) => {
-  const [theme, setTheme] = React.useState<ThemeV1>(getThemeByName(name));
+  const [theme, setTheme] = useState<ThemeV1>(getThemeByName(name));
   useEffect(() => {
     setTheme(getThemeByName(name));
     const fn = (themeName: string) => {

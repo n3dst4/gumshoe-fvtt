@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 import { generalAbility } from "../../constants";
 import { getTranslated } from "../../functions/getTranslated";
@@ -101,7 +95,7 @@ export const WeaponMain = () => {
 
   const weaponActor = item.actor;
 
-  const [actorInitiativeAbility, setActorInitiativeAbility] = React.useState(
+  const [actorInitiativeAbility, setActorInitiativeAbility] = useState(
     weaponActor && isPCActor(weaponActor)
       ? weaponActor.system.initiativeAbility
       : "",

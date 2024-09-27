@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdOutlineHistory } from "react-icons/md";
 
@@ -19,13 +19,13 @@ enum Mode {
  * Handle an HTML page - either editor of history mode.
  */
 export const HTMLPage = ({ page }: HTMLPageProps) => {
-  const [mode, setMode] = React.useState(Mode.Edit);
+  const [mode, setMode] = useState(Mode.Edit);
 
   const setEdit = useCallback(() => setMode(Mode.Edit), []);
   const setHistory = useCallback(() => setMode(Mode.History), []);
 
   // When page id changes, reset to edit mode
-  React.useEffect(() => {
+  useEffect(() => {
     setEdit();
   }, [page.id, setEdit]);
 

@@ -1,5 +1,5 @@
 import { createDirection, Router } from "@lumphammer/minirouter";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { getTranslated } from "../../functions/getTranslated";
@@ -94,7 +94,7 @@ export const CardsArea = () => {
     cards = cards.reverse();
   }
 
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <CardsAreaSettingsContext.Provider value={cardsAreaSettings}>

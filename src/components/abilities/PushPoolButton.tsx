@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useCallback, useContext } from "react";
 
 import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { ThemeContext } from "../../themes/ThemeContext";
@@ -11,7 +11,7 @@ export const PushPoolButton = () => {
   const { item } = useItemSheetContext();
   const theme = useContext(ThemeContext);
 
-  const handleClickPush = React.useCallback(() => {
+  const handleClickPush = useCallback(() => {
     void item.push();
   }, [item]);
 

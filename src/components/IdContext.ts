@@ -1,3 +1,3 @@
-import React from "react";
+import { createContext } from "react";
 
-export const IdContext = React.createContext<string | undefined>(undefined);
+export const IdContext = createContext<string | undefined>(undefined);
