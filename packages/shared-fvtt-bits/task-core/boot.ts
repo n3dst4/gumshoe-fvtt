@@ -47,6 +47,7 @@ export async function boot({
   config: { rootPath, publicPath, manifestName, buildPath, packagePath },
   commands,
 }: BootArgs) {
+  process.chdir(rootPath);
   const manifestPath = path.join(publicPath, manifestName);
   const manifest = JSON.parse(
     (await fs.readFile(manifestPath)).toString(),
