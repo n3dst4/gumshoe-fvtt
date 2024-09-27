@@ -3,13 +3,14 @@ import { Fragment, useCallback, useContext } from "react";
 import { confirmADoodleDo } from "../../../functions/confirmADoodleDo";
 import { assertGame } from "../../../functions/utilities";
 import { InvestigatorItem } from "../../../module/InvestigatorItem";
+import { settings } from "../../../settings/settings";
 import { ThemeContext } from "../../../themes/ThemeContext";
 import { assertWeaponItem } from "../../../v10Types";
 import { AsyncNumberInput } from "../../inputs/AsyncNumberInput";
 import { AsyncTextInput } from "../../inputs/AsyncTextInput";
 import { Button } from "../../inputs/Button";
-import { CombatAbilityDropDown } from "../../inputs/CombatAbilityDropDown";
 import { CompactNotesEditor } from "../../inputs/CompactNotesEditor";
+import { OtherableDropDown } from "../../inputs/OtherableDropDown";
 import { Toggle } from "../../inputs/Toggle";
 
 type WeaponRowEditProps = {
@@ -181,10 +182,10 @@ export const WeaponRowEdit = ({ weapon, index }: WeaponRowEditProps) => {
           gridRow: gridRow + 1,
         }}
       >
-        <CombatAbilityDropDown
+        <OtherableDropDown
           value={weapon.system.ability}
           onChange={(e) => weapon.setAbility(e)}
-          css={{ display: "block" }}
+          pickerValues={settings.combatAbilities.get().toSorted()}
         />
         <div css={{ marginTop: "0.5em" }}>
           <label>

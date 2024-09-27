@@ -10,6 +10,7 @@ import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Button } from "../inputs/Button";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
+import { OtherableDropDown } from "../inputs/OtherableDropDown";
 import { TextInput } from "../inputs/TextInput";
 import { Toggle } from "../inputs/Toggle";
 import { Translate } from "../Translate";
@@ -18,6 +19,8 @@ import { WeaponRange } from "./WeaponRangeConfig";
 export const WeaponConfig = () => {
   assertGame(game);
   const { item } = useItemSheetContext();
+  const actor = item.actor;
+  const generalAbilityNames = actor?.getGeneralAbilityNames();
 
   assertWeaponItem(item);
   const name = useAsyncUpdate(item.name || "", item.setName);
@@ -44,26 +47,29 @@ export const WeaponConfig = () => {
     }
   }, [item]);
 
-  const abilities = settings.combatAbilities.get();
+  const validCombatAbilities = settings.combatAbilities.get();
 
   return (
     <InputGrid>
       <GridField label="Item Name">
         <TextInput value={name.display} onChange={name.onChange} />
       </GridField>
-      <GridField label="Ability">
-        <select
+      <GridField label="Cost">
+        <AsyncNumberInput
+          min={0}
+          value={item.system.cost}
+          onChange={item.setCost}
+        />
+      </GridField>
+
+      <GridField label="Initiative">
+        <OtherableDropDown
           value={item.system.ability}
-          onChange={(e) => item.setAbility(e.currentTarget.value)}
-          css={{
-            lineHeight: "inherit",
-            height: "inherit",
-          }}
-        >
-          {abilities.map<JSX.Element>((cat: string) => (
-            <option key={cat}>{cat}</option>
-          ))}
-        </select>
+          onChange={item.setAbility}
+          pickerValues={validCombatAbilities}
+          validValues={generalAbilityNames}
+          css={{ marginBottom: "0.3em" }}
+        />
       </GridField>
       <GridField label="Base Damage">
         <AsyncNumberInput

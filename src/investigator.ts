@@ -11,6 +11,7 @@ import { installAbilityCardChatWrangler } from "./startup/installAbilityCardChat
 import { installAbilityCategoryHookHandler } from "./startup/installAbilityCategoryHookHandler";
 import { installActorImageHookHandler } from "./startup/installActorImageHookHandler";
 import { installCardCategoryHookHandler } from "./startup/installCardCategoryHookHandler";
+import { installCombatAbilityHandler } from "./startup/installCombatAbilityHandler";
 import { installCompendiumExportButton } from "./startup/installCompendiumExportButton";
 import { installDropActorSheetDataHandler } from "./startup/installDropActorSheetDataHandler";
 import { installDSNFix } from "./startup/installDSNFix";
@@ -98,3 +99,4 @@ installKeepTokenImageInSyncWithActor();
 installNewCharacterDefaultOccupationHookHandler();
 installEquipmentAddedNotifier();
 installCardCategoryHookHandler();
+installCombatAbilityHandler();
