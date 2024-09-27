@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useState } from "react";
+import { Fragment, useCallback } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { assertGame } from "../../functions/utilities";
@@ -7,20 +7,20 @@ import { useItemSheetContext } from "../../hooks/useSheetContexts";
 import { settings } from "../../settings/settings";
 import { assertWeaponItem } from "../../v10Types";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
-import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { Button } from "../inputs/Button";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
+import { OtherableDropDown } from "../inputs/OtherableDropDown";
 import { TextInput } from "../inputs/TextInput";
 import { Toggle } from "../inputs/Toggle";
 import { Translate } from "../Translate";
 import { WeaponRange } from "./WeaponRangeConfig";
 
-const customAbilityToken = "CUSTOM_ABILITY_TOKEN";
-
 export const WeaponConfig = () => {
   assertGame(game);
   const { item } = useItemSheetContext();
+  const actor = item.actor;
+  const generalAbilityNames = actor?.getGeneralAbilityNames();
 
   assertWeaponItem(item);
   const name = useAsyncUpdate(item.name || "", item.setName);
@@ -48,27 +48,6 @@ export const WeaponConfig = () => {
   }, [item]);
 
   const validCombatAbilities = settings.combatAbilities.get();
-  const chosenAbilityIsValid = validCombatAbilities.includes(
-    item.system.ability,
-  );
-  const [showCustomAbility, setShowCustomAbility] =
-    useState(!chosenAbilityIsValid);
-
-  const handleChangeCustomAbility = useCallback(
-    async (e: React.ChangeEvent<HTMLSelectElement>) => {
-      if (e.currentTarget.value === customAbilityToken) {
-        setShowCustomAbility(true);
-      } else {
-        setShowCustomAbility(false);
-        await item.setAbility(e.currentTarget.value);
-      }
-    },
-    [item, setShowCustomAbility],
-  );
-
-  const effectiveAbilityValue = showCustomAbility
-    ? customAbilityToken
-    : item.system.ability;
 
   return (
     <InputGrid>
@@ -84,30 +63,13 @@ export const WeaponConfig = () => {
       </GridField>
 
       <GridField label="Initiative">
-        <select
-          value={effectiveAbilityValue}
-          onChange={handleChangeCustomAbility}
-          css={{
-            lineHeight: "inherit",
-            height: "inherit",
-          }}
-        >
-          {validCombatAbilities.map<JSX.Element>((cat: string) => (
-            <option key={cat}>{cat}</option>
-          ))}
-          <option value={customAbilityToken}>
-            <Translate>Other</Translate>
-          </option>
-        </select>
+        <OtherableDropDown
+          value={item.system.ability}
+          onChange={item.setAbility}
+          pickerValues={validCombatAbilities}
+          validValues={generalAbilityNames}
+        />
       </GridField>
-      {showCustomAbility && (
-        <GridField>
-          <AsyncTextInput
-            value={item.system.ability}
-            onChange={item.setAbility}
-          />
-        </GridField>
-      )}
       <GridField label="Base Damage">
         <AsyncNumberInput
           value={item.system.damage}
