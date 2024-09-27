@@ -37,7 +37,7 @@ export const SettingArea = () => {
             onChange={onSetTheme}
             value={actor.getSheetThemeName() || "default"}
           >
-            {Object.keys(runtimeConfig.themes).map<JSX.Element>((themeName) => (
+            {Object.keys(runtimeConfig.themes).map((themeName) => (
               <option key={themeName} value={themeName}>
                 {runtimeConfig.themes[themeName].displayName}
               </option>

@@ -70,7 +70,7 @@ export const CheckButtons = ({
         },
       }}
     >
-      {options.map<JSX.Element>(({ label, value, enabled, hover }) => {
+      {options.map(({ label, value, enabled, hover }) => {
         const id = nanoid();
         return (
           <Fragment key={value}>

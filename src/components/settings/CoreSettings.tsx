@@ -52,7 +52,7 @@ export const CoreSettings = ({ setters }: CoreSettingsProps) => {
     >
       <SettingsGridField label="System Preset">
         <select value={settings.systemPreset} onChange={onSelectPreset}>
-          {Object.keys(presets).map<JSX.Element>((presetId: string) => (
+          {Object.keys(presets).map((presetId: string) => (
             <option key={presetId} value={presetId}>
               {presets[presetId].displayName}
             </option>
@@ -69,13 +69,11 @@ export const CoreSettings = ({ setters }: CoreSettingsProps) => {
             setters.defaultThemeName(e.currentTarget.value);
           }}
         >
-          {Object.keys(runtimeConfig.themes).map<JSX.Element>(
-            (themeName: string) => (
-              <option key={themeName} value={themeName}>
-                {runtimeConfig.themes[themeName].displayName}
-              </option>
-            ),
-          )}
+          {Object.keys(runtimeConfig.themes).map((themeName: string) => (
+            <option key={themeName} value={themeName}>
+              {runtimeConfig.themes[themeName].displayName}
+            </option>
+          ))}
         </select>
       </SettingsGridField>
       <SettingsGridField label="Occupation Label" index={idx++}>

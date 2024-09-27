@@ -94,7 +94,7 @@ export const AbilityConfig = () => {
                 height: "inherit",
               }}
             >
-              {categories.map<JSX.Element>((cat: string) => (
+              {categories.map((cat: string) => (
                 <option key={cat}>{cat}</option>
               ))}
               <option value="">Custom</option>

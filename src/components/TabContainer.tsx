@@ -78,7 +78,7 @@ export const TabContainer = ({
       }}
     >
       <div className="tab-strip">
-        {tabDefs.map<JSX.Element>(({ id, label, translate = true }, index) => {
+        {tabDefs.map(({ id, label, translate = true }, index) => {
           const htmlId = nanoid();
           return (
             <Fragment key={id}>

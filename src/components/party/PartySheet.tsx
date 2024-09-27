@@ -206,7 +206,7 @@ export const PartySheet = () => {
         </div>
 
         {/* Actor names */}
-        {actors.map<JSX.Element>((actor, j) => {
+        {actors.map((actor, j) => {
           return (
             <div
               key={actor?.id || `missing-${j}`}
@@ -319,7 +319,7 @@ export const PartySheet = () => {
         </div>
 
         {/* Rows */}
-        {rowData.map<JSX.Element>((data, i) => {
+        {rowData.map((data, i) => {
           if (isTypeHeader(data)) {
             // Investigative or general
             return (

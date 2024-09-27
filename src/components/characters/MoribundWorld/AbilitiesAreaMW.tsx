@@ -17,7 +17,7 @@ export const AbilitiesAreaMW = () => {
         rowGap: "1em",
       }}
     >
-      {Object.keys(generalAbilities).map<JSX.Element>((cat) => {
+      {Object.keys(generalAbilities).map((cat) => {
         const lordyItsABigOne = generalAbilities[cat].length >= 6;
         if (lordyItsABigOne) {
           const abilities = sortEntitiesByName(generalAbilities[cat]);

@@ -141,7 +141,7 @@ export const WeaponsAreaEdit = () => {
             <Translate>LR</Translate>
           </div>
 
-          {sortEntitiesByName(items).map<JSX.Element>((item, index) => (
+          {sortEntitiesByName(items).map((item, index) => (
             <WeaponRowEdit key={item.id} weapon={item} index={index} />
           ))}
         </div>

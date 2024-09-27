@@ -59,7 +59,7 @@ export const AbilitiesAreaEdit = ({
         }}
       >
         <div css={{ gridArea: "warnings" }}>
-          {pushPoolWarnings.map<JSX.Element>((warning, i) => (
+          {pushPoolWarnings.map((warning, i) => (
             <div
               key={i}
               css={{
@@ -113,7 +113,7 @@ export const AbilitiesAreaEdit = ({
                 Oc.
               </i>
             )}
-            {Object.keys(investigativeAbilities).map<JSX.Element>((cat) => (
+            {Object.keys(investigativeAbilities).map((cat) => (
               <Fragment key={cat}>
                 <h2
                   css={{
@@ -125,26 +125,26 @@ export const AbilitiesAreaEdit = ({
                 >
                   {cat}
                 </h2>
-                {sortEntitiesByName(
-                  investigativeAbilities[cat],
-                ).map<JSX.Element>((ability) => {
-                  if (ability.system.isQuickShock) {
-                    return (
-                      <AbilitySlugEditQuickShockInvestigative
-                        key={ability.id}
-                        ability={ability}
-                      />
-                    );
-                  } else {
-                    return (
-                      <AbilitySlugEdit
-                        key={ability.id}
-                        ability={ability}
-                        showOcc={showInvestigativeOccupationalColumn}
-                      />
-                    );
-                  }
-                })}
+                {sortEntitiesByName(investigativeAbilities[cat]).map(
+                  (ability) => {
+                    if (ability.system.isQuickShock) {
+                      return (
+                        <AbilitySlugEditQuickShockInvestigative
+                          key={ability.id}
+                          ability={ability}
+                        />
+                      );
+                    } else {
+                      return (
+                        <AbilitySlugEdit
+                          key={ability.id}
+                          ability={ability}
+                          showOcc={showInvestigativeOccupationalColumn}
+                        />
+                      );
+                    }
+                  },
+                )}
                 {investigativeAbilities[cat].length === 0 && (
                   <NoAbilitiesNote />
                 )}
@@ -191,7 +191,7 @@ export const AbilitiesAreaEdit = ({
             </i>
           )}
 
-          {Object.keys(generalAbilities).map<JSX.Element>((cat) => (
+          {Object.keys(generalAbilities).map((cat) => (
             <Fragment key={cat}>
               <h2
                 css={{
@@ -203,15 +203,13 @@ export const AbilitiesAreaEdit = ({
               >
                 {cat}
               </h2>
-              {sortEntitiesByName(generalAbilities[cat]).map<JSX.Element>(
-                (ability) => (
-                  <AbilitySlugEdit
-                    key={ability.id}
-                    ability={ability}
-                    showOcc={!simplifiedMode}
-                  />
-                ),
-              )}
+              {sortEntitiesByName(generalAbilities[cat]).map((ability) => (
+                <AbilitySlugEdit
+                  key={ability.id}
+                  ability={ability}
+                  showOcc={!simplifiedMode}
+                />
+              ))}
               {generalAbilities[cat].length === 0 && <NoAbilitiesNote />}
             </Fragment>
           ))}

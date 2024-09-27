@@ -87,11 +87,9 @@ export const AbilitySlugPlayMw = ({ ability }: AbilitySlugPlayMwProps) => {
       </div>
       {ability.system.hasSpecialities && (
         <div css={{ paddingLeft: "1em", gridColumn: "ability", width: "2em" }}>
-          {(ability.system.specialities || []).map<JSX.Element>(
-            (x: string, i: number) => (
-              <div key={i}>{x.trim()}</div>
-            ),
-          )}
+          {(ability.system.specialities || []).map((x: string, i: number) => (
+            <div key={i}>{x.trim()}</div>
+          ))}
         </div>
       )}
     </Fragment>

@@ -20,7 +20,7 @@ export const AbilitiesColumnMW = ({ abilities }: AbilitiesColumnMWProps) => {
         gridColumn: "auto",
       }}
     >
-      {abilities.map<JSX.Element>((ability) => (
+      {abilities.map((ability) => (
         <AbilitySlugPlayMw key={ability.id} ability={ability} />
       ))}
       {abilities.length === 0 && <NoAbilitiesNote />}
