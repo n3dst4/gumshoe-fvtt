@@ -126,7 +126,7 @@ export const NPCSheetFull = () => {
         <TrackersArea />
         <hr />
         <h4 css={{ width: "8em" }}>
-          <Translate>Combat Order</Translate>
+          <Translate>Initiative</Translate>
         </h4>
         <CombatAbilityDropDown
           value={actor.system.initiativeAbility}
