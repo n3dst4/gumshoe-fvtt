@@ -254,6 +254,16 @@ export class InvestigatorActor extends Actor {
     return this.items.filter(isAbilityItem);
   }
 
+  getGeneralAbilities(): InvestigatorItem[] {
+    return this.getAbilities().filter(isGeneralAbilityItem);
+  }
+
+  getGeneralAbilityNames(): string[] {
+    return this.getGeneralAbilities()
+      .map((a) => a.name)
+      .filter((n): n is string => n !== null);
+  }
+
   getPersonalDetails(): PersonalDetailItem[] {
     return this.items.filter(isPersonalDetailItem);
   }

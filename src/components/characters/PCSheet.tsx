@@ -16,7 +16,6 @@ import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { Button } from "../inputs/Button";
-import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { GridField } from "../inputs/GridField";
 import { IndexedAsyncTextInput } from "../inputs/IndexedAsyncTextInput";
 import { InputGrid } from "../inputs/InputGrid";
@@ -24,6 +23,7 @@ import { TabContainer } from "../TabContainer";
 import { Translate } from "../Translate";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
+import { CharacterCombatAbilityPicker } from "./CharacterCombatAbilityPicker";
 import { EquipmentArea } from "./Equipment/EquipmentArea";
 import { LogoEditable } from "./LogoEditable";
 import { AbilitiesAreaMW } from "./MoribundWorld/AbilitiesAreaMW";
@@ -248,13 +248,7 @@ export const PCSheet = () => {
           return <StatField key={key} id={key} stat={stats[key]} />;
         })}
         <hr />
-        <h3 css={{ gridColumn: "start / end" }}>
-          <Translate>Initiative</Translate>
-        </h3>
-        <CombatAbilityDropDown
-          value={actor.system.initiativeAbility}
-          onChange={actor.setInitiativeAbility}
-        />
+        <CharacterCombatAbilityPicker />
       </div>
 
       <div

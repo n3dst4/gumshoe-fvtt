@@ -9,7 +9,6 @@ import { CSSReset } from "../CSSReset";
 import { ImagePickle } from "../ImagePickle";
 import { AsyncNumberInput } from "../inputs/AsyncNumberInput";
 import { Button } from "../inputs/Button";
-import { CombatAbilityDropDown } from "../inputs/CombatAbilityDropDown";
 import { InputGrid } from "../inputs/InputGrid";
 import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
 import { NotesTypeContext } from "../NotesTypeContext";
@@ -17,6 +16,7 @@ import { TabContainer } from "../TabContainer";
 import { Translate } from "../Translate";
 import { AbilitiesAreaEdit } from "./AbilitiesAreaEdit";
 import { AbilitiesAreaPlay } from "./AbilitiesAreaPlay";
+import { CharacterCombatAbilityPicker } from "./CharacterCombatAbilityPicker";
 import { LogoEditable } from "./LogoEditable";
 import { MwInjuryStatusWidget } from "./MoribundWorld/MwInjuryStatusWidget";
 import { StatField } from "./StatField";
@@ -125,13 +125,7 @@ export const NPCSheetFull = () => {
         <hr />
         <TrackersArea />
         <hr />
-        <h4 css={{ width: "8em" }}>
-          <Translate>Initiative</Translate>
-        </h4>
-        <CombatAbilityDropDown
-          value={actor.system.initiativeAbility}
-          onChange={actor.setInitiativeAbility}
-        />
+        <CharacterCombatAbilityPicker />
         {settings.useTurnPassingInitiative.get() && (
           <Fragment>
             <h4 css={{ width: "8em" }}>
