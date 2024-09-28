@@ -35,8 +35,10 @@ export class InvestigatorJournalSheet extends JournalSheet {
     );
     // @ts-expect-error sigh
     const page = pages[this._getCurrentPage()];
-    const pageClasses = page.flags[systemId]?.[extraCssClasses] ?? "";
-    contentElement.addClass(pageClasses);
+    const pageClasses = page?.flags[systemId]?.[extraCssClasses] ?? "";
+    if (pageClasses !== undefined) {
+      contentElement.addClass(pageClasses);
+    }
 
     // destroy the .edit-container
     this.element.find(".edit-container").remove();
