@@ -9,6 +9,6 @@ export async function copyPacksBack({ buildPath, log, publicPath }: TaskArgs) {
   const buildPacksPath = path.join(buildPath, "packs");
   const publicPacksPath = path.join(publicPath, "packs");
   await rm(publicPacksPath, { recursive: true, force: true });
-  await fs.copy(buildPacksPath, publicPath);
+  await fs.copy(buildPacksPath, publicPacksPath);
   log("Finished copying packs.");
 }
