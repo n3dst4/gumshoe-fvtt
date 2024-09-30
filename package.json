@@ -40,7 +40,7 @@
     "@emotion/react": "^11.13.3",
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
     "@lumphammer/investigator-fvtt-types": "workspace:^",
-    "@swc/plugin-emotion": "^4.0.1",
+    "@swc/plugin-emotion": "^4.0.2",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
