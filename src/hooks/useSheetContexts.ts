@@ -48,14 +48,15 @@ export const useJournalSheetContext = () => {
   return { app, journalEntry };
 };
 
-export const useDocumentSheetContext = () => {
+export const useDocumentSheetContext = (docClass?: any) => {
   const app = useContext(FoundryAppContext);
   if (app === null) {
     throw new Error(
       "useDocumentSheetContext must be used within a FoundryAppContext",
     );
   }
-  if (!(app instanceof ActorSheet || app instanceof ItemSheet)) {
+  // let doc:
+  if (!(app instanceof DocumentSheet)) {
     throw new Error(
       "useDocumentSheetContext must be used within an ActorSheet or ItemSheet",
     );
