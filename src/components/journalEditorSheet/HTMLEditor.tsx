@@ -88,8 +88,16 @@ export const HTMLEditor = ({ page }: HTMLEditorProps) => {
       console.log("onDropIntoEditor", event);
       const dragData = getDragEventData(event);
       systemLogger.log("dragData", dragData);
+
+      const options = {
+        relativeTo: page,
+      };
+
       const text =
-        dragData === null ? "" : await TextEditor.getContentLink(dragData);
+        dragData === null
+          ? ""
+          : // @ts-expect-error options
+            await TextEditor.getContentLink(dragData, options);
 
       if (text) {
         editor.executeEdits("", [
