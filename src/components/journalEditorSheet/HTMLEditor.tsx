@@ -5,7 +5,7 @@ import { useCallback, useMemo, useRef } from "react";
 import { AiOutlineFormatPainter } from "react-icons/ai";
 
 import { extraCssClasses, systemId } from "../../constants";
-import { debounce } from "../../functions/utilities";
+import { debounce, systemLogger } from "../../functions/utilities";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 // these imports are going around the barrel export because I was getting some
 // weird "SyntaxError: Ambiguous import "DocumentMemory"" errors
@@ -20,6 +20,21 @@ interface HTMLEditorProps {
 type IStandalonCodeEditor = Parameters<OnMount>[0];
 
 const SAVE_DEBOUNCE_MS = 600;
+
+// burgled from Foundry: resources/app/client/ui/editor.js
+function getDragEventData(event: DragEvent): object | null {
+  // Clumsy because (event instanceof DragEvent) doesn't work
+  if (!("dataTransfer" in event) || event.dataTransfer === null) {
+    throw new Error("Incorrectly attempted to process drag event data.");
+  }
+
+  try {
+    return JSON.parse(event.dataTransfer.getData("text/plain"));
+    // eslint-disable-next-line unused-imports/no-unused-vars
+  } catch (err) {
+    return null;
+  }
+}
 
 /**
  * The actual Monaco-based HTML editor.
@@ -60,6 +75,40 @@ export const HTMLEditor = ({ page }: HTMLEditorProps) => {
   const handleEditorDidMount: OnMount = useCallback((editor, monaco) => {
     monacoRef.current = monaco;
     editorRef.current = editor;
+
+    // @ts-expect-error onDropIntoEditor isn't actually public yet but it does
+    // exist. See https://github.com/microsoft/monaco-editor/issues/3359
+    editor.onDropIntoEditor(async ({ position, event }: any) => {
+      event.preventDefault();
+      // const dataTransfer = event.dataTransfer as DataTransfer;
+      // return JSON.parse(event.dataTransfer.getData("text/plain"));
+
+      // set the text to the dataTransfer.getData("text/plain") value
+      // dataTransfer.setData("text/plain", "foo");
+      console.log("onDropIntoEditor", event);
+      const dragData = getDragEventData(event);
+      systemLogger.log("dragData", dragData);
+      const text =
+        dragData === null ? "" : await TextEditor.getContentLink(dragData);
+
+      if (text) {
+        editor.executeEdits("", [
+          {
+            range: new monaco.Range(
+              position.lineNumber,
+              position.column,
+              position.lineNumber,
+              position.column,
+            ),
+            text,
+            forceMoveMarkers: true,
+          },
+        ]);
+        editor.focus();
+        throw new Error("foo");
+      }
+    });
+
     // disable built-in html formatting
     monaco.languages.html.htmlDefaults.setModeConfiguration({
       ...monaco.languages.html.htmlDefaults.modeConfiguration,
@@ -167,6 +216,10 @@ export const HTMLEditor = ({ page }: HTMLEditorProps) => {
           onMount={handleEditorDidMount}
           onChange={handleChange}
           options={{
+            dropIntoEditor: {
+              enabled: true,
+              showDropSelector: "afterDrop",
+            },
             language: "html",
             automaticLayout: true,
             scrollbar: {
