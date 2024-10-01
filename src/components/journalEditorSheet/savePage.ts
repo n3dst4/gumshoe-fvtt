@@ -1,4 +1,3 @@
-import { systemLogger } from "../../functions/utilities";
 import { settings } from "../../settings/settings";
 import { createDocumentMemory } from "./documentMemory/createDocumentMemory";
 import { dehydrate } from "./documentMemory/dehydrate";
@@ -46,6 +45,5 @@ export async function savePage(
     [memoryId]: dehydrate(memory),
   };
   await settings.journalMemories.set(journalMemoryCollection);
-  systemLogger.log("Saved page", page.id, content);
   return memory;
 }
