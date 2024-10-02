@@ -1,5 +1,7 @@
+import { useCallback } from "react";
+
 import { absoluteCover } from "../absoluteCover";
-import { AsyncTextInput } from "../inputs/AsyncTextInput";
+import { AsyncTextArea } from "../inputs/AsyncTextArea";
 import { GridFieldStacked } from "../inputs/GridFieldStacked";
 import { InputGrid } from "../inputs/InputGrid";
 import { ImageArea } from "./ImageArea";
@@ -13,6 +15,14 @@ interface ImageEditorProps {
  * lifting.
  */
 export const ImageEditor = ({ page }: ImageEditorProps) => {
+  const handleChange = useCallback(
+    async (value: string) => {
+      console.log("handleChange", value, page);
+      await page.update({ image: { caption: value } });
+    },
+    [page],
+  );
+
   return (
     <div
       css={{
@@ -23,11 +33,11 @@ export const ImageEditor = ({ page }: ImageEditorProps) => {
       }}
     >
       <ImageArea page={page} />
-      <InputGrid css={{ padding: "0.5em" }}>
+      <InputGrid css={{ padding: "0.5em", gridTemplateRows: "1fr 1fr" }}>
         <GridFieldStacked label="Caption" noTranslate>
-          <AsyncTextInput
-            value={page.caption}
-            onChange={page.setCaption}
+          <AsyncTextArea
+            value={page.image.caption}
+            onChange={handleChange}
             css={{ flex: 1 }}
           />
         </GridFieldStacked>
