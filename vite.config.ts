@@ -5,6 +5,7 @@ import path from "path";
 import { visualizer } from "rollup-plugin-visualizer";
 import type { HttpProxy } from "vite";
 import { defineConfig } from "vite";
+import svgr from "vite-plugin-svgr";
 
 import { id as name } from "./public/system.json";
 
@@ -172,6 +173,27 @@ const config = defineConfig(({ mode }) => {
             },
           ],
         ],
+      }),
+      svgr({
+        svgrOptions: {
+          plugins: ["@svgr/plugin-svgo", "@svgr/plugin-jsx"],
+          svgoConfig: {
+            plugins: [
+              {
+                name: "preset-default",
+              },
+              {
+                name: "convertStyleToAttrs",
+              },
+              {
+                name: "convertColors",
+                params: {
+                  currentColor: true,
+                },
+              },
+            ],
+          },
+        },
       }),
       visualizer({
         gzipSize: true,

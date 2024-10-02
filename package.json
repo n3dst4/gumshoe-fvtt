@@ -40,6 +40,8 @@
     "@emotion/react": "^11.13.3",
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.1",
     "@lumphammer/investigator-fvtt-types": "workspace:^",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
     "@swc/plugin-emotion": "^4.0.2",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
@@ -72,6 +74,7 @@
     "tsx": "^4.19.1",
     "typescript": "5.6.2",
     "vite": "^5.4.7",
+    "vite-plugin-svgr": "^4.2.0",
     "vitest": "^1.6.0"
   },
   "dependencies": {

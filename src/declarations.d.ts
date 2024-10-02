@@ -1,3 +1,5 @@
+/// <reference types="vite-plugin-svgr/client" />
+
 declare const Babele: any;
 
 // DSN uses this extra dice term option to sequence rolls
