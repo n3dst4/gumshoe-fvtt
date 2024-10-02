@@ -174,17 +174,28 @@ const config = defineConfig(({ mode }) => {
           ],
         ],
       }),
+      // svgr plugin uses SVGR to import SVGs as React components
       svgr({
         svgrOptions: {
+          // use SVGO plugins to optimize the SVGs - this means we can use
+          // SVGS direct from Inkscape with all the extra stuff, but they
+          // get minified for use.
           plugins: ["@svgr/plugin-svgo", "@svgr/plugin-jsx"],
+          // SVGR plugin has weird syntax for plugins, so we have to do this
           svgoConfig: {
+            // these are plugins to *SVGO*
             plugins: [
               {
                 name: "preset-default",
               },
+              // converts `style=color:red` to color=red
               {
                 name: "convertStyleToAttrs",
               },
+              // and then we change every color to `currentColor` which means it
+              // inherits the color from the parent element, so we can use it
+              // inline with text (like an icon) or set a CSS color on the SVG
+              // when we render it.
               {
                 name: "convertColors",
                 params: {
