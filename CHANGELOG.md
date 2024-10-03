@@ -2,11 +2,12 @@
 
 ## Unreleased
 
-* **SMALL REDESIGNS**: The weapon sheet now makes FAR more sense. Also, everywhere you can set a "combat ability", it handles the weird cases where it's using an ability that the character doesn't have.
+* **SMALL BUT USEFUL REDESIGNS**: The weapon sheet now makes FAR more sense. Also, everywhere you can set a "combat ability", it handles the weird cases where it's using an ability that the character doesn't have.
 * **BUG FIX**: GMs can now edit text on characters created by players.
 * **BUG FIX**: Non-GMs used to be able to see the "GUMSHOE Settings" button, even though they couldn't edit anything.
 * **BUG FIX**: Newly created weapons will now have a valid combat ability set. Prior, it was always "Scuffling", which just so happens to be valid in every system except Night's Black Agents.
 * **BUG FIX**: Cherries/unlocks that were set up using using any version between 4.11.0 (2022-05-31) and 7.0.0 (2023-06-01) were not migrated properly, so you saw the same cherry repeated in the editor (the actual display was fine though.)
+* **BUG FIX**: the portrait image on actor sheets now frames towards the top of the image if it's proportionally taller than the available space. This should work ion more situations to show the character's *face* rather than their chest and is also consistent with how Foundry does it in the sidebar.
 * **BTS STUFF**: This is a system-work heavy release. Hopefully none of those changes will be visible.
 
 
