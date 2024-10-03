@@ -85,6 +85,13 @@ export const ImageArea = ({ page }: ImageAreaProps) => {
             >
               Click to add image
             </div>
+            {/* It would be nice to set
+              vectorEffect="non-scaling-stroke" or put
+              vectorEffect: "non-scaling-stroke" in the css but neither work,
+              probably because we're in the SVGO options (in the VIte config)
+              we're converting CSS to attributes to allow us to change the color
+              to currentColor.
+            */}
             <Cross
               preserveAspectRatio="none"
               style={{
