@@ -23,6 +23,9 @@ export class JournalEditorSheetClassBase extends JournalSheet {
     };
     return options;
   }
+
+  // @ts-expect-error this is okay, actually
+  static name = "JournalEditorSheetClass";
 }
 
 const render = (sheet: JournalEditorSheetClassBase) => {

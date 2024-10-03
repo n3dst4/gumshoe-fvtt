@@ -1,4 +1,10 @@
+import { useCallback } from "react";
+
 import { absoluteCover } from "../absoluteCover";
+import { AsyncTextArea } from "../inputs/AsyncTextArea";
+import { GridFieldStacked } from "../inputs/GridFieldStacked";
+import { InputGrid } from "../inputs/InputGrid";
+import { ImageArea } from "./ImageArea";
 
 interface ImageEditorProps {
   page: any;
@@ -9,39 +15,33 @@ interface ImageEditorProps {
  * lifting.
  */
 export const ImageEditor = ({ page }: ImageEditorProps) => {
+  const handleChange = useCallback(
+    async (value: string) => {
+      console.log("handleChange", value, page);
+      await page.update({ image: { caption: value } });
+    },
+    [page],
+  );
+
   return (
     <div
-      data-testid="image-container"
       css={{
         ...absoluteCover,
-        overflow: "hidden",
-        textAlign: "center",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr ",
+        gridTemplateRows: "1fr",
       }}
     >
-      <a
-        css={{
-          margin: "auto",
-        }}
-        onClick={() => {
-          page.sheet.render(true);
-        }}
-      >
-        {page.src ? (
-          <img
-            css={{
-              cursor: "pointer",
-              ":hover": {
-                opacity: 0.5,
-              },
-              maxWidth: "100%",
-              maxHeight: "100%",
-            }}
-            src={page.src}
+      <ImageArea page={page} />
+      <InputGrid css={{ padding: "0.5em", gridTemplateRows: "1fr 1fr" }}>
+        <GridFieldStacked label="Caption" noTranslate>
+          <AsyncTextArea
+            value={page.image.caption}
+            onChange={handleChange}
+            css={{ flex: 1 }}
           />
-        ) : (
-          "Click to add image"
-        )}
-      </a>
+        </GridFieldStacked>
+      </InputGrid>
     </div>
   );
 };

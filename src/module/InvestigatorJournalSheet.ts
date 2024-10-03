@@ -12,6 +12,10 @@ export class InvestigatorJournalSheet extends JournalSheet {
     return options;
   }
 
+  // without this, the class name gets mangled in minification and thus breaks
+  // @ts-expect-error this is okay, actually
+  static name = "InvestigatorJournalSheet";
+
   /** @override */
   activateListeners(html: JQuery) {
     super.activateListeners(html);

@@ -5,7 +5,7 @@ import { useCallback, useMemo, useRef } from "react";
 import { AiOutlineFormatPainter } from "react-icons/ai";
 
 import { extraCssClasses, systemId } from "../../constants";
-import { debounce } from "../../functions/utilities";
+import { debounce, systemLogger } from "../../functions/utilities";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 // these imports are going around the barrel export because I was getting some
 // weird "SyntaxError: Ambiguous import "DocumentMemory"" errors
@@ -20,6 +20,21 @@ interface HTMLEditorProps {
 type IStandalonCodeEditor = Parameters<OnMount>[0];
 
 const SAVE_DEBOUNCE_MS = 600;
+
+// burgled from Foundry: resources/app/client/ui/editor.js
+function getDragEventData(event: DragEvent): object | null {
+  // Clumsy because (event instanceof DragEvent) doesn't work
+  if (!("dataTransfer" in event) || event.dataTransfer === null) {
+    throw new Error("Incorrectly attempted to process drag event data.");
+  }
+
+  try {
+    return JSON.parse(event.dataTransfer.getData("text/plain"));
+    // eslint-disable-next-line unused-imports/no-unused-vars
+  } catch (err) {
+    return null;
+  }
+}
 
 /**
  * The actual Monaco-based HTML editor.
@@ -57,57 +72,102 @@ export const HTMLEditor = ({ page }: HTMLEditorProps) => {
     [handleSaveContent],
   );
 
-  const handleEditorDidMount: OnMount = useCallback((editor, monaco) => {
-    monacoRef.current = monaco;
-    editorRef.current = editor;
-    // disable built-in html formatting
-    monaco.languages.html.htmlDefaults.setModeConfiguration({
-      ...monaco.languages.html.htmlDefaults.modeConfiguration,
-      documentFormattingEdits: false,
-      documentRangeFormattingEdits: false,
-    });
-    // use prettier to format html
-    monaco.languages.registerDocumentFormattingEditProvider("html", {
-      async provideDocumentFormattingEdits(model) {
-        try {
-          const text1 = await prettier.format(model.getValue(), {
-            // wrapAttributes: "force",
-            parser: "html",
-            // plugins: [babel],
-            htmlWhitespaceSensitivity: "ignore",
-            arrowParens: "always",
-            bracketSpacing: true,
-            endOfLine: "lf",
-            insertPragma: false,
-            singleAttributePerLine: false,
-            bracketSameLine: false,
-            printWidth: 80,
-            proseWrap: "preserve",
-            quoteProps: "as-needed",
-            requirePragma: false,
-            semi: true,
-            singleQuote: true,
-            tabWidth: 2,
-            // trailingComma: 'es5',
-            useTabs: false,
-            vueIndentScriptAndStyle: false,
-            plugins: [htmlParser],
-          });
-          return [
-            {
-              range: model.getFullModelRange(),
-              text: text1,
-            },
-          ];
-        } catch (e: any) {
-          // systemLogger.log(e);
-          ui.notifications?.error(e.message);
-        }
-      },
-    });
+  const handleEditorDidMount: OnMount = useCallback(
+    (editor, monaco) => {
+      monacoRef.current = monaco;
+      editorRef.current = editor;
 
-    // editor.
-  }, []);
+      // @ts-expect-error onDropIntoEditor isn't actually public yet but it does
+      // exist. See https://github.com/microsoft/monaco-editor/issues/3359
+      editor.onDropIntoEditor(async ({ position, event }: any) => {
+        event.preventDefault();
+        // const dataTransfer = event.dataTransfer as DataTransfer;
+        // return JSON.parse(event.dataTransfer.getData("text/plain"));
+
+        // set the text to the dataTransfer.getData("text/plain") value
+        // dataTransfer.setData("text/plain", "foo");
+        console.log("onDropIntoEditor", event);
+        const dragData = getDragEventData(event);
+        systemLogger.log("dragData", dragData);
+
+        const options = {
+          relativeTo: page,
+        };
+
+        const text =
+          dragData === null
+            ? ""
+            : // @ts-expect-error options
+              await TextEditor.getContentLink(dragData, options);
+
+        if (text) {
+          editor.executeEdits("", [
+            {
+              range: new monaco.Range(
+                position.lineNumber,
+                position.column,
+                position.lineNumber,
+                position.column,
+              ),
+              text,
+              forceMoveMarkers: true,
+            },
+          ]);
+          editor.focus();
+          throw new Error("foo");
+        }
+      });
+
+      // disable built-in html formatting
+      monaco.languages.html.htmlDefaults.setModeConfiguration({
+        ...monaco.languages.html.htmlDefaults.modeConfiguration,
+        documentFormattingEdits: false,
+        documentRangeFormattingEdits: false,
+      });
+      // use prettier to format html
+      monaco.languages.registerDocumentFormattingEditProvider("html", {
+        async provideDocumentFormattingEdits(model) {
+          try {
+            const text1 = await prettier.format(model.getValue(), {
+              // wrapAttributes: "force",
+              parser: "html",
+              // plugins: [babel],
+              htmlWhitespaceSensitivity: "ignore",
+              arrowParens: "always",
+              bracketSpacing: true,
+              endOfLine: "lf",
+              insertPragma: false,
+              singleAttributePerLine: false,
+              bracketSameLine: false,
+              printWidth: 80,
+              proseWrap: "preserve",
+              quoteProps: "as-needed",
+              requirePragma: false,
+              semi: true,
+              singleQuote: true,
+              tabWidth: 2,
+              // trailingComma: 'es5',
+              useTabs: false,
+              vueIndentScriptAndStyle: false,
+              plugins: [htmlParser],
+            });
+            return [
+              {
+                range: model.getFullModelRange(),
+                text: text1,
+              },
+            ];
+          } catch (e: any) {
+            // systemLogger.log(e);
+            ui.notifications?.error(e.message);
+          }
+        },
+      });
+
+      // editor.
+    },
+    [page],
+  );
 
   const handleFormat = useCallback(async () => {
     await doFormat();
@@ -167,6 +227,10 @@ export const HTMLEditor = ({ page }: HTMLEditorProps) => {
           onMount={handleEditorDidMount}
           onChange={handleChange}
           options={{
+            dropIntoEditor: {
+              enabled: true,
+              showDropSelector: "afterDrop",
+            },
             language: "html",
             automaticLayout: true,
             scrollbar: {
