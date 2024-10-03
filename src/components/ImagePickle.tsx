@@ -112,7 +112,7 @@ export const ImagePickle = ({ className }: ImagePickleProps) => {
             ...cover,
             backgroundImage: `url("${doc.img}")`,
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "center top",
             filter: showOverlay ? "blur(0.7em)" : undefined,
             transition: `filter ${transitionTime} ease-in`,
           }}
