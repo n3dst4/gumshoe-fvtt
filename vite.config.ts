@@ -129,6 +129,9 @@ const config = defineConfig(({ mode }) => {
     // discussion: https://github.com/vitejs/vite/discussions/8640?sort=old
     esbuild: {
       logOverride: { "this-is-undefined-in-esm": "silent" },
+      // without this, the class name gets mangled in minification and thus
+      // breaks sheet registration (which relies on the class name)
+      keepNames: true,
     },
 
     build: {
