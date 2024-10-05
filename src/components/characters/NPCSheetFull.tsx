@@ -44,7 +44,7 @@ export const NPCSheetFull = () => {
         left: 0,
         display: "grid",
         gridTemplateRows: "min-content 1fr",
-        gridTemplateColumns: "max-content 1fr 6em",
+        gridTemplateColumns: "max-content 1fr 4em",
         gap: "0.5em",
         gridTemplateAreas: '"sidebar title image" ' + '"sidebar main main" ',
       }}
