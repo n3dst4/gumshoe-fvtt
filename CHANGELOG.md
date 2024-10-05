@@ -3,6 +3,7 @@
 ## Unreleased
 
 * **SMALL BUT USEFUL REDESIGNS**: The weapon sheet now makes FAR more sense. Also, everywhere you can set a "combat ability", it handles the weird cases where it's using an ability that the character doesn't have.
+* **RELATED BUG FIX**: Actors were being created with no combat ability. This is now fixed, and also any existing actor that still doesn't have one will get one.
 * **BUG FIX**: GMs can now edit text on characters created by players.
 * **BUG FIX**: Non-GMs used to be able to see the "GUMSHOE Settings" button, even though they couldn't edit anything.
 * **BUG FIX**: Newly created weapons will now have a valid combat ability set. Prior, it was always "Scuffling", which just so happens to be valid in every system except Night's Black Agents.
