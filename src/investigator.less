@@ -7,15 +7,6 @@
 //   $parent-selector: ".pico"
 // );
 
-@font-face {
-  font-family: "Longdon Decorative Regular";
-  // previously this was set to a path that was relative to the css file **at
-  // runtime** when we were serving CSS directly from Foundry. Now that we're
-  // doing it through Vite it's pointed to an actual resolvable-at-build-time
-  // filepath.
-  src: url(../assets/fonts/LongdonDecorative.woff2) format("woff2");
-}
-
 .window-content.non-resizable {
   padding: 0;
   position: relative;

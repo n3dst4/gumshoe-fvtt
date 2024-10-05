@@ -1,0 +1,10 @@
+/*
+This import spent a while being included in the main .less file, but that means
+the font file gets embedded in the bundle as a base64 data: uri which bloat the
+bundle even for people who will never use this font, so we're now importing it
+separately via the system manifest.
+*/
+@font-face {
+  font-family: "Longdon Decorative Regular";
+  src: url(./LongdonDecorative.woff2) format("woff2");
+}
