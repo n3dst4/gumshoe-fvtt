@@ -4,7 +4,7 @@ import { settings } from "../settings/settings";
 import { WeaponSystemData } from "../types";
 import { isWeaponItem } from "../v10Types";
 
-export const installCombatAbilityHandler = () => {
+export const installItemCombatAbilityHandler = () => {
   Hooks.on(
     "preCreateItem",
     (

@@ -8,6 +8,8 @@ import {
   systemLogger,
 } from "../functions/utilities";
 import { pathOfCthulhuPreset } from "../presets";
+import { settings } from "../settings/settings";
+import { isActiveCharacterActor } from "../v10Types";
 import { FlaggedMigrations } from "./types";
 
 export const flaggedMigrations: FlaggedMigrations = {
@@ -116,7 +118,7 @@ export const flaggedMigrations: FlaggedMigrations = {
   actor: {
     /**
      * We used to use an array of strings as our "short notes". We have now
-     * upgraded these to fuill items so they can given descriptions and images,
+     * upgraded these to full items so they can given descriptions and images,
      * included in compendiums etc. This migration will turn any exsiting
      * text-based short notes into new personalDetail items.
      */
@@ -155,6 +157,25 @@ export const flaggedMigrations: FlaggedMigrations = {
           .concat(occupationItem);
       }
       return updateData;
+    },
+    /**
+     * For a long time, actors were created without a valid intiative ability.
+     * This migration will set the initiative ability to the first one in the
+     * list if it's not already set.
+     */
+    setInitiativeAbilityWhereUndefined: (actor: any, updateData: any) => {
+      const initiativeAbility = settings.combatAbilities.get()[0];
+      if (
+        !isActiveCharacterActor(actor) ||
+        isNullOrEmptyString(initiativeAbility) ||
+        !isNullOrEmptyString(actor.system.initiativeAbility)
+      ) {
+        return;
+      }
+      if (!updateData.system) {
+        updateData.system = {};
+      }
+      updateData.system.initiativeAbility = initiativeAbility;
     },
   },
   world: {
