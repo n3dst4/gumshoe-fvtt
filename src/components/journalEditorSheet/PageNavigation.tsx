@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import { BsImage } from "react-icons/bs";
+import { BsImage, BsSortNumericDown } from "react-icons/bs";
 import { FaBarsStaggered, FaImage } from "react-icons/fa6";
 import { VscOutput } from "react-icons/vsc";
 
@@ -101,6 +101,21 @@ export const PageNavigation = ({
     onNavigate(newPage[0]._id);
   }, [journalEntry, onNavigate]);
 
+  const handleRenumberPages = useCallback(async () => {
+    // @ts-expect-error the journal types are so fucked
+    const pages = journalEntry.pages.contents.toSorted(
+      (a: any, b: any) => a.sort - b.sort,
+    );
+    const updates = pages.map((page: any, i: number) => {
+      return {
+        _id: page.id,
+        sort: (i + 1) * 1000,
+      };
+    });
+    await journalEntry.updateEmbeddedDocuments("JournalEntryPage", updates);
+    ui.notifications?.info(`Renumbered ${pages.length} pages`);
+  }, [journalEntry]);
+
   useToolbarContent(
     "Create new",
     useMemo(
@@ -119,6 +134,22 @@ export const PageNavigation = ({
         </>
       ),
       [handleAddNewImagePage, handleAddNewTextPage],
+    ),
+  );
+
+  useToolbarContent(
+    "Core",
+    useMemo(
+      () => (
+        <>
+          <ToolbarButton
+            onClick={handleRenumberPages}
+            icon={BsSortNumericDown}
+            text="Renumber"
+          />
+        </>
+      ),
+      [handleRenumberPages],
     ),
   );
 

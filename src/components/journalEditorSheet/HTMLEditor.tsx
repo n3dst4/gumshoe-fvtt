@@ -129,26 +129,8 @@ export const HTMLEditor = ({ page }: HTMLEditorProps) => {
         async provideDocumentFormattingEdits(model) {
           try {
             const text1 = await prettier.format(model.getValue(), {
-              // wrapAttributes: "force",
               parser: "html",
-              // plugins: [babel],
-              htmlWhitespaceSensitivity: "ignore",
-              arrowParens: "always",
-              bracketSpacing: true,
-              endOfLine: "lf",
-              insertPragma: false,
-              singleAttributePerLine: false,
-              bracketSameLine: false,
-              printWidth: 80,
-              proseWrap: "preserve",
-              quoteProps: "as-needed",
-              requirePragma: false,
-              semi: true,
-              singleQuote: true,
-              tabWidth: 2,
-              // trailingComma: 'es5',
-              useTabs: false,
-              vueIndentScriptAndStyle: false,
+              htmlWhitespaceSensitivity: "css",
               plugins: [htmlParser],
             });
             return [

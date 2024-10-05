@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 
 import { extraCssClasses, systemId } from "../constants";
+import { assertGame } from "../functions/utilities";
 
 const editButtonCssClass = "investigator-edit-button";
 
@@ -14,6 +15,7 @@ export class InvestigatorJournalSheet extends JournalSheet {
 
   /** @override */
   activateListeners(html: JQuery) {
+    assertGame(game);
     super.activateListeners(html);
 
     // find the entry content element and add the journal entry's classes onto
@@ -43,8 +45,11 @@ export class InvestigatorJournalSheet extends JournalSheet {
     // destroy the .edit-container
     this.element.find(".edit-container").remove();
 
+    const canEdit =
+      game.user && this.document.canUserModify(game.user, "update");
+
     // add edit button in titlebar
-    if (this.element.find(`.${editButtonCssClass}`).length === 0) {
+    if (canEdit && this.element.find(`.${editButtonCssClass}`).length === 0) {
       const id = `investigator_export_${nanoid()}`;
       this.element
         .find("header.window-header a.close")

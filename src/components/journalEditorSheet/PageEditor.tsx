@@ -44,7 +44,7 @@ export const PageEditor = ({ page }: PageEditorProps) => {
 
   const handleMoveUp = useCallback(async () => {
     const page = pageRef.current;
-    const pages = page.parent.pages.contents.sort((a: any, b: any) => {
+    const pages = page.parent.pages.contents.toSorted((a: any, b: any) => {
       return a.sort - b.sort;
     });
     const thisIndex = pages.findIndex((p: any) => p._id === page._id);
@@ -69,7 +69,7 @@ export const PageEditor = ({ page }: PageEditorProps) => {
   const handleMoveDown = useCallback(async () => {
     const page = pageRef.current;
 
-    const pages = page.parent.pages.contents.sort((a: any, b: any) => {
+    const pages = page.parent.pages.contents.toSorted((a: any, b: any) => {
       return a.sort - b.sort;
     });
     const thisIndex = pages.findIndex((p: any) => p._id === page._id);
