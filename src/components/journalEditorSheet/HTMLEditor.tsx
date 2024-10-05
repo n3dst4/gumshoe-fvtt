@@ -131,8 +131,7 @@ export const HTMLEditor = ({ page }: HTMLEditorProps) => {
             const text1 = await prettier.format(model.getValue(), {
               // wrapAttributes: "force",
               parser: "html",
-              // plugins: [babel],
-              htmlWhitespaceSensitivity: "ignore",
+              htmlWhitespaceSensitivity: "css",
               arrowParens: "always",
               bracketSpacing: true,
               endOfLine: "lf",
