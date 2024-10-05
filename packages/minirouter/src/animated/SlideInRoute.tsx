@@ -1,11 +1,12 @@
 import { CSSObject } from "@emotion/react";
-import { AnimatePresence, motion } from "framer-motion";
-import React, { memo, ReactNode } from "react";
+import { AnimatePresence, m } from "framer-motion";
+import { memo, ReactNode } from "react";
 
 import { PropsWithChildrenAndDirection } from "../types";
 import { useNavigationContext } from "../useNavigationContext";
 import { useRoute } from "../useRoute";
 import { duration } from "./constants";
+import { CustomLazyMotion } from "./CustomLazyMotion";
 import { easeInCubic, easeOutCubic } from "./easings";
 
 const absoluteCover: CSSObject = {
@@ -26,39 +27,41 @@ export const SlideInRoute = memo<SlideInRouteProps>(
     const backdropResult = useRoute({ direction, children: backdropContent });
     const { currentStep } = useNavigationContext();
     return (
-      <div
-        css={{ ...absoluteCover, overflow: "hidden", pointerEvents: "none" }}
-      >
-        <AnimatePresence mode="wait">
-          {backdropResult && currentStep && (
-            <>
-              {backdropResult}
-              <motion.div
-                key={currentStep.id}
-                css={{
-                  ...absoluteCover,
-                  width: "100%",
-                  zIndex: 2,
-                }}
-                initial={{
-                  x: "100%",
-                }}
-                animate={{
-                  x: 0,
-                  transition: { duration, ease: easeOutCubic },
-                }}
-                exit={{
-                  x: "100%",
-                  zIndex: 1,
-                  transition: { duration, ease: easeInCubic },
-                }}
-              >
-                {result}
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
-      </div>
+      <CustomLazyMotion>
+        <div
+          css={{ ...absoluteCover, overflow: "hidden", pointerEvents: "none" }}
+        >
+          <AnimatePresence mode="wait">
+            {backdropResult && currentStep && (
+              <>
+                {backdropResult}
+                <m.div
+                  key={currentStep.id}
+                  css={{
+                    ...absoluteCover,
+                    width: "100%",
+                    zIndex: 2,
+                  }}
+                  initial={{
+                    x: "100%",
+                  }}
+                  animate={{
+                    x: 0,
+                    transition: { duration, ease: easeOutCubic },
+                  }}
+                  exit={{
+                    x: "100%",
+                    zIndex: 1,
+                    transition: { duration, ease: easeInCubic },
+                  }}
+                >
+                  {result}
+                </m.div>
+              </>
+            )}
+          </AnimatePresence>
+        </div>
+      </CustomLazyMotion>
     );
   },
 );
