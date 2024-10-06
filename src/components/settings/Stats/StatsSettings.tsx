@@ -1,4 +1,3 @@
-
 import { absoluteCover } from "../../absoluteCover";
 import { TabContainer } from "../../TabContainer";
 import { StatsSettingsEditor } from "./StatsSettingsEditor";
@@ -17,12 +16,12 @@ export const StatsSettings = () => {
           {
             id: "pcStats",
             label: "PC Stats",
-            content: <StatsSettingsEditor which="npcStats" />,
+            content: <StatsSettingsEditor which="pcStats" />,
           },
           {
             id: "npcStats",
             label: "NPC Stats",
-            content: <StatsSettingsEditor which="pcStats" />,
+            content: <StatsSettingsEditor which="npcStats" />,
           },
         ]}
       />
