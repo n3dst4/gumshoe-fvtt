@@ -11,22 +11,16 @@ import { boot } from "@lumphammer/shared-fvtt-bits/task-core/boot";
 import {
   buildPackTranslations,
   clean,
-  helloWorld,
+  copyPacksBack,
   link,
   packidge,
   unlink,
   updateManifestFromCITagPush,
 } from "@lumphammer/shared-fvtt-bits/task-core/tasks";
-import { TaskArgs } from "@lumphammer/shared-fvtt-bits/task-core/types";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const rootPath = path.dirname(fileURLToPath(import.meta.url));
-process.chdir(rootPath);
-
-function silly({ log }: TaskArgs) {
-  log("silliness");
-}
 
 void boot({
   config: {
@@ -44,7 +38,6 @@ void boot({
     packidge,
     buildPackTranslations,
     updateManifestFromCITagPush,
-    silly,
-    helloWorld,
+    copyPacksBack,
   ],
 });
