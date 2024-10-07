@@ -29,7 +29,8 @@
     "env": "env",
     "pwd": "pwd",
     "do-release": "./packages/shared-fvtt-bits/scripts/do-release.sh",
-    "update-legacy-release-branch": "./scripts/update-legacy-release-branch.sh"
+    "update-legacy-release-branch": "./scripts/update-legacy-release-branch.sh",
+    "copy-packs-back": "./tasks.ts copyPacksBack"
   },
   "author": "",
   "license": "",

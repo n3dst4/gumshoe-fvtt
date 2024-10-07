@@ -65,7 +65,7 @@ const generalTemplate: GeneralAbilityTemplate = {
   rating: 0,
   pool: 0,
   min: 0,
-  max: 8,
+  max: 99,
   occupational: false,
   categoryId: "General",
   showTracker: false,
@@ -108,7 +108,7 @@ export const generatePacks = async <
           type: template.type,
           name,
           img: img ?? template.img,
-          data: {
+          system: {
             ...template,
             categoryId: category,
             ...rest,
