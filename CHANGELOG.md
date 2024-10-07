@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 8.2.0 (2024-10-07)
 
 * **SMALL BUT USEFUL REDESIGNS**: The weapon sheet now makes FAR more sense. Also, everywhere you can set a "combat ability", it handles the weird cases where it's using an ability that the character doesn't have.
 * **RELATED BUG FIX**: Actors were being created with no combat ability. This is now fixed, and also any existing actor that still doesn't have one will get one.
@@ -9,6 +9,7 @@
 * **BUG FIX**: Newly created weapons will now have a valid combat ability set. Prior, it was always "Scuffling", which just so happens to be valid in every system except Night's Black Agents.
 * **BUG FIX**: Cherries/unlocks that were set up using using any version between 4.11.0 (2022-05-31) and 7.0.0 (2023-06-01) were not migrated properly, so you saw the same cherry repeated in the editor (the actual display was fine though.)
 * **BUG FIX**: the portrait image on actor sheets now frames towards the top of the image if it's proportionally taller than the available space. This should work ion more situations to show the character's *face* rather than their chest and is also consistent with how Foundry does it in the sidebar.
+* **BUG FIX**: All the general abilities had their max set to 8 for no discernable reason. I guess this was enough for a lot of people, but certain games (like Night's Black Agents) tend towards higher ranks in some abilities. This is now fixed.
 * **BTS STUFF**: This is a system-work heavy release. Hopefully none of those changes will be visible.
 
 
