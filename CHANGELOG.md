@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Unreleased
+
+* Links had stopped working in notes areas (like NPCs). Cheers @muwak for the spot.
+
+
 ## 8.2.0 (2024-10-07)
 
 * **SMALL BUT USEFUL REDESIGNS**: The weapon sheet now makes FAR more sense. Also, everywhere you can set a "combat ability", it handles the weird cases where it's using an ability that the character doesn't have.
