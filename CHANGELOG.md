@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 8.2.1 (2024-10-08)
 
 * Links had stopped working in notes areas (like NPCs). Cheers @muwak for the spot.
 
