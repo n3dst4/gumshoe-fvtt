@@ -49,10 +49,13 @@ const createXss = memoizeNullaryOnce(async () => {
   // custom xss to allow style attributes and allow images with src attributes.
   // Yes, it's not ideal XSS, but then again this is a collaborative, trusted
   // environment.
+  // see https://jsxss.com/en/examples/allow_attr_prefix.html
   const xss = new FilterXSS({
     whiteList: newWhitelist,
     onTagAttr: function (tag, name, value, isWhiteAttr) {
-      if (tag === "img" && name === "src") {
+      const isImgSrc = tag === "img" && name === "src";
+      const isDataAttr = name.startsWith("data-");
+      if (isImgSrc || isDataAttr) {
         // escape its value using built-in escapeAttrValue function
         return name + '="' + escapeAttrValue(value) + '"';
       }
@@ -83,9 +86,9 @@ async function enrichHtml(originalHtml: string): Promise<string> {
 
 export const cleanAndEnrichHtml = async (originalHtml: string) => {
   const xss = await createXss();
-  const xssedHtml = xss.process(originalHtml);
-  const newHtml = await enrichHtml(xssedHtml);
-  return newHtml;
+  const enrichedHtml = await enrichHtml(originalHtml);
+  const xssedHtml = xss.process(enrichedHtml);
+  return xssedHtml;
 };
 
 // /////////////////////////////////////////////////////////////////////////////
