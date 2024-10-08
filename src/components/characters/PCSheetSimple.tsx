@@ -28,10 +28,7 @@ export const PCSheetSimple: React.FC<PCSheetProps> = ({
   assertGame(game);
   assertPCActor(actor);
 
-
-
-
-  const [occupation, setOccupation] = useState<PersonalDetailItem | undefined>(
+  const [, setOccupation] = useState<PersonalDetailItem | undefined>(
     actor.getOccupations()[0],
   );
 

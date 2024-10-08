@@ -1,11 +1,7 @@
 import React from "react";
-
 import { assertGame } from "../../functions/utilities";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
-import {
-  assertPCActor,  
-} from "../../v10Types";
-// import CardsArea from "../cards/CardsArea";
+import { assertPCActor } from "../../v10Types";
 import { PCSheetFull } from "./PCSheetFull";
 import { PCSheetSimple } from "./PCSheetSimple";
 interface PCSheetProps {
@@ -33,6 +29,5 @@ export const PCSheet: React.FC<PCSheetProps> = ({
     );
   }
 };
-
 
 PCSheet.displayName = "PCSheet";
