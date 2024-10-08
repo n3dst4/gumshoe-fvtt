@@ -202,6 +202,8 @@ What this enables (list subject to change):
 > 7.0.0 will be (probably) the first release from GitHub:
 > * Uses GitGub actions instead of GitLab CI
 > * Uses GitHub Releases instead of GitLab Generic Packages
+>
+> As of 8.2.1 We no longer need to create the release by hand on the Foundry website - it's all handled by a GitHub action. You can see the package management page at https://foundryvtt.com/packages/investigator/edit to check it's worked if you like.
 
 To perform a release:
 
@@ -221,19 +223,15 @@ To perform a release:
 
    Otherwise, continue.
 
-7. Fast-forward `release` to `main` (yes this is a funky use of `fetch`):
-4
+7. Fast-forward `release` to `main`:
+
     ```sh
     pnpm run update-legacy-release-branch
     ```
 
-8. Head over to the [CI page][gh-ci] and wait for the pipeline to finish.
+8. Wait for the release email from GitHub (or go to the [CI page][gh-ci] and wait for the pipeline to finish if you're rushing.)
 
-9. Create a new release on https://foundryvtt.com/packages/investigator/edit
-
-    You can mostly copy everything from the line before, but **update the version number and the version number in the URLs**. You can also update the compatible Foundry versions as long as you've made the same change in `system.json`.
-
-10. Barf forth glad tidings on the [Pelgrane's Virtual Tabletops Discord channel][pelgrane-discord] and the [Foundry Package Releases channel][fprd].
+9. Barf forth glad tidings on the [Pelgrane's Virtual Tabletops Discord channel][pelgrane-discord] and the [Foundry Package Releases channel][fprd].
 
     Paste in the CHANGELOG entry you just wrote, adding "INVESTIGATOR" in front of the version number to give people context.
 
