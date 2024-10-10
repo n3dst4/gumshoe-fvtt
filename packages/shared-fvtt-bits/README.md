@@ -3,7 +3,7 @@
 Common parts to be used across Foundry VTT modules and systems
 
 - [@lumphammer/shared-fvtt-bits](#lumphammershared-fvtt-bits)
-  - [Installation](#installation)
+  - [Installatione](#installatione)
     - [Optional steps](#optional-steps)
   - [Tour Guide](#tour-guide)
   - [Architectural notes](#architectural-notes)
