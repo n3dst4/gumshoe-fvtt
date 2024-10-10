@@ -1,1 +1,1 @@
-dotfiles/.eslintrc.cjs
+dotfiles/import/.eslintrc.cjs

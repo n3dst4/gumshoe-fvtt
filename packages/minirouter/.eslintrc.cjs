@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ["../shared-fvtt-bits/dotfiles/.eslintrc.cjs"],
+  extends: ["../shared-fvtt-bits/dotfiles/import/.eslintrc.cjs"],
 };
