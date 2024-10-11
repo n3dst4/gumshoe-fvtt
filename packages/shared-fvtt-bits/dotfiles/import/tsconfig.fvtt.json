@@ -42,5 +42,10 @@
     "declaration": false
   },
   "exclude": ["**/node_modules", "**/.*/"],
-	"include": ["${configDir}/src", "${configDir}/tasks.ts", "${configDir}/vite.config.ts", "${configDir}/vitest.setup.js"],
+  "include": [
+    "${configDir}/src",
+    "${configDir}/tasks.ts",
+    "${configDir}/vite.config.ts",
+    "${configDir}/vitest.setup.js"
+  ]
 }
