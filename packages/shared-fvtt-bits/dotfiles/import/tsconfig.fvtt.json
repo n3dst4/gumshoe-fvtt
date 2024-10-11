@@ -6,8 +6,8 @@
     "module": "esnext",
     "types": [
       "@league-of-foundry-developers/foundry-vtt-types",
-      "@lumphammer/investigator-fvtt-types"
-      // "vite/client"
+      "@lumphammer/investigator-fvtt-types",
+      "vite/client"
     ],
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -42,5 +42,5 @@
     "declaration": false
   },
   "exclude": ["**/node_modules", "**/.*/"],
-  "include": ["src"]
+	"include": ["${configDir}/src", "${configDir}/tasks.ts", "${configDir}/vite.config.ts", "${configDir}/vitest.setup.js"],
 }

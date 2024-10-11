@@ -3,12 +3,13 @@
 Common parts to be used across Foundry VTT modules and systems
 
 - [@lumphammer/shared-fvtt-bits](#lumphammershared-fvtt-bits)
+  - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-    - [Optional steps](#optional-steps)
   - [Tour Guide](#tour-guide)
-  - [Architectural notes](#architectural-notes)
+  - [Architectural Notes](#architectural-notes)
+    - [Getting to git-subrepo](#getting-to-git-subrepo)
     - [About pnpm](#about-pnpm)
-  - [Why subrepo, not subtree or submodule?](#why-subrepo-not-subtree-or-submodule)
+    - [pnpm workspaces](#pnpm-workspaces)
   - [Adding dependencies](#adding-dependencies)
   - [Troubleshooting](#troubleshooting)
     - [Checklist (*try these first*)](#checklist-try-these-first)
@@ -16,63 +17,31 @@ Common parts to be used across Foundry VTT modules and systems
     - [Huge long list of type errors](#huge-long-list-of-type-errors)
 
 
+## Prerequisites
+
+* [`git-subrepo`](https://github.com/ingydotnet/git-subrepo). ([Installation instructions](https://github.com/ingydotnet/git-subrepo?tab=readme-ov-file#installation)).
+* [`pnpm`](https://pnpm.io/).
+
+
 ## Installation
 
-Install [`git-subrepo`](https://github.com/ingydotnet/git-subrepo) if you don't already have it.
-
-Create the subrepo:
+**Create** the subrepo:
 
 ```sh
 git subrepo clone git@github.com:n3dst4/shared-fvtt-bits.git packages/shared-fvtt-bits
 ```
 
-Create a `pnpm-workspace.yaml` file if you don't already have one. Contents:
+**Copy** everything from `packages/shared-fvtt-bits/dotfiles/copy` into your project.
 
-```yaml
-packages:
-  - 'packages/*'
-```
+**Link** everything from `packages/shared-fvtt-bits/dotfiles/link` into your project.
 
-Create a `.npmrc` file if you don't already have one. Contents:
 
-```
-ignore-workspace-root-check=true
-```
-
-(This allows you to install packages into your root project without having to
-add -w to every install command.)
-
-Install the package into your project:
+**Install** the package into your project:
 
 ```sh
 pnpm add @lumphammer/shared-fvtt-bits --workspace
 ```
 
-### Optional steps
-
-Copy `pnpm.patchedDependencies` from `package.json` into your project (altering the paths to point into this folder).
-
-Create your `tsconfig.json` extending the one from `dotfiles`.
-
-```json
-{
-  "extends": "./shared-fvtt-bits/dotfiles/tsconfig.json",
-  "include": ["src"],
-}
-```
-
-Similarly, your .eslintrc.cjs should extend the one from `dotfiles`:
-
-```js
-module.exports = {
-  extends: ["./packages/shared-fvtt-bits/dotfiles/.eslintrc.cjs"],
-  // whatever other config you need for your project
-};
-```
-
-Symlink `dotfiles/.prettierrc.json` into your project root.
-
-Check out the `dotfiles` and symlink or reference them from you project root.
 
 ## Tour Guide
 
@@ -85,25 +54,28 @@ This repo a a stash for anything that might be useful to shared between FVTT pro
 `dotfiles` is for tool configs that can be usefully shared between projects.
 
 
-## Architectural notes
+## Architectural Notes
 
-This package is not published on npm. You could I *guess* install it as a git or github dependency, but the chief intent is that you will incorporate it into your project as [git subrepo](https://github.com/ingydotnet/git-subrepo).
+So, we use git-subrepo + pnpm workspaces. What else could we have used or was considered along the way?
 
-First you need to install git subrepo as per the [instructions](https://github.com/ingydotnet/git-subrepo?tab=readme-ov-file#installation)
 
-Then we add the shared code to our project.
+### Getting to git-subrepo
 
-```sh
-git subrepo clone git@github.com:n3dst4/shared-fvtt-bits.git shared-fvtt-bits
-```
+I knew we wanted some kind of shared code between projects. The standard answer in most corporate settings these days would be a monorepo: you put all your code into one repo and then sharing is easy. At the time I wasn't a fan of monorepos due to some bad experiences with monolithic corporate monorepos, but, as it turns out, a monorepo wouldn't be a great fit here because we're going to be sharing code between repos owned by different people (although I am now using pnpm workspaces within a project to install the shared code).
 
-To break that command down:
+Git submodules were right out - they have many well-documented issues. `git submodule` is just widely considered to be a mistake, and even its own docs recommend using `subtree`.
 
-* `git subrepo clone` asks the subrepo command to incorporate the shared code into your project.
-* `git@github.com:n3dst4/shared-fvtt-bits.git` is the url of the new remote (there's no need to manually set up a remote.)
-* `shared-fvtt-bits` is the name of the folder we want to clone into.
+So my first attempt used [git subtree](https://www.atlassian.com/git/tutorials/git-subtree). There are many better source of documentation on issues with subtree, but the one that broke me very quickly was the timeline clutter. There is the option to "squash" with subtree pushes and pulls, but you're still left with:
 
-Now we need to tell pnpm "install" it into our project. We could just refer to it by path, e.g. `import {foo} from '../../subtrees/shared-fvtt-bits/foo'`, but that causes chaos with dependency management. We use the workspace protocol because it's the best fit for us. We get the whole package symlinked in to our node_modules so changes are immediately visible etc.
+* Noise in the git timeline. Even if you `squash` you're still seeing extra parallel lines in your graph view.
+* A fragile experience (you have to `subtree pull` every time you `subtree push` or you get errors and have to `subtree split --rejoin` - and even then there are still scenarios that can break you.)
+* An awkward UX (it's fiddly enough that you'll want to boil it out into a script or something.)
+* No indication to contributors that the shared folder is shared. I "solved" this by putting my subtree in a folder called "subtrees".
+
+Git subrepo seems to be much nicer in every respect except that it needs to to be installed (it doesn't ship with git.) The counterpoint to that is that only the maintainer (person who wants to add/push/pull subrepos) needs to have it installed; regular contributors can just clone your main project repo and they will have access to all the files.
+
+Admittedly there have been some issues with it, mainly phantom errors when doing a `git subrepo push` -  but those can be bypassed with `git subrepo push --squash`.
+
 
 ### About pnpm
 
@@ -118,18 +90,11 @@ My intent is to use pnpm for dependency management everywhere. There is a checke
 `npm` and `yarn` can both handle workspace setups these days, but `pnpm` is what I'm using.
 
 
-## Why subrepo, not subtree or submodule?
+### pnpm workspaces
 
-My first attempt used [git subtree](https://www.atlassian.com/git/tutorials/git-subtree). There are many better source of documentation on issues with subtree, but the one that broke me very quickly was the timeline clutter. There is the option to "squash" with subtree pushes and pulls, but you're still left with:
+Early attempts, around the git subtree era, used pnpm's file: protocol to link the shared code into the project. This worked, but had a a major issue that newly created files would not be visible until you did a `pnpm install`.
 
-* Noise in the git timeline. Even if you `squash` you're still seeing extra parallel lines in your graph view.
-* A fragile experience (you have to `subtree pull` every time you `subtree push` or you get errors and have to `subtree split --rejoin` - and even then there are still scenarios that can break you.)
-* An awkward UX (it's fiddly enough that you'll want to boil it out into a script or something.)
-* No indication to contributors that the shared folder is shared. I "solved" this by putting my subtree in a folder called "subtrees".
-
-`git submodule` is just widely considered to be a mistake, and even its own docs recommend using subtree.
-
-Git subrepo seems to be much nicer in every respect except that it needs to to be installed (it doesn't ship with git.) The counterpoint to that is that only the maintainer (person who wants to add/push/pull subrepos) needs to have it installed; regular contributors can just clone your main project repo and they will have access to all the files.
+Eventually I realized that monorepos, aka workspaces in pnpm-speak, can be good, actually. Tbh I don't use the term monorepo much, because I think it's ambiguous whether you mean a single project with multiple packages, or a single repo with your whole universe inside it.
 
 
 ## Adding dependencies
