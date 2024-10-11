@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /// <reference types="vitest" />
 import react from "@vitejs/plugin-react-swc";
 import fs from "fs";
 import path from "path";
 import { visualizer } from "rollup-plugin-visualizer";
+import { fileURLToPath } from "url";
 import type { HttpProxy, UserConfig } from "vite";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
-import { fileURLToPath } from "url";
 
 type CreateFvttViteConfigArgs = {
   foundryPackageId: string;
