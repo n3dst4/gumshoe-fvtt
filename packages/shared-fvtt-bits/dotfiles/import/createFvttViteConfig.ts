@@ -11,6 +11,10 @@ import type { HttpProxy, UserConfig } from "vite";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 
+function kebabCaseToCamelCase(str: string) {
+  return str.replace(/-([a-z0-9])/g, (g) => g[1].toUpperCase());
+}
+
 type CreateFvttViteConfigArgs = {
   foundryPackageId: string;
   importMetaUrl: string;
@@ -166,7 +170,7 @@ export function createFvttViteConfig({
       },
 
       build: {
-        outDir: path.resolve(__dirname, "build"),
+        outDir: path.resolve(rootDir, "build"),
         emptyOutDir: true,
         sourcemap: mode !== "production",
         minify: mode === "production",
@@ -184,9 +188,9 @@ export function createFvttViteConfig({
         },
         lib: {
           name: foundryPackageId,
-          entry: `${foundryPackageId}.ts`,
+          entry: `${kebabCaseToCamelCase(foundryPackageId)}.ts`,
           formats: ["es"],
-          fileName: foundryPackageId,
+          fileName: kebabCaseToCamelCase(foundryPackageId),
         },
       },
 
