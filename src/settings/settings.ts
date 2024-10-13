@@ -15,10 +15,10 @@ import {
   createSettingBoolean,
   createSettingString,
 } from "./createSettings";
+import { cardCategoriesValidator } from "./validators/cardCategoriesValidator";
 import { equipmentCategoriesValidator } from "./validators/equipmentCategoriesValidator";
 import { personalDetailsValidator } from "./validators/personalDetailsValidator";
 import { statsValidator } from "./validators/statsValidator";
-import { cardCategoriesValidator } from "./validators/cardCategoriesValidator";
 
 export const settings = {
   combatAbilities: createSettingArrayOfString({
