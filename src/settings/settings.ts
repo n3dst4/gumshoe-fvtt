@@ -15,6 +15,7 @@ import {
   createSettingBoolean,
   createSettingString,
 } from "./createSettings";
+import { cardCategoriesValidator } from "./validators/cardCategoriesValidator";
 import { equipmentCategoriesValidator } from "./validators/equipmentCategoriesValidator";
 import { personalDetailsValidator } from "./validators/personalDetailsValidator";
 import { statsValidator } from "./validators/statsValidator";
@@ -222,6 +223,7 @@ export const settings = {
 
   cardCategories: createSetting<Mandatory<PresetV1["cardCategories"]>>()(
     Object,
+    cardCategoriesValidator,
   )({
     key: "cardCategories",
     name: "What stats should PCs have?",

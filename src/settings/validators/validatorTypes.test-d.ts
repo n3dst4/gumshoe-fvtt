@@ -1,6 +1,7 @@
 import { PresetV1 } from "@lumphammer/investigator-fvtt-types";
 import { describe, expectTypeOf, it } from "vitest";
 
+import { ValidatorCardCategories } from "./cardCategoriesValidator";
 import { ValidatorEquipmentCategories } from "./equipmentCategoriesValidator";
 import { ValidatorPersonalDetails } from "./personalDetailsValidator";
 import { ValidatorStats } from "./statsValidator";
@@ -39,5 +40,15 @@ describe("equipmentCategoriesValidator", () => {
     expectTypeOf<
       PresetV1["equipmentCategories"]
     >().toMatchTypeOf<ValidatorEquipmentCategories>();
+  });
+});
+describe("cardCategoriesValidator", () => {
+  it("should match the type from the types package", () => {
+    expectTypeOf<ValidatorCardCategories>().toMatchTypeOf<
+      PresetV1["cardCategories"]
+    >();
+    expectTypeOf<
+      PresetV1["cardCategories"]
+    >().toMatchTypeOf<ValidatorCardCategories>();
   });
 });
