@@ -4,6 +4,7 @@ import { describe, expectTypeOf, it } from "vitest";
 import { ValidatorEquipmentCategories } from "./equipmentCategoriesValidator";
 import { ValidatorPersonalDetails } from "./personalDetailsValidator";
 import { ValidatorStats } from "./statsValidator";
+import { ValidatorCardCategories } from "./cardCategoriesValidator";
 
 // we need to publish types for these settings in an npm package for third
 // parties, but on the other hand we also have a zod validator for them, which
@@ -39,5 +40,15 @@ describe("equipmentCategoriesValidator", () => {
     expectTypeOf<
       PresetV1["equipmentCategories"]
     >().toMatchTypeOf<ValidatorEquipmentCategories>();
+  });
+});
+describe("cardCategoriesValidator", () => {
+  it("should match the type from the types package", () => {
+    expectTypeOf<ValidatorCardCategories>().toMatchTypeOf<
+      PresetV1["cardCategories"]
+    >();
+    expectTypeOf<
+      PresetV1["cardCategories"]
+    >().toMatchTypeOf<ValidatorCardCategories>();
   });
 });

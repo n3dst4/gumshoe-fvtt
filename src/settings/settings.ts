@@ -18,6 +18,7 @@ import {
 import { equipmentCategoriesValidator } from "./validators/equipmentCategoriesValidator";
 import { personalDetailsValidator } from "./validators/personalDetailsValidator";
 import { statsValidator } from "./validators/statsValidator";
+import { cardCategoriesValidator } from "./validators/cardCategoriesValidator";
 
 export const settings = {
   combatAbilities: createSettingArrayOfString({
@@ -222,6 +223,7 @@ export const settings = {
 
   cardCategories: createSetting<Mandatory<PresetV1["cardCategories"]>>()(
     Object,
+    cardCategoriesValidator,
   )({
     key: "cardCategories",
     name: "What stats should PCs have?",
