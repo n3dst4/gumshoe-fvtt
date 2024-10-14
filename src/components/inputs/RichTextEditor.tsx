@@ -5,7 +5,7 @@ import { absoluteCover } from "../absoluteCover";
 type RichTextEditorProps = {
   value: string;
   className?: string;
-  onSave: () => void;
+  onSave?: () => void;
   onChange: (newSource: string) => void;
 };
 
@@ -34,12 +34,12 @@ export const RichTextEditor = ({
   //   onChange,
   // });
 
-  const myOnSave = useCallback(async () => {
+  const handleSave = useCallback(async () => {
     // hacky delay to allow the editor to update the content before we try to
     // save it. I would try harder here but we will almost certainlky end up
     // using foundry's cool new editor in due course anyway.
     await wait(500);
-    onSave();
+    onSave?.();
   }, [onSave]);
 
   const ref = useRef<HTMLTextAreaElement>(null);
@@ -51,7 +51,7 @@ export const RichTextEditor = ({
       void TextEditor.create(
         {
           target: ref.current,
-          save_onsavecallback: myOnSave,
+          save_onsavecallback: handleSave,
           height: "100%",
         } as any,
         initialValue,
@@ -72,7 +72,7 @@ export const RichTextEditor = ({
         }
       };
     }
-  }, [initialValue, myOnSave, onChange]);
+  }, [initialValue, handleSave, onChange]);
 
   return (
     <form

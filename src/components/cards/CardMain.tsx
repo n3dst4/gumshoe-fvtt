@@ -1,10 +1,13 @@
+import { useCallback } from "react";
+
 import { useItemSheetContext } from "../../hooks/useSheetContexts";
+import { NoteFormat } from "../../types";
 import { assertCardItem } from "../../v10Types";
 import { absoluteCover } from "../absoluteCover";
 import { AsyncTextInput } from "../inputs/AsyncTextInput";
 import { GridField } from "../inputs/GridField";
 import { InputGrid } from "../inputs/InputGrid";
-import { NotesEditorWithControls } from "../inputs/NotesEditorWithControls";
+import { RichTextEditor } from "../inputs/RichTextEditor";
 import { Toggle } from "../inputs/Toggle";
 import { ArrowLink } from "../nestedPanels/ArrowLink";
 import { SlideInNestedPanelRoute } from "../nestedPanels/SlideInNestedPanelRoute";
@@ -19,6 +22,28 @@ export const CardMain = () => {
 
   const categoryText = summarizeCategoryMemberships(
     item.system.cardCategoryMemberships,
+  );
+
+  const handleDescriptionChange = useCallback(
+    (newSource: string) => {
+      void item.setDescription({
+        format: NoteFormat.richText,
+        source: newSource,
+        html: newSource,
+      });
+    },
+    [item],
+  );
+
+  const handleEffectsChange = useCallback(
+    (newSource: string) => {
+      void item.setEffects({
+        format: NoteFormat.richText,
+        source: newSource,
+        html: newSource,
+      });
+    },
+    [item],
   );
 
   return (
@@ -75,12 +100,9 @@ export const CardMain = () => {
                     margin: "0.5em",
                   }}
                 >
-                  <NotesEditorWithControls
-                    allowChangeFormat
-                    format={item.system.description.format}
-                    html={item.system.description.html}
-                    source={item.system.description.source}
-                    onSave={item.setDescription}
+                  <RichTextEditor
+                    value={item.system.description.html}
+                    onChange={handleDescriptionChange}
                   />
                 </InputGrid>
               ),
@@ -96,12 +118,9 @@ export const CardMain = () => {
                     margin: "0.5em",
                   }}
                 >
-                  <NotesEditorWithControls
-                    allowChangeFormat
-                    format={item.system.effects.format}
-                    html={item.system.effects.html}
-                    source={item.system.effects.source}
-                    onSave={item.setEffects}
+                  <RichTextEditor
+                    value={item.system.effects.html}
+                    onChange={handleEffectsChange}
                   />
                 </InputGrid>
               ),
