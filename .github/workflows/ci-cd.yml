@@ -4,13 +4,6 @@ on:
   - push
   - pull_request
 
-env:
-  MANIFEST_FILE_NAME: "system.json"
-  PUBLIC_PATH: "public"
-  PACKAGE_FILE_NAME: "investigator.zip"
-  PACKAGE_PATH: package
-  DOWNLOAD_BASE: "https://github.com/${{github.repository}}/releases/download"
-
 jobs:
   pre_job:
     # see https://github.com/marketplace/actions/skip-duplicate-actions

@@ -1,0 +1,3 @@
+{
+  "extends": "./packages/shared-fvtt-bits/dotfiles/import/tsconfig.fvtt.json"
+}

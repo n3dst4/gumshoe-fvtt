@@ -19,7 +19,12 @@
       // see *our* @emotion/react not its own.
       "@emotion/react": ["./node_modules/@emotion/react"]
     },
-    "allowJs": false,
+    // we don't use js in actual code but it's simpler to have a single eslint
+    // setup, and our main eslint config uses typescript-eslint with typed
+    // linting, so we need to allow tsc to "see" js files so thast eslint can
+    // work on trhe various stray js files that need to live in the root of a
+    // project.
+    "allowJs": true,
     "noEmit": true,
     "noPropertyAccessFromIndexSignature": true,
     // https://www.typescriptlang.org/tsconfig/#skipLibCheck
@@ -41,11 +46,13 @@
     "composite": false,
     "declaration": false
   },
-  "exclude": ["**/node_modules", "**/.*/"],
   "include": [
+    // in src, we scan only for .ts files (allowJs is off)
     "${configDir}/src",
-    "${configDir}/tasks.ts",
-    "${configDir}/vite.config.ts",
-    "${configDir}/vitest.setup.js"
+    // in root of project, allow ts, js, cjs
+    "${configDir}/*.ts",
+    "${configDir}/*.js",
+    // for .eslintrc.cjs
+    "${configDir}/.*.cjs"
   ]
 }
