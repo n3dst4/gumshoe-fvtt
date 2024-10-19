@@ -28,7 +28,7 @@ jobs:
     # https://github.com/orgs/community/discussions/9050
     # Reusable workflows docs:
     # https://docs.github.com/en/actions/using-workflows/reusing-workflows
-    uses: lumphammer/gh-actions/.github/workflows/ci-cd-reusable.yml@2024-10-08
+    uses: lumphammer/gh-actions/.github/workflows/ci-cd-reusable.yml@2024-10-19.1
     needs: pre_job
     # skip the job is it a duplicate, but not if it's a tag (we always want to
     # make sure we build a tag so we get a release.)
@@ -36,12 +36,10 @@ jobs:
     permissions:
       contents: write
     with:
+      package_id: "investigator"
       manifest_file_name: "system.json"
-      public_path: "public"
-      package_file_name: "investigator.zip"
-      pnpm_version: "9"
-      package_path: "build_package"
       foundry_package_release: true
+      release_to_bucket: false
     secrets:
       FOUNDRY_PACKAGE_RELEASE_TOKEN: ${{secrets.FOUNDRY_PACKAGE_RELEASE_TOKEN}}
 
