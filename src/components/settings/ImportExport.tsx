@@ -46,9 +46,8 @@ export const ImportExport = () => {
       const newSettings = validateImportedSettings(rawRext);
       dispatch(store.creators.setSome({ newSettings }));
       ui.notifications?.info("Successfully imported settings");
-    } catch (e) {
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      ui.notifications?.error(`Error importing settings: ${e}`);
+    } catch (e: any) {
+      ui.notifications?.error(`Error importing settings: ${e.message ?? e}`);
     }
   };
 

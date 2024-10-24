@@ -30,8 +30,7 @@ function getDragEventData(event: DragEvent): object | null {
 
   try {
     return JSON.parse(event.dataTransfer.getData("text/plain"));
-    // eslint-disable-next-line unused-imports/no-unused-vars
-  } catch (err) {
+  } catch {
     return null;
   }
 }
@@ -140,7 +139,6 @@ export const HTMLEditor = ({ page }: HTMLEditorProps) => {
               },
             ];
           } catch (e: any) {
-            // systemLogger.log(e);
             ui.notifications?.error(e.message);
           }
         },

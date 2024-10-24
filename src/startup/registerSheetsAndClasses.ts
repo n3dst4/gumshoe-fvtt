@@ -2,14 +2,12 @@ import * as constants from "../constants";
 import { InvestigatorActor } from "../module/InvestigatorActor";
 import { InvestigatorCombat } from "../module/InvestigatorCombat";
 import { InvestigatorCombatant } from "../module/InvestigatorCombatant";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { InvestigatorCombatTracker } from "../module/InvestigatorCombatTracker";
 import { InvestigatorItem } from "../module/InvestigatorItem";
 import { ItemSheetClass } from "../module/InvestigatorItemSheetClass";
 import { InvestigatorJournalSheet } from "../module/InvestigatorJournalSheet";
 import { JournalEditorSheetClass } from "../module/JournalEditorSheetClass";
 import { NPCSheetClass } from "../module/NPCSheetClass";
-// import { NPCSheetClassV2 } from "../module/NPCSheetClassV2";
 import { PartySheetClass } from "../module/PartySheetClass";
 import { PCSheetClass } from "../module/PCSheetClass";
 
