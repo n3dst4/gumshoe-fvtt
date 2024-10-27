@@ -5,7 +5,6 @@
   "type": "module",
   "description": "Official GUMSHOE support for FoundryVTT. Ships with compatiblity for several settings, and can be customized to work with any other setting.",
   "scripts": {
-    "package": "vite build && ./tasks.ts packidge",
     "build": "vite build",
     "build:dev": "vite build --mode dev",
     "build:watch": "vite build --watch --mode dev",
@@ -73,7 +72,7 @@
     "rollup-plugin-visualizer": "^5.12.0",
     "tsx": "^4.19.1",
     "typescript": "5.6.3",
-    "vite": "^5.4.9",
+    "vite": "^5.4.10",
     "vite-plugin-svgr": "^4.2.0",
     "vitest": "^2.1.3"
   },
