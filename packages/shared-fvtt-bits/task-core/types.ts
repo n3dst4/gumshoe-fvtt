@@ -11,11 +11,11 @@ export interface TaskArgs extends Config {
   linkDir: string | undefined;
   manifest: Manifest;
   log: (...args: any[]) => void;
-  synchronise: (
-    srcDirPath: string,
-    destDirPath: string,
-    log: (...args: any[]) => void,
-  ) => void;
+  // synchronise: (
+  //   srcDirPath: string,
+  //   destDirPath: string,
+  //   log: (...args: any[]) => void,
+  // ) => void;
 }
 
 export type TaskFunction = ((args: TaskArgs) => void | Promise<void>) & {

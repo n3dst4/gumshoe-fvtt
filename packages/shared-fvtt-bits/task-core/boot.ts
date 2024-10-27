@@ -1,5 +1,4 @@
 import chalk from "chalk";
-import chokidar from "chokidar";
 import fs from "fs-extra";
 import path from "path";
 import yargs from "yargs";
@@ -9,39 +8,6 @@ import { BootArgs, FoundryConfig, Manifest, TaskArgs } from "./types";
 
 // logging function
 export const log = console.log.bind(console, chalk.green("[task]"));
-
-function synchronise(
-  srcDirPath: string,
-  destDirPath: string,
-  log: TaskArgs["log"],
-) {
-  chokidar
-    .watch(srcDirPath, { ignoreInitial: true })
-    .on("all", (eventName: string, affectedPath: string) => {
-      const destPath = path.join(
-        destDirPath,
-        path.relative(srcDirPath, affectedPath),
-      );
-      switch (eventName) {
-        case "add":
-          log(`File ${affectedPath} has been added`);
-          fs.copySync(affectedPath, destPath);
-          break;
-        case "change": {
-          log(`File ${affectedPath} has been changed`);
-          fs.copySync(affectedPath, destPath);
-          break;
-        }
-        case "unlink":
-          log(`File ${affectedPath} has been removed`);
-          fs.removeSync(destPath);
-          break;
-      }
-    });
-
-  log("-----------------------");
-  log(`Watching for changes in ${srcDirPath}...`);
-}
 
 export async function boot({
   config: { rootPath, publicPath, manifestName, buildPath, packagePath },
@@ -75,10 +41,11 @@ export async function boot({
     manifest,
     packagePath,
     log,
-    synchronise,
+    // synchronise,
   };
 
   const proc = yargs(hideBin(process.argv));
+
   for (const command of commands) {
     proc.command(
       command.name,
@@ -86,7 +53,9 @@ export async function boot({
       () => {
         // no builder
       },
-      () => command(finalConfig),
+      () => {
+        void command(finalConfig);
+      },
     );
   }
   proc.completion();
