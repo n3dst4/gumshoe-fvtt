@@ -13,7 +13,6 @@ import {
   clean,
   copyPacksBack,
   link,
-  packidge,
   unlink,
 } from "@lumphammer/shared-fvtt-bits/task-core/tasks";
 import path from "path";
@@ -30,12 +29,5 @@ void boot({
     packagePath: "build_package",
   },
 
-  commands: [
-    link,
-    unlink,
-    clean,
-    packidge,
-    buildPackTranslations,
-    copyPacksBack,
-  ],
+  commands: [link, unlink, clean, buildPackTranslations, copyPacksBack],
 });
