@@ -116,11 +116,11 @@
   },
   "engines": {
     "node": "20.18.0",
-    "pnpm": "9"
+    "pnpm": "9.12.3"
   },
   "volta": {
     "node": "20.18.0",
-    "pnpm": "9.1.0"
+    "pnpm": "9.12.3"
   },
-  "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631"
+  "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
 }
