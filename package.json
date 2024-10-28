@@ -48,7 +48,7 @@
     "@types/d3-ease": "^3.0.2",
     "@types/eslint": "^8.56.8",
     "@types/html-escaper": "^3.0.2",
-    "@types/react": "^18.3.11",
+    "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/textdiff-create": "^1.0.2",
     "@types/textdiff-patch": "^1.0.2",
