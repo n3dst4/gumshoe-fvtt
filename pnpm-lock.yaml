@@ -124,8 +124,8 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
       '@types/eslint':
-        specifier: ^8.56.8
-        version: 8.56.9
+        specifier: ^8.56.12
+        version: 8.56.12
       '@types/html-escaper':
         specifier: ^3.0.2
         version: 3.0.2
@@ -1522,8 +1522,8 @@ packages:
   '@types/earcut@2.1.1':
     resolution: {integrity: sha512-w8oigUCDjElRHRRrMvn/spybSMyX8MTkKA5Dv+tS1IE/TgmNZPqUYtvYBXGY8cieSE66gm+szeK+bnbxC2xHTQ==}
 
-  '@types/eslint@8.56.9':
-    resolution: {integrity: sha512-W4W3KcqzjJ0sHg2vAq9vfml6OhsJ53TcUjUqfzzZf/EChUtwspszj/S0pzMxnfRcO55/iGq47dscXw71Fxc4Zg==}
+  '@types/eslint@8.56.12':
+    resolution: {integrity: sha512-03ruubjWyOHlmljCVoxSuNDdmfZDzsrrz0P2LeJsOXr+ZwFQ+0yQIwNCwt/GYhV7Z31fgtXJTAEs+FYlEL851g==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -4944,7 +4944,7 @@ snapshots:
 
   '@types/earcut@2.1.1': {}
 
-  '@types/eslint@8.56.9':
+  '@types/eslint@8.56.12':
     dependencies:
       '@types/estree': 1.0.5
       '@types/json-schema': 7.0.12
