@@ -54,7 +54,7 @@
     "@types/textdiff-patch": "^1.0.2",
     "@types/turndown": "^5.0.5",
     "@types/yamljs": "^0.2.34",
-    "@typescript-eslint/parser": "^8.11.0",
+    "@typescript-eslint/parser": "^8.12.0",
     "@vercel/ncc": "^0.38.2",
     "@vitejs/plugin-react-swc": "^3.7.1",
     "@vitest/ui": "^2.1.4",
