@@ -1,7 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "prHourlyLimit": 0,
-  "rangeStrategy": "bump",
-  "ignorePaths": ["packages/shared-fvtt-bits/**"]
+  "extends": [
+    "github>n3dst4/shared-fvtt-bits//dotfiles/renovate-shared/default"
+  ]
 }
