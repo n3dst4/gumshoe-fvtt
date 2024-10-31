@@ -9,7 +9,7 @@ jobs:
     # see https://github.com/marketplace/actions/skip-duplicate-actions
     # prevents duplicate workflow runs when they get triggered by e.g. `push`
     # and `pull_request` events
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     outputs:
       should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
