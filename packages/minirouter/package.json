@@ -23,7 +23,7 @@
   "license": "ISC",
   "devDependencies": {
     "@emotion/react": "^11.13.3",
-    "@testing-library/jest-dom": "^6.6.2",
+    "@testing-library/jest-dom": "^6.6.3",
     "@types/react": "^18.3.12",
     "framer-motion": "^11.11.10",
     "react": "^18.3.1",
