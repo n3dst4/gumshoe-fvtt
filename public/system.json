@@ -233,21 +233,21 @@
     "maximum": "12"
   },
   "initiative": "1d6",
-  "url": "https://github.com/n3dst4/gumshoe-fvtt",
-  "manifest": "https://github.com/n3dst4/gumshoe-fvtt/releases/latest/download/system.json",
-  "download": "https://github.com/n3dst4/gumshoe-fvtt/releases/latest/download/investigator.zip",
+  "url": "https://github.com/lumphammer/gumshoe-fvtt",
+  "manifest": "https://github.com/lumphammer/gumshoe-fvtt/releases/latest/download/system.json",
+  "download": "https://github.com/lumphammer/gumshoe-fvtt/releases/latest/download/investigator.zip",
   "license": "MIT",
-  "readme": "https://github.com/n3dst4/gumshoe-fvtt/blob/main/README.md",
-  "bugs": "https://github.com/n3dst4/gumshoe-fvtt/issues",
-  "changelog": "https://github.com/n3dst4/gumshoe-fvtt/blob/main/CHANGELOG.md",
+  "readme": "https://github.com/lumphammer/gumshoe-fvtt/blob/main/README.md",
+  "bugs": "https://github.com/lumphammer/gumshoe-fvtt/issues",
+  "changelog": "https://github.com/lumphammer/gumshoe-fvtt/blob/main/CHANGELOG.md",
   "media": [
     {
       "type": "cover",
-      "url": "https://raw.githubusercontent.com/n3dst4/gumshoe-fvtt/main/assets/cover.webp"
+      "url": "https://raw.githubusercontent.com/lumphammer/gumshoe-fvtt/main/assets/cover.webp"
     },
     {
       "type": "setup",
-      "url": "https://raw.githubusercontent.com/n3dst4/gumshoe-fvtt/main/assets/cover.webp"
+      "url": "https://raw.githubusercontent.com/lumphammer/gumshoe-fvtt/main/assets/cover.webp"
     }
   ]
 }
