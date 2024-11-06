@@ -181,7 +181,7 @@ importers:
         specifier: ^4.1.4
         version: 4.1.4(@typescript-eslint/eslint-plugin@8.11.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)
       happy-dom:
-        specifier: ^15.10.1
+        specifier: ^15.10.2
         version: 15.10.2
       jest-diff:
         specifier: ^29.7.0
