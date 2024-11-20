@@ -33,9 +33,9 @@
   "author": "",
   "license": "",
   "devDependencies": {
-    "@emotion/cache": "^11.13.1",
-    "@emotion/css": "^11.13.4",
-    "@emotion/react": "^11.13.3",
+    "@emotion/cache": "^11.13.5",
+    "@emotion/css": "^11.13.5",
+    "@emotion/react": "^11.13.5",
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.1",
     "@lumphammer/investigator-fvtt-types": "workspace:^",
     "@svgr/plugin-jsx": "^8.1.0",
