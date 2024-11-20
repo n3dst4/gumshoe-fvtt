@@ -51,8 +51,8 @@ importers:
         specifier: ^2.2.3
         version: 2.2.3
       marked:
-        specifier: ^15.0.1
-        version: 15.0.1
+        specifier: ^15.0.2
+        version: 15.0.2
       nanoid:
         specifier: ^5.0.8
         version: 5.0.8
@@ -2889,8 +2889,8 @@ packages:
     resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
     engines: {node: '>=6'}
 
-  marked@15.0.1:
-    resolution: {integrity: sha512-VnnE19XO2Vb2oZeH8quAepfrb6Aaz4OoY8yZQACfuy/5KVJ0GxYC0Qxzz/iuc+g5UF7H0HJ+QROfvH26XeBdDA==}
+  marked@15.0.2:
+    resolution: {integrity: sha512-85RUkoYKIVB21PbMKrnD6aCl9ws+XKEyhJNMbLn206NyD3jbBo7Ec7Wi4Jrsn4dV1a2ng7K/jfkmIN0DNoS41w==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -6535,7 +6535,7 @@ snapshots:
       semver: 5.7.1
     optional: true
 
-  marked@15.0.1: {}
+  marked@15.0.2: {}
 
   mdn-data@2.0.28: {}
 
