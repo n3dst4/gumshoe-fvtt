@@ -174,18 +174,6 @@ export function createFvttViteConfig({
         emptyOutDir: true,
         sourcemap: mode !== "production",
         minify: mode === "production",
-        // by default vite will generate "style.css". For Foundry, we want to have
-        // the name of the package in the filename.
-        rollupOptions: {
-          output: {
-            assetFileNames: (assetInfo) => {
-              if (assetInfo.name === "style.css") {
-                return `${foundryPackageId}.css`;
-              }
-              return assetInfo.name ?? "";
-            },
-          },
-        },
         lib: {
           name: foundryPackageId,
           entry: `${kebabCaseToCamelCase(foundryPackageId)}.ts`,
