@@ -28,7 +28,7 @@
     "@lumphammer/shared-fvtt-bits": "workspace:*",
     "@tsconfig/recommended": "^1.0.8",
     "prettier": "^3.3.3",
-    "typescript": "^5.6.3"
+    "typescript": "^5.7.2"
   },
   "dependencies": {},
   "volta": {
