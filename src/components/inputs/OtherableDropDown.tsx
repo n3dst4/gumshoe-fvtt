@@ -1,5 +1,6 @@
 import { useContext } from "react";
 
+import { getTranslated } from "../../functions/getTranslated";
 import { useOtherable } from "../../hooks/useOtherable";
 import { ThemeContext } from "../../themes/ThemeContext";
 import { Translate } from "../Translate";
@@ -44,9 +45,7 @@ export const OtherableDropDown = ({
         {pickerValues.map((value) => (
           <option key={value}>{value}</option>
         ))}
-        <option value={customValueToken}>
-          <Translate>Other</Translate>
-        </option>
+        <option value={customValueToken}>{getTranslated("Other")}</option>
       </select>
       {showCustomValue && (
         <AsyncTextInput value={selectedValue} onChange={onChange} />
