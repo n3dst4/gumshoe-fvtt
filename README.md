@@ -228,6 +228,7 @@ Thanks to [The Design Mechanism](https://thedesignmechanism.com) for permission 
 
 This work is based on the GUMSHOE SRD (found at http://www.pelgranepress.com/?p=12466), a product of Pelgrane Press, developed, written, and edited by Robin D. Laws with additional material by Kenneth Hite, and licensed for our use under the Creative Commons Attribution 3.0 Unported license (http://creativecommons.org/licenses/by/3.0/)
 
+x
 
 [project-site]: https://github.com/n3dst4/gumshoe-fvtt/issues
 [srd]: https://site.pelgranepress.com/index.php/the-gumshoe-system-reference-document/
