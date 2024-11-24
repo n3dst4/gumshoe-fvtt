@@ -40,7 +40,7 @@ jobs:
       manifest_file_name: "system.json"
       foundry_package_release: true
       release_to_bucket: false
-      runs_on: self-hosted
+      runs_on: ubuntu-latest
     secrets:
       FOUNDRY_PACKAGE_RELEASE_TOKEN: ${{secrets.FOUNDRY_PACKAGE_RELEASE_TOKEN}}
 
