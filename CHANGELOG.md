@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 8.2.4 (2024-11-24)
+
+* **BUG FIX**: Settings import is broken if the export contained card categories (#962)
+* **BUG FIX**: "Social Sciences" is missing from the list of Academic skills in the Fear Itself abilities compendium (#1047) Cheers @SeaMonster!
+* **BUG FIX**: Night's Black Agents NPC abilities have been overhauled because they barely overlap with the SRD NPC abilities. Original bug report was "Missing Hand-to-Hand in Night's Black Agents NPC Abilities (#1040)". Thanks `geoffk` for the report.
+* **BUG FIX**: Missing Technical Skill "Forensic Pathology" for NBA (#1058). Thanks `geoffk` again.
+
+
 ## 8.2.1 (2024-10-08)
 
 * Links had stopped working in notes areas (like NPCs). Cheers @muwak for the spot.
