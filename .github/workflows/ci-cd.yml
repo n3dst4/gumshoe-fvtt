@@ -40,7 +40,7 @@ jobs:
       manifest_file_name: "system.json"
       foundry_package_release: true
       release_to_bucket: false
-      runs_on: blacksmith-4vcpu-ubuntu-2204-arm
+      runs_on: blacksmith-16vcpu-ubuntu-2204-arm
     secrets:
       FOUNDRY_PACKAGE_RELEASE_TOKEN: ${{secrets.FOUNDRY_PACKAGE_RELEASE_TOKEN}}
 
