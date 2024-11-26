@@ -110,6 +110,10 @@
       "allowedVersions": {
         "meow": "13"
       }
+    },
+    "overrides": {
+      "vite": "$vite",
+      "vitest": "$vitest"
     }
   },
   "engines": {
