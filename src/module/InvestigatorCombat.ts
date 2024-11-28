@@ -30,8 +30,8 @@ export class InvestigatorCombat extends Combat {
   }
 
   protected override _sortCombatants = (
-    a: InstanceType<typeof InvestigatorCombatant>,
-    b: InstanceType<typeof InvestigatorCombatant>,
+    a: InvestigatorCombatant,
+    b: InvestigatorCombatant,
   ): number => {
     if (settings.useTurnPassingInitiative.get()) {
       return compareCombatantsPassing(this.activeTurnPassingCombatant)(a, b);
