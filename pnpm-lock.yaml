@@ -182,8 +182,8 @@ importers:
         specifier: ^4.1.4
         version: 4.1.4(@typescript-eslint/eslint-plugin@8.16.0(@typescript-eslint/parser@8.16.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)
       happy-dom:
-        specifier: ^15.11.6
-        version: 15.11.6
+        specifier: ^15.11.7
+        version: 15.11.7
       jest-diff:
         specifier: ^29.7.0
         version: 29.7.0
@@ -210,7 +210,7 @@ importers:
         version: 4.3.0(rollup@4.27.4)(typescript@5.7.2)(vite@6.0.1(@types/node@18.15.11)(less@4.2.1)(tsx@4.19.2))
       vitest:
         specifier: ^2.1.6
-        version: 2.1.6(@types/node@18.15.11)(@vitest/ui@2.1.6)(happy-dom@15.11.6)(less@4.2.1)(tsx@4.19.2)
+        version: 2.1.6(@types/node@18.15.11)(@vitest/ui@2.1.6)(happy-dom@15.11.7)(less@4.2.1)(tsx@4.19.2)
 
   packages/investigator-fvtt-types:
     devDependencies:
@@ -258,7 +258,7 @@ importers:
         version: 6.0.1(@types/node@18.15.11)(less@4.2.1)(tsx@4.19.2)
       vitest:
         specifier: ^2.1.6
-        version: 2.1.6(@types/node@18.15.11)(@vitest/ui@2.1.6)(happy-dom@15.11.6)(less@4.2.1)(tsx@4.19.2)
+        version: 2.1.6(@types/node@18.15.11)(@vitest/ui@2.1.6)(happy-dom@15.11.7)(less@4.2.1)(tsx@4.19.2)
 
   packages/shared-fvtt-bits:
     dependencies:
@@ -358,7 +358,7 @@ importers:
         version: 4.3.0(rollup@4.27.4)(typescript@5.7.2)(vite@6.0.1(@types/node@18.15.11)(less@4.2.1)(tsx@4.19.2))
       vitest:
         specifier: ^2.1.6
-        version: 2.1.6(@types/node@18.15.11)(@vitest/ui@2.1.6)(happy-dom@15.11.6)(less@4.2.1)(tsx@4.19.2)
+        version: 2.1.6(@types/node@18.15.11)(@vitest/ui@2.1.6)(happy-dom@15.11.7)(less@4.2.1)(tsx@4.19.2)
 
 packages:
 
@@ -2527,8 +2527,8 @@ packages:
     engines: {node: '>=0.4.7'}
     hasBin: true
 
-  happy-dom@15.11.6:
-    resolution: {integrity: sha512-elX7iUTu+5+3b2+NGQc0L3eWyq9jKhuJJ4GpOMxxT/c2pg9O3L5H3ty2VECX0XXZgRmmRqXyOK8brA2hDI6LsQ==}
+  happy-dom@15.11.7:
+    resolution: {integrity: sha512-KyrFvnl+J9US63TEzwoiJOQzZBJY7KgBushJA8X61DMbNsH+2ONkDuLDnCnwUiPTF42tLoEmrPyoqbenVA5zrg==}
     engines: {node: '>=18.0.0'}
 
   has-bigints@1.0.2:
@@ -5141,7 +5141,7 @@ snapshots:
       sirv: 3.0.0
       tinyglobby: 0.2.10
       tinyrainbow: 1.2.0
-      vitest: 2.1.6(@types/node@18.15.11)(@vitest/ui@2.1.6)(happy-dom@15.11.6)(less@4.2.1)(tsx@4.19.2)
+      vitest: 2.1.6(@types/node@18.15.11)(@vitest/ui@2.1.6)(happy-dom@15.11.7)(less@4.2.1)(tsx@4.19.2)
 
   '@vitest/utils@2.1.6':
     dependencies:
@@ -6156,7 +6156,7 @@ snapshots:
     optionalDependencies:
       uglify-js: 3.17.4
 
-  happy-dom@15.11.6:
+  happy-dom@15.11.7:
     dependencies:
       entities: 4.5.0
       webidl-conversions: 7.0.0
@@ -7336,7 +7336,7 @@ snapshots:
       less: 4.2.1
       tsx: 4.19.2
 
-  vitest@2.1.6(@types/node@18.15.11)(@vitest/ui@2.1.6)(happy-dom@15.11.6)(less@4.2.1)(tsx@4.19.2):
+  vitest@2.1.6(@types/node@18.15.11)(@vitest/ui@2.1.6)(happy-dom@15.11.7)(less@4.2.1)(tsx@4.19.2):
     dependencies:
       '@vitest/expect': 2.1.6
       '@vitest/mocker': 2.1.6(vite@6.0.1(@types/node@18.15.11)(less@4.2.1)(tsx@4.19.2))
@@ -7361,7 +7361,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 18.15.11
       '@vitest/ui': 2.1.6(vitest@2.1.6)
-      happy-dom: 15.11.6
+      happy-dom: 15.11.7
     transitivePeerDependencies:
       - jiti
       - less
