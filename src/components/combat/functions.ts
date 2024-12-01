@@ -4,14 +4,14 @@ import { InvestigatorItem } from "../../module/InvestigatorItem";
 import { isActiveCharacterActor, isGeneralAbilityItem } from "../../v10Types";
 
 const compare = <T>(a: T, b: T) => (a < b ? -1 : a > b ? 1 : 0);
-const compareInv = <T>(a: T, b: T) => compare(a, b) * -1;
+const compareInverted = <T>(a: T, b: T) => compare(a, b) * -1;
 
 export const compareCombatantsPassing =
   (active: string | null) =>
   (a: InvestigatorCombatant, b: InvestigatorCombatant): number => {
     return (
-      compareInv(a.id === active, b.id === active) ||
-      compareInv(a.passingTurnsRemaining, b.passingTurnsRemaining) ||
+      compareInverted(a.id === active, b.id === active) ||
+      compareInverted(a.passingTurnsRemaining, b.passingTurnsRemaining) ||
       compare(a.name, b.name) ||
       compare(a.id, b.id)
     );
