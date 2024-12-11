@@ -99,7 +99,7 @@
     "turndown": "^7.2.0",
     "xss": "^1.0.15",
     "yamljs": "^0.3.0",
-    "zod": "^3.23.8",
+    "zod": "^3.24.1",
     "zod-validation-error": "^3.4.0"
   },
   "pnpm": {
