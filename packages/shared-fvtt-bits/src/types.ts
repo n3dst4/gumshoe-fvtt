@@ -12,7 +12,7 @@ export type Constructor<T> = new (...args: any[]) => T;
 export type Render<T> = (
   t: T extends Constructor<infer T2> ? T2 : T,
   serial: number,
-) => JSX.Element;
+) => React.ReactNode;
 
 declare global {}
 
