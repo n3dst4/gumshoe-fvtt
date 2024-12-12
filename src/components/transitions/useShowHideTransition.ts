@@ -10,7 +10,7 @@ export function useShowHideTransition(show: boolean, duration: number) {
 
   const durationRef = useRefStash(duration);
 
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (timeoutRef.current) {

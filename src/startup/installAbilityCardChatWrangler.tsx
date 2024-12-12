@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { ReactNode, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import { AbilityNegateOrWallopMwCard } from "../components/messageCards/AbilityNegateOrWallopMwCard";
@@ -63,7 +63,7 @@ export const installAbilityCardChatWrangler = () => {
 
     const ability = abilityId ? actor.items.get(abilityId) : undefined;
 
-    let content: JSX.Element;
+    let content: ReactNode;
     if (mode === constants.htmlDataModeAttack) {
       const weapon = weaponId ? actor.items.get(weaponId) : undefined;
       content = (

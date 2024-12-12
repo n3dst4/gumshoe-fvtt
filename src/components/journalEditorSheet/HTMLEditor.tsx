@@ -50,7 +50,7 @@ export const HTMLEditor = ({ page }: HTMLEditorProps) => {
     }
   }, []);
 
-  const memoryRef = useRef<DocumentMemory>();
+  const memoryRef = useRef<DocumentMemory | undefined>(undefined);
 
   // a debounced save function
   const handleSaveContent = useMemo(
