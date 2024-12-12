@@ -15,7 +15,7 @@ type ApplicationConstructor = Constructor<Application>;
 type Render<T> = (
   t: T extends Constructor<infer T2> ? T2 : T,
   serial: number,
-) => JSX.Element;
+) => React.ReactNode;
 
 /**
  * Wrap an existing Foundry Application class in this Mixin to override the

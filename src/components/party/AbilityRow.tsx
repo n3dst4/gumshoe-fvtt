@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, ReactNode } from "react";
 
 import { confirmADoodleDo } from "../../functions/confirmADoodleDo";
 import { InvestigatorActor } from "../../module/InvestigatorActor";
@@ -56,7 +56,7 @@ export const AbilityRow = ({
       </div>
 
       {/* Ability scores */}
-      {actors.map<JSX.Element | null>((actor, j) => {
+      {actors.map<ReactNode>((actor, j) => {
         if (actor === undefined || actor.id === null) {
           return null;
         }

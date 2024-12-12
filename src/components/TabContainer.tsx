@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import {
   ChangeEvent,
   Fragment,
+  ReactNode,
   useCallback,
   useContext,
   useMemo,
@@ -15,8 +16,8 @@ import { Translate } from "./Translate";
 
 type TabDefinition = {
   id: string;
-  label: string | JSX.Element;
-  content: JSX.Element;
+  label: ReactNode;
+  content: ReactNode;
   translate?: boolean;
 };
 

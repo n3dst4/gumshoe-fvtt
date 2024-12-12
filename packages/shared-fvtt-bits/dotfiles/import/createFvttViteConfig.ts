@@ -20,6 +20,7 @@ type CreateFvttViteConfigArgs = {
   importMetaUrl: string;
   packageType: "module" | "system";
   port?: number;
+  sourceMap?: boolean;
 };
 
 // this is lifted from
@@ -49,6 +50,7 @@ export function createFvttViteConfig({
   importMetaUrl,
   packageType,
   port = 40000,
+  sourceMap = false,
 }: CreateFvttViteConfigArgs) {
   //
   // setup
@@ -172,7 +174,7 @@ export function createFvttViteConfig({
       build: {
         outDir: path.resolve(rootDir, "build"),
         emptyOutDir: true,
-        sourcemap: mode !== "production",
+        sourcemap: mode !== "production" || sourceMap,
         minify: mode === "production",
         lib: {
           name: foundryPackageId,
