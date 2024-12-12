@@ -245,7 +245,7 @@ importers:
         specifier: ^19.0.1
         version: 19.0.1
       framer-motion:
-        specifier: ^11.14.0
+        specifier: ^11.14.1
         version: 11.14.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react:
         specifier: ^19.0.0
