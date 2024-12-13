@@ -245,8 +245,8 @@ importers:
         specifier: ^19.0.1
         version: 19.0.1
       framer-motion:
-        specifier: ^11.14.1
-        version: 11.14.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^11.14.3
+        version: 11.14.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -2404,8 +2404,8 @@ packages:
     resolution: {integrity: sha512-TMKDUnIte6bfb5nWv7V/caI169OHgvwjb7V4WkeUvbQQdjr5rWKqHFiKWb/fcOwB+CzBT+qbWjvj+DVwRskpIg==}
     engines: {node: '>=14'}
 
-  framer-motion@11.14.1:
-    resolution: {integrity: sha512-6B7jC54zgnefmUSa2l4gkc/2CrqclHL9AUbDxxRfbFyWKLd+4guUYtEabzoYMU8G5ICZ6CdJdydOLy74Ekd7ag==}
+  framer-motion@11.14.3:
+    resolution: {integrity: sha512-waX0Tn8J+Wkd57CG+ctjKtk6C4FlDH5ziNxLnnKNHpqKdny6y5wIXl36rBedVKuyLJC8b9F1wTkYhW4/qlg0vQ==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -2919,11 +2919,11 @@ packages:
   monaco-editor@0.45.0:
     resolution: {integrity: sha512-mjv1G1ZzfEE3k9HZN0dQ2olMdwIfaeAAjFiwNprLfYNRSz7ctv9XuCT7gPtBGrMUeV1/iZzYKj17Khu1hxoHOA==}
 
-  motion-dom@11.14.1:
-    resolution: {integrity: sha512-Y68tHWR0d2HxHDskNxpeY3pzUdz7L/m5A8TV7VSE6Sq4XUNJdZV8zXco1aeAQ44o48u0i8UKjt8TGIqkZSQ8ew==}
+  motion-dom@11.14.3:
+    resolution: {integrity: sha512-lW+D2wBy5vxLJi6aCP0xyxTxlTfiu+b+zcpVbGVFUxotwThqhdpPRSmX8xztAgtZMPMeU0WGVn/k1w4I+TbPqA==}
 
-  motion-utils@11.14.1:
-    resolution: {integrity: sha512-R6SsehArpkEBUHydkcwQ/8ij8k2PyKWAJ7Y8PN3ztnFwq5RBU3zIamYH6esTp09OgsbwB57mBEZ9DORaN1WTxQ==}
+  motion-utils@11.14.3:
+    resolution: {integrity: sha512-Xg+8xnqIJTpr0L/cidfTTBFkvRw26ZtGGuIhA94J9PQ2p4mEa06Xx7QVYZH0BP+EpMSaDlu+q0I0mmvwADPsaQ==}
 
   mrmime@2.0.0:
     resolution: {integrity: sha512-eu38+hdgojoyq63s+yTpN4XMBdt5l8HhMhc4VKLO9KM5caLIBvUm4thi7fFaxyTmCKeNnXZ5pAlBwCUnhA09uw==}
@@ -6014,10 +6014,10 @@ snapshots:
       cross-spawn: 7.0.3
       signal-exit: 4.1.0
 
-  framer-motion@11.14.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  framer-motion@11.14.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
-      motion-dom: 11.14.1
-      motion-utils: 11.14.1
+      motion-dom: 11.14.3
+      motion-utils: 11.14.3
       tslib: 2.5.0
     optionalDependencies:
       react: 19.0.0
@@ -6505,9 +6505,9 @@ snapshots:
 
   monaco-editor@0.45.0: {}
 
-  motion-dom@11.14.1: {}
+  motion-dom@11.14.3: {}
 
-  motion-utils@11.14.1: {}
+  motion-utils@11.14.3: {}
 
   mrmime@2.0.0: {}
 
