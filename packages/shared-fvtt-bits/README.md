@@ -31,7 +31,7 @@ Common parts to be used across Foundry VTT modules and systems
 git subrepo clone git@github.com:n3dst4/shared-fvtt-bits.git packages/shared-fvtt-bits
 ```
 
-**Copy** everything from `packages/shared-fvtt-bits/dotfiles/copy` into your project.
+**Copy** everything from `packages/shared-fvtt-bits/dotfiles/copy` into your project. Rename anything that begins or ends with a `!` to remove the `!`.
 
 **Link** everything from `packages/shared-fvtt-bits/dotfiles/link` into your project.
 

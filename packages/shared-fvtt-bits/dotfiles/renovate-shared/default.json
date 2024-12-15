@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+  "extends": ["config:recommended", "schedule:weekly", "group:allNonMajor"],
   "prHourlyLimit": 0,
   "rangeStrategy": "bump",
   "ignorePaths": ["packages/shared-fvtt-bits/**"]
